@@ -130,8 +130,6 @@ unsafe impl RefEncode for RPSampleBufferType {
 }
 
 extern "C" {
-    /// RPVideoSampleOrientationKey
-    ///
     /// Use this key in conjunction with CMGetAttachment on CMSampleBufferRef to get the orientation for the sample. The orientation will follow the enum CGImagePropertyOrientation
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpvideosampleorientationkey?language=objc)
@@ -139,8 +137,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// RPApplicationInfoBundleIdentifierKey
-    ///
     /// Use this key to retrieve bundle identifier from dictionary provided by broadcastAnnotatedWithApplicationInfo
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpapplicationinfobundleidentifierkey?language=objc)

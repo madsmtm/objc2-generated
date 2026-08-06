@@ -131,7 +131,8 @@ impl UIEditMenuInteraction {
         /// `configuration`object.
         /// If a menu is already presented, it will be dismissed automatically before the new menu is presented.
         ///
-        /// :
+        ///
+        /// Note: :
         /// `presentEditMenuWithConfiguration:`is not supported on Mac Catalyst.
         #[unsafe(method(presentEditMenuWithConfiguration:))]
         #[unsafe(method_family = none)]

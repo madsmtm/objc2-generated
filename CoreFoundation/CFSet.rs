@@ -65,24 +65,30 @@ pub type CFSetEqualCallBack =
 pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
 /// Structure containing the callbacks of a CFSet.
+///
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFSet creation functions. This
 /// structure is version 0.
+///
 /// Field: retain The callback used to add a retain for the set on
 /// values as they are put into the set. This callback returns
 /// the value to store in the set, which is usually the value
 /// parameter passed to this callback, but may be a different
 /// value if a different value should be stored in the set.
 /// The set's allocator is passed as the first argument.
+///
 /// Field: release The callback used to remove a retain previously added
 /// for the set from values as they are removed from the
 /// set. The set's allocator is passed as the first
 /// argument.
+///
 /// Field: copyDescription The callback used to create a descriptive
 /// string representation of each value in the set. This is
 /// used by the CFCopyDescription() function.
+///
 /// Field: equal The callback used to compare values in the set for
 /// equality for some operations.
+///
 /// Field: hash The callback used to compare values in the set for
 /// uniqueness for some operations.
 ///

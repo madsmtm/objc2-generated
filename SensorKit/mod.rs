@@ -707,6 +707,7 @@ extern_protocol!(
     pub unsafe trait SRSensorReaderDelegate: NSObjectProtocol {
         /// Invoked when a sample has been fetched
         ///
+        ///
         /// This callback can be called multiple times
         /// when there are multiple results.
         ///

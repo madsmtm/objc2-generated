@@ -512,9 +512,6 @@ impl CKFetchRecordZoneChangesOperation {
         #[cfg(feature = "CKRecordZoneID")]
         /// Creates an operation for fetching record zone changes.
         ///
-        /// {
-        /// Use ``CKFetchRecordZoneChangesOperation/init(recordZoneIDs:configurationsByRecordZoneID:)`` instead.
-        /// }
         ///
         /// - Parameters:
         /// - recordZoneIDs: The IDs of the record zones that you want to query for changes.
@@ -535,9 +532,6 @@ impl CKFetchRecordZoneChangesOperation {
         #[cfg(feature = "CKRecordZoneID")]
         /// Configuration options for each record zone that the operation retrieves.
         ///
-        /// {
-        /// Use ``CKFetchRecordZoneChangesOperation/configurationsByRecordZoneID`` instead.
-        /// }
         ///
         /// You can associate each record zone ID with options that define what CloudKit fetches for that record zone.  See ``CKFetchRecordZoneChangesOperation/ZoneOptions`` for more information.
         ///
@@ -676,10 +670,6 @@ impl CKFetchRecordZoneChangesConfiguration {
 
 extern_class!(
     /// A configuration object that describes the information to fetch from a record zone.
-    ///
-    /// {
-    /// Use ``CKFetchRecordZoneChangesOperation/ZoneConfiguration`` instead.
-    /// }
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoptions?language=objc)
     #[unsafe(super(NSObject))]

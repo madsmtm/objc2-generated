@@ -41,9 +41,11 @@ unsafe impl RefEncode for CFBinaryHeapCompareContext {
 }
 
 /// Structure containing the callbacks for values of a CFBinaryHeap.
+///
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFBinaryHeap creation functions.
 /// This structure is version 0.
+///
 /// Field: retain The callback used to add a retain for the binary heap
 /// on values as they are put into the binary heap.
 /// This callback returns the value to use as the value in the
@@ -51,13 +53,16 @@ unsafe impl RefEncode for CFBinaryHeapCompareContext {
 /// this callback, but may be a different value if a different
 /// value should be added to the binary heap. The binary heap's
 /// allocator is passed as the first argument.
+///
 /// Field: release The callback used to remove a retain previously added
 /// for the binary heap from values as they are removed from
 /// the binary heap. The binary heap's allocator is passed as the
 /// first argument.
+///
 /// Field: copyDescription The callback used to create a descriptive
 /// string representation of each value in the binary heap. This
 /// is used by the CFCopyDescription() function.
+///
 /// Field: compare The callback used to compare values in the binary heap for
 /// equality in some operations.
 ///

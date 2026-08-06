@@ -45,8 +45,6 @@ unsafe impl ConcreteType for CTFont {
 }
 
 extern "C" {
-    /// kCTFontCopyrightNameKey
-    ///
     /// The name specifier for the copyright name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcopyrightnamekey?language=objc)
@@ -54,8 +52,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFamilyNameKey
-    ///
     /// The name specifier for the family name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfamilynamekey?language=objc)
@@ -63,8 +59,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontSubFamilyNameKey
-    ///
     /// The name specifier for the subfamily name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsubfamilynamekey?language=objc)
@@ -72,8 +66,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontStyleNameKey
-    ///
     /// The name specifier for the style name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontstylenamekey?language=objc)
@@ -81,8 +73,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontUniqueNameKey
-    ///
     /// The name specifier for the unique name.
     ///
     /// Note that this name is often not unique and should not be
@@ -93,8 +83,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFullNameKey
-    ///
     /// The name specifier for the full name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfullnamekey?language=objc)
@@ -102,8 +90,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontVersionNameKey
-    ///
     /// The name specifier for the version name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontversionnamekey?language=objc)
@@ -111,8 +97,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontPostScriptNameKey
-    ///
     /// The name specifier for the PostScript name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpostscriptnamekey?language=objc)
@@ -120,8 +104,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontTrademarkNameKey
-    ///
     /// The name specifier for the trademark name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfonttrademarknamekey?language=objc)
@@ -129,8 +111,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontManufacturerNameKey
-    ///
     /// The name specifier for the manufacturer name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanufacturernamekey?language=objc)
@@ -138,8 +118,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontDesignerNameKey
-    ///
     /// The name specifier for the designer name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdesignernamekey?language=objc)
@@ -147,8 +125,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontDescriptionNameKey
-    ///
     /// The name specifier for the description name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptionnamekey?language=objc)
@@ -156,8 +132,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontVendorURLNameKey
-    ///
     /// The name specifier for the vendor url name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvendorurlnamekey?language=objc)
@@ -165,8 +139,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontDesignerURLNameKey
-    ///
     /// The name specifier for the designer url name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdesignerurlnamekey?language=objc)
@@ -174,8 +146,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontLicenseNameKey
-    ///
     /// The name specifier for the license name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontlicensenamekey?language=objc)
@@ -183,8 +153,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontLicenseURLNameKey
-    ///
     /// The name specifier for the license url name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontlicenseurlnamekey?language=objc)
@@ -192,8 +160,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontSampleTextNameKey
-    ///
     /// The name specifier for the sample text name string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsampletextnamekey?language=objc)
@@ -201,8 +167,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontPostScriptCIDNameKey
-    ///
     /// The name specifier for the PostScript CID name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpostscriptcidnamekey?language=objc)
@@ -1605,8 +1569,6 @@ impl CTFont {
 }
 
 extern "C" {
-    /// kCTFontVariationAxisIdentifierKey
-    ///
     /// Key to get the variation axis identifier.
     ///
     /// This key is used with a variation axis dictionary to get the axis identifier value as a CFNumberRef.
@@ -1616,8 +1578,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontVariationAxisMinimumValueKey
-    ///
     /// Key to get the variation axis minimum value.
     ///
     /// This key is used with a variation axis dictionary to get the minimum axis value as a CFNumberRef.
@@ -1627,8 +1587,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontVariationAxisMaximumValueKey
-    ///
     /// Key to get the variation axis maximum value.
     ///
     /// This key is used with a variation axis dictionary to get the maximum axis value as a CFNumberRef.
@@ -1638,8 +1596,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontVariationAxisDefaultValueKey
-    ///
     /// Key to get the variation axis default value.
     ///
     /// This key is used with a variation axis dictionary to get the default axis value as a CFNumberRef.
@@ -1649,8 +1605,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontVariationAxisNameKey
-    ///
     /// Key to get the variation axis name string.
     ///
     /// This key is used with a variation axis dictionary to get the variation axis name.
@@ -1660,8 +1614,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontVariationAxisHiddenKey
-    ///
     /// Key to get the hidden axis flag.
     ///
     /// This key contains a CFBoolean value that is true when the font designer recommends the axis not be exposed directly to end users in application interfaces.
@@ -1723,8 +1675,6 @@ impl CTFont {
 }
 
 extern "C" {
-    /// kCTFontOpenTypeFeatureTag
-    ///
     /// Key to get the OpenType feature tag.
     ///
     /// This key can be used with a font feature dictionary to get the tag as a CFStringRef.
@@ -1734,8 +1684,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontOpenTypeFeatureValue
-    ///
     /// Key to get the OpenType feature value.
     ///
     /// This key can be used with a font feature dictionary to get the value as a CFNumberRef.
@@ -1745,8 +1693,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureTypeIdentifierKey
-    ///
     /// Key to get the font feature type value.
     ///
     /// This key can be used with a font feature dictionary to get the type identifier as a CFNumberRef.
@@ -1756,8 +1702,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureTypeNameKey
-    ///
     /// Key to get the font feature name.
     ///
     /// This key can be used with a font feature dictionary to get the localized type name string as a CFString.
@@ -1767,8 +1711,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureTypeExclusiveKey
-    ///
     /// Key to get the font feature exclusive setting.
     ///
     /// This key can be used with a font feature dictionary to get the the exclusive setting of the feature as a CFBoolean. The value associated with this key indicates whether the feature selectors associated with this type should be mutually exclusive.
@@ -1778,8 +1720,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureTypeSelectorsKey
-    ///
     /// Key to get the font feature selectors.
     ///
     /// This key can be used with a font feature dictionary to get the array of font feature selectors as a CFArrayRef. This is an array of selector dictionaries that contain the values for the following selector keys.
@@ -1789,8 +1729,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureSelectorIdentifierKey
-    ///
     /// Key to get the font feature selector identifier.
     ///
     /// This key can be used with a selector dictionary corresponding to a feature type to obtain the selector identifier value as a CFNumberRef.
@@ -1800,8 +1738,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureSelectorNameKey
-    ///
     /// Key to get the font feature selector name.
     ///
     /// This key is used with a selector dictionary to get the localized name string for the selector as a CFStringRef.
@@ -1811,8 +1747,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureSelectorDefaultKey
-    ///
     /// Key to get the font feature selector default setting value.
     ///
     /// This key is used with a selector dictionary to get the default indicator for the selector. This value is a CFBooleanRef which if present and true indicates that this selector is the default setting for the current feature type.
@@ -1822,8 +1756,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureSelectorSettingKey
-    ///
     /// Key to get or specify the current feature setting.
     ///
     /// This key is used with a selector dictionary to get or specify the current setting for the selector. This value is a CFBooleanRef to indicate whether this selector is on or off. If this key is not present, the default setting is used.
@@ -1833,8 +1765,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureSampleTextKey
-    ///
     /// Key to get the font feature sample text.
     ///
     /// This key can be used with a font feature dictionary to get the localized sample text as a CFStringRef.
@@ -1844,8 +1774,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureTooltipTextKey
-    ///
     /// Key to get the font feature tooltip text.
     ///
     /// This key can be used with a font feature dictionary to get the localized tooltip text as a CFStringRef.
@@ -2379,9 +2307,6 @@ impl CTFont {
 }
 
 extern "C" {
-    /// kCTBaselineClassRoman
-    ///
-    ///
     /// Key to reference the Roman baseline class.
     ///
     ///
@@ -2392,9 +2317,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTBaselineClassIdeographicCentered
-    ///
-    ///
     /// Key to reference the Ideographic Centered baseline class.
     ///
     ///
@@ -2405,9 +2327,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTBaselineClassIdeographicLow
-    ///
-    ///
     /// Key to reference the Ideographic Low baseline class.
     ///
     ///
@@ -2418,9 +2337,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTBaselineClassIdeographicHigh
-    ///
-    ///
     /// Key to reference the Ideographic High baseline class.
     ///
     ///
@@ -2431,9 +2347,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTBaselineClassHanging
-    ///
-    ///
     /// Key to reference the Hanging baseline class.
     ///
     ///
@@ -2444,9 +2357,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTBaselineClassMath
-    ///
-    ///
     /// Key to reference the Math baseline class.
     ///
     ///
@@ -2457,9 +2367,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTBaselineReferenceFont
-    ///
-    ///
     /// Key to reference a font for the reference baseline.
     ///
     ///
@@ -2470,9 +2377,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTBaselineOriginalFont
-    ///
-    ///
     /// Use the original font for setting the reference baseline.
     ///
     ///

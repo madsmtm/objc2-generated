@@ -31,7 +31,7 @@ extern_class!(
     /// ```swift
     /// func fetchParticipants(for lookupInfos: [CKUserIdentity.LookupInfo],
     /// completion:
-    /// (Result
+    /// @escaping (Result
     /// <
     /// [CKShare.Participant], any Error>) -> Void) {
     ///

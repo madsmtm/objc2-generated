@@ -905,18 +905,31 @@ pub const kUSB_SSCompDesc_Isoc_Mult_Shift: c_uint = USBBitRangePhase!(0, 1);
 pub const addPacketShift: c_uint = 11;
 
 /// Structure used with the IOUSBLib GetEndpointPropertiesV3 and GetPipePropertiesV3 API. Most of the fields are taken directly from corresponding Standard Endpoint Descriptor and SuperSpeed Endpoint Companion Descriptor. wBytesPerInterval will be synthesized for  High Speed High Bandwidth Isochronous endpoints.
+///
 /// Field: bVersion  Version of the structure.  Currently kUSBEndpointPropertiesVersion3.  Need to set this when using this structure
+///
 /// Field: bAlternateSetting Used as an input for GetEndpointPropertiesV3.  Used as an output for GetPipePropertiesV3
+///
 /// Field: bDirection Used as an input for GetEndpointPropertiesV3.  Used as an output for GetPipePropertiesV3. One of kUSBIn or kUSBOut.
+///
 /// Field: bEndpointNumber Used as an input for GetEndpointPropertiesV3.  Used as an output for GetPipePropertiesV3
+///
 /// Field: bTransferType  One of kUSBControl, kUSBBulk, kUSBIsoc, or kUSBInterrupt
+///
 /// Field: bUsageType  For interrupt and isoc endpoints, the usage type.  For Bulk endpoints of the UAS Mass Storage Protocol, the pipe ID.
+///
 /// Field: bSyncType    For isoc endpoints only
+///
 /// Field: bInterval    The bInterval field from the Standard Endpoint descriptor.
+///
 /// Field: wMaxPacketSize  The meaning of this value depends on whether this is called with GetPipePropertiesV3 or GetEndpointPropertiesV3. See the documentation of those calls for more info.
+///
 /// Field: bMaxBurst  For SuperSpeed endpoints, maximum number of packets the endpoint can send or receive as part of a burst
+///
 /// Field: bMaxStreams  For SuperSpeed bulk endpoints, maximum number of streams this endpoint supports.
+///
 /// Field: bMult  For SuperSpeed isoc endpoints, this is the mult value from the SuperSpeed Endpoint Companion Descriptor. For High Speed isoc and interrupt endpoints, this is bits 11 and 12 of the Standard Endpoint Descriptor, which represents a similar value.
+///
 /// Field: wBytesPerInterval  For SuperSpeed interrupt and isoc endpoints, this is the wBytesPerInterval from the SuperSpeed Endpoint Companion Descriptor. For High Speed High Bandwidth isoc endpoints, this will be equal to wMaxPacketSize * (bMult+1).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbendpointproperties?language=objc)
@@ -1024,9 +1037,13 @@ unsafe impl RefEncode for IOUSBMatch {
 /// type and direction are used to match endpoints,
 /// type, direction, maxPacketSize and interval are updated
 /// with the properties of the found endpoint.
+///
 /// Field: type Type of endpoint: kUSBControl, kUSBIsoc, kUSBBulk, kUSBInterrupt, kUSBAnyType.  If kUSBAnyType is specified, this field is treated as a don't care.
+///
 /// Field: direction Direction of endpoint: kUSBOut, kUSBIn, kUSBAnyDirn.   If kUSBAnyDirn is specified, this field is treated as a don't care.
+///
 /// Field: maxPacketSize maximum packet size of endpoint.
+///
 /// Field: interval Polling interval in mSec for endpoint.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbfindendpointrequest?language=objc)
@@ -1059,12 +1076,19 @@ unsafe impl RefEncode for IOUSBFindEndpointRequest {
 
 /// Parameter block for control requests, using a simple pointer
 /// for the data to be transferred.
+///
 /// Field: bmRequestType Request type: kUSBStandard, kUSBClass or kUSBVendor
+///
 /// Field: bRequest Request code
+///
 /// Field: wValue 16 bit parameter for request, host endianess
+///
 /// Field: wIndex 16 bit parameter for request, host endianess
+///
 /// Field: wLength Length of data part of request, 16 bits, host endianess
+///
 /// Field: pData Pointer to data for request - data returned in bus endianess
+///
 /// Field: wLenDone Set by standard completion routine to number of data bytes
 /// actually transferred
 ///
@@ -1107,15 +1131,24 @@ pub type IOUSBDeviceRequestPtr = *mut IOUSBDevRequest;
 
 /// Parameter block for control requests with timeouts, using a simple pointer
 /// for the data to be transferred.  Same as a IOUSBDevRequest except for the two extra timeout fields.
+///
 /// Field: bmRequestType Request type: kUSBStandard, kUSBClass or kUSBVendor
+///
 /// Field: bRequest Request code
+///
 /// Field: wValue 16 bit parameter for request, host endianess
+///
 /// Field: wIndex 16 bit parameter for request, host endianess
+///
 /// Field: wLength Length of data part of request, 16 bits, host endianess
+///
 /// Field: pData Pointer to data for request - data returned in bus endianess
+///
 /// Field: wLenDone Set by standard completion routine to number of data bytes
 /// actually transferred
+///
 /// Field: noDataTimeout Specifies a time value in milliseconds. Once the request is queued on the bus, if no data is transferred in this amount of time, the request will be aborted and returned.
+///
 /// Field: completionTimeout Specifies a time value in milliseconds. Once the request is queued on the bus, if the entire request is not completed in this amount of time, the request will be aborted and returned
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevrequestto?language=objc)
@@ -1338,7 +1371,9 @@ unsafe impl RefEncode for IOUSBLowLatencyIsocStruct {
 }
 
 /// Structure used from user space to return the frame number and a timestamp on when the frame register was read.
+///
 /// Field: frame frame number
+///
 /// Field: timeStamp  AbsoluteTime when the frame was updated
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbgetframestruct?language=objc)

@@ -89,6 +89,7 @@ impl WebFrame {
             feature = "WebScriptObject"
         ))]
         /// The DOM document of the frame.
+        ///
         /// Returns nil if the frame does not contain a DOM document such as a standalone image.
         #[deprecated]
         #[unsafe(method(DOMDocument))]
@@ -103,6 +104,7 @@ impl WebFrame {
             feature = "WebScriptObject"
         ))]
         /// The frame element of the frame.
+        ///
         /// The class of the result is either DOMHTMLFrameElement, DOMHTMLIFrameElement or DOMHTMLObjectElement.
         /// Returns nil if the frame is the main frame since there is no frame element for the frame in this case.
         #[deprecated]

@@ -14,7 +14,9 @@ use objc2_metal::*;
 use crate::*;
 
 /// A struct for describing size of or offsets into a 2D array of pixels (used for size of display mode, size of cursor, and cursor hotSpot).
+///
 /// Field: x Represents horizontal pixel offset/size
+///
 /// Field: y Represents vertical pixel offset/size
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycoord_t?language=objc)

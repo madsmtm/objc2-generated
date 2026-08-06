@@ -31,8 +31,10 @@ extern_class!(
     /// <doc
     /// ://com.apple.documentation/documentation/swift/true>, provide a completion handler, and execute the operation. To get the identifiers of all running long-lived operations, use the ``CKContainer/allLongLivedOperationIDs()`` method that ``CKContainer`` provides. To get a specific long-lived operation, use the ``CKContainer/longLivedOperation(for:)`` method. Make sure you set the completion handler of a long-lived operation before you execute it so that the system can notify you when it completes and you can process the results. Do not execute an operation, change it to long-lived, and execute it again as a long-lived operation.
     ///
-    /// {
-    /// ("Swift") {
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
     /// ```swift
     /// container.fetchAllLongLivedOperationIDs(completionHandler: { (operationIDs, error) in
     /// if let error = error {
@@ -56,7 +58,8 @@ extern_class!(
     /// })
     /// ```
     /// }
-    /// ("Objective-C") {
+    ///
+    /// @Tab("Objective-C") {
     /// ```objc
     /// [container fetchAllLongLivedOperationIDsWithCompletionHandler:^(NSArray
     /// <NSString
@@ -341,9 +344,6 @@ impl CKOperation {
         #[cfg(feature = "CKContainer")]
         /// The operation's container.
         ///
-        /// {
-        /// Use ``CKOperation/Configuration/container`` instead.
-        /// }
         ///
         /// The container defines where the operation executes. The ``CKContainer/add(_:)`` method of the ``CKContainer`` and ``CKDatabase`` classes implicitly set this property to their container.
         ///
@@ -372,9 +372,6 @@ impl CKOperation {
 
         /// A Boolean value that indicates whether the operation can send data over the cellular network.
         ///
-        /// {
-        /// Use ``CKOperation/Configuration/allowsCellularAccess`` instead.
-        /// }
         ///
         /// When you send or receive many records, or when you send records with large assets, you might set this property to
         /// <doc
@@ -408,9 +405,6 @@ impl CKOperation {
 
         /// A Boolean value that indicates whether the operation is long-lived.
         ///
-        /// {
-        /// Use ``CKOperation/Configuration/isLongLived`` instead.
-        /// }
         ///
         /// Set this property to
         /// <doc
@@ -444,9 +438,6 @@ impl CKOperation {
 
         /// The timeout interval when waiting for additional data.
         ///
-        /// {
-        /// Use ``CKOperation/Configuration/timeoutIntervalForRequest`` instead.
-        /// }
         ///
         /// This property determines the request timeout interval for the operation, which controls how long, in seconds, the operation waits for additional data to arrive before stopping. The timer for this value resets whenever new data arrives. When the timer reaches the interval without receiving any new data, it triggers a timeout.
         ///
@@ -477,9 +468,6 @@ impl CKOperation {
 
         /// The maximum amount of time that a resource request can use.
         ///
-        /// {
-        /// Use ``CKOperation/Configuration/timeoutIntervalForResource`` instead.
-        /// }
         ///
         /// This property determines the resource timeout interval for this operation, which controls how long, in seconds, to wait for the entire operation to complete before stopping. The resource timer starts when the operation executes and counts until either the operation completes or this timeout interval occurs, whichever comes first.
         ///

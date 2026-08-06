@@ -31,17 +31,22 @@ cf_objc2_type!(
 );
 
 /// Structure containing user-specified data and callbacks for SCNetworkReachability.
+///
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the SCDynamicStore creation function.
 /// This structure is version 0.
+///
 /// Field: info A C pointer to a user-specified block of data.
+///
 /// Field: retain The callback used to add a retain for the info field.
 /// If this parameter is not a pointer to a function of the correct
 /// prototype, the behavior is undefined.  The value may be NULL.
+///
 /// Field: release The calllback used to remove a retain previously added
 /// for the info field.  If this parameter is not a pointer to a
 /// function of the correct prototype, the behavior is undefined.
 /// The value may be NULL.
+///
 /// Field: copyDescription The callback used to provide a description of
 /// the info field.
 ///

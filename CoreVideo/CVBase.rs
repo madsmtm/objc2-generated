@@ -14,22 +14,31 @@ use crate::*;
 pub type CVOptionFlags = u64;
 
 /// A structure for holding a SMPTE time.
+///
 /// Field: subframes
 /// The number of subframes in the full message.
+///
 /// Field: subframeDivisor
 /// The number of subframes per frame (typically 80).
+///
 /// Field: counter
 /// The total number of messages received.
+///
 /// Field: type
 /// The kind of SMPTE time using the SMPTE time type constants.
+///
 /// Field: flags
 /// A set of flags that indicate the SMPTE state.
+///
 /// Field: hours
 /// The number of hours in the full message.
+///
 /// Field: minutes
 /// The number of minutes in the full message.
+///
 /// Field: seconds
 /// The number of seconds in the full message.
+///
 /// Field: frames
 /// The number of frames in the full message.
 ///
@@ -227,13 +236,21 @@ extern "C" {
 ///
 /// This structure is purposely very similar to AudioTimeStamp defined in the CoreAudio framework.
 /// Most of the CVTimeStamp struct should be fairly self-explanatory. However, it is probably worth pointing out that unlike the audio time stamps, floats are not used to represent the video equivalent of sample times. This was done partly to avoid precision issues, and partly because QuickTime still uses integers for time values and time scales. In the actual implementation it has turned out to be very convenient to use integers, and we can represent framerates like NTSC (30000/1001 fps) exactly. The mHostTime structure field uses the same Mach absolute time base that is used in CoreAudio, so that clients of the CoreVideo API can synchronize between the two subsystems.
+///
 /// Field: version The current CVTimeStamp is version 0.
+///
 /// Field: videoTimeScale The scale (in units per second) of the videoTime and videoPeriod values
+///
 /// Field: videoTime This represents the start of a frame (or field for interlaced)
+///
 /// Field: hostTime Host root timebase time
+///
 /// Field: rateScalar This is the current rate of the device as measured by the timestamps, divided by the nominal rate
+///
 /// Field: videoRefreshPeriod This is the nominal update period of the current output device
+///
 /// Field: smpteTime SMPTE time representation of the time stamp.
+///
 /// Field: flags Possible values are:
 /// kCVTimeStampVideoTimeValid
 /// kCVTimeStampHostTimeValid
@@ -246,6 +263,7 @@ extern "C" {
 /// Some commonly used combinations of timestamp flags
 /// kCVTimeStampVideoHostTimeValid
 /// kCVTimeStampIsInterlaced
+///
 /// Field: reserved Reserved. Do not use.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestamp?language=objc)

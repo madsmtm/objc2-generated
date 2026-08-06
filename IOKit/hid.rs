@@ -513,11 +513,13 @@ unsafe impl RefEncode for IOHIDReportType {
 
 /// Commit direction passed in to the commit() function of an IOHIDElement.
 ///
+///
 /// Field: kIOHIDElementCommitDirectionIn
 /// Passing in kIOHIDElementCommitDirectionIn will issue a getReport call to the
 /// device, and the element  will be updated with the value retrieved by the
 /// device. The value can be accessed via the getValue() or getDataValue()
 /// functions.
+///
 ///
 /// Field: kIOHIDElementCommitDirectionOut
 /// Passing in kIOHIDElementCommitDirectionOut will issue a setReport call to the
@@ -557,28 +559,36 @@ pub type IOHIDElementCookie = u32;
 /// Represented by the key kIOHIDElementTypeKey in the dictionary describing the
 /// element.
 ///
+///
 /// Field: kIOHIDElementTypeInput_Misc
 /// Misc input data field or varying size.
+///
 ///
 /// Field: kIOHIDElementTypeInput_Button
 /// One bit input data field.
 ///
+///
 /// Field: kIOHIDElementTypeInput_Axis
 /// Input data field used to represent an axis.
 ///
+///
 /// Field: kIOHIDElementTypeInput_ScanCodes
 /// Input data field used to represent a scan code or usage selector.
+///
 ///
 /// Field: kIOHIDElementTypeInput_NULL
 /// Input data field used to represent the end of an input report when receiving
 /// input elements.
 ///
+///
 /// Field: kIOHIDElementTypeOutput
 /// Used to represent an output data field in a report.
+///
 ///
 /// Field: kIOHIDElementTypeFeature
 /// Describes input and output elements not intended for consumption by the end
 /// user.
+///
 ///
 /// Field: kIOHIDElementTypeCollection
 /// Element used to identify a relationship between two or more elements.
@@ -643,24 +653,31 @@ pub type IOHIDElementFlags = u32;
 ///
 /// Collections identify a relationship between two or more elements.
 ///
+///
 /// Field: kIOHIDElementCollectionTypePhysical
 /// Used for a set of data items that represent data points collected at one
 /// geometric point.
 ///
+///
 /// Field: kIOHIDElementCollectionTypeApplication
 /// Identifies item groups serving different purposes in a single device.
+///
 ///
 /// Field: kIOHIDElementCollectionTypeLogical
 /// Used when a set of data items form a composite data structure.
 ///
+///
 /// Field: kIOHIDElementCollectionTypeReport
 /// Wraps all the fields in a report.
+///
 ///
 /// Field: kIOHIDElementCollectionTypeNamedArray
 /// Contains an array of selector usages.
 ///
+///
 /// Field: kIOHIDElementCollectionTypeUsageSwitch
 /// Modifies the meaning of the usage it contains.
+///
 ///
 /// Field: kIOHIDElementCollectionTypeUsageModifier
 /// Modifies the meaning of the usage attached to the encompassing collection.
@@ -10904,6 +10921,7 @@ unsafe impl RefEncode for IOHIDDeviceTransactionInterface {
 /// Keyboard event options passed in to dispatchKeyboardEvent function in
 /// IOHIDEventService.
 ///
+///
 /// Field: kIOHIDKeyboardEventOptionsNoKeyRepeat
 /// Default behavior for keyboard events is to repeat keys if the key has been
 /// held down for a certain amount of time defined in system preferences. Pass
@@ -10931,6 +10949,7 @@ unsafe impl RefEncode for IOHIDKeyboardEventOptions {
 /// Pointer event options passed in to dispatch(Relative/Absolute)PointerEvent
 /// function in IOHIDEventService.
 ///
+///
 /// Field: kIOHIDPointerEventOptionsNoAcceleration
 /// Pointer events are subject to an acceleration algorithm. Pass in this option
 /// if you do not wish to have acceleration logic applied to the pointer event.
@@ -10956,6 +10975,7 @@ unsafe impl RefEncode for IOHIDPointerEventOptions {
 
 /// Scroll event options passed in to dispatchScrollEvent function in
 /// IOHIDEventService.
+///
 ///
 /// Field: kIOHIDScrollEventOptionsNoAcceleration
 /// Scroll events are subject to an acceleration algorithm. Pass in this option

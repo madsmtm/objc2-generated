@@ -330,15 +330,18 @@ pub type MIDICompletionProcUMP =
 /// rather than passed-by-reference. Conversion from a MIDIEventPacket reference to a pointer
 /// is undefined behavior and can lead to the unintended truncation of data.
 ///
+///
 /// Field: timeStamp
 /// The time at which the events occurred, if receiving MIDI,
 /// or, if sending MIDI, the time at which the events are to
 /// be played.  Zero means "now."  The time stamp applies
 /// applies to each UMP in the word stream.
+///
 /// Field: wordCount
 /// The number of valid MIDI 32-bit words which follow, in data. (It
 /// may be larger than 64 words if the packet is dynamically
 /// allocated.)
+///
 /// Field: words
 /// A variable-length stream of native-endian 32-bit Universal MIDI Packets.
 /// Running status is not allowed.  In the case of system-exclusive
@@ -405,10 +408,13 @@ unsafe impl RefEncode for MIDIEventPacket {
 /// rather than passed-by-reference. Conversion from a MIDIEventList reference to a pointer
 /// is undefined behavior and can lead to the unintended truncation of data.
 ///
+///
 /// Field: protocol
 /// The MIDI protocol variant of the events in the list.
+///
 /// Field: numPackets
 /// The number of MIDIEventPacket structs in the list.
+///
 /// Field: packet
 /// An open-ended array of variable-length MIDIEventPacket structs.
 ///
@@ -448,15 +454,18 @@ unsafe impl RefEncode for MIDIEventList {
 /// rather than passed-by-reference. Conversion from a MIDIPacket reference to a pointer
 /// is undefined behavior and can lead to the unintended truncation of data.
 ///
+///
 /// Field: timeStamp
 /// The time at which the events occurred, if receiving MIDI,
 /// or, if sending MIDI, the time at which the events are to
 /// be played.  Zero means "now."  The time stamp applies
 /// to the first MIDI byte in the packet.
+///
 /// Field: length
 /// The number of valid MIDI bytes which follow, in data. (It
 /// may be larger than 256 bytes if the packet is dynamically
 /// allocated.)
+///
 /// Field: data
 /// A variable-length stream of MIDI messages.  Running status
 /// is not allowed.  In the case of system-exclusive
@@ -529,8 +538,10 @@ unsafe impl RefEncode for MIDIPacket {
 /// rather than passed-by-reference. Conversion from a MIDIPacketList reference to a pointer
 /// is undefined behavior and can lead to the unintended truncation of data.
 ///
+///
 /// Field: numPackets
 /// The number of MIDIPackets in the list.
+///
 /// Field: packet
 /// An open-ended array of variable-length MIDIPackets.
 ///
@@ -562,22 +573,28 @@ unsafe impl RefEncode for MIDIPacketList {
 /// This represents a request to send a single system-exclusive MIDI event to
 /// a MIDI destination asynchronously.
 ///
+///
 /// Field: destination
 /// The endpoint to which the event is to be sent.
+///
 /// Field: data
 /// Initially, a pointer to the sys-ex event to be sent.
 /// MIDISendSysex will advance this pointer as bytes are
 /// sent.
+///
 /// Field: bytesToSend
 /// Initially, the number of bytes to be sent.  MIDISendSysex
 /// will decrement this counter as bytes are sent.
+///
 /// Field: complete
 /// The client may set this to true at any time to abort
 /// transmission.  The implementation sets this to true when
 /// all bytes have been sent.
+///
 /// Field: completionProc
 /// Called when all bytes have been sent, or after the client
 /// has set complete to true.
+///
 /// Field: completionRefCon
 /// Passed as a refCon to completionProc.
 ///
@@ -622,22 +639,28 @@ unsafe impl RefEncode for MIDISysexSendRequest {
 /// This represents a request to send a single UMP system-exclusive MIDI event to
 /// a MIDI destination asynchronously.
 ///
+///
 /// Field: destination
 /// The endpoint to which the event is to be sent.
+///
 /// Field: words
 /// Initially, a pointer to the UMP SysEx event to be sent.
 /// MIDISendUMPSysex will advance this pointer as data is
 /// sent.
+///
 /// Field: wordsToSend
 /// Initially, the number of words to be sent.  MIDISendUMPSysex
 /// will decrement this counter as data is sent.
+///
 /// Field: complete
 /// The client may set this to true at any time to abort
 /// transmission.  The implementation sets this to true when
 /// all data been transmitted.
+///
 /// Field: completionProc
 /// Called when all bytes have been sent, or after the client
 /// has set complete to true.
+///
 /// Field: completionRefCon
 /// Passed as a refCon to completionProc.
 ///
@@ -734,8 +757,10 @@ unsafe impl RefEncode for MIDINotificationMessageID {
 /// A MIDINotification is a structure passed to a MIDINotifyProc or MIDINotifyBlock, when
 /// CoreMIDI wishes to inform a client of a change in the state of the system.
 ///
+///
 /// Field: messageID
 /// type of message
+///
 /// Field: messageSize
 /// size of the entire message, including messageID and
 /// messageSize
@@ -763,16 +788,22 @@ unsafe impl RefEncode for MIDINotification {
 
 /// A message describing the addition or removal of an object.
 ///
+///
 /// Field: messageID
 /// type of message
+///
 /// Field: messageSize
 /// size of the entire message, including messageID and messageSize
+///
 /// Field: parent
 /// the parent of the added or removed object (possibly NULL)
+///
 /// Field: parentType
 /// the type of the parent object (undefined if parent is NULL)
+///
 /// Field: child
 /// the added or removed object
+///
 /// Field: childType
 /// the type of the added or removed object
 ///
@@ -810,14 +841,19 @@ unsafe impl RefEncode for MIDIObjectAddRemoveNotification {
 
 /// A message describing the addition or removal of an object.
 ///
+///
 /// Field: messageID
 /// type of message
+///
 /// Field: messageSize
 /// size of the entire message, including messageID and messageSize
+///
 /// Field: object
 /// the object whose property has changed
+///
 /// Field: objectType
 /// the type of the object whose property has changed
+///
 /// Field: propertyName
 /// the name of the changed property
 ///

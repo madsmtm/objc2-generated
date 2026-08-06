@@ -24,14 +24,19 @@ pub type IOUSBHostTime = u64;
 /// ```
 ///
 /// instead.
+///
 /// Field: status Completion status for this individual frame. IOUSBHostFamily will initialize
 /// this to kIOReturnInvalid and will update the field with a valid status code upon
 /// completion of the frame.
+///
 /// Field: requestCount The number of bytes requested to transfer for this frame.
 /// This field must be initialized by the caller before the structure is submitted.
+///
 /// Field: completeCount The number of bytes actually transferred for this frame.
 /// IOUSBHostFamily will update this field upon completion of the frame.
+///
 /// Field: reserved Reserved for future use.
+///
 /// Field: timeStamp The observed IOUSBHostTime for this frame's completion.  Note that
 /// interrupt latency and system load may result in more than one frame completing with
 /// the same timestamp.
@@ -127,18 +132,24 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransactionOptions {
 }
 
 /// Structure representing a single frame or microframe in an isochronous transfer.
+///
 /// Field: status Completion status for this individual transaction. IOUSBHostFamily will
 /// initialize this to kIOReturnInvalid and will update the field with a valid status
 /// code upon completion of the transaction.
+///
 /// Field: requestCount The number of bytes requested to transfer for this transaction.
 /// This field must be initialized by the caller before the structure is submitted.
+///
 /// Field: offset The number of bytes between the start of the memory descriptor in which this
 /// transaction resides and the start of the transaction.  The offset cannot exceed 4GB.
+///
 /// Field: completeCount The number of bytes actually transferred for this transaction.
 /// IOUSBHostFamily will update this field upon completion of the transaction.
+///
 /// Field: timeStamp The observed IOUSBHostTime for this transaction's completion.  Note that
 /// interrupt latency and system load may result in more than one transaction completing
 /// with the same timestamp.
+///
 /// Field: options Flags that specify additional transaction behavior.  See
 ///
 /// ```text

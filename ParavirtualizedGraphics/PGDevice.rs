@@ -10,7 +10,9 @@ use objc2_metal::*;
 use crate::*;
 
 /// A struct for a guest physical memory range
+///
 /// Field: physicalAddress The starting physical address of the range
+///
 /// Field: physicalLength The length of the range
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgphysicalmemoryrange_s?language=objc)
@@ -33,7 +35,9 @@ unsafe impl RefEncode for PGPhysicalMemoryRange_s {
 }
 
 /// A struct for a guest physical memory range
+///
 /// Field: physicalAddress The starting physical address of the range
+///
 /// Field: physicalLength The length of the range
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgphysicalmemoryrange_t?language=objc)

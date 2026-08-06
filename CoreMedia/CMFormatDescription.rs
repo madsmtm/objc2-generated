@@ -254,8 +254,6 @@ impl CMFormatDescription {
 }
 
 extern "C" {
-    /// kCMFormatDescriptionExtension_OriginalCompressionSettings
-    ///
     /// This extension contains a media-type-specific dictionary of settings used to produce a compressed media buffer.
     ///
     /// This extension is valid for format descriptions of all media types, but the contents of the dictionary are defined
@@ -268,8 +266,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms
-    ///
     /// Sample description extension atoms that were not translated into other entries in the extensions dictionary.
     ///
     /// This key is used by sample description bridges to hold sample description
@@ -283,8 +279,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCMFormatDescriptionExtension_VerbatimSampleDescription
-    ///
     /// Preserves the original SampleDescription data.
     ///
     /// This extension is used to ensure that roundtrips from sample descriptions
@@ -298,8 +292,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCMFormatDescriptionExtension_VerbatimISOSampleEntry
-    ///
     /// Preserves the original ISOSampleEntry data.
     ///
     /// This extension is used to ensure that roundtrips from ISO Sample Entry (ie. AudioSampleEntry or VisualSampleEntry)

@@ -75,8 +75,6 @@ pub type CTFontCollectionSortDescriptorsCallback = Option<
 >;
 
 extern "C" {
-    /// kCTFontCollectionRemoveDuplicatesOption
-    ///
     /// Option key to specify filtering of duplicates.
     ///
     /// Specify this option key in the options dictionary with a non- zero value to enable automatic filtering of duplicate font descriptors.
@@ -86,8 +84,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontCollectionIncludeDisabledFontsOption
-    ///
     /// Option key to include disabled fonts in the matching results.
     ///
     /// Specify this option key in the options dictionary with a non-zero value to enable matching of disabled fonts. You can pass font descriptors specifying disabled fonts to CTFontManagerEnableFontDescriptors, but you cannot use such a font descriptor to query font attributes from the system database or create a CTFontRef.
@@ -97,8 +93,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontCollectionDisallowAutoActivationOption
-    ///
     /// Option key to avoid auto-activating fonts.
     ///
     /// Specify this option key in the options dictionary with a non-zero value to disallow searches for missing fonts (font descriptors returning no results).

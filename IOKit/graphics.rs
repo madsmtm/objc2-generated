@@ -1696,17 +1696,29 @@ pub const kIORGBSignedFloatingPointPixels: c_uint = 6;
 /// A structure defining the format of a framebuffer.
 ///
 /// This structure is used by IOFramebuffer to define the format of the pixels.
+///
 /// Field: bytesPerRow The number of bytes per row.
+///
 /// Field: bytesPerPlane Not used.
+///
 /// Field: bitsPerPixel The number of bits per pixel, including unused bits and alpha.
+///
 /// Field: pixelType One of kIOCLUTPixels (indexed pixels with changeable CLUT), kIORGBDirectPixels (direct pixels).
+///
 /// Field: componentCount One for indexed pixels, three for direct pixel formats.
+///
 /// Field: bitsPerComponent Number of bits per component in each pixel.
+///
 /// Field: componentMasks Mask of the bits valid for each component of the pixel - in R, G, B order for direct pixels.
+///
 /// Field: pixelFormat String description of the pixel format - IO32BitDirectPixels, IO16BitDirectPixels etc.
+///
 /// Field: flags None defined - set to zero.
+///
 /// Field: activeWidth Number of pixels visible per row.
+///
 /// Field: activeHeight Number of visible pixel rows.
+///
 /// Field: reserved Set to zero.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopixelinformation?language=objc)
@@ -1759,10 +1771,15 @@ pub type IOAppleTimingID = u32;
 /// A structure defining the format of a framebuffer.
 ///
 /// This structure is used by IOFramebuffer to define the format of the pixels.
+///
 /// Field: nominalWidth Number of pixels visible per row.
+///
 /// Field: nominalHeight Number of visible pixel rows.
+///
 /// Field: refreshRate Refresh rate in fixed point 16.16.
+///
 /// Field: maxDepthIndex Highest depth index available in this display mode.
+///
 /// Field: flags Flags for the mode, including:
 /// <br>
 /// kDisplayModeInterlacedFlag mode is interlaced.
@@ -1773,10 +1790,13 @@ pub type IOAppleTimingID = u32;
 /// <br>
 /// kDisplayModeStretchedFlag mode is stretched/distorted to match the display aspect ratio.
 /// <br>
+///
 /// Field: imageWidth Physical width of active image if known, in millimeters, otherwise zero.
 /// <br>
+///
 /// Field: imageHeight Physical height of active image if known, in millimeters, otherwise zero.
 /// <br>
+///
 /// Field: reserved Set to zero.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplaymodeinformation?language=objc)
@@ -1918,9 +1938,13 @@ pub type IOColorComponent = u16;
 /// A structure defining one entry of a color lookup table.
 ///
 /// This structure is used by IOFramebuffer to define an entry of a color lookup table.
+///
 /// Field: index Number of pixels visible per row.
+///
 /// Field: red Value of red component 0-65535.
+///
 /// Field: green Value of green component 0-65535.
+///
 /// Field: blue Value of blue component 0-65535.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iocolorentry?language=objc)
@@ -2199,14 +2223,21 @@ unsafe impl RefEncode for IODetailedTimingInformationV1 {
 /// A structure defining the detailed timing information of a display mode.
 ///
 /// This structure is used by IOFramebuffer to define detailed timing information for a display mode. The VESA EDID document has more information.
+///
 /// Field: __reservedA Set to zero.
+///
 /// Field: horizontalScaledInset If the mode is scaled, sets the number of active pixels to remove the left and right edges in order to display an underscanned image.
+///
 /// Field: verticalScaledInset If the mode is scaled, sets the number of active lines to remove the top and bottom edges in order to display an underscanned image.
+///
 /// Field: scalerFlags If the mode is scaled,
 /// kIOScaleStretchToFit may be set to allow stretching.
 /// kIOScaleRotateFlags is mask which may have the value given by kIOScaleRotate90, kIOScaleRotate180, kIOScaleRotate270 to display a rotated framebuffer.
+///
 /// Field: horizontalScaled If the mode is scaled, sets the size of the image before scaling or rotation.
+///
 /// Field: verticalScaled If the mode is scaled, sets the size of the image before scaling or rotation.
+///
 /// Field: signalConfig
 /// kIOAnalogSetupExpected set if display expects a blank-to-black setup or pedestal.  See VESA signal standards.
 /// <br>
@@ -2220,6 +2251,7 @@ unsafe impl RefEncode for IODetailedTimingInformationV1 {
 /// <br>
 /// Field 2 vertical offset = (half specified vertical sync offset) + 0.5 lines.
 /// <br>
+///
 /// Field: signalLevels One of:
 /// <br>
 /// kIOAnalogSignalLevel_0700_0300 0.700 - 0.300 V p-p.
@@ -2230,36 +2262,67 @@ unsafe impl RefEncode for IODetailedTimingInformationV1 {
 /// <br>
 /// kIOAnalogSignalLevel_0700_0000 0.700 - 0.000 V p-p.
 /// <br>
+///
 /// Field: pixelClock Pixel clock frequency in Hz.
+///
 /// Field: minPixelClock Minimum pixel clock frequency in Hz, with error.
+///
 /// Field: maxPixelClock Maximum pixel clock frequency in Hz, with error.
+///
 /// Field: horizontalActive Pixel clocks per line.
+///
 /// Field: horizontalBlanking Blanking clocks per line.
+///
 /// Field: horizontalSyncOffset First clock of horizontal sync.
+///
 /// Field: horizontalSyncPulseWidth Width of horizontal sync.
+///
 /// Field: verticalActive Number of lines per frame.
+///
 /// Field: verticalBlanking Blanking lines per frame.
+///
 /// Field: verticalSyncOffset First line of vertical sync.
+///
 /// Field: verticalSyncPulseWidth Height of vertical sync.
+///
 /// Field: horizontalBorderLeft Number of pixels in left horizontal border.
+///
 /// Field: horizontalBorderRight Number of pixels in right horizontal border.
+///
 /// Field: verticalBorderTop Number of lines in top vertical border.
+///
 /// Field: verticalBorderBottom Number of lines in bottom vertical border.
+///
 /// Field: horizontalSyncConfig kIOSyncPositivePolarity for positive polarity horizontal sync (0 for negative).
+///
 /// Field: horizontalSyncLevel Zero.
+///
 /// Field: verticalSyncConfig kIOSyncPositivePolarity for positive polarity vertical sync (0 for negative).
+///
 /// Field: verticalSyncLevel Zero.
+///
 /// Field: numLinks number of links to be used by a dual link timing, if zero, assume one link.
+///
 /// Field: verticalBlankingExtension maximum number of blanking extension lines that is available. (0 for none).
+///
 /// Field: pixelEncoding 2017 Timing Features - ERS 2-58 (6.3.1)
+///
 /// Field: bitsPerColorComponent 2017 Timing Features - ERS 2-58 (6.3.1)
+///
 /// Field: colorimetry 2017 Timing Features - ERS 2-58 (6.3.1)
+///
 /// Field: dynamicRange 2017 Timing Features - ERS 2-58 (6.3.1)
+///
 /// Field: dscCompressedBitsPerPixel 2018 Timing Features - ERS 2-63 (6.3.1)
+///
 /// Field: dscSliceHeight 2018 Timing Features - ERS 2-63 (6.3.1)
+///
 /// Field: dscSliceWidth 2018 Timing Features - ERS 2-63 (6.3.1)
+///
 /// Field: verticalBlankingMaxStretchPerFrame Max stretch time used for VRR refresh rate ramps
+///
 /// Field: verticalBlankingMaxShrinkPerFrame Max shrink time used for VRR refresh rate ramps
+///
 /// Field: __reservedB Reserved set to zero.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodetailedtiminginformationv2?language=objc)
@@ -2526,12 +2589,19 @@ unsafe impl RefEncode for IOFBDisplayModeDescription {
 /// A structure defining the limits and attributes of a display or framebuffer.
 ///
 /// This structure is used to define the limits for modes programmed as detailed timings by the OS. The VESA EDID is useful background information for many of these fields. A data property with this structure under the key kIOFBTimingRangeKey in a framebuffer will allow the OS to program detailed timings that fall within its range.
+///
 /// Field: __reservedA Set to zero.
+///
 /// Field: version Set to zero.
+///
 /// Field: __reservedB Set to zero.
+///
 /// Field: minPixelClock minimum pixel clock frequency in range, in Hz.
+///
 /// Field: minPixelClock maximum pixel clock frequency in range, in Hz.
+///
 /// Field: maxPixelError largest variation between specified and actual pixel clock frequency, in Hz.
+///
 /// Field: supportedSyncFlags mask of supported sync attributes. The following are defined:
 /// <br>
 /// kIORangeSupportsSeparateSyncs - digital separate syncs.
@@ -2544,6 +2614,7 @@ unsafe impl RefEncode for IOFBDisplayModeDescription {
 /// <br>
 /// kIORangeSupportsVRR - variable refresh rate.
 /// <br>
+///
 /// Field: supportedSignalLevels mask of possible signal levels. The following are defined:
 /// <br>
 /// kIORangeSupportsSignal_0700_0300 0.700 - 0.300 V p-p.
@@ -2554,6 +2625,7 @@ unsafe impl RefEncode for IOFBDisplayModeDescription {
 /// <br>
 /// kIORangeSupportsSignal_0700_0000 0.700 - 0.000 V p-p.
 /// <br>
+///
 /// Field: supportedSignalConfigs mask of possible signal configurations. The following are defined:
 /// <br>
 /// kIORangeSupportsInterlacedCEATiming Supports CEA style interlaced timing:
@@ -2567,61 +2639,117 @@ unsafe impl RefEncode for IOFBDisplayModeDescription {
 /// Field 2 vertical offset = specified vertical sync offset + 0.5 lines.
 /// <br>
 /// kIORangeSupportsInterlacedCEATimingWithConfirm Supports CEA style interlaced timing, but require a confirm.
+///
 /// Field: minFrameRate minimum frame rate (vertical refresh frequency) in range, in Hz.
+///
 /// Field: maxFrameRate maximum frame rate (vertical refresh frequency) in range, in Hz.
+///
 /// Field: minLineRate minimum line rate (horizontal refresh frequency) in range, in Hz.
+///
 /// Field: maxLineRate maximum line rate (horizontal refresh frequency) in range, in Hz.
+///
 /// Field: maxHorizontalTotal maximum clocks in horizontal line (active + blanking).
+///
 /// Field: maxVerticalTotal maximum lines in vertical frame (active + blanking).
+///
 /// Field: __reservedD Set to zero.
+///
 /// Field: charSizeHorizontalActive horizontalActive must be a multiple of charSizeHorizontalActive.
+///
 /// Field: charSizeHorizontalBlanking horizontalBlanking must be a multiple of charSizeHorizontalBlanking.
+///
 /// Field: charSizeHorizontalSyncOffset horizontalSyncOffset must be a multiple of charSizeHorizontalSyncOffset.
+///
 /// Field: charSizeHorizontalSyncPulse horizontalSyncPulse must be a multiple of charSizeHorizontalSyncPulse.
+///
 /// Field: charSizeVerticalActive verticalActive must be a multiple of charSizeVerticalActive.
+///
 /// Field: charSizeVerticalBlanking verticalBlanking must be a multiple of charSizeVerticalBlanking.
+///
 /// Field: charSizeVerticalSyncOffset verticalSyncOffset must be a multiple of charSizeVerticalSyncOffset.
+///
 /// Field: charSizeVerticalSyncPulse verticalSyncPulse must be a multiple of charSizeVerticalSyncPulse.
+///
 /// Field: charSizeHorizontalBorderLeft horizontalBorderLeft must be a multiple of charSizeHorizontalBorderLeft.
+///
 /// Field: charSizeHorizontalBorderRight horizontalBorderRight must be a multiple of charSizeHorizontalBorderRight.
+///
 /// Field: charSizeVerticalBorderTop verticalBorderTop must be a multiple of charSizeVerticalBorderTop.
+///
 /// Field: charSizeVerticalBorderBottom verticalBorderBottom must be a multiple of charSizeVerticalBorderBottom.
+///
 /// Field: charSizeHorizontalTotal (horizontalActive + horizontalBlanking) must be a multiple of charSizeHorizontalTotal.
+///
 /// Field: charSizeVerticalTotal (verticalActive + verticalBlanking) must be a multiple of charSizeVerticalTotal.
+///
 /// Field: __reservedE Set to zero.
+///
 /// Field: minHorizontalActiveClocks minimum value of horizontalActive.
+///
 /// Field: maxHorizontalActiveClocks maximum value of horizontalActive.
+///
 /// Field: minHorizontalBlankingClocks minimum value of horizontalBlanking.
+///
 /// Field: maxHorizontalBlankingClocks maximum value of horizontalBlanking.
+///
 /// Field: minHorizontalSyncOffsetClocks minimum value of horizontalSyncOffset.
+///
 /// Field: maxHorizontalSyncOffsetClocks maximum value of horizontalSyncOffset.
+///
 /// Field: minHorizontalPulseWidthClocks minimum value of horizontalPulseWidth.
+///
 /// Field: maxHorizontalPulseWidthClocks maximum value of horizontalPulseWidth.
+///
 /// Field: minVerticalActiveClocks minimum value of verticalActive.
+///
 /// Field: maxVerticalActiveClocks maximum value of verticalActive.
+///
 /// Field: minVerticalBlankingClocks minimum value of verticalBlanking.
+///
 /// Field: maxVerticalBlankingClocks maximum value of verticalBlanking.
+///
 /// Field: minVerticalSyncOffsetClocks minimum value of verticalSyncOffset.
+///
 /// Field: maxVerticalSyncOffsetClocks maximum value of verticalSyncOffset.
+///
 /// Field: minVerticalPulseWidthClocks minimum value of verticalPulseWidth.
+///
 /// Field: maxVerticalPulseWidthClocks maximum value of verticalPulseWidth.
+///
 /// Field: minHorizontalBorderLeft minimum value of horizontalBorderLeft.
+///
 /// Field: maxHorizontalBorderLeft maximum value of horizontalBorderLeft.
+///
 /// Field: minHorizontalBorderRight minimum value of horizontalBorderRight.
+///
 /// Field: maxHorizontalBorderRight maximum value of horizontalBorderRight.
+///
 /// Field: minVerticalBorderTop minimum value of verticalBorderTop.
+///
 /// Field: maxVerticalBorderTop maximum value of verticalBorderTop.
+///
 /// Field: minVerticalBorderBottom minimum value of verticalBorderBottom.
+///
 /// Field: maxVerticalBorderBottom maximum value of verticalBorderBottom.
+///
 /// Field: maxNumLinks number of links supported, if zero, 1 link is assumed.
+///
 /// Field: minLink0PixelClock minimum pixel clock for link 0 (kHz).
+///
 /// Field: maxLink0PixelClock maximum pixel clock for link 0 (kHz).
+///
 /// Field: minLink1PixelClock minimum pixel clock for link 1 (kHz).
+///
 /// Field: maxLink1PixelClock maximum pixel clock for link 1 (kHz).
+///
 /// Field: supportedPixelEncoding 2017 Timing Features - ERS 2-58 (6.3.1)
+///
 /// Field: supportedBitsPerColorComponent 2017 Timing Features - ERS 2-58 (6.3.1)
+///
 /// Field: supportedColorimetry 2017 Timing Features - ERS 2-58 (6.3.1)
+///
 /// Field: supportedDynamicRange 2017 Timing Features - ERS 2-58 (6.3.1)
+///
 /// Field: __reservedF Set to zero.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplaytimingrangev1?language=objc)
@@ -2778,19 +2906,33 @@ unsafe impl RefEncode for IODisplayTimingRangeV1 {
 /// A structure defining the limits and attributes of DSC capabilities in a  framebuffer.
 ///
 /// This structure is used to define the limits for DSC enabled modes programmed as detailed timings by the OS. The VESA DSC spec is useful background information for many of these fields.
+///
 /// Field: maxBandwidth Maximum permitted bandwidth of the given topology in bits per second.
+///
 /// Field: dscMinSliceHeight Minimum slice Height, in units of line.
+///
 /// Field: dscMaxSliceHeight Maximum slice Height, in units of line.
+///
 /// Field: dscMinSliceWidth  Minimum slice width, in units of line.
+///
 /// Field: dscMaxSliceWidth  Maximum slice width, in units of line.
+///
 /// Field: dscMinSlicePerLine Minimum slice per Line.
+///
 /// Field: dscMaxSlicePerLine Maximum slice per Line.
+///
 /// Field: dscMinBPC  Minimum Bits per component, in units of bits.
+///
 /// Field: dscMaxBPC  Maximum Bits per component, in units of bits.
+///
 /// Field: dscMinBPP  Minimum target bits/pixel, in bpp.
+///
 /// Field: dscMaxBPP  Maximum target bits/pixel, in bpp.
+///
 /// Field: dscVBR     VBR mode, 0:disabled 1:enabled.
+///
 /// Field: dscBlockPredEnable  DSC BP is user or not, 0: not used, 1: used.
+///
 /// Field: __reservedF  Set to zero.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplaytimingrangev2?language=objc)
@@ -3099,9 +3241,13 @@ pub const kIOSyncPositivePolarity: c_uint = 0x00000001;
 /// A structure defining the scaling capabilities of a framebuffer.
 ///
 /// This structure is used to define the limits for modes programmed as detailed timings by the OS. A data property with this structure under the key kIOFBScalerInfoKey in a framebuffer will allow the OS to program detailed timings that are scaled to a displays native resolution.
+///
 /// Field: __reservedA Set to zero.
+///
 /// Field: version Set to zero.
+///
 /// Field: __reservedB Set to zero.
+///
 /// Field: scalerFeatures Mask of scaling features. The following are defined:
 /// <br>
 /// kIOScaleStretchOnly If set the framebuffer can only provide stretched scaling with non-square pixels, without borders.
@@ -3118,10 +3264,13 @@ pub const kIOSyncPositivePolarity: c_uint = 0x00000001;
 /// <br>
 /// kIOScaleCanBorderInsetOnly If set framebuffer can support scaled modes with non-zero horizontalScaledInset, verticalScaledInset fields, but requires the active pixels to be equal in size to the inset area, ie. can do insets with a border versus scaling an image.
 /// <br>
+///
 /// Field: maxHorizontalPixels Maximum number of horizontal source pixels (horizontalScaled).
 /// <br>
+///
 /// Field: maxVerticalPixels Maximum number of vertical source pixels (verticalScaled).
 /// <br>
+///
 /// Field: __reservedC Set to zero.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplayscalerinformation?language=objc)
@@ -3464,16 +3613,27 @@ pub const kHardwareCursorDescriptorMinorVersion: c_uint = 0x0000;
 /// A structure defining the format of a hardware cursor.
 ///
 /// This structure is used by IOFramebuffer to define the format of a hardware cursor.
+///
 /// Field: majorVersion Set to kHardwareCursorDescriptorMajorVersion.
+///
 /// Field: minorVersion Set to kHardwareCursorDescriptorMinorVersion.
+///
 /// Field: height Maximum size of the cursor.
+///
 /// Field: width Maximum size of the cursor.
+///
 /// Field: bitDepth Number bits per pixel, or a QD/QT pixel type, for example kIO8IndexedPixelFormat, kIO32ARGBPixelFormat.
+///
 /// Field: maskBitDepth Unused.
+///
 /// Field: numColors Number of colors for indexed pixel types.
+///
 /// Field: colorEncodings An array pointer specifying the pixel values corresponding to the indices into the color table, for indexed pixel types.
+///
 /// Field: flags None defined, set to zero.
+///
 /// Field: supportedSpecialEncodings Mask of supported special pixel values, eg. kTransparentEncodedPixel, kInvertingEncodedPixel.
+///
 /// Field: specialEncodings Array of pixel values for each supported special encoding.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohardwarecursordescriptor?language=objc)
@@ -3526,14 +3686,23 @@ pub const kHardwareCursorInfoMinorVersion: c_uint = 0x0000;
 /// A structure defining the converted data of a hardware cursor.
 ///
 /// This structure is used by IOFramebuffer to return the data of a hardware cursor by convertCursorImage() after conversion based on the IOHardwareCursorDescriptor passed to that routine.
+///
 /// Field: majorVersion Set to kHardwareCursorInfoMajorVersion.
+///
 /// Field: minorVersion Set to kHardwareCursorInfoMinorVersion.
+///
 /// Field: cursorHeight The actual size of the cursor is returned.
+///
 /// Field: cursorWidth The actual size of the cursor is returned.
+///
 /// Field: colorMap Pointer to array of IOColorEntry structures, with the number of elements set by the numColors field of the IOHardwareCursorDescriptor. Zero should be passed for direct pixel formats.
+///
 /// Field: hardwareCursorData Buffer to receive the converted cursor data.
+///
 /// Field: cursorHotSpotX Cursor's hotspot.
+///
 /// Field: cursorHotSpotY Cursor's hotspot.
+///
 /// Field: reserved Reserved, set to zero.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohardwarecursorinfo?language=objc)
@@ -3876,8 +4045,11 @@ pub const kIOFBMaxCursorFrames: c_uint = 32;
 /// Cursor image for 1-bit cursor.
 ///
 /// This structure stores 16 pixel x 16 pixel cursors to be used with 1-bit color depth. This structure is only defined if IOFB_ARBITRARY_SIZE_CURSOR is not defined.
+///
 /// Field: image This array contains the cursor images.
+///
 /// Field: mask This array contains the cursor mask.
+///
 /// Field: save This array stores the pixel values of the region underneath the cursor in its last drawn position.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/bm12cursor?language=objc)
@@ -3909,8 +4081,11 @@ unsafe impl RefEncode for bm12Cursor {
 /// Cursor image for 8-bit cursor.
 ///
 /// This structure stores 16 pixel x 16 pixel cursors to be used with 8-bit color depth. This structure is only defined if IOFB_ARBITRARY_SIZE_CURSOR is not defined.
+///
 /// Field: image This array contains cursor color values, which are converted to displayed colors through the color table. The array is two dimensional and its first index is the cursor frame and the second index is the cursor pixel.
+///
 /// Field: mask This array contains the cursor alpha mask. The array is two dimensional with the same indexing as the image. If an alpha mask pixel is 0 and the corresponding image pixel is set to white for the display, then this cursor pixel will invert pixels on the display.
+///
 /// Field: save This array stores the color values of the region underneath the cursor in its last drawn position.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/bm18cursor?language=objc)
@@ -3942,6 +4117,7 @@ unsafe impl RefEncode for bm18Cursor {
 /// Cursor image for 15-bit cursor.
 ///
 /// This structure stores 16 pixel x 16 pixel cursors to be used with 15-bit color depth. This structure is only defined if IOFB_ARBITRARY_SIZE_CURSOR is not defined.
+///
 /// Field: image This array defines the cursor color values and transparency. The array is two dimensional and its first index is the cursor frame and the second index is the cursor pixel. A value of 0 means the pixel is transparent. Non-zero values are stored with the red, green, blue, and alpha values encoded with the following masks:
 /// <BR
 /// >
@@ -3954,6 +4130,7 @@ unsafe impl RefEncode for bm18Cursor {
 /// alpha mask = 0x000F
 /// <br>
 /// Note, only 4 bits are allocated for each color component.
+///
 /// Field: save This array stores the color values of the region underneath the cursor in its last drawn position.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/bm34cursor?language=objc)
@@ -3983,7 +4160,9 @@ unsafe impl RefEncode for bm34Cursor {
 /// Cursor image for 24-bit cursor.
 ///
 /// This structure stores 16 pixel x 16 pixel cursors to be used with 24-bit color depth. This structure is only defined if IOFB_ARBITRARY_SIZE_CURSOR is not defined.
+///
 /// Field: image This array defines the cursor color values and transparency. The array is two dimensional and its first index is the cursor frame and the second index is the cursor pixel. The lower 24 bits of a pixel's value contain the RGB color, while the upper 8 bits contain the alpha value.
+///
 /// Field: save This array stores the color values of the region underneath the cursor in its last drawn position.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/bm38cursor?language=objc)

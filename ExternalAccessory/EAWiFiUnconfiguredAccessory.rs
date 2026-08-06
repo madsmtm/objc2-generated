@@ -6,9 +6,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// EAWiFiUnconfiguredAccessoryProperties
-///
-///
 /// Represents the properties of an EAWiFiUnconfiguredAccessory.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties?language=objc)

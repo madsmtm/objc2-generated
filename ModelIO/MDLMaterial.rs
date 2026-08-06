@@ -11,6 +11,7 @@ use crate::*;
 
 /// MDLMaterialSemantic
 ///
+///
 /// The material semantics are identifiers for material properties
 /// formally identified by one of the standard material descriptors.
 ///

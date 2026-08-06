@@ -783,8 +783,6 @@ impl DefaultRetained for SCStreamConfiguration {
 pub type SCStreamFrameInfo = NSString;
 
 extern "C" {
-    /// SCStreamFrameInfoStatus
-    ///
     /// The key for the CFDictionary attached to the CMSampleBuffer that denotes the frames SCFrameStatus
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfostatus?language=objc)
@@ -792,8 +790,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// SCStreamFrameInfoDisplayTime
-    ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the mach absolute time when the event occurred. For a frame event, this is when the frame was displayed by the window server.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfodisplaytime?language=objc)
@@ -801,8 +797,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// SCStreamFrameInfoScaleFactor
-    ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the display resolution associated with the frame. Display resolution is the pixel to point scaling factor. It should be in the range of [1, 4].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfoscalefactor?language=objc)
@@ -810,8 +804,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// SCStreamFrameInfoContentScale
-    ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the content scale associated with the frame. Content scale is the scaling factor from original content size to its size in surface.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfocontentscale?language=objc)
@@ -819,8 +811,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// SCStreamFrameInfoContentRect
-    ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the content rect associated with the frame. Content rect is the size and location of content in points in surface.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfocontentrect?language=objc)
@@ -828,8 +818,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// SCStreamFrameInfoDirtyRects
-    ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for an array of rectangles that is the union of both rectangles that were redrawn and rectangles that were moved. This is an array of CGRect in NSValue. The CGRects elements are specified in pixels.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfodirtyrects?language=objc)
@@ -837,8 +825,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// SCStreamFrameInfoScreenRect
-    ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the onscreen location of the captured content
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfoscreenrect?language=objc)
@@ -846,8 +832,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// SCStreamFrameInfoBoundingRect
-    ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the bounding rect associated with the frame. Bounding rect is the size and location of smallest bounding box containing all captured windows in points and in surface coordinates.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfoboundingrect?language=objc)
@@ -855,8 +839,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// SCStreamFrameInfoPresenterOverlayContentRect
-    ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the content rect associated with the frame while in presenter overlay.  In presenter overlay small, this content rect is the size and location of smallest bounding box containing all captured windows plus small overlay window in points and in surface coordinates.
     /// In presenter overlay large, this content rect is the size and location of shared content in points and in surface coordinates.
     ///

@@ -358,6 +358,7 @@ impl CNMutableContact {
 
         /// The Gregorian birthday.
         ///
+        ///
         /// Only uses day, month and year components. Needs to have at least a day and a month.
         #[unsafe(method(birthday))]
         #[unsafe(method_family = none)]
@@ -373,6 +374,7 @@ impl CNMutableContact {
 
     extern_methods!(
         /// The alternate birthday (Lunisolar).
+        ///
         ///
         /// Only uses day, month, year and calendar components. Needs to have at least a day and a month. Calendar must be Chinese, Hebrew or Islamic.
         #[unsafe(method(nonGregorianBirthday))]
@@ -391,6 +393,7 @@ impl CNMutableContact {
 
         #[cfg(feature = "CNLabeledValue")]
         /// Other Gregorian dates (anniversaries, etc).
+        ///
         ///
         /// Only uses day, month and year components. Needs to have at least a day and a month.
         #[unsafe(method(dates))]

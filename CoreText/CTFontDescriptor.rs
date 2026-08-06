@@ -44,8 +44,6 @@ unsafe impl ConcreteType for CTFontDescriptor {
 }
 
 extern "C" {
-    /// kCTFontURLAttribute
-    ///
     /// The font URL.
     ///
     /// This is the key for accessing the font URL from the font descriptor. The value associated with this key is a CFURLRef.
@@ -55,8 +53,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontNameAttribute
-    ///
     /// The PostScript name.
     ///
     /// This is the key for retrieving the PostScript name from the font descriptor. When matching, this is treated more generically: the system first tries to find fonts with this PostScript name. If none is found, the system tries to find fonts with this family name, and, finally, if still nothing, tries to find fonts with this display name. The value associated with this key is a CFStringRef. If unspecified, defaults to "Helvetica", if unavailable falls back to global font cascade list.
@@ -66,8 +62,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontDisplayNameAttribute
-    ///
     /// The display name.
     ///
     /// This is the key for accessing the name used to display the font. Most commonly this is the full name. The value associated with this key is a CFStringRef.
@@ -77,8 +71,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFamilyNameAttribute
-    ///
     /// The family name.
     ///
     /// This is the key for accessing the family name from the font descriptor. The value associated with this key is a CFStringRef.
@@ -88,8 +80,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontStyleNameAttribute
-    ///
     /// The style name.
     ///
     /// This is the key for accessing the style name of the font. This name represents the designer's description of the font's style. The value associated with this key is a CFStringRef.
@@ -99,8 +89,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontTraitsAttribute
-    ///
     /// The font traits dictionary.
     ///
     /// This is the key for accessing the dictionary of font traits for stylistic information. See CTFontTraits.h for the list of font traits. The value associated with this key is a CFDictionaryRef.
@@ -110,8 +98,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontVariationAttribute
-    ///
     /// The font variation dictionary.
     ///
     /// This key is used to obtain the font variation instance as a CFDictionaryRef. If specified in a font descriptor, fonts with the specified axes will be primary match candidates, if no such fonts exist, this attribute will be ignored.
@@ -121,8 +107,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontVariationAxesAttribute
-    ///
     /// An array of variation axis dictionaries or null if the font does not support variations. Each variation axis dictionary contains the five kCTFontVariationAxis-prefixed keys.
     /// Unlike the result of CTFontCopyVariationAxes(), kCTFontVariationAxisNameKey values for this attribute are not localized.
     /// Before macOS 13.0 and iOS 16.0 this attribute is not accurate and CTFontCopyVariationAxes() should be used instead.
@@ -135,8 +119,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontSizeAttribute
-    ///
     /// The font point size.
     ///
     /// This key is used to obtain or specify the font point size. Creating a font with this unspecified will default to a point size of 12.0. The value for this key is represented as a CFNumberRef.
@@ -146,8 +128,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontMatrixAttribute
-    ///
     /// The font transformation matrix.
     ///
     /// This key is used to specify the font transformation matrix when creating a font. The default value is CGAffineTransformIdentity. The value for this key is a CFDataRef containing a CGAffineTransform, of which only the a, b, c, and d fields are used.
@@ -157,8 +137,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontCascadeListAttribute
-    ///
     /// The font cascade list.
     ///
     /// This key is used to specify or obtain the cascade list used for a font reference. The cascade list is a CFArrayRef containing CTFontDescriptorRefs. If unspecified, the global cascade list is used. This list is not consulted for private-use characters on OS X 10.10, iOS 8, or earlier.
@@ -168,8 +146,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontCharacterSetAttribute
-    ///
     /// The font Unicode character coverage set.
     ///
     /// The value for this key is a CFCharacterSetRef. Creating a font with this attribute will restrict the font to a subset of its actual character set.
@@ -179,8 +155,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontLanguagesAttribute
-    ///
     /// The list of supported languages.
     ///
     /// The value for this key is a CFArrayRef of CFStringRef language identifiers conforming to UTS #35. It can be requested from any font. If present in a descriptor used for matching, only fonts supporting the specified languages will be returned.
@@ -190,8 +164,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontBaselineAdjustAttribute
-    ///
     /// The baseline adjustment to apply to font metrics.
     ///
     /// The value for this key is a floating-point CFNumberRef. This is primarily used when defining font descriptors for a cascade list to keep the baseline of all fonts even.
@@ -201,8 +173,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontMacintoshEncodingsAttribute
-    ///
     /// The Macintosh encodings (legacy script codes).
     ///
     /// The value associated with this key is a CFNumberRef containing a bitfield of the script codes in
@@ -214,8 +184,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeaturesAttribute
-    ///
     /// The array of font features.
     ///
     /// This key is used to specify or obtain the font features for a font reference. The value associated with this key is a CFArrayRef of font feature dictionaries as documented for CTFontCopyFeatures() in
@@ -231,8 +199,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFeatureSettingsAttribute
-    ///
     /// The array of typographic feature settings.
     ///
     /// This key is used to specify an array of zero or more feature settings. Each setting dictionary indicates which setting should be applied. In the case of duplicate or conflicting settings the last setting in the list will take precedence. In the case of AAT settings, it is the caller's responsibility to handle exclusive and non-exclusive settings as necessary.
@@ -258,8 +224,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontFixedAdvanceAttribute
-    ///
     /// Specifies advance width.
     ///
     /// This key is used to specify a constant advance width, which affects the glyph metrics of any font instance created with this key; it overrides font values and the font transformation matrix, if any. The value associated with this key must be a CFNumberRef.
@@ -271,8 +235,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontOrientationAttribute
-    ///
     /// The orientation attribute.
     ///
     /// This key is used to specify a particular orientation for the glyphs of the font. The value associated with this key is a int as a CFNumberRef. If you want to receive vertical metrics from a font for vertical rendering, specify kCTFontVerticalOrientation. If unspecified, the font will use its native orientation.
@@ -314,8 +276,6 @@ unsafe impl RefEncode for CTFontOrientation {
 }
 
 extern "C" {
-    /// kCTFontFormatAttribute
-    ///
     /// Specifies the recognized format of the font.
     ///
     /// The attribute is used to specify or obtain the format of the font. The returned value is a CFNumber containing one of the constants defined below.
@@ -367,8 +327,6 @@ unsafe impl RefEncode for CTFontFormat {
 }
 
 extern "C" {
-    /// kCTFontRegistrationScopeAttribute
-    ///
     /// Specifies the font descriptor's registration scope.
     ///
     /// The attribute is used to specify or obtain the font registration scope. The value returned is a CFNumberRef containing one of the CTFontManagerScope enumerated values. A value of NULL can be returned for font descriptors that are not registered.
@@ -378,8 +336,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontPriorityAttribute
-    ///
     /// The font descriptors priority when resolving duplicates and sorting match results.
     ///
     /// This key is used to obtain or specify the font priority. The value returned is a CFNumberRef containing an integer value as defined below. The higher the value, the higher the priority of the font. Only registered fonts will have a priority. Unregistered font descriptors will return NULL.
@@ -405,8 +361,6 @@ pub const kCTFontPriorityProcess: c_uint = 60000;
 pub type CTFontPriority = u32;
 
 extern "C" {
-    /// kCTFontEnabledAttribute
-    ///
     /// The font enabled state.
     ///
     /// The value associated with this key is a CFBoolean. Unregistered font descriptors will return NULL, which is equivalent to false.
@@ -416,8 +370,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontDownloadableAttribute
-    ///
     /// The font downloadable state.
     ///
     /// The value associated with this key is a CFBoolean. If it is true, CoreText attempts to download a font if necessary when matching a descriptor.
@@ -427,8 +379,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontDownloadedAttribute
-    ///
     /// The download state.
     ///
     /// The value associated with this key is a CFBoolean. If it is true, corresponding FontAsset has been downloaded. (but still it may be necessary to call appropriate API in order to use the font in the FontAsset.)
@@ -438,8 +388,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontOpticalSizeAttribute
-    ///
     /// The point size at which this font is intended to be used.
     ///
     /// The value is a CFNumber used to activate size-specific (not linearly scaled) metrics. Starting with macOS 10.14 and iOS 12.0, the CFString "auto" can be used instead to request an optical size matching the point size. Starting with macOS 10.15 and iOS 13.0, the CFString "none" can be used instead to explicitly disable automatic optical sizing enabled by the font.
@@ -449,8 +397,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontDescriptorLanguageAttribute
-    ///
     /// The language identifier for font fallback selection.
     ///
     /// The value associated with this key is a CFStringRef. If specified in a font descriptor, it is used to select the appropriate font fallback list for the language. This key should not be confused with kCTLanguageAttributeName, which is defined in CTStringAttributes.h.

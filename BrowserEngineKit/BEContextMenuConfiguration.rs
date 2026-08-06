@@ -31,7 +31,8 @@ impl BEContextMenuConfiguration {
         /// There is a system-defined timeout before the configuration is cancelled, where no menu presents. This method returns `YES` if the
         /// configuration did successfully prepare, and `NO` otherwise.
         ///
-        /// : The fulfilled configuration is used by `UIContextMenuInteractionDelegate` when referencing any `UIContextMenuConfiguration`,
+        ///
+        /// Note: : The fulfilled configuration is used by `UIContextMenuInteractionDelegate` when referencing any `UIContextMenuConfiguration`,
         /// rather than this object.
         #[unsafe(method(fulfillUsingConfiguration:))]
         #[unsafe(method_family = none)]

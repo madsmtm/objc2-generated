@@ -9,8 +9,6 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// kCTFontSymbolicTrait
-    ///
     /// Dictionary key to access the symbolic traits value.
     ///
     /// Use this key to access the symbolic traits value from the font traits dictionary. The value is returned as a CFNumberRef.
@@ -20,8 +18,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontWeightTrait
-    ///
     /// Dictionary key to access the weight trait value.
     ///
     /// Use this key to access the normalized weight trait from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized weight. The value of 0.0 corresponds to the regular or medium font weight.
@@ -31,8 +27,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontWidthTrait
-    ///
     /// Dictionary key to access the width (condense/expand) trait value.
     ///
     /// Use this key to access the normalized proportion trait from the font traits dictionary. This value corresponds to the design width of the font, which is usually related to the overall width of glyphs in a font relative to their height (and the 'wdth' axis for variable fonts). The value is a CFNumberRef representing a float between -1.0 and 1.0. The value of 0.0 corresponds to a normal width, negative values correspond to a condensed width, and positive values correspond to an expanded width.
@@ -42,8 +36,6 @@ extern "C" {
 }
 
 extern "C" {
-    /// kCTFontSlantTrait
-    ///
     /// Dictionary key to access the slant trait value.
     ///
     /// Use this key to access the normalized slant angle from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized slant angle. The value or 0.0 corresponds to 0 degree clockwise rotation from the vertical and 1.0 corresponds to 30 degrees clockwise rotation.

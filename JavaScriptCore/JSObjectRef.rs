@@ -324,9 +324,13 @@ pub type JSObjectConvertToTypeCallback = Option<
 >;
 
 /// This structure describes a statically declared value property.
+///
 /// Field: name A null-terminated UTF8 string containing the property's name.
+///
 /// Field: getProperty A JSObjectGetPropertyCallback to invoke when getting the property's value.
+///
 /// Field: setProperty A JSObjectSetPropertyCallback to invoke when setting the property's value. May be NULL if the ReadOnly attribute is set.
+///
 /// Field: attributes A logically ORed set of JSPropertyAttributes to give to the property.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstaticvalue?language=objc)
@@ -360,8 +364,11 @@ unsafe impl RefEncode for JSStaticValue {
 }
 
 /// This structure describes a statically declared function property.
+///
 /// Field: name A null-terminated UTF8 string containing the property's name.
+///
 /// Field: callAsFunction A JSObjectCallAsFunctionCallback to invoke when the property is called as a function.
+///
 /// Field: attributes A logically ORed set of JSPropertyAttributes to give to the property.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstaticfunction?language=objc)
@@ -393,22 +400,39 @@ unsafe impl RefEncode for JSStaticFunction {
 }
 
 /// This structure contains properties and callbacks that define a type of object. All fields other than the version field are optional. Any pointer may be NULL.
+///
 /// Field: version The version number of this structure. The current version is 0.
+///
 /// Field: attributes A logically ORed set of JSClassAttributes to give to the class.
+///
 /// Field: className A null-terminated UTF8 string containing the class's name.
+///
 /// Field: parentClass A JSClass to set as the class's parent class. Pass NULL use the default object class.
+///
 /// Field: staticValues A JSStaticValue array containing the class's statically declared value properties. Pass NULL to specify no statically declared value properties. The array must be terminated by a JSStaticValue whose name field is NULL.
+///
 /// Field: staticFunctions A JSStaticFunction array containing the class's statically declared function properties. Pass NULL to specify no statically declared function properties. The array must be terminated by a JSStaticFunction whose name field is NULL.
+///
 /// Field: initialize The callback invoked when an object is first created. Use this callback to initialize the object.
+///
 /// Field: finalize The callback invoked when an object is finalized (prepared for garbage collection). Use this callback to release resources allocated for the object, and perform other cleanup.
+///
 /// Field: hasProperty The callback invoked when determining whether an object has a property. If this field is NULL, getProperty is called instead. The hasProperty callback enables optimization in cases where only a property's existence needs to be known, not its value, and computing its value is expensive.
+///
 /// Field: getProperty The callback invoked when getting a property's value.
+///
 /// Field: setProperty The callback invoked when setting a property's value.
+///
 /// Field: deleteProperty The callback invoked when deleting a property.
+///
 /// Field: getPropertyNames The callback invoked when collecting the names of an object's properties.
+///
 /// Field: callAsFunction The callback invoked when an object is called as a function.
+///
 /// Field: hasInstance The callback invoked when an object is used as the target of an 'instanceof' expression.
+///
 /// Field: callAsConstructor The callback invoked when an object is used as a constructor in a 'new' expression.
+///
 /// Field: convertToType The callback invoked when converting an object to a particular JavaScript type.
 ///
 /// The staticValues and staticFunctions arrays are the simplest and most efficient means for vending custom properties. Statically declared properties autmatically service requests like getProperty, setProperty, and getPropertyNames. Property access callbacks are required only to implement unusual properties, like array indexes, whose names are not known at compile-time.

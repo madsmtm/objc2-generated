@@ -36,7 +36,7 @@ extern_class!(
     /// ```swift
     /// func fetchShareMetadata(for shareURLs: [URL],
     /// completion:
-    /// (Result
+    /// @escaping (Result
     /// <
     /// [URL: CKShare.Metadata], any Error>) -> Void) {
     ///

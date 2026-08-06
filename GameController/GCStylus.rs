@@ -55,7 +55,7 @@ extern_class!(
     /// }
     ///
     /// // Later, handle connection
-    /// func stylus(didConnect notification: Notification) {
+    /// @objc func stylus(didConnect notification: Notification) {
     /// guard let stylus = notification.object as? GCStylus else { return }
     /// ...
     /// }

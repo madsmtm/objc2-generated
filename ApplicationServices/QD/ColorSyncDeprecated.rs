@@ -3091,8 +3091,10 @@ unsafe impl RefEncode for CMFloatBitmapFlags {
 /// </PRE
 /// >
 ///
+///
 /// Field: version     The version number of this structure to allow for future expansion.
 /// Should contain 0 for now.
+///
 ///
 /// Field: buffers     The base address for each channel in canonical order.
 /// The canonical order for RGB is R,G,B. CMYK is C,M,Y,K etc.
@@ -3102,19 +3104,25 @@ unsafe impl RefEncode for CMFloatBitmapFlags {
 /// &
 /// (pixelArray[0][0][c])
 ///
+///
 /// Field: height      The height (in pixels) of the bitmap.
 ///
+///
 /// Field: width       The width (in pixels) of the bitmap.
+///
 ///
 /// Field: rowStride   The number of floats to skip to move from one row to the next.
 /// This is typically (width*chans) for chunky pixel buffers or (width) for planar.
 /// Can be negative if the image is vertically flipped.
 ///
+///
 /// Field: colStride   The number of floats to skip to move from one column to the next.
 /// This is typically (chans) for chunky pixel buffers or (1) for planar.
 /// Can be negative if the image is horizontally flipped.
 ///
+///
 /// Field: space       The colorspace of the data (e.g cmRGBdata cmCMYKData)
+///
 ///
 /// Field: flags       Holds bits to specify the alpha type of the data.
 /// The remaining bits are reserved for future use.

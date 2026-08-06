@@ -9,6 +9,7 @@ use crate::*;
 
 extern_protocol!(
     /// MDLTransformComponent
+    ///
     /// a container for a time sampled local transformation
     ///
     ///

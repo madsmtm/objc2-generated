@@ -32,10 +32,13 @@ pub type CMIODeviceStreamQueueAlteredProc =
     Option<unsafe extern "C-unwind" fn(CMIOStreamID, *mut c_void, *mut c_void)>;
 
 /// This structure is returned in response to the kCMIOStreamPropertyDeck property queries.
+///
 /// Field: mStatus
 /// The CMIO Deck Status constant that changed.
+///
 /// Field: mState
 /// If kCMIODeckStatusOpcode == mStatus, this can be used to determine more specific status. The values are CMIO Deck State constants.
+///
 /// Field: mState2
 /// if kCMIODeckStatusOpcode == mStatus, this can be used to determine more specific status. The values are device specific.
 ///
@@ -512,8 +515,10 @@ pub type CMIOStreamScheduledOutputNotificationProc =
     Option<unsafe extern "C-unwind" fn(u64, u64, *mut c_void)>;
 
 /// The payload for kCMIOStreamPropertyScheduledOutputNotificationProc.
+///
 /// Field: scheduledOutputNotificationProc
 /// The procedure to call when a buffer was output
+///
 /// Field: scheduledOutputNotificationRefCon
 /// A pointer to client data that will be passed to the scheduledOutputNotificationProc
 ///

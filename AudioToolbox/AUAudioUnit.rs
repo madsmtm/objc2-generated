@@ -1060,13 +1060,13 @@ impl AUAudioUnit {
         /// For details on the possible keys present in the full state dictionary, please see the
         /// documentation for kAudioUnitProperty_ClassInfo.
         /// The minimal set of keys and their type is:
-        /// : NSNumber,
-        /// : NSNumber,
-        /// : NSNumber,
-        /// : NSNumber,
-        /// : NSString,
-        /// : NSNumber,
-        /// : NSData
+        /// @kAUPresetTypeKey: NSNumber,
+        /// @kAUPresetSubtypeKey: NSNumber,
+        /// @kAUPresetManufacturerKey: NSNumber,
+        /// @kAUPresetVersionKey: NSNumber,
+        /// @kAUPresetNameKey: NSString,
+        /// @kAUPresetNumberKey: NSNumber,
+        /// @kAUPresetDataKey: NSData
         #[unsafe(method(presetStateFor:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn presetStateFor_error(

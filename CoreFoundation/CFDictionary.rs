@@ -10,9 +10,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// Structure containing the callbacks for keys of a CFDictionary.
+///
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFDictionary creation functions.
 /// This structure is version 0.
+///
 /// Field: retain The callback used to add a retain for the dictionary
 /// on keys as they are used to put values into the dictionary.
 /// This callback returns the value to use as the key in the
@@ -20,15 +22,19 @@ use crate::*;
 /// this callback, but may be a different value if a different
 /// value should be used as the key. The dictionary's allocator
 /// is passed as the first argument.
+///
 /// Field: release The callback used to remove a retain previously added
 /// for the dictionary from keys as their values are removed from
 /// the dictionary. The dictionary's allocator is passed as the
 /// first argument.
+///
 /// Field: copyDescription The callback used to create a descriptive
 /// string representation of each key in the dictionary. This
 /// is used by the CFCopyDescription() function.
+///
 /// Field: equal The callback used to compare keys in the dictionary for
 /// equality.
+///
 /// Field: hash The callback used to compute a hash code for keys as they
 /// are used to access, add, or remove values in the dictionary.
 ///
@@ -106,9 +112,11 @@ extern "C" {
 }
 
 /// Structure containing the callbacks for values of a CFDictionary.
+///
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFDictionary creation functions.
 /// This structure is version 0.
+///
 /// Field: retain The callback used to add a retain for the dictionary
 /// on values as they are put into the dictionary.
 /// This callback returns the value to use as the value in the
@@ -116,13 +124,16 @@ extern "C" {
 /// this callback, but may be a different value if a different
 /// value should be added to the dictionary. The dictionary's
 /// allocator is passed as the first argument.
+///
 /// Field: release The callback used to remove a retain previously added
 /// for the dictionary from values as they are removed from
 /// the dictionary. The dictionary's allocator is passed as the
 /// first argument.
+///
 /// Field: copyDescription The callback used to create a descriptive
 /// string representation of each value in the dictionary. This
 /// is used by the CFCopyDescription() function.
+///
 /// Field: equal The callback used to compare values in the dictionary for
 /// equality in some operations.
 ///

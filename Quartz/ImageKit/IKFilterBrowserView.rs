@@ -11,7 +11,8 @@ use crate::*;
 extern_class!(
     /// IKFilterBrowserView
     ///
-    /// 2006 Apple Inc. All rights reserved.
+    /// Copyright: 2006 Apple Inc. All rights reserved.
+    ///
     /// Availability: Coming to a Leopard installation near you
     ///
     /// View containing the elements of the IKFilterBrowser

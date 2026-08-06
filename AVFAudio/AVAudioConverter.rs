@@ -68,6 +68,7 @@ unsafe impl RefEncode for AVAudioConverterPrimeMethod {
 /// AVAudioConverterPrimeMethod_Normal, which requires no pre-seeking of the input stream and
 /// generates no latency at the output.
 ///
+///
 /// Field: leadingFrames
 /// Specifies the number of leading (previous) input frames, relative to the normal/desired
 /// start input frame, required by the converter to perform a high quality conversion. If
@@ -77,6 +78,7 @@ unsafe impl RefEncode for AVAudioConverterPrimeMethod {
 /// beginning of available audio), then provide "leadingFrames" worth of initial zero frames
 /// in the input proc.  Do not "pre-seek" in the default case of
 /// AVAudioConverterPrimeMethod_Normal or when using AVAudioConverterPrimeMethod_None.
+///
 ///
 /// Field: trailingFrames
 /// Specifies the number of trailing input frames (past the normal/expected end input frame)

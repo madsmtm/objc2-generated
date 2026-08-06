@@ -40,7 +40,7 @@ extern_class!(
     ///
     /// func acceptShare(metadata: CKShare.Metadata,
     /// completion:
-    /// (Result
+    /// @escaping (Result
     /// <CKRecord
     /// .ID, any Error>) -> Void) {
     ///

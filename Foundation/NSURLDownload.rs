@@ -27,6 +27,7 @@ impl NSURLDownload {
         /// Returns whether or not NSURLDownload can resume a download that was decoded with a given encoding MIME type.
         ///
         /// Parameter `MIMEType`: The encoding MIME type.
+        ///
         /// canResumeDownloadDecodedWithEncodingMIMEType: returns whether or not NSURLDownload can resume a download
         /// that was decoded with a given encoding MIME type.  NSURLDownload cannot resume a download that was partially decoded
         /// in the gzip format for example. In order to ensure that a download can be later resumed,
@@ -105,6 +106,7 @@ impl NSURLDownload {
         /// Returns the resume data of a download that is incomplete.
         ///
         /// Returns: The resume data.
+        ///
         /// resumeData returns the resume data of a download that is incomplete. This data represents the necessary
         /// state information that NSURLDownload needs to resume a download. The resume data can later be used when initializing
         /// a download with initWithResumeData:delegate:path:. Non-nil is returned if resuming the download seems possible.
@@ -117,6 +119,7 @@ impl NSURLDownload {
 
         /// Sets whether or not the downloaded file should be deleted upon failure.
         /// 1
+        ///
         /// To allow the download to be resumed in case the download ends prematurely,
         /// deletesFileUponFailure must be set to NO as soon as possible to prevent the downloaded file
         /// from being deleted. deletesFileUponFailure is YES by default.

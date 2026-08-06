@@ -56,16 +56,19 @@ impl FSTask {
         /// The exact structuring of the completion handler depends on the structuring of the code implementing the task.
         /// As a concrete example, consider a check operation with the following class:
         ///
-        /// {
-        /// ("Objective-C") {
+        ///
+        /// @TabNavigator{
+        ///
+        /// @Tab("Objective-C") {
         /// ```obj-c
         /// @
         /// ‎‌interface YourFileSystem : NSObject
         ///
         ///
-        /// ```
+        /// @end ```
         /// }
-        /// ("Swift") {
+        ///
+        /// @Tab("Swift") {
         /// ```swift
         /// class YourFileSystem {
         /// let work_group: dispatch_group_t = DispatchGroup()
@@ -78,8 +81,10 @@ impl FSTask {
         ///
         /// and a `startCheckWithTask` method with a helper method `performCheck` like the following:
         ///
-        /// {
-        /// ("Objective-C") {
+        ///
+        /// @TabNavigator{
+        ///
+        /// @Tab("Objective-C") {
         /// ```obj-c
         /// - (void)performCheck:(nonnull FSTask *)task
         /// progress:(nonnull NSProgress *)progress
@@ -104,7 +109,8 @@ impl FSTask {
         /// }
         /// ```
         /// }
-        /// ("Swift") {
+        ///
+        /// @Tab("Swift") {
         /// ```swift
         /// func performCheck(task: FSTask, progress: Progress,
         /// context: YourFileSystemCancelationContext) {

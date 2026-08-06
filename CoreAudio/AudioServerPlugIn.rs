@@ -9,12 +9,15 @@ use crate::*;
 /// The AudioServerPlugInCustomPropertyInfo struct is used to describe enough about
 /// a custom property to allow the Host to marshal the data between the Host and
 /// its clients.
+///
 /// Field: mSelector
 /// The AudioObjectPropertySelector of the custom property.
+///
 /// Field: mPropertyDataType
 /// A UInt32 whose value indicates the data type of the data of the custom
 /// property. Constants for this value are defined in the Basic Constants
 /// section.
+///
 /// Field: mQualifierDataType
 /// A UInt32 whose value indicates the data type of the data of the custom
 /// property. Constants for this value are defined in the Basic Constants
@@ -49,15 +52,19 @@ unsafe impl RefEncode for AudioServerPlugInCustomPropertyInfo {
 
 /// The AudioServerPlugInClientInfo struct is used to identify a client of the Host
 /// to the plug-in.
+///
 /// Field: mClientID
 /// An ID that allows for differentiating multiple clients in the same process.
 /// This ID is passed to the plug-in during IO so that the plug-in can associate
 /// the IO with the client easily.
+///
 /// Field: mProcessID
 /// The pid_t of the process that contains the client.
+///
 /// Field: mIsNativeEndian
 /// A Boolean indicating whether or not the client has the same endianness as
 /// the server.
+///
 /// Field: mBundleID
 /// A CFStringRef that contains the bundle ID of the main bundle of the process
 /// that contains the client. Note that the plug-in is expected to retain this

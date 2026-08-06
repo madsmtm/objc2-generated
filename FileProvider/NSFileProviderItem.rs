@@ -759,6 +759,7 @@ extern_protocol!(
         ///
         /// - `NSFileProviderUserInteractions` *array*
         /// - `ActivationRule ` *string*, the predicate.
+        ///
         /// Parameters predicates
         /// - `destinationItem`: the destination item for an action. Present for Move/MoveIn/Copy/CopyIn/Create
         /// - `action` : the action that is being performed
@@ -793,6 +794,7 @@ extern_protocol!(
         /// - `LocalizedTitle` *string*, title of the alert
         /// - `LocalizedSubTitle` *string*, sub title of the alert
         /// -
+        ///
         /// Parameters (maximum 10) for LocalizedTitle/LocalizedSubTitle
         /// - `matchingItemsCount`: count of source items that matched the predicate (only present if matchingItemsCount > 0)
         /// - `matchingItemsCountMinusOne`: matchingItemsCount minus one (only present if matchingItemsCount > 1)

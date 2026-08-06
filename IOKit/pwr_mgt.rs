@@ -961,6 +961,7 @@ pub type sleepWakeNote = IOPowerStateChangeNotification;
 /// </code>
 /// clients when system capability
 /// changes.
+///
 /// Field: notifyRef An identifier for this message notification. Clients with pending
 /// I/O can signal completion by calling
 /// <code>
@@ -969,6 +970,7 @@ pub type sleepWakeNote = IOPowerStateChangeNotification;
 /// with this
 /// value as the argument. Clients that are able to process the notification
 /// synchronously should ignore this field.
+///
 /// Field: maxWaitForReply A return value to the caller indicating the maximum time in
 /// microseconds to wait for the
 /// <code>
@@ -981,6 +983,7 @@ pub type sleepWakeNote = IOPowerStateChangeNotification;
 /// allowPowerChange()
 /// </code>
 /// call.
+///
 /// Field: changeFlags Flags will be set to indicate whether the notification precedes
 /// the capability change (
 /// <code>
@@ -992,9 +995,13 @@ pub type sleepWakeNote = IOPowerStateChangeNotification;
 /// kIOPMSystemCapabilityDidChange
 /// </code>
 /// ).
+///
 /// Field: __reserved1 Set to zero.
+///
 /// Field: fromCapabilities The system capabilities at the start of the transition.
+///
 /// Field: toCapabilities The system capabilities at the end of the transition.
+///
 /// Field: __reserved2 Set to zero.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmsystemcapabilitychangeparameters?language=objc)
@@ -1707,6 +1714,7 @@ unsafe impl RefEncode for IOPMUserActiveType {
 }
 
 /// The preferred API to create a power assertion.
+///
 ///
 /// Creates an IOPMAssertion. This is the preferred API to call to create an assertion.
 /// It allows the caller to specify the Name, Details, and HumanReadableReason at creation time.

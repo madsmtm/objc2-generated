@@ -61,13 +61,16 @@ extern_class!(
     ///
     /// The following code sample shows how to create the reference object for each item record and configure it to point at the list record:
     ///
-    /// {
-    /// ("Swift") {
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
     /// ```swift
     /// itemRecord["owningList"] = CKReference(record: listRecord, action: .deleteSelf)
     /// ```
     /// }
-    /// ("Objective-C") {
+    ///
+    /// @Tab("Objective-C") {
     /// ```objc
     /// CKReference* ref = [[CKReference alloc] initWithRecord:listRecord action:CKReferenceActionDeleteSelf];
     /// itemRecord[
@@ -87,8 +90,10 @@ extern_class!(
     ///
     /// The code sample below shows how to use a reference object to construct a query for the records in the figure above. The `listID` variable is a placeholder for the record ID of the list with the items you want to retrieve. The predicate tells the query object to search the `owningList` field of the target records and compare the reference object there with the one in the `recordToMatch` variable. Executing the query operation object returns the matching records asynchronously to the completion block you provide.
     ///
-    /// {
-    /// ("Swift") {
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
     /// ```swift
     /// // Match item records with an owningList field that points to the specified list record.
     /// let listID = listRecord.recordID
@@ -103,7 +108,8 @@ extern_class!(
     /// // Add the CKQueryOperation to a queue to execute it and process the results asynchronously.
     /// ```
     /// }
-    /// ("Objective-C") {
+    ///
+    /// @Tab("Objective-C") {
     /// ```objc
     /// // Match item records with an owningList field that points to the specified list record.
     /// CKReference* recordToMatch = [[CKReference alloc] initWithRecordID:listID

@@ -28,7 +28,7 @@ extern_protocol!(
         #[cfg(all(feature = "PHProjectTypeDescription", feature = "PhotosUITypes"))]
         /// Called to fetch the updated project type description for previously invalidated project types.
         ///
-        /// Parameter `projectType`: The previously invalidated project type.
+        /// Parameter projectType The previously invalidated project type.
         ///
         /// Returns: Return the current PHProjectTypeDescription for the given project type.
         /// The returned PHProjectTypeDescription's projectType has to be equal to the given projectType.

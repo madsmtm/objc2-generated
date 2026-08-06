@@ -35,7 +35,7 @@ extern_class!(
     /// ```swift
     /// func fetchUserIdentities(withEmails emails: [String],
     /// completion:
-    /// (Result
+    /// @escaping (Result
     /// <
     /// [CKUserIdentity], any Error>) -> Void) {
     ///

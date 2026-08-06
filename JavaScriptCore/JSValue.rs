@@ -829,7 +829,8 @@ impl JSValue {
 
         #[cfg(feature = "JSValueRef")]
         /// Compare two JSValues.
-        /// The JSValue to compare with.
+        ///
+        /// Parameter `other`: The JSValue to compare with.
         ///
         /// Returns: A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
         ///
@@ -868,7 +869,8 @@ impl JSValue {
         /// int64_t
         /// </code>
         /// .
-        /// The
+        ///
+        /// Parameter `other`: The
         /// <code>
         /// int64_t
         /// </code>
@@ -891,7 +893,8 @@ impl JSValue {
         /// uint64_t
         /// </code>
         /// .
-        /// The
+        ///
+        /// Parameter `other`: The
         /// <code>
         /// uint64_t
         /// </code>
@@ -910,7 +913,8 @@ impl JSValue {
 
         #[cfg(feature = "JSValueRef")]
         /// Compare a JSValue with a double.
-        /// The double to compare with.
+        ///
+        /// Parameter `other`: The double to compare with.
         ///
         /// Returns: A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
         ///

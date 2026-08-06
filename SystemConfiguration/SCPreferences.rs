@@ -67,19 +67,24 @@ unsafe impl RefEncode for SCPreferencesNotification {
 }
 
 /// Structure containing user-specified data and callbacks for SCPreferences.
+///
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the SCPreferencesSetCallback function.
 /// This structure is version 0.
+///
 /// Field: info A C pointer to a user-specified block of data.
+///
 /// Field: retain The callback used to add a retain for the info field.
 /// If this parameter is not a pointer to a function of the correct
 /// prototype, the behavior is undefined.
 /// The value may be NULL.
+///
 /// Field: release The calllback used to remove a retain previously added
 /// for the info field.
 /// If this parameter is not a pointer to a function of the
 /// correct prototype, the behavior is undefined.
 /// The value may be NULL.
+///
 /// Field: copyDescription The callback used to provide a description of
 /// the info field.
 ///

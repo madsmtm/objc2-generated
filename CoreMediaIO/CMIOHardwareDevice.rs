@@ -20,8 +20,10 @@ pub type CMIODeviceID = CMIOObjectID;
 pub type CMIODevicePropertyID = CMIOObjectPropertySelector;
 
 /// This structure describes the list of streams and the number of channels in each stream.
+///
 /// Field: mNumberStreams
 /// The number of streams being described.
+///
 /// Field: mNumberChannels
 /// An array of UInt32's whose length is specified by mNumberStreams. Each element of the array corresponds to a stream and indicates the number of channels it has.
 ///
@@ -48,14 +50,19 @@ unsafe impl RefEncode for CMIODeviceStreamConfiguration {
 /// This structure allows an AVC command to be sent to a device. This is not intended to be a general purpose command interfaces, rather only for those devices which can
 /// support the "AV/C Digital Interface Command Set General Specification Version 4.1" (1394 Trade Association Document 2001012). Devices indicate whether or not they can
 /// process AVC commands via the kCMIODevicePropertyCanProcessAVCCommand property.
+///
 /// Field: mCommand
 /// The buffer containing the AVC command bytes.
+///
 /// Field: mCommandLength
 /// The size (in bytes) of the mCommand buffer.
+///
 /// Field: mResponse
 /// The buffer for returning the response bytes.
+///
 /// Field: mResponseLength
 /// The size (in bytes) of the mResponse buffer.
+///
 /// Field: mResponseUsed
 /// The size (in bytes) of the actual number response bytes returned.
 ///
@@ -89,14 +96,19 @@ unsafe impl RefEncode for CMIODeviceAVCCommand {
 
 /// This structure allows an RS422 command to be sent to a device. This is not intended to be a general purpose command interface, rather only for those devices which can
 /// support the RS422 protocol. Devices indicate whether or not they can process RS422 commands via the kCMIODevicePropertyCanProcessRS422Command property.
+///
 /// Field: mCommand
 /// The buffer containing the RS422 command bytes.
+///
 /// Field: mCommandLength
 /// The size (in bytes) of the mCommand buffer.
+///
 /// Field: mResponse
 /// The buffer for returning the response bytes.
+///
 /// Field: mResponseLength
 /// The size (in bytes) of the mResponse buffer.
+///
 /// Field: mResponseUsed
 /// The size (in bytes) of the actual number response bytes returned.
 ///
@@ -152,8 +164,10 @@ pub type CMIODeviceGetSMPTETimeProc =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut u64, *mut Boolean, *mut u32) -> OSStatus>;
 
 /// This structure allows a client to specify a CMIODeviceGetSMPTETimeProc and its associated private data via the kCMIODevicePropertySMPTETimeCallback property.
+///
 /// Field: mGetSMPTETimeProc
 /// The CMIODeviceGetSMPTETimeProc to invoke when SMPTE timecode information is needed.
+///
 /// Field: mRefCon
 /// Client supplied private provided when the kCMIODevicePropertySMPTETimeCallback property was set.
 ///

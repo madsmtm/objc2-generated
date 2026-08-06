@@ -24,7 +24,7 @@ extern "C" {
     /// func fetchShare(
     /// forZone zone: CKRecordZone,
     /// completion:
-    /// (Result
+    /// @escaping (Result
     /// <CKShare
     /// , any Error>) -> Void
     /// ) {

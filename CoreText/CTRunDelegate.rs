@@ -96,25 +96,30 @@ pub type CTRunDelegateGetWidthCallback =
 /// returned by a delegate are applied to each glyph in the run(s)
 /// corresponding to the attribute containing that delegate.
 ///
+///
 /// Field: version
 /// The version number of the callbacks being passed in as a
 /// parameter to CTRunDelegateCreate. This field should always
 /// be set to kCTRunDelegateCurrentVersion.
+///
 ///
 /// Field: dealloc
 /// The callback used when a CTRunDelegate's retain count reaches
 /// 0 and the CTRunDelegate is deallocated. This callback may be
 /// NULL.
 ///
+///
 /// Field: getAscent
 /// The callback used to indicate the ascent of the
 /// CTRunDelegate. This callback may be NULL, which is equivalent
 /// to a getAscent callback that always returns 0.
 ///
+///
 /// Field: getDescent
 /// The callback used to indicate the descent of the
 /// CTRunDelegate. This callback may be NULL, which is equivalent
 /// to a getDescent callback that always returns 0.
+///
 ///
 /// Field: getWidth
 /// The callback used to indicate the width of the

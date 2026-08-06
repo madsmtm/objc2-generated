@@ -268,22 +268,29 @@ pub const kMTAudioProcessingTapCallbacksVersion_0: c_int = 0;
 /// Note that for 64-bit architectures, this struct contains misaligned function pointers.
 /// To avoid link-time issues, it is recommended that clients fill MTAudioProcessingTapCallbacks' function pointer fields
 /// by using assignment statements, rather than declaring them as global or static structs.
+///
 /// Field: version
 /// The version number of the structure passed in as a parameter to MTAudioProcessingTapCreate().
 /// Must be kMTAudioProcessingTapCallbacksVersion_0.
+///
 /// Field: clientInfo
 /// Client data that will be passed to the init callback when it is invoked. Can be NULL.
+///
 /// Field: init
 /// A callback to allow the client to initialize the tap processor. Can be NULL.
 /// This callback is called before MTAudioProcessingTapCreate() returns.
+///
 /// Field: finalize
 /// A callback to allow the client to perform any necessary cleanup. Can be NULL.
 /// This callback will be called exactly once when the MTAudioProcessingTap object is finalized.
+///
 /// Field: prepare
 /// A callback to allow the client to prepare the tap processor (allocate memory buffers, etc). Can be NULL.
 /// Note that the callback may be called multiple times.
+///
 /// Field: unprepare
 /// A callback to allow the client to perform any necessary cleanup for which that is prepared. Can be NULL.
+///
 /// Field: process
 /// A callback for processing the audio.
 ///

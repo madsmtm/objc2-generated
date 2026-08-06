@@ -405,6 +405,7 @@ pub type IOUSBDeviceInterface100 = IOUSBDeviceStruct100;
 ///
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface and
 /// some new functions that are available on Mac OS X version 10.0.4 and later.
+///
 /// Super: IOUSBDeviceInterface
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct182?language=objc)
@@ -478,6 +479,7 @@ pub struct IOUSBDeviceStruct182 {
     /// returning.  Before the client can issue commands that change the state of the device,
     /// it must have succeeded in opening the device. This establishes an exclusive
     /// link between the client's task and the actual device.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -488,6 +490,7 @@ pub struct IOUSBDeviceStruct182 {
     /// Sends a USB request on the default control pipe.
     ///
     /// The device does not have to be open to use this function, but standard requests that change the state of the device may require that the device is opened first. This function sends a USB request on the default control pipe. The IOUSBDevRequestTO structure allows the client to specify timeout values for this request.
+    ///
     ///
     /// Availability: This function is only available with IOUSBDeviceInterface182 and above.
     ///
@@ -503,6 +506,7 @@ pub struct IOUSBDeviceStruct182 {
     /// Sends an asynchronous USB request on the default control pipe.
     ///
     /// The device does not have to be open to use this function, but standard requests that change the state of the device may require that the device is opened first. This function sends an asynchronous USB request on the default control pipe.  The IOUSBDevRequestTO structure allows the client to specify timeout values for this request.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -529,6 +533,7 @@ pub struct IOUSBDeviceStruct182 {
     /// Tells the USB Family to either suspend or resume the port to which a device is attached.
     ///
     /// The device must be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -541,6 +546,7 @@ pub struct IOUSBDeviceStruct182 {
     /// Aborts a transaction on the default control pipe.
     ///
     /// The device does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -551,6 +557,7 @@ pub struct IOUSBDeviceStruct182 {
     /// Returns the manufacturer string index in the device descriptor.
     ///
     /// The device does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -563,6 +570,7 @@ pub struct IOUSBDeviceStruct182 {
     /// Returns the product string index in the device descriptor.
     ///
     /// The device does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -575,6 +583,7 @@ pub struct IOUSBDeviceStruct182 {
     /// Returns the serial number string index in the device descriptor.
     ///
     /// The device does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -649,6 +658,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct182 {
 ///
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface and
 /// some new functions that are available on Mac OS X version 10.0.4 and later.
+///
 /// Super: IOUSBDeviceInterface
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface182?language=objc)
@@ -660,6 +670,7 @@ pub type IOUSBDeviceInterface182 = IOUSBDeviceStruct182;
 ///
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, and some new functions that are available on Mac OS X version 10.1.2 and later.
+///
 /// Super: IOUSBDeviceInterface182
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct187?language=objc)
@@ -754,6 +765,7 @@ pub struct IOUSBDeviceStruct187 {
     /// of the Device Firmware Update Class specification.  The device must be open to use this function, except when you are passing the kUSBReEnumerateCaptureDeviceBit or
     /// kUSBReEnumerateReleaseDeviceBit options.  In those cases you either need to (1) have the "com.apple.vm.device-access" entitlement set and the IOUSBDevice needs to have successfully been authorized by
     /// the IOKit's IOServiceAuthorize() APIs or (2) run with root privileges.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface187 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -833,6 +845,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct187 {
 ///
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, and some new functions that are available on Mac OS X version 10.1.2 and later.
+///
 /// Super: IOUSBDeviceInterface182
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface187?language=objc)
@@ -845,6 +858,7 @@ pub type IOUSBDeviceInterface187 = IOUSBDeviceStruct187;
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, and some new functions that are available
 /// on Mac OS X version 10.2.3 and later.
+///
 /// Super: IOUSBDeviceInterface187
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct197?language=objc)
@@ -934,6 +948,7 @@ pub struct IOUSBDeviceStruct197 {
     /// Gets the current micro frame number of the bus to which the device is attached.
     ///
     /// The device does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface197 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -949,6 +964,7 @@ pub struct IOUSBDeviceStruct197 {
     /// Returns the version of the IOUSBLib and the version of the IOUSBFamily.
     ///
     /// The device does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface197 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -1032,6 +1048,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct197 {
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, and some new functions that are available
 /// on Mac OS X version 10.2.3 and later.
+///
 /// Super: IOUSBDeviceInterface187
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface197?language=objc)
@@ -1044,6 +1061,7 @@ pub type IOUSBDeviceInterface197 = IOUSBDeviceStruct197;
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, and some new functions that are available
 /// on Mac OS X version 10.2.3 and later.
+///
 /// Super: IOUSBDeviceInterface197
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct245?language=objc)
@@ -1204,6 +1222,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct245 {
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, and some new functions that are available
 /// on Mac OS X version 10.2.3 and later.
+///
 /// Super: IOUSBDeviceInterface197
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface245?language=objc)
@@ -1215,6 +1234,7 @@ pub type IOUSBDeviceInterface245 = IOUSBDeviceStruct245;
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, IOUSBDeviceInterface245,
 /// and some new functions that are available on Mac OS X version 10.5 and later.
+///
 /// Super: IOUSBDeviceInterface245
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct300?language=objc)
@@ -1309,6 +1329,7 @@ pub struct IOUSBDeviceStruct300 {
     /// Gets a recent frame number of the bus to which the device is attached, along with a system time corresponding to the start of that frame
     ///
     /// The device does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface300 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -1389,6 +1410,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct300 {
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, IOUSBDeviceInterface245,
 /// and some new functions that are available on Mac OS X version 10.5 and later.
+///
 /// Super: IOUSBDeviceInterface245
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface300?language=objc)
@@ -1400,6 +1422,7 @@ pub type IOUSBDeviceInterface300 = IOUSBDeviceStruct300;
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, IOUSBDeviceInterface245, or IOUSBDeviceInterface300
 /// and some new functions that are available on Mac OS X version 10.5.4 and later.
+///
 /// Super: IOUSBDeviceInterface300
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct320?language=objc)
@@ -1496,6 +1519,7 @@ pub struct IOUSBDeviceStruct320 {
     /// Returns status information about the USB device, such as whether the device is captive or whether it is in the suspended state.
     ///
     /// The device does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface320 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -1508,6 +1532,7 @@ pub struct IOUSBDeviceStruct320 {
     /// Clients can use this API to reserve extra power for use by this device while the machine is asleep or while it is awake.  Units are milliAmps (mA).
     ///
     /// The device has to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface320 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -1524,6 +1549,7 @@ pub struct IOUSBDeviceStruct320 {
     /// Clients can use this API to tell the system that they will not use power that was previously reserved by using the RequestExtraPower API.
     ///
     /// The device has to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface320 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -1537,6 +1563,7 @@ pub struct IOUSBDeviceStruct320 {
     /// Clients can use this API to ask how much extra power has already been reserved by this device.  Units are milliAmps (mA).
     ///
     /// The device has to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface320 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -1621,6 +1648,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct320 {
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, IOUSBDeviceInterface245, or IOUSBDeviceInterface300
 /// and some new functions that are available on Mac OS X version 10.5.4 and later.
+///
 /// Super: IOUSBDeviceInterface300
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface320?language=objc)
@@ -1630,6 +1658,7 @@ pub type IOUSBDeviceInterface320 = IOUSBDeviceStruct320;
 /// The object you use to access USB devices from user space, returned by the IOUSBFamily version 4.0.0 and above.
 ///
 /// This object is functionally identical to IOUSBDeviceInterface320 on macOS, and includes some new functions that are only available on iOS.
+///
 /// Super: IOUSBDeviceInterface320
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct400?language=objc)
@@ -1801,6 +1830,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct400 {
 /// The object you use to access USB devices from user space, returned by the IOUSBFamily version 4.0.0 and above.
 ///
 /// This object is functionally identical to IOUSBDeviceInterface320 on macOS, and includes some new functions that are only available on iOS.
+///
 /// Super: IOUSBDeviceInterface320
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface400?language=objc)
@@ -1810,6 +1840,7 @@ pub type IOUSBDeviceInterface400 = IOUSBDeviceStruct400;
 /// The object you use to access USB devices from user space, returned by the IOUSBFamily version 5.0.0 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface400, and some new functions that are available on Mac OS X version 10.7.3 and later.
+///
 /// Super: IOUSBDeviceInterface400
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct500?language=objc)
@@ -1916,6 +1947,7 @@ pub struct IOUSBDeviceStruct500 {
     ///
     /// This function is useful for determining the correct AltInterface setting as well as for using
     /// SetPipePolicy. The interface does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface500 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -1997,6 +2029,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct500 {
 /// The object you use to access USB devices from user space, returned by the IOUSBFamily version 5.0.0 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface400, and some new functions that are available on Mac OS X version 10.7.3 and later.
+///
 /// Super: IOUSBDeviceInterface400
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface500?language=objc)
@@ -2006,6 +2039,7 @@ pub type IOUSBDeviceInterface500 = IOUSBDeviceStruct500;
 /// The object you use to access USB devices from user space, returned by the IOUSBFamily version 650.4.0 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface500, and some new functions that are available on Mac OS X version 10.9 and later.
+///
 /// Super: IOUSBDeviceInterface500
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct650?language=objc)
@@ -2133,6 +2167,7 @@ pub struct IOUSBDeviceStruct650 {
     /// The callback function will be called, for example when the underlying IOUSBDevice is
     /// going to be suspended due to some kind of kernel activity. It will also be called when
     /// the underlying IOUSBDevice is resumed.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface650 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -2160,6 +2195,7 @@ pub struct IOUSBDeviceStruct650 {
     /// Unregisters a previously registered callback routine
     ///
     /// The callback routine will no longer be invoked when events occur
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface650 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -2174,6 +2210,7 @@ pub struct IOUSBDeviceStruct650 {
     /// For example, if an IOUSBDevice is about to be suspended, any User Code which has registered to receive
     /// that event will be notified and should acknowledge the notification when it is ready for the IOUSBDevice
     /// to be suspended.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface650 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -2258,6 +2295,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct650 {
 /// The object you use to access USB devices from user space, returned by the IOUSBFamily version 650.4.0 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface500, and some new functions that are available on Mac OS X version 10.9 and later.
+///
 /// Super: IOUSBDeviceInterface500
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface650?language=objc)
@@ -2267,6 +2305,7 @@ pub type IOUSBDeviceInterface650 = IOUSBDeviceStruct650;
 /// The object you use to access USB devices from user space, returned by the IOUSBFamily version 900.4.2 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface650, and some new functions that are available on macOS 10.14 and later.
+///
 /// Super: IOUSBDeviceInterface650
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct942?language=objc)
@@ -2383,6 +2422,7 @@ pub struct IOUSBDeviceStruct942 {
     pub UnregisterNotification: Option<unsafe extern "C-unwind" fn(*mut c_void, u64) -> IOReturn>,
     pub AcknowledgeNotification: Option<unsafe extern "C-unwind" fn(*mut c_void, u64) -> IOReturn>,
     /// Returns the IONotificationPort for this IOService instance.
+    ///
     /// Availability: This function is only available with IOUSBDeviceInterface942 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBDeviceInterface.
@@ -2467,6 +2507,7 @@ unsafe impl RefEncode for IOUSBDeviceStruct942 {
 /// The object you use to access USB devices from user space, returned by the IOUSBFamily version 900.4.2 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface650, and some new functions that are available on macOS 10.14 and later.
+///
 /// Super: IOUSBDeviceInterface650
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface942?language=objc)
@@ -3143,6 +3184,7 @@ pub type IOUSBInterfaceInterface100 = IOUSBInterfaceStruct100;
 ///
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface and
 /// some new functions that are available on Mac OS X version 10.0.4 and later.
+///
 /// Super: IOUSBInterfaceInterface
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct182?language=objc)
@@ -3262,6 +3304,7 @@ pub struct IOUSBInterfaceStruct182 {
     /// The IOUSBDevRequestTO structure allows the client to specify timeout values for this request.  If
     /// the request is a standard request which will change the state of the device, the device must be open,
     /// which means you should be using the IOUSBDeviceInterface for this command.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -3281,6 +3324,7 @@ pub struct IOUSBInterfaceStruct182 {
     /// pipeRef=0 for the default device control pipe.  If the request is a standard request which will
     /// change the state of the device, the device must be open, which means you should be using the
     /// IOUSBDeviceInterface for this command.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -3330,6 +3374,7 @@ pub struct IOUSBInterfaceStruct182 {
     ///
     /// Timeouts do not apply to interrupt pipes, so you should use the ReadPipe API to perform a read from
     /// an interrupt pipe.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -3376,6 +3421,7 @@ pub struct IOUSBInterfaceStruct182 {
     /// ```
     ///
     /// .
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -3423,6 +3469,7 @@ pub struct IOUSBInterfaceStruct182 {
     ///
     /// Timeouts do not apply to interrupt pipes, so you should use the ReadPipeAsync API to perform an
     /// asynchronous read from an interrupt pipe.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -3482,6 +3529,7 @@ pub struct IOUSBInterfaceStruct182 {
     /// ```
     ///
     /// .
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -3520,6 +3568,7 @@ pub struct IOUSBInterfaceStruct182 {
     /// Returns the string index in the interface descriptor.
     ///
     /// The interface does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -3591,6 +3640,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct182 {
 ///
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface and
 /// some new functions that are available on Mac OS X version 10.0.4 and later.
+///
 /// Super: IOUSBInterfaceInterface
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface182?language=objc)
@@ -3603,6 +3653,7 @@ pub type IOUSBInterfaceInterface182 = IOUSBInterfaceStruct182;
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, and some new functions that are available on Mac OS X version 10.1
 /// and later.
+///
 /// Super: IOUSBInterfaceInterface182
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct183?language=objc)
@@ -3768,6 +3819,7 @@ pub struct IOUSBInterfaceStruct183 {
     /// Before the client can issue commands that change the state of the device, it must have succeeded
     /// in opening the device. This establishes an exclusive link between the clients task and the actual
     /// device.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface183 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -3840,6 +3892,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct183 {
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, and some new functions that are available on Mac OS X version 10.1
 /// and later.
+///
 /// Super: IOUSBInterfaceInterface182
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface183?language=objc)
@@ -3852,6 +3905,7 @@ pub type IOUSBInterfaceInterface183 = IOUSBInterfaceStruct183;
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, and some new functions that are available
 /// on Mac OS X version 10.2 and later.
+///
 /// Super: IOUSBInterfaceInterface183
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct190?language=objc)
@@ -4017,6 +4071,7 @@ pub struct IOUSBInterfaceStruct190 {
     /// default control pipe in the device, specifying the endpoint for the pipe represented by pipeRef. For
     /// most devices, this resynchronizes the data toggle between the two endpoints to ensure that there is
     /// no loss of data.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface190 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4038,6 +4093,7 @@ pub struct IOUSBInterfaceStruct190 {
     /// system.  If an interrupt pipe wants to change the polling interval, it can do so with this call.
     ///
     /// The interface must be open for the pipe to exist.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface190 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4071,6 +4127,7 @@ pub struct IOUSBInterfaceStruct190 {
     /// SetPipePolicy.
     ///
     /// The interface does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface190 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4087,6 +4144,7 @@ pub struct IOUSBInterfaceStruct190 {
     /// balance bandwidth allocations among isochronous pipes.
     ///
     /// The interface does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface190 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4183,6 +4241,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct190 {
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, and some new functions that are available
 /// on Mac OS X version 10.2 and later.
+///
 /// Super: IOUSBInterfaceInterface183
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface190?language=objc)
@@ -4195,6 +4254,7 @@ pub type IOUSBInterfaceInterface190 = IOUSBInterfaceStruct190;
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, and some new
 /// functions that are available on Mac OS X version 10.2.3 and later.
+///
 /// Super: IOUSBInterfaceInterface190
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct192?language=objc)
@@ -4428,6 +4488,7 @@ pub struct IOUSBInterfaceStruct192 {
     /// The interface must be open for the pipe to exist. The buf pointer and the frameList
     /// pointer need to be pre-allocated using LowLatencyCreateBuffer().
     /// After using them, they should be freed using LowLatencyDestroyBuffer().
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface192 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4527,6 +4588,7 @@ pub struct IOUSBInterfaceStruct192 {
     /// The interface must be open for the pipe to exist. The buf pointer and the frameList
     /// pointer need to be pre-allocated using LowLatencyCreateBuffer(). After using them, they
     /// should be freed using LowLatencyDestroyBuffer().
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface192 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4586,6 +4648,7 @@ pub struct IOUSBInterfaceStruct192 {
     /// or LowLatencyWriteIsochPipeAsync().
     ///
     /// The interface must be open for the pipe to exist.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface192 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4606,6 +4669,7 @@ pub struct IOUSBInterfaceStruct192 {
     /// Releases a buffer that was previously allocated using LowLatencyCreateBuffer().
     ///
     /// The interface must be open for the pipe to exist.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface192 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4689,6 +4753,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct192 {
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, and some new
 /// functions that are available on Mac OS X version 10.2.3 and later.
+///
 /// Super: IOUSBInterfaceInterface190
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface192?language=objc)
@@ -4701,6 +4766,7 @@ pub type IOUSBInterfaceInterface192 = IOUSBInterfaceStruct192;
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192,
 /// and some new functions that are available on Mac OS X version 10.2.5 and later.
+///
 /// Super: IOUSBInterfaceInterface192
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct197?language=objc)
@@ -4908,6 +4974,7 @@ pub struct IOUSBInterfaceStruct197 {
     /// Gets the current micro frame number of the bus to which the interface and its device are attached.
     ///
     /// The interface does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface197 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4928,6 +4995,7 @@ pub struct IOUSBInterfaceStruct197 {
     /// (This API should really be called GetUSBFrameTime).
     ///
     /// The interface does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface197 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -4939,6 +5007,7 @@ pub struct IOUSBInterfaceStruct197 {
     /// Returns the version of the IOUSBLib and the version of the IOUSBFamily.
     ///
     /// The interface does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface197 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -5028,6 +5097,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct197 {
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192,
 /// and some new functions that are available on Mac OS X version 10.2.5 and later.
+///
 /// Super: IOUSBInterfaceInterface192
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface197?language=objc)
@@ -5040,6 +5110,7 @@ pub type IOUSBInterfaceInterface197 = IOUSBInterfaceStruct197;
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192
 /// and IOUSBInterfaceInterface197, as well as some new functions that are available on Mac OS X version 10.4 and later.
+///
 /// Super: IOUSBInterfaceInterface197
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct220?language=objc)
@@ -5253,6 +5324,7 @@ pub struct IOUSBInterfaceStruct220 {
     /// Find the next descriptor of the requested type associated with the interface.
     ///
     /// The interface does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface220 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -5369,6 +5441,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct220 {
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface,
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192
 /// and IOUSBInterfaceInterface197, as well as some new functions that are available on Mac OS X version 10.4 and later.
+///
 /// Super: IOUSBInterfaceInterface197
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface220?language=objc)
@@ -5382,6 +5455,7 @@ pub type IOUSBInterfaceInterface220 = IOUSBInterfaceStruct220;
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192,
 /// IOUSBInterfaceInterface197 and IOUSBInterfaceInterface220, as well as some new functions that are available on
 /// Mac OS X version 10.4.6 and later.
+///
 /// Super: IOUSBInterfaceInterface220
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct245?language=objc)
@@ -5690,6 +5764,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct245 {
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192,
 /// IOUSBInterfaceInterface197 and IOUSBInterfaceInterface220, as well as some new functions that are available on
 /// Mac OS X version 10.4.6 and later.
+///
 /// Super: IOUSBInterfaceInterface220
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface245?language=objc)
@@ -5703,6 +5778,7 @@ pub type IOUSBInterfaceInterface245 = IOUSBInterfaceStruct245;
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192,
 /// IOUSBInterfaceInterface197, IOUSBInterfaceInterface220 and IOUSBInterfaceInterface245, as well as some new functions
 /// that are available on Mac OS X version 10.5 and later.
+///
 /// Super: IOUSBInterfaceInterface245
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct300?language=objc)
@@ -5926,6 +6002,7 @@ pub struct IOUSBInterfaceStruct300 {
     /// Gets a recent frame number of the bus to which the device is attached, along with a system time corresponding to the start of that frame
     ///
     /// The device does not have to be open to use this function.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface300 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -6026,6 +6103,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct300 {
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192,
 /// IOUSBInterfaceInterface197, IOUSBInterfaceInterface220 and IOUSBInterfaceInterface245, as well as some new functions
 /// that are available on Mac OS X version 10.5 and later.
+///
 /// Super: IOUSBInterfaceInterface245
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface300?language=objc)
@@ -6035,6 +6113,7 @@ pub type IOUSBInterfaceInterface300 = IOUSBInterfaceStruct300;
 /// The object you use to access a USB interface from user space, returned by the IOUSBFamily version 3.9.8 and above.
 ///
 /// This object is functionally identical to IOUSBInterfaceInterface300 on macOS, and includes some new functions that are only available on iOS.
+///
 /// Super: IOUSBInterfaceInterface300
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct398?language=objc)
@@ -6342,6 +6421,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct398 {
 /// The object you use to access a USB interface from user space, returned by the IOUSBFamily version 3.9.8 and above.
 ///
 /// This object is functionally identical to IOUSBInterfaceInterface300 on macOS, and includes some new functions that are only available on iOS.
+///
 /// Super: IOUSBInterfaceInterface300
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface398?language=objc)
@@ -6351,6 +6431,7 @@ pub type IOUSBInterfaceInterface398 = IOUSBInterfaceStruct398;
 /// The object you use to access a USB interface from user space, returned by the IOUSBFamily version 4.0.0 and above.
 ///
 /// This object is functionally identical to IOUSBInterfaceInterface300 on macOS, and includes some new functions that are only available on iOS.
+///
 /// Super: IOUSBInterfaceInterface398
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct400?language=objc)
@@ -6658,6 +6739,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct400 {
 /// The object you use to access a USB interface from user space, returned by the IOUSBFamily version 4.0.0 and above.
 ///
 /// This object is functionally identical to IOUSBInterfaceInterface300 on macOS, and includes some new functions that are only available on iOS.
+///
 /// Super: IOUSBInterfaceInterface398
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface400?language=objc)
@@ -6668,6 +6750,7 @@ pub type IOUSBInterfaceInterface400 = IOUSBInterfaceStruct400;
 /// version 5.0.0 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface400, as well as some new functions that are available on Mac OS X version 10.7.3 and later.
+///
 /// Super: IOUSBInterfaceInterface400
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct500?language=objc)
@@ -6992,6 +7075,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct500 {
 /// version 5.0.0 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface400, as well as some new functions that are available on Mac OS X version 10.7.3 and later.
+///
 /// Super: IOUSBInterfaceInterface400
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface500?language=objc)
@@ -7002,6 +7086,7 @@ pub type IOUSBInterfaceInterface500 = IOUSBInterfaceStruct500;
 /// version 5.5.0 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface500, as well as some new functions that are available on Mac OS X version 10.8.2 and later.
+///
 /// Super: IOUSBInterfaceInterface500
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct550?language=objc)
@@ -7330,6 +7415,7 @@ pub struct IOUSBInterfaceStruct550 {
     ///
     /// Timeouts do not apply to interrupt pipes, so you should use the ReadPipe API to perform a read from
     /// an interrupt pipe.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -7386,6 +7472,7 @@ pub struct IOUSBInterfaceStruct550 {
     /// ```
     ///
     /// .
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -7435,6 +7522,7 @@ pub struct IOUSBInterfaceStruct550 {
     ///
     /// Timeouts do not apply to interrupt pipes, so you should use the ReadPipeAsync API to perform an
     /// asynchronous read from an interrupt pipe.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -7498,6 +7586,7 @@ pub struct IOUSBInterfaceStruct550 {
     /// ```
     ///
     /// .
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface182 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -7661,6 +7750,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct550 {
 /// version 5.5.0 and above.
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface500, as well as some new functions that are available on Mac OS X version 10.8.2 and later.
+///
 /// Super: IOUSBInterfaceInterface500
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface550?language=objc)
@@ -7672,6 +7762,7 @@ pub type IOUSBInterfaceInterface550 = IOUSBInterfaceStruct550;
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface550, as well as some new functions that are available on
 /// Mac OS X version 10.9 and later.
+///
 /// Super: IOUSBInterfaceInterface550
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct650?language=objc)
@@ -7963,6 +8054,7 @@ pub struct IOUSBInterfaceStruct650 {
     /// The callback function will be called, for example when the underlying IOUSBInterface is
     /// going to be suspended due to some kind of kernel activity. It will also be called when
     /// the underlying IOUSBInterface is resumed.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface650 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -7990,6 +8082,7 @@ pub struct IOUSBInterfaceStruct650 {
     /// Unregisters a previously registered callback routine
     ///
     /// The callback routine will no longer be invoked when events occur
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface650 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -8004,6 +8097,7 @@ pub struct IOUSBInterfaceStruct650 {
     /// For example, if an IOUSBInterface is about to be suspended, any User Code which has registered to receive
     /// that event will be notified and should acknowledge the notification when it is ready for the IOUSBInterface
     /// to be suspended.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface650 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -8113,6 +8207,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct650 {
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface550, as well as some new functions that are available on
 /// Mac OS X version 10.9 and later.
+///
 /// Super: IOUSBInterfaceInterface550
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface650?language=objc)
@@ -8124,6 +8219,7 @@ pub type IOUSBInterfaceInterface650 = IOUSBInterfaceStruct650;
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface650, as well as some new functions that are available on
 /// Mac OS X version 10.9 and later.
+///
 /// Super: IOUSBInterfaceInterface650
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct700?language=objc)
@@ -8425,6 +8521,7 @@ pub struct IOUSBInterfaceStruct700 {
     ///
     /// This function will call IOKit's registerService on the IOUSBInterface, which will load any kernel drivers for the interface. The SetConfigurationV2 API can be told to not load
     /// drivers for ALL IOUSBInterfaces.  This call will then allow a client to load a driver for just one of the interfaces.  The client must have the "com.apple.vm.device-access" entitlement or run with root privileges to call this API.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface700 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -8533,6 +8630,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct700 {
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface650, as well as some new functions that are available on
 /// Mac OS X version 10.9 and later.
+///
 /// Super: IOUSBInterfaceInterface650
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface700?language=objc)
@@ -8544,6 +8642,7 @@ pub type IOUSBInterfaceInterface700 = IOUSBInterfaceStruct700;
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface700, as well as some new functions that are available on
 /// Mac OS X version 10.11 and later.
+///
 /// Super: IOUSBInterfaceInterface700
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct800?language=objc)
@@ -8845,6 +8944,7 @@ pub struct IOUSBInterfaceStruct800 {
     /// Define an idling policy for the interface.
     ///
     /// This method is called to enforce an an idle policy for the device.  Note, the idle policy is only active while the interface is open and is reset when closed.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface800 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -8856,6 +8956,7 @@ pub struct IOUSBInterfaceStruct800 {
     /// Define an idling policy for the interface.
     ///
     /// This method is called to enforce an an idle policy for the pipes. Note, the idle policy is only active while the interface is open and is reset when closed.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface800 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -8970,6 +9071,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct800 {
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface700, as well as some new functions that are available on
 /// Mac OS X version 10.11 and later.
+///
 /// Super: IOUSBInterfaceInterface700
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface800?language=objc)
@@ -8981,6 +9083,7 @@ pub type IOUSBInterfaceInterface800 = IOUSBInterfaceStruct800;
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface800, as well as some new functions that are available on
 /// macOS 10.14 and later.
+///
 /// Super: IOUSBInterfaceInterface800
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct942?language=objc)
@@ -9282,6 +9385,7 @@ pub struct IOUSBInterfaceStruct942 {
     pub SetDeviceIdlePolicy: Option<unsafe extern "C-unwind" fn(*mut c_void, u32) -> IOReturn>,
     pub SetPipeIdlePolicy: Option<unsafe extern "C-unwind" fn(*mut c_void, u8, u32) -> IOReturn>,
     /// Returns the IONotificationPort for this IOService instance.
+    ///
     /// Availability: This function is only available with IOUSBInterfaceInterface942 and above.
     ///
     /// Parameter `self`: Pointer to the IOUSBInterfaceInterface.
@@ -9394,6 +9498,7 @@ unsafe impl RefEncode for IOUSBInterfaceStruct942 {
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface800, as well as some new functions that are available on
 /// macOS 10.14 and later.
+///
 /// Super: IOUSBInterfaceInterface800
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface942?language=objc)

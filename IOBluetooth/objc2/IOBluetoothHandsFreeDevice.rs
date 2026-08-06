@@ -11,7 +11,7 @@ use crate::*;
 extern_class!(
     /// APIs for managing a hands free device
     ///
-    /// (c) 2010 by Apple Inc. All rights reserved.
+    /// Copyright: (c) 2010 by Apple Inc. All rights reserved.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevice?language=objc)
     #[unsafe(super(IOBluetoothHandsFree, NSObject))]

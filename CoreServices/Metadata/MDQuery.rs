@@ -340,9 +340,11 @@ impl MDQuery {
 /// either the progress_max_num or progress_max_ms limit. The
 /// default batching parameters are undefined and subject to
 /// change.
+///
 /// Field: first_max_num The maximum number of results that can
 /// accumulate before a progress notification is sent out
 /// by the MDQuery, for the first notification.
+///
 /// Field: first_max_ms The maximum number of milliseconds that can
 /// pass before a progress notification is sent out. This
 /// value is advisory, in that the notification will be
@@ -350,10 +352,12 @@ impl MDQuery {
 /// have passed since the query began accumulating results",
 /// but generally not very long after, for the first
 /// progress notification.
+///
 /// Field: progress_max_num The maximum number of results that can
 /// accumulate before a progress notification is sent out
 /// by the MDQuery, for notifications after the first,
 /// during the initial gathering phase of the query.
+///
 /// Field: progress_max_ms The maximum number of milliseconds that can
 /// pass before a progress notification is sent out. This
 /// value is advisory, in that the notification will be
@@ -362,10 +366,12 @@ impl MDQuery {
 /// but generally not very long after, for progress
 /// notifications after the first, during the initial
 /// gathering phase of the query.
+///
 /// Field: update_max_num The maximum number of results that can
 /// accumulate before an update notification is sent out
 /// by the MDQuery, for notifications after the gathering
 /// phase of the query has finished.
+///
 /// Field: update_max_ms The maximum number of milliseconds that can
 /// pass before a progress notification is sent out. This
 /// value is advisory, in that the notification will be

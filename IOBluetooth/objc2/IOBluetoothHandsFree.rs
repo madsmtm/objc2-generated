@@ -11,7 +11,7 @@ use crate::*;
 /// Hands free superclass. Superclass of IOBluetoothHandsFreeDevice or IOBluetoothHandsFreeAudioGateway.
 /// Contains the common code used to support the Bluetoooth hands free profile.
 ///
-/// (c) 2010 by Apple Inc. All rights reserved.
+/// Copyright: (c) 2010 by Apple Inc. All rights reserved.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures?language=objc)
 // NS_ENUM
@@ -354,10 +354,6 @@ extern_class!(
     ///
     /// Superclass of IOBluetoothHandsFreeDevice and IOBluetoothHandsFreeAudioGateway classes.
     /// Contains the common code used to support the bluetoooth hands free profile.
-    ///
-    /// IOBluetoothHandsFreeDevice
-    ///
-    /// IOBluetoothHandsFreeAudioGateway
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree?language=objc)
     #[unsafe(super(NSObject))]

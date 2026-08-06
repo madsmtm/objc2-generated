@@ -418,11 +418,13 @@ impl CMTimeRange {
 /// A CMTimeMapping specifies the mapping of a segment of one time line (called "source") into another time line (called "target").
 ///
 /// When used for movie edit lists, the source time line is the media and the target time line is the track/movie.
+///
 /// Field: source
 /// The time range on the source time line.
 /// For an empty edit, source.start is an invalid CMTime, in which case source.duration shall be ignored.
 /// Otherwise, source.start is the starting time within the source, and source.duration is the duration
 /// of the source timeline to be mapped to the target time range.
+///
 /// Field: target
 /// The time range on the target time line.
 /// If target.duration and source.duration are different, then the source segment should

@@ -140,9 +140,6 @@ impl CKShareMetadata {
         #[cfg(feature = "CKRecordID")]
         /// The record ID of the share's root record.
         ///
-        /// {
-        /// Use ``CKShare/Metadata/hierarchicalRootRecordID`` instead.
-        /// }
         ///
         /// CloudKit populates this property only for metadata that belongs to a shared record hierarchy. If the metadata is part of a shared record zone, the property returns `nil`. This is because, unlike a shared record hierarchy, a shared record zone doesn't have a nominated root record.
         #[deprecated]

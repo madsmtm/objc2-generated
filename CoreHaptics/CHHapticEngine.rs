@@ -145,11 +145,11 @@ extern "C" {
     /// Indicates whether the audio file playback should be ramped in and out with an envelope.  This can be useful for preventing clicks during playback,
     /// or for cases where the application wants to modulate this envelope to use different attack and release times.
     /// Value type: boolean.  Default is
-    /// .
+    /// `true`.
     ///
     /// Indicates whether the audio file will be looped when played back.  The default loop range is the entire file.
     /// Value type: boolean.  Default is
-    /// .
+    /// `false`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticaudioresourcekeyusevolumeenvelope?language=objc)
     pub static CHHapticAudioResourceKeyUseVolumeEnvelope: &'static CHHapticAudioResourceKey;

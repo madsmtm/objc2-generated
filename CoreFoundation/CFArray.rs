@@ -10,22 +10,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// Structure containing the callbacks of a CFArray.
+///
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFArray creation functions. This
 /// structure is version 0.
+///
 /// Field: retain The callback used to add a retain for the array on
 /// values as they are put into the array. This callback returns
 /// the value to store in the array, which is usually the value
 /// parameter passed to this callback, but may be a different
 /// value if a different value should be stored in the array.
 /// The array's allocator is passed as the first argument.
+///
 /// Field: release The callback used to remove a retain previously added
 /// for the array from values as they are removed from the
 /// array. The array's allocator is passed as the first
 /// argument.
+///
 /// Field: copyDescription The callback used to create a descriptive
 /// string representation of each value in the array. This is
 /// used by the CFCopyDescription() function.
+///
 /// Field: equal The callback used to compare values in the array for
 /// equality for some operations.
 ///

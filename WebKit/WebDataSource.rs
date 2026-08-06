@@ -123,6 +123,7 @@ impl WebDataSource {
 
         #[cfg(feature = "WebArchive")]
         /// A WebArchive representing the data source, its subresources and child frames.
+        ///
         /// This method constructs a WebArchive using the original downloaded data.
         /// In the case of HTML, if the current state of the document is preferred, webArchive should be
         /// called on the DOM document instead.
@@ -133,6 +134,7 @@ impl WebDataSource {
 
         #[cfg(feature = "WebResource")]
         /// A WebResource representing the data source.
+        ///
         /// This method constructs a WebResource using the original downloaded data.
         /// This method can be used to construct a WebArchive in case the archive returned by
         /// WebDataSource's webArchive isn't sufficient.
@@ -142,6 +144,7 @@ impl WebDataSource {
         pub unsafe fn mainResource(&self) -> Option<Retained<WebResource>>;
 
         /// All the subresources associated with the data source.
+        ///
         /// The returned array only contains subresources that have fully downloaded.
         #[deprecated]
         #[unsafe(method(subresources))]
@@ -154,6 +157,7 @@ impl WebDataSource {
         /// Returns a subresource for a given URL.
         ///
         /// Parameter `URL`: The URL of the subresource.
+        ///
         /// Returns non-nil if the data source has fully downloaded a subresource with the given URL.
         ///
         /// # Safety
@@ -171,6 +175,7 @@ impl WebDataSource {
         /// Adds a subresource to the data source.
         ///
         /// Parameter `subresource`: The subresource to be added.
+        ///
         /// addSubresource: adds a subresource to the data source's list of subresources.
         /// Later, if something causes the data source to load the URL of the subresource, the data source
         /// will load the data from the subresource instead of from the network. For example, if one wants to add

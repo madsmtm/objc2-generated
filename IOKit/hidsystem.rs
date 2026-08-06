@@ -1319,14 +1319,10 @@ pub const kIOHIDEventQueueTypeKernel: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohideventqueuetypeuser?language=objc)
 pub const kIOHIDEventQueueTypeUser: c_uint = 1;
 
-/// kIOHIDOpenedByEventSystem
-///
 /// option passed to open for IOHIDInterface  if opened by IOHIDEventDriver
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidopenedbyeventsystem?language=objc)
 pub const kIOHIDOpenedByEventSystem: c_uint = 0x10000;
-/// kIOHIDOpenedByFastPathClient
-///
 /// option passed to open for IOHIDEventService if opened by fast path client
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidopenedbyfastpathclient?language=objc)
@@ -2536,6 +2532,7 @@ pub type IOHIDUserDeviceGetReportBlock =
 
 /// Enumerator of IOHIDUserDeviceOptions to be passed in to
 /// IOHIDUserDeviceCreateWithOptions.
+///
 ///
 /// Field: IOHIDUserDeviceOptionsCreateOnActivate
 /// Specifies that the kernel HID device should not be created until the call

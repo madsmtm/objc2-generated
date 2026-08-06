@@ -176,20 +176,35 @@ pub const kAuthorizationCallbacksVersion: c_uint = 4;
 
 /// Callback API provided by the AuthorizationEngine.
 ///
+///
 /// Field: version      Engine callback version.
+///
 /// Field: SetResult    Set a result after a call to AuthorizationSessionInvoke.
+///
 /// Field: RequestInterrupt Request authorization engine to interrupt all mechamisms invoked after this mechamism has called SessionSetResult and then call AuthorizationSessionInvoke again.
+///
 /// Field: DidDeactivate    Respond to the Deactivate request.
+///
 /// Field: GetContextValue  Read value from context.  AuthorizationValue does not own data.
+///
 /// Field: SetContextValue  Write value to context.  AuthorizationValue and data are copied.
+///
 /// Field: GetHintValue     Read value from hints. AuthorizationValue does not own data.
+///
 /// Field: SetHintValue     Write value to hints.  AuthorizationValue and data are copied.
+///
 /// Field: GetArguments     Read arguments passed.  AuthorizationValueVector does not own data.
+///
 /// Field: GetSessionId     Read SessionId.
+///
 /// Field: GetLAContext     Returns LAContext which will have LACredentialCTKPIN credential set if PIN is available otherwise context without credentials is returned. LAContext can be used for operations with Tokens which would normally require PIN. Caller owns returned context and is responsible for release.
+///
 /// Field: GetTokenIdentities   Returns array of identities. Caller owns returned array and is reponsible for release.
+///
 /// Field: GetTKTokenWatcher    Returns TKTokenWatcher object. Caller owns returned context and is responsible for release.
+///
 /// Field: RemoveContextValue   Removes value from context.
+///
 /// Field: RemoveHintValue      Removes value from hints.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcallbacks?language=objc)
@@ -282,11 +297,17 @@ unsafe impl RefEncode for AuthorizationCallbacks {
 
 /// Interface that must be implemented by each plugin.
 ///
+///
 /// Field: version  Must be set to kAuthorizationPluginInterfaceVersion
+///
 /// Field: PluginDestroy    Plugin should clean up and release any resources it is holding.
+///
 /// Field: MechanismCreate  The plugin should create a mechanism named mechanismId.  The mechanism needs to use the AuthorizationEngineRef for the callbacks and pass back a   AuthorizationMechanismRef for itself.  MechanismDestroy will be called when it is no longer needed.
+///
 /// Field: MechanismInvoke  Invoke an instance of a mechanism.  It should call SetResult during or after returning from this function.
+///
 /// Field: MechanismDeactivate  Mechanism should respond with a DidDeactivate as soon as possible
+///
 /// Field: MechanismDestroy Mechanism should clean up and release any resources it is holding
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationplugininterface?language=objc)

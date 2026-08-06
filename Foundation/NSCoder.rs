@@ -535,6 +535,7 @@ impl NSCoder {
 
         #[cfg(feature = "NSError")]
         /// Signals to this coder that the decode has failed.
+        ///
         /// Parameter non-nil error that describes the reason why the decode failed
         ///
         /// Sets an error on this NSCoder once per TopLevel decode; calling it repeatedly will have no effect until the call stack unwinds to one of the TopLevel decode entry-points.

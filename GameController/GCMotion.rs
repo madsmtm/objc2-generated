@@ -11,8 +11,11 @@ use crate::*;
 /// The azimuth direction is assumed to be (0, 0, 1), so a device held at rest with the z axis aligned with the azimuth
 /// is assumed to have gravitation applying the vector (0, 0, -1).
 ///
+///
 /// Field: x X-axis acceleration as a scalar multiple of earth's gravitational acceleration, G.
+///
 /// Field: y Y-axis acceleration as a scalar multiple of earth's gravitational acceleration, G.
+///
 /// Field: z Z-axis acceleration as a scalar multiple of earth's gravitational acceleration, G.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcacceleration?language=objc)
@@ -41,15 +44,18 @@ unsafe impl RefEncode for GCAcceleration {
 
 /// A structure containing 3-axis rotation rate data.
 ///
+///
 /// Field: x   X-axis rotation rate in radians/second. The sign follows the right hand
 /// rule (i.e. if the right hand is wrapped around the X axis such that the
 /// tip of the thumb points toward positive X, a positive rotation is one
 /// toward the tips of the other 4 fingers).
 ///
+///
 /// Field: y   Y-axis rotation rate in radians/second. The sign follows the right hand
 /// rule (i.e. if the right hand is wrapped around the Y axis such that the
 /// tip of the thumb points toward positive Y, a positive rotation is one
 /// toward the tips of the other 4 fingers).
+///
 /// Field: z
 /// Z-axis rotation rate in radians/second. The sign follows the right hand
 /// rule (i.e. if the right hand is wrapped around the Z axis such that the
@@ -82,15 +88,18 @@ unsafe impl RefEncode for GCRotationRate {
 
 /// A structure containing 3-axis rotation data. The angles are rotated in order or pitch then yaw then roll.
 ///
+///
 /// Field: pitch X-axis rotation in radians. The sign follows the right hand
 /// rule (i.e. if the right hand is wrapped around the X axis such that the
 /// tip of the thumb points toward positive X, a positive rotation is one
 /// toward the tips of the other 4 fingers).
 ///
+///
 /// Field: yaw   Y-axis rotation in radians. The sign follows the right hand
 /// rule (i.e. if the right hand is wrapped around the Y axis such that the
 /// tip of the thumb points toward positive Y, a positive rotation is one
 /// toward the tips of the other 4 fingers).
+///
 ///
 /// Field: roll  Z-axis rotation in radians. The sign follows the right hand
 /// rule (i.e. if the right hand is wrapped around the Z axis such that the

@@ -413,13 +413,16 @@ unsafe impl RefEncode for CTParagraphStyleSpecifier {
 
 /// This structure is used to alter the paragraph style.
 ///
+///
 /// Field: spec
 /// The specifier of the setting.
+///
 ///
 /// Field: valueSize
 /// The size of the value pointed to by the "value" field. This
 /// must match the size of the value required by the
 /// CTParagraphStyleSpecifier set in the "spec" field.
+///
 ///
 /// Field: value
 /// A reference to the value of the setting specified by the

@@ -1133,6 +1133,7 @@ impl MPSSVGFDenoiser {
 
         /// Initialize the MPSSVGFDenoiser object
         ///
+        ///
         /// Parameter device The Metal device to use for denoising
         #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
@@ -1144,8 +1145,10 @@ impl MPSSVGFDenoiser {
         #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
         /// Initialize the MPSSVGFDenoiser object
         ///
+        ///
         /// Parameter svgf             MPSSVGF kernels to use for denoising. This object can be used to
         /// configure temporal reprojection, bilateral blur settings, etc.
+        ///
         /// Parameter textureAllocator An object conforming to the MPSSVGFTextureAllocator protocol. This
         /// object will be used to allocate temporary intermediate and output
         /// textures. This can be a custom object or an instance of the
@@ -1184,14 +1187,19 @@ impl MPSSVGFDenoiser {
         /// parameters of the denoising process, modify the properties of the MPSSVGF object the
         /// MPSSVGFDenoiser was initialized with.
         ///
+        ///
         /// Parameter commandBuffer              Command buffer to encode into
+        ///
         /// Parameter sourceTexture              Source image to denoiser
+        ///
         /// Parameter motionVectorTexture        Motion vector texture describing how much each texel has moved,
         /// in texels, since the previous frame. See the MPSSVGF object for
         /// more details.
+        ///
         /// Parameter depthNormalTexture         Texture containing linear depth in the X component and signed
         /// normals in the YZW components. See the MPSSVGF object for more
         /// details.
+        ///
         /// Parameter previousDepthNormalTexture Depth/normal texture from the previous frame. See the MPSSVGF
         /// object for more details.
         ///
@@ -1231,17 +1239,25 @@ impl MPSSVGFDenoiser {
         /// parameters of the denoising process, modify the properties of the MPSSVGF object the
         /// MPSSVGFDenoiser was initialized with.
         ///
+        ///
         /// Parameter commandBuffer              Command buffer to encode into
+        ///
         /// Parameter sourceTexture              Source image to denoiser
+        ///
         /// Parameter destinationTexture         Denoised output image
+        ///
         /// Parameter sourceTexture2             Optional second source image to denoise
+        ///
         /// Parameter destinationTexture2        Denoised second output image, if there is a second source image
+        ///
         /// Parameter motionVectorTexture        Motion vector texture describing how much each texel has moved,
         /// in texels, since the previous frame. See the MPSSVGF object for
         /// more details.
+        ///
         /// Parameter depthNormalTexture         Texture containing linear depth in the X component and signed
         /// normals in the YZW components. See the MPSSVGF object for more
         /// details.
+        ///
         /// Parameter previousDepthNormalTexture Depth/normal texture from the previous frame. See the MPSSVGF
         /// object for more details.
         ///

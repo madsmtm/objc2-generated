@@ -39,7 +39,7 @@ extern_class!(
     /// ```swift
     /// func fetchWebAuthToken(for apiToken: String,
     /// completion:
-    /// (Result
+    /// @escaping (Result
     /// <String
     /// , any Error>) -> Void) {
     ///

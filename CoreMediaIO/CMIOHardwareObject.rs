@@ -36,10 +36,13 @@ pub type CMIOObjectPropertyScope = u32;
 pub type CMIOObjectPropertyElement = u32;
 
 /// A CMIOObjectPropertyAddress collects the three parts that identify a specific property together in a struct for easy transmission.
+///
 /// Field: mSelector
 /// The CMIOObjectPropertySelector for the property.
+///
 /// Field: mScope
 /// The CMIOObjectPropertyScope for the property.
+///
 /// Field: mElement
 /// The CMIOObjectPropertyElement for the property.
 ///

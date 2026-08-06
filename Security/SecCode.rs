@@ -208,17 +208,22 @@ impl SecCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers. In particular:
-    /// errSecCSUnsupportedGuestAttributes The host does not support the attribute
+    ///
+    /// @error errSecCSUnsupportedGuestAttributes The host does not support the attribute
     /// type given by attributeType.
-    /// errSecCSInvalidAttributeValues The type of value given for a guest
+    ///
+    /// @error errSecCSInvalidAttributeValues The type of value given for a guest
     /// attribute is not supported by the host.
-    /// errSecCSNoSuchCode The host has no guest with the attribute value given
+    ///
+    /// @error errSecCSNoSuchCode The host has no guest with the attribute value given
     /// by attributeValue, even though the value is of a supported type. This may also
     /// be returned if the host code does not currently act as a Code Signing host.
-    /// errSecCSNotAHost The specified host cannot, in fact, act as a code
+    ///
+    /// @error errSecCSNotAHost The specified host cannot, in fact, act as a code
     /// host. (It is missing the kSecCodeSignatureHost option flag in its code
     /// signature.)
-    /// errSecCSMultipleGuests The attributes specified do not uniquely identify
+    ///
+    /// @error errSecCSMultipleGuests The attributes specified do not uniquely identify
     /// a guest (the specification is ambiguous).
     ///
     /// # Safety

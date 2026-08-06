@@ -761,18 +761,12 @@ impl sec_protocol_options {
     }
 }
 
-/// sec_protocol_key_update_complete_t
-///
-///
 /// Block to be invoked when a key update event is handled.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_key_update_complete_t?language=objc)
 #[cfg(feature = "block2")]
 pub type sec_protocol_key_update_complete_t = block2::Block<'static, fn()>;
 
-/// sec_protocol_key_update_t
-///
-///
 /// Block to be invoked when the protocol key MUST be updated.
 ///
 ///
@@ -788,9 +782,6 @@ pub type sec_protocol_key_update_t = block2::Block<
     fn(sec_protocol_metadata_t, NonNull<sec_protocol_key_update_complete_t>),
 >;
 
-/// sec_protocol_challenge_complete_t
-///
-///
 /// Block to be invoked when an identity (authentication) challenge is complete.
 ///
 /// Note: prior to macOS 10.15, iOS 13.0, watchOS 6.0, and tvOS 13.0, calling this
@@ -803,9 +794,6 @@ pub type sec_protocol_key_update_t = block2::Block<
 #[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
 pub type sec_protocol_challenge_complete_t = block2::Block<'static, fn(sec_identity_t)>;
 
-/// sec_protocol_challenge_t
-///
-///
 /// Block to be invoked when the protocol instance is issued a challenge (e.g., a TLS certificate request).
 ///
 ///
@@ -823,9 +811,6 @@ pub type sec_protocol_challenge_complete_t = block2::Block<'static, fn(sec_ident
 pub type sec_protocol_challenge_t =
     block2::Block<'static, fn(sec_protocol_metadata_t, NonNull<sec_protocol_challenge_complete_t>)>;
 
-/// sec_protocol_verify_complete_t
-///
-///
 /// Block to be invoked when verification is complete.
 ///
 ///
@@ -835,9 +820,6 @@ pub type sec_protocol_challenge_t =
 #[cfg(feature = "block2")]
 pub type sec_protocol_verify_complete_t = block2::Block<'static, fn(bool)>;
 
-/// sec_protocol_verify_t
-///
-///
 /// Block to be invoked when the protocol instance must verify the peer.
 ///
 /// NOTE: this may be called one or more times for a given connection.

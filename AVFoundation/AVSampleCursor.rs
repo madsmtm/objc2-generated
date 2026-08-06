@@ -161,10 +161,13 @@ impl AVSampleCursor {
 }
 
 /// A struct for describing attributes of a media sample for consideration when resynchronizing a decoder.
+///
 /// Field: sampleIsFullSync
 /// Indicates whether the sample is a full sync sample, also known as an Instantaneous Decoder Refresh sample, and is sufficient in itself to completely resynchronize a decoder.
+///
 /// Field: sampleIsPartialSync
 /// Indicates whether the sample is a partial sync sample.
+///
 /// Field: sampleIsDroppable
 /// Indicates whether the sample is droppable.
 ///
@@ -187,16 +190,22 @@ unsafe impl RefEncode for AVSampleCursorSyncInfo {
 }
 
 /// A struct for describing dependencies between a media sample and other media samples in the same sample sequence.
+///
 /// Field: sampleIndicatesWhetherItHasDependentSamples
 /// Indicates whether the presence or absence of other samples that are dependent on the sample is known.
+///
 /// Field: sampleHasDependentSamples
 /// If sampleIndicatesWhetherItHasDependentSamples is YES, indicates whether the sample has dependent samples.
+///
 /// Field: sampleIndicatesWhetherItDependsOnOthers
 /// Indicates whether the sample's independency from other samples or dependency on other samples is known.
+///
 /// Field: sampleDependsOnOthers
 /// If sampleIndicatesWhetherItDependsOnOthers is YES, indicates whether the sample depends on other media samples.
+///
 /// Field: sampleIndicatesWhetherItHasRedundantCoding
 /// Indicates whether the presence of redundant coding of the sample is known.
+///
 /// Field: sampleHasRedundantCoding
 /// If sampleIndicatesWhetherItHasRedundantCoding is YES, indicates whether the sample has redundant coding.
 ///
@@ -231,8 +240,10 @@ unsafe impl RefEncode for AVSampleCursorDependencyInfo {
 }
 
 /// A struct for describing the independent decodability of audio samples
+///
 /// Field: audioSampleIsIndependentlyDecodable
 /// Indicates whether the sample is independently decodable.  Will be YES for Immediate Playout Frames (IPFs) and Independent Frames (IFs).
+///
 /// Field: audioSamplePacketRefreshCount
 /// If audioSampleIsIndependentlyDecodable is YES, indicates how many samples, starting at this sample, must be fed to the decoder to achieve full decoder refresh.  Will be zero for Immediate Playout Frames (IPFs).
 ///
@@ -349,8 +360,10 @@ impl AVSampleCursor {
 }
 
 /// A struct for indicating the offset and length of storage occupied by a media sample or its chunk.
+///
 /// Field: offset
 /// The offset of the first byte of storage occupied by a media sample or its chunk.
+///
 /// Field: length
 /// The count of bytes of storage occupied by a media sample or its chunk.
 ///
@@ -373,12 +386,16 @@ unsafe impl RefEncode for AVSampleCursorStorageRange {
 }
 
 /// Provides information about a chunk of media samples.
+///
 /// Field: chunkSampleCount
 /// The count of media samples in the chunk.
+///
 /// Field: chunkHasUniformSampleSizes
 /// YES if all of the samples in the chunk occupy the same number of bytes in storage.
+///
 /// Field: currentChunkHasUniformSampleDurations
 /// YES if all of the samples in the chunk have the same duration.
+///
 /// Field: currentChunkHasUniformFormatDescriptions
 /// YES if all of the samples in the chunk have the same format description.
 ///

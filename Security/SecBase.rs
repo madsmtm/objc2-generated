@@ -170,8 +170,11 @@ cf_objc2_type!(
 pub type SecKeychainAttrType = OSType;
 
 /// Contains keychain attributes.
+///
 /// Field: tag A 4-byte attribute tag.
+///
 /// Field: length The length of the buffer pointed to by data.
+///
 /// Field: data A pointer to the attribute data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattribute?language=objc)
@@ -206,7 +209,9 @@ unsafe impl RefEncode for SecKeychainAttribute {
 pub type SecKeychainAttributePtr = *mut SecKeychainAttribute;
 
 /// Represents a list of keychain attributes.
+///
 /// Field: count An unsigned 32-bit integer that represents the number of keychain attributes in the array.
+///
 /// Field: attr A pointer to the first keychain attribute in the array.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattributelist?language=objc)
@@ -308,8 +313,11 @@ cf_objc2_type!(
 );
 
 /// Represents an attribute.
+///
 /// Field: count The number of tag-format pairs in the respective arrays.
+///
 /// Field: tag A pointer to the first attribute tag in the array.
+///
 /// Field: format A pointer to the first CSSM_DB_ATTRIBUTE_FORMAT in the array.
 ///
 /// Each tag and format item form a pair.
@@ -343,6 +351,7 @@ unsafe impl RefEncode for SecKeychainAttributeInfo {
 /// Returns a string describing the specified error result code.
 ///
 /// Parameter `status`: An error result code of type OSStatus or CSSM_RETURN, as returned by a Security or CSSM function.
+///
 /// Reserved for future use. Your code should pass NULL in this parameter.
 ///
 /// Returns: A reference to an error string, or NULL if no error string is available for the specified result code. Your code must release this reference by calling the CFRelease function.

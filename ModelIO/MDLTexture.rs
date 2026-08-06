@@ -53,6 +53,7 @@ unsafe impl RefEncode for MDLTextureChannelEncoding {
 
 extern_class!(
     /// MDLTexture
+    ///
     /// a description of texels provided by a texture object.
     ///
     ///
@@ -241,6 +242,7 @@ impl MDLTexture {
         pub unsafe fn setIsCube(&self, is_cube: bool);
 
         /// hasAlphaValues
+        ///
         /// Can be overridden. If not overridden, hasAlpha will be NO if the texture does not
         /// have an alpha channel. It wil be YES if the texture has an alpha channel and
         /// there is at least one non-opaque texel in it.
@@ -266,6 +268,7 @@ impl MDLTexture {
 
 extern_class!(
     /// MDLURLTexture
+    ///
     /// a texture provider initialized with a URL or file path.
     ///
     /// if any of the properties of the texture, such as data, are referenced,
@@ -504,6 +507,7 @@ impl MDLCheckerboardTexture {
 
 extern_class!(
     /// MDLSkyCubeTexture
+    ///
     /// A physically realistic sky as a cube texture
     ///
     ///
@@ -839,6 +843,7 @@ impl MDLColorSwatchTexture {
 
 extern_class!(
     /// MDLNoiseTexture
+    ///
     /// a noise texture containing vector or scalar noise
     ///
     /// the texture will be created if data is referenced, otherwise, this

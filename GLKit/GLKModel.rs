@@ -231,7 +231,8 @@ impl GLKMesh {
         /// Initialize the mesh and the mesh's submeshes
         ///
         /// This does NOT initialize any meshes that are children of the Model I/O mesh
-        /// Pointer to an NSError object which will be set if an error occurred
+        ///
+        /// @error Pointer to an NSError object which will be set if an error occurred
         ///
         /// Parameter `mesh`: Model I/O Mesh from which to create this GLKit mesh
         #[unsafe(method(initWithMesh:error:_))]

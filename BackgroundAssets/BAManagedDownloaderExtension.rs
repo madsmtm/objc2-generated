@@ -22,7 +22,7 @@ extern_protocol!(
     /// /StoreKit.h>
     ///
     ///
-    /// ```
+    /// @end ```
     ///
     /// ### Self Hosting
     /// ```objc
@@ -31,19 +31,19 @@ extern_protocol!(
     /// /BackgroundAssets.h>
     ///
     ///
-    /// ```
+    /// @end ```
     /// 3.    Create `DownloaderExtension.m` with the following contents:
     /// ```objc
     /// #import "DownloaderExtension.h"
     ///
-    /// DownloaderExtension
+    /// @implementation DownloaderExtension
     ///
     /// - (BOOL)shouldDownloadAssetPack:(BAAssetPack *)assetPack {
     /// // Use this method to filter out asset packs that the system would otherwise download automatically. You can also remove this method entirely if you just want to rely on the default download behavior.
     /// return true;
     /// }
     ///
-    /// ```
+    /// @end ```
     /// 4.    Add `DownloaderExtension.m` to your extension’s target.
     /// 5.    Add the following snippet inside your extension’s `Info.plist`’s `EXAppExtensionAttributes` dictionary:
     /// ```plist

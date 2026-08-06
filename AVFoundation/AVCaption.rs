@@ -46,7 +46,9 @@ unsafe impl RefEncode for AVCaptionUnitsType {
 }
 
 /// The length with a unit or coordinate on a 2D geometric axis
+///
 /// Field: value The value of the coordinate or length.
+///
 /// Field: units The units of the coordinate (e.g., cells, points)
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondimension?language=objc)
@@ -72,7 +74,9 @@ unsafe impl RefEncode for AVCaptionDimension {
 }
 
 /// A two dimensional point made of x and y AVCaptionDimension coordinates
+///
 /// Field: x An AVCaptionDimension holding the x coordinate of the point
+///
 /// Field: y An AVCaptionDimension holding the y coordinate of the point
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionpoint?language=objc)
@@ -101,7 +105,9 @@ unsafe impl RefEncode for AVCaptionPoint {
 }
 
 /// A two dimensional size made of width and height AVCaptionDimensions
+///
 /// Field: width An AVCaptionDimension holding the width
+///
 /// Field: height An AVCaptionDimension holding the height
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsize?language=objc)

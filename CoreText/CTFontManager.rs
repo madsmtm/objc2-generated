@@ -195,8 +195,6 @@ unsafe impl RefEncode for CTFontManagerScope {
 }
 
 extern "C" {
-    /// kCTFontRegistrationUserInfoAttribute
-    ///
     /// Optional user defined information that can be attached to an entry in the Font Manager registration catalog.
     ///
     /// This is the key for accessing font registration user information for the font descriptor. This information can be used in descriptor matching to disambiguate between two fonts with equivalent Postscript names. The value associated with this key is a CFStringRef.

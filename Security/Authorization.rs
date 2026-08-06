@@ -113,10 +113,14 @@ pub type AuthorizationString = *const c_char;
 /// parameter value. The value must be contiguous memory of valueLength bytes;
 /// internal structure is defined separately for each name.
 ///
+///
 /// Field: name name of the item, as an AuthorizationString. Mandatory.
+///
 /// Field: valueLength Number of bytes in parameter value. Must be 0 if no parameter value.
+///
 /// Field: value Pointer to the optional parameter value associated with name.
 /// Must be NULL if no parameter value.
+///
 /// Field: flags Reserved field. Must be set to 0 on creation. Do not modify after that.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationitem?language=objc)
@@ -149,7 +153,9 @@ unsafe impl RefEncode for AuthorizationItem {
 
 /// An AuthorizationItemSet structure represents a set of zero or more AuthorizationItems.  Since it is a set it should not contain any identical AuthorizationItems.
 ///
+///
 /// Field: count Number of items identified by items.
+///
 /// Field: items Pointer to an array of items.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationitemset?language=objc)

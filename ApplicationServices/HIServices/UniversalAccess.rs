@@ -31,6 +31,7 @@ pub const kUAZoomFocusTypeInsertionPoint: c_uint = 1;
 /// </code>
 /// if the zoom feature is off or if the user
 /// has zoomed all the way out.
+///
 /// Availability: Available in Mac OS X v10.4 and later (not available in CarbonLib 1.x and not available for nonCarbon CFM).
 #[inline]
 pub unsafe fn UAZoomEnabled() -> bool {
@@ -93,6 +94,7 @@ pub unsafe fn UAZoomEnabled() -> bool {
 /// inType
 /// </code>
 /// is out of range.
+///
 /// Availability: Available in Mac OS X v10.4 and later (not available in CarbonLib 1.x and not available for nonCarbon CFM).
 ///
 /// # Safety

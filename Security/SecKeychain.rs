@@ -16,9 +16,13 @@ pub const kSecReadPermStatus: u32 = 2;
 pub const kSecWritePermStatus: u32 = 4;
 
 /// Contains keychain settings.
+///
 /// Field: version An unsigned 32-bit integer representing the keychain version.
+///
 /// Field: lockOnSleep A boolean value indicating whether the keychain locks when the system sleeps.
+///
 /// Field: useLockInterval A boolean value indicating whether the keychain automatically locks after a certain period of time.
+///
 /// Field: lockInterval An unsigned 32-bit integer representing the number of seconds before the keychain locks.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsettings?language=objc)
@@ -263,9 +267,13 @@ unsafe impl RefEncode for SecKeychainEventMask {
 }
 
 /// Contains information about a keychain event.
+///
 /// Field: version The version of this structure.
+///
 /// Field: item A reference to the keychain item associated with this event, if any. Note that some events do not involve a particular keychain item.
+///
 /// Field: keychain A reference to the keychain in which the event occurred.
+///
 /// Field: pid The id of the process that generated this event.
 ///
 /// The SecKeychainCallbackInfo type represents a structure that contains information about the keychain event for which your application is being notified. For information on how to write a keychain event callback function, see SecKeychainCallback.

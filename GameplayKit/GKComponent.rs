@@ -154,7 +154,7 @@ impl<ComponentType: Message + AsRef<GKComponent>> GKComponentSystem<ComponentTyp
         /// The component is added to the tail of the collection and will be processed after components that were added before it.
         ///
         ///
-        /// Throws a if the component added is not a kind of the system's componentClass.
+        /// Throws a NSInvalidArgumentException if the component added is not a kind of the system's componentClass.
         #[unsafe(method(addComponent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addComponent(&self, component: &ComponentType);

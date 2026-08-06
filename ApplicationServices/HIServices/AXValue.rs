@@ -79,6 +79,7 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for AXValue {
     /// Returns:
+    ///
     /// Availability: Mac OS X version 10.3 or later
     #[doc(alias = "AXValueGetTypeID")]
     #[inline]

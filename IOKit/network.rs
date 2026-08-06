@@ -233,10 +233,15 @@ pub const kIONetworkInterfaceOpenedState: c_uint = 0x2;
 pub const kIONetworkInterfaceDisabledState: c_uint = 0x4;
 
 /// Generic network statistics structure.
+///
 /// Field: inputPackets count input packets.
+///
 /// Field: inputErrors count input errors.
+///
 /// Field: outputPackets count output packets.
+///
 /// Field: outputErrors count output errors.
+///
 /// Field: collisions count collisions on CDMA networks.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ionetworkstats?language=objc)
@@ -270,12 +275,19 @@ unsafe impl RefEncode for IONetworkStats {
 }
 
 /// Statistics recorded by IOOutputQueue objects.
+///
 /// Field: capacity queue capacity.
+///
 /// Field: size current size of the queue.
+///
 /// Field: peakSize peak size of the queue.
+///
 /// Field: dropCount number of packets dropped.
+///
 /// Field: outputCount number of output packets.
+///
 /// Field: retryCount number of retries.
+///
 /// Field: stallCount number of queue stalls.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iooutputqueuestats?language=objc)
@@ -315,19 +327,33 @@ unsafe impl RefEncode for IOOutputQueueStats {
 }
 
 /// Ethernet MIB statistics structure.
+///
 /// Field: alignmentErrors            dot3StatsAlignmentErrors.
+///
 /// Field: fcsErrors                  dot3StatsFCSErrors.
+///
 /// Field: singleCollisionFrames      dot3StatsSingleCollisionFrames.
+///
 /// Field: multipleCollisionFrames    dot3StatsMultipleCollisionFrames.
+///
 /// Field: sqeTestErrors              dot3StatsSQETestErrors.
+///
 /// Field: deferredTransmissions      dot3StatsDeferredTransmissions.
+///
 /// Field: lateCollisions             dot3StatsLateCollisions.
+///
 /// Field: excessiveCollisions        dot3StatsExcessiveCollisions.
+///
 /// Field: internalMacTransmitErrors  dot3StatsInternalMacTransmitErrors.
+///
 /// Field: carrierSenseErrors         dot3StatsCarrierSenseErrors.
+///
 /// Field: frameTooLongs              dot3StatsFrameTooLongs.
+///
 /// Field: internalMacReceiveErrors   dot3StatsInternalMacReceiveErrors.
+///
 /// Field: etherChipSet               dot3StatsEtherChipSet.
+///
 /// Field: missedFrames               dot3StatsMissedFrames (not in RFC1650).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3statsentry?language=objc)
@@ -379,6 +405,7 @@ unsafe impl RefEncode for IODot3StatsEntry {
 }
 
 /// Collision statistics structure.
+///
 /// Field: collFrequencies            dot3StatsCollFrequencies.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3collentry?language=objc)
@@ -399,14 +426,23 @@ unsafe impl RefEncode for IODot3CollEntry {
 }
 
 /// Extra receiver statistics not defined by RFC1650.
+///
 /// Field: overruns            receiver overruns.
+///
 /// Field: watchdogTimeouts    watchdog timer expirations.
+///
 /// Field: frameTooShorts      runt frames.
+///
 /// Field: collisionErrors     frames damages by late collision.
+///
 /// Field: phyErrors           PHY receive errors.
+///
 /// Field: timeouts            receiver timeouts.
+///
 /// Field: interrupts          receiver interrupts.
+///
 /// Field: resets              receiver resets.
+///
 /// Field: resourceErrors      receiver resource shortages.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3rxextraentry?language=objc)
@@ -450,12 +486,19 @@ unsafe impl RefEncode for IODot3RxExtraEntry {
 }
 
 /// Extra transmitter statistics not defined by RFC1650.
+///
 /// Field: underruns           transmit underruns.
+///
 /// Field: jabbers             jabber events.
+///
 /// Field: phyErrors           PHY transmit errors.
+///
 /// Field: timeouts            transmitter timeouts.
+///
 /// Field: interrupts          transmitter interrupts.
+///
 /// Field: resets              transmitter resets.
+///
 /// Field: resourceErrors      transmitter resource shortages.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3txextraentry?language=objc)
@@ -495,9 +538,13 @@ unsafe impl RefEncode for IODot3TxExtraEntry {
 }
 
 /// Aggregate Ethernet statistics structure.
+///
 /// Field: dot3StatsEntry      IODot3StatsEntry statistics group.
+///
 /// Field: dot3CollEntry       IODot3CollEntry statistics group.
+///
 /// Field: dot3RxExtraEntry    IODot3RxExtraEntry statistics group.
+///
 /// Field: dot3TxExtraEntry    IODot3TxExtraEntry statistics group.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioethernetstats?language=objc)

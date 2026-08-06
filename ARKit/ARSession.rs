@@ -519,7 +519,7 @@ extern_protocol!(
     #[cfg(feature = "objc2")]
     pub unsafe trait ARSessionProviding: NSObjectProtocol {
         /// To ensure session changes are detected, Swift classes should mark this property as `
-        /// ` and `dynamic`
+        /// @objc ` and `dynamic`
         #[unsafe(method(session))]
         #[unsafe(method_family = none)]
         unsafe fn session(&self) -> Retained<ARSession>;
