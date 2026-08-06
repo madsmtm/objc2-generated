@@ -161,7 +161,10 @@ impl<T: ?Sized> CFBinaryHeap<T> {
 
     /// Convert to the opaque/untyped variant.
     #[inline]
-    pub fn as_opaque(&self) -> &CFBinaryHeap {
+    pub fn as_opaque(&self) -> &CFBinaryHeap
+    where
+        T: 'static,
+    {
         unsafe { self.cast_unchecked() }
     }
 }
@@ -302,7 +305,7 @@ impl<T: Sized> CFBinaryHeap<T> {
                 heap: &CFBinaryHeap,
             ) -> Option<NonNull<CFBinaryHeap>>;
         }
-        let heap = heap.as_opaque();
+        let heap = unsafe { heap.cast_unchecked() };
         let ret = unsafe { CFBinaryHeapCreateCopy(allocator, capacity, heap) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
@@ -323,7 +326,7 @@ impl<T: Sized> CFBinaryHeap<T> {
         extern "C-unwind" {
             fn CFBinaryHeapGetCount(heap: &CFBinaryHeap) -> CFIndex;
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         unsafe { CFBinaryHeapGetCount(heap) }
     }
 
@@ -351,7 +354,7 @@ impl<T: Sized> CFBinaryHeap<T> {
         extern "C-unwind" {
             fn CFBinaryHeapGetCountOfValue(heap: &CFBinaryHeap, value: *const c_void) -> CFIndex;
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFBinaryHeapGetCountOfValue(heap, value) }
     }
@@ -380,7 +383,7 @@ impl<T: Sized> CFBinaryHeap<T> {
         extern "C-unwind" {
             fn CFBinaryHeapContainsValue(heap: &CFBinaryHeap, value: *const c_void) -> Boolean;
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         let value = value.cast();
         let ret = unsafe { CFBinaryHeapContainsValue(heap, value) };
         ret != 0
@@ -404,7 +407,7 @@ impl<T: Sized> CFBinaryHeap<T> {
         extern "C-unwind" {
             fn CFBinaryHeapGetMinimum(heap: &CFBinaryHeap) -> *const c_void;
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         unsafe { CFBinaryHeapGetMinimum(heap) }.cast()
     }
 
@@ -434,7 +437,7 @@ impl<T: Sized> CFBinaryHeap<T> {
                 value: &mut *const c_void,
             ) -> Boolean;
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         let value = unsafe { core::mem::transmute(value) };
         let ret = unsafe { CFBinaryHeapGetMinimumIfPresent(heap, value) };
         ret != 0
@@ -460,7 +463,7 @@ impl<T: Sized> CFBinaryHeap<T> {
         extern "C-unwind" {
             fn CFBinaryHeapGetValues(heap: &CFBinaryHeap, values: *mut *const c_void);
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         let values = values.cast();
         unsafe { CFBinaryHeapGetValues(heap, values) }
     }
@@ -502,7 +505,7 @@ impl<T: Sized> CFBinaryHeap<T> {
                 context: *mut c_void,
             );
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         unsafe { CFBinaryHeapApplyFunction(heap, applier, context) }
     }
 
@@ -526,7 +529,7 @@ impl<T: Sized> CFBinaryHeap<T> {
         extern "C-unwind" {
             fn CFBinaryHeapAddValue(heap: &CFBinaryHeap, value: *const c_void);
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFBinaryHeapAddValue(heap, value) }
     }
@@ -545,7 +548,7 @@ impl<T: Sized> CFBinaryHeap<T> {
         extern "C-unwind" {
             fn CFBinaryHeapRemoveMinimumValue(heap: &CFBinaryHeap);
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         unsafe { CFBinaryHeapRemoveMinimumValue(heap) }
     }
 
@@ -564,7 +567,7 @@ impl<T: Sized> CFBinaryHeap<T> {
         extern "C-unwind" {
             fn CFBinaryHeapRemoveAllValues(heap: &CFBinaryHeap);
         }
-        let heap = self.as_opaque();
+        let heap = unsafe { self.cast_unchecked() };
         unsafe { CFBinaryHeapRemoveAllValues(heap) }
     }
 }

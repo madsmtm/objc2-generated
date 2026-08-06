@@ -214,7 +214,11 @@ impl<K: ?Sized, V: ?Sized> CFDictionary<K, V> {
 
     /// Convert to the opaque/untyped variant.
     #[inline]
-    pub fn as_opaque(&self) -> &CFDictionary {
+    pub fn as_opaque(&self) -> &CFDictionary
+    where
+        K: 'static,
+        V: 'static,
+    {
         unsafe { self.cast_unchecked() }
     }
 }
@@ -255,7 +259,11 @@ impl<K: ?Sized, V: ?Sized> CFMutableDictionary<K, V> {
 
     /// Convert to the opaque/untyped variant.
     #[inline]
-    pub fn as_opaque(&self) -> &CFMutableDictionary {
+    pub fn as_opaque(&self) -> &CFMutableDictionary
+    where
+        K: 'static,
+        V: 'static,
+    {
         unsafe { self.cast_unchecked() }
     }
 }
@@ -440,7 +448,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
                 the_dict: &CFDictionary,
             ) -> Option<NonNull<CFDictionary>>;
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let ret = unsafe { CFDictionaryCreateCopy(allocator, the_dict) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
@@ -626,7 +634,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
         extern "C-unwind" {
             fn CFDictionaryGetCount(the_dict: &CFDictionary) -> CFIndex;
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         unsafe { CFDictionaryGetCount(the_dict) }
     }
 
@@ -658,7 +666,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
         extern "C-unwind" {
             fn CFDictionaryGetCountOfKey(the_dict: &CFDictionary, key: *const c_void) -> CFIndex;
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let key = key.cast();
         unsafe { CFDictionaryGetCountOfKey(the_dict, key) }
     }
@@ -691,7 +699,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFDictionaryGetCountOfValue(the_dict, value) }
     }
@@ -723,7 +731,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
         extern "C-unwind" {
             fn CFDictionaryContainsKey(the_dict: &CFDictionary, key: *const c_void) -> Boolean;
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let key = key.cast();
         let ret = unsafe { CFDictionaryContainsKey(the_dict, key) };
         ret != 0
@@ -754,7 +762,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
         extern "C-unwind" {
             fn CFDictionaryContainsValue(the_dict: &CFDictionary, value: *const c_void) -> Boolean;
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let value = value.cast();
         let ret = unsafe { CFDictionaryContainsValue(the_dict, value) };
         ret != 0
@@ -791,7 +799,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
         extern "C-unwind" {
             fn CFDictionaryGetValue(the_dict: &CFDictionary, key: *const c_void) -> *const c_void;
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let key = key.cast();
         unsafe { CFDictionaryGetValue(the_dict, key) }.cast()
     }
@@ -836,7 +844,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
                 value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let key = key.cast();
         let value = value.map(|x| unsafe { core::mem::transmute(x) });
         let ret = unsafe { CFDictionaryGetValueIfPresent(the_dict, key, value) };
@@ -880,7 +888,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
                 values: *mut *const c_void,
             );
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let keys = keys.cast();
         let values = values.cast();
         unsafe { CFDictionaryGetKeysAndValues(the_dict, keys, values) }
@@ -924,7 +932,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
                 context: *mut c_void,
             );
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         unsafe { CFDictionaryApplyFunction(the_dict, applier, context) }
     }
 }
@@ -964,7 +972,7 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
                 value: *const c_void,
             );
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let key = key.cast();
         let value = value.cast();
         unsafe { CFDictionaryAddValue(the_dict, key, value) }
@@ -1007,7 +1015,7 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
                 value: *const c_void,
             );
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let key = key.cast();
         let value = value.cast();
         unsafe { CFDictionarySetValue(the_dict, key, value) }
@@ -1046,7 +1054,7 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
                 value: *const c_void,
             );
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let key = key.cast();
         let value = value.cast();
         unsafe { CFDictionaryReplaceValue(the_dict, key, value) }
@@ -1074,7 +1082,7 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
         extern "C-unwind" {
             fn CFDictionaryRemoveValue(the_dict: &CFMutableDictionary, key: *const c_void);
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         let key = key.cast();
         unsafe { CFDictionaryRemoveValue(the_dict, key) }
     }
@@ -1090,7 +1098,7 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
         extern "C-unwind" {
             fn CFDictionaryRemoveAllValues(the_dict: &CFMutableDictionary);
         }
-        let the_dict = self.as_opaque();
+        let the_dict = unsafe { self.cast_unchecked() };
         unsafe { CFDictionaryRemoveAllValues(the_dict) }
     }
 }

@@ -181,7 +181,10 @@ impl<T: ?Sized> CFSet<T> {
 
     /// Convert to the opaque/untyped variant.
     #[inline]
-    pub fn as_opaque(&self) -> &CFSet {
+    pub fn as_opaque(&self) -> &CFSet
+    where
+        T: 'static,
+    {
         unsafe { self.cast_unchecked() }
     }
 }
@@ -220,7 +223,10 @@ impl<T: ?Sized> CFMutableSet<T> {
 
     /// Convert to the opaque/untyped variant.
     #[inline]
-    pub fn as_opaque(&self) -> &CFMutableSet {
+    pub fn as_opaque(&self) -> &CFMutableSet
+    where
+        T: 'static,
+    {
         unsafe { self.cast_unchecked() }
     }
 }
@@ -344,7 +350,7 @@ impl<T: Sized> CFSet<T> {
                 the_set: &CFSet,
             ) -> Option<NonNull<CFSet>>;
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let ret = unsafe { CFSetCreateCopy(allocator, the_set) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
@@ -488,7 +494,7 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetGetCount(the_set: &CFSet) -> CFIndex;
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         unsafe { CFSetGetCount(the_set) }
     }
 
@@ -518,7 +524,7 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetGetCountOfValue(the_set: &CFSet, value: *const c_void) -> CFIndex;
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFSetGetCountOfValue(the_set, value) }
     }
@@ -547,7 +553,7 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetContainsValue(the_set: &CFSet, value: *const c_void) -> Boolean;
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let value = value.cast();
         let ret = unsafe { CFSetContainsValue(the_set, value) };
         ret != 0
@@ -576,7 +582,7 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetGetValue(the_set: &CFSet, value: *const c_void) -> *const c_void;
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFSetGetValue(the_set, value) }.cast()
     }
@@ -623,7 +629,7 @@ impl<T: Sized> CFSet<T> {
                 value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let candidate = candidate.cast();
         let value = value.map(|x| unsafe { core::mem::transmute(x) });
         let ret = unsafe { CFSetGetValueIfPresent(the_set, candidate, value) };
@@ -651,7 +657,7 @@ impl<T: Sized> CFSet<T> {
         extern "C-unwind" {
             fn CFSetGetValues(the_set: &CFSet, values: *mut *const c_void);
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let values = values.cast();
         unsafe { CFSetGetValues(the_set, values) }
     }
@@ -689,7 +695,7 @@ impl<T: Sized> CFSet<T> {
                 context: *mut c_void,
             );
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         unsafe { CFSetApplyFunction(the_set, applier, context) }
     }
 }
@@ -717,7 +723,7 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetAddValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFSetAddValue(the_set, value) }
     }
@@ -748,7 +754,7 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetReplaceValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFSetReplaceValue(the_set, value) }
     }
@@ -780,7 +786,7 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetSetValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFSetSetValue(the_set, value) }
     }
@@ -807,7 +813,7 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetRemoveValue(the_set: &CFMutableSet, value: *const c_void);
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFSetRemoveValue(the_set, value) }
     }
@@ -823,7 +829,7 @@ impl<T: Sized> CFMutableSet<T> {
         extern "C-unwind" {
             fn CFSetRemoveAllValues(the_set: &CFMutableSet);
         }
-        let the_set = self.as_opaque();
+        let the_set = unsafe { self.cast_unchecked() };
         unsafe { CFSetRemoveAllValues(the_set) }
     }
 }

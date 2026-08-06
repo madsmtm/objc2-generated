@@ -129,7 +129,10 @@ impl<T: ?Sized> CFArray<T> {
 
     /// Convert to the opaque/untyped variant.
     #[inline]
-    pub fn as_opaque(&self) -> &CFArray {
+    pub fn as_opaque(&self) -> &CFArray
+    where
+        T: 'static,
+    {
         unsafe { self.cast_unchecked() }
     }
 }
@@ -168,7 +171,10 @@ impl<T: ?Sized> CFMutableArray<T> {
 
     /// Convert to the opaque/untyped variant.
     #[inline]
-    pub fn as_opaque(&self) -> &CFMutableArray {
+    pub fn as_opaque(&self) -> &CFMutableArray
+    where
+        T: 'static,
+    {
         unsafe { self.cast_unchecked() }
     }
 }
@@ -299,7 +305,7 @@ impl<T: Sized> CFArray<T> {
                 the_array: &CFArray,
             ) -> Option<NonNull<CFArray>>;
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let ret = unsafe { CFArrayCreateCopy(allocator, the_array) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
@@ -440,7 +446,7 @@ impl<T: Sized> CFArray<T> {
         extern "C-unwind" {
             fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         unsafe { CFArrayGetCount(the_array) }
     }
 
@@ -480,7 +486,7 @@ impl<T: Sized> CFArray<T> {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFArrayGetCountOfValue(the_array, range, value) }
     }
@@ -521,7 +527,7 @@ impl<T: Sized> CFArray<T> {
                 value: *const c_void,
             ) -> Boolean;
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let value = value.cast();
         let ret = unsafe { CFArrayContainsValue(the_array, range, value) };
         ret != 0
@@ -548,7 +554,7 @@ impl<T: Sized> CFArray<T> {
         extern "C-unwind" {
             fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         unsafe { CFArrayGetValueAtIndex(the_array, idx) }.cast()
     }
 
@@ -581,7 +587,7 @@ impl<T: Sized> CFArray<T> {
         extern "C-unwind" {
             fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let values = values.cast();
         unsafe { CFArrayGetValues(the_array, range, values) }
     }
@@ -633,7 +639,7 @@ impl<T: Sized> CFArray<T> {
                 context: *mut c_void,
             );
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         unsafe { CFArrayApplyFunction(the_array, range, applier, context) }
     }
 
@@ -675,7 +681,7 @@ impl<T: Sized> CFArray<T> {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFArrayGetFirstIndexOfValue(the_array, range, value) }
     }
@@ -718,7 +724,7 @@ impl<T: Sized> CFArray<T> {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFArrayGetLastIndexOfValue(the_array, range, value) }
     }
@@ -787,7 +793,7 @@ impl<T: Sized> CFArray<T> {
                 context: *mut c_void,
             ) -> CFIndex;
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFArrayBSearchValues(the_array, range, value, comparator, context) }
     }
@@ -817,7 +823,7 @@ impl<T: Sized> CFMutableArray<T> {
         extern "C-unwind" {
             fn CFArrayAppendValue(the_array: &CFMutableArray, value: *const c_void);
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFArrayAppendValue(the_array, value) }
     }
@@ -855,7 +861,7 @@ impl<T: Sized> CFMutableArray<T> {
                 value: *const c_void,
             );
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFArrayInsertValueAtIndex(the_array, idx, value) }
     }
@@ -893,7 +899,7 @@ impl<T: Sized> CFMutableArray<T> {
                 value: *const c_void,
             );
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFArraySetValueAtIndex(the_array, idx, value) }
     }
@@ -918,7 +924,7 @@ impl<T: Sized> CFMutableArray<T> {
         extern "C-unwind" {
             fn CFArrayRemoveValueAtIndex(the_array: &CFMutableArray, idx: CFIndex);
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         unsafe { CFArrayRemoveValueAtIndex(the_array, idx) }
     }
 
@@ -933,7 +939,7 @@ impl<T: Sized> CFMutableArray<T> {
         extern "C-unwind" {
             fn CFArrayRemoveAllValues(the_array: &CFMutableArray);
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         unsafe { CFArrayRemoveAllValues(the_array) }
     }
 
@@ -990,7 +996,7 @@ impl<T: Sized> CFMutableArray<T> {
                 new_count: CFIndex,
             );
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         unsafe { CFArrayReplaceValues(the_array, range, new_values, new_count) }
     }
 
@@ -1023,7 +1029,7 @@ impl<T: Sized> CFMutableArray<T> {
                 idx2: CFIndex,
             );
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         unsafe { CFArrayExchangeValuesAtIndices(the_array, idx1, idx2) }
     }
 
@@ -1077,7 +1083,7 @@ impl<T: Sized> CFMutableArray<T> {
                 context: *mut c_void,
             );
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         unsafe { CFArraySortValues(the_array, range, comparator, context) }
     }
 
@@ -1120,7 +1126,7 @@ impl<T: Sized> CFMutableArray<T> {
                 other_range: CFRange,
             );
         }
-        let the_array = self.as_opaque();
+        let the_array = unsafe { self.cast_unchecked() };
         unsafe { CFArrayAppendArray(the_array, other_array, other_range) }
     }
 }

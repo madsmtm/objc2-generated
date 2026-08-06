@@ -104,7 +104,10 @@ impl<T: ?Sized> CFBag<T> {
 
     /// Convert to the opaque/untyped variant.
     #[inline]
-    pub fn as_opaque(&self) -> &CFBag {
+    pub fn as_opaque(&self) -> &CFBag
+    where
+        T: 'static,
+    {
         unsafe { self.cast_unchecked() }
     }
 }
@@ -139,7 +142,10 @@ impl<T: ?Sized> CFMutableBag<T> {
 
     /// Convert to the opaque/untyped variant.
     #[inline]
-    pub fn as_opaque(&self) -> &CFMutableBag {
+    pub fn as_opaque(&self) -> &CFMutableBag
+    where
+        T: 'static,
+    {
         unsafe { self.cast_unchecked() }
     }
 }
@@ -198,7 +204,7 @@ impl<T: Sized> CFBag<T> {
                 the_bag: &CFBag,
             ) -> Option<NonNull<CFBag>>;
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let ret = unsafe { CFBagCreateCopy(allocator, the_bag) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
@@ -265,7 +271,7 @@ impl<T: Sized> CFBag<T> {
         extern "C-unwind" {
             fn CFBagGetCount(the_bag: &CFBag) -> CFIndex;
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         unsafe { CFBagGetCount(the_bag) }
     }
 
@@ -279,7 +285,7 @@ impl<T: Sized> CFBag<T> {
         extern "C-unwind" {
             fn CFBagGetCountOfValue(the_bag: &CFBag, value: *const c_void) -> CFIndex;
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFBagGetCountOfValue(the_bag, value) }
     }
@@ -294,7 +300,7 @@ impl<T: Sized> CFBag<T> {
         extern "C-unwind" {
             fn CFBagContainsValue(the_bag: &CFBag, value: *const c_void) -> Boolean;
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let value = value.cast();
         let ret = unsafe { CFBagContainsValue(the_bag, value) };
         ret != 0
@@ -310,7 +316,7 @@ impl<T: Sized> CFBag<T> {
         extern "C-unwind" {
             fn CFBagGetValue(the_bag: &CFBag, value: *const c_void) -> *const c_void;
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFBagGetValue(the_bag, value) }.cast()
     }
@@ -334,7 +340,7 @@ impl<T: Sized> CFBag<T> {
                 value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let candidate = candidate.cast();
         let value = value.map(|x| unsafe { core::mem::transmute(x) });
         let ret = unsafe { CFBagGetValueIfPresent(the_bag, candidate, value) };
@@ -351,7 +357,7 @@ impl<T: Sized> CFBag<T> {
         extern "C-unwind" {
             fn CFBagGetValues(the_bag: &CFBag, values: *mut *const c_void);
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let values = values.cast();
         unsafe { CFBagGetValues(the_bag, values) }
     }
@@ -371,7 +377,7 @@ impl<T: Sized> CFBag<T> {
                 context: *mut c_void,
             );
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         unsafe { CFBagApplyFunction(the_bag, applier, context) }
     }
 }
@@ -387,7 +393,7 @@ impl<T: Sized> CFMutableBag<T> {
         extern "C-unwind" {
             fn CFBagAddValue(the_bag: &CFMutableBag, value: *const c_void);
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFBagAddValue(the_bag, value) }
     }
@@ -402,7 +408,7 @@ impl<T: Sized> CFMutableBag<T> {
         extern "C-unwind" {
             fn CFBagReplaceValue(the_bag: &CFMutableBag, value: *const c_void);
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFBagReplaceValue(the_bag, value) }
     }
@@ -417,7 +423,7 @@ impl<T: Sized> CFMutableBag<T> {
         extern "C-unwind" {
             fn CFBagSetValue(the_bag: &CFMutableBag, value: *const c_void);
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFBagSetValue(the_bag, value) }
     }
@@ -432,7 +438,7 @@ impl<T: Sized> CFMutableBag<T> {
         extern "C-unwind" {
             fn CFBagRemoveValue(the_bag: &CFMutableBag, value: *const c_void);
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         let value = value.cast();
         unsafe { CFBagRemoveValue(the_bag, value) }
     }
@@ -446,7 +452,7 @@ impl<T: Sized> CFMutableBag<T> {
         extern "C-unwind" {
             fn CFBagRemoveAllValues(the_bag: &CFMutableBag);
         }
-        let the_bag = self.as_opaque();
+        let the_bag = unsafe { self.cast_unchecked() };
         unsafe { CFBagRemoveAllValues(the_bag) }
     }
 }
