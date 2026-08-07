@@ -1379,9 +1379,9 @@ impl IOHIDQueue {
     #[doc(alias = "IOHIDQueueSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub fn set_cancel_handler(&self, handler: &dispatch_block_t) {
+    pub fn set_cancel_handler(&self, handler: &DispatchBlock) {
         extern "C-unwind" {
-            fn IOHIDQueueSetCancelHandler(queue: &IOHIDQueue, handler: &dispatch_block_t);
+            fn IOHIDQueueSetCancelHandler(queue: &IOHIDQueue, handler: &DispatchBlock);
         }
         unsafe { IOHIDQueueSetCancelHandler(self, handler) }
     }
@@ -1870,9 +1870,9 @@ impl IOHIDDevice {
     #[doc(alias = "IOHIDDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub fn set_cancel_handler(&self, handler: &dispatch_block_t) {
+    pub fn set_cancel_handler(&self, handler: &DispatchBlock) {
         extern "C-unwind" {
-            fn IOHIDDeviceSetCancelHandler(device: &IOHIDDevice, handler: &dispatch_block_t);
+            fn IOHIDDeviceSetCancelHandler(device: &IOHIDDevice, handler: &DispatchBlock);
         }
         unsafe { IOHIDDeviceSetCancelHandler(self, handler) }
     }
@@ -4380,9 +4380,9 @@ impl IOHIDManager {
     #[doc(alias = "IOHIDManagerSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub fn set_cancel_handler(&self, handler: &dispatch_block_t) {
+    pub fn set_cancel_handler(&self, handler: &DispatchBlock) {
         extern "C-unwind" {
-            fn IOHIDManagerSetCancelHandler(manager: &IOHIDManager, handler: &dispatch_block_t);
+            fn IOHIDManagerSetCancelHandler(manager: &IOHIDManager, handler: &DispatchBlock);
         }
         unsafe { IOHIDManagerSetCancelHandler(self, handler) }
     }

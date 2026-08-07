@@ -278,7 +278,7 @@ impl CPListImageRowItem {
             &self,
         ) -> *mut block2::Block<
             'static,
-            fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<dispatch_block_t>),
+            fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<DispatchBlock>),
         >;
 
         #[cfg(all(feature = "CPListItemTypes", feature = "block2", feature = "dispatch2"))]
@@ -292,10 +292,7 @@ impl CPListImageRowItem {
             handler: Option<
                 &block2::Block<
                     'static,
-                    fn(
-                        NonNull<ProtocolObject<dyn CPSelectableListItem>>,
-                        NonNull<dispatch_block_t>,
-                    ),
+                    fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<DispatchBlock>),
                 >,
             >,
         );
@@ -407,7 +404,7 @@ impl CPListImageRowItem {
             &self,
         ) -> *mut block2::Block<
             'static,
-            fn(NonNull<CPListImageRowItem>, NSInteger, NonNull<dispatch_block_t>),
+            fn(NonNull<CPListImageRowItem>, NSInteger, NonNull<DispatchBlock>),
         >;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -421,7 +418,7 @@ impl CPListImageRowItem {
             list_image_row_handler: Option<
                 &block2::Block<
                     'static,
-                    fn(NonNull<CPListImageRowItem>, NSInteger, NonNull<dispatch_block_t>),
+                    fn(NonNull<CPListImageRowItem>, NSInteger, NonNull<DispatchBlock>),
                 >,
             >,
         );

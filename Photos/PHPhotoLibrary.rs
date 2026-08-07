@@ -149,7 +149,7 @@ impl PHPhotoLibrary {
         #[unsafe(method_family = none)]
         pub unsafe fn performChanges_completionHandler(
             &self,
-            change_block: &dispatch_block_t,
+            change_block: &DispatchBlock,
             completion_handler: Option<&block2::SendableBlock<'static, fn(Bool, *mut NSError)>>,
         );
 
@@ -158,7 +158,7 @@ impl PHPhotoLibrary {
         #[unsafe(method_family = none)]
         pub unsafe fn performChangesAndWait_error(
             &self,
-            change_block: &dispatch_block_t,
+            change_block: &DispatchBlock,
         ) -> Result<(), Retained<NSError>>;
 
         #[unsafe(method(registerChangeObserver:))]

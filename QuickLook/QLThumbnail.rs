@@ -114,13 +114,13 @@ impl QLThumbnail {
     pub unsafe fn dispatch_async(
         &self,
         queue: Option<&DispatchQueue>,
-        completion: Option<&dispatch_block_t>,
+        completion: Option<&DispatchBlock>,
     ) {
         extern "C-unwind" {
             fn QLThumbnailDispatchAsync(
                 thumbnail: &QLThumbnail,
                 queue: Option<&DispatchQueue>,
-                completion: Option<&dispatch_block_t>,
+                completion: Option<&DispatchBlock>,
             );
         }
         unsafe { QLThumbnailDispatchAsync(self, queue, completion) }

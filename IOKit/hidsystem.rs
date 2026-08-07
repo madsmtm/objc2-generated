@@ -2722,12 +2722,9 @@ impl IOHIDUserDevice {
     #[doc(alias = "IOHIDUserDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub fn set_cancel_handler(&self, handler: &dispatch_block_t) {
+    pub fn set_cancel_handler(&self, handler: &DispatchBlock) {
         extern "C-unwind" {
-            fn IOHIDUserDeviceSetCancelHandler(
-                device: &IOHIDUserDevice,
-                handler: &dispatch_block_t,
-            );
+            fn IOHIDUserDeviceSetCancelHandler(device: &IOHIDUserDevice, handler: &DispatchBlock);
         }
         unsafe { IOHIDUserDeviceSetCancelHandler(self, handler) }
     }

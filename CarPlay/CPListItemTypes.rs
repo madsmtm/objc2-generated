@@ -74,7 +74,7 @@ extern_protocol!(
             &self,
         ) -> *mut block2::Block<
             'static,
-            fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<dispatch_block_t>),
+            fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<DispatchBlock>),
         >;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -88,10 +88,7 @@ extern_protocol!(
             handler: Option<
                 &block2::Block<
                     'static,
-                    fn(
-                        NonNull<ProtocolObject<dyn CPSelectableListItem>>,
-                        NonNull<dispatch_block_t>,
-                    ),
+                    fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<DispatchBlock>),
                 >,
             >,
         );

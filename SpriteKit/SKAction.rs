@@ -900,7 +900,7 @@ impl SKAction {
         /// Parameter `block`: The block to run
         #[unsafe(method(runBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runBlock(block: &dispatch_block_t) -> Retained<SKAction>;
+        pub unsafe fn runBlock(block: &DispatchBlock) -> Retained<SKAction>;
 
         #[cfg(feature = "dispatch2")]
         /// Creates an action that executes a block
@@ -915,7 +915,7 @@ impl SKAction {
         #[unsafe(method(runBlock:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock_queue(
-            block: &dispatch_block_t,
+            block: &DispatchBlock,
             queue: &DispatchQueue,
         ) -> Retained<SKAction>;
 

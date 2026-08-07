@@ -303,7 +303,7 @@ impl CPListItem {
             &self,
         ) -> *mut block2::Block<
             'static,
-            fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<dispatch_block_t>),
+            fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<DispatchBlock>),
         >;
 
         #[cfg(all(feature = "CPListItemTypes", feature = "block2", feature = "dispatch2"))]
@@ -317,10 +317,7 @@ impl CPListItem {
             handler: Option<
                 &block2::Block<
                     'static,
-                    fn(
-                        NonNull<ProtocolObject<dyn CPSelectableListItem>>,
-                        NonNull<dispatch_block_t>,
-                    ),
+                    fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<DispatchBlock>),
                 >,
             >,
         );

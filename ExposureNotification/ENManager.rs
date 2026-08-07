@@ -192,7 +192,7 @@ impl ENManager {
         /// Invoked exactly once when invalidation completes. This property is cleared before it's invoked to break retain cycles.
         #[unsafe(method(invalidationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidationHandler(&self) -> *mut dispatch_block_t;
+        pub unsafe fn invalidationHandler(&self) -> *mut DispatchBlock;
 
         #[cfg(feature = "dispatch2")]
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
@@ -200,10 +200,7 @@ impl ENManager {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInvalidationHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInvalidationHandler(
-            &self,
-            invalidation_handler: Option<&dispatch_block_t>,
-        );
+        pub unsafe fn setInvalidationHandler(&self, invalidation_handler: Option<&DispatchBlock>);
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Activates the object to prepare it for use. Properties may not be usable until the completion handler reports success.

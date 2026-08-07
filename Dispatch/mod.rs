@@ -128,9 +128,10 @@ impl DispatchTime {
 /// Instead, the block literal must be copied to the heap with the Block_copy()
 /// function or by sending it a -[copy] message.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_t?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchblock?language=objc)
+#[doc(alias = "dispatch_block_t")]
 #[cfg(feature = "block2")]
-pub type dispatch_block_t = block2::SendableBlock<'static, fn()>;
+pub type DispatchBlock = block2::SendableBlock<'static, fn()>;
 
 /// Increment the reference count of a dispatch object.
 ///
@@ -146,9 +147,9 @@ pub type dispatch_block_t = block2::SendableBlock<'static, fn()>;
 ///
 /// `object` must be a valid pointer.
 #[inline]
-pub unsafe fn dispatch_retain(object: NonNull<dispatch_object_s>) {
+pub unsafe fn dispatch_retain(object: NonNull<__DispatchObject>) {
     extern "C" {
-        fn dispatch_retain(object: NonNull<dispatch_object_s>);
+        fn dispatch_retain(object: NonNull<__DispatchObject>);
     }
     unsafe { dispatch_retain(object) }
 }
@@ -169,9 +170,9 @@ pub unsafe fn dispatch_retain(object: NonNull<dispatch_object_s>) {
 ///
 /// `object` must be a valid pointer.
 #[inline]
-pub unsafe fn dispatch_release(object: NonNull<dispatch_object_s>) {
+pub unsafe fn dispatch_release(object: NonNull<__DispatchObject>) {
     extern "C" {
-        fn dispatch_release(object: NonNull<dispatch_object_s>);
+        fn dispatch_release(object: NonNull<__DispatchObject>);
     }
     unsafe { dispatch_release(object) }
 }
@@ -185,9 +186,9 @@ pub unsafe fn dispatch_release(object: NonNull<dispatch_object_s>) {
 /// Returns: The context of the object; may be NULL.
 #[must_use]
 #[inline]
-pub fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void {
+pub fn dispatch_get_context(object: &__DispatchObject) -> *mut c_void {
     extern "C" {
-        fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void;
+        fn dispatch_get_context(object: &__DispatchObject) -> *mut c_void;
     }
     unsafe { dispatch_get_context(object) }
 }
@@ -202,12 +203,11 @@ pub fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void {
 ///
 /// # Safety
 ///
-/// - `object` must be a valid pointer.
-/// - `context` must be a valid pointer or null.
+/// `context` must be a valid pointer or null.
 #[inline]
-pub unsafe fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: *mut c_void) {
+pub unsafe fn dispatch_set_context(object: &__DispatchObject, context: *mut c_void) {
     extern "C" {
-        fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: *mut c_void);
+        fn dispatch_set_context(object: &__DispatchObject, context: *mut c_void);
     }
     unsafe { dispatch_set_context(object, context) }
 }
@@ -231,18 +231,11 @@ pub unsafe fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: 
 ///
 /// # Safety
 ///
-/// - `object` must be a valid pointer.
-/// - `finalizer` must be implemented correctly.
+/// `finalizer` must be implemented correctly.
 #[inline]
-pub unsafe fn dispatch_set_finalizer_f(
-    object: NonNull<dispatch_object_s>,
-    finalizer: dispatch_function_t,
-) {
+pub unsafe fn dispatch_set_finalizer_f(object: &__DispatchObject, finalizer: DispatchFunction) {
     extern "C" {
-        fn dispatch_set_finalizer_f(
-            object: NonNull<dispatch_object_s>,
-            finalizer: dispatch_function_t,
-        );
+        fn dispatch_set_finalizer_f(object: &__DispatchObject, finalizer: DispatchFunction);
     }
     unsafe { dispatch_set_finalizer_f(object, finalizer) }
 }
@@ -265,9 +258,9 @@ pub unsafe fn dispatch_set_finalizer_f(
 /// Parameter `object`: The object to be activated.
 /// The result of passing NULL in this parameter is undefined.
 #[inline]
-pub fn dispatch_activate(object: NonNull<dispatch_object_s>) {
+pub fn dispatch_activate(object: &__DispatchObject) {
     extern "C" {
-        fn dispatch_activate(object: NonNull<dispatch_object_s>);
+        fn dispatch_activate(object: &__DispatchObject);
     }
     unsafe { dispatch_activate(object) }
 }
@@ -286,9 +279,9 @@ pub fn dispatch_activate(object: NonNull<dispatch_object_s>) {
 /// Parameter `object`: The object to be suspended.
 /// The result of passing NULL in this parameter is undefined.
 #[inline]
-pub fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
+pub fn dispatch_suspend(object: &__DispatchObject) {
     extern "C" {
-        fn dispatch_suspend(object: NonNull<dispatch_object_s>);
+        fn dispatch_suspend(object: &__DispatchObject);
     }
     unsafe { dispatch_suspend(object) }
 }
@@ -313,9 +306,9 @@ pub fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
 /// Parameter `object`: The object to be resumed.
 /// The result of passing NULL in this parameter is undefined.
 #[inline]
-pub fn dispatch_resume(object: NonNull<dispatch_object_s>) {
+pub fn dispatch_resume(object: &__DispatchObject) {
     extern "C" {
-        fn dispatch_resume(object: NonNull<dispatch_object_s>);
+        fn dispatch_resume(object: &__DispatchObject);
     }
     unsafe { dispatch_resume(object) }
 }
@@ -352,19 +345,15 @@ pub fn dispatch_resume(object: NonNull<dispatch_object_s>) {
 /// offset from the maximum supported scheduler priority for the given class.
 /// Passing a value greater than zero or less than QOS_MIN_RELATIVE_PRIORITY
 /// is undefined.
-///
-/// # Safety
-///
-/// `object` must be a valid pointer.
 #[inline]
 pub unsafe fn dispatch_set_qos_class_floor(
-    object: NonNull<dispatch_object_s>,
+    object: &__DispatchObject,
     qos_class: DispatchQoS,
     relative_priority: c_int,
 ) {
     extern "C" {
         fn dispatch_set_qos_class_floor(
-            object: NonNull<dispatch_object_s>,
+            object: &__DispatchObject,
             qos_class: DispatchQoS,
             relative_priority: c_int,
         );
@@ -412,9 +401,9 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_async")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_async_with_block(&self, block: &dispatch_block_t) {
+    pub unsafe fn exec_async_with_block(&self, block: &DispatchBlock) {
         extern "C" {
-            fn dispatch_async(queue: &DispatchQueue, block: &dispatch_block_t);
+            fn dispatch_async(queue: &DispatchQueue, block: &DispatchBlock);
         }
         unsafe { dispatch_async(self, block) }
     }
@@ -446,12 +435,12 @@ impl DispatchQueue {
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_async_f")]
     #[inline]
-    pub unsafe fn exec_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
+    pub unsafe fn exec_async_f(&self, context: *mut c_void, work: DispatchFunction) {
         extern "C" {
             fn dispatch_async_f(
                 queue: &DispatchQueue,
                 context: *mut c_void,
-                work: dispatch_function_t,
+                work: DispatchFunction,
             );
         }
         unsafe { dispatch_async_f(self, context, work) }
@@ -463,9 +452,9 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_sync")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_sync_with_block(&self, block: &dispatch_block_t) {
+    pub unsafe fn exec_sync_with_block(&self, block: &DispatchBlock) {
         extern "C" {
-            fn dispatch_sync(queue: &DispatchQueue, block: &dispatch_block_t);
+            fn dispatch_sync(queue: &DispatchQueue, block: &DispatchBlock);
         }
         unsafe { dispatch_sync(self, block) }
     }
@@ -495,13 +484,9 @@ impl DispatchQueue {
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_sync_f")]
     #[inline]
-    pub unsafe fn exec_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
+    pub unsafe fn exec_sync_f(&self, context: *mut c_void, work: DispatchFunction) {
         extern "C" {
-            fn dispatch_sync_f(
-                queue: &DispatchQueue,
-                context: *mut c_void,
-                work: dispatch_function_t,
-            );
+            fn dispatch_sync_f(queue: &DispatchQueue, context: *mut c_void, work: DispatchFunction);
         }
         unsafe { dispatch_sync_f(self, context, work) }
     }
@@ -512,9 +497,9 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_sync_and_wait_with_block(&self, block: &dispatch_block_t) {
+    pub unsafe fn exec_sync_and_wait_with_block(&self, block: &DispatchBlock) {
         extern "C" {
-            fn dispatch_async_and_wait(queue: &DispatchQueue, block: &dispatch_block_t);
+            fn dispatch_async_and_wait(queue: &DispatchQueue, block: &DispatchBlock);
         }
         unsafe { dispatch_async_and_wait(self, block) }
     }
@@ -544,12 +529,12 @@ impl DispatchQueue {
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_async_and_wait_f")]
     #[inline]
-    pub unsafe fn exec_sync_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
+    pub unsafe fn exec_sync_and_wait_f(&self, context: *mut c_void, work: DispatchFunction) {
         extern "C" {
             fn dispatch_async_and_wait_f(
                 queue: &DispatchQueue,
                 context: *mut c_void,
-                work: dispatch_function_t,
+                work: DispatchFunction,
             );
         }
         unsafe { dispatch_async_and_wait_f(self, context, work) }
@@ -825,7 +810,7 @@ impl DispatchAutoReleaseFrequency {
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
     #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_INHERIT")]
-    pub const INHERIT: Self = Self(0);
+    pub const Inherit: Self = Self(0);
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
     /// function.
     ///
@@ -845,7 +830,7 @@ impl DispatchAutoReleaseFrequency {
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
     #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM")]
-    pub const WORK_ITEM: Self = Self(1);
+    pub const WorkItem: Self = Self(1);
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
     /// function.
     ///
@@ -865,7 +850,7 @@ impl DispatchAutoReleaseFrequency {
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
     #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_NEVER")]
-    pub const NEVER: Self = Self(2);
+    pub const Never: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -1280,18 +1265,11 @@ impl DispatchQueue {
 ///
 /// # Safety
 ///
-/// - `object` must be a valid pointer.
-/// - `queue` possibly has additional threading requirements.
+/// `queue` possibly has additional threading requirements.
 #[inline]
-pub unsafe fn dispatch_set_target_queue(
-    object: NonNull<dispatch_object_s>,
-    queue: Option<&DispatchQueue>,
-) {
+pub unsafe fn dispatch_set_target_queue(object: &__DispatchObject, queue: Option<&DispatchQueue>) {
     extern "C" {
-        fn dispatch_set_target_queue(
-            object: NonNull<dispatch_object_s>,
-            queue: Option<&DispatchQueue>,
-        );
+        fn dispatch_set_target_queue(object: &__DispatchObject, queue: Option<&DispatchQueue>);
     }
     unsafe { dispatch_set_target_queue(object, queue) }
 }
@@ -1306,10 +1284,10 @@ impl DispatchQueue {
     pub unsafe fn exec_after_with_block(
         when: DispatchTime,
         queue: &DispatchQueue,
-        block: &dispatch_block_t,
+        block: &DispatchBlock,
     ) {
         extern "C" {
-            fn dispatch_after(when: DispatchTime, queue: &DispatchQueue, block: &dispatch_block_t);
+            fn dispatch_after(when: DispatchTime, queue: &DispatchQueue, block: &DispatchBlock);
         }
         unsafe { dispatch_after(when, queue, block) }
     }
@@ -1346,14 +1324,14 @@ impl DispatchQueue {
         when: DispatchTime,
         queue: &DispatchQueue,
         context: *mut c_void,
-        work: dispatch_function_t,
+        work: DispatchFunction,
     ) {
         extern "C" {
             fn dispatch_after_f(
                 when: DispatchTime,
                 queue: &DispatchQueue,
                 context: *mut c_void,
-                work: dispatch_function_t,
+                work: DispatchFunction,
             );
         }
         unsafe { dispatch_after_f(when, queue, context, work) }
@@ -1365,9 +1343,9 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_barrier_async")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier_async_with_block(&self, block: &dispatch_block_t) {
+    pub unsafe fn barrier_async_with_block(&self, block: &DispatchBlock) {
         extern "C" {
-            fn dispatch_barrier_async(queue: &DispatchQueue, block: &dispatch_block_t);
+            fn dispatch_barrier_async(queue: &DispatchQueue, block: &DispatchBlock);
         }
         unsafe { dispatch_barrier_async(self, block) }
     }
@@ -1404,12 +1382,12 @@ impl DispatchQueue {
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_barrier_async_f")]
     #[inline]
-    pub unsafe fn barrier_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
+    pub unsafe fn barrier_async_f(&self, context: *mut c_void, work: DispatchFunction) {
         extern "C" {
             fn dispatch_barrier_async_f(
                 queue: &DispatchQueue,
                 context: *mut c_void,
-                work: dispatch_function_t,
+                work: DispatchFunction,
             );
         }
         unsafe { dispatch_barrier_async_f(self, context, work) }
@@ -1421,9 +1399,9 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_barrier_sync")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier_sync_with_block(&self, block: &dispatch_block_t) {
+    pub unsafe fn barrier_sync_with_block(&self, block: &DispatchBlock) {
         extern "C" {
-            fn dispatch_barrier_sync(queue: &DispatchQueue, block: &dispatch_block_t);
+            fn dispatch_barrier_sync(queue: &DispatchQueue, block: &DispatchBlock);
         }
         unsafe { dispatch_barrier_sync(self, block) }
     }
@@ -1456,12 +1434,12 @@ impl DispatchQueue {
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_barrier_sync_f")]
     #[inline]
-    pub unsafe fn barrier_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
+    pub unsafe fn barrier_sync_f(&self, context: *mut c_void, work: DispatchFunction) {
         extern "C" {
             fn dispatch_barrier_sync_f(
                 queue: &DispatchQueue,
                 context: *mut c_void,
-                work: dispatch_function_t,
+                work: DispatchFunction,
             );
         }
         unsafe { dispatch_barrier_sync_f(self, context, work) }
@@ -1473,9 +1451,9 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_barrier_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier_async_and_wait_with_block(&self, block: &dispatch_block_t) {
+    pub unsafe fn barrier_async_and_wait_with_block(&self, block: &DispatchBlock) {
         extern "C" {
-            fn dispatch_barrier_async_and_wait(queue: &DispatchQueue, block: &dispatch_block_t);
+            fn dispatch_barrier_async_and_wait(queue: &DispatchQueue, block: &DispatchBlock);
         }
         unsafe { dispatch_barrier_async_and_wait(self, block) }
     }
@@ -1509,12 +1487,12 @@ impl DispatchQueue {
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_barrier_async_and_wait_f")]
     #[inline]
-    pub unsafe fn barrier_async_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
+    pub unsafe fn barrier_async_and_wait_f(&self, context: *mut c_void, work: DispatchFunction) {
         extern "C" {
             fn dispatch_barrier_async_and_wait_f(
                 queue: &DispatchQueue,
                 context: *mut c_void,
-                work: dispatch_function_t,
+                work: DispatchFunction,
             );
         }
         unsafe { dispatch_barrier_async_and_wait_f(self, context, work) }
@@ -1557,14 +1535,14 @@ impl DispatchQueue {
         &self,
         key: NonNull<c_void>,
         context: *mut c_void,
-        destructor: dispatch_function_t,
+        destructor: DispatchFunction,
     ) {
         extern "C" {
             fn dispatch_queue_set_specific(
                 queue: &DispatchQueue,
                 key: NonNull<c_void>,
                 context: *mut c_void,
-                destructor: dispatch_function_t,
+                destructor: DispatchFunction,
             );
         }
         unsafe { dispatch_queue_set_specific(self, key, context, destructor) }
@@ -1799,13 +1777,14 @@ pub unsafe fn dispatch_allow_send_signals(preserve_signum: c_int) -> c_int {
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchblockflags?language=objc)
+#[doc(alias = "dispatch_block_flags_t")]
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct dispatch_block_flags_t(pub c_ulong);
+pub struct DispatchBlockFlags(pub c_ulong);
 bitflags::bitflags! {
-    impl dispatch_block_flags_t: c_ulong {
+    impl DispatchBlockFlags: c_ulong {
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -1867,7 +1846,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-        const DISPATCH_BLOCK_BARRIER = 0x1;
+        #[doc(alias = "DISPATCH_BLOCK_BARRIER")]
+        const Barrier = 0x1;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -1929,7 +1909,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-        const DISPATCH_BLOCK_DETACHED = 0x2;
+        #[doc(alias = "DISPATCH_BLOCK_DETACHED")]
+        const Detached = 0x2;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -1991,7 +1972,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-        const DISPATCH_BLOCK_ASSIGN_CURRENT = 0x4;
+        #[doc(alias = "DISPATCH_BLOCK_ASSIGN_CURRENT")]
+        const AssignCurrentContext = 0x4;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -2053,7 +2035,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-        const DISPATCH_BLOCK_NO_QOS_CLASS = 0x8;
+        #[doc(alias = "DISPATCH_BLOCK_NO_QOS_CLASS")]
+        const NoQoS = 0x8;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -2115,7 +2098,8 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-        const DISPATCH_BLOCK_INHERIT_QOS_CLASS = 0x10;
+        #[doc(alias = "DISPATCH_BLOCK_INHERIT_QOS_CLASS")]
+        const InheritQoS = 0x10;
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -2177,18 +2161,19 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-        const DISPATCH_BLOCK_ENFORCE_QOS_CLASS = 0x20;
+        #[doc(alias = "DISPATCH_BLOCK_ENFORCE_QOS_CLASS")]
+        const EnforceQoS = 0x20;
         const _ = !0;
     }
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl Encode for dispatch_block_flags_t {
+unsafe impl Encode for DispatchBlockFlags {
     const ENCODING: Encoding = Encoding::C_ULONG;
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for dispatch_block_flags_t {
+unsafe impl RefEncode for DispatchBlockFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -2241,14 +2226,14 @@ unsafe impl RefEncode for dispatch_block_flags_t {
 #[must_use]
 #[inline]
 pub fn dispatch_block_create(
-    flags: dispatch_block_flags_t,
-    block: &dispatch_block_t,
-) -> NonNull<dispatch_block_t> {
+    flags: DispatchBlockFlags,
+    block: &DispatchBlock,
+) -> NonNull<DispatchBlock> {
     extern "C" {
         fn dispatch_block_create(
-            flags: dispatch_block_flags_t,
-            block: &dispatch_block_t,
-        ) -> Option<NonNull<dispatch_block_t>>;
+            flags: DispatchBlockFlags,
+            block: &DispatchBlock,
+        ) -> Option<NonNull<DispatchBlock>>;
     }
     let ret = unsafe { dispatch_block_create(flags, block) };
     ret.expect("function was marked as returning non-null, but actually returned NULL")
@@ -2319,18 +2304,18 @@ pub fn dispatch_block_create(
 #[must_use]
 #[inline]
 pub fn dispatch_block_create_with_qos_class(
-    flags: dispatch_block_flags_t,
+    flags: DispatchBlockFlags,
     qos_class: DispatchQoS,
     relative_priority: c_int,
-    block: &dispatch_block_t,
-) -> NonNull<dispatch_block_t> {
+    block: &DispatchBlock,
+) -> NonNull<DispatchBlock> {
     extern "C" {
         fn dispatch_block_create_with_qos_class(
-            flags: dispatch_block_flags_t,
+            flags: DispatchBlockFlags,
             qos_class: DispatchQoS,
             relative_priority: c_int,
-            block: &dispatch_block_t,
-        ) -> Option<NonNull<dispatch_block_t>>;
+            block: &DispatchBlock,
+        ) -> Option<NonNull<DispatchBlock>>;
     }
     let ret =
         unsafe { dispatch_block_create_with_qos_class(flags, qos_class, relative_priority, block) };
@@ -2359,9 +2344,9 @@ pub fn dispatch_block_create_with_qos_class(
 /// Parameter `block`: The block to create the temporary block object from.
 #[cfg(feature = "block2")]
 #[inline]
-pub fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t) {
+pub fn dispatch_block_perform(flags: DispatchBlockFlags, block: &DispatchBlock) {
     extern "C" {
-        fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t);
+        fn dispatch_block_perform(flags: DispatchBlockFlags, block: &DispatchBlock);
     }
     unsafe { dispatch_block_perform(flags, block) }
 }
@@ -2408,9 +2393,9 @@ pub fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_bl
 /// specified timeout) or non-zero on error (i.e. timed out).
 #[cfg(feature = "block2")]
 #[inline]
-pub fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize {
+pub fn dispatch_block_wait(block: &DispatchBlock, timeout: DispatchTime) -> isize {
     extern "C" {
-        fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize;
+        fn dispatch_block_wait(block: &DispatchBlock, timeout: DispatchTime) -> isize;
     }
     unsafe { dispatch_block_wait(block, timeout) }
 }
@@ -2453,15 +2438,15 @@ pub fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> i
 #[cfg(feature = "block2")]
 #[inline]
 pub unsafe fn dispatch_block_notify(
-    block: &dispatch_block_t,
+    block: &DispatchBlock,
     queue: &DispatchQueue,
-    notification_block: &dispatch_block_t,
+    notification_block: &DispatchBlock,
 ) {
     extern "C" {
         fn dispatch_block_notify(
-            block: &dispatch_block_t,
+            block: &DispatchBlock,
             queue: &DispatchQueue,
-            notification_block: &dispatch_block_t,
+            notification_block: &DispatchBlock,
         );
     }
     unsafe { dispatch_block_notify(block, queue, notification_block) }
@@ -2490,9 +2475,9 @@ pub unsafe fn dispatch_block_notify(
 /// dispatch_block_create* functions is undefined.
 #[cfg(feature = "block2")]
 #[inline]
-pub fn dispatch_block_cancel(block: &dispatch_block_t) {
+pub fn dispatch_block_cancel(block: &DispatchBlock) {
     extern "C" {
-        fn dispatch_block_cancel(block: &dispatch_block_t);
+        fn dispatch_block_cancel(block: &DispatchBlock);
     }
     unsafe { dispatch_block_cancel(block) }
 }
@@ -2509,9 +2494,9 @@ pub fn dispatch_block_cancel(block: &dispatch_block_t) {
 #[cfg(feature = "block2")]
 #[must_use]
 #[inline]
-pub fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize {
+pub fn dispatch_block_testcancel(block: &DispatchBlock) -> isize {
     extern "C" {
-        fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize;
+        fn dispatch_block_testcancel(block: &DispatchBlock) -> isize;
     }
     unsafe { dispatch_block_testcancel(block) }
 }
@@ -2535,64 +2520,86 @@ unsafe impl Send for DispatchSource {}
 
 unsafe impl Sync for DispatchSource {}
 
+/// Constants of this type represent the class of low-level system object that
+/// is being monitored by the dispatch source. Constants of this type are
+/// passed as a parameter to dispatch_source_create() and determine how the
+/// handle argument is interpreted (i.e. as a file descriptor, mach port,
+/// signal number, process identifier, etc.), and how the mask argument is
+/// interpreted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchsourcetype?language=objc)
+#[doc(alias = "dispatch_source_type_t")]
+#[repr(C)]
+#[derive(Debug)]
+pub struct DispatchSourceType {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for DispatchSourceType {
+    const ENCODING_REF: Encoding =
+        Encoding::Pointer(&Encoding::Struct("dispatch_source_type_s", &[]));
+}
+
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_data_add?language=objc)
-    pub static _dispatch_source_type_data_add: dispatch_source_type_s;
+    pub static _dispatch_source_type_data_add: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_data_or?language=objc)
-    pub static _dispatch_source_type_data_or: dispatch_source_type_s;
+    pub static _dispatch_source_type_data_or: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_data_replace?language=objc)
-    pub static _dispatch_source_type_data_replace: dispatch_source_type_s;
+    pub static _dispatch_source_type_data_replace: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_mach_send?language=objc)
-    pub static _dispatch_source_type_mach_send: dispatch_source_type_s;
+    pub static _dispatch_source_type_mach_send: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_mach_recv?language=objc)
-    pub static _dispatch_source_type_mach_recv: dispatch_source_type_s;
+    pub static _dispatch_source_type_mach_recv: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_memorypressure?language=objc)
-    pub static _dispatch_source_type_memorypressure: dispatch_source_type_s;
+    pub static _dispatch_source_type_memorypressure: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_proc?language=objc)
-    pub static _dispatch_source_type_proc: dispatch_source_type_s;
+    pub static _dispatch_source_type_proc: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_read?language=objc)
-    pub static _dispatch_source_type_read: dispatch_source_type_s;
+    pub static _dispatch_source_type_read: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_signal?language=objc)
-    pub static _dispatch_source_type_signal: dispatch_source_type_s;
+    pub static _dispatch_source_type_signal: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_timer?language=objc)
-    pub static _dispatch_source_type_timer: dispatch_source_type_s;
+    pub static _dispatch_source_type_timer: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_vnode?language=objc)
-    pub static _dispatch_source_type_vnode: dispatch_source_type_s;
+    pub static _dispatch_source_type_vnode: DispatchSourceType;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_write?language=objc)
-    pub static _dispatch_source_type_write: dispatch_source_type_s;
+    pub static _dispatch_source_type_write: DispatchSourceType;
 }
 
 impl DispatchSource {
@@ -2640,20 +2647,19 @@ impl DispatchSource {
     ///
     /// # Safety
     ///
-    /// - `type` must be a valid pointer.
-    /// - `queue` possibly has additional threading requirements.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_source_create")]
     #[must_use]
     #[inline]
     pub unsafe fn new(
-        r#type: dispatch_source_type_t,
+        r#type: &DispatchSourceType,
         handle: usize,
         mask: usize,
         queue: Option<&DispatchQueue>,
     ) -> DispatchRetained<DispatchSource> {
         extern "C" {
             fn dispatch_source_create(
-                r#type: dispatch_source_type_t,
+                r#type: &DispatchSourceType,
                 handle: usize,
                 mask: usize,
                 queue: Option<&DispatchQueue>,
@@ -2668,11 +2674,11 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_set_event_handler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_event_handler_with_block(&self, handler: Option<&dispatch_block_t>) {
+    pub unsafe fn set_event_handler_with_block(&self, handler: Option<&DispatchBlock>) {
         extern "C" {
             fn dispatch_source_set_event_handler(
                 source: &DispatchSource,
-                handler: Option<&dispatch_block_t>,
+                handler: Option<&DispatchBlock>,
             );
         }
         unsafe { dispatch_source_set_event_handler(self, handler) }
@@ -2694,11 +2700,11 @@ impl DispatchSource {
     /// `handler` must be implemented correctly.
     #[doc(alias = "dispatch_source_set_event_handler_f")]
     #[inline]
-    pub unsafe fn set_event_handler_f(&self, handler: dispatch_function_t) {
+    pub unsafe fn set_event_handler_f(&self, handler: DispatchFunction) {
         extern "C" {
             fn dispatch_source_set_event_handler_f(
                 source: &DispatchSource,
-                handler: dispatch_function_t,
+                handler: DispatchFunction,
             );
         }
         unsafe { dispatch_source_set_event_handler_f(self, handler) }
@@ -2707,11 +2713,11 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_set_cancel_handler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_cancel_handler_with_block(&self, handler: Option<&dispatch_block_t>) {
+    pub unsafe fn set_cancel_handler_with_block(&self, handler: Option<&DispatchBlock>) {
         extern "C" {
             fn dispatch_source_set_cancel_handler(
                 source: &DispatchSource,
-                handler: Option<&dispatch_block_t>,
+                handler: Option<&DispatchBlock>,
             );
         }
         unsafe { dispatch_source_set_cancel_handler(self, handler) }
@@ -2736,11 +2742,11 @@ impl DispatchSource {
     /// `handler` must be implemented correctly.
     #[doc(alias = "dispatch_source_set_cancel_handler_f")]
     #[inline]
-    pub unsafe fn set_cancel_handler_f(&self, handler: dispatch_function_t) {
+    pub unsafe fn set_cancel_handler_f(&self, handler: DispatchFunction) {
         extern "C" {
             fn dispatch_source_set_cancel_handler_f(
                 source: &DispatchSource,
-                handler: dispatch_function_t,
+                handler: DispatchFunction,
             );
         }
         unsafe { dispatch_source_set_cancel_handler_f(self, handler) }
@@ -2970,11 +2976,11 @@ impl DispatchSource {
     #[doc(alias = "dispatch_source_set_registration_handler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_registration_handler_with_block(&self, handler: Option<&dispatch_block_t>) {
+    pub unsafe fn set_registration_handler_with_block(&self, handler: Option<&DispatchBlock>) {
         extern "C" {
             fn dispatch_source_set_registration_handler(
                 source: &DispatchSource,
-                handler: Option<&dispatch_block_t>,
+                handler: Option<&DispatchBlock>,
             );
         }
         unsafe { dispatch_source_set_registration_handler(self, handler) }
@@ -2999,11 +3005,11 @@ impl DispatchSource {
     /// `handler` must be implemented correctly.
     #[doc(alias = "dispatch_source_set_registration_handler_f")]
     #[inline]
-    pub unsafe fn set_registration_handler_f(&self, handler: dispatch_function_t) {
+    pub unsafe fn set_registration_handler_f(&self, handler: DispatchFunction) {
         extern "C" {
             fn dispatch_source_set_registration_handler_f(
                 source: &DispatchSource,
-                handler: dispatch_function_t,
+                handler: DispatchFunction,
             );
         }
         unsafe { dispatch_source_set_registration_handler_f(self, handler) }
@@ -3057,12 +3063,12 @@ impl DispatchGroup {
     #[doc(alias = "dispatch_group_async")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_async_with_block(&self, queue: &DispatchQueue, block: &dispatch_block_t) {
+    pub unsafe fn exec_async_with_block(&self, queue: &DispatchQueue, block: &DispatchBlock) {
         extern "C" {
             fn dispatch_group_async(
                 group: &DispatchGroup,
                 queue: &DispatchQueue,
-                block: &dispatch_block_t,
+                block: &DispatchBlock,
             );
         }
         unsafe { dispatch_group_async(self, queue, block) }
@@ -3101,14 +3107,14 @@ impl DispatchGroup {
         &self,
         queue: &DispatchQueue,
         context: *mut c_void,
-        work: dispatch_function_t,
+        work: DispatchFunction,
     ) {
         extern "C" {
             fn dispatch_group_async_f(
                 group: &DispatchGroup,
                 queue: &DispatchQueue,
                 context: *mut c_void,
-                work: dispatch_function_t,
+                work: DispatchFunction,
             );
         }
         unsafe { dispatch_group_async_f(self, queue, context, work) }
@@ -3158,12 +3164,12 @@ impl DispatchGroup {
     #[doc(alias = "dispatch_group_notify")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn notify_with_block(&self, queue: &DispatchQueue, block: &dispatch_block_t) {
+    pub unsafe fn notify_with_block(&self, queue: &DispatchQueue, block: &DispatchBlock) {
         extern "C" {
             fn dispatch_group_notify(
                 group: &DispatchGroup,
                 queue: &DispatchQueue,
-                block: &dispatch_block_t,
+                block: &DispatchBlock,
             );
         }
         unsafe { dispatch_group_notify(self, queue, block) }
@@ -3198,14 +3204,14 @@ impl DispatchGroup {
         &self,
         queue: &DispatchQueue,
         context: *mut c_void,
-        work: dispatch_function_t,
+        work: DispatchFunction,
     ) {
         extern "C" {
             fn dispatch_group_notify_f(
                 group: &DispatchGroup,
                 queue: &DispatchQueue,
                 context: *mut c_void,
-                work: dispatch_function_t,
+                work: DispatchFunction,
             );
         }
         unsafe { dispatch_group_notify_f(self, queue, context, work) }
@@ -3344,12 +3350,6 @@ impl DispatchSemaphore {
     }
 }
 
-/// A predicate for use with dispatch_once(). It must be initialized to zero.
-/// Note: static and global variables default to zero.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_once_t?language=objc)
-pub type dispatch_once_t = isize;
-
 impl DispatchOnce {
     /// # Safety
     ///
@@ -3357,9 +3357,9 @@ impl DispatchOnce {
     #[doc(alias = "dispatch_once")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn once_with_block(predicate: NonNull<dispatch_once_t>, block: &dispatch_block_t) {
+    pub unsafe fn once_with_block(predicate: NonNull<DispatchOnce>, block: &DispatchBlock) {
         extern "C" {
-            fn dispatch_once(predicate: NonNull<dispatch_once_t>, block: &dispatch_block_t);
+            fn dispatch_once(predicate: NonNull<DispatchOnce>, block: &DispatchBlock);
         }
         unsafe { dispatch_once(predicate, block) }
     }
@@ -3372,15 +3372,15 @@ impl DispatchOnce {
     #[doc(alias = "dispatch_once_f")]
     #[inline]
     pub unsafe fn once_f(
-        predicate: NonNull<dispatch_once_t>,
+        predicate: NonNull<DispatchOnce>,
         context: *mut c_void,
-        function: dispatch_function_t,
+        function: DispatchFunction,
     ) {
         extern "C" {
             fn dispatch_once_f(
-                predicate: NonNull<dispatch_once_t>,
+                predicate: NonNull<DispatchOnce>,
                 context: *mut c_void,
-                function: dispatch_function_t,
+                function: DispatchFunction,
             );
         }
         unsafe { dispatch_once_f(predicate, context, function) }
@@ -3409,13 +3409,13 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_destructor_free?language=objc)
     #[cfg(feature = "block2")]
-    pub static _dispatch_data_destructor_free: &'static dispatch_block_t;
+    pub static _dispatch_data_destructor_free: &'static DispatchBlock;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_destructor_munmap?language=objc)
     #[cfg(feature = "block2")]
-    pub static _dispatch_data_destructor_munmap: &'static dispatch_block_t;
+    pub static _dispatch_data_destructor_munmap: &'static DispatchBlock;
 }
 
 impl DispatchData {
@@ -3455,14 +3455,14 @@ impl DispatchData {
         buffer: NonNull<c_void>,
         size: usize,
         queue: Option<&DispatchQueue>,
-        destructor: Option<&dispatch_block_t>,
+        destructor: Option<&DispatchBlock>,
     ) -> DispatchRetained<DispatchData> {
         extern "C" {
             fn dispatch_data_create(
                 buffer: NonNull<c_void>,
                 size: usize,
                 queue: Option<&DispatchQueue>,
-                destructor: Option<&dispatch_block_t>,
+                destructor: Option<&DispatchBlock>,
             ) -> Option<NonNull<DispatchData>>;
         }
         let ret = unsafe { dispatch_data_create(buffer, size, queue, destructor) };
@@ -3611,9 +3611,10 @@ impl DispatchData {
 ///
 /// Returns: A Boolean indicating whether traversal should continue.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_applier_t?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchdataapplier?language=objc)
+#[doc(alias = "dispatch_data_applier_t")]
 #[cfg(feature = "block2")]
-pub type dispatch_data_applier_t =
+pub type DispatchDataApplier =
     block2::Block<'static, fn(NonNull<DispatchData>, usize, NonNull<c_void>, usize) -> bool>;
 
 impl DispatchData {
@@ -3640,9 +3641,9 @@ impl DispatchData {
     #[doc(alias = "dispatch_data_apply")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub fn apply(&self, applier: &dispatch_data_applier_t) -> bool {
+    pub fn apply(&self, applier: &DispatchDataApplier) -> bool {
         extern "C" {
-            fn dispatch_data_apply(data: &DispatchData, applier: &dispatch_data_applier_t) -> bool;
+            fn dispatch_data_apply(data: &DispatchData, applier: &DispatchDataApplier) -> bool;
         }
         unsafe { dispatch_data_apply(self, applier) }
     }
@@ -3684,125 +3685,126 @@ impl DispatchData {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_fd_t?language=objc)
-pub type dispatch_fd_t = c_int;
-
-/// Schedule a read operation for asynchronous execution on the specified file
-/// descriptor. The specified handler is enqueued with the data read from the
-/// file descriptor when the operation has completed or an error occurs.
-///
-/// The data object passed to the handler will be automatically released by the
-/// system when the handler returns. It is the responsibility of the application
-/// to retain, concatenate or copy the data object if it is needed after the
-/// handler returns.
-///
-/// The data object passed to the handler will only contain as much data as is
-/// currently available from the file descriptor (up to the specified length).
-///
-/// If an unrecoverable error occurs on the file descriptor, the handler will be
-/// enqueued with the appropriate error code along with a data object of any data
-/// that could be read successfully.
-///
-/// An invocation of the handler with an error code of zero and an empty data
-/// object indicates that EOF was reached.
-///
-/// The system takes control of the file descriptor until the handler is
-/// enqueued, and during this time file descriptor flags such as O_NONBLOCK will
-/// be modified by the system on behalf of the application. It is an error for
-/// the application to modify a file descriptor directly while it is under the
-/// control of the system, but it may create additional dispatch I/O convenience
-/// operations or dispatch I/O channels associated with that file descriptor.
-///
-///
-/// Parameter `fd`: The file descriptor from which to read the data.
-///
-/// Parameter `length`: The length of data to read from the file descriptor,
-/// or SIZE_MAX to indicate that all of the data currently
-/// available from the file descriptor should be read.
-///
-/// Parameter `queue`: The dispatch queue to which the handler should be
-/// submitted.
-///
-/// Parameter `handler`: The handler to enqueue when data is ready to be
-/// delivered.
-/// param data    The data read from the file descriptor.
-/// param error    An errno condition for the read operation or
-/// zero if the read was successful.
-///
-/// # Safety
-///
-/// `queue` possibly has additional threading requirements.
-#[cfg(feature = "block2")]
-#[inline]
-pub unsafe fn dispatch_read(
-    fd: dispatch_fd_t,
-    length: usize,
-    queue: &DispatchQueue,
-    handler: &block2::Block<'static, fn(NonNull<DispatchData>, c_int)>,
-) {
-    extern "C" {
-        fn dispatch_read(
-            fd: dispatch_fd_t,
-            length: usize,
-            queue: &DispatchQueue,
-            handler: &block2::Block<'static, fn(NonNull<DispatchData>, c_int)>,
-        );
+impl DispatchIO {
+    /// Schedule a read operation for asynchronous execution on the specified file
+    /// descriptor. The specified handler is enqueued with the data read from the
+    /// file descriptor when the operation has completed or an error occurs.
+    ///
+    /// The data object passed to the handler will be automatically released by the
+    /// system when the handler returns. It is the responsibility of the application
+    /// to retain, concatenate or copy the data object if it is needed after the
+    /// handler returns.
+    ///
+    /// The data object passed to the handler will only contain as much data as is
+    /// currently available from the file descriptor (up to the specified length).
+    ///
+    /// If an unrecoverable error occurs on the file descriptor, the handler will be
+    /// enqueued with the appropriate error code along with a data object of any data
+    /// that could be read successfully.
+    ///
+    /// An invocation of the handler with an error code of zero and an empty data
+    /// object indicates that EOF was reached.
+    ///
+    /// The system takes control of the file descriptor until the handler is
+    /// enqueued, and during this time file descriptor flags such as O_NONBLOCK will
+    /// be modified by the system on behalf of the application. It is an error for
+    /// the application to modify a file descriptor directly while it is under the
+    /// control of the system, but it may create additional dispatch I/O convenience
+    /// operations or dispatch I/O channels associated with that file descriptor.
+    ///
+    ///
+    /// Parameter `fd`: The file descriptor from which to read the data.
+    ///
+    /// Parameter `length`: The length of data to read from the file descriptor,
+    /// or SIZE_MAX to indicate that all of the data currently
+    /// available from the file descriptor should be read.
+    ///
+    /// Parameter `queue`: The dispatch queue to which the handler should be
+    /// submitted.
+    ///
+    /// Parameter `handler`: The handler to enqueue when data is ready to be
+    /// delivered.
+    /// param data    The data read from the file descriptor.
+    /// param error    An errno condition for the read operation or
+    /// zero if the read was successful.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
+    #[doc(alias = "dispatch_read")]
+    #[cfg(feature = "block2")]
+    #[inline]
+    pub unsafe fn read_from_file_descriptor(
+        fd: DispatchFd,
+        length: usize,
+        queue: &DispatchQueue,
+        handler: &block2::Block<'static, fn(NonNull<DispatchData>, c_int)>,
+    ) {
+        extern "C" {
+            fn dispatch_read(
+                fd: DispatchFd,
+                length: usize,
+                queue: &DispatchQueue,
+                handler: &block2::Block<'static, fn(NonNull<DispatchData>, c_int)>,
+            );
+        }
+        unsafe { dispatch_read(fd, length, queue, handler) }
     }
-    unsafe { dispatch_read(fd, length, queue, handler) }
-}
 
-/// Schedule a write operation for asynchronous execution on the specified file
-/// descriptor. The specified handler is enqueued when the operation has
-/// completed or an error occurs.
-///
-/// If an unrecoverable error occurs on the file descriptor, the handler will be
-/// enqueued with the appropriate error code along with the data that could not
-/// be successfully written.
-///
-/// An invocation of the handler with an error code of zero indicates that the
-/// data was fully written to the channel.
-///
-/// The system takes control of the file descriptor until the handler is
-/// enqueued, and during this time file descriptor flags such as O_NONBLOCK will
-/// be modified by the system on behalf of the application. It is an error for
-/// the application to modify a file descriptor directly while it is under the
-/// control of the system, but it may create additional dispatch I/O convenience
-/// operations or dispatch I/O channels associated with that file descriptor.
-///
-///
-/// Parameter `fd`: The file descriptor to which to write the data.
-///
-/// Parameter `data`: The data object to write to the file descriptor.
-///
-/// Parameter `queue`: The dispatch queue to which the handler should be
-/// submitted.
-///
-/// Parameter `handler`: The handler to enqueue when the data has been written.
-/// param data    The data that could not be written to the I/O
-/// channel, or NULL.
-/// param error    An errno condition for the write operation or
-/// zero if the write was successful.
-///
-/// # Safety
-///
-/// `queue` possibly has additional threading requirements.
-#[cfg(feature = "block2")]
-#[inline]
-pub unsafe fn dispatch_write(
-    fd: dispatch_fd_t,
-    data: &DispatchData,
-    queue: &DispatchQueue,
-    handler: &block2::Block<'static, fn(*mut DispatchData, c_int)>,
-) {
-    extern "C" {
-        fn dispatch_write(
-            fd: dispatch_fd_t,
-            data: &DispatchData,
-            queue: &DispatchQueue,
-            handler: &block2::Block<'static, fn(*mut DispatchData, c_int)>,
-        );
+    /// Schedule a write operation for asynchronous execution on the specified file
+    /// descriptor. The specified handler is enqueued when the operation has
+    /// completed or an error occurs.
+    ///
+    /// If an unrecoverable error occurs on the file descriptor, the handler will be
+    /// enqueued with the appropriate error code along with the data that could not
+    /// be successfully written.
+    ///
+    /// An invocation of the handler with an error code of zero indicates that the
+    /// data was fully written to the channel.
+    ///
+    /// The system takes control of the file descriptor until the handler is
+    /// enqueued, and during this time file descriptor flags such as O_NONBLOCK will
+    /// be modified by the system on behalf of the application. It is an error for
+    /// the application to modify a file descriptor directly while it is under the
+    /// control of the system, but it may create additional dispatch I/O convenience
+    /// operations or dispatch I/O channels associated with that file descriptor.
+    ///
+    ///
+    /// Parameter `fd`: The file descriptor to which to write the data.
+    ///
+    /// Parameter `data`: The data object to write to the file descriptor.
+    ///
+    /// Parameter `queue`: The dispatch queue to which the handler should be
+    /// submitted.
+    ///
+    /// Parameter `handler`: The handler to enqueue when the data has been written.
+    /// param data    The data that could not be written to the I/O
+    /// channel, or NULL.
+    /// param error    An errno condition for the write operation or
+    /// zero if the write was successful.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
+    #[doc(alias = "dispatch_write")]
+    #[cfg(feature = "block2")]
+    #[inline]
+    pub unsafe fn write_to_file_descriptor(
+        fd: DispatchFd,
+        data: &DispatchData,
+        queue: &DispatchQueue,
+        handler: &block2::Block<'static, fn(*mut DispatchData, c_int)>,
+    ) {
+        extern "C" {
+            fn dispatch_write(
+                fd: DispatchFd,
+                data: &DispatchData,
+                queue: &DispatchQueue,
+                handler: &block2::Block<'static, fn(*mut DispatchData, c_int)>,
+            );
+        }
+        unsafe { dispatch_write(fd, data, queue, handler) }
     }
-    unsafe { dispatch_write(fd, data, queue, handler) }
 }
 
 /// A dispatch I/O channel represents the asynchronous I/O policy applied to a
@@ -3863,14 +3865,14 @@ impl DispatchIO {
     #[inline]
     pub unsafe fn new(
         r#type: DispatchIOStreamType,
-        fd: dispatch_fd_t,
+        fd: DispatchFd,
         queue: &DispatchQueue,
         cleanup_handler: &block2::Block<'static, fn(c_int)>,
     ) -> DispatchRetained<DispatchIO> {
         extern "C" {
             fn dispatch_io_create(
                 r#type: DispatchIOStreamType,
-                fd: dispatch_fd_t,
+                fd: DispatchFd,
                 queue: &DispatchQueue,
                 cleanup_handler: &block2::Block<'static, fn(c_int)>,
             ) -> Option<NonNull<DispatchIO>>;
@@ -4018,9 +4020,10 @@ impl DispatchIO {
 ///
 /// Parameter `error`: An errno condition for the operation.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_handler_t?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchiohandler?language=objc)
+#[doc(alias = "dispatch_io_handler_t")]
 #[cfg(feature = "block2")]
-pub type dispatch_io_handler_t = block2::Block<'static, fn(bool, *mut DispatchData, c_int)>;
+pub type DispatchIOHandler = block2::Block<'static, fn(bool, *mut DispatchData, c_int)>;
 
 impl DispatchIO {
     /// Schedule a read operation for asynchronous execution on the specified I/O
@@ -4079,7 +4082,7 @@ impl DispatchIO {
         offset: libc::off_t,
         length: usize,
         queue: &DispatchQueue,
-        io_handler: &dispatch_io_handler_t,
+        io_handler: &DispatchIOHandler,
     ) {
         extern "C" {
             fn dispatch_io_read(
@@ -4087,7 +4090,7 @@ impl DispatchIO {
                 offset: libc::off_t,
                 length: usize,
                 queue: &DispatchQueue,
-                io_handler: &dispatch_io_handler_t,
+                io_handler: &DispatchIOHandler,
             );
         }
         unsafe { dispatch_io_read(self, offset, length, queue, io_handler) }
@@ -4150,7 +4153,7 @@ impl DispatchIO {
         offset: libc::off_t,
         data: &DispatchData,
         queue: &DispatchQueue,
-        io_handler: &dispatch_io_handler_t,
+        io_handler: &DispatchIOHandler,
     ) {
         extern "C" {
             fn dispatch_io_write(
@@ -4158,7 +4161,7 @@ impl DispatchIO {
                 offset: libc::off_t,
                 data: &DispatchData,
                 queue: &DispatchQueue,
-                io_handler: &dispatch_io_handler_t,
+                io_handler: &DispatchIOHandler,
             );
         }
         unsafe { dispatch_io_write(self, offset, data, queue, io_handler) }
@@ -4212,9 +4215,9 @@ impl DispatchIO {
     #[doc(alias = "dispatch_io_barrier")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub fn barrier(&self, barrier: &dispatch_block_t) {
+    pub fn barrier(&self, barrier: &DispatchBlock) {
         extern "C" {
-            fn dispatch_io_barrier(channel: &DispatchIO, barrier: &dispatch_block_t);
+            fn dispatch_io_barrier(channel: &DispatchIO, barrier: &DispatchBlock);
         }
         unsafe { dispatch_io_barrier(self, barrier) }
     }
@@ -4235,9 +4238,9 @@ impl DispatchIO {
     #[doc(alias = "dispatch_io_get_descriptor")]
     #[must_use]
     #[inline]
-    pub fn descriptor(&self) -> dispatch_fd_t {
+    pub fn descriptor(&self) -> DispatchFd {
         extern "C" {
-            fn dispatch_io_get_descriptor(channel: &DispatchIO) -> dispatch_fd_t;
+            fn dispatch_io_get_descriptor(channel: &DispatchIO) -> DispatchFd;
         }
         unsafe { dispatch_io_get_descriptor(self) }
     }

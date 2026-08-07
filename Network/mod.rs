@@ -5320,9 +5320,9 @@ impl NWConnection {
     #[doc(alias = "nw_connection_batch")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub fn batch(&self, batch_block: &dispatch_block_t) {
+    pub fn batch(&self, batch_block: &DispatchBlock) {
         extern "C-unwind" {
-            fn nw_connection_batch(connection: &NWConnection, batch_block: &dispatch_block_t);
+            fn nw_connection_batch(connection: &NWConnection, batch_block: &DispatchBlock);
         }
         unsafe { nw_connection_batch(self, batch_block) }
     }

@@ -705,7 +705,7 @@ impl AVAssetWriterInput {
         pub unsafe fn respondToEachPassDescriptionOnQueue_usingBlock(
             &self,
             queue: &DispatchQueue,
-            block: &dispatch_block_t,
+            block: &DispatchBlock,
         );
 
         /// Instructs the receiver to analyze the media data that has been appended and determine whether the results could be improved by re-encoding certain segments.
