@@ -21,12 +21,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionDataRecordError(pub NSInteger);
 impl WKWebExtensionDataRecordError {
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionDataRecordErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// Indicates a failure occurred when either deleting or calculating local storage.
     #[doc(alias = "WKWebExtensionDataRecordErrorLocalStorageFailed")]
     pub const LocalStorageFailed: Self = Self(2);
+    /// Indicates a failure occurred when either deleting or calculating session storage.
     #[doc(alias = "WKWebExtensionDataRecordErrorSessionStorageFailed")]
     pub const SessionStorageFailed: Self = Self(3);
+    /// Indicates a failure occurred when either deleting or calculating synchronized storage.
     #[doc(alias = "WKWebExtensionDataRecordErrorSynchronizedStorageFailed")]
     pub const SynchronizedStorageFailed: Self = Self(4);
 }

@@ -40,10 +40,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MessageComposeResult(pub NSInteger);
 impl MessageComposeResult {
+    /// User canceled the composition.
     #[doc(alias = "MessageComposeResultCancelled")]
     pub const Cancelled: Self = Self(0);
+    /// User successfully sent/queued the message.
     #[doc(alias = "MessageComposeResultSent")]
     pub const Sent: Self = Self(1);
+    /// User's attempt to save or send was unsuccessful.
     #[doc(alias = "MessageComposeResultFailed")]
     pub const Failed: Self = Self(2);
 }

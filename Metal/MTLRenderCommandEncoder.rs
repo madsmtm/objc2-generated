@@ -332,8 +332,10 @@ unsafe impl RefEncode for MTLTriangleTessellationFactorsHalf {
 pub struct MTLRenderStages(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLRenderStages: NSUInteger {
+/// All vertex work prior to rasterization has completed.
         #[doc(alias = "MTLRenderStageVertex")]
         const Vertex = 1<<0;
+/// All rendering work has completed.
         #[doc(alias = "MTLRenderStageFragment")]
         const Fragment = 1<<1;
         #[doc(alias = "MTLRenderStageTile")]

@@ -518,27 +518,87 @@ pub const kAUNBandEQParam_Gain: AudioUnitParameterID = 4000;
 #[cfg(feature = "AUComponent")]
 pub const kAUNBandEQParam_Bandwidth: AudioUnitParameterID = 5000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_parametric?language=objc)
+/// Parametric filter based on Butterworth analog prototype. Uses parameterization where
+/// the bandwidth is specifed as the relationship of the upper bandedge frequency to the
+/// lower bandedge frequency in octaves, where the upper and lower bandedge frequencies are
+/// the respective frequencies above and below the center frequency at which the gain is
+/// equal to half the peak gain.
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (center frequency)
+/// - kAUNBandEQParam_Gain (peak gain)
+/// - kAUNBandEQParam_Bandwidth
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_parametric?language=objc)
 pub const kAUNBandEQFilterType_Parametric: c_long = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_2ndorderbutterworthlowpass?language=objc)
+/// Simple Butterworth 2nd order low pass filter
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (-3 dB cutoff frequency)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_2ndorderbutterworthlowpass?language=objc)
 pub const kAUNBandEQFilterType_2ndOrderButterworthLowPass: c_long = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_2ndorderbutterworthhighpass?language=objc)
+/// Simple Butterworth 2nd order high pass filter
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (-3 dB cutoff frequency)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_2ndorderbutterworthhighpass?language=objc)
 pub const kAUNBandEQFilterType_2ndOrderButterworthHighPass: c_long = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_resonantlowpass?language=objc)
+/// Low pass filter with resonance support (via bandwidth parameter)
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (-3 dB cutoff frequency)
+/// - kAUNBandEQParam_Bandwidth
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_resonantlowpass?language=objc)
 pub const kAUNBandEQFilterType_ResonantLowPass: c_long = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_resonanthighpass?language=objc)
+/// High pass filter with resonance support (via bandwidth parameter)
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (-3 dB cutoff frequency)
+/// - kAUNBandEQParam_Bandwidth
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_resonanthighpass?language=objc)
 pub const kAUNBandEQFilterType_ResonantHighPass: c_long = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_bandpass?language=objc)
+/// Band pass filter
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (center frequency)
+/// - kAUNBandEQParam_Bandwidth
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_bandpass?language=objc)
 pub const kAUNBandEQFilterType_BandPass: c_long = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_bandstop?language=objc)
+/// Band stop filter (aka "notch filter")
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (center frequency)
+/// - kAUNBandEQParam_Bandwidth
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_bandstop?language=objc)
 pub const kAUNBandEQFilterType_BandStop: c_long = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_lowshelf?language=objc)
+/// Low shelf filter
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (center frequency)
+/// - kAUNBandEQParam_Gain (shelf gain)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_lowshelf?language=objc)
 pub const kAUNBandEQFilterType_LowShelf: c_long = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_highshelf?language=objc)
+/// High shelf filter
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (center frequency)
+/// - kAUNBandEQParam_Gain (shelf gain)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_highshelf?language=objc)
 pub const kAUNBandEQFilterType_HighShelf: c_long = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_resonantlowshelf?language=objc)
+/// Low shelf filter with resonance support (via bandwidth parameter)
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (center frequency)
+/// - kAUNBandEQParam_Gain (shelf gain)
+/// - kAUNBandEQParam_Bandwidth
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_resonantlowshelf?language=objc)
 pub const kAUNBandEQFilterType_ResonantLowShelf: c_long = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_resonanthighshelf?language=objc)
+/// High shelf filter with resonance support (via bandwidth parameter)
+/// Applicable parameters:
+/// - kAUNBandEQParam_Frequency (center frequency)
+/// - kAUNBandEQParam_Gain (shelf gain)
+/// - kAUNBandEQParam_Bandwidth
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqfiltertype_resonanthighshelf?language=objc)
 pub const kAUNBandEQFilterType_ResonantHighShelf: c_long = 10;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/knumaunbandeqfiltertypes?language=objc)
 pub const kNumAUNBandEQFilterTypes: c_long = 11;
@@ -569,9 +629,13 @@ pub const kAUSoundIsolationParam_WetDryMixPercent: AudioUnitParameterID = 0;
 #[cfg(feature = "AUComponent")]
 pub const kAUSoundIsolationParam_SoundToIsolate: AudioUnitParameterID = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausoundisolationsoundtype_highqualityvoice?language=objc)
+/// Isolate voice signal from the input signal using high quality voice isolation model
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausoundisolationsoundtype_highqualityvoice?language=objc)
 pub const kAUSoundIsolationSoundType_HighQualityVoice: c_long = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausoundisolationsoundtype_voice?language=objc)
+/// Isolate voice signal from the input signal using standard voice isolation model (default)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausoundisolationsoundtype_voice?language=objc)
 pub const kAUSoundIsolationSoundType_Voice: c_long = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauaudiomixparameter_style?language=objc)
@@ -583,60 +647,40 @@ pub const kAUAudioMixParameter_RemixAmount: AudioUnitParameterID = 1;
 
 /// Constants available as values for parameter kAUAudioMixParameter_Style.
 ///
-///
-/// Cinematic rendering style (default)
-///
-///
-/// Studio rendering style
-///
-///
-/// In-Frame rendering style
-///
-///
-/// Cinematic rendering style - background only
-///
-///
-/// Cinematic rendering style - foreground only
-///
-///
-/// Studio rendering style - foreground only
-///
-///
-/// In-Frame rendering style - foreground only
-///
-///
-/// Standard rendering style
-///
-///
-/// Studio rendering style - background only
-///
-///
-/// In-Frame rendering style - background only
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUAudioMixRenderingStyle(pub u32);
 impl AUAudioMixRenderingStyle {
+    /// Cinematic rendering style (default)
     #[doc(alias = "kAudioMixRenderingStyle_Cinematic")]
     pub const AudioMixRenderingStyle_Cinematic: Self = Self(0);
+    /// Studio rendering style
     #[doc(alias = "kAudioMixRenderingStyle_Studio")]
     pub const AudioMixRenderingStyle_Studio: Self = Self(1);
+    /// In-Frame rendering style
     #[doc(alias = "kAudioMixRenderingStyle_InFrame")]
     pub const AudioMixRenderingStyle_InFrame: Self = Self(2);
+    /// Cinematic rendering style - background only
     #[doc(alias = "kAudioMixRenderingStyle_CinematicBackgroundStem")]
     pub const AudioMixRenderingStyle_CinematicBackgroundStem: Self = Self(3);
+    /// Cinematic rendering style - foreground only
     #[doc(alias = "kAudioMixRenderingStyle_CinematicForegroundStem")]
     pub const AudioMixRenderingStyle_CinematicForegroundStem: Self = Self(4);
+    /// Studio rendering style - foreground only
     #[doc(alias = "kAudioMixRenderingStyle_StudioForegroundStem")]
     pub const AudioMixRenderingStyle_StudioForegroundStem: Self = Self(5);
+    /// In-Frame rendering style - foreground only
     #[doc(alias = "kAudioMixRenderingStyle_InFrameForegroundStem")]
     pub const AudioMixRenderingStyle_InFrameForegroundStem: Self = Self(6);
+    /// Standard rendering style
     #[doc(alias = "kAudioMixRenderingStyle_Standard")]
     pub const AudioMixRenderingStyle_Standard: Self = Self(7);
+    /// Studio rendering style - background only
     #[doc(alias = "kAudioMixRenderingStyle_StudioBackgroundStem")]
     pub const AudioMixRenderingStyle_StudioBackgroundStem: Self = Self(8);
+    /// In-Frame rendering style - background only
     #[doc(alias = "kAudioMixRenderingStyle_InFrameBackgroundStem")]
     pub const AudioMixRenderingStyle_InFrameBackgroundStem: Self = Self(9);
 }

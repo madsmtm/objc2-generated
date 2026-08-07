@@ -806,7 +806,10 @@ pub const kSCStatusNoLink: c_uint = 3004;
 pub const kSCStatusStale: c_uint = 3005;
 /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusmaxlink?language=objc)
 pub const kSCStatusMaxLink: c_uint = 3006;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusreachabilityunknown?language=objc)
+/// A determination could not be made regarding the reachability
+/// of the specified nodename or address.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusreachabilityunknown?language=objc)
 pub const kSCStatusReachabilityUnknown: c_uint = 4001;
 /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusconnectionnoservice?language=objc)
 pub const kSCStatusConnectionNoService: c_uint = 5001;

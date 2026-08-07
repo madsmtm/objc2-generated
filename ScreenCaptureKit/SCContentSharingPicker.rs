@@ -18,12 +18,15 @@ bitflags::bitflags! {
     impl SCContentSharingPickerMode: NSUInteger {
         #[doc(alias = "SCContentSharingPickerModeSingleWindow")]
         const SingleWindow = 1<<0;
+/// picker mode for multiple window selection
         #[doc(alias = "SCContentSharingPickerModeMultipleWindows")]
         const MultipleWindows = 1<<1;
+/// picker mode for application selection
         #[doc(alias = "SCContentSharingPickerModeSingleApplication")]
         const SingleApplication = 1<<2;
         #[doc(alias = "SCContentSharingPickerModeMultipleApplications")]
         const MultipleApplications = 1<<3;
+/// picker mode for full display selection
         #[doc(alias = "SCContentSharingPickerModeSingleDisplay")]
         const SingleDisplay = 1<<4;
         const _ = !0;

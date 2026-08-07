@@ -338,19 +338,33 @@ impl SecCertificate {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecsubjectitemattr?language=objc)
+/// Indicates a DER-encoded subject distinguished name.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecsubjectitemattr?language=objc)
 pub const kSecSubjectItemAttr: c_uint = 1937072746;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecissueritemattr?language=objc)
+/// Indicates a DER-encoded issuer distinguished name.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecissueritemattr?language=objc)
 pub const kSecIssuerItemAttr: c_uint = 1769173877;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecserialnumberitemattr?language=objc)
+/// Indicates a DER-encoded certificate serial number (without the tag and length).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecserialnumberitemattr?language=objc)
 pub const kSecSerialNumberItemAttr: c_uint = 1936614002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpublickeyhashitemattr?language=objc)
+/// Indicates a public key hash.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpublickeyhashitemattr?language=objc)
 pub const kSecPublicKeyHashItemAttr: c_uint = 1752198009;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecsubjectkeyidentifieritemattr?language=objc)
+/// Indicates a subject key identifier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecsubjectkeyidentifieritemattr?language=objc)
 pub const kSecSubjectKeyIdentifierItemAttr: c_uint = 1936419172;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccerttypeitemattr?language=objc)
+/// Indicates a certificate type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccerttypeitemattr?language=objc)
 pub const kSecCertTypeItemAttr: c_uint = 1668577648;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccertencodingitemattr?language=objc)
+/// Indicates a certificate encoding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccertencodingitemattr?language=objc)
 pub const kSecCertEncodingItemAttr: c_uint = 1667591779;
 
 #[cfg(feature = "SecBase")]
@@ -747,30 +761,43 @@ impl SecCertificate {
 pub struct SecKeyUsage(pub u32);
 bitflags::bitflags! {
     impl SecKeyUsage: u32 {
+/// No KeyUsage extension in certificate.
         #[doc(alias = "kSecKeyUsageUnspecified")]
         const Unspecified = 0;
+/// DigitalSignature bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageDigitalSignature")]
         const DigitalSignature = 1<<0;
+/// NonRepudiation bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageNonRepudiation")]
         const NonRepudiation = 1<<1;
+/// ContentCommitment bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageContentCommitment")]
         const ContentCommitment = 1<<1;
+/// KeyEncipherment bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageKeyEncipherment")]
         const KeyEncipherment = 1<<2;
+/// DataEncipherment bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageDataEncipherment")]
         const DataEncipherment = 1<<3;
+/// KeyAgreement bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageKeyAgreement")]
         const KeyAgreement = 1<<4;
+/// KeyCertSign bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageKeyCertSign")]
         const KeyCertSign = 1<<5;
+/// CRLSign bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageCRLSign")]
         const CRLSign = 1<<6;
+/// EncipherOnly bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageEncipherOnly")]
         const EncipherOnly = 1<<7;
+/// DecipherOnly bit set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageDecipherOnly")]
         const DecipherOnly = 1<<8;
+/// KeyUsage extension is marked critical.
         #[doc(alias = "kSecKeyUsageCritical")]
         const Critical = 1<<31;
+/// For masking purposes, all SecKeyUsage values.
         #[doc(alias = "kSecKeyUsageAll")]
         const All = 0x7FFFFFFF;
         const _ = !0;

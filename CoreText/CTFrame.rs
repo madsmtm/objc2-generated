@@ -49,25 +49,19 @@ unsafe impl ConcreteType for CTFrame {
 /// progression type specifying vertical text will rotate lines
 /// 90 degrees counterclockwise when drawing.
 ///
-///
-/// Lines are stacked top to bottom for horizontal text.
-///
-///
-/// Lines are stacked right to left for vertical text.
-///
-///
-/// Lines are stacked left to right for vertical text.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeprogression?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFrameProgression(pub u32);
 impl CTFrameProgression {
+    /// Lines are stacked top to bottom for horizontal text.
     #[doc(alias = "kCTFrameProgressionTopToBottom")]
     pub const TopToBottom: Self = Self(0);
+    /// Lines are stacked right to left for vertical text.
     #[doc(alias = "kCTFrameProgressionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
+    /// Lines are stacked left to right for vertical text.
     #[doc(alias = "kCTFrameProgressionLeftToRight")]
     pub const LeftToRight: Self = Self(2);
 }
@@ -104,20 +98,16 @@ extern "C" {
 /// When a path intersects with itself, the client should specify which rule to use for deciding the
 /// area of the path.
 ///
-///
-/// Text is filled in the area that would be painted if the path were given to CGContextEOFillPath.
-///
-///
-/// Text is fill in the area that would be painted if the path were given to CGContextFillPath.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframepathfillrule?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFramePathFillRule(pub u32);
 impl CTFramePathFillRule {
+    /// Text is filled in the area that would be painted if the path were given to CGContextEOFillPath.
     #[doc(alias = "kCTFramePathFillEvenOdd")]
     pub const EvenOdd: Self = Self(0);
+    /// Text is fill in the area that would be painted if the path were given to CGContextFillPath.
     #[doc(alias = "kCTFramePathFillWindingNumber")]
     pub const WindingNumber: Self = Self(1);
 }

@@ -11,26 +11,22 @@ use crate::*;
 
 /// These constants are returned by the AVPlayerLooper status property to indicate whether it can successfully accomplish looping playback.
 ///
-/// Indicates that the status of the looper is not yet known.
-///
-/// Indicates that the looper is ready for looping playback.
-///
-/// Indicates that the looper is not able to perform looping playback because of an error. The error is described by the value of the error property.
-///
-/// Indicates that the looper is no longer looping because -disableLooping was invoked.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooperstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerLooperStatus(pub NSInteger);
 impl AVPlayerLooperStatus {
+    /// Indicates that the status of the looper is not yet known.
     #[doc(alias = "AVPlayerLooperStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Indicates that the looper is ready for looping playback.
     #[doc(alias = "AVPlayerLooperStatusReady")]
     pub const Ready: Self = Self(1);
+    /// Indicates that the looper is not able to perform looping playback because of an error. The error is described by the value of the error property.
     #[doc(alias = "AVPlayerLooperStatusFailed")]
     pub const Failed: Self = Self(2);
+    /// Indicates that the looper is no longer looping because -disableLooping was invoked.
     #[doc(alias = "AVPlayerLooperStatusCancelled")]
     pub const Cancelled: Self = Self(3);
 }
@@ -45,18 +41,16 @@ unsafe impl RefEncode for AVPlayerLooperStatus {
 
 /// These constants are the allowable values of Looper's existingItemsOrder initization parameter.
 ///
-/// Indicates that the looper will insert the replica items before any existing items in the specified AVQueuePlayer's play queue. This is default behavior.
-///
-/// Indicates that the looper will insert the replica items after any existing items in the specified AVQueuePlayer's play queue.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooperitemordering?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerLooperItemOrdering(pub NSInteger);
 impl AVPlayerLooperItemOrdering {
+    /// Indicates that the looper will insert the replica items before any existing items in the specified AVQueuePlayer's play queue. This is default behavior.
     #[doc(alias = "AVPlayerLooperItemOrderingLoopingItemsPrecedeExistingItems")]
     pub const LoopingItemsPrecedeExistingItems: Self = Self(0);
+    /// Indicates that the looper will insert the replica items after any existing items in the specified AVQueuePlayer's play queue.
     #[doc(alias = "AVPlayerLooperItemOrderingLoopingItemsFollowExistingItems")]
     pub const LoopingItemsFollowExistingItems: Self = Self(1);
 }

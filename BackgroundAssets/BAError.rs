@@ -19,38 +19,55 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BAErrorCode(pub NSInteger);
 impl BAErrorCode {
+    /// Invalid error code.
     #[doc(alias = "BAErrorCodeDownloadInvalid")]
     pub const DownloadInvalid: Self = Self(0);
+    /// Calling this method from the download extension is not allowed.
     #[doc(alias = "BAErrorCodeCallFromExtensionNotAllowed")]
     pub const CallFromExtensionNotAllowed: Self = Self(50);
+    /// Calling this method from an inactive process is not allowed.
     #[doc(alias = "BAErrorCodeCallFromInactiveProcessNotAllowed")]
     pub const CallFromInactiveProcessNotAllowed: Self = Self(51);
+    /// This operation cannot be performed because the caller is not accepted based on its application or extension identifier.
     #[doc(alias = "BAErrorCodeCallerConnectionNotAccepted")]
     pub const CallerConnectionNotAccepted: Self = Self(55);
+    /// This operation cannot be performed because the connection to the background asset system service is invalid.
     #[doc(alias = "BAErrorCodeCallerConnectionInvalid")]
     pub const CallerConnectionInvalid: Self = Self(56);
+    /// A download with the requested identifier has already been scheduled.
     #[doc(alias = "BAErrorCodeDownloadAlreadyScheduled")]
     pub const DownloadAlreadyScheduled: Self = Self(100);
+    /// The requested download is not scheduled.
     #[doc(alias = "BAErrorCodeDownloadNotScheduled")]
     pub const DownloadNotScheduled: Self = Self(101);
+    /// The requested download failed to start.
     #[doc(alias = "BAErrorCodeDownloadFailedToStart")]
     pub const DownloadFailedToStart: Self = Self(102);
+    /// The requested download has failed.
     #[doc(alias = "BAErrorCodeDownloadAlreadyFailed")]
     pub const DownloadAlreadyFailed: Self = Self(103);
+    /// The requested download could not be enqueued because the download is marked as essential, which is prohibited in this context.
     #[doc(alias = "BAErrorCodeDownloadEssentialDownloadNotPermitted")]
     pub const DownloadEssentialDownloadNotPermitted: Self = Self(109);
+    /// The requested download could not be enqueued. Check the device‘s Low Power Mode or Background App Refresh settings.
     #[doc(alias = "BAErrorCodeDownloadBackgroundActivityProhibited")]
     pub const DownloadBackgroundActivityProhibited: Self = Self(111);
+    /// The requested download cannot be enqueued. The download would exceed the download allowance.
     #[doc(alias = "BAErrorCodeDownloadWouldExceedAllowance")]
     pub const DownloadWouldExceedAllowance: Self = Self(112);
+    /// The operation for a download cannot be performed because that BADownload object does not exist.
     #[doc(alias = "BAErrorCodeDownloadDoesNotExist")]
     pub const DownloadDoesNotExist: Self = Self(113);
+    /// The requested URL is not permitted to be downloaded until the application is launched.
     #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByDomain")]
     pub const SessionDownloadDisallowedByDomain: Self = Self(202);
+    /// The requested download will not be allowed due to running out of download allowance.
     #[doc(alias = "BAErrorCodeSessionDownloadDisallowedByAllowance")]
     pub const SessionDownloadDisallowedByAllowance: Self = Self(203);
+    /// The requested download failed because the download allowance has been exceeded.
     #[doc(alias = "BAErrorCodeSessionDownloadAllowanceExceeded")]
     pub const SessionDownloadAllowanceExceeded: Self = Self(204);
+    /// The requested download cannot be scheduled before the app has been launched.
     #[doc(alias = "BAErrorCodeSessionDownloadNotPermittedBeforeAppLaunch")]
     pub const SessionDownloadNotPermittedBeforeAppLaunch: Self = Self(206);
 }

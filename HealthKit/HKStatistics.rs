@@ -26,19 +26,25 @@ bitflags::bitflags! {
         const None = 0;
         #[doc(alias = "HKStatisticsOptionSeparateBySource")]
         const SeparateBySource = 1<<0;
+/// Calculate averageQuantity when creating statistics.
         #[doc(alias = "HKStatisticsOptionDiscreteAverage")]
         const DiscreteAverage = 1<<1;
+/// Calculate minQuantity when creating statistics.
         #[doc(alias = "HKStatisticsOptionDiscreteMin")]
         const DiscreteMin = 1<<2;
+/// Calculate maxQuantity when creating statistics.
         #[doc(alias = "HKStatisticsOptionDiscreteMax")]
         const DiscreteMax = 1<<3;
+/// Calculate sumQuantity when creating statistics.
         #[doc(alias = "HKStatisticsOptionCumulativeSum")]
         const CumulativeSum = 1<<4;
+/// Calculate mostRecentQuantity when creating statistics.
         #[doc(alias = "HKStatisticsOptionMostRecent")]
         const MostRecent = 1<<5;
         #[doc(alias = "HKStatisticsOptionDiscreteMostRecent")]
 #[deprecated]
         const DiscreteMostRecent = HKStatisticsOptions::MostRecent.0;
+/// Calculate duration when creating statistics.
         #[doc(alias = "HKStatisticsOptionDuration")]
         const Duration = 1<<6;
         const _ = !0;

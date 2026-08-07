@@ -6,20 +6,6 @@ use crate::*;
 
 /// The types of items that AVPlayerViewController analyzes in a paused video frame.
 ///
-///
-/// Defines no items to be analyzed by the analyzer.
-///
-/// Defines the default set of analysis types.
-///
-///
-/// Text that appears in a paused video frame.
-///
-/// Subject that the user can copy out of frame.
-///
-/// Objects, landmarks, art, etc. recognized visually in a paused video frame.
-///
-/// Machine-readable codes, such as QR codes, that appear in a paused video frame.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -27,16 +13,22 @@ use crate::*;
 pub struct AVVideoFrameAnalysisType(pub NSUInteger);
 bitflags::bitflags! {
     impl AVVideoFrameAnalysisType: NSUInteger {
+/// Defines no items to be analyzed by the analyzer.
         #[doc(alias = "AVVideoFrameAnalysisTypeNone")]
         const None = 0;
+/// Defines the default set of analysis types.
         #[doc(alias = "AVVideoFrameAnalysisTypeDefault")]
         const Default = 1<<0;
+/// Text that appears in a paused video frame.
         #[doc(alias = "AVVideoFrameAnalysisTypeText")]
         const Text = 1<<1;
+/// Subject that the user can copy out of frame.
         #[doc(alias = "AVVideoFrameAnalysisTypeSubject")]
         const Subject = 1<<2;
+/// Objects, landmarks, art, etc. recognized visually in a paused video frame.
         #[doc(alias = "AVVideoFrameAnalysisTypeVisualSearch")]
         const VisualSearch = 1<<3;
+/// Machine-readable codes, such as QR codes, that appear in a paused video frame.
         #[doc(alias = "AVVideoFrameAnalysisTypeMachineReadableCode")]
         const MachineReadableCode = 1<<4;
         const _ = !0;

@@ -8,11 +8,17 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecunlockstatestatus?language=objc)
+/// Indicates the keychain is unlocked.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecunlockstatestatus?language=objc)
 pub const kSecUnlockStateStatus: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecreadpermstatus?language=objc)
+/// Indicates the keychain is readable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecreadpermstatus?language=objc)
 pub const kSecReadPermStatus: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecwritepermstatus?language=objc)
+/// Indicates the keychain is writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecwritepermstatus?language=objc)
 pub const kSecWritePermStatus: u32 = 4;
 
 /// Contains keychain settings.
@@ -97,74 +103,108 @@ unsafe impl RefEncode for SecAuthenticationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecProtocolType(pub FourCharCode);
 impl SecProtocolType {
+    /// Indicates FTP.
     #[doc(alias = "kSecProtocolTypeFTP")]
     pub const FTP: Self = Self(0x66747020);
+    /// Indicates FTP Account (client side), usage deprecated.
     #[doc(alias = "kSecProtocolTypeFTPAccount")]
     pub const FTPAccount: Self = Self(0x66747061);
+    /// Indicates HTTP.
     #[doc(alias = "kSecProtocolTypeHTTP")]
     pub const HTTP: Self = Self(0x68747470);
+    /// Indicates IRC.
     #[doc(alias = "kSecProtocolTypeIRC")]
     pub const IRC: Self = Self(0x69726320);
+    /// Indicates NNTP.
     #[doc(alias = "kSecProtocolTypeNNTP")]
     pub const NNTP: Self = Self(0x6e6e7470);
+    /// Indicates POP3.
     #[doc(alias = "kSecProtocolTypePOP3")]
     pub const POP3: Self = Self(0x706f7033);
+    /// Indicates SMTP.
     #[doc(alias = "kSecProtocolTypeSMTP")]
     pub const SMTP: Self = Self(0x736d7470);
+    /// Indicates SOCKS.
     #[doc(alias = "kSecProtocolTypeSOCKS")]
     pub const SOCKS: Self = Self(0x736f7820);
+    /// Indicates IMAP.
     #[doc(alias = "kSecProtocolTypeIMAP")]
     pub const IMAP: Self = Self(0x696d6170);
+    /// Indicates LDAP.
     #[doc(alias = "kSecProtocolTypeLDAP")]
     pub const LDAP: Self = Self(0x6c646170);
+    /// Indicates AFP over AppleTalk.
     #[doc(alias = "kSecProtocolTypeAppleTalk")]
     pub const AppleTalk: Self = Self(0x61746c6b);
+    /// Indicates AFP over TCP.
     #[doc(alias = "kSecProtocolTypeAFP")]
     pub const AFP: Self = Self(0x61667020);
+    /// Indicates Telnet.
     #[doc(alias = "kSecProtocolTypeTelnet")]
     pub const Telnet: Self = Self(0x74656c6e);
+    /// Indicates SSH.
     #[doc(alias = "kSecProtocolTypeSSH")]
     pub const SSH: Self = Self(0x73736820);
+    /// Indicates FTPS (FTP over TLS/SSL).
     #[doc(alias = "kSecProtocolTypeFTPS")]
     pub const FTPS: Self = Self(0x66747073);
+    /// Indicates HTTPS (HTTP over TLS/SSL).
     #[doc(alias = "kSecProtocolTypeHTTPS")]
     pub const HTTPS: Self = Self(0x68747073);
+    /// Indicates HTTP proxy.
     #[doc(alias = "kSecProtocolTypeHTTPProxy")]
     pub const HTTPProxy: Self = Self(0x68747078);
+    /// Indicates HTTPS proxy.
     #[doc(alias = "kSecProtocolTypeHTTPSProxy")]
     pub const HTTPSProxy: Self = Self(0x68747378);
+    /// Indicates FTP proxy.
     #[doc(alias = "kSecProtocolTypeFTPProxy")]
     pub const FTPProxy: Self = Self(0x66747078);
     #[doc(alias = "kSecProtocolTypeCIFS")]
     pub const CIFS: Self = Self(0x63696673);
+    /// Indicates SMB.
     #[doc(alias = "kSecProtocolTypeSMB")]
     pub const SMB: Self = Self(0x736d6220);
+    /// Indicates RTSP.
     #[doc(alias = "kSecProtocolTypeRTSP")]
     pub const RTSP: Self = Self(0x72747370);
+    /// Indicates RTSP proxy.
     #[doc(alias = "kSecProtocolTypeRTSPProxy")]
     pub const RTSPProxy: Self = Self(0x72747378);
+    /// Indicates DAAP.
     #[doc(alias = "kSecProtocolTypeDAAP")]
     pub const DAAP: Self = Self(0x64616170);
+    /// Indicates EPPC (Remote Apple Events).
     #[doc(alias = "kSecProtocolTypeEPPC")]
     pub const EPPC: Self = Self(0x65707063);
+    /// Indicates IPP.
     #[doc(alias = "kSecProtocolTypeIPP")]
     pub const IPP: Self = Self(0x69707020);
+    /// Indicates NNTPS (NNTP over TLS/SSL).
     #[doc(alias = "kSecProtocolTypeNNTPS")]
     pub const NNTPS: Self = Self(0x6e747073);
+    /// Indicates LDAPS (LDAP over TLS/SSL).
     #[doc(alias = "kSecProtocolTypeLDAPS")]
     pub const LDAPS: Self = Self(0x6c647073);
+    /// Indicates Telnet over TLS/SSL.
     #[doc(alias = "kSecProtocolTypeTelnetS")]
     pub const TelnetS: Self = Self(0x74656c73);
+    /// Indicates IMAPS (IMAP4 over TLS/SSL).
     #[doc(alias = "kSecProtocolTypeIMAPS")]
     pub const IMAPS: Self = Self(0x696d7073);
+    /// Indicates IRCS (IRC over TLS/SSL).
     #[doc(alias = "kSecProtocolTypeIRCS")]
     pub const IRCS: Self = Self(0x69726373);
+    /// Indicates POP3S (POP3 over TLS/SSL).
     #[doc(alias = "kSecProtocolTypePOP3S")]
     pub const POP3S: Self = Self(0x706f7073);
+    /// Indicates CVS pserver.
     #[doc(alias = "kSecProtocolTypeCVSpserver")]
     pub const CVSpserver: Self = Self(0x63767370);
+    /// Indicates Subversion.
     #[doc(alias = "kSecProtocolTypeSVN")]
     pub const SVN: Self = Self(0x73766e20);
+    /// Indicates that any protocol is acceptable. When performing a search, use this constant to avoid constraining your search results to a particular protocol.
     #[doc(alias = "kSecProtocolTypeAny")]
     pub const Any: Self = Self(0);
 }
@@ -187,25 +227,35 @@ unsafe impl RefEncode for SecProtocolType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecKeychainEvent(pub u32);
 impl SecKeychainEvent {
+    /// Indicates a keychain was locked.
     #[doc(alias = "kSecLockEvent")]
     pub const LockEvent: Self = Self(1);
+    /// Indicates a keychain was unlocked.
     #[doc(alias = "kSecUnlockEvent")]
     pub const UnlockEvent: Self = Self(2);
+    /// Indicates an item was added to a keychain.
     #[doc(alias = "kSecAddEvent")]
     pub const AddEvent: Self = Self(3);
+    /// Indicates an item was deleted from a keychain.
     #[doc(alias = "kSecDeleteEvent")]
     pub const DeleteEvent: Self = Self(4);
+    /// Indicates a keychain item was updated.
     #[doc(alias = "kSecUpdateEvent")]
     pub const UpdateEvent: Self = Self(5);
+    /// Indicates the keychain password was changed.
     #[doc(alias = "kSecPasswordChangedEvent")]
     pub const PasswordChangedEvent: Self = Self(6);
+    /// Indicates that a different keychain was specified as the default.
     #[doc(alias = "kSecDefaultChangedEvent")]
     pub const DefaultChangedEvent: Self = Self(9);
+    /// Indicates a process has accessed a keychain item's data.
     #[doc(alias = "kSecDataAccessEvent")]
     #[deprecated = "Read events are no longer posted"]
     pub const DataAccessEvent: Self = Self(10);
+    /// Indicates the list of keychains has changed.
     #[doc(alias = "kSecKeychainListChangedEvent")]
     pub const KeychainListChangedEvent: Self = Self(11);
+    /// Indicates Trust Settings changed.
     #[doc(alias = "kSecTrustSettingsChangedEvent")]
     pub const TrustSettingsChangedEvent: Self = Self(12);
 }
@@ -229,20 +279,28 @@ unsafe impl RefEncode for SecKeychainEvent {
 pub struct SecKeychainEventMask(pub u32);
 bitflags::bitflags! {
     impl SecKeychainEventMask: u32 {
+/// If the bit specified by this mask is set, your callback function will be invoked when a keychain is locked.
         #[doc(alias = "kSecLockEventMask")]
         const LockEventMask = 1<<SecKeychainEvent::LockEvent.0;
+/// If the bit specified by this mask is set, your callback function will be invoked when a keychain is unlocked.
         #[doc(alias = "kSecUnlockEventMask")]
         const UnlockEventMask = 1<<SecKeychainEvent::UnlockEvent.0;
+/// If the bit specified by this mask is set, your callback function will be invoked when an item is added to a keychain.
         #[doc(alias = "kSecAddEventMask")]
         const AddEventMask = 1<<SecKeychainEvent::AddEvent.0;
+/// If the bit specified by this mask is set, your callback function will be invoked when an item is deleted from a keychain.
         #[doc(alias = "kSecDeleteEventMask")]
         const DeleteEventMask = 1<<SecKeychainEvent::DeleteEvent.0;
+/// If the bit specified by this mask is set, your callback function will be invoked when a keychain item is updated.
         #[doc(alias = "kSecUpdateEventMask")]
         const UpdateEventMask = 1<<SecKeychainEvent::UpdateEvent.0;
+/// If the bit specified by this mask is set, your callback function will be invoked when the keychain password is changed.
         #[doc(alias = "kSecPasswordChangedEventMask")]
         const PasswordChangedEventMask = 1<<SecKeychainEvent::PasswordChangedEvent.0;
+/// If the bit specified by this mask is set, your callback function will be invoked when a different keychain is specified as the default.
         #[doc(alias = "kSecDefaultChangedEventMask")]
         const DefaultChangedEventMask = 1<<SecKeychainEvent::DefaultChangedEvent.0;
+/// If the bit specified by this mask is set, your callback function will be invoked when a process accesses a keychain item's data.
         #[doc(alias = "kSecDataAccessEventMask")]
 #[deprecated = "Read events are no longer posted"]
         const DataAccessEventMask = 1<<SecKeychainEvent::DataAccessEvent.0;
@@ -250,6 +308,7 @@ bitflags::bitflags! {
         const KeychainListChangedMask = 1<<SecKeychainEvent::KeychainListChangedEvent.0;
         #[doc(alias = "kSecTrustSettingsChangedEventMask")]
         const TrustSettingsChangedEventMask = 1<<SecKeychainEvent::TrustSettingsChangedEvent.0;
+/// If all the bits are set, your callback function will be invoked whenever any event occurs.
         #[doc(alias = "kSecEveryEventMask")]
         const EveryEventMask = 0xffffffff;
         const _ = !0;

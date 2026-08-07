@@ -33,108 +33,296 @@ pub type AudioConverterRef = *mut OpaqueAudioConverter;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterpropertyid?language=objc)
 pub type AudioConverterPropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyminimuminputbuffersize?language=objc)
+/// a UInt32 that indicates the size in bytes of the smallest buffer of input
+/// data that can be supplied via the AudioConverterInputProc or as the input to
+/// AudioConverterConvertBuffer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyminimuminputbuffersize?language=objc)
 pub const kAudioConverterPropertyMinimumInputBufferSize: AudioConverterPropertyID = 0x6d696273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyminimumoutputbuffersize?language=objc)
+/// a UInt32 that indicates the size in bytes of the smallest buffer of output
+/// data that can be supplied to AudioConverterFillComplexBuffer or as the output to
+/// AudioConverterConvertBuffer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyminimumoutputbuffersize?language=objc)
 pub const kAudioConverterPropertyMinimumOutputBufferSize: AudioConverterPropertyID = 0x6d6f6273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertymaximuminputpacketsize?language=objc)
+/// a UInt32 that indicates the size in bytes of the largest single packet of
+/// data in the input format. This is mostly useful for variable bit rate
+/// compressed data (decoders).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertymaximuminputpacketsize?language=objc)
 pub const kAudioConverterPropertyMaximumInputPacketSize: AudioConverterPropertyID = 0x78697073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertymaximumoutputpacketsize?language=objc)
+/// a UInt32 that indicates the size in bytes of the largest single packet of
+/// data in the output format. This is mostly useful for variable bit rate
+/// compressed data (encoders).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertymaximumoutputpacketsize?language=objc)
 pub const kAudioConverterPropertyMaximumOutputPacketSize: AudioConverterPropertyID = 0x786f7073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertycalculateinputbuffersize?language=objc)
+/// a UInt32 that on input holds a size in bytes that is desired for the output
+/// data. On output, it will hold the size in bytes of the input buffer required
+/// to generate that much output data. Note that some converters cannot do this
+/// calculation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertycalculateinputbuffersize?language=objc)
 pub const kAudioConverterPropertyCalculateInputBufferSize: AudioConverterPropertyID = 0x63696273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertycalculateoutputbuffersize?language=objc)
+/// a UInt32 that on input holds a size in bytes that is desired for the input
+/// data. On output, it will hold the size in bytes of the output buffer
+/// required to hold the output data that will be generated. Note that some
+/// converters cannot do this calculation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertycalculateoutputbuffersize?language=objc)
 pub const kAudioConverterPropertyCalculateOutputBufferSize: AudioConverterPropertyID = 0x636f6273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyinputcodecparameters?language=objc)
+/// The value of this property varies from format to format and is considered
+/// private to the format. It is treated as a buffer of untyped data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyinputcodecparameters?language=objc)
 pub const kAudioConverterPropertyInputCodecParameters: AudioConverterPropertyID = 0x69636470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyoutputcodecparameters?language=objc)
+/// The value of this property varies from format to format and is considered
+/// private to the format. It is treated as a buffer of untyped data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyoutputcodecparameters?language=objc)
 pub const kAudioConverterPropertyOutputCodecParameters: AudioConverterPropertyID = 0x6f636470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity?language=objc)
+/// An OSType that specifies the sample rate converter algorithm to use (as defined in
+/// AudioToolbox/AudioUnitProperties.h)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity?language=objc)
 pub const kAudioConverterSampleRateConverterComplexity: AudioConverterPropertyID = 0x73726361;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconverterquality?language=objc)
+/// A UInt32 that specifies rendering quality of the sample rate converter (see
+/// enum constants below)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconverterquality?language=objc)
 pub const kAudioConverterSampleRateConverterQuality: AudioConverterPropertyID = 0x73726371;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconverterinitialphase?language=objc)
+/// A Float64 with value 0.0
+/// <
+/// = x
+/// <
+/// 1.0 giving the initial subsample position of the
+/// sample rate converter.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconverterinitialphase?language=objc)
 pub const kAudioConverterSampleRateConverterInitialPhase: AudioConverterPropertyID = 0x73726370;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercodecquality?language=objc)
+/// A UInt32 that specifies rendering quality of a codec (see enum constants
+/// below)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercodecquality?language=objc)
 pub const kAudioConverterCodecQuality: AudioConverterPropertyID = 0x63647175;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterprimemethod?language=objc)
+/// a UInt32 specifying priming method (usually for sample-rate converter) see
+/// explanation for struct AudioConverterPrimeInfo below along with enum
+/// constants
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterprimemethod?language=objc)
 pub const kAudioConverterPrimeMethod: AudioConverterPropertyID = 0x70726d6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterprimeinfo?language=objc)
+/// A pointer to AudioConverterPrimeInfo (see explanation for struct
+/// AudioConverterPrimeInfo below)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterprimeinfo?language=objc)
 pub const kAudioConverterPrimeInfo: AudioConverterPropertyID = 0x7072696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterchannelmap?language=objc)
+/// An array of SInt32's.  The size of the array is the number of output
+/// channels, and each element specifies which input channel's data is routed to
+/// that output channel (using a 0-based index of the input channels), or -1 if
+/// no input channel is to be routed to that output channel.  The default
+/// behavior is as follows. I = number of input channels, O = number of output
+/// channels. When I > O, the first O inputs are routed to the first O outputs,
+/// and the remaining puts discarded.  When O > I, the first I inputs are routed
+/// to the first O outputs, and the remaining outputs are zeroed.
+///
+/// A simple example for splitting mono input to stereo output (instead of routing
+/// the input to only the first output channel):
+///
+/// ```text
+/// // this should be as large as the number of output channels:
+/// SInt32 channelMap[2] = { 0, 0 };
+/// AudioConverterSetProperty(theConverter, kAudioConverterChannelMap,
+/// sizeof(channelMap), channelMap);
+/// ```
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterchannelmap?language=objc)
 pub const kAudioConverterChannelMap: AudioConverterPropertyID = 0x63686d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterdecompressionmagiccookie?language=objc)
+/// A void * pointing to memory set up by the caller. Required by some formats
+/// in order to decompress the input data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterdecompressionmagiccookie?language=objc)
 pub const kAudioConverterDecompressionMagicCookie: AudioConverterPropertyID = 0x646d6763;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercompressionmagiccookie?language=objc)
+/// A void * pointing to memory set up by the caller. Returned by the converter
+/// so that it may be stored along with the output data. It can then be passed
+/// back to the converter for decompression at a later time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercompressionmagiccookie?language=objc)
 pub const kAudioConverterCompressionMagicCookie: AudioConverterPropertyID = 0x636d6763;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterencodebitrate?language=objc)
+/// A UInt32 containing the number of bits per second to aim for when encoding
+/// data. Some decoders will also allow you to get this property to discover the bit rate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterencodebitrate?language=objc)
 pub const kAudioConverterEncodeBitRate: AudioConverterPropertyID = 0x62726174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterencodeadjustablesamplerate?language=objc)
+/// For encoders where the AudioConverter was created with an output sample rate
+/// of zero, and the codec can do rate conversion on its input, this provides a
+/// way to set the output sample rate. The property value is a Float64.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterencodeadjustablesamplerate?language=objc)
 pub const kAudioConverterEncodeAdjustableSampleRate: AudioConverterPropertyID = 0x616a7372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterinputchannellayout?language=objc)
+/// The property value is an AudioChannelLayout.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterinputchannellayout?language=objc)
 pub const kAudioConverterInputChannelLayout: AudioConverterPropertyID = 0x69636c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteroutputchannellayout?language=objc)
+/// The property value is an AudioChannelLayout.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteroutputchannellayout?language=objc)
 pub const kAudioConverterOutputChannelLayout: AudioConverterPropertyID = 0x6f636c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterapplicableencodebitrates?language=objc)
+/// The property value is an array of AudioValueRange describing applicable bit
+/// rates based on current settings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterapplicableencodebitrates?language=objc)
 pub const kAudioConverterApplicableEncodeBitRates: AudioConverterPropertyID = 0x61656272;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteravailableencodebitrates?language=objc)
+/// The property value is an array of AudioValueRange describing available bit
+/// rates based on the input format. You can get all available bit rates from
+/// the AudioFormat API.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteravailableencodebitrates?language=objc)
 pub const kAudioConverterAvailableEncodeBitRates: AudioConverterPropertyID = 0x76656272;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterapplicableencodesamplerates?language=objc)
+/// The property value is an array of AudioValueRange describing applicable
+/// sample rates based on current settings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterapplicableencodesamplerates?language=objc)
 pub const kAudioConverterApplicableEncodeSampleRates: AudioConverterPropertyID = 0x61657372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteravailableencodesamplerates?language=objc)
+/// The property value is an array of AudioValueRange describing available
+/// sample rates based on the input format. You can get all available sample
+/// rates from the AudioFormat API.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteravailableencodesamplerates?language=objc)
 pub const kAudioConverterAvailableEncodeSampleRates: AudioConverterPropertyID = 0x76657372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteravailableencodechannellayouttags?language=objc)
+/// The property value is an array of AudioChannelLayoutTags for the format and
+/// number of channels specified in the input format going to the encoder.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteravailableencodechannellayouttags?language=objc)
 pub const kAudioConverterAvailableEncodeChannelLayoutTags: AudioConverterPropertyID = 0x6165636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercurrentoutputstreamdescription?language=objc)
+/// Returns the current completely specified output AudioStreamBasicDescription.
+/// For example when encoding to AAC, your original output stream description
+/// will not have been completely filled out.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercurrentoutputstreamdescription?language=objc)
 pub const kAudioConverterCurrentOutputStreamDescription: AudioConverterPropertyID = 0x61636f64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercurrentinputstreamdescription?language=objc)
+/// Returns the current completely specified input AudioStreamBasicDescription.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercurrentinputstreamdescription?language=objc)
 pub const kAudioConverterCurrentInputStreamDescription: AudioConverterPropertyID = 0x61636964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertysettings?language=objc)
+/// Returns the a CFArray of property settings for converters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertysettings?language=objc)
 pub const kAudioConverterPropertySettings: AudioConverterPropertyID = 0x61637073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertybitdepthhint?language=objc)
+/// An SInt32 of the source bit depth to preserve. This is a hint to some
+/// encoders like lossless about how many bits to preserve in the input. The
+/// converter usually tries to preserve as many as possible, but a lossless
+/// encoder will do poorly if more bits are supplied than are desired in the
+/// output. The bit depth is expressed as a negative number if the source was floating point,
+/// e.g. -32 for float, -64 for double.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertybitdepthhint?language=objc)
 pub const kAudioConverterPropertyBitDepthHint: AudioConverterPropertyID = 0x61636264;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyformatlist?language=objc)
+/// An array of AudioFormatListItem structs describing all the data formats produced by the
+/// encoder end of the AudioConverter. If the ioPropertyDataSize parameter indicates that
+/// outPropertyData is sizeof(AudioFormatListItem), then only the best format is returned.
+/// This property may be used for example to discover all the data formats produced by the AAC_HE2
+/// (AAC High Efficiency vers. 2) encoder.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyformatlist?language=objc)
 pub const kAudioConverterPropertyFormatList: AudioConverterPropertyID = 0x666c7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyperformdownmix?language=objc)
+/// A UInt32 with 1 meaning to perform a mix from input to output channels,
+/// and 0 meaning to not perform such a mix.  See kAudioConverterPropertyChannelMixMap
+/// for more information on how the mix maps inputs to outputs.
+/// Defaults to 0 (no channel mixing).
+/// Note #1: Mixing may be performed in any conversion where the number
+/// and/or layout of input and output channels are not the same, not only
+/// in PCM-to-PCM conversions, and also the number of output channels may
+/// be more or less than the number of input channels.
+/// Note #2: This property is not compatible with kAudioConverterChannelMap,
+/// which is used to map input to output channels without any mixing.
+/// The kAudioConverterChannelMap property cannot be set unless
+/// kAudioConverterPropertyPerformDownmix is first set to 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyperformdownmix?language=objc)
 pub const kAudioConverterPropertyPerformDownmix: AudioConverterPropertyID = 0x646d6978;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertychannelmixmap?language=objc)
+/// An array of Float32 values, size equal to the product of the numbers of
+/// input and output channels.  Each element's value is a gain to apply,
+/// from 0.0 to 1.0, to one input when mixing it into one output.
+/// The elements are ordered in row-major order, where each row holds the
+/// gains to apply for one input to each output.
+/// Unless explicitly set, a default mix map is used, based on other
+/// properties such as numbers of input and output channels as well as
+/// channel layouts, if known.
+/// This property should not be set unless and until
+/// kAudioConverterPropertyPerformDownmix is first set to 1 (enable channel mixing).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertychannelmixmap?language=objc)
 pub const kAudioConverterPropertyChannelMixMap: AudioConverterPropertyID = 0x6d6d6170;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertydithering?language=objc)
+/// A UInt32. Set to a value from the enum of dithering algorithms below.
+/// Zero means no dithering and is the default. (macOS only.)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertydithering?language=objc)
 pub const kAudioConverterPropertyDithering: AudioConverterPropertyID = 0x64697468;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyditherbitdepth?language=objc)
+/// A UInt32. Dither is applied at this bit depth.  (macOS only.)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyditherbitdepth?language=objc)
 pub const kAudioConverterPropertyDitherBitDepth: AudioConverterPropertyID = 0x64626974;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kditheralgorithm_tpdf?language=objc)
+/// Dither signal is generated by a white noise source with a triangular probability density function
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kditheralgorithm_tpdf?language=objc)
 pub const kDitherAlgorithm_TPDF: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kditheralgorithm_noiseshaping?language=objc)
+/// Use a static, perceptually weighted noise shaped dither
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kditheralgorithm_noiseshaping?language=objc)
 pub const kDitherAlgorithm_NoiseShaping: u32 = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_max?language=objc)
+/// maximum quality
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_max?language=objc)
 pub const kAudioConverterQuality_Max: u32 = 0x7F;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_high?language=objc)
+/// high quality
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_high?language=objc)
 pub const kAudioConverterQuality_High: u32 = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_medium?language=objc)
+/// medium quality
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_medium?language=objc)
 pub const kAudioConverterQuality_Medium: u32 = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_low?language=objc)
+/// low quality
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_low?language=objc)
 pub const kAudioConverterQuality_Low: u32 = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_min?language=objc)
+/// minimum quality
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_min?language=objc)
 pub const kAudioConverterQuality_Min: u32 = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_linear?language=objc)
+/// Linear interpolation. lowest quality, cheapest.
+/// InitialPhase and PrimeMethod properties are not operative with this mode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_linear?language=objc)
 pub const kAudioConverterSampleRateConverterComplexity_Linear: u32 = 0x6c696e65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_normal?language=objc)
+/// Normal quality sample rate conversion.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_normal?language=objc)
 pub const kAudioConverterSampleRateConverterComplexity_Normal: u32 = 0x6e6f726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_mastering?language=objc)
+/// Mastering quality sample rate conversion. More expensive.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_mastering?language=objc)
 pub const kAudioConverterSampleRateConverterComplexity_Mastering: u32 = 0x62617473;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_minimumphase?language=objc)
 pub const kAudioConverterSampleRateConverterComplexity_MinimumPhase: u32 = 0x6d696e70;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kconverterprimemethod_pre?language=objc)
+/// Primes with leading + trailing input frames.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kconverterprimemethod_pre?language=objc)
 pub const kConverterPrimeMethod_Pre: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kconverterprimemethod_normal?language=objc)
+/// Only primes with trailing (zero latency). Leading frames are assumed to be
+/// silence.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kconverterprimemethod_normal?language=objc)
 pub const kConverterPrimeMethod_Normal: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kconverterprimemethod_none?language=objc)
+/// Acts in "latency" mode. Both leading and trailing frames assumed to be
+/// silence.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kconverterprimemethod_none?language=objc)
 pub const kConverterPrimeMethod_None: u32 = 2;
 
 /// Specifies priming information.
@@ -210,10 +398,6 @@ unsafe impl RefEncode for AudioConverterPrimeInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// This is an option for AudioConverterNewWithOptions which removes unnecessary
-/// buffering, both for input and internally to the converter, saving memory
-/// at the cost of reduced format support and usage restrictions:
-///
 /// - Input and output formats must be constant bit-rate, non-zero bytes per packet
 /// (e.g. linear PCM, a-law, etc.) with the same sample rate and frames per packet.
 /// - AudioConverterFillBuffer cannot be used.
@@ -226,6 +410,9 @@ unsafe impl RefEncode for AudioConverterPrimeInfo {
 pub struct AudioConverterOptions(pub u32);
 bitflags::bitflags! {
     impl AudioConverterOptions: u32 {
+/// This is an option for AudioConverterNewWithOptions which removes unnecessary
+/// buffering, both for input and internally to the converter, saving memory
+/// at the cost of reduced format support and usage restrictions:
         #[doc(alias = "kAudioConverterOption_Unbuffered")]
         const Unbuffered = 1<<16;
         const _ = !0;

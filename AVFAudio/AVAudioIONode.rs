@@ -45,18 +45,16 @@ pub type AVAudioIONodeInputBlock =
 
 /// Types of speech activity events.
 ///
-/// Speech activity has started.
-///
-/// Speech activity has ended.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioVoiceProcessingSpeechActivityEvent(pub NSInteger);
 impl AVAudioVoiceProcessingSpeechActivityEvent {
+    /// Speech activity has started.
     #[doc(alias = "AVAudioVoiceProcessingSpeechActivityStarted")]
     pub const Started: Self = Self(0);
+    /// Speech activity has ended.
     #[doc(alias = "AVAudioVoiceProcessingSpeechActivityEnded")]
     pub const Ended: Self = Self(1);
 }

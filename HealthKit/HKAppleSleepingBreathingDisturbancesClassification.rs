@@ -14,8 +14,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAppleSleepingBreathingDisturbancesClassification(pub NSInteger);
 impl HKAppleSleepingBreathingDisturbancesClassification {
+    /// BD level is not elevated
     #[doc(alias = "HKAppleSleepingBreathingDisturbancesClassificationNotElevated")]
     pub const NotElevated: Self = Self(0);
+    /// BD level is elevated
     #[doc(alias = "HKAppleSleepingBreathingDisturbancesClassificationElevated")]
     pub const Elevated: Self = Self(1);
 }

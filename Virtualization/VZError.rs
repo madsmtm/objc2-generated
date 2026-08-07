@@ -15,111 +15,85 @@ extern "C" {
 ///
 /// The virtualization framework can also report errors from other domains when the error originates from a lower level component.
 ///
-///
-/// Internal error such as the virtual machine unexpectedly stopping.
-///
-/// Invalid machine configuration.
-///
-/// API used with a machine in the wrong state (e.g. interacting with a machine before it is running).
-///
-/// Invalid change of state (e.g. pausing a virtual machine that is not started).
-///
-/// Unrecognized disk image format or invalid disk image.
-///
-/// The running virtual machine limit was exceeded.
-///
-/// Network error occurred.
-///
-/// Machine ran out of disk space.
-///
-/// The operation was cancelled.
-///
-/// The operation is not supported.
-///
-/// The save operation failed.
-///
-/// The restore operation failed.
-///
-/// The restore image catalog failed to load.
-///
-/// The restore image catalog is invalid.
-///
-/// The restore image catalog has no supported restore images.
-///
-/// The restore image failed to load.
-///
-/// The restore image is invalid.
-///
-/// A software update is required to complete the installation.
-///
-/// An error occurred during installation.
-///
-/// The connection or the negotiation with the NBD server failed.
-///
-/// The NBD client is disconnected from the server.
-///
-/// Controller not found.
-///
-/// Device is already attached.
-///
-/// Device initialization failure.
-///
-/// Device not found.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VZErrorCode(pub NSInteger);
 impl VZErrorCode {
+    /// Internal error such as the virtual machine unexpectedly stopping.
     #[doc(alias = "VZErrorInternal")]
     pub const Internal: Self = Self(1);
+    /// Invalid machine configuration.
     #[doc(alias = "VZErrorInvalidVirtualMachineConfiguration")]
     pub const InvalidVirtualMachineConfiguration: Self = Self(2);
+    /// API used with a machine in the wrong state (e.g. interacting with a machine before it is running).
     #[doc(alias = "VZErrorInvalidVirtualMachineState")]
     pub const InvalidVirtualMachineState: Self = Self(3);
+    /// Invalid change of state (e.g. pausing a virtual machine that is not started).
     #[doc(alias = "VZErrorInvalidVirtualMachineStateTransition")]
     pub const InvalidVirtualMachineStateTransition: Self = Self(4);
+    /// Unrecognized disk image format or invalid disk image.
     #[doc(alias = "VZErrorInvalidDiskImage")]
     pub const InvalidDiskImage: Self = Self(5);
+    /// The running virtual machine limit was exceeded.
     #[doc(alias = "VZErrorVirtualMachineLimitExceeded")]
     pub const VirtualMachineLimitExceeded: Self = Self(6);
+    /// Network error occurred.
     #[doc(alias = "VZErrorNetworkError")]
     pub const NetworkError: Self = Self(7);
+    /// Machine ran out of disk space.
     #[doc(alias = "VZErrorOutOfDiskSpace")]
     pub const OutOfDiskSpace: Self = Self(8);
+    /// The operation was cancelled.
     #[doc(alias = "VZErrorOperationCancelled")]
     pub const OperationCancelled: Self = Self(9);
+    /// The operation is not supported.
     #[doc(alias = "VZErrorNotSupported")]
     pub const NotSupported: Self = Self(10);
+    /// The save operation failed.
     #[doc(alias = "VZErrorSave")]
     pub const Save: Self = Self(11);
+    /// The restore operation failed.
     #[doc(alias = "VZErrorRestore")]
     pub const Restore: Self = Self(12);
+    /// The restore image catalog failed to load.
     #[doc(alias = "VZErrorRestoreImageCatalogLoadFailed")]
     pub const RestoreImageCatalogLoadFailed: Self = Self(10001);
+    /// The restore image catalog is invalid.
     #[doc(alias = "VZErrorInvalidRestoreImageCatalog")]
     pub const InvalidRestoreImageCatalog: Self = Self(10002);
+    /// The restore image catalog has no supported restore images.
     #[doc(alias = "VZErrorNoSupportedRestoreImagesInCatalog")]
     pub const NoSupportedRestoreImagesInCatalog: Self = Self(10003);
+    /// The restore image failed to load.
     #[doc(alias = "VZErrorRestoreImageLoadFailed")]
     pub const RestoreImageLoadFailed: Self = Self(10004);
+    /// The restore image is invalid.
     #[doc(alias = "VZErrorInvalidRestoreImage")]
     pub const InvalidRestoreImage: Self = Self(10005);
+    /// A software update is required to complete the installation.
     #[doc(alias = "VZErrorInstallationRequiresUpdate")]
     pub const InstallationRequiresUpdate: Self = Self(10006);
+    /// An error occurred during installation.
     #[doc(alias = "VZErrorInstallationFailed")]
     pub const InstallationFailed: Self = Self(10007);
+    /// The connection or the negotiation with the NBD server failed.
     #[doc(alias = "VZErrorNetworkBlockDeviceNegotiationFailed")]
     pub const NetworkBlockDeviceNegotiationFailed: Self = Self(20001);
+    /// The NBD client is disconnected from the server.
     #[doc(alias = "VZErrorNetworkBlockDeviceDisconnected")]
     pub const NetworkBlockDeviceDisconnected: Self = Self(20002);
+    /// Controller not found.
     #[doc(alias = "VZErrorUSBControllerNotFound")]
     pub const USBControllerNotFound: Self = Self(30001);
+    /// Device is already attached.
     #[doc(alias = "VZErrorDeviceAlreadyAttached")]
     pub const DeviceAlreadyAttached: Self = Self(30002);
+    /// Device initialization failure.
     #[doc(alias = "VZErrorDeviceInitializationFailure")]
     pub const DeviceInitializationFailure: Self = Self(30003);
+    /// Device not found.
     #[doc(alias = "VZErrorDeviceNotFound")]
     pub const DeviceNotFound: Self = Self(30004);
 }

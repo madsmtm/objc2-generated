@@ -97,21 +97,6 @@ pub const kVTVideoEncoderAutoWhiteBalanceNotLockedErr: OSStatus = -19512;
 /// Directives for the decompression session and the video decoder, passed into
 /// decodeFlags parameter of VTDecompressionSessionDecodeFrame.
 ///
-///
-/// With the kVTDecodeFrame_EnableAsynchronousDecompression bit clear, the video decoder
-/// is compelled to emit every frame before it returns.  With the bit set, the decoder may
-/// process frames asynchronously, but it is not compelled to do so.
-///
-/// A hint to the decompression session and video decoder that a CVImageBuffer should not
-/// be emitted for this frame.  NULL will be returned instead.
-///
-/// A hint to the video decoder that it would be OK to use a low-power mode that can not decode faster than 1x realtime.
-///
-/// With the kVTDecodeFrame_EnableTemporalProcessing bit clear, the video decoder should emit
-/// every frame once that frame's decoding is done -- frames may not be delayed indefinitely.  With
-/// the bit set, it is legal for the decoder to delay frames indefinitely -- at least
-/// until VTDecompressionSessionFinishDelayedFrames or VTDecompressionSessionInvalidate is called.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -119,12 +104,22 @@ pub const kVTVideoEncoderAutoWhiteBalanceNotLockedErr: OSStatus = -19512;
 pub struct VTDecodeFrameFlags(pub u32);
 bitflags::bitflags! {
     impl VTDecodeFrameFlags: u32 {
+/// With the kVTDecodeFrame_EnableAsynchronousDecompression bit clear, the video decoder
+/// is compelled to emit every frame before it returns.  With the bit set, the decoder may
+/// process frames asynchronously, but it is not compelled to do so.
         #[doc(alias = "kVTDecodeFrame_EnableAsynchronousDecompression")]
         const Frame_EnableAsynchronousDecompression = 1<<0;
+/// A hint to the decompression session and video decoder that a CVImageBuffer should not
+/// be emitted for this frame.  NULL will be returned instead.
         #[doc(alias = "kVTDecodeFrame_DoNotOutputFrame")]
         const Frame_DoNotOutputFrame = 1<<1;
+/// A hint to the video decoder that it would be OK to use a low-power mode that can not decode faster than 1x realtime.
         #[doc(alias = "kVTDecodeFrame_1xRealTimePlayback")]
         const Frame_1xRealTimePlayback = 1<<2;
+/// With the kVTDecodeFrame_EnableTemporalProcessing bit clear, the video decoder should emit
+/// every frame once that frame's decoding is done -- frames may not be delayed indefinitely.  With
+/// the bit set, it is legal for the decoder to delay frames indefinitely -- at least
+/// until VTDecompressionSessionFinishDelayedFrames or VTDecompressionSessionInvalidate is called.
         #[doc(alias = "kVTDecodeFrame_EnableTemporalProcessing")]
         const Frame_EnableTemporalProcessing = 1<<3;
         const _ = !0;
@@ -143,23 +138,6 @@ unsafe impl RefEncode for VTDecodeFrameFlags {
 
 /// Informational status for decoding -- non-error flags
 ///
-///
-/// The kVTDecodeInfo_Asynchronous bit may be set if the decode ran asynchronously.
-///
-/// The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped.
-///
-/// If the kVTDecodeInfo_ImageBufferModifiable bit is set, it is safe for the client to modify the imageBuffer.
-///
-/// The kVTDecodeInfo_SkippedLeadingFrameDropped may be set if a leading frame after a sync frame is dropped.
-/// This can happen when a seek to a sync frame is initiated and, due to frame reordering, there are leading
-/// frames following the sync frame that cannot be decoded due to missing references.  Dropping these frames
-/// has no impact to playback since the non-decodeable frames will not be rendered.
-/// If kVTDecodeInfo_SkippedLeadingFrameDropped is set, kVTDecodeInfo_FrameDropped will also be set.
-///
-/// The kVTDecodeInfo_FrameInterrupted bit may be set if the frame was decoded successfully but the decoded
-/// content was not provided in the output callback. When this bit is set, the imageBuffer provided to the output
-/// handler may either be NULL or contain only black pixels.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -167,14 +145,25 @@ unsafe impl RefEncode for VTDecodeFrameFlags {
 pub struct VTDecodeInfoFlags(pub u32);
 bitflags::bitflags! {
     impl VTDecodeInfoFlags: u32 {
+/// The kVTDecodeInfo_Asynchronous bit may be set if the decode ran asynchronously.
         #[doc(alias = "kVTDecodeInfo_Asynchronous")]
         const Asynchronous = 1<<0;
+/// The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped.
         #[doc(alias = "kVTDecodeInfo_FrameDropped")]
         const FrameDropped = 1<<1;
+/// If the kVTDecodeInfo_ImageBufferModifiable bit is set, it is safe for the client to modify the imageBuffer.
         #[doc(alias = "kVTDecodeInfo_ImageBufferModifiable")]
         const ImageBufferModifiable = 1<<2;
+/// The kVTDecodeInfo_SkippedLeadingFrameDropped may be set if a leading frame after a sync frame is dropped.
+/// This can happen when a seek to a sync frame is initiated and, due to frame reordering, there are leading
+/// frames following the sync frame that cannot be decoded due to missing references.  Dropping these frames
+/// has no impact to playback since the non-decodeable frames will not be rendered.
+/// If kVTDecodeInfo_SkippedLeadingFrameDropped is set, kVTDecodeInfo_FrameDropped will also be set.
         #[doc(alias = "kVTDecodeInfo_SkippedLeadingFrameDropped")]
         const SkippedLeadingFrameDropped = 1<<3;
+/// The kVTDecodeInfo_FrameInterrupted bit may be set if the frame was decoded successfully but the decoded
+/// content was not provided in the output callback. When this bit is set, the imageBuffer provided to the output
+/// handler may either be NULL or contain only black pixels.
         #[doc(alias = "kVTDecodeInfo_FrameInterrupted")]
         const FrameInterrupted = 1<<4;
         const _ = !0;

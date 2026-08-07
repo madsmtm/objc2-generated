@@ -18,24 +18,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagCollectionError(pub OSStatus);
 impl CMTagCollectionError {
+    /// Returned when caller passes incorrect input or output parameters.
     #[doc(alias = "kCMTagCollectionError_ParamErr")]
     pub const ParamErr: Self = Self(-15740);
+    /// Returned if a necessary allocation failed.
     #[doc(alias = "kCMTagCollectionError_AllocationFailed")]
     pub const AllocationFailed: Self = Self(-15741);
+    /// Returned if some kind of internal implementation error occurred.
     #[doc(alias = "kCMTagCollectionError_InternalError")]
     pub const InternalError: Self = Self(-15742);
+    /// Returned if the tag is kCMTagInvalid.
     #[doc(alias = "kCMTagCollectionError_InvalidTag")]
     pub const InvalidTag: Self = Self(-15743);
+    /// Returned if the CFDictionary being deserialized is not valid to create a CMTagCollection.
     #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionDictionary")]
     pub const InvalidTagCollectionDictionary: Self = Self(-15744);
+    /// Returned if structure of the CFData being deserialized is not valid to create a CMTagCollection.
     #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionData")]
     pub const InvalidTagCollectionData: Self = Self(-15745);
+    /// Returned if a search for a CMTag in the collection failed, including if the collection is empty.
     #[doc(alias = "kCMTagCollectionError_TagNotFound")]
     pub const TagNotFound: Self = Self(-15746);
+    /// Returned if the CFData deserialized to create a CMTagCollection has an unknown version.
     #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionDataVersion")]
     pub const InvalidTagCollectionDataVersion: Self = Self(-15747);
+    /// Returned if the buffer size to retrieve CMTags is smaller than necessary.
     #[doc(alias = "kCMTagCollectionError_ExhaustedBufferSize")]
     pub const ExhaustedBufferSize: Self = Self(-15748);
+    /// Returned if the function is not yet implemented.
     #[doc(alias = "kCMTagCollectionError_NotYetImplemented")]
     pub const NotYetImplemented: Self = Self(-15749);
 }

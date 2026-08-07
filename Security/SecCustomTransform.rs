@@ -15,65 +15,6 @@ use crate::*;
 /// attributes direct the behavior of the transform and
 /// its function within its group. Each attribute may be tailored by setting its metadata.
 ///
-///
-/// The actual value of the attribute. The attribute value has a default
-/// value of NULL.
-///
-///
-/// The name of the attribute. Attribute name is read only and may
-/// not be used with the SecTransformSetAttributeBlock block.
-///
-///
-/// A direct reference to an attribute's value. This reference allows
-/// for direct access to an attribute without having to look up the
-/// attribute by name.  If a transform commonly uses an attribute, using
-/// a reference speeds up the use of that attribute. Attribute
-/// references are not visible or valid from outside of the particular
-/// transform instance.
-///
-///
-/// Specifies if an attribute must have a non NULL value set or have an
-/// incoming connection before the transform starts to execute. This
-/// metadata has a default value of true for the input attribute, but
-/// false for all other attributes.
-///
-///
-/// Specifies if an attribute must have an outbound connection. This
-/// metadata has a default value of true for the output attribute but is
-/// false for all other attributes.
-///
-///
-/// Determines if the AttributeSetNotification notification or the
-/// ProcessData blocks are deferred until SecExecuteTransform is called.
-/// This metadata value has a default value of true for the input
-/// attribute but is false for all other attributes.
-///
-///
-/// Specifies if the attribute should expect a series of values ending
-/// with a NULL to specify the end of the data stream. This metadata has
-/// a default value of true for the input and output attributes, but is
-/// false for all other attributes.
-///
-///
-/// A Transform group is a directed graph which is typically acyclic.
-/// Some transforms need to work with cycles. For example, a transform
-/// that emits a header and trailer around the data of another transform
-/// must create a cycle. If this metadata set to true, no error is
-/// returned if a cycle is detected for this attribute.
-///
-///
-/// Specifies if this attribute should be written out when creating the
-/// external representation of this transform. This metadata has a
-/// default value of true.
-///
-///
-/// This metadata value is true if the attribute has an outbound
-/// connection. This metadata is read only.
-///
-///
-/// This metadata value is true if the attribute has an inbound
-/// connection. This metadata is read only.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype?language=objc)
 // NS_ENUM
 #[deprecated = "SecTransform is no longer supported"]
@@ -81,36 +22,73 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTransformMetaAttributeType(pub CFIndex);
 impl SecTransformMetaAttributeType {
+    /// The actual value of the attribute. The attribute value has a default
+    /// value of NULL.
     #[doc(alias = "kSecTransformMetaAttributeValue")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Value: Self = Self(0);
+    /// The name of the attribute. Attribute name is read only and may
+    /// not be used with the SecTransformSetAttributeBlock block.
     #[doc(alias = "kSecTransformMetaAttributeName")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Name: Self = Self(1);
+    /// A direct reference to an attribute's value. This reference allows
+    /// for direct access to an attribute without having to look up the
+    /// attribute by name.  If a transform commonly uses an attribute, using
+    /// a reference speeds up the use of that attribute. Attribute
+    /// references are not visible or valid from outside of the particular
+    /// transform instance.
     #[doc(alias = "kSecTransformMetaAttributeRef")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Ref: Self = Self(2);
+    /// Specifies if an attribute must have a non NULL value set or have an
+    /// incoming connection before the transform starts to execute. This
+    /// metadata has a default value of true for the input attribute, but
+    /// false for all other attributes.
     #[doc(alias = "kSecTransformMetaAttributeRequired")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Required: Self = Self(3);
+    /// Specifies if an attribute must have an outbound connection. This
+    /// metadata has a default value of true for the output attribute but is
+    /// false for all other attributes.
     #[doc(alias = "kSecTransformMetaAttributeRequiresOutboundConnection")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const RequiresOutboundConnection: Self = Self(4);
+    /// Determines if the AttributeSetNotification notification or the
+    /// ProcessData blocks are deferred until SecExecuteTransform is called.
+    /// This metadata value has a default value of true for the input
+    /// attribute but is false for all other attributes.
     #[doc(alias = "kSecTransformMetaAttributeDeferred")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Deferred: Self = Self(5);
+    /// Specifies if the attribute should expect a series of values ending
+    /// with a NULL to specify the end of the data stream. This metadata has
+    /// a default value of true for the input and output attributes, but is
+    /// false for all other attributes.
     #[doc(alias = "kSecTransformMetaAttributeStream")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Stream: Self = Self(6);
+    /// A Transform group is a directed graph which is typically acyclic.
+    /// Some transforms need to work with cycles. For example, a transform
+    /// that emits a header and trailer around the data of another transform
+    /// must create a cycle. If this metadata set to true, no error is
+    /// returned if a cycle is detected for this attribute.
     #[doc(alias = "kSecTransformMetaAttributeCanCycle")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const CanCycle: Self = Self(7);
+    /// Specifies if this attribute should be written out when creating the
+    /// external representation of this transform. This metadata has a
+    /// default value of true.
     #[doc(alias = "kSecTransformMetaAttributeExternalize")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Externalize: Self = Self(8);
+    /// This metadata value is true if the attribute has an outbound
+    /// connection. This metadata is read only.
     #[doc(alias = "kSecTransformMetaAttributeHasOutboundConnections")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const HasOutboundConnections: Self = Self(9);
+    /// This metadata value is true if the attribute has an inbound
+    /// connection. This metadata is read only.
     #[doc(alias = "kSecTransformMetaAttributeHasInboundConnection")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const HasInboundConnection: Self = Self(10);

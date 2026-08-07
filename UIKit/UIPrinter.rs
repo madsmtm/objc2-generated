@@ -21,20 +21,27 @@ bitflags::bitflags! {
     impl UIPrinterJobTypes: NSInteger {
         #[doc(alias = "UIPrinterJobTypeUnknown")]
         const Unknown = 0;
+/// The printer supports standard document printing.
         #[doc(alias = "UIPrinterJobTypeDocument")]
         const Document = 1<<0;
         #[doc(alias = "UIPrinterJobTypeEnvelope")]
         const Envelope = 1<<1;
+/// The printer supports printing on cut labels.
         #[doc(alias = "UIPrinterJobTypeLabel")]
         const Label = 1<<2;
+/// The printer supports printing with photographic print quality.
         #[doc(alias = "UIPrinterJobTypePhoto")]
         const Photo = 1<<3;
+/// The printer supports printing receipts on continuous rolls.
         #[doc(alias = "UIPrinterJobTypeReceipt")]
         const Receipt = 1<<4;
+/// The printer supports printing documents or photos on continuous rolls.
         #[doc(alias = "UIPrinterJobTypeRoll")]
         const Roll = 1<<5;
+/// The printer supports printing larger than ISO A3 size.
         #[doc(alias = "UIPrinterJobTypeLargeFormat")]
         const LargeFormat = 1<<6;
+/// The printer supports printing on postcards.
         #[doc(alias = "UIPrinterJobTypePostcard")]
         const Postcard = 1<<7;
         const _ = !0;

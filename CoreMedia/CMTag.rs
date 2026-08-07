@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagError(pub OSStatus);
 impl CMTagError {
+    /// Returned when caller passes incorrect input or output parameters.
     #[doc(alias = "kCMTagError_ParamErr")]
     pub const ParamErr: Self = Self(-15730);
+    /// Returned if a necessary allocation failed.
     #[doc(alias = "kCMTagError_AllocationFailed")]
     pub const AllocationFailed: Self = Self(-15731);
 }
@@ -41,26 +43,37 @@ unsafe impl RefEncode for CMTagError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagCategory(pub FourCharCode);
 impl CMTagCategory {
+    /// Indicates there is no category specified for this value or it could not be determined. CMTags should typically not have this category except as sentinel values.
     #[doc(alias = "kCMTagCategory_Undefined")]
     pub const Undefined: Self = Self(0);
+    /// Value is an OSType holding a CMMediaType.
     #[doc(alias = "kCMTagCategory_MediaType")]
     pub const MediaType: Self = Self(0x6d646961);
+    /// Value is an OSType holding a media subtype such as a video codec type.
     #[doc(alias = "kCMTagCategory_MediaSubType")]
     pub const MediaSubType: Self = Self(0x6d737562);
+    /// Value is a CMPersistentTrackID for a corresponding asset.
     #[doc(alias = "kCMTagCategory_TrackID")]
     pub const TrackID: Self = Self(0x7472616b);
+    /// Value is the CMVideoTarget/CMVideoReceiver channel identifier.
     #[doc(alias = "kCMTagCategory_ChannelID")]
     pub const ChannelID: Self = Self(0x7663686e);
+    /// Value is a signed 64-bit integer specifying the video layer identifier.
     #[doc(alias = "kCMTagCategory_VideoLayerID")]
     pub const VideoLayerID: Self = Self(0x766c6179);
+    /// Indicates the pixel format of the buffer or channel, if pixel-based. The type is an OSType corresponding to a pixel format (i.e., a kCVPixelFormatType_* type).
     #[doc(alias = "kCMTagCategory_PixelFormat")]
     pub const PixelFormat: Self = Self(0x70697866);
+    /// Indicates this channel is packed in some way (e.g., frame packed, texture atlas). The value is an OSType carrying kCMPackingType_* constants.
     #[doc(alias = "kCMTagCategory_PackingType")]
     pub const PackingType: Self = Self(0x7061636b);
+    /// Indicates textures are related to a kind of texture projection (e.g., equirectangular). The value is an OSType carrying one of the kCMProjectionType_* constants.
     #[doc(alias = "kCMTagCategory_ProjectionType")]
     pub const ProjectionType: Self = Self(0x70726f6a);
+    /// Indicates this channel is related to carrying stereographic views. The value is a Flags value carrying one of the kCMTagStereoViewComponent_* constants.
     #[doc(alias = "kCMTagCategory_StereoView")]
     pub const StereoView: Self = Self(0x65796573);
+    /// Indicates this channel has non default stereo view interpretation (e.g., stereo eye view order is reversed.) Tags with this category will typically be associated with tags of category kCMTagCategory_StereoView. This tag alone however does not indicate which stereo eyes are present. The value is a Flags value carrying one of the kCMTagStereoInterpretationOption_* constants.
     #[doc(alias = "kCMTagCategory_StereoViewInterpretation")]
     pub const StereoViewInterpretation: Self = Self(0x65796970);
 }
@@ -83,14 +96,19 @@ unsafe impl RefEncode for CMTagCategory {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagDataType(pub u32);
 impl CMTagDataType {
+    /// Value is a sentinel data type indicating it is not valid. The value should not be treated as a value.
     #[doc(alias = "kCMTagDataType_Invalid")]
     pub const Invalid: Self = Self(0);
+    /// Value is a signed 64-bit integer (e,g, int64_t).
     #[doc(alias = "kCMTagDataType_SInt64")]
     pub const SInt64: Self = Self(2);
+    /// Value is a 64-bit floating point value (e.g., Float64).
     #[doc(alias = "kCMTagDataType_Float64")]
     pub const Float64: Self = Self(3);
+    /// Value is an OSType in the lower 32 bits of a 64-bit integer (e.g., OSType).
     #[doc(alias = "kCMTagDataType_OSType")]
     pub const OSType: Self = Self(5);
+    /// Value is a 64-bit integer holding option bits or flags.
     #[doc(alias = "kCMTagDataType_Flags")]
     pub const Flags: Self = Self(7);
 }
@@ -276,10 +294,13 @@ extern "C" {
 pub struct CMStereoViewInterpretationOptions(pub u64);
 bitflags::bitflags! {
     impl CMStereoViewInterpretationOptions: u64 {
+/// no additional interpretation other than the default is implied by this tag. The absence of a tag of the kCMTagCategory_StereoViewInterpretation is considered equivalent to a CMTag having the kCMStereoViewInterpretation_Default value.
         #[doc(alias = "kCMStereoViewInterpretation_Default")]
         const Default = 0;
+/// the order of the stereo left eye and stereo right eye are reversed from the default of left being first and right being second in whatever geometric sense or storage sense that might imply. If set to 0, the order is the default left and then right eye.
         #[doc(alias = "kCMStereoViewInterpretation_StereoOrderReversed")]
         const StereoOrderReversed = 1<<0;
+/// one or more additional views may be present beyond stereo left and stereo right eyes (e.g,. a “centerline” view). If set to 0, there are no additional views beyond the stereo views or no additional views can be determined to exist.
         #[doc(alias = "kCMStereoViewInterpretation_AdditionalViews")]
         const AdditionalViews = 1<<1;
         const _ = !0;
@@ -313,14 +334,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMProjectionType(pub u64);
 impl CMProjectionType {
+    /// There is no projection.This is a traditional 2D texture. Default if no projection type tag is signaled.
     #[doc(alias = "kCMProjectionType_Rectangular")]
     pub const Rectangular: Self = Self(0x72656374);
+    /// The projection is a 360 degree equirectangular projection.
     #[doc(alias = "kCMProjectionType_Equirectangular")]
     pub const Equirectangular: Self = Self(0x65717569);
+    /// The projection is a 180 degree equirectangular projection.
     #[doc(alias = "kCMProjectionType_HalfEquirectangular")]
     pub const HalfEquirectangular: Self = Self(0x68657175);
+    /// This projection is used by Apple Immersive Video (AIV) video and requires AIME metadata to provide the projection details.  Only use this projection when working with AIV content.
     #[doc(alias = "kCMProjectionType_Fisheye")]
     pub const Fisheye: Self = Self(0x66697368);
+    /// The projection is defined with a parametric description of lens distortion and image dewarping parameters.
     #[doc(alias = "kCMProjectionType_ParametricImmersive")]
     pub const ParametricImmersive: Self = Self(0x7072696d);
 }
@@ -380,10 +406,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMPackingType(pub u64);
 impl CMPackingType {
+    /// There is no packing. This is a traditional 2D texture. For this case no packing tag needs to be used.
     #[doc(alias = "kCMPackingType_None")]
     pub const None: Self = Self(0x6e6f6e65);
+    /// The packing uses a horizontal side-by-side packing of two views. By default, the left stereo eye view is to the left of the right stereo eye view. If the view order is reversed, indicated by kCMTagCategory_StereoViewInterpretation/kCMStereoViewInterpretation_StereoOrderReversed, then the right view is to the left of the left stereo view.
     #[doc(alias = "kCMPackingType_SideBySide")]
     pub const SideBySide: Self = Self(0x73696465);
+    /// The packing uses a vertical over-under (or top-and-bottom) packing of two views. By default, the left stereo eye view is above the right stereo eye view. If the view order is reversed, indicated by kCMTagCategory_StereoViewInterpretation/kCMStereoViewInterpretation_StereoOrderReversed, then the right view is above the left stereo view.
     #[doc(alias = "kCMPackingType_OverUnder")]
     pub const OverUnder: Self = Self(0x6f766572);
 }

@@ -22,12 +22,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionMatchPatternError(pub NSInteger);
 impl WKWebExtensionMatchPatternError {
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionMatchPatternErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// Indicates that the scheme component was invalid.
     #[doc(alias = "WKWebExtensionMatchPatternErrorInvalidScheme")]
     pub const InvalidScheme: Self = Self(2);
+    /// Indicates that the host component was invalid.
     #[doc(alias = "WKWebExtensionMatchPatternErrorInvalidHost")]
     pub const InvalidHost: Self = Self(3);
+    /// Indicates that the path component was invalid.
     #[doc(alias = "WKWebExtensionMatchPatternErrorInvalidPath")]
     pub const InvalidPath: Self = Self(4);
 }
@@ -49,12 +53,16 @@ unsafe impl RefEncode for WKWebExtensionMatchPatternError {
 pub struct WKWebExtensionMatchPatternOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl WKWebExtensionMatchPatternOptions: NSUInteger {
+/// Indicates no special matching options.
         #[doc(alias = "WKWebExtensionMatchPatternOptionsNone")]
         const None = 0;
+/// Indicates that the scheme components should be ignored while matching.
         #[doc(alias = "WKWebExtensionMatchPatternOptionsIgnoreSchemes")]
         const IgnoreSchemes = 1<<0;
+/// Indicates that the host components should be ignored while matching.
         #[doc(alias = "WKWebExtensionMatchPatternOptionsIgnorePaths")]
         const IgnorePaths = 1<<1;
+/// Indicates that two patterns should be checked in either direction while matching (A matches B, or B matches A). Invalid for matching URLs.
         #[doc(alias = "WKWebExtensionMatchPatternOptionsMatchBidirectionally")]
         const MatchBidirectionally = 1<<2;
         const _ = !0;

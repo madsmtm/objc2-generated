@@ -15,21 +15,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebNavigationType(pub NSInteger);
 impl WebNavigationType {
+    /// A link with an href was clicked.
     #[doc(alias = "WebNavigationTypeLinkClicked")]
     #[deprecated]
     pub const LinkClicked: Self = Self(0);
+    /// A form was submitted.
     #[doc(alias = "WebNavigationTypeFormSubmitted")]
     #[deprecated]
     pub const FormSubmitted: Self = Self(1);
+    /// The user chose back or forward.
     #[doc(alias = "WebNavigationTypeBackForward")]
     #[deprecated]
     pub const BackForward: Self = Self(2);
+    /// The User hit the reload button.
     #[doc(alias = "WebNavigationTypeReload")]
     #[deprecated]
     pub const Reload: Self = Self(3);
+    /// A form was resubmitted (by virtue of doing back, forward or reload).
     #[doc(alias = "WebNavigationTypeFormResubmitted")]
     #[deprecated]
     pub const FormResubmitted: Self = Self(4);
+    /// Navigation is taking place for some other reason.
     #[doc(alias = "WebNavigationTypeOther")]
     #[deprecated]
     pub const Other: Self = Self(5);

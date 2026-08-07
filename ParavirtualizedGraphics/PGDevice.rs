@@ -316,16 +316,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PGResumeErrorCode(pub NSUInteger);
 impl PGResumeErrorCode {
+    /// Some internal fault occurred.
     #[doc(alias = "PGResumeErrorCodeInternalFault")]
     pub const InternalFault: Self = Self(0);
+    /// The suspend state version is incompatible with this framework version.
     #[doc(alias = "PGResumeErrorCodeInvalidSuspendStateVersion")]
     pub const InvalidSuspendStateVersion: Self = Self(1);
+    /// The content the suspend state or guest memory is invalid.
     #[doc(alias = "PGResumeErrorCodeInvalidContent")]
     pub const InvalidContent: Self = Self(2);
+    /// The guest version is incompatible with this framework version.
     #[doc(alias = "PGResumeErrorCodeInvalidGuestVersion")]
     pub const InvalidGuestVersion: Self = Self(3);
+    /// The resume device is missing capabilities provided by the suspend device.
     #[doc(alias = "PGResumeErrorCodeIncompatibleDevice")]
     pub const IncompatibleDevice: Self = Self(4);
+    /// The DisplayPortCount in suspend state doesn't match DisplayPortCount for this VM
     #[doc(alias = "PGResumeErrorCodeInvalidDisplayPortCount")]
     pub const InvalidDisplayPortCount: Self = Self(5);
 }

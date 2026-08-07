@@ -213,11 +213,6 @@ pub const kCVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange: OSType =
 
 /// Flags to pass to CVPixelBufferLockBaseAddress() / CVPixelBufferUnlockBaseAddress()
 ///
-/// If you are not going to modify the data while you hold the lock, you should set this flag
-/// to avoid potentially invalidating any existing caches of the buffer contents.  This flag
-/// should be passed both to the lock and unlock functions.  Non-symmetrical usage of this
-/// flag will result in undefined behavior.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "CVBase")]
@@ -227,6 +222,10 @@ pub struct CVPixelBufferLockFlags(pub CVOptionFlags);
 #[cfg(feature = "CVBase")]
 bitflags::bitflags! {
     impl CVPixelBufferLockFlags: CVOptionFlags {
+/// If you are not going to modify the data while you hold the lock, you should set this flag
+/// to avoid potentially invalidating any existing caches of the buffer contents.  This flag
+/// should be passed both to the lock and unlock functions.  Non-symmetrical usage of this
+/// flag will result in undefined behavior.
         #[doc(alias = "kCVPixelBufferLock_ReadOnly")]
         const ReadOnly = 0x00000001;
         const _ = !0;

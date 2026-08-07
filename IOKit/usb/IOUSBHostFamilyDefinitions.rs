@@ -499,20 +499,28 @@ pub const kAppleCurrentExtraInSleep: &CStr =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBHostConnectionSpeed(pub c_uint);
 impl tIOUSBHostConnectionSpeed {
+    /// No device is connected
     #[doc(alias = "kIOUSBHostConnectionSpeedNone")]
     pub const IOUSBHostConnectionSpeedNone: Self = Self(0);
+    /// A full-speed (12 Mb/s) device is connected
     #[doc(alias = "kIOUSBHostConnectionSpeedFull")]
     pub const IOUSBHostConnectionSpeedFull: Self = Self(1);
+    /// A low-speed (1.5 Mb/s) device is connected
     #[doc(alias = "kIOUSBHostConnectionSpeedLow")]
     pub const IOUSBHostConnectionSpeedLow: Self = Self(2);
+    /// A high-speed (480 Mb/s) device is connected)
     #[doc(alias = "kIOUSBHostConnectionSpeedHigh")]
     pub const IOUSBHostConnectionSpeedHigh: Self = Self(3);
+    /// A superspeed (5 Gb/s) device is connected)
     #[doc(alias = "kIOUSBHostConnectionSpeedSuper")]
     pub const IOUSBHostConnectionSpeedSuper: Self = Self(4);
+    /// A superspeed (10 Gb/s) device is connected)
     #[doc(alias = "kIOUSBHostConnectionSpeedSuperPlus")]
     pub const IOUSBHostConnectionSpeedSuperPlus: Self = Self(5);
+    /// A superspeed (20 Gb/s) device is connected)
     #[doc(alias = "kIOUSBHostConnectionSpeedSuperPlusBy2")]
     pub const IOUSBHostConnectionSpeedSuperPlusBy2: Self = Self(6);
+    /// A speed not identified by previous definitions
     #[doc(alias = "kIOUSBHostConnectionSpeedOther")]
     pub const IOUSBHostConnectionSpeedOther: Self = Self(7);
     #[doc(alias = "kIOUSBHostConnectionSpeedCount")]
@@ -536,18 +544,25 @@ unsafe impl RefEncode for tIOUSBHostConnectionSpeed {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBHostPortType(pub c_uint);
 impl tIOUSBHostPortType {
+    /// A general-purpose USB port.
     #[doc(alias = "kIOUSBHostPortTypeStandard")]
     pub const IOUSBHostPortTypeStandard: Self = Self(0);
+    /// The attached device cannot be physically disconnected from the port.
     #[doc(alias = "kIOUSBHostPortTypeCaptive")]
     pub const IOUSBHostPortTypeCaptive: Self = Self(1);
+    /// The attached device cannot be physically disconnected from the host machine.
     #[doc(alias = "kIOUSBHostPortTypeInternal")]
     pub const IOUSBHostPortTypeInternal: Self = Self(2);
+    /// The attached device may require authentication before function drivers can access it.
     #[doc(alias = "kIOUSBHostPortTypeAccessory")]
     pub const IOUSBHostPortTypeAccessory: Self = Self(3);
+    /// The attached device uses an ExpressCard slot
     #[doc(alias = "kIOUSBHostPortTypeExpressCard")]
     pub const IOUSBHostPortTypeExpressCard: Self = Self(4);
+    /// The attached device uses a USB-C port that may be capable of other transports
     #[doc(alias = "kIOUSBHostPortTypeC")]
     pub const IOUSBHostPortTypeC: Self = Self(5);
+    /// Unhandled port type
     #[doc(alias = "kIOUSBHostPortTypeUnknown")]
     pub const IOUSBHostPortTypeUnknown: Self = Self(6);
 }
@@ -569,52 +584,63 @@ unsafe impl RefEncode for tIOUSBHostPortType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBHostPortStatus(pub c_uint);
 impl tIOUSBHostPortStatus {
+    /// The mask for bits representing the port type.
     #[doc(alias = "kIOUSBHostPortStatusPortTypeMask")]
     pub const IOUSBHostPortStatusPortTypeMask: Self = Self(IOUSBHostFamilyBitRange!(0, 3));
     #[doc(alias = "kIOUSBHostPortStatusPortTypePhase")]
     pub const IOUSBHostPortStatusPortTypePhase: Self = Self(IOUSBHostFamilyBitRangePhase!(0, 3));
+    /// A general-purpose USB port.
     #[doc(alias = "kIOUSBHostPortStatusPortTypeStandard")]
     pub const IOUSBHostPortStatusPortTypeStandard: Self = Self(
         tIOUSBHostPortType::IOUSBHostPortTypeStandard.0 << IOUSBHostFamilyBitRangePhase!(0, 3),
     );
+    /// The attached device cannot be physically disconnected from the port.
     #[doc(alias = "kIOUSBHostPortStatusPortTypeCaptive")]
     pub const IOUSBHostPortStatusPortTypeCaptive: Self =
         Self(tIOUSBHostPortType::IOUSBHostPortTypeCaptive.0 << IOUSBHostFamilyBitRangePhase!(0, 3));
+    /// The attached device cannot be physically disconnected from the host machine.
     #[doc(alias = "kIOUSBHostPortStatusPortTypeInternal")]
     pub const IOUSBHostPortStatusPortTypeInternal: Self = Self(
         tIOUSBHostPortType::IOUSBHostPortTypeInternal.0 << IOUSBHostFamilyBitRangePhase!(0, 3),
     );
+    /// The attached device may require authentication before function drivers can access it.
     #[doc(alias = "kIOUSBHostPortStatusPortTypeAccessory")]
     pub const IOUSBHostPortStatusPortTypeAccessory: Self = Self(
         tIOUSBHostPortType::IOUSBHostPortTypeAccessory.0 << IOUSBHostFamilyBitRangePhase!(0, 3),
     );
     #[doc(alias = "kIOUSBHostPortStatusPortTypeReserved")]
     pub const IOUSBHostPortStatusPortTypeReserved: Self = Self(IOUSBHostFamilyBitRange!(4, 7));
+    /// The mask for bits representing the connection state.
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedMask")]
     pub const IOUSBHostPortStatusConnectedSpeedMask: Self = Self(IOUSBHostFamilyBitRange!(8, 10));
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedPhase")]
     pub const IOUSBHostPortStatusConnectedSpeedPhase: Self =
         Self(IOUSBHostFamilyBitRangePhase!(8, 10));
+    /// The port does not have a connected device.
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedNone")]
     pub const IOUSBHostPortStatusConnectedSpeedNone: Self = Self(
         tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedNone.0
             << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
+    /// The port has a full-speed device connected.
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedFull")]
     pub const IOUSBHostPortStatusConnectedSpeedFull: Self = Self(
         tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedFull.0
             << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
+    /// The port has a low-speed device connected.
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedLow")]
     pub const IOUSBHostPortStatusConnectedSpeedLow: Self = Self(
         tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedLow.0
             << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
+    /// The port has a high-speed device connected.
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedHigh")]
     pub const IOUSBHostPortStatusConnectedSpeedHigh: Self = Self(
         tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedHigh.0
             << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
+    /// The port has a superspeed device connected.
     #[doc(alias = "kIOUSBHostPortStatusConnectedSpeedSuper")]
     pub const IOUSBHostPortStatusConnectedSpeedSuper: Self = Self(
         tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedSuper.0
@@ -635,14 +661,19 @@ impl tIOUSBHostPortStatus {
         tIOUSBHostConnectionSpeed::IOUSBHostConnectionSpeedOther.0
             << IOUSBHostFamilyBitRangePhase!(8, 10),
     );
+    /// The port is currently resetting the link.
     #[doc(alias = "kIOUSBHostPortStatusResetting")]
     pub const IOUSBHostPortStatusResetting: Self = Self(IOUSBHostFamilyBit!(11));
+    /// The port is enabled and packets are permitted to reach the device.  Not valid unless kIOUSBHostPortStatusConnectedSpeedMask is nonzero.
     #[doc(alias = "kIOUSBHostPortStatusEnabled")]
     pub const IOUSBHostPortStatusEnabled: Self = Self(IOUSBHostFamilyBit!(12));
+    /// The port is suspended.  Not valid unless kIOUSBHostPortStatusConnectedSpeedMask is nonzero.
     #[doc(alias = "kIOUSBHostPortStatusSuspended")]
     pub const IOUSBHostPortStatusSuspended: Self = Self(IOUSBHostFamilyBit!(13));
+    /// The port is in the overcurrent condition.
     #[doc(alias = "kIOUSBHostPortStatusOvercurrent")]
     pub const IOUSBHostPortStatusOvercurrent: Self = Self(IOUSBHostFamilyBit!(14));
+    /// The port is in test mode.
     #[doc(alias = "kIOUSBHostPortStatusTestMode")]
     pub const IOUSBHostPortStatusTestMode: Self = Self(IOUSBHostFamilyBit!(15));
 }

@@ -99,11 +99,17 @@ unsafe impl RefEncode for AudioServerPlugInClientInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpluginobject?language=objc)
+/// The AudioObjectID that always refers to the one and only instance of the
+/// AudioPlugIn for the plug-in.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpluginobject?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioObjectPlugInObject: AudioObjectID = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioserverpluginhostclientid?language=objc)
+/// No actual client will have this value as its ID. It is only used when the
+/// Host is making a request on its own behalf.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioserverpluginhostclientid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioServerPlugInHostClientID: AudioObjectID = 0;
 
@@ -132,69 +138,59 @@ pub const kAudioServerPlugInCustomPropertyDataTypeCFPropertyList:
 
 /// The valid values for the inOperationID argument to the various IO methods.
 ///
-/// This operation marks the beginning and the ending of the IO thread. Note
-/// that DoIOOperation() will never be called with this ID.
-///
-/// This operation marks the beginning and ending of each IO cycle. Note that
-/// DoIOOperation() will never be called with this ID.
-///
-/// This operation transfers the input data from the device's ring buffer to the
-/// provided buffer in the stream's native format. Note that this operation
-/// always happens in-place in the main buffer passed to DoIOOperation(). It is
-/// required that this operation be implemented if the AudioDevice has input
-/// streams.
-///
-/// This operation converts the input data from its native format to the
-/// canonical format.
-///
-/// This operation performs arbitrary signal processing on the input data in the
-/// canonical format.
-///
-/// This operation performs arbitrary signal processing on the output data in
-/// the canonical format.
-///
-/// This operation mixes the output data into the device's ring buffer. Note
-/// that if a plug-in implements this operation, no further output operations
-/// will occur for that cycle. It is assumed that the device handles everything
-/// from there down including preparing the data for consumption by the
-/// hardware. Note also that this operation always happens in-place in the main
-/// buffer passed to DoIOOperation().
-///
-/// This operation processes the full mix of all clients' data in the canonical
-/// format.
-///
-/// This operation converts the fully mixed data from the canonical format to
-/// the device's native format.
-///
-/// This operation puts the data into the device's ring buffer for consumption
-/// of the hardware. Note that this operation always happens in-place in the
-/// main buffer passed to DoIOOperation(). It is required that this operation be
-/// implemented if the AudioDevice has output streams.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioServerPlugInIOOperation(pub u32);
 impl AudioServerPlugInIOOperation {
+    /// This operation marks the beginning and the ending of the IO thread. Note
+    /// that DoIOOperation() will never be called with this ID.
     #[doc(alias = "kAudioServerPlugInIOOperationThread")]
     pub const Thread: Self = Self(0x74687264);
+    /// This operation marks the beginning and ending of each IO cycle. Note that
+    /// DoIOOperation() will never be called with this ID.
     #[doc(alias = "kAudioServerPlugInIOOperationCycle")]
     pub const Cycle: Self = Self(0x6379636c);
+    /// This operation transfers the input data from the device's ring buffer to the
+    /// provided buffer in the stream's native format. Note that this operation
+    /// always happens in-place in the main buffer passed to DoIOOperation(). It is
+    /// required that this operation be implemented if the AudioDevice has input
+    /// streams.
     #[doc(alias = "kAudioServerPlugInIOOperationReadInput")]
     pub const ReadInput: Self = Self(0x72656164);
+    /// This operation converts the input data from its native format to the
+    /// canonical format.
     #[doc(alias = "kAudioServerPlugInIOOperationConvertInput")]
     pub const ConvertInput: Self = Self(0x63696e70);
+    /// This operation performs arbitrary signal processing on the input data in the
+    /// canonical format.
     #[doc(alias = "kAudioServerPlugInIOOperationProcessInput")]
     pub const ProcessInput: Self = Self(0x70696e70);
+    /// This operation performs arbitrary signal processing on the output data in
+    /// the canonical format.
     #[doc(alias = "kAudioServerPlugInIOOperationProcessOutput")]
     pub const ProcessOutput: Self = Self(0x706f7574);
+    /// This operation mixes the output data into the device's ring buffer. Note
+    /// that if a plug-in implements this operation, no further output operations
+    /// will occur for that cycle. It is assumed that the device handles everything
+    /// from there down including preparing the data for consumption by the
+    /// hardware. Note also that this operation always happens in-place in the main
+    /// buffer passed to DoIOOperation().
     #[doc(alias = "kAudioServerPlugInIOOperationMixOutput")]
     pub const MixOutput: Self = Self(0x6d69786f);
+    /// This operation processes the full mix of all clients' data in the canonical
+    /// format.
     #[doc(alias = "kAudioServerPlugInIOOperationProcessMix")]
     pub const ProcessMix: Self = Self(0x706d6978);
+    /// This operation converts the fully mixed data from the canonical format to
+    /// the device's native format.
     #[doc(alias = "kAudioServerPlugInIOOperationConvertMix")]
     pub const ConvertMix: Self = Self(0x636d6978);
+    /// This operation puts the data into the device's ring buffer for consumption
+    /// of the hardware. Note that this operation always happens in-place in the
+    /// main buffer passed to DoIOOperation(). It is required that this operation be
+    /// implemented if the AudioDevice has output streams.
     #[doc(alias = "kAudioServerPlugInIOOperationWriteMix")]
     pub const WriteMix: Self = Self(0x72697465);
 }
@@ -209,26 +205,23 @@ unsafe impl RefEncode for AudioServerPlugInIOOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycustompropertyinfolist?language=objc)
+/// An array of AudioServerPlugInCustomPropertyInfo that describe the custom
+/// properties the object has.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycustompropertyinfolist?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioObjectPropertyCustomPropertyInfoList: AudioObjectPropertySelector = 0x63757374;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertyresourcebundle?language=objc)
+/// A CFString that contains a path to a resource bundle to use for localizing
+/// strings and fetching resources like icons from the client process. The path
+/// is relative to the path of the plug-in's bundle. The caller is responsible
+/// for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertyresourcebundle?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioPlugInPropertyResourceBundle: AudioObjectPropertySelector = 0x72737263;
 
 /// The valid values for kAudioDevicePropertyClockAlgorithm
-///
-/// When this value for the clock algorithm is specified, the Host will not
-/// apply any filtering to the time stamps returned from GetZeroTimeStamp(). The
-/// values will be used as-is.
-///
-/// When this value for the clock algorithm is specified, the Host applies a
-/// simple IIR filter to the time stamp stream. This is the default algorithm
-/// used for devices that don't implement kAudioDevicePropertyClockAlgorithm.
-///
-/// This clock algorithm uses a 12 point moving window average to filter the time
-/// stamps returned from GetZeroTimeStamp().
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceclockalgorithmselector?language=objc)
 // NS_ENUM
@@ -236,10 +229,18 @@ pub const kAudioPlugInPropertyResourceBundle: AudioObjectPropertySelector = 0x72
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioDeviceClockAlgorithmSelector(pub u32);
 impl AudioDeviceClockAlgorithmSelector {
+    /// When this value for the clock algorithm is specified, the Host will not
+    /// apply any filtering to the time stamps returned from GetZeroTimeStamp(). The
+    /// values will be used as-is.
     #[doc(alias = "kAudioDeviceClockAlgorithmRaw")]
     pub const AlgorithmRaw: Self = Self(0x72617777);
+    /// When this value for the clock algorithm is specified, the Host applies a
+    /// simple IIR filter to the time stamp stream. This is the default algorithm
+    /// used for devices that don't implement kAudioDevicePropertyClockAlgorithm.
     #[doc(alias = "kAudioDeviceClockAlgorithmSimpleIIR")]
     pub const AlgorithmSimpleIIR: Self = Self(0x69697266);
+    /// This clock algorithm uses a 12 point moving window average to filter the time
+    /// stamps returned from GetZeroTimeStamp().
     #[doc(alias = "kAudioDeviceClockAlgorithm12PtMovingWindowAverage")]
     pub const Algorithm12PtMovingWindowAverage: Self = Self(0x6d617667);
 }
@@ -254,12 +255,26 @@ unsafe impl RefEncode for AudioDeviceClockAlgorithmSelector {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyzerotimestampperiod?language=objc)
+/// A UInt32 whose value indicates the number of sample frames the host can
+/// expect between successive time stamps returned from GetZeroTimeStamp(). In
+/// other words, if GetZeroTimeStamp() returned a sample time of X, the host can
+/// expect that the next valid time stamp that will be returned will be X plus
+/// the value of this property. The minimum allowed value for this is 10923 sample frames.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyzerotimestampperiod?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyZeroTimeStampPeriod: AudioObjectPropertySelector = 0x72696e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockalgorithm?language=objc)
+/// A UInt32 whose value indicates to the Host what smoothing algorithm to use
+/// for a device's clock. The only legal values for this property are specified
+/// in the enum below.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockalgorithm?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyClockAlgorithm: AudioObjectPropertySelector = 0x636c6f6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockisstable?language=objc)
+/// A UInt32 where a non-zero value indicates that the device's clock runs at or
+/// very near the nominal rate with only small variations. If this property is
+/// not implemented, it is assumed that the device's clock is stable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockisstable?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyClockIsStable: AudioObjectPropertySelector = 0x63737462;

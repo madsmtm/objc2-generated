@@ -9,82 +9,65 @@ use crate::*;
 
 /// These constants specify the possible media kinds of a iTunes media item.
 ///
-/// The media item kind is unknown.
-///
-/// The media item is a song.
-///
-/// The media item is a movie.
-///
-/// The media item is an audio or video podcast.
-///
-/// The media item is an audiobook.
-///
-/// The media item is an unwrapped PDF file that is part of a Music album.
-///
-/// The media item is a music video.
-///
-/// The media item is a TV show.
-///
-/// The media item is a QuickTime movie with embedded flash (deprecated)
-///
-/// The media item is a non-iTunes Store movie.
-///
-/// The media item is an iOS ringtone.
-///
-/// The media item is an iTunes Extra or an iTunes LP.
-///
-/// The media item is an iPhone or iPod touch application.
-///
-/// The media item is a voice memo recorded on iPod/iPhone.
-///
-/// The media item is an iTunesU audio of video file.
-///
-/// The media item is an EPUB or iBooks Author book.
-///
-/// The media item is a PDF treated as Books in the UI unless overridden by the user.
-///
-/// The media item is an audio tone on an iOS device which is not a protected ringtone.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ITLibMediaItemMediaKind(pub NSUInteger);
 impl ITLibMediaItemMediaKind {
+    /// The media item kind is unknown.
     #[doc(alias = "ITLibMediaItemMediaKindUnknown")]
     pub const KindUnknown: Self = Self(1);
+    /// The media item is a song.
     #[doc(alias = "ITLibMediaItemMediaKindSong")]
     pub const KindSong: Self = Self(2);
+    /// The media item is a movie.
     #[doc(alias = "ITLibMediaItemMediaKindMovie")]
     pub const KindMovie: Self = Self(3);
+    /// The media item is an audio or video podcast.
     #[doc(alias = "ITLibMediaItemMediaKindPodcast")]
     pub const KindPodcast: Self = Self(4);
+    /// The media item is an audiobook.
     #[doc(alias = "ITLibMediaItemMediaKindAudiobook")]
     pub const KindAudiobook: Self = Self(5);
+    /// The media item is an unwrapped PDF file that is part of a Music album.
     #[doc(alias = "ITLibMediaItemMediaKindPDFBooklet")]
     pub const KindPDFBooklet: Self = Self(6);
+    /// The media item is a music video.
     #[doc(alias = "ITLibMediaItemMediaKindMusicVideo")]
     pub const KindMusicVideo: Self = Self(7);
+    /// The media item is a TV show.
     #[doc(alias = "ITLibMediaItemMediaKindTVShow")]
     pub const KindTVShow: Self = Self(8);
+    /// The media item is a QuickTime movie with embedded flash (deprecated)
     #[doc(alias = "ITLibMediaItemMediaKindInteractiveBooklet")]
     pub const KindInteractiveBooklet: Self = Self(9);
+    /// The media item is a non-iTunes Store movie.
     #[doc(alias = "ITLibMediaItemMediaKindHomeVideo")]
     pub const KindHomeVideo: Self = Self(12);
+    /// The media item is an iOS ringtone.
     #[doc(alias = "ITLibMediaItemMediaKindRingtone")]
     pub const KindRingtone: Self = Self(14);
+    /// The media item is an iTunes Extra or an iTunes LP.
     #[doc(alias = "ITLibMediaItemMediaKindDigitalBooklet")]
     pub const KindDigitalBooklet: Self = Self(15);
+    /// The media item is an iPhone or iPod touch application.
     #[doc(alias = "ITLibMediaItemMediaKindIOSApplication")]
     pub const KindIOSApplication: Self = Self(16);
+    /// The media item is a voice memo recorded on iPod/iPhone.
     #[doc(alias = "ITLibMediaItemMediaKindVoiceMemo")]
     pub const KindVoiceMemo: Self = Self(17);
+    /// The media item is an iTunesU audio of video file.
     #[doc(alias = "ITLibMediaItemMediaKindiTunesU")]
     pub const KindiTunesU: Self = Self(18);
+    /// The media item is an EPUB or iBooks Author book.
     #[doc(alias = "ITLibMediaItemMediaKindBook")]
     pub const KindBook: Self = Self(19);
+    /// Generic PDF files.
+    /// The media item is a PDF treated as Books in the UI unless overridden by the user.
     #[doc(alias = "ITLibMediaItemMediaKindPDFBook")]
     pub const KindPDFBook: Self = Self(20);
+    /// The media item is an audio tone on an iOS device which is not a protected ringtone.
     #[doc(alias = "ITLibMediaItemMediaKindAlertTone")]
     pub const KindAlertTone: Self = Self(21);
 }
@@ -99,22 +82,19 @@ unsafe impl RefEncode for ITLibMediaItemMediaKind {
 
 /// These constants specify the possible ratings of media item lyrics.
 ///
-/// No rating information for the media item lyrics.
-///
-/// The media item lyrics contain explicit language.
-///
-/// The media item lyrics do not contain explicit language.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlyricscontentrating?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemLyricsContentRating(pub NSUInteger);
 impl ITLibMediaItemLyricsContentRating {
+    /// No rating information for the media item lyrics.
     #[doc(alias = "ITLibMediaItemLyricsContentRatingNone")]
     pub const None: Self = Self(0);
+    /// The media item lyrics contain explicit language.
     #[doc(alias = "ITLibMediaItemLyricsContentRatingExplicit")]
     pub const Explicit: Self = Self(1);
+    /// The media item lyrics do not contain explicit language.
     #[doc(alias = "ITLibMediaItemLyricsContentRatingClean")]
     pub const Clean: Self = Self(2);
 }
@@ -129,26 +109,22 @@ unsafe impl RefEncode for ITLibMediaItemLyricsContentRating {
 
 /// These constants specify the location type of a media item.
 ///
-/// The media item location type is not known.
-///
-/// The media item location refers to a local file.
-///
-/// The media item location refers to a URL (for example, a podcast).
-///
-/// The media item location refers to a remote file.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemLocationType(pub NSUInteger);
 impl ITLibMediaItemLocationType {
+    /// The media item location type is not known.
     #[doc(alias = "ITLibMediaItemLocationTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The media item location refers to a local file.
     #[doc(alias = "ITLibMediaItemLocationTypeFile")]
     pub const File: Self = Self(1);
+    /// The media item location refers to a URL (for example, a podcast).
     #[doc(alias = "ITLibMediaItemLocationTypeURL")]
     pub const URL: Self = Self(2);
+    /// The media item location refers to a remote file.
     #[doc(alias = "ITLibMediaItemLocationTypeRemote")]
     pub const Remote: Self = Self(3);
 }
@@ -163,22 +139,19 @@ unsafe impl RefEncode for ITLibMediaItemLocationType {
 
 /// These constants specify the "blue dot" play status of this media item.
 ///
-/// The item has been played (see playCount) or the play status is not tracked for this type of media item.
-///
-/// The media item has been partially played.
-///
-/// The media item has not been played.  Note that the user can also set this state manually.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemPlayStatus(pub NSUInteger);
 impl ITLibMediaItemPlayStatus {
+    /// The item has been played (see playCount) or the play status is not tracked for this type of media item.
     #[doc(alias = "ITLibMediaItemPlayStatusNone")]
     pub const None: Self = Self(0);
+    /// The media item has been partially played.
     #[doc(alias = "ITLibMediaItemPlayStatusPartiallyPlayed")]
     pub const PartiallyPlayed: Self = Self(1);
+    /// The media item has not been played.  Note that the user can also set this state manually.
     #[doc(alias = "ITLibMediaItemPlayStatusUnplayed")]
     pub const Unplayed: Self = Self(2);
 }

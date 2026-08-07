@@ -9418,15 +9418,25 @@ pub type io_service_t = io_object_t;
 #[cfg(feature = "libc")]
 pub type uext_object_t = io_object_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/knanosecondscale?language=objc)
+/// Scale factor for nanosecond based times.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/knanosecondscale?language=objc)
 pub const kNanosecondScale: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kmicrosecondscale?language=objc)
+/// Scale factor for microsecond based times.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kmicrosecondscale?language=objc)
 pub const kMicrosecondScale: c_uint = 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kmillisecondscale?language=objc)
+/// Scale factor for millisecond based times.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kmillisecondscale?language=objc)
 pub const kMillisecondScale: c_uint = 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ksecondscale?language=objc)
+/// Scale factor for second based times.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ksecondscale?language=objc)
 pub const kSecondScale: c_uint = 1000 * 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ktickscale?language=objc)
+/// Scale factor for the standard (100Hz) tick.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ktickscale?language=objc)
 pub const kTickScale: c_uint = kSecondScale / 100;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioconnectmethodvaroutputsize?language=objc)
@@ -12807,28 +12817,46 @@ unsafe impl RefEncode for IOURLError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogadddrivers?language=objc)
+/// Signals a call to the addDrivers function in IOCatalogue.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogadddrivers?language=objc)
 pub const kIOCatalogAddDrivers: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogadddriversnomatch?language=objc)
+/// Signals a call to the addDrivers function in IOCatalogue but does not start a matching thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogadddriversnomatch?language=objc)
 pub const kIOCatalogAddDriversNoMatch: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogremovedrivers?language=objc)
+/// Signals a call to the removeDrivers function in IOCatalogue.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogremovedrivers?language=objc)
 pub const kIOCatalogRemoveDrivers: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogremovedriversnomatch?language=objc)
+/// Signals a call to the removedrivers function in IOCatalogue but does not start a matching thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogremovedriversnomatch?language=objc)
 pub const kIOCatalogRemoveDriversNoMatch: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogstartmatching__removed?language=objc)
 pub const kIOCatalogStartMatching__Removed: c_uint = 5;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogremovekernellinker__removed?language=objc)
 pub const kIOCatalogRemoveKernelLinker__Removed: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogkextdactive?language=objc)
+/// Signals the kernel that kextd is running.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogkextdactive?language=objc)
 pub const kIOCatalogKextdActive: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogkextdfinishedlaunching?language=objc)
+/// Signals the IOCatalogue that kextd has finished sending it information at startup.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogkextdfinishedlaunching?language=objc)
 pub const kIOCatalogKextdFinishedLaunching: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogresetdrivers?language=objc)
+/// Resets the IOCatalogue with a new set of personalities.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogresetdrivers?language=objc)
 pub const kIOCatalogResetDrivers: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogresetdriversnomatch?language=objc)
+/// Resets the IOCatalogue with a new set of personalities but does not start a matching thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogresetdriversnomatch?language=objc)
 pub const kIOCatalogResetDriversNoMatch: c_uint = 10;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocataloggetcontents?language=objc)
+/// Returns a snapshot of the database to the caller.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocataloggetcontents?language=objc)
 pub const kIOCatalogGetContents: c_uint = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocataloggetmoduledemandlist?language=objc)
 pub const kIOCatalogGetModuleDemandList: c_uint = 2;
@@ -12837,14 +12865,22 @@ pub const kIOCatalogGetCacheMissList: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocataloggetrommkextlist?language=objc)
 pub const kIOCatalogGetROMMkextList: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogresetdefault?language=objc)
+/// Removes all entries from IOCatalogue except those used for booting the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogresetdefault?language=objc)
 pub const kIOCatalogResetDefault: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogmoduleunload?language=objc)
+/// Terminates all services which depend on a particular module and unloads the module.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogmoduleunload?language=objc)
 pub const kIOCatalogModuleUnload: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogmoduleterminate?language=objc)
+/// Terminates all services which depend on a particular module but does not unload the module.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogmoduleterminate?language=objc)
 pub const kIOCatalogModuleTerminate: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogserviceterminate?language=objc)
+/// Terminates a particular service by name.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogserviceterminate?language=objc)
 pub const kIOCatalogServiceTerminate: c_uint = 3;
 
 /// # Safety

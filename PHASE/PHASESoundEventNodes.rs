@@ -17,14 +17,6 @@ use crate::*;
 ///
 /// Options controlling buffer scheduling.
 ///
-/// The buffer plays following any previously scheduled buffer(s).
-///
-/// The buffer loops indefinitely.
-///
-/// The buffer interrupts any buffer already playing.
-///
-/// The buffer interrupts any buffer already playing, at its loop point.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -32,12 +24,16 @@ use crate::*;
 pub struct PHASEPushStreamBufferOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASEPushStreamBufferOptions: NSUInteger {
+/// The buffer plays following any previously scheduled buffer(s).
         #[doc(alias = "PHASEPushStreamBufferDefault")]
         const Default = 1<<0;
+/// The buffer loops indefinitely.
         #[doc(alias = "PHASEPushStreamBufferLoops")]
         const Loops = 1<<1;
+/// The buffer interrupts any buffer already playing.
         #[doc(alias = "PHASEPushStreamBufferInterrupts")]
         const Interrupts = 1<<2;
+/// The buffer interrupts any buffer already playing, at its loop point.
         #[doc(alias = "PHASEPushStreamBufferInterruptsAtLoop")]
         const InterruptsAtLoop = 1<<3;
         const _ = !0;
@@ -54,15 +50,14 @@ unsafe impl RefEncode for PHASEPushStreamBufferOptions {
 
 /// Specifies when the completion handler must be invoked.
 ///
-/// The buffer data has been rendered by the player.
-/// This does not account for any signal processing latencies downstream of the player in the engine.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreamcompletioncallbackcondition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPushStreamCompletionCallbackCondition(pub NSInteger);
 impl PHASEPushStreamCompletionCallbackCondition {
+    /// The buffer data has been rendered by the player.
+    /// This does not account for any signal processing latencies downstream of the player in the engine.
     #[doc(alias = "PHASEPushStreamCompletionDataRendered")]
     pub const DataRendered: Self = Self(0);
 }

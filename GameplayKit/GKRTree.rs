@@ -14,12 +14,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKRTreeSplitStrategy(pub NSInteger);
 impl GKRTreeSplitStrategy {
+    /// Specifies that nodes should be split in half based on insert order.
     #[doc(alias = "GKRTreeSplitStrategyHalve")]
     pub const Halve: Self = Self(0);
+    /// Specifies that nodes should be split along the best dividing axis.
     #[doc(alias = "GKRTreeSplitStrategyLinear")]
     pub const Linear: Self = Self(1);
+    /// Specifies that nodes should be split into groups with the least area.
     #[doc(alias = "GKRTreeSplitStrategyQuadratic")]
     pub const Quadratic: Self = Self(2);
+    /// Specifies that nodes should be split as to reduce overlap.
     #[doc(alias = "GKRTreeSplitStrategyReduceOverlap")]
     pub const ReduceOverlap: Self = Self(3);
 }

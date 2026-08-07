@@ -6,19 +6,62 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagstransientconnection?language=objc)
+/// This flag indicates that the specified nodename or address can
+/// be reached via a transient connection, such as PPP.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagstransientconnection?language=objc)
 pub const kSCNetworkFlagsTransientConnection: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsreachable?language=objc)
+/// This flag indicates that the specified nodename or address can
+/// be reached using the current network configuration.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsreachable?language=objc)
 pub const kSCNetworkFlagsReachable: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsconnectionrequired?language=objc)
+/// This flag indicates that the specified nodename or address can
+/// be reached using the current network configuration, but a
+/// connection must first be established.
+///
+/// As an example, this status would be returned for a dialup
+/// connection that was not currently active, but could handle
+/// network traffic for the target system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsconnectionrequired?language=objc)
 pub const kSCNetworkFlagsConnectionRequired: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsconnectionautomatic?language=objc)
+/// This flag indicates that the specified nodename or address can
+/// be reached using the current network configuration, but a
+/// connection must first be established.  Any traffic directed
+/// to the specified name or address will initiate the connection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsconnectionautomatic?language=objc)
 pub const kSCNetworkFlagsConnectionAutomatic: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsinterventionrequired?language=objc)
+/// This flag indicates that the specified nodename or address can
+/// be reached using the current network configuration, but a
+/// connection must first be established.  In addition, some
+/// form of user intervention will be required to establish this
+/// connection, such as providing a password, an authentication
+/// token, etc.
+///
+/// Note: At the present time, this flag will only be returned
+/// in the case where you have a dial-on-traffic configuration
+/// (ConnectionAutomatic), where an attempt to connect has
+/// already been made, and where some error (e.g. no dial tone,
+/// no answer, bad password, ...) was encountered during the
+/// automatic connection attempt.  In this case the PPP controller
+/// will stop attempting to establish a connection until the user
+/// has intervened.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsinterventionrequired?language=objc)
 pub const kSCNetworkFlagsInterventionRequired: c_uint = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsislocaladdress?language=objc)
+/// This flag indicates that the specified nodename or address
+/// is one associated with a network interface on the current
+/// system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsislocaladdress?language=objc)
 pub const kSCNetworkFlagsIsLocalAddress: c_uint = 1 << 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsisdirect?language=objc)
+/// This flag indicates that network traffic to the specified
+/// nodename or address will not go through a gateway, but is
+/// routed directly to one of the interfaces in the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsisdirect?language=objc)
 pub const kSCNetworkFlagsIsDirect: c_uint = 1 << 17;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionflags?language=objc)

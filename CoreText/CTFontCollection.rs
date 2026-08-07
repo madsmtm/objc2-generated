@@ -448,12 +448,6 @@ impl CTFontCollection {
 
 /// Option bits for use with CTFontCollectionCopyFontAttribute(s).
 ///
-///
-/// Passing this option indicates that the return values should be sorted in standard UI order, suitable for display to the user. This is the same sorting behavior used by NSFontPanel and Font Book.
-///
-///
-/// Passing this option indicates that duplicate values should be removed from the results.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -463,8 +457,10 @@ bitflags::bitflags! {
     impl CTFontCollectionCopyOptions: u32 {
         #[doc(alias = "kCTFontCollectionCopyDefaultOptions")]
         const DefaultOptions = 0;
+/// Passing this option indicates that duplicate values should be removed from the results.
         #[doc(alias = "kCTFontCollectionCopyUnique")]
         const Unique = 1<<0;
+/// Passing this option indicates that the return values should be sorted in standard UI order, suitable for display to the user. This is the same sorting behavior used by NSFontPanel and Font Book.
         #[doc(alias = "kCTFontCollectionCopyStandardSort")]
         const StandardSort = 1<<1;
         const _ = !0;

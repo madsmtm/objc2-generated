@@ -157,27 +157,23 @@ pub fn CTFontManagerCreateFontDescriptorsFromData(
 
 /// Scope for font registration. A uses session refers to a login session in macOS, and the current booted session in iOS.
 ///
-/// The font is not registered and does not participate in font descriptor matching. This isn't a valid scope to specify while registering fonts.
-///
-/// The font is available to the current process for the duration of the process unless directly unregistered.
-///
-/// The font is available to all processes for the current user session and will be available in subsequent sessions unless unregistered.
-///
-/// The font is available to the current user session, and will not be available in subsequent sessions.
-/// Session scope is only available in macOS.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontManagerScope(pub u32);
 impl CTFontManagerScope {
+    /// The font is not registered and does not participate in font descriptor matching. This isn't a valid scope to specify while registering fonts.
     #[doc(alias = "kCTFontManagerScopeNone")]
     pub const None: Self = Self(0);
+    /// The font is available to the current process for the duration of the process unless directly unregistered.
     #[doc(alias = "kCTFontManagerScopeProcess")]
     pub const Process: Self = Self(1);
+    /// The font is available to all processes for the current user session and will be available in subsequent sessions unless unregistered.
     #[doc(alias = "kCTFontManagerScopePersistent")]
     pub const Persistent: Self = Self(2);
+    /// The font is available to the current user session, and will not be available in subsequent sessions.
+    /// Session scope is only available in macOS.
     #[doc(alias = "kCTFontManagerScopeSession")]
     pub const Session: Self = Self(3);
     #[doc(alias = "kCTFontManagerScopeUser")]
@@ -756,27 +752,24 @@ extern "C" {
 
 /// Auto-activation settings.
 ///
-/// Default auto-activation setting. When specified, the application will use the global setting.
-///
-/// Disables auto-activation.
-///
-/// Enables auto-activation.
-///
-/// Requires user input for auto-activation. A dialog will be presented to the user to confirm auto
-/// activation of the font.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerautoactivationsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontManagerAutoActivationSetting(pub u32);
 impl CTFontManagerAutoActivationSetting {
+    /// Default auto-activation setting. When specified, the application will use the global setting.
     #[doc(alias = "kCTFontManagerAutoActivationDefault")]
     pub const Default: Self = Self(0);
+    /// Disables auto-activation.
     #[doc(alias = "kCTFontManagerAutoActivationDisabled")]
     pub const Disabled: Self = Self(1);
+    /// Enables auto-activation.
     #[doc(alias = "kCTFontManagerAutoActivationEnabled")]
     pub const Enabled: Self = Self(2);
+    /// - deprecated and treated as kCTFontManagerAutoActivationDefault on 10.13.
+    /// Requires user input for auto-activation. A dialog will be presented to the user to confirm auto
+    /// activation of the font.
     #[doc(alias = "kCTFontManagerAutoActivationPromptUser")]
     #[deprecated = "Deprecated"]
     pub const PromptUser: Self = Self(3);

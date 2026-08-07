@@ -7,19 +7,33 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesnoerror?language=objc)
+/// No error has occurred
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesnoerror?language=objc)
 pub const kAudioServicesNoError: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesunsupportedpropertyerror?language=objc)
+/// The property is not supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesunsupportedpropertyerror?language=objc)
 pub const kAudioServicesUnsupportedPropertyError: OSStatus = 0x7074793f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesbadpropertysizeerror?language=objc)
+/// The size of the property data was not correct.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesbadpropertysizeerror?language=objc)
 pub const kAudioServicesBadPropertySizeError: OSStatus = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesbadspecifiersizeerror?language=objc)
+/// The size of the specifier data was not correct.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesbadspecifiersizeerror?language=objc)
 pub const kAudioServicesBadSpecifierSizeError: OSStatus = 0x21737063;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicessystemsoundunspecifiederror?language=objc)
+/// A SystemSound unspecified error has occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicessystemsoundunspecifiederror?language=objc)
 pub const kAudioServicesSystemSoundUnspecifiedError: OSStatus = -1500;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicessystemsoundclienttimedouterror?language=objc)
+/// The SystemSound client message timed out
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicessystemsoundclienttimedouterror?language=objc)
 pub const kAudioServicesSystemSoundClientTimedOutError: OSStatus = -1501;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicessystemsoundexceededmaximumdurationerror?language=objc)
+/// The SystemSound's duration exceeded the allowable threshold
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicessystemsoundexceededmaximumdurationerror?language=objc)
 pub const kAudioServicesSystemSoundExceededMaximumDurationError: OSStatus = -1502;
 
 /// SystemSoundIDs are created by the System Sound client application
@@ -46,19 +60,40 @@ pub type AudioServicesPropertyID = u32;
 pub type AudioServicesSystemSoundCompletionProc =
     Option<unsafe extern "C-unwind" fn(SystemSoundID, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_userpreferredalert?language=objc)
+/// Use this constant with the play sound APIs to
+/// playback the alert sound selected by the User in System Preferences.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_userpreferredalert?language=objc)
 pub const kSystemSoundID_UserPreferredAlert: SystemSoundID = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_flashscreen?language=objc)
+/// Use this constant with the play sound APIs to flash the screen
+/// - Desktop systems only
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_flashscreen?language=objc)
 pub const kSystemSoundID_FlashScreen: SystemSoundID = 0x00000FFE;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kuserpreferredalert?language=objc)
 pub const kUserPreferredAlert: SystemSoundID = kSystemSoundID_UserPreferredAlert;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_vibrate?language=objc)
+/// Use this constant with the play sound APIs to vibrate the device
+/// - iOS only
+/// - on a device with no vibration capability (like iPod Touch) this will
+/// do nothing
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_vibrate?language=objc)
 pub const kSystemSoundID_Vibrate: SystemSoundID = 0x00000FFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicespropertyisuisound?language=objc)
+/// a UInt32 where 1 means that the SystemSoundID passed in the
+/// inSpecifier parameter will respect the 'Play user interface sounds effects'
+/// check box in System Preferences and be silent when the user turns off UI
+/// sounds. This property is set to 1 by default. Set to 0 if it is desired for
+/// an SystemSoundID to always be heard when passed to AudioServicesPlaySystemSound(),
+/// regardless of user's setting in the Sound Preferences.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicespropertyisuisound?language=objc)
 pub const kAudioServicesPropertyIsUISound: AudioServicesPropertyID = 0x69737569;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicespropertycompleteplaybackifappdies?language=objc)
+/// a UInt32 where 1 means that the SystemSoundID passed in the
+/// inSpecifier parameter will finish playing even if the client application goes away.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicespropertycompleteplaybackifappdies?language=objc)
 pub const kAudioServicesPropertyCompletePlaybackIfAppDies: AudioServicesPropertyID = 0x69666469;
 
 /// Allows the application to designate an audio file for playback by the System Sound server.

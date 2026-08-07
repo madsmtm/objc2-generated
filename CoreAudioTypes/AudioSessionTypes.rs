@@ -12,49 +12,8 @@ pub type AudioSessionID = u32;
 
 /// Error codes returned from the AVAudioSession API.
 ///
-/// Operation succeeded.
-///
-/// The app attempted to use the audio session during or after a Media Services failure.  App
-/// should wait for a AVAudioSessionMediaServicesWereResetNotification and then rebuild all
-/// its state.
-///
-/// The app attempted to set its audio session inactive or change its AVAudioSessionIOType,
-/// but it is still actively playing and/or recording.
-///
-/// The app tried to perform an operation on a session but its category does not support it.
-/// For instance, if the app calls setPreferredInputNumberOfChannels: while in a playback-only
-/// category.
-///
-/// The app's audio session is non-mixable and trying to go active while in the background.
-/// This is allowed only when the app is the NowPlaying app.
-///
-/// The app does not have the required entitlements to perform an operation.
-///
-/// The app tried to do something with the audio session that is not allowed while Siri is
-/// recording.
-///
-/// The app is not allowed to start recording and/or playing, usually because of a lack of audio
-/// key in its Info.plist.  This could also happen if the app has this key but uses a category
-/// that can't record and/or play in the background (AVAudioSessionCategoryAmbient,
-/// AVAudioSessionCategorySoloAmbient, etc.).
-///
-/// The app is not allowed to start recording, usually because it is starting a mixable
-/// recording from the background and is not an Inter-App Audio app.
-///
-/// An illegal value was used for a property.
-///
 /// The app was not allowed to set the audio category because another app (Phone, etc.) is
 /// controlling it.
-///
-/// The operation failed because the device does not have sufficient hardware resources to
-/// complete the action. For example, the operation requires audio input hardware, but the
-/// device has no audio input available.
-///
-/// The operation failed because the associated session has been destroyed.
-///
-/// An unspecified error has occurred.
-///
-/// The operation failed because the session is not active.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosessionerrorcode?language=objc)
 // NS_ENUM
@@ -62,34 +21,61 @@ pub type AudioSessionID = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionErrorCode(pub AVAudioInteger);
 impl AVAudioSessionErrorCode {
+    /// Operation succeeded.
     #[doc(alias = "AVAudioSessionErrorCodeNone")]
     pub const None: Self = Self(0);
+    /// The app attempted to use the audio session during or after a Media Services failure.  App
+    /// should wait for a AVAudioSessionMediaServicesWereResetNotification and then rebuild all
+    /// its state.
     #[doc(alias = "AVAudioSessionErrorCodeMediaServicesFailed")]
     pub const MediaServicesFailed: Self = Self(0x6d737276);
+    /// The app attempted to set its audio session inactive or change its AVAudioSessionIOType,
+    /// but it is still actively playing and/or recording.
     #[doc(alias = "AVAudioSessionErrorCodeIsBusy")]
     pub const IsBusy: Self = Self(0x21616374);
+    /// The app tried to perform an operation on a session but its category does not support it.
+    /// For instance, if the app calls setPreferredInputNumberOfChannels: while in a playback-only
+    /// category.
     #[doc(alias = "AVAudioSessionErrorCodeIncompatibleCategory")]
     pub const IncompatibleCategory: Self = Self(0x21636174);
+    /// The app's audio session is non-mixable and trying to go active while in the background.
+    /// This is allowed only when the app is the NowPlaying app.
     #[doc(alias = "AVAudioSessionErrorCodeCannotInterruptOthers")]
     pub const CannotInterruptOthers: Self = Self(0x21696e74);
+    /// The app does not have the required entitlements to perform an operation.
     #[doc(alias = "AVAudioSessionErrorCodeMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(0x656e743f);
+    /// The app tried to do something with the audio session that is not allowed while Siri is
+    /// recording.
     #[doc(alias = "AVAudioSessionErrorCodeSiriIsRecording")]
     pub const SiriIsRecording: Self = Self(0x73697269);
+    /// The app is not allowed to start recording and/or playing, usually because of a lack of audio
+    /// key in its Info.plist.  This could also happen if the app has this key but uses a category
+    /// that can't record and/or play in the background (AVAudioSessionCategoryAmbient,
+    /// AVAudioSessionCategorySoloAmbient, etc.).
     #[doc(alias = "AVAudioSessionErrorCodeCannotStartPlaying")]
     pub const CannotStartPlaying: Self = Self(0x21706c61);
+    /// The app is not allowed to start recording, usually because it is starting a mixable
+    /// recording from the background and is not an Inter-App Audio app.
     #[doc(alias = "AVAudioSessionErrorCodeCannotStartRecording")]
     pub const CannotStartRecording: Self = Self(0x21726563);
+    /// An illegal value was used for a property.
     #[doc(alias = "AVAudioSessionErrorCodeBadParam")]
     pub const BadParam: Self = Self(-50);
     #[doc(alias = "AVAudioSessionErrorCodeInsufficientPriority")]
     pub const InsufficientPriority: Self = Self(0x21707269);
+    /// The operation failed because the device does not have sufficient hardware resources to
+    /// complete the action. For example, the operation requires audio input hardware, but the
+    /// device has no audio input available.
     #[doc(alias = "AVAudioSessionErrorCodeResourceNotAvailable")]
     pub const ResourceNotAvailable: Self = Self(0x21726573);
+    /// An unspecified error has occurred.
     #[doc(alias = "AVAudioSessionErrorCodeUnspecified")]
     pub const Unspecified: Self = Self(0x77686174);
+    /// The operation failed because the associated session has been destroyed.
     #[doc(alias = "AVAudioSessionErrorCodeExpiredSession")]
     pub const ExpiredSession: Self = Self(0x21736573);
+    /// The operation failed because the session is not active.
     #[doc(alias = "AVAudioSessionErrorCodeSessionNotActive")]
     pub const SessionNotActive: Self = Self(0x696e6163);
 }

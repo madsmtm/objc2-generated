@@ -19,32 +19,45 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKErrorCode(pub NSInteger);
 impl WKErrorCode {
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// Indicates that the Web Content process was terminated.
     #[doc(alias = "WKErrorWebContentProcessTerminated")]
     pub const WebContentProcessTerminated: Self = Self(2);
+    /// Indicates that the WKWebView was invalidated.
     #[doc(alias = "WKErrorWebViewInvalidated")]
     pub const WebViewInvalidated: Self = Self(3);
+    /// Indicates that a JavaScript exception occurred.
     #[doc(alias = "WKErrorJavaScriptExceptionOccurred")]
     pub const JavaScriptExceptionOccurred: Self = Self(4);
+    /// Indicates that the result of JavaScript execution could not be returned.
     #[doc(alias = "WKErrorJavaScriptResultTypeIsUnsupported")]
     pub const JavaScriptResultTypeIsUnsupported: Self = Self(5);
+    /// Indicates that compiling a WKUserContentRuleList failed.
     #[doc(alias = "WKErrorContentRuleListStoreCompileFailed")]
     pub const ContentRuleListStoreCompileFailed: Self = Self(6);
+    /// Indicates that looking up a WKUserContentRuleList failed.
     #[doc(alias = "WKErrorContentRuleListStoreLookUpFailed")]
     pub const ContentRuleListStoreLookUpFailed: Self = Self(7);
+    /// Indicates that removing a WKUserContentRuleList failed.
     #[doc(alias = "WKErrorContentRuleListStoreRemoveFailed")]
     pub const ContentRuleListStoreRemoveFailed: Self = Self(8);
+    /// Indicates that the WKUserContentRuleList version did not match the latest.
     #[doc(alias = "WKErrorContentRuleListStoreVersionMismatch")]
     pub const ContentRuleListStoreVersionMismatch: Self = Self(9);
+    /// Indicates that the attributed string content failed to load.
     #[doc(alias = "WKErrorAttributedStringContentFailedToLoad")]
     pub const AttributedStringContentFailedToLoad: Self = Self(10);
+    /// Indicates that loading attributed string content timed out.
     #[doc(alias = "WKErrorAttributedStringContentLoadTimedOut")]
     pub const AttributedStringContentLoadTimedOut: Self = Self(11);
     #[doc(alias = "WKErrorJavaScriptInvalidFrameTarget")]
     pub const JavaScriptInvalidFrameTarget: Self = Self(12);
+    /// Indicates that a navigation failed due to an app-bound domain restriction.
     #[doc(alias = "WKErrorNavigationAppBoundDomain")]
     pub const NavigationAppBoundDomain: Self = Self(13);
+    /// Indicates that JavaScript execution failed due to an app-bound domain restriction.
     #[doc(alias = "WKErrorJavaScriptAppBoundDomain")]
     pub const JavaScriptAppBoundDomain: Self = Self(14);
     #[doc(alias = "WKErrorDuplicateCredential")]

@@ -9,20 +9,16 @@ use crate::*;
 
 /// Options for filtering texels within a mip level.
 ///
-///
-/// Select the single texel nearest to the sample point.
-///
-///
-/// Select two texels in each dimension, and interpolate linearly between them.  Not all devices support linear filtering for all formats.  Integer textures can not use linear filtering on any device, and only some devices support linear filtering of Float textures.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerminmagfilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerMinMagFilter(pub NSUInteger);
 impl MTLSamplerMinMagFilter {
+    /// Select the single texel nearest to the sample point.
     #[doc(alias = "MTLSamplerMinMagFilterNearest")]
     pub const Nearest: Self = Self(0);
+    /// Select two texels in each dimension, and interpolate linearly between them.  Not all devices support linear filtering for all formats.  Integer textures can not use linear filtering on any device, and only some devices support linear filtering of Float textures.
     #[doc(alias = "MTLSamplerMinMagFilterLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -43,10 +39,13 @@ unsafe impl RefEncode for MTLSamplerMinMagFilter {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerMipFilter(pub NSUInteger);
 impl MTLSamplerMipFilter {
+    /// The texture is sampled as if it only had a single mipmap level.  All samples are read from level 0.
     #[doc(alias = "MTLSamplerMipFilterNotMipmapped")]
     pub const NotMipmapped: Self = Self(0);
+    /// The nearst mipmap level is selected.
     #[doc(alias = "MTLSamplerMipFilterNearest")]
     pub const Nearest: Self = Self(1);
+    /// If the filter falls between levels, both levels are sampled, and their results linearly interpolated between levels.
     #[doc(alias = "MTLSamplerMipFilterLinear")]
     pub const Linear: Self = Self(2);
 }
@@ -61,40 +60,28 @@ unsafe impl RefEncode for MTLSamplerMipFilter {
 
 /// Options for what value is returned when a fetch falls outside the bounds of a texture.
 ///
-///
-/// Texture coordinates will be clamped between 0 and 1.
-///
-///
-/// Mirror the texture while coordinates are within -1..1, and clamp to edge when outside.
-///
-///
-/// Wrap to the other side of the texture, effectively ignoring fractional parts of the texture coordinate.
-///
-///
-/// Between -1 and 1 the texture is mirrored across the 0 axis.  The image is repeated outside of that range.
-///
-///
-/// ClampToZero returns transparent zero (0,0,0,0) for images with an alpha channel, and returns opaque zero (0,0,0,1) for images without an alpha channel.
-///
-///
-/// Clamp to border color returns the value specified by the borderColor variable of the MTLSamplerDesc.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerAddressMode(pub NSUInteger);
 impl MTLSamplerAddressMode {
+    /// Texture coordinates will be clamped between 0 and 1.
     #[doc(alias = "MTLSamplerAddressModeClampToEdge")]
     pub const ClampToEdge: Self = Self(0);
+    /// Mirror the texture while coordinates are within -1..1, and clamp to edge when outside.
     #[doc(alias = "MTLSamplerAddressModeMirrorClampToEdge")]
     pub const MirrorClampToEdge: Self = Self(1);
+    /// Wrap to the other side of the texture, effectively ignoring fractional parts of the texture coordinate.
     #[doc(alias = "MTLSamplerAddressModeRepeat")]
     pub const Repeat: Self = Self(2);
+    /// Between -1 and 1 the texture is mirrored across the 0 axis.  The image is repeated outside of that range.
     #[doc(alias = "MTLSamplerAddressModeMirrorRepeat")]
     pub const MirrorRepeat: Self = Self(3);
+    /// ClampToZero returns transparent zero (0,0,0,0) for images with an alpha channel, and returns opaque zero (0,0,0,1) for images without an alpha channel.
     #[doc(alias = "MTLSamplerAddressModeClampToZero")]
     pub const ClampToZero: Self = Self(4);
+    /// Clamp to border color returns the value specified by the borderColor variable of the MTLSamplerDesc.
     #[doc(alias = "MTLSamplerAddressModeClampToBorderColor")]
     pub const ClampToBorderColor: Self = Self(5);
 }
@@ -109,25 +96,19 @@ unsafe impl RefEncode for MTLSamplerAddressMode {
 
 /// Specify the color value that will be clamped to when the sampler address mode is MTLSamplerAddressModeClampToBorderColor.
 ///
-///
-/// Transparent black returns {0,0,0,0} for clamped texture values.
-///
-///
-/// OpaqueBlack returns {0,0,0,1} for clamped texture values.
-///
-///
-/// OpaqueWhite returns {1,1,1,1} for clamped texture values.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerBorderColor(pub NSUInteger);
 impl MTLSamplerBorderColor {
+    /// Transparent black returns {0,0,0,0} for clamped texture values.
     #[doc(alias = "MTLSamplerBorderColorTransparentBlack")]
     pub const TransparentBlack: Self = Self(0);
+    /// OpaqueBlack returns {0,0,0,1} for clamped texture values.
     #[doc(alias = "MTLSamplerBorderColorOpaqueBlack")]
     pub const OpaqueBlack: Self = Self(1);
+    /// OpaqueWhite returns {1,1,1,1} for clamped texture values.
     #[doc(alias = "MTLSamplerBorderColorOpaqueWhite")]
     pub const OpaqueWhite: Self = Self(2);
 }

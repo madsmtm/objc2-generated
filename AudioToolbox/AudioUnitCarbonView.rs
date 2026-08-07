@@ -4,14 +4,22 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewcomponenttype?language=objc)
+/// The four char-code type of a carbon-based view component
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewcomponenttype?language=objc)
 pub const kAudioUnitCarbonViewComponentType: u32 = 0x61757677;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaucarbonviewsubtype_generic?language=objc)
+/// The four char-code subtype of a carbon-based view component
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaucarbonviewsubtype_generic?language=objc)
 pub const kAUCarbonViewSubType_Generic: u32 = 0x676e7263;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewevent_mousedownincontrol?language=objc)
+/// The event type indicating that the mouse is pressed in a control
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewevent_mousedownincontrol?language=objc)
 pub const kAudioUnitCarbonViewEvent_MouseDownInControl: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewevent_mouseupincontrol?language=objc)
+/// The event type indicating that the mouse is released in a control
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewevent_mouseupincontrol?language=objc)
 pub const kAudioUnitCarbonViewEvent_MouseUpInControl: c_uint = 1;
 
 /// Specifies an event passed to an AudioUnitCarbonViewEventListener callback.
@@ -19,9 +27,15 @@ pub const kAudioUnitCarbonViewEvent_MouseUpInControl: c_uint = 1;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitcarbonvieweventid?language=objc)
 pub type AudioUnitCarbonViewEventID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewrange?language=objc)
+/// Range of selectors
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewrange?language=objc)
 pub const kAudioUnitCarbonViewRange: c_uint = 0x0300;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewcreateselect?language=objc)
+/// Selector for creating the carbon view
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewcreateselect?language=objc)
 pub const kAudioUnitCarbonViewCreateSelect: c_uint = 0x0301;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewseteventlistenerselect?language=objc)
+/// Selector for setting the event listener callback
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewseteventlistenerselect?language=objc)
 pub const kAudioUnitCarbonViewSetEventListenerSelect: c_uint = 0x0302;

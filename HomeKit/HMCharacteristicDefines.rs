@@ -10,36 +10,47 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLockMechanismLastKnownAction(pub NSInteger);
 impl HMCharacteristicValueLockMechanismLastKnownAction {
+    /// Last known action was secured using physical movement, interior.
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredUsingPhysicalMovementInterior"
     )]
     pub const SecuredUsingPhysicalMovementInterior: Self = Self(0);
+    /// Last known action was unsecured using physical movement, interior.
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredUsingPhysicalMovementInterior"
     )]
     pub const UnsecuredUsingPhysicalMovementInterior: Self = Self(1);
+    /// Last known action was secured using physical movement, exterior.
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredUsingPhysicalMovementExterior"
     )]
     pub const SecuredUsingPhysicalMovementExterior: Self = Self(2);
+    /// Last known action was unsecured using physical movement, exterior.
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredUsingPhysicalMovementExterior"
     )]
     pub const UnsecuredUsingPhysicalMovementExterior: Self = Self(3);
+    /// Last known action was secured with keypad.
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredWithKeypad")]
     pub const SecuredWithKeypad: Self = Self(4);
+    /// Last known action was unsecured with keypad.
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredWithKeypad")]
     pub const UnsecuredWithKeypad: Self = Self(5);
+    /// Last known action was secured remotely.
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredRemotely")]
     pub const SecuredRemotely: Self = Self(6);
+    /// Last known action was unsecured remotely.
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredRemotely")]
     pub const UnsecuredRemotely: Self = Self(7);
+    /// Last known action was secured automatically after timeout.
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredWithAutomaticSecureTimeout"
     )]
     pub const SecuredWithAutomaticSecureTimeout: Self = Self(8);
+    /// Last known action was secured using physical movement.
     #[doc(alias = "HMCharacteristicValueLockMechanismLastKnownActionSecuredUsingPhysicalMovement")]
     pub const SecuredUsingPhysicalMovement: Self = Self(9);
+    /// Last known action was unsecured using physical movement.
     #[doc(
         alias = "HMCharacteristicValueLockMechanismLastKnownActionUnsecuredUsingPhysicalMovement"
     )]
@@ -60,8 +71,10 @@ unsafe impl RefEncode for HMCharacteristicValueLockMechanismLastKnownAction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueAirParticulateSize(pub NSInteger);
 impl HMCharacteristicValueAirParticulateSize {
+    /// Air particulate size of 2.5 micrometers.
     #[doc(alias = "HMCharacteristicValueAirParticulateSize2_5")]
     pub const Size2_5: Self = Self(0);
+    /// Air particulate size of 10 micrometers.
     #[doc(alias = "HMCharacteristicValueAirParticulateSize10")]
     pub const Size10: Self = Self(1);
 }
@@ -80,16 +93,22 @@ unsafe impl RefEncode for HMCharacteristicValueAirParticulateSize {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueAirQuality(pub NSInteger);
 impl HMCharacteristicValueAirQuality {
+    /// Air quality is unknown.
     #[doc(alias = "HMCharacteristicValueAirQualityUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Air quality is excellent.
     #[doc(alias = "HMCharacteristicValueAirQualityExcellent")]
     pub const Excellent: Self = Self(1);
+    /// Air quality is good.
     #[doc(alias = "HMCharacteristicValueAirQualityGood")]
     pub const Good: Self = Self(2);
+    /// Air quality is fair.
     #[doc(alias = "HMCharacteristicValueAirQualityFair")]
     pub const Fair: Self = Self(3);
+    /// Air quality is inferior.
     #[doc(alias = "HMCharacteristicValueAirQualityInferior")]
     pub const Inferior: Self = Self(4);
+    /// Air quality is poor.
     #[doc(alias = "HMCharacteristicValueAirQualityPoor")]
     pub const Poor: Self = Self(5);
 }
@@ -108,10 +127,13 @@ unsafe impl RefEncode for HMCharacteristicValueAirQuality {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValuePositionState(pub NSInteger);
 impl HMCharacteristicValuePositionState {
+    /// Position is moving towards minimum value.
     #[doc(alias = "HMCharacteristicValuePositionStateClosing")]
     pub const Closing: Self = Self(0);
+    /// Position is moving towards maximum value.
     #[doc(alias = "HMCharacteristicValuePositionStateOpening")]
     pub const Opening: Self = Self(1);
+    /// Position is Stopped.
     #[doc(alias = "HMCharacteristicValuePositionStateStopped")]
     pub const Stopped: Self = Self(2);
 }
@@ -130,14 +152,19 @@ unsafe impl RefEncode for HMCharacteristicValuePositionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentSecuritySystemState(pub NSInteger);
 impl HMCharacteristicValueCurrentSecuritySystemState {
+    /// Home is occupied and residents are active.
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateStayArm")]
     pub const StayArm: Self = Self(0);
+    /// Home is unoccupied.
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateAwayArm")]
     pub const AwayArm: Self = Self(1);
+    /// Home is occupied and residents are sleeping.
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateNightArm")]
     pub const NightArm: Self = Self(2);
+    /// SecuritySystem is disarmed.
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateDisarmed")]
     pub const Disarmed: Self = Self(3);
+    /// SecuritySystem is triggered.
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateTriggered")]
     pub const Triggered: Self = Self(4);
 }
@@ -156,12 +183,16 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentSecuritySystemState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetSecuritySystemState(pub NSInteger);
 impl HMCharacteristicValueTargetSecuritySystemState {
+    /// Home is occupied and residents are active.
     #[doc(alias = "HMCharacteristicValueTargetSecuritySystemStateStayArm")]
     pub const StayArm: Self = Self(0);
+    /// Home is unoccupied.
     #[doc(alias = "HMCharacteristicValueTargetSecuritySystemStateAwayArm")]
     pub const AwayArm: Self = Self(1);
+    /// Home is occupied and residents are sleeping.
     #[doc(alias = "HMCharacteristicValueTargetSecuritySystemStateNightArm")]
     pub const NightArm: Self = Self(2);
+    /// Disarm.
     #[doc(alias = "HMCharacteristicValueTargetSecuritySystemStateDisarm")]
     pub const Disarm: Self = Self(3);
 }
@@ -180,8 +211,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetSecuritySystemState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueJammedStatus(pub NSInteger);
 impl HMCharacteristicValueJammedStatus {
+    /// Not Jammed.
     #[doc(alias = "HMCharacteristicValueJammedStatusNone")]
     pub const None: Self = Self(0);
+    /// Jammed.
     #[doc(alias = "HMCharacteristicValueJammedStatusJammed")]
     pub const Jammed: Self = Self(1);
 }
@@ -240,8 +273,10 @@ unsafe impl RefEncode for HMCharacteristicValueLeakStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueContactState(pub NSInteger);
 impl HMCharacteristicValueContactState {
+    /// Contact is detected.
     #[doc(alias = "HMCharacteristicValueContactStateDetected")]
     pub const Detected: Self = Self(0);
+    /// Contact is not detected.
     #[doc(alias = "HMCharacteristicValueContactStateNone")]
     pub const None: Self = Self(1);
 }
@@ -260,8 +295,10 @@ unsafe impl RefEncode for HMCharacteristicValueContactState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueStatusFault(pub NSInteger);
 impl HMCharacteristicValueStatusFault {
+    /// No Fault.
     #[doc(alias = "HMCharacteristicValueStatusFaultNoFault")]
     pub const NoFault: Self = Self(0);
+    /// General Fault.
     #[doc(alias = "HMCharacteristicValueStatusFaultGeneralFault")]
     pub const GeneralFault: Self = Self(1);
 }
@@ -280,8 +317,10 @@ unsafe impl RefEncode for HMCharacteristicValueStatusFault {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCarbonMonoxideDetectionStatus(pub NSInteger);
 impl HMCharacteristicValueCarbonMonoxideDetectionStatus {
+    /// Carbon monoxide is not detected.
     #[doc(alias = "HMCharacteristicValueCarbonMonoxideDetectionStatusNotDetected")]
     pub const NotDetected: Self = Self(0);
+    /// Carbon monoxide is detected.
     #[doc(alias = "HMCharacteristicValueCarbonMonoxideDetectionStatusDetected")]
     pub const Detected: Self = Self(1);
 }
@@ -300,8 +339,10 @@ unsafe impl RefEncode for HMCharacteristicValueCarbonMonoxideDetectionStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCarbonDioxideDetectionStatus(pub NSInteger);
 impl HMCharacteristicValueCarbonDioxideDetectionStatus {
+    /// Carbon dioxide is not detected.
     #[doc(alias = "HMCharacteristicValueCarbonDioxideDetectionStatusNotDetected")]
     pub const NotDetected: Self = Self(0);
+    /// Carbon dioxide is detected.
     #[doc(alias = "HMCharacteristicValueCarbonDioxideDetectionStatusDetected")]
     pub const Detected: Self = Self(1);
 }
@@ -320,8 +361,10 @@ unsafe impl RefEncode for HMCharacteristicValueCarbonDioxideDetectionStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueOccupancyStatus(pub NSInteger);
 impl HMCharacteristicValueOccupancyStatus {
+    /// Occupancy is not detected.
     #[doc(alias = "HMCharacteristicValueOccupancyStatusNotOccupied")]
     pub const NotOccupied: Self = Self(0);
+    /// Occupancy is detected.
     #[doc(alias = "HMCharacteristicValueOccupancyStatusOccupied")]
     pub const Occupied: Self = Self(1);
 }
@@ -340,8 +383,10 @@ unsafe impl RefEncode for HMCharacteristicValueOccupancyStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSecuritySystemAlarmType(pub NSInteger);
 impl HMCharacteristicValueSecuritySystemAlarmType {
+    /// No alarm.
     #[doc(alias = "HMCharacteristicValueSecuritySystemAlarmTypeNoAlarm")]
     pub const NoAlarm: Self = Self(0);
+    /// Unknown alarm type.
     #[doc(alias = "HMCharacteristicValueSecuritySystemAlarmTypeUnknown")]
     pub const Unknown: Self = Self(1);
 }
@@ -360,10 +405,13 @@ unsafe impl RefEncode for HMCharacteristicValueSecuritySystemAlarmType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentAirPurifierState(pub NSInteger);
 impl HMCharacteristicValueCurrentAirPurifierState {
+    /// Inactive.
     #[doc(alias = "HMCharacteristicValueCurrentAirPurifierStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// Idle.
     #[doc(alias = "HMCharacteristicValueCurrentAirPurifierStateIdle")]
     pub const Idle: Self = Self(1);
+    /// Active.
     #[doc(alias = "HMCharacteristicValueCurrentAirPurifierStateActive")]
     pub const Active: Self = Self(2);
 }
@@ -382,8 +430,10 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentAirPurifierState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetAirPurifierState(pub NSInteger);
 impl HMCharacteristicValueTargetAirPurifierState {
+    /// Air Purifier is in manual mode.
     #[doc(alias = "HMCharacteristicValueTargetAirPurifierStateManual")]
     pub const Manual: Self = Self(0);
+    /// Air Purifier is in automatic mode.
     #[doc(alias = "HMCharacteristicValueTargetAirPurifierStateAutomatic")]
     pub const Automatic: Self = Self(1);
 }
@@ -402,10 +452,13 @@ unsafe impl RefEncode for HMCharacteristicValueTargetAirPurifierState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentSlatState(pub NSInteger);
 impl HMCharacteristicValueCurrentSlatState {
+    /// Slats are stationary.
     #[doc(alias = "HMCharacteristicValueCurrentSlatStateStationary")]
     pub const Stationary: Self = Self(0);
+    /// Slats are jammed.
     #[doc(alias = "HMCharacteristicValueCurrentSlatStateJammed")]
     pub const Jammed: Self = Self(1);
+    /// Slats are oscillating.
     #[doc(alias = "HMCharacteristicValueCurrentSlatStateOscillating")]
     pub const Oscillating: Self = Self(2);
 }
@@ -424,8 +477,10 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentSlatState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSlatType(pub NSInteger);
 impl HMCharacteristicValueSlatType {
+    /// Slat type is horizontal.
     #[doc(alias = "HMCharacteristicValueSlatTypeHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// Slat type is vertical.
     #[doc(alias = "HMCharacteristicValueSlatTypeVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -444,8 +499,10 @@ unsafe impl RefEncode for HMCharacteristicValueSlatType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueFilterChange(pub NSInteger);
 impl HMCharacteristicValueFilterChange {
+    /// Filter does not need to be changed.
     #[doc(alias = "HMCharacteristicValueFilterChangeNotNeeded")]
     pub const NotNeeded: Self = Self(0);
+    /// Filter needs to be changed.
     #[doc(alias = "HMCharacteristicValueFilterChangeNeeded")]
     pub const Needed: Self = Self(1);
 }
@@ -464,8 +521,10 @@ unsafe impl RefEncode for HMCharacteristicValueFilterChange {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLabelNamespace(pub NSInteger);
 impl HMCharacteristicValueLabelNamespace {
+    /// Service labels are dots.
     #[doc(alias = "HMCharacteristicValueLabelNamespaceDot")]
     pub const Dot: Self = Self(0);
+    /// Service labels are Arabic numerals.
     #[doc(alias = "HMCharacteristicValueLabelNamespaceNumeral")]
     pub const Numeral: Self = Self(1);
 }
@@ -484,10 +543,13 @@ unsafe impl RefEncode for HMCharacteristicValueLabelNamespace {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueProgramMode(pub NSInteger);
 impl HMCharacteristicValueProgramMode {
+    /// No programs scheduled.
     #[doc(alias = "HMCharacteristicValueProgramModeNotScheduled")]
     pub const NotScheduled: Self = Self(0);
+    /// Program scheduled.
     #[doc(alias = "HMCharacteristicValueProgramModeScheduled")]
     pub const Scheduled: Self = Self(1);
+    /// Schedule currently overridden to manual mode.
     #[doc(alias = "HMCharacteristicValueProgramModeScheduleOverriddenToManual")]
     pub const ScheduleOverriddenToManual: Self = Self(2);
 }
@@ -506,8 +568,10 @@ unsafe impl RefEncode for HMCharacteristicValueProgramMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueUsageState(pub NSInteger);
 impl HMCharacteristicValueUsageState {
+    /// Not in use.
     #[doc(alias = "HMCharacteristicValueUsageStateNotInUse")]
     pub const NotInUse: Self = Self(0);
+    /// Currently in use.
     #[doc(alias = "HMCharacteristicValueUsageStateInUse")]
     pub const InUse: Self = Self(1);
 }
@@ -526,12 +590,16 @@ unsafe impl RefEncode for HMCharacteristicValueUsageState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueValveType(pub NSInteger);
 impl HMCharacteristicValueValveType {
+    /// Generic Valve.
     #[doc(alias = "HMCharacteristicValueValveTypeGenericValve")]
     pub const GenericValve: Self = Self(0);
+    /// Irrigation.
     #[doc(alias = "HMCharacteristicValueValveTypeIrrigation")]
     pub const Irrigation: Self = Self(1);
+    /// Shower Head.
     #[doc(alias = "HMCharacteristicValueValveTypeShowerHead")]
     pub const ShowerHead: Self = Self(2);
+    /// Water Faucet.
     #[doc(alias = "HMCharacteristicValueValveTypeWaterFaucet")]
     pub const WaterFaucet: Self = Self(3);
 }
@@ -550,12 +618,16 @@ unsafe impl RefEncode for HMCharacteristicValueValveType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueVolumeControlType(pub NSInteger);
 impl HMCharacteristicValueVolumeControlType {
+    /// Volume cannot be controlled.
     #[doc(alias = "HMCharacteristicValueVolumeControlTypeNone")]
     pub const None: Self = Self(0);
+    /// Relative control (changed by one step at a time).
     #[doc(alias = "HMCharacteristicValueVolumeControlTypeRelative")]
     pub const Relative: Self = Self(1);
+    /// Relative control (changed by one step at a time), but has a current value.
     #[doc(alias = "HMCharacteristicValueVolumeControlTypeRelativeWithCurrent")]
     pub const RelativeWithCurrent: Self = Self(2);
+    /// Absolute control (can be directly set to a specific value).
     #[doc(alias = "HMCharacteristicValueVolumeControlTypeAbsolute")]
     pub const Absolute: Self = Self(3);
 }
@@ -574,8 +646,10 @@ unsafe impl RefEncode for HMCharacteristicValueVolumeControlType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueVolumeSelector(pub NSInteger);
 impl HMCharacteristicValueVolumeSelector {
+    /// Increment the volume.
     #[doc(alias = "HMCharacteristicValueVolumeSelectorVolumeIncrement")]
     pub const VolumeIncrement: Self = Self(0);
+    /// Decrement the volume.
     #[doc(alias = "HMCharacteristicValueVolumeSelectorVolumeDecrement")]
     pub const VolumeDecrement: Self = Self(1);
 }
@@ -594,14 +668,19 @@ unsafe impl RefEncode for HMCharacteristicValueVolumeSelector {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueDoorState(pub NSInteger);
 impl HMCharacteristicValueDoorState {
+    /// The door is fully open.
     #[doc(alias = "HMCharacteristicValueDoorStateOpen")]
     pub const Open: Self = Self(0);
+    /// The door is fully closed.
     #[doc(alias = "HMCharacteristicValueDoorStateClosed")]
     pub const Closed: Self = Self(1);
+    /// The door is actively opening.
     #[doc(alias = "HMCharacteristicValueDoorStateOpening")]
     pub const Opening: Self = Self(2);
+    /// The door is actively closing.
     #[doc(alias = "HMCharacteristicValueDoorStateClosing")]
     pub const Closing: Self = Self(3);
+    /// The door is not moving, and it is not fully open nor fully closed.
     #[doc(alias = "HMCharacteristicValueDoorStateStopped")]
     pub const Stopped: Self = Self(4);
 }
@@ -620,10 +699,13 @@ unsafe impl RefEncode for HMCharacteristicValueDoorState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentHeatingCooling(pub NSInteger);
 impl HMCharacteristicValueCurrentHeatingCooling {
+    /// Off.
     #[doc(alias = "HMCharacteristicValueCurrentHeatingCoolingOff")]
     pub const Off: Self = Self(0);
+    /// The Heater is currently on.
     #[doc(alias = "HMCharacteristicValueCurrentHeatingCoolingHeat")]
     pub const Heat: Self = Self(1);
+    /// Cooler is currently on.
     #[doc(alias = "HMCharacteristicValueCurrentHeatingCoolingCool")]
     pub const Cool: Self = Self(2);
 }
@@ -642,12 +724,16 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentHeatingCooling {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLockMechanismState(pub NSInteger);
 impl HMCharacteristicValueLockMechanismState {
+    /// Unsecured.
     #[doc(alias = "HMCharacteristicValueLockMechanismStateUnsecured")]
     pub const Unsecured: Self = Self(0);
+    /// Secured.
     #[doc(alias = "HMCharacteristicValueLockMechanismStateSecured")]
     pub const Secured: Self = Self(1);
+    /// Jammed.
     #[doc(alias = "HMCharacteristicValueLockMechanismStateJammed")]
     pub const Jammed: Self = Self(2);
+    /// Unknown.
     #[doc(alias = "HMCharacteristicValueLockMechanismStateUnknown")]
     pub const Unknown: Self = Self(3);
 }
@@ -666,8 +752,10 @@ unsafe impl RefEncode for HMCharacteristicValueLockMechanismState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetLockMechanismState(pub NSInteger);
 impl HMCharacteristicValueTargetLockMechanismState {
+    /// Unsecured.
     #[doc(alias = "HMCharacteristicValueTargetLockMechanismStateUnsecured")]
     pub const Unsecured: Self = Self(0);
+    /// Secured.
     #[doc(alias = "HMCharacteristicValueTargetLockMechanismStateSecured")]
     pub const Secured: Self = Self(1);
 }
@@ -686,8 +774,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetLockMechanismState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueRotationDirection(pub NSInteger);
 impl HMCharacteristicValueRotationDirection {
+    /// Clockwise.
     #[doc(alias = "HMCharacteristicValueRotationDirectionClockwise")]
     pub const Clockwise: Self = Self(0);
+    /// Counter-clockwise.
     #[doc(alias = "HMCharacteristicValueRotationDirectionCounterClockwise")]
     pub const CounterClockwise: Self = Self(1);
 }
@@ -706,8 +796,10 @@ unsafe impl RefEncode for HMCharacteristicValueRotationDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetDoorState(pub NSInteger);
 impl HMCharacteristicValueTargetDoorState {
+    /// Open.
     #[doc(alias = "HMCharacteristicValueTargetDoorStateOpen")]
     pub const Open: Self = Self(0);
+    /// Closed.
     #[doc(alias = "HMCharacteristicValueTargetDoorStateClosed")]
     pub const Closed: Self = Self(1);
 }
@@ -726,12 +818,16 @@ unsafe impl RefEncode for HMCharacteristicValueTargetDoorState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueHeatingCooling(pub NSInteger);
 impl HMCharacteristicValueHeatingCooling {
+    /// Off.
     #[doc(alias = "HMCharacteristicValueHeatingCoolingOff")]
     pub const Off: Self = Self(0);
+    /// If the current temperature is below the target temperature then turn on heating.
     #[doc(alias = "HMCharacteristicValueHeatingCoolingHeat")]
     pub const Heat: Self = Self(1);
+    /// If the current temperature is above the target temperature then turn on cooling.
     #[doc(alias = "HMCharacteristicValueHeatingCoolingCool")]
     pub const Cool: Self = Self(2);
+    /// Turn on heating or cooling to maintain temperature within the heating and cooling threshold of the target temperature.
     #[doc(alias = "HMCharacteristicValueHeatingCoolingAuto")]
     pub const Auto: Self = Self(3);
 }
@@ -750,8 +846,10 @@ unsafe impl RefEncode for HMCharacteristicValueHeatingCooling {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTemperatureUnit(pub NSInteger);
 impl HMCharacteristicValueTemperatureUnit {
+    /// Celsius.
     #[doc(alias = "HMCharacteristicValueTemperatureUnitCelsius")]
     pub const Celsius: Self = Self(0);
+    /// Fahrenheit.
     #[doc(alias = "HMCharacteristicValueTemperatureUnitFahrenheit")]
     pub const Fahrenheit: Self = Self(1);
 }
@@ -770,10 +868,13 @@ unsafe impl RefEncode for HMCharacteristicValueTemperatureUnit {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueInputEvent(pub NSInteger);
 impl HMCharacteristicValueInputEvent {
+    /// Single tap or press.
     #[doc(alias = "HMCharacteristicValueInputEventSinglePress")]
     pub const SinglePress: Self = Self(0);
+    /// Double tap or press.
     #[doc(alias = "HMCharacteristicValueInputEventDoublePress")]
     pub const DoublePress: Self = Self(1);
+    /// Long Press.
     #[doc(alias = "HMCharacteristicValueInputEventLongPress")]
     pub const LongPress: Self = Self(2);
 }
@@ -792,8 +893,10 @@ unsafe impl RefEncode for HMCharacteristicValueInputEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSmokeDetectionStatus(pub NSInteger);
 impl HMCharacteristicValueSmokeDetectionStatus {
+    /// Smoke is not detected.
     #[doc(alias = "HMCharacteristicValueSmokeDetectionStatusNone")]
     pub const None: Self = Self(0);
+    /// Smoke is detected.
     #[doc(alias = "HMCharacteristicValueSmokeDetectionStatusDetected")]
     pub const Detected: Self = Self(1);
 }
@@ -812,8 +915,10 @@ unsafe impl RefEncode for HMCharacteristicValueSmokeDetectionStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueBatteryStatus(pub NSInteger);
 impl HMCharacteristicValueBatteryStatus {
+    /// Battery level is normal.
     #[doc(alias = "HMCharacteristicValueBatteryStatusNormal")]
     pub const Normal: Self = Self(0);
+    /// Battery level is low.
     #[doc(alias = "HMCharacteristicValueBatteryStatusLow")]
     pub const Low: Self = Self(1);
 }
@@ -832,10 +937,13 @@ unsafe impl RefEncode for HMCharacteristicValueBatteryStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueChargingState(pub NSInteger);
 impl HMCharacteristicValueChargingState {
+    /// Not Charging.
     #[doc(alias = "HMCharacteristicValueChargingStateNone")]
     pub const None: Self = Self(0);
+    /// Charging.
     #[doc(alias = "HMCharacteristicValueChargingStateInProgress")]
     pub const InProgress: Self = Self(1);
+    /// Not Chargeable.
     #[doc(alias = "HMCharacteristicValueChargingStateNotChargeable")]
     pub const NotChargeable: Self = Self(2);
 }
@@ -854,8 +962,10 @@ unsafe impl RefEncode for HMCharacteristicValueChargingState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLockPhysicalControlsState(pub NSInteger);
 impl HMCharacteristicValueLockPhysicalControlsState {
+    /// Physical controls not locked.
     #[doc(alias = "HMCharacteristicValueLockPhysicalControlsStateNotLocked")]
     pub const NotLocked: Self = Self(0);
+    /// Physical controls locked.
     #[doc(alias = "HMCharacteristicValueLockPhysicalControlsStateLocked")]
     pub const Locked: Self = Self(1);
 }
@@ -874,10 +984,13 @@ unsafe impl RefEncode for HMCharacteristicValueLockPhysicalControlsState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentFanState(pub NSInteger);
 impl HMCharacteristicValueCurrentFanState {
+    /// Inactive.
     #[doc(alias = "HMCharacteristicValueCurrentFanStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// Idle.
     #[doc(alias = "HMCharacteristicValueCurrentFanStateIdle")]
     pub const Idle: Self = Self(1);
+    /// Blowing Air.
     #[doc(alias = "HMCharacteristicValueCurrentFanStateActive")]
     pub const Active: Self = Self(2);
 }
@@ -896,8 +1009,10 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentFanState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueActivationState(pub NSInteger);
 impl HMCharacteristicValueActivationState {
+    /// Inactive.
     #[doc(alias = "HMCharacteristicValueActivationStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// Active.
     #[doc(alias = "HMCharacteristicValueActivationStateActive")]
     pub const Active: Self = Self(1);
 }
@@ -916,12 +1031,16 @@ unsafe impl RefEncode for HMCharacteristicValueActivationState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentHeaterCoolerState(pub NSInteger);
 impl HMCharacteristicValueCurrentHeaterCoolerState {
+    /// Inactive.
     #[doc(alias = "HMCharacteristicValueCurrentHeaterCoolerStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// Idle.
     #[doc(alias = "HMCharacteristicValueCurrentHeaterCoolerStateIdle")]
     pub const Idle: Self = Self(1);
+    /// Heating.
     #[doc(alias = "HMCharacteristicValueCurrentHeaterCoolerStateHeating")]
     pub const Heating: Self = Self(2);
+    /// Cooling.
     #[doc(alias = "HMCharacteristicValueCurrentHeaterCoolerStateCooling")]
     pub const Cooling: Self = Self(3);
 }
@@ -940,10 +1059,13 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentHeaterCoolerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetHeaterCoolerState(pub NSInteger);
 impl HMCharacteristicValueTargetHeaterCoolerState {
+    /// Heat or Cool.
     #[doc(alias = "HMCharacteristicValueTargetHeaterCoolerStateAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Heat.
     #[doc(alias = "HMCharacteristicValueTargetHeaterCoolerStateHeat")]
     pub const Heat: Self = Self(1);
+    /// Cool.
     #[doc(alias = "HMCharacteristicValueTargetHeaterCoolerStateCool")]
     pub const Cool: Self = Self(2);
 }
@@ -962,12 +1084,16 @@ unsafe impl RefEncode for HMCharacteristicValueTargetHeaterCoolerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentHumidifierDehumidifierState(pub NSInteger);
 impl HMCharacteristicValueCurrentHumidifierDehumidifierState {
+    /// Inactive.
     #[doc(alias = "HMCharacteristicValueCurrentHumidifierDehumidifierStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// Idle.
     #[doc(alias = "HMCharacteristicValueCurrentHumidifierDehumidifierStateIdle")]
     pub const Idle: Self = Self(1);
+    /// Humidifying.
     #[doc(alias = "HMCharacteristicValueCurrentHumidifierDehumidifierStateHumidifying")]
     pub const Humidifying: Self = Self(2);
+    /// Dehumidifying.
     #[doc(alias = "HMCharacteristicValueCurrentHumidifierDehumidifierStateDehumidifying")]
     pub const Dehumidifying: Self = Self(3);
 }
@@ -986,10 +1112,13 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentHumidifierDehumidifierStat
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetHumidifierDehumidifierState(pub NSInteger);
 impl HMCharacteristicValueTargetHumidifierDehumidifierState {
+    /// Humidifier or Dehumidifier.
     #[doc(alias = "HMCharacteristicValueTargetHumidifierDehumidifierStateAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Humidifier.
     #[doc(alias = "HMCharacteristicValueTargetHumidifierDehumidifierStateHumidify")]
     pub const Humidify: Self = Self(1);
+    /// Dehumidifier.
     #[doc(alias = "HMCharacteristicValueTargetHumidifierDehumidifierStateDehumidify")]
     pub const Dehumidify: Self = Self(2);
 }
@@ -1008,8 +1137,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetHumidifierDehumidifierState
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSwingMode(pub NSInteger);
 impl HMCharacteristicValueSwingMode {
+    /// Swing mode is disabled.
     #[doc(alias = "HMCharacteristicValueSwingModeDisabled")]
     pub const Disabled: Self = Self(0);
+    /// Swing mode is enabled.
     #[doc(alias = "HMCharacteristicValueSwingModeEnabled")]
     pub const Enabled: Self = Self(1);
 }
@@ -1028,8 +1159,10 @@ unsafe impl RefEncode for HMCharacteristicValueSwingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetFanState(pub NSInteger);
 impl HMCharacteristicValueTargetFanState {
+    /// Manual.
     #[doc(alias = "HMCharacteristicValueTargetFanStateManual")]
     pub const Manual: Self = Self(0);
+    /// Automatic.
     #[doc(alias = "HMCharacteristicValueTargetFanStateAutomatic")]
     pub const Automatic: Self = Self(1);
 }
@@ -1048,8 +1181,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetFanState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueConfigurationState(pub NSInteger);
 impl HMCharacteristicValueConfigurationState {
+    /// Not Configured.
     #[doc(alias = "HMCharacteristicValueConfigurationStateNotConfigured")]
     pub const NotConfigured: Self = Self(0);
+    /// Configured.
     #[doc(alias = "HMCharacteristicValueConfigurationStateConfigured")]
     pub const Configured: Self = Self(1);
 }
@@ -1068,26 +1203,37 @@ unsafe impl RefEncode for HMCharacteristicValueConfigurationState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueInputSourceType(pub NSInteger);
 impl HMCharacteristicValueInputSourceType {
+    /// Other.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeOther")]
     pub const Other: Self = Self(0);
+    /// Home Screen.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeHomeScreen")]
     pub const HomeScreen: Self = Self(1);
+    /// Tuner.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeTuner")]
     pub const Tuner: Self = Self(2);
+    /// HDMI.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeHDMI")]
     pub const HDMI: Self = Self(3);
+    /// Composite Video.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeCompositeVideo")]
     pub const CompositeVideo: Self = Self(4);
+    /// S-Video.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeSVideo")]
     pub const SVideo: Self = Self(5);
+    /// Component Video.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeComponentVideo")]
     pub const ComponentVideo: Self = Self(6);
+    /// DVI.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeDVI")]
     pub const DVI: Self = Self(7);
+    /// AirPlay.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeAirPlay")]
     pub const AirPlay: Self = Self(8);
+    /// USB.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeUSB")]
     pub const USB: Self = Self(9);
+    /// Application.
     #[doc(alias = "HMCharacteristicValueInputSourceTypeApplication")]
     pub const Application: Self = Self(10);
 }
@@ -1106,18 +1252,25 @@ unsafe impl RefEncode for HMCharacteristicValueInputSourceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueInputDeviceType(pub NSInteger);
 impl HMCharacteristicValueInputDeviceType {
+    /// Other.
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeOther")]
     pub const Other: Self = Self(0);
+    /// TV.
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeTV")]
     pub const TV: Self = Self(1);
+    /// Recording.
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeRecording")]
     pub const Recording: Self = Self(2);
+    /// Tuner.
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeTuner")]
     pub const Tuner: Self = Self(3);
+    /// Playback.
     #[doc(alias = "HMCharacteristicValueInputDeviceTypePlayback")]
     pub const Playback: Self = Self(4);
+    /// Audio System.
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeAudioSystem")]
     pub const AudioSystem: Self = Self(5);
+    /// None.
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeNone")]
     pub const None: Self = Self(6);
 }
@@ -1136,8 +1289,10 @@ unsafe impl RefEncode for HMCharacteristicValueInputDeviceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueClosedCaptions(pub NSInteger);
 impl HMCharacteristicValueClosedCaptions {
+    /// Disabled.
     #[doc(alias = "HMCharacteristicValueClosedCaptionsDisabled")]
     pub const Disabled: Self = Self(0);
+    /// Enabled.
     #[doc(alias = "HMCharacteristicValueClosedCaptionsEnabled")]
     pub const Enabled: Self = Self(1);
 }
@@ -1156,8 +1311,10 @@ unsafe impl RefEncode for HMCharacteristicValueClosedCaptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValuePowerModeSelection(pub NSInteger);
 impl HMCharacteristicValuePowerModeSelection {
+    /// Show.
     #[doc(alias = "HMCharacteristicValuePowerModeSelectionShow")]
     pub const Show: Self = Self(0);
+    /// Hide.
     #[doc(alias = "HMCharacteristicValuePowerModeSelectionHide")]
     pub const Hide: Self = Self(1);
 }
@@ -1176,16 +1333,22 @@ unsafe impl RefEncode for HMCharacteristicValuePowerModeSelection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentMediaState(pub NSInteger);
 impl HMCharacteristicValueCurrentMediaState {
+    /// Playing content.
     #[doc(alias = "HMCharacteristicValueCurrentMediaStatePlaying")]
     pub const Playing: Self = Self(0);
+    /// Paused playback of media content.
     #[doc(alias = "HMCharacteristicValueCurrentMediaStatePaused")]
     pub const Paused: Self = Self(1);
+    /// Stopped playback.
     #[doc(alias = "HMCharacteristicValueCurrentMediaStateStopped")]
     pub const Stopped: Self = Self(2);
+    /// Unknown playback state.
     #[doc(alias = "HMCharacteristicValueCurrentMediaStateUnknown")]
     pub const Unknown: Self = Self(3);
+    /// Loading content.
     #[doc(alias = "HMCharacteristicValueCurrentMediaStateLoading")]
     pub const Loading: Self = Self(4);
+    /// Playback interrupted.
     #[doc(alias = "HMCharacteristicValueCurrentMediaStateInterrupted")]
     pub const Interrupted: Self = Self(5);
 }
@@ -1204,38 +1367,55 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentMediaState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueRemoteKey(pub NSInteger);
 impl HMCharacteristicValueRemoteKey {
+    /// Rewind.
     #[doc(alias = "HMCharacteristicValueRemoteKeyRewind")]
     pub const Rewind: Self = Self(0);
+    /// Fast Forward.
     #[doc(alias = "HMCharacteristicValueRemoteKeyFastForward")]
     pub const FastForward: Self = Self(1);
+    /// Next Track.
     #[doc(alias = "HMCharacteristicValueRemoteKeyNextTrack")]
     pub const NextTrack: Self = Self(2);
+    /// Previous Track.
     #[doc(alias = "HMCharacteristicValueRemoteKeyPreviousTrack")]
     pub const PreviousTrack: Self = Self(3);
+    /// Arrow Up.
     #[doc(alias = "HMCharacteristicValueRemoteKeyArrowUp")]
     pub const ArrowUp: Self = Self(4);
+    /// Arrow Down.
     #[doc(alias = "HMCharacteristicValueRemoteKeyArrowDown")]
     pub const ArrowDown: Self = Self(5);
+    /// Arrow Left.
     #[doc(alias = "HMCharacteristicValueRemoteKeyArrowLeft")]
     pub const ArrowLeft: Self = Self(6);
+    /// Arrow Right.
     #[doc(alias = "HMCharacteristicValueRemoteKeyArrowRight")]
     pub const ArrowRight: Self = Self(7);
+    /// Select.
     #[doc(alias = "HMCharacteristicValueRemoteKeySelect")]
     pub const Select: Self = Self(8);
+    /// Back.
     #[doc(alias = "HMCharacteristicValueRemoteKeyBack")]
     pub const Back: Self = Self(9);
+    /// Exit.
     #[doc(alias = "HMCharacteristicValueRemoteKeyExit")]
     pub const Exit: Self = Self(10);
+    /// Play Pause.
     #[doc(alias = "HMCharacteristicValueRemoteKeyPlayPause")]
     pub const PlayPause: Self = Self(11);
+    /// Play.
     #[doc(alias = "HMCharacteristicValueRemoteKeyPlay")]
     pub const Play: Self = Self(12);
+    /// Pause.
     #[doc(alias = "HMCharacteristicValueRemoteKeyPause")]
     pub const Pause: Self = Self(13);
+    /// Menu.
     #[doc(alias = "HMCharacteristicValueRemoteKeyMenu")]
     pub const Menu: Self = Self(14);
+    /// Info.
     #[doc(alias = "HMCharacteristicValueRemoteKeyInfo")]
     pub const Info: Self = Self(15);
+    /// Home.
     #[doc(alias = "HMCharacteristicValueRemoteKeyHome")]
     pub const Home: Self = Self(16);
 }
@@ -1254,32 +1434,46 @@ unsafe impl RefEncode for HMCharacteristicValueRemoteKey {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValuePictureMode(pub NSInteger);
 impl HMCharacteristicValuePictureMode {
+    /// Standard.
     #[doc(alias = "HMCharacteristicValuePictureModeStandard")]
     pub const Standard: Self = Self(0);
+    /// Movie.
     #[doc(alias = "HMCharacteristicValuePictureModeMovie")]
     pub const Movie: Self = Self(1);
+    /// Sport.
     #[doc(alias = "HMCharacteristicValuePictureModeSport")]
     pub const Sport: Self = Self(2);
+    /// Game.
     #[doc(alias = "HMCharacteristicValuePictureModeGame")]
     pub const Game: Self = Self(3);
+    /// Photo.
     #[doc(alias = "HMCharacteristicValuePictureModePhoto")]
     pub const Photo: Self = Self(4);
+    /// Vivid.
     #[doc(alias = "HMCharacteristicValuePictureModeVivid")]
     pub const Vivid: Self = Self(5);
+    /// Dark.
     #[doc(alias = "HMCharacteristicValuePictureModeDark")]
     pub const Dark: Self = Self(6);
+    /// Bright.
     #[doc(alias = "HMCharacteristicValuePictureModeBright")]
     pub const Bright: Self = Self(7);
+    /// Computer.
     #[doc(alias = "HMCharacteristicValuePictureModeComputer")]
     pub const Computer: Self = Self(8);
+    /// Night.
     #[doc(alias = "HMCharacteristicValuePictureModeNight")]
     pub const Night: Self = Self(9);
+    /// Calibrated.
     #[doc(alias = "HMCharacteristicValuePictureModeCalibrated")]
     pub const Calibrated: Self = Self(10);
+    /// Custom1.
     #[doc(alias = "HMCharacteristicValuePictureModeCustom1")]
     pub const Custom1: Self = Self(11);
+    /// Custom2.
     #[doc(alias = "HMCharacteristicValuePictureModeCustom2")]
     pub const Custom2: Self = Self(12);
+    /// Custom3.
     #[doc(alias = "HMCharacteristicValuePictureModeCustom3")]
     pub const Custom3: Self = Self(13);
 }
@@ -1298,8 +1492,10 @@ unsafe impl RefEncode for HMCharacteristicValuePictureMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetVisibilityState(pub NSInteger);
 impl HMCharacteristicValueTargetVisibilityState {
+    /// Show.
     #[doc(alias = "HMCharacteristicValueTargetVisibilityStateShow")]
     pub const Show: Self = Self(0);
+    /// Hide.
     #[doc(alias = "HMCharacteristicValueTargetVisibilityStateHide")]
     pub const Hide: Self = Self(1);
 }
@@ -1318,12 +1514,16 @@ unsafe impl RefEncode for HMCharacteristicValueTargetVisibilityState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentVisibilityState(pub NSInteger);
 impl HMCharacteristicValueCurrentVisibilityState {
+    /// The media source is displayed.
     #[doc(alias = "HMCharacteristicValueCurrentVisibilityStateShown")]
     pub const Shown: Self = Self(0);
+    /// The media source is not displayed.
     #[doc(alias = "HMCharacteristicValueCurrentVisibilityStateHidden")]
     pub const Hidden: Self = Self(1);
+    /// The media source is displayed since there is a connected device.
     #[doc(alias = "HMCharacteristicValueCurrentVisibilityStateConnected")]
     pub const Connected: Self = Self(2);
+    /// The media source is always displayed.
     #[doc(alias = "HMCharacteristicValueCurrentVisibilityStateAlwaysShown")]
     pub const AlwaysShown: Self = Self(3);
 }
@@ -1342,10 +1542,13 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentVisibilityState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetMediaState(pub NSInteger);
 impl HMCharacteristicValueTargetMediaState {
+    /// Start playback.
     #[doc(alias = "HMCharacteristicValueTargetMediaStatePlay")]
     pub const Play: Self = Self(0);
+    /// Pause playback.
     #[doc(alias = "HMCharacteristicValueTargetMediaStatePause")]
     pub const Pause: Self = Self(1);
+    /// Stop playback.
     #[doc(alias = "HMCharacteristicValueTargetMediaStateStop")]
     pub const Stop: Self = Self(2);
 }
@@ -1364,8 +1567,10 @@ unsafe impl RefEncode for HMCharacteristicValueTargetMediaState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueRouterStatus(pub NSInteger);
 impl HMCharacteristicValueRouterStatus {
+    /// Router has deployed HomeKit configuration.
     #[doc(alias = "HMCharacteristicValueRouterStatusReady")]
     pub const Ready: Self = Self(0);
+    /// Router has not deployed HomeKit configuration.
     #[doc(alias = "HMCharacteristicValueRouterStatusNotReady")]
     pub const NotReady: Self = Self(1);
 }
@@ -1384,10 +1589,13 @@ unsafe impl RefEncode for HMCharacteristicValueRouterStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueWiFiSatelliteStatus(pub NSInteger);
 impl HMCharacteristicValueWiFiSatelliteStatus {
+    /// Unknown.
     #[doc(alias = "HMCharacteristicValueWiFiSatelliteStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Connected.
     #[doc(alias = "HMCharacteristicValueWiFiSatelliteStatusConnected")]
     pub const Connected: Self = Self(1);
+    /// Not Connected.
     #[doc(alias = "HMCharacteristicValueWiFiSatelliteStatusNotConnected")]
     pub const NotConnected: Self = Self(2);
 }

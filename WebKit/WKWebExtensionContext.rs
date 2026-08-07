@@ -25,16 +25,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionContextError(pub NSInteger);
 impl WKWebExtensionContextError {
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionContextErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// Indicates that the context is already loaded by a ``WKWebExtensionController``.
     #[doc(alias = "WKWebExtensionContextErrorAlreadyLoaded")]
     pub const AlreadyLoaded: Self = Self(2);
+    /// Indicates that the context is not loaded by a ``WKWebExtensionController``.
     #[doc(alias = "WKWebExtensionContextErrorNotLoaded")]
     pub const NotLoaded: Self = Self(3);
+    /// Indicates that another context is already using the specified base URL.
     #[doc(alias = "WKWebExtensionContextErrorBaseURLAlreadyInUse")]
     pub const BaseURLAlreadyInUse: Self = Self(4);
+    /// Indicates that the extension does not have background content.
     #[doc(alias = "WKWebExtensionContextErrorNoBackgroundContent")]
     pub const NoBackgroundContent: Self = Self(5);
+    /// Indicates that an error occurred loading the background content.
     #[doc(alias = "WKWebExtensionContextErrorBackgroundContentFailedToLoad")]
     pub const BackgroundContentFailedToLoad: Self = Self(6);
 }
@@ -62,18 +68,25 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionContextPermissionStatus(pub NSInteger);
 impl WKWebExtensionContextPermissionStatus {
+    /// Indicates that the permission was explicitly denied.
     #[doc(alias = "WKWebExtensionContextPermissionStatusDeniedExplicitly")]
     pub const DeniedExplicitly: Self = Self(-3);
+    /// Indicates that the permission was implicitly denied because of another explicitly denied permission.
     #[doc(alias = "WKWebExtensionContextPermissionStatusDeniedImplicitly")]
     pub const DeniedImplicitly: Self = Self(-2);
+    /// Indicates that the permission was implicitly requested because of another explicitly requested permission.
     #[doc(alias = "WKWebExtensionContextPermissionStatusRequestedImplicitly")]
     pub const RequestedImplicitly: Self = Self(-1);
+    /// Indicates that an unknown permission status.
     #[doc(alias = "WKWebExtensionContextPermissionStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Indicates that the permission was explicitly requested.
     #[doc(alias = "WKWebExtensionContextPermissionStatusRequestedExplicitly")]
     pub const RequestedExplicitly: Self = Self(1);
+    /// Indicates that the permission was implicitly granted because of another explicitly granted permission.
     #[doc(alias = "WKWebExtensionContextPermissionStatusGrantedImplicitly")]
     pub const GrantedImplicitly: Self = Self(2);
+    /// Indicates that the permission was explicitly granted permission.
     #[doc(alias = "WKWebExtensionContextPermissionStatusGrantedExplicitly")]
     pub const GrantedExplicitly: Self = Self(3);
 }

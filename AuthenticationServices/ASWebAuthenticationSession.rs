@@ -14,23 +14,23 @@ extern "C" {
 
 /// Error code of the NSError object passed in by ASWebAuthenticationSessionCompletionHandler.
 ///
-/// alert asking for permission to log in to this app, or by dismissing the view controller for loading the
-/// authentication webpage.
-///
-/// was not found when -start was called. Ensure this property was not nil when -start was called.
-///
-/// was not elligible to show the authentication UI. For iOS, validate that the UIWindow is in a foreground scene.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASWebAuthenticationSessionErrorCode(pub NSInteger);
 impl ASWebAuthenticationSessionErrorCode {
+    /// The user has canceled login by cancelling the
+    /// alert asking for permission to log in to this app, or by dismissing the view controller for loading the
+    /// authentication webpage.
     #[doc(alias = "ASWebAuthenticationSessionErrorCodeCanceledLogin")]
     pub const CanceledLogin: Self = Self(1);
+    /// A valid presentationContextProvider
+    /// was not found when -start was called. Ensure this property was not nil when -start was called.
     #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextNotProvided")]
     pub const PresentationContextNotProvided: Self = Self(2);
+    /// The presentation context returned
+    /// was not elligible to show the authentication UI. For iOS, validate that the UIWindow is in a foreground scene.
     #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextInvalid")]
     pub const PresentationContextInvalid: Self = Self(3);
 }

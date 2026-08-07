@@ -86,42 +86,34 @@ unsafe impl Sync for CVSMPTETime {}
 
 /// Constants that describe the type of SMPTE time.
 ///
-/// 24 Frame
-///
-/// 25 Frame
-///
-/// 30 Drop Frame
-///
-/// 30 Frame
-///
-/// 29.97 Frame
-///
-/// 29.97 Drop Frame
-///
-/// 60 Frame
-///
-/// 59.94 Frame
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVSMPTETimeType(pub u32);
 impl CVSMPTETimeType {
+    /// 24 Frame
     #[doc(alias = "kCVSMPTETimeType24")]
     pub const Type24: Self = Self(0);
+    /// 25 Frame
     #[doc(alias = "kCVSMPTETimeType25")]
     pub const Type25: Self = Self(1);
+    /// 30 Drop Frame
     #[doc(alias = "kCVSMPTETimeType30Drop")]
     pub const Type30Drop: Self = Self(2);
+    /// 30 Frame
     #[doc(alias = "kCVSMPTETimeType30")]
     pub const Type30: Self = Self(3);
+    /// 29.97 Frame
     #[doc(alias = "kCVSMPTETimeType2997")]
     pub const Type2997: Self = Self(4);
+    /// 29.97 Drop Frame
     #[doc(alias = "kCVSMPTETimeType2997Drop")]
     pub const Type2997Drop: Self = Self(5);
+    /// 60 Frame
     #[doc(alias = "kCVSMPTETimeType60")]
     pub const Type60: Self = Self(6);
+    /// 59.94 Frame
     #[doc(alias = "kCVSMPTETimeType5994")]
     pub const Type5994: Self = Self(7);
 }
@@ -142,10 +134,6 @@ unsafe impl Sync for CVSMPTETimeType {}
 
 /// Flags that describe the SMPTE time state.
 ///
-/// The full time is valid.
-///
-/// Time is running.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -153,8 +141,10 @@ unsafe impl Sync for CVSMPTETimeType {}
 pub struct CVSMPTETimeFlags(pub u32);
 bitflags::bitflags! {
     impl CVSMPTETimeFlags: u32 {
+/// The full time is valid.
         #[doc(alias = "kCVSMPTETimeValid")]
         const Valid = 1<<0;
+/// Time is running.
         #[doc(alias = "kCVSMPTETimeRunning")]
         const Running = 1<<1;
         const _ = !0;

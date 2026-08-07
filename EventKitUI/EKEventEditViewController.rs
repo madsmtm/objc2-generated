@@ -19,10 +19,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventEditViewAction(pub NSInteger);
 impl EKEventEditViewAction {
+    /// The Cancel button was pressed, or the Done button was pressed, but the event was not dirty.
     #[doc(alias = "EKEventEditViewActionCanceled")]
     pub const Canceled: Self = Self(0);
+    /// The event was saved.
     #[doc(alias = "EKEventEditViewActionSaved")]
     pub const Saved: Self = Self(1);
+    /// The event was deleted, either by the user or by another calendar store.
     #[doc(alias = "EKEventEditViewActionDeleted")]
     pub const Deleted: Self = Self(2);
     #[doc(alias = "EKEventEditViewActionCancelled")]

@@ -52,17 +52,6 @@ extern "C" {
 
 /// Constants indicating factors contributing to the current system pressured state.
 ///
-///
-/// Indicates that the system is not currently pressured.
-///
-/// Indicates that the entire system is currently experiencing an elevated thermal level.
-///
-/// Indicates that the system's peak power requirements exceed the battery's current capacity and may result in a system power off.
-///
-/// Indicates that the module capturing depth information is operating at an elevated temperature. As system pressure increases, depth quality may become degraded.
-///
-/// Indicates that the camera module is operating at an elevated temperature.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurefactors?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -70,14 +59,19 @@ extern "C" {
 pub struct AVCaptureSystemPressureFactors(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCaptureSystemPressureFactors: NSUInteger {
+/// Indicates that the system is not currently pressured.
         #[doc(alias = "AVCaptureSystemPressureFactorNone")]
         const None = 0;
+/// Indicates that the entire system is currently experiencing an elevated thermal level.
         #[doc(alias = "AVCaptureSystemPressureFactorSystemTemperature")]
         const SystemTemperature = 1<<0;
+/// Indicates that the system's peak power requirements exceed the battery's current capacity and may result in a system power off.
         #[doc(alias = "AVCaptureSystemPressureFactorPeakPower")]
         const PeakPower = 1<<1;
+/// Indicates that the module capturing depth information is operating at an elevated temperature. As system pressure increases, depth quality may become degraded.
         #[doc(alias = "AVCaptureSystemPressureFactorDepthModuleTemperature")]
         const DepthModuleTemperature = 1<<2;
+/// Indicates that the camera module is operating at an elevated temperature.
         #[doc(alias = "AVCaptureSystemPressureFactorCameraTemperature")]
         const CameraTemperature = 1<<3;
         const _ = !0;

@@ -220,8 +220,6 @@ extern "C" {
 
 /// Flags to pass to CVPixelBufferPoolFlush()
 ///
-/// This flag will cause CVPixelBufferPoolFlush to flush all unused buffers regardless of age.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolflushflags?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "CVBase")]
@@ -231,6 +229,7 @@ pub struct CVPixelBufferPoolFlushFlags(pub CVOptionFlags);
 #[cfg(feature = "CVBase")]
 bitflags::bitflags! {
     impl CVPixelBufferPoolFlushFlags: CVOptionFlags {
+/// This flag will cause CVPixelBufferPoolFlush to flush all unused buffers regardless of age.
         #[doc(alias = "kCVPixelBufferPoolFlushExcessBuffers")]
         const ExcessBuffers = 1;
         const _ = !0;

@@ -7,24 +7,24 @@ use crate::*;
 
 /// Constants defining how long a credential will be kept around
 ///
-///
-///
-///
-/// Note: Whereas in Mac OS X any application can access any credential provided the user gives permission, on iOS an application can
-/// access only its own credentials.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialpersistence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLCredentialPersistence(pub NSUInteger);
 impl NSURLCredentialPersistence {
+    /// This credential won't be saved.
     #[doc(alias = "NSURLCredentialPersistenceNone")]
     pub const None: Self = Self(0);
+    /// This credential will only be stored for this session.
     #[doc(alias = "NSURLCredentialPersistenceForSession")]
     pub const ForSession: Self = Self(1);
+    /// This credential will be stored permanently. Note: Whereas in Mac OS X any application can access any credential provided the user gives permission, in iPhone OS an application can access only its own credentials.
     #[doc(alias = "NSURLCredentialPersistencePermanent")]
     pub const Permanent: Self = Self(2);
+    /// This credential will be stored permanently. Additionally, this credential will be distributed to other devices based on the owning AppleID.
+    /// Note: Whereas in Mac OS X any application can access any credential provided the user gives permission, on iOS an application can
+    /// access only its own credentials.
     #[doc(alias = "NSURLCredentialPersistenceSynchronizable")]
     pub const Synchronizable: Self = Self(3);
 }

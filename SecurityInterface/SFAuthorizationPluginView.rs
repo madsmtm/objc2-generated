@@ -17,12 +17,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFButtonType(pub c_uint);
 impl SFButtonType {
+    /// Indicates the Cancel button was pressed.
     #[doc(alias = "SFButtonTypeCancel")]
     pub const Cancel: Self = Self(0);
+    /// Indicates the OK button was pressed.
     #[doc(alias = "SFButtonTypeOK")]
     pub const OK: Self = Self(1);
+    /// Indicates the Back button was pressed.
     #[doc(alias = "SFButtonTypeBack")]
     pub const Back: Self = Self(SFButtonType::Cancel.0);
+    /// Indicates the Login button was pressed.
     #[doc(alias = "SFButtonTypeLogin")]
     pub const Login: Self = Self(SFButtonType::OK.0);
 }
@@ -42,8 +46,10 @@ unsafe impl RefEncode for SFButtonType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFViewType(pub c_uint);
 impl SFViewType {
+    /// Indicates a view that has controls for identity and credentials was requested.
     #[doc(alias = "SFViewTypeIdentityAndCredentials")]
     pub const IdentityAndCredentials: Self = Self(0);
+    /// Indicates a view that has controls for credentials was requested.
     #[doc(alias = "SFViewTypeCredentials")]
     pub const Credentials: Self = Self(1);
 }

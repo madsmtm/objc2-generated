@@ -14,8 +14,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialServiceIdentifierType(pub NSInteger);
 impl ASCredentialServiceIdentifierType {
+    /// The service identifier represents a domain name that conforms to RFC 1035.
     #[doc(alias = "ASCredentialServiceIdentifierTypeDomain")]
     pub const Domain: Self = Self(0);
+    /// The service identifier represents a URL that conforms to RFC 1738.
     #[doc(alias = "ASCredentialServiceIdentifierTypeURL")]
     pub const URL: Self = Self(1);
     /// The service identifier represents an App ID. When a service identifier of this type is provided to your extension for saving a password,

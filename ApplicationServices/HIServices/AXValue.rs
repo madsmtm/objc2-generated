@@ -19,16 +19,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXValueType(pub u32);
 impl AXValueType {
+    /// a wrapper for CGPoint; see CoreGraphics.h
     #[doc(alias = "kAXValueTypeCGPoint")]
     pub const CGPoint: Self = Self(1);
+    /// a wrapper for CGSize; see CoreGraphics.h
     #[doc(alias = "kAXValueTypeCGSize")]
     pub const CGSize: Self = Self(2);
+    /// a wrapper for CGRect; see CoreGraphics.h
     #[doc(alias = "kAXValueTypeCGRect")]
     pub const CGRect: Self = Self(3);
+    /// a wrapper for CFRange; see CFBase.h
     #[doc(alias = "kAXValueTypeCFRange")]
     pub const CFRange: Self = Self(4);
+    /// See AXError.h
     #[doc(alias = "kAXValueTypeAXError")]
     pub const AXError: Self = Self(5);
+    /// a wrapper for unsupported structures
     #[doc(alias = "kAXValueTypeIllegal")]
     pub const Illegal: Self = Self(0);
 }

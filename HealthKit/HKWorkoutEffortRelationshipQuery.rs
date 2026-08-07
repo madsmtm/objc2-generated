@@ -97,6 +97,7 @@ pub struct HKWorkoutEffortRelationshipQueryOptions(pub NSInteger);
 impl HKWorkoutEffortRelationshipQueryOptions {
     #[doc(alias = "HKWorkoutEffortRelationshipQueryOptionsDefault")]
     pub const Default: Self = Self(0);
+    /// The most relevant sample will be returned
     #[doc(alias = "HKWorkoutEffortRelationshipQueryOptionsMostRelevant")]
     pub const MostRelevant: Self = Self(1 << 0);
 }

@@ -9,21 +9,37 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/coreaudiotypes_version?language=objc)
 pub const COREAUDIOTYPES_VERSION: c_uint = 20211130;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_noerror?language=objc)
+/// Returned on success.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_noerror?language=objc)
 pub const kAudio_NoError: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_unimplementederror?language=objc)
+/// Unimplemented core routine.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_unimplementederror?language=objc)
 pub const kAudio_UnimplementedError: OSStatus = -4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_filenotfounderror?language=objc)
+/// File not found.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_filenotfounderror?language=objc)
 pub const kAudio_FileNotFoundError: OSStatus = -43;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_filepermissionerror?language=objc)
+/// File cannot be opened due to either file, directory, or sandbox permissions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_filepermissionerror?language=objc)
 pub const kAudio_FilePermissionError: OSStatus = -54;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_toomanyfilesopenerror?language=objc)
+/// File cannot be opened because too many files are already open.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_toomanyfilesopenerror?language=objc)
 pub const kAudio_TooManyFilesOpenError: OSStatus = -42;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_badfilepatherror?language=objc)
+/// File cannot be opened because the specified path is malformed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_badfilepatherror?language=objc)
 pub const kAudio_BadFilePathError: OSStatus = 0x21707468;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_paramerror?language=objc)
+/// Error in user parameter list.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_paramerror?language=objc)
 pub const kAudio_ParamError: OSStatus = -50;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_memfullerror?language=objc)
+/// Not enough room in heap zone.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_memfullerror?language=objc)
 pub const kAudio_MemFullError: OSStatus = -108;
 
 /// This structure holds a pair of numbers that represent a continuous range of
@@ -240,138 +256,306 @@ unsafe impl RefEncode for AudioStreamBasicDescription {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiostreamanyrate?language=objc)
 pub static kAudioStreamAnyRate: f64 = 0.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatlinearpcm?language=objc)
+/// Linear PCM, uses the standard flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatlinearpcm?language=objc)
 pub const kAudioFormatLinearPCM: AudioFormatID = 0x6c70636d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatac3?language=objc)
+/// AC-3, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatac3?language=objc)
 pub const kAudioFormatAC3: AudioFormatID = 0x61632d33;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformat60958ac3?language=objc)
+/// AC-3 packaged for transport over an IEC 60958 compliant digital audio
+/// interface. Uses the standard flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformat60958ac3?language=objc)
 pub const kAudioFormat60958AC3: AudioFormatID = 0x63616333;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatappleima4?language=objc)
+/// Apples implementation of IMA 4:1 ADPCM, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatappleima4?language=objc)
 pub const kAudioFormatAppleIMA4: AudioFormatID = 0x696d6134;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac?language=objc)
+/// MPEG-4 Low Complexity AAC audio object, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac?language=objc)
 pub const kAudioFormatMPEG4AAC: AudioFormatID = 0x61616320;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4celp?language=objc)
+/// MPEG-4 CELP audio object, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4celp?language=objc)
 pub const kAudioFormatMPEG4CELP: AudioFormatID = 0x63656c70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4hvxc?language=objc)
+/// MPEG-4 HVXC audio object, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4hvxc?language=objc)
 pub const kAudioFormatMPEG4HVXC: AudioFormatID = 0x68767863;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4twinvq?language=objc)
+/// MPEG-4 TwinVQ audio object type, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4twinvq?language=objc)
 pub const kAudioFormatMPEG4TwinVQ: AudioFormatID = 0x74777671;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmace3?language=objc)
+/// MACE 3:1, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmace3?language=objc)
 pub const kAudioFormatMACE3: AudioFormatID = 0x4d414333;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmace6?language=objc)
+/// MACE 6:1, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmace6?language=objc)
 pub const kAudioFormatMACE6: AudioFormatID = 0x4d414336;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatulaw?language=objc)
+/// µLaw 2:1, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatulaw?language=objc)
 pub const kAudioFormatULaw: AudioFormatID = 0x756c6177;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatalaw?language=objc)
+/// aLaw 2:1, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatalaw?language=objc)
 pub const kAudioFormatALaw: AudioFormatID = 0x616c6177;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatqdesign?language=objc)
+/// QDesign music, has no flags
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatqdesign?language=objc)
 pub const kAudioFormatQDesign: AudioFormatID = 0x51444d43;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatqdesign2?language=objc)
+/// QDesign2 music, has no flags
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatqdesign2?language=objc)
 pub const kAudioFormatQDesign2: AudioFormatID = 0x51444d32;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatqualcomm?language=objc)
+/// QUALCOMM PureVoice, has no flags
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatqualcomm?language=objc)
 pub const kAudioFormatQUALCOMM: AudioFormatID = 0x51636c70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeglayer1?language=objc)
+/// MPEG-1/2, Layer 1 audio, has no flags
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeglayer1?language=objc)
 pub const kAudioFormatMPEGLayer1: AudioFormatID = 0x2e6d7031;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeglayer2?language=objc)
+/// MPEG-1/2, Layer 2 audio, has no flags
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeglayer2?language=objc)
 pub const kAudioFormatMPEGLayer2: AudioFormatID = 0x2e6d7032;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeglayer3?language=objc)
+/// MPEG-1/2, Layer 3 audio, has no flags
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeglayer3?language=objc)
 pub const kAudioFormatMPEGLayer3: AudioFormatID = 0x2e6d7033;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformattimecode?language=objc)
+/// A stream of IOAudioTimeStamps, uses the IOAudioTimeStamp flags (see
+/// IOKit/audio/IOAudioTypes.h).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformattimecode?language=objc)
 pub const kAudioFormatTimeCode: AudioFormatID = 0x74696d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmidistream?language=objc)
+/// A stream of MIDIPacketLists where the time stamps in the MIDIPacketList are
+/// sample offsets in the stream. The mSampleRate field is used to describe how
+/// time is passed in this kind of stream and an AudioUnit that receives or
+/// generates this stream can use this sample rate, the number of frames it is
+/// rendering and the sample offsets within the MIDIPacketList to define the
+/// time for any MIDI event within this list. It has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmidistream?language=objc)
 pub const kAudioFormatMIDIStream: AudioFormatID = 0x6d696469;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatparametervaluestream?language=objc)
+/// A "side-chain" of Float32 data that can be fed or generated by an AudioUnit
+/// and is used to send a high density of parameter value control information.
+/// An AU will typically run a ParameterValueStream at either the sample rate of
+/// the AudioUnit's audio data, or some integer divisor of this (say a half or a
+/// third of the sample rate of the audio). The Sample Rate of the ASBD
+/// describes this relationship. It has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatparametervaluestream?language=objc)
 pub const kAudioFormatParameterValueStream: AudioFormatID = 0x61707673;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatapplelossless?language=objc)
+/// Apple Lossless, the flags indicate the bit depth of the source material.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatapplelossless?language=objc)
 pub const kAudioFormatAppleLossless: AudioFormatID = 0x616c6163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_he?language=objc)
+/// MPEG-4 High Efficiency AAC audio object, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_he?language=objc)
 pub const kAudioFormatMPEG4AAC_HE: AudioFormatID = 0x61616368;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_ld?language=objc)
+/// MPEG-4 AAC Low Delay audio object, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_ld?language=objc)
 pub const kAudioFormatMPEG4AAC_LD: AudioFormatID = 0x6161636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_eld?language=objc)
+/// MPEG-4 AAC Enhanced Low Delay audio object, has no flags. This is the formatID of
+/// the base layer without the SBR extension. See also kAudioFormatMPEG4AAC_ELD_SBR
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_eld?language=objc)
 pub const kAudioFormatMPEG4AAC_ELD: AudioFormatID = 0x61616365;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_eld_sbr?language=objc)
+/// MPEG-4 AAC Enhanced Low Delay audio object with SBR extension layer, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_eld_sbr?language=objc)
 pub const kAudioFormatMPEG4AAC_ELD_SBR: AudioFormatID = 0x61616366;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_eld_v2?language=objc)
 pub const kAudioFormatMPEG4AAC_ELD_V2: AudioFormatID = 0x61616367;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_he_v2?language=objc)
+/// MPEG-4 High Efficiency AAC Version 2 audio object, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_he_v2?language=objc)
 pub const kAudioFormatMPEG4AAC_HE_V2: AudioFormatID = 0x61616370;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_spatial?language=objc)
+/// MPEG-4 Spatial Audio audio object, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_spatial?language=objc)
 pub const kAudioFormatMPEG4AAC_Spatial: AudioFormatID = 0x61616373;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpegd_usac?language=objc)
+/// MPEG-D Unified Speech and Audio Coding, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpegd_usac?language=objc)
 pub const kAudioFormatMPEGD_USAC: AudioFormatID = 0x75736163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatamr?language=objc)
+/// The AMR Narrow Band speech codec.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatamr?language=objc)
 pub const kAudioFormatAMR: AudioFormatID = 0x73616d72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatamr_wb?language=objc)
+/// The AMR Wide Band speech codec.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatamr_wb?language=objc)
 pub const kAudioFormatAMR_WB: AudioFormatID = 0x73617762;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformataudible?language=objc)
+/// The format used for Audible audio books. It has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformataudible?language=objc)
 pub const kAudioFormatAudible: AudioFormatID = 0x41554442;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatilbc?language=objc)
+/// The iLBC narrow band speech codec. It has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatilbc?language=objc)
 pub const kAudioFormatiLBC: AudioFormatID = 0x696c6263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatdviintelima?language=objc)
+/// DVI/Intel IMA ADPCM - ACM code 17.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatdviintelima?language=objc)
 pub const kAudioFormatDVIIntelIMA: AudioFormatID = 0x6D730011;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmicrosoftgsm?language=objc)
+/// Microsoft GSM 6.10 - ACM code 49.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmicrosoftgsm?language=objc)
 pub const kAudioFormatMicrosoftGSM: AudioFormatID = 0x6D730031;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformataes3?language=objc)
+/// This format is defined by AES3-2003, and adopted into MXF and MPEG-2
+/// containers and SDTI transport streams with SMPTE specs 302M-2002 and
+/// 331M-2000. It has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformataes3?language=objc)
 pub const kAudioFormatAES3: AudioFormatID = 0x61657333;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatenhancedac3?language=objc)
+/// Enhanced AC-3, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatenhancedac3?language=objc)
 pub const kAudioFormatEnhancedAC3: AudioFormatID = 0x65632d33;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflac?language=objc)
+/// Free Lossless Audio Codec, the flags indicate the bit depth of the source material.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflac?language=objc)
 pub const kAudioFormatFLAC: AudioFormatID = 0x666c6163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatopus?language=objc)
+/// Opus codec, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatopus?language=objc)
 pub const kAudioFormatOpus: AudioFormatID = 0x6f707573;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatapac?language=objc)
+/// Apple Positional Audio Codec, has no flags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatapac?language=objc)
 pub const kAudioFormatAPAC: AudioFormatID = 0x61706163;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisfloat?language=objc)
+/// Set for floating point, clear for integer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisfloat?language=objc)
 pub const kAudioFormatFlagIsFloat: AudioFormatFlags = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisbigendian?language=objc)
+/// Set for big endian, clear for little endian.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisbigendian?language=objc)
 pub const kAudioFormatFlagIsBigEndian: AudioFormatFlags = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagissignedinteger?language=objc)
+/// Set for signed integer, clear for unsigned integer. This is only valid if
+/// kAudioFormatFlagIsFloat is clear.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagissignedinteger?language=objc)
 pub const kAudioFormatFlagIsSignedInteger: AudioFormatFlags = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagispacked?language=objc)
+/// Set if the sample bits occupy the entire available bits for the channel,
+/// clear if they are high or low aligned within the channel. Note that even if
+/// this flag is clear, it is implied that this flag is set if the
+/// AudioStreamBasicDescription is filled out such that the fields have the
+/// following relationship:
+/// ((mBitsPerSample / 8) * mChannelsPerFrame) == mBytesPerFrame
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagispacked?language=objc)
 pub const kAudioFormatFlagIsPacked: AudioFormatFlags = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisalignedhigh?language=objc)
+/// Set if the sample bits are placed into the high bits of the channel, clear
+/// for low bit placement. This is only valid if kAudioFormatFlagIsPacked is
+/// clear.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisalignedhigh?language=objc)
 pub const kAudioFormatFlagIsAlignedHigh: AudioFormatFlags = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisnoninterleaved?language=objc)
+/// Set if the samples for each channel are located contiguously and the
+/// channels are layed out end to end, clear if the samples for each frame are
+/// layed out contiguously and the frames layed out end to end.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisnoninterleaved?language=objc)
 pub const kAudioFormatFlagIsNonInterleaved: AudioFormatFlags = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisnonmixable?language=objc)
+/// Set to indicate when a format is non-mixable. Note that this flag is only
+/// used when interacting with the HAL's stream format information. It is not a
+/// valid flag for any other uses.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisnonmixable?language=objc)
 pub const kAudioFormatFlagIsNonMixable: AudioFormatFlags = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsareallclear?language=objc)
+/// Set if all the flags would be clear in order to preserve 0 as the wild card
+/// value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsareallclear?language=objc)
 pub const kAudioFormatFlagsAreAllClear: AudioFormatFlags = 0x80000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisfloat?language=objc)
+/// Synonym for kAudioFormatFlagIsFloat.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisfloat?language=objc)
 pub const kLinearPCMFormatFlagIsFloat: AudioFormatFlags = kAudioFormatFlagIsFloat;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisbigendian?language=objc)
+/// Synonym for kAudioFormatFlagIsBigEndian.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisbigendian?language=objc)
 pub const kLinearPCMFormatFlagIsBigEndian: AudioFormatFlags = kAudioFormatFlagIsBigEndian;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagissignedinteger?language=objc)
+/// Synonym for kAudioFormatFlagIsSignedInteger.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagissignedinteger?language=objc)
 pub const kLinearPCMFormatFlagIsSignedInteger: AudioFormatFlags = kAudioFormatFlagIsSignedInteger;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagispacked?language=objc)
+/// Synonym for kAudioFormatFlagIsPacked.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagispacked?language=objc)
 pub const kLinearPCMFormatFlagIsPacked: AudioFormatFlags = kAudioFormatFlagIsPacked;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisalignedhigh?language=objc)
+/// Synonym for kAudioFormatFlagIsAlignedHigh.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisalignedhigh?language=objc)
 pub const kLinearPCMFormatFlagIsAlignedHigh: AudioFormatFlags = kAudioFormatFlagIsAlignedHigh;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisnoninterleaved?language=objc)
+/// Synonym for kAudioFormatFlagIsNonInterleaved.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisnoninterleaved?language=objc)
 pub const kLinearPCMFormatFlagIsNonInterleaved: AudioFormatFlags = kAudioFormatFlagIsNonInterleaved;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisnonmixable?language=objc)
+/// Synonym for kAudioFormatFlagIsNonMixable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisnonmixable?language=objc)
 pub const kLinearPCMFormatFlagIsNonMixable: AudioFormatFlags = kAudioFormatFlagIsNonMixable;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagssamplefractionshift?language=objc)
+/// The linear PCM flags contain a 6-bit bitfield indicating that an integer
+/// format is to be interpreted as fixed point. The value indicates the number
+/// of bits are used to represent the fractional portion of each sample value.
+/// This constant indicates the bit position (counting from the right) of the
+/// bitfield in mFormatFlags.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagssamplefractionshift?language=objc)
 pub const kLinearPCMFormatFlagsSampleFractionShift: AudioFormatFlags = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagssamplefractionmask?language=objc)
+/// number_fractional_bits = (mFormatFlags
+/// &
+/// kLinearPCMFormatFlagsSampleFractionMask) >>
+/// kLinearPCMFormatFlagsSampleFractionShift
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagssamplefractionmask?language=objc)
 pub const kLinearPCMFormatFlagsSampleFractionMask: AudioFormatFlags =
     0x3F << kLinearPCMFormatFlagsSampleFractionShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagsareallclear?language=objc)
+/// Synonym for kAudioFormatFlagsAreAllClear.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagsareallclear?language=objc)
 pub const kLinearPCMFormatFlagsAreAllClear: AudioFormatFlags = kAudioFormatFlagsAreAllClear;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_16bitsourcedata?language=objc)
+/// This flag is set for Apple Lossless data that was sourced from 16 bit native
+/// endian signed integer data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_16bitsourcedata?language=objc)
 pub const kAppleLosslessFormatFlag_16BitSourceData: AudioFormatFlags = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_20bitsourcedata?language=objc)
+/// This flag is set for Apple Lossless data that was sourced from 20 bit native
+/// endian signed integer data aligned high in 24 bits.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_20bitsourcedata?language=objc)
 pub const kAppleLosslessFormatFlag_20BitSourceData: AudioFormatFlags = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_24bitsourcedata?language=objc)
+/// This flag is set for Apple Lossless data that was sourced from 24 bit native
+/// endian signed integer data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_24bitsourcedata?language=objc)
 pub const kAppleLosslessFormatFlag_24BitSourceData: AudioFormatFlags = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_32bitsourcedata?language=objc)
+/// This flag is set for Apple Lossless data that was sourced from 32 bit native
+/// endian signed integer data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_32bitsourcedata?language=objc)
 pub const kAppleLosslessFormatFlag_32BitSourceData: AudioFormatFlags = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsnativeendian?language=objc)
+/// Defined to set or clear kAudioFormatFlagIsBigEndian depending on the
+/// endianness of the processor at build time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsnativeendian?language=objc)
 pub const kAudioFormatFlagsNativeEndian: AudioFormatFlags = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsnativefloatpacked?language=objc)
+/// The flags for fully packed, native endian floating point data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsnativefloatpacked?language=objc)
 pub const kAudioFormatFlagsNativeFloatPacked: AudioFormatFlags =
     kAudioFormatFlagIsFloat | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;
 
@@ -469,58 +653,46 @@ unsafe impl RefEncode for AudioStreamPacketDependencyDescription {
 
 /// Constants that describe the type of SMPTE time.
 ///
-/// 24 Frame
-///
-/// 25 Frame
-///
-/// 30 Drop Frame
-///
-/// 30 Frame
-///
-/// 29.97 Frame
-///
-/// 29.97 Drop Frame
-///
-/// 60 Frame
-///
-/// 59.94 Frame
-///
-/// 60 Drop Frame
-///
-/// 59.94 Drop Frame
-///
-/// 50 Frame
-///
-/// 23.98 Frame
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SMPTETimeType(pub u32);
 impl SMPTETimeType {
+    /// 24 Frame
     #[doc(alias = "kSMPTETimeType24")]
     pub const Type24: Self = Self(0);
+    /// 25 Frame
     #[doc(alias = "kSMPTETimeType25")]
     pub const Type25: Self = Self(1);
+    /// 30 Drop Frame
     #[doc(alias = "kSMPTETimeType30Drop")]
     pub const Type30Drop: Self = Self(2);
+    /// 30 Frame
     #[doc(alias = "kSMPTETimeType30")]
     pub const Type30: Self = Self(3);
+    /// 29.97 Frame
     #[doc(alias = "kSMPTETimeType2997")]
     pub const Type2997: Self = Self(4);
+    /// 29.97 Drop Frame
     #[doc(alias = "kSMPTETimeType2997Drop")]
     pub const Type2997Drop: Self = Self(5);
+    /// 60 Frame
     #[doc(alias = "kSMPTETimeType60")]
     pub const Type60: Self = Self(6);
+    /// 59.94 Frame
     #[doc(alias = "kSMPTETimeType5994")]
     pub const Type5994: Self = Self(7);
+    /// 60 Drop Frame
     #[doc(alias = "kSMPTETimeType60Drop")]
     pub const Type60Drop: Self = Self(8);
+    /// 59.94 Drop Frame
     #[doc(alias = "kSMPTETimeType5994Drop")]
     pub const Type5994Drop: Self = Self(9);
+    /// 50 Frame
     #[doc(alias = "kSMPTETimeType50")]
     pub const Type50: Self = Self(10);
+    /// 23.98 Frame
     #[doc(alias = "kSMPTETimeType2398")]
     pub const Type2398: Self = Self(11);
 }
@@ -537,10 +709,6 @@ unsafe impl RefEncode for SMPTETimeType {
 
 /// Flags that describe the SMPTE time state.
 ///
-/// The full time is valid.
-///
-/// Time is running.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -550,8 +718,10 @@ bitflags::bitflags! {
     impl SMPTETimeFlags: u32 {
         #[doc(alias = "kSMPTETimeUnknown")]
         const Unknown = 0;
+/// The full time is valid.
         #[doc(alias = "kSMPTETimeValid")]
         const Valid = 1<<0;
+/// Time is running.
         #[doc(alias = "kSMPTETimeRunning")]
         const Running = 1<<1;
         const _ = !0;
@@ -628,18 +798,6 @@ unsafe impl RefEncode for SMPTETime {
 
 /// The flags that indicate which fields in an AudioTimeStamp structure are valid.
 ///
-/// The sample frame time is valid.
-///
-/// The host time is valid.
-///
-/// The rate scalar is valid.
-///
-/// The word clock time is valid.
-///
-/// The SMPTE time is valid.
-///
-/// The sample frame time and the host time are valid.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -649,16 +807,22 @@ bitflags::bitflags! {
     impl AudioTimeStampFlags: u32 {
         #[doc(alias = "kAudioTimeStampNothingValid")]
         const NothingValid = 0;
+/// The sample frame time is valid.
         #[doc(alias = "kAudioTimeStampSampleTimeValid")]
         const SampleTimeValid = 1<<0;
+/// The host time is valid.
         #[doc(alias = "kAudioTimeStampHostTimeValid")]
         const HostTimeValid = 1<<1;
+/// The rate scalar is valid.
         #[doc(alias = "kAudioTimeStampRateScalarValid")]
         const RateScalarValid = 1<<2;
+/// The word clock time is valid.
         #[doc(alias = "kAudioTimeStampWordClockTimeValid")]
         const WordClockTimeValid = 1<<3;
+/// The SMPTE time is valid.
         #[doc(alias = "kAudioTimeStampSMPTETimeValid")]
         const SMPTETimeValid = 1<<4;
+/// The sample frame time and the host time are valid.
         #[doc(alias = "kAudioTimeStampSampleHostTimeValid")]
         const SampleHostTimeValid = AudioTimeStampFlags::SampleTimeValid.0|AudioTimeStampFlags::HostTimeValid.0;
         const _ = !0;
@@ -1092,17 +1256,6 @@ unsafe impl RefEncode for AudioChannelBitmap {
 /// These constants are used in the mChannelFlags field of an
 /// AudioChannelDescription structure.
 ///
-/// The channel is specified by the cartesian coordinates of the speaker
-/// position. This flag is mutally exclusive with
-/// kAudioChannelFlags_SphericalCoordinates.
-///
-/// The channel is specified by the spherical coordinates of the speaker
-/// position. This flag is mutally exclusive with
-/// kAudioChannelFlags_RectangularCoordinates.
-///
-/// Set to indicate the units are in meters, clear to indicate the units are
-/// relative to the unit cube or unit sphere.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -1112,10 +1265,18 @@ bitflags::bitflags! {
     impl AudioChannelFlags: u32 {
         #[doc(alias = "kAudioChannelFlags_AllOff")]
         const AllOff = 0;
+/// The channel is specified by the cartesian coordinates of the speaker
+/// position. This flag is mutally exclusive with
+/// kAudioChannelFlags_SphericalCoordinates.
         #[doc(alias = "kAudioChannelFlags_RectangularCoordinates")]
         const RectangularCoordinates = 1<<0;
+/// The channel is specified by the spherical coordinates of the speaker
+/// position. This flag is mutally exclusive with
+/// kAudioChannelFlags_RectangularCoordinates.
         #[doc(alias = "kAudioChannelFlags_SphericalCoordinates")]
         const SphericalCoordinates = 1<<1;
+/// Set to indicate the units are in meters, clear to indicate the units are
+/// relative to the unit cube or unit sphere.
         #[doc(alias = "kAudioChannelFlags_Meters")]
         const Meters = 1<<2;
         const _ = !0;
@@ -1135,37 +1296,31 @@ unsafe impl RefEncode for AudioChannelFlags {
 /// Constants for indexing the mCoordinates array in an AudioChannelDescription
 /// structure.
 ///
-/// For rectangular coordinates, negative is left and positive is right.
-///
-/// For rectangular coordinates, negative is back and positive is front.
-///
-/// For rectangular coordinates, negative is below ground level, 0 is ground
-/// level, and positive is above ground level.
-///
-/// For spherical coordinates, 0 is front center, positive is right, negative is
-/// left. This is measured in degrees.
-///
-/// For spherical coordinates, +90 is zenith, 0 is horizontal, -90 is nadir.
-/// This is measured in degrees.
-///
-/// For spherical coordinates, the units are described by flags.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioChannelCoordinateIndex(pub u32);
 impl AudioChannelCoordinateIndex {
+    /// For rectangular coordinates, negative is left and positive is right.
     #[doc(alias = "kAudioChannelCoordinates_LeftRight")]
     pub const Coordinates_LeftRight: Self = Self(0);
+    /// For rectangular coordinates, negative is back and positive is front.
     #[doc(alias = "kAudioChannelCoordinates_BackFront")]
     pub const Coordinates_BackFront: Self = Self(1);
+    /// For rectangular coordinates, negative is below ground level, 0 is ground
+    /// level, and positive is above ground level.
     #[doc(alias = "kAudioChannelCoordinates_DownUp")]
     pub const Coordinates_DownUp: Self = Self(2);
+    /// For spherical coordinates, 0 is front center, positive is right, negative is
+    /// left. This is measured in degrees.
     #[doc(alias = "kAudioChannelCoordinates_Azimuth")]
     pub const Coordinates_Azimuth: Self = Self(0);
+    /// For spherical coordinates, +90 is zenith, 0 is horizontal, -90 is nadir.
+    /// This is measured in degrees.
     #[doc(alias = "kAudioChannelCoordinates_Elevation")]
     pub const Coordinates_Elevation: Self = Self(1);
+    /// For spherical coordinates, the units are described by flags.
     #[doc(alias = "kAudioChannelCoordinates_Distance")]
     pub const Coordinates_Distance: Self = Self(2);
 }

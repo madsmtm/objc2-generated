@@ -23,20 +23,16 @@ pub type CHHapticCompletionHandler = block2::SendableBlock<'static, fn(*mut NSEr
 
 /// Constants indicating what the engine should do in response to the finished handler being called.
 ///
-///
-/// Stop the engine.  This is useful if the client knows that the client is about to go inactive.
-///
-///
-/// Do not stop the engine.  This is useful if the client expects more activity.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginefinishedaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CHHapticEngineFinishedAction(pub NSInteger);
 impl CHHapticEngineFinishedAction {
+    /// Stop the engine.  This is useful if the client knows that the client is about to go inactive.
     #[doc(alias = "CHHapticEngineFinishedActionStopEngine")]
     pub const StopEngine: Self = Self(1);
+    /// Do not stop the engine.  This is useful if the client expects more activity.
     #[doc(alias = "CHHapticEngineFinishedActionLeaveEngineRunning")]
     pub const LeaveEngineRunning: Self = Self(2);
 }
@@ -63,45 +59,31 @@ pub type CHHapticEngineFinishedHandler =
 
 /// Constants indicating the reason why the CHHapticEngine has stopped.
 ///
-///
-/// The AVAudioSession bound to this engine has been interrupted.
-///
-///
-/// The application owning this engine has been suspended (i.e., put into the background).
-///
-///
-/// The engine has stopped due to an idle timeout when the engine's `autoShutdownEnabled` property was set to YES.
-///
-///
-/// The engine has stopped due to a call to a `CHHapticEngineFinishedHandler` returning `CHHapticEngineFinishedActionStopEngine`.
-///
-///
-/// The engine has stopped because the CHHapticEngine instance was destroyed.
-///
-///
-/// The engine has stopped because the Game Controller associated with this engine disconnected.
-///
-///
-/// An error has occurred.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginestoppedreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CHHapticEngineStoppedReason(pub NSInteger);
 impl CHHapticEngineStoppedReason {
+    /// The AVAudioSession bound to this engine has been interrupted.
     #[doc(alias = "CHHapticEngineStoppedReasonAudioSessionInterrupt")]
     pub const AudioSessionInterrupt: Self = Self(1);
+    /// The application owning this engine has been suspended (i.e., put into the background).
     #[doc(alias = "CHHapticEngineStoppedReasonApplicationSuspended")]
     pub const ApplicationSuspended: Self = Self(2);
+    /// The engine has stopped due to an idle timeout when the engine's `autoShutdownEnabled` property was set to YES.
     #[doc(alias = "CHHapticEngineStoppedReasonIdleTimeout")]
     pub const IdleTimeout: Self = Self(3);
+    /// The engine has stopped due to a call to a `CHHapticEngineFinishedHandler` returning `CHHapticEngineFinishedActionStopEngine`.
     #[doc(alias = "CHHapticEngineStoppedReasonNotifyWhenFinished")]
     pub const NotifyWhenFinished: Self = Self(4);
+    /// The engine has stopped because the CHHapticEngine instance was destroyed.
     #[doc(alias = "CHHapticEngineStoppedReasonEngineDestroyed")]
     pub const EngineDestroyed: Self = Self(5);
+    /// The engine has stopped because the Game Controller associated with this engine disconnected.
     #[doc(alias = "CHHapticEngineStoppedReasonGameControllerDisconnect")]
     pub const GameControllerDisconnect: Self = Self(6);
+    /// An error has occurred.
     #[doc(alias = "CHHapticEngineStoppedReasonSystemError")]
     pub const SystemError: Self = Self(-1);
 }

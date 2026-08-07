@@ -43,41 +43,29 @@ unsafe impl ConcreteType for CTGlyphInfo {
 
 /// These constants specify character collections.
 ///
-///
-/// Indicates that the character identifier is equal to the CGGlyph
-/// glyph index.
-///
-///
-/// Indicates the Adobe-CNS1 mapping.
-///
-///
-/// Indicates the Adobe-GB1 mapping.
-///
-///
-/// Indicates the Adobe-Japan1 mapping.
-///
-///
-/// Indicates the Adobe-Japan2 mapping.
-///
-///
-/// Indicates the Adobe-Korea1 mapping.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCharacterCollection(pub u16);
 impl CTCharacterCollection {
+    /// Indicates that the character identifier is equal to the CGGlyph
+    /// glyph index.
     #[doc(alias = "kCTCharacterCollectionIdentityMapping")]
     pub const IdentityMapping: Self = Self(0);
+    /// Indicates the Adobe-CNS1 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeCNS1")]
     pub const AdobeCNS1: Self = Self(1);
+    /// Indicates the Adobe-GB1 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeGB1")]
     pub const AdobeGB1: Self = Self(2);
+    /// Indicates the Adobe-Japan1 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeJapan1")]
     pub const AdobeJapan1: Self = Self(3);
+    /// Indicates the Adobe-Japan2 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeJapan2")]
     pub const AdobeJapan2: Self = Self(4);
+    /// Indicates the Adobe-Korea1 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeKorea1")]
     pub const AdobeKorea1: Self = Self(5);
     #[deprecated = "Deprecated"]

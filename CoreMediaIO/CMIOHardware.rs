@@ -4,39 +4,73 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarenoerror?language=objc)
+/// The function call completed successfully.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarenoerror?language=objc)
 pub const kCMIOHardwareNoError: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarenotstoppederror?language=objc)
+/// The function call requires that the hardware be stopped but it isn't.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarenotstoppederror?language=objc)
 pub const kCMIOHardwareNotStoppedError: c_uint = 0x72756e20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarenotrunningerror?language=objc)
+/// The function call requires that the hardware be running but it isn't.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarenotrunningerror?language=objc)
 pub const kCMIOHardwareNotRunningError: c_uint = 0x73746f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwareunspecifiederror?language=objc)
+/// The function call failed while doing something that doesn't provide any error messages.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwareunspecifiederror?language=objc)
 pub const kCMIOHardwareUnspecifiedError: c_uint = 0x77686174;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwareunknownpropertyerror?language=objc)
+/// The CMIOObject doesn't know about the property at the given address.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwareunknownpropertyerror?language=objc)
 pub const kCMIOHardwareUnknownPropertyError: c_uint = 0x77686f3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarebadpropertysizeerror?language=objc)
+/// An improperly sized buffer was provided when accessing the data of a property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarebadpropertysizeerror?language=objc)
 pub const kCMIOHardwareBadPropertySizeError: c_uint = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwareillegaloperationerror?language=objc)
+/// The requested operation couldn't be completed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwareillegaloperationerror?language=objc)
 pub const kCMIOHardwareIllegalOperationError: c_uint = 0x6e6f7065;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarebadobjecterror?language=objc)
+/// The CMIOObjectID passed to the function doesn't map to a valid CMIOObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarebadobjecterror?language=objc)
 pub const kCMIOHardwareBadObjectError: c_uint = 0x216f626a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarebaddeviceerror?language=objc)
+/// The CMIODeviceID passed to the function doesn't map to a valid CMIODevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarebaddeviceerror?language=objc)
 pub const kCMIOHardwareBadDeviceError: c_uint = 0x21646576;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarebadstreamerror?language=objc)
+/// The CMIOStreamID passed to the function doesn't map to a valid CMIOStream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarebadstreamerror?language=objc)
 pub const kCMIOHardwareBadStreamError: c_uint = 0x21737472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwareunsupportedoperationerror?language=objc)
+/// The CMIOObject doesn't support the requested operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwareunsupportedoperationerror?language=objc)
 pub const kCMIOHardwareUnsupportedOperationError: c_uint = 0x756e6f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwaresuspendedbysystemerror?language=objc)
+/// The function call failed because because access been suspended by the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwaresuspendedbysystemerror?language=objc)
 pub const kCMIOHardwareSuspendedBySystemError: c_uint = 0x64656e79;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceunsupportedformaterror?language=objc)
+/// The CMIOStream doesn't support the requested format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceunsupportedformaterror?language=objc)
 pub const kCMIODeviceUnsupportedFormatError: c_uint = 0x21646174;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepermissionserror?language=objc)
+/// The requested operation can't be completed because the process doesn't have permission.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepermissionserror?language=objc)
 pub const kCMIODevicePermissionsError: c_uint = 0x21686f67;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopluginclassid?language=objc)
+/// The CMIOClassID that identifies the CMIOPlugIn class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopluginclassid?language=objc)
 pub const kCMIOPlugInClassID: c_uint = 0x61706c67;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopluginpropertybundleid?language=objc)
+/// A CFString that contains the bundle identifier for the CMIOPlugIn. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopluginpropertybundleid?language=objc)
 pub const kCMIOPlugInPropertyBundleID: c_uint = 0x70696964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopluginpropertyisextension?language=objc)
+/// A UInt32 boolean that returns 1 if the DAL is loaded by a CMIOExtension, returns 0 otherwise.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopluginpropertyisextension?language=objc)
 pub const kCMIOPlugInPropertyIsExtension: c_uint = 0x70696965;

@@ -9,37 +9,70 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiinvalidclient?language=objc)
+/// An invalid MIDIClientRef was passed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiinvalidclient?language=objc)
 pub const kMIDIInvalidClient: OSStatus = -10830;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiinvalidport?language=objc)
+/// An invalid MIDIPortRef was passed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiinvalidport?language=objc)
 pub const kMIDIInvalidPort: OSStatus = -10831;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiwrongendpointtype?language=objc)
+/// A source endpoint was passed to a function expecting a destination, or vice versa.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiwrongendpointtype?language=objc)
 pub const kMIDIWrongEndpointType: OSStatus = -10832;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidinoconnection?language=objc)
+/// Attempt to close a non-existant connection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidinoconnection?language=objc)
 pub const kMIDINoConnection: OSStatus = -10833;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiunknownendpoint?language=objc)
+/// An invalid MIDIEndpointRef was passed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiunknownendpoint?language=objc)
 pub const kMIDIUnknownEndpoint: OSStatus = -10834;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiunknownproperty?language=objc)
+/// Attempt to query a property not set on the object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiunknownproperty?language=objc)
 pub const kMIDIUnknownProperty: OSStatus = -10835;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiwrongpropertytype?language=objc)
+/// Attempt to set a property with a value not of the correct type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiwrongpropertytype?language=objc)
 pub const kMIDIWrongPropertyType: OSStatus = -10836;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidinocurrentsetup?language=objc)
+/// Internal error; there is no current MIDI setup object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidinocurrentsetup?language=objc)
 pub const kMIDINoCurrentSetup: OSStatus = -10837;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidimessagesenderr?language=objc)
+/// Communication with MIDIServer failed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidimessagesenderr?language=objc)
 pub const kMIDIMessageSendErr: OSStatus = -10838;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiserverstarterr?language=objc)
+/// Unable to start MIDIServer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiserverstarterr?language=objc)
 pub const kMIDIServerStartErr: OSStatus = -10839;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidisetupformaterr?language=objc)
+/// Unable to read the saved state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidisetupformaterr?language=objc)
 pub const kMIDISetupFormatErr: OSStatus = -10840;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiwrongthread?language=objc)
+/// A driver is calling a non-I/O function in the server from a thread other than
+/// the server's main thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiwrongthread?language=objc)
 pub const kMIDIWrongThread: OSStatus = -10841;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiobjectnotfound?language=objc)
+/// The requested object does not exist.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiobjectnotfound?language=objc)
 pub const kMIDIObjectNotFound: OSStatus = -10842;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiidnotunique?language=objc)
+/// Attempt to set a non-unique kMIDIPropertyUniqueID on an object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiidnotunique?language=objc)
 pub const kMIDIIDNotUnique: OSStatus = -10843;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidinotpermitted?language=objc)
+/// The process does not have privileges for the requested operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidinotpermitted?language=objc)
 pub const kMIDINotPermitted: OSStatus = -10844;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiunknownerror?language=objc)
+/// Internal error; unable to perform the requested operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiunknownerror?language=objc)
 pub const kMIDIUnknownError: OSStatus = -10845;
 
 /// The base class of many CoreMIDI objects.
@@ -183,18 +216,16 @@ pub const kMIDIInvalidUniqueID: MIDIUniqueID = 0;
 
 /// Specifies a MIDI protocol variant.
 ///
-/// MIDI 1.0.
-///
-/// MIDI 2.0.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiprotocolid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MIDIProtocolID(pub i32);
 impl MIDIProtocolID {
+    /// MIDI 1.0.
     #[doc(alias = "kMIDIProtocol_1_0")]
     pub const Protocol_1_0: Self = Self(1);
+    /// MIDI 2.0.
     #[doc(alias = "kMIDIProtocol_2_0")]
     pub const Protocol_2_0: Self = Self(2);
 }
@@ -699,43 +730,35 @@ unsafe impl RefEncode for MIDISysexSendRequestUMP {
 
 /// Signifies the type of a MIDINotification.
 ///
-///
-/// Some aspect of the current MIDISetup has changed.  No data.  Should ignore this message if
-/// messages 2-6 are handled.
-///
-/// A device, entity or endpoint was added. Structure is MIDIObjectAddRemoveNotification. New in
-/// Mac OS X 10.2.
-///
-/// A device, entity or endpoint was removed. Structure is MIDIObjectAddRemoveNotification. New
-/// in Mac OS X 10.2.
-///
-/// An object's property was changed. Structure is MIDIObjectPropertyChangeNotification. New in
-/// Mac OS X 10.2.
-///
-/// A persistent MIDI Thru connection was created or destroyed.  No data.  New in Mac OS X 10.2.
-///
-/// No data.  New in Mac OS X 10.2.
-///
-/// A driver I/O error occurred.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MIDINotificationMessageID(pub i32);
 impl MIDINotificationMessageID {
+    /// Some aspect of the current MIDISetup has changed.  No data.  Should ignore this message if
+    /// messages 2-6 are handled.
     #[doc(alias = "kMIDIMsgSetupChanged")]
     pub const MsgSetupChanged: Self = Self(1);
+    /// A device, entity or endpoint was added. Structure is MIDIObjectAddRemoveNotification. New in
+    /// Mac OS X 10.2.
     #[doc(alias = "kMIDIMsgObjectAdded")]
     pub const MsgObjectAdded: Self = Self(2);
+    /// A device, entity or endpoint was removed. Structure is MIDIObjectAddRemoveNotification. New
+    /// in Mac OS X 10.2.
     #[doc(alias = "kMIDIMsgObjectRemoved")]
     pub const MsgObjectRemoved: Self = Self(3);
+    /// An object's property was changed. Structure is MIDIObjectPropertyChangeNotification. New in
+    /// Mac OS X 10.2.
     #[doc(alias = "kMIDIMsgPropertyChanged")]
     pub const MsgPropertyChanged: Self = Self(4);
+    /// A persistent MIDI Thru connection was created or destroyed.  No data.  New in Mac OS X 10.2.
     #[doc(alias = "kMIDIMsgThruConnectionsChanged")]
     pub const MsgThruConnectionsChanged: Self = Self(5);
+    /// No data.  New in Mac OS X 10.2.
     #[doc(alias = "kMIDIMsgSerialPortOwnerChanged")]
     pub const MsgSerialPortOwnerChanged: Self = Self(6);
+    /// A driver I/O error occurred.
     #[doc(alias = "kMIDIMsgIOError")]
     pub const MsgIOError: Self = Self(7);
     #[doc(alias = "kMIDIMsgInternalStart")]

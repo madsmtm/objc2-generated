@@ -13,62 +13,55 @@ use crate::*;
 /// with whether already-existing cache data is returned to satisfy a
 /// URL load request.
 ///
-///
-/// caching logic defined in the protocol implementation, if any, is
-/// used for a particular URL load request. This is the default policy
-/// for URL load requests.
-///
-///
-/// data for the URL load should be loaded from the origin source. No
-/// existing local cache data, regardless of its freshness or validity,
-/// should be used to satisfy a URL load request.
-///
-///
-/// not only should the local cache data be ignored, but that proxies and
-/// other intermediates should be instructed to disregard their caches
-/// so far as the protocol allows.
-///
-///
-/// NSURLRequestReloadIgnoringLocalCacheData.
-///
-///
-/// existing cache data should be used to satisfy a URL load request,
-/// regardless of its age or expiration date. However, if there is no
-/// existing data in the cache corresponding to a URL load request,
-/// the URL is loaded from the origin source.
-///
-///
-/// existing cache data should be used to satisfy a URL load request,
-/// regardless of its age or expiration date. However, if there is no
-/// existing data in the cache corresponding to a URL load request, no
-/// attempt is made to load the URL from the origin source, and the
-/// load is considered to have failed. This constant specifies a
-/// behavior that is similar to an "offline" mode.
-///
-///
-/// the existing cache data may be used provided the origin source
-/// confirms its validity, otherwise the URL is loaded from the
-/// origin source.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestcachepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestCachePolicy(pub NSUInteger);
 impl NSURLRequestCachePolicy {
+    /// Specifies that the
+    /// caching logic defined in the protocol implementation, if any, is
+    /// used for a particular URL load request. This is the default policy
+    /// for URL load requests.
     #[doc(alias = "NSURLRequestUseProtocolCachePolicy")]
     pub const UseProtocolCachePolicy: Self = Self(0);
+    /// Specifies that the
+    /// data for the URL load should be loaded from the origin source. No
+    /// existing local cache data, regardless of its freshness or validity,
+    /// should be used to satisfy a URL load request.
     #[doc(alias = "NSURLRequestReloadIgnoringLocalCacheData")]
     pub const ReloadIgnoringLocalCacheData: Self = Self(1);
+    /// Specifies that
+    /// not only should the local cache data be ignored, but that proxies and
+    /// other intermediates should be instructed to disregard their caches
+    /// so far as the protocol allows.
     #[doc(alias = "NSURLRequestReloadIgnoringLocalAndRemoteCacheData")]
     pub const ReloadIgnoringLocalAndRemoteCacheData: Self = Self(4);
+    /// Older name for
+    /// NSURLRequestReloadIgnoringLocalCacheData.
     #[doc(alias = "NSURLRequestReloadIgnoringCacheData")]
     pub const ReloadIgnoringCacheData: Self =
         Self(NSURLRequestCachePolicy::ReloadIgnoringLocalCacheData.0);
+    /// Specifies that the
+    /// existing cache data should be used to satisfy a URL load request,
+    /// regardless of its age or expiration date. However, if there is no
+    /// existing data in the cache corresponding to a URL load request,
+    /// the URL is loaded from the origin source.
     #[doc(alias = "NSURLRequestReturnCacheDataElseLoad")]
     pub const ReturnCacheDataElseLoad: Self = Self(2);
+    /// Specifies that the
+    /// existing cache data should be used to satisfy a URL load request,
+    /// regardless of its age or expiration date. However, if there is no
+    /// existing data in the cache corresponding to a URL load request, no
+    /// attempt is made to load the URL from the origin source, and the
+    /// load is considered to have failed. This constant specifies a
+    /// behavior that is similar to an "offline" mode.
     #[doc(alias = "NSURLRequestReturnCacheDataDontLoad")]
     pub const ReturnCacheDataDontLoad: Self = Self(3);
+    /// Specifies that
+    /// the existing cache data may be used provided the origin source
+    /// confirms its validity, otherwise the URL is loaded from the
+    /// origin source.
     #[doc(alias = "NSURLRequestReloadRevalidatingCacheData")]
     pub const ReloadRevalidatingCacheData: Self = Self(5);
 }
@@ -86,41 +79,42 @@ unsafe impl RefEncode for NSURLRequestCachePolicy {
 /// service type is used to provide the networking layers a hint of the purpose
 /// of the request.
 ///
-///
-/// when created.  This value should be left unchanged for the vast majority of requests.
-///
-///
-/// control traffic.
-///
-///
-/// traffic.
-///
-///
-/// traffic (such as a file download).
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestnetworkservicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestNetworkServiceType(pub NSUInteger);
 impl NSURLRequestNetworkServiceType {
+    /// Is the default value for an NSURLRequest
+    /// when created.  This value should be left unchanged for the vast majority of requests.
     #[doc(alias = "NSURLNetworkServiceTypeDefault")]
     pub const NetworkServiceTypeDefault: Self = Self(0);
+    /// Specifies that the request is for voice over IP
+    /// control traffic.
     #[doc(alias = "NSURLNetworkServiceTypeVoIP")]
     #[deprecated = "Use PushKit for VoIP control purposes"]
     pub const NetworkServiceTypeVoIP: Self = Self(1);
+    /// Specifies that the request is for video
+    /// traffic.
     #[doc(alias = "NSURLNetworkServiceTypeVideo")]
     pub const NetworkServiceTypeVideo: Self = Self(2);
+    /// Specifies that the request is for background
+    /// traffic (such as a file download).
     #[doc(alias = "NSURLNetworkServiceTypeBackground")]
     pub const NetworkServiceTypeBackground: Self = Self(3);
+    /// Specifies that the request is for voice data.
     #[doc(alias = "NSURLNetworkServiceTypeVoice")]
     pub const NetworkServiceTypeVoice: Self = Self(4);
+    /// Specifies that the request is for responsive (time sensitive) data.
     #[doc(alias = "NSURLNetworkServiceTypeResponsiveData")]
     pub const NetworkServiceTypeResponsiveData: Self = Self(6);
+    /// Specifies that the request is streaming audio/video data.
     #[doc(alias = "NSURLNetworkServiceTypeAVStreaming")]
     pub const NetworkServiceTypeAVStreaming: Self = Self(8);
+    /// Specifies that the request is for responsive (time sensitive) audio/video data.
     #[doc(alias = "NSURLNetworkServiceTypeResponsiveAV")]
     pub const NetworkServiceTypeResponsiveAV: Self = Self(9);
+    /// Specifies that the request is for call signaling.
     #[doc(alias = "NSURLNetworkServiceTypeCallSignaling")]
     pub const NetworkServiceTypeCallSignaling: Self = Self(11);
 }
@@ -136,20 +130,18 @@ unsafe impl RefEncode for NSURLRequestNetworkServiceType {
 /// The NSURLRequestAttribution enum is used to indicate whether the
 /// user or developer specified the URL.
 ///
-///
-/// by the developer. This is the default value for an NSURLRequest when created.
-///
-///
-/// the user.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestattribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestAttribution(pub NSUInteger);
 impl NSURLRequestAttribution {
+    /// Indicates that the URL was specified
+    /// by the developer. This is the default value for an NSURLRequest when created.
     #[doc(alias = "NSURLRequestAttributionDeveloper")]
     pub const Developer: Self = Self(0);
+    /// Indicates that the URL was specified by
+    /// the user.
     #[doc(alias = "NSURLRequestAttributionUser")]
     pub const User: Self = Self(1);
 }

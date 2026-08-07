@@ -13,20 +13,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSType(pub c_uint);
 impl JSType {
+    /// The unique undefined value.
     #[doc(alias = "kJSTypeUndefined")]
     pub const Undefined: Self = Self(0);
+    /// The unique null value.
     #[doc(alias = "kJSTypeNull")]
     pub const Null: Self = Self(1);
+    /// A primitive boolean value, one of true or false.
     #[doc(alias = "kJSTypeBoolean")]
     pub const Boolean: Self = Self(2);
+    /// A primitive number value.
     #[doc(alias = "kJSTypeNumber")]
     pub const Number: Self = Self(3);
+    /// A primitive string value.
     #[doc(alias = "kJSTypeString")]
     pub const String: Self = Self(4);
+    /// An object value (meaning that this JSValueRef is a JSObjectRef).
     #[doc(alias = "kJSTypeObject")]
     pub const Object: Self = Self(5);
+    /// A primitive symbol value.
     #[doc(alias = "kJSTypeSymbol")]
     pub const Symbol: Self = Self(6);
+    /// A primitive BigInt value.
     #[doc(alias = "kJSTypeBigInt")]
     pub const BigInt: Self = Self(7);
 }
@@ -48,30 +56,43 @@ unsafe impl RefEncode for JSType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSTypedArrayType(pub c_uint);
 impl JSTypedArrayType {
+    /// Int8Array
     #[doc(alias = "kJSTypedArrayTypeInt8Array")]
     pub const Int8Array: Self = Self(0);
+    /// Int16Array
     #[doc(alias = "kJSTypedArrayTypeInt16Array")]
     pub const Int16Array: Self = Self(1);
+    /// Int32Array
     #[doc(alias = "kJSTypedArrayTypeInt32Array")]
     pub const Int32Array: Self = Self(2);
+    /// Uint8Array
     #[doc(alias = "kJSTypedArrayTypeUint8Array")]
     pub const Uint8Array: Self = Self(3);
+    /// Uint8ClampedArray
     #[doc(alias = "kJSTypedArrayTypeUint8ClampedArray")]
     pub const Uint8ClampedArray: Self = Self(4);
+    /// Uint16Array
     #[doc(alias = "kJSTypedArrayTypeUint16Array")]
     pub const Uint16Array: Self = Self(5);
+    /// Uint32Array
     #[doc(alias = "kJSTypedArrayTypeUint32Array")]
     pub const Uint32Array: Self = Self(6);
+    /// Float32Array
     #[doc(alias = "kJSTypedArrayTypeFloat32Array")]
     pub const Float32Array: Self = Self(7);
+    /// Float64Array
     #[doc(alias = "kJSTypedArrayTypeFloat64Array")]
     pub const Float64Array: Self = Self(8);
+    /// ArrayBuffer
     #[doc(alias = "kJSTypedArrayTypeArrayBuffer")]
     pub const ArrayBuffer: Self = Self(9);
+    /// Not a Typed Array
     #[doc(alias = "kJSTypedArrayTypeNone")]
     pub const None: Self = Self(10);
+    /// BigInt64Array
     #[doc(alias = "kJSTypedArrayTypeBigInt64Array")]
     pub const BigInt64Array: Self = Self(11);
+    /// BigUint64Array
     #[doc(alias = "kJSTypedArrayTypeBigUint64Array")]
     pub const BigUint64Array: Self = Self(12);
 }
@@ -95,15 +116,23 @@ unsafe impl RefEncode for JSTypedArrayType {
 pub struct JSRelationCondition(pub u32);
 impl JSRelationCondition {
     /// A constant identifying the type of JavaScript relation condition.
+    ///
+    /// Fail to compare two operands.
     #[doc(alias = "kJSRelationConditionUndefined")]
     pub const Undefined: Self = Self(0);
     /// A constant identifying the type of JavaScript relation condition.
+    ///
+    /// Two operands have equivalent values.
     #[doc(alias = "kJSRelationConditionEqual")]
     pub const Equal: Self = Self(1);
     /// A constant identifying the type of JavaScript relation condition.
+    ///
+    /// The left operand is greater than the right operand.
     #[doc(alias = "kJSRelationConditionGreaterThan")]
     pub const GreaterThan: Self = Self(2);
     /// A constant identifying the type of JavaScript relation condition.
+    ///
+    /// The left operand is less than the right operand.
     #[doc(alias = "kJSRelationConditionLessThan")]
     pub const LessThan: Self = Self(3);
 }

@@ -35,64 +35,124 @@ extern "C" {
     pub static kSecTransformAbortOriginatorKey: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorattributenotfound?language=objc)
+/// The attribute was not found.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorattributenotfound?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorAttributeNotFound: CFIndex = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidoperation?language=objc)
+/// An invalid operation was attempted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidoperation?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidOperation: CFIndex = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrornotinitializedcorrectly?language=objc)
+/// A required initialization is missing. It
+/// is most likely a missing required attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrornotinitializedcorrectly?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorNotInitializedCorrectly: CFIndex = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrormorethanoneoutput?language=objc)
+/// A transform has an internal routing error
+/// that has caused multiple outputs instead
+/// of a single discrete output.  This will
+/// occur if SecTransformExecute has already
+/// been called.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrormorethanoneoutput?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorMoreThanOneOutput: CFIndex = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidinputdictionary?language=objc)
+/// A dictionary given to
+/// SecTransformCreateFromExternalRepresentation has invalid data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidinputdictionary?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidInputDictionary: CFIndex = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidalgorithm?language=objc)
+/// A transform that needs an algorithm as an attribute
+/// i.e the Sign and Verify transforms, received an invalid
+/// algorithm.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidalgorithm?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidAlgorithm: CFIndex = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidlength?language=objc)
+/// A transform that needs a length such as a digest
+/// transform has been given an invalid length.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidlength?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidLength: CFIndex = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidtype?language=objc)
+/// An invalid type has been set on an attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidtype?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidType: CFIndex = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidinput?language=objc)
+/// The input set on a transform is invalid. This can
+/// occur if the data set for an attribute does not
+/// meet certain requirements such as correct key
+/// usage for signing data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidinput?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidInput: CFIndex = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrornamealreadyregistered?language=objc)
+/// A custom transform of a particular name has already
+/// been registered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrornamealreadyregistered?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorNameAlreadyRegistered: CFIndex = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorunsupportedattribute?language=objc)
+/// An illegal action such as setting a read only
+/// attribute has occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorunsupportedattribute?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorUnsupportedAttribute: CFIndex = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformoperationnotsupportedongroup?language=objc)
+/// An illegal action on a group transform such as
+/// trying to call SecTransformSetAttribute has occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformoperationnotsupportedongroup?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformOperationNotSupportedOnGroup: CFIndex = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrormissingparameter?language=objc)
+/// A transform is missing a required attribute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrormissingparameter?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorMissingParameter: CFIndex = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidconnection?language=objc)
+/// A SecTransformConnectTransforms was called with
+/// transforms in different groups.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidconnection?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidConnection: CFIndex = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformtransformisexecuting?language=objc)
+/// An illegal operation was called on a Transform
+/// while it was executing.  Please see the sequencing documentation
+/// in the discussion area of the SecTransformExecute API
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformtransformisexecuting?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformTransformIsExecuting: CFIndex = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransforminvalidoverride?language=objc)
+/// An illegal override was given to a custom transform
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransforminvalidoverride?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformInvalidOverride: CFIndex = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformtransformisnotregistered?language=objc)
+/// A custom transform was asked to be created but the transform
+/// has not been registered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformtransformisnotregistered?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformTransformIsNotRegistered: CFIndex = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorabortinprogress?language=objc)
+/// The abort attribute has been set and the transform is in the
+/// process of shutting down
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorabortinprogress?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorAbortInProgress: CFIndex = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerroraborted?language=objc)
+/// The transform was aborted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerroraborted?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorAborted: CFIndex = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransforminvalidargument?language=objc)
+/// An invalid argument was given to a Transform API
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransforminvalidargument?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformInvalidArgument: CFIndex = 21;
 

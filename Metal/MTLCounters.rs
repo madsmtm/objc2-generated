@@ -363,24 +363,19 @@ extern "C" {
     pub static MTLCounterErrorDomain: &'static NSErrorDomain;
 }
 
-/// There wasn't enough memory available to allocate the counter sample buffer.
-///
-///
-/// Invalid parameter passed while creating counter sample buffer.
-///
-///
-/// There was some other error in allocating the counter sample buffer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCounterSampleBufferError(pub NSInteger);
 impl MTLCounterSampleBufferError {
+    /// There wasn't enough memory available to allocate the counter sample buffer.
     #[doc(alias = "MTLCounterSampleBufferErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(0);
+    /// Invalid parameter passed while creating counter sample buffer.
     #[doc(alias = "MTLCounterSampleBufferErrorInvalid")]
     pub const Invalid: Self = Self(1);
+    /// There was some other error in allocating the counter sample buffer.
     #[doc(alias = "MTLCounterSampleBufferErrorInternal")]
     pub const Internal: Self = Self(2);
 }

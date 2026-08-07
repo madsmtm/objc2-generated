@@ -12,22 +12,19 @@ use crate::*;
 /// Provides context to the operating system about the type of audio an application intends to use. The system uses this information
 /// when arbitrating between Apple products that want to take ownership of Bluetooth audio routes.
 ///
-/// Used for Audio playback.
-///
-/// Used for recording and playing back audio.
-///
-/// Appropriate for Voice over IP(VoIP) applications.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbitrationcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioRoutingArbitrationCategory(pub NSInteger);
 impl AVAudioRoutingArbitrationCategory {
+    /// Used for Audio playback.
     #[doc(alias = "AVAudioRoutingArbitrationCategoryPlayback")]
     pub const Playback: Self = Self(0);
+    /// Used for recording and playing back audio.
     #[doc(alias = "AVAudioRoutingArbitrationCategoryPlayAndRecord")]
     pub const PlayAndRecord: Self = Self(1);
+    /// Appropriate for Voice over IP(VoIP) applications.
     #[doc(alias = "AVAudioRoutingArbitrationCategoryPlayAndRecordVoice")]
     pub const PlayAndRecordVoice: Self = Self(2);
 }

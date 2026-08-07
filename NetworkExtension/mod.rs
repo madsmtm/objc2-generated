@@ -5155,18 +5155,25 @@ impl NEHotspotNetwork {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperCommandType(pub NSInteger);
 impl NEHotspotHelperCommandType {
+    /// Placeholder for the null command.
     #[doc(alias = "kNEHotspotHelperCommandTypeNone")]
     pub const None: Self = Self(0);
+    /// Filter the Wi-Fi scan list.
     #[doc(alias = "kNEHotspotHelperCommandTypeFilterScanList")]
     pub const FilterScanList: Self = Self(1);
+    /// Evaluate the network.
     #[doc(alias = "kNEHotspotHelperCommandTypeEvaluate")]
     pub const Evaluate: Self = Self(2);
+    /// Authenticate to the network.
     #[doc(alias = "kNEHotspotHelperCommandTypeAuthenticate")]
     pub const Authenticate: Self = Self(3);
+    /// Present user interface.
     #[doc(alias = "kNEHotspotHelperCommandTypePresentUI")]
     pub const PresentUI: Self = Self(4);
+    /// Maintain the network.
     #[doc(alias = "kNEHotspotHelperCommandTypeMaintain")]
     pub const Maintain: Self = Self(5);
+    /// Logoff the network.
     #[doc(alias = "kNEHotspotHelperCommandTypeLogoff")]
     pub const Logoff: Self = Self(6);
 }
@@ -5185,44 +5192,44 @@ unsafe impl RefEncode for NEHotspotHelperCommandType {
 /// processing the NEHotspotHelperCommand when it instantiates
 /// its NEHotspotHelperResponse.
 ///
-///
-///
-/// interaction. This result is only valid in response to a command with type
-/// kNEHotspotHelperCommandTypeAuthenticate.
-///
-/// recognize the command type.
-///
-/// authentication again. This result is only valid in response to a
-/// command with type kNEHotspotHelperCommandTypeMaintain.
-///
-/// authenticate, the helper determined that it can't perform the
-/// authentication. This result is only valid in response to commands of type
-/// kNEHotspotHelperCommandTypeAuthenticate and
-/// kNEHotspotHelperCommandTypePresentUI.
-///
-/// it is temporarily unable to perform the authentication.
-/// This result is only valid in response to commands of type
-/// kNEHotspotHelperCommandTypeAuthenticate and
-/// kNEHotspotHelperCommandTypePresentUI.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperResult(pub NSInteger);
 impl NEHotspotHelperResult {
+    /// The operation was successful.
     #[doc(alias = "kNEHotspotHelperResultSuccess")]
     pub const Success: Self = Self(0);
+    /// The operation failed.
     #[doc(alias = "kNEHotspotHelperResultFailure")]
     pub const Failure: Self = Self(1);
+    /// The operation requires user
+    /// interaction. This result is only valid in response to a command with type
+    /// kNEHotspotHelperCommandTypeAuthenticate.
     #[doc(alias = "kNEHotspotHelperResultUIRequired")]
     pub const UIRequired: Self = Self(2);
+    /// The helper did not
+    /// recognize the command type.
     #[doc(alias = "kNEHotspotHelperResultCommandNotRecognized")]
     pub const CommandNotRecognized: Self = Self(3);
+    /// The network requires
+    /// authentication again. This result is only valid in response to a
+    /// command with type kNEHotspotHelperCommandTypeMaintain.
     #[doc(alias = "kNEHotspotHelperResultAuthenticationRequired")]
     pub const AuthenticationRequired: Self = Self(4);
+    /// After attempting to
+    /// authenticate, the helper determined that it can't perform the
+    /// authentication. This result is only valid in response to commands of type
+    /// kNEHotspotHelperCommandTypeAuthenticate and
+    /// kNEHotspotHelperCommandTypePresentUI.
     #[doc(alias = "kNEHotspotHelperResultUnsupportedNetwork")]
     pub const UnsupportedNetwork: Self = Self(5);
+    /// The helper determined that
+    /// it is temporarily unable to perform the authentication.
+    /// This result is only valid in response to commands of type
+    /// kNEHotspotHelperCommandTypeAuthenticate and
+    /// kNEHotspotHelperCommandTypePresentUI.
     #[doc(alias = "kNEHotspotHelperResultTemporaryFailure")]
     pub const TemporaryFailure: Self = Self(6);
 }
@@ -5240,22 +5247,22 @@ unsafe impl RefEncode for NEHotspotHelperResult {
 /// The HotspotHelper indicates its confidence in being able to handle the
 /// given hotspot network.
 ///
-/// the network.
-///
-/// in being able to handle the network.
-///
-/// in being able to handle the network.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperConfidence(pub NSInteger);
 impl NEHotspotHelperConfidence {
+    /// The helper is unable to handle
+    /// the network.
     #[doc(alias = "kNEHotspotHelperConfidenceNone")]
     pub const None: Self = Self(0);
+    /// The helper has some confidence
+    /// in being able to handle the network.
     #[doc(alias = "kNEHotspotHelperConfidenceLow")]
     pub const Low: Self = Self(1);
+    /// The helper has high confidence
+    /// in being able to handle the network.
     #[doc(alias = "kNEHotspotHelperConfidenceHigh")]
     pub const High: Self = Self(2);
 }
@@ -5701,14 +5708,19 @@ unsafe impl RefEncode for NEHotspotConfigurationEAPType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationTTLSInnerAuthenticationType(pub NSInteger);
 impl NEHotspotConfigurationTTLSInnerAuthenticationType {
+    /// PAP.
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationPAP")]
     pub const EAPTTLSInnerAuthenticationPAP: Self = Self(0);
+    /// CHAP.
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationCHAP")]
     pub const EAPTTLSInnerAuthenticationCHAP: Self = Self(1);
+    /// MSCHAP.
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAP")]
     pub const EAPTTLSInnerAuthenticationMSCHAP: Self = Self(2);
+    /// MSCHAPv2.
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAPv2")]
     pub const EAPTTLSInnerAuthenticationMSCHAPv2: Self = Self(3);
+    /// EAP (Default).
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationEAP")]
     pub const EAPTTLSInnerAuthenticationEAP: Self = Self(4);
 }
@@ -5729,8 +5741,10 @@ unsafe impl RefEncode for NEHotspotConfigurationTTLSInnerAuthenticationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationEAPTLSVersion(pub NSInteger);
 impl NEHotspotConfigurationEAPTLSVersion {
+    /// TLS version 1.0.
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_0")]
     pub const Version_1_0: Self = Self(0);
+    /// TLS version 1.1.
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_1")]
     pub const Version_1_1: Self = Self(1);
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_2")]
@@ -6258,40 +6272,58 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationError(pub NSInteger);
 impl NEHotspotConfigurationError {
+    /// The Wi-Fi configuration is invalid
     #[doc(alias = "NEHotspotConfigurationErrorInvalid")]
     pub const Invalid: Self = Self(0);
+    /// The given SSID string is invalid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidSSID")]
     pub const InvalidSSID: Self = Self(1);
+    /// The given WPA/WPA2 Personal passphrase is invalid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidWPAPassphrase")]
     pub const InvalidWPAPassphrase: Self = Self(2);
+    /// The given WEP passphrase is invalid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidWEPPassphrase")]
     pub const InvalidWEPPassphrase: Self = Self(3);
+    /// Invalid EAP Settings.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidEAPSettings")]
     pub const InvalidEAPSettings: Self = Self(4);
+    /// Invalid Hotspot 2.0 Settings.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidHS20Settings")]
     pub const InvalidHS20Settings: Self = Self(5);
+    /// The given Hotspot 2.0 domain name is invalid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidHS20DomainName")]
     pub const InvalidHS20DomainName: Self = Self(6);
+    /// Failed to get the user's approval to add a new configuration.
     #[doc(alias = "NEHotspotConfigurationErrorUserDenied")]
     pub const UserDenied: Self = Self(7);
+    /// An internal error was encountered.
     #[doc(alias = "NEHotspotConfigurationErrorInternal")]
     pub const Internal: Self = Self(8);
+    /// Previous request by the calling application is pending.
     #[doc(alias = "NEHotspotConfigurationErrorPending")]
     pub const Pending: Self = Self(9);
+    /// The calling application cannot modify the System(MDM/Carrier) configuration.
     #[doc(alias = "NEHotspotConfigurationErrorSystemConfiguration")]
     pub const SystemConfiguration: Self = Self(10);
+    /// An unknown configuration error occurred.
     #[doc(alias = "NEHotspotConfigurationErrorUnknown")]
     pub const Unknown: Self = Self(11);
+    /// JoinOnce option is not support for EAP configuration.
     #[doc(alias = "NEHotspotConfigurationErrorJoinOnceNotSupported")]
     pub const JoinOnceNotSupported: Self = Self(12);
+    /// Wi-Fi is already associated.
     #[doc(alias = "NEHotspotConfigurationErrorAlreadyAssociated")]
     pub const AlreadyAssociated: Self = Self(13);
+    /// The application is not in the foreground.
     #[doc(alias = "NEHotspotConfigurationErrorApplicationIsNotInForeground")]
     pub const ApplicationIsNotInForeground: Self = Self(14);
+    /// The given SSID Prefix string is invalid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidSSIDPrefix")]
     pub const InvalidSSIDPrefix: Self = Self(15);
+    /// The accessory is unauthorized by the user.
     #[doc(alias = "NEHotspotConfigurationErrorUserUnauthorized")]
     pub const UserUnauthorized: Self = Self(16);
+    /// System denied configuration of accessory network.
     #[doc(alias = "NEHotspotConfigurationErrorSystemDenied")]
     pub const SystemDenied: Self = Self(17);
 }

@@ -31,22 +31,6 @@ cf_objc2_type!(
 /// A bitfield passed back by CTRunGetStatus that is used to
 /// indicate the disposition of the run.
 ///
-///
-/// The run has no special attributes.
-///
-///
-/// When set, the run is right to left.
-///
-///
-/// When set, the run has been reordered in some way such that
-/// the string indices associated with the glyphs are no longer
-/// strictly increasing (for left to right runs) or decreasing
-/// (for right to left runs).
-///
-///
-/// When set, the run requires a specific text matrix to be set
-/// in the current CG context for proper drawing.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -54,12 +38,20 @@ cf_objc2_type!(
 pub struct CTRunStatus(pub u32);
 bitflags::bitflags! {
     impl CTRunStatus: u32 {
+/// The run has no special attributes.
         #[doc(alias = "kCTRunStatusNoStatus")]
         const NoStatus = 0;
+/// When set, the run is right to left.
         #[doc(alias = "kCTRunStatusRightToLeft")]
         const RightToLeft = 1<<0;
+/// When set, the run has been reordered in some way such that
+/// the string indices associated with the glyphs are no longer
+/// strictly increasing (for left to right runs) or decreasing
+/// (for right to left runs).
         #[doc(alias = "kCTRunStatusNonMonotonic")]
         const NonMonotonic = 1<<1;
+/// When set, the run requires a specific text matrix to be set
+/// in the current CG context for proper drawing.
         #[doc(alias = "kCTRunStatusHasNonIdentityMatrix")]
         const HasNonIdentityMatrix = 1<<2;
         const _ = !0;

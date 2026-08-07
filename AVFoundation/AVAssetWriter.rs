@@ -13,31 +13,25 @@ use crate::*;
 
 /// These constants are returned by the AVAssetWriter status property to indicate whether it can successfully write samples to its output file.
 ///
-///
-/// Indicates that the status of the asset writer is not currently known.
-///
-/// Indicates that the asset writer is successfully writing samples to its output file.
-///
-/// Indicates that the asset writer has successfully written all samples following a call to finishWriting.
-///
-/// Indicates that the asset writer can no longer write samples to its output file because of an error. The error is described by the value of the asset writer's error property.
-///
-/// Indicates that the asset writer can no longer write samples because writing was canceled with the cancelWriting method.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetWriterStatus(pub NSInteger);
 impl AVAssetWriterStatus {
+    /// Indicates that the status of the asset writer is not currently known.
     #[doc(alias = "AVAssetWriterStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Indicates that the asset writer is successfully writing samples to its output file.
     #[doc(alias = "AVAssetWriterStatusWriting")]
     pub const Writing: Self = Self(1);
+    /// Indicates that the asset writer has successfully written all samples following a call to finishWriting.
     #[doc(alias = "AVAssetWriterStatusCompleted")]
     pub const Completed: Self = Self(2);
+    /// Indicates that the asset writer can no longer write samples to its output file because of an error. The error is described by the value of the asset writer's error property.
     #[doc(alias = "AVAssetWriterStatusFailed")]
     pub const Failed: Self = Self(3);
+    /// Indicates that the asset writer can no longer write samples because writing was canceled with the cancelWriting method.
     #[doc(alias = "AVAssetWriterStatusCancelled")]
     pub const Cancelled: Self = Self(4);
 }

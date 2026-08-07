@@ -23,54 +23,54 @@ use crate::*;
 /// SecTrustSetExceptions().  Finally, kSecTrustResultFatalTrustFailure is a
 /// negative result that must not be circumvented.
 ///
-/// This result usually means that SecTrustEvaluate has not yet been called.
-///
-/// may be returned by the SecTrustEvaluate function or stored as part of
-/// the user trust settings.
-///
-/// is required before proceeding.  Important: this value is no longer returned
-/// or supported by SecTrustEvaluate or the SecTrustSettings API starting in
-/// OS X 10.5; its use is deprecated in OS X 10.9 and later, as well as in iOS.
-///
-/// proceed. This value may be returned by the SecTrustEvaluate function
-/// or stored as part of the user trust settings.
-///
-/// and the certificate is implicitly trusted, but user intent was not
-/// explicitly specified.  This value may be returned by the SecTrustEvaluate
-/// function or stored as part of the user trust settings.
-///
-/// failure which can be overridden by the user.  This value may be returned
-/// by the SecTrustEvaluate function but not stored as part of the user
-/// trust settings.
-///
-/// which cannot be overridden by the user.  This value may be returned by the
-/// SecTrustEvaluate function but not stored as part of the user trust
-/// settings.
-///
-/// of trust evaluation. This value may be returned by the SecTrustEvaluate
-/// function but not stored as part of the user trust settings.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustResultType(pub u32);
 impl SecTrustResultType {
+    /// Indicates an invalid setting or result.
+    /// This result usually means that SecTrustEvaluate has not yet been called.
     #[doc(alias = "kSecTrustResultInvalid")]
     pub const Invalid: Self = Self(0);
+    /// Indicates you may proceed.  This value
+    /// may be returned by the SecTrustEvaluate function or stored as part of
+    /// the user trust settings.
     #[doc(alias = "kSecTrustResultProceed")]
     pub const Proceed: Self = Self(1);
+    /// Indicates confirmation with the user
+    /// is required before proceeding.  Important: this value is no longer returned
+    /// or supported by SecTrustEvaluate or the SecTrustSettings API starting in
+    /// OS X 10.5; its use is deprecated in OS X 10.9 and later, as well as in iOS.
     #[doc(alias = "kSecTrustResultConfirm")]
     #[deprecated]
     pub const Confirm: Self = Self(2);
+    /// Indicates a user-configured deny; do not
+    /// proceed. This value may be returned by the SecTrustEvaluate function
+    /// or stored as part of the user trust settings.
     #[doc(alias = "kSecTrustResultDeny")]
     pub const Deny: Self = Self(3);
+    /// Indicates the evaluation succeeded
+    /// and the certificate is implicitly trusted, but user intent was not
+    /// explicitly specified.  This value may be returned by the SecTrustEvaluate
+    /// function or stored as part of the user trust settings.
     #[doc(alias = "kSecTrustResultUnspecified")]
     pub const Unspecified: Self = Self(4);
+    /// Indicates a trust policy
+    /// failure which can be overridden by the user.  This value may be returned
+    /// by the SecTrustEvaluate function but not stored as part of the user
+    /// trust settings.
     #[doc(alias = "kSecTrustResultRecoverableTrustFailure")]
     pub const RecoverableTrustFailure: Self = Self(5);
+    /// Indicates a trust failure
+    /// which cannot be overridden by the user.  This value may be returned by the
+    /// SecTrustEvaluate function but not stored as part of the user trust
+    /// settings.
     #[doc(alias = "kSecTrustResultFatalTrustFailure")]
     pub const FatalTrustFailure: Self = Self(6);
+    /// Indicates a failure other than that
+    /// of trust evaluation. This value may be returned by the SecTrustEvaluate
+    /// function but not stored as part of the user trust settings.
     #[doc(alias = "kSecTrustResultOtherError")]
     pub const OtherError: Self = Self(7);
 }
@@ -916,16 +916,6 @@ pub type SecTrustUserSetting = SecTrustResultType;
 
 /// Options for customizing trust evaluation.
 ///
-///
-///
-///
-///
-/// check per certificate.
-///
-/// anchors.
-///
-/// treated as anchors implicitly.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -933,18 +923,28 @@ pub type SecTrustUserSetting = SecTrustResultType;
 pub struct SecTrustOptionFlags(pub u32);
 bitflags::bitflags! {
     impl SecTrustOptionFlags: u32 {
+/// Allow expired certificates.
         #[doc(alias = "kSecTrustOptionAllowExpired")]
         const AllowExpired = 0x00000001;
+/// Allow CA as leaf certificate.
         #[doc(alias = "kSecTrustOptionLeafIsCA")]
         const LeafIsCA = 0x00000002;
+/// Allow network fetch of CA cert.
         #[doc(alias = "kSecTrustOptionFetchIssuerFromNet")]
         const FetchIssuerFromNet = 0x00000004;
+/// Allow expired roots.
         #[doc(alias = "kSecTrustOptionAllowExpiredRoot")]
         const AllowExpiredRoot = 0x00000008;
+/// Require positive revocation
+/// check per certificate.
         #[doc(alias = "kSecTrustOptionRequireRevPerCert")]
         const RequireRevPerCert = 0x00000010;
+/// Use TrustSettings instead of
+/// anchors.
         #[doc(alias = "kSecTrustOptionUseTrustSettings")]
         const UseTrustSettings = 0x00000020;
+/// Properly self-signed certs are
+/// treated as anchors implicitly.
         #[doc(alias = "kSecTrustOptionImplicitAnchors")]
         const ImplicitAnchors = 0x00000040;
         const _ = !0;

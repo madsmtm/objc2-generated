@@ -29,40 +29,7 @@ unsafe impl RefEncode for MTLIndexType {
 /// The type of a resource binding.
 ///
 ///
-/// This binding represents a buffer.
-///
-///
-/// This binding represents threadgroup memory.
-///
-///
-/// This binding represents a texture.
-///
-///
-/// This binding represents a sampler.
-///
-///
-/// This binding represents an image block data.
-///
-///
-/// This binding represents an image block.
-///
-///
-/// This binding represents a visible function table object.
-///
-///
-/// This binding represents a primitive acceleration structure object.
-///
-///
-/// This binding represents an instance acceleration structure object.
-///
-///
 /// This binding represents an intersection function table object.
-///
-///
-/// This binding represents an object payload.
-///
-///
-/// This binding represents a tensor object.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype?language=objc)
 // NS_ENUM
@@ -70,28 +37,39 @@ unsafe impl RefEncode for MTLIndexType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBindingType(pub NSInteger);
 impl MTLBindingType {
+    /// This binding represents a buffer.
     #[doc(alias = "MTLBindingTypeBuffer")]
     pub const Buffer: Self = Self(0);
+    /// This binding represents threadgroup memory.
     #[doc(alias = "MTLBindingTypeThreadgroupMemory")]
     pub const ThreadgroupMemory: Self = Self(1);
+    /// This binding represents a texture.
     #[doc(alias = "MTLBindingTypeTexture")]
     pub const Texture: Self = Self(2);
+    /// This binding represents a sampler.
     #[doc(alias = "MTLBindingTypeSampler")]
     pub const Sampler: Self = Self(3);
+    /// This binding represents an image block data.
     #[doc(alias = "MTLBindingTypeImageblockData")]
     pub const ImageblockData: Self = Self(16);
+    /// This binding represents an image block.
     #[doc(alias = "MTLBindingTypeImageblock")]
     pub const Imageblock: Self = Self(17);
+    /// This binding represents a visible function table object.
     #[doc(alias = "MTLBindingTypeVisibleFunctionTable")]
     pub const VisibleFunctionTable: Self = Self(24);
+    /// This binding represents a primitive acceleration structure object.
     #[doc(alias = "MTLBindingTypePrimitiveAccelerationStructure")]
     pub const PrimitiveAccelerationStructure: Self = Self(25);
+    /// This binding represents an instance acceleration structure object.
     #[doc(alias = "MTLBindingTypeInstanceAccelerationStructure")]
     pub const InstanceAccelerationStructure: Self = Self(26);
     #[doc(alias = "MTLBindingTypeIntersectionFunctionTable")]
     pub const IntersectionFunctionTable: Self = Self(27);
+    /// This binding represents an object payload.
     #[doc(alias = "MTLBindingTypeObjectPayload")]
     pub const ObjectPayload: Self = Self(34);
+    /// This binding represents a tensor object.
     #[doc(alias = "MTLBindingTypeTensor")]
     pub const Tensor: Self = Self(37);
 }
@@ -106,18 +84,6 @@ unsafe impl RefEncode for MTLBindingType {
 
 /// The type for an input to a MTLRenderPipelineState or a MTLComputePipelineState
 ///
-///
-/// This input is a MTLBuffer
-///
-///
-/// This input is a pointer to the threadgroup memory.
-///
-///
-/// This input is a MTLTexture.
-///
-///
-/// This input is a sampler.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype?language=objc)
 // NS_ENUM
 #[deprecated]
@@ -125,15 +91,19 @@ unsafe impl RefEncode for MTLBindingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLArgumentType(pub NSUInteger);
 impl MTLArgumentType {
+    /// This input is a MTLBuffer
     #[doc(alias = "MTLArgumentTypeBuffer")]
     #[deprecated]
     pub const Buffer: Self = Self(0);
+    /// This input is a pointer to the threadgroup memory.
     #[doc(alias = "MTLArgumentTypeThreadgroupMemory")]
     #[deprecated]
     pub const ThreadgroupMemory: Self = Self(1);
+    /// This input is a MTLTexture.
     #[doc(alias = "MTLArgumentTypeTexture")]
     #[deprecated]
     pub const Texture: Self = Self(2);
+    /// This input is a sampler.
     #[doc(alias = "MTLArgumentTypeSampler")]
     #[deprecated]
     pub const Sampler: Self = Self(3);

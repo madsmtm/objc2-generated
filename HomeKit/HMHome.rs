@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMHomeHubState(pub NSUInteger);
 impl HMHomeHubState {
+    /// No home hub is present.
     #[doc(alias = "HMHomeHubStateNotAvailable")]
     pub const NotAvailable: Self = Self(0);
+    /// Home hub is connected.
     #[doc(alias = "HMHomeHubStateConnected")]
     pub const Connected: Self = Self(1);
+    /// No home hub is connected.
     #[doc(alias = "HMHomeHubStateDisconnected")]
     pub const Disconnected: Self = Self(2);
 }

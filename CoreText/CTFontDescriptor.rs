@@ -284,34 +284,28 @@ extern "C" {
     pub static kCTFontFormatAttribute: &'static CFString;
 }
 
-/// The font is not a recognized format
-///
-/// The font is an OpenType format containing PostScript data
-///
-/// The font is an OpenType format containing TrueType data
-///
-/// The font is a recognized TrueType format
-///
-/// The font is a recognized PostScript format
-///
-/// The font is a bitmap only format
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontFormat(pub u32);
 impl CTFontFormat {
+    /// The font is not a recognized format
     #[doc(alias = "kCTFontFormatUnrecognized")]
     pub const Unrecognized: Self = Self(0);
+    /// The font is an OpenType format containing PostScript data
     #[doc(alias = "kCTFontFormatOpenTypePostScript")]
     pub const OpenTypePostScript: Self = Self(1);
+    /// The font is an OpenType format containing TrueType data
     #[doc(alias = "kCTFontFormatOpenTypeTrueType")]
     pub const OpenTypeTrueType: Self = Self(2);
+    /// The font is a recognized TrueType format
     #[doc(alias = "kCTFontFormatTrueType")]
     pub const TrueType: Self = Self(3);
+    /// The font is a recognized PostScript format
     #[doc(alias = "kCTFontFormatPostScript")]
     pub const PostScript: Self = Self(4);
+    /// The font is a bitmap only format
     #[doc(alias = "kCTFontFormatBitmap")]
     pub const Bitmap: Self = Self(5);
 }
@@ -344,17 +338,29 @@ extern "C" {
     pub static kCTFontPriorityAttribute: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritysystem?language=objc)
+/// Priority of system fonts (located in /System/Library/Fonts).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritysystem?language=objc)
 pub const kCTFontPrioritySystem: c_uint = 10000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritynetwork?language=objc)
+/// Priority of network fonts (located in /Network/Library/Fonts).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritynetwork?language=objc)
 pub const kCTFontPriorityNetwork: c_uint = 20000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritycomputer?language=objc)
+/// Priority of computer local fonts (located in /Library/Fonts).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritycomputer?language=objc)
 pub const kCTFontPriorityComputer: c_uint = 30000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpriorityuser?language=objc)
+/// Priority of local fonts (located in user's Library/Fonts).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpriorityuser?language=objc)
 pub const kCTFontPriorityUser: c_uint = 40000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritydynamic?language=objc)
+/// Priority of fonts registered dynamically, not located in a standard location (either kCTFontManagerScopeUser, or kCTFontManagerScopeSession).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritydynamic?language=objc)
 pub const kCTFontPriorityDynamic: c_uint = 50000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpriorityprocess?language=objc)
+/// Priority of fonts registered for the process (kCTFontManagerScopeProcess).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpriorityprocess?language=objc)
 pub const kCTFontPriorityProcess: c_uint = 60000;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontpriority?language=objc)

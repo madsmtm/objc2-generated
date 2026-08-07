@@ -12,143 +12,318 @@ use crate::*;
 #[cfg(feature = "CMIOHardwareObject")]
 pub type CMIOControlID = CMIOObjectID;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrolclassid?language=objc)
+/// The CMIOClassID that identifies the CMIOControl class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrolclassid?language=objc)
 pub const kCMIOControlClassID: c_uint = 0x6163746c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiobooleancontrolclassid?language=objc)
+/// The CMIOClassID that identifies the CMIOBooleanControl class which is a subclass of CMIOControl. CMIOBooleanControls manipulate on/off switches in the
+/// hardware.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiobooleancontrolclassid?language=objc)
 pub const kCMIOBooleanControlClassID: c_uint = 0x746f676c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolclassid?language=objc)
+/// The CMIOClassID that identifies the CMIOSelectorControl class which is a subclass of CMIOControl. CMIOSelectorControls manipulate controls that have
+/// multiple, but discreet values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolclassid?language=objc)
 pub const kCMIOSelectorControlClassID: c_uint = 0x736c6374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolclassid?language=objc)
+/// The CMIOClassID that identifies the CMIOFeatureControl class which is a subclass of CMIOControl. CMIOFeatureControls manipulate various features that
+/// might be present on a device, such as hue, saturation, zoom, etc.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolclassid?language=objc)
 pub const kCMIOFeatureControlClassID: c_uint = 0x66746374;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiojackcontrolclassid?language=objc)
+/// A CMIOBooleanControl where a true value means something is plugged into that element.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiojackcontrolclassid?language=objc)
 pub const kCMIOJackControlClassID: c_uint = 0x6a61636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodirectioncontrolclassid?language=objc)
+/// A CMIOBooleanControl where a true value means the element is operating in input mode, and false means the element is operating in output mode.
+/// This control is only needed for devices which can do input and output, but not at the same time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodirectioncontrolclassid?language=objc)
 pub const kCMIODirectionControlClassID: c_uint = 0x64697265;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodatasourcecontrolclassid?language=objc)
+/// A CMIOSelectorControl that identifies where the data for the element is coming from.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodatasourcecontrolclassid?language=objc)
 pub const kCMIODataSourceControlClassID: c_uint = 0x64737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodatadestinationcontrolclassid?language=objc)
+/// A CMIOSelectorControl that identifies where the data for the element is going.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodatadestinationcontrolclassid?language=objc)
 pub const kCMIODataDestinationControlClassID: c_uint = 0x64657374;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioblacklevelcontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the black level offset. The units for the control's absolute value are percetage (%).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioblacklevelcontrolclassid?language=objc)
 pub const kCMIOBlackLevelControlClassID: c_uint = 0x626b6c76;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiowhitelevelcontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the white level offset. The units for the control's absolute value are percentage (%).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiowhitelevelcontrolclassid?language=objc)
 pub const kCMIOWhiteLevelControlClassID: c_uint = 0x77686c76;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohuecontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the hue offset. Positive values mean counterclockwise, negative values means clockwise on a vector scope. The units for the
+/// control's absolute value are degrees (°).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohuecontrolclassid?language=objc)
 pub const kCMIOHueControlClassID: c_uint = 0x68756520;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosaturationcontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls color intensity. For example, at high saturation levels, red appears to be red; at low saturation, red appears as pink. The
+/// unit for the control's absolute value is a percentage (%).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosaturationcontrolclassid?language=objc)
 pub const kCMIOSaturationControlClassID: c_uint = 0x73617475;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrastcontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a the distance bewtween the whitest whites and blackest blacks. The units for the control's absolute value are percentage (%).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrastcontrolclassid?language=objc)
 pub const kCMIOContrastControlClassID: c_uint = 0x63747374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosharpnesscontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the sharpness of the picture. The units for the control's absolute value are undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosharpnesscontrolclassid?language=objc)
 pub const kCMIOSharpnessControlClassID: c_uint = 0x73687270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiobrightnesscontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the intensity of the video level. The units for the control's absolute value are percetage (%).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiobrightnesscontrolclassid?language=objc)
 pub const kCMIOBrightnessControlClassID: c_uint = 0x62726974;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiogaincontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the amplification of the signal. The units for the control's absolute value are decibels (dB).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiogaincontrolclassid?language=objc)
 pub const kCMIOGainControlClassID: c_uint = 0x6761696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioiriscontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a mechanical lens iris. The units for the control's absolute value are an F number (F).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioiriscontrolclassid?language=objc)
 pub const kCMIOIrisControlClassID: c_uint = 0x69726973;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioshuttercontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the integration time of the incoming light. The units for the control's absolute value are seconds (s).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioshuttercontrolclassid?language=objc)
 pub const kCMIOShutterControlClassID: c_uint = 0x73687472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a the total amount of light accumulated. The units for the control's absolute value are exposure value (EV).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolclassid?language=objc)
 pub const kCMIOExposureControlClassID: c_uint = 0x78707372;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiowhitebalanceucontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the adjustment of the white color of the picture. The units for the control's absolute value are kelvin (K).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiowhitebalanceucontrolclassid?language=objc)
 pub const kCMIOWhiteBalanceUControlClassID: c_uint = 0x77686275;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiowhitebalancevcontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a adjustment of the white color of the picture. The units for the control's absolute value are kelvin (K).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiowhitebalancevcontrolclassid?language=objc)
 pub const kCMIOWhiteBalanceVControlClassID: c_uint = 0x77686276;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiowhitebalancecontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a adjustment of the white color of the picture. The units for the control's absolute value are kelvin (K).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiowhitebalancecontrolclassid?language=objc)
 pub const kCMIOWhiteBalanceControlClassID: c_uint = 0x7768626c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiogammacontrolclassid?language=objc)
+/// A CMIOFeatureControl that defines the function between incoming light level and output picture level. The units for the control's absolute value are undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiogammacontrolclassid?language=objc)
 pub const kCMIOGammaControlClassID: c_uint = 0x676d6d61;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiotemperaturecontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the temperature inside of the device and/or controlling temperature. The units for the control's absolute value are undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiotemperaturecontrolclassid?language=objc)
 pub const kCMIOTemperatureControlClassID: c_uint = 0x74656d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiozoomcontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the zoom. The units for the control's absolute value are power where 1 is the wide end.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiozoomcontrolclassid?language=objc)
 pub const kCMIOZoomControlClassID: c_uint = 0x7a6f6f6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofocuscontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a focus mechanism. The units for the control's absolute value are meters (m).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofocuscontrolclassid?language=objc)
 pub const kCMIOFocusControlClassID: c_uint = 0x66637573;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopancontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a panning mechanism. Positive values mean clockwise, negative values means counterclockwise. The units for the control's
+/// absolute value are degrees (°).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopancontrolclassid?language=objc)
 pub const kCMIOPanControlClassID: c_uint = 0x70616e20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiotiltcontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a tilt mechanism. Positive values mean upwards, negative values means downwards. The units for the control's absolute value are
+/// degrees (°).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiotiltcontrolclassid?language=objc)
 pub const kCMIOTiltControlClassID: c_uint = 0x74696c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioopticalfilterclassid?language=objc)
+/// A CMIOFeatureControl that controls changing the optical filter of camera lens function. The units for the control's absolute value are undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioopticalfilterclassid?language=objc)
 pub const kCMIOOpticalFilterClassID: c_uint = 0x6f706674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiobacklightcompensationcontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the amount of backlight compensation to apply. A low number indicates the least amount of backlight compensation. The units for the
+/// control's absolute value are undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiobacklightcompensationcontrolclassid?language=objc)
 pub const kCMIOBacklightCompensationControlClassID: c_uint = 0x626b6c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopowerlinefrequencycontrolclassid?language=objc)
+/// A CMIOFeatureControl to specify the power line frequency to properly implement anti-flicker processing. The units for the contorl's absolute value are hertz (Hz).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopowerlinefrequencycontrolclassid?language=objc)
 pub const kCMIOPowerLineFrequencyControlClassID: c_uint = 0x70776671;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmionoisereductioncontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the noise reduction strength. The units for the control's absolute value are undefined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmionoisereductioncontrolclassid?language=objc)
 pub const kCMIONoiseReductionControlClassID: c_uint = 0x73326e72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopantiltabsolutecontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a pan/tilt mechanism.
+/// The property kCMIOFeatureControlPropertyNativeData is 8 byte control with first 4 bytes
+/// representing pan value and last 4 byte representing tilt value .Positive values for pan mean
+/// clockwise, negative values for pan means counterclockwise.
+/// Positive values for tilt mean upwards, negative values for tilt  means downwards.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopantiltabsolutecontrolclassid?language=objc)
 pub const kCMIOPanTiltAbsoluteControlClassID: c_uint = 0x70746162;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopantiltrelativecontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls a pan/tilt mechanism.
+/// The property kCMIOFeatureControlPropertyNativeData is 4 byte control with first 2 bytes
+/// representing pan value and last 2 bytes representing tilt value. Pan value is composed of two
+/// parts , Pan Relative(direction) and Pan Speed each having size of 1 byte. For Pan Relative value
+/// of 0 indicates stop, 1 indicates movement in clockwise direction and 0xff indicates movement in
+/// counterclockwise direction. For Pan Speed low number indicates a slow speed and high number
+/// indicates a higher speed. Tilt value of conposed of two parts , Tilt Relative(direction) and Tilt
+/// Speed each having size of 1 byte. For Tilt Relative value of 0 indicates stop, 1 indicates
+/// movement in upward direction and 0xff indicates movement in downward direction.
+/// For Tilt Speed low number indicates slow speed and high number indicates higher speed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiopantiltrelativecontrolclassid?language=objc)
 pub const kCMIOPanTiltRelativeControlClassID: c_uint = 0x7074726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiozoomrelativecontrolclassid?language=objc)
+/// A CMIOFeatureControl that controls the zoom focal length relatively as powered zoom.
+/// The property kCMIOFeatureControlPropertyNativeData is 3 byte control with :
+/// First byte specifies whether zoom lens group is stopped or direction
+/// of zoom lens. Value of 0 indicates that zoom lens is stopped, 1 indicates that zoom lens
+/// is moved towards the telephoto direction and 0xff indicates that zoom lens is moved towards
+/// the wide-angle direction. Second 1 byte specifies whether digital zoom is enabled or disabled.
+/// Third 1 byte represent speed of control change where low number specifies low speed and
+/// higher number specifies higher speed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiozoomrelativecontrolclassid?language=objc)
 pub const kCMIOZoomRelativeControlClassID: c_uint = 0x7a6f6d72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiorollabsolutecontrolclassid?language=objc)
+/// A CMIOFeratureControl that control rotate degree of camera image. Value ranges from
+/// +180 to -180 degree with default value set to zero determining no rotation. Positive
+/// value causes a clockwise rotation of the camera image along with the image
+/// viewing axis and negative value causes a counter clockwise rotation of camera image.
+/// Rotation degree can be any value in range +180 to -180 or set of discrete values
+/// +90, -90, +180/-180. Values supported for rotation degree is implementation specific.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiorollabsolutecontrolclassid?language=objc)
 pub const kCMIORollAbsoluteControlClassID: c_uint = 0x726f6c61;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrolpropertyscope?language=objc)
+/// The CMIOObjectPropertyScope in the owning CMIOObject that contains the CMIOControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrolpropertyscope?language=objc)
 pub const kCMIOControlPropertyScope: c_uint = 0x63736370;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrolpropertyelement?language=objc)
+/// The CMIOObjectPropertyElement in the owning CMIOObject that contains the CMIOControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrolpropertyelement?language=objc)
 pub const kCMIOControlPropertyElement: c_uint = 0x63656c6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrolpropertyvariant?language=objc)
+/// A UInt32 that identifies the specific variant of a CMIOControl. This allows the owning CMIOObject to support controls that are of the same basic class (that is,
+/// the values of kCMIOObjectPropertyClass are the same) but may control a part of the object for which the standard controls do not control.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiocontrolpropertyvariant?language=objc)
 pub const kCMIOControlPropertyVariant: c_uint = 0x63766172;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiobooleancontrolpropertyvalue?language=objc)
+/// A UInt32 where 0 means false and 1 means true.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiobooleancontrolpropertyvalue?language=objc)
 pub const kCMIOBooleanControlPropertyValue: c_uint = 0x6263766c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolpropertycurrentitem?language=objc)
+/// A UInt32 that is the ID of the item currently selected.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolpropertycurrentitem?language=objc)
 pub const kCMIOSelectorControlPropertyCurrentItem: c_uint = 0x73636369;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolpropertyavailableitems?language=objc)
+/// An array of UInt32s that represent the IDs of all the items available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolpropertyavailableitems?language=objc)
 pub const kCMIOSelectorControlPropertyAvailableItems: c_uint = 0x73636169;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolpropertyitemname?language=objc)
+/// This property translates the given item ID into a human readable name. The qualifier contains the ID of the item to be translated and name is returned as a CFString as
+/// the property data. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolpropertyitemname?language=objc)
 pub const kCMIOSelectorControlPropertyItemName: c_uint = 0x7363696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolpropertyavailableitemnames?language=objc)
+/// An array of CFStringRefs that contains the item names of all items available. The CFStringRefs in this array correspond to the ID of the same index in the kCMIOSelectorControlPropertyAvailableItems array.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioselectorcontrolpropertyavailableitemnames?language=objc)
 pub const kCMIOSelectorControlPropertyAvailableItemNames: c_uint = 0x7363616e;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyonoff?language=objc)
+/// A UInt32 where 1 corresponds to a the feature being on, and 0 corresponds to the feature being off.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyonoff?language=objc)
 pub const kCMIOFeatureControlPropertyOnOff: c_uint = 0x66636f6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyautomaticmanual?language=objc)
+/// A UInt32 where 1 corresponds to a the feature being under automatic control, and 0 corresponds to the feature being under manual control.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyautomaticmanual?language=objc)
 pub const kCMIOFeatureControlPropertyAutomaticManual: c_uint = 0x6663616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyabsolutenative?language=objc)
+/// A UInt32 where 1 corresponds to a the feature being programmed with 'absolute' values, and 0 corresponds to the feature being programmed with 'native' values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyabsolutenative?language=objc)
 pub const kCMIOFeatureControlPropertyAbsoluteNative: c_uint = 0x66636e61;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertytune?language=objc)
+/// A UInt32 where 1 corresponds to a the feature being tuned, and 0 corresponds to the feature not being tuned. Upon completion of the tuning, the value
+/// will automatically revert back to 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertytune?language=objc)
 pub const kCMIOFeatureControlPropertyTune: c_uint = 0x6663746e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertynativevalue?language=objc)
+/// A Float32 that represents the value of the feature. Native values are unitless and their the meaning can vary from device to device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertynativevalue?language=objc)
 pub const kCMIOFeatureControlPropertyNativeValue: c_uint = 0x66636e76;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyabsolutevalue?language=objc)
+/// A Float32 that represents the value of the value of the feature. Absolute values have units associated with them, i.e. Gain has dB, Hue has degrees, etc.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyabsolutevalue?language=objc)
 pub const kCMIOFeatureControlPropertyAbsoluteValue: c_uint = 0x66636176;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertynativerange?language=objc)
+/// A AudioValueRange that contains the minimum and maximum native values the feature control can have.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertynativerange?language=objc)
 pub const kCMIOFeatureControlPropertyNativeRange: c_uint = 0x66636e72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyabsoluterange?language=objc)
+/// A AudioValueRange that contains the minimum and maximum absolute values the feature control can have.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyabsoluterange?language=objc)
 pub const kCMIOFeatureControlPropertyAbsoluteRange: c_uint = 0x66636172;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyconvertnativetoabsolute?language=objc)
+/// A Float32 that on input contains a native value for the feature control and on exit contains the equivalent absolute value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyconvertnativetoabsolute?language=objc)
 pub const kCMIOFeatureControlPropertyConvertNativeToAbsolute: c_uint = 0x666e3261;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyconvertabsolutetonative?language=objc)
+/// A Float32 that on input contains a an abolute value for the feature control and on exit contains the equivalent native value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyconvertabsolutetonative?language=objc)
 pub const kCMIOFeatureControlPropertyConvertAbsoluteToNative: c_uint = 0x6661326e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyabsoluteunitname?language=objc)
+/// A CFString that contains a human readable name for the units associated with the absolute values. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertyabsoluteunitname?language=objc)
 pub const kCMIOFeatureControlPropertyAbsoluteUnitName: c_uint = 0x6663756e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertynativedata?language=objc)
+/// Multiple bytes that represents the value of the feature. Native datas are unitless and their the meaning can vary from device to device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertynativedata?language=objc)
 pub const kCMIOFeatureControlPropertyNativeData: c_uint = 0x66636e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertynativedatarange?language=objc)
+/// Multiple bytes that contains the minimum and maximum native datas values the feature control can have.
+/// The size is double the size of the kCMIOFeatureControlPropertyNativeData property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiofeaturecontrolpropertynativedatarange?language=objc)
 pub const kCMIOFeatureControlPropertyNativeDataRange: c_uint = 0x66636472;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertyregionofinterest?language=objc)
+/// A CGRect with origin and size coordinates in the 0. to 1. space indicating what portion of the image should be used when auto-exposing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertyregionofinterest?language=objc)
 pub const kCMIOExposureControlPropertyRegionOfInterest: c_uint = 0x65726f69;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertylockthreshold?language=objc)
+/// A Float32 indicating a threshold that is treated as the minimum change (in either direction) that the average Y value of the image needs to stay within for
+/// the AutoExposure state machine to enter the locked state. A higher number creates more hysteresis.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertylockthreshold?language=objc)
 pub const kCMIOExposureControlPropertyLockThreshold: c_uint = 0x656c636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertyunlockthreshold?language=objc)
+/// A Float32 indicating a threshold that is treated as the minimum change (in either direction) that the average Y value of the image needs to exceed for the
+/// AutoExposure state machine to leave the locked state. A higher number creates more hysteresis.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertyunlockthreshold?language=objc)
 pub const kCMIOExposureControlPropertyUnlockThreshold: c_uint = 0x65756c6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertytarget?language=objc)
+/// A Float32 indicating the exposure target, which is typically represented as the average Y value of the image that the firmware auto exposure control tries to achieve.
+/// Higher numbers indicate a more exposed image.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertytarget?language=objc)
 pub const kCMIOExposureControlPropertyTarget: c_uint = 0x65746774;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertyconvergencespeed?language=objc)
+/// A Float32 indicating how fast an auto exposure converges to the AE target. Higher numbers are faster.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertyconvergencespeed?language=objc)
 pub const kCMIOExposureControlPropertyConvergenceSpeed: c_uint = 0x65637370;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertystability?language=objc)
+/// A Float32 to tune the stability of the autoexposure algorithm, indicating how much flicker will be tolerated prior to adjusting the sensor gain.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertystability?language=objc)
 pub const kCMIOExposureControlPropertyStability: c_uint = 0x65737479;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertystable?language=objc)
+/// A Boolean indicating whether the camera has the autoexposure function locked due to sufficient stability. This result is only valid when the autoexposure function
+/// has not been disabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertystable?language=objc)
 pub const kCMIOExposureControlPropertyStable: c_uint = 0x65737462;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertyintegrationtime?language=objc)
+/// A Float32 to limit the maximum integration-time for the sensor, in milliseconds. The maximum integration time is also limited by the framerate. Setting the value to
+/// 0.0 indicates no limiting is applied.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertyintegrationtime?language=objc)
 pub const kCMIOExposureControlPropertyIntegrationTime: c_uint = 0x65696e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertymaximumgain?language=objc)
+/// A Float32 to limit the maximum allowable gain that the autoexposure algorithm will attempt to use. Setting the value to 0.0 indicates no limiting is applied.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioexposurecontrolpropertymaximumgain?language=objc)
 pub const kCMIOExposureControlPropertyMaximumGain: c_uint = 0x656d6178;

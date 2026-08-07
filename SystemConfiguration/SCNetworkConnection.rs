@@ -88,30 +88,25 @@ unsafe impl RefEncode for SCNetworkConnectionContext {
 /// connection is also available for applications that
 /// need additonal information.
 ///
-/// The network connection refers to an invalid service.
-///
-/// The network connection is disconnected.
-///
-/// The network connection is connecting.
-///
-/// The network connection is connected.
-///
-/// The network connection is disconnecting.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNetworkConnectionStatus(pub i32);
 impl SCNetworkConnectionStatus {
+    /// The network connection refers to an invalid service.
     #[doc(alias = "kSCNetworkConnectionInvalid")]
     pub const Invalid: Self = Self(-1);
+    /// The network connection is disconnected.
     #[doc(alias = "kSCNetworkConnectionDisconnected")]
     pub const Disconnected: Self = Self(0);
+    /// The network connection is connecting.
     #[doc(alias = "kSCNetworkConnectionConnecting")]
     pub const Connecting: Self = Self(1);
+    /// The network connection is connected.
     #[doc(alias = "kSCNetworkConnectionConnected")]
     pub const Connected: Self = Self(2);
+    /// The network connection is disconnecting.
     #[doc(alias = "kSCNetworkConnectionDisconnecting")]
     pub const Disconnecting: Self = Self(3);
 }
@@ -132,74 +127,60 @@ unsafe impl RefEncode for SCNetworkConnectionStatus {
 /// Note: additional status might be returned in the future.
 /// Your application should be prepared to receive an unknown value.
 ///
-/// PPP is disconnected.
-///
-/// PPP is initializing.
-///
-/// PPP is connecting the lower connection layer (for example,
-/// the modem is dialing out).
-///
-/// PPP is waiting for networking traffic to automatically
-/// establish the connection.
-///
-/// The PPP lower layer is connected and PPP is negotiating the
-/// link layer (LCP protocol).
-///
-/// PPP is authenticating to the server (PAP, CHAP, MS-CHAP or
-/// EAP protocols).
-///
-/// PPP is waiting for the server to call back.
-///
-/// PPP is now authenticated and negotiating the networking
-/// layer (IPCP or IPv6CP protocols)
-///
-/// PPP is now fully connected for at least one networking layer.
-/// Additional networking protocol might still be negotiating.
-///
-/// PPP networking and link protocols are terminating.
-///
-/// PPP is disconnecting the lower level (for example, the modem
-/// is hanging up).
-///
-/// PPP is disconnected and maintaining the link temporarily off.
-///
-/// PPP is suspended as a result of the suspend command (for
-/// example, when a V.92 Modem is On Hold).
-///
-/// PPP has found a busy server and is waiting for redial.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNetworkConnectionPPPStatus(pub i32);
 impl SCNetworkConnectionPPPStatus {
+    /// PPP is disconnected.
     #[doc(alias = "kSCNetworkConnectionPPPDisconnected")]
     pub const Disconnected: Self = Self(0);
+    /// PPP is initializing.
     #[doc(alias = "kSCNetworkConnectionPPPInitializing")]
     pub const Initializing: Self = Self(1);
+    /// PPP is connecting the lower connection layer (for example,
+    /// the modem is dialing out).
     #[doc(alias = "kSCNetworkConnectionPPPConnectingLink")]
     pub const ConnectingLink: Self = Self(2);
+    /// PPP is waiting for networking traffic to automatically
+    /// establish the connection.
     #[doc(alias = "kSCNetworkConnectionPPPDialOnTraffic")]
     pub const DialOnTraffic: Self = Self(3);
+    /// The PPP lower layer is connected and PPP is negotiating the
+    /// link layer (LCP protocol).
     #[doc(alias = "kSCNetworkConnectionPPPNegotiatingLink")]
     pub const NegotiatingLink: Self = Self(4);
+    /// PPP is authenticating to the server (PAP, CHAP, MS-CHAP or
+    /// EAP protocols).
     #[doc(alias = "kSCNetworkConnectionPPPAuthenticating")]
     pub const Authenticating: Self = Self(5);
+    /// PPP is waiting for the server to call back.
     #[doc(alias = "kSCNetworkConnectionPPPWaitingForCallBack")]
     pub const WaitingForCallBack: Self = Self(6);
+    /// PPP is now authenticated and negotiating the networking
+    /// layer (IPCP or IPv6CP protocols)
     #[doc(alias = "kSCNetworkConnectionPPPNegotiatingNetwork")]
     pub const NegotiatingNetwork: Self = Self(7);
+    /// PPP is now fully connected for at least one networking layer.
+    /// Additional networking protocol might still be negotiating.
     #[doc(alias = "kSCNetworkConnectionPPPConnected")]
     pub const Connected: Self = Self(8);
+    /// PPP networking and link protocols are terminating.
     #[doc(alias = "kSCNetworkConnectionPPPTerminating")]
     pub const Terminating: Self = Self(9);
+    /// PPP is disconnecting the lower level (for example, the modem
+    /// is hanging up).
     #[doc(alias = "kSCNetworkConnectionPPPDisconnectingLink")]
     pub const DisconnectingLink: Self = Self(10);
+    /// PPP is disconnected and maintaining the link temporarily off.
     #[doc(alias = "kSCNetworkConnectionPPPHoldingLinkOff")]
     pub const HoldingLinkOff: Self = Self(11);
+    /// PPP is suspended as a result of the suspend command (for
+    /// example, when a V.92 Modem is On Hold).
     #[doc(alias = "kSCNetworkConnectionPPPSuspended")]
     pub const Suspended: Self = Self(12);
+    /// PPP has found a busy server and is waiting for redial.
     #[doc(alias = "kSCNetworkConnectionPPPWaitingForRedial")]
     pub const WaitingForRedial: Self = Self(13);
 }

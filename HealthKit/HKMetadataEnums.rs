@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKAppleECGAlgorithmVersion(pub NSInteger);
 impl HKAppleECGAlgorithmVersion {
+    /// Apple Watch used a version 1 algorithm to generate this ECG.
     #[doc(alias = "HKAppleECGAlgorithmVersion1")]
     pub const Version1: Self = Self(1);
+    /// Apple Watch used a version 2 algorithm to generate this ECG.
     #[doc(alias = "HKAppleECGAlgorithmVersion2")]
     pub const Version2: Self = Self(2);
 }
@@ -34,8 +36,10 @@ unsafe impl RefEncode for HKAppleECGAlgorithmVersion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKBloodGlucoseMealTime(pub NSInteger);
 impl HKBloodGlucoseMealTime {
+    /// A glucose value measured at the time just before a meal.
     #[doc(alias = "HKBloodGlucoseMealTimePreprandial")]
     pub const Preprandial: Self = Self(1);
+    /// A glucose value measured after a meal.
     #[doc(alias = "HKBloodGlucoseMealTimePostprandial")]
     pub const Postprandial: Self = Self(2);
 }
@@ -90,31 +94,30 @@ unsafe impl RefEncode for HKBodyTemperatureSensorLocation {
 
 /// Represents the test used to determine a Cycling Functional Threshold Power value.
 ///
-///
-/// limit for a sustained period of 60
-/// minutes.
-///
-/// limit for a sustained period of 20
-/// minutes.
-///
-/// until exhaustion.
-///
-/// the user’s cycling workouts to calculate
-/// a predicted Cycling Functional Threshold
-/// Power.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCyclingFunctionalThresholdPowerTestType(pub NSInteger);
 impl HKCyclingFunctionalThresholdPowerTestType {
+    /// The user was exerted to their physical
+    /// limit for a sustained period of 60
+    /// minutes.
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise60Minute")]
     pub const MaxExercise60Minute: Self = Self(1);
+    /// The user was exerted to their physical
+    /// limit for a sustained period of 20
+    /// minutes.
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise20Minute")]
     pub const MaxExercise20Minute: Self = Self(2);
+    /// Test with gradual intensity increase
+    /// until exhaustion.
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeRampTest")]
     pub const RampTest: Self = Self(3);
+    /// An equation was used based on data from
+    /// the user’s cycling workouts to calculate
+    /// a predicted Cycling Functional Threshold
+    /// Power.
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypePredictionExercise")]
     pub const PredictionExercise: Self = Self(4);
 }
@@ -135,12 +138,16 @@ unsafe impl RefEncode for HKCyclingFunctionalThresholdPowerTestType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKDevicePlacementSide(pub NSInteger);
 impl HKDevicePlacementSide {
+    /// Unable to determine the placement of the device
     #[doc(alias = "HKDevicePlacementSideUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Device predominantly worn on left side
     #[doc(alias = "HKDevicePlacementSideLeft")]
     pub const Left: Self = Self(1);
+    /// Device predominantly worn on right side
     #[doc(alias = "HKDevicePlacementSideRight")]
     pub const Right: Self = Self(2);
+    /// Device predominantly worn on the middle of the body
     #[doc(alias = "HKDevicePlacementSideCentral")]
     pub const Central: Self = Self(3);
 }
@@ -177,24 +184,23 @@ unsafe impl RefEncode for HKHeartRateMotionContext {
 
 /// Represents the test used to determine a Heart Rate Recovery value
 ///
-///
-/// evaluate actual Heart Rate Recovery.
-///
-/// and correlate a predicted Heart Rate Recovery.
-///
-/// metrics to calculate a predicted Heart Rate
-/// Recovery.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKHeartRateRecoveryTestType(pub NSInteger);
 impl HKHeartRateRecoveryTestType {
+    /// The user was exerted to their physical limit to
+    /// evaluate actual Heart Rate Recovery.
     #[doc(alias = "HKHeartRateRecoveryTestTypeMaxExercise")]
     pub const MaxExercise: Self = Self(1);
+    /// A specific test protocol was used to calculate
+    /// and correlate a predicted Heart Rate Recovery.
     #[doc(alias = "HKHeartRateRecoveryTestTypePredictionSubMaxExercise")]
     pub const PredictionSubMaxExercise: Self = Self(2);
+    /// A non-exercise equation was used based on user
+    /// metrics to calculate a predicted Heart Rate
+    /// Recovery.
     #[doc(alias = "HKHeartRateRecoveryTestTypePredictionNonExercise")]
     pub const PredictionNonExercise: Self = Self(3);
 }
@@ -239,20 +245,19 @@ unsafe impl RefEncode for HKHeartRateSensorLocation {
 
 /// Represents a medical reason for the delivery of insulin
 ///
-///
-/// administered as a continuous rate from an insulin pump, or a periodic
-/// injection of slow-acting insulin.
-///
-/// glucose level correction.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkinsulindeliveryreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKInsulinDeliveryReason(pub NSInteger);
 impl HKInsulinDeliveryReason {
+    /// Delivery for the base metabolic needs of the individual, often
+    /// administered as a continuous rate from an insulin pump, or a periodic
+    /// injection of slow-acting insulin.
     #[doc(alias = "HKInsulinDeliveryReasonBasal")]
     pub const Basal: Self = Self(1);
+    /// Delivery for the episodic needs of the individual, such as a meal or
+    /// glucose level correction.
     #[doc(alias = "HKInsulinDeliveryReasonBolus")]
     pub const Bolus: Self = Self(2);
 }
@@ -267,19 +272,18 @@ unsafe impl RefEncode for HKInsulinDeliveryReason {
 
 /// Represents the estimation used to create a Physical Effort Sample.
 ///
-///
-/// standard such as a stationary bike
-///
-/// signals (walking, running etc.)
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphysicaleffortestimationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKPhysicalEffortEstimationType(pub NSInteger);
 impl HKPhysicalEffortEstimationType {
+    /// Indicates the value was calculated based on external
+    /// standard such as a stationary bike
     #[doc(alias = "HKPhysicalEffortEstimationTypeActivityLookup")]
     pub const ActivityLookup: Self = Self(1);
+    /// Indicates the value was calculated based on movement
+    /// signals (walking, running etc.)
     #[doc(alias = "HKPhysicalEffortEstimationTypeDeviceSensed")]
     pub const DeviceSensed: Self = Self(2);
 }
@@ -348,27 +352,26 @@ unsafe impl RefEncode for HKUserMotionContext {
 
 /// Represents the test used to create a VO2 Max Sample.
 ///
-///
-/// measure actual VO2Max.
-///
-/// a predicted VO2Max.
-///
-/// calculate a predicted VO2Max.
-///
-/// predicted VO2Max.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKVO2MaxTestType(pub NSInteger);
 impl HKVO2MaxTestType {
+    /// The user was exerted to their physical limit to evaluate and
+    /// measure actual VO2Max.
     #[doc(alias = "HKVO2MaxTestTypeMaxExercise")]
     pub const MaxExercise: Self = Self(1);
+    /// A specific test protocol was used to calculate and correlate
+    /// a predicted VO2Max.
     #[doc(alias = "HKVO2MaxTestTypePredictionSubMaxExercise")]
     pub const PredictionSubMaxExercise: Self = Self(2);
+    /// A non-exercise equation was used based on user metrics to
+    /// calculate a predicted VO2Max.
     #[doc(alias = "HKVO2MaxTestTypePredictionNonExercise")]
     pub const PredictionNonExercise: Self = Self(3);
+    /// The step test protocol was used to calculate and correlate a
+    /// predicted VO2Max.
     #[doc(alias = "HKVO2MaxTestTypePredictionStepTest")]
     pub const PredictionStepTest: Self = Self(4);
 }

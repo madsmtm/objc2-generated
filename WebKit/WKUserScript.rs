@@ -14,8 +14,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserScriptInjectionTime(pub NSInteger);
 impl WKUserScriptInjectionTime {
+    /// Inject the script after the document element has been created, but before any other content has been loaded.
     #[doc(alias = "WKUserScriptInjectionTimeAtDocumentStart")]
     pub const AtDocumentStart: Self = Self(0);
+    /// Inject the script after the document has finished loading, but before any subresources may have finished loading.
     #[doc(alias = "WKUserScriptInjectionTimeAtDocumentEnd")]
     pub const AtDocumentEnd: Self = Self(1);
 }

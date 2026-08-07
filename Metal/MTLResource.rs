@@ -9,30 +9,22 @@ use crate::*;
 
 /// Options for setPurgeable call.
 ///
-///
-/// The contents of this resource may not be discarded.
-///
-///
-/// The contents of this resource may be discarded.
-///
-///
-/// The contents of this are discarded.
-///
-///
-/// The purgeabelity state is not changed.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLPurgeableState(pub NSUInteger);
 impl MTLPurgeableState {
+    /// The purgeabelity state is not changed.
     #[doc(alias = "MTLPurgeableStateKeepCurrent")]
     pub const KeepCurrent: Self = Self(1);
+    /// The contents of this resource may not be discarded.
     #[doc(alias = "MTLPurgeableStateNonVolatile")]
     pub const NonVolatile: Self = Self(2);
+    /// The contents of this resource may be discarded.
     #[doc(alias = "MTLPurgeableStateVolatile")]
     pub const Volatile: Self = Self(3);
+    /// The contents of this are discarded.
     #[doc(alias = "MTLPurgeableStateEmpty")]
     pub const Empty: Self = Self(4);
 }
@@ -47,11 +39,6 @@ unsafe impl RefEncode for MTLPurgeableState {
 
 /// Describes what CPU cache mode is used for the CPU's mapping of a texture resource.
 ///
-/// The default cache mode for the system.
-///
-///
-/// Write combined memory is optimized for resources that the CPU will write into, but never read.  On some implementations, writes may bypass caches avoiding cache pollution, and reads perform very poorly.
-///
 ///
 /// Applications should only investigate changing the cache mode if writing to normally cached buffers is known to cause performance issues due to cache pollution, as write combined memory can have surprising performance pitfalls.  Another approach is to use non-temporal stores to normally cached memory (STNP on ARMv8, _mm_stream_* on x86_64).
 ///
@@ -61,8 +48,10 @@ unsafe impl RefEncode for MTLPurgeableState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCPUCacheMode(pub NSUInteger);
 impl MTLCPUCacheMode {
+    /// The default cache mode for the system.
     #[doc(alias = "MTLCPUCacheModeDefaultCache")]
     pub const DefaultCache: Self = Self(0);
+    /// Write combined memory is optimized for resources that the CPU will write into, but never read.  On some implementations, writes may bypass caches avoiding cache pollution, and reads perform very poorly.
     #[doc(alias = "MTLCPUCacheModeWriteCombined")]
     pub const WriteCombined: Self = Self(1);
 }
@@ -77,39 +66,32 @@ unsafe impl RefEncode for MTLCPUCacheMode {
 
 /// Describes location and CPU mapping of MTLTexture.
 ///
-/// In this mode, CPU and device will nominally both use the same underlying memory when accessing the contents of the texture resource.
-/// However, coherency is only guaranteed at command buffer boundaries to minimize the required flushing of CPU and GPU caches.
-/// This is the default storage mode for iOS Textures.
-///
-///
-/// This mode relaxes the coherency requirements and requires that the developer make explicit requests to maintain
-/// coherency between a CPU and GPU version of the texture resource.  In order for CPU to access up to date GPU results,
-/// first, a blit synchronizations must be completed (see synchronize methods of MTLBlitCommandEncoder).
-/// Blit overhead is only incurred if GPU has modified the resource.
-/// This is the default storage mode for OS X Textures.
-///
-///
-/// This mode allows the texture resource data to be kept entirely to GPU (or driver) private memory that will never be accessed by the CPU directly, so no
-/// conherency of any kind must be maintained.
-///
-///
-/// This mode allows creation of resources that do not have a GPU or CPU memory backing, but do have on-chip storage for TBDR
-/// devices. The contents of the on-chip storage is undefined and does not persist, but its configuration is controlled by the
-/// MTLTexture descriptor. Textures created with MTLStorageModeMemoryless dont have an IOAccelResource at any point in their
-/// lifetime. The only way to populate such resource is to perform rendering operations on it. Blit operations are disallowed.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStorageMode(pub NSUInteger);
 impl MTLStorageMode {
+    /// In this mode, CPU and device will nominally both use the same underlying memory when accessing the contents of the texture resource.
+    /// However, coherency is only guaranteed at command buffer boundaries to minimize the required flushing of CPU and GPU caches.
+    /// This is the default storage mode for iOS Textures.
     #[doc(alias = "MTLStorageModeShared")]
     pub const Shared: Self = Self(0);
+    /// This mode relaxes the coherency requirements and requires that the developer make explicit requests to maintain
+    /// coherency between a CPU and GPU version of the texture resource.  In order for CPU to access up to date GPU results,
+    /// first, a blit synchronizations must be completed (see synchronize methods of MTLBlitCommandEncoder).
+    /// Blit overhead is only incurred if GPU has modified the resource.
+    /// This is the default storage mode for OS X Textures.
     #[doc(alias = "MTLStorageModeManaged")]
     pub const Managed: Self = Self(1);
+    /// This mode allows the texture resource data to be kept entirely to GPU (or driver) private memory that will never be accessed by the CPU directly, so no
+    /// conherency of any kind must be maintained.
     #[doc(alias = "MTLStorageModePrivate")]
     pub const Private: Self = Self(2);
+    /// This mode allows creation of resources that do not have a GPU or CPU memory backing, but do have on-chip storage for TBDR
+    /// devices. The contents of the on-chip storage is undefined and does not persist, but its configuration is controlled by the
+    /// MTLTexture descriptor. Textures created with MTLStorageModeMemoryless dont have an IOAccelResource at any point in their
+    /// lifetime. The only way to populate such resource is to perform rendering operations on it. Blit operations are disallowed.
     #[doc(alias = "MTLStorageModeMemoryless")]
     pub const Memoryless: Self = Self(3);
 }
@@ -130,10 +112,13 @@ unsafe impl RefEncode for MTLStorageMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLHazardTrackingMode(pub NSUInteger);
 impl MTLHazardTrackingMode {
+    /// The default hazard tracking mode for the context. Refer to the usage of the field for semantics.
     #[doc(alias = "MTLHazardTrackingModeDefault")]
     pub const Default: Self = Self(0);
+    /// Do not perform hazard tracking.
     #[doc(alias = "MTLHazardTrackingModeUntracked")]
     pub const Untracked: Self = Self(1);
+    /// Do perform hazard tracking.
     #[doc(alias = "MTLHazardTrackingModeTracked")]
     pub const Tracked: Self = Self(2);
 }

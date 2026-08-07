@@ -16,10 +16,13 @@ use crate::*;
 pub struct GKMeshGraphTriangulationMode(pub NSUInteger);
 bitflags::bitflags! {
     impl GKMeshGraphTriangulationMode: NSUInteger {
+/// Graph nodes will be made at all triangle vertices
         #[doc(alias = "GKMeshGraphTriangulationModeVertices")]
         const Vertices = 1<<0;
+/// Graph nodes will be made at all triangle centers
         #[doc(alias = "GKMeshGraphTriangulationModeCenters")]
         const Centers = 1<<1;
+/// Graph nodes will be made at midpoint of all triangle edges
         #[doc(alias = "GKMeshGraphTriangulationModeEdgeMidpoints")]
         const EdgeMidpoints = 1<<2;
         const _ = !0;

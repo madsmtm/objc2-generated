@@ -147,13 +147,17 @@ pub type AuthorizationSessionId = *mut c_void;
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum AuthorizationResult {
+    /// the operation succeeded and authorization should be granted as far as this mechanism is concerned.
     #[doc(alias = "kAuthorizationResultAllow")]
     #[default]
     Allow = 0,
+    /// the operation succeeded but authorization should be denied as far as this mechanism is concerned.
     #[doc(alias = "kAuthorizationResultDeny")]
     Deny = 1,
+    /// the operation failed for some reason and should not be retried for this session.
     #[doc(alias = "kAuthorizationResultUndefined")]
     Undefined = 2,
+    /// the user has requested that the evaluation be terminated.
     #[doc(alias = "kAuthorizationResultUserCanceled")]
     UserCanceled = 3,
 }

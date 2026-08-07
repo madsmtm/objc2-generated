@@ -76,19 +76,25 @@ pub type sec_certificate_t = *mut sec_certificate;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct tls_protocol_version_t(pub u16);
 impl tls_protocol_version_t {
+    /// TLS 1.0 [https://tools.ietf.org/html/rfc4346]
     #[doc(alias = "tls_protocol_version_TLSv10")]
     #[deprecated = "Use tls_protocol_version_TLSv12 or tls_protocol_version_TLSv13 instead."]
     pub const TLSv10: Self = Self(0x0301);
+    /// TLS 1.1 [https://tools.ietf.org/html/rfc2246]
     #[doc(alias = "tls_protocol_version_TLSv11")]
     #[deprecated = "Use tls_protocol_version_TLSv12 or tls_protocol_version_TLSv13 instead."]
     pub const TLSv11: Self = Self(0x0302);
+    /// TLS 1.2 [https://tools.ietf.org/html/rfc5246]
     #[doc(alias = "tls_protocol_version_TLSv12")]
     pub const TLSv12: Self = Self(0x0303);
+    /// TLS 1.3 [https://tools.ietf.org/html/rfc8446]
     #[doc(alias = "tls_protocol_version_TLSv13")]
     pub const TLSv13: Self = Self(0x0304);
+    /// DTLS 1.0 [https://tools.ietf.org/html/rfc4347]
     #[doc(alias = "tls_protocol_version_DTLSv10")]
     #[deprecated = "Use tls_protocol_version_DTLSv12 instead."]
     pub const DTLSv10: Self = Self(0xfeff);
+    /// DTLS 1.2 [https://tools.ietf.org/html/rfc6347]
     #[doc(alias = "tls_protocol_version_DTLSv12")]
     pub const DTLSv12: Self = Self(0xfefd);
 }

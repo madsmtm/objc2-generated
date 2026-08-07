@@ -12,12 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialRequestType(pub NSInteger);
 impl ASCredentialRequestType {
+    /// Password credential type.
     #[doc(alias = "ASCredentialRequestTypePassword")]
     pub const Password: Self = Self(0);
+    /// Passkey assertion credential type.
     #[doc(alias = "ASCredentialRequestTypePasskeyAssertion")]
     pub const PasskeyAssertion: Self = Self(1);
+    /// Passkey registration credential type.
     #[doc(alias = "ASCredentialRequestTypePasskeyRegistration")]
     pub const PasskeyRegistration: Self = Self(2);
+    /// One Time Code credential type.
     #[doc(alias = "ASCredentialRequestTypeOneTimeCode")]
     pub const OneTimeCode: Self = Self(3);
 }

@@ -87,121 +87,408 @@ unsafe impl RefEncode for AudioCodecMagicCookieInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiodecodercomponenttype?language=objc)
+/// A codec that translates data in some other format into linear PCM.
+/// The component subtype specifies the format ID of the other format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiodecodercomponenttype?language=objc)
 pub const kAudioDecoderComponentType: u32 = 0x61646563;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioencodercomponenttype?language=objc)
+/// A codec that translates linear PCM data into some other format
+/// The component subtype specifies the format ID of the other format
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioencodercomponenttype?language=objc)
 pub const kAudioEncoderComponentType: u32 = 0x61656e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitycodeccomponenttype?language=objc)
+/// A codec that translates between different flavors of the same format
+/// The component subtype specifies the format ID of this format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitycodeccomponenttype?language=objc)
 pub const kAudioUnityCodecComponentType: u32 = 0x61636463;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertysupportedinputformats?language=objc)
+/// An array of AudioStreamBasicDescription structs describing what formats
+/// the codec supports for input data
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertysupportedinputformats?language=objc)
 pub const kAudioCodecPropertySupportedInputFormats: AudioCodecPropertyID = 0x69666d23;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertysupportedoutputformats?language=objc)
+/// An array of AudioStreamBasicDescription structs describing what formats
+/// the codec supports for output data
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertysupportedoutputformats?language=objc)
 pub const kAudioCodecPropertySupportedOutputFormats: AudioCodecPropertyID = 0x6f666d23;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableinputsamplerates?language=objc)
+/// An array of AudioValueRange indicating the valid ranges for the
+/// input sample rate of the codec.
+/// Required for encoders.
+/// (see also kAudioCodecPropertyApplicableInputSampleRates)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableinputsamplerates?language=objc)
 pub const kAudioCodecPropertyAvailableInputSampleRates: AudioCodecPropertyID = 0x61697372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableoutputsamplerates?language=objc)
+/// An array of AudioValueRange indicating the valid ranges for the
+/// output sample rate of the codec.
+/// Required for encoders.
+/// (see also kAudioCodecPropertyApplicableOutputSampleRates)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableoutputsamplerates?language=objc)
 pub const kAudioCodecPropertyAvailableOutputSampleRates: AudioCodecPropertyID = 0x616f7372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailablebitraterange?language=objc)
+/// An array of AudioValueRange that indicate the target bit rates
+/// supported by the encoder. This can be total bit rate or bit
+/// rate per channel as appropriate.
+/// This property is only relevant to encoders.
+/// (see also kAudioCodecPropertyApplicableBitRateRange)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailablebitraterange?language=objc)
 pub const kAudioCodecPropertyAvailableBitRateRange: AudioCodecPropertyID = 0x61627274;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyminimumnumberinputpackets?language=objc)
+/// A UInt32 indicating the minimum number of input packets
+/// that need to be supplied to the codec. The actual input the
+/// codec accepts could be less than this.
+/// For most codecs this value will be 1.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyminimumnumberinputpackets?language=objc)
 pub const kAudioCodecPropertyMinimumNumberInputPackets: AudioCodecPropertyID = 0x6d6e6970;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyminimumnumberoutputpackets?language=objc)
+/// A UInt32 indicating the minimum number of output packets
+/// that need to be handled from the codec. The actual output
+/// might be less than this.
+/// For most codecs this value will be 1.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyminimumnumberoutputpackets?language=objc)
 pub const kAudioCodecPropertyMinimumNumberOutputPackets: AudioCodecPropertyID = 0x6d6e6f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailablenumberchannels?language=objc)
+/// An array of UInt32 that specifies the number of channels the codec is
+/// capable of encoding or decoding to. 0xFFFFFFFF means any number
+/// of channels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailablenumberchannels?language=objc)
 pub const kAudioCodecPropertyAvailableNumberChannels: AudioCodecPropertyID = 0x636d6e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertydoessamplerateconversion?language=objc)
+/// A UInt32 indicating if the codec wants to do a sample rate conversion (if
+/// necessary) because it can do it in a way that is meaningful for quality.
+/// Value is 1 if true, 0 otherwise.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertydoessamplerateconversion?language=objc)
 pub const kAudioCodecPropertyDoesSampleRateConversion: AudioCodecPropertyID = 0x6c6d7263;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableinputchannellayouttags?language=objc)
+/// An array of AudioChannelLayoutTag that specifies what channel layouts the codec is
+/// capable of using on input.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableinputchannellayouttags?language=objc)
 pub const kAudioCodecPropertyAvailableInputChannelLayoutTags: AudioCodecPropertyID = 0x6169636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableoutputchannellayouttags?language=objc)
+/// An array of AudioChannelLayoutTag that specifies what channel layouts the codec is
+/// capable of using on output.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableoutputchannellayouttags?language=objc)
 pub const kAudioCodecPropertyAvailableOutputChannelLayoutTags: AudioCodecPropertyID = 0x616f636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyinputformatsforoutputformat?language=objc)
+/// An array of AudioStreamBasicDescription indicating what the codec supports
+/// for input data given an output format that's passed in as the first member of
+/// the array (and is overwritten on the reply). Always a subset of
+/// kAudioCodecPropertySupportedInputFormats
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyinputformatsforoutputformat?language=objc)
 pub const kAudioCodecPropertyInputFormatsForOutputFormat: AudioCodecPropertyID = 0x6966346f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyoutputformatsforinputformat?language=objc)
+/// An array of AudioStreamBasicDescription indicating what the codec supports
+/// for output data given an input format that's passed in as the first member of
+/// the array (and is overwritten on the reply). Always a subset of
+/// kAudioCodecPropertySupportedOutputFormats
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyoutputformatsforinputformat?language=objc)
 pub const kAudioCodecPropertyOutputFormatsForInputFormat: AudioCodecPropertyID = 0x6f663469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyformatinfo?language=objc)
+/// Takes an AudioFormatInfo on input. This AudioformatInfo is validated either through
+/// the provided magic cookie or the AudioStreamBasicDescription and where applicable,
+/// wildcards are overwritten with default values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyformatinfo?language=objc)
 pub const kAudioCodecPropertyFormatInfo: AudioCodecPropertyID = 0x61636669;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyinputbuffersize?language=objc)
+/// A UInt32 indicating the maximum input buffer size for the codec
+/// in bytes.
+/// Not writable, but can vary on some codecs depending on the bit stream
+/// format being handled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyinputbuffersize?language=objc)
 pub const kAudioCodecPropertyInputBufferSize: AudioCodecPropertyID = 0x74627566;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertypacketframesize?language=objc)
+/// A UInt32 indicating the number of frames of audio data encapsulated in each
+/// packet of data in the codec's format. For encoders, this is the
+/// output format. For decoders this is the input format.
+/// Formats with variable frames per packet should return a maximum value
+/// for this property.
+/// Not writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertypacketframesize?language=objc)
 pub const kAudioCodecPropertyPacketFrameSize: AudioCodecPropertyID = 0x70616b66;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyhasvariablepacketbytesizes?language=objc)
+/// A UInt32 where 0 indicates that all packets in the codec's format
+/// have the same byte size (sometimes referred to as CBR codecs),
+/// and 1 indicates that they vary in size (sometimes referred to as
+/// VBR codecs). The maximum size of a variable packet is up to
+/// the one indicated in kAudioCodecPropertyMaximumPacketByteSize.
+/// Any codec that reports 1 for this property must be able to handle packet
+/// descriptions, though it does not have to require them.
+/// May be writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyhasvariablepacketbytesizes?language=objc)
 pub const kAudioCodecPropertyHasVariablePacketByteSizes: AudioCodecPropertyID = 0x76706b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyemploysdependentpackets?language=objc)
+/// A UInt32 where 0 indicates that all packets in the codec's format
+/// are independently decodable, and 1 indicates that some may not be
+/// independently decodable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyemploysdependentpackets?language=objc)
 pub const kAudioCodecPropertyEmploysDependentPackets: AudioCodecPropertyID = 0x64706b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertymaximumpacketbytesize?language=objc)
+/// A UInt32 indicating the maximum number of bytes a packet of data
+/// in the codec's format will be. If the format is constant bit rate,
+/// all packets will be this size. If it is variable bit rate, the packets
+/// will never exceed this size.
+/// This always refers to the encoded data, so for encoders it refers to the
+/// output data and for decoders the input data.
+/// Not writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertymaximumpacketbytesize?language=objc)
 pub const kAudioCodecPropertyMaximumPacketByteSize: AudioCodecPropertyID = 0x70616b62;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertypacketsizelimitforvbr?language=objc)
+/// A UInt32 indicating the maximum number of bits in an output packet of an encoder.
+/// The output packet size will not exceed this number. The size should be smaller
+/// than kAudioCodecPropertyMaximumPacketByteSize. This property will configure the
+/// encoder to VBR mode with the highest VBR quality that can maintain the packet
+/// size limit. kAudioCodecPropertySoundQualityForVBR can be used to retrieve the
+/// quality setting that will be used given that packet size limit.
+/// Writeable if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertypacketsizelimitforvbr?language=objc)
 pub const kAudioCodecPropertyPacketSizeLimitForVBR: AudioCodecPropertyID = 0x70616b6c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentinputformat?language=objc)
+/// An AudioStreamBasicDescription describing the format the codec
+/// expects its input data in
+/// Almost always writable, but if the codec only supports one unique input format
+/// it does not have to be
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentinputformat?language=objc)
 pub const kAudioCodecPropertyCurrentInputFormat: AudioCodecPropertyID = 0x69666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentoutputformat?language=objc)
+/// An AudioStreamBasicDescription describing the format the codec
+/// provides its output data in
+/// Almost always writable, but if the codec only supports one unique output format
+/// it does not have to be
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentoutputformat?language=objc)
 pub const kAudioCodecPropertyCurrentOutputFormat: AudioCodecPropertyID = 0x6f666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertymagiccookie?language=objc)
+/// An untyped buffer of out of band configuration data the codec
+/// requires to process the stream of data correctly. The contents
+/// of this data is private to the codec.
+/// Not all codecs have magic cookies. If a call to AudioCodecGetPropertyInfo
+/// returns a size greater than 0 then the codec may take one.
+/// Writable if present.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertymagiccookie?language=objc)
 pub const kAudioCodecPropertyMagicCookie: AudioCodecPropertyID = 0x6b756b69;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyusedinputbuffersize?language=objc)
+/// A UInt32 indicating the number of bytes in the codec's input
+/// buffer. The amount of available buffer space is    simply the
+/// answer from kAudioCodecPropertyInputBufferSize minus the answer
+/// from this property.
+/// Not writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyusedinputbuffersize?language=objc)
 pub const kAudioCodecPropertyUsedInputBufferSize: AudioCodecPropertyID = 0x75627566;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyisinitialized?language=objc)
+/// A UInt32 where 0 means the codec is uninitialized and anything
+/// else means the codec is initialized. This should never be settable directly.
+/// Must be set by AudioCodecInitialize and AudioCodecUninitialize.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyisinitialized?language=objc)
 pub const kAudioCodecPropertyIsInitialized: AudioCodecPropertyID = 0x696e6974;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrenttargetbitrate?language=objc)
+/// A UInt32 containing the number of bits per second to aim for when encoding
+/// data. This property is usually only relevant to encoders, but if a decoder
+/// can know what bit rate it's set to it may report it.
+/// This property is irrelevant if the encoder is configured as kAudioCodecBitRateControlMode_Variable.
+/// Writable on encoders if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrenttargetbitrate?language=objc)
 pub const kAudioCodecPropertyCurrentTargetBitRate: AudioCodecPropertyID = 0x62726174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentinputsamplerate?language=objc)
+/// A Float64 containing the current input sample rate in Hz. No Default.
+/// May be writable. If only one sample rate is supported it does not have to be.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentinputsamplerate?language=objc)
 pub const kAudioCodecPropertyCurrentInputSampleRate: AudioCodecPropertyID = 0x63697372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentoutputsamplerate?language=objc)
+/// A Float64 containing the current output sample rate in Hz. No Default.
+/// May be writable. If only one sample rate is supported it does not have to be.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentoutputsamplerate?language=objc)
 pub const kAudioCodecPropertyCurrentOutputSampleRate: AudioCodecPropertyID = 0x636f7372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyqualitysetting?language=objc)
+/// A UInt32 that sets the tradeoff between sound quality and CPU time consumption.
+/// The property value is between [0 - 0x7F].
+/// Some enum constants are defined below for convenience.
+/// Writable if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyqualitysetting?language=objc)
 pub const kAudioCodecPropertyQualitySetting: AudioCodecPropertyID = 0x73726371;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyapplicablebitraterange?language=objc)
+/// An array of AudioValueRange indicating the target bit rates
+/// supported by the encoder in its current configuration.
+/// This property is only relevant to encoders.
+/// See also kAudioCodecPropertyAvailableBitRateRange.
+/// Not writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyapplicablebitraterange?language=objc)
 pub const kAudioCodecPropertyApplicableBitRateRange: AudioCodecPropertyID = 0x62727461;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyrecommendedbitraterange?language=objc)
+/// An array of AudioValueRange indicating the recommended bit rates
+/// at given sample rate.
+/// This property is only relevant to encoders.
+/// Not writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyrecommendedbitraterange?language=objc)
 pub const kAudioCodecPropertyRecommendedBitRateRange: AudioCodecPropertyID = 0x62727472;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyapplicableinputsamplerates?language=objc)
+/// An array of AudioValueRange indicating the valid ranges for the
+/// input sample rate of the codec for the current bit rate.
+/// This property is only relevant to encoders.
+/// See also kAudioCodecPropertyAvailableInputSampleRates.
+/// Not writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyapplicableinputsamplerates?language=objc)
 pub const kAudioCodecPropertyApplicableInputSampleRates: AudioCodecPropertyID = 0x69737261;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyapplicableoutputsamplerates?language=objc)
+/// An array of AudioValueRange indicating the valid ranges for the
+/// output sample rate of the codec for the current bit rate.
+/// This property is only relevant to encoders.
+/// See also kAudioCodecPropertyAvailableOutputSampleRates.
+/// Not writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyapplicableoutputsamplerates?language=objc)
 pub const kAudioCodecPropertyApplicableOutputSampleRates: AudioCodecPropertyID = 0x6f737261;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertypaddedzeros?language=objc)
+/// A UInt32 indicating the number of zeros (samples) that were appended
+/// to the last packet of input data to make a complete packet encoding.
+/// Encoders only. No default.
+/// Not writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertypaddedzeros?language=objc)
 pub const kAudioCodecPropertyPaddedZeros: AudioCodecPropertyID = 0x70616430;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyprimemethod?language=objc)
+/// A UInt32 specifying priming method.
+/// See enum below.
+/// May be writable. Some encoders offer the option of padding out the last packet, and this
+/// may be set here.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyprimemethod?language=objc)
 pub const kAudioCodecPropertyPrimeMethod: AudioCodecPropertyID = 0x70726d6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyprimeinfo?language=objc)
+/// A pointer to an AudioCodecPrimeInfo struct.
+/// Not writable on encoders. On decoders this may be writable, telling the decoder to trim the
+/// first and/or last packet.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyprimeinfo?language=objc)
 pub const kAudioCodecPropertyPrimeInfo: AudioCodecPropertyID = 0x7072696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentinputchannellayout?language=objc)
+/// An AudioChannelLayout that specifies the channel layout that the codec is using for input.
+/// May be writable. If only one channel layout is supported it does not have to be.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentinputchannellayout?language=objc)
 pub const kAudioCodecPropertyCurrentInputChannelLayout: AudioCodecPropertyID = 0x69636c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentoutputchannellayout?language=objc)
+/// An AudioChannelLayout that specifies the channel layout that the codec is using for output.
+/// If settable on a encoder, it means the encoder can re-map channels
+/// May be writable. If only one channel layout is supported or the codec does no channel remapping
+/// (ie, output channel layout always equals the input channel layout) it does not have to be.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycurrentoutputchannellayout?language=objc)
 pub const kAudioCodecPropertyCurrentOutputChannelLayout: AudioCodecPropertyID = 0x6f636c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertysettings?language=objc)
+/// A CFDictionaryRef that lists both the settable codec settings and their values.
+/// Encoders only.
+/// Obviously this will be linked to many of the other properties listed herein and as such
+/// it potentially will cause synchronization problems. Therefore, when setting this property
+/// on an encoder a GetProperty should be done first to retrieve the current dictionary,
+/// and only one setting within the dictionary should change with each SetProperty call,
+/// as it is not guaranteed that changing one property will not have side effects.
+/// Writable if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertysettings?language=objc)
 pub const kAudioCodecPropertySettings: AudioCodecPropertyID = 0x61637320;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyformatlist?language=objc)
+/// An array of AudioFormatListItem structs list all formats that can be handled by the decoder
+/// For decoders, takes a Magic Cookie that gets passed in on the GetProperty call. No default.
+/// On input, the outPropertyData parameter passed to GetProperty should begin with a
+/// AudioCodecMagicCookieInfo struct which will be overwritten by the AudioFormatListItems
+/// returned from the property. For encoders, returns a list of formats which will be in the
+/// bitstream. No input data required.
+/// Important note: this encoder property is only applicable to audio formats which are made of
+/// two or more layers where the base layers(s) can be decoded by systems which aren't capable of
+/// handling the enhancement layers. For example, a High Efficiency AAC bitstream which contains
+/// an AAC Low Complexity base layer can be decoded by any AAC decoder.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyformatlist?language=objc)
 pub const kAudioCodecPropertyFormatList: AudioCodecPropertyID = 0x6163666c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertybitratecontrolmode?language=objc)
+/// A UInt32 indicating which bit rate control mode will be applied to encoders that
+/// can produce variable packet sizes (sometimes referred to as VBR encoders).
+/// Although the packet size may be variable, a constant bit rate can be maintained
+/// over a transmission channel when decoding in real-time with a fixed end-to-end audio delay.
+/// E.g., MP3 and MPEG-AAC use a bit reservoir mechanism to meet that constraint.
+/// See enum below.
+/// Only needs to be settable if the codec supports multiple bit rate control strategies.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertybitratecontrolmode?language=objc)
 pub const kAudioCodecPropertyBitRateControlMode: AudioCodecPropertyID = 0x61636266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertysoundqualityforvbr?language=objc)
+/// A UInt32 that sets a target sound quality level.
+/// Unlike kAudioCodecPropertyQualitySetting which is relevant to all BitRate Control Modes,
+/// this property only needs to be set by an encoder configured at kAudioCodecBitRateControlMode_Variable.
+/// The property value is between [0 - 0x7F].
+/// See also kAudioCodecPropertyQualitySetting
+/// Writable if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertysoundqualityforvbr?language=objc)
 pub const kAudioCodecPropertySoundQualityForVBR: AudioCodecPropertyID = 0x76627271;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertybitrateforvbr?language=objc)
+/// A UInt32 that can be used to set the target bit rate when the encoder is configured
+/// for VBR mode (kAudioCodecBitRateControlMode_Variable). Writable if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertybitrateforvbr?language=objc)
 pub const kAudioCodecPropertyBitRateForVBR: AudioCodecPropertyID = 0x76627262;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertydelaymode?language=objc)
+/// A UInt32 specifying the delay mode. See enum below.
+/// Writable if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertydelaymode?language=objc)
 pub const kAudioCodecPropertyDelayMode: AudioCodecPropertyID = 0x646d6f64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyadjustlocalquality?language=objc)
+/// An SInt32 number in the range [-128, 127] to allow encoding quality adjustements on a packet by packet basis.
+/// This property can be set on an initialized encoder object without having to uninitialize and re-intialize it
+/// and allows to adjust the encoder quality level for every packet. This is useful for packets streamed over
+/// unreliable IP networks where the encoder needs to adapt immediately to network condition changes.
+/// Escape property ID's start with a '^' symbol as the first char code. This bypasses the initilization check.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyadjustlocalquality?language=objc)
 pub const kAudioCodecPropertyAdjustLocalQuality: AudioCodecPropertyID = 0x5e71616c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertydynamicrangecontrolmode?language=objc)
+/// A UInt32 specifying the decoder DRC mode. Supported modes are defined as enum with the
+/// prefix kDynamicRangeControlMode (see below). For certain legacy metadata this property controls which
+/// dynamic range compression scheme is applied if the information is present in
+/// the bitstream. The default is kDynamicRangeControlMode_None.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertydynamicrangecontrolmode?language=objc)
 pub const kAudioCodecPropertyDynamicRangeControlMode: AudioCodecPropertyID = 0x6d647263;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyadjustcompressionprofile?language=objc)
+/// A UInt32 specifying the dynamic range compression profile to be applied in the decoder. Profiles are
+/// based on the DRC Effect Types in ISO/IEC 23003-4. Supported profiles are defined as DynamicRangeCompressionProfile
+/// enum (see below). The default profile is kDynamicRangeCompressionProfile_None.
+/// This property can also be set on an initialized decoder object. It will be applied immediately, if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyadjustcompressionprofile?language=objc)
 pub const kAudioCodecPropertyAdjustCompressionProfile: AudioCodecPropertyID = 0x5e70726f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyprogramtargetlevelconstant?language=objc)
+/// A UInt32 matching one of the values in the ProgramTargetLevel enumeration, which specifies the
+/// program target loudness in LKFS for decoders.
+/// This property controls the loudness at the decoder output when supported. It is typically
+/// used for loudness normalization. The default is kProgramTargetLevel_None.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyprogramtargetlevelconstant?language=objc)
 pub const kAudioCodecPropertyProgramTargetLevelConstant: AudioCodecPropertyID = 0x70746c63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyadjusttargetlevelconstant?language=objc)
+/// A UInt32 specifying the program target loudness in LKFS for decoders. It has the same effect
+/// as kAudioCodecPropertyProgramTargetLevelConstant, but this property can also be set on an
+/// initialized decoder object. It will be applied immediately, if supported.
+/// A value of kProgramTargetLevel_None removes a prior target level setting.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyadjusttargetlevelconstant?language=objc)
 pub const kAudioCodecPropertyAdjustTargetLevelConstant: AudioCodecPropertyID = 0x5e746c63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyprogramtargetlevel?language=objc)
+/// A Float32 specifying the program target loudness in LKFS for decoders.
+/// This property controls the loudness at the decoder output when supported. It is typically
+/// used for loudness normalization. Compared to kAudioCodecPropertyProgramTargetLevelConstant,
+/// this property is not limiting the values to predefined constants.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyprogramtargetlevel?language=objc)
 pub const kAudioCodecPropertyProgramTargetLevel: AudioCodecPropertyID = 0x7070746c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyadjusttargetlevel?language=objc)
+/// A Float32 specifying the program target loudness in LKFS for decoders. It has the same effect
+/// as kAudioCodecPropertyProgramTargetLevel, but this property can also be set on an initialized decoder
+/// object. It will be applied immediately, if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyadjusttargetlevel?language=objc)
 pub const kAudioCodecPropertyAdjustTargetLevel: AudioCodecPropertyID = 0x5e70746c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertydynamicrangecontrolconfiguration?language=objc)
+/// A UInt32 specifying the encoder DRC configuration. Configurations are defined as enum with the prefix
+/// kAudioCodecDynamicRangeControlConfiguration_. When supported by the encoder, this property controls which
+/// configuration is applied when a bitstream is generated. The default configuration for an APAC
+/// encoder is kAudioCodecDynamicRangeControlConfiguration_Capture, otherwise it is kAudioCodecDynamicRangeControlConfiguration_None.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertydynamicrangecontrolconfiguration?language=objc)
 pub const kAudioCodecPropertyDynamicRangeControlConfiguration: AudioCodecPropertyID = 0x63647263;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycontentsource?language=objc)
+/// An SInt32 index to select a pre-defined content source type that describes the content type and how it was generated.
+/// This is an encoder property with read/write access, if supported.  Supported values are defined with a prefix kAudioCodecContentSource_.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertycontentsource?language=objc)
 pub const kAudioCodecPropertyContentSource: AudioCodecPropertyID = 0x63737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyaspfrequency?language=objc)
+/// A UInt32 to set the frequency of Audio Sync Packets (ASP). The value must be larger than 2.
+/// A recommended value is 75 so that each 75th packet is an ASP.
+/// This is an encoder property with read/write access, if supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyaspfrequency?language=objc)
 pub const kAudioCodecPropertyASPFrequency: AudioCodecPropertyID = 0x61737066;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecquality_max?language=objc)
@@ -215,27 +502,68 @@ pub const kAudioCodecQuality_Low: u32 = 0x20;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecquality_min?language=objc)
 pub const kAudioCodecQuality_Min: u32 = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecprimemethod_pre?language=objc)
+/// Primes with leading and trailing input frames
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecprimemethod_pre?language=objc)
 pub const kAudioCodecPrimeMethod_Pre: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecprimemethod_normal?language=objc)
+/// Only primes with trailing (zero latency)
+/// leading frames are assumed to be silence
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecprimemethod_normal?language=objc)
 pub const kAudioCodecPrimeMethod_Normal: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecprimemethod_none?language=objc)
+/// Acts in "latency" mode
+/// both leading and trailing frames assumed to be silence
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecprimemethod_none?language=objc)
 pub const kAudioCodecPrimeMethod_None: u32 = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitratecontrolmode_constant?language=objc)
+/// The encoder maintains a constant bit rate suitable for use over a transmission
+/// channel when decoding in real-time with a fixed end-to-end audio delay.
+/// Note that while a constant bit rate is maintained in this mode, the number of bits
+/// allocated to encode each fixed length of audio data may be variable
+/// (ie. packet sizes are variable).
+/// E.g., MP3 and MPEG-AAC use a bit reservoir mechanism to meet that constraint.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitratecontrolmode_constant?language=objc)
 pub const kAudioCodecBitRateControlMode_Constant: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitratecontrolmode_longtermaverage?language=objc)
+/// The provided target bit rate is achieved over a long term average
+/// (typically after the first 1000 packets). This mode is similar to
+/// kAudioCodecBitRateControlMode_Constant in the sense that the
+/// target bit rate will be maintained in a long term average. However, it does not
+/// provide constant delay when using constant bit rate transmission. This mode offers
+/// a better sound quality than kAudioCodecBitRateControlMode_Constant
+/// can, that is, a more efficient encoding is performed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitratecontrolmode_longtermaverage?language=objc)
 pub const kAudioCodecBitRateControlMode_LongTermAverage: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitratecontrolmode_variableconstrained?language=objc)
+/// Encoder dynamically allocates the bit resources according to the characteristics
+/// of the underlying signal. However, some constraints are applied in order to limit
+/// the variation of the bit rate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitratecontrolmode_variableconstrained?language=objc)
 pub const kAudioCodecBitRateControlMode_VariableConstrained: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitratecontrolmode_variable?language=objc)
+/// Similar to the VBR constrained mode, however the packet size is virtually unconstrained.
+/// The coding process targets constant sound quality, and the sound quality level is
+/// set by kAudioCodecPropertySoundQualityForVBR.
+/// This mode usually provides the best tradeoff between quality and bit rate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitratecontrolmode_variable?language=objc)
 pub const kAudioCodecBitRateControlMode_Variable: u32 = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdelaymode_compatibility?language=objc)
+/// In compatibility delay mode, the resulting priming corresponds to the default value defined by the
+/// underlying codecs. For aac this number equals 2112 regardless of the sample rate and other settings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdelaymode_compatibility?language=objc)
 pub const kAudioCodecDelayMode_Compatibility: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdelaymode_minimum?language=objc)
+/// Sets the encoder, where applicable, in it's lowest possible delay mode. Any additional delays, like the one
+/// introduced by filters/sample rate converters etc, aren't compensated by the encoder.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdelaymode_minimum?language=objc)
 pub const kAudioCodecDelayMode_Minimum: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdelaymode_optimal?language=objc)
+/// In this mode, the resulting bitstream has the minimum amount of priming necessary for the decoder.
+/// For aac this number is 1024 which corresponds to exactly one packet.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdelaymode_optimal?language=objc)
 pub const kAudioCodecDelayMode_Optimal: u32 = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kprogramtargetlevel_none?language=objc)
@@ -247,78 +575,148 @@ pub const kProgramTargetLevel_Minus23dB: u32 = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kprogramtargetlevel_minus20db?language=objc)
 pub const kProgramTargetLevel_Minus20dB: u32 = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecontrolmode_none?language=objc)
+/// Dynamic range compression disabled
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecontrolmode_none?language=objc)
 pub const kDynamicRangeControlMode_None: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecontrolmode_light?language=objc)
+/// Light compression according to MPEG-Audio ISO/IEC 14496
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecontrolmode_light?language=objc)
 pub const kDynamicRangeControlMode_Light: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecontrolmode_heavy?language=objc)
+/// Heavy compression according to ETSI TS 101 154
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecontrolmode_heavy?language=objc)
 pub const kDynamicRangeControlMode_Heavy: u32 = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_none?language=objc)
+/// No compression
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_none?language=objc)
 pub const kDynamicRangeCompressionProfile_None: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_latenight?language=objc)
+/// Compression to avoid disturbing others and listening at lower volume
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_latenight?language=objc)
 pub const kDynamicRangeCompressionProfile_LateNight: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_noisyenvironment?language=objc)
+/// Compression suitable for listening in noisy environments
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_noisyenvironment?language=objc)
 pub const kDynamicRangeCompressionProfile_NoisyEnvironment: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_limitedplaybackrange?language=objc)
+/// Compression for transducers with limited dynamic range
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_limitedplaybackrange?language=objc)
 pub const kDynamicRangeCompressionProfile_LimitedPlaybackRange: u32 = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_generalcompression?language=objc)
+/// General purpose compression
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_generalcompression?language=objc)
 pub const kDynamicRangeCompressionProfile_GeneralCompression: u32 = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_none?language=objc)
+/// Dynamic range compression disabled
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_none?language=objc)
 pub const kAudioCodecDynamicRangeControlConfiguration_None: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_music?language=objc)
+/// Dynamic range compression for music
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_music?language=objc)
 pub const kAudioCodecDynamicRangeControlConfiguration_Music: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_speech?language=objc)
+/// Dynamic range compression for speech
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_speech?language=objc)
 pub const kAudioCodecDynamicRangeControlConfiguration_Speech: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_movie?language=objc)
+/// Dynamic range compression for movie sound tracks
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_movie?language=objc)
 pub const kAudioCodecDynamicRangeControlConfiguration_Movie: u32 = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_capture?language=objc)
+/// Dynamic range compression for capture (live encoding)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdynamicrangecontrolconfiguration_capture?language=objc)
 pub const kAudioCodecDynamicRangeControlConfiguration_Capture: u32 = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_unspecified?language=objc)
+/// Unspecified content source
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_unspecified?language=objc)
 pub const kAudioCodecContentSource_Unspecified: i32 = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_reserved?language=objc)
+/// Reserved index
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_reserved?language=objc)
 pub const kAudioCodecContentSource_Reserved: i32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applecapture_traditional?language=objc)
+/// Traditional Apple device capture
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applecapture_traditional?language=objc)
 pub const kAudioCodecContentSource_AppleCapture_Traditional: i32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applecapture_spatial?language=objc)
+/// Spatial Apple device capture
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applecapture_spatial?language=objc)
 pub const kAudioCodecContentSource_AppleCapture_Spatial: i32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applecapture_spatial_enhanced?language=objc)
+/// Reserved for Apple use
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applecapture_spatial_enhanced?language=objc)
 pub const kAudioCodecContentSource_AppleCapture_Spatial_Enhanced: i32 = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applemusic_traditional?language=objc)
+/// Traditional Apple music and music video content such as stereo and multichannel
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applemusic_traditional?language=objc)
 pub const kAudioCodecContentSource_AppleMusic_Traditional: i32 = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applemusic_spatial?language=objc)
+/// Spatial Apple music and music video content
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applemusic_spatial?language=objc)
 pub const kAudioCodecContentSource_AppleMusic_Spatial: i32 = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_appleav_traditional_offline?language=objc)
+/// Traditional Apple professional AV offline encoded content such as stereo and multichannel
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_appleav_traditional_offline?language=objc)
 pub const kAudioCodecContentSource_AppleAV_Traditional_Offline: i32 = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_appleav_spatial_offline?language=objc)
+/// Spatial Apple professional AV offline encoded content
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_appleav_spatial_offline?language=objc)
 pub const kAudioCodecContentSource_AppleAV_Spatial_Offline: i32 = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_appleav_traditional_live?language=objc)
+/// Traditional Apple professional AV live content such as stereo and multichannel
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_appleav_traditional_live?language=objc)
 pub const kAudioCodecContentSource_AppleAV_Traditional_Live: i32 = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_appleav_spatial_live?language=objc)
+/// Spatial Apple professional AV live content
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_appleav_spatial_live?language=objc)
 pub const kAudioCodecContentSource_AppleAV_Spatial_Live: i32 = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applepassthrough?language=objc)
+/// Apple passthrough content (use only if source information is not available)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_applepassthrough?language=objc)
 pub const kAudioCodecContentSource_ApplePassthrough: i32 = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_capture_traditional?language=objc)
+/// Traditional device capture
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_capture_traditional?language=objc)
 pub const kAudioCodecContentSource_Capture_Traditional: i32 = 33;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_capture_spatial?language=objc)
+/// Spatial device capture
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_capture_spatial?language=objc)
 pub const kAudioCodecContentSource_Capture_Spatial: i32 = 34;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_capture_spatial_enhanced?language=objc)
+/// Reserved for future use
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_capture_spatial_enhanced?language=objc)
 pub const kAudioCodecContentSource_Capture_Spatial_Enhanced: i32 = 35;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_music_traditional?language=objc)
+/// Traditional music and music video content such as stereo and multichannel
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_music_traditional?language=objc)
 pub const kAudioCodecContentSource_Music_Traditional: i32 = 36;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_music_spatial?language=objc)
+/// Spatial music and music video content
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_music_spatial?language=objc)
 pub const kAudioCodecContentSource_Music_Spatial: i32 = 37;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_av_traditional_offline?language=objc)
+/// Traditional professional AV offline encoded content such as stereo and multichannel
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_av_traditional_offline?language=objc)
 pub const kAudioCodecContentSource_AV_Traditional_Offline: i32 = 38;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_av_spatial_offline?language=objc)
+/// Spatial professional AV offline encoded content
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_av_spatial_offline?language=objc)
 pub const kAudioCodecContentSource_AV_Spatial_Offline: i32 = 39;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_av_traditional_live?language=objc)
+/// Traditional professional AV live content such as stereo and multichannel
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_av_traditional_live?language=objc)
 pub const kAudioCodecContentSource_AV_Traditional_Live: i32 = 40;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_av_spatial_live?language=objc)
+/// Spatial professional AV live content
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_av_spatial_live?language=objc)
 pub const kAudioCodecContentSource_AV_Spatial_Live: i32 = 41;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_passthrough?language=objc)
+/// Passthrough content (use only if source information is not available)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodeccontentsource_passthrough?language=objc)
 pub const kAudioCodecContentSource_Passthrough: i32 = 42;
 
 /// Specifies the number of leading and trailing empty frames
@@ -352,16 +750,6 @@ unsafe impl RefEncode for AudioCodecPrimeInfo {
 /// in the kAudioCodecPropertySettings property dictionary.
 /// Indicates any special characteristics of each parameter within the dictionary,
 ///
-///
-/// If set, then the parameter is an expert parameter.
-///
-/// If set, then the parameter should not be displayed.
-///
-/// If set, then changing this parameter may affect the values of other parameters.
-/// If not set, then this parameter can be set without affecting the values of other parameters.
-///
-/// If set, then this is only a user interface element and not reflected in the codec's bit stream.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosettingsflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -369,12 +757,17 @@ unsafe impl RefEncode for AudioCodecPrimeInfo {
 pub struct AudioSettingsFlags(pub u32);
 bitflags::bitflags! {
     impl AudioSettingsFlags: u32 {
+/// If set, then the parameter is an expert parameter.
         #[doc(alias = "kAudioSettingsFlags_ExpertParameter")]
         const ExpertParameter = 1<<0;
+/// If set, then the parameter should not be displayed.
         #[doc(alias = "kAudioSettingsFlags_InvisibleParameter")]
         const InvisibleParameter = 1<<1;
+/// If set, then changing this parameter may affect the values of other parameters.
+/// If not set, then this parameter can be set without affecting the values of other parameters.
         #[doc(alias = "kAudioSettingsFlags_MetaParameter")]
         const MetaParameter = 1<<2;
+/// If set, then this is only a user interface element and not reflected in the codec's bit stream.
         #[doc(alias = "kAudioSettingsFlags_UserInterfaceParameter")]
         const UserInterfaceParameter = 1<<3;
         const _ = !0;
@@ -391,17 +784,40 @@ unsafe impl RefEncode for AudioSettingsFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketfailure?language=objc)
+/// Couldn't complete the request due to an error. It is possible
+/// that some output data was produced. This is reflected in the value
+/// returned in ioNumberPackets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketfailure?language=objc)
 pub const kAudioCodecProduceOutputPacketFailure: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketsuccess?language=objc)
+/// The number of requested output packets was produced without incident
+/// and there isn't any more input data to process
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketsuccess?language=objc)
 pub const kAudioCodecProduceOutputPacketSuccess: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketsuccesshasmore?language=objc)
+/// The number of requested output packets was produced and there is
+/// enough input data to produce at least one more packet of output data
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketsuccesshasmore?language=objc)
 pub const kAudioCodecProduceOutputPacketSuccessHasMore: u32 = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketneedsmoreinputdata?language=objc)
+/// There was insufficient input data to produce the requested
+/// number of output packets, The value returned in ioNumberPackets
+/// holds the number of output packets produced.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketneedsmoreinputdata?language=objc)
 pub const kAudioCodecProduceOutputPacketNeedsMoreInputData: u32 = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketateof?language=objc)
+/// The end-of-file marker was hit during the processing. Fewer
+/// than the requested number of output packets may have been
+/// produced. Check the value returned in ioNumberPackets for the
+/// actual number produced. Note that not all formats have EOF
+/// markers in them.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketateof?language=objc)
 pub const kAudioCodecProduceOutputPacketAtEOF: u32 = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketsuccessconcealed?language=objc)
+/// No input packets were provided, but the decoder supports packet
+/// loss concealment, so output packets were still created.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecproduceoutputpacketsuccessconcealed?language=objc)
 pub const kAudioCodecProduceOutputPacketSuccessConcealed: u32 = 6;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecgetpropertyinfoselect?language=objc)
@@ -959,41 +1375,103 @@ pub type AudioCodecProduceOutputBufferListProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyminimumdelaymode?language=objc)
+/// A UInt32 equal 1 sets the encoder, where applicable, in it's lowest possible delay mode. An encoder
+/// may prepend zero valued samples to the input signal in order to make additional delays, like e.g.
+/// from a filter, coincide on a block boundary. This operation, however, results in an increased
+/// encoding/ decoding delay which may be undesired and turned off with this property.
+/// Use the kAudioCodecPropertyDelayMode property instead with the value set to kAudioCodecDelayMode_Minimum
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyminimumdelaymode?language=objc)
 pub const kAudioCodecPropertyMinimumDelayMode: AudioCodecPropertyID = 0x6d64656c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertynamecfstring?language=objc)
+/// The name of the codec component as a CFStringRef. The CFStringRef
+/// retrieved via this property must be released by the caller.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertynamecfstring?language=objc)
 pub const kAudioCodecPropertyNameCFString: AudioCodecPropertyID = 0x6c6e616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertymanufacturercfstring?language=objc)
+/// The manufacturer of the codec as a CFStringRef. The CFStringRef
+/// retrieved via this property must be released by the caller.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertymanufacturercfstring?language=objc)
 pub const kAudioCodecPropertyManufacturerCFString: AudioCodecPropertyID = 0x6c6d616b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyformatcfstring?language=objc)
+/// The name of the codec's format as a CFStringRef. The CFStringRef
+/// retrieved via this property must be released by the caller.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyformatcfstring?language=objc)
 pub const kAudioCodecPropertyFormatCFString: AudioCodecPropertyID = 0x6c666f72;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyrequirespacketdescription?language=objc)
+/// A UInt32 where a non-zero value indicates that the format the codec implements
+/// requires that an AudioStreamPacketDescription array must be supplied with any data
+/// in that format. Note that this implies that data must also be handled strictly in
+/// packets. For a decoder, this applies to input data. For an encoder, it applies to
+/// output data, which means that the encoder will be filling out provided packet descriptions
+/// on output.
+/// A decoder must be able to handle packet descriptions even if it does not require them.
+/// An encoder does not have to fill out packet descriptions if it does not require them.
+/// Redundant due to kAudioCodecPropertyHasVariablePacketByteSizes. Codecs with variable-sized
+/// packets must handle packet descriptions while codecs with constant-sized packets do not
+/// have to.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyrequirespacketdescription?language=objc)
 pub const kAudioCodecPropertyRequiresPacketDescription: AudioCodecPropertyID = 0x70616b64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailablebitrates?language=objc)
+/// An array of UInt32 that indicates the target bit rates
+/// supported by the encoder. This property is only relevant to
+/// encoders. Replaced with kAudioCodecPropertyAvailableBitRateRange
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailablebitrates?language=objc)
 pub const kAudioCodecPropertyAvailableBitRates: AudioCodecPropertyID = 0x62727423;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecextendfrequencies?language=objc)
+/// A UInt32 indicating whether an encoder should extend its cutoff frequency
+/// if such an option exists. 0 == extended frequencies off, 1 == extended frequencies on
+/// e.g. some encoders normally cut off the signal at 16 kHz but can encode up to 20 kHz if
+/// asked to.
+/// Redundant.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecextendfrequencies?language=objc)
 pub const kAudioCodecExtendFrequencies: AudioCodecPropertyID = 0x61636566;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecuserecommendedsamplerate?language=objc)
+/// For encoders that do sample rate conversion, a UInt32 indicating whether or
+/// not the encoder is using the recommended sample rate for the given input.
+/// A value of 0 indicates it isn't, 1 indicates it is.
+/// This property is read only and indicates whether or not a user has explicitly set an output
+/// sample rate.
+/// Redundant as 0.0 for a sample rate means let the codec decide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecuserecommendedsamplerate?language=objc)
 pub const kAudioCodecUseRecommendedSampleRate: AudioCodecPropertyID = 0x75727372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputprecedence?language=objc)
+/// For encoders that do sample rate conversion, a UInt32 indicating whether the
+/// bit rate, sample rate, or neither have precedence over the other. See enum below.
+/// Redundant because precedence is implicitly set by either providing a non-zero bit rate or
+/// sample rate and setting the other to zero (which allows the encoder to choose any applicable rate).
+/// If both values are set to non-zero, neither value has precedence.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputprecedence?language=objc)
 pub const kAudioCodecOutputPrecedence: AudioCodecPropertyID = 0x6f707072;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitrateformat?language=objc)
+/// Renamed to kAudioCodecPropertyBitRateControlMode
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitrateformat?language=objc)
 pub const kAudioCodecBitRateFormat: AudioCodecPropertyID = kAudioCodecPropertyBitRateControlMode;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdoessamplerateconversion?language=objc)
+/// Renamed to kAudioCodecPropertyDoesSampleRateConversion
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecdoessamplerateconversion?language=objc)
 pub const kAudioCodecDoesSampleRateConversion: AudioCodecPropertyID =
     kAudioCodecPropertyDoesSampleRateConversion;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecinputformatsforoutputformat?language=objc)
+/// Renamed to kAudioCodecPropertyInputFormatsForOutputFormat
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecinputformatsforoutputformat?language=objc)
 pub const kAudioCodecInputFormatsForOutputFormat: AudioCodecPropertyID =
     kAudioCodecPropertyInputFormatsForOutputFormat;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputformatsforinputformat?language=objc)
+/// Renamed to kAudioCodecPropertyOutputFormatsForInputFormat
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputformatsforinputformat?language=objc)
 pub const kAudioCodecOutputFormatsForInputFormat: AudioCodecPropertyID =
     kAudioCodecPropertyOutputFormatsForInputFormat;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyinputchannellayout?language=objc)
+/// Renamed to kAudioCodecPropertyCurrentInputChannelLayout
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyinputchannellayout?language=objc)
 pub const kAudioCodecPropertyInputChannelLayout: AudioCodecPropertyID =
     kAudioCodecPropertyCurrentInputChannelLayout;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyoutputchannellayout?language=objc)
+/// Renamed to kAudioCodecPropertyCurrentOutputChannelLayout
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyoutputchannellayout?language=objc)
 pub const kAudioCodecPropertyOutputChannelLayout: AudioCodecPropertyID =
     kAudioCodecPropertyCurrentOutputChannelLayout;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableinputchannellayouts?language=objc)
@@ -1002,22 +1480,39 @@ pub const kAudioCodecPropertyAvailableInputChannelLayouts: AudioCodecPropertyID 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyavailableoutputchannellayouts?language=objc)
 pub const kAudioCodecPropertyAvailableOutputChannelLayouts: AudioCodecPropertyID =
     kAudioCodecPropertyAvailableOutputChannelLayoutTags;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyzeroframespadded?language=objc)
+/// Renamed to kAudioCodecPropertyPaddedZeros
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecpropertyzeroframespadded?language=objc)
 pub const kAudioCodecPropertyZeroFramesPadded: AudioCodecPropertyID =
     kAudioCodecPropertyPaddedZeros;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitrateformat_cbr?language=objc)
+/// is mapped to kAudioCodecBitRateControlMode_Constant
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitrateformat_cbr?language=objc)
 pub const kAudioCodecBitRateFormat_CBR: u32 = kAudioCodecBitRateControlMode_Constant;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitrateformat_abr?language=objc)
+/// is mapped to kAudioCodecBitRateControlMode_LongTermAverage
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitrateformat_abr?language=objc)
 pub const kAudioCodecBitRateFormat_ABR: u32 = kAudioCodecBitRateControlMode_LongTermAverage;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitrateformat_vbr?language=objc)
+/// is mapped to kAudioCodecBitRateControlMode_VariableConstrained
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecbitrateformat_vbr?language=objc)
 pub const kAudioCodecBitRateFormat_VBR: u32 = kAudioCodecBitRateControlMode_VariableConstrained;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputprecedencenone?language=objc)
+/// Change in the bit rate or the sample rate are constrained by
+/// the other value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputprecedencenone?language=objc)
 pub const kAudioCodecOutputPrecedenceNone: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputprecedencebitrate?language=objc)
+/// The bit rate may be changed freely,
+/// adjusting the sample rate if necessary
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputprecedencebitrate?language=objc)
 pub const kAudioCodecOutputPrecedenceBitRate: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputprecedencesamplerate?language=objc)
+/// The sample rate may be changed freely,
+/// adjusting the bit rate if necessary
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputprecedencesamplerate?language=objc)
 pub const kAudioCodecOutputPrecedenceSampleRate: u32 = 2;
 
 /// renamed to AudioCodecMagicCookieInfo

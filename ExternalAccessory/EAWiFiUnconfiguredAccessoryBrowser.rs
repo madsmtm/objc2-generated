@@ -17,12 +17,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EAWiFiUnconfiguredAccessoryBrowserState(pub NSInteger);
 impl EAWiFiUnconfiguredAccessoryBrowserState {
+    /// Wi-Fi is unavailable due to the user placing the device in Airplane Mode or explicitly turning Wi-Fi off.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable")]
     pub const WiFiUnavailable: Self = Self(0);
+    /// The browser is not actively searching for unconfigured accessories.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateStopped")]
     pub const Stopped: Self = Self(1);
+    /// The browser is actively searching for unconfigured accessory.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateSearching")]
     pub const Searching: Self = Self(2);
+    /// The browser is actively configuring an accessory.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateConfiguring")]
     pub const Configuring: Self = Self(3);
 }
@@ -43,10 +47,13 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryBrowserState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EAWiFiUnconfiguredAccessoryConfigurationStatus(pub NSInteger);
 impl EAWiFiUnconfiguredAccessoryConfigurationStatus {
+    /// The configuration of the accessory succeeded.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess")]
     pub const Success: Self = Self(0);
+    /// The user cancelled the configuration process.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusUserCancelledConfiguration")]
     pub const UserCancelledConfiguration: Self = Self(1);
+    /// The configuration failed.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusFailed")]
     pub const Failed: Self = Self(2);
 }

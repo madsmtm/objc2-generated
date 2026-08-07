@@ -15,23 +15,19 @@ use crate::*;
 
 /// Constants indicating how photo quality should be prioritized against speed.
 ///
-///
-/// Indicates that speed of photo delivery is most important, even at the expense of quality.
-///
-/// Indicates that photo quality and speed of delivery are balanced in priority.
-///
-/// Indicates that photo quality is paramount, even at the expense of shot-to-shot time.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotoqualityprioritization?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCapturePhotoQualityPrioritization(pub NSInteger);
 impl AVCapturePhotoQualityPrioritization {
+    /// Indicates that speed of photo delivery is most important, even at the expense of quality.
     #[doc(alias = "AVCapturePhotoQualityPrioritizationSpeed")]
     pub const Speed: Self = Self(1);
+    /// Indicates that photo quality and speed of delivery are balanced in priority.
     #[doc(alias = "AVCapturePhotoQualityPrioritizationBalanced")]
     pub const Balanced: Self = Self(2);
+    /// Indicates that photo quality is paramount, even at the expense of shot-to-shot time.
     #[doc(alias = "AVCapturePhotoQualityPrioritizationQuality")]
     pub const Quality: Self = Self(3);
 }
@@ -46,31 +42,25 @@ unsafe impl RefEncode for AVCapturePhotoQualityPrioritization {
 
 /// Constants indicating whether the output is ready to receive capture requests.
 ///
-///
-/// Indicates that the session is not running and the output is not ready to receive requests.
-///
-/// Indicates that the output is ready to receive new requests.
-///
-/// Indicates that the output is not ready to receive requests and may be ready shortly.
-///
-/// Indicates that the output is not ready to receive requests for a longer duration because it is busy capturing.
-///
-/// Indicates that the output is not ready to receive requests for a longer duration because it is busy processing.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutputcapturereadiness?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCapturePhotoOutputCaptureReadiness(pub NSInteger);
 impl AVCapturePhotoOutputCaptureReadiness {
+    /// Indicates that the session is not running and the output is not ready to receive requests.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessSessionNotRunning")]
     pub const SessionNotRunning: Self = Self(0);
+    /// Indicates that the output is ready to receive new requests.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessReady")]
     pub const Ready: Self = Self(1);
+    /// Indicates that the output is not ready to receive requests and may be ready shortly.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessNotReadyMomentarily")]
     pub const NotReadyMomentarily: Self = Self(2);
+    /// Indicates that the output is not ready to receive requests for a longer duration because it is busy capturing.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessNotReadyWaitingForCapture")]
     pub const NotReadyWaitingForCapture: Self = Self(3);
+    /// Indicates that the output is not ready to receive requests for a longer duration because it is busy processing.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessNotReadyWaitingForProcessing")]
     pub const NotReadyWaitingForProcessing: Self = Self(4);
 }
@@ -2798,31 +2788,25 @@ impl AVCapturePhoto {
 
 /// Constants indicating the status of the lens stabilization module (aka OIS).
 ///
-///
-/// Indicates that lens stabilization is unsupported.
-///
-/// Indicates that lens stabilization was not in use for this capture.
-///
-/// Indicates that the lens stabilization module was active for the duration of the capture.
-///
-/// Indicates that device motion or capture duration exceeded the stabilization module's correction limits.
-///
-/// Indicates that the lens stabilization module was unavailable for use at the time of capture. The module may be available in subsequent captures.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturelensstabilizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureLensStabilizationStatus(pub NSInteger);
 impl AVCaptureLensStabilizationStatus {
+    /// Indicates that lens stabilization is unsupported.
     #[doc(alias = "AVCaptureLensStabilizationStatusUnsupported")]
     pub const Unsupported: Self = Self(0);
+    /// Indicates that lens stabilization was not in use for this capture.
     #[doc(alias = "AVCaptureLensStabilizationStatusOff")]
     pub const Off: Self = Self(1);
+    /// Indicates that the lens stabilization module was active for the duration of the capture.
     #[doc(alias = "AVCaptureLensStabilizationStatusActive")]
     pub const Active: Self = Self(2);
+    /// Indicates that device motion or capture duration exceeded the stabilization module's correction limits.
     #[doc(alias = "AVCaptureLensStabilizationStatusOutOfRange")]
     pub const OutOfRange: Self = Self(3);
+    /// Indicates that the lens stabilization module was unavailable for use at the time of capture. The module may be available in subsequent captures.
     #[doc(alias = "AVCaptureLensStabilizationStatusUnavailable")]
     pub const Unavailable: Self = Self(4);
 }

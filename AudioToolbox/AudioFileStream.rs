@@ -11,24 +11,21 @@ use objc2_core_audio_types::*;
 
 use crate::*;
 
-/// This flag is set in a call to AudioFileStream_PropertyListenerProc when the value of the property
-/// can be obtained at any later time. If this flag is not set, then you should either get the value of
-/// the property from within this callback or set the flag kAudioFileStreamPropertyFlag_CacheProperty in order to signal
-/// to the parser to begin caching the property data. Otherwise the value may not be available in the future.
-///
-///
-/// This flag can be set by a property listener in order to signal to the parser that the client is
-/// interested in the value of the property and that it should be cached until the full value of the property is available.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileStreamPropertyFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamPropertyFlags: u32 {
+/// This flag is set in a call to AudioFileStream_PropertyListenerProc when the value of the property
+/// can be obtained at any later time. If this flag is not set, then you should either get the value of
+/// the property from within this callback or set the flag kAudioFileStreamPropertyFlag_CacheProperty in order to signal
+/// to the parser to begin caching the property data. Otherwise the value may not be available in the future.
         #[doc(alias = "kAudioFileStreamPropertyFlag_PropertyIsCached")]
         const PropertyIsCached = 1;
+/// This flag can be set by a property listener in order to signal to the parser that the client is
+/// interested in the value of the property and that it should be cached until the full value of the property is available.
         #[doc(alias = "kAudioFileStreamPropertyFlag_CacheProperty")]
         const CacheProperty = 2;
         const _ = !0;
@@ -45,17 +42,16 @@ unsafe impl RefEncode for AudioFileStreamPropertyFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// This flag is passed in to AudioFileStreamParseBytes to signal a discontinuity. Any partial packet straddling a buffer
-/// boundary will be discarded. This is necessary to avoid being called with a corrupt packet. After a discontinuity occurs
-/// seeking may be approximate in some data formats.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparseflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparseflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileStreamParseFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamParseFlags: u32 {
+/// This flag is passed in to AudioFileStreamParseBytes to signal a discontinuity. Any partial packet straddling a buffer
+/// boundary will be discarded. This is necessary to avoid being called with a corrupt packet. After a discontinuity occurs
+/// seeking may be approximate in some data formats.
         #[doc(alias = "kAudioFileStreamParseFlag_Discontinuity")]
         const Discontinuity = 1;
         const _ = !0;
@@ -72,15 +68,14 @@ unsafe impl RefEncode for AudioFileStreamParseFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// This flag may be returned from AudioFileStreamSeek if the byte offset is only an estimate, not exact.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseekflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseekflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileStreamSeekFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamSeekFlags: u32 {
+/// This flag may be returned from AudioFileStreamSeek if the byte offset is only an estimate, not exact.
         #[doc(alias = "kAudioFileStreamSeekFlag_OffsetIsEstimated")]
         const OffsetIsEstimated = 1;
         const _ = !0;
@@ -139,79 +134,202 @@ pub type AudioFileStream_PacketsProc = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unsupportedfiletype?language=objc)
+/// The file type is not supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unsupportedfiletype?language=objc)
 pub const kAudioFileStreamError_UnsupportedFileType: OSStatus = 0x7479703f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unsupporteddataformat?language=objc)
+/// The data format is not supported by this file type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unsupporteddataformat?language=objc)
 pub const kAudioFileStreamError_UnsupportedDataFormat: OSStatus = 0x666d743f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unsupportedproperty?language=objc)
+/// The property is not supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unsupportedproperty?language=objc)
 pub const kAudioFileStreamError_UnsupportedProperty: OSStatus = 0x7074793f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_badpropertysize?language=objc)
+/// The size of the property data was not correct.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_badpropertysize?language=objc)
 pub const kAudioFileStreamError_BadPropertySize: OSStatus = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_notoptimized?language=objc)
+/// It is not possible to produce output packets because the file's packet table or other defining
+/// info is either not present or is after the audio data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_notoptimized?language=objc)
 pub const kAudioFileStreamError_NotOptimized: OSStatus = 0x6f70746d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_invalidpacketoffset?language=objc)
+/// A packet offset was less than zero, or past the end of the file,
+/// or a corrupt packet size was read when building the packet table.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_invalidpacketoffset?language=objc)
 pub const kAudioFileStreamError_InvalidPacketOffset: OSStatus = 0x70636b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_invalidfile?language=objc)
+/// The file is malformed, or otherwise not a valid instance of an audio file of its type, or
+/// is not recognized as an audio file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_invalidfile?language=objc)
 pub const kAudioFileStreamError_InvalidFile: OSStatus = 0x6474613f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_valueunknown?language=objc)
+/// The property value is not present in this file before the audio data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_valueunknown?language=objc)
 pub const kAudioFileStreamError_ValueUnknown: OSStatus = 0x756e6b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_dataunavailable?language=objc)
+/// The amount of data provided to the parser was insufficient to produce any result.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_dataunavailable?language=objc)
 pub const kAudioFileStreamError_DataUnavailable: OSStatus = 0x6d6f7265;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_illegaloperation?language=objc)
+/// An illegal operation was attempted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_illegaloperation?language=objc)
 pub const kAudioFileStreamError_IllegalOperation: OSStatus = 0x6e6f7065;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unspecifiederror?language=objc)
+/// An unspecified error has occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unspecifiederror?language=objc)
 pub const kAudioFileStreamError_UnspecifiedError: OSStatus = 0x7768743f;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_discontinuitycantrecover?language=objc)
 pub const kAudioFileStreamError_DiscontinuityCantRecover: OSStatus = 0x64736321;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_readytoproducepackets?language=objc)
+/// An UInt32 which is zero until the parser has parsed up to the beginning of the audio data.
+/// Once it has reached the audio data, the value of this property becomes one.
+/// When this value has become one, all properties that can be known about the stream are known.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_readytoproducepackets?language=objc)
 pub const kAudioFileStreamProperty_ReadyToProducePackets: AudioFileStreamPropertyID = 0x72656479;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_fileformat?language=objc)
+/// An UInt32 four char code that identifies the format of the file
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_fileformat?language=objc)
 pub const kAudioFileStreamProperty_FileFormat: AudioFileStreamPropertyID = 0x66666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_dataformat?language=objc)
+/// An AudioStreamBasicDescription describing the format of the audio data
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_dataformat?language=objc)
 pub const kAudioFileStreamProperty_DataFormat: AudioFileStreamPropertyID = 0x64666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_formatlist?language=objc)
+/// In order to support formats such as AAC SBR where an encoded data stream can be decoded to
+/// multiple destination formats, this property returns an array of AudioFormatListItems
+/// (see AudioFormat.h) of those formats.
+/// The default behavior is to return the an AudioFormatListItem that has the same
+/// AudioStreamBasicDescription that kAudioFileStreamProperty_DataFormat returns.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_formatlist?language=objc)
 pub const kAudioFileStreamProperty_FormatList: AudioFileStreamPropertyID = 0x666c7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_magiccookiedata?language=objc)
+/// A void * pointing to memory set up by the caller.
+/// Some file types require that a magic cookie be provided before packets can be written
+/// to the file, so this property should be set before calling
+/// AudioFileWriteBytes()/AudioFileWritePackets() if a magic cookie exists.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_magiccookiedata?language=objc)
 pub const kAudioFileStreamProperty_MagicCookieData: AudioFileStreamPropertyID = 0x6d676963;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_audiodatabytecount?language=objc)
+/// a UInt64 that indicates the number of bytes of audio data contained in the file
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_audiodatabytecount?language=objc)
 pub const kAudioFileStreamProperty_AudioDataByteCount: AudioFileStreamPropertyID = 0x62636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_audiodatapacketcount?language=objc)
+/// a UInt64 that indicates the number of packets of audio data contained in the file
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_audiodatapacketcount?language=objc)
 pub const kAudioFileStreamProperty_AudioDataPacketCount: AudioFileStreamPropertyID = 0x70636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_maximumpacketsize?language=objc)
+/// a UInt32 that indicates the maximum size of a packet for the data contained in the file
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_maximumpacketsize?language=objc)
 pub const kAudioFileStreamProperty_MaximumPacketSize: AudioFileStreamPropertyID = 0x70737a65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_dataoffset?language=objc)
+/// a SInt64 that indicates the byte offset in the file of the audio data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_dataoffset?language=objc)
 pub const kAudioFileStreamProperty_DataOffset: AudioFileStreamPropertyID = 0x646f6666;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_channellayout?language=objc)
+/// An AudioChannelLayout struct.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_channellayout?language=objc)
 pub const kAudioFileStreamProperty_ChannelLayout: AudioFileStreamPropertyID = 0x636d6170;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettoframe?language=objc)
+/// pass a AudioFramePacketTranslation with mPacket filled out and get mFrame back.
+/// mFrameOffsetInPacket is ignored.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettoframe?language=objc)
 pub const kAudioFileStreamProperty_PacketToFrame: AudioFileStreamPropertyID = 0x706b6672;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_frametopacket?language=objc)
+/// pass a AudioFramePacketTranslation with mFrame filled out and get mPacket and
+/// mFrameOffsetInPacket back.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_frametopacket?language=objc)
 pub const kAudioFileStreamProperty_FrameToPacket: AudioFileStreamPropertyID = 0x6672706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_restrictsrandomaccess?language=objc)
+/// A UInt32 indicating whether an Audio File contains packets that cannot be used as random
+/// access points.
+/// A value of 0 indicates that any packet can be used as a random access point, i.e. that a
+/// decoder can start decoding with any packet.
+/// A value of 1 indicates that some packets cannot be used as random access points, i.e.
+/// that either kAudioFileStreamProperty_PacketToRollDistance or
+/// kAudioFileStreamProperty_PacketToDependencyInfo must be employed in order to identify an
+/// appropriate initial packet for decoding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_restrictsrandomaccess?language=objc)
 pub const kAudioFileStreamProperty_RestrictsRandomAccess: AudioFileStreamPropertyID = 0x72726170;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettorolldistance?language=objc)
+/// Pass an AudioPacketRollDistanceTranslation with mPacket filled out and get mRollDistance
+/// back.
+/// See AudioFile.h for the declaration of AudioPacketRollDistanceTranslation.
+/// The roll distance indicates the count of packets that must be decoded prior to the
+/// packet with the specified number in order to achieve full refresh of the decoder at that
+/// packet.
+/// For file formats that do not carry comprehensive information regarding independently
+/// decodable packets, accurate roll distances may be available only for the range of
+/// packets either currently or most recently provided to your packets proc.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettorolldistance?language=objc)
 pub const kAudioFileStreamProperty_PacketToRollDistance: AudioFileStreamPropertyID = 0x706b726c;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_previousindependentpacket?language=objc)
 pub const kAudioFileStreamProperty_PreviousIndependentPacket: AudioFileStreamPropertyID =
     0x70696e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_nextindependentpacket?language=objc)
+/// Pass an AudioIndependentPacketTranslation with mPacket filled out and get
+/// mIndependentlyDecodablePacket back. A value of -1 means that no independent packet is
+/// present in the stream in the direction of interest. Otherwise, for
+/// kAudioFileStreamProperty_PreviousIndependentPacket, mIndependentlyDecodablePacket will be
+/// less than mPacket, and for kAudioFileStreamProperty_NextIndependentPacket,
+/// mIndependentlyDecodablePacket will be greater than mPacket.
+/// For file formats that do not carry comprehensive information regarding independently
+/// decodable packets, independent packets may be identifiable only within the range of
+/// packets either currently or most recently provided to your packets proc.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_nextindependentpacket?language=objc)
 pub const kAudioFileStreamProperty_NextIndependentPacket: AudioFileStreamPropertyID = 0x6e696e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettodependencyinfo?language=objc)
+/// Pass an AudioPacketDependencyInfoTranslation with mPacket filled out and get
+/// mIsIndependentlyDecodable and mPrerollPacketCount back.
+/// A value of 0 for mIsIndependentlyDecodable indicates that the specified packet is not
+/// independently decodable.
+/// A value of 1 for mIsIndependentlyDecodable indicates that the specified packet is
+/// independently decodable.
+/// For independently decodable packets, mPrerollPacketCount indicates the count of packets
+/// that must be decoded after the packet with the specified number in order to refresh the
+/// decoder.
+/// For file formats that do not carry comprehensive information regarding packet
+/// dependencies, accurate dependency info may be available only for the range of
+/// packets either currently or most recently provided to your packets proc.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettodependencyinfo?language=objc)
 pub const kAudioFileStreamProperty_PacketToDependencyInfo: AudioFileStreamPropertyID = 0x706b6470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettobyte?language=objc)
+/// pass an AudioBytePacketTranslation struct with mPacket filled out and get mByte back.
+/// mByteOffsetInPacket is ignored. If the mByte value is an estimate then
+/// kBytePacketTranslationFlag_IsEstimate will be set in the mFlags field.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettobyte?language=objc)
 pub const kAudioFileStreamProperty_PacketToByte: AudioFileStreamPropertyID = 0x706b6279;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_bytetopacket?language=objc)
+/// pass an AudioBytePacketTranslation struct with mByte filled out and get mPacket and
+/// mByteOffsetInPacket back. If the mPacket value is an estimate then
+/// kBytePacketTranslationFlag_IsEstimate will be set in the mFlags field.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_bytetopacket?language=objc)
 pub const kAudioFileStreamProperty_ByteToPacket: AudioFileStreamPropertyID = 0x6279706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettableinfo?language=objc)
+/// Gets the AudioFilePacketTableInfo struct for the file types that support it.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettableinfo?language=objc)
 pub const kAudioFileStreamProperty_PacketTableInfo: AudioFileStreamPropertyID = 0x706e666f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packetsizeupperbound?language=objc)
+/// a UInt32 for the theoretical maximum packet size in the file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packetsizeupperbound?language=objc)
 pub const kAudioFileStreamProperty_PacketSizeUpperBound: AudioFileStreamPropertyID = 0x706b7562;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_averagebytesperpacket?language=objc)
+/// a Float64 of giving the average bytes per packet seen.
+/// For CBR and files with packet tables, this number will be exact. Otherwise, it is a
+/// running average of packets parsed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_averagebytesperpacket?language=objc)
 pub const kAudioFileStreamProperty_AverageBytesPerPacket: AudioFileStreamPropertyID = 0x61627070;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_bitrate?language=objc)
+/// a UInt32 of the bit rate in bits per second.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_bitrate?language=objc)
 pub const kAudioFileStreamProperty_BitRate: AudioFileStreamPropertyID = 0x62726174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_infodictionary?language=objc)
+/// a CFDictionary filled with information about the data contained in the stream.
+/// See AudioFile.h for InfoDictionary key strings. Caller is responsible for releasing the CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_infodictionary?language=objc)
 pub const kAudioFileStreamProperty_InfoDictionary: AudioFileStreamPropertyID = 0x696e666f;
 
 /// Create a new audio file stream parser.

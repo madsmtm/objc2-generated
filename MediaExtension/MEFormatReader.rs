@@ -17,22 +17,19 @@ use crate::*;
 
 /// Describes whether a file supports or contains fragments. For QuickTime movie and ISO files, it indicates the presence of an 'mvex' box, which is necessary in order to signal the possible presence of later 'moof' boxes.
 ///
-/// The file is not capable of being extended by fragments.
-///
-/// The file is capable of being extended by fragments *and* contains at least one fragment.
-///
-/// The file is capable of being extended by fragments, but does not contain any fragments.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfofragmentsstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEFileInfoFragmentsStatus(pub NSInteger);
 impl MEFileInfoFragmentsStatus {
+    /// The file is not capable of being extended by fragments.
     #[doc(alias = "MEFileInfoCouldNotContainFragments")]
     pub const CouldNotContainFragments: Self = Self(0);
+    /// The file is capable of being extended by fragments *and* contains at least one fragment.
     #[doc(alias = "MEFileInfoContainsFragments")]
     pub const ContainsFragments: Self = Self(1);
+    /// The file is capable of being extended by fragments, but does not contain any fragments.
     #[doc(alias = "MEFileInfoCouldContainButDoesNotContainFragments")]
     pub const CouldContainButDoesNotContainFragments: Self = Self(2);
 }
@@ -49,12 +46,6 @@ unsafe impl RefEncode for MEFileInfoFragmentsStatus {
 ///
 /// A combination of these values may be returned in the statusOut field from parseAdditionalFragmentsWithCompletionHandler.
 ///
-/// Set if the size of the file increased.
-///
-/// Set if one or more fragments were added.
-///
-/// Set if no more fragments can be added. Further calls to parseAdditionalFragmentsWithCompletionHandler will return an error.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderparseadditionalfragmentsstatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -62,10 +53,13 @@ unsafe impl RefEncode for MEFileInfoFragmentsStatus {
 pub struct MEFormatReaderParseAdditionalFragmentsStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl MEFormatReaderParseAdditionalFragmentsStatus: NSUInteger {
+/// Set if the size of the file increased.
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusSizeIncreased")]
         const SizeIncreased = 1<<0;
+/// Set if one or more fragments were added.
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusFragmentAdded")]
         const FragmentAdded = 1<<1;
+/// Set if no more fragments can be added. Further calls to parseAdditionalFragmentsWithCompletionHandler will return an error.
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusFragmentsComplete")]
         const FragmentsComplete = 1<<2;
         const _ = !0;

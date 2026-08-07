@@ -11,27 +11,22 @@ use crate::*;
 
 /// These constants are returned by the AVCaptionConversionValidator status property to indicate the progress of a validation operation.
 ///
-///
-/// Indicates that the validation operation has not yet been initiated.
-///
-/// Indicates that the validation operation is currently in progress.
-///
-/// Indicates that the validation operation has been completed.
-///
-/// Indicates that the validation operation was stopped prior to completion.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidatorstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionConversionValidatorStatus(pub NSInteger);
 impl AVCaptionConversionValidatorStatus {
+    /// Indicates that the validation operation has not yet been initiated.
     #[doc(alias = "AVCaptionConversionValidatorStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Indicates that the validation operation is currently in progress.
     #[doc(alias = "AVCaptionConversionValidatorStatusValidating")]
     pub const Validating: Self = Self(1);
+    /// Indicates that the validation operation has been completed.
     #[doc(alias = "AVCaptionConversionValidatorStatusCompleted")]
     pub const Completed: Self = Self(2);
+    /// Indicates that the validation operation was stopped prior to completion.
     #[doc(alias = "AVCaptionConversionValidatorStatusStopped")]
     pub const Stopped: Self = Self(3);
 }

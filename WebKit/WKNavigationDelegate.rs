@@ -16,10 +16,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationActionPolicy(pub NSInteger);
 impl WKNavigationActionPolicy {
+    /// Cancel the navigation.
     #[doc(alias = "WKNavigationActionPolicyCancel")]
     pub const Cancel: Self = Self(0);
+    /// Allow the navigation to continue.
     #[doc(alias = "WKNavigationActionPolicyAllow")]
     pub const Allow: Self = Self(1);
+    /// Turn the navigation into a download.
     #[doc(alias = "WKNavigationActionPolicyDownload")]
     pub const Download: Self = Self(2);
 }
@@ -40,10 +43,13 @@ unsafe impl RefEncode for WKNavigationActionPolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationResponsePolicy(pub NSInteger);
 impl WKNavigationResponsePolicy {
+    /// Cancel the navigation.
     #[doc(alias = "WKNavigationResponsePolicyCancel")]
     pub const Cancel: Self = Self(0);
+    /// Allow the navigation to continue.
     #[doc(alias = "WKNavigationResponsePolicyAllow")]
     pub const Allow: Self = Self(1);
+    /// Turn the navigation into a download.
     #[doc(alias = "WKNavigationResponsePolicyDownload")]
     pub const Download: Self = Self(2);
 }

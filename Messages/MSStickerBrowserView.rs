@@ -21,10 +21,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSStickerSize(pub NSInteger);
 impl MSStickerSize {
+    /// Stickers will be drawn in a small frame.
     #[doc(alias = "MSStickerSizeSmall")]
     pub const Small: Self = Self(0);
+    /// Stickers will be drawn in a medium frame.
     #[doc(alias = "MSStickerSizeRegular")]
     pub const Regular: Self = Self(1);
+    /// Stickers will be drawn in a large frame.
     #[doc(alias = "MSStickerSizeLarge")]
     pub const Large: Self = Self(2);
 }

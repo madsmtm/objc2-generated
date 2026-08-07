@@ -7,12 +7,6 @@ use crate::*;
 /// Represents the current state of a CBManager.
 ///
 ///
-///
-///
-///
-///
-///
-///
 /// See also: authorization
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate?language=objc)
@@ -21,16 +15,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBManagerState(pub NSInteger);
 impl CBManagerState {
+    /// State unknown, update imminent.
     #[doc(alias = "CBManagerStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The connection with the system service was momentarily lost, update imminent.
     #[doc(alias = "CBManagerStateResetting")]
     pub const Resetting: Self = Self(1);
+    /// The platform doesn't support the Bluetooth Low Energy Central/Client role.
     #[doc(alias = "CBManagerStateUnsupported")]
     pub const Unsupported: Self = Self(2);
+    /// The application is not authorized to use the Bluetooth Low Energy role.
     #[doc(alias = "CBManagerStateUnauthorized")]
     pub const Unauthorized: Self = Self(3);
+    /// Bluetooth is currently powered off.
     #[doc(alias = "CBManagerStatePoweredOff")]
     pub const PoweredOff: Self = Self(4);
+    /// Bluetooth is currently powered on and available to use.
     #[doc(alias = "CBManagerStatePoweredOn")]
     pub const PoweredOn: Self = Self(5);
 }

@@ -17,22 +17,19 @@ use crate::*;
 ///
 /// Some geometric objects are positioned or sized with different kinds of dimensions differeing in unit. In some cases, an object might allow multiple kinds of dimensions varrying by units. AVCaptionUnitsType is an enumeration of kinds of units that are used across caption formats.
 ///
-/// The units has not been specified. The dimension can be seen as invalid.
-///
-/// The integer value is a number of cells.
-///
-/// The floating-point value number value is [0 .. 100] correspondng to 0% to 100%, typically relative to the enclosing rectangle.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionUnitsType(pub NSInteger);
 impl AVCaptionUnitsType {
+    /// The units has not been specified. The dimension can be seen as invalid.
     #[doc(alias = "AVCaptionUnitsTypeUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// The integer value is a number of cells.
     #[doc(alias = "AVCaptionUnitsTypeCells")]
     pub const Cells: Self = Self(1);
+    /// The floating-point value number value is [0 .. 100] correspondng to 0% to 100%, typically relative to the enclosing rectangle.
     #[doc(alias = "AVCaptionUnitsTypePercent")]
     pub const Percent: Self = Self(2);
 }
@@ -190,25 +187,19 @@ impl AVCaptionSize {
 ///
 /// The value describes how the caption lines should positioned in a region in terms of the block progression direction.
 ///
-///
-/// Align lines in earlier position in the block progression direction, or align to the top for English captions, for example.
-///
-///
-/// Align lines in center position in the block progression direction. iTT doesn't support this.
-///
-///
-/// Align lines in later position in the block progression direction, or align to the left for Japanese vertical captions, for example.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregiondisplayalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionDisplayAlignment(pub NSInteger);
 impl AVCaptionRegionDisplayAlignment {
+    /// Align lines in earlier position in the block progression direction, or align to the top for English captions, for example.
     #[doc(alias = "AVCaptionRegionDisplayAlignmentBefore")]
     pub const Before: Self = Self(0);
+    /// Align lines in center position in the block progression direction. iTT doesn't support this.
     #[doc(alias = "AVCaptionRegionDisplayAlignmentCenter")]
     pub const Center: Self = Self(1);
+    /// Align lines in later position in the block progression direction, or align to the left for Japanese vertical captions, for example.
     #[doc(alias = "AVCaptionRegionDisplayAlignmentAfter")]
     pub const After: Self = Self(2);
 }
@@ -773,10 +764,13 @@ impl AVMutableCaption {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionFontWeight(pub NSInteger);
 impl AVCaptionFontWeight {
+    /// Font weight is unknown.
     #[doc(alias = "AVCaptionFontWeightUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Font weight is normal (i.e., not bold).
     #[doc(alias = "AVCaptionFontWeightNormal")]
     pub const Normal: Self = Self(1);
+    /// Font weight is bold.
     #[doc(alias = "AVCaptionFontWeightBold")]
     pub const Bold: Self = Self(2);
 }
@@ -797,10 +791,13 @@ unsafe impl RefEncode for AVCaptionFontWeight {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionFontStyle(pub NSInteger);
 impl AVCaptionFontStyle {
+    /// Font style is not specified.
     #[doc(alias = "AVCaptionFontStyleUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Font is normal (i.e., not italic)
     #[doc(alias = "AVCaptionFontStyleNormal")]
     pub const Normal: Self = Self(1);
+    /// Font is italic.
     #[doc(alias = "AVCaptionFontStyleItalic")]
     pub const Italic: Self = Self(2);
 }
@@ -822,12 +819,16 @@ unsafe impl RefEncode for AVCaptionFontStyle {
 pub struct AVCaptionDecoration(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCaptionDecoration: NSUInteger {
+/// Text is not decorated..
         #[doc(alias = "AVCaptionDecorationNone")]
         const None = 0;
+/// Text is underlined.
         #[doc(alias = "AVCaptionDecorationUnderline")]
         const Underline = 1<<0;
+/// Text has a strike through it.
         #[doc(alias = "AVCaptionDecorationLineThrough")]
         const LineThrough = 1<<1;
+/// Text has a line above the it.
         #[doc(alias = "AVCaptionDecorationOverline")]
         const Overline = 1<<2;
         const _ = !0;
@@ -849,40 +850,28 @@ unsafe impl RefEncode for AVCaptionDecoration {
 ///
 /// For example, it can be used to render "2017" horizontally in a vertical text.
 ///
-///
-/// Don't combine text upright. It is the same as not specifying the style.
-///
-///
-/// Combine all the characters.
-///
-///
-/// Make one digit upright.
-///
-///
-/// Combine two consecutive digits
-///
-///
-/// Combine three consecutive digits
-///
-///
-/// Combine four consecutive digits
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextcombine?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionTextCombine(pub NSInteger);
 impl AVCaptionTextCombine {
+    /// Combine all the characters.
     #[doc(alias = "AVCaptionTextCombineAll")]
     pub const All: Self = Self(-1);
+    /// Don't combine text upright. It is the same as not specifying the style.
     #[doc(alias = "AVCaptionTextCombineNone")]
     pub const None: Self = Self(0);
+    /// Make one digit upright.
     #[doc(alias = "AVCaptionTextCombineOneDigit")]
     pub const OneDigit: Self = Self(1);
+    /// Combine two consecutive digits
     #[doc(alias = "AVCaptionTextCombineTwoDigits")]
     pub const TwoDigits: Self = Self(2);
+    /// Combine three consecutive digits
     #[doc(alias = "AVCaptionTextCombineThreeDigits")]
     pub const ThreeDigits: Self = Self(3);
+    /// Combine four consecutive digits
     #[doc(alias = "AVCaptionTextCombineFourDigits")]
     pub const FourDigits: Self = Self(4);
 }
@@ -897,30 +886,25 @@ unsafe impl RefEncode for AVCaptionTextCombine {
 
 /// Alignment of a caption within the containing region.
 ///
-/// Aligned to the start of inline progression direction; e.g. left in left-to-right writing mode and right in right-to-left writing mode.
-///
-/// Aligned to the end of inline progression direction; e.g. right in left-to-right writing mode and right in right-to-left writing mode.
-///
-/// Aligned at center in inline progression direction.
-///
-/// Aligned to left in horizontal writing mode or top in vertical writing mode.
-///
-/// Aligned to right in horizontal writing mode or bottom in vertical writing mode.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionTextAlignment(pub NSInteger);
 impl AVCaptionTextAlignment {
+    /// Aligned to the start of inline progression direction; e.g. left in left-to-right writing mode and right in right-to-left writing mode.
     #[doc(alias = "AVCaptionTextAlignmentStart")]
     pub const Start: Self = Self(0);
+    /// Aligned to the end of inline progression direction; e.g. right in left-to-right writing mode and right in right-to-left writing mode.
     #[doc(alias = "AVCaptionTextAlignmentEnd")]
     pub const End: Self = Self(1);
+    /// Aligned at center in inline progression direction.
     #[doc(alias = "AVCaptionTextAlignmentCenter")]
     pub const Center: Self = Self(2);
+    /// Aligned to left in horizontal writing mode or top in vertical writing mode.
     #[doc(alias = "AVCaptionTextAlignmentLeft")]
     pub const Left: Self = Self(3);
+    /// Aligned to right in horizontal writing mode or bottom in vertical writing mode.
     #[doc(alias = "AVCaptionTextAlignmentRight")]
     pub const Right: Self = Self(4);
 }
@@ -1242,18 +1226,16 @@ impl AVMutableCaption {
 
 /// Choices for Ruby position
 ///
-/// Display Ruby text above horizontal text or right of vertical text in a right to left block progression.
-///
-/// Display Ruby text below horizontal text or left of vertical text in a right to left block progression.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRubyPosition(pub NSInteger);
 impl AVCaptionRubyPosition {
+    /// Display Ruby text above horizontal text or right of vertical text in a right to left block progression.
     #[doc(alias = "AVCaptionRubyPositionBefore")]
     pub const Before: Self = Self(0);
+    /// Display Ruby text below horizontal text or left of vertical text in a right to left block progression.
     #[doc(alias = "AVCaptionRubyPositionAfter")]
     pub const After: Self = Self(1);
 }
@@ -1283,27 +1265,22 @@ unsafe impl RefEncode for AVCaptionRubyPosition {
 /// <
 /// - Spaces around each Ruby text character is equal
 ///
-///
-/// Align Ruby base and text at left edge of horizontal text in a left to right inline progression, or at top of the vertical text in a top to bottom inline progression.
-///
-/// Align Ruby text at the center of Ruby base.
-///
-/// Align Ruby text so that the spaces between the Ruby text characters are equal. This is the default.
-///
-/// Align Ruby text so that the spaces around each Ruby text character are equal.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRubyAlignment(pub NSInteger);
 impl AVCaptionRubyAlignment {
+    /// Align Ruby base and text at left edge of horizontal text in a left to right inline progression, or at top of the vertical text in a top to bottom inline progression.
     #[doc(alias = "AVCaptionRubyAlignmentStart")]
     pub const Start: Self = Self(0);
+    /// Align Ruby text at the center of Ruby base.
     #[doc(alias = "AVCaptionRubyAlignmentCenter")]
     pub const Center: Self = Self(1);
+    /// Align Ruby text so that the spaces between the Ruby text characters are equal. This is the default.
     #[doc(alias = "AVCaptionRubyAlignmentDistributeSpaceBetween")]
     pub const DistributeSpaceBetween: Self = Self(2);
+    /// Align Ruby text so that the spaces around each Ruby text character are equal.
     #[doc(alias = "AVCaptionRubyAlignmentDistributeSpaceAround")]
     pub const DistributeSpaceAround: Self = Self(3);
 }

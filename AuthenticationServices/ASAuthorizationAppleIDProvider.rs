@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationAppleIDProviderCredentialState(pub NSInteger);
 impl ASAuthorizationAppleIDProviderCredentialState {
+    /// The Opaque user ID was revoked by the user.
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialRevoked")]
     pub const Revoked: Self = Self(0);
+    /// The Opaque user ID is in good state.
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialAuthorized")]
     pub const Authorized: Self = Self(1);
+    /// The Opaque user ID was not found.
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialNotFound")]
     pub const NotFound: Self = Self(2);
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialTransferred")]

@@ -9,22 +9,20 @@ use crate::*;
 
 /// Describes the mode of operation for an MTLHeap.
 ///
-/// In this mode, resources are placed in the heap automatically.
-/// Automatically placed resources have optimal GPU-specific layout, and may perform better than MTLHeapTypePlacement.
-/// This heap type is recommended when the heap primarily contains temporary write-often resources.
-///
-/// In this mode, the app places resources in the heap.
-/// Manually placed resources allow the app to control memory usage and heap fragmentation directly.
-/// This heap type is recommended when the heap primarily contains persistent write-rarely resources.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLHeapType(pub NSInteger);
 impl MTLHeapType {
+    /// In this mode, resources are placed in the heap automatically.
+    /// Automatically placed resources have optimal GPU-specific layout, and may perform better than MTLHeapTypePlacement.
+    /// This heap type is recommended when the heap primarily contains temporary write-often resources.
     #[doc(alias = "MTLHeapTypeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// In this mode, the app places resources in the heap.
+    /// Manually placed resources allow the app to control memory usage and heap fragmentation directly.
+    /// This heap type is recommended when the heap primarily contains persistent write-rarely resources.
     #[doc(alias = "MTLHeapTypePlacement")]
     pub const Placement: Self = Self(1);
     #[doc(alias = "MTLHeapTypeSparse")]

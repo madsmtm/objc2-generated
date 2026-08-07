@@ -202,10 +202,6 @@ extern "C" {
 
 /// These values are used to convey non-error status related to a frame decode operation.
 ///
-/// Set by the decoder to indicate that no non-error status information is available.
-///
-/// Set by the decoder to report that output of this frame was dropped for non-error reasons, for example, if doNotOutputFrame was specified.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/medecodeframestatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -213,8 +209,10 @@ extern "C" {
 pub struct MEDecodeFrameStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl MEDecodeFrameStatus: NSUInteger {
+/// Set by the decoder to indicate that no non-error status information is available.
         #[doc(alias = "MEDecodeFrameNoStatus")]
         const NoStatus = 0;
+/// Set by the decoder to report that output of this frame was dropped for non-error reasons, for example, if doNotOutputFrame was specified.
         #[doc(alias = "MEDecodeFrameFrameDropped")]
         const FrameDropped = 1<<0;
         const _ = !0;

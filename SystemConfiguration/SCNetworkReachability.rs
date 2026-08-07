@@ -86,12 +86,21 @@ unsafe impl RefEncode for SCNetworkReachabilityContext {
 /// required, and whether some user intervention may be required
 /// when establishing a connection.
 ///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct SCNetworkReachabilityFlags(pub u32);
+bitflags::bitflags! {
+    impl SCNetworkReachabilityFlags: u32 {
 /// This flag indicates that the specified nodename or address can
 /// be reached via a transient connection, such as PPP.
-///
+        #[doc(alias = "kSCNetworkReachabilityFlagsTransientConnection")]
+        const TransientConnection = 1<<0;
 /// This flag indicates that the specified nodename or address can
 /// be reached using the current network configuration.
-///
+        #[doc(alias = "kSCNetworkReachabilityFlagsReachable")]
+        const Reachable = 1<<1;
 /// This flag indicates that the specified nodename or address can
 /// be reached using the current network configuration, but a
 /// connection must first be established.
@@ -99,14 +108,16 @@ unsafe impl RefEncode for SCNetworkReachabilityContext {
 /// As an example, this status would be returned for a dialup
 /// connection that was not currently active, but could handle
 /// network traffic for the target system.
-///
+        #[doc(alias = "kSCNetworkReachabilityFlagsConnectionRequired")]
+        const ConnectionRequired = 1<<2;
 /// This flag indicates that the specified nodename or address can
 /// be reached using the current network configuration, but a
 /// connection must first be established.  Any traffic directed
 /// to the specified name or address will initiate the connection.
 ///
 /// Note: this flag was previously named kSCNetworkReachabilityFlagsConnectionAutomatic
-///
+        #[doc(alias = "kSCNetworkReachabilityFlagsConnectionOnTraffic")]
+        const ConnectionOnTraffic = 1<<3;
 /// This flag indicates that the specified nodename or address can
 /// be reached using the current network configuration, but a
 /// connection must first be established.  In addition, some
@@ -122,48 +133,28 @@ unsafe impl RefEncode for SCNetworkReachabilityContext {
 /// automatic connection attempt.  In this case the PPP controller
 /// will stop attempting to establish a connection until the user
 /// has intervened.
-///
+        #[doc(alias = "kSCNetworkReachabilityFlagsInterventionRequired")]
+        const InterventionRequired = 1<<4;
 /// This flag indicates that the specified nodename or address can
 /// be reached using the current network configuration, but a
 /// connection must first be established.
 /// The connection will be established "On Demand" by the
 /// CFSocketStream APIs.
 /// Other APIs will not establish the connection.
-///
+        #[doc(alias = "kSCNetworkReachabilityFlagsConnectionOnDemand")]
+        const ConnectionOnDemand = 1<<5;
 /// This flag indicates that the specified nodename or address
 /// is one associated with a network interface on the current
 /// system.
-///
+        #[doc(alias = "kSCNetworkReachabilityFlagsIsLocalAddress")]
+        const IsLocalAddress = 1<<16;
 /// This flag indicates that network traffic to the specified
 /// nodename or address will not go through a gateway, but is
 /// routed directly to one of the interfaces in the system.
-///
-/// This flag indicates that the specified nodename or address can
-/// be reached via an EDGE, GPRS, or other "cell" connection.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags?language=objc)
-// NS_OPTIONS
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct SCNetworkReachabilityFlags(pub u32);
-bitflags::bitflags! {
-    impl SCNetworkReachabilityFlags: u32 {
-        #[doc(alias = "kSCNetworkReachabilityFlagsTransientConnection")]
-        const TransientConnection = 1<<0;
-        #[doc(alias = "kSCNetworkReachabilityFlagsReachable")]
-        const Reachable = 1<<1;
-        #[doc(alias = "kSCNetworkReachabilityFlagsConnectionRequired")]
-        const ConnectionRequired = 1<<2;
-        #[doc(alias = "kSCNetworkReachabilityFlagsConnectionOnTraffic")]
-        const ConnectionOnTraffic = 1<<3;
-        #[doc(alias = "kSCNetworkReachabilityFlagsInterventionRequired")]
-        const InterventionRequired = 1<<4;
-        #[doc(alias = "kSCNetworkReachabilityFlagsConnectionOnDemand")]
-        const ConnectionOnDemand = 1<<5;
-        #[doc(alias = "kSCNetworkReachabilityFlagsIsLocalAddress")]
-        const IsLocalAddress = 1<<16;
         #[doc(alias = "kSCNetworkReachabilityFlagsIsDirect")]
         const IsDirect = 1<<17;
+/// This flag indicates that the specified nodename or address can
+/// be reached via an EDGE, GPRS, or other "cell" connection.
         #[doc(alias = "kSCNetworkReachabilityFlagsIsWWAN")]
         const IsWWAN = 1<<18;
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionAutomatic")]

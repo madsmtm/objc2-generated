@@ -247,13 +247,6 @@ impl CTFont {
 
 /// Options for descriptor match and font creation.
 ///
-/// Prevents automatic font activation from taking place.
-/// This option is available only on macOS and will be deprecated on other platforms in the future.
-///
-/// Prevents automatic font download from taking place.
-///
-/// Font matching will prefer to match Apple system fonts.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -263,10 +256,14 @@ bitflags::bitflags! {
     impl CTFontOptions: CFOptionFlags {
         #[doc(alias = "kCTFontOptionsDefault")]
         const Default = 0;
+/// Prevents automatic font activation from taking place.
+/// This option is available only on macOS and will be deprecated on other platforms in the future.
         #[doc(alias = "kCTFontOptionsPreventAutoActivation")]
         const PreventAutoActivation = 1<<0;
+/// Prevents automatic font download from taking place.
         #[doc(alias = "kCTFontOptionsPreventAutoDownload")]
         const PreventAutoDownload = 1<<1;
+/// Font matching will prefer to match Apple system fonts.
         #[doc(alias = "kCTFontOptionsPreferSystemFont")]
         const PreferSystemFont = 1<<2;
         const _ = !0;

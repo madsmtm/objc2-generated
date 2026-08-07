@@ -27,22 +27,31 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionError(pub NSInteger);
 impl WKWebExtensionError {
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// Indicates that a specified resource was not found on disk.
     #[doc(alias = "WKWebExtensionErrorResourceNotFound")]
     pub const ResourceNotFound: Self = Self(2);
+    /// Indicates that a resource failed the bundle's code signature checks.
     #[doc(alias = "WKWebExtensionErrorInvalidResourceCodeSignature")]
     pub const InvalidResourceCodeSignature: Self = Self(3);
+    /// Indicates that an invalid `manifest.json` was encountered.
     #[doc(alias = "WKWebExtensionErrorInvalidManifest")]
     pub const InvalidManifest: Self = Self(4);
+    /// Indicates that the manifest version is not supported.
     #[doc(alias = "WKWebExtensionErrorUnsupportedManifestVersion")]
     pub const UnsupportedManifestVersion: Self = Self(5);
+    /// Indicates that an invalid manifest entry was encountered.
     #[doc(alias = "WKWebExtensionErrorInvalidManifestEntry")]
     pub const InvalidManifestEntry: Self = Self(6);
+    /// Indicates that an invalid declarative net request entry was encountered.
     #[doc(alias = "WKWebExtensionErrorInvalidDeclarativeNetRequestEntry")]
     pub const InvalidDeclarativeNetRequestEntry: Self = Self(7);
+    /// Indicates that the extension specified background persistence that was not compatible with the platform or features requested.
     #[doc(alias = "WKWebExtensionErrorInvalidBackgroundPersistence")]
     pub const InvalidBackgroundPersistence: Self = Self(8);
+    /// Indicates that the archive file is invalid or corrupt.
     #[doc(alias = "WKWebExtensionErrorInvalidArchive")]
     pub const InvalidArchive: Self = Self(9);
 }

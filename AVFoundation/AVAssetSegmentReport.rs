@@ -10,19 +10,16 @@ use crate::*;
 
 /// Indicates the type of segment.
 ///
-///
-/// Indicates that the segment is a initialization segment.
-///
-/// Indicates that the segment is a separable segment.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAssetSegmentType(pub NSInteger);
 impl AVAssetSegmentType {
+    /// Indicates that the segment is a initialization segment.
     #[doc(alias = "AVAssetSegmentTypeInitialization")]
     pub const Initialization: Self = Self(1);
+    /// Indicates that the segment is a separable segment.
     #[doc(alias = "AVAssetSegmentTypeSeparable")]
     pub const Separable: Self = Self(2);
 }

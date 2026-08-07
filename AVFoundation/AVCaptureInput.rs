@@ -152,23 +152,19 @@ impl AVCaptureInputPort {
 
 /// Constants indicating the modes of multichannel audio.
 ///
-///
-/// Indicates that no multichannel audio should be used.
-///
-/// Indicates that the audio should be recorded using stereo.
-///
-/// Indicates that the audio should be recorded using first-order ambisonics. When recording a QuickTime movie file, a stereo audio track will be recorded alongside the FOA track for backward playback compatibility.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemultichannelaudiomode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureMultichannelAudioMode(pub NSInteger);
 impl AVCaptureMultichannelAudioMode {
+    /// Indicates that no multichannel audio should be used.
     #[doc(alias = "AVCaptureMultichannelAudioModeNone")]
     pub const None: Self = Self(0);
+    /// Indicates that the audio should be recorded using stereo.
     #[doc(alias = "AVCaptureMultichannelAudioModeStereo")]
     pub const Stereo: Self = Self(1);
+    /// Indicates that the audio should be recorded using first-order ambisonics. When recording a QuickTime movie file, a stereo audio track will be recorded alongside the FOA track for backward playback compatibility.
     #[doc(alias = "AVCaptureMultichannelAudioModeFirstOrderAmbisonics")]
     pub const FirstOrderAmbisonics: Self = Self(2);
 }

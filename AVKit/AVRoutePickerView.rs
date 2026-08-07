@@ -15,26 +15,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Normal or default state of the picker.
-///
-/// Highlighted state of the picker. The picker has this state when a mouse-down event occurs inside the button. It loses this highlight when a mouse-up event occurs.
-///
-/// Active state of the picker. The picker has this state when AirPlay is active.
-///
-/// Highlighted state of the active picker. The picker has this state when it is highlighted and AirPlay is active.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVRoutePickerViewButtonState(pub NSInteger);
 impl AVRoutePickerViewButtonState {
+    /// Normal or default state of the picker.
     #[doc(alias = "AVRoutePickerViewButtonStateNormal")]
     pub const Normal: Self = Self(0);
+    /// Highlighted state of the picker. The picker has this state when a mouse-down event occurs inside the button. It loses this highlight when a mouse-up event occurs.
     #[doc(alias = "AVRoutePickerViewButtonStateNormalHighlighted")]
     pub const NormalHighlighted: Self = Self(1);
+    /// Active state of the picker. The picker has this state when AirPlay is active.
     #[doc(alias = "AVRoutePickerViewButtonStateActive")]
     pub const Active: Self = Self(2);
+    /// Highlighted state of the active picker. The picker has this state when it is highlighted and AirPlay is active.
     #[doc(alias = "AVRoutePickerViewButtonStateActiveHighlighted")]
     pub const ActiveHighlighted: Self = Self(3);
 }
@@ -47,22 +43,19 @@ unsafe impl RefEncode for AVRoutePickerViewButtonState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// A system style for the route picker button.
-///
-/// A plain style for the route picker button, which has the same appearance as the system style without the blurred background view.
-///
-/// A custom style for the route picker button, which allows customizing the background view and focused appearance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVRoutePickerViewButtonStyle(pub NSInteger);
 impl AVRoutePickerViewButtonStyle {
+    /// A system style for the route picker button.
     #[doc(alias = "AVRoutePickerViewButtonStyleSystem")]
     pub const System: Self = Self(0);
+    /// A plain style for the route picker button, which has the same appearance as the system style without the blurred background view.
     #[doc(alias = "AVRoutePickerViewButtonStylePlain")]
     pub const Plain: Self = Self(1);
+    /// A custom style for the route picker button, which allows customizing the background view and focused appearance.
     #[doc(alias = "AVRoutePickerViewButtonStyleCustom")]
     pub const Custom: Self = Self(2);
 }

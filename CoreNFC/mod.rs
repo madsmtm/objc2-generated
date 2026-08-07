@@ -43,52 +43,75 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCReaderError(pub NSInteger);
 impl NFCReaderError {
+    /// Core NFC is not supported on the current platform.
     #[doc(alias = "NFCReaderErrorUnsupportedFeature")]
     pub const ReaderErrorUnsupportedFeature: Self = Self(1);
+    /// Missing required entitlement and/or privacy settings from the client app.
     #[doc(alias = "NFCReaderErrorSecurityViolation")]
     pub const ReaderErrorSecurityViolation: Self = Self(2);
+    /// Input parameter is invalid.
     #[doc(alias = "NFCReaderErrorInvalidParameter")]
     pub const ReaderErrorInvalidParameter: Self = Self(3);
+    /// Length of input parameter is invalid, i.e. size of data container.
     #[doc(alias = "NFCReaderErrorInvalidParameterLength")]
     pub const ReaderErrorInvalidParameterLength: Self = Self(4);
+    /// Parameter value is outside of the acceptable boundary / range.
     #[doc(alias = "NFCReaderErrorParameterOutOfBound")]
     pub const ReaderErrorParameterOutOfBound: Self = Self(5);
+    /// NFC Radio is disabled.
     #[doc(alias = "NFCReaderErrorRadioDisabled")]
     pub const ReaderErrorRadioDisabled: Self = Self(6);
+    /// The current system setting or hardware configuation isn’t eligible to use the requested reader service.
     #[doc(alias = "NFCReaderErrorIneligible")]
     pub const ReaderErrorIneligible: Self = Self(7);
+    /// The person using the app hasn’t yet accepted or declined your app’s request to use the selected service.
     #[doc(alias = "NFCReaderErrorAccessNotAccepted")]
     pub const ReaderErrorAccessNotAccepted: Self = Self(8);
+    /// Connection to the tag is lost.
     #[doc(alias = "NFCReaderTransceiveErrorTagConnectionLost")]
     pub const ReaderTransceiveErrorTagConnectionLost: Self = Self(100);
+    /// Maximum data transmission retry has reached.
     #[doc(alias = "NFCReaderTransceiveErrorRetryExceeded")]
     pub const ReaderTransceiveErrorRetryExceeded: Self = Self(101);
+    /// Tag response is invalid or tag does not provide a response.  Additional error information may be contain in the underlying user info dictionary.
     #[doc(alias = "NFCReaderTransceiveErrorTagResponseError")]
     pub const ReaderTransceiveErrorTagResponseError: Self = Self(102);
+    /// Session has been previously invalidated.
     #[doc(alias = "NFCReaderTransceiveErrorSessionInvalidated")]
     pub const ReaderTransceiveErrorSessionInvalidated: Self = Self(103);
+    /// Tag is not in the connected state.
     #[doc(alias = "NFCReaderTransceiveErrorTagNotConnected")]
     pub const ReaderTransceiveErrorTagNotConnected: Self = Self(104);
+    /// Packet length has exceeded the limit.
     #[doc(alias = "NFCReaderTransceiveErrorPacketTooLong")]
     pub const ReaderTransceiveErrorPacketTooLong: Self = Self(105);
+    /// Session is invalidated by the user.
     #[doc(alias = "NFCReaderSessionInvalidationErrorUserCanceled")]
     pub const ReaderSessionInvalidationErrorUserCanceled: Self = Self(200);
+    /// Session is timed out.
     #[doc(alias = "NFCReaderSessionInvalidationErrorSessionTimeout")]
     pub const ReaderSessionInvalidationErrorSessionTimeout: Self = Self(201);
+    /// Session is terminated unexpectedly.
     #[doc(alias = "NFCReaderSessionInvalidationErrorSessionTerminatedUnexpectedly")]
     pub const ReaderSessionInvalidationErrorSessionTerminatedUnexpectedly: Self = Self(202);
+    /// Core NFC is temporary unavailable due to system resource constraints.
     #[doc(alias = "NFCReaderSessionInvalidationErrorSystemIsBusy")]
     pub const ReaderSessionInvalidationErrorSystemIsBusy: Self = Self(203);
+    /// Session is terminated after the 1st NDEF tag is read.
     #[doc(alias = "NFCReaderSessionInvalidationErrorFirstNDEFTagRead")]
     pub const ReaderSessionInvalidationErrorFirstNDEFTagRead: Self = Self(204);
     #[doc(alias = "NFCTagCommandConfigurationErrorInvalidParameters")]
     pub const TagCommandConfigurationErrorInvalidParameters: Self = Self(300);
+    /// NDEF tag is not writable.
     #[doc(alias = "NFCNdefReaderSessionErrorTagNotWritable")]
     pub const NdefReaderSessionErrorTagNotWritable: Self = Self(400);
+    /// NDEF tag write fails.
     #[doc(alias = "NFCNdefReaderSessionErrorTagUpdateFailure")]
     pub const NdefReaderSessionErrorTagUpdateFailure: Self = Self(401);
+    /// NDEF tag memory size is too small to store the desired data.
     #[doc(alias = "NFCNdefReaderSessionErrorTagSizeTooSmall")]
     pub const NdefReaderSessionErrorTagSizeTooSmall: Self = Self(402);
+    /// NDEF tag does not contain any NDEF message.
     #[doc(alias = "NFCNdefReaderSessionErrorZeroLengthMessage")]
     pub const NdefReaderSessionErrorZeroLengthMessage: Self = Self(403);
 }
@@ -296,12 +319,16 @@ impl NFCReaderSession {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCTagType(pub NSUInteger);
 impl NFCTagType {
+    /// ISO15693 tag.
     #[doc(alias = "NFCTagTypeISO15693")]
     pub const ISO15693: Self = Self(1);
+    /// FeliCa tag.
     #[doc(alias = "NFCTagTypeFeliCa")]
     pub const FeliCa: Self = Self(2);
+    /// ISO14443-4 type A / B tag with ISO7816 communication.
     #[doc(alias = "NFCTagTypeISO7816Compatible")]
     pub const ISO7816Compatible: Self = Self(3);
+    /// MiFare technology tag (MIFARE Plus, UltraLight, DESFire) base on ISO14443.
     #[doc(alias = "NFCTagTypeMiFare")]
     pub const MiFare: Self = Self(4);
 }
@@ -485,24 +512,27 @@ extern_protocol!(
     }
 );
 
-/// It will also detects applications listed in "com.apple.developer.nfc.readersession.iso7816.select-identifiers" if PACE detection fails.
-/// Tag's PACE support is indicated by the NFCISO7816Tag.paceSupport property.
-/// Prior to iOS 26.4 this is an exclusive value that cannot be combine with NFCPollingISO14443; it supersedes NFCPollingISO14443 and only returns PACE compatible tag.
-/// From iOS 26.4 this can be combine with all polling options; NFCISO7816Tag.paceSupport identifies PACE conformance of a detected ISO7816 compatible tag.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcpollingoption?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcpollingoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCPollingOption(pub NSInteger);
 bitflags::bitflags! {
     impl NFCPollingOption: NSInteger {
+/// Support both Type A & B modulation.  NFCTagTypeISO7816Compatible and NFCTagTypeMiFare tags will be discovered.
         #[doc(alias = "NFCPollingISO14443")]
         const ISO14443 = 0x1;
+/// NFCTagTypeISO15693 tag will be discovered.
         #[doc(alias = "NFCPollingISO15693")]
         const ISO15693 = 0x2;
+/// NFCTagTypeFeliCa tag will be discovered.
         #[doc(alias = "NFCPollingISO18092")]
         const ISO18092 = 0x4;
+/// NFCTagTypeISO7816Compatible with Password Authenticated Connection Establishment (PACE) supported will be discovered.
+/// It will also detects applications listed in "com.apple.developer.nfc.readersession.iso7816.select-identifiers" if PACE detection fails.
+/// Tag's PACE support is indicated by the NFCISO7816Tag.paceSupport property.
+/// Prior to iOS 26.4 this is an exclusive value that cannot be combine with NFCPollingISO14443; it supersedes NFCPollingISO14443 and only returns PACE compatible tag.
+/// From iOS 26.4 this can be combine with all polling options; NFCISO7816Tag.paceSupport identifies PACE conformance of a detected ISO7816 compatible tag.
         #[doc(alias = "NFCPollingPACE")]
         const PACE = 0x8;
         const _ = !0;
@@ -2274,8 +2304,10 @@ pub struct NFCNDEFStatus(pub NSUInteger);
 impl NFCNDEFStatus {
     #[doc(alias = "NFCNDEFStatusNotSupported")]
     pub const NotSupported: Self = Self(1);
+    /// Tag is NDEF read and writable.
     #[doc(alias = "NFCNDEFStatusReadWrite")]
     pub const ReadWrite: Self = Self(2);
+    /// Tag is NDEF read-only; NDEF writing is disallowed.
     #[doc(alias = "NFCNDEFStatusReadOnly")]
     pub const ReadOnly: Self = Self(3);
 }
@@ -2939,12 +2971,16 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCMiFareFamily(pub NSUInteger);
 impl NFCMiFareFamily {
+    /// MiFare compatible ISO14443 Type A tag.
     #[doc(alias = "NFCMiFareUnknown")]
     pub const Unknown: Self = Self(1);
+    /// MiFare Ultralight series.
     #[doc(alias = "NFCMiFareUltralight")]
     pub const Ultralight: Self = Self(2);
+    /// MiFare Plus series.
     #[doc(alias = "NFCMiFarePlus")]
     pub const Plus: Self = Self(3);
+    /// MiFare DESFire series.
     #[doc(alias = "NFCMiFareDESFire")]
     pub const DESFire: Self = Self(4);
 }
@@ -3314,8 +3350,10 @@ impl NFCNDEFMessage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCVASMode(pub NSInteger);
 impl NFCVASMode {
+    /// Reserved.
     #[doc(alias = "NFCVASModeURLOnly")]
     pub const URLOnly: Self = Self(0);
+    /// Full VAS protocol.
     #[doc(alias = "NFCVASModeNormal")]
     pub const Normal: Self = Self(1);
     #[deprecated]

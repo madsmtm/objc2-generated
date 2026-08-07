@@ -195,10 +195,6 @@ unsafe impl RefEncode for AVAssetExportSessionStatus {
 /// A bitfield type that specifies output handling policies for alternate tracks in a track group.
 ///
 ///
-///
-/// No specific processing directives are applied to alternate tracks.  The output is produced without regard to alternate track group assignments in the original asset.
-///
-///
 /// Preserve alternate tracks via pass-through.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling?language=objc)
@@ -208,6 +204,7 @@ unsafe impl RefEncode for AVAssetExportSessionStatus {
 pub struct AVAssetTrackGroupOutputHandling(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAssetTrackGroupOutputHandling: NSUInteger {
+/// No specific processing directives are applied to alternate tracks.  The output is produced without regard to alternate track group assignments in the original asset.
         #[doc(alias = "AVAssetTrackGroupOutputHandlingNone")]
         const None = 0;
         #[doc(alias = "AVAssetTrackGroupOutputHandlingPreserveAlternateTracks")]

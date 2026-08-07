@@ -85,18 +85,16 @@ impl AVPlayerVideoOutput {
 
 /// Video output presets supported by CMTagCollectionCreateWithVideoOutputPreset.
 ///
-/// Used for video output where there is no stereo view, e.g. kCMTagStereoNone.
-///
-/// Used for video output where there are two stereo views, for both left and right eyes, e.g. kCMTagStereoLeftAndRight.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectionvideooutputpreset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagCollectionVideoOutputPreset(pub u32);
 impl CMTagCollectionVideoOutputPreset {
+    /// Used for video output where there is no stereo view, e.g. kCMTagStereoNone.
     #[doc(alias = "kCMTagCollectionVideoOutputPreset_Monoscopic")]
     pub const Monoscopic: Self = Self(0);
+    /// Used for video output where there are two stereo views, for both left and right eyes, e.g. kCMTagStereoLeftAndRight.
     #[doc(alias = "kCMTagCollectionVideoOutputPreset_Stereoscopic")]
     pub const Stereoscopic: Self = Self(1);
 }

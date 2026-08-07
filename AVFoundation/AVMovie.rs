@@ -245,10 +245,6 @@ impl AVMovie {
 
 /// These options can be passed into writeMovieHeaderToURL:fileType:options:error: to control the writing of a movie header to a destination URL.
 ///
-/// Writing the movie header will remove any existing movie header in the destination file and add a new movie header, preserving any other data in the file. If the destination file was empty, a file type box will be written at the beginning of the file.
-///
-/// If set, writing the movie header will truncate all existing data in the destination file and write a new movie header, thereby creating a pure reference movie file. A file type box will be written at the beginning of the file.
-///
 /// You would not want to use the AVMovieWritingTruncateDestinationToMovieHeaderOnly option if you had written sample data to the destination file using (for example) -[AVMutableMovie insertTimeRange:ofAsset:atTime:copySampleData:error:] with copySampleData set to YES, since that data would be lost.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmoviewritingoptions?language=objc)
@@ -258,8 +254,10 @@ impl AVMovie {
 pub struct AVMovieWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVMovieWritingOptions: NSUInteger {
+/// Writing the movie header will remove any existing movie header in the destination file and add a new movie header, preserving any other data in the file. If the destination file was empty, a file type box will be written at the beginning of the file.
         #[doc(alias = "AVMovieWritingAddMovieHeaderToDestination")]
         const AddMovieHeaderToDestination = 0;
+/// If set, writing the movie header will truncate all existing data in the destination file and write a new movie header, thereby creating a pure reference movie file. A file type box will be written at the beginning of the file.
         #[doc(alias = "AVMovieWritingTruncateDestinationToMovieHeaderOnly")]
         const TruncateDestinationToMovieHeaderOnly = 1<<0;
         const _ = !0;

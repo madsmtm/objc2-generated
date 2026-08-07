@@ -19,10 +19,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTaggedBufferGroupError(pub OSStatus);
 impl CMTaggedBufferGroupError {
+    /// Returned when caller passes incorrect input or output parameters.
     #[doc(alias = "kCMTaggedBufferGroupError_ParamErr")]
     pub const ParamErr: Self = Self(-15780);
+    /// Returned if a necessary allocation failed.
     #[doc(alias = "kCMTaggedBufferGroupError_AllocationFailed")]
     pub const AllocationFailed: Self = Self(-15781);
+    /// Returned if some kind of internal implementation error occurred.
     #[doc(alias = "kCMTaggedBufferGroupError_InternalError")]
     pub const InternalError: Self = Self(-15782);
 }

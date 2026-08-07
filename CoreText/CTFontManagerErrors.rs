@@ -47,78 +47,62 @@ extern "C" {
 ///
 /// Errors that would prevent registration of fonts for a specified font file URL.
 ///
-/// The file does not exist at the specified URL.
-///
-/// Cannot access the file due to insufficient permissions.
-///
-/// The file is not a recognized or supported font file format.
-///
-/// The file contains invalid font data that could cause system problems.
-///
-/// The file has already been registered in the specified scope.
-///
-/// Errors that would prevent un-registration of fonts for a specified font file URL.
-///
-/// The file is not registered in the specified scope.
-///
-/// The font file is actively in use and cannot be unregistered.
-///
-/// The file is required by the system and cannot be unregistered.
-///
-/// The file could not be processed due to an unexpected FontProvider error.
-///
-/// The file could not be processed because the provider does not have a necessary entitlement.
-///
-/// The font descriptor does not have information to specify a font file.
-///
-/// The operation was cancelled by the user.
-///
-/// The file could not be registered because of a duplicated font name.
-///
-/// The file is not in an allowed location. It must be either in the application's bundle or an on-demand resource.
-///
-/// The operation failed due to a system limitation.
-///
-/// The specified scope is not supported.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontManagerError(pub CFIndex);
 impl CTFontManagerError {
+    /// The file does not exist at the specified URL.
     #[doc(alias = "kCTFontManagerErrorFileNotFound")]
     pub const FileNotFound: Self = Self(101);
+    /// Cannot access the file due to insufficient permissions.
     #[doc(alias = "kCTFontManagerErrorInsufficientPermissions")]
     pub const InsufficientPermissions: Self = Self(102);
+    /// The file is not a recognized or supported font file format.
     #[doc(alias = "kCTFontManagerErrorUnrecognizedFormat")]
     pub const UnrecognizedFormat: Self = Self(103);
+    /// The file contains invalid font data that could cause system problems.
     #[doc(alias = "kCTFontManagerErrorInvalidFontData")]
     pub const InvalidFontData: Self = Self(104);
+    /// The file has already been registered in the specified scope.
+    ///
+    /// Errors that would prevent un-registration of fonts for a specified font file URL.
     #[doc(alias = "kCTFontManagerErrorAlreadyRegistered")]
     pub const AlreadyRegistered: Self = Self(105);
+    /// The operation failed due to a system limitation.
     #[doc(alias = "kCTFontManagerErrorExceededResourceLimit")]
     pub const ExceededResourceLimit: Self = Self(106);
     #[doc(alias = "kCTFontManagerErrorAssetNotFound")]
     pub const AssetNotFound: Self = Self(107);
+    /// The file is not registered in the specified scope.
     #[doc(alias = "kCTFontManagerErrorNotRegistered")]
     pub const NotRegistered: Self = Self(201);
+    /// The font file is actively in use and cannot be unregistered.
     #[doc(alias = "kCTFontManagerErrorInUse")]
     pub const InUse: Self = Self(202);
+    /// The file is required by the system and cannot be unregistered.
     #[doc(alias = "kCTFontManagerErrorSystemRequired")]
     pub const SystemRequired: Self = Self(203);
+    /// The file could not be processed due to an unexpected FontProvider error.
     #[doc(alias = "kCTFontManagerErrorRegistrationFailed")]
     pub const RegistrationFailed: Self = Self(301);
+    /// The file could not be processed because the provider does not have a necessary entitlement.
     #[doc(alias = "kCTFontManagerErrorMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(302);
+    /// The font descriptor does not have information to specify a font file.
     #[doc(alias = "kCTFontManagerErrorInsufficientInfo")]
     pub const InsufficientInfo: Self = Self(303);
+    /// The operation was cancelled by the user.
     #[doc(alias = "kCTFontManagerErrorCancelledByUser")]
     pub const CancelledByUser: Self = Self(304);
+    /// The file could not be registered because of a duplicated font name.
     #[doc(alias = "kCTFontManagerErrorDuplicatedName")]
     pub const DuplicatedName: Self = Self(305);
+    /// The file is not in an allowed location. It must be either in the application's bundle or an on-demand resource.
     #[doc(alias = "kCTFontManagerErrorInvalidFilePath")]
     pub const InvalidFilePath: Self = Self(306);
+    /// The specified scope is not supported.
     #[doc(alias = "kCTFontManagerErrorUnsupportedScope")]
     pub const UnsupportedScope: Self = Self(307);
 }

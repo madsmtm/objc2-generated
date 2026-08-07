@@ -1081,6 +1081,7 @@ impl MDQuery {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDQuerySortOptionFlags(pub c_uint);
 impl MDQuerySortOptionFlags {
+    /// Sort the attribute in reverse order.
     #[doc(alias = "kMDQueryReverseSortOrderFlag")]
     pub const ReverseSortOrderFlag: Self = Self(1 << 0);
 }

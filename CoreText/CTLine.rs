@@ -34,34 +34,6 @@ cf_objc2_type!(
 /// Passing 0 (no options) returns the typographic bounds,
 /// including typographic leading and shifts.
 ///
-///
-/// Pass this option to exclude typographic leading.
-///
-///
-/// Pass this option to ignore cross-stream shifts due to
-/// positioning (such as kerning or baseline alignment).
-///
-///
-/// Normally line bounds include all glyphs; pass this option to
-/// treat standard punctuation hanging off either end of the line
-/// as fully hanging.
-///
-///
-/// Pass this option to use glyph path bounds rather than the
-/// default typographic bounds.
-///
-///
-/// Pass this option to use optical bounds, as determined by
-/// CTFontGetOpticalBoundsForGlyphs. This option overrides
-/// kCTLineBoundsUseGlyphPathBounds.
-///
-///
-/// Pass this option to include additional space based on common
-/// glyph sequences for various languages. The result is intended
-/// to be used when drawing to avoid clipping that may be caused
-/// by the typographic bounds. This option does not have any effect
-/// when used with kCTLineBoundsUseGlyphPathBounds.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -69,16 +41,32 @@ cf_objc2_type!(
 pub struct CTLineBoundsOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CTLineBoundsOptions: CFOptionFlags {
+/// Pass this option to exclude typographic leading.
         #[doc(alias = "kCTLineBoundsExcludeTypographicLeading")]
         const ExcludeTypographicLeading = 1<<0;
+/// Pass this option to ignore cross-stream shifts due to
+/// positioning (such as kerning or baseline alignment).
         #[doc(alias = "kCTLineBoundsExcludeTypographicShifts")]
         const ExcludeTypographicShifts = 1<<1;
+/// Normally line bounds include all glyphs; pass this option to
+/// treat standard punctuation hanging off either end of the line
+/// as fully hanging.
         #[doc(alias = "kCTLineBoundsUseHangingPunctuation")]
         const UseHangingPunctuation = 1<<2;
+/// Pass this option to use glyph path bounds rather than the
+/// default typographic bounds.
         #[doc(alias = "kCTLineBoundsUseGlyphPathBounds")]
         const UseGlyphPathBounds = 1<<3;
+/// Pass this option to use optical bounds, as determined by
+/// CTFontGetOpticalBoundsForGlyphs. This option overrides
+/// kCTLineBoundsUseGlyphPathBounds.
         #[doc(alias = "kCTLineBoundsUseOpticalBounds")]
         const UseOpticalBounds = 1<<4;
+/// Pass this option to include additional space based on common
+/// glyph sequences for various languages. The result is intended
+/// to be used when drawing to avoid clipping that may be caused
+/// by the typographic bounds. This option does not have any effect
+/// when used with kCTLineBoundsUseGlyphPathBounds.
         #[doc(alias = "kCTLineBoundsIncludeLanguageExtents")]
         const IncludeLanguageExtents = 1<<5;
         const _ = !0;
@@ -99,28 +87,22 @@ unsafe impl RefEncode for CTLineBoundsOptions {
 /// will tell truncation engine which type of truncation is being
 /// requested.
 ///
-///
-/// Truncate at the beginning of the line, leaving the end portion
-/// visible.
-///
-///
-/// Truncate at the end of the line, leaving the start portion
-/// visible.
-///
-///
-/// Truncate in the middle of the line, leaving both the start
-/// and the end portions visible.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinetruncationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTLineTruncationType(pub u32);
 impl CTLineTruncationType {
+    /// Truncate at the beginning of the line, leaving the end portion
+    /// visible.
     #[doc(alias = "kCTLineTruncationStart")]
     pub const Start: Self = Self(0);
+    /// Truncate at the end of the line, leaving the start portion
+    /// visible.
     #[doc(alias = "kCTLineTruncationEnd")]
     pub const End: Self = Self(1);
+    /// Truncate in the middle of the line, leaving both the start
+    /// and the end portions visible.
     #[doc(alias = "kCTLineTruncationMiddle")]
     pub const Middle: Self = Self(2);
 }

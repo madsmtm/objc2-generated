@@ -109,15 +109,25 @@ extern "C" {
     pub static kODModuleConfigOptionManInTheMiddle: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypeauthentication?language=objc)
+/// is a node type commonly used for all authentications or record lookups
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypeauthentication?language=objc)
 pub const kODNodeTypeAuthentication: c_uint = 0x2201;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypecontacts?language=objc)
+/// is a node type commonly used for applications that deal with contact data
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypecontacts?language=objc)
 pub const kODNodeTypeContacts: c_uint = 0x2204;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypenetwork?language=objc)
+/// is a node type used for looking for network resource type data
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypenetwork?language=objc)
 pub const kODNodeTypeNetwork: c_uint = 0x2205;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypelocalnodes?language=objc)
+/// is a node type that specifically looks at the local directory
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypelocalnodes?language=objc)
 pub const kODNodeTypeLocalNodes: c_uint = 0x2200;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypeconfigure?language=objc)
+/// is a node type that refers to the configuration node within DS
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypeconfigure?language=objc)
 pub const kODNodeTypeConfigure: c_uint = 0x2202;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodetype?language=objc)
@@ -136,15 +146,25 @@ extern "C" {
     pub static kODNodeOptionsQuerySkippedSubnode: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchany?language=objc)
+/// is used to search for any records (typically passed with nil search value)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchany?language=objc)
 pub const kODMatchAny: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchequalto?language=objc)
+/// is searching values that are equal to the provided value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchequalto?language=objc)
 pub const kODMatchEqualTo: c_uint = 0x2001;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchbeginswith?language=objc)
+/// is searching values that begin with the provided value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchbeginswith?language=objc)
 pub const kODMatchBeginsWith: c_uint = 0x2002;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchcontains?language=objc)
+/// is searching values that contain the provided value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchcontains?language=objc)
 pub const kODMatchContains: c_uint = 0x2004;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchendswith?language=objc)
+/// is searching values that end with the provided value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchendswith?language=objc)
 pub const kODMatchEndsWith: c_uint = 0x2003;
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchinsensitiveequalto?language=objc)
 #[deprecated = "case matching is defined by attribute schema"]
@@ -158,9 +178,13 @@ pub const kODMatchInsensitiveContains: c_uint = 0x2104;
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchinsensitiveendswith?language=objc)
 #[deprecated = "case matching is defined by attribute schema"]
 pub const kODMatchInsensitiveEndsWith: c_uint = 0x2103;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchgreaterthan?language=objc)
+/// is searching values greater than the provided value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchgreaterthan?language=objc)
 pub const kODMatchGreaterThan: c_uint = 0x2006;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchlessthan?language=objc)
+/// is searching values less than the provided value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchlessthan?language=objc)
 pub const kODMatchLessThan: c_uint = 0x2007;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odmatchtype?language=objc)
@@ -3696,9 +3720,15 @@ extern "C" {
     pub static kODPolicyTypeAccountMaximumMinutesOfNonUse: &'static ODPolicyType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodexpirationtimeexpired?language=objc)
+/// indicates the password or authentication
+/// has expired.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodexpirationtimeexpired?language=objc)
 pub const kODExpirationTimeExpired: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodexpirationtimeneverexpires?language=objc)
+/// indicates the password or
+/// authentication will never expire.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodexpirationtimeneverexpires?language=objc)
 pub const kODExpirationTimeNeverExpires: c_int = -1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpolicykeytype?language=objc)
@@ -4605,133 +4635,194 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ODFrameworkErrors(pub c_uint);
 impl ODFrameworkErrors {
+    /// is when operation was successful (if appropriate)
     #[doc(alias = "kODErrorSuccess")]
     pub const Success: Self = Self(0);
+    /// is when a Local Only session was initiated and is still active
     #[doc(alias = "kODErrorSessionLocalOnlyDaemonInUse")]
     pub const SessionLocalOnlyDaemonInUse: Self = Self(1000);
+    /// is when the Normal daemon is still in use but request was issued for Local only
     #[doc(alias = "kODErrorSessionNormalDaemonInUse")]
     pub const SessionNormalDaemonInUse: Self = Self(1001);
+    /// is when the daemon is not running
     #[doc(alias = "kODErrorSessionDaemonNotRunning")]
     pub const SessionDaemonNotRunning: Self = Self(1002);
+    /// is when the daemon refused the session
     #[doc(alias = "kODErrorSessionDaemonRefused")]
     pub const SessionDaemonRefused: Self = Self(1003);
+    /// is when there was a communication error with the remote daemon
     #[doc(alias = "kODErrorSessionProxyCommunicationError")]
     pub const SessionProxyCommunicationError: Self = Self(1100);
+    /// is when versions mismatch between the remote daemon and local framework
     #[doc(alias = "kODErrorSessionProxyVersionMismatch")]
     pub const SessionProxyVersionMismatch: Self = Self(1101);
+    /// is when the provided kODSessionProxyAddress did not respond
     #[doc(alias = "kODErrorSessionProxyIPUnreachable")]
     pub const SessionProxyIPUnreachable: Self = Self(1102);
+    /// is when the provided kODSessionProxyAddress cannot be resolved
     #[doc(alias = "kODErrorSessionProxyUnknownHost")]
     pub const SessionProxyUnknownHost: Self = Self(1103);
+    /// is when the node name provided does not exist and cannot be opened
     #[doc(alias = "kODErrorNodeUnknownName")]
     pub const NodeUnknownName: Self = Self(2000);
+    /// is when the node type provided is not a known value
     #[doc(alias = "kODErrorNodeUnknownType")]
     pub const NodeUnknownType: Self = Self(2001);
     #[doc(alias = "kODErrorNodeDisabled")]
     pub const NodeDisabled: Self = Self(2002);
+    /// is when a node connection failed (commonly server closed connection, etc.)
     #[doc(alias = "kODErrorNodeConnectionFailed")]
     pub const NodeConnectionFailed: Self = Self(2100);
+    /// is when an invalid host is provided
     #[doc(alias = "kODErrorNodeUnknownHost")]
     pub const NodeUnknownHost: Self = Self(2200);
+    /// is an error code that is returned when a synchronize has been initiated
     #[doc(alias = "kODErrorQuerySynchronize")]
     pub const QuerySynchronize: Self = Self(3000);
+    /// is when an invalid match type is provided in a query
     #[doc(alias = "kODErrorQueryInvalidMatchType")]
     pub const QueryInvalidMatchType: Self = Self(3100);
+    /// is when plugin does not support the requirested match type
     #[doc(alias = "kODErrorQueryUnsupportedMatchType")]
     pub const QueryUnsupportedMatchType: Self = Self(3101);
+    /// is when a query timed out during request
     #[doc(alias = "kODErrorQueryTimeout")]
     pub const QueryTimeout: Self = Self(3102);
+    /// is when a record cannot be modified
     #[doc(alias = "kODErrorRecordReadOnlyNode")]
     pub const RecordReadOnlyNode: Self = Self(4000);
+    /// is when the changes requested were denied due to insufficient permissions
     #[doc(alias = "kODErrorRecordPermissionError")]
     pub const RecordPermissionError: Self = Self(4001);
+    /// is when an invalid parameter was provided
     #[doc(alias = "kODErrorRecordParameterError")]
     pub const RecordParameterError: Self = Self(4100);
+    /// is when an invalid record type was provided
     #[doc(alias = "kODErrorRecordInvalidType")]
     pub const RecordInvalidType: Self = Self(4101);
+    /// is when a record create failed because the record already exists
     #[doc(alias = "kODErrorRecordAlreadyExists")]
     pub const RecordAlreadyExists: Self = Self(4102);
+    /// is when a particular record type is disabled by policy for a plugin
     #[doc(alias = "kODErrorRecordTypeDisabled")]
     pub const RecordTypeDisabled: Self = Self(4103);
     #[doc(alias = "kODErrorRecordNoLongerExists")]
     pub const RecordNoLongerExists: Self = Self(4104);
+    /// is when an unknown attribute type is provided
     #[doc(alias = "kODErrorRecordAttributeUnknownType")]
     pub const RecordAttributeUnknownType: Self = Self(4200);
+    /// is when an attribute requested is not found in the record
     #[doc(alias = "kODErrorRecordAttributeNotFound")]
     pub const RecordAttributeNotFound: Self = Self(4201);
+    /// is when an attribute value does not meet schema requirements
     #[doc(alias = "kODErrorRecordAttributeValueSchemaError")]
     pub const RecordAttributeValueSchemaError: Self = Self(4202);
+    /// is when an attribute value is not found in a record
     #[doc(alias = "kODErrorRecordAttributeValueNotFound")]
     pub const RecordAttributeValueNotFound: Self = Self(4203);
+    /// is when credentials provided are invalid with the current node
     #[doc(alias = "kODErrorCredentialsInvalid")]
     pub const CredentialsInvalid: Self = Self(5000);
+    /// is when a particular extended method is not supported by the node
     #[doc(alias = "kODErrorCredentialsMethodNotSupported")]
     pub const CredentialsMethodNotSupported: Self = Self(5100);
+    /// is when an operation such as changing a password is not authorized with current privileges
     #[doc(alias = "kODErrorCredentialsNotAuthorized")]
     pub const CredentialsNotAuthorized: Self = Self(5101);
+    /// is when a parameter provided is invalid
     #[doc(alias = "kODErrorCredentialsParameterError")]
     pub const CredentialsParameterError: Self = Self(5102);
+    /// is when the requested operation failed (usually due to some unrecoverable error)
     #[doc(alias = "kODErrorCredentialsOperationFailed")]
     pub const CredentialsOperationFailed: Self = Self(5103);
+    /// is when the authententication server is not reachabable
     #[doc(alias = "kODErrorCredentialsServerUnreachable")]
     pub const CredentialsServerUnreachable: Self = Self(5200);
+    /// is when the authentication server could not be found for the operation requested
     #[doc(alias = "kODErrorCredentialsServerNotFound")]
     pub const CredentialsServerNotFound: Self = Self(5201);
+    /// is when the authentication server encountered an error
     #[doc(alias = "kODErrorCredentialsServerError")]
     pub const CredentialsServerError: Self = Self(5202);
+    /// is when the authentication server timed out
     #[doc(alias = "kODErrorCredentialsServerTimeout")]
     pub const CredentialsServerTimeout: Self = Self(5203);
+    /// is when the authentication server is not the primary and the operation requires the primary
     #[doc(alias = "kODErrorCredentialsContactPrimary")]
     pub const CredentialsContactPrimary: Self = Self(5204);
     #[doc(alias = "kODErrorCredentialsContactMaster")]
     #[deprecated]
     pub const CredentialsContactMaster: Self = Self(ODFrameworkErrors::CredentialsContactPrimary.0);
+    /// is when the authentication server had a communications error
     #[doc(alias = "kODErrorCredentialsServerCommunicationError")]
     pub const CredentialsServerCommunicationError: Self = Self(5205);
+    /// is when the authentication server could not find the account provided
     #[doc(alias = "kODErrorCredentialsAccountNotFound")]
     pub const CredentialsAccountNotFound: Self = Self(5300);
+    /// is when the account is disabled
     #[doc(alias = "kODErrorCredentialsAccountDisabled")]
     pub const CredentialsAccountDisabled: Self = Self(5301);
+    /// is when the account is expired
     #[doc(alias = "kODErrorCredentialsAccountExpired")]
     pub const CredentialsAccountExpired: Self = Self(5302);
+    /// is when the account is inactive
     #[doc(alias = "kODErrorCredentialsAccountInactive")]
     pub const CredentialsAccountInactive: Self = Self(5303);
+    /// is when the account is in backoff (verification attempts ignored for a period of time)
     #[doc(alias = "kODErrorCredentialsAccountTemporarilyLocked")]
     pub const CredentialsAccountTemporarilyLocked: Self = Self(5304);
+    /// is when the account is locked due to too many verification failures.
     #[doc(alias = "kODErrorCredentialsAccountLocked")]
     pub const CredentialsAccountLocked: Self = Self(5305);
+    /// is when the password has expired and must be changed
     #[doc(alias = "kODErrorCredentialsPasswordExpired")]
     pub const CredentialsPasswordExpired: Self = Self(5400);
+    /// is when a password change is required
     #[doc(alias = "kODErrorCredentialsPasswordChangeRequired")]
     pub const CredentialsPasswordChangeRequired: Self = Self(5401);
+    /// is when a password provided for change did not meet quality minimum requirements
     #[doc(alias = "kODErrorCredentialsPasswordQualityFailed")]
     pub const CredentialsPasswordQualityFailed: Self = Self(5402);
+    /// is when a password provided is too short
     #[doc(alias = "kODErrorCredentialsPasswordTooShort")]
     pub const CredentialsPasswordTooShort: Self = Self(5403);
+    /// is when a password provided is too long
     #[doc(alias = "kODErrorCredentialsPasswordTooLong")]
     pub const CredentialsPasswordTooLong: Self = Self(5404);
+    /// is when a password needs a letter
     #[doc(alias = "kODErrorCredentialsPasswordNeedsLetter")]
     pub const CredentialsPasswordNeedsLetter: Self = Self(5405);
+    /// is when a password needs a digit
     #[doc(alias = "kODErrorCredentialsPasswordNeedsDigit")]
     pub const CredentialsPasswordNeedsDigit: Self = Self(5406);
+    /// is when a an attempt to change a password too soon before last change
     #[doc(alias = "kODErrorCredentialsPasswordChangeTooSoon")]
     pub const CredentialsPasswordChangeTooSoon: Self = Self(5407);
+    /// is when password was not recoverable from the authentication database
     #[doc(alias = "kODErrorCredentialsPasswordUnrecoverable")]
     pub const CredentialsPasswordUnrecoverable: Self = Self(5408);
+    /// is when an account attempts to login outside of set logon hours
     #[doc(alias = "kODErrorCredentialsInvalidLogonHours")]
     pub const CredentialsInvalidLogonHours: Self = Self(5500);
+    /// is when an account attempts to login to a computer they are not authorized
     #[doc(alias = "kODErrorCredentialsInvalidComputer")]
     pub const CredentialsInvalidComputer: Self = Self(5501);
+    /// all requested policies were not supported
     #[doc(alias = "kODErrorPolicyUnsupported")]
     pub const PolicyUnsupported: Self = Self(6000);
+    /// policy value was beyond the allowed range
     #[doc(alias = "kODErrorPolicyOutOfRange")]
     pub const PolicyOutOfRange: Self = Self(6001);
+    /// is when a plugin does not support the requested operation
     #[doc(alias = "kODErrorPluginOperationNotSupported")]
     pub const PluginOperationNotSupported: Self = Self(10000);
+    /// is when a plugin has encountered some undefined error
     #[doc(alias = "kODErrorPluginError")]
     pub const PluginError: Self = Self(10001);
+    /// is when some error occurred inside the daemon
     #[doc(alias = "kODErrorDaemonError")]
     pub const DaemonError: Self = Self(10002);
+    /// is when an operation exceeds an imposed timeout
     #[doc(alias = "kODErrorPluginOperationTimeout")]
     pub const PluginOperationTimeout: Self = Self(10003);
 }

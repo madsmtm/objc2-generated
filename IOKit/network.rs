@@ -161,61 +161,146 @@ pub const kIOMediumIndex: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b
 pub const kIONetworkUserClientTypeID: c_uint = 0xff000001;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionuctype?language=objc)
 pub const kIONUCType: c_uint = 0xff000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterunicast?language=objc)
+/// Reception of unicast packets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterunicast?language=objc)
 pub const kIOPacketFilterUnicast: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterbroadcast?language=objc)
+/// Reception of broadcast packets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterbroadcast?language=objc)
 pub const kIOPacketFilterBroadcast: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfiltermulticast?language=objc)
+/// Reception of multicast packets
+/// addressed to a set of multicast addresses.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfiltermulticast?language=objc)
 pub const kIOPacketFilterMulticast: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfiltermulticastall?language=objc)
+/// Reception of all multicast
+/// packets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfiltermulticastall?language=objc)
 pub const kIOPacketFilterMulticastAll: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterpromiscuous?language=objc)
+/// Reception of all packets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterpromiscuous?language=objc)
 pub const kIOPacketFilterPromiscuous: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterpromiscuousall?language=objc)
+/// Reception of all packets,
+/// including bad packets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterpromiscuousall?language=objc)
 pub const kIOPacketFilterPromiscuousAll: c_uint = 0x200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturenobsdwait?language=objc)
+/// Set this bit in the value
+/// returned by getFeatures() to disable the automatic wait for
+/// "IOBSD" resource by the IONetworkController::start() method.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturenobsdwait?language=objc)
 pub const kIONetworkFeatureNoBSDWait: c_uint = 0x001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturehardwarevlan?language=objc)
+/// Set this bit in the value
+/// returned by getFeatures() to indicate the controller supports hardware
+/// stripping and stuffing of 802.1q vlan tags.  If the controller supports
+/// this feature it must enable it when initializing so that all received
+/// packets delivered to higher layers have the tag stripped.  The controller
+/// should use setVlanTag() to provide the tag information out of band.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturehardwarevlan?language=objc)
 pub const kIONetworkFeatureHardwareVlan: c_uint = 0x002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturesoftwarevlan?language=objc)
+/// Set this bit in the value
+/// returned by getFeatures() to indicate that the controller can support software
+/// based vlan by transmitting and receiving packets 4 bytes longer that normal.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturesoftwarevlan?language=objc)
 pub const kIONetworkFeatureSoftwareVlan: c_uint = 0x004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturemultipages?language=objc)
+/// Set this bit if the driver is
+/// capable of handling packets coming down from the network stack that
+/// reside in virtually, but not in physically contiguous span of the
+/// external mbuf clusters.  In this case, the data area of a packet in
+/// the external mbuf cluster might cross one or more physical pages that
+/// are disjoint, depending on the interface MTU and the packet size.
+/// Such a use of larger than system page size clusters by the network
+/// stack is done for better system efficiency.  Drivers that utilize the
+/// IOMbufNaturalMemoryCursor with the getPhysicalSegmentsWithCoalesce
+/// interfaces and enumerate the list of vectors should set this flag
+/// for possible gain in performance during bulk data transfer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturemultipages?language=objc)
 pub const kIONetworkFeatureMultiPages: c_uint = 0x008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturetsoipv4?language=objc)
+/// Set this bit to advertise support
+/// for TCP/IPv4 segmentation offload.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturetsoipv4?language=objc)
 pub const kIONetworkFeatureTSOIPv4: c_uint = 0x010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturetsoipv6?language=objc)
+/// Set this bit to advertise support
+/// for TCP/IPv6 segmentation offload.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturetsoipv6?language=objc)
 pub const kIONetworkFeatureTSOIPv6: c_uint = 0x020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturetransmitcompletionstatus?language=objc)
+/// Set this bit to
+/// advertise the capability to report per-packet transmit completion status.
+/// See
+/// <code>
+/// IONetworkInterface::reportTransmitCompletionStatus
+/// </code>
+/// .
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturetransmitcompletionstatus?language=objc)
 pub const kIONetworkFeatureTransmitCompletionStatus: c_uint = 0x040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturehwtimestamp?language=objc)
+/// Set this bit to advertise
+/// the capability to compute per-packet timestamp in hardware.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturehwtimestamp?language=objc)
 pub const kIONetworkFeatureHWTimeStamp: c_uint = 0x080;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeatureswtimestamp?language=objc)
 pub const kIONetworkFeatureSWTimeStamp: c_uint = 0x100;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturelro?language=objc)
 pub const kIONetworkFeatureLRO: c_uint = 0x200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetwakeonmagicpacket?language=objc)
+/// Reception of a Magic Packet.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetwakeonmagicpacket?language=objc)
 pub const kIOEthernetWakeOnMagicPacket: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetwakeonpacketaddressmatch?language=objc)
+/// Reception of a packet
+/// which passes through any of the address filtering mechanisms based
+/// on its destination Ethernet address. This may include unicast,
+/// broadcast, or multicast addresses depending on the current state
+/// and setting of the corresponding packet filters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetwakeonpacketaddressmatch?language=objc)
 pub const kIOEthernetWakeOnPacketAddressMatch: c_uint = 0x00000002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstyperead?language=objc)
+/// Read access.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstyperead?language=objc)
 pub const kIONetworkDataAccessTypeRead: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypewrite?language=objc)
+/// Write access (deprecated).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypewrite?language=objc)
 pub const kIONetworkDataAccessTypeWrite: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypereset?language=objc)
+/// Reset access (deprecated).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypereset?language=objc)
 pub const kIONetworkDataAccessTypeReset: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypeserialize?language=objc)
+/// Serialization access.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypeserialize?language=objc)
 pub const kIONetworkDataAccessTypeSerialize: c_uint = 0x08;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypemask?language=objc)
 pub const kIONetworkDataAccessTypeMask: c_uint = 0xff;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabuffertypeinternal?language=objc)
+/// An internal data buffer
+/// allocated by the init() method.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabuffertypeinternal?language=objc)
 pub const kIONetworkDataBufferTypeInternal: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabuffertypeexternal?language=objc)
+/// An external (persistent) data
+/// buffer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabuffertypeexternal?language=objc)
 pub const kIONetworkDataBufferTypeExternal: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabuffertypenone?language=objc)
+/// No data buffer. The only useful
+/// action perfomed by an IONetworkData object with this buffer type
+/// is to call the access notification handler.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabuffertypenone?language=objc)
 pub const kIONetworkDataBufferTypeNone: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkstackregisterinterfacewithunit?language=objc)
@@ -225,11 +310,22 @@ pub const kIONetworkStackRegisterInterfaceWithLowestUnit: c_uint = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkstackregisterinterfaceall?language=objc)
 pub const kIONetworkStackRegisterInterfaceAll: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfaceregisteredstate?language=objc)
+/// The interface object has
+/// registered with the data link layer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfaceregisteredstate?language=objc)
 pub const kIONetworkInterfaceRegisteredState: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfaceopenedstate?language=objc)
+/// One or more clients have an
+/// open on the interface object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfaceopenedstate?language=objc)
 pub const kIONetworkInterfaceOpenedState: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfacedisabledstate?language=objc)
+/// The interface is temporarily
+/// unable to service its clients. This will occur when the network
+/// controller that is servicing the interface has entered a low power
+/// state that renders it unusable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfacedisabledstate?language=objc)
 pub const kIONetworkInterfaceDisabledState: c_uint = 0x4;
 
 /// Generic network statistics structure.
@@ -918,7 +1014,10 @@ pub unsafe fn IONetworkSetPacketFiltersMask(
     unsafe { IONetworkSetPacketFiltersMask(connect, filter_group, filters_mask, options) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworksupportedpacketfilters?language=objc)
+/// Indicate the filters that are
+/// supported by the hardware.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworksupportedpacketfilters?language=objc)
 pub const kIONetworkSupportedPacketFilters: c_uint = 0x0001;
 
 /// Get the packet filters for a given filter group.

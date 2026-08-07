@@ -146,27 +146,22 @@ impl AVCaptureOutput {
 
 /// Constants indicating the reason a capture data output dropped data.
 ///
-///
-/// No data was dropped.
-///
-/// Data was dropped because alwaysDiscardsLate{VideoFrames | DepthData} is YES and the client was still processing previous data when the current data needed to be delivered.
-///
-/// Data was dropped because its pool of buffers ran dry. This is usually indicative that the client is holding onto data objects too long.
-///
-/// Data was dropped because the device providing the data experienced a discontinuity, and an unknown number of data objects have been lost. This condition is typically caused by the system being too busy.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutputdatadroppedreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureOutputDataDroppedReason(pub NSInteger);
 impl AVCaptureOutputDataDroppedReason {
+    /// No data was dropped.
     #[doc(alias = "AVCaptureOutputDataDroppedReasonNone")]
     pub const None: Self = Self(0);
+    /// Data was dropped because alwaysDiscardsLate{VideoFrames | DepthData} is YES and the client was still processing previous data when the current data needed to be delivered.
     #[doc(alias = "AVCaptureOutputDataDroppedReasonLateData")]
     pub const LateData: Self = Self(1);
+    /// Data was dropped because its pool of buffers ran dry. This is usually indicative that the client is holding onto data objects too long.
     #[doc(alias = "AVCaptureOutputDataDroppedReasonOutOfBuffers")]
     pub const OutOfBuffers: Self = Self(2);
+    /// Data was dropped because the device providing the data experienced a discontinuity, and an unknown number of data objects have been lost. This condition is typically caused by the system being too busy.
     #[doc(alias = "AVCaptureOutputDataDroppedReasonDiscontinuity")]
     pub const Discontinuity: Self = Self(3);
 }

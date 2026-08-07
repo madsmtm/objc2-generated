@@ -70,11 +70,17 @@ unsafe impl RefEncode for CMIOObjectPropertyAddress {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyselectorwildcard?language=objc)
+/// The wildcard value for CMIOObjectPropertySelectors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyselectorwildcard?language=objc)
 pub const kCMIOObjectPropertySelectorWildcard: c_uint = 0x2a2a2a2a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyscopewildcard?language=objc)
+/// The wildcard value for CMIOObjectPropertyScopes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyscopewildcard?language=objc)
 pub const kCMIOObjectPropertyScopeWildcard: c_uint = 0x2a2a2a2a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementwildcard?language=objc)
+/// The wildcard value for CMIOObjectPropertyElements.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementwildcard?language=objc)
 pub const kCMIOObjectPropertyElementWildcard: c_uint = 0xFFFFFFFF;
 
 /// CMIOClassIDs are used to identify the class of a CMIOObject.
@@ -130,41 +136,78 @@ pub type CMIOObjectPropertyListenerProc = Option<
 pub type CMIOObjectPropertyListenerBlock =
     block2::Block<'static, fn(u32, *mut CMIOObjectPropertyAddress)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyscopeglobal?language=objc)
+/// The CMIOObjectPropertyScope for properties that apply to the object as a whole. All CMIOObjects have a global scope and for some it is their only scope.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyscopeglobal?language=objc)
 pub const kCMIOObjectPropertyScopeGlobal: c_uint = 0x676c6f62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementmain?language=objc)
+/// The CMIOObjectPropertyElement value for properties that apply to the main element or to the entire scope.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementmain?language=objc)
 pub const kCMIOObjectPropertyElementMain: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementmaster?language=objc)
 #[deprecated]
 pub const kCMIOObjectPropertyElementMaster: c_uint = kCMIOObjectPropertyElementMain;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectclassid?language=objc)
+/// The CMIOClassID that identifies the CMIOObject class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectclassid?language=objc)
 pub const kCMIOObjectClassID: c_uint = 0x616f626a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectclassidwildcard?language=objc)
+/// The wildcard value for CMIOClassIDs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectclassidwildcard?language=objc)
 pub const kCMIOObjectClassIDWildcard: c_uint = 0x2a2a2a2a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectunknown?language=objc)
+/// The CMIOObjectID for a non-existant CMIOObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectunknown?language=objc)
 pub const kCMIOObjectUnknown: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyclass?language=objc)
+/// A CMIOClassID that identifies the class of the CMIOObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyclass?language=objc)
 pub const kCMIOObjectPropertyClass: c_uint = 0x636c6173;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyowner?language=objc)
+/// A CMIOObjectID that identifies the the CMIOObject that owns the given CMIOObject. Note that all CMIOObjects are owned by some other CMIOObject. The only exception is
+/// the CMIOSystemObject, for which the value of this property is kCMIOObjectUnknown.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyowner?language=objc)
 pub const kCMIOObjectPropertyOwner: c_uint = 0x73746476;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertycreator?language=objc)
+/// A CFString that contains the bundle ID of the plug-in that instantiated the object. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertycreator?language=objc)
 pub const kCMIOObjectPropertyCreator: c_uint = 0x6f706c67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyname?language=objc)
+/// A CFString that contains the human readable name of the object. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyname?language=objc)
 pub const kCMIOObjectPropertyName: c_uint = 0x6c6e616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertymanufacturer?language=objc)
+/// A CFString that contains the human readable name of the manufacturer of the hardware the CMIOObject is a part of. The caller is responsible for releasing the
+/// returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertymanufacturer?language=objc)
 pub const kCMIOObjectPropertyManufacturer: c_uint = 0x6c6d616b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementname?language=objc)
+/// A CFString that contains a human readable name for the given element in the given scope. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementname?language=objc)
 pub const kCMIOObjectPropertyElementName: c_uint = 0x6c63686e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementcategoryname?language=objc)
+/// A CFString that contains a human readable name for the category of the given element in the given scope. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementcategoryname?language=objc)
 pub const kCMIOObjectPropertyElementCategoryName: c_uint = 0x6c63636e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementnumbername?language=objc)
+/// A CFString that contains a human readable name for the number of the given element in the given scope. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementnumbername?language=objc)
 pub const kCMIOObjectPropertyElementNumberName: c_uint = 0x6c636e6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyownedobjects?language=objc)
+/// An array of CMIOObjectIDs that represent all the CMIOObjects owned by the given object. The qualifier is an array of CMIOClassIDs. If it is non-empty, the
+/// returned array of CMIOObjectIDs will only refer to objects whose class is in the qualifier array or whose is a subclass of one in the qualifier array.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyownedobjects?language=objc)
 pub const kCMIOObjectPropertyOwnedObjects: c_uint = 0x6f776e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertylisteneradded?language=objc)
+/// A CMIOObjectPropertyAddress indicating the address to which a new listener was added. Note that this property is not for applications to use. Rather, this property
+/// is for the DAL shell to notify CMIOObjects implemented by a CMIOPlugIn when a listener is added.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertylisteneradded?language=objc)
 pub const kCMIOObjectPropertyListenerAdded: c_uint = 0x6c697361;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertylistenerremoved?language=objc)
+/// A CMIOObjectPropertyAddress indicating the address to which a listener was removed. Note that this property is not for applications to use. Rather, this property
+/// is for the DAL shell to notify CMIOObjects implemented by a CMIOPlugIn when a listener is removed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertylistenerremoved?language=objc)
 pub const kCMIOObjectPropertyListenerRemoved: c_uint = 0x6c697372;
 
 /// Prints to standard out a textural description of the CMIOObject.

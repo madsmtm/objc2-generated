@@ -9,22 +9,19 @@ use crate::*;
 
 /// These are the values returned by recordPermission.
 ///
-/// The user has not yet been asked for permission.
-///
-/// The user has been asked and has denied permission.
-///
-/// The user has been asked and has granted permission.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplicationrecordpermission?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioApplicationRecordPermission(pub NSInteger);
 impl AVAudioApplicationRecordPermission {
+    /// The user has not yet been asked for permission.
     #[doc(alias = "AVAudioApplicationRecordPermissionUndetermined")]
     pub const Undetermined: Self = Self(0x756e6474);
+    /// The user has been asked and has denied permission.
     #[doc(alias = "AVAudioApplicationRecordPermissionDenied")]
     pub const Denied: Self = Self(0x64656e79);
+    /// The user has been asked and has granted permission.
     #[doc(alias = "AVAudioApplicationRecordPermissionGranted")]
     pub const Granted: Self = Self(0x67726e74);
 }
@@ -39,13 +36,7 @@ unsafe impl RefEncode for AVAudioApplicationRecordPermission {
 
 /// These are the values returned by microphoneInjectionPermission.
 ///
-/// The user has disabled this service for all apps.
-///
 /// The user has not yet been asked for permission.
-///
-/// The user has been asked and has denied permission.
-///
-/// The user has been asked and has granted permission.
 ///
 /// Introduced: ios(18.2) visionos(2.2)
 ///
@@ -55,12 +46,15 @@ unsafe impl RefEncode for AVAudioApplicationRecordPermission {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioApplicationMicrophoneInjectionPermission(pub NSInteger);
 impl AVAudioApplicationMicrophoneInjectionPermission {
+    /// The user has disabled this service for all apps.
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionServiceDisabled")]
     pub const ServiceDisabled: Self = Self(0x73726473);
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionUndetermined")]
     pub const Undetermined: Self = Self(0x756e6474);
+    /// The user has been asked and has denied permission.
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionDenied")]
     pub const Denied: Self = Self(0x64656e79);
+    /// The user has been asked and has granted permission.
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionGranted")]
     pub const Granted: Self = Self(0x67726e74);
 }

@@ -517,12 +517,15 @@ pub const kIOUSBEndpointDescriptorReservedPhase: c_uint = IOUSBBitRangePhase!(13
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBEndpointDirection(pub c_uint);
 impl tIOUSBEndpointDirection {
+    /// endpoint direction is host-to-device
     #[doc(alias = "kIOUSBEndpointDirectionOut")]
     pub const IOUSBEndpointDirectionOut: Self =
         Self(kIOUSBEndpointDescriptorDirectionOut >> kIOUSBEndpointDescriptorDirectionPhase);
+    /// endpoint direction is device-to-host
     #[doc(alias = "kIOUSBEndpointDirectionIn")]
     pub const IOUSBEndpointDirectionIn: Self =
         Self(kIOUSBEndpointDescriptorDirectionIn >> kIOUSBEndpointDescriptorDirectionPhase);
+    /// the direction is unknown
     #[doc(alias = "kIOUSBEndpointDirectionUnknown")]
     pub const IOUSBEndpointDirectionUnknown: Self = Self(2);
 }
@@ -544,18 +547,22 @@ unsafe impl RefEncode for tIOUSBEndpointDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBEndpointType(pub c_uint);
 impl tIOUSBEndpointType {
+    /// endpoint is a control endpoint
     #[doc(alias = "kIOUSBEndpointTypeControl")]
     pub const IOUSBEndpointTypeControl: Self = Self(
         kIOUSBEndpointDescriptorTransferTypeControl >> kIOUSBEndpointDescriptorTransferTypePhase,
     );
+    /// endpoint is an isochronous endpoint
     #[doc(alias = "kIOUSBEndpointTypeIsochronous")]
     pub const IOUSBEndpointTypeIsochronous: Self = Self(
         kIOUSBEndpointDescriptorTransferTypeIsochronous
             >> kIOUSBEndpointDescriptorTransferTypePhase,
     );
+    /// is a bulk endpoint
     #[doc(alias = "kIOUSBEndpointTypeBulk")]
     pub const IOUSBEndpointTypeBulk: Self =
         Self(kIOUSBEndpointDescriptorTransferTypeBulk >> kIOUSBEndpointDescriptorTransferTypePhase);
+    /// is an interrupt endpoint
     #[doc(alias = "kIOUSBEndpointTypeInterrupt")]
     pub const IOUSBEndpointTypeInterrupt: Self = Self(
         kIOUSBEndpointDescriptorTransferTypeInterrupt >> kIOUSBEndpointDescriptorTransferTypePhase,
@@ -1713,8 +1720,10 @@ unsafe impl RefEncode for IOUSBDeviceRequestSetSELData {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBDeviceRequestDirectionValue(pub c_uint);
 impl tIOUSBDeviceRequestDirectionValue {
+    /// the device request data phase direction is host-to-device
     #[doc(alias = "kIOUSBDeviceRequestDirectionValueOut")]
     pub const IOUSBDeviceRequestDirectionValueOut: Self = Self(0);
+    /// the device request data phase direction is device-to-host
     #[doc(alias = "kIOUSBDeviceRequestDirectionValueIn")]
     pub const IOUSBDeviceRequestDirectionValueIn: Self = Self(1);
 }
@@ -1736,10 +1745,13 @@ unsafe impl RefEncode for tIOUSBDeviceRequestDirectionValue {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBDeviceRequestTypeValue(pub c_uint);
 impl tIOUSBDeviceRequestTypeValue {
+    /// the device request is a standard device request
     #[doc(alias = "kIOUSBDeviceRequestTypeValueStandard")]
     pub const IOUSBDeviceRequestTypeValueStandard: Self = Self(0);
+    /// the device request is a class specified device request
     #[doc(alias = "kIOUSBDeviceRequestTypeValueClass")]
     pub const IOUSBDeviceRequestTypeValueClass: Self = Self(1);
+    /// the device request is a vendor specified device request
     #[doc(alias = "kIOUSBDeviceRequestTypeValueVendor")]
     pub const IOUSBDeviceRequestTypeValueVendor: Self = Self(2);
 }
@@ -1761,12 +1773,16 @@ unsafe impl RefEncode for tIOUSBDeviceRequestTypeValue {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBDeviceRequestRecipientValue(pub c_uint);
 impl tIOUSBDeviceRequestRecipientValue {
+    /// the device request's recipient is a device
     #[doc(alias = "kIOUSBDeviceRequestRecipientValueDevice")]
     pub const IOUSBDeviceRequestRecipientValueDevice: Self = Self(0);
+    /// the device request's recipient is an interface
     #[doc(alias = "kIOUSBDeviceRequestRecipientValueInterface")]
     pub const IOUSBDeviceRequestRecipientValueInterface: Self = Self(1);
+    /// the device request's recipient is an endpoint
     #[doc(alias = "kIOUSBDeviceRequestRecipientValueEndpoint")]
     pub const IOUSBDeviceRequestRecipientValueEndpoint: Self = Self(2);
+    /// the device request's recipient is an other type
     #[doc(alias = "kIOUSBDeviceRequestRecipientValueOther")]
     pub const IOUSBDeviceRequestRecipientValueOther: Self = Self(3);
 }

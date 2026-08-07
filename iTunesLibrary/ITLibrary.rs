@@ -9,14 +9,13 @@ use crate::*;
 
 /// These constants describe the features supported by a given iTunes library.
 ///
-/// No features are supported
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibexportfeature?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibExportFeature(pub NSUInteger);
 impl ITLibExportFeature {
+    /// No features are supported
     #[doc(alias = "ITLibExportFeatureNone")]
     pub const None: Self = Self(0);
 }
@@ -31,19 +30,18 @@ unsafe impl RefEncode for ITLibExportFeature {
 
 /// These constants describe the options that can be passed supported by a given iTunes library.
 ///
-/// Load the library immediately on ITLibrary instance creation.
-///
-/// Don't load the library until the first request for data.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibinitoptions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibInitOptions(pub NSUInteger);
 impl ITLibInitOptions {
+    /// Load the library immediately on ITLibrary instance creation.
     #[doc(alias = "ITLibInitOptionNone")]
     pub const None: Self = Self(0);
     /// ITLibrary will be initialized but no iTunes library data will be loaded. Data will be lazy-loaded upon request.
+    ///
+    /// Don't load the library until the first request for data.
     #[doc(alias = "ITLibInitOptionLazyLoadData")]
     pub const LazyLoadData: Self = Self(1);
 }

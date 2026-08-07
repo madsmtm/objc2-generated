@@ -17,8 +17,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionWindowType(pub NSInteger);
 impl WKWebExtensionWindowType {
+    /// Indicates a normal window.
     #[doc(alias = "WKWebExtensionWindowTypeNormal")]
     pub const Normal: Self = Self(0);
+    /// Indicates a popup window.
     #[doc(alias = "WKWebExtensionWindowTypePopup")]
     pub const Popup: Self = Self(1);
 }
@@ -39,12 +41,16 @@ unsafe impl RefEncode for WKWebExtensionWindowType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionWindowState(pub NSInteger);
 impl WKWebExtensionWindowState {
+    /// Indicates a window is in its normal state.
     #[doc(alias = "WKWebExtensionWindowStateNormal")]
     pub const Normal: Self = Self(0);
+    /// Indicates a window is minimized.
     #[doc(alias = "WKWebExtensionWindowStateMinimized")]
     pub const Minimized: Self = Self(1);
+    /// Indicates a window is maximized.
     #[doc(alias = "WKWebExtensionWindowStateMaximized")]
     pub const Maximized: Self = Self(2);
+    /// Indicates a window is in fullscreen mode.
     #[doc(alias = "WKWebExtensionWindowStateFullscreen")]
     pub const Fullscreen: Self = Self(3);
 }

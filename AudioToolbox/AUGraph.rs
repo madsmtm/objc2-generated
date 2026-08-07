@@ -32,13 +32,30 @@ pub type AUGraph = *mut OpaqueAUGraph;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aunode?language=objc)
 pub type AUNode = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_nodenotfound?language=objc)
+/// The specified node cannot be found
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_nodenotfound?language=objc)
 pub const kAUGraphErr_NodeNotFound: OSStatus = -10860;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_invalidconnection?language=objc)
+/// The attempted connection between two nodes cannot be made
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_invalidconnection?language=objc)
 pub const kAUGraphErr_InvalidConnection: OSStatus = -10861;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_outputnodeerr?language=objc)
+/// AUGraphs can only contain one OutputUnit.
+/// this error is returned if trying to add a second output unit
+/// or the graph's output unit is removed while the graph is running
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_outputnodeerr?language=objc)
 pub const kAUGraphErr_OutputNodeErr: OSStatus = -10862;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_cannotdoincurrentcontext?language=objc)
+/// To avoid spinning or waiting in the render thread (a bad idea!), many of the
+/// calls to AUGraph can return: kAUGraphErr_CannotDoInCurrentContext. This
+/// result is only generated when you call an AUGraph API from its render
+/// callback. It means that the lock that it required was held at that time, by
+/// another thread. If you see this result code, you can generally attempt the
+/// action again - typically the NEXT render cycle (so in the mean time the lock
+/// can be cleared), or you can delegate that call to another thread in your
+/// app. You should not spin or put-to-sleep the render thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_cannotdoincurrentcontext?language=objc)
 pub const kAUGraphErr_CannotDoInCurrentContext: OSStatus = -10863;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_invalidaudiounit?language=objc)
 pub const kAUGraphErr_InvalidAudioUnit: OSStatus = -10864;
@@ -308,9 +325,13 @@ pub unsafe fn AUGraphIsNodeSubGraph(
     unsafe { AUGraphIsNodeSubGraph(in_graph, in_node, out_flag) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunodeinteraction_connection?language=objc)
+/// connections between 2 audio units,
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunodeinteraction_connection?language=objc)
 pub const kAUNodeInteraction_Connection: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunodeinteraction_inputcallback?language=objc)
+/// input callbacks being registered to a single audio unit's input bus.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunodeinteraction_inputcallback?language=objc)
 pub const kAUNodeInteraction_InputCallback: u32 = 2;
 
 /// A connection between two nodes

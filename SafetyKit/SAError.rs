@@ -17,12 +17,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SAErrorCode(pub NSInteger);
 impl SAErrorCode {
+    /// The application is not authorized to perform the requested operation.
     #[doc(alias = "SAErrorNotAuthorized")]
     pub const NotAuthorized: Self = Self(1);
+    /// The API is restricted on this device at the current time.
     #[doc(alias = "SAErrorNotAllowed")]
     pub const NotAllowed: Self = Self(2);
+    /// An invalid argument was provided to the API.
     #[doc(alias = "SAErrorInvalidArgument")]
     pub const InvalidArgument: Self = Self(3);
+    /// The requested operation failed, retrying may succeed.
     #[doc(alias = "SAErrorOperationFailed")]
     pub const OperationFailed: Self = Self(4);
 }

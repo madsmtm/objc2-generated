@@ -51,7 +51,11 @@ impl SecCode {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsuseallarchitectures?language=objc)
+/// If code refers to a single architecture of a universal binary, return a SecStaticCodeRef
+/// that refers to the entire universal code with all its architectures. By default, the
+/// returned static reference identifies only the actual architecture of the running program.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccsuseallarchitectures?language=objc)
 pub const kSecCSUseAllArchitectures: u32 = 1;
 
 #[cfg(feature = "CSCommon")]

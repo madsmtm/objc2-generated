@@ -11,31 +11,25 @@ use crate::*;
 
 /// These constants are returned by the AVAssetReader status property to indicate whether it can successfully read samples from its asset.
 ///
-///
-/// Indicates that the status of the asset reader is not currently known.
-///
-/// Indicates that the asset reader is successfully reading samples from its asset.
-///
-/// Indicates that the asset reader has successfully read all of the samples in its time range.
-///
-/// Indicates that the asset reader can no longer read samples from its asset because of an error. The error is described by the value of the asset reader's error property.
-///
-/// Indicates that the asset reader can no longer read samples because reading was canceled with the cancelReading method.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetReaderStatus(pub NSInteger);
 impl AVAssetReaderStatus {
+    /// Indicates that the status of the asset reader is not currently known.
     #[doc(alias = "AVAssetReaderStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Indicates that the asset reader is successfully reading samples from its asset.
     #[doc(alias = "AVAssetReaderStatusReading")]
     pub const Reading: Self = Self(1);
+    /// Indicates that the asset reader has successfully read all of the samples in its time range.
     #[doc(alias = "AVAssetReaderStatusCompleted")]
     pub const Completed: Self = Self(2);
+    /// Indicates that the asset reader can no longer read samples from its asset because of an error. The error is described by the value of the asset reader's error property.
     #[doc(alias = "AVAssetReaderStatusFailed")]
     pub const Failed: Self = Self(3);
+    /// Indicates that the asset reader can no longer read samples because reading was canceled with the cancelReading method.
     #[doc(alias = "AVAssetReaderStatusCancelled")]
     pub const Cancelled: Self = Self(4);
 }

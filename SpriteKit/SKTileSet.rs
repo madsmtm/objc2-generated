@@ -17,12 +17,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTileSetType(pub NSUInteger);
 impl SKTileSetType {
+    /// Specifies that the tiles will be axis-alligned rectangles that are placed in rows and columns at right angles to one another. This is the default type.
     #[doc(alias = "SKTileSetTypeGrid")]
     pub const Grid: Self = Self(0);
+    /// Specifies that the tiles will be rectangles that are rotated and scaled to give the appearance of 3/4 perspective.
     #[doc(alias = "SKTileSetTypeIsometric")]
     pub const Isometric: Self = Self(1);
+    /// Specifies that the tiles will be flat bottomed hexagons.
     #[doc(alias = "SKTileSetTypeHexagonalFlat")]
     pub const HexagonalFlat: Self = Self(2);
+    /// Specifies that the tiles will be "pointy" bottomed hexagons.
     #[doc(alias = "SKTileSetTypeHexagonalPointy")]
     pub const HexagonalPointy: Self = Self(3);
 }

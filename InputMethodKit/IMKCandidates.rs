@@ -9,11 +9,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksinglecolumnscrollingcandidatepanel?language=objc)
+/// creates a window with a 1 column X 9 row grid.  If there are more than 9 rows this will display a scroll bar.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksinglecolumnscrollingcandidatepanel?language=objc)
 pub const kIMKSingleColumnScrollingCandidatePanel: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkscrollinggridcandidatepanel?language=objc)
+/// a grid with 5 columns is used to display.  If necessary, a scroll bar will be displayed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkscrollinggridcandidatepanel?language=objc)
 pub const kIMKScrollingGridCandidatePanel: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksinglerowsteppingcandidatepanel?language=objc)
+/// a 9 column x 1 row grid is displayed.  If there are more than 9 candidates, a stepper controller will be displayed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksinglerowsteppingcandidatepanel?language=objc)
 pub const kIMKSingleRowSteppingCandidatePanel: c_uint = 3;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidatepaneltype?language=objc)

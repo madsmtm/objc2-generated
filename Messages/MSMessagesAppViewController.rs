@@ -19,10 +19,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSMessagesAppPresentationStyle(pub NSUInteger);
 impl MSMessagesAppPresentationStyle {
+    /// The extension's UI is presented compact in the keyboard area.
     #[doc(alias = "MSMessagesAppPresentationStyleCompact")]
     pub const Compact: Self = Self(0);
+    /// The extension's UI is presented expanded taking up most of the screen.
     #[doc(alias = "MSMessagesAppPresentationStyleExpanded")]
     pub const Expanded: Self = Self(1);
+    /// The extension's UI is presented in the transcript of the conversation in Messages.
     #[doc(alias = "MSMessagesAppPresentationStyleTranscript")]
     pub const Transcript: Self = Self(2);
 }
@@ -43,8 +46,10 @@ unsafe impl RefEncode for MSMessagesAppPresentationStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSMessagesAppPresentationContext(pub NSUInteger);
 impl MSMessagesAppPresentationContext {
+    /// The extension was launched for presentation in Messages
     #[doc(alias = "MSMessagesAppPresentationContextMessages")]
     pub const Messages: Self = Self(0);
+    /// The extension was launched for presentation over media content, such as a photo or camera feed
     #[doc(alias = "MSMessagesAppPresentationContextMedia")]
     pub const Media: Self = Self(1);
 }

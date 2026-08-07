@@ -11,55 +11,64 @@ extern "C" {
     pub static HKErrorDomain: &'static NSString;
 }
 
-/// perform the requested operation.
-///
-///
-///
-///
-///
-/// required data types.
-///
-/// query's result could not be meaningfully computed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKErrorCode(pub NSInteger);
 impl HKErrorCode {
+    /// Unknown error.
     #[doc(alias = "HKUnknownError")]
     pub const UnknownError: Self = Self(0);
     #[doc(alias = "HKNoError")]
     #[deprecated]
     pub const NoError: Self = Self(HKErrorCode::UnknownError.0);
+    /// HealthKit is not available on this device.
     #[doc(alias = "HKErrorHealthDataUnavailable")]
     pub const ErrorHealthDataUnavailable: Self = Self(1);
+    /// HealthKit is restricted on this device.
     #[doc(alias = "HKErrorHealthDataRestricted")]
     pub const ErrorHealthDataRestricted: Self = Self(2);
+    /// An invalid argument was provided to the API.
     #[doc(alias = "HKErrorInvalidArgument")]
     pub const ErrorInvalidArgument: Self = Self(3);
+    /// The application is not authorized to perform the requested operation.
     #[doc(alias = "HKErrorAuthorizationDenied")]
     pub const ErrorAuthorizationDenied: Self = Self(4);
+    /// The user has not yet chosen whether the application is authorized to
+    /// perform the requested operation.
     #[doc(alias = "HKErrorAuthorizationNotDetermined")]
     pub const ErrorAuthorizationNotDetermined: Self = Self(5);
+    /// Protected health data is inaccessible because the device is locked.
     #[doc(alias = "HKErrorDatabaseInaccessible")]
     pub const ErrorDatabaseInaccessible: Self = Self(6);
+    /// The user canceled the operation.
     #[doc(alias = "HKErrorUserCanceled")]
     pub const ErrorUserCanceled: Self = Self(7);
+    /// Another primary workout session has started or is already ongoing by this or another application.
     #[doc(alias = "HKErrorAnotherWorkoutSessionStarted")]
     pub const ErrorAnotherWorkoutSessionStarted: Self = Self(8);
+    /// User exited the application while a workout session was running.
     #[doc(alias = "HKErrorUserExitedWorkoutSession")]
     pub const ErrorUserExitedWorkoutSession: Self = Self(9);
+    /// The user has not granted the application authorization to access
+    /// required data types.
     #[doc(alias = "HKErrorRequiredAuthorizationDenied")]
     pub const ErrorRequiredAuthorizationDenied: Self = Self(10);
+    /// No data is available for the requested query and predicate, and so the
+    /// query's result could not be meaningfully computed.
     #[doc(alias = "HKErrorNoData")]
     pub const ErrorNoData: Self = Self(11);
+    /// A workout session is not allowed to be created for the activity type.
     #[doc(alias = "HKErrorWorkoutActivityNotAllowed")]
     pub const ErrorWorkoutActivityNotAllowed: Self = Self(12);
+    /// The provided data's size exceeds the maximum allowed.
     #[doc(alias = "HKErrorDataSizeExceeded")]
     pub const ErrorDataSizeExceeded: Self = Self(13);
+    /// A workout session is not allowed to start or prepare when this app is in the background.
     #[doc(alias = "HKErrorBackgroundWorkoutSessionNotAllowed")]
     pub const ErrorBackgroundWorkoutSessionNotAllowed: Self = Self(14);
+    /// Protected Health data changes are not allowed in Guest User mode on visionOS.
     #[doc(alias = "HKErrorNotPermissibleForGuestUserMode")]
     pub const ErrorNotPermissibleForGuestUserMode: Self = Self(15);
 }
@@ -99,19 +108,20 @@ unsafe impl RefEncode for HKUpdateFrequency {
 /// This enumerated type is used to indicate the currently granted authorization status for a specific
 /// HKObjectType.
 ///
-///
-/// application may save objects of the specified type.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAuthorizationStatus(pub NSInteger);
 impl HKAuthorizationStatus {
+    /// The user has not yet made a choice regarding whether this
+    /// application may save objects of the specified type.
     #[doc(alias = "HKAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// This application is not allowed to save objects of the specified type.
     #[doc(alias = "HKAuthorizationStatusSharingDenied")]
     pub const SharingDenied: Self = Self(1);
+    /// This application is authorized to save objects of the specified type.
     #[doc(alias = "HKAuthorizationStatusSharingAuthorized")]
     pub const SharingAuthorized: Self = Self(2);
 }
@@ -126,19 +136,20 @@ unsafe impl RefEncode for HKAuthorizationStatus {
 
 /// This enumerated type is used to indicate whether it is necessary to request authorization from the user.
 ///
-///
-/// an error occurred.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAuthorizationRequestStatus(pub NSInteger);
 impl HKAuthorizationRequestStatus {
+    /// The authorization request status could not be determined because
+    /// an error occurred.
     #[doc(alias = "HKAuthorizationRequestStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The application should request authorization from the user.
     #[doc(alias = "HKAuthorizationRequestStatusShouldRequest")]
     pub const ShouldRequest: Self = Self(1);
+    /// Requesting authorization from the user is unnecessary.
     #[doc(alias = "HKAuthorizationRequestStatusUnnecessary")]
     pub const Unnecessary: Self = Self(2);
 }

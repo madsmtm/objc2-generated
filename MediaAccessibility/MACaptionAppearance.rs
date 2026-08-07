@@ -21,19 +21,16 @@ extern "C" {
 
 /// MACaptionAppearanceDomain is used to specify which domain of preferences to access.
 ///
-///
-/// The user-defined preferences. This domain should be passed to retrieve settings that should be used to render captions.
-///
-/// The system defaults which will not change during a user session. These settings should be used for comparison, not to render captions. For example, when rendering a glyph some caption render engines need to get the user-defined font and the system-defined font to determeine the final pixel size to render a glyph. Most render engines will never need to use this domain.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceDomain(pub CFIndex);
 impl MACaptionAppearanceDomain {
+    /// The system defaults which will not change during a user session. These settings should be used for comparison, not to render captions. For example, when rendering a glyph some caption render engines need to get the user-defined font and the system-defined font to determeine the final pixel size to render a glyph. Most render engines will never need to use this domain.
     #[doc(alias = "kMACaptionAppearanceDomainDefault")]
     pub const Default: Self = Self(0);
+    /// The user-defined preferences. This domain should be passed to retrieve settings that should be used to render captions.
     #[doc(alias = "kMACaptionAppearanceDomainUser")]
     pub const User: Self = Self(1);
 }
@@ -50,23 +47,19 @@ unsafe impl RefEncode for MACaptionAppearanceDomain {
 
 /// MACaptionAppearanceDisplayType is used to specify the the type of captions that should be displayed
 ///
-///
-/// Only forced captions for translation should be displayed.
-///
-/// If the language of the audio track differs from the system locale then captions matching the system locale should be displayed (if available).
-///
-/// The best available captioning track should always be displayed, whether it be CC, SDH, or subtitles.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceDisplayType(pub CFIndex);
 impl MACaptionAppearanceDisplayType {
+    /// Only forced captions for translation should be displayed.
     #[doc(alias = "kMACaptionAppearanceDisplayTypeForcedOnly")]
     pub const ForcedOnly: Self = Self(0);
+    /// If the language of the audio track differs from the system locale then captions matching the system locale should be displayed (if available).
     #[doc(alias = "kMACaptionAppearanceDisplayTypeAutomatic")]
     pub const Automatic: Self = Self(1);
+    /// The best available captioning track should always be displayed, whether it be CC, SDH, or subtitles.
     #[doc(alias = "kMACaptionAppearanceDisplayTypeAlwaysOn")]
     pub const AlwaysOn: Self = Self(2);
 }
@@ -83,19 +76,16 @@ unsafe impl RefEncode for MACaptionAppearanceDisplayType {
 
 /// MACaptionAppearanceBehavior is used to determine how a preference value should be used.
 ///
-///
-/// The value should override any content, application, or otherwise-defined values.
-///
-/// Content, application, or otherwise-defined values should override the returned value. If no other value is defined, then the return value should be used.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceBehavior(pub CFIndex);
 impl MACaptionAppearanceBehavior {
+    /// The value should override any content, application, or otherwise-defined values.
     #[doc(alias = "kMACaptionAppearanceBehaviorUseValue")]
     pub const UseValue: Self = Self(0);
+    /// Content, application, or otherwise-defined values should override the returned value. If no other value is defined, then the return value should be used.
     #[doc(alias = "kMACaptionAppearanceBehaviorUseContentIfAvailable")]
     pub const UseContentIfAvailable: Self = Self(1);
 }
@@ -112,43 +102,34 @@ unsafe impl RefEncode for MACaptionAppearanceBehavior {
 
 /// MACaptionAppearanceFontStyle is used to specify a font style
 ///
-///
-/// Default font style.
-///
-/// Font style for fonts similar to Courier.
-///
-/// Font style for fonts similar to Times New Roman.
-///
-/// Font style for fonts similar to Helvetica Monospaced.
-///
-/// Font style for fonts similar to Arial.
-///
-/// Font style for fonts similar to Dom and Impress.
-///
-/// Font style for fonts similar to Coronet and Marigold.
-///
-/// Font style for fonts similar to Engravers Gothic.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceFontStyle(pub CFIndex);
 impl MACaptionAppearanceFontStyle {
+    /// Default font style.
     #[doc(alias = "kMACaptionAppearanceFontStyleDefault")]
     pub const Default: Self = Self(0);
+    /// Font style for fonts similar to Courier.
     #[doc(alias = "kMACaptionAppearanceFontStyleMonospacedWithSerif")]
     pub const MonospacedWithSerif: Self = Self(1);
+    /// Font style for fonts similar to Times New Roman.
     #[doc(alias = "kMACaptionAppearanceFontStyleProportionalWithSerif")]
     pub const ProportionalWithSerif: Self = Self(2);
+    /// Font style for fonts similar to Helvetica Monospaced.
     #[doc(alias = "kMACaptionAppearanceFontStyleMonospacedWithoutSerif")]
     pub const MonospacedWithoutSerif: Self = Self(3);
+    /// Font style for fonts similar to Arial.
     #[doc(alias = "kMACaptionAppearanceFontStyleProportionalWithoutSerif")]
     pub const ProportionalWithoutSerif: Self = Self(4);
+    /// Font style for fonts similar to Dom and Impress.
     #[doc(alias = "kMACaptionAppearanceFontStyleCasual")]
     pub const Casual: Self = Self(5);
+    /// Font style for fonts similar to Coronet and Marigold.
     #[doc(alias = "kMACaptionAppearanceFontStyleCursive")]
     pub const Cursive: Self = Self(6);
+    /// Font style for fonts similar to Engravers Gothic.
     #[doc(alias = "kMACaptionAppearanceFontStyleSmallCapital")]
     pub const SmallCapital: Self = Self(7);
 }
@@ -165,35 +146,28 @@ unsafe impl RefEncode for MACaptionAppearanceFontStyle {
 
 /// MACaptionAppearanceTextEdgeStyle is used to specify a text-edge style.
 ///
-///
-/// Undefined edge style.
-///
-/// No edge style.
-///
-/// Raised edge style.
-///
-/// Depressed edge style.
-///
-/// Uniform edge style.
-///
-/// Shadow edge style.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceTextEdgeStyle(pub CFIndex);
 impl MACaptionAppearanceTextEdgeStyle {
+    /// Undefined edge style.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleUndefined")]
     pub const Undefined: Self = Self(0);
+    /// No edge style.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleNone")]
     pub const None: Self = Self(1);
+    /// Raised edge style.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleRaised")]
     pub const Raised: Self = Self(2);
+    /// Depressed edge style.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleDepressed")]
     pub const Depressed: Self = Self(3);
+    /// Uniform edge style.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleUniform")]
     pub const Uniform: Self = Self(4);
+    /// Shadow edge style.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleDropShadow")]
     pub const DropShadow: Self = Self(5);
 }

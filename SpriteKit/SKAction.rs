@@ -18,28 +18,27 @@ use crate::*;
 
 /// Adjust the timing of an action
 ///
-///
-/// animation to occur evenly over its duration.
-///
-/// animation to begin slowly, and then speed up as it progresses.
-///
-/// the animation to begin quickly, and then slow as it completes.
-///
-/// ease-in ease-out animation begins slowly, accelerates through the middle
-/// of its duration, and then slows again before completing.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKActionTimingMode(pub NSInteger);
 impl SKActionTimingMode {
+    /// Specifies linear pacing. Linear pacing causes an
+    /// animation to occur evenly over its duration.
     #[doc(alias = "SKActionTimingLinear")]
     pub const Linear: Self = Self(0);
+    /// Specifies ease-in pacing. Ease-in pacing causes the
+    /// animation to begin slowly, and then speed up as it progresses.
     #[doc(alias = "SKActionTimingEaseIn")]
     pub const EaseIn: Self = Self(1);
+    /// Specifies ease-out pacing. Ease-out pacing causes
+    /// the animation to begin quickly, and then slow as it completes.
     #[doc(alias = "SKActionTimingEaseOut")]
     pub const EaseOut: Self = Self(2);
+    /// Specifies ease-in ease-out pacing. An
+    /// ease-in ease-out animation begins slowly, accelerates through the middle
+    /// of its duration, and then slows again before completing.
     #[doc(alias = "SKActionTimingEaseInEaseOut")]
     pub const EaseInEaseOut: Self = Self(3);
 }

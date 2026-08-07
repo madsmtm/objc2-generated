@@ -41,12 +41,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MFMailComposeResult(pub NSInteger);
 impl MFMailComposeResult {
+    /// User canceled the composition.
     #[doc(alias = "MFMailComposeResultCancelled")]
     pub const Cancelled: Self = Self(0);
+    /// User successfully saved the message.
     #[doc(alias = "MFMailComposeResultSaved")]
     pub const Saved: Self = Self(1);
+    /// User successfully sent/queued the message.
     #[doc(alias = "MFMailComposeResultSent")]
     pub const Sent: Self = Self(2);
+    /// User's attempt to save or send was unsuccessful.
     #[doc(alias = "MFMailComposeResultFailed")]
     pub const Failed: Self = Self(3);
 }
@@ -88,8 +92,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MFMailComposeErrorCode(pub NSInteger);
 impl MFMailComposeErrorCode {
+    /// Generic error indicating a save failed.
     #[doc(alias = "MFMailComposeErrorCodeSaveFailed")]
     pub const SaveFailed: Self = Self(0);
+    /// Generic error indicating a send failed.
     #[doc(alias = "MFMailComposeErrorCodeSendFailed")]
     pub const SendFailed: Self = Self(1);
 }

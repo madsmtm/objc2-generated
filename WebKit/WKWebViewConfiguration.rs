@@ -9,10 +9,6 @@ use crate::*;
 
 /// The policy used to determine the directionality of user interface elements inside a web view.
 ///
-/// specifications.
-///
-/// userInterfaceLayoutDirection property
-///
 /// When WKUserInterfaceDirectionPolicyContent is specified, the directionality of user interface
 /// elements is affected by the "dir" attribute or the "direction" CSS property. When
 /// WKUserInterfaceDirectionPolicySystem is specified, the directionality of user interface elements is
@@ -24,8 +20,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserInterfaceDirectionPolicy(pub NSInteger);
 impl WKUserInterfaceDirectionPolicy {
+    /// User interface directionality follows CSS / HTML / XHTML
+    /// specifications.
     #[doc(alias = "WKUserInterfaceDirectionPolicyContent")]
     pub const Content: Self = Self(0);
+    /// User interface directionality follows the view's
+    /// userInterfaceLayoutDirection property
     #[doc(alias = "WKUserInterfaceDirectionPolicySystem")]
     pub const System: Self = Self(1);
 }
@@ -47,12 +47,16 @@ unsafe impl RefEncode for WKUserInterfaceDirectionPolicy {
 pub struct WKAudiovisualMediaTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl WKAudiovisualMediaTypes: NSUInteger {
+/// No audiovisual media will require a user gesture to begin playing.
         #[doc(alias = "WKAudiovisualMediaTypeNone")]
         const None = 0;
+/// Audiovisual media containing audio will require a user gesture to begin playing.
         #[doc(alias = "WKAudiovisualMediaTypeAudio")]
         const Audio = 1<<0;
+/// Audiovisual media containing video will require a user gesture to begin playing.
         #[doc(alias = "WKAudiovisualMediaTypeVideo")]
         const Video = 1<<1;
+/// All audiovisual media will require a user gesture to begin playing.
         #[doc(alias = "WKAudiovisualMediaTypeAll")]
         const All = NSUIntegerMax as _;
         const _ = !0;

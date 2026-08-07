@@ -49,26 +49,32 @@ unsafe impl RefEncode for CBPeripheralManagerAuthorizationStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerState(pub NSInteger);
 impl CBPeripheralManagerState {
+    /// State unknown, update imminent.
     #[doc(alias = "CBPeripheralManagerStateUnknown")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unknown: Self = Self(CBManagerState::Unknown.0);
+    /// The connection with the system service was momentarily lost, update imminent.
     #[doc(alias = "CBPeripheralManagerStateResetting")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Resetting: Self = Self(CBManagerState::Resetting.0);
+    /// The platform doesn't support the Bluetooth Low Energy Peripheral/Server role.
     #[doc(alias = "CBPeripheralManagerStateUnsupported")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unsupported: Self = Self(CBManagerState::Unsupported.0);
+    /// The application is not authorized to use the Bluetooth Low Energy Peripheral/Server role.
     #[doc(alias = "CBPeripheralManagerStateUnauthorized")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unauthorized: Self = Self(CBManagerState::Unauthorized.0);
+    /// Bluetooth is currently powered off.
     #[doc(alias = "CBPeripheralManagerStatePoweredOff")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
+    /// Bluetooth is currently powered on and available to use.
     #[doc(alias = "CBPeripheralManagerStatePoweredOn")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
@@ -91,10 +97,13 @@ unsafe impl RefEncode for CBPeripheralManagerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerConnectionLatency(pub NSInteger);
 impl CBPeripheralManagerConnectionLatency {
+    /// Prioritizes rapid communication over battery life.
     #[doc(alias = "CBPeripheralManagerConnectionLatencyLow")]
     pub const Low: Self = Self(0);
+    /// A balance between communication frequency and battery life.
     #[doc(alias = "CBPeripheralManagerConnectionLatencyMedium")]
     pub const Medium: Self = Self(1);
+    /// Prioritizes extending battery life over rapid communication.
     #[doc(alias = "CBPeripheralManagerConnectionLatencyHigh")]
     pub const High: Self = Self(2);
 }

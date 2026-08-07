@@ -96,8 +96,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerTransferMode(pub NSUInteger);
 impl ICScannerTransferMode {
+    /// Save the scan as a file.
     #[doc(alias = "ICScannerTransferModeFileBased")]
     pub const FileBased: Self = Self(0);
+    /// Transfer the scan as data.
     #[doc(alias = "ICScannerTransferModeMemoryBased")]
     pub const MemoryBased: Self = Self(1);
 }

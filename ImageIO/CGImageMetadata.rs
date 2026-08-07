@@ -255,31 +255,6 @@ extern "C" {
 /// should be serialized in XMP. String types have CFStringRef values, array
 /// types have CFArray values, and structure types have CFDictionary values.
 ///
-/// CFType of the tag's value. This is only used when creating a new
-/// CGImageMetadataTag - no existing tags should have this value. CFString
-/// defaults to kCGImageMetadataTypeString, CFArray defaults to
-/// kCGImageMetadataTypeArrayOrdered, and CFDictionary defaults to
-/// kCGImageMetadataTypeStructure.
-///
-/// values will be converted to a string.
-///
-/// Serialized in XMP as
-/// <rdf
-/// :Bag>.
-///
-/// Serialized in XMP as
-/// <rdf
-/// :Seq>.
-///
-/// are alternates for the same value. Serialized in XMP as
-/// <rdf
-/// :Alt>.
-///
-/// where all elements are different localized strings for the same value.
-/// Serialized in XMP as an alternate array of strings with xml:lang qualifiers.
-///
-/// array elements, fields of a structure may belong to different namespaces.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -288,18 +263,43 @@ pub struct CGImageMetadataType(pub i32);
 impl CGImageMetadataType {
     #[doc(alias = "kCGImageMetadataTypeInvalid")]
     pub const Invalid: Self = Self(-1);
+    /// The type will be interpretted based on the
+    /// CFType of the tag's value. This is only used when creating a new
+    /// CGImageMetadataTag - no existing tags should have this value. CFString
+    /// defaults to kCGImageMetadataTypeString, CFArray defaults to
+    /// kCGImageMetadataTypeArrayOrdered, and CFDictionary defaults to
+    /// kCGImageMetadataTypeStructure.
     #[doc(alias = "kCGImageMetadataTypeDefault")]
     pub const Default: Self = Self(0);
+    /// A string value. CFNumber and CFBoolean
+    /// values will be converted to a string.
     #[doc(alias = "kCGImageMetadataTypeString")]
     pub const String: Self = Self(1);
+    /// An array where order does not matter.
+    /// Serialized in XMP as
+    /// <rdf
+    /// :Bag>.
     #[doc(alias = "kCGImageMetadataTypeArrayUnordered")]
     pub const ArrayUnordered: Self = Self(2);
+    /// An array where order is preserved.
+    /// Serialized in XMP as
+    /// <rdf
+    /// :Seq>.
     #[doc(alias = "kCGImageMetadataTypeArrayOrdered")]
     pub const ArrayOrdered: Self = Self(3);
+    /// An ordered array where all elements
+    /// are alternates for the same value. Serialized in XMP as
+    /// <rdf
+    /// :Alt>.
     #[doc(alias = "kCGImageMetadataTypeAlternateArray")]
     pub const AlternateArray: Self = Self(4);
+    /// A special case of an alternate array
+    /// where all elements are different localized strings for the same value.
+    /// Serialized in XMP as an alternate array of strings with xml:lang qualifiers.
     #[doc(alias = "kCGImageMetadataTypeAlternateText")]
     pub const AlternateText: Self = Self(5);
+    /// A collection of keys and values. Unlike
+    /// array elements, fields of a structure may belong to different namespaces.
     #[doc(alias = "kCGImageMetadataTypeStructure")]
     pub const Structure: Self = Self(6);
 }

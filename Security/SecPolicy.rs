@@ -255,17 +255,41 @@ impl SecPolicy {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationocspmethod?language=objc)
+/// If this flag is set, perform revocation
+/// checking using OCSP (Online Certificate Status Protocol).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationocspmethod?language=objc)
 pub const kSecRevocationOCSPMethod: CFOptionFlags = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationcrlmethod?language=objc)
+/// If this flag is set, perform revocation
+/// checking using the CRL (Certificate Revocation List) method.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationcrlmethod?language=objc)
 pub const kSecRevocationCRLMethod: CFOptionFlags = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationprefercrl?language=objc)
+/// If this flag is set, then CRL revocation
+/// checking will be preferred over OCSP (by default, OCSP is preferred.)
+/// Note that this flag only matters if both revocation methods are specified.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationprefercrl?language=objc)
 pub const kSecRevocationPreferCRL: CFOptionFlags = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationrequirepositiveresponse?language=objc)
+/// If this flag is set, then
+/// the policy will fail unless a verified positive response is obtained. If
+/// the flag is not set, revocation checking is done on a "best attempt" basis,
+/// where failure to reach the server is not considered fatal.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationrequirepositiveresponse?language=objc)
 pub const kSecRevocationRequirePositiveResponse: CFOptionFlags = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationnetworkaccessdisabled?language=objc)
+/// If this flag is set, then
+/// no network access is performed; only locally cached replies are consulted.
+/// This constant disallows network access for both revocation checks and
+/// intermediate CA issuer fetching.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationnetworkaccessdisabled?language=objc)
 pub const kSecRevocationNetworkAccessDisabled: CFOptionFlags = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationuseanyavailablemethod?language=objc)
+/// Specifies that either
+/// OCSP or CRL may be used, depending on the method(s) specified in the
+/// certificate and the value of kSecRevocationPreferCRL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationuseanyavailablemethod?language=objc)
 pub const kSecRevocationUseAnyAvailableMethod: CFOptionFlags = 3;
 
 #[cfg(feature = "SecBase")]

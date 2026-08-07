@@ -157,17 +157,32 @@ impl SecStaticCode {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccscheckallarchitectures?language=objc)
+/// For multi-architecture (universal) Mach-O programs, validate all architectures
+/// included. By default, only the native architecture is validated.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccscheckallarchitectures?language=objc)
 pub const kSecCSCheckAllArchitectures: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsdonotvalidateexecutable?language=objc)
+/// Do not validate the contents of the main executable. This is normally done.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccsdonotvalidateexecutable?language=objc)
 pub const kSecCSDoNotValidateExecutable: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsdonotvalidateresources?language=objc)
+/// Do not validate the presence and contents of all bundle resources (if any).
+/// By default, a mismatch in any bundle resource causes validation to fail.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccsdonotvalidateresources?language=objc)
 pub const kSecCSDoNotValidateResources: u32 = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsbasicvalidateonly?language=objc)
 pub const kSecCSBasicValidateOnly: u32 = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccschecknestedcode?language=objc)
+/// For code in bundle form, locate and recursively check embedded code. Only code
+/// in standard locations is considered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccschecknestedcode?language=objc)
 pub const kSecCSCheckNestedCode: u32 = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsstrictvalidate?language=objc)
+/// For code in bundle form, perform additional checks to verify that the bundle
+/// is not structured in a way that would allow tampering, and reject any resource
+/// envelope that introduces weaknesses into the signature.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccsstrictvalidate?language=objc)
 pub const kSecCSStrictValidate: u32 = 16;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsfullreport?language=objc)
 pub const kSecCSFullReport: u32 = 32;
@@ -183,9 +198,15 @@ pub const kSecCSRestrictSidebandData: u32 = 512;
 pub const kSecCSUseSoftwareSigningCert: u32 = 1024;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsvalidatepeh?language=objc)
 pub const kSecCSValidatePEH: u32 = 2048;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccssinglethreaded?language=objc)
+/// Perform all resource validation serially on a single thread instead of dispatching
+/// work in parallel.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccssinglethreaded?language=objc)
 pub const kSecCSSingleThreaded: u32 = 4096;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsallownetworkaccess?language=objc)
+/// Enables network access for certificate trust evaluation performed while validating the
+/// bundle or its contents.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccsallownetworkaccess?language=objc)
 pub const kSecCSAllowNetworkAccess: u32 = 65536;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsfastexecutablevalidation?language=objc)
 pub const kSecCSFastExecutableValidation: u32 = 131072;

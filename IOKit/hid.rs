@@ -814,29 +814,48 @@ unsafe impl RefEncode for HIDReportCommandType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidoptionstypenone?language=objc)
+/// Default option.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidoptionstypenone?language=objc)
 pub const kIOHIDOptionsTypeNone: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidoptionstypeseizedevice?language=objc)
+/// Used to open exclusive
+/// communication with the device.  This will prevent the system
+/// and other clients from receiving events from the device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidoptionstypeseizedevice?language=objc)
 pub const kIOHIDOptionsTypeSeizeDevice: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidoptionstypemaskprivate?language=objc)
+/// Mask for reserved internal usage values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidoptionstypemaskprivate?language=objc)
 pub const kIOHIDOptionsTypeMaskPrivate: c_uint = 0xff0000;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidoptionstype?language=objc)
 pub type IOHIDOptionsType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidqueueoptionstypenone?language=objc)
+/// Default option.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidqueueoptionstypenone?language=objc)
 pub const kIOHIDQueueOptionsTypeNone: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidqueueoptionstypeenqueueall?language=objc)
+/// Force the IOHIDQueue
+/// to enqueue all events, relative or absolute, regardless of change.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidqueueoptionstypeenqueueall?language=objc)
 pub const kIOHIDQueueOptionsTypeEnqueueAll: c_uint = 0x01;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidqueueoptionstype?language=objc)
 pub type IOHIDQueueOptionsType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypeansi?language=objc)
+/// ANSI.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypeansi?language=objc)
 pub const kIOHIDStandardTypeANSI: c_uint = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypeiso?language=objc)
+/// ISO.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypeiso?language=objc)
 pub const kIOHIDStandardTypeISO: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypejis?language=objc)
+/// JIS.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypejis?language=objc)
 pub const kIOHIDStandardTypeJIS: c_uint = 0x2;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypeunspecified?language=objc)
 pub const kIOHIDStandardTypeUnspecified: c_uint = 0xFFFFFFFF;
@@ -844,29 +863,49 @@ pub const kIOHIDStandardTypeUnspecified: c_uint = 0xFFFFFFFF;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidstandardtype?language=objc)
 pub type IOHIDStandardType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttypeunknown?language=objc)
+/// Unknown.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttypeunknown?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutTypeUnknown: c_uint = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype101?language=objc)
+/// ANSI.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype101?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType101: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype103?language=objc)
+/// Korean.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype103?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType103: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype102?language=objc)
+/// ISO.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype102?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType102: c_uint = 0x3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype104?language=objc)
+/// ABNT Brazil.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype104?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType104: c_uint = 0x4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype106?language=objc)
+/// JIS.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttype106?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType106: c_uint = 0x5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttypevendor?language=objc)
+/// Vendor specific layout.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardphysicallayouttypevendor?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutTypeVendor: c_uint = 0x6;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidkeyboardphysicallayouttype?language=objc)
 pub type IOHIDKeyboardPhysicalLayoutType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidaccelerationalgorithmtypetable?language=objc)
+/// Apple Acceleration Tables, not recommended.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidaccelerationalgorithmtypetable?language=objc)
 pub const kIOHIDAccelerationAlgorithmTypeTable: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidaccelerationalgorithmtypeparametric?language=objc)
+/// Acceleration Curves, defined by a set of points.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidaccelerationalgorithmtypeparametric?language=objc)
 pub const kIOHIDAccelerationAlgorithmTypeParametric: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidaccelerationalgorithmtypedefault?language=objc)
+/// Use the default acceleration algorithm resolution.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidaccelerationalgorithmtypedefault?language=objc)
 pub const kIOHIDAccelerationAlgorithmTypeDefault: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidaccelerationalgorithmtype?language=objc)
@@ -934,8 +973,10 @@ cf_objc2_type!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDTransactionDirectionType(pub u32);
 impl IOHIDTransactionDirectionType {
+    /// Transaction direction used for requesting element values from a device.
     #[doc(alias = "kIOHIDTransactionDirectionTypeInput")]
     pub const Input: Self = Self(0);
+    /// Transaction direction used for dispatching element values to a device.
     #[doc(alias = "kIOHIDTransactionDirectionTypeOutput")]
     pub const Output: Self = Self(1);
 }
@@ -4023,33 +4064,6 @@ unsafe impl RefEncode for IOHIDOutputTransactionInterface {
 
 /// Various options that can be supplied to IOHIDManager functions.
 ///
-/// explicit enough.
-///
-/// supplied to
-///
-/// ```text
-///  IOHIDManagerCreate
-/// ```
-///
-/// to create and/or use a
-/// persistent properties store.
-///
-/// to
-///
-/// ```text
-///  IOHIDManagerCreate when you wish to overwrite the
-///             persistent properties store without loading it first.
-///  @const     kIOHIDManagerOptionDoNotSaveProperties This constant can be supplied
-///             to @link IOHIDManagerCreate
-/// ```
-///
-/// when you want to use the
-/// persistent property store but do not want to add to it.
-///
-/// manager will act independently from calls to the manager.
-/// This allows for devices to be scheduled on separate queues, and
-/// their lifetime can persist after the manager is gone.
-///
 /// The following calls will not be propagated to the devices:
 /// IOHIDManagerOpen, IOHIDManagerClose, IOHIDManagerScheduleWithRunLoop,
 /// IOHIDManagerUnscheduleFromRunLoop, IOHIDManagerSetDispatchQueue,
@@ -4069,14 +4083,41 @@ unsafe impl RefEncode for IOHIDOutputTransactionInterface {
 pub struct IOHIDManagerOptions(pub u32);
 bitflags::bitflags! {
     impl IOHIDManagerOptions: u32 {
+/// For those times when supplying 0 just isn't
+/// explicit enough.
         #[doc(alias = "kIOHIDManagerOptionNone")]
         const None = 0x0;
+/// This constant can be
+/// supplied to
+///
+/// ```text
+///  IOHIDManagerCreate
+/// ```
+///
+/// to create and/or use a
+/// persistent properties store.
         #[doc(alias = "kIOHIDManagerOptionUsePersistentProperties")]
         const UsePersistentProperties = 0x1;
+/// This constant can be supplied
+/// to
+///
+/// ```text
+///  IOHIDManagerCreate when you wish to overwrite the
+///             persistent properties store without loading it first.
+///  @const     kIOHIDManagerOptionDoNotSaveProperties This constant can be supplied
+///             to @link IOHIDManagerCreate
+/// ```
+///
+/// when you want to use the
+/// persistent property store but do not want to add to it.
         #[doc(alias = "kIOHIDManagerOptionDoNotLoadProperties")]
         const DoNotLoadProperties = 0x2;
         #[doc(alias = "kIOHIDManagerOptionDoNotSaveProperties")]
         const DoNotSaveProperties = 0x4;
+/// Devices maintained by the
+/// manager will act independently from calls to the manager.
+/// This allows for devices to be scheduled on separate queues, and
+/// their lifetime can persist after the manager is gone.
         #[doc(alias = "kIOHIDManagerOptionIndependentDevices")]
         const IndependentDevices = 0x8;
         const _ = !0;
@@ -9862,11 +9903,6 @@ impl IOHIDValue {
 
 /// Various options that can be supplied to IOHIDTransaction functions.
 ///
-/// explicit enough.
-///
-/// IOHIDDeviceRef being passed in. The expectation is that transaction will only exist during
-/// the lifetime of the IOHIDDeviceRef object.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidtransactionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -9874,8 +9910,13 @@ impl IOHIDValue {
 pub struct IOHIDTransactionOptions(pub u32);
 bitflags::bitflags! {
     impl IOHIDTransactionOptions: u32 {
+/// For those times when supplying 0 just isn't
+/// explicit enough.
         #[doc(alias = "kIOHIDTransactionOptionsNone")]
         const None = 0x0;
+/// specifies the transaction to not retain the
+/// IOHIDDeviceRef being passed in. The expectation is that transaction will only exist during
+/// the lifetime of the IOHIDDeviceRef object.
         #[doc(alias = "kIOHIDTransactionOptionsWeakDevice")]
         const WeakDevice = 0x1;
         const _ = !0;
@@ -11011,10 +11052,13 @@ unsafe impl RefEncode for IOHIDScrollEventOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDServiceSensorControlOptions(pub u32);
 impl IOHIDServiceSensorControlOptions {
+    /// decimate events for kIOHIDEventSystemClientTypeRateControlled clients.
     #[doc(alias = "kIOHIDServiceSensorControlDecimation")]
     pub const Decimation: Self = Self(0x1 << 0);
+    /// aggregate all requests associated with kIOHIDServiceReportIntervalKey & kIOHIDServiceBatchIntervalKey properties
     #[doc(alias = "kIOHIDServiceSensorControlAggregation")]
     pub const Aggregation: Self = Self(0x1 << 1);
+    /// disable event dispatch for kIOHIDEventSystemClientTypeRateControlled clients if  kIOHIDServiceReportIntervalKey not requested by client
     #[doc(alias = "kIOHIDServiceSensorControlDispatchControl")]
     pub const DispatchControl: Self = Self(0x1 << 2);
 }

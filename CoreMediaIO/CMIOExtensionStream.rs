@@ -11,18 +11,16 @@ use crate::*;
 
 /// Constants indicating the direction of the stream.
 ///
-/// Indicates that the stream is a source; i.e., provides sample buffers for capture.
-///
-/// Indicates that the stream is a sink; i.e., consumes sample buffers for playback.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamDirection(pub NSInteger);
 impl CMIOExtensionStreamDirection {
+    /// Indicates that the stream is a source; i.e., provides sample buffers for capture.
     #[doc(alias = "CMIOExtensionStreamDirectionSource")]
     pub const Source: Self = Self(0);
+    /// Indicates that the stream is a sink; i.e., consumes sample buffers for playback.
     #[doc(alias = "CMIOExtensionStreamDirectionSink")]
     pub const Sink: Self = Self(1);
 }
@@ -37,22 +35,19 @@ unsafe impl RefEncode for CMIOExtensionStreamDirection {
 
 /// Constants indicating the clock of the stream.
 ///
-/// Indicates that the stream's clock is the host time clock.
-///
-/// Indicates that the stream's clock is the clock from the linked CoreAudio device.
-///
-/// Indicates that the stream's clock is specific to the device hosting the stream; this clock type cannot be set directly by the extension, but instead is set automatically when a  CMIOExtensionStreamCustomClockConfiguration is used when creating a CMIOExtensionStream.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamclocktype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamClockType(pub NSInteger);
 impl CMIOExtensionStreamClockType {
+    /// Indicates that the stream's clock is the host time clock.
     #[doc(alias = "CMIOExtensionStreamClockTypeHostTime")]
     pub const HostTime: Self = Self(0);
+    /// Indicates that the stream's clock is the clock from the linked CoreAudio device.
     #[doc(alias = "CMIOExtensionStreamClockTypeLinkedCoreAudioDeviceUID")]
     pub const LinkedCoreAudioDeviceUID: Self = Self(1);
+    /// Indicates that the stream's clock is specific to the device hosting the stream; this clock type cannot be set directly by the extension, but instead is set automatically when a  CMIOExtensionStreamCustomClockConfiguration is used when creating a CMIOExtensionStream.
     #[doc(alias = "CMIOExtensionStreamClockTypeCustom")]
     pub const Custom: Self = Self(2);
 }
@@ -67,14 +62,6 @@ unsafe impl RefEncode for CMIOExtensionStreamClockType {
 
 /// Constants indicating the state of a stream discontinuity.
 ///
-/// Indicates that there is no stream discontinuity.
-///
-/// Indicates that there is a stream discontinuity of type unknown.
-///
-/// Indicates that there is a stream discontinuity of type time.
-///
-/// Indicates that there is a stream discontinuity of type dropped sample.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamdiscontinuityflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -82,12 +69,16 @@ unsafe impl RefEncode for CMIOExtensionStreamClockType {
 pub struct CMIOExtensionStreamDiscontinuityFlags(pub u32);
 bitflags::bitflags! {
     impl CMIOExtensionStreamDiscontinuityFlags: u32 {
+/// Indicates that there is no stream discontinuity.
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagNone")]
         const None = 0;
+/// Indicates that there is a stream discontinuity of type unknown.
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagUnknown")]
         const Unknown = 1<<0;
+/// Indicates that there is a stream discontinuity of type time.
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagTime")]
         const Time = 1<<1;
+/// Indicates that there is a stream discontinuity of type dropped sample.
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagSampleDropped")]
         const SampleDropped = 1<<6;
         const _ = !0;

@@ -428,35 +428,25 @@ unsafe impl RefEncode for MTLAccelerationStructureSizes {
 
 /// MTLCounterSamplingPoint determines type of sampling points that are supported on given device.
 ///
-///
-/// Counter sampling points at render, compute, and blit command encoder stage boundary are supported.
-///
-///
-/// Counter sampling at draw boundary is supported, render encoder method sampleCountersInBuffer can be used for sampling.
-///
-///
-/// Counter sampling at compute dispatch boundary is supported, compute encoder method sampleCountersInBuffer can be used for sampling.
-///
-///
-/// Counter sampling at tile shader dispatch boundary is supported.
-///
-///
-/// Counter sampling at blit boundary is supported, blit encoder method sampleCountersInBuffer can be used for sampling.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCounterSamplingPoint(pub NSUInteger);
 impl MTLCounterSamplingPoint {
+    /// Counter sampling points at render, compute, and blit command encoder stage boundary are supported.
     #[doc(alias = "MTLCounterSamplingPointAtStageBoundary")]
     pub const AtStageBoundary: Self = Self(0);
+    /// Counter sampling at draw boundary is supported, render encoder method sampleCountersInBuffer can be used for sampling.
     #[doc(alias = "MTLCounterSamplingPointAtDrawBoundary")]
     pub const AtDrawBoundary: Self = Self(1);
+    /// Counter sampling at compute dispatch boundary is supported, compute encoder method sampleCountersInBuffer can be used for sampling.
     #[doc(alias = "MTLCounterSamplingPointAtDispatchBoundary")]
     pub const AtDispatchBoundary: Self = Self(2);
+    /// Counter sampling at tile shader dispatch boundary is supported.
     #[doc(alias = "MTLCounterSamplingPointAtTileDispatchBoundary")]
     pub const AtTileDispatchBoundary: Self = Self(3);
+    /// Counter sampling at blit boundary is supported, blit encoder method sampleCountersInBuffer can be used for sampling.
     #[doc(alias = "MTLCounterSamplingPointAtBlitBoundary")]
     pub const AtBlitBoundary: Self = Self(4);
 }

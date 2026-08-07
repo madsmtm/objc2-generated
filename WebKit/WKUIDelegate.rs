@@ -59,10 +59,13 @@ unsafe impl RefEncode for WKMediaCaptureType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKDialogResult(pub NSInteger);
 impl WKDialogResult {
+    /// Indicates that the client did not display a first use message. WebKit should show the default.
     #[doc(alias = "WKDialogResultShowDefault")]
     pub const ShowDefault: Self = Self(1);
+    /// Indicates the client handled the message, but wants to be checked if other WKWebViews are used.
     #[doc(alias = "WKDialogResultAskAgain")]
     pub const AskAgain: Self = Self(2);
+    /// Indicates the client handled the message and no further checks are needed.
     #[doc(alias = "WKDialogResultHandled")]
     pub const Handled: Self = Self(3);
 }

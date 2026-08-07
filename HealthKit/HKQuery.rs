@@ -58,10 +58,13 @@ impl HKQuery {
 pub struct HKQueryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl HKQueryOptions: NSUInteger {
+/// The sample's time period must overlap with the predicate's time period.
         #[doc(alias = "HKQueryOptionNone")]
         const None = 0;
+/// The sample's start date must fall in the time period (>= startDate, < endDate)
         #[doc(alias = "HKQueryOptionStrictStartDate")]
         const StrictStartDate = 1<<0;
+/// The sample's end date must fall in the time period (>= startDate, < endDate)
         #[doc(alias = "HKQueryOptionStrictEndDate")]
         const StrictEndDate = 1<<1;
         const _ = !0;

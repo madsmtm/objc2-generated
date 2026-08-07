@@ -14,10 +14,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VZDiskImageCachingMode(pub NSInteger);
 impl VZDiskImageCachingMode {
+    /// Virtualization determines automatically whether to enable data caching.
     #[doc(alias = "VZDiskImageCachingModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Data caching is disabled.
     #[doc(alias = "VZDiskImageCachingModeUncached")]
     pub const Uncached: Self = Self(1);
+    /// Data caching is enabled.
     #[doc(alias = "VZDiskImageCachingModeCached")]
     pub const Cached: Self = Self(2);
 }

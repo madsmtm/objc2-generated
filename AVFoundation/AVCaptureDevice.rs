@@ -440,23 +440,19 @@ impl AVCaptureDevice {
 
 /// Constants indicating the physical position of an AVCaptureDevice's hardware on the system.
 ///
-///
-/// Indicates that the device's position relative to the system hardware is unspecified.
-///
-/// Indicates that the device is physically located on the back of the system hardware.
-///
-/// Indicates that the device is physically located on the front of the system hardware.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureDevicePosition(pub NSInteger);
 impl AVCaptureDevicePosition {
+    /// Indicates that the device's position relative to the system hardware is unspecified.
     #[doc(alias = "AVCaptureDevicePositionUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// Indicates that the device is physically located on the back of the system hardware.
     #[doc(alias = "AVCaptureDevicePositionBack")]
     pub const Back: Self = Self(1);
+    /// Indicates that the device is physically located on the front of the system hardware.
     #[doc(alias = "AVCaptureDevicePositionFront")]
     pub const Front: Self = Self(2);
 }
@@ -745,14 +741,6 @@ impl AVCaptureDevice {
 /// These constants can be used to control when the virtual device is allowed to switch the active primary constituent device.
 ///
 ///
-/// Indicates that the device does not support constituent device switching. This is reported for cameras that do not have more than one constituent device.
-///
-/// Automatically select the best camera for the current scene. In this mode there are no restrictions on when a camera switch can occur.
-///
-/// Restrict fallback camera selection to certain conditions (see AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions). Camera switches necessary to satisfy the requested video zoom factor are still allowed without restriction.
-///
-/// Lock camera switching to the active primary constituent device. Note that this restricts the minAvailableVideoZoomFactor to the switch-over zoom factor of the activePrimaryConstituentDevice (as reported in AVCaptureDevice.virtualDeviceSwitchOverVideoZoomFactors).
-///
 ///
 /// Virtual devices with multiple constituent video devices (such as the Dual Camera, Dual Wide Camera, or Triple Camera), consist of cameras that each have different properties such as focal length, maximum light sensitivity, and minimum focus distance. One of the constituent video devices is selected as the primary constituent device. For an AVCaptureSession, the primary constituent device produces for all outputs. For an AVCaptureMultiCamSession, the primary constituent device produces for all outputs connected to the virtual device's native AVCaptureDeviceInputPort (where its sourceDeviceType is equal to the virtual device's deviceType).
 ///
@@ -764,12 +752,16 @@ impl AVCaptureDevice {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCapturePrimaryConstituentDeviceSwitchingBehavior(pub NSInteger);
 impl AVCapturePrimaryConstituentDeviceSwitchingBehavior {
+    /// Indicates that the device does not support constituent device switching. This is reported for cameras that do not have more than one constituent device.
     #[doc(alias = "AVCapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported")]
     pub const Unsupported: Self = Self(0);
+    /// Automatically select the best camera for the current scene. In this mode there are no restrictions on when a camera switch can occur.
     #[doc(alias = "AVCapturePrimaryConstituentDeviceSwitchingBehaviorAuto")]
     pub const Auto: Self = Self(1);
+    /// Restrict fallback camera selection to certain conditions (see AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions). Camera switches necessary to satisfy the requested video zoom factor are still allowed without restriction.
     #[doc(alias = "AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted")]
     pub const Restricted: Self = Self(2);
+    /// Lock camera switching to the active primary constituent device. Note that this restricts the minAvailableVideoZoomFactor to the switch-over zoom factor of the activePrimaryConstituentDevice (as reported in AVCaptureDevice.virtualDeviceSwitchOverVideoZoomFactors).
     #[doc(alias = "AVCapturePrimaryConstituentDeviceSwitchingBehaviorLocked")]
     pub const Locked: Self = Self(3);
 }
@@ -785,14 +777,6 @@ unsafe impl RefEncode for AVCapturePrimaryConstituentDeviceSwitchingBehavior {
 /// These constants can be used and combined to control the conditions that allow fallback camera selection when the primaryConstituentDeviceSelectionBehavior is set to AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted. Note that camera switching necessary to satisfy the requested zoom factor is still allowed.
 ///
 ///
-/// Disallow fallback switching.
-///
-/// Restrict fallback camera switching to when the video zoom factor changes, either through AVCaptureDevice.videoZoomFactor or -[AVCaptureDevice rampToVideoZoomFactor:withRate:]. Note that any change in video zoom factor will allow a switch to a fallback camera, not just changes across switch-over zoom factors.
-///
-/// Restrict fallback camera switches to when AVCaptureDevice.focusMode is set.
-///
-/// Restrict fallback camera switches to when AVCaptureDevice.exposureMode is set.
-///
 ///
 /// Whenever triggered by one or more of the enabled conditions, the fallback camera switching waits for exposure and focus to stabilize before deciding which camera to use as the primary constituent device.
 ///
@@ -805,12 +789,16 @@ unsafe impl RefEncode for AVCapturePrimaryConstituentDeviceSwitchingBehavior {
 pub struct AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions: NSUInteger {
+/// Disallow fallback switching.
         #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone")]
         const None = 0;
+/// Restrict fallback camera switching to when the video zoom factor changes, either through AVCaptureDevice.videoZoomFactor or -[AVCaptureDevice rampToVideoZoomFactor:withRate:]. Note that any change in video zoom factor will allow a switch to a fallback camera, not just changes across switch-over zoom factors.
         #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionVideoZoomChanged")]
         const VideoZoomChanged = 1<<0;
+/// Restrict fallback camera switches to when AVCaptureDevice.focusMode is set.
         #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionFocusModeChanged")]
         const FocusModeChanged = 1<<1;
+/// Restrict fallback camera switches to when AVCaptureDevice.exposureMode is set.
         #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionExposureModeChanged")]
         const ExposureModeChanged = 1<<2;
         const _ = !0;
@@ -951,23 +939,19 @@ impl AVCaptureDevice {
 
 /// Constants indicating the mode of the flash on the receiver's device, if it has one.
 ///
-///
-/// Indicates that the flash should always be off.
-///
-/// Indicates that the flash should always be on.
-///
-/// Indicates that the flash should be used automatically depending on ambient light conditions.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureflashmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureFlashMode(pub NSInteger);
 impl AVCaptureFlashMode {
+    /// Indicates that the flash should always be off.
     #[doc(alias = "AVCaptureFlashModeOff")]
     pub const Off: Self = Self(0);
+    /// Indicates that the flash should always be on.
     #[doc(alias = "AVCaptureFlashModeOn")]
     pub const On: Self = Self(1);
+    /// Indicates that the flash should be used automatically depending on ambient light conditions.
     #[doc(alias = "AVCaptureFlashModeAuto")]
     pub const Auto: Self = Self(2);
 }
@@ -1043,23 +1027,19 @@ impl AVCaptureDevice {
 
 /// Constants indicating the mode of the torch on the receiver's device, if it has one.
 ///
-///
-/// Indicates that the torch should always be off.
-///
-/// Indicates that the torch should always be on.
-///
-/// Indicates that the torch should be used automatically depending on ambient light conditions.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetorchmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureTorchMode(pub NSInteger);
 impl AVCaptureTorchMode {
+    /// Indicates that the torch should always be off.
     #[doc(alias = "AVCaptureTorchModeOff")]
     pub const Off: Self = Self(0);
+    /// Indicates that the torch should always be on.
     #[doc(alias = "AVCaptureTorchModeOn")]
     pub const On: Self = Self(1);
+    /// Indicates that the torch should be used automatically depending on ambient light conditions.
     #[doc(alias = "AVCaptureTorchModeAuto")]
     pub const Auto: Self = Self(2);
 }
@@ -1155,23 +1135,19 @@ impl AVCaptureDevice {
 
 /// Constants indicating the mode of the focus on the receiver's device, if it has one.
 ///
-///
-/// Indicates that the focus should be locked at the lens' current position.
-///
-/// Indicates that the device should autofocus once and then change the focus mode to AVCaptureFocusModeLocked.
-///
-/// Indicates that the device should automatically focus when needed.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturefocusmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureFocusMode(pub NSInteger);
 impl AVCaptureFocusMode {
+    /// Indicates that the focus should be locked at the lens' current position.
     #[doc(alias = "AVCaptureFocusModeLocked")]
     pub const Locked: Self = Self(0);
+    /// Indicates that the device should autofocus once and then change the focus mode to AVCaptureFocusModeLocked.
     #[doc(alias = "AVCaptureFocusModeAutoFocus")]
     pub const AutoFocus: Self = Self(1);
+    /// Indicates that the device should automatically focus when needed.
     #[doc(alias = "AVCaptureFocusModeContinuousAutoFocus")]
     pub const ContinuousAutoFocus: Self = Self(2);
 }
@@ -1186,23 +1162,19 @@ unsafe impl RefEncode for AVCaptureFocusMode {
 
 /// Constants indicating the restriction of the receiver's autofocus system to a particular range of focus scan, if it supports range restrictions.
 ///
-///
-/// Indicates that the autofocus system should not restrict the focus range.
-///
-/// Indicates that the autofocus system should restrict the focus range for subject matter that is near to the camera.
-///
-/// Indicates that the autofocus system should restrict the focus range for subject matter that is far from the camera.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocusrangerestriction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureAutoFocusRangeRestriction(pub NSInteger);
 impl AVCaptureAutoFocusRangeRestriction {
+    /// Indicates that the autofocus system should not restrict the focus range.
     #[doc(alias = "AVCaptureAutoFocusRangeRestrictionNone")]
     pub const None: Self = Self(0);
+    /// Indicates that the autofocus system should restrict the focus range for subject matter that is near to the camera.
     #[doc(alias = "AVCaptureAutoFocusRangeRestrictionNear")]
     pub const Near: Self = Self(1);
+    /// Indicates that the autofocus system should restrict the focus range for subject matter that is far from the camera.
     #[doc(alias = "AVCaptureAutoFocusRangeRestrictionFar")]
     pub const Far: Self = Self(2);
 }
@@ -1521,27 +1493,22 @@ impl AVCaptureDevice {
 
 /// Constants indicating the mode of the exposure on the receiver's device, if it has adjustable exposure.
 ///
-///
-/// Indicates that the exposure should be locked at its current value.
-///
-/// Indicates that the device should automatically adjust exposure once and then change the exposure mode to AVCaptureExposureModeLocked.
-///
-/// Indicates that the device should automatically adjust exposure when needed.
-///
-/// Indicates that the device should only adjust exposure according to user provided ISO, exposureDuration values.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuremode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureExposureMode(pub NSInteger);
 impl AVCaptureExposureMode {
+    /// Indicates that the exposure should be locked at its current value.
     #[doc(alias = "AVCaptureExposureModeLocked")]
     pub const Locked: Self = Self(0);
+    /// Indicates that the device should automatically adjust exposure once and then change the exposure mode to AVCaptureExposureModeLocked.
     #[doc(alias = "AVCaptureExposureModeAutoExpose")]
     pub const AutoExpose: Self = Self(1);
+    /// Indicates that the device should automatically adjust exposure when needed.
     #[doc(alias = "AVCaptureExposureModeContinuousAutoExposure")]
     pub const ContinuousAutoExposure: Self = Self(2);
+    /// Indicates that the device should only adjust exposure according to user provided ISO, exposureDuration values.
     #[doc(alias = "AVCaptureExposureModeCustom")]
     pub const Custom: Self = Self(3);
 }
@@ -1862,23 +1829,19 @@ impl AVCaptureDevice {
 
 /// Constants indicating the mode of the white balance on the receiver's device, if it has adjustable white balance.
 ///
-///
-/// Indicates that the white balance should be locked at its current value.
-///
-/// Indicates that the device should automatically adjust white balance once and then change the white balance mode to AVCaptureWhiteBalanceModeLocked.
-///
-/// Indicates that the device should automatically adjust white balance when needed.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureWhiteBalanceMode(pub NSInteger);
 impl AVCaptureWhiteBalanceMode {
+    /// Indicates that the white balance should be locked at its current value.
     #[doc(alias = "AVCaptureWhiteBalanceModeLocked")]
     pub const Locked: Self = Self(0);
+    /// Indicates that the device should automatically adjust white balance once and then change the white balance mode to AVCaptureWhiteBalanceModeLocked.
     #[doc(alias = "AVCaptureWhiteBalanceModeAutoWhiteBalance")]
     pub const AutoWhiteBalance: Self = Self(1);
+    /// Indicates that the device should automatically adjust white balance when needed.
     #[doc(alias = "AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance")]
     pub const ContinuousAutoWhiteBalance: Self = Self(2);
 }
@@ -2311,27 +2274,22 @@ impl AVCaptureDevice {
 
 /// Constants indicating the client's authorization to the underlying hardware supporting a media type.
 ///
-///
-/// Indicates that the user has not yet made a choice regarding whether the client can access the hardware.
-///
-/// The client is not authorized to access the hardware for the media type. The user cannot change the client's status, possibly due to active restrictions such as parental controls being in place.
-///
-/// The user explicitly denied access to the hardware supporting a media type for the client.
-///
-/// The client is authorized to access the hardware supporting a media type.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAuthorizationStatus(pub NSInteger);
 impl AVAuthorizationStatus {
+    /// Indicates that the user has not yet made a choice regarding whether the client can access the hardware.
     #[doc(alias = "AVAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// The client is not authorized to access the hardware for the media type. The user cannot change the client's status, possibly due to active restrictions such as parental controls being in place.
     #[doc(alias = "AVAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// The user explicitly denied access to the hardware supporting a media type for the client.
     #[doc(alias = "AVAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// The client is authorized to access the hardware supporting a media type.
     #[doc(alias = "AVAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -2397,19 +2355,16 @@ pub type AVCaptureDeviceTransportControlsSpeed = c_float;
 
 /// Constants indicating the transport controls' current mode of play back, if it has one.
 ///
-///
-/// Indicates that the tape transport is not threaded through the play head.
-///
-/// Indicates that the tape transport is threaded through the play head.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetransportcontrolsplaybackmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureDeviceTransportControlsPlaybackMode(pub NSInteger);
 impl AVCaptureDeviceTransportControlsPlaybackMode {
+    /// Indicates that the tape transport is not threaded through the play head.
     #[doc(alias = "AVCaptureDeviceTransportControlsNotPlayingMode")]
     pub const NotPlayingMode: Self = Self(0);
+    /// Indicates that the tape transport is threaded through the play head.
     #[doc(alias = "AVCaptureDeviceTransportControlsPlayingMode")]
     pub const PlayingMode: Self = Self(1);
 }
@@ -2704,23 +2659,19 @@ impl AVCaptureDevice {
 
 /// Constants indicating the current Center Stage control mode.
 ///
-///
-/// Indicates that the application is unaware of the Center Stage feature. Its enablement is entirely under user control in Control Center.
-///
-/// Indicates that the application controls the Center Stage feature, disallowing input from the user in Control Center.
-///
-/// Indicates that both the user and application cooperatively share control of the Center Stage feature.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecenterstagecontrolmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureCenterStageControlMode(pub NSInteger);
 impl AVCaptureCenterStageControlMode {
+    /// Indicates that the application is unaware of the Center Stage feature. Its enablement is entirely under user control in Control Center.
     #[doc(alias = "AVCaptureCenterStageControlModeUser")]
     pub const User: Self = Self(0);
+    /// Indicates that the application controls the Center Stage feature, disallowing input from the user in Control Center.
     #[doc(alias = "AVCaptureCenterStageControlModeApp")]
     pub const App: Self = Self(1);
+    /// Indicates that both the user and application cooperatively share control of the Center Stage feature.
     #[doc(alias = "AVCaptureCenterStageControlModeCooperative")]
     pub const Cooperative: Self = Self(2);
 }
@@ -2962,23 +2913,19 @@ impl AVCaptureDevice {
 
 /// Constants describing microphone filtering modes.
 ///
-///
-/// Indicates that microphone audio is being processed with standard voice DSP.
-///
-/// Indicates that microphone audio processing is minimized to capture all sounds in the room.
-///
-/// Indicates that microphone audio is being processed to isolate the voice and attenuate other signals.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemicrophonemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureMicrophoneMode(pub NSInteger);
 impl AVCaptureMicrophoneMode {
+    /// Indicates that microphone audio is being processed with standard voice DSP.
     #[doc(alias = "AVCaptureMicrophoneModeStandard")]
     pub const Standard: Self = Self(0);
+    /// Indicates that microphone audio processing is minimized to capture all sounds in the room.
     #[doc(alias = "AVCaptureMicrophoneModeWideSpectrum")]
     pub const WideSpectrum: Self = Self(1);
+    /// Indicates that microphone audio is being processed to isolate the voice and attenuate other signals.
     #[doc(alias = "AVCaptureMicrophoneModeVoiceIsolation")]
     pub const VoiceIsolation: Self = Self(2);
 }
@@ -3014,19 +2961,16 @@ impl AVCaptureDevice {
 
 /// Constants describing the system user interfaces available to +showSystemUserInterface:.
 ///
-///
-/// Indicates the system UI for enabling / disabling video effects.
-///
-/// Indicates the system UI for selecting microphone modes.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemuserinterface?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureSystemUserInterface(pub NSInteger);
 impl AVCaptureSystemUserInterface {
+    /// Indicates the system UI for enabling / disabling video effects.
     #[doc(alias = "AVCaptureSystemUserInterfaceVideoEffects")]
     pub const VideoEffects: Self = Self(1);
+    /// Indicates the system UI for selecting microphone modes.
     #[doc(alias = "AVCaptureSystemUserInterfaceMicrophoneModes")]
     pub const MicrophoneModes: Self = Self(2);
 }
@@ -3683,23 +3627,19 @@ unsafe impl RefEncode for AVCaptureVideoStabilizationMode {
 
 /// Constants indicating the autofocus system.
 ///
-///
-/// Indicates that autofocus is not available.
-///
-/// Indicates that autofocus is achieved by contrast detection. Contrast detection performs a focus scan to find the optimal position.
-///
-/// Indicates that autofocus is achieved by phase detection. Phase detection has the ability to achieve focus in many cases without a focus scan. Phase detection autofocus is typically less visually intrusive than contrast detection autofocus.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocussystem?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureAutoFocusSystem(pub NSInteger);
 impl AVCaptureAutoFocusSystem {
+    /// Indicates that autofocus is not available.
     #[doc(alias = "AVCaptureAutoFocusSystemNone")]
     pub const None: Self = Self(0);
+    /// Indicates that autofocus is achieved by contrast detection. Contrast detection performs a focus scan to find the optimal position.
     #[doc(alias = "AVCaptureAutoFocusSystemContrastDetection")]
     pub const ContrastDetection: Self = Self(1);
+    /// Indicates that autofocus is achieved by phase detection. Phase detection has the ability to achieve focus in many cases without a focus scan. Phase detection autofocus is typically less visually intrusive than contrast detection autofocus.
     #[doc(alias = "AVCaptureAutoFocusSystemPhaseDetection")]
     pub const PhaseDetection: Self = Self(2);
 }

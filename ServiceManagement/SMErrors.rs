@@ -27,11 +27,19 @@ extern "C" {
     pub static kSMErrorDomainLaunchd: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorinternalfailure?language=objc)
+/// An internal failure has occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorinternalfailure?language=objc)
 pub const kSMErrorInternalFailure: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorinvalidsignature?language=objc)
+/// The Application's code signature does not meet the requirements to perform
+/// the operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorinvalidsignature?language=objc)
 pub const kSMErrorInvalidSignature: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorauthorizationfailure?language=objc)
+/// The request required authorization (i.e. adding a job to the
+/// {
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorauthorizationfailure?language=objc)
 pub const kSMErrorAuthorizationFailure: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrortoolnotvalid?language=objc)
 pub const kSMErrorToolNotValid: c_uint = 5;

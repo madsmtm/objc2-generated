@@ -295,17 +295,6 @@ pub type AUMIDICIProfileChangedBlock =
 
 /// Flags describing the host's transport state.
 ///
-/// True if, since the callback was last called, there was a change to the state of, or
-/// discontinuities in, the host's transport. Can indicate such state changes as
-/// start/stop, or seeking to another position in the timeline.
-///
-/// True if the transport is moving.
-///
-/// True if the host is recording, or prepared to record. Can be true with or without the
-/// transport moving.
-///
-/// True if the host is cycling or looping.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
@@ -315,12 +304,19 @@ pub struct AUHostTransportStateFlags(pub NSUInteger);
 #[cfg(feature = "objc2")]
 bitflags::bitflags! {
     impl AUHostTransportStateFlags: NSUInteger {
+/// True if, since the callback was last called, there was a change to the state of, or
+/// discontinuities in, the host's transport. Can indicate such state changes as
+/// start/stop, or seeking to another position in the timeline.
         #[doc(alias = "AUHostTransportStateChanged")]
         const Changed = 1;
+/// True if the transport is moving.
         #[doc(alias = "AUHostTransportStateMoving")]
         const Moving = 2;
+/// True if the host is recording, or prepared to record. Can be true with or without the
+/// transport moving.
         #[doc(alias = "AUHostTransportStateRecording")]
         const Recording = 4;
+/// True if the host is cycling or looping.
         #[doc(alias = "AUHostTransportStateCycling")]
         const Cycling = 8;
         const _ = !0;

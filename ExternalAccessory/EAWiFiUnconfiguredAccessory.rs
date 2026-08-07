@@ -15,10 +15,13 @@ use crate::*;
 pub struct EAWiFiUnconfiguredAccessoryProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl EAWiFiUnconfiguredAccessoryProperties: NSUInteger {
+/// Option set if the accessory is advertising that it supports AirPlay.
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay")]
         const SupportsAirPlay = 1<<0;
+/// Option set if the accessory is advertising that it supports AirPrint.
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint")]
         const SupportsAirPrint = 1<<1;
+/// Option set if the accessory is advertising that it supports HomeKit.
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit")]
         const SupportsHomeKit = 1<<2;
         const _ = !0;

@@ -10,37 +10,74 @@ use crate::*;
 #[cfg(feature = "CMIOHardwareObject")]
 pub type CMIOHardwarePropertyID = CMIOObjectPropertySelector;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosystemobjectclassid?language=objc)
+/// The CMIOClassID that identifies the CMIOSystemObject class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosystemobjectclassid?language=objc)
 pub const kCMIOSystemObjectClassID: c_uint = 0x61737973;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectsystemobject?language=objc)
+/// The CMIOObjectID that always refers to the one and only instance of the CMIOSystemObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectsystemobject?language=objc)
 pub const kCMIOObjectSystemObject: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyprocessismain?language=objc)
+/// A UInt32 where 1 means that the current process contains the main instance of the DAL. The main instance of the DAL is the only instance in which plug-ins should
+/// save/restore their devices' settings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyprocessismain?language=objc)
 pub const kCMIOHardwarePropertyProcessIsMain: c_uint = 0x6d61696e;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyprocessismaster?language=objc)
 #[deprecated]
 pub const kCMIOHardwarePropertyProcessIsMaster: c_uint = 0x6d617374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyisinitingorexiting?language=objc)
+/// A UInt32 whose value will be non-zero if the DAL is either in the midst of initializing or in the midst of exiting the process.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyisinitingorexiting?language=objc)
 pub const kCMIOHardwarePropertyIsInitingOrExiting: c_uint = 0x696e6f74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydevices?language=objc)
+/// An array of the CMIODeviceIDs that represent all the devices currently available to the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydevices?language=objc)
 pub const kCMIOHardwarePropertyDevices: c_uint = 0x64657623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydefaultinputdevice?language=objc)
+/// The CMIODeviceID of the default input CMIODevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydefaultinputdevice?language=objc)
 pub const kCMIOHardwarePropertyDefaultInputDevice: c_uint = 0x64496e20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydefaultoutputdevice?language=objc)
+/// The CMIODeviceID of the default output CMIODevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydefaultoutputdevice?language=objc)
 pub const kCMIOHardwarePropertyDefaultOutputDevice: c_uint = 0x644f7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydeviceforuid?language=objc)
+/// Using a AudioValueTranslation structure, this property translates the input CFStringRef containing a UID into the CMIODeviceID that refers to the CMIODevice
+/// with that UID. This property will return kCMIODeviceUnknown if the given UID does not match any currently available CMIODevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydeviceforuid?language=objc)
 pub const kCMIOHardwarePropertyDeviceForUID: c_uint = 0x64756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertysleepingisallowed?language=objc)
+/// A UInt32 where 1 means that the process will allow the CPU to idle sleep even if there is IO in progress. A 0 means that the CPU will not be allowed to idle
+/// sleep. Note that this property won't affect when the CPU is forced to sleep.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertysleepingisallowed?language=objc)
 pub const kCMIOHardwarePropertySleepingIsAllowed: c_uint = 0x736c6570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyunloadingisallowed?language=objc)
+/// A UInt32 where 1 means that this process wants the DAL to unload itself after a period of inactivity where there are no streams active and no listeners registered
+/// with any CMIOObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyunloadingisallowed?language=objc)
 pub const kCMIOHardwarePropertyUnloadingIsAllowed: c_uint = 0x756e6c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertypluginforbundleid?language=objc)
+/// Using a AudioValueTranslation structure, this property translates the input CFString containing a bundle ID into the CMIOObjectID of the CMIOPlugIn that
+/// corresponds to it. This property will return kCMIOObjectUnkown if the given bundle ID doesn't match any CMIOPlugIns.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertypluginforbundleid?language=objc)
 pub const kCMIOHardwarePropertyPlugInForBundleID: c_uint = 0x70696269;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyusersessionisactiveorheadless?language=objc)
+/// A UInt32 where a value other than 0 indicates that the login session of the user of the process is either an active console session or a headless session.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyusersessionisactiveorheadless?language=objc)
 pub const kCMIOHardwarePropertyUserSessionIsActiveOrHeadless: c_uint = 0x75736572;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertysuspendedbysystem?language=objc)
+/// A UInt32 where a value of 0 indicates the hardware is not suspended due to a system action, and a value of 1 means that it is.
+/// For example, if a fast user switch occurs, the system will suspend all devices. While suspended, no operartions can be performed on any devices.
+/// This property is never settable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertysuspendedbysystem?language=objc)
 pub const kCMIOHardwarePropertySuspendedBySystem: c_uint = 0x73627973;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyallowscreencapturedevices?language=objc)
+/// A UInt32 where 1 means that screen capture devices will be presented to the process. A 0 means screen capture devices will be ignored. By default, this property is 1.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyallowscreencapturedevices?language=objc)
 pub const kCMIOHardwarePropertyAllowScreenCaptureDevices: c_uint = 0x79657320;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyallowwirelessscreencapturedevices?language=objc)
+/// A UInt32 where 1 means that wireless screen capture devices will be presented to the process. A 0 means wireless screen capture devices will be ignored. By default, this property is 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyallowwirelessscreencapturedevices?language=objc)
 pub const kCMIOHardwarePropertyAllowWirelessScreenCaptureDevices: c_uint = 0x77736364;

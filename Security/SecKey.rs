@@ -8,85 +8,175 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeyclass?language=objc)
+/// type uint32 (CSSM_KEYCLASS), value
+/// is one of CSSM_KEYCLASS_PUBLIC_KEY, CSSM_KEYCLASS_PRIVATE_KEY
+/// or CSSM_KEYCLASS_SESSION_KEY.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeyclass?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyKeyClass: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyprintname?language=objc)
+/// type blob, human readable name of
+/// the key.  Same as kSecLabelItemAttr for normal keychain items.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyprintname?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyPrintName: c_int = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalias?language=objc)
+/// type blob, currently unused.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalias?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyAlias: c_int = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeypermanent?language=objc)
+/// type uint32, value is nonzero iff
+/// this key is permanent (stored in some keychain).  This is always
+/// 1.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeypermanent?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyPermanent: c_int = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyprivate?language=objc)
+/// type uint32, value is nonzero iff this
+/// key is protected by a user login or a password, or both.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyprivate?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyPrivate: c_int = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeymodifiable?language=objc)
+/// type uint32, value is nonzero iff
+/// attributes of this key can be modified.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeymodifiable?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyModifiable: c_int = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeylabel?language=objc)
+/// type blob, for private and public keys
+/// this contains the hash of the public key.  This is used to
+/// associate certificates and keys.  Its value matches the value
+/// of the kSecPublicKeyHashItemAttr of a certificate and it's used
+/// to construct an identity from a certificate and a key.
+/// For symmetric keys this is whatever the creator of the key
+/// passed in during the generate key call.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeylabel?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyLabel: c_int = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyapplicationtag?language=objc)
+/// type blob, currently unused.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyapplicationtag?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyApplicationTag: c_int = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeycreator?language=objc)
+/// type data, the data points to a
+/// CSSM_GUID structure representing the moduleid of the csp owning
+/// this key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeycreator?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyKeyCreator: c_int = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeytype?language=objc)
+/// type uint32, value is a CSSM_ALGORITHMS
+/// representing the algorithm associated with this key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeytype?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyKeyType: c_int = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeysizeinbits?language=objc)
+/// type uint32, value is the number
+/// of bits in this key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeysizeinbits?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyKeySizeInBits: c_int = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyeffectivekeysize?language=objc)
+/// type uint32, value is the
+/// effective number of bits in this key.  For example a des key
+/// has a kSecKeyKeySizeInBits of 64 but a kSecKeyEffectiveKeySize
+/// of 56.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyeffectivekeysize?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyEffectiveKeySize: c_int = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeystartdate?language=objc)
+/// type CSSM_DATE.  Earliest date from
+/// which this key may be used.  If the value is all zeros or not
+/// present, no restriction applies.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeystartdate?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyStartDate: c_int = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyenddate?language=objc)
+/// type CSSM_DATE.  Latest date at
+/// which this key may be used.  If the value is all zeros or not
+/// present, no restriction applies.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyenddate?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyEndDate: c_int = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeysensitive?language=objc)
+/// type uint32, iff value is nonzero
+/// this key cannot be wrapped with CSSM_ALGID_NONE.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeysensitive?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeySensitive: c_int = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalwayssensitive?language=objc)
+/// type uint32, value is nonzero
+/// iff this key has always been marked sensitive.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalwayssensitive?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyAlwaysSensitive: c_int = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyextractable?language=objc)
+/// type uint32, value is nonzero iff
+/// this key can be wrapped.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyextractable?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyExtractable: c_int = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyneverextractable?language=objc)
+/// type uint32, value is nonzero
+/// iff this key was never marked extractable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyneverextractable?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyNeverExtractable: c_int = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyencrypt?language=objc)
+/// type uint32, value is nonzero iff this
+/// key can be used in an encrypt operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyencrypt?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyEncrypt: c_int = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeydecrypt?language=objc)
+/// type uint32, value is nonzero iff this
+/// key can be used in a decrypt operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeydecrypt?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyDecrypt: c_int = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyderive?language=objc)
+/// type uint32, value is nonzero iff this
+/// key can be used in a deriveKey operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyderive?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyDerive: c_int = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeysign?language=objc)
+/// type uint32, value is nonzero iff this
+/// key can be used in a sign operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeysign?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeySign: c_int = 21;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyverify?language=objc)
+/// type uint32, value is nonzero iff this
+/// key can be used in a verify operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyverify?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyVerify: c_int = 22;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeysignrecover?language=objc)
+/// type uint32.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeysignrecover?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeySignRecover: c_int = 23;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyverifyrecover?language=objc)
+/// type uint32.
+/// key can unwrap other keys.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyverifyrecover?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyVerifyRecover: c_int = 24;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeywrap?language=objc)
+/// type uint32, value is nonzero iff this
+/// key can wrap other keys.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeywrap?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyWrap: c_int = 25;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyunwrap?language=objc)
+/// type uint32, value is nonzero iff this
+/// key can unwrap other keys.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyunwrap?language=objc)
 #[deprecated = "No longer supported"]
 pub const kSecKeyUnwrap: c_int = 26;
 
@@ -101,12 +191,15 @@ pub const kSecKeyUnwrap: c_int = 26;
 pub struct SecCredentialType(pub uint32);
 #[cfg(feature = "cssmconfig")]
 impl SecCredentialType {
+    /// The default setting for determining whether to present UI is used. This setting can be changed with a call to SecKeychainSetUserInteractionAllowed.
     #[doc(alias = "kSecCredentialTypeDefault")]
     #[deprecated = "No longer supported"]
     pub const Default: Self = Self(0);
+    /// Operations with this key are allowed to present UI if required.
     #[doc(alias = "kSecCredentialTypeWithUI")]
     #[deprecated = "No longer supported"]
     pub const WithUI: Self = Self(1);
+    /// Operations with this key are not allowed to present UI, and will fail if UI is required.
     #[doc(alias = "kSecCredentialTypeNoUI")]
     #[deprecated = "No longer supported"]
     pub const NoUI: Self = Self(2);
@@ -2248,35 +2341,25 @@ impl SecKey {
 
 /// Defines types of cryptographic operations available with SecKey instance.
 ///
-///
-/// Represents SecKeyCreateSignature()
-///
-///
-/// Represents SecKeyVerifySignature()
-///
-///
-/// Represents SecKeyCreateEncryptedData()
-///
-///
-/// Represents SecKeyCreateDecryptedData()
-///
-///
-/// Represents SecKeyCopyKeyExchangeResult()
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeyOperationType(pub CFIndex);
 impl SecKeyOperationType {
+    /// Represents SecKeyCreateSignature()
     #[doc(alias = "kSecKeyOperationTypeSign")]
     pub const Sign: Self = Self(0);
+    /// Represents SecKeyVerifySignature()
     #[doc(alias = "kSecKeyOperationTypeVerify")]
     pub const Verify: Self = Self(1);
+    /// Represents SecKeyCreateEncryptedData()
     #[doc(alias = "kSecKeyOperationTypeEncrypt")]
     pub const Encrypt: Self = Self(2);
+    /// Represents SecKeyCreateDecryptedData()
     #[doc(alias = "kSecKeyOperationTypeDecrypt")]
     pub const Decrypt: Self = Self(3);
+    /// Represents SecKeyCopyKeyExchangeResult()
     #[doc(alias = "kSecKeyOperationTypeKeyExchange")]
     pub const KeyExchange: Self = Self(4);
 }

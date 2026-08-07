@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BAContentRequest(pub NSInteger);
 impl BAContentRequest {
+    /// Content is being requested because the application was installed.
     #[doc(alias = "BAContentRequestInstall")]
     pub const Install: Self = Self(1);
+    /// Content is being requested because the application was updated.
     #[doc(alias = "BAContentRequestUpdate")]
     pub const Update: Self = Self(2);
+    /// Content is being requested because the system is asking for updated content for your application.
     #[doc(alias = "BAContentRequestPeriodic")]
     pub const Periodic: Self = Self(3);
 }

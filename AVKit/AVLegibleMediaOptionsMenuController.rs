@@ -14,18 +14,16 @@ use crate::*;
 
 /// An enum, describing the different types of legible option menus.
 ///
-/// Describes the complete default legible options menu.
-///
-/// Describes a caption appearance menu.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avlegiblemediaoptionsmenutype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVLegibleMediaOptionsMenuType(pub NSInteger);
 impl AVLegibleMediaOptionsMenuType {
+    /// Describes the complete default legible options menu.
     #[doc(alias = "AVLegibleMediaOptionsMenuTypeDefault")]
     pub const Default: Self = Self(0);
+    /// Describes a caption appearance menu.
     #[doc(alias = "AVLegibleMediaOptionsMenuTypeCaptionAppearance")]
     pub const CaptionAppearance: Self = Self(1);
 }
@@ -40,18 +38,16 @@ unsafe impl RefEncode for AVLegibleMediaOptionsMenuType {
 
 /// An enum set, describing the different reasons for changing the menu state.
 ///
-/// Describes a non specified menu state change reason.
-///
-/// Describes a menu state change reason due language mismatch.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avlegiblemediaoptionsmenustatechangereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVLegibleMediaOptionsMenuStateChangeReason(pub NSInteger);
 impl AVLegibleMediaOptionsMenuStateChangeReason {
+    /// Describes a non specified menu state change reason.
     #[doc(alias = "AVLegibleMediaOptionsMenuStateChangeReasonNone")]
     pub const None: Self = Self(0);
+    /// Describes a menu state change reason due language mismatch.
     #[doc(alias = "AVLegibleMediaOptionsMenuStateChangeReasonLanguageMismatch")]
     pub const LanguageMismatch: Self = Self(1);
 }
@@ -92,12 +88,6 @@ unsafe impl RefEncode for AVLegibleMediaOptionsMenuState {
 
 /// An option set, describing the different contents of legible option menus.
 ///
-/// Describes the legible contents of a legible options menu
-///
-/// Describes the caption appearance contents of a legible options menu.
-///
-/// Describes all the contents of a legible options menu.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avlegiblemediaoptionsmenucontents?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -105,10 +95,13 @@ unsafe impl RefEncode for AVLegibleMediaOptionsMenuState {
 pub struct AVLegibleMediaOptionsMenuContents(pub NSInteger);
 bitflags::bitflags! {
     impl AVLegibleMediaOptionsMenuContents: NSInteger {
+/// Describes the legible contents of a legible options menu
         #[doc(alias = "AVLegibleMediaOptionsMenuContentsLegible")]
         const Legible = 1<<0;
+/// Describes the caption appearance contents of a legible options menu.
         #[doc(alias = "AVLegibleMediaOptionsMenuContentsCaptionAppearance")]
         const CaptionAppearance = 1<<1;
+/// Describes all the contents of a legible options menu.
         #[doc(alias = "AVLegibleMediaOptionsMenuContentsAll")]
         const All = AVLegibleMediaOptionsMenuContents::Legible.0|AVLegibleMediaOptionsMenuContents::CaptionAppearance.0;
         const _ = !0;

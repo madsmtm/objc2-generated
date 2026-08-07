@@ -135,15 +135,6 @@ extern "C" {
 
 /// Constants indicating video orientation, for use with AVCaptureVideoPreviewLayer (see AVCaptureVideoPreviewLayer.h) and AVCaptureConnection (see below).
 ///
-///
-/// Indicates that video should be oriented vertically, home button on the bottom.
-///
-/// Indicates that video should be oriented vertically, home button on the top.
-///
-/// Indicates that video should be oriented horizontally, home button on the right.
-///
-/// Indicates that video should be oriented horizontally, home button on the left.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation?language=objc)
 // NS_ENUM
 #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
@@ -151,15 +142,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureVideoOrientation(pub NSInteger);
 impl AVCaptureVideoOrientation {
+    /// Indicates that video should be oriented vertically, home button on the bottom.
     #[doc(alias = "AVCaptureVideoOrientationPortrait")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const Portrait: Self = Self(1);
+    /// Indicates that video should be oriented vertically, home button on the top.
     #[doc(alias = "AVCaptureVideoOrientationPortraitUpsideDown")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const PortraitUpsideDown: Self = Self(2);
+    /// Indicates that video should be oriented horizontally, home button on the right.
     #[doc(alias = "AVCaptureVideoOrientationLandscapeRight")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const LandscapeRight: Self = Self(3);
+    /// Indicates that video should be oriented horizontally, home button on the left.
     #[doc(alias = "AVCaptureVideoOrientationLandscapeLeft")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const LandscapeLeft: Self = Self(4);
@@ -966,27 +961,22 @@ impl AVCaptureMultiCamSession {
 
 /// Constants indicating video field mode, for use with AVCaptureConnection's videoFieldMode property (see below).
 ///
-///
-/// Indicates that both top and bottom video fields in interlaced content should be passed thru.
-///
-/// Indicates that only the top video field in interlaced content should be passed thru.
-///
-/// Indicates that the bottom video field only in interlaced content should be passed thru.
-///
-/// Indicates that top and bottom video fields in interlaced content should be deinterlaced.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVVideoFieldMode(pub NSInteger);
 impl AVVideoFieldMode {
+    /// Indicates that both top and bottom video fields in interlaced content should be passed thru.
     #[doc(alias = "AVVideoFieldModeBoth")]
     pub const Both: Self = Self(0);
+    /// Indicates that only the top video field in interlaced content should be passed thru.
     #[doc(alias = "AVVideoFieldModeTopOnly")]
     pub const TopOnly: Self = Self(1);
+    /// Indicates that the bottom video field only in interlaced content should be passed thru.
     #[doc(alias = "AVVideoFieldModeBottomOnly")]
     pub const BottomOnly: Self = Self(2);
+    /// Indicates that top and bottom video fields in interlaced content should be deinterlaced.
     #[doc(alias = "AVVideoFieldModeDeinterlace")]
     pub const Deinterlace: Self = Self(3);
 }

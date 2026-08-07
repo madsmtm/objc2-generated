@@ -12,14 +12,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSProgressReportingCapabilityKind(pub NSInteger);
 impl CLSProgressReportingCapabilityKind {
+    /// Reports time spent. By default all CLSContexts have this capability. See CLSActivity for more information.
     #[doc(alias = "CLSProgressReportingCapabilityKindDuration")]
     pub const Duration: Self = Self(0);
+    /// Reports progress percentage. See CLSActivity for more information.
     #[doc(alias = "CLSProgressReportingCapabilityKindPercent")]
     pub const Percent: Self = Self(1);
+    /// Reports a binary value like true/false, pass/fail, yes/no or correct/incorrect. See CLSBinaryItem for more information.
     #[doc(alias = "CLSProgressReportingCapabilityKindBinary")]
     pub const Binary: Self = Self(2);
+    /// Reports a discrete value. See CLSQuantityItem for more information.
     #[doc(alias = "CLSProgressReportingCapabilityKindQuantity")]
     pub const Quantity: Self = Self(3);
+    /// Reports a score. See CLSScoreItem for more information.
     #[doc(alias = "CLSProgressReportingCapabilityKindScore")]
     pub const Score: Self = Self(4);
 }

@@ -11,30 +11,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// A format other than one of the common ones below.
-///
-/// Native-endian floats (this is the standard format).
-///
-/// Native-endian doubles.
-///
-/// Signed 16-bit native-endian integers.
-///
-/// Signed 32-bit native-endian integers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioCommonFormat(pub NSUInteger);
 impl AVAudioCommonFormat {
+    /// A format other than one of the common ones below.
     #[doc(alias = "AVAudioOtherFormat")]
     pub const OtherFormat: Self = Self(0);
+    /// Native-endian floats (this is the standard format).
     #[doc(alias = "AVAudioPCMFormatFloat32")]
     pub const PCMFormatFloat32: Self = Self(1);
+    /// Native-endian doubles.
     #[doc(alias = "AVAudioPCMFormatFloat64")]
     pub const PCMFormatFloat64: Self = Self(2);
+    /// Signed 16-bit native-endian integers.
     #[doc(alias = "AVAudioPCMFormatInt16")]
     pub const PCMFormatInt16: Self = Self(3);
+    /// Signed 32-bit native-endian integers.
     #[doc(alias = "AVAudioPCMFormatInt32")]
     pub const PCMFormatInt32: Self = Self(4);
 }

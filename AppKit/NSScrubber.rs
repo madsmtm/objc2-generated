@@ -83,8 +83,10 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrubberMode(pub NSInteger);
 impl NSScrubberMode {
+    /// Panning over the control does not scroll, but instead highlights the element under the user’s finger. The highlighted element is selected the end of the gesture. If the gesture begins on top of the selected element, or if the @c continuous property is set to @c YES, the selection is changed immediately as the user pans.
     #[doc(alias = "NSScrubberModeFixed")]
     pub const Fixed: Self = Self(0);
+    /// Panning over the control freely scrolls the scrubber content. Items are selected by tapping or pressing them without panning. If the @c continuous property is set to @c YES, the control automatically selects items as they scroll under the axis specified by the @c itemAlignment property; if @c itemAlignment is @c NSScrubberAlignmentNone, it is interpreted as @c NSScrubberAlignmentCenter for this purpose.
     #[doc(alias = "NSScrubberModeFree")]
     pub const Free: Self = Self(1);
 }
@@ -105,12 +107,16 @@ unsafe impl RefEncode for NSScrubberMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrubberAlignment(pub NSInteger);
 impl NSScrubberAlignment {
+    /// Specifies no preference for item alignment.
     #[doc(alias = "NSScrubberAlignmentNone")]
     pub const None: Self = Self(0);
+    /// Specifies that an item will be leading-aligned within the control.
     #[doc(alias = "NSScrubberAlignmentLeading")]
     pub const Leading: Self = Self(1);
+    /// Specifies that an item will be trailing-aligned within the control.
     #[doc(alias = "NSScrubberAlignmentTrailing")]
     pub const Trailing: Self = Self(2);
+    /// Specifies that an item will be center-aligned within the control.
     #[doc(alias = "NSScrubberAlignmentCenter")]
     pub const Center: Self = Self(3);
 }

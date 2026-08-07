@@ -39,43 +39,34 @@ unsafe impl RefEncode for MIDIValueMap {
 
 /// Values specifying a type of MIDI transformation, as found in the transform member of MIDITransform.
 ///
-///
-/// no transformation (param unused)
-///
-/// filter out the specified event type (param unused)
-///
-/// transform one control number to another; param is destination control number
-///
-/// add param to values
-///
-/// multiple value by the fixed point number in param, which is in fixed point: bbbb.bbbb bbbb bbbb
-///
-/// the value's minimum value is param
-///
-/// the value's maximum value is param
-///
-/// transform the value using a map; param is the index of the map in the connection's array of maps.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDITransformType(pub u16);
 impl MIDITransformType {
+    /// no transformation (param unused)
     #[doc(alias = "kMIDITransform_None")]
     pub const None: Self = Self(0);
+    /// filter out the specified event type (param unused)
     #[doc(alias = "kMIDITransform_FilterOut")]
     pub const FilterOut: Self = Self(1);
+    /// transform one control number to another; param is destination control number
     #[doc(alias = "kMIDITransform_MapControl")]
     pub const MapControl: Self = Self(2);
+    /// add param to values
     #[doc(alias = "kMIDITransform_Add")]
     pub const Add: Self = Self(8);
+    /// multiple value by the fixed point number in param, which is in fixed point: bbbb.bbbb bbbb bbbb
     #[doc(alias = "kMIDITransform_Scale")]
     pub const Scale: Self = Self(9);
+    /// the value's minimum value is param
     #[doc(alias = "kMIDITransform_MinValue")]
     pub const MinValue: Self = Self(10);
+    /// the value's maximum value is param
     #[doc(alias = "kMIDITransform_MaxValue")]
     pub const MaxValue: Self = Self(11);
+    /// transform the value using a map; param is the index of the map in the connection's array of maps.
     #[doc(alias = "kMIDITransform_MapValue")]
     pub const MapValue: Self = Self(12);
 }
@@ -95,23 +86,19 @@ pub const kMIDIThruConnection_MaxEndpoints: c_uint = 8;
 
 /// Specifies how control numbers are interpreted.
 ///
-///
-/// control numbers may be 0-127
-///
-/// control numbers may be 0-31
-///
-/// control numbers may be 0-16383
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDITransformControlType(pub u8);
 impl MIDITransformControlType {
+    /// control numbers may be 0-127
     #[doc(alias = "kMIDIControlType_7Bit")]
     pub const ControlType_7Bit: Self = Self(0);
+    /// control numbers may be 0-31
     #[doc(alias = "kMIDIControlType_14Bit")]
     pub const ControlType_14Bit: Self = Self(1);
+    /// control numbers may be 0-16383
     #[doc(alias = "kMIDIControlType_7BitRPN")]
     pub const ControlType_7BitRPN: Self = Self(2);
     #[doc(alias = "kMIDIControlType_14BitRPN")]

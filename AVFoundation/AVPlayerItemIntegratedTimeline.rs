@@ -13,18 +13,16 @@ use crate::*;
 
 /// These constants specify the type of segment
 ///
-/// Indicates segment represent playback of a primary item.
-///
-/// Indicates segment represents playback of an interstitial event.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegmenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerItemSegmentType(pub NSInteger);
 impl AVPlayerItemSegmentType {
+    /// Indicates segment represent playback of a primary item.
     #[doc(alias = "AVPlayerItemSegmentTypePrimary")]
     pub const Primary: Self = Self(0);
+    /// Indicates segment represents playback of an interstitial event.
     #[doc(alias = "AVPlayerItemSegmentTypeInterstitial")]
     pub const Interstitial: Self = Self(1);
 }

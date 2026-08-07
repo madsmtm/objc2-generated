@@ -19,12 +19,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFAuthorizationViewState(pub c_uint);
 impl SFAuthorizationViewState {
+    /// Indicates the state is starting up.
     #[doc(alias = "SFAuthorizationStartupState")]
     pub const StartupState: Self = Self(0);
+    /// Indicates the state is locked.
     #[doc(alias = "SFAuthorizationViewLockedState")]
     pub const ViewLockedState: Self = Self(1);
+    /// Indicates the state is 'in progress'.
     #[doc(alias = "SFAuthorizationViewInProgressState")]
     pub const ViewInProgressState: Self = Self(2);
+    /// Indicates the state is unlocked.
     #[doc(alias = "SFAuthorizationViewUnlockedState")]
     pub const ViewUnlockedState: Self = Self(3);
 }

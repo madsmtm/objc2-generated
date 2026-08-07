@@ -4031,11 +4031,17 @@ pub const kDisplaySubPixelShapeOval: c_uint = 0x00000004;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelshapeelliptical?language=objc)
 pub const kDisplaySubPixelShapeElliptical: c_uint = 0x00000005;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbnumcursorframes?language=objc)
+/// The number of cursor images stored in the StdFBShmem_t structure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbnumcursorframes?language=objc)
 pub const kIOFBNumCursorFrames: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbnumcursorframesshift?language=objc)
+/// Used with waiting cursors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbnumcursorframesshift?language=objc)
 pub const kIOFBNumCursorFramesShift: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmaxcursordepth?language=objc)
+/// The maximum cursor pixel depth.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmaxcursordepth?language=objc)
 pub const kIOFBMaxCursorDepth: c_uint = 32;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmaxcursorwidth?language=objc)
 pub const kIOFBMaxCursorWidth: c_uint = 256;
@@ -4202,13 +4208,17 @@ pub const kIOFBShmemVersionMask: c_uint = 0x000000ff;
 pub const kIOFBTenPtOneShmemVersion: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbtenpttwoshmemversion?language=objc)
 pub const kIOFBTenPtTwoShmemVersion: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcurrentshmemversion?language=objc)
+/// The current version of the slice of shared memory that contains the cursor and window server state data in the StdFBShmem_t structure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcurrentshmemversion?language=objc)
 pub const kIOFBCurrentShmemVersion: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbshmemcursornumframesmask?language=objc)
 pub const kIOFBShmemCursorNumFramesMask: c_uint = 0x00ff0000;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbshmemcursornumframesshift?language=objc)
 pub const kIOFBShmemCursorNumFramesShift: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcursormemory?language=objc)
+/// The memory type for IOConnectMapMemory() to get a slice of shared memory that contains the StdFBShmem_t structure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcursormemory?language=objc)
 pub const kIOFBCursorMemory: c_uint = 100;
 
 /// IOGraphicsLib
@@ -4240,11 +4250,17 @@ pub unsafe fn IOFramebufferOpen(
     unsafe { IOFramebufferOpen(service, owning_task, r#type, connect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaymatchinginfo?language=objc)
+/// Include only the keys necessary to match two displays with IODisplayMatchDictionaries().
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaymatchinginfo?language=objc)
 pub const kIODisplayMatchingInfo: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayonlypreferredname?language=objc)
+/// The kDisplayProductName property includes only the localized names returned by CFBundleCopyPreferredLocalizationsFromArray().
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayonlypreferredname?language=objc)
 pub const kIODisplayOnlyPreferredName: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaynoproductname?language=objc)
+/// The kDisplayProductName property is not included in the returned dictionary.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaynoproductname?language=objc)
 pub const kIODisplayNoProductName: c_uint = 0x00000400;
 
 /// Create a CFDictionary with information about display hardware.

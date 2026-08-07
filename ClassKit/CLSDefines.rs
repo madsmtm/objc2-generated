@@ -16,26 +16,37 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSErrorCode(pub NSInteger);
 impl CLSErrorCode {
+    /// No error.
     #[doc(alias = "CLSErrorCodeNone")]
     pub const None: Self = Self(0);
+    /// ClassKit is not available on this device.
     #[doc(alias = "CLSErrorCodeClassKitUnavailable")]
     pub const ClassKitUnavailable: Self = Self(1);
+    /// An invalid argument was provided to the API.
     #[doc(alias = "CLSErrorCodeInvalidArgument")]
     pub const InvalidArgument: Self = Self(2);
+    /// Attempted to modify a readonly object.
     #[doc(alias = "CLSErrorCodeInvalidModification")]
     pub const InvalidModification: Self = Self(3);
+    /// The application is not authorized to perform the requested operation.
     #[doc(alias = "CLSErrorCodeAuthorizationDenied")]
     pub const AuthorizationDenied: Self = Self(4);
+    /// Protected ClassKit is inaccessible because the device is locked.
     #[doc(alias = "CLSErrorCodeDatabaseInaccessible")]
     pub const DatabaseInaccessible: Self = Self(5);
+    /// Limits exceeded.
     #[doc(alias = "CLSErrorCodeLimits")]
     pub const Limits: Self = Self(6);
+    /// Attempted to save new object that already exists in the data store.
     #[doc(alias = "CLSErrorCodeInvalidCreate")]
     pub const InvalidCreate: Self = Self(7);
+    /// Failed to save updated object in the data store.
     #[doc(alias = "CLSErrorCodeInvalidUpdate")]
     pub const InvalidUpdate: Self = Self(8);
+    /// Returned if an operation resulted in a mix of successes and failures.
     #[doc(alias = "CLSErrorCodePartialFailure")]
     pub const PartialFailure: Self = Self(9);
+    /// Returned if an operation failed because the user MAID account credentials are invalid.
     #[doc(alias = "CLSErrorCodeInvalidAccountCredentials")]
     pub const InvalidAccountCredentials: Self = Self(10);
 }

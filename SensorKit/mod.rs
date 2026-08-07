@@ -3149,11 +3149,6 @@ impl SRAudioLevel {
 /// on the audio stream
 ///
 ///
-///
-/// Audio stream went through the system voice processor
-///
-///
-///
 /// Audio stream bypassed the system voice processor.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetricssessionflags?language=objc)
@@ -3163,6 +3158,7 @@ impl SRAudioLevel {
 pub struct SRSpeechMetricsSessionFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl SRSpeechMetricsSessionFlags: NSUInteger {
+/// Audio stream went through the system voice processor
         #[doc(alias = "SRSpeechMetricsSessionFlagsDefault")]
         const Default = 0;
         #[doc(alias = "SRSpeechMetricsSessionFlagsBypassVoiceProcessing")]
@@ -3520,11 +3516,6 @@ unsafe impl RefEncode for SRElectrocardiogramSessionState {
 /// The type of session used to record the ECG sample
 ///
 ///
-///
-/// A session, usually of fixed duration, where the user is provided coaching to guide the ECG readings
-///
-///
-///
 /// A session, usually of undefined duration, where the user is not provided coaching to guide the ECG readings
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsessionguidance?language=objc)
@@ -3533,6 +3524,7 @@ unsafe impl RefEncode for SRElectrocardiogramSessionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRElectrocardiogramSessionGuidance(pub NSInteger);
 impl SRElectrocardiogramSessionGuidance {
+    /// A session, usually of fixed duration, where the user is provided coaching to guide the ECG readings
     #[doc(alias = "SRElectrocardiogramSessionGuidanceGuided")]
     pub const Guided: Self = Self(1);
     #[doc(alias = "SRElectrocardiogramSessionGuidanceUnguided")]

@@ -317,20 +317,6 @@ pub const kSecNoGuest: SecGuestRef = 0;
 /// Global flags are assigned from high order down (31 -> 0); call-specific flags
 /// are assigned from the bottom up (0 -> 31).
 ///
-///
-/// When passed to a flags argument throughout, indicates that default behavior
-/// is desired. Do not mix with other flags values.
-///
-/// When passed to a call that performs code validation, requests that code signatures
-/// made by expired certificates be rejected. By default, expiration of participating
-/// certificates is not automatic grounds for rejection.
-///
-/// When passed to a call that performs code validation, configures the validation to
-/// not perform any work that requires the network. Using this flag disables security features
-/// like online certificate revocation and notarization checks by removing potentially
-/// slow network requests that can delay evaluations. This flag has always been usable for
-/// SecStaticCode objects and is usable with SecCode objects starting with macOS 11.3.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -338,12 +324,22 @@ pub const kSecNoGuest: SecGuestRef = 0;
 pub struct SecCSFlags(pub u32);
 bitflags::bitflags! {
     impl SecCSFlags: u32 {
+/// When passed to a flags argument throughout, indicates that default behavior
+/// is desired. Do not mix with other flags values.
         #[doc(alias = "kSecCSDefaultFlags")]
         const DefaultFlags = 0;
+/// When passed to a call that performs code validation, requests that code signatures
+/// made by expired certificates be rejected. By default, expiration of participating
+/// certificates is not automatic grounds for rejection.
         #[doc(alias = "kSecCSConsiderExpiration")]
         const ConsiderExpiration = 1<<31;
         #[doc(alias = "kSecCSEnforceRevocationChecks")]
         const EnforceRevocationChecks = 1<<30;
+/// When passed to a call that performs code validation, configures the validation to
+/// not perform any work that requires the network. Using this flag disables security features
+/// like online certificate revocation and notarization checks by removing potentially
+/// slow network requests that can delay evaluations. This flag has always been usable for
+/// SecStaticCode objects and is usable with SecCode objects starting with macOS 11.3.
         #[doc(alias = "kSecCSNoNetworkAccess")]
         const NoNetworkAccess = 1<<29;
         #[doc(alias = "kSecCSReportProgress")]
@@ -378,35 +374,6 @@ unsafe impl RefEncode for SecCSFlags {
 /// argument; some are set implicitly based on signing circumstances; and all
 /// can be set with the kSecCodeSignerFlags item of a signing information dictionary.
 ///
-///
-/// Indicates that the code may act as a host that controls and supervises guest
-/// code. If this flag is not set in a code signature, the code is never considered
-/// eligible to be a host, and any attempt to act like one will be ignored or rejected.
-///
-/// The code has been sealed without a signing identity. No identity may be retrieved
-/// from it, and any code requirement placing restrictions on the signing identity
-/// will fail. This flag is set by the code signing API and cannot be set explicitly.
-///
-/// Implicitly set the "hard" status bit for the code when it starts running.
-/// This bit indicates that the code prefers to be denied access to a resource
-/// if gaining such access would cause its invalidation. Since the hard bit is
-/// sticky, setting this option bit guarantees that the code will always have
-/// it set.
-///
-/// Implicitly set the "kill" status bit for the code when it starts running.
-/// This bit indicates that the code wishes to be terminated with prejudice if
-/// it is ever invalidated. Since the kill bit is sticky, setting this option bit
-/// guarantees that the code will always be dynamically valid, since it will die
-/// immediately    if it becomes invalid.
-///
-/// Forces the kSecCSConsiderExpiration flag on all validations of the code.
-///
-/// Instructs the kernel to apply runtime hardening policies as required by the
-/// hardened runtime version
-///
-/// The code was automatically signed by the linker. This signature should be
-/// ignored in any new signing operation.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -414,14 +381,31 @@ unsafe impl RefEncode for SecCSFlags {
 pub struct SecCodeSignatureFlags(pub u32);
 bitflags::bitflags! {
     impl SecCodeSignatureFlags: u32 {
+/// Indicates that the code may act as a host that controls and supervises guest
+/// code. If this flag is not set in a code signature, the code is never considered
+/// eligible to be a host, and any attempt to act like one will be ignored or rejected.
         #[doc(alias = "kSecCodeSignatureHost")]
         const Host = 0x0001;
+/// The code has been sealed without a signing identity. No identity may be retrieved
+/// from it, and any code requirement placing restrictions on the signing identity
+/// will fail. This flag is set by the code signing API and cannot be set explicitly.
         #[doc(alias = "kSecCodeSignatureAdhoc")]
         const Adhoc = 0x0002;
+/// Implicitly set the "hard" status bit for the code when it starts running.
+/// This bit indicates that the code prefers to be denied access to a resource
+/// if gaining such access would cause its invalidation. Since the hard bit is
+/// sticky, setting this option bit guarantees that the code will always have
+/// it set.
         #[doc(alias = "kSecCodeSignatureForceHard")]
         const ForceHard = 0x0100;
+/// Implicitly set the "kill" status bit for the code when it starts running.
+/// This bit indicates that the code wishes to be terminated with prejudice if
+/// it is ever invalidated. Since the kill bit is sticky, setting this option bit
+/// guarantees that the code will always be dynamically valid, since it will die
+/// immediately    if it becomes invalid.
         #[doc(alias = "kSecCodeSignatureForceKill")]
         const ForceKill = 0x0200;
+/// Forces the kSecCSConsiderExpiration flag on all validations of the code.
         #[doc(alias = "kSecCodeSignatureForceExpiration")]
         const ForceExpiration = 0x0400;
         #[doc(alias = "kSecCodeSignatureRestrict")]
@@ -430,8 +414,12 @@ bitflags::bitflags! {
         const Enforcement = 0x1000;
         #[doc(alias = "kSecCodeSignatureLibraryValidation")]
         const LibraryValidation = 0x2000;
+/// Instructs the kernel to apply runtime hardening policies as required by the
+/// hardened runtime version
         #[doc(alias = "kSecCodeSignatureRuntime")]
         const Runtime = 0x10000;
+/// The code was automatically signed by the linker. This signature should be
+/// ignored in any new signing operation.
         #[doc(alias = "kSecCodeSignatureLinkerSigned")]
         const LinkerSigned = 0x20000;
         const _ = !0;
@@ -458,7 +446,13 @@ unsafe impl RefEncode for SecCodeSignatureFlags {
 /// There are other flags in SecCodeStatus that are not publicly documented.
 /// Do not rely on them, and do not ever attempt to explicitly set them.
 ///
-///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct SecCodeStatus(pub u32);
+bitflags::bitflags! {
+    impl SecCodeStatus: u32 {
 /// Indicates that the code is dynamically valid, i.e. it started correctly
 /// and has not been invalidated since then. The valid bit can only be cleared.
 ///
@@ -471,43 +465,27 @@ unsafe impl RefEncode for SecCodeSignatureFlags {
 /// rely that (1) dynamic invalidation will clear this bit; and (2) the combination
 /// of static validation and dynamic validity (as performed by the SecCodeCheckValidity* APIs)
 /// will give a correct answer.
-///
-///
+        #[doc(alias = "kSecCodeStatusValid")]
+        const Valid = 0x00000001;
 /// Indicates that the code prefers to be denied access to resources if gaining access
 /// would invalidate it. This bit can only be set.
 /// It is undefined whether code that is marked hard and is already invalid will still
 /// be denied access to a resource that would invalidate it if it were still valid. That is,
 /// the code may or may not get access to such a resource while being invalid, and that choice
 /// may appear random.
-///
-///
+        #[doc(alias = "kSecCodeStatusHard")]
+        const Hard = 0x00000100;
 /// Indicates that the code wants to be killed (terminated) if it ever loses its validity.
 /// This bit can only be set. Code that has the kill flag set will never be dynamically invalid
 /// (and live). Note however that a change in static validity does not necessarily trigger instant
 /// death.
-///
-///
-/// Indicated that code has been debugged by another process that was allowed to do so. The debugger
-/// causes this to be set when it attachs.
-///
-///
-/// Indicates the code is platform code, shipping with the operating system and signed by Apple.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus?language=objc)
-// NS_OPTIONS
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct SecCodeStatus(pub u32);
-bitflags::bitflags! {
-    impl SecCodeStatus: u32 {
-        #[doc(alias = "kSecCodeStatusValid")]
-        const Valid = 0x00000001;
-        #[doc(alias = "kSecCodeStatusHard")]
-        const Hard = 0x00000100;
         #[doc(alias = "kSecCodeStatusKill")]
         const Kill = 0x00000200;
+/// Indicated that code has been debugged by another process that was allowed to do so. The debugger
+/// causes this to be set when it attachs.
         #[doc(alias = "kSecCodeStatusDebugged")]
         const Debugged = 0x10000000;
+/// Indicates the code is platform code, shipping with the operating system and signed by Apple.
         #[doc(alias = "kSecCodeStatusPlatform")]
         const Platform = 0x04000000;
         const _ = !0;

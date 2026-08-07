@@ -13,22 +13,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauparameterlistener_anyparameter?language=objc)
+/// A wildcard value for an AudioUnitParameterID. Note that this is
+/// only valid when sending a notification (with AUParameterListenerNotify),
+/// not when registering to receive one.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauparameterlistener_anyparameter?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUParameterListener_AnyParameter: AudioUnitParameterID = 0xFFFFFFFF;
 
 /// Types of Audio Unit Events.
-///
-///
-/// The event is a change to a parameter value
-///
-/// The event signifies a gesture (e.g. mouse-down) beginning a potential series of
-/// related parameter value change events.
-///
-/// The event signifies a gesture (e.g. mouse-up) ending a series of related
-/// parameter value change events.
-///
-/// The event is a change to a property value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiouniteventtype?language=objc)
 // NS_ENUM
@@ -36,12 +29,18 @@ pub const kAUParameterListener_AnyParameter: AudioUnitParameterID = 0xFFFFFFFF;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioUnitEventType(pub u32);
 impl AudioUnitEventType {
+    /// The event is a change to a parameter value
     #[doc(alias = "kAudioUnitEvent_ParameterValueChange")]
     pub const ParameterValueChange: Self = Self(0);
+    /// The event signifies a gesture (e.g. mouse-down) beginning a potential series of
+    /// related parameter value change events.
     #[doc(alias = "kAudioUnitEvent_BeginParameterChangeGesture")]
     pub const BeginParameterChangeGesture: Self = Self(1);
+    /// The event signifies a gesture (e.g. mouse-up) ending a series of related
+    /// parameter value change events.
     #[doc(alias = "kAudioUnitEvent_EndParameterChangeGesture")]
     pub const EndParameterChangeGesture: Self = Self(2);
+    /// The event is a change to a property value.
     #[doc(alias = "kAudioUnitEvent_PropertyChange")]
     pub const PropertyChange: Self = Self(3);
 }

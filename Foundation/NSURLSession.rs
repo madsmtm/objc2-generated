@@ -1082,32 +1082,28 @@ impl NSURLSessionWebSocketTask {
 /// for creating and switching between subflows.  Using these service types requires the appropriate entitlement.  Any connection attempt will fail if the process does not have the required entitlement.
 /// A primary interface is a generally less expensive interface in terms of both cost and power (such as WiFi or ethernet).  A secondary interface is more expensive (such as 3G or LTE).
 ///
-///
-/// This is the default value.  No entitlement is required to set this value.
-///
-///
-/// when the primary subflow is not performing adequately.   Requires the com.apple.developer.networking.multipath entitlement.
-///
-///
-/// primary subflow is not performing adequately (packet loss, high round trip times, bandwidth issues).  The secondary
-/// subflow will be created more aggressively than with NSURLSessionMultipathServiceTypeHandover.  Requires the com.apple.developer.networking.multipath entitlement.
-///
-///
-/// used for better bandwidth.  This mode is only available for experimentation on devices configured for development use.
-/// It can be enabled in the Developer section of the Settings app.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionmultipathservicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionMultipathServiceType(pub NSInteger);
 impl NSURLSessionMultipathServiceType {
+    /// Specifies that multipath tcp should not be used.  Connections will use a single flow.
+    /// This is the default value.  No entitlement is required to set this value.
     #[doc(alias = "NSURLSessionMultipathServiceTypeNone")]
     pub const None: Self = Self(0);
+    /// Specifies that a secondary subflow should only be used
+    /// when the primary subflow is not performing adequately.   Requires the com.apple.developer.networking.multipath entitlement.
     #[doc(alias = "NSURLSessionMultipathServiceTypeHandover")]
     pub const Handover: Self = Self(1);
+    /// Specifies that a secondary subflow should be used if the
+    /// primary subflow is not performing adequately (packet loss, high round trip times, bandwidth issues).  The secondary
+    /// subflow will be created more aggressively than with NSURLSessionMultipathServiceTypeHandover.  Requires the com.apple.developer.networking.multipath entitlement.
     #[doc(alias = "NSURLSessionMultipathServiceTypeInteractive")]
     pub const Interactive: Self = Self(2);
+    /// Specifies that multiple subflows across multiple interfaces should be
+    /// used for better bandwidth.  This mode is only available for experimentation on devices configured for development use.
+    /// It can be enabled in the Developer section of the Settings app.
     #[doc(alias = "NSURLSessionMultipathServiceTypeAggregate")]
     pub const Aggregate: Self = Self(3);
 }

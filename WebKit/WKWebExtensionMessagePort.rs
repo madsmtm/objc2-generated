@@ -22,10 +22,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionMessagePortError(pub NSInteger);
 impl WKWebExtensionMessagePortError {
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionMessagePortErrorUnknown")]
     pub const Unknown: Self = Self(1);
+    /// Indicates that the message port is disconnected.
     #[doc(alias = "WKWebExtensionMessagePortErrorNotConnected")]
     pub const NotConnected: Self = Self(2);
+    /// Indicates that the message is invalid. The message must be an object that is JSON-serializable.
     #[doc(alias = "WKWebExtensionMessagePortErrorMessageInvalid")]
     pub const MessageInvalid: Self = Self(3);
 }

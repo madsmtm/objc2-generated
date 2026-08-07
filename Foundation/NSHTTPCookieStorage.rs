@@ -8,20 +8,20 @@ use crate::*;
 
 /// Values for the different cookie accept policies
 ///
-///
-///
-/// only from the main document domain
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieacceptpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHTTPCookieAcceptPolicy(pub NSUInteger);
 impl NSHTTPCookieAcceptPolicy {
+    /// Accept all cookies
     #[doc(alias = "NSHTTPCookieAcceptPolicyAlways")]
     pub const Always: Self = Self(0);
+    /// Reject all cookies
     #[doc(alias = "NSHTTPCookieAcceptPolicyNever")]
     pub const Never: Self = Self(1);
+    /// Accept cookies
+    /// only from the main document domain
     #[doc(alias = "NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain")]
     pub const OnlyFromMainDocumentDomain: Self = Self(2);
 }

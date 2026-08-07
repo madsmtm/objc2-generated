@@ -155,7 +155,9 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskmountoptiondefault?language=objc)
 pub const kDADiskMountOptionDefault: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskmountoptionwhole?language=objc)
+/// Mount the volumes tied to the whole disk object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskmountoptionwhole?language=objc)
 pub const kDADiskMountOptionWhole: c_uint = 0x00000001;
 /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskmountoptionnofollow?language=objc)
 pub const kDADiskMountOptionNoFollow: c_uint = 0x00000002;
@@ -171,9 +173,13 @@ pub type DADiskRenameOptions = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskunmountoptiondefault?language=objc)
 pub const kDADiskUnmountOptionDefault: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskunmountoptionforce?language=objc)
+/// Unmount the volume even if files are still active.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskunmountoptionforce?language=objc)
 pub const kDADiskUnmountOptionForce: c_uint = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskunmountoptionwhole?language=objc)
+/// Unmount the volumes tied to the whole disk object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskunmountoptionwhole?language=objc)
 pub const kDADiskUnmountOptionWhole: c_uint = 0x00000001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunmountoptions?language=objc)

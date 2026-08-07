@@ -37,21 +37,29 @@ bitflags::bitflags! {
         const Miniaturizable = 1<<2;
         #[doc(alias = "NSWindowStyleMaskResizable")]
         const Resizable = 1<<3;
+/// Textured window style is deprecated and should no longer be used. Specifies a window with textured background. Textured windows generally don't draw a top border line under the titlebar/toolbar. To get that line, use the \c NSUnifiedTitleAndToolbarWindowMask mask.
         #[doc(alias = "NSWindowStyleMaskTexturedBackground")]
 #[deprecated = "Textured window style should no longer be used"]
         const TexturedBackground = 1<<8;
+/// Specifies a window whose titlebar and toolbar have a unified look - that is, a continuous background. Under the titlebar and toolbar a horizontal separator line will appear.
         #[doc(alias = "NSWindowStyleMaskUnifiedTitleAndToolbar")]
         const UnifiedTitleAndToolbar = 1<<12;
+/// When present, the window will appear full screen. This mask is automatically toggled when \c -toggleFullScreen: is called.
         #[doc(alias = "NSWindowStyleMaskFullScreen")]
         const FullScreen = 1<<14;
+/// If set, the \c contentView will consume the full size of the window; it can be combined with other window style masks, but is only respected for windows with a titlebar. Utilizing this mask opts-in to layer-backing. Utilize the \c contentLayoutRect or auto-layout \c contentLayoutGuide to layout views underneath the titlebar/toolbar area.
         #[doc(alias = "NSWindowStyleMaskFullSizeContentView")]
         const FullSizeContentView = 1<<15;
+/// Only applicable for \c NSPanel (or a subclass thereof).
         #[doc(alias = "NSWindowStyleMaskUtilityWindow")]
         const UtilityWindow = 1<<4;
+/// Only applicable for \c NSPanel (or a subclass thereof).
         #[doc(alias = "NSWindowStyleMaskDocModalWindow")]
         const DocModalWindow = 1<<6;
+/// Specifies that a panel that does not activate the owning application. Only applicable for \c NSPanel (or a subclass thereof).
         #[doc(alias = "NSWindowStyleMaskNonactivatingPanel")]
         const NonactivatingPanel = 1<<7;
+/// Specifies a heads up display panel.  Only applicable for \c NSPanel (or a subclass thereof).
         #[doc(alias = "NSWindowStyleMaskHUDWindow")]
         const HUDWindow = 1<<13;
         const _ = !0;
@@ -85,8 +93,10 @@ pub const NSResetCursorRectsRunLoopOrdering: c_uint = 700000;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowSharingType(pub NSUInteger);
 impl NSWindowSharingType {
+    /// Window contents may not be read by another process.
     #[doc(alias = "NSWindowSharingNone")]
     pub const None: Self = Self(0);
+    /// Window contents may be read by another process.
     #[doc(alias = "NSWindowSharingReadOnly")]
     pub const ReadOnly: Self = Self(1);
 }
@@ -103,44 +113,6 @@ unsafe impl RefEncode for NSWindowSharingType {
 /// `NSWindowCollectionBehaviorPrimary,``NSWindowCollectionBehaviorAuxiliary,`or
 /// `NSWindowCollectionBehaviorCanJoinAllApplications.`If unspecified, the window gets the default treatment determined by its other collection behaviors.
 ///
-///
-///
-///
-///
-///
-///
-///
-/// You may specify at most one of
-/// `NSWindowCollectionBehaviorManaged,``NSWindowCollectionBehaviorTransient,`or
-/// `NSWindowCollectionBehaviorStationary.`If neither is specified, the window gets the default behavior determined by its window level.
-///
-///
-///
-///
-///
-/// You may specify at most one of
-/// `NSWindowCollectionBehaviorParticipatesInCycle`or
-/// `NSWindowCollectionBehaviorIgnoresCycle.`If unspecified, the window gets the default behavior determined by its window level.
-///
-///
-///
-///
-/// You may specify at most one of
-/// `NSWindowCollectionBehaviorFullScreenPrimary,``NSWindowCollectionBehaviorFullScreenAuxiliary,`or
-/// `NSWindowCollectionBehaviorFullScreenNone.`
-///
-///
-///
-///
-/// You may specify at most one of
-/// `NSWindowCollectionBehaviorFullScreenAllowsTiling`or
-/// `NSWindowCollectionBehaviorFullScreenDisallowsTiling,`or an assertion will be raised.
-///
-/// The default behavior is to allow any window to participate in full screen tiling, as long as it meets certain requirements, such as being resizable and not a panel or sheet. Windows which are not full screen capable can still become a secondary tile in full screen. A window can explicitly allow itself to be placed into a full screen tile by including
-/// `NSWindowCollectionBehaviorFullScreenAllowsTiling.`Even if a window allows itself to be placed in a tile, it still may not be put in the tile if its
-/// `minFullScreenContentSize`is too large to fit. A window can explicitly disallow itself from being placed in a full screen tile by including
-/// `NSWindowCollectionBehaviorFullScreenDisallowsTiling.`This is useful for non-full screen capable windows to explicitly prevent themselves from being tiled. It can also be used by a full screen window to prevent any other windows from being placed in its full screen tile.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowcollectionbehavior?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -152,32 +124,65 @@ bitflags::bitflags! {
         const Default = 0;
         #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllSpaces")]
         const CanJoinAllSpaces = 1<<0;
+/// You may specify at most one of
+/// `NSWindowCollectionBehaviorManaged,``NSWindowCollectionBehaviorTransient,`or
+/// `NSWindowCollectionBehaviorStationary.`If neither is specified, the window gets the default behavior determined by its window level.
         #[doc(alias = "NSWindowCollectionBehaviorMoveToActiveSpace")]
         const MoveToActiveSpace = 1<<1;
+/// Participates in spaces, exposé.  Default behavior if `windowLevel == NSNormalWindowLevel`.
         #[doc(alias = "NSWindowCollectionBehaviorManaged")]
         const Managed = 1<<2;
+/// Floats in spaces, hidden by exposé.  Default behavior if `windowLevel != NSNormalWindowLevel`.
         #[doc(alias = "NSWindowCollectionBehaviorTransient")]
         const Transient = 1<<3;
+/// Unaffected by exposé.  Stays visible and stationary, like desktop window.
+///
+/// You may specify at most one of
+/// `NSWindowCollectionBehaviorParticipatesInCycle`or
+/// `NSWindowCollectionBehaviorIgnoresCycle.`If unspecified, the window gets the default behavior determined by its window level.
         #[doc(alias = "NSWindowCollectionBehaviorStationary")]
         const Stationary = 1<<4;
+/// Default behavior if `windowLevel == NSNormalWindowLevel`.
         #[doc(alias = "NSWindowCollectionBehaviorParticipatesInCycle")]
         const ParticipatesInCycle = 1<<5;
+/// Default behavior if `windowLevel != NSNormalWindowLevel`.
+///
+/// You may specify at most one of
+/// `NSWindowCollectionBehaviorFullScreenPrimary,``NSWindowCollectionBehaviorFullScreenAuxiliary,`or
+/// `NSWindowCollectionBehaviorFullScreenNone.`
         #[doc(alias = "NSWindowCollectionBehaviorIgnoresCycle")]
         const IgnoresCycle = 1<<6;
+/// The frontmost window with this collection behavior will be the fullscreen window.
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenPrimary")]
         const FullScreenPrimary = 1<<7;
+/// Windows with this collection behavior can be shown with the fullscreen window.
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenAuxiliary")]
         const FullScreenAuxiliary = 1<<8;
+/// The window can not be made fullscreen when this bit is set.
+///
+/// You may specify at most one of
+/// `NSWindowCollectionBehaviorFullScreenAllowsTiling`or
+/// `NSWindowCollectionBehaviorFullScreenDisallowsTiling,`or an assertion will be raised.
+///
+/// The default behavior is to allow any window to participate in full screen tiling, as long as it meets certain requirements, such as being resizable and not a panel or sheet. Windows which are not full screen capable can still become a secondary tile in full screen. A window can explicitly allow itself to be placed into a full screen tile by including
+/// `NSWindowCollectionBehaviorFullScreenAllowsTiling.`Even if a window allows itself to be placed in a tile, it still may not be put in the tile if its
+/// `minFullScreenContentSize`is too large to fit. A window can explicitly disallow itself from being placed in a full screen tile by including
+/// `NSWindowCollectionBehaviorFullScreenDisallowsTiling.`This is useful for non-full screen capable windows to explicitly prevent themselves from being tiled. It can also be used by a full screen window to prevent any other windows from being placed in its full screen tile.
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenNone")]
         const FullScreenNone = 1<<9;
+/// This window can be a full screen tile window. It does not have to have \c NSWindowCollectionBehaviorFullScreenPrimary set.
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenAllowsTiling")]
         const FullScreenAllowsTiling = 1<<11;
+/// This window can NOT be made a full screen tile window; it still may be allowed to be a regular \c NSWindowCollectionBehaviorFullScreenPrimary window.
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenDisallowsTiling")]
         const FullScreenDisallowsTiling = 1<<12;
+/// Marks a window as primary. This collection behavior should commonly be used for document or viewer windows.
         #[doc(alias = "NSWindowCollectionBehaviorPrimary")]
         const Primary = 1<<16;
+/// Marks a window as auxiliary. This collection behavior should commonly be used for About or Settings windows, as well as utility panes.
         #[doc(alias = "NSWindowCollectionBehaviorAuxiliary")]
         const Auxiliary = 1<<17;
+/// Marks a window as able to join all applications, allowing it to join other apps' sets and full screen spaces when eligible. This collection behavior should commonly be used for floating windows and system overlays.
         #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllApplications")]
         const CanJoinAllApplications = 1<<18;
         const _ = !0;
@@ -198,8 +203,10 @@ unsafe impl RefEncode for NSWindowCollectionBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowAnimationBehavior(pub NSInteger);
 impl NSWindowAnimationBehavior {
+    /// Let AppKit infer animation behavior for this window.
     #[doc(alias = "NSWindowAnimationBehaviorDefault")]
     pub const Default: Self = Self(0);
+    /// Suppress inferred animations (don't animate).
     #[doc(alias = "NSWindowAnimationBehaviorNone")]
     pub const None: Self = Self(2);
     #[doc(alias = "NSWindowAnimationBehaviorDocumentWindow")]
@@ -250,6 +257,7 @@ unsafe impl RefEncode for NSWindowNumberListOptions {
 pub struct NSWindowOcclusionState(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowOcclusionState: NSUInteger {
+/// If set, at least part of the window is visible. If not set, the entire window is occluded. Windows with non-rectangular shapes may be completely occluded on screen but still count as visible, if their bounding box falls into a visible region. Windows that are completely transparent may also still count as visible.
         #[doc(alias = "NSWindowOcclusionStateVisible")]
         const Visible = 1<<1;
         const _ = !0;
@@ -353,8 +361,10 @@ unsafe impl RefEncode for NSWindowButton {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowTitleVisibility(pub NSInteger);
 impl NSWindowTitleVisibility {
+    /// The default mode has a normal window title and titlebar buttons.
     #[doc(alias = "NSWindowTitleVisible")]
     pub const Visible: Self = Self(0);
+    /// The always hidden mode hides the title and moves the toolbar up into the area previously occupied by the title.
     #[doc(alias = "NSWindowTitleHidden")]
     pub const Hidden: Self = Self(1);
 }
@@ -373,14 +383,19 @@ unsafe impl RefEncode for NSWindowTitleVisibility {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowToolbarStyle(pub NSInteger);
 impl NSWindowToolbarStyle {
+    /// The default value. The style will be determined by the window's given configuration.
     #[doc(alias = "NSWindowToolbarStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The toolbar will appear below the window title.
     #[doc(alias = "NSWindowToolbarStyleExpanded")]
     pub const Expanded: Self = Self(1);
+    /// For Settings windows only. The toolbar will appear below the window title and the items in the toolbar will attempt to have equal widths when possible.
     #[doc(alias = "NSWindowToolbarStylePreference")]
     pub const Preference: Self = Self(2);
+    /// The window title will appear inline with the toolbar when visible.
     #[doc(alias = "NSWindowToolbarStyleUnified")]
     pub const Unified: Self = Self(3);
+    /// Same as \c NSWindowToolbarStyleUnified, but with reduced margins in the toolbar allowing more focus to be on the contents of the window.
     #[doc(alias = "NSWindowToolbarStyleUnifiedCompact")]
     pub const UnifiedCompact: Self = Self(4);
 }
@@ -424,10 +439,13 @@ unsafe impl RefEncode for NSWindowUserTabbingPreference {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowTabbingMode(pub NSInteger);
 impl NSWindowTabbingMode {
+    /// The system automatically prefers to tab this window when appropriate.
     #[doc(alias = "NSWindowTabbingModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The window explicitly should prefer to tab when shown.
     #[doc(alias = "NSWindowTabbingModePreferred")]
     pub const Preferred: Self = Self(1);
+    /// The window explicitly should not prefer to tab when shown.
     #[doc(alias = "NSWindowTabbingModeDisallowed")]
     pub const Disallowed: Self = Self(2);
 }

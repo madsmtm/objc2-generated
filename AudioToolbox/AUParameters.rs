@@ -30,23 +30,19 @@ pub type AUParameterAddress = u64;
 /// significance to the beginning and end of a UI gesture (typically touching and releasing
 /// a fader). These gestures are conveyed through these types of automation events.
 ///
-///
-/// The event contains an updated value for the parameter.
-///
-/// The event marks an initial "touch" gesture on a UI element.
-///
-/// The event marks a final "release" gesture on a UI element.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationeventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUParameterAutomationEventType(pub u32);
 impl AUParameterAutomationEventType {
+    /// The event contains an updated value for the parameter.
     #[doc(alias = "AUParameterAutomationEventTypeValue")]
     pub const Value: Self = Self(0);
+    /// The event marks an initial "touch" gesture on a UI element.
     #[doc(alias = "AUParameterAutomationEventTypeTouch")]
     pub const Touch: Self = Self(1);
+    /// The event marks a final "release" gesture on a UI element.
     #[doc(alias = "AUParameterAutomationEventTypeRelease")]
     pub const Release: Self = Self(2);
 }

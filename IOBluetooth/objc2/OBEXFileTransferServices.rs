@@ -462,8 +462,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct FTSFileType(pub c_uint);
 impl FTSFileType {
+    /// Folder
     #[doc(alias = "kFTSFileTypeFolder")]
     pub const Folder: Self = Self(1);
+    /// File
     #[doc(alias = "kFTSFileTypeFile")]
     pub const File: Self = Self(2);
 }

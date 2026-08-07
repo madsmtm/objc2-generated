@@ -41,30 +41,6 @@ use crate::*;
 /// take into account space, time, and how the entries were
 /// classified.
 ///
-///
-/// This entry was generated as information about the other
-/// entries or about the sequence of entries as a whole.
-///
-///
-/// This entry was not intended to be long-lived and was captured
-/// in the ring buffer.
-///
-///
-/// The entry was intended to be persisted in a filesystem-backed
-/// data store and kept mainly based on the amount of space
-/// available.
-///
-///
-///
-///
-///
-///
-/// The entry was tagged with a hint indicating that the system
-/// should try to preserve it for a certain amount of time. It
-/// was persisted in the filesystem-backed data store, and
-/// rotation of these entries was based on both time and space
-/// considerations.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrystorecategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -73,10 +49,17 @@ pub struct OSLogEntryStoreCategory(pub NSInteger);
 impl OSLogEntryStoreCategory {
     #[doc(alias = "OSLogEntryStoreCategoryUndefined")]
     pub const Undefined: Self = Self(0);
+    /// This entry was generated as information about the other
+    /// entries or about the sequence of entries as a whole.
     #[doc(alias = "OSLogEntryStoreCategoryMetadata")]
     pub const Metadata: Self = Self(1);
+    /// This entry was not intended to be long-lived and was captured
+    /// in the ring buffer.
     #[doc(alias = "OSLogEntryStoreCategoryShortTerm")]
     pub const ShortTerm: Self = Self(2);
+    /// The entry was intended to be persisted in a filesystem-backed
+    /// data store and kept mainly based on the amount of space
+    /// available.
     #[doc(alias = "OSLogEntryStoreCategoryLongTermAuto")]
     pub const LongTermAuto: Self = Self(3);
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm1")]
@@ -87,6 +70,11 @@ impl OSLogEntryStoreCategory {
     pub const LongTerm7: Self = Self(6);
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm14")]
     pub const LongTerm14: Self = Self(7);
+    /// The entry was tagged with a hint indicating that the system
+    /// should try to preserve it for a certain amount of time. It
+    /// was persisted in the filesystem-backed data store, and
+    /// rotation of these entries was based on both time and space
+    /// considerations.
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm30")]
     pub const LongTerm30: Self = Self(8);
 }
@@ -440,10 +428,6 @@ impl OSLogEntrySignpost {
 
 /// Control the direction of the iteration.
 ///
-///
-/// Iterate backward in time. If no starting position is specified,
-/// start at the latest entry.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogenumeratoroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -451,6 +435,8 @@ impl OSLogEntrySignpost {
 pub struct OSLogEnumeratorOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl OSLogEnumeratorOptions: NSUInteger {
+/// Iterate backward in time. If no starting position is specified,
+/// start at the latest entry.
         #[doc(alias = "OSLogEnumeratorReverse")]
         const Reverse = 0x01;
         const _ = !0;
@@ -664,11 +650,6 @@ impl OSLogPosition {
 
 /// Create a store to a subset of the libtrace entries.
 ///
-///
-///
-/// "System" scope indicates the entire system; i.e., all logs. Entries can be
-/// retrieved for the current calling process, i.e., matching pid.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstorescope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -677,6 +658,8 @@ pub struct OSLogStoreScope(pub NSInteger);
 impl OSLogStoreScope {
     #[doc(alias = "OSLogStoreSystem")]
     pub const System: Self = Self(0);
+    /// "System" scope indicates the entire system; i.e., all logs. Entries can be
+    /// retrieved for the current calling process, i.e., matching pid.
     #[doc(alias = "OSLogStoreCurrentProcessIdentifier")]
     pub const CurrentProcessIdentifier: Self = Self(1);
 }

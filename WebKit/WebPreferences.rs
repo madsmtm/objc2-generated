@@ -10,24 +10,6 @@ use crate::*;
 /// Specifies a usage model for a WebView, which WebKit will use to
 /// determine its caching behavior.
 ///
-/// a fixed document -- like a splash screen, a chat document, or a word processing
-/// document -- with no UI for navigation. The WebView will behave like any other
-/// view, releasing resources when they are no longer referenced. Remote resources,
-/// if any, will be cached to disk. This is the most memory-efficient setting.
-///
-/// Examples: iChat, Mail, TextMate, Growl.
-///
-/// a browsable series of documents with a UI for navigating between them -- for
-/// example, a reference materials browser or a website designer. The WebView will
-/// cache a reasonable number of resources and previously viewed documents in
-/// memory and/or on disk.
-///
-/// Examples: Dictionary, Help Viewer, Coda.
-///
-/// application that acts as the user's primary web browser. The WebView will cache
-/// a very large number of resources and previously viewed documents in memory
-/// and/or on disk.
-///
 /// Examples: Safari, OmniWeb, Shiira.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel?language=objc)
@@ -37,12 +19,30 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebCacheModel(pub NSUInteger);
 impl WebCacheModel {
+    /// Appropriate for a WebView displaying
+    /// a fixed document -- like a splash screen, a chat document, or a word processing
+    /// document -- with no UI for navigation. The WebView will behave like any other
+    /// view, releasing resources when they are no longer referenced. Remote resources,
+    /// if any, will be cached to disk. This is the most memory-efficient setting.
+    ///
+    /// Examples: iChat, Mail, TextMate, Growl.
     #[doc(alias = "WebCacheModelDocumentViewer")]
     #[deprecated]
     pub const DocumentViewer: Self = Self(0);
+    /// Appropriate for a WebView displaying
+    /// a browsable series of documents with a UI for navigating between them -- for
+    /// example, a reference materials browser or a website designer. The WebView will
+    /// cache a reasonable number of resources and previously viewed documents in
+    /// memory and/or on disk.
+    ///
+    /// Examples: Dictionary, Help Viewer, Coda.
     #[doc(alias = "WebCacheModelDocumentBrowser")]
     #[deprecated]
     pub const DocumentBrowser: Self = Self(1);
+    /// Appropriate for a WebView in the
+    /// application that acts as the user's primary web browser. The WebView will cache
+    /// a very large number of resources and previously viewed documents in memory
+    /// and/or on disk.
     #[doc(alias = "WebCacheModelPrimaryWebBrowser")]
     #[deprecated]
     pub const PrimaryWebBrowser: Self = Self(2);

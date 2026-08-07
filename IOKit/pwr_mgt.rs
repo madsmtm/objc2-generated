@@ -1038,9 +1038,13 @@ unsafe impl RefEncode for IOPMSystemCapabilityChangeParameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitywillchange?language=objc)
+/// Indicates the system capability will change.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitywillchange?language=objc)
 pub const kIOPMSystemCapabilityWillChange: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitydidchange?language=objc)
+/// Indicates the system capability has changed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitydidchange?language=objc)
 pub const kIOPMSystemCapabilityDidChange: c_uint = 0x02;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitycpu?language=objc)
@@ -1653,7 +1657,9 @@ pub fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFArray<CFDictionary<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmassertionid?language=objc)
 pub type IOPMAssertionID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnullassertionid?language=objc)
+/// This value represents a non-initialized assertion ID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnullassertionid?language=objc)
 pub const kIOPMNullAssertionID: c_uint = 0;
 
 /// Type for AssertionLevel argument to IOPMAssertionCreate

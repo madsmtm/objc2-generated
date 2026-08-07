@@ -142,9 +142,13 @@ unsafe impl RefEncode for MusicDeviceNoteParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicnoteevent_usegroupinstrument?language=objc)
+/// Use the patch (instrument number) assigned to the new notes group ID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicnoteevent_usegroupinstrument?language=objc)
 pub const kMusicNoteEvent_UseGroupInstrument: c_uint = 0xFFFFFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicnoteevent_unused?language=objc)
+/// The instrument ID is not specified
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicnoteevent_unused?language=objc)
 pub const kMusicNoteEvent_Unused: c_uint = 0xFFFFFFFF;
 
 /// The type used to specify which group (channel number in MIDI) is used with a given command (new note,
@@ -438,7 +442,9 @@ pub unsafe fn MusicDeviceStopNote(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicerange?language=objc)
+/// delineates the start of the selector ranges for music devices
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicerange?language=objc)
 pub const kMusicDeviceRange: c_uint = 0x0100;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicemidieventselect?language=objc)
 pub const kMusicDeviceMIDIEventSelect: c_uint = 0x0101;

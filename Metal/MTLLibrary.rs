@@ -215,25 +215,19 @@ impl DefaultRetained for MTLAttribute {
 ///
 /// Each location in the API where a program is used requires a function written for that specific usage.
 ///
-///
-/// A vertex shader, usable for a MTLRenderPipelineState.
-///
-///
-/// A fragment shader, usable for a MTLRenderPipelineState.
-///
-///
-/// A compute kernel, usable to create a MTLComputePipelineState.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLFunctionType(pub NSUInteger);
 impl MTLFunctionType {
+    /// A vertex shader, usable for a MTLRenderPipelineState.
     #[doc(alias = "MTLFunctionTypeVertex")]
     pub const Vertex: Self = Self(1);
+    /// A fragment shader, usable for a MTLRenderPipelineState.
     #[doc(alias = "MTLFunctionTypeFragment")]
     pub const Fragment: Self = Self(2);
+    /// A compute kernel, usable to create a MTLComputePipelineState.
     #[doc(alias = "MTLFunctionTypeKernel")]
     pub const Kernel: Self = Self(3);
     #[doc(alias = "MTLFunctionTypeVisible")]
@@ -469,20 +463,16 @@ unsafe impl RefEncode for MTLLibraryType {
 
 /// Optimization level for the Metal compiler.
 ///
-///
-/// Optimize for program performance.
-///
-///
-/// Like default, with extra optimizations to reduce code size.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLibraryOptimizationLevel(pub NSInteger);
 impl MTLLibraryOptimizationLevel {
+    /// Optimize for program performance.
     #[doc(alias = "MTLLibraryOptimizationLevelDefault")]
     pub const Default: Self = Self(0);
+    /// Like default, with extra optimizations to reduce code size.
     #[doc(alias = "MTLLibraryOptimizationLevelSize")]
     pub const Size: Self = Self(1);
 }
@@ -517,25 +507,19 @@ unsafe impl RefEncode for MTLCompileSymbolVisibility {
 
 /// An enum to indicate if the compiler can perform optimizations for floating-point arithmetic that may violate the IEEE 754 standard
 ///
-///
-/// Disables unsafe floating-point optimizations
-///
-///
-/// Allows aggressive, unsafe floating-point optimizations but preserves infs and nans
-///
-///
-/// Allows aggressive, unsafe floating-point optimizations
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMathMode(pub NSInteger);
 impl MTLMathMode {
+    /// Disables unsafe floating-point optimizations
     #[doc(alias = "MTLMathModeSafe")]
     pub const Safe: Self = Self(0);
+    /// Allows aggressive, unsafe floating-point optimizations but preserves infs and nans
     #[doc(alias = "MTLMathModeRelaxed")]
     pub const Relaxed: Self = Self(1);
+    /// Allows aggressive, unsafe floating-point optimizations
     #[doc(alias = "MTLMathModeFast")]
     pub const Fast: Self = Self(2);
 }
@@ -550,20 +534,16 @@ unsafe impl RefEncode for MTLMathMode {
 
 /// An enum to indicate the default math functions for single precision floating-point
 ///
-///
-/// Sets the default math functions for single precision floating-point to the corresponding functions in `metal::fast` namespace
-///
-///
-/// Sets the default math functions for single precision floating-point to the corresponding functions in 'metal::precise' namespace
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathfloatingpointfunctions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMathFloatingPointFunctions(pub NSInteger);
 impl MTLMathFloatingPointFunctions {
+    /// Sets the default math functions for single precision floating-point to the corresponding functions in `metal::fast` namespace
     #[doc(alias = "MTLMathFloatingPointFunctionsFast")]
     pub const Fast: Self = Self(0);
+    /// Sets the default math functions for single precision floating-point to the corresponding functions in 'metal::precise' namespace
     #[doc(alias = "MTLMathFloatingPointFunctionsPrecise")]
     pub const Precise: Self = Self(1);
 }

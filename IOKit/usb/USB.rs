@@ -1434,17 +1434,29 @@ pub const kIOUSBVendorIDAppleComputer: c_uint = kIOUSBAppleVendorID;
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kIOUSBVendorIDApple: c_uint = kIOUSBAppleVendorID;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedlow?language=objc)
+/// The device is a low speed device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedlow?language=objc)
 pub const kUSBDeviceSpeedLow: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedfull?language=objc)
+/// The device is a full speed device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedfull?language=objc)
 pub const kUSBDeviceSpeedFull: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedhigh?language=objc)
+/// The device is a high speed device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedhigh?language=objc)
 pub const kUSBDeviceSpeedHigh: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedsuper?language=objc)
+/// The device is a SuperSpeed (Gen 1) 5Gbps device
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedsuper?language=objc)
 pub const kUSBDeviceSpeedSuper: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedsuperplus?language=objc)
+/// The device is a SuperSpeed Plus (Gen 2) 10Gbps device
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedsuperplus?language=objc)
 pub const kUSBDeviceSpeedSuperPlus: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedsuperplusby2?language=objc)
+/// The device is a SuperSpeed Plus (Gen 2 X 2) 20Gbps device
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedsuperplusby2?language=objc)
 pub const kUSBDeviceSpeedSuperPlusBy2: c_uint = 5;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbfullspeedmicrosecondsinframe?language=objc)

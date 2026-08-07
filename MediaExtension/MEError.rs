@@ -14,58 +14,46 @@ extern "C" {
 ///
 /// These error codes are returned in the NSError object in the event a method fails.
 ///
-/// Returned if the extension does not support an aspect of the media.
-///
-/// Returned if the extension cannot allocate memory.
-///
-/// Returned if the extension received an invalid parameter.
-///
-/// Returned if any type of error occurred while parsing the media.
-///
-/// Returned if the extension encountered an internal operation failure (e.g. code loading).
-///
-/// Returned if the extension encountered a property it does not support reading/writing to.
-///
-/// Returned if the plugin track reader is requested to return an edit that is out of range.
-///
-/// Returned if the plugin sample cursor cannot be created because there are no samples in the track, or if a loadSampleBufferContainingSamplesToEndCursor request is made that cannot be satisfied.
-///
-/// Returned to indicate a specific sample is not contiguous, spans more than one file, or is for some other reason unsuitable for reading directly from a file. For such samples, clients must call loadSampleBufferContainingSamplesToEndCursor.
-///
-/// Returned if the end of the source file has been reached.
-///
-/// Returned if an invalid operation is requested by the client on a byte source.
-///
-/// Returned if a decoder is asked to decode a sample without decoding the required reference frame dependencies first.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MEError(pub NSInteger);
 impl MEError {
+    /// Returned if the extension does not support an aspect of the media.
     #[doc(alias = "MEErrorUnsupportedFeature")]
     pub const UnsupportedFeature: Self = Self(-19320);
+    /// Returned if the extension cannot allocate memory.
     #[doc(alias = "MEErrorAllocationFailure")]
     pub const AllocationFailure: Self = Self(-19321);
+    /// Returned if the extension received an invalid parameter.
     #[doc(alias = "MEErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(-19322);
+    /// Returned if any type of error occurred while parsing the media.
     #[doc(alias = "MEErrorParsingFailure")]
     pub const ParsingFailure: Self = Self(-19323);
+    /// Returned if the extension encountered an internal operation failure (e.g. code loading).
     #[doc(alias = "MEErrorInternalFailure")]
     pub const InternalFailure: Self = Self(-19324);
+    /// Returned if the extension encountered a property it does not support reading/writing to.
     #[doc(alias = "MEErrorPropertyNotSupported")]
     pub const PropertyNotSupported: Self = Self(-19325);
+    /// Returned if the plugin track reader is requested to return an edit that is out of range.
     #[doc(alias = "MEErrorNoSuchEdit")]
     pub const NoSuchEdit: Self = Self(-19326);
+    /// Returned if the plugin sample cursor cannot be created because there are no samples in the track, or if a loadSampleBufferContainingSamplesToEndCursor request is made that cannot be satisfied.
     #[doc(alias = "MEErrorNoSamples")]
     pub const NoSamples: Self = Self(-19327);
+    /// Returned to indicate a specific sample is not contiguous, spans more than one file, or is for some other reason unsuitable for reading directly from a file. For such samples, clients must call loadSampleBufferContainingSamplesToEndCursor.
     #[doc(alias = "MEErrorLocationNotAvailable")]
     pub const LocationNotAvailable: Self = Self(-19328);
+    /// Returned if the end of the source file has been reached.
     #[doc(alias = "MEErrorEndOfStream")]
     pub const EndOfStream: Self = Self(-19329);
+    /// Returned if an invalid operation is requested by the client on a byte source.
     #[doc(alias = "MEErrorPermissionDenied")]
     pub const PermissionDenied: Self = Self(-19330);
+    /// Returned if a decoder is asked to decode a sample without decoding the required reference frame dependencies first.
     #[doc(alias = "MEErrorReferenceMissing")]
     pub const ReferenceMissing: Self = Self(-19331);
 }

@@ -12,8 +12,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKActivityMoveMode(pub NSInteger);
 impl HKActivityMoveMode {
+    /// User's move ring is updated from Active Energy Burned
     #[doc(alias = "HKActivityMoveModeActiveEnergy")]
     pub const ActiveEnergy: Self = Self(1);
+    /// User's move ring is updated from Apple Move Time
     #[doc(alias = "HKActivityMoveModeAppleMoveTime")]
     pub const AppleMoveTime: Self = Self(2);
 }
@@ -101,16 +103,22 @@ pub struct HKFitzpatrickSkinType(pub NSInteger);
 impl HKFitzpatrickSkinType {
     #[doc(alias = "HKFitzpatrickSkinTypeNotSet")]
     pub const NotSet: Self = Self(0);
+    /// Pale white skin that always burns easily in the sun and never tans.
     #[doc(alias = "HKFitzpatrickSkinTypeI")]
     pub const I: Self = Self(1);
+    /// White skin that burns easily and tans minimally.
     #[doc(alias = "HKFitzpatrickSkinTypeII")]
     pub const II: Self = Self(2);
+    /// White to light brown skin that burns moderately and tans uniformly.
     #[doc(alias = "HKFitzpatrickSkinTypeIII")]
     pub const III: Self = Self(3);
+    /// Beige-olive, lightly tanned skin that burns minimally and tans moderately.
     #[doc(alias = "HKFitzpatrickSkinTypeIV")]
     pub const IV: Self = Self(4);
+    /// Brown skin that rarely burns and tans profusely.
     #[doc(alias = "HKFitzpatrickSkinTypeV")]
     pub const V: Self = Self(5);
+    /// Dark brown to black skin that never burns and tans profusely.
     #[doc(alias = "HKFitzpatrickSkinTypeVI")]
     pub const VI: Self = Self(6);
 }
@@ -133,8 +141,10 @@ pub struct HKWheelchairUse(pub NSInteger);
 impl HKWheelchairUse {
     #[doc(alias = "HKWheelchairUseNotSet")]
     pub const NotSet: Self = Self(0);
+    /// The user does not use a wheelchair.
     #[doc(alias = "HKWheelchairUseNo")]
     pub const No: Self = Self(1);
+    /// The user does use a wheelchair.
     #[doc(alias = "HKWheelchairUseYes")]
     pub const Yes: Self = Self(2);
 }

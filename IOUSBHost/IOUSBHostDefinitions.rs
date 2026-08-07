@@ -222,10 +222,6 @@ extern "C" {
 /// abort
 /// </code>
 ///
-/// waiting for the aborted IO to complete
-///
-/// IO has completed
-///
 /// To be used with
 ///
 /// ```text
@@ -243,8 +239,12 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostAbortOption(pub NSUInteger);
 impl IOUSBHostAbortOption {
+    /// abort should return immediately without
+    /// waiting for the aborted IO to complete
     #[doc(alias = "IOUSBHostAbortOptionAsynchronous")]
     pub const Asynchronous: Self = Self(0);
+    /// abort should not return until the aborted
+    /// IO has completed
     #[doc(alias = "IOUSBHostAbortOptionSynchronous")]
     pub const Synchronous: Self = Self(1);
 }
@@ -262,6 +262,16 @@ unsafe impl RefEncode for IOUSBHostAbortOption {
 /// initWithIOService:options:queue:error:interestHandler
 /// </code>
 ///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct IOUSBHostObjectInitOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl IOUSBHostObjectInitOptions: NSUInteger {
+        #[doc(alias = "IOUSBHostObjectInitOptionsNone")]
+        const None = 0;
+/// Callers must have the "com.apple.vm.device-access" entitlement
 /// and the IOUSBHostDevice IOService object needs to have successfully been authorized by IOServiceAuthorize().
 /// If the caller has root privelages the entitlement and authorization is not needed. Using this option
 /// will terminate all clients and drivers of the IOUSBHostDevice and associated IOUSBHostInterface clients
@@ -272,25 +282,15 @@ unsafe impl RefEncode for IOUSBHostAbortOption {
 /// </code>
 /// of the IOUSBHostDevice, the device will be reset and drivers will be re-registered
 /// for matching. This option is only valid for macOS
-///
+        #[doc(alias = "IOUSBHostObjectInitOptionsDeviceCapture")]
+        const DeviceCapture = 1<<0;
+/// This option will request the current owner of the underlying kernel
 /// service to close via
 /// <code>
 /// kUSBHostMessageDeviceIsRequestingClose
 /// </code>
 /// message.  The message will include
 /// the registry entry ID of the requesting service.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions?language=objc)
-// NS_OPTIONS
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct IOUSBHostObjectInitOptions(pub NSUInteger);
-bitflags::bitflags! {
-    impl IOUSBHostObjectInitOptions: NSUInteger {
-        #[doc(alias = "IOUSBHostObjectInitOptionsNone")]
-        const None = 0;
-        #[doc(alias = "IOUSBHostObjectInitOptionsDeviceCapture")]
-        const DeviceCapture = 1<<0;
         #[doc(alias = "IOUSBHostObjectInitOptionsDeviceSeize")]
         const DeviceSeize = 1<<1;
         const _ = !0;
@@ -310,17 +310,6 @@ unsafe impl RefEncode for IOUSBHostObjectInitOptions {
 /// destroyWithOptions
 /// </code>
 ///
-/// the device will not be reset and drivers will not be re-registered for matching.  This allows for IOUSBHostDevice
-/// objects that were initialized with
-/// <code>
-/// IOUSBHostObjectInitOptionsDeviceCapture
-/// </code>
-/// to honor the
-/// <code>
-/// kUSBHostMessageDeviceIsRequestingClose
-/// </code>
-/// message.
-///
 /// This option is only valid for macOS
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectdestroyoptions?language=objc)
@@ -332,6 +321,17 @@ bitflags::bitflags! {
     impl IOUSBHostObjectDestroyOptions: NSUInteger {
         #[doc(alias = "IOUSBHostObjectDestroyOptionsNone")]
         const None = 0;
+/// Upon <code>destroyWithOptions</code> of the IOUSBHostDevice,
+/// the device will not be reset and drivers will not be re-registered for matching.  This allows for IOUSBHostDevice
+/// objects that were initialized with
+/// <code>
+/// IOUSBHostObjectInitOptionsDeviceCapture
+/// </code>
+/// to honor the
+/// <code>
+/// kUSBHostMessageDeviceIsRequestingClose
+/// </code>
+/// message.
         #[doc(alias = "IOUSBHostObjectDestroyOptionsDeviceSurrender")]
         const DeviceSurrender = 1<<0;
         const _ = !0;

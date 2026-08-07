@@ -24,16 +24,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MXErrorCode(pub NSInteger);
 impl MXErrorCode {
+    /// The passed-in task ID is a null value or exceeds the max 128 character length.
     #[doc(alias = "MXErrorLaunchTaskInvalidID")]
     pub const LaunchTaskInvalidID: Self = Self(0);
+    /// Exceeded the max number of tasks.
     #[doc(alias = "MXErrorLaunchTaskMaxCount")]
     pub const LaunchTaskMaxCount: Self = Self(1);
+    /// The start call was made too late, see @discussion.
     #[doc(alias = "MXErrorLaunchTaskPastDeadline")]
     pub const LaunchTaskPastDeadline: Self = Self(2);
+    /// A task with the same ID has already been started.
     #[doc(alias = "MXErrorLaunchTaskDuplicated")]
     pub const LaunchTaskDuplicated: Self = Self(3);
+    /// The task hasn't been started or has already been finished.
     #[doc(alias = "MXErrorLaunchTaskUnknown")]
     pub const LaunchTaskUnknown: Self = Self(4);
+    /// Internal failures happened inside of MetricKit.
     #[doc(alias = "MXErrorLaunchTaskInternalFailure")]
     pub const LaunchTaskInternalFailure: Self = Self(5);
 }

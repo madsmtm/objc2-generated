@@ -12,22 +12,19 @@ use crate::*;
 
 /// These constants are the possible status values for queued sample buffer renderers.
 ///
-/// Indicates that the receiver is in a fresh state without any sample buffers enqueued on it.
-///
-/// Indicates at least one sample buffer has been enqueued on the receiver.
-///
-/// Indicates that the receiver cannot currently enqueue or render sample buffers because of an error.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrenderingstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVQueuedSampleBufferRenderingStatus(pub NSInteger);
 impl AVQueuedSampleBufferRenderingStatus {
+    /// Indicates that the receiver is in a fresh state without any sample buffers enqueued on it.
     #[doc(alias = "AVQueuedSampleBufferRenderingStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Indicates at least one sample buffer has been enqueued on the receiver.
     #[doc(alias = "AVQueuedSampleBufferRenderingStatusRendering")]
     pub const Rendering: Self = Self(1);
+    /// Indicates that the receiver cannot currently enqueue or render sample buffers because of an error.
     #[doc(alias = "AVQueuedSampleBufferRenderingStatusFailed")]
     pub const Failed: Self = Self(2);
 }

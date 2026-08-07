@@ -41,10 +41,13 @@ pub const errSecureDownloadInvalidDownload: c_int = -20053;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecureDownloadTrustCallbackResult(pub c_uint);
 impl SecureDownloadTrustCallbackResult {
+    /// Indicates that the signer should not be evaluated.
     #[doc(alias = "kSecureDownloadDoNotEvaluateSigner")]
     pub const DoNotEvaluateSigner: Self = Self(0);
+    /// Indicates that the signer should be evaluated.
     #[doc(alias = "kSecureDownloadEvaluateSigner")]
     pub const EvaluateSigner: Self = Self(1);
+    /// Indicates that evaluation should fail immediately.
     #[doc(alias = "kSecureDownloadFailEvaluation")]
     pub const FailEvaluation: Self = Self(2);
 }

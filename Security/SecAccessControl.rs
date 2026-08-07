@@ -22,78 +22,55 @@ unsafe impl ConcreteType for SecAccessControl {
     }
 }
 
-/// User presence policy using biometry or Passcode. Biometry does not have to be available or enrolled. Item is still
-/// accessible by Touch ID even if fingers are added or removed. Item is still accessible by Face ID if user is re-enrolled.
-///
-///
-/// Constraint: Touch ID (any finger) or Face ID. Touch ID or Face ID must be available. With Touch ID
-/// at least one finger must be enrolled. With Face ID user has to be enrolled. Item is still accessible by Touch ID even
-/// if fingers are added or removed. Item is still accessible by Face ID if user is re-enrolled.
-///
-///
-/// Deprecated, please use kSecAccessControlBiometryAny instead.
-///
-///
-/// Constraint: Touch ID from the set of currently enrolled fingers. Touch ID must be available and at least one finger must
-/// be enrolled. When fingers are added or removed, the item is invalidated. When Face ID is re-enrolled this item is invalidated.
-///
-///
-/// Deprecated, please use kSecAccessControlBiometryCurrentSet instead.
-///
-///
-/// Constraint: Device passcode
-///
-///
-/// Deprecated, please use kSecAccessControlCompanion instead.
-///
-///
-/// Constraint: Paired companion device
-///
-///
-/// Constraint logic operation: when using more than one constraint, at least one of them must be satisfied.
-///
-///
-/// Constraint logic operation: when using more than one constraint, all must be satisfied.
-///
-///
-/// Create access control for private key operations (i.e. sign operation)
-///
-///
-/// Security: Application provided password for data encryption key generation. This is not a constraint but additional item
-/// encryption mechanism.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecAccessControlCreateFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl SecAccessControlCreateFlags: CFOptionFlags {
+/// User presence policy using biometry or Passcode. Biometry does not have to be available or enrolled. Item is still
+/// accessible by Touch ID even if fingers are added or removed. Item is still accessible by Face ID if user is re-enrolled.
         #[doc(alias = "kSecAccessControlUserPresence")]
         const UserPresence = 1<<0;
+/// Constraint: Touch ID (any finger) or Face ID. Touch ID or Face ID must be available. With Touch ID
+/// at least one finger must be enrolled. With Face ID user has to be enrolled. Item is still accessible by Touch ID even
+/// if fingers are added or removed. Item is still accessible by Face ID if user is re-enrolled.
         #[doc(alias = "kSecAccessControlBiometryAny")]
         const BiometryAny = 1<<1;
+/// Deprecated, please use kSecAccessControlBiometryAny instead.
         #[doc(alias = "kSecAccessControlTouchIDAny")]
 #[deprecated]
         const TouchIDAny = 1<<1;
+/// Constraint: Touch ID from the set of currently enrolled fingers. Touch ID must be available and at least one finger must
+/// be enrolled. When fingers are added or removed, the item is invalidated. When Face ID is re-enrolled this item is invalidated.
         #[doc(alias = "kSecAccessControlBiometryCurrentSet")]
         const BiometryCurrentSet = 1<<3;
+/// Deprecated, please use kSecAccessControlBiometryCurrentSet instead.
         #[doc(alias = "kSecAccessControlTouchIDCurrentSet")]
 #[deprecated]
         const TouchIDCurrentSet = 1<<3;
+/// Constraint: Device passcode
         #[doc(alias = "kSecAccessControlDevicePasscode")]
         const DevicePasscode = 1<<4;
+/// Deprecated, please use kSecAccessControlCompanion instead.
         #[doc(alias = "kSecAccessControlWatch")]
 #[deprecated]
         const Watch = 1<<5;
+/// Constraint: Paired companion device
         #[doc(alias = "kSecAccessControlCompanion")]
         const Companion = 1<<5;
+/// Constraint logic operation: when using more than one constraint, at least one of them must be satisfied.
         #[doc(alias = "kSecAccessControlOr")]
         const Or = 1<<14;
+/// Constraint logic operation: when using more than one constraint, all must be satisfied.
         #[doc(alias = "kSecAccessControlAnd")]
         const And = 1<<15;
+/// Create access control for private key operations (i.e. sign operation)
         #[doc(alias = "kSecAccessControlPrivateKeyUsage")]
         const PrivateKeyUsage = 1<<30;
+/// Security: Application provided password for data encryption key generation. This is not a constraint but additional item
+/// encryption mechanism.
         #[doc(alias = "kSecAccessControlApplicationPassword")]
         const ApplicationPassword = 1<<31;
         const _ = !0;

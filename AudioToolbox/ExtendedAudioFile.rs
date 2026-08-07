@@ -44,33 +44,122 @@ pub const kExtAudioFilePacketTableInfoOverride_UseFileValueIfValid:
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilepropertyid?language=objc)
 pub type ExtAudioFilePropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filedataformat?language=objc)
+/// An AudioStreamBasicDescription. Represents the file's actual
+/// data format. Read-only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filedataformat?language=objc)
 pub const kExtAudioFileProperty_FileDataFormat: ExtAudioFilePropertyID = 0x66666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filechannellayout?language=objc)
+/// An AudioChannelLayout.
+///
+/// If writing: the channel layout is written to the file, if the format
+/// supports the layout. If the format does not support the layout, the channel
+/// layout is still interpreted as the destination layout when performing
+/// conversion from the client channel layout, if any.
+///
+/// If reading: the specified layout overrides the one read from the file, if
+/// any.
+///
+/// When setting this, it must be set before the client format or channel
+/// layout.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filechannellayout?language=objc)
 pub const kExtAudioFileProperty_FileChannelLayout: ExtAudioFilePropertyID = 0x66636c6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientdataformat?language=objc)
+/// An AudioStreamBasicDescription.
+///
+/// The format must be linear PCM (kAudioFormatLinearPCM).
+///
+/// You must set this in order to encode or decode a non-PCM file data format.
+/// You may set this on PCM files to specify the data format used in your calls
+/// to read/write.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientdataformat?language=objc)
 pub const kExtAudioFileProperty_ClientDataFormat: ExtAudioFilePropertyID = 0x63666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientchannellayout?language=objc)
+/// An AudioChannelLayout. Specifies the channel layout of the
+/// AudioBufferList's passed to ExtAudioFileRead() and
+/// ExtAudioFileWrite(). The layout may be different from the file's
+/// channel layout, in which the ExtAudioFileRef's underlying AudioConverter
+/// performs the remapping. This must be set after ClientDataFormat, and the
+/// number of channels in the layout must match.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientchannellayout?language=objc)
 pub const kExtAudioFileProperty_ClientChannelLayout: ExtAudioFilePropertyID = 0x63636c6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_codecmanufacturer?language=objc)
+/// A UInt32 specifying the manufacturer of the codec to be used. This must be
+/// specified before setting kExtAudioFileProperty_ClientDataFormat, which
+/// triggers the creation of the codec. This can be used on iOS
+/// to choose between a hardware or software encoder, by specifying
+/// kAppleHardwareAudioCodecManufacturer or kAppleSoftwareAudioCodecManufacturer.
+///
+/// Available starting on macOS version 10.7 and iOS version 4.0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_codecmanufacturer?language=objc)
 pub const kExtAudioFileProperty_CodecManufacturer: ExtAudioFilePropertyID = 0x636d616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_audioconverter?language=objc)
+/// AudioConverterRef. The underlying AudioConverterRef, if any. Read-only.
+///
+/// Note: If you alter any properties of the AudioConverterRef, for example,
+/// an encoder's bit rate, you must set the kExtAudioFileProperty_ConverterConfig
+/// property on the ExtAudioFileRef afterwards. A NULL configuration is
+/// sufficient. This will ensure that the output file's data format is consistent
+/// with the format being produced by the converter.
+///
+/// ```text
+/// CFArrayRef config = NULL;
+/// err = ExtAudioFileSetProperty(myExtAF, kExtAudioFileProperty_ConverterConfig,
+/// sizeof(config),
+/// &config
+/// );
+/// ```
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_audioconverter?language=objc)
 pub const kExtAudioFileProperty_AudioConverter: ExtAudioFilePropertyID = 0x61636e76;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_audiofile?language=objc)
+/// The underlying AudioFileID. Read-only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_audiofile?language=objc)
 pub const kExtAudioFileProperty_AudioFile: ExtAudioFilePropertyID = 0x6166696c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filemaxpacketsize?language=objc)
+/// UInt32 representing the file data format's maximum packet size in bytes.
+/// Read-only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filemaxpacketsize?language=objc)
 pub const kExtAudioFileProperty_FileMaxPacketSize: ExtAudioFilePropertyID = 0x666d7073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientmaxpacketsize?language=objc)
+/// UInt32 representing the client data format's maximum packet size in bytes.
+/// Read-only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientmaxpacketsize?language=objc)
 pub const kExtAudioFileProperty_ClientMaxPacketSize: ExtAudioFilePropertyID = 0x636d7073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filelengthframes?language=objc)
+/// SInt64 representing the file's length in sample frames. Read-only on
+/// non-PCM formats; writable for files in PCM formats.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filelengthframes?language=objc)
 pub const kExtAudioFileProperty_FileLengthFrames: ExtAudioFilePropertyID = 0x2366726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_converterconfig?language=objc)
+/// CFArrayRef representing the underlying AudioConverter's configuration, as
+/// specified by kAudioConverterPropertySettings.
+///
+/// This may be NULL to force resynchronization of the converter's output format
+/// with the file's data format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_converterconfig?language=objc)
 pub const kExtAudioFileProperty_ConverterConfig: ExtAudioFilePropertyID = 0x61636366;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_iobuffersizebytes?language=objc)
+/// UInt32 representing the size of the buffer through which the converter
+/// reads/writes the audio file (when there is an AudioConverter).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_iobuffersizebytes?language=objc)
 pub const kExtAudioFileProperty_IOBufferSizeBytes: ExtAudioFilePropertyID = 0x696f6273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_iobuffer?language=objc)
+/// void *. This is the memory buffer which the ExtAudioFileRef will use for
+/// disk I/O when there is a conversion between the client and file data
+/// formats. A client may be able to share buffers between multiple
+/// ExtAudioFileRef instances, in which case, it can set this property to point
+/// to its own buffer. After setting this property, the client must
+/// subsequently set the kExtAudioFileProperty_IOBufferSizeBytes property. Note
+/// that a pointer to a pointer should be passed to ExtAudioFileSetProperty.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_iobuffer?language=objc)
 pub const kExtAudioFileProperty_IOBuffer: ExtAudioFilePropertyID = 0x696f6266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_packettable?language=objc)
+/// This AudioFilePacketTableInfo can be used both to override the priming and
+/// remainder information in an audio file and to retrieve the current priming
+/// and remainder frames information for a given ExtAudioFile object. If the
+/// underlying file type does not provide packet table info, the Get call will
+/// return an error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_packettable?language=objc)
 pub const kExtAudioFileProperty_PacketTable: ExtAudioFilePropertyID = 0x78707469;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_invalidproperty?language=objc)

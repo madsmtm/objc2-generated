@@ -10,14 +10,6 @@ use crate::*;
 
 /// Specifies a keychain item's class code.
 ///
-///
-///
-/// Note: AppleShare passwords are no longer used by macOS, starting in Leopard (10.5). Use of this item class is deprecated in OS X 10.9 and later; kSecInternetPasswordItemClass should be used instead when storing or looking up passwords for an Apple Filing Protocol (AFP) server.
-///
-///
-///
-///
-///
 /// The SecItemClass enumeration defines constants your application can use to specify the type of the keychain item you wish to create, dispose, add, delete, update, copy, or locate. You can also use these constants with the tag constant SecItemAttr.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass?language=objc)
@@ -26,19 +18,27 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecItemClass(pub FourCharCode);
 impl SecItemClass {
+    /// Indicates that the item is an Internet password.
     #[doc(alias = "kSecInternetPasswordItemClass")]
     pub const InternetPasswordItemClass: Self = Self(0x696e6574);
+    /// Indicates that the item is a generic password.
     #[doc(alias = "kSecGenericPasswordItemClass")]
     pub const GenericPasswordItemClass: Self = Self(0x67656e70);
+    /// Indicates that the item is an AppleShare password.
+    /// Note: AppleShare passwords are no longer used by macOS, starting in Leopard (10.5). Use of this item class is deprecated in OS X 10.9 and later; kSecInternetPasswordItemClass should be used instead when storing or looking up passwords for an Apple Filing Protocol (AFP) server.
     #[doc(alias = "kSecAppleSharePasswordItemClass")]
     #[deprecated]
     pub const AppleSharePasswordItemClass: Self = Self(0x61736870);
+    /// Indicates that the item is a digital certificate.
     #[doc(alias = "kSecCertificateItemClass")]
     pub const CertificateItemClass: Self = Self(0x80001000);
+    /// Indicates that the item is a public key.
     #[doc(alias = "kSecPublicKeyItemClass")]
     pub const PublicKeyItemClass: Self = Self(0x0000000F);
+    /// Indicates that the item is a private key.
     #[doc(alias = "kSecPrivateKeyItemClass")]
     pub const PrivateKeyItemClass: Self = Self(0x00000010);
+    /// Indicates that the item is a symmetric key.
     #[doc(alias = "kSecSymmetricKeyItemClass")]
     pub const SymmetricKeyItemClass: Self = Self(0x00000011);
 }
@@ -55,34 +55,6 @@ unsafe impl RefEncode for SecItemClass {
 
 /// Specifies keychain item attributes.
 ///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
-///
 /// To obtain information about a certificate, use the CDSA Certificate Library (CL) API. To obtain information about a key, use the SecKeyGetCSSMKey function and the CDSA Cryptographic Service Provider (CSP) API.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr?language=objc)
@@ -91,60 +63,88 @@ unsafe impl RefEncode for SecItemClass {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecItemAttr(pub FourCharCode);
 impl SecItemAttr {
+    /// (read-only) Identifies the creation date attribute. You use this tag to get a value of type string that represents the date the item was created, expressed in Zulu Time format ("YYYYMMDDhhmmSSZ"). This format is identical to CSSM_DB_ATTRIBUTE_FORMAT_TIME_DATE (cssmtype.h). When specifying the creation date as input to a function (e.g. SecKeychainSearchCreateFromAttributes), you may alternatively provide a numeric value of type UInt32 or SInt64, expressed as seconds since 1/1/1904 (DateTimeUtils.h).
     #[doc(alias = "kSecCreationDateItemAttr")]
     pub const CreationDateItemAttr: Self = Self(0x63646174);
+    /// (read-only) Identifies the modification date attribute. You use this tag to get a value of type string that represents the last time the item was updated, expressed in Zulu Time format ("YYYYMMDDhhmmSSZ"). This format is identical to CSSM_DB_ATTRIBUTE_FORMAT_TIME_DATE (cssmtype.h). When specifying the modification date as input to a function (e.g. SecKeychainSearchCreateFromAttributes), you may alternatively provide a numeric value of type UInt32 or SInt64, expressed as seconds since 1/1/1904 (DateTimeUtils.h).
     #[doc(alias = "kSecModDateItemAttr")]
     pub const ModDateItemAttr: Self = Self(0x6d646174);
+    /// Identifies the description attribute. You use this tag to set or get a value of type string that represents a user-visible string describing this particular kind of item (e.g. "disk image password").
     #[doc(alias = "kSecDescriptionItemAttr")]
     pub const DescriptionItemAttr: Self = Self(0x64657363);
+    /// Identifies the comment attribute. You use this tag to set or get a value of type string that represents a user-editable string containing comments for this item.
     #[doc(alias = "kSecCommentItemAttr")]
     pub const CommentItemAttr: Self = Self(0x69636d74);
+    /// Identifies the creator attribute. You use this tag to set or get a value of type FourCharCode that represents the item's creator.
     #[doc(alias = "kSecCreatorItemAttr")]
     pub const CreatorItemAttr: Self = Self(0x63727472);
+    /// Identifies the type attribute. You use this tag to set or get a value of type FourCharCode that represents the item's type.
     #[doc(alias = "kSecTypeItemAttr")]
     pub const TypeItemAttr: Self = Self(0x74797065);
+    /// Identifies the script code attribute. You use this tag to set or get a value of type ScriptCode that represents the script code for all strings. (Note: use of this attribute is deprecated; string attributes should always be stored in UTF-8 encoding.)
     #[doc(alias = "kSecScriptCodeItemAttr")]
     pub const ScriptCodeItemAttr: Self = Self(0x73637270);
+    /// Identifies the label attribute. You use this tag to set or get a value of type string that represents a user-editable string containing the label for this item.
     #[doc(alias = "kSecLabelItemAttr")]
     pub const LabelItemAttr: Self = Self(0x6c61626c);
+    /// Identifies the invisible attribute. You use this tag to set or get a value of type Boolean that indicates whether the item is invisible (i.e. should not be displayed).
     #[doc(alias = "kSecInvisibleItemAttr")]
     pub const InvisibleItemAttr: Self = Self(0x696e7669);
+    /// Identifies the negative attribute. You use this tag to set or get a value of type Boolean that indicates whether there is a valid password associated with this keychain item. This is useful if your application doesn't want a password for some particular service to be stored in the keychain, but prefers that it always be entered by the user. The item (typically invisible and with zero-length data) acts as a placeholder to say "don't use me."
     #[doc(alias = "kSecNegativeItemAttr")]
     pub const NegativeItemAttr: Self = Self(0x6e656761);
+    /// Identifies the custom icon attribute. You use this tag to set or get a value of type Boolean that indicates whether the item has an application-specific icon. To do this, you must also set the attribute value identified by the tag kSecTypeItemAttr to a file type for which there is a corresponding icon in the desktop database, and set the attribute value identified by the tag kSecCreatorItemAttr to an appropriate application creator type. If a custom icon corresponding to the item's type and creator can be found in the desktop database, it will be displayed by Keychain Access. Otherwise, default icons are used. (Note: use of this attribute is deprecated; custom icons for keychain items are not supported in macOS.)
     #[doc(alias = "kSecCustomIconItemAttr")]
     pub const CustomIconItemAttr: Self = Self(0x63757369);
+    /// Identifies the account attribute. You use this tag to set or get a string that represents the user account. This attribute applies to generic, Internet, and AppleShare password items.
     #[doc(alias = "kSecAccountItemAttr")]
     pub const AccountItemAttr: Self = Self(0x61636374);
+    /// Identifies the service attribute. You use this tag to set or get a string that represents the service associated with this item. This attribute is unique to generic password items.
     #[doc(alias = "kSecServiceItemAttr")]
     pub const ServiceItemAttr: Self = Self(0x73766365);
+    /// Identifies the generic attribute. You use this tag to set or get a value of untyped bytes that represents a user-defined attribute.  This attribute is unique to generic password items.
     #[doc(alias = "kSecGenericItemAttr")]
     pub const GenericItemAttr: Self = Self(0x67656e61);
+    /// Identifies the security domain attribute. You use this tag to set or get a value that represents the Internet security domain. This attribute is unique to Internet password items.
     #[doc(alias = "kSecSecurityDomainItemAttr")]
     pub const SecurityDomainItemAttr: Self = Self(0x73646d6e);
+    /// Identifies the server attribute. You use this tag to set or get a value of type string that represents the Internet server's domain name or IP address. This attribute is unique to Internet password items.
     #[doc(alias = "kSecServerItemAttr")]
     pub const ServerItemAttr: Self = Self(0x73727672);
+    /// Identifies the authentication type attribute. You use this tag to set or get a value of type SecAuthenticationType that represents the Internet authentication scheme. This attribute is unique to Internet password items.
     #[doc(alias = "kSecAuthenticationTypeItemAttr")]
     pub const AuthenticationTypeItemAttr: Self = Self(0x61747970);
+    /// Identifies the port attribute. You use this tag to set or get a value of type UInt32 that represents the Internet port number. This attribute is unique to Internet password items.
     #[doc(alias = "kSecPortItemAttr")]
     pub const PortItemAttr: Self = Self(0x706f7274);
+    /// Identifies the path attribute. You use this tag to set or get a string value that represents the path. This attribute is unique to Internet password items.
     #[doc(alias = "kSecPathItemAttr")]
     pub const PathItemAttr: Self = Self(0x70617468);
+    /// Identifies the volume attribute. You use this tag to set or get a string value that represents the AppleShare volume. This attribute is unique to AppleShare password items. Note: AppleShare passwords are no longer used by macOS as of Leopard (10.5); Internet password items are used instead.
     #[doc(alias = "kSecVolumeItemAttr")]
     pub const VolumeItemAttr: Self = Self(0x766c6d65);
+    /// Identifies the address attribute. You use this tag to set or get a string value that represents the AppleTalk zone name, or the IP or domain name that represents the server address. This attribute is unique to AppleShare password items. Note: AppleShare passwords are no longer used by macOS as of Leopard (10.5); Internet password items are used instead.
     #[doc(alias = "kSecAddressItemAttr")]
     pub const AddressItemAttr: Self = Self(0x61646472);
+    /// Identifies the server signature attribute. You use this tag to set or get a value of type SecAFPServerSignature that represents the server signature block. This attribute is unique to AppleShare password items. Note: AppleShare passwords are no longer used by macOS as of Leopard (10.5); Internet password items are used instead.
     #[doc(alias = "kSecSignatureItemAttr")]
     pub const SignatureItemAttr: Self = Self(0x73736967);
+    /// Identifies the protocol attribute. You use this tag to set or get a value of type SecProtocolType that represents the Internet protocol. This attribute applies to AppleShare and Internet password items.
     #[doc(alias = "kSecProtocolItemAttr")]
     pub const ProtocolItemAttr: Self = Self(0x7074636c);
+    /// Indicates a CSSM_CERT_TYPE type.
     #[doc(alias = "kSecCertificateType")]
     pub const CertificateType: Self = Self(0x63747970);
+    /// Indicates a CSSM_CERT_ENCODING type.
     #[doc(alias = "kSecCertificateEncoding")]
     pub const CertificateEncoding: Self = Self(0x63656e63);
+    /// Indicates a CSSM_CRL_TYPE type.
     #[doc(alias = "kSecCrlType")]
     pub const CrlType: Self = Self(0x63727470);
+    /// Indicates a CSSM_CRL_ENCODING type.
     #[doc(alias = "kSecCrlEncoding")]
     pub const CrlEncoding: Self = Self(0x63726e63);
+    /// Indicates an alias.
     #[doc(alias = "kSecAlias")]
     pub const Alias: Self = Self(0x616c6973);
 }

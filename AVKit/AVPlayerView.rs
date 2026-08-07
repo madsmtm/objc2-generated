@@ -14,30 +14,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// No controls pane is associated with the view.
-///
-/// The inline controls pane is associated with the view.
-///
-/// The floating controls pane is associated with the view.
-///
-/// The minimal controls pane is associated with the view.
-///
-/// The default controls pane is associated with the view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerViewControlsStyle(pub NSInteger);
 impl AVPlayerViewControlsStyle {
+    /// No controls pane is associated with the view.
     #[doc(alias = "AVPlayerViewControlsStyleNone")]
     pub const None: Self = Self(0);
+    /// The inline controls pane is associated with the view.
     #[doc(alias = "AVPlayerViewControlsStyleInline")]
     pub const Inline: Self = Self(1);
+    /// The floating controls pane is associated with the view.
     #[doc(alias = "AVPlayerViewControlsStyleFloating")]
     pub const Floating: Self = Self(2);
+    /// The minimal controls pane is associated with the view.
     #[doc(alias = "AVPlayerViewControlsStyleMinimal")]
     pub const Minimal: Self = Self(3);
+    /// The default controls pane is associated with the view.
     #[doc(alias = "AVPlayerViewControlsStyleDefault")]
     pub const Default: Self = Self(AVPlayerViewControlsStyle::Inline.0);
 }
@@ -408,18 +403,16 @@ impl AVPlayerView {
     );
 }
 
-/// The user selected the Trim button.
-///
-/// The user selected the Cancel button.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerViewTrimResult(pub NSInteger);
 impl AVPlayerViewTrimResult {
+    /// The user selected the Trim button.
     #[doc(alias = "AVPlayerViewTrimOKButton")]
     pub const OKButton: Self = Self(0);
+    /// The user selected the Cancel button.
     #[doc(alias = "AVPlayerViewTrimCancelButton")]
     pub const CancelButton: Self = Self(1);
 }

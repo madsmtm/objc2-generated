@@ -10,27 +10,24 @@ use crate::*;
 /// can be used to specify the type of storage that is allowable for an
 /// NSCachedURLResponse object that is to be stored in an NSURLCache.
 ///
-///
-/// NSURLCache is allowed without restriction.
-///
-///
-/// storage in an NSURLCache is allowed; however storage should be
-/// done in memory only, no disk storage should be done.
-///
-///
-/// NSURLCache is not allowed in any fashion, either in memory or on
-/// disk.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcachestoragepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLCacheStoragePolicy(pub NSUInteger);
 impl NSURLCacheStoragePolicy {
+    /// Specifies that storage in an
+    /// NSURLCache is allowed without restriction.
     #[doc(alias = "NSURLCacheStorageAllowed")]
     pub const Allowed: Self = Self(0);
+    /// Specifies that
+    /// storage in an NSURLCache is allowed; however storage should be
+    /// done in memory only, no disk storage should be done.
     #[doc(alias = "NSURLCacheStorageAllowedInMemoryOnly")]
     pub const AllowedInMemoryOnly: Self = Self(1);
+    /// Specifies that storage in an
+    /// NSURLCache is not allowed in any fashion, either in memory or on
+    /// disk.
     #[doc(alias = "NSURLCacheStorageNotAllowed")]
     pub const NotAllowed: Self = Self(2);
 }

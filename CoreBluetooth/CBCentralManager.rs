@@ -20,26 +20,32 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCentralManagerState(pub NSInteger);
 impl CBCentralManagerState {
+    /// State unknown, update imminent.
     #[doc(alias = "CBCentralManagerStateUnknown")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unknown: Self = Self(CBManagerState::Unknown.0);
+    /// The connection with the system service was momentarily lost, update imminent.
     #[doc(alias = "CBCentralManagerStateResetting")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Resetting: Self = Self(CBManagerState::Resetting.0);
+    /// The platform doesn't support the Bluetooth Low Energy Central/Client role.
     #[doc(alias = "CBCentralManagerStateUnsupported")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unsupported: Self = Self(CBManagerState::Unsupported.0);
+    /// The application is not authorized to use the Bluetooth Low Energy Central/Client role.
     #[doc(alias = "CBCentralManagerStateUnauthorized")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unauthorized: Self = Self(CBManagerState::Unauthorized.0);
+    /// Bluetooth is currently powered off.
     #[doc(alias = "CBCentralManagerStatePoweredOff")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
+    /// Bluetooth is currently powered on and available to use.
     #[doc(alias = "CBCentralManagerStatePoweredOn")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
@@ -85,6 +91,7 @@ unsafe impl RefEncode for CBConnectionEvent {
 pub struct CBCentralManagerFeature(pub NSUInteger);
 bitflags::bitflags! {
     impl CBCentralManagerFeature: NSUInteger {
+/// The hardware supports extended scans and enhanced connection creation
         #[doc(alias = "CBCentralManagerFeatureExtendedScanAndConnect")]
         const ExtendedScanAndConnect = 1<<0;
         const _ = !0;

@@ -9,12 +9,6 @@ use crate::*;
 /// Options controlling buffer scheduling.
 ///
 ///
-/// The buffer loops indefinitely.
-///
-/// The buffer interrupts any buffer already playing.
-///
-/// The buffer interrupts any buffer already playing, at its loop point.
-///
 /// API_AVAILABLE(macos(10.10), ios(8.0), watchos(2.0), tvos(9.0))
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodebufferoptions?language=objc)
@@ -24,10 +18,13 @@ use crate::*;
 pub struct AVAudioPlayerNodeBufferOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioPlayerNodeBufferOptions: NSUInteger {
+/// The buffer loops indefinitely.
         #[doc(alias = "AVAudioPlayerNodeBufferLoops")]
         const Loops = 1<<0;
+/// The buffer interrupts any buffer already playing.
         #[doc(alias = "AVAudioPlayerNodeBufferInterrupts")]
         const Interrupts = 1<<1;
+/// The buffer interrupts any buffer already playing, at its loop point.
         #[doc(alias = "AVAudioPlayerNodeBufferInterruptsAtLoop")]
         const InterruptsAtLoop = 1<<2;
         const _ = !0;
@@ -45,17 +42,6 @@ unsafe impl RefEncode for AVAudioPlayerNodeBufferOptions {
 /// Specifies when the completion handler must be invoked.
 ///
 ///
-/// The buffer or file data has been consumed by the player.
-///
-/// The buffer or file data has been rendered (i.e. output) by the player. This
-/// does not account for any signal processing latencies downstream of the player
-/// in the engine (see `AVAudioNode(outputPresentationLatency)`).
-///
-/// Applicable only when the engine is rendering to/from an audio device.
-/// The buffer or file has finished playing. This accounts for both (small) signal
-/// processing latencies downstream of the player in the engine, as well as
-/// (possibly significant) latency in the audio playback device.
-///
 /// API_AVAILABLE(macos(10.13), ios(11.0), watchos(4.0), tvos(11.0));
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype?language=objc)
@@ -64,10 +50,18 @@ unsafe impl RefEncode for AVAudioPlayerNodeBufferOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioPlayerNodeCompletionCallbackType(pub NSInteger);
 impl AVAudioPlayerNodeCompletionCallbackType {
+    /// The buffer or file data has been consumed by the player.
     #[doc(alias = "AVAudioPlayerNodeCompletionDataConsumed")]
     pub const DataConsumed: Self = Self(0);
+    /// The buffer or file data has been rendered (i.e. output) by the player. This
+    /// does not account for any signal processing latencies downstream of the player
+    /// in the engine (see `AVAudioNode(outputPresentationLatency)`).
     #[doc(alias = "AVAudioPlayerNodeCompletionDataRendered")]
     pub const DataRendered: Self = Self(1);
+    /// Applicable only when the engine is rendering to/from an audio device.
+    /// The buffer or file has finished playing. This accounts for both (small) signal
+    /// processing latencies downstream of the player in the engine, as well as
+    /// (possibly significant) latency in the audio playback device.
     #[doc(alias = "AVAudioPlayerNodeCompletionDataPlayedBack")]
     pub const DataPlayedBack: Self = Self(2);
 }

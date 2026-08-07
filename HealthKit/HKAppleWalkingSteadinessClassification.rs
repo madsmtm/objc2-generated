@@ -14,10 +14,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKAppleWalkingSteadinessClassification(pub NSInteger);
 impl HKAppleWalkingSteadinessClassification {
+    /// Walking steadiness is OK.
     #[doc(alias = "HKAppleWalkingSteadinessClassificationOK")]
     pub const OK: Self = Self(1);
+    /// Walking steadiness is Low.
     #[doc(alias = "HKAppleWalkingSteadinessClassificationLow")]
     pub const Low: Self = Self(2);
+    /// Walking steadiness is Very Low.
     #[doc(alias = "HKAppleWalkingSteadinessClassificationVeryLow")]
     pub const VeryLow: Self = Self(3);
 }

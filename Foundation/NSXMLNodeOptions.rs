@@ -11,60 +11,86 @@ use crate::*;
 pub struct NSXMLNodeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSXMLNodeOptions: NSUInteger {
+/// Use the default options
         #[doc(alias = "NSXMLNodeOptionsNone")]
         const NodeOptionsNone = 0;
+/// This text node is CDATA
         #[doc(alias = "NSXMLNodeIsCDATA")]
         const NodeIsCDATA = 1<<0;
+/// This element should be expanded when empty, ie &lt;a>&lt;/a>. This is the default.
         #[doc(alias = "NSXMLNodeExpandEmptyElement")]
         const NodeExpandEmptyElement = 1<<1;
+/// This element should contract when empty, ie &lt;a/>
         #[doc(alias = "NSXMLNodeCompactEmptyElement")]
         const NodeCompactEmptyElement = 1<<2;
+/// Use single quotes on this attribute or namespace
         #[doc(alias = "NSXMLNodeUseSingleQuotes")]
         const NodeUseSingleQuotes = 1<<3;
+/// Use double quotes on this attribute or namespace. This is the default.
         #[doc(alias = "NSXMLNodeUseDoubleQuotes")]
         const NodeUseDoubleQuotes = 1<<4;
+/// When generating a string representation of an XML document, don't escape the reserved characters '<' and '&' in Text nodes
         #[doc(alias = "NSXMLNodeNeverEscapeContents")]
         const NodeNeverEscapeContents = 1<<5;
+/// Try to change HTML into valid XHTML
         #[doc(alias = "NSXMLDocumentTidyHTML")]
         const DocumentTidyHTML = 1<<9;
+/// Try to change malformed XML into valid XML
         #[doc(alias = "NSXMLDocumentTidyXML")]
         const DocumentTidyXML = 1<<10;
+/// Valid this document against its DTD
         #[doc(alias = "NSXMLDocumentValidate")]
         const DocumentValidate = 1<<13;
+/// Load all external entities instead of just non-network ones
         #[doc(alias = "NSXMLNodeLoadExternalEntitiesAlways")]
         const NodeLoadExternalEntitiesAlways = 1<<14;
+/// Load non-network external entities and external entities from urls with the same domain, host, and port as the document
         #[doc(alias = "NSXMLNodeLoadExternalEntitiesSameOriginOnly")]
         const NodeLoadExternalEntitiesSameOriginOnly = 1<<15;
+/// Load no external entities, even those that don't require network access
         #[doc(alias = "NSXMLNodeLoadExternalEntitiesNever")]
         const NodeLoadExternalEntitiesNever = 1<<19;
         #[doc(alias = "NSXMLDocumentXInclude")]
         const DocumentXInclude = 1<<16;
+/// Output this node with extra space for readability
         #[doc(alias = "NSXMLNodePrettyPrint")]
         const NodePrettyPrint = 1<<17;
+/// Include a content type declaration for HTML or XHTML
         #[doc(alias = "NSXMLDocumentIncludeContentTypeDeclaration")]
         const DocumentIncludeContentTypeDeclaration = 1<<18;
+/// Preserve the order of namespaces
         #[doc(alias = "NSXMLNodePreserveNamespaceOrder")]
         const NodePreserveNamespaceOrder = 1<<20;
+/// Preserve the order of attributes
         #[doc(alias = "NSXMLNodePreserveAttributeOrder")]
         const NodePreserveAttributeOrder = 1<<21;
+/// Entities should not be resolved on output
         #[doc(alias = "NSXMLNodePreserveEntities")]
         const NodePreserveEntities = 1<<22;
+/// Prefixes should not be chosen based on closest URI definition
         #[doc(alias = "NSXMLNodePreservePrefixes")]
         const NodePreservePrefixes = 1<<23;
+/// CDATA should be preserved
         #[doc(alias = "NSXMLNodePreserveCDATA")]
         const NodePreserveCDATA = 1<<24;
+/// Preserve non-content whitespace
         #[doc(alias = "NSXMLNodePreserveWhitespace")]
         const NodePreserveWhitespace = 1<<25;
+/// Preserve the DTD until it is modified
         #[doc(alias = "NSXMLNodePreserveDTD")]
         const NodePreserveDTD = 1<<26;
         #[doc(alias = "NSXMLNodePreserveCharacterReferences")]
         const NodePreserveCharacterReferences = 1<<27;
+/// When significant whitespace is encountered in the document, create Text nodes representing it rather than removing it. Has no effect if NSXMLNodePreserveWhitespace is also specified
         #[doc(alias = "NSXMLNodePromoteSignificantWhitespace")]
         const NodePromoteSignificantWhitespace = 1<<28;
+/// Remember whether an empty element was in expanded or contracted form
         #[doc(alias = "NSXMLNodePreserveEmptyElements")]
         const NodePreserveEmptyElements = NSXMLNodeOptions::NodeExpandEmptyElement.0|NSXMLNodeOptions::NodeCompactEmptyElement.0;
+/// Remember whether an attribute used single or double quotes
         #[doc(alias = "NSXMLNodePreserveQuotes")]
         const NodePreserveQuotes = NSXMLNodeOptions::NodeUseSingleQuotes.0|NSXMLNodeOptions::NodeUseDoubleQuotes.0;
+/// Turn all preservation options on
         #[doc(alias = "NSXMLNodePreserveAll")]
         const NodePreserveAll = NSXMLNodeOptions::NodePreserveNamespaceOrder.0|NSXMLNodeOptions::NodePreserveAttributeOrder.0|NSXMLNodeOptions::NodePreserveEntities.0|NSXMLNodeOptions::NodePreservePrefixes.0|NSXMLNodeOptions::NodePreserveCDATA.0|NSXMLNodeOptions::NodePreserveEmptyElements.0|NSXMLNodeOptions::NodePreserveQuotes.0|NSXMLNodeOptions::NodePreserveWhitespace.0|NSXMLNodeOptions::NodePreserveDTD.0|NSXMLNodeOptions::NodePreserveCharacterReferences.0|0xFFF00000;
         const _ = !0;

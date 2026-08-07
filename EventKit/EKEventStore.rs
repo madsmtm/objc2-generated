@@ -19,8 +19,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKSpan(pub NSInteger);
 impl EKSpan {
+    /// Affect this event only.
     #[doc(alias = "EKSpanThisEvent")]
     pub const ThisEvent: Self = Self(0);
+    /// Affect this event and all after it.
     #[doc(alias = "EKSpanFutureEvents")]
     pub const FutureEvents: Self = Self(1);
 }

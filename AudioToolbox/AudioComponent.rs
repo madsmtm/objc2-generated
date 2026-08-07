@@ -25,29 +25,6 @@ pub const kAudioComponentValidationParameter_LoadOutOfProcess: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"LoadOutOfProcess\0") };
 /// Flags found in AudioComponentDescription.componentFlags.
 ///
-///
-/// When this bit in AudioComponentDescription's componentFlags is set, AudioComponentFindNext
-/// will only return this component when performing a specific, non-wildcard search for the
-/// component, i.e. with non-zero values of componentType, componentSubType, and
-/// componentManufacturer. This can be useful when privately registering a component.
-///
-///
-/// An AudioComponent sets this bit in its componentFlags to indicate to the system that the
-/// AudioComponent is safe to open in a sandboxed process.
-///
-///
-/// The system sets this flag automatically when registering components which implement a version 3
-/// Audio Unit.
-///
-///
-/// The system sets this flag automatically when registering components which require asynchronous
-/// instantiation via AudioComponentInstantiate (v3 audio units with views).
-///
-///
-/// The system sets this flag automatically when registering components which can be loaded into
-/// the current process. This is always true for V2 audio units; it depends on the packaging
-/// in the case of a V3 audio unit.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -55,14 +32,27 @@ pub const kAudioComponentValidationParameter_LoadOutOfProcess: &CStr =
 pub struct AudioComponentFlags(pub u32);
 bitflags::bitflags! {
     impl AudioComponentFlags: u32 {
+/// When this bit in AudioComponentDescription's componentFlags is set, AudioComponentFindNext
+/// will only return this component when performing a specific, non-wildcard search for the
+/// component, i.e. with non-zero values of componentType, componentSubType, and
+/// componentManufacturer. This can be useful when privately registering a component.
         #[doc(alias = "kAudioComponentFlag_Unsearchable")]
         const Unsearchable = 1;
+/// An AudioComponent sets this bit in its componentFlags to indicate to the system that the
+/// AudioComponent is safe to open in a sandboxed process.
         #[doc(alias = "kAudioComponentFlag_SandboxSafe")]
         const SandboxSafe = 2;
+/// The system sets this flag automatically when registering components which implement a version 3
+/// Audio Unit.
         #[doc(alias = "kAudioComponentFlag_IsV3AudioUnit")]
         const IsV3AudioUnit = 4;
+/// The system sets this flag automatically when registering components which require asynchronous
+/// instantiation via AudioComponentInstantiate (v3 audio units with views).
         #[doc(alias = "kAudioComponentFlag_RequiresAsyncInstantiation")]
         const RequiresAsyncInstantiation = 8;
+/// The system sets this flag automatically when registering components which can be loaded into
+/// the current process. This is always true for V2 audio units; it depends on the packaging
+/// in the case of a V3 audio unit.
         #[doc(alias = "kAudioComponentFlag_CanLoadInProcess")]
         const CanLoadInProcess = 0x10;
         const _ = !0;
@@ -98,10 +88,6 @@ unsafe impl RefEncode for AudioComponentFlags {
 /// These options are just requests to the implementation. It may fail and fall back to the
 /// default.
 ///
-/// Attempt to load the component into a separate extension process.
-///
-/// Attempt to load the component into the current process. Only available on macOS.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstantiationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -109,8 +95,10 @@ unsafe impl RefEncode for AudioComponentFlags {
 pub struct AudioComponentInstantiationOptions(pub u32);
 bitflags::bitflags! {
     impl AudioComponentInstantiationOptions: u32 {
+/// Attempt to load the component into a separate extension process.
         #[doc(alias = "kAudioComponentInstantiation_LoadOutOfProcess")]
         const LoadOutOfProcess = 1;
+/// Attempt to load the component into the current process. Only available on macOS.
         #[doc(alias = "kAudioComponentInstantiation_LoadInProcess")]
         const LoadInProcess = 2;
         #[doc(alias = "kAudioComponentInstantiation_LoadedRemotely")]
@@ -648,16 +636,6 @@ pub unsafe fn AudioComponentCopyConfigurationInfo(
 
 /// Constants for describing the result of validating an AudioComponent
 ///
-/// The AudioComponent passed validation.
-///
-/// The AudioComponent failed validation.
-///
-/// The validation operation timed out before completing.
-///
-/// The AudioComponent failed validation during open operation as it is not authorized.
-///
-/// The AudioComponent failed validation during initialization as it is not authorized.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -666,14 +644,19 @@ pub struct AudioComponentValidationResult(pub u32);
 impl AudioComponentValidationResult {
     #[doc(alias = "kAudioComponentValidationResult_Unknown")]
     pub const Unknown: Self = Self(0);
+    /// The AudioComponent passed validation.
     #[doc(alias = "kAudioComponentValidationResult_Passed")]
     pub const Passed: Self = Self(1);
+    /// The AudioComponent failed validation.
     #[doc(alias = "kAudioComponentValidationResult_Failed")]
     pub const Failed: Self = Self(2);
+    /// The validation operation timed out before completing.
     #[doc(alias = "kAudioComponentValidationResult_TimedOut")]
     pub const TimedOut: Self = Self(3);
+    /// The AudioComponent failed validation during open operation as it is not authorized.
     #[doc(alias = "kAudioComponentValidationResult_UnauthorizedError_Open")]
     pub const UnauthorizedError_Open: Self = Self(4);
+    /// The AudioComponent failed validation during initialization as it is not authorized.
     #[doc(alias = "kAudioComponentValidationResult_UnauthorizedError_Init")]
     pub const UnauthorizedError_Init: Self = Self(5);
 }

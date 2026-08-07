@@ -15,10 +15,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// SCStreamOutputTypeScreen is a screen capture sample buffer. This sample buffer that is wrapping a CMSampleBuffer that is backed by an IOSurface. The width and height of the sample buffer is what is defined in the SCStreamConfiguration for width and height. The sample buffer will be called back on the provided queue when adding a SCStreamOutput. The pixel format of the sample buffer will be what is defined in the SCStreamConfiguration. In the case of multiple window capture, the width and height will be that of the display passed in for the filter. The background color of multiwindow sample buffers will be default black and can be set through the SCStreamConfiguration.
-///
-///
-///
 /// SCStreamOutputTypeAudio is an audio capture sample buffer. This sample buffer that is wrapping an audio buffer list. The format of the audio buffer is based on sampleRate and channelCount set in SCStreamConfiguration.
 /// SCStreamOutputTypeMicrophone is a microphone audio capture sample buffer. This sample buffer that is wrapping an audio buffer list. The format of the audio buffer is based on the selected microphone capture device's native format.
 ///
@@ -28,10 +24,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamOutputType(pub NSInteger);
 impl SCStreamOutputType {
+    /// screen sample output type.
+    ///
+    /// SCStreamOutputTypeScreen is a screen capture sample buffer. This sample buffer that is wrapping a CMSampleBuffer that is backed by an IOSurface. The width and height of the sample buffer is what is defined in the SCStreamConfiguration for width and height. The sample buffer will be called back on the provided queue when adding a SCStreamOutput. The pixel format of the sample buffer will be what is defined in the SCStreamConfiguration. In the case of multiple window capture, the width and height will be that of the display passed in for the filter. The background color of multiwindow sample buffers will be default black and can be set through the SCStreamConfiguration.
     #[doc(alias = "SCStreamOutputTypeScreen")]
     pub const Screen: Self = Self(0);
+    /// audio sample output type.
     #[doc(alias = "SCStreamOutputTypeAudio")]
     pub const Audio: Self = Self(1);
+    /// microphone audio sample output type.
     #[doc(alias = "SCStreamOutputTypeMicrophone")]
     pub const Microphone: Self = Self(2);
 }
@@ -52,16 +53,22 @@ unsafe impl RefEncode for SCStreamOutputType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCFrameStatus(pub NSInteger);
 impl SCFrameStatus {
+    /// new frame was generated.
     #[doc(alias = "SCFrameStatusComplete")]
     pub const Complete: Self = Self(0);
+    /// new frame was not generated because the display did not change.
     #[doc(alias = "SCFrameStatusIdle")]
     pub const Idle: Self = Self(1);
+    /// new frame was not generated because the display has gone blank.
     #[doc(alias = "SCFrameStatusBlank")]
     pub const Blank: Self = Self(2);
+    /// new frame was not generated because updates haves been suspended
     #[doc(alias = "SCFrameStatusSuspended")]
     pub const Suspended: Self = Self(3);
+    /// new frame that is indicated as the first frame sent after the stream has started.
     #[doc(alias = "SCFrameStatusStarted")]
     pub const Started: Self = Self(4);
+    /// the stream was stopped.
     #[doc(alias = "SCFrameStatusStopped")]
     pub const Stopped: Self = Self(5);
 }
@@ -82,8 +89,10 @@ unsafe impl RefEncode for SCFrameStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCPresenterOverlayAlertSetting(pub NSInteger);
 impl SCPresenterOverlayAlertSetting {
+    /// allow the system to determine when to show the presenter overlay privacy alert.
     #[doc(alias = "SCPresenterOverlayAlertSettingSystem")]
     pub const System: Self = Self(0);
+    /// never show the presenter overlay privacy alert.
     #[doc(alias = "SCPresenterOverlayAlertSettingNever")]
     pub const Never: Self = Self(1);
     #[doc(alias = "SCPresenterOverlayAlertSettingAlways")]
@@ -110,6 +119,7 @@ impl SCStreamType {
     #[doc(alias = "SCStreamTypeWindow")]
     #[deprecated = "Use SCShareableContentStyle instead"]
     pub const Window: Self = Self(0);
+    /// display stream
     #[doc(alias = "SCStreamTypeDisplay")]
     #[deprecated = "Use SCShareableContentStyle instead"]
     pub const Display: Self = Self(1);
@@ -153,10 +163,13 @@ unsafe impl RefEncode for SCCaptureResolutionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCCaptureDynamicRange(pub NSInteger);
 impl SCCaptureDynamicRange {
+    /// by default, screen capture output will be SDR.
     #[doc(alias = "SCCaptureDynamicRangeSDR")]
     pub const SDR: Self = Self(0);
+    /// by default, screen capture output will be HDR, optimized for rendering on the local captured display
     #[doc(alias = "SCCaptureDynamicRangeHDRLocalDisplay")]
     pub const HDRLocalDisplay: Self = Self(1);
+    /// by default, screen capture output will be HDR, optimized for rendering on any HDR display
     #[doc(alias = "SCCaptureDynamicRangeHDRCanonicalDisplay")]
     pub const HDRCanonicalDisplay: Self = Self(2);
 }
@@ -354,10 +367,13 @@ impl SCStreamConfigurationPreset {
     pub const CaptureHDRStreamLocalDisplay: Self = Self(0);
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRStreamCanonicalDisplay")]
     pub const CaptureHDRStreamCanonicalDisplay: Self = Self(1);
+    /// using this preset will help client set suggested values for captureDynamicRange, pixelFormat, ColorSpace in order to get HDR screenshot with SCScreenshotManager, optimized for rendering on the local captured display.
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRScreenshotLocalDisplay")]
     pub const CaptureHDRScreenshotLocalDisplay: Self = Self(2);
+    /// using this preset will help client set suggested values for captureDynamicRange, pixelFormat, ColorSpace in order to get HDR screenshot with SCScreenshotManager, optimized for rendering on canonical HDR display
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRScreenshotCanonicalDisplay")]
     pub const CaptureHDRScreenshotCanonicalDisplay: Self = Self(3);
+    /// using this preset will help client set suggested values for captureDynamicRange, pixelFormat, and colorSpace intended for a stream recording in HDR10, optimized for rendering on the canonical HDR display.  This preset will also add HDR10 metadata to the video recording that is designed to preserve the SDR range during video playback.
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRRecordingPreservedSDRHDR10")]
     pub const CaptureHDRRecordingPreservedSDRHDR10: Self = Self(4);
 }

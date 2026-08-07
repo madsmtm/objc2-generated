@@ -32,12 +32,6 @@ extern "C" {
 ///
 /// Spatial pipeline flags.
 ///
-/// Direct Path Transmission.
-///
-/// Early Reflections.
-///
-/// Late Reverb.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipelineflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -45,10 +39,13 @@ extern "C" {
 pub struct PHASESpatialPipelineFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASESpatialPipelineFlags: NSUInteger {
+/// Direct Path Transmission.
         #[doc(alias = "PHASESpatialPipelineFlagDirectPathTransmission")]
         const DirectPathTransmission = 1<<0;
+/// Early Reflections.
         #[doc(alias = "PHASESpatialPipelineFlagEarlyReflections")]
         const EarlyReflections = 1<<1;
+/// Late Reverb.
         #[doc(alias = "PHASESpatialPipelineFlagLateReverb")]
         const LateReverb = 1<<2;
         const _ = !0;

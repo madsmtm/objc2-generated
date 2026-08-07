@@ -116,18 +116,23 @@ pub const WebMenuItemPDFPreviousPage: c_uint = 32;
 pub struct WebDragDestinationAction(pub NSUInteger);
 bitflags::bitflags! {
     impl WebDragDestinationAction: NSUInteger {
+/// No action
         #[doc(alias = "WebDragDestinationActionNone")]
 #[deprecated]
         const None = 0;
+/// Allows DHTML (such as JavaScript) to handle the drag
         #[doc(alias = "WebDragDestinationActionDHTML")]
 #[deprecated]
         const DHTML = 1;
+/// Allows editable documents to be edited from the drag
         #[doc(alias = "WebDragDestinationActionEdit")]
 #[deprecated]
         const Edit = 2;
+/// Allows a location change from the drag
         #[doc(alias = "WebDragDestinationActionLoad")]
 #[deprecated]
         const Load = 4;
+/// Allows any of the above to occur
         #[doc(alias = "WebDragDestinationActionAny")]
 #[deprecated]
         const Any = c_uint::MAX as _;
@@ -153,21 +158,27 @@ unsafe impl RefEncode for WebDragDestinationAction {
 pub struct WebDragSourceAction(pub NSUInteger);
 bitflags::bitflags! {
     impl WebDragSourceAction: NSUInteger {
+/// No action
         #[doc(alias = "WebDragSourceActionNone")]
 #[deprecated]
         const None = 0;
+/// Allows DHTML (such as JavaScript) to start a drag
         #[doc(alias = "WebDragSourceActionDHTML")]
 #[deprecated]
         const DHTML = 1;
+/// Allows an image drag to occur
         #[doc(alias = "WebDragSourceActionImage")]
 #[deprecated]
         const Image = 2;
+/// Allows a link drag to occur
         #[doc(alias = "WebDragSourceActionLink")]
 #[deprecated]
         const Link = 4;
+/// Allows a selection drag to occur
         #[doc(alias = "WebDragSourceActionSelection")]
 #[deprecated]
         const Selection = 8;
+/// Allows any of the above to occur
         #[doc(alias = "WebDragSourceActionAny")]
 #[deprecated]
         const Any = c_uint::MAX as _;

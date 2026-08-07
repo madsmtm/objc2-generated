@@ -17,8 +17,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceType(pub NSUInteger);
 impl ICDeviceType {
+    /// Camera device.
     #[doc(alias = "ICDeviceTypeCamera")]
     pub const Camera: Self = Self(0x00000001);
+    /// Scanner device.
     #[doc(alias = "ICDeviceTypeScanner")]
     pub const Scanner: Self = Self(0x00000002);
 }
@@ -39,12 +41,16 @@ unsafe impl RefEncode for ICDeviceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceLocationType(pub NSUInteger);
 impl ICDeviceLocationType {
+    /// Device found directly attached to the Macintosh via its USB or FireWire port.
     #[doc(alias = "ICDeviceLocationTypeLocal")]
     pub const Local: Self = Self(0x00000100);
+    /// Device found over the network by searching for devices shared by other Macintosh hosts.
     #[doc(alias = "ICDeviceLocationTypeShared")]
     pub const Shared: Self = Self(0x00000200);
+    /// Device found over the network by searching for Bonjour services supported by Image Capture.
     #[doc(alias = "ICDeviceLocationTypeBonjour")]
     pub const Bonjour: Self = Self(0x00000400);
+    /// Device found as a paired Bluetooth device.
     #[doc(alias = "ICDeviceLocationTypeBluetooth")]
     pub const Bluetooth: Self = Self(0x00000800);
 }
@@ -65,8 +71,10 @@ unsafe impl RefEncode for ICDeviceLocationType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceTypeMask(pub NSUInteger);
 impl ICDeviceTypeMask {
+    /// Mask to detect a camera device.
     #[doc(alias = "ICDeviceTypeMaskCamera")]
     pub const Camera: Self = Self(0x00000001);
+    /// Mask to detect a scanner device.
     #[doc(alias = "ICDeviceTypeMaskScanner")]
     pub const Scanner: Self = Self(0x00000002);
 }
@@ -87,14 +95,19 @@ unsafe impl RefEncode for ICDeviceTypeMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceLocationTypeMask(pub NSUInteger);
 impl ICDeviceLocationTypeMask {
+    /// Mask to detect a local (e.g., USB or FireWire) device.
     #[doc(alias = "ICDeviceLocationTypeMaskLocal")]
     pub const Local: Self = Self(0x00000100);
+    /// Mask to detect a device by another Macintosh host.
     #[doc(alias = "ICDeviceLocationTypeMaskShared")]
     pub const Shared: Self = Self(0x00000200);
+    /// Mask to detect a network device that publishes a Bonjour service.
     #[doc(alias = "ICDeviceLocationTypeMaskBonjour")]
     pub const Bonjour: Self = Self(0x00000400);
+    /// Mask to detect paired Bluetooth device.
     #[doc(alias = "ICDeviceLocationTypeMaskBluetooth")]
     pub const Bluetooth: Self = Self(0x00000800);
+    /// Mask to detect a remote (shared, Bonjour, Bluetooth) device.
     #[doc(alias = "ICDeviceLocationTypeMaskRemote")]
     pub const Remote: Self = Self(0x0000FE00);
 }

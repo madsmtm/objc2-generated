@@ -39,27 +39,6 @@ unsafe impl ConcreteType for CTRubyAnnotation {
 
 /// These constants specify how to align the ruby annotation and the base text relative to each other when they don't have the same length.
 ///
-///
-/// CoreText will determine the alignment.
-///
-///
-/// The ruby text is aligned with the start edge of the base text.
-///
-///
-/// The ruby text is centered within the width of the base text. If the ruby text is wider than the base text the base text is centered in the width of the ruby text.
-///
-///
-/// The ruby text is aligned with the end edge of the base text.
-///
-///
-/// If the width of the ruby text is less than the width of the base text, the ruby text is evenly distributed over the width of the base text, with the first letter of the ruby text aligning with the first letter of the base text and the last letter of the ruby text aligning with the last letter of the base text. If the width of the base text is less than the width of the ruby text, the base text is evenly distributed over the width of the ruby text.
-///
-///
-/// If the width of the ruby text is less than the width of the base text, the ruby text is evenly distributed over the width of the base text, with a certain amount of space, usually half the inter-character width of the ruby text, before the first and after the last character. If the width of the base text is less than the width of the ruby text, the base text is similarly aligned to the width of the ruby text.
-///
-///
-/// If the ruby text is not adjacent to a line edge it is aligned as with kCTRubyAlignmentAuto. If it is adjacent to a line edge the end of ruby text adjacent to the line edge is aligned to the line edge. This is only relevant if the width of the ruby text is greater than the width of the base text; otherwise alignment is as with kCTRubyAlignmentAuto.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -68,18 +47,25 @@ pub struct CTRubyAlignment(pub u8);
 impl CTRubyAlignment {
     #[doc(alias = "kCTRubyAlignmentInvalid")]
     pub const Invalid: Self = Self(255);
+    /// CoreText will determine the alignment.
     #[doc(alias = "kCTRubyAlignmentAuto")]
     pub const Auto: Self = Self(0);
+    /// The ruby text is aligned with the start edge of the base text.
     #[doc(alias = "kCTRubyAlignmentStart")]
     pub const Start: Self = Self(1);
+    /// The ruby text is centered within the width of the base text. If the ruby text is wider than the base text the base text is centered in the width of the ruby text.
     #[doc(alias = "kCTRubyAlignmentCenter")]
     pub const Center: Self = Self(2);
+    /// The ruby text is aligned with the end edge of the base text.
     #[doc(alias = "kCTRubyAlignmentEnd")]
     pub const End: Self = Self(3);
+    /// If the width of the ruby text is less than the width of the base text, the ruby text is evenly distributed over the width of the base text, with the first letter of the ruby text aligning with the first letter of the base text and the last letter of the ruby text aligning with the last letter of the base text. If the width of the base text is less than the width of the ruby text, the base text is evenly distributed over the width of the ruby text.
     #[doc(alias = "kCTRubyAlignmentDistributeLetter")]
     pub const DistributeLetter: Self = Self(4);
+    /// If the width of the ruby text is less than the width of the base text, the ruby text is evenly distributed over the width of the base text, with a certain amount of space, usually half the inter-character width of the ruby text, before the first and after the last character. If the width of the base text is less than the width of the ruby text, the base text is similarly aligned to the width of the ruby text.
     #[doc(alias = "kCTRubyAlignmentDistributeSpace")]
     pub const DistributeSpace: Self = Self(5);
+    /// If the ruby text is not adjacent to a line edge it is aligned as with kCTRubyAlignmentAuto. If it is adjacent to a line edge the end of ruby text adjacent to the line edge is aligned to the line edge. This is only relevant if the width of the ruby text is greater than the width of the base text; otherwise alignment is as with kCTRubyAlignmentAuto.
     #[doc(alias = "kCTRubyAlignmentLineEdge")]
     pub const LineEdge: Self = Self(6);
 }
@@ -96,18 +82,6 @@ unsafe impl RefEncode for CTRubyAlignment {
 
 /// These constants specify whether, and on which side, ruby text is allowed to overhang adjacent text if it is wider than the base text.
 ///
-///
-/// The ruby text can overhang adjacent text on both sides.
-///
-///
-/// The ruby text can overhang the text that proceeds it.
-///
-///
-/// The ruby text can overhang the text that follows it.
-///
-///
-/// The ruby text cannot overhang the proceeding or following text.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -116,12 +90,16 @@ pub struct CTRubyOverhang(pub u8);
 impl CTRubyOverhang {
     #[doc(alias = "kCTRubyOverhangInvalid")]
     pub const Invalid: Self = Self(255);
+    /// The ruby text can overhang adjacent text on both sides.
     #[doc(alias = "kCTRubyOverhangAuto")]
     pub const Auto: Self = Self(0);
+    /// The ruby text can overhang the text that proceeds it.
     #[doc(alias = "kCTRubyOverhangStart")]
     pub const Start: Self = Self(1);
+    /// The ruby text can overhang the text that follows it.
     #[doc(alias = "kCTRubyOverhangEnd")]
     pub const End: Self = Self(2);
+    /// The ruby text cannot overhang the proceeding or following text.
     #[doc(alias = "kCTRubyOverhangNone")]
     pub const None: Self = Self(3);
 }
@@ -138,30 +116,22 @@ unsafe impl RefEncode for CTRubyOverhang {
 
 /// These constants specify the position of the ruby text with respect to the base text.
 ///
-///
-/// The ruby text is positioned before the base text; i.e. above horizontal text and to the right of vertical text.
-///
-///
-/// The ruby text is positioned after the base text; i.e. below horizontal text and to the left of vertical text.
-///
-///
-/// The ruby text is positioned to the right of the base text whether it is horizontal or vertical. This is the way that Bopomofo annotations are attached to Chinese text in Taiwan.
-///
-///
-/// The ruby text follows the base text with no special styling.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyPosition(pub u8);
 impl CTRubyPosition {
+    /// The ruby text is positioned before the base text; i.e. above horizontal text and to the right of vertical text.
     #[doc(alias = "kCTRubyPositionBefore")]
     pub const Before: Self = Self(0);
+    /// The ruby text is positioned after the base text; i.e. below horizontal text and to the left of vertical text.
     #[doc(alias = "kCTRubyPositionAfter")]
     pub const After: Self = Self(1);
+    /// The ruby text is positioned to the right of the base text whether it is horizontal or vertical. This is the way that Bopomofo annotations are attached to Chinese text in Taiwan.
     #[doc(alias = "kCTRubyPositionInterCharacter")]
     pub const InterCharacter: Self = Self(2);
+    /// The ruby text follows the base text with no special styling.
     #[doc(alias = "kCTRubyPositionInline")]
     pub const Inline: Self = Self(3);
     #[doc(alias = "kCTRubyPositionCount")]

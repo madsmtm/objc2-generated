@@ -939,19 +939,6 @@ unsafe impl RefEncode for AVAudioSessionInterruptionOptions {
 /// Values for AVAudioSessionInterruptionReasonKey in AVAudioSessionInterruptionNotification's userInfo dictionary.
 ///
 ///
-/// The audio session was interrupted because another session was activated.
-///
-///
-/// The audio session was interrupted due to the app being suspended by the operating sytem.
-/// Deprecated. Interruption notifications with reason 'wasSuspended' not present from iOS 16 onwards.
-///
-///
-/// The audio session was interrupted due to the built-in mic being muted e.g. due to an iPad's Smart Folio being closed.
-///
-///
-/// The audio session was interrupted due to route getting disconnected.
-///
-///
 /// The audio session was interrupted due to device being doffed or locked.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionreason?language=objc)
@@ -960,14 +947,20 @@ unsafe impl RefEncode for AVAudioSessionInterruptionOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionInterruptionReason(pub NSUInteger);
 impl AVAudioSessionInterruptionReason {
+    /// The audio session was interrupted because another session was activated.
     #[doc(alias = "AVAudioSessionInterruptionReasonDefault")]
     pub const Default: Self = Self(0);
+    /// The audio session was interrupted due to the app being suspended by the operating sytem.
+    /// Deprecated. Interruption notifications with reason 'wasSuspended' not present from iOS 16 onwards.
     #[doc(alias = "AVAudioSessionInterruptionReasonAppWasSuspended")]
     #[deprecated = "wasSuspended reason no longer present"]
     pub const AppWasSuspended: Self = Self(1);
+    /// The audio session was interrupted due to the built-in mic being muted e.g. due to an iPad's Smart Folio being closed.
     #[doc(alias = "AVAudioSessionInterruptionReasonBuiltInMicMuted")]
     pub const BuiltInMicMuted: Self = Self(2);
     /// The audio session was interrupted because route was disconnected.
+    ///
+    /// The audio session was interrupted due to route getting disconnected.
     #[doc(alias = "AVAudioSessionInterruptionReasonRouteDisconnected")]
     pub const RouteDisconnected: Self = Self(4);
 }
@@ -1050,20 +1043,6 @@ unsafe impl RefEncode for AVAudioSessionSilenceSecondaryAudioHintType {
 /// to have aggregated audio I/O, as in previous versions of iOS.
 ///
 ///
-/// The default value.  If your app does not use AVCaptureSession or does not have any specific
-/// requirement for aggregating input and output audio in the same realtime I/O callback, use this
-/// value. Note that if your app does not use AVCaptureSession, it will get aggregated I/O when using
-/// AVAudioSessionCategoryPlayAndRecord.
-///
-/// If your app does utilize AVCaptureSession, use of this value will allow AVCaptureSession to
-/// start recording without glitching already running output audio and will allow the system to
-/// utilize power-saving optimizations.
-///
-///
-/// Use this value if your session uses AVAudioSessionCategoryPlayAndRecord and requires input and
-/// output audio to be presented in the same realtime I/O callback. For example, if your app will be using
-/// a RemoteIO with both input and output enabled.
-///
 /// Note that your session's preference to use aggregated IO will not be honored if it specifies
 /// AVAudioSessionCategoryOptionMixWithOthers AND another app's audio session was already active
 /// with non-mixable, non-aggregated input/output.
@@ -1076,8 +1055,19 @@ unsafe impl RefEncode for AVAudioSessionSilenceSecondaryAudioHintType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionIOType(pub NSUInteger);
 impl AVAudioSessionIOType {
+    /// The default value.  If your app does not use AVCaptureSession or does not have any specific
+    /// requirement for aggregating input and output audio in the same realtime I/O callback, use this
+    /// value. Note that if your app does not use AVCaptureSession, it will get aggregated I/O when using
+    /// AVAudioSessionCategoryPlayAndRecord.
+    ///
+    /// If your app does utilize AVCaptureSession, use of this value will allow AVCaptureSession to
+    /// start recording without glitching already running output audio and will allow the system to
+    /// utilize power-saving optimizations.
     #[doc(alias = "AVAudioSessionIOTypeNotSpecified")]
     pub const NotSpecified: Self = Self(0);
+    /// Use this value if your session uses AVAudioSessionCategoryPlayAndRecord and requires input and
+    /// output audio to be presented in the same realtime I/O callback. For example, if your app will be using
+    /// a RemoteIO with both input and output enabled.
     #[doc(alias = "AVAudioSessionIOTypeAggregated")]
     pub const Aggregated: Self = Self(1);
 }
@@ -1094,50 +1084,45 @@ unsafe impl RefEncode for AVAudioSessionIOType {
 /// to specify that its output audio should be routed somewhere other than the default system output,
 /// when appropriate alternative routes are available.
 ///
-/// Follow normal rules for routing audio output.
-///
-/// Route output to the shared long-form audio output. A session whose primary use case is as a
-/// music or podcast player may use this value to play to the same output as the built-in Music (iOS),
-/// Podcasts, or iTunes (macOS) applications. Typically applications that use this policy will also
-/// want sign up for remote control events as documented in “Event Handling Guide for UIKit Apps”
-/// and will want to utilize MediaPlayer framework’s MPNowPlayingInfoCenter class. All applications
-/// on the system that use the long-form audio route sharing policy will have their audio routed to the
-/// same location.
-/// Apps running on watchOS using this policy will also be able to play audio in the background,
-/// as long as an eligible audio route can be activated. Apps running on watchOS using this policy
-/// must use -activateWithOptions:completionHandler: instead of -setActive:withOptions:error: in
-/// order to ensure that the user will be given the opportunity to pick an appropriate audio route
-/// in cases where the system is unable to automatically pick the route.
-///
-/// Deprecated. Replaced by AVAudioSessionRouteSharingPolicyLongFormAudio.
-///
-/// Applications should not attempt to set this value directly. On iOS, this value will be set by
-/// the system in cases where route picker UI is used to direct video to a wireless route.
-///
-/// Route output to the shared long-form video output. A session whose primary use case is as a
-/// movie or other long-form video content player may use this value to play to the same output as
-/// other long-form video content applications such as the built-in TV (iOS) application. Applications
-/// that use this policy will also want to also set the AVInitialRouteSharingPolicy key
-/// in their Info.plist to "LongFormVideo". All applications on the system that use the long-form video
-/// route sharing policy will have their audio and video routed to the same location (e.g. AppleTV when
-/// an AirPlay route is selected). Video content not using this route sharing policy will remain local
-/// to the playback device even when long form video content is being routed to AirPlay.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutesharingpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionRouteSharingPolicy(pub NSUInteger);
 impl AVAudioSessionRouteSharingPolicy {
+    /// Follow normal rules for routing audio output.
     #[doc(alias = "AVAudioSessionRouteSharingPolicyDefault")]
     pub const Default: Self = Self(0);
+    /// Route output to the shared long-form audio output. A session whose primary use case is as a
+    /// music or podcast player may use this value to play to the same output as the built-in Music (iOS),
+    /// Podcasts, or iTunes (macOS) applications. Typically applications that use this policy will also
+    /// want sign up for remote control events as documented in “Event Handling Guide for UIKit Apps”
+    /// and will want to utilize MediaPlayer framework’s MPNowPlayingInfoCenter class. All applications
+    /// on the system that use the long-form audio route sharing policy will have their audio routed to the
+    /// same location.
+    /// Apps running on watchOS using this policy will also be able to play audio in the background,
+    /// as long as an eligible audio route can be activated. Apps running on watchOS using this policy
+    /// must use -activateWithOptions:completionHandler: instead of -setActive:withOptions:error: in
+    /// order to ensure that the user will be given the opportunity to pick an appropriate audio route
+    /// in cases where the system is unable to automatically pick the route.
     #[doc(alias = "AVAudioSessionRouteSharingPolicyLongFormAudio")]
     pub const LongFormAudio: Self = Self(1);
+    /// Deprecated. Replaced by AVAudioSessionRouteSharingPolicyLongFormAudio.
     #[doc(alias = "AVAudioSessionRouteSharingPolicyLongForm")]
     #[deprecated]
     pub const LongForm: Self = Self(AVAudioSessionRouteSharingPolicy::LongFormAudio.0);
+    /// Applications should not attempt to set this value directly. On iOS, this value will be set by
+    /// the system in cases where route picker UI is used to direct video to a wireless route.
     #[doc(alias = "AVAudioSessionRouteSharingPolicyIndependent")]
     pub const Independent: Self = Self(2);
+    /// Route output to the shared long-form video output. A session whose primary use case is as a
+    /// movie or other long-form video content player may use this value to play to the same output as
+    /// other long-form video content applications such as the built-in TV (iOS) application. Applications
+    /// that use this policy will also want to also set the AVInitialRouteSharingPolicy key
+    /// in their Info.plist to "LongFormVideo". All applications on the system that use the long-form video
+    /// route sharing policy will have their audio and video routed to the same location (e.g. AppleTV when
+    /// an AirPlay route is selected). Video content not using this route sharing policy will remain local
+    /// to the playback device even when long form video content is being routed to AirPlay.
     #[doc(alias = "AVAudioSessionRouteSharingPolicyLongFormVideo")]
     pub const LongFormVideo: Self = Self(3);
 }
@@ -1156,26 +1141,23 @@ unsafe impl RefEncode for AVAudioSessionRouteSharingPolicy {
 /// modify their prompts in response. Apple encourages the use of non-verbal prompts when the Short
 /// style is requested.
 ///
-/// Indicates that another session is actively using microphone input and would be negatively impacted
-/// by having prompts play at that time. For example if Siri is recognizing speech, having navigation or
-/// exercise prompts play, could interfere with its ability to accurately recognize the user’s speech.
-/// Client sessions should refrain from playing any prompts while the prompt style is None.
-///
-/// Indicates one of three states: Siri is active but not recording, voicemail playback is active, or
-/// voice call is active. Short, non-verbal versions of prompts should be used.
-///
-/// Indicates that normal (long, verbal) versions of prompts may be used.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionpromptstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionPromptStyle(pub NSUInteger);
 impl AVAudioSessionPromptStyle {
+    /// Indicates that another session is actively using microphone input and would be negatively impacted
+    /// by having prompts play at that time. For example if Siri is recognizing speech, having navigation or
+    /// exercise prompts play, could interfere with its ability to accurately recognize the user’s speech.
+    /// Client sessions should refrain from playing any prompts while the prompt style is None.
     #[doc(alias = "AVAudioSessionPromptStyleNone")]
     pub const None: Self = Self(0x6e6f6e65);
+    /// Indicates one of three states: Siri is active but not recording, voicemail playback is active, or
+    /// voice call is active. Short, non-verbal versions of prompts should be used.
     #[doc(alias = "AVAudioSessionPromptStyleShort")]
     pub const Short: Self = Self(0x73687274);
+    /// Indicates that normal (long, verbal) versions of prompts may be used.
     #[doc(alias = "AVAudioSessionPromptStyleNormal")]
     pub const Normal: Self = Self(0x6e726d6c);
 }
@@ -1190,31 +1172,25 @@ unsafe impl RefEncode for AVAudioSessionPromptStyle {
 
 /// Constants indicating stereo input audio orientation, for use with built-in mic input data sources with a stereo polar pattern selected.
 ///
-///
-/// Indicates that audio capture orientation is not applicable (on mono capture, for instance).
-///
-/// Indicates that audio capture should be oriented vertically, Lightning connector on the bottom.
-///
-/// Indicates that audio capture should be oriented vertically, Lightning connector on the top.
-///
-/// Indicates that audio capture should be oriented horizontally, Lightning connector on the right.
-///
-/// Indicates that audio capture should be oriented horizontally, Lightning connector on the left.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiostereoorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioStereoOrientation(pub NSInteger);
 impl AVAudioStereoOrientation {
+    /// Indicates that audio capture orientation is not applicable (on mono capture, for instance).
     #[doc(alias = "AVAudioStereoOrientationNone")]
     pub const None: Self = Self(0);
+    /// Indicates that audio capture should be oriented vertically, Lightning connector on the bottom.
     #[doc(alias = "AVAudioStereoOrientationPortrait")]
     pub const Portrait: Self = Self(1);
+    /// Indicates that audio capture should be oriented vertically, Lightning connector on the top.
     #[doc(alias = "AVAudioStereoOrientationPortraitUpsideDown")]
     pub const PortraitUpsideDown: Self = Self(2);
+    /// Indicates that audio capture should be oriented horizontally, Lightning connector on the right.
     #[doc(alias = "AVAudioStereoOrientationLandscapeRight")]
     pub const LandscapeRight: Self = Self(3);
+    /// Indicates that audio capture should be oriented horizontally, Lightning connector on the left.
     #[doc(alias = "AVAudioStereoOrientationLandscapeLeft")]
     pub const LandscapeLeft: Self = Self(4);
 }
@@ -1229,12 +1205,6 @@ unsafe impl RefEncode for AVAudioStereoOrientation {
 
 /// These are the values returned by recordPermission.
 ///
-/// The user has not yet been asked for permission.
-///
-/// The user has been asked and has denied permission.
-///
-/// The user has been asked and has granted permission.
-///
 /// Introduced: ios(8.0), watchos(4.0)
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrecordpermission?language=objc)
@@ -1243,12 +1213,15 @@ unsafe impl RefEncode for AVAudioStereoOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionRecordPermission(pub NSUInteger);
 impl AVAudioSessionRecordPermission {
+    /// The user has not yet been asked for permission.
     #[doc(alias = "AVAudioSessionRecordPermissionUndetermined")]
     #[deprecated]
     pub const Undetermined: Self = Self(0x756e6474);
+    /// The user has been asked and has denied permission.
     #[doc(alias = "AVAudioSessionRecordPermissionDenied")]
     #[deprecated]
     pub const Denied: Self = Self(0x64656e79);
+    /// The user has been asked and has granted permission.
     #[doc(alias = "AVAudioSessionRecordPermissionGranted")]
     #[deprecated]
     pub const Granted: Self = Self(0x67726e74);

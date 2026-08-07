@@ -11,40 +11,28 @@ use crate::*;
 
 /// MTLCommandBufferStatus reports the current stage in the lifetime of MTLCommandBuffer, as it proceeds to enqueued, committed, scheduled, and completed.
 ///
-///
-/// The command buffer has not been enqueued yet.
-///
-///
-/// This command buffer is enqueued, but not committed.
-///
-///
-/// Commited to its command queue, but not yet scheduled for execution.
-///
-///
-/// All dependencies have been resolved and the command buffer has been scheduled for execution.
-///
-///
-/// The command buffer has finished executing successfully: any blocks set with -addCompletedHandler: may now be called.
-///
-///
-/// Execution of the command buffer was aborted due to an error during execution.  Check -error for more information.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandBufferStatus(pub NSUInteger);
 impl MTLCommandBufferStatus {
+    /// The command buffer has not been enqueued yet.
     #[doc(alias = "MTLCommandBufferStatusNotEnqueued")]
     pub const NotEnqueued: Self = Self(0);
+    /// This command buffer is enqueued, but not committed.
     #[doc(alias = "MTLCommandBufferStatusEnqueued")]
     pub const Enqueued: Self = Self(1);
+    /// Commited to its command queue, but not yet scheduled for execution.
     #[doc(alias = "MTLCommandBufferStatusCommitted")]
     pub const Committed: Self = Self(2);
+    /// All dependencies have been resolved and the command buffer has been scheduled for execution.
     #[doc(alias = "MTLCommandBufferStatusScheduled")]
     pub const Scheduled: Self = Self(3);
+    /// The command buffer has finished executing successfully: any blocks set with -addCompletedHandler: may now be called.
     #[doc(alias = "MTLCommandBufferStatusCompleted")]
     pub const Completed: Self = Self(4);
+    /// Execution of the command buffer was aborted due to an error during execution.  Check -error for more information.
     #[doc(alias = "MTLCommandBufferStatusError")]
     pub const Error: Self = Self(5);
 }
@@ -66,36 +54,6 @@ extern "C" {
 
 /// Error codes that can be found in MTLCommandBuffer.error
 ///
-///
-/// An internal error that doesn't fit into the other categories. The actual low level error code is encoded in the local description.
-///
-///
-/// Execution of this command buffer took too long, execution of this command was interrupted and aborted.
-///
-///
-/// Execution of this command buffer generated an unserviceable GPU page fault. This can caused by buffer read write attribute mismatch or out of boundary access.
-///
-///
-/// Access to this device has been revoked because this client has been responsible for too many timeouts or hangs.
-///
-///
-/// This process does not have access to use this device.
-///
-///
-/// Insufficient memory was available to execute this command buffer.
-///
-///
-/// The command buffer referenced an invalid resource.  This is most commonly caused when the caller deletes a resource before executing a command buffer that refers to it.
-///
-///
-/// One or more internal resources limits reached that prevent using memoryless render pass attachments. See error string for more detail.
-///
-///
-/// The device was physically removed before the command could finish execution
-///
-///
-/// Execution of the command buffer was stopped due to Stack Overflow Exception. [MTLComputePipelineDescriptor maxCallStackDepth] setting needs to be checked.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -104,27 +62,37 @@ pub struct MTLCommandBufferError(pub NSUInteger);
 impl MTLCommandBufferError {
     #[doc(alias = "MTLCommandBufferErrorNone")]
     pub const None: Self = Self(0);
+    /// An internal error that doesn't fit into the other categories. The actual low level error code is encoded in the local description.
     #[doc(alias = "MTLCommandBufferErrorInternal")]
     pub const Internal: Self = Self(1);
+    /// Execution of this command buffer took too long, execution of this command was interrupted and aborted.
     #[doc(alias = "MTLCommandBufferErrorTimeout")]
     pub const Timeout: Self = Self(2);
+    /// Execution of this command buffer generated an unserviceable GPU page fault. This can caused by buffer read write attribute mismatch or out of boundary access.
     #[doc(alias = "MTLCommandBufferErrorPageFault")]
     pub const PageFault: Self = Self(3);
     #[doc(alias = "MTLCommandBufferErrorBlacklisted")]
     #[deprecated]
     pub const Blacklisted: Self = Self(4);
+    /// Access to this device has been revoked because this client has been responsible for too many timeouts or hangs.
     #[doc(alias = "MTLCommandBufferErrorAccessRevoked")]
     pub const AccessRevoked: Self = Self(4);
+    /// This process does not have access to use this device.
     #[doc(alias = "MTLCommandBufferErrorNotPermitted")]
     pub const NotPermitted: Self = Self(7);
+    /// Insufficient memory was available to execute this command buffer.
     #[doc(alias = "MTLCommandBufferErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(8);
+    /// The command buffer referenced an invalid resource.  This is most commonly caused when the caller deletes a resource before executing a command buffer that refers to it.
     #[doc(alias = "MTLCommandBufferErrorInvalidResource")]
     pub const InvalidResource: Self = Self(9);
+    /// One or more internal resources limits reached that prevent using memoryless render pass attachments. See error string for more detail.
     #[doc(alias = "MTLCommandBufferErrorMemoryless")]
     pub const Memoryless: Self = Self(10);
+    /// The device was physically removed before the command could finish execution
     #[doc(alias = "MTLCommandBufferErrorDeviceRemoved")]
     pub const DeviceRemoved: Self = Self(11);
+    /// Execution of the command buffer was stopped due to Stack Overflow Exception. [MTLComputePipelineDescriptor maxCallStackDepth] setting needs to be checked.
     #[doc(alias = "MTLCommandBufferErrorStackOverflow")]
     pub const StackOverflow: Self = Self(12);
 }
@@ -146,12 +114,6 @@ extern "C" {
 
 /// Options for controlling the error reporting for Metal command buffer objects.
 ///
-///
-/// No special error reporting.
-///
-///
-/// Provide the execution status of the individual encoders within the command buffer. In the event of a command buffer error, populate the `userInfo` dictionary of the command buffer's NSError parameter, see MTLCommandBufferEncoderInfoErrorKey and MTLCommandBufferEncoderInfo. Note that enabling this error reporting option may increase CPU, GPU, and/or memory overhead on some platforms; testing for impact is suggested.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -159,8 +121,10 @@ extern "C" {
 pub struct MTLCommandBufferErrorOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLCommandBufferErrorOption: NSUInteger {
+/// No special error reporting.
         #[doc(alias = "MTLCommandBufferErrorOptionNone")]
         const None = 0;
+/// Provide the execution status of the individual encoders within the command buffer. In the event of a command buffer error, populate the `userInfo` dictionary of the command buffer's NSError parameter, see MTLCommandBufferEncoderInfoErrorKey and MTLCommandBufferEncoderInfo. Note that enabling this error reporting option may increase CPU, GPU, and/or memory overhead on some platforms; testing for impact is suggested.
         #[doc(alias = "MTLCommandBufferErrorOptionEncoderExecutionStatus")]
         const EncoderExecutionStatus = 1<<0;
         const _ = !0;
@@ -177,35 +141,25 @@ unsafe impl RefEncode for MTLCommandBufferErrorOption {
 
 /// The error states for a Metal command encoder after command buffer execution.
 ///
-///
-/// The state of the commands associated with the encoder is unknown (the error information was likely not requested).
-///
-///
-/// The commands associated with the encoder were completed.
-///
-///
-/// The commands associated with the encoder were affected by an error, which may or may not have been caused by the commands themselves, and failed to execute in full.
-///
-///
-/// The commands associated with the encoder never started execution.
-///
-///
-/// The commands associated with the encoder caused an error.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandEncoderErrorState(pub NSInteger);
 impl MTLCommandEncoderErrorState {
+    /// The state of the commands associated with the encoder is unknown (the error information was likely not requested).
     #[doc(alias = "MTLCommandEncoderErrorStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The commands associated with the encoder were completed.
     #[doc(alias = "MTLCommandEncoderErrorStateCompleted")]
     pub const Completed: Self = Self(1);
+    /// The commands associated with the encoder were affected by an error, which may or may not have been caused by the commands themselves, and failed to execute in full.
     #[doc(alias = "MTLCommandEncoderErrorStateAffected")]
     pub const Affected: Self = Self(2);
+    /// The commands associated with the encoder never started execution.
     #[doc(alias = "MTLCommandEncoderErrorStatePending")]
     pub const Pending: Self = Self(3);
+    /// The commands associated with the encoder caused an error.
     #[doc(alias = "MTLCommandEncoderErrorStateFaulted")]
     pub const Faulted: Self = Self(4);
 }
@@ -324,20 +278,16 @@ pub type MTLCommandBufferHandler =
 
 /// MTLDispatchType Describes how a command encoder will execute dispatched work.
 ///
-///
-/// Command encoder dispatches are executed in dispatched order.
-///
-///
-/// Command encoder dispatches are executed in parallel with each other.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDispatchType(pub NSUInteger);
 impl MTLDispatchType {
+    /// Command encoder dispatches are executed in dispatched order.
     #[doc(alias = "MTLDispatchTypeSerial")]
     pub const Serial: Self = Self(0);
+    /// Command encoder dispatches are executed in parallel with each other.
     #[doc(alias = "MTLDispatchTypeConcurrent")]
     pub const Concurrent: Self = Self(1);
 }

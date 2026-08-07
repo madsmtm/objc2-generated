@@ -14,12 +14,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLDocumentContentKind(pub NSUInteger);
 impl NSXMLDocumentContentKind {
+    /// The default document type
     #[doc(alias = "NSXMLDocumentXMLKind")]
     pub const XMLKind: Self = Self(0);
+    /// Set if NSXMLDocumentTidyHTML is set and HTML is detected
     #[doc(alias = "NSXMLDocumentXHTMLKind")]
     pub const XHTMLKind: Self = Self(1);
+    /// Outputs empty tags without a close tag, eg <br>
     #[doc(alias = "NSXMLDocumentHTMLKind")]
     pub const HTMLKind: Self = Self(2);
+    /// Output the string value of the document
     #[doc(alias = "NSXMLDocumentTextKind")]
     pub const TextKind: Self = Self(3);
 }

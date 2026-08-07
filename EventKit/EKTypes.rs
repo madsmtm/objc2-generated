@@ -7,27 +7,31 @@ use crate::*;
 /// This enumerated type is used to indicate the currently granted authorization status for a specific
 /// entity type.
 ///
-/// may access the service.
-///
-/// The user cannot change this application’s status, possibly due to
-/// active restrictions such as parental controls being in place.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKAuthorizationStatus(pub NSInteger);
 impl EKAuthorizationStatus {
+    /// The user has not yet made a choice regarding whether this application
+    /// may access the service.
     #[doc(alias = "EKAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// This application is not authorized to access the service.
+    /// The user cannot change this application’s status, possibly due to
+    /// active restrictions such as parental controls being in place.
     #[doc(alias = "EKAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// The user explicitly denied access to the service for this application.
     #[doc(alias = "EKAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// This application is authorized to read or modify all data for the service.
     #[doc(alias = "EKAuthorizationStatusFullAccess")]
     pub const FullAccess: Self = Self(3);
+    /// This application is authorized to save new items.
     #[doc(alias = "EKAuthorizationStatusWriteOnly")]
     pub const WriteOnly: Self = Self(4);
+    /// (Deprecated) This application is authorized to access the service.
     #[doc(alias = "EKAuthorizationStatusAuthorized")]
     #[deprecated = "Check for full access or write only access"]
     pub const Authorized: Self = Self(EKAuthorizationStatus::FullAccess.0);
@@ -172,50 +176,49 @@ unsafe impl RefEncode for EKParticipantRole {
 
 /// Value representing the status of a meeting invite.
 ///
-///
-/// invitation has been sent yet.
-///
-/// sent.
-///
-/// no way of determing if it was successfully
-/// delivered.
-///
-/// successfully delivered.
-///
-/// source doesn't recognize the recipient.
-///
-/// insufficient privileges.
-///
-/// likely due to a temporary failure.
-///
-/// we're unsure how to deliver it. This is a
-/// permanent failure.
-///
-/// scheduling with the participant isn't
-/// allowed. This is a permanent failure.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKParticipantScheduleStatus(pub NSInteger);
 impl EKParticipantScheduleStatus {
+    /// Default value. Indicates that no
+    /// invitation has been sent yet.
     #[doc(alias = "EKParticipantScheduleStatusNone")]
     pub const None: Self = Self(0);
+    /// The invitation is in the process of being
+    /// sent.
     #[doc(alias = "EKParticipantScheduleStatusPending")]
     pub const Pending: Self = Self(1);
+    /// The invitation has been sent, but we have
+    /// no way of determing if it was successfully
+    /// delivered.
     #[doc(alias = "EKParticipantScheduleStatusSent")]
     pub const Sent: Self = Self(2);
+    /// The invitation has been sent and
+    /// successfully delivered.
     #[doc(alias = "EKParticipantScheduleStatusDelivered")]
     pub const Delivered: Self = Self(3);
+    /// The invitation wasn't delivered because we
+    /// source doesn't recognize the recipient.
     #[doc(alias = "EKParticipantScheduleStatusRecipientNotRecognized")]
     pub const RecipientNotRecognized: Self = Self(4);
+    /// The invitation wasn't delivered because of
+    /// insufficient privileges.
     #[doc(alias = "EKParticipantScheduleStatusNoPrivileges")]
     pub const NoPrivileges: Self = Self(5);
+    /// The invitation wasn't delivered most
+    /// likely due to a temporary failure.
     #[doc(alias = "EKParticipantScheduleStatusDeliveryFailed")]
     pub const DeliveryFailed: Self = Self(6);
+    /// The invitation wasn't delivered because
+    /// we're unsure how to deliver it. This is a
+    /// permanent failure.
     #[doc(alias = "EKParticipantScheduleStatusCannotDeliver")]
     pub const CannotDeliver: Self = Self(7);
+    /// The invitation wasn't delivered because
+    /// scheduling with the participant isn't
+    /// allowed. This is a permanent failure.
     #[doc(alias = "EKParticipantScheduleStatusRecipientNotAllowed")]
     pub const RecipientNotAllowed: Self = Self(8);
 }
@@ -270,14 +273,19 @@ unsafe impl RefEncode for EKParticipantStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarType(pub NSInteger);
 impl EKCalendarType {
+    /// This calendar is sync'd from either Mobile Me or tethered.
     #[doc(alias = "EKCalendarTypeLocal")]
     pub const Local: Self = Self(0);
+    /// This calendar is from a CalDAV server.
     #[doc(alias = "EKCalendarTypeCalDAV")]
     pub const CalDAV: Self = Self(1);
+    /// This calendar comes from an Exchange server.
     #[doc(alias = "EKCalendarTypeExchange")]
     pub const Exchange: Self = Self(2);
+    /// This is a locally subscribed calendar.
     #[doc(alias = "EKCalendarTypeSubscription")]
     pub const Subscription: Self = Self(3);
+    /// This is the built-in birthday calendar.
     #[doc(alias = "EKCalendarTypeBirthday")]
     pub const Birthday: Self = Self(4);
 }
@@ -402,10 +410,13 @@ unsafe impl RefEncode for EKEntityMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKAlarmProximity(pub NSInteger);
 impl EKAlarmProximity {
+    /// The alarm has no proximity trigger.
     #[doc(alias = "EKAlarmProximityNone")]
     pub const None: Self = Self(0);
+    /// The alarm is set to fire when entering a region (geofence).
     #[doc(alias = "EKAlarmProximityEnter")]
     pub const Enter: Self = Self(1);
+    /// The alarm is set to fire when leaving a region (geofence).
     #[doc(alias = "EKAlarmProximityLeave")]
     pub const Leave: Self = Self(2);
 }
@@ -426,12 +437,16 @@ unsafe impl RefEncode for EKAlarmProximity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKAlarmType(pub NSInteger);
 impl EKAlarmType {
+    /// The alarm displays a message.
     #[doc(alias = "EKAlarmTypeDisplay")]
     pub const Display: Self = Self(0);
+    /// The alarm plays a sound.
     #[doc(alias = "EKAlarmTypeAudio")]
     pub const Audio: Self = Self(1);
+    /// The alarm opens a URL.
     #[doc(alias = "EKAlarmTypeProcedure")]
     pub const Procedure: Self = Self(2);
+    /// The alarm sends an email.
     #[doc(alias = "EKAlarmTypeEmail")]
     pub const Email: Self = Self(3);
 }
@@ -457,12 +472,16 @@ unsafe impl RefEncode for EKAlarmType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKReminderPriority(pub NSUInteger);
 impl EKReminderPriority {
+    /// The reminder has no priority set.
     #[doc(alias = "EKReminderPriorityNone")]
     pub const None: Self = Self(0);
+    /// The reminder is high priority.
     #[doc(alias = "EKReminderPriorityHigh")]
     pub const High: Self = Self(1);
+    /// The reminder is medium priority.
     #[doc(alias = "EKReminderPriorityMedium")]
     pub const Medium: Self = Self(5);
+    /// The reminder is low priority.
     #[doc(alias = "EKReminderPriorityLow")]
     pub const Low: Self = Self(9);
 }

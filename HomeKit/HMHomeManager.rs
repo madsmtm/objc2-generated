@@ -16,10 +16,13 @@ use crate::*;
 pub struct HMHomeManagerAuthorizationStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl HMHomeManagerAuthorizationStatus: NSUInteger {
+/// Indicates the user has not yet made a choice regarding the access of the application.
         #[doc(alias = "HMHomeManagerAuthorizationStatusDetermined")]
         const Determined = 1<<0;
+/// Access to home data is currently restricted by the system.
         #[doc(alias = "HMHomeManagerAuthorizationStatusRestricted")]
         const Restricted = 1<<1;
+/// The application is authorized to access home data.
         #[doc(alias = "HMHomeManagerAuthorizationStatusAuthorized")]
         const Authorized = 1<<2;
         const _ = !0;

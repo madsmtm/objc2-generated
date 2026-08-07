@@ -10,46 +10,37 @@ use crate::*;
 
 /// These constants specify the possible formats of the data returned by ITLibArtwork's imageData method.
 ///
-/// The image data format is unknown.
-///
-/// The image data format is a bitmap.
-///
-/// The image data corresponds to a JPEG image.
-///
-/// The image data corresponds to a JPEG2000 image.
-///
-/// The image data corresponds to a GIF image.
-///
-/// The image data corresponds to a PNG image.
-///
-/// The image data corresponds to a BMP image.
-///
-/// The image data corresponds to a TIFF image.
-///
-/// The image data corresponds to a PICT image.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartworkformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibArtworkFormat(pub NSUInteger);
 impl ITLibArtworkFormat {
+    /// The image data format is unknown.
     #[doc(alias = "ITLibArtworkFormatNone")]
     pub const None: Self = Self(0);
+    /// The image data format is a bitmap.
     #[doc(alias = "ITLibArtworkFormatBitmap")]
     pub const Bitmap: Self = Self(1);
+    /// The image data corresponds to a JPEG image.
     #[doc(alias = "ITLibArtworkFormatJPEG")]
     pub const JPEG: Self = Self(2);
+    /// The image data corresponds to a JPEG2000 image.
     #[doc(alias = "ITLibArtworkFormatJPEG2000")]
     pub const JPEG2000: Self = Self(3);
+    /// The image data corresponds to a GIF image.
     #[doc(alias = "ITLibArtworkFormatGIF")]
     pub const GIF: Self = Self(4);
+    /// The image data corresponds to a PNG image.
     #[doc(alias = "ITLibArtworkFormatPNG")]
     pub const PNG: Self = Self(5);
+    /// The image data corresponds to a BMP image.
     #[doc(alias = "ITLibArtworkFormatBMP")]
     pub const BMP: Self = Self(6);
+    /// The image data corresponds to a TIFF image.
     #[doc(alias = "ITLibArtworkFormatTIFF")]
     pub const TIFF: Self = Self(7);
+    /// The image data corresponds to a PICT image.
     #[doc(alias = "ITLibArtworkFormatPICT")]
     pub const PICT: Self = Self(8);
 }

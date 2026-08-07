@@ -12,10 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASUserDetectionStatus(pub NSInteger);
 impl ASUserDetectionStatus {
+    /// Not supported on current platform, ignore the value
     #[doc(alias = "ASUserDetectionStatusUnsupported")]
     pub const Unsupported: Self = Self(0);
+    /// We could not determine the value.  New users in the ecosystem will get this value as well, so you should not block these users, but instead treat them as any new user through standard email sign up flows
     #[doc(alias = "ASUserDetectionStatusUnknown")]
     pub const Unknown: Self = Self(1);
+    /// A hint that we have high confidence that the user is real.
     #[doc(alias = "ASUserDetectionStatusLikelyReal")]
     pub const LikelyReal: Self = Self(2);
 }
@@ -34,10 +37,13 @@ unsafe impl RefEncode for ASUserDetectionStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASUserAgeRange(pub NSInteger);
 impl ASUserAgeRange {
+    /// This is returned if the project is missing the required entitlement to support child accounts.
     #[doc(alias = "ASUserAgeRangeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The user is a child.
     #[doc(alias = "ASUserAgeRangeChild")]
     pub const Child: Self = Self(1);
+    /// The user is not a child.
     #[doc(alias = "ASUserAgeRangeNotChild")]
     pub const NotChild: Self = Self(2);
 }

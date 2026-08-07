@@ -12,26 +12,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// The inline controls pane for media recording is associated with the view.
-///
-/// The floating controls pane for media recordings is associated with the view.
-///
-/// The inline controls pane for selection capture devices is associated with the view.
-///
-/// The default controls pane is associated with the view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureViewControlsStyle(pub NSInteger);
 impl AVCaptureViewControlsStyle {
+    /// The inline controls pane for media recording is associated with the view.
     #[doc(alias = "AVCaptureViewControlsStyleInline")]
     pub const Inline: Self = Self(0);
+    /// The floating controls pane for media recordings is associated with the view.
     #[doc(alias = "AVCaptureViewControlsStyleFloating")]
     pub const Floating: Self = Self(1);
+    /// The inline controls pane for selection capture devices is associated with the view.
     #[doc(alias = "AVCaptureViewControlsStyleInlineDeviceSelection")]
     pub const InlineDeviceSelection: Self = Self(2);
+    /// The default controls pane is associated with the view.
     #[doc(alias = "AVCaptureViewControlsStyleDefault")]
     pub const Default: Self = Self(AVCaptureViewControlsStyle::Inline.0);
 }

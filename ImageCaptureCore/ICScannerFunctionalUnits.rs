@@ -19,12 +19,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerFunctionalUnitType(pub NSUInteger);
 impl ICScannerFunctionalUnitType {
+    /// Flatbed functional unit.
     #[doc(alias = "ICScannerFunctionalUnitTypeFlatbed")]
     pub const Flatbed: Self = Self(0);
+    /// Transparency functional unit for scanning positives.
     #[doc(alias = "ICScannerFunctionalUnitTypePositiveTransparency")]
     pub const PositiveTransparency: Self = Self(1);
+    /// Transparency functional unit for scanning negatives.
     #[doc(alias = "ICScannerFunctionalUnitTypeNegativeTransparency")]
     pub const NegativeTransparency: Self = Self(2);
+    /// Document feeder functional unit.
     #[doc(alias = "ICScannerFunctionalUnitTypeDocumentFeeder")]
     pub const DocumentFeeder: Self = Self(3);
 }
@@ -45,14 +49,19 @@ unsafe impl RefEncode for ICScannerFunctionalUnitType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerMeasurementUnit(pub NSUInteger);
 impl ICScannerMeasurementUnit {
+    /// 1 inch  = 2.54         cm
     #[doc(alias = "ICScannerMeasurementUnitInches")]
     pub const Inches: Self = Self(0);
+    /// 1 cm    = 1.00         cm or 1/2.54 inches
     #[doc(alias = "ICScannerMeasurementUnitCentimeters")]
     pub const Centimeters: Self = Self(1);
+    /// 1 pica  = .42333333    cm or 1/6    inches
     #[doc(alias = "ICScannerMeasurementUnitPicas")]
     pub const Picas: Self = Self(2);
+    /// 1 point = .0352777775  cm or 1/72   inches
     #[doc(alias = "ICScannerMeasurementUnitPoints")]
     pub const Points: Self = Self(3);
+    /// 1 twip  = .0001763888  cm or 1/1440 inches
     #[doc(alias = "ICScannerMeasurementUnitTwips")]
     pub const Twips: Self = Self(4);
     #[doc(alias = "ICScannerMeasurementUnitPixels")]
@@ -75,10 +84,13 @@ unsafe impl RefEncode for ICScannerMeasurementUnit {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICScannerBitDepth(pub NSUInteger);
 impl ICScannerBitDepth {
+    /// 1-bit image.
     #[doc(alias = "ICScannerBitDepth1Bit")]
     pub const Depth1Bit: Self = Self(1);
+    /// Image with 8 bits per channel.
     #[doc(alias = "ICScannerBitDepth8Bits")]
     pub const Depth8Bits: Self = Self(8);
+    /// Image with 16 bits per channel.
     #[doc(alias = "ICScannerBitDepth16Bits")]
     pub const Depth16Bits: Self = Self(16);
 }
@@ -99,8 +111,10 @@ unsafe impl RefEncode for ICScannerBitDepth {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerColorDataFormatType(pub NSUInteger);
 impl ICScannerColorDataFormatType {
+    /// For multi-channel data (e.g., RGB) data from all channels are interleaved.
     #[doc(alias = "ICScannerColorDataFormatTypeChunky")]
     pub const Chunky: Self = Self(0);
+    /// For multi-channel data (e.g., RGB) each channel is transferred sequentially.
     #[doc(alias = "ICScannerColorDataFormatTypePlanar")]
     pub const Planar: Self = Self(1);
 }
@@ -121,22 +135,31 @@ unsafe impl RefEncode for ICScannerColorDataFormatType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerPixelDataType(pub NSUInteger);
 impl ICScannerPixelDataType {
+    /// Monochrome 1 bit pixel image.
     #[doc(alias = "ICScannerPixelDataTypeBW")]
     pub const BW: Self = Self(0);
+    /// 8 bit pixel Gray color space.
     #[doc(alias = "ICScannerPixelDataTypeGray")]
     pub const Gray: Self = Self(1);
+    /// Color image RGB color space.
     #[doc(alias = "ICScannerPixelDataTypeRGB")]
     pub const RGB: Self = Self(2);
+    /// Indexed Color image.
     #[doc(alias = "ICScannerPixelDataTypePalette")]
     pub const Palette: Self = Self(3);
+    /// Color image in CMY color space.
     #[doc(alias = "ICScannerPixelDataTypeCMY")]
     pub const CMY: Self = Self(4);
+    /// Color image in CMYK color space.
     #[doc(alias = "ICScannerPixelDataTypeCMYK")]
     pub const CMYK: Self = Self(5);
+    /// Color image in YUV color space.
     #[doc(alias = "ICScannerPixelDataTypeYUV")]
     pub const YUV: Self = Self(6);
+    /// Color image in YUVK color space.
     #[doc(alias = "ICScannerPixelDataTypeYUVK")]
     pub const YUVK: Self = Self(7);
+    /// Color image in CIEXYZ color space.
     #[doc(alias = "ICScannerPixelDataTypeCIEXYZ")]
     pub const CIEXYZ: Self = Self(8);
 }
@@ -157,148 +180,220 @@ unsafe impl RefEncode for ICScannerPixelDataType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerDocumentType(pub NSUInteger);
 impl ICScannerDocumentType {
+    /// This is the platten size. Not valid for scanners without a platten.
     #[doc(alias = "ICScannerDocumentTypeDefault")]
     pub const TypeDefault: Self = Self(0);
+    /// A4,                               210.00 mm x  297.00 mm
     #[doc(alias = "ICScannerDocumentTypeA4")]
     pub const TypeA4: Self = Self(1);
+    /// B5/JIS B5,                        182.00 mm x  257.00 mm
     #[doc(alias = "ICScannerDocumentTypeB5")]
     pub const TypeB5: Self = Self(2);
+    /// US Letter,        8.5” x 11.0”,   215.90 mm x  279.40 mm
     #[doc(alias = "ICScannerDocumentTypeUSLetter")]
     pub const TypeUSLetter: Self = Self(3);
+    /// US Legal,         8.5” x 14.0”,   215.90 mm x  355.60 mm
     #[doc(alias = "ICScannerDocumentTypeUSLegal")]
     pub const TypeUSLegal: Self = Self(4);
+    /// A5,                               148.00 mm x  210.00 mm
     #[doc(alias = "ICScannerDocumentTypeA5")]
     pub const TypeA5: Self = Self(5);
+    /// B4/ISO B4,                        250.00 mm x  353.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB4")]
     pub const TypeISOB4: Self = Self(6);
+    /// B6/ISO B6,                        125.00 mm x  176.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB6")]
     pub const TypeISOB6: Self = Self(7);
+    /// US Ledger,         11” x 17.0”,   279.40 mm x  431.80 mm
     #[doc(alias = "ICScannerDocumentTypeUSLedger")]
     pub const TypeUSLedger: Self = Self(9);
+    /// US Executive,    7.25" x 10.5",   184.15 mm x  266.70 mm
     #[doc(alias = "ICScannerDocumentTypeUSExecutive")]
     pub const TypeUSExecutive: Self = Self(10);
+    /// A3,                               297.00 mm x  420.00 mm
     #[doc(alias = "ICScannerDocumentTypeA3")]
     pub const TypeA3: Self = Self(11);
+    /// B3/ISO B3,                        353.00 mm x  500.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB3")]
     pub const TypeISOB3: Self = Self(12);
+    /// A6,                               105.00 mm x  148.00 mm
     #[doc(alias = "ICScannerDocumentTypeA6")]
     pub const TypeA6: Self = Self(13);
+    /// C4,                               229.00 mm x  324.00 mm
     #[doc(alias = "ICScannerDocumentTypeC4")]
     pub const TypeC4: Self = Self(14);
+    /// C5,                               162.00 mm x  229.00 mm
     #[doc(alias = "ICScannerDocumentTypeC5")]
     pub const TypeC5: Self = Self(15);
+    /// C6,                               114.00 mm x  162.00 mm
     #[doc(alias = "ICScannerDocumentTypeC6")]
     pub const TypeC6: Self = Self(16);
+    /// 4A0,                             1682.00 mm x 2378.00 mm
     #[doc(alias = "ICScannerDocumentType4A0")]
     pub const Type4A0: Self = Self(17);
+    /// 2A0,                             1189.00 mm x 1682.00 mm
     #[doc(alias = "ICScannerDocumentType2A0")]
     pub const Type2A0: Self = Self(18);
+    /// A0,                               841.00 mm x 1189.00 mm
     #[doc(alias = "ICScannerDocumentTypeA0")]
     pub const TypeA0: Self = Self(19);
+    /// A1,                               594.00 mm x  841.00 mm
     #[doc(alias = "ICScannerDocumentTypeA1")]
     pub const TypeA1: Self = Self(20);
+    /// A2,                               420.00 mm x  594.00 mm
     #[doc(alias = "ICScannerDocumentTypeA2")]
     pub const TypeA2: Self = Self(21);
+    /// A7,                                74.00 mm x  105.00 mm
     #[doc(alias = "ICScannerDocumentTypeA7")]
     pub const TypeA7: Self = Self(22);
+    /// A8,                                52.00 mm x   74.00 mm
     #[doc(alias = "ICScannerDocumentTypeA8")]
     pub const TypeA8: Self = Self(23);
+    /// A9,                                37.00 mm x   52.00 mm
     #[doc(alias = "ICScannerDocumentTypeA9")]
     pub const TypeA9: Self = Self(24);
+    /// A10,                               26.00 mm x   37.00 mm
     #[doc(alias = "ICScannerDocumentType10")]
     pub const Type10: Self = Self(25);
+    /// ISO B0,                          1000.00 mm x 1414.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB0")]
     pub const TypeISOB0: Self = Self(26);
+    /// ISO B1,                           707.00 mm x 1000.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB1")]
     pub const TypeISOB1: Self = Self(27);
+    /// ISO B2,                           500.00 mm x  707.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB2")]
     pub const TypeISOB2: Self = Self(28);
+    /// ISO B5,                           176.00 mm x  250.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB5")]
     pub const TypeISOB5: Self = Self(29);
+    /// ISO B7,                            88.00 mm x  125.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB7")]
     pub const TypeISOB7: Self = Self(30);
+    /// ISO B8,                            62.00 mm x   88.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB8")]
     pub const TypeISOB8: Self = Self(31);
+    /// ISO B9,                            44.00 mm x   62.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB9")]
     pub const TypeISOB9: Self = Self(32);
+    /// ISO B10,                           31.00 mm x   44.00 mm
     #[doc(alias = "ICScannerDocumentTypeISOB10")]
     pub const TypeISOB10: Self = Self(33);
+    /// JIS B0,                          1030.00 mm x 1456.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB0")]
     pub const TypeJISB0: Self = Self(34);
+    /// JIS B1,                           728.00 mm x 1030.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB1")]
     pub const TypeJISB1: Self = Self(35);
+    /// JIS B2,                           515.00 mm x  728.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB2")]
     pub const TypeJISB2: Self = Self(36);
+    /// JIS B3,                           364.00 mm x  515.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB3")]
     pub const TypeJISB3: Self = Self(37);
+    /// JIS B4,                           257.00 mm x  364.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB4")]
     pub const TypeJISB4: Self = Self(38);
+    /// JIS B6,                           128.00 mm x  182.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB6")]
     pub const TypeJISB6: Self = Self(39);
+    /// JIS B7,                            91.00 mm x  128.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB7")]
     pub const TypeJISB7: Self = Self(40);
+    /// JIS B8,                            64.00 mm x   91.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB8")]
     pub const TypeJISB8: Self = Self(41);
+    /// JIS B9,                            45.00 mm x   64.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB9")]
     pub const TypeJISB9: Self = Self(42);
+    /// JIS B10,                           32.00 mm x   45.00 mm
     #[doc(alias = "ICScannerDocumentTypeJISB10")]
     pub const TypeJISB10: Self = Self(43);
+    /// C0,                               917.00 mm x 1297.00 mm
     #[doc(alias = "ICScannerDocumentTypeC0")]
     pub const TypeC0: Self = Self(44);
+    /// C1,                               648.00 mm x  917.00 mm
     #[doc(alias = "ICScannerDocumentTypeC1")]
     pub const TypeC1: Self = Self(45);
+    /// C2,                               458.00 mm x  648.00 mm
     #[doc(alias = "ICScannerDocumentTypeC2")]
     pub const TypeC2: Self = Self(46);
+    /// C3,                               324.00 mm x  458.00 mm
     #[doc(alias = "ICScannerDocumentTypeC3")]
     pub const TypeC3: Self = Self(47);
+    /// C7,                                81.00 mm x  114.00 mm
     #[doc(alias = "ICScannerDocumentTypeC7")]
     pub const TypeC7: Self = Self(48);
+    /// C8,                                57.00 mm x   81.00 mm
     #[doc(alias = "ICScannerDocumentTypeC8")]
     pub const TypeC8: Self = Self(49);
+    /// C9,                                40.00 mm x   57.00 mm
     #[doc(alias = "ICScannerDocumentTypeC9")]
     pub const TypeC9: Self = Self(50);
+    /// C10,                               28.00 mm x   40.00 mm
     #[doc(alias = "ICScannerDocumentTypeC10")]
     pub const TypeC10: Self = Self(51);
+    /// US Statement,     5.5” x  8.5”,   139.70 mm x  215.90 mm
     #[doc(alias = "ICScannerDocumentTypeUSStatement")]
     pub const TypeUSStatement: Self = Self(52);
+    /// Business Card,                     90.00 mm x   55.00 mm
     #[doc(alias = "ICScannerDocumentTypeBusinessCard")]
     pub const TypeBusinessCard: Self = Self(53);
+    /// Japanese E,      3.25" x 4.75"     82.55 mm x  120.65 mm      11:16
     #[doc(alias = "ICScannerDocumentTypeE")]
     pub const TypeE: Self = Self(60);
+    /// 3R,              3.5"  x 5"        88.90 mm x  127.00 mm       7:10
     #[doc(alias = "ICScannerDocumentType3R")]
     pub const Type3R: Self = Self(61);
+    /// 4R,              4"    x 6"       101.60 mm x  152.40 mm       2:3
     #[doc(alias = "ICScannerDocumentType4R")]
     pub const Type4R: Self = Self(62);
+    /// 5R,              5"    x 7"       127.00 mm x  177.80 mm       5:7
     #[doc(alias = "ICScannerDocumentType5R")]
     pub const Type5R: Self = Self(63);
+    /// 6R,              6"    x 8"       152.40 mm x  203.20 mm       3:4
     #[doc(alias = "ICScannerDocumentType6R")]
     pub const Type6R: Self = Self(64);
+    /// 8R,              8"    x 10"      203.20 mm x  254.00 mm       4:5
     #[doc(alias = "ICScannerDocumentType8R")]
     pub const Type8R: Self = Self(65);
+    /// S8R              8"    x 12"      203.20 mm x  304.80 mm       2:3
     #[doc(alias = "ICScannerDocumentTypeS8R")]
     pub const TypeS8R: Self = Self(66);
+    /// 10R,             10"   x 12"      254.00 mm x  304.80 mm       5:6
     #[doc(alias = "ICScannerDocumentType10R")]
     pub const Type10R: Self = Self(67);
+    /// S10R,            10"   x 15"      254.00 mm x  381.00 mm       2:3
     #[doc(alias = "ICScannerDocumentTypeS10R")]
     pub const TypeS10R: Self = Self(68);
+    /// 11R,             11"   x 14"      279.40 mm x  355.60 mm      11:14
     #[doc(alias = "ICScannerDocumentType11R")]
     pub const Type11R: Self = Self(69);
+    /// 12R,             12"   x 15"      304.80 mm x  381.00 mm       4:5
     #[doc(alias = "ICScannerDocumentType12R")]
     pub const Type12R: Self = Self(70);
+    /// S12R,            12"   x 18"      304.80 mm x  457.20 mm       2:3
     #[doc(alias = "ICScannerDocumentTypeS12R")]
     pub const TypeS12R: Self = Self(71);
+    /// Instamatic 110,                    13.00 mm x   17.00 mm
     #[doc(alias = "ICScannerDocumentType110")]
     pub const Type110: Self = Self(72);
+    /// APS High Definition,               30.20 mm x   16.70 mm
     #[doc(alias = "ICScannerDocumentTypeAPSH")]
     pub const TypeAPSH: Self = Self(73);
+    /// APS Classic,                       25.10 mm x   16.70 mm
     #[doc(alias = "ICScannerDocumentTypeAPSC")]
     pub const TypeAPSC: Self = Self(74);
+    /// APS Panoramic,                     30.20 mm x    9.50 mm
     #[doc(alias = "ICScannerDocumentTypeAPSP")]
     pub const TypeAPSP: Self = Self(75);
+    /// Standard 35 mm,                    36.00 mm x   24.00 mm
     #[doc(alias = "ICScannerDocumentType135")]
     pub const Type135: Self = Self(76);
+    /// Medium Format,                     60.00 mm x   60.00 mm
     #[doc(alias = "ICScannerDocumentTypeMF")]
     pub const TypeMF: Self = Self(77);
+    /// Large Format,                     100.00 mm x  120.00 mm
     #[doc(alias = "ICScannerDocumentTypeLF")]
     pub const TypeLF: Self = Self(78);
 }
@@ -343,10 +438,13 @@ unsafe impl RefEncode for ICScannerFunctionalUnitState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerFeatureType(pub NSUInteger);
 impl ICScannerFeatureType {
+    /// This feature can have one of several discrete values, strings or numbers.
     #[doc(alias = "ICScannerFeatureTypeEnumeration")]
     pub const Enumeration: Self = Self(0);
+    /// This value of this feature lies within a range.
     #[doc(alias = "ICScannerFeatureTypeRange")]
     pub const Range: Self = Self(1);
+    /// The value of this feature can be YES or NO.
     #[doc(alias = "ICScannerFeatureTypeBoolean")]
     pub const Boolean: Self = Self(2);
     #[doc(alias = "ICScannerFeatureTypeTemplate")]

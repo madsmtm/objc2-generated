@@ -36,20 +36,28 @@ unsafe impl RefEncode for HKElectrocardiogramLead {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKElectrocardiogramClassification(pub NSInteger);
 impl HKElectrocardiogramClassification {
+    /// No classification is set on this sample.
     #[doc(alias = "HKElectrocardiogramClassificationNotSet")]
     pub const NotSet: Self = Self(0);
+    /// The sample exhibits no signs  of atrial fibrillation.
     #[doc(alias = "HKElectrocardiogramClassificationSinusRhythm")]
     pub const SinusRhythm: Self = Self(1);
+    /// The sample exhibits signs of atrial fibrillation.
     #[doc(alias = "HKElectrocardiogramClassificationAtrialFibrillation")]
     pub const AtrialFibrillation: Self = Self(2);
+    /// The sample classifier could not check for atrial fibrillation due to a heart rate under 50 BPM.
     #[doc(alias = "HKElectrocardiogramClassificationInconclusiveLowHeartRate")]
     pub const InconclusiveLowHeartRate: Self = Self(3);
+    /// The sample classifier could not check for atrial fibrillation due to a high heart rate.
     #[doc(alias = "HKElectrocardiogramClassificationInconclusiveHighHeartRate")]
     pub const InconclusiveHighHeartRate: Self = Self(4);
+    /// The sample classifier did not attempt a classification due to not meeting the signal requirements.
     #[doc(alias = "HKElectrocardiogramClassificationInconclusivePoorReading")]
     pub const InconclusivePoorReading: Self = Self(5);
+    /// The sample classifier could not determine a classification.
     #[doc(alias = "HKElectrocardiogramClassificationInconclusiveOther")]
     pub const InconclusiveOther: Self = Self(6);
+    /// The classification created for this sample is unrecognized on this device.
     #[doc(alias = "HKElectrocardiogramClassificationUnrecognized")]
     pub const Unrecognized: Self = Self(100);
 }
@@ -64,9 +72,6 @@ unsafe impl RefEncode for HKElectrocardiogramClassification {
 
 /// An indication of whether the user experienced symptoms when taking an ECG
 ///
-/// HKElectrocardiogramSymptomsStatusNone          The user did not experience any symptoms during the duration of the electrocardiogram reading.
-/// HKElectrocardiogramSymptomsStatusPresent       The user indicated that they experienced symptoms during the duration of the electrocardiogram reading.
-///
 /// If an HKElectrocardiogram indicates that there are symptoms present, you must do a separate sample query to
 /// retrieve those symptoms.
 ///
@@ -76,6 +81,9 @@ unsafe impl RefEncode for HKElectrocardiogramClassification {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKElectrocardiogramSymptomsStatus(pub NSInteger);
 impl HKElectrocardiogramSymptomsStatus {
+    /// The user did not specify whether or not they experienced symptoms.
+    /// HKElectrocardiogramSymptomsStatusNone          The user did not experience any symptoms during the duration of the electrocardiogram reading.
+    /// HKElectrocardiogramSymptomsStatusPresent       The user indicated that they experienced symptoms during the duration of the electrocardiogram reading.
     #[doc(alias = "HKElectrocardiogramSymptomsStatusNotSet")]
     pub const NotSet: Self = Self(0);
     #[doc(alias = "HKElectrocardiogramSymptomsStatusNone")]

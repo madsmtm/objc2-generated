@@ -59,15 +59,6 @@ extern "C" {
 
 /// These constants can be used to specify values for allowedAudioSpatializationFormats.
 ///
-///
-/// Indicates that no audio spatialization is allowed.
-///
-/// Indicates that only mono and stereo formats may be used for audio spatialization.
-///
-/// Indicates that only multichannel layouts may be used for audio spatialization.
-///
-/// Indicates that mono, stereo and multichannel layouts may be used for audio spatialization.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -75,12 +66,16 @@ extern "C" {
 pub struct AVAudioSpatializationFormats(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSpatializationFormats: NSUInteger {
+/// Indicates that no audio spatialization is allowed.
         #[doc(alias = "AVAudioSpatializationFormatNone")]
         const None = 0;
+/// Indicates that only mono and stereo formats may be used for audio spatialization.
         #[doc(alias = "AVAudioSpatializationFormatMonoAndStereo")]
         const MonoAndStereo = 0x3;
+/// Indicates that only multichannel layouts may be used for audio spatialization.
         #[doc(alias = "AVAudioSpatializationFormatMultichannel")]
         const Multichannel = 0x4;
+/// Indicates that mono, stereo and multichannel layouts may be used for audio spatialization.
         #[doc(alias = "AVAudioSpatializationFormatMonoStereoAndMultichannel")]
         const MonoStereoAndMultichannel = 0x7;
         const _ = !0;

@@ -18,10 +18,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialIdentityStoreErrorCode(pub NSInteger);
 impl ASCredentialIdentityStoreErrorCode {
+    /// The operation failed due to an internal error.
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeInternalError")]
     pub const InternalError: Self = Self(0);
+    /// The operation failed because the credential identity store is disabled.
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreDisabled")]
     pub const StoreDisabled: Self = Self(1);
+    /// The operation failed because the credential identity store is busy. Attempt the operation again at a later time.
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreBusy")]
     pub const StoreBusy: Self = Self(2);
 }

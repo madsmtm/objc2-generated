@@ -13,25 +13,23 @@ use crate::*;
 ///
 /// Note: The update mode does not affect the Audio IO Thread or rendering, in general. The Audio IO Thread always runs in the background, independent of the update mode.
 ///
-/// The engine will internally consume client commands at a rate opaque to the client.
-/// In general, automatic update mode is meant for simpler applications that just want to play sounds, without having to maintain a strict update loop.
-/// Due to the fact that the engine consumes client commands at its own internal rate, the client is never guaranteed that two independent commands will synchronize.
-///
-/// When an application requires precise synchronization of API calls with the main update, manual mode is the best choice.
-/// In this mode, clients will need to call [PHASEEngine update] periodically to process new commands, perform internal updates, and receive callbacks.
-/// The rate at which the client calls update should at least match the rate at which other time-critical subsystems are updated, such graphics rendering etc.
-/// API calls between calls to [PHASEEngine update] are guaranteed to be synchronized.
-/// For example, the client can move two sources into place, request to start two sound events (one per source), then call [PHASEEngine update].
-/// These calls will be guaranteed to be processed at the same time.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseupdatemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEUpdateMode(pub NSInteger);
 impl PHASEUpdateMode {
+    /// The engine will internally consume client commands at a rate opaque to the client.
+    /// In general, automatic update mode is meant for simpler applications that just want to play sounds, without having to maintain a strict update loop.
+    /// Due to the fact that the engine consumes client commands at its own internal rate, the client is never guaranteed that two independent commands will synchronize.
     #[doc(alias = "PHASEUpdateModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// When an application requires precise synchronization of API calls with the main update, manual mode is the best choice.
+    /// In this mode, clients will need to call [PHASEEngine update] periodically to process new commands, perform internal updates, and receive callbacks.
+    /// The rate at which the client calls update should at least match the rate at which other time-critical subsystems are updated, such graphics rendering etc.
+    /// API calls between calls to [PHASEEngine update] are guaranteed to be synchronized.
+    /// For example, the client can move two sources into place, request to start two sound events (one per source), then call [PHASEEngine update].
+    /// These calls will be guaranteed to be processed at the same time.
     #[doc(alias = "PHASEUpdateModeManual")]
     pub const Manual: Self = Self(1);
 }
@@ -46,23 +44,21 @@ unsafe impl RefEncode for PHASEUpdateMode {
 
 /// Rendering Mode for a PHASE Engine.
 ///
-/// A local engine is connected to an audio device and renders audio in real-time in the application process.
-/// In this mode the engine receives all its inputs from the client such as acoustic configuration.
-/// Updating an engine configured with `PHASERenderingModeLocal` executes any pending API commands locally.
-///
-/// A client engine is connected to an audio device and renders audio in real-time in a secure process.
-/// In this mode the engine receives inputs from the client and renders in a server.
-/// In supported platforms this allows the server to apply privacy sensitive effects such as room virtual acoustics, low latency head-tracking and personalized Spatial Audio.
-/// Updating an engine configured with `PHASERenderingModeClient` syncs any pending API commands to the server for processing.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaserenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASERenderingMode(pub NSInteger);
 impl PHASERenderingMode {
+    /// A local engine is connected to an audio device and renders audio in real-time in the application process.
+    /// In this mode the engine receives all its inputs from the client such as acoustic configuration.
+    /// Updating an engine configured with `PHASERenderingModeLocal` executes any pending API commands locally.
     #[doc(alias = "PHASERenderingModeLocal")]
     pub const Local: Self = Self(0);
+    /// A client engine is connected to an audio device and renders audio in real-time in a secure process.
+    /// In this mode the engine receives inputs from the client and renders in a server.
+    /// In supported platforms this allows the server to apply privacy sensitive effects such as room virtual acoustics, low latency head-tracking and personalized Spatial Audio.
+    /// Updating an engine configured with `PHASERenderingModeClient` syncs any pending API commands to the server for processing.
     #[doc(alias = "PHASERenderingModeClient")]
     pub const Client: Self = Self(1);
 }
@@ -77,22 +73,19 @@ unsafe impl RefEncode for PHASERenderingMode {
 
 /// Rendering state for sound events.
 ///
-/// The sound event is stopped.
-///
-/// The sound event is playing back.
-///
-/// The sound event is paused.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaserenderingstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASERenderingState(pub NSInteger);
 impl PHASERenderingState {
+    /// The sound event is stopped.
     #[doc(alias = "PHASERenderingStateStopped")]
     pub const Stopped: Self = Self(0);
+    /// The sound event is playing back.
     #[doc(alias = "PHASERenderingStateStarted")]
     pub const Started: Self = Self(1);
+    /// The sound event is paused.
     #[doc(alias = "PHASERenderingStatePaused")]
     pub const Paused: Self = Self(2);
 }
@@ -107,24 +100,21 @@ unsafe impl RefEncode for PHASERenderingState {
 
 /// Spatialization mode.
 ///
-/// Automatically select the spatialization mode based on the current output device.
-///
-/// Always use binaural rendering, whether playing back on headphones or speakers.
-/// Note that when rendering binaural over built-in speakers, special filters are applied to achieve the expected behavior.
-///
-/// Always use the appropriate channel-based panning algorithm for the output layout.
-/// Note that when rendering channel-based over headphones, the sound will play back in stereo.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatializationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESpatializationMode(pub NSInteger);
 impl PHASESpatializationMode {
+    /// Automatically select the spatialization mode based on the current output device.
     #[doc(alias = "PHASESpatializationModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Always use binaural rendering, whether playing back on headphones or speakers.
+    /// Note that when rendering binaural over built-in speakers, special filters are applied to achieve the expected behavior.
     #[doc(alias = "PHASESpatializationModeAlwaysUseBinaural")]
     pub const AlwaysUseBinaural: Self = Self(1);
+    /// Always use the appropriate channel-based panning algorithm for the output layout.
+    /// Note that when rendering channel-based over headphones, the sound will play back in stereo.
     #[doc(alias = "PHASESpatializationModeAlwaysUseChannelBased")]
     pub const AlwaysUseChannelBased: Self = Self(2);
 }
@@ -386,20 +376,18 @@ unsafe impl RefEncode for PHASESoundEventPrepareState {
 /// 'Preparing' an asset for playback may include decompression and/or format conversion,
 /// depending on the type of the underlying asset data.
 ///
-/// If the asset is on disk, it is loaded into memory and prepared for playback.
-/// If the asset is in memory, it is prepared for playback.
-///
-/// If the asset is on disk, it is streamed from disk into memory and prepared during playback.
-/// If the asset is in memory, it is streamed from memory and prepared during playback.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseassettype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEAssetType(pub NSInteger);
 impl PHASEAssetType {
+    /// If the asset is on disk, it is loaded into memory and prepared for playback.
+    /// If the asset is in memory, it is prepared for playback.
     #[doc(alias = "PHASEAssetTypeResident")]
     pub const Resident: Self = Self(0);
+    /// If the asset is on disk, it is streamed from disk into memory and prepared during playback.
+    /// If the asset is in memory, it is streamed from memory and prepared during playback.
     #[doc(alias = "PHASEAssetTypeStreamed")]
     pub const Streamed: Self = Self(1);
 }
@@ -414,56 +402,45 @@ unsafe impl RefEncode for PHASEAssetType {
 
 /// Curve types.
 ///
-/// A curve of the form y = x.
-///
-/// A curve of the form y = x^2.
-///
-/// A curve of the form y = 1 / x^2.
-///
-/// A curve of the form y = x^3.
-///
-/// A curve of the form y = 1 / x^3.
-///
-/// A sine curve.
-///
-/// An inverse sine curve.
-///
-/// A sigmoid curve.
-/// Also known as an s-curve, slow at the ends and quick in the middle.
-///
-/// An inverse sigmoid curve.
-/// Also known as an inverse s-curve, quick at the ends and slow in the middle.
-///
-/// Holds the start value for the duration of the curve.
-///
-/// Jumps to the end value and holds it for the duration of the curve.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASECurveType(pub NSInteger);
 impl PHASECurveType {
+    /// A curve of the form y = x.
     #[doc(alias = "PHASECurveTypeLinear")]
     pub const Linear: Self = Self(0x63724c6e);
+    /// A curve of the form y = x^2.
     #[doc(alias = "PHASECurveTypeSquared")]
     pub const Squared: Self = Self(0x63725371);
+    /// A curve of the form y = 1 / x^2.
     #[doc(alias = "PHASECurveTypeInverseSquared")]
     pub const InverseSquared: Self = Self(0x63724951);
+    /// A curve of the form y = x^3.
     #[doc(alias = "PHASECurveTypeCubed")]
     pub const Cubed: Self = Self(0x63724375);
+    /// A curve of the form y = 1 / x^3.
     #[doc(alias = "PHASECurveTypeInverseCubed")]
     pub const InverseCubed: Self = Self(0x63724943);
+    /// A sine curve.
     #[doc(alias = "PHASECurveTypeSine")]
     pub const Sine: Self = Self(0x6372536e);
+    /// An inverse sine curve.
     #[doc(alias = "PHASECurveTypeInverseSine")]
     pub const InverseSine: Self = Self(0x63724953);
+    /// A sigmoid curve.
+    /// Also known as an s-curve, slow at the ends and quick in the middle.
     #[doc(alias = "PHASECurveTypeSigmoid")]
     pub const Sigmoid: Self = Self(0x63725367);
+    /// An inverse sigmoid curve.
+    /// Also known as an inverse s-curve, quick at the ends and slow in the middle.
     #[doc(alias = "PHASECurveTypeInverseSigmoid")]
     pub const InverseSigmoid: Self = Self(0x63724947);
+    /// Holds the start value for the duration of the curve.
     #[doc(alias = "PHASECurveTypeHoldStartValue")]
     pub const HoldStartValue: Self = Self(0x63724853);
+    /// Jumps to the end value and holds it for the duration of the curve.
     #[doc(alias = "PHASECurveTypeJumpToEndValue")]
     pub const JumpToEndValue: Self = Self(0x63724a45);
 }
@@ -480,30 +457,25 @@ unsafe impl RefEncode for PHASECurveType {
 ///
 /// Determines what the engine should do when a sound asset becomes cullable.
 ///
-/// If cullable, the sound asset will stop. Note that this can occur before or during playback.
-///
-/// If cullable, the sound asset will be put to sleep. Upon waking, start playback at the beginning.
-///
-/// If cullable, the sound asset will be put to sleep. Upon waking, start playback at random offset.
-///
-/// If cullable, the sound asset will be put to sleep. Upon waking, start playback at realtime offset.
-///
-/// If cullable, continue playback, even if the sound is inaudible.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASECullOption(pub NSInteger);
 impl PHASECullOption {
+    /// If cullable, the sound asset will stop. Note that this can occur before or during playback.
     #[doc(alias = "PHASECullOptionTerminate")]
     pub const Terminate: Self = Self(0);
+    /// If cullable, the sound asset will be put to sleep. Upon waking, start playback at the beginning.
     #[doc(alias = "PHASECullOptionSleepWakeAtZero")]
     pub const SleepWakeAtZero: Self = Self(1);
+    /// If cullable, the sound asset will be put to sleep. Upon waking, start playback at random offset.
     #[doc(alias = "PHASECullOptionSleepWakeAtRandomOffset")]
     pub const SleepWakeAtRandomOffset: Self = Self(2);
+    /// If cullable, the sound asset will be put to sleep. Upon waking, start playback at realtime offset.
     #[doc(alias = "PHASECullOptionSleepWakeAtRealtimeOffset")]
     pub const SleepWakeAtRealtimeOffset: Self = Self(3);
+    /// If cullable, continue playback, even if the sound is inaudible.
     #[doc(alias = "PHASECullOptionDoNotCull")]
     pub const DoNotCull: Self = Self(4);
 }
@@ -518,18 +490,16 @@ unsafe impl RefEncode for PHASECullOption {
 
 /// Playback mode.
 ///
-/// Play the sound asset once, then stop.
-///
-/// Loop the sound asset indefinitely.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseplaybackmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPlaybackMode(pub NSInteger);
 impl PHASEPlaybackMode {
+    /// Play the sound asset once, then stop.
     #[doc(alias = "PHASEPlaybackModeOneShot")]
     pub const OneShot: Self = Self(0);
+    /// Loop the sound asset indefinitely.
     #[doc(alias = "PHASEPlaybackModeLooping")]
     pub const Looping: Self = Self(1);
 }
@@ -549,18 +519,16 @@ unsafe impl RefEncode for PHASEPlaybackMode {
 /// Note: In general, clients are advised to normalize sound assets (and streams).
 /// This will make it easier to mix the content once assigned to a generator with a specified calbration mode and level.
 ///
-/// No normalization is applied. In this case, it's advised that the client perform custom normalization.
-///
-/// Dynamic Normalization is applied.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasenormalizationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASENormalizationMode(pub NSInteger);
 impl PHASENormalizationMode {
+    /// No normalization is applied. In this case, it's advised that the client perform custom normalization.
     #[doc(alias = "PHASENormalizationModeNone")]
     pub const None: Self = Self(0);
+    /// Dynamic Normalization is applied.
     #[doc(alias = "PHASENormalizationModeDynamic")]
     pub const Dynamic: Self = Self(1);
 }
@@ -577,22 +545,19 @@ unsafe impl RefEncode for PHASENormalizationMode {
 ///
 /// Note: In general, clients are advised use a calibrated input mode. Setting the value to PHASECalibrationModeNone is not advised.
 ///
-/// Linear gain with no reference (uncailbrated).
-///
-/// SPL relative to a device-tuned SPL (when available).
-///
-/// Absolute SPL. The system will hit the value 'if it can' (depending on the capabilities of the current output device).
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasecalibrationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASECalibrationMode(pub NSInteger);
 impl PHASECalibrationMode {
+    /// Linear gain with no reference (uncailbrated).
     #[doc(alias = "PHASECalibrationModeNone")]
     pub const None: Self = Self(0);
+    /// SPL relative to a device-tuned SPL (when available).
     #[doc(alias = "PHASECalibrationModeRelativeSpl")]
     pub const RelativeSpl: Self = Self(1);
+    /// Absolute SPL. The system will hit the value 'if it can' (depending on the capabilities of the current output device).
     #[doc(alias = "PHASECalibrationModeAbsoluteSpl")]
     pub const AbsoluteSpl: Self = Self(2);
 }
@@ -607,10 +572,6 @@ unsafe impl RefEncode for PHASECalibrationMode {
 
 /// Automatic Head-Tracking flags.
 ///
-/// On capable devices, listener orientation will be automatically rotated based on user's head-orientation.
-///
-/// On capable devices, listener position will be automatically set based on user's position.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseautomaticheadtrackingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -618,8 +579,10 @@ unsafe impl RefEncode for PHASECalibrationMode {
 pub struct PHASEAutomaticHeadTrackingFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASEAutomaticHeadTrackingFlags: NSUInteger {
+/// On capable devices, listener orientation will be automatically rotated based on user's head-orientation.
         #[doc(alias = "PHASEAutomaticHeadTrackingFlagOrientation")]
         const Orientation = 1<<0;
+/// On capable devices, listener position will be automatically set based on user's position.
         #[doc(alias = "PHASEAutomaticHeadTrackingFlagPosition")]
         const Position = 1<<1;
         const _ = !0;

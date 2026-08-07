@@ -53,19 +53,18 @@ unsafe impl RefEncode for HKCategoryValueAppetiteChanges {
 /// Set of values that may be used for HKCategorySamples with the HKCategoryTypeIdentifierAppleStandHour
 /// type.
 ///
-///
-/// the sample.
-///
-/// continuous minute during the sample.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplestandhour?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueAppleStandHour(pub NSInteger);
 impl HKCategoryValueAppleStandHour {
+    /// The user stood up and moved a little for at least one minute during
+    /// the sample.
     #[doc(alias = "HKCategoryValueAppleStandHourStood")]
     pub const Stood: Self = Self(0);
+    /// The user did not stand up and move a little for at least one
+    /// continuous minute during the sample.
     #[doc(alias = "HKCategoryValueAppleStandHourIdle")]
     pub const Idle: Self = Self(1);
 }
@@ -81,33 +80,32 @@ unsafe impl RefEncode for HKCategoryValueAppleStandHour {
 /// Set of values that may be used for HKCategorySamples with the
 /// HKCategoryTypeIdentifierAppleWalkingSteadinessEvent type.
 ///
-///
-/// Steadiness events associated with the user's
-/// walking steadiness being low.
-///
-/// Steadiness events associated with the user's
-/// walking steadiness being very low.
-///
-/// Steadiness events associated with the user's
-/// walking steadiness remaining low over a
-/// significant time period.
-///
-/// Steadiness events associated with the user's
-/// walking steadiness remaining very low over a
-/// significant time period.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplewalkingsteadinessevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueAppleWalkingSteadinessEvent(pub NSInteger);
 impl HKCategoryValueAppleWalkingSteadinessEvent {
+    /// This constant defines Apple Walking
+    /// Steadiness events associated with the user's
+    /// walking steadiness being low.
     #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialLow")]
     pub const InitialLow: Self = Self(1);
+    /// This constant defines Apple Walking
+    /// Steadiness events associated with the user's
+    /// walking steadiness being very low.
     #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventInitialVeryLow")]
     pub const InitialVeryLow: Self = Self(2);
+    /// This constant defines Apple Walking
+    /// Steadiness events associated with the user's
+    /// walking steadiness remaining low over a
+    /// significant time period.
     #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatLow")]
     pub const RepeatLow: Self = Self(3);
+    /// This constant defines Apple Walking
+    /// Steadiness events associated with the user's
+    /// walking steadiness remaining very low over a
+    /// significant time period.
     #[doc(alias = "HKCategoryValueAppleWalkingSteadinessEventRepeatVeryLow")]
     pub const RepeatVeryLow: Self = Self(4);
 }
@@ -185,17 +183,16 @@ unsafe impl RefEncode for HKCategoryValueContraceptive {
 
 /// Specifies the kind of environmental audio exposure event associated with the sample.
 ///
-///
-/// events associated with the user being
-/// exposed to a loud environment during a
-/// short timespan.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueenvironmentalaudioexposureevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueEnvironmentalAudioExposureEvent(pub NSInteger);
 impl HKCategoryValueEnvironmentalAudioExposureEvent {
+    /// This constant defines environmental
+    /// events associated with the user being
+    /// exposed to a loud environment during a
+    /// short timespan.
     #[doc(alias = "HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit")]
     pub const MomentaryLimit: Self = Self(1);
 }
@@ -210,17 +207,16 @@ unsafe impl RefEncode for HKCategoryValueEnvironmentalAudioExposureEvent {
 
 /// Specifies the kind of headphone audio exposure event associated with the sample.
 ///
-///
-/// associated with the user being exposed to
-/// significant audio levels throught a
-/// seven-day period.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueheadphoneaudioexposureevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueHeadphoneAudioExposureEvent(pub NSInteger);
 impl HKCategoryValueHeadphoneAudioExposureEvent {
+    /// This constant defines headphone events
+    /// associated with the user being exposed to
+    /// significant audio levels throught a
+    /// seven-day period.
     #[doc(alias = "HKCategoryValueHeadphoneAudioExposureEventSevenDayLimit")]
     pub const SevenDayLimit: Self = Self(1);
 }
@@ -235,16 +231,15 @@ unsafe impl RefEncode for HKCategoryValueHeadphoneAudioExposureEvent {
 
 /// Specifies the type of cardio fitness event.
 ///
-///
-/// measurement was recorded that falls into the "Low"
-/// fitness classification
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluelowcardiofitnessevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCategoryValueLowCardioFitnessEvent(pub NSInteger);
 impl HKCategoryValueLowCardioFitnessEvent {
+    /// This constant defines an event where a VO2Max
+    /// measurement was recorded that falls into the "Low"
+    /// fitness classification
     #[doc(alias = "HKCategoryValueLowCardioFitnessEventLowFitness")]
     pub const LowFitness: Self = Self(1);
 }
@@ -447,19 +442,25 @@ unsafe impl RefEncode for HKCategoryValueSeverity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueSleepAnalysis(pub NSInteger);
 impl HKCategoryValueSleepAnalysis {
+    /// The user is in bed.
     #[doc(alias = "HKCategoryValueSleepAnalysisInBed")]
     pub const InBed: Self = Self(0);
+    /// The user is asleep and no specific stage is specified.
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleepUnspecified")]
     pub const AsleepUnspecified: Self = Self(1);
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleep")]
     #[deprecated]
     pub const Asleep: Self = Self(HKCategoryValueSleepAnalysis::AsleepUnspecified.0);
+    /// The user is awake.
     #[doc(alias = "HKCategoryValueSleepAnalysisAwake")]
     pub const Awake: Self = Self(2);
+    /// Corresponds to Stages 1 and 2 of AASM scoring model.
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleepCore")]
     pub const AsleepCore: Self = Self(3);
+    /// Corresponds to Stage 3 of AASM scoring model.
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleepDeep")]
     pub const AsleepDeep: Self = Self(4);
+    /// Corresponds to REM stage of AASM scoring model.
     #[doc(alias = "HKCategoryValueSleepAnalysisAsleepREM")]
     pub const AsleepREM: Self = Self(5);
 }

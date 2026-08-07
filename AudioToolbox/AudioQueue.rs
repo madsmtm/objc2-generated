@@ -78,139 +78,282 @@ unsafe impl RefEncode for OpaqueAudioQueueTimeline {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuetimelineref?language=objc)
 pub type AudioQueueTimelineRef = *mut OpaqueAudioQueueTimeline;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidbuffer?language=objc)
+/// The specified buffer does not belong to the audio queue.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidbuffer?language=objc)
 pub const kAudioQueueErr_InvalidBuffer: OSStatus = -66687;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_bufferempty?language=objc)
+/// The buffer is empty (that is, the mAudioDataByteSize field = 0).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_bufferempty?language=objc)
 pub const kAudioQueueErr_BufferEmpty: OSStatus = -66686;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_disposalpending?language=objc)
+/// The function cannot act on the audio queue because it is being asynchronously
+/// disposed of.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_disposalpending?language=objc)
 pub const kAudioQueueErr_DisposalPending: OSStatus = -66685;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidproperty?language=objc)
+/// The specified property ID is invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidproperty?language=objc)
 pub const kAudioQueueErr_InvalidProperty: OSStatus = -66684;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidpropertysize?language=objc)
+/// The size of the specified property is invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidpropertysize?language=objc)
 pub const kAudioQueueErr_InvalidPropertySize: OSStatus = -66683;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidparameter?language=objc)
+/// The specified parameter ID is invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidparameter?language=objc)
 pub const kAudioQueueErr_InvalidParameter: OSStatus = -66682;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_cannotstart?language=objc)
+/// The audio queue has encountered a problem and cannot start.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_cannotstart?language=objc)
 pub const kAudioQueueErr_CannotStart: OSStatus = -66681;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invaliddevice?language=objc)
+/// The device assigned to the queue could not be located, or is not properly
+/// configured.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invaliddevice?language=objc)
 pub const kAudioQueueErr_InvalidDevice: OSStatus = -66680;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_bufferinqueue?language=objc)
+/// The buffer cannot be disposed of when it is enqueued.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_bufferinqueue?language=objc)
 pub const kAudioQueueErr_BufferInQueue: OSStatus = -66679;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidrunstate?language=objc)
+/// The queue is running but the function can only operate on the queue when it is
+/// stopped, or vice versa.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidrunstate?language=objc)
 pub const kAudioQueueErr_InvalidRunState: OSStatus = -66678;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidqueuetype?language=objc)
+/// The queue is an input queue but the function can only operate on an output
+/// queue, or vice versa.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidqueuetype?language=objc)
 pub const kAudioQueueErr_InvalidQueueType: OSStatus = -66677;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_permissions?language=objc)
+/// You do not have the required permissions to call the function
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_permissions?language=objc)
 pub const kAudioQueueErr_Permissions: OSStatus = -66676;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidpropertyvalue?language=objc)
+/// The specified property value is invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidpropertyvalue?language=objc)
 pub const kAudioQueueErr_InvalidPropertyValue: OSStatus = -66675;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_primetimedout?language=objc)
+/// During Prime, the queue's AudioConverter failed to convert the requested number
+/// of sample frames.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_primetimedout?language=objc)
 pub const kAudioQueueErr_PrimeTimedOut: OSStatus = -66674;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_codecnotfound?language=objc)
+/// The required audio codec was not found.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_codecnotfound?language=objc)
 pub const kAudioQueueErr_CodecNotFound: OSStatus = -66673;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidcodecaccess?language=objc)
+/// Access to the required codec is not permitted (possibly due to incompatible
+/// AudioSession settings on iOS).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidcodecaccess?language=objc)
 pub const kAudioQueueErr_InvalidCodecAccess: OSStatus = -66672;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_queueinvalidated?language=objc)
+/// On iOS derived platforms (excluding Catalyst), the audio server has exited,
+/// causing this audio queue to have become invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_queueinvalidated?language=objc)
 pub const kAudioQueueErr_QueueInvalidated: OSStatus = -66671;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_toomanytaps?language=objc)
+/// There can only be one processing tap per audio queue.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_toomanytaps?language=objc)
 pub const kAudioQueueErr_TooManyTaps: OSStatus = -66670;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidtapcontext?language=objc)
+/// GetTapSourceAudio can only be called from the tap's callback.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidtapcontext?language=objc)
 pub const kAudioQueueErr_InvalidTapContext: OSStatus = -66669;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_recordunderrun?language=objc)
+/// During recording, data was lost because there was no enqueued buffer into which
+/// to store it.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_recordunderrun?language=objc)
 pub const kAudioQueueErr_RecordUnderrun: OSStatus = -66668;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidtaptype?language=objc)
+/// GetTapQueueTime can only be called on an output queue's tap.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidtaptype?language=objc)
 pub const kAudioQueueErr_InvalidTapType: OSStatus = -66667;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_bufferenqueuedtwice?language=objc)
+/// A buffer was enqueued twice on an input queue (before being returned as a result
+/// of being filled or from Reset).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_bufferenqueuedtwice?language=objc)
 pub const kAudioQueueErr_BufferEnqueuedTwice: OSStatus = -66666;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_cannotstartyet?language=objc)
+/// Starting the audio queue failed because an internal reconfiguration (typically
+/// initiated by a hardware stream format or sample rate change) was in progress.
+/// Sleeping briefly and retrying is recommended.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_cannotstartyet?language=objc)
 pub const kAudioQueueErr_CannotStartYet: OSStatus = -66665;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_enqueueduringreset?language=objc)
+/// During Reset, Stop, or Dispose, it is not permitted to enqueue buffers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_enqueueduringreset?language=objc)
 pub const kAudioQueueErr_EnqueueDuringReset: OSStatus = -66632;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidofflinemode?language=objc)
+/// The operation requires the queue to be in offline mode but it isn't, or vice
+/// versa. (Offline mode is entered and exited via
+/// AudioQueueSetOfflineRenderFormat).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidofflinemode?language=objc)
 pub const kAudioQueueErr_InvalidOfflineMode: OSStatus = -66626;
 
 /// value is UInt32
 ///
+/// A read-only property whose value is a UInt32 that indicates whether or not the queue is
+/// running. A notification is sent when the audio device starts or stops, which is not
+/// necessarily when the start or stop function is called.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_isrunning?language=objc)
 pub const kAudioQueueProperty_IsRunning: AudioQueuePropertyID = 0x6171726e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuedeviceproperty_samplerate?language=objc)
+/// A read-only property whose value is a Float64 that indicates the sampling rate of the
+/// associated audio device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuedeviceproperty_samplerate?language=objc)
 pub const kAudioQueueDeviceProperty_SampleRate: AudioQueuePropertyID = 0x61717372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuedeviceproperty_numberchannels?language=objc)
+/// A read-only property whose value is a UInt32 that indicates the number of channels in
+/// the associated audio device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuedeviceproperty_numberchannels?language=objc)
 pub const kAudioQueueDeviceProperty_NumberChannels: AudioQueuePropertyID = 0x61716463;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_currentdevice?language=objc)
+/// A read/write property whose value is a CFStringRef that contains the unique identifier
+/// (UID) of the associated audio device.
+/// If the audio queue is tracking the default system device and the device changes, it will
+/// generate a property changed notification for this property. You can then query the HAL
+/// for info on the new default system device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_currentdevice?language=objc)
 pub const kAudioQueueProperty_CurrentDevice: AudioQueuePropertyID = 0x61716364;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_magiccookie?language=objc)
+/// A read/write property whose value is an audio format magic cookie. If the audio format
+/// requires a magic cookie, you must set this property before enqueuing any buffers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_magiccookie?language=objc)
 pub const kAudioQueueProperty_MagicCookie: AudioQueuePropertyID = 0x61716d63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_maximumoutputpacketsize?language=objc)
+/// A read-only UInt32 that indicates the size in bytes of the largest single packet of
+/// data in the output format. This is mostly useful for recording/encoding variable bit rate
+/// compressed data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_maximumoutputpacketsize?language=objc)
 pub const kAudioQueueProperty_MaximumOutputPacketSize: AudioQueuePropertyID = 0x786f7073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_streamdescription?language=objc)
+/// A read-only AudioStreamBasicDescription that indicates the queue's recording format.
+/// This is useful when recording, where you may specify a sample rate of 0 during
+/// construction,
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_streamdescription?language=objc)
 pub const kAudioQueueProperty_StreamDescription: AudioQueuePropertyID = 0x61716674;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_channellayout?language=objc)
+/// A read/write property whose value is an audio channel layout structure that describes
+/// the audio queue's channel layout. The number of channels must match the format of the
+/// queue. If more than two channels (for instance, a five-channel surround sound) exist in
+/// the queue, there may be a need to specify a channel layout. This layout indicates the
+/// specific order in which the channels do appear, such as left, then center, then right.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_channellayout?language=objc)
 pub const kAudioQueueProperty_ChannelLayout: AudioQueuePropertyID = 0x6171636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_enablelevelmetering?language=objc)
+/// A read-write property whose value is a UInt32 that indicates whether metering of
+/// audio levels is enabled for the audio queue. (0=off, 1=on).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_enablelevelmetering?language=objc)
 pub const kAudioQueueProperty_EnableLevelMetering: AudioQueuePropertyID = 0x61716d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_currentlevelmeter?language=objc)
+/// A read-only property whose value is an array of AudioQueueLevelMeter structures, one
+/// array element per audio channel. The values in the AudioQueueLevelMeters are in the
+/// range 0-1.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_currentlevelmeter?language=objc)
 pub const kAudioQueueProperty_CurrentLevelMeter: AudioQueuePropertyID = 0x61716d76;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_currentlevelmeterdb?language=objc)
+/// A read-only property whose value is an array of AudioQueueLevelMeter structures, one
+/// array element per audio channel. The values in the AudioQueueLevelMeters are in
+/// decibels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_currentlevelmeterdb?language=objc)
 pub const kAudioQueueProperty_CurrentLevelMeterDB: AudioQueuePropertyID = 0x61716d64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_decodebuffersizeframes?language=objc)
+/// A read/write property whose value is a UInt32 that is the size of the buffer into which
+/// an output audio queue decodes buffers. A large buffer provides more reliability and
+/// better long-term performance at the expense of memory and decreased responsiveness
+/// in some situations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_decodebuffersizeframes?language=objc)
 pub const kAudioQueueProperty_DecodeBufferSizeFrames: AudioQueuePropertyID = 0x64636266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_convertererror?language=objc)
+/// A read-only property whose value is a UInt32 indicating the most recent error (if any)
+/// encountered by the queue's internal encoding/decoding process.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_convertererror?language=objc)
 pub const kAudioQueueProperty_ConverterError: AudioQueuePropertyID = 0x71637665;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_enabletimepitch?language=objc)
+/// A read/write property whose value is a UInt32 describing whether there is a time/pitch unit
+/// inserted into the queue's audio signal chain. This property may only be set while
+/// the queue is stopped.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_enabletimepitch?language=objc)
 pub const kAudioQueueProperty_EnableTimePitch: AudioQueuePropertyID = 0x715f7470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_timepitchalgorithm?language=objc)
+/// A read/write property whose value is a UInt32 describing the time/pitch algorithm in use.
+/// This property is only valid while a time/pitch has been inserted, and may only be changed
+/// when the queue is not running.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_timepitchalgorithm?language=objc)
 pub const kAudioQueueProperty_TimePitchAlgorithm: AudioQueuePropertyID = 0x71747061;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_timepitchbypass?language=objc)
+/// A read/write property whose value is a UInt32 describing whether the time/pitch unit
+/// has been bypassed (1=bypassed, 0=not bypassed).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_timepitchbypass?language=objc)
 pub const kAudioQueueProperty_TimePitchBypass: AudioQueuePropertyID = 0x71747062;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_intendedspatialexperience?language=objc)
+/// A read/write property whose value is an CASpatialAudioExperience describing this specific
+/// AudioQueue's intended spatial experience. Only useful for output AudioQueue's not configured
+/// in offline mode. Setting this property on an input AudioQueue or an offline AudioQueue is
+/// a no-op. The default value of CAAutomaticSpatialAudio value means the AudioQueue uses its
+/// AVAudioSession's intended spatial experience. See CASpatialAudioExperience for more details.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_intendedspatialexperience?language=objc)
 pub const kAudioQueueProperty_IntendedSpatialExperience: AudioQueuePropertyID = 0x6973656f;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_spectral?language=objc)
+/// Highest quality, most computationally expensive. Suitable for music.
+/// Default algorithm on macOS.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_spectral?language=objc)
 pub const kAudioQueueTimePitchAlgorithm_Spectral: u32 = 0x73706563;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_timedomain?language=objc)
+/// Modest quality, less expensive. Suitable for voice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_timedomain?language=objc)
 pub const kAudioQueueTimePitchAlgorithm_TimeDomain: u32 = 0x7469646f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_varispeed?language=objc)
+/// High quality, but pitch varies with rate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_varispeed?language=objc)
 pub const kAudioQueueTimePitchAlgorithm_Varispeed: u32 = 0x76737064;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_channelassignments?language=objc)
+/// A write-only property whose value is an array of AudioQueueChannelAssignment. There must be
+/// one array element for each channel of the queue's format as specified in the
+/// AudioStreamBasicDescription passed to AudioQueueNewOutput or AudioQueueNewInput.
+/// (New in iOS 6.0).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_channelassignments?language=objc)
 pub const kAudioQueueProperty_ChannelAssignments: AudioQueuePropertyID = 0x61716361;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_volume?language=objc)
+/// A value from 0.0 to 1.0 indicating the linearly scaled gain for the queue. A value of
+/// 1.0 (the default) indicates unity gain. A value of 0.0 indicates zero gain, or silence.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_volume?language=objc)
 pub const kAudioQueueParam_Volume: AudioQueueParameterID = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_playrate?language=objc)
+/// A value from 0.5 to 2.0 indicating the rate at which the queue is to play. A value of
+/// 1.0 (the default) indicates that the queue should play at its normal rate. Only
+/// applicable when the time/pitch processor has been enabled and on macOS 10.6 and higher.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_playrate?language=objc)
 pub const kAudioQueueParam_PlayRate: AudioQueueParameterID = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_pitch?language=objc)
+/// A value from -2400 to 2400 indicating the number of cents to pitch-shift the queue's
+/// playback. (1200 cents is one octave.) Only applicable when the time/pitch processor has
+/// been enabled with the spectral algorithm, and on macOS 10.6 and higher.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_pitch?language=objc)
 pub const kAudioQueueParam_Pitch: AudioQueueParameterID = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_volumeramptime?language=objc)
+/// A value indicating the number of seconds over which subsequent volume changes will be
+/// ramped. For example, to fade out from full unity gain to silence over the course of 1
+/// second, set kAudioQueueParam_VolumeRampTime to 1 then kAudioQueueParam_Volume to 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_volumeramptime?language=objc)
 pub const kAudioQueueParam_VolumeRampTime: AudioQueueParameterID = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_pan?language=objc)
+/// A value from -1 to 1 indicating the pan position of a mono source (-1 = hard left, 0 =
+/// center, 1 = hard right). For a stereo source this parameter affects left/right balance.
+/// For multi-channel sources, this parameter has no effect.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_pan?language=objc)
 pub const kAudioQueueParam_Pan: AudioQueueParameterID = 13;
 
 /// Flags used in conjunction with processing taps
 ///
 /// In the flags passed to AudioQueueProcessingTapNew, either the PreEffects
 /// or PostEffects flag must be set, but not both.
-///
-///
-/// Signifies that the processing tap is inserted before any effects.
-/// Passed to AudioQueueProcessingTapNew and to the callback.
-///
-/// Signifies that the processing tap is inserted after any effects.
-/// Passed to AudioQueueProcessingTapNew and to the callback.
-///
-/// Signifies that the processing tap is a siphon; it does not call
-/// GetSourceAudio. The callback instead receives the source audio
-/// and may not modify it. Passed to AudioQueueProcessingTapNew and to the callback.
-///
-/// Signifies that the source audio is the beginning of a continuous stream,
-/// i.e. following the beginning or resumption of playback or recording.
-/// Returned from GetSourceAudio.
-///
-/// Signifies that the source audio is past the end of stream. This happens when
-/// the audio queue is being stopped asynchronously and has finished playing
-/// all of its data. Returned from GetSourceAudio and should be propagated
-/// on return from the callback.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags?language=objc)
 // NS_OPTIONS
@@ -219,14 +362,28 @@ pub const kAudioQueueParam_Pan: AudioQueueParameterID = 13;
 pub struct AudioQueueProcessingTapFlags(pub u32);
 bitflags::bitflags! {
     impl AudioQueueProcessingTapFlags: u32 {
+/// Signifies that the processing tap is inserted before any effects.
+/// Passed to AudioQueueProcessingTapNew and to the callback.
         #[doc(alias = "kAudioQueueProcessingTap_PreEffects")]
         const PreEffects = 1<<0;
+/// Signifies that the processing tap is inserted after any effects.
+/// Passed to AudioQueueProcessingTapNew and to the callback.
         #[doc(alias = "kAudioQueueProcessingTap_PostEffects")]
         const PostEffects = 1<<1;
+/// Signifies that the processing tap is a siphon; it does not call
+/// GetSourceAudio. The callback instead receives the source audio
+/// and may not modify it. Passed to AudioQueueProcessingTapNew and to the callback.
         #[doc(alias = "kAudioQueueProcessingTap_Siphon")]
         const Siphon = 1<<2;
+/// Signifies that the source audio is the beginning of a continuous stream,
+/// i.e. following the beginning or resumption of playback or recording.
+/// Returned from GetSourceAudio.
         #[doc(alias = "kAudioQueueProcessingTap_StartOfStream")]
         const StartOfStream = 1<<8;
+/// Signifies that the source audio is past the end of stream. This happens when
+/// the audio queue is being stopped asynchronously and has finished playing
+/// all of its data. Returned from GetSourceAudio and should be propagated
+/// on return from the callback.
         #[doc(alias = "kAudioQueueProcessingTap_EndOfStream")]
         const EndOfStream = 1<<9;
         const _ = !0;

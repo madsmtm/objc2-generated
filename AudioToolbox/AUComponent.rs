@@ -18,27 +18,78 @@ use crate::*;
 #[cfg(feature = "AudioComponent")]
 pub type AudioUnit = AudioComponentInstance;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_output?language=objc)
+/// An output unit can be used standalone or as part of an AUGraph or AVAudioEngine. Apple
+/// provides a number of output units that interface directly with an audio device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_output?language=objc)
 pub const kAudioUnitType_Output: u32 = 0x61756f75;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_musicdevice?language=objc)
+/// A software musical instrument such as a sampler or synthesizer. They respond to MIDI and
+/// create notes, which are then controlled through parameters or MIDI control messages. See
+/// <AudioToolbox
+/// /MusicDevice.h>
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_musicdevice?language=objc)
 pub const kAudioUnitType_MusicDevice: u32 = 0x61756d75;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_musiceffect?language=objc)
+/// An effect that is also able to respond directly to MIDI control messages, typically
+/// through the mapping of these MIDI messages to different parameters of the effect's DSP
+/// algorithm.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_musiceffect?language=objc)
 pub const kAudioUnitType_MusicEffect: u32 = 0x61756d66;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_formatconverter?language=objc)
+/// A format converter is a general category for audio units that can change the format (for
+/// instance, sample rate conversion) from an input to an output, as well as other, non-I/O type
+/// manipulations (like a deferred render or varispeed type of operation). As such, a format
+/// converter can ask for as much or as little audio input to produce a given output. They are
+/// still expected to complete their rendering within the time represented by the output buffer.
+/// For format converters that have some utility as an "audio effect or processor", it is quite
+/// common to provide an offline version of this audio unit as well. For instance, Apple ships a
+/// format converter (for use in a "real-time" like situation) and an offline version (for
+/// processing audio files) of the Time Pitch and Varispeed audio units.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_formatconverter?language=objc)
 pub const kAudioUnitType_FormatConverter: u32 = 0x61756663;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_effect?language=objc)
+/// An audio unit that will process some x number of audio input samples to produce x number of
+/// audio output samples. The common case for an effect is to have a single input to a single
+/// output, though some effects take side-chain inputs as well. Effects can be run in "offline"
+/// contexts (such as processing a file), but they are expected to run in real-time. A delay
+/// unit or reverb is a good example of this.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_effect?language=objc)
 pub const kAudioUnitType_Effect: u32 = 0x61756678;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_mixer?language=objc)
+/// An audio unit that takes some number of inputs, mixing them to provide 1 or more audio
+/// outputs. A stere mixer (mono and stereo inputs to produce one stereo output) is an example
+/// of this.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_mixer?language=objc)
 pub const kAudioUnitType_Mixer: u32 = 0x61756d78;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_panner?language=objc)
+/// A panner is a specialised effect that will pan a single audio input to a single output.
+/// Panner units are required to support a collection of standardised parameters that specify
+/// the panning coordinates (aside from whatever custom parameters the panner may provide). A
+/// surround panner is an example of this
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_panner?language=objc)
 pub const kAudioUnitType_Panner: u32 = 0x6175706e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_generator?language=objc)
+/// A generator will have no audio input, but will just produce audio output. In some ways it is
+/// similar to a MusicDevice, except that a generator provides no MIDI input, or notion of
+/// "notes". A tone generator is a good example of this.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_generator?language=objc)
 pub const kAudioUnitType_Generator: u32 = 0x6175676e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_offlineeffect?language=objc)
+/// An offline effect is used to process data from a file and is also used to publish a
+/// capability that cannot be run in real-time. For instance, the process of normalization
+/// requires seeing the entire audio input before the scalar to apply in the normalization
+/// process can be estimated. As such, offline effects also have a notion of a priming stage
+/// that can be performed before the actual rendering/processing phase is executed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_offlineeffect?language=objc)
 pub const kAudioUnitType_OfflineEffect: u32 = 0x61756f6c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_midiprocessor?language=objc)
+/// Plugins of this type process MIDI input and produce MIDI output. They do not produce audio.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_midiprocessor?language=objc)
 pub const kAudioUnitType_MIDIProcessor: u32 = 0x61756d69;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_speechsynthesizer?language=objc)
+/// An offline audio unit that produces synthesized speech audio output.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_speechsynthesizer?language=objc)
 pub const kAudioUnitType_SpeechSynthesizer: u32 = 0x61757370;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_remoteeffect?language=objc)
@@ -53,103 +104,239 @@ pub const kAudioUnitType_RemoteMusicEffect: u32 = 0x6175726d;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitmanufacturer_apple?language=objc)
 pub const kAudioUnitManufacturer_Apple: u32 = 0x6170706c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_genericoutput?language=objc)
+/// A generic output unit provides the start/stop API, and provides the basic
+/// services to convert Linear PCM formats.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_genericoutput?language=objc)
 pub const kAudioUnitSubType_GenericOutput: u32 = 0x67656e72;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_voiceprocessingio?language=objc)
+/// - Available on macOS and with iOS 3.0 or greater
+/// This audio unit can do input as well as output. Bus 0 is used for the output
+/// side, bus 1 is used to get audio input (thus, on the iPhone, it works in a
+/// very similar way to the Remote I/O). This audio unit does signal processing on
+/// the incoming audio (taking out any of the audio that is played from the device
+/// at a given time from the incoming audio).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_voiceprocessingio?language=objc)
 pub const kAudioUnitSubType_VoiceProcessingIO: u32 = 0x7670696f;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_haloutput?language=objc)
+/// (a.k.a. "AUHAL")  The audio unit that interfaces to any audio device. The user specifies
+/// which audio device to track. Bus 0 is used to send audio output to the device; bus 1 is used
+/// to receive audio input from the device. Available on macOS only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_haloutput?language=objc)
 pub const kAudioUnitSubType_HALOutput: u32 = 0x6168616c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_defaultoutput?language=objc)
+/// A specialization of AUHAL that is used to track the user's selection of the default device
+/// as set in the Sound Prefs. Available on macOS only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_defaultoutput?language=objc)
 pub const kAudioUnitSubType_DefaultOutput: u32 = 0x64656620;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_systemoutput?language=objc)
+/// A specialization of AUHAL that is used to track the user's selection of the device to use
+/// for sound effects, alerts and other UI sounds. Available on macOS only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_systemoutput?language=objc)
 pub const kAudioUnitSubType_SystemOutput: u32 = 0x73797320;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_dlssynth?language=objc)
+/// - desktop only
+/// A multi-timbral music device that can use sample banks in either DLS or
+/// SoundFont formats. It fully supports GM-MIDI and the basic extensions of
+/// GS-MIDI.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_dlssynth?language=objc)
 pub const kAudioUnitSubType_DLSSynth: u32 = 0x646c7320;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_sampler?language=objc)
+/// A mono-timbral music device which is a sampler synthesizer and supports full
+/// interactive editing of all state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_sampler?language=objc)
 pub const kAudioUnitSubType_Sampler: u32 = 0x73616d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_midisynth?language=objc)
+/// A fully GM-compatible multi-timbral music device which is a sampler synthesizer.
+/// It can load instruments from sample banks in either DLS or SoundFont formats.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_midisynth?language=objc)
 pub const kAudioUnitSubType_MIDISynth: u32 = 0x6d73796e;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_auconverter?language=objc)
+/// An audio unit that uses an AudioConverter to do Linear PCM conversions (sample
+/// rate, bit depth, interleaving).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_auconverter?language=objc)
 pub const kAudioUnitSubType_AUConverter: u32 = 0x636f6e76;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_varispeed?language=objc)
+/// An audio unit that can be used to control playback rate (as the rate is faster,
+/// the pitch is higher). It provides a generic view, so can be used in both a UI
+/// and programmatic context. It also comes in an Offline version so can be used
+/// to process audio files.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_varispeed?language=objc)
 pub const kAudioUnitSubType_Varispeed: u32 = 0x76617269;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_deferredrenderer?language=objc)
+/// An audio unit that is used to get its input from a separate thread than the
+/// thread that its render method is called. It thus allows an application to
+/// introduce multiple threads into a rendering graph. There is a buffer sized
+/// delay introduced between the input and output
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_deferredrenderer?language=objc)
 pub const kAudioUnitSubType_DeferredRenderer: u32 = 0x64656672;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_splitter?language=objc)
+/// An audio unit that provides 2 output buses and 1 input bus. The audio unit
+/// splits (duplicates) the input signal to the two output buses
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_splitter?language=objc)
 pub const kAudioUnitSubType_Splitter: u32 = 0x73706c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_multisplitter?language=objc)
+/// An audio unit that sends its input bus to any number of output buses.
+/// Every output bus gets all channels of the input bus.
+/// This unit's implementation is lighter weight than kAudioUnitSubType_Splitter
+/// even for two output buses, and is recommended over kAudioUnitSubType_Splitter.
+///
+/// Note kAudioUnitSubType_MultiSplitter is a type of kAudioUnitType_Mixer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_multisplitter?language=objc)
 pub const kAudioUnitSubType_MultiSplitter: u32 = 0x6d73706c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_merger?language=objc)
+/// An audio unit that provides 2 input buses and 2 output bus. The audio unit
+/// merges the two inputs to the single output
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_merger?language=objc)
 pub const kAudioUnitSubType_Merger: u32 = 0x6d657267;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_newtimepitch?language=objc)
+/// An audio unit that provides good quality time stretching and pitch shifting.
+/// It is computationally less expensive than kAudioUnitSubType_TimePitch.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_newtimepitch?language=objc)
 pub const kAudioUnitSubType_NewTimePitch: u32 = 0x6e757470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_auipodtimeother?language=objc)
+/// An audio unit that provides time domain time stretching.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_auipodtimeother?language=objc)
 pub const kAudioUnitSubType_AUiPodTimeOther: u32 = 0x6970746f;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_roundtripaac?language=objc)
 pub const kAudioUnitSubType_RoundTripAAC: u32 = 0x72616163;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_auaudiomix?language=objc)
+/// An audio unit that supports AudioMix separate-and-remix functionality
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_auaudiomix?language=objc)
 pub const kAudioUnitSubType_AUAudioMix: u32 = 0x616d6978;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_timepitch?language=objc)
+/// An audio unit that provides high quality time stretching and pitch shifting.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_timepitch?language=objc)
 pub const kAudioUnitSubType_TimePitch: u32 = 0x746d7074;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_peaklimiter?language=objc)
+/// A peak limiter
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_peaklimiter?language=objc)
 pub const kAudioUnitSubType_PeakLimiter: u32 = 0x6c6d7472;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_dynamicsprocessor?language=objc)
+/// A dynamics compressor/expander
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_dynamicsprocessor?language=objc)
 pub const kAudioUnitSubType_DynamicsProcessor: u32 = 0x64636d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_lowpassfilter?language=objc)
+/// A filter that passes frequencies below a specified cut-off frequency
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_lowpassfilter?language=objc)
 pub const kAudioUnitSubType_LowPassFilter: u32 = 0x6c706173;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_highpassfilter?language=objc)
+/// A filter that passes frequencies above a specified cut-off frequency
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_highpassfilter?language=objc)
 pub const kAudioUnitSubType_HighPassFilter: u32 = 0x68706173;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_bandpassfilter?language=objc)
+/// A filter that passes frequencies between a low and high cut-off frequency.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_bandpassfilter?language=objc)
 pub const kAudioUnitSubType_BandPassFilter: u32 = 0x62706173;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_highshelffilter?language=objc)
+/// A filter that can be used to implement a "treble" control
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_highshelffilter?language=objc)
 pub const kAudioUnitSubType_HighShelfFilter: u32 = 0x68736866;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_lowshelffilter?language=objc)
+/// A filter that can be used to implement a "bass" control
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_lowshelffilter?language=objc)
 pub const kAudioUnitSubType_LowShelfFilter: u32 = 0x6c736866;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_parametriceq?language=objc)
+/// A parametric EQ filter
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_parametriceq?language=objc)
 pub const kAudioUnitSubType_ParametricEQ: u32 = 0x706d6571;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_distortion?language=objc)
+/// A distortion audio unit
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_distortion?language=objc)
 pub const kAudioUnitSubType_Distortion: u32 = 0x64697374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_delay?language=objc)
+/// - desktop only
+/// A delay audio unit
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_delay?language=objc)
 pub const kAudioUnitSubType_Delay: u32 = 0x64656c79;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_sampledelay?language=objc)
+/// - desktop only
+/// A delay that is used to delay the input a specified number of samples until
+/// the output
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_sampledelay?language=objc)
 pub const kAudioUnitSubType_SampleDelay: u32 = 0x73646c79;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_nbandeq?language=objc)
+/// A generalized N-band graphic EQ with specifiable filter types per-band
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_nbandeq?language=objc)
 pub const kAudioUnitSubType_NBandEQ: u32 = 0x6e626571;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_reverb2?language=objc)
+/// A lite reverb that can be used to simulate various and different spaces
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_reverb2?language=objc)
 pub const kAudioUnitSubType_Reverb2: u32 = 0x72766232;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_ausoundisolation?language=objc)
+/// An audio unit that can be used to isolate a specified sound type
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_ausoundisolation?language=objc)
 pub const kAudioUnitSubType_AUSoundIsolation: u32 = 0x766f6973;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_graphiceq?language=objc)
+/// A 10 or 31 band Graphic EQ
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_graphiceq?language=objc)
 pub const kAudioUnitSubType_GraphicEQ: u32 = 0x67726571;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_multibandcompressor?language=objc)
+/// A 4 band compressor/expander
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_multibandcompressor?language=objc)
 pub const kAudioUnitSubType_MultiBandCompressor: u32 = 0x6d636d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_matrixreverb?language=objc)
+/// A reverb that can be used to simulate various and different spaces
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_matrixreverb?language=objc)
 pub const kAudioUnitSubType_MatrixReverb: u32 = 0x6d726576;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_pitch?language=objc)
+/// An audio unit used to change the pitch
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_pitch?language=objc)
 pub const kAudioUnitSubType_Pitch: u32 = 0x746d7074;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_aufilter?language=objc)
+/// A filter unit that combines 5 different filters (low, 3 mids, high)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_aufilter?language=objc)
 pub const kAudioUnitSubType_AUFilter: u32 = 0x66696c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_netsend?language=objc)
+/// An audio unit that is used in conjunction with _NetReceive to send audio
+/// across the network (or between different applications)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_netsend?language=objc)
 pub const kAudioUnitSubType_NetSend: u32 = 0x6e736e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_rogerbeep?language=objc)
+/// An audio unit that can be used to emit a short tone in gaps between speech
+/// - similar to the tones used in a walkie-talkie
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_rogerbeep?language=objc)
 pub const kAudioUnitSubType_RogerBeep: u32 = 0x726f6772;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_multichannelmixer?language=objc)
+/// Can have any number of inputs, with any number of channels on any input to one
+/// output bus with any number of channels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_multichannelmixer?language=objc)
 pub const kAudioUnitSubType_MultiChannelMixer: u32 = 0x6d636d78;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_matrixmixer?language=objc)
+/// Any number of input and output buses with any number of channels on any bus.
+/// The mix is presented as a matrix of channels that can be controlled through
+/// input volume per channel, "cross-point" volume (a given input channel to a
+/// given output channel), output volume per channel and a global volume across
+/// the whole matrix
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_matrixmixer?language=objc)
 pub const kAudioUnitSubType_MatrixMixer: u32 = 0x6d786d78;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_spatialmixer?language=objc)
+/// Inputs that are mono will be panned around using 3D coordinates and parameters.
+/// Stereo inputs are passed directly through to the output.
+/// A single output is presented with 2, 4, 5, 6, 7 or 8 channels.
+/// There is also a built in reverb.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_spatialmixer?language=objc)
 pub const kAudioUnitSubType_SpatialMixer: u32 = 0x3364656d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_stereomixer?language=objc)
+/// Inputs can be mono or stereo. Single stereo output
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_stereomixer?language=objc)
 pub const kAudioUnitSubType_StereoMixer: u32 = 0x736d7872;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_3dmixer?language=objc)
+/// (deprecated, use kAudioUnitSubType_SpatialMixer instead)
+/// Inputs can be mono, in which case they can be panned around using 3D
+/// coordinates and parameters.
+/// Stereo inputs are passed directly through to the output.
+/// 4 channel "ambisonic" inputs will be rendered to the output configuration
+/// A single output of 2, 4, 5, 6, 7 or 8 channels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_3dmixer?language=objc)
 #[deprecated = "no longer supported"]
 pub const kAudioUnitSubType_3DMixer: u32 = 0x33646d78;
 
@@ -162,28 +349,45 @@ pub const kAudioUnitSubType_SoundFieldPanner: u32 = 0x616d6269;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_hrtfpanner?language=objc)
 pub const kAudioUnitSubType_HRTFPanner: u32 = 0x68727466;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_netreceive?language=objc)
+/// - desktop only
+/// A generator unit that is paired with _NetSend to receive the audio that unit
+/// sends. It presents a custom UI so can be used in a UI context as well
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_netreceive?language=objc)
 pub const kAudioUnitSubType_NetReceive: u32 = 0x6e726376;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_scheduledsoundplayer?language=objc)
+/// A generator unit that can be used to schedule slices of audio to be played at
+/// a specified time. The audio is scheduled using the time stamps for the render
+/// operation, and can be scheduled from any thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_scheduledsoundplayer?language=objc)
 pub const kAudioUnitSubType_ScheduledSoundPlayer: u32 = 0x7373706c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_audiofileplayer?language=objc)
+/// A generator unit that is used to play a file. It presents a custom UI so can
+/// be used in a UI context as well
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_audiofileplayer?language=objc)
 pub const kAudioUnitSubType_AudioFilePlayer: u32 = 0x6166706c;
 
 /// These flags can be set in a callback from an audio unit during an audio unit
 /// render operation from either the RenderNotify Proc or the render input
 /// callback.
 ///
-///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct AudioUnitRenderActionFlags(pub u32);
+bitflags::bitflags! {
+    impl AudioUnitRenderActionFlags: u32 {
 /// Called on a render notification Proc - which is called either before or after
 /// the render operation of the audio unit. If this flag is set, the proc is being
 /// called before the render operation is performed.
-///
-///
+        #[doc(alias = "kAudioUnitRenderAction_PreRender")]
+        const UnitRenderAction_PreRender = 1<<2;
 /// Called on a render notification Proc - which is called either before or after
 /// the render operation of the audio unit. If this flag is set, the proc is being
 /// called after the render operation is completed.
-///
-///
+        #[doc(alias = "kAudioUnitRenderAction_PostRender")]
+        const UnitRenderAction_PostRender = 1<<3;
 /// The originator of a buffer, in a render input callback, or in an audio unit's
 /// render operation, may use this flag to indicate that the buffer contains
 /// only silence.
@@ -193,56 +397,35 @@ pub const kAudioUnitSubType_AudioFilePlayer: u32 = 0x6166706c;
 ///
 /// Note that because the flag is only a hint, when setting the silence flag,
 /// the originator of a buffer must also ensure that it contains silence (zeroes).
-///
-///
+        #[doc(alias = "kAudioUnitRenderAction_OutputIsSilence")]
+        const UnitRenderAction_OutputIsSilence = 1<<4;
 /// This is used with offline audio units (of type 'auol'). It is used when an
 /// offline unit is being preflighted, which is performed prior to the actual
 /// offline rendering actions are performed. It is used for those cases where the
 /// offline process needs it (for example, with an offline unit that normalises an
 /// audio file, it needs to see all of the audio data first before it can perform
 /// its normalization)
-///
-///
+        #[doc(alias = "kAudioOfflineUnitRenderAction_Preflight")]
+        const OfflineUnitRenderAction_Preflight = 1<<5;
 /// Once an offline unit has been successfully preflighted, it is then put into
 /// its render mode. So this flag is set to indicate to the audio unit that it is
 /// now in that state and that it should perform its processing on the input data.
-///
-///
+        #[doc(alias = "kAudioOfflineUnitRenderAction_Render")]
+        const OfflineUnitRenderAction_Render = 1<<6;
 /// This flag is set when an offline unit has completed either its preflight or
 /// performed render operations
-///
-///
+        #[doc(alias = "kAudioOfflineUnitRenderAction_Complete")]
+        const OfflineUnitRenderAction_Complete = 1<<7;
 /// If this flag is set on the post-render call an error was returned by the
 /// AUs render operation. In this case, the error can be retrieved through the
 /// lastRenderError property and the audio data in ioData handed to the post-render
 /// notification will be invalid.
-///
+        #[doc(alias = "kAudioUnitRenderAction_PostRenderError")]
+        const UnitRenderAction_PostRenderError = 1<<8;
 /// If this flag is set, then checks that are done on the arguments provided to render
 /// are not performed. This can be useful to use to save computation time in
 /// situations where you are sure you are providing the correct arguments
 /// and structures to the various render calls
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags?language=objc)
-// NS_OPTIONS
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct AudioUnitRenderActionFlags(pub u32);
-bitflags::bitflags! {
-    impl AudioUnitRenderActionFlags: u32 {
-        #[doc(alias = "kAudioUnitRenderAction_PreRender")]
-        const UnitRenderAction_PreRender = 1<<2;
-        #[doc(alias = "kAudioUnitRenderAction_PostRender")]
-        const UnitRenderAction_PostRender = 1<<3;
-        #[doc(alias = "kAudioUnitRenderAction_OutputIsSilence")]
-        const UnitRenderAction_OutputIsSilence = 1<<4;
-        #[doc(alias = "kAudioOfflineUnitRenderAction_Preflight")]
-        const OfflineUnitRenderAction_Preflight = 1<<5;
-        #[doc(alias = "kAudioOfflineUnitRenderAction_Render")]
-        const OfflineUnitRenderAction_Render = 1<<6;
-        #[doc(alias = "kAudioOfflineUnitRenderAction_Complete")]
-        const OfflineUnitRenderAction_Complete = 1<<7;
-        #[doc(alias = "kAudioUnitRenderAction_PostRenderError")]
-        const UnitRenderAction_PostRenderError = 1<<8;
         #[doc(alias = "kAudioUnitRenderAction_DoNotCheckRenderArgs")]
         const UnitRenderAction_DoNotCheckRenderArgs = 1<<9;
         const _ = !0;
@@ -259,76 +442,172 @@ unsafe impl RefEncode for AudioUnitRenderActionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidproperty?language=objc)
+/// The property is not supported
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidproperty?language=objc)
 pub const kAudioUnitErr_InvalidProperty: OSStatus = -10879;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidparameter?language=objc)
+/// The parameter is not supported
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidparameter?language=objc)
 pub const kAudioUnitErr_InvalidParameter: OSStatus = -10878;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidelement?language=objc)
+/// The specified element is not valid
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidelement?language=objc)
 pub const kAudioUnitErr_InvalidElement: OSStatus = -10877;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_noconnection?language=objc)
+/// There is no connection (generally an audio unit is asked to render but it has
+/// not input from which to gather data)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_noconnection?language=objc)
 pub const kAudioUnitErr_NoConnection: OSStatus = -10876;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_failedinitialization?language=objc)
+/// The audio unit is unable to be initialized
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_failedinitialization?language=objc)
 pub const kAudioUnitErr_FailedInitialization: OSStatus = -10875;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_toomanyframestoprocess?language=objc)
+/// When an audio unit is initialized it has a value which specifies the max
+/// number of frames it will be asked to render at any given time. If an audio
+/// unit is asked to render more than this, this error is returned.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_toomanyframestoprocess?language=objc)
 pub const kAudioUnitErr_TooManyFramesToProcess: OSStatus = -10874;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidfile?language=objc)
+/// If an audio unit uses external files as a data source, this error is returned
+/// if a file is invalid (Apple's DLS synth returns this error)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidfile?language=objc)
 pub const kAudioUnitErr_InvalidFile: OSStatus = -10871;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_unknownfiletype?language=objc)
+/// If an audio unit uses external files as a data source, this error is returned
+/// if a file is invalid (Apple's DLS synth returns this error)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_unknownfiletype?language=objc)
 pub const kAudioUnitErr_UnknownFileType: OSStatus = -10870;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_filenotspecified?language=objc)
+/// If an audio unit uses external files as a data source, this error is returned
+/// if a file hasn't been set on it
+/// (Apple's DLS synth returns this error)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_filenotspecified?language=objc)
 pub const kAudioUnitErr_FileNotSpecified: OSStatus = -10869;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_formatnotsupported?language=objc)
+/// Returned if an input or output format is not supported
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_formatnotsupported?language=objc)
 pub const kAudioUnitErr_FormatNotSupported: OSStatus = -10868;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_uninitialized?language=objc)
+/// Returned if an operation requires an audio unit to be initialized and it is
+/// not.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_uninitialized?language=objc)
 pub const kAudioUnitErr_Uninitialized: OSStatus = -10867;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidscope?language=objc)
+/// The specified scope is invalid
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidscope?language=objc)
 pub const kAudioUnitErr_InvalidScope: OSStatus = -10866;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_propertynotwritable?language=objc)
+/// The property cannot be written
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_propertynotwritable?language=objc)
 pub const kAudioUnitErr_PropertyNotWritable: OSStatus = -10865;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_cannotdoincurrentcontext?language=objc)
+/// Returned when an audio unit is in a state where it can't perform the requested
+/// action now - but it could later. Its usually used to guard a render operation
+/// when a reconfiguration of its internal state is being performed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_cannotdoincurrentcontext?language=objc)
 pub const kAudioUnitErr_CannotDoInCurrentContext: OSStatus = -10863;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidpropertyvalue?language=objc)
+/// The property is valid, but the value of the property being provided is not
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidpropertyvalue?language=objc)
 pub const kAudioUnitErr_InvalidPropertyValue: OSStatus = -10851;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_propertynotinuse?language=objc)
+/// Returned when a property is valid, but it hasn't been set to a valid value at
+/// this time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_propertynotinuse?language=objc)
 pub const kAudioUnitErr_PropertyNotInUse: OSStatus = -10850;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_initialized?language=objc)
+/// Indicates the operation cannot be performed because the audio unit is
+/// initialized.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_initialized?language=objc)
 pub const kAudioUnitErr_Initialized: OSStatus = -10849;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidofflinerender?language=objc)
+/// Used to indicate that the offline render operation is invalid. For instance,
+/// when the audio unit needs to be pre-flighted,
+/// but it hasn't been.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidofflinerender?language=objc)
 pub const kAudioUnitErr_InvalidOfflineRender: OSStatus = -10848;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_unauthorized?language=objc)
+/// Returned by either Open or Initialize, this error is used to indicate that the
+/// audio unit is not authorised, that it cannot be used. A host can then present
+/// a UI to notify the user the audio unit is not able to be used in its current
+/// state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_unauthorized?language=objc)
 pub const kAudioUnitErr_Unauthorized: OSStatus = -10847;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_midioutputbufferfull?language=objc)
+/// Returned during the render call, if the audio unit produces more MIDI output,
+/// than the default allocated buffer. The audio unit can provide a size hint, in
+/// case it needs a larger buffer. See the documentation for AUAudioUnit's
+/// MIDIOutputBufferSizeHint property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_midioutputbufferfull?language=objc)
 pub const kAudioUnitErr_MIDIOutputBufferFull: OSStatus = -66753;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_instancetimedout?language=objc)
 pub const kAudioComponentErr_InstanceTimedOut: OSStatus = -66754;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_instanceinvalidated?language=objc)
+/// The component instance's implementation is not available, most likely because the process
+/// that published it is no longer running.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_instanceinvalidated?language=objc)
 pub const kAudioComponentErr_InstanceInvalidated: OSStatus = -66749;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_rendertimeout?language=objc)
+/// The audio unit did not satisfy the render request in time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_rendertimeout?language=objc)
 pub const kAudioUnitErr_RenderTimeout: OSStatus = -66745;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_extensionnotfound?language=objc)
+/// The specified identifier did not match any Audio Unit Extensions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_extensionnotfound?language=objc)
 pub const kAudioUnitErr_ExtensionNotFound: OSStatus = -66744;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidparametervalue?language=objc)
+/// The parameter value is not supported, e.g. the value specified is NaN or
+/// infinite.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidparametervalue?language=objc)
 pub const kAudioUnitErr_InvalidParameterValue: OSStatus = -66743;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidfilepath?language=objc)
+/// The file path that was passed is not supported. It is either too long or contains
+/// invalid characters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_invalidfilepath?language=objc)
 pub const kAudioUnitErr_InvalidFilePath: OSStatus = -66742;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_missingkey?language=objc)
+/// A required key is missing from a dictionary object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_missingkey?language=objc)
 pub const kAudioUnitErr_MissingKey: OSStatus = -66741;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_componentmanagernotsupported?language=objc)
+/// The operation can not be performed for a component instance instantiated using the
+/// deprecated Component Manager. A host application should use the API functions
+/// AudioComponentInstantiate or AudioComponentInstanceNew when rebuilding
+/// against the macOS 11 or later SDK.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_componentmanagernotsupported?language=objc)
 pub const kAudioUnitErr_ComponentManagerNotSupported: OSStatus = -66740;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_multiplevoiceprocessors?language=objc)
+/// On some platforms, this error is returned when a client attempts to initialize
+/// a voice processor instance while another is initialized.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_multiplevoiceprocessors?language=objc)
 pub const kAudioUnitErr_MultipleVoiceProcessors: OSStatus = -66635;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_duplicatedescription?language=objc)
+/// a non-unique component description was provided to AudioOutputUnitPublish
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_duplicatedescription?language=objc)
 pub const kAudioComponentErr_DuplicateDescription: OSStatus = -66752;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_unsupportedtype?language=objc)
+/// an unsupported component type was provided to AudioOutputUnitPublish
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_unsupportedtype?language=objc)
 pub const kAudioComponentErr_UnsupportedType: OSStatus = -66751;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_toomanyinstances?language=objc)
+/// components published via AudioOutputUnitPublish may only have one instance
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_toomanyinstances?language=objc)
 pub const kAudioComponentErr_TooManyInstances: OSStatus = -66750;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_notpermitted?language=objc)
+/// app needs "inter-app-audio" entitlement or host app needs "audio" in its UIBackgroundModes.
+/// Or app is trying to register a component not declared in its Info.plist.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_notpermitted?language=objc)
 pub const kAudioComponentErr_NotPermitted: OSStatus = -66748;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_initializationtimedout?language=objc)
+/// host did not render in a timely manner; must uninitialize and reinitialize.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_initializationtimedout?language=objc)
 pub const kAudioComponentErr_InitializationTimedOut: OSStatus = -66747;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_invalidformat?language=objc)
+/// inter-app AU element formats must have sample rates matching the hardware.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponenterr_invalidformat?language=objc)
 pub const kAudioComponentErr_InvalidFormat: OSStatus = -66746;
 
 /// Type used for audio unit properties.
@@ -372,21 +651,18 @@ pub type AudioUnitParameterValue = f32;
 
 /// The type of a parameter event (see AudioUnitScheduleParameter)
 ///
-///
-/// The parameter event describes an immediate change to the parameter value to
-/// the new value
-///
-/// The parameter event describes a change to the parameter value that should
-/// be applied over the specified period of time
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametereventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUParameterEventType(pub u32);
 impl AUParameterEventType {
+    /// The parameter event describes an immediate change to the parameter value to
+    /// the new value
     #[doc(alias = "kParameterEvent_Immediate")]
     pub const ParameterEvent_Immediate: Self = Self(1);
+    /// The parameter event describes a change to the parameter value that should
+    /// be applied over the specified period of time
     #[doc(alias = "kParameterEvent_Ramped")]
     pub const ParameterEvent_Ramped: Self = Self(2);
 }
@@ -1676,9 +1952,15 @@ pub type AudioUnitRenderProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_illegalinstrument?language=objc)
+/// Apple's DLS synth returns this error if information about a particular
+/// instrument patch is requested, but is not valid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_illegalinstrument?language=objc)
 #[deprecated]
 pub const kAudioUnitErr_IllegalInstrument: OSStatus = -10873;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_instrumenttypenotfound?language=objc)
+/// Apple's DLS synth returns this error if information about a particular
+/// instrument patch is requested, but is not valid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_instrumenttypenotfound?language=objc)
 #[deprecated]
 pub const kAudioUnitErr_InstrumentTypeNotFound: OSStatus = -10872;

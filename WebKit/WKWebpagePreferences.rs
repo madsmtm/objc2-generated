@@ -10,9 +10,6 @@ use crate::*;
 /// additional layout and rendering adaptations that are applied as a result of
 /// loading the content
 ///
-///
-///
-///
 /// WKContentModeRecommended behaves like WKContentModeMobile on iPhone and iPad mini
 /// and WKContentModeDesktop on other iPad models as well as Mac.
 ///
@@ -22,10 +19,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKContentMode(pub NSInteger);
 impl WKContentMode {
+    /// The recommended content mode for the current platform
     #[doc(alias = "WKContentModeRecommended")]
     pub const Recommended: Self = Self(0);
+    /// Represents content targeting mobile browsers
     #[doc(alias = "WKContentModeMobile")]
     pub const Mobile: Self = Self(1);
+    /// Represents content targeting desktop browsers
     #[doc(alias = "WKContentModeDesktop")]
     pub const Desktop: Self = Self(2);
 }
@@ -48,12 +48,16 @@ unsafe impl RefEncode for WKContentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebpagePreferencesUpgradeToHTTPSPolicy(pub NSInteger);
 impl WKWebpagePreferencesUpgradeToHTTPSPolicy {
+    /// Maintains the current behavior without preferring https
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyKeepAsRequested")]
     pub const KeepAsRequested: Self = Self(0);
+    /// Upgrades http requests to https, and re-attempts the request with http on failure
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyAutomaticFallbackToHTTP")]
     pub const AutomaticFallbackToHTTP: Self = Self(1);
+    /// Upgrades http requests to https, and shows a warning page on failure
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyUserMediatedFallbackToHTTP")]
     pub const UserMediatedFallbackToHTTP: Self = Self(2);
+    /// Upgrades http requests to https, and returns an error on failure
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyErrorOnFailure")]
     pub const ErrorOnFailure: Self = Self(3);
 }
@@ -74,10 +78,13 @@ unsafe impl RefEncode for WKWebpagePreferencesUpgradeToHTTPSPolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKSecurityRestrictionMode(pub NSInteger);
 impl WKSecurityRestrictionMode {
+    /// No additional security restrictions beyond WebKit defaults.
     #[doc(alias = "WKSecurityRestrictionModeNone")]
     pub const None: Self = Self(0);
+    /// Enhanced security protections optimized for maintaining web compatibility. Disables JIT compilation and enables increased MTE adoption.
     #[doc(alias = "WKSecurityRestrictionModeMaximizeCompatibility")]
     pub const MaximizeCompatibility: Self = Self(1);
+    /// Maximum security restrictions including feature disablement. Applied automatically by the system in Lockdown Mode.
     #[doc(alias = "WKSecurityRestrictionModeLockdown")]
     pub const Lockdown: Self = Self(2);
 }

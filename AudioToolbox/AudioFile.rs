@@ -82,31 +82,57 @@ pub const kAFInfoDictionary_Year: &CStr = unsafe { CStr::from_bytes_with_nul_unc
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofiletypeid?language=objc)
 pub type AudioFileTypeID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileaifftype?language=objc)
+/// Audio Interchange File Format (AIFF)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileaifftype?language=objc)
 pub const kAudioFileAIFFType: AudioFileTypeID = 0x41494646;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileaifctype?language=objc)
+/// Audio Interchange File Format Compressed (AIFF-C)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileaifctype?language=objc)
 pub const kAudioFileAIFCType: AudioFileTypeID = 0x41494643;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilewavetype?language=objc)
+/// Microsoft WAVE
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilewavetype?language=objc)
 pub const kAudioFileWAVEType: AudioFileTypeID = 0x57415645;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilerf64type?language=objc)
+/// File Format specified in EBU Tech 3306
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilerf64type?language=objc)
 pub const kAudioFileRF64Type: AudioFileTypeID = 0x52463634;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilebw64type?language=objc)
+/// File Format specified in ITU-R BS.2088
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilebw64type?language=objc)
 pub const kAudioFileBW64Type: AudioFileTypeID = 0x42573634;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilewave64type?language=objc)
+/// Sony Pictures Digital Wave 64
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilewave64type?language=objc)
 pub const kAudioFileWave64Type: AudioFileTypeID = 0x57363466;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilesounddesigner2type?language=objc)
+/// Sound Designer II
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilesounddesigner2type?language=objc)
 pub const kAudioFileSoundDesigner2Type: AudioFileTypeID = 0x53643266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilenexttype?language=objc)
+/// NeXT / Sun
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilenexttype?language=objc)
 pub const kAudioFileNextType: AudioFileTypeID = 0x4e655854;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemp3type?language=objc)
+/// MPEG Audio Layer 3 (.mp3)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemp3type?language=objc)
 pub const kAudioFileMP3Type: AudioFileTypeID = 0x4d504733;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemp2type?language=objc)
+/// MPEG Audio Layer 2 (.mp2)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemp2type?language=objc)
 pub const kAudioFileMP2Type: AudioFileTypeID = 0x4d504732;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemp1type?language=objc)
+/// MPEG Audio Layer 1 (.mp1)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemp1type?language=objc)
 pub const kAudioFileMP1Type: AudioFileTypeID = 0x4d504731;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileac3type?language=objc)
+/// AC-3
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileac3type?language=objc)
 pub const kAudioFileAC3Type: AudioFileTypeID = 0x61632d33;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileaac_adtstype?language=objc)
+/// Advanced Audio Coding (AAC) Audio Data Transport Stream (ADTS)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileaac_adtstype?language=objc)
 pub const kAudioFileAAC_ADTSType: AudioFileTypeID = 0x61647473;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilempeg4type?language=objc)
 pub const kAudioFileMPEG4Type: AudioFileTypeID = 0x6d703466;
@@ -114,7 +140,9 @@ pub const kAudioFileMPEG4Type: AudioFileTypeID = 0x6d703466;
 pub const kAudioFileM4AType: AudioFileTypeID = 0x6d346166;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilem4btype?language=objc)
 pub const kAudioFileM4BType: AudioFileTypeID = 0x6d346266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecaftype?language=objc)
+/// CoreAudio File Format
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecaftype?language=objc)
 pub const kAudioFileCAFType: AudioFileTypeID = 0x63616666;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofile3gptype?language=objc)
 pub const kAudioFile3GPType: AudioFileTypeID = 0x33677070;
@@ -122,54 +150,90 @@ pub const kAudioFile3GPType: AudioFileTypeID = 0x33677070;
 pub const kAudioFile3GP2Type: AudioFileTypeID = 0x33677032;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileamrtype?language=objc)
 pub const kAudioFileAMRType: AudioFileTypeID = 0x616d7266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileflactype?language=objc)
+/// Free Lossless Audio Codec
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileflactype?language=objc)
 pub const kAudioFileFLACType: AudioFileTypeID = 0x666c6163;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilelatminloastype?language=objc)
+/// Low-overhead audio stream with low-overhead audio transport multiplex, per ISO/IEC 14496-3.
+/// Support is limited to AudioSyncStream using AudioMuxElement with mux config present.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilelatminloastype?language=objc)
 pub const kAudioFileLATMInLOASType: AudioFileTypeID = 0x6c6f6173;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunspecifiederror?language=objc)
+/// An unspecified error has occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunspecifiederror?language=objc)
 pub const kAudioFileUnspecifiedError: OSStatus = 0x7768743f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunsupportedfiletypeerror?language=objc)
+/// The file type is not supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunsupportedfiletypeerror?language=objc)
 pub const kAudioFileUnsupportedFileTypeError: OSStatus = 0x7479703f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunsupporteddataformaterror?language=objc)
+/// The data format is not supported by this file type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunsupporteddataformaterror?language=objc)
 pub const kAudioFileUnsupportedDataFormatError: OSStatus = 0x666d743f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunsupportedpropertyerror?language=objc)
+/// The property is not supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunsupportedpropertyerror?language=objc)
 pub const kAudioFileUnsupportedPropertyError: OSStatus = 0x7074793f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilebadpropertysizeerror?language=objc)
+/// The size of the property data was not correct.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilebadpropertysizeerror?language=objc)
 pub const kAudioFileBadPropertySizeError: OSStatus = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepermissionserror?language=objc)
+/// The operation violated the file permissions. For example, trying to write to a file opened with kAudioFileReadPermission.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepermissionserror?language=objc)
 pub const kAudioFilePermissionsError: OSStatus = 0x70726d3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilenotoptimizederror?language=objc)
+/// There are chunks following the audio data chunk that prevent extending the audio data chunk.
+/// The file must be optimized in order to write more audio data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilenotoptimizederror?language=objc)
 pub const kAudioFileNotOptimizedError: OSStatus = 0x6f70746d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidchunkerror?language=objc)
+/// The chunk does not exist in the file or is not supported by the file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidchunkerror?language=objc)
 pub const kAudioFileInvalidChunkError: OSStatus = 0x63686b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofiledoesnotallow64bitdatasizeerror?language=objc)
+/// The a file offset was too large for the file type. AIFF and WAVE have a 32 bit file size limit.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofiledoesnotallow64bitdatasizeerror?language=objc)
 pub const kAudioFileDoesNotAllow64BitDataSizeError: OSStatus = 0x6f66663f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidpacketoffseterror?language=objc)
+/// A packet offset was past the end of the file, or not at the end of the file when writing a VBR format,
+/// or a corrupt packet size was read when building the packet table.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidpacketoffseterror?language=objc)
 pub const kAudioFileInvalidPacketOffsetError: OSStatus = 0x70636b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidpacketdependencyerror?language=objc)
+/// Either the packet dependency info that's necessary for the audio format has not been provided,
+/// or the provided packet dependency info indicates dependency on a packet that's unavailable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidpacketdependencyerror?language=objc)
 pub const kAudioFileInvalidPacketDependencyError: OSStatus = 0x6465703f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidfileerror?language=objc)
+/// The file is malformed, or otherwise not a valid instance of an audio file of its type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidfileerror?language=objc)
 pub const kAudioFileInvalidFileError: OSStatus = 0x6474613f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileoperationnotsupportederror?language=objc)
+/// The operation cannot be performed. For example, setting kAudioFilePropertyAudioDataByteCount to increase
+/// the size of the audio data in a file is not a supported operation. Write the data instead.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileoperationnotsupportederror?language=objc)
 pub const kAudioFileOperationNotSupportedError: OSStatus = 0x6F703F3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilenotopenerror?language=objc)
+/// The file is closed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilenotopenerror?language=objc)
 pub const kAudioFileNotOpenError: OSStatus = -38;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileendoffileerror?language=objc)
+/// End of file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileendoffileerror?language=objc)
 pub const kAudioFileEndOfFileError: OSStatus = -39;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepositionerror?language=objc)
+/// Invalid file position.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepositionerror?language=objc)
 pub const kAudioFilePositionError: OSStatus = -40;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilefilenotfounderror?language=objc)
+/// File not found.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilefilenotfounderror?language=objc)
 pub const kAudioFileFileNotFoundError: OSStatus = -43;
 
 /// These are flags that can be used with the CreateURL API call
-///
-/// If set, then the CreateURL call will erase the contents of an existing file
-/// If not set, then the CreateURL call will fail if the file already exists
-///
-/// Normally, newly created and optimized files will have padding added in order to page align
-/// the data to 4KB boundaries. This makes reading the data more efficient.
-/// When disk space is a concern, this flag can be set so that the padding will not be added.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileflags?language=objc)
 // NS_OPTIONS
@@ -178,8 +242,13 @@ pub const kAudioFileFileNotFoundError: OSStatus = -43;
 pub struct AudioFileFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileFlags: u32 {
+/// If set, then the CreateURL call will erase the contents of an existing file
+/// If not set, then the CreateURL call will fail if the file already exists
         #[doc(alias = "kAudioFileFlags_EraseFile")]
         const EraseFile = 1;
+/// Normally, newly created and optimized files will have padding added in order to page align
+/// the data to 4KB boundaries. This makes reading the data more efficient.
+/// When disk space is a concern, this flag can be set so that the padding will not be added.
         #[doc(alias = "kAudioFileFlags_DontPageAlignAudioData")]
         const DontPageAlignAudioData = 2;
         const _ = !0;
@@ -243,13 +312,21 @@ pub type AudioFileID = *mut OpaqueAudioFileID;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepropertyid?language=objc)
 pub type AudioFilePropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_nolooping?language=objc)
+/// The segment is not looped.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_nolooping?language=objc)
 pub const kAudioFileLoopDirection_NoLooping: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_forward?language=objc)
+/// play segment forward.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_forward?language=objc)
 pub const kAudioFileLoopDirection_Forward: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_forwardandbackward?language=objc)
+/// play segment forward and backward.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_forwardandbackward?language=objc)
 pub const kAudioFileLoopDirection_ForwardAndBackward: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_backward?language=objc)
+/// play segment backward.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_backward?language=objc)
 pub const kAudioFileLoopDirection_Backward: u32 = 3;
 
 /// A struct for describing a SMPTE time.
@@ -284,7 +361,9 @@ unsafe impl RefEncode for AudioFile_SMPTE_Time {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemarkertype_generic?language=objc)
+/// A generic marker. See CAFFile.h for marker types specific to CAF files.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemarkertype_generic?language=objc)
 pub const kAudioFileMarkerType_Generic: u32 = 0;
 
 /// A marker annotates a position in an audio file with additional information.
@@ -372,12 +451,6 @@ unsafe impl RefEncode for AudioFileMarkerList {
 /// kAudioFileRegionFlag_PlayForward are set, then the region will play as a forward loop. If only
 /// kAudioFileRegionFlag_PlayForward is set, then the region will be played forward once.
 ///
-/// If this flag is set, the region will be looped. One or both of the following must also be set.
-///
-/// If this flag is set, the region will be played forward.
-///
-/// If this flag is set, the region will be played backward.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -385,10 +458,13 @@ unsafe impl RefEncode for AudioFileMarkerList {
 pub struct AudioFileRegionFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileRegionFlags: u32 {
+/// If this flag is set, the region will be looped. One or both of the following must also be set.
         #[doc(alias = "kAudioFileRegionFlag_LoopEnable")]
         const LoopEnable = 1;
+/// If this flag is set, the region will be played forward.
         #[doc(alias = "kAudioFileRegionFlag_PlayForward")]
         const PlayForward = 2;
+/// If this flag is set, the region will be played backward.
         #[doc(alias = "kAudioFileRegionFlag_PlayBackward")]
         const PlayBackward = 4;
         const _ = !0;
@@ -523,9 +599,6 @@ unsafe impl RefEncode for AudioFramePacketTranslation {
 ///
 /// There is currently only one flag.
 ///
-///
-/// If the set then the result value is an estimate.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobytepackettranslationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -533,6 +606,7 @@ unsafe impl RefEncode for AudioFramePacketTranslation {
 pub struct AudioBytePacketTranslationFlags(pub u32);
 bitflags::bitflags! {
     impl AudioBytePacketTranslationFlags: u32 {
+/// If the set then the result value is an estimate.
         #[doc(alias = "kBytePacketTranslationFlag_IsEstimate")]
         const BytePacketTranslationFlag_IsEstimate = 1;
         const _ = !0;
@@ -1738,79 +1812,214 @@ pub unsafe fn AudioFileRemoveUserData(
     unsafe { AudioFileRemoveUserData(in_audio_file, in_user_data_id, in_index) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyfileformat?language=objc)
+/// An AudioFileTypeID that identifies the format of the file
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyfileformat?language=objc)
 pub const kAudioFilePropertyFileFormat: AudioFilePropertyID = 0x66666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydataformat?language=objc)
+/// An AudioStreamBasicDescription describing the format of the audio data
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydataformat?language=objc)
 pub const kAudioFilePropertyDataFormat: AudioFilePropertyID = 0x64666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyisoptimized?language=objc)
+/// A UInt32 indicating whether an Audio File has been optimized.
+/// Optimized means it is ready to start having sound data written to it.
+/// A value of 0 indicates the file needs to be optimized.
+/// A value of 1 indicates the file is currently optimized.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyisoptimized?language=objc)
 pub const kAudioFilePropertyIsOptimized: AudioFilePropertyID = 0x6f70746d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertymagiccookiedata?language=objc)
+/// A void * pointing to memory set up by the caller.
+/// Some file types require that a magic cookie be provided before packets can be written
+/// to the file, so this property should be set before calling
+/// AudioFileWriteBytes()/AudioFileWritePackets() if a magic cookie exists.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertymagiccookiedata?language=objc)
 pub const kAudioFilePropertyMagicCookieData: AudioFilePropertyID = 0x6d676963;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiodatabytecount?language=objc)
+/// a UInt64 that indicates the number of bytes of audio data contained in the file
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiodatabytecount?language=objc)
 pub const kAudioFilePropertyAudioDataByteCount: AudioFilePropertyID = 0x62636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiodatapacketcount?language=objc)
+/// a UInt64 that indicates the number of packets of audio data contained in the file
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiodatapacketcount?language=objc)
 pub const kAudioFilePropertyAudioDataPacketCount: AudioFilePropertyID = 0x70636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertymaximumpacketsize?language=objc)
+/// a UInt32 that indicates the maximum size of a packet for the data contained in the file
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertymaximumpacketsize?language=objc)
 pub const kAudioFilePropertyMaximumPacketSize: AudioFilePropertyID = 0x70737a65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydataoffset?language=objc)
+/// a SInt64 that indicates the byte offset in the file of the audio data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydataoffset?language=objc)
 pub const kAudioFilePropertyDataOffset: AudioFilePropertyID = 0x646f6666;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertychannellayout?language=objc)
+/// An AudioChannelLayout struct.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertychannellayout?language=objc)
 pub const kAudioFilePropertyChannelLayout: AudioFilePropertyID = 0x636d6170;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydefersizeupdates?language=objc)
+/// A UInt32. If 1, then updating the files sizes in the header is not done for every write,
+/// but deferred until the file is read, optimized or closed. This is more efficient, but less safe
+/// since, if the application crashes before the size is updated, the file may not be readable.
+/// The default value is one, it doesn't update the header.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydefersizeupdates?language=objc)
 pub const kAudioFilePropertyDeferSizeUpdates: AudioFilePropertyID = 0x64737a75;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydataformatname?language=objc)
+/// This is deprecated. Use kAudioFormatProperty_FormatName in AudioFormat.h instead.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydataformatname?language=objc)
 pub const kAudioFilePropertyDataFormatName: AudioFilePropertyID = 0x666e6d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertymarkerlist?language=objc)
+/// access the list of markers defined in the file. returns an AudioFileMarkerList.
+/// The CFStringRefs in the returned structs must be released by the client.
+/// (available in 10.2.4 and later)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertymarkerlist?language=objc)
 pub const kAudioFilePropertyMarkerList: AudioFilePropertyID = 0x6d6b6c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyregionlist?language=objc)
+/// access the list of regions defined in the file. returns an Array of AudioFileRegions.
+/// The CFStringRefs in the returned structs must be released by the client.
+/// (available in 10.2.4 and later)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyregionlist?language=objc)
 pub const kAudioFilePropertyRegionList: AudioFilePropertyID = 0x72676c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettoframe?language=objc)
+/// pass a AudioFramePacketTranslation with mPacket filled out and get mFrame back. mFrameOffsetInPacket is ignored.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettoframe?language=objc)
 pub const kAudioFilePropertyPacketToFrame: AudioFilePropertyID = 0x706b6672;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyframetopacket?language=objc)
+/// pass a AudioFramePacketTranslation with mFrame filled out and get mPacket and mFrameOffsetInPacket back.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyframetopacket?language=objc)
 pub const kAudioFilePropertyFrameToPacket: AudioFilePropertyID = 0x6672706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyrestrictsrandomaccess?language=objc)
+/// A UInt32 indicating whether an Audio File contains packets that cannot be used as random access points.
+/// A value of 0 indicates that any packet can be used as a random access point, i.e. that a decoder can start decoding with any packet.
+/// A value of 1 indicates that some packets cannot be used as random access points, i.e. that kAudioFilePropertyPacketToRollDistance must be employed in order to identify an appropriate initial packet for decoding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyrestrictsrandomaccess?language=objc)
 pub const kAudioFilePropertyRestrictsRandomAccess: AudioFilePropertyID = 0x72726170;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettorolldistance?language=objc)
+/// Pass an AudioPacketRollDistanceTranslation with mPacket filled out and get mRollDistance back.
+/// The roll distance indicates the count of packets that must be decoded prior to the packet with the specified number in order to achieve the best practice for the decoding of that packet.
+/// For file types for which a minimal roll distance is prohibitively expensive to determine per packet, the value returned may be derived from an upper bound for all packet roll distances.
+/// If the value of kAudioFilePropertyRestrictsRandomAccess is 1, either kAudioFilePropertyPacketToRollDistance
+/// or kAudioFilePropertyPacketToDependencyInfo must be used in order to identify an appropriate random access point.
+/// If the value of kAudioFilePropertyRestrictsRandomAccess is 0, kAudioFilePropertyPacketToRollDistance can be used in
+/// order to identify the best available random access point, which may be prior to the specified packet even if the specified
+/// packet can be used as a random access point.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettorolldistance?language=objc)
 pub const kAudioFilePropertyPacketToRollDistance: AudioFilePropertyID = 0x706b726c;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypreviousindependentpacket?language=objc)
 pub const kAudioFilePropertyPreviousIndependentPacket: AudioFilePropertyID = 0x70696e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertynextindependentpacket?language=objc)
+/// Pass an AudioIndependentPacketTranslation with mPacket filled out and get mIndependentlyDecodablePacket back.
+/// A value of -1 means that no independent packet is present in the stream in the direction of interest. Otherwise,
+/// for kAudioFilePropertyPreviousIndependentPacket, mIndependentlyDecodablePacket will be less than mPacket, and
+/// for kAudioFilePropertyNextIndependentPacket, mIndependentlyDecodablePacket will be greater than mPacket.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertynextindependentpacket?language=objc)
 pub const kAudioFilePropertyNextIndependentPacket: AudioFilePropertyID = 0x6e696e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettodependencyinfo?language=objc)
+/// Pass an AudioPacketDependencyInfoTranslation with mPacket filled out and get mIsIndependentlyDecodable
+/// and mPrerollPacketCount back.
+/// A value of 0 for mIsIndependentlyDecodable indicates that the specified packet is not independently decodable.
+/// A value of 1 for mIsIndependentlyDecodable indicates that the specified packet is independently decodable.
+/// For independently decodable packets, mPrerollPacketCount indicates the count of packets that must be decoded
+/// after the packet with the specified number in order to refresh the decoder.
+/// If the value of kAudioFilePropertyRestrictsRandomAccess is 1, either kAudioFilePropertyPacketToRollDistance or
+/// kAudioFilePropertyPacketToDependencyInfo must be used in order to identify an appropriate random access point.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettodependencyinfo?language=objc)
 pub const kAudioFilePropertyPacketToDependencyInfo: AudioFilePropertyID = 0x706b6470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettobyte?language=objc)
+/// pass an AudioBytePacketTranslation struct with mPacket filled out and get mByte back.
+/// mByteOffsetInPacket is ignored. If the mByte value is an estimate then
+/// kBytePacketTranslationFlag_IsEstimate will be set in the mFlags field.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettobyte?language=objc)
 pub const kAudioFilePropertyPacketToByte: AudioFilePropertyID = 0x706b6279;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertybytetopacket?language=objc)
+/// pass an AudioBytePacketTranslation struct with mByte filled out and get mPacket and
+/// mByteOffsetInPacket back. If the mPacket value is an estimate then
+/// kBytePacketTranslationFlag_IsEstimate will be set in the mFlags field.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertybytetopacket?language=objc)
 pub const kAudioFilePropertyByteToPacket: AudioFilePropertyID = 0x6279706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertychunkids?language=objc)
+/// returns an array of OSType four char codes for each kind of chunk in the file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertychunkids?language=objc)
 pub const kAudioFilePropertyChunkIDs: AudioFilePropertyID = 0x63686964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyinfodictionary?language=objc)
+/// returns a CFDictionary filled with information about the data contained in the file.
+/// See dictionary key constants already defined for info string types.
+/// AudioFileComponents are free to add keys to the dictionaries that they return for this property...
+/// caller is responsible for releasing the CFObject
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyinfodictionary?language=objc)
 pub const kAudioFilePropertyInfoDictionary: AudioFilePropertyID = 0x696e666f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettableinfo?language=objc)
+/// Gets or sets an AudioFilePacketTableInfo struct for the file types that support it.
+/// When setting, the sum of mNumberValidFrames, mPrimingFrames and mRemainderFrames must be the same as the total
+/// number of frames in all packets. If not you will get a kAudio_ParamError. The best way to ensure this is to get the value of
+/// the property and make sure the sum of the three values you set has the same sum as the three values you got.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettableinfo?language=objc)
 pub const kAudioFilePropertyPacketTableInfo: AudioFilePropertyID = 0x706e666f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyformatlist?language=objc)
+/// In order to support formats such as AAC SBR where an encoded data stream can be decoded to
+/// multiple destination formats, this property returns an array of AudioFormatListItems (see AudioFormat.h) of those formats.
+/// The default behavior is to return the an AudioFormatListItem that has the same AudioStreamBasicDescription
+/// that kAudioFilePropertyDataFormat returns.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyformatlist?language=objc)
 pub const kAudioFilePropertyFormatList: AudioFilePropertyID = 0x666c7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypacketsizeupperbound?language=objc)
+/// a UInt32 for the theoretical maximum packet size in the file (without actually scanning
+/// the whole file to find the largest packet, as may happen with kAudioFilePropertyMaximumPacketSize).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypacketsizeupperbound?language=objc)
 pub const kAudioFilePropertyPacketSizeUpperBound: AudioFilePropertyID = 0x706b7562;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypacketrangebytecountupperbound?language=objc)
+/// Pass an AudioPacketRangeByteCountTranslation with mPacket and mPacketCount filled out
+/// and get mByteCountUpperBound back. The value of mByteCountUpperBound can be used to allocate a buffer
+/// for use with AudioFileReadPacketData in order to accommodate the entire packet range.
+/// May require scanning in order to obtain the requested information, but even if so, no scanning will occur
+/// beyond the last packet in the specified range.
+/// For file formats in which packets are directly accessible and stored both contiguously and byte-aligned,
+/// the returned upper bound will be equal to the total size of the packets in the range. Otherwise the
+/// upper bound may reflect per-packet storage overhead.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypacketrangebytecountupperbound?language=objc)
 pub const kAudioFilePropertyPacketRangeByteCountUpperBound: AudioFilePropertyID = 0x70727562;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyreserveduration?language=objc)
+/// The value is a Float64 of the duration in seconds of data that is expected to be written.
+/// Setting this property before any data has been written reserves space in the file header for a packet table
+/// and/or other information so that it can appear before the audio data. Otherwise the packet table may get written at the
+/// end of the file, preventing the file from being streamable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyreserveduration?language=objc)
 pub const kAudioFilePropertyReserveDuration: AudioFilePropertyID = 0x72737276;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyestimatedduration?language=objc)
+/// The value is a Float64 representing an estimated duration in seconds. If duration can be calculated without scanning the entire file,
+/// or all the audio data packets have been scanned, the value will accurately reflect the duration of the audio data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyestimatedduration?language=objc)
 pub const kAudioFilePropertyEstimatedDuration: AudioFilePropertyID = 0x65647572;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertybitrate?language=objc)
+/// Returns the bit rate for the audio data as a UInt32. For some formats this will be approximate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertybitrate?language=objc)
 pub const kAudioFilePropertyBitRate: AudioFilePropertyID = 0x62726174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyid3tag?language=objc)
+/// A void * pointing to memory set up by the caller to contain a fully formatted ID3 tag (get/set v2.2, v2.3, or v2.4, v1 get only).
+/// The ID3 tag is not manipulated in any way either for read or write.
+/// When setting, this property must be called before calling AudioFileWritePackets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyid3tag?language=objc)
 pub const kAudioFilePropertyID3Tag: AudioFilePropertyID = 0x69643374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyid3tagoffset?language=objc)
+/// Returns the offset of a leading ID3v2 tag, if present, and otherwise the offset of a trailing ID3v1 tag, if present, as an SInt64. (get property only)
+/// Note that for some file formats the offset of a leading ID3v2 tag when present may not be 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyid3tagoffset?language=objc)
 pub const kAudioFilePropertyID3TagOffset: AudioFilePropertyID = 0x6964336f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertysourcebitdepth?language=objc)
+/// For encoded data this property returns the bit depth of the source as an SInt32, if known.
+/// The bit depth is expressed as a negative number if the source was floating point, e.g. -32 for float, -64 for double.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertysourcebitdepth?language=objc)
 pub const kAudioFilePropertySourceBitDepth: AudioFilePropertyID = 0x73627464;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyalbumartwork?language=objc)
+/// returns a CFDataRef filled with the Album Art or NULL.
+/// The caller is responsible for releasing a non-NULL CFDataRef.
+/// In order to parse the contents of the data, CGImageSourceCreateWithData may be used.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyalbumartwork?language=objc)
 pub const kAudioFilePropertyAlbumArtwork: AudioFilePropertyID = 0x61617274;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiotrackcount?language=objc)
+/// a UInt32 that indicates the number of audio tracks contained in the file. (get property only)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiotrackcount?language=objc)
 pub const kAudioFilePropertyAudioTrackCount: AudioFilePropertyID = 0x61746374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyuseaudiotrack?language=objc)
+/// a UInt32 that indicates the number of audio tracks contained in the file. (set property only)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyuseaudiotrack?language=objc)
 pub const kAudioFilePropertyUseAudioTrack: AudioFilePropertyID = 0x7561746b;
 
 /// Get information about the size of a property of an AudioFile  and whether it can be set.
@@ -1929,40 +2138,110 @@ pub unsafe fn AudioFileSetProperty(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_readabletypes?language=objc)
+/// No specifier needed. Must be set to NULL.
+/// Returns an array of UInt32 containing the file types
+/// (i.e. AIFF, WAVE, etc) that can be opened for reading.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_readabletypes?language=objc)
 pub const kAudioFileGlobalInfo_ReadableTypes: AudioFilePropertyID = 0x61667266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_writabletypes?language=objc)
+/// No specifier needed. Must be set to NULL.
+/// Returns an array of UInt32 containing the file types
+/// (i.e. AIFF, WAVE, etc) that can be opened for writing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_writabletypes?language=objc)
 pub const kAudioFileGlobalInfo_WritableTypes: AudioFilePropertyID = 0x61667766;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_filetypename?language=objc)
+/// Specifier is a pointer to a AudioFileTypeID containing a file type.
+/// Returns a CFString containing the name for the file type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_filetypename?language=objc)
 pub const kAudioFileGlobalInfo_FileTypeName: AudioFilePropertyID = 0x66746e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_availablestreamdescriptionsforformat?language=objc)
+/// Specifier is a pointer to a AudioFileTypeAndFormatID struct defined below.
+/// Returns an array of AudioStreamBasicDescriptions which have all of the
+/// formats for a particular file type and format ID. The AudioStreamBasicDescriptions
+/// have the following fields filled in: mFormatID, mFormatFlags, mBitsPerChannel
+/// writing new files.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_availablestreamdescriptionsforformat?language=objc)
 pub const kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat: AudioFilePropertyID =
     0x73646964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_availableformatids?language=objc)
+/// Specifier is a pointer to a AudioFileTypeID containing a file type.
+/// Returns a array of format IDs for formats that can be read.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_availableformatids?language=objc)
 pub const kAudioFileGlobalInfo_AvailableFormatIDs: AudioFilePropertyID = 0x666d6964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allextensions?language=objc)
+/// No specifier needed. Must be set to NULL.
+/// Returns a CFArray of CFStrings containing all file extensions
+/// that are recognized. The array be used when creating an NSOpenPanel.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allextensions?language=objc)
 pub const kAudioFileGlobalInfo_AllExtensions: AudioFilePropertyID = 0x616c7874;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allhfstypecodes?language=objc)
+/// No specifier needed. Must be set to NULL.
+/// Returns an array of HFSTypeCode's containing all HFSTypeCodes
+/// that are recognized.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allhfstypecodes?language=objc)
 pub const kAudioFileGlobalInfo_AllHFSTypeCodes: AudioFilePropertyID = 0x61686673;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allutis?language=objc)
+/// No specifier needed. Must be set to NULL.
+/// Returns a CFArray of CFString of all Universal Type Identifiers
+/// that are recognized by AudioFile.
+/// The caller is responsible for releasing the CFArray.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allutis?language=objc)
 pub const kAudioFileGlobalInfo_AllUTIs: AudioFilePropertyID = 0x61757469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allmimetypes?language=objc)
+/// No specifier needed. Must be set to NULL.
+/// Returns a CFArray of CFString of all MIME types
+/// that are recognized by AudioFile.
+/// The caller is responsible for releasing the CFArray.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allmimetypes?language=objc)
 pub const kAudioFileGlobalInfo_AllMIMETypes: AudioFilePropertyID = 0x616d696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_extensionsfortype?language=objc)
+/// Specifier is a pointer to a AudioFileTypeID containing a file type.
+/// Returns a CFArray of CFStrings containing the file extensions
+/// that are recognized for this file type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_extensionsfortype?language=objc)
 pub const kAudioFileGlobalInfo_ExtensionsForType: AudioFilePropertyID = 0x66657874;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_hfstypecodesfortype?language=objc)
+/// Specifier is a pointer to an AudioFileTypeID.
+/// Returns an array of HFSTypeCodes corresponding to that file type.
+/// The first type in the array is the preferred one for use when
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_hfstypecodesfortype?language=objc)
 pub const kAudioFileGlobalInfo_HFSTypeCodesForType: AudioFilePropertyID = 0x66686673;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_utisfortype?language=objc)
+/// Specifier is a pointer to an AudioFileTypeID.
+/// Returns a CFArray of CFString of all Universal Type Identifiers
+/// that are recognized by the file type.
+/// The caller is responsible for releasing the CFArray.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_utisfortype?language=objc)
 pub const kAudioFileGlobalInfo_UTIsForType: AudioFilePropertyID = 0x66757469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_mimetypesfortype?language=objc)
+/// Specifier is a pointer to an AudioFileTypeID.
+/// Returns a CFArray of CFString of all MIME types
+/// that are recognized by the file type.
+/// The caller is responsible for releasing the CFArray.
+///
+/// these are inverses of the above:
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_mimetypesfortype?language=objc)
 pub const kAudioFileGlobalInfo_MIMETypesForType: AudioFilePropertyID = 0x666d696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesformimetype?language=objc)
+/// Specifier is a CFStringRef containing a MIME Type.
+/// Returns an array of all AudioFileTypeIDs that support the MIME type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesformimetype?language=objc)
 pub const kAudioFileGlobalInfo_TypesForMIMEType: AudioFilePropertyID = 0x746d696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesforuti?language=objc)
+/// Specifier is a CFStringRef containing a Universal Type Identifier.
+/// Returns an array of all AudioFileTypeIDs that support the UTI.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesforuti?language=objc)
 pub const kAudioFileGlobalInfo_TypesForUTI: AudioFilePropertyID = 0x74757469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesforhfstypecode?language=objc)
+/// Specifier is an HFSTypeCode.
+/// Returns an array of all AudioFileTypeIDs that support the HFSTypeCode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesforhfstypecode?language=objc)
 pub const kAudioFileGlobalInfo_TypesForHFSTypeCode: AudioFilePropertyID = 0x74686673;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesforextension?language=objc)
+/// Specifier is a CFStringRef containing a file extension.
+/// Returns an array of all AudioFileTypeIDs that support the extension.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesforextension?language=objc)
 pub const kAudioFileGlobalInfo_TypesForExtension: AudioFilePropertyID = 0x74657874;
 
 /// This is used as a specifier for kAudioFileGlobalInfo_AvailableStreamDescriptions

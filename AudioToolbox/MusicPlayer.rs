@@ -15,40 +15,47 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_null?language=objc)
 pub const kMusicEventType_NULL: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_extendednote?language=objc)
+/// Note with variable number of arguments (non-MIDI).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_extendednote?language=objc)
 pub const kMusicEventType_ExtendedNote: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_extendedtempo?language=objc)
+/// Tempo change in BPM.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_extendedtempo?language=objc)
 pub const kMusicEventType_ExtendedTempo: u32 = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_user?language=objc)
+/// User defined data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_user?language=objc)
 pub const kMusicEventType_User: u32 = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_meta?language=objc)
+/// Standard MIDI File meta-event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_meta?language=objc)
 pub const kMusicEventType_Meta: u32 = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_midinotemessage?language=objc)
+/// MIDI note-on with duration (for note-off).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_midinotemessage?language=objc)
 pub const kMusicEventType_MIDINoteMessage: u32 = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_midichannelmessage?language=objc)
+/// MIDI channel message (other than note-on/off).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_midichannelmessage?language=objc)
 pub const kMusicEventType_MIDIChannelMessage: u32 = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_midirawdata?language=objc)
+/// For MIDI system exclusive data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_midirawdata?language=objc)
 pub const kMusicEventType_MIDIRawData: u32 = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_parameter?language=objc)
+/// General purpose AudioUnit parameter, added in macOS 10.2.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_parameter?language=objc)
 pub const kMusicEventType_Parameter: u32 = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_aupreset?language=objc)
+/// An AudioUnit's user preset CFDictionaryRef (the ClassInfo property), added 10.3.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_aupreset?language=objc)
 pub const kMusicEventType_AUPreset: u32 = 10;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventtype?language=objc)
 pub type MusicEventType = u32;
 
 /// Flags used to customise loading behaviour
-///
-/// If this flag is set the resultant Sequence will contain:
-/// a tempo track
-/// a track for each track found in the SMF
-/// This is the default behavior
-///
-/// If this flag is set the resultant Sequence will contain:
-/// a tempo track
-/// 1 track for each MIDI Channel that is found in the SMF
-/// 1 track for SysEx or MetaEvents - this will be the last track
-/// in the sequence after the LoadSMFWithFlags calls
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadflags?language=objc)
 // NS_OPTIONS
@@ -57,8 +64,17 @@ pub type MusicEventType = u32;
 pub struct MusicSequenceLoadFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceLoadFlags: u32 {
+/// If this flag is set the resultant Sequence will contain:
+/// a tempo track
+/// a track for each track found in the SMF
+/// This is the default behavior
         #[doc(alias = "kMusicSequenceLoadSMF_PreserveTracks")]
         const SMF_PreserveTracks = 0;
+/// If this flag is set the resultant Sequence will contain:
+/// a tempo track
+/// 1 track for each MIDI Channel that is found in the SMF
+/// 1 track for SysEx or MetaEvents - this will be the last track
+/// in the sequence after the LoadSMFWithFlags calls
         #[doc(alias = "kMusicSequenceLoadSMF_ChannelsToTracks")]
         const SMF_ChannelsToTracks = 1<<0;
         const _ = !0;
@@ -84,23 +100,20 @@ unsafe impl RefEncode for MusicSequenceLoadFlags {
 /// Seconds - midi file with SMPTE time
 /// Samples - cannot be saved to a midi file
 ///
-/// The default/normal type of a sequence.
-/// Tempo track defines the number of beats per second and can have multiple tempo events
-///
-/// A music sequence with a single 60bpm tempo event
-///
-/// A music sequence with a single tempo event that represents the audio sample rate
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MusicSequenceType(pub u32);
 impl MusicSequenceType {
+    /// The default/normal type of a sequence.
+    /// Tempo track defines the number of beats per second and can have multiple tempo events
     #[doc(alias = "kMusicSequenceType_Beats")]
     pub const Beats: Self = Self(0x62656174);
+    /// A music sequence with a single 60bpm tempo event
     #[doc(alias = "kMusicSequenceType_Seconds")]
     pub const Seconds: Self = Self(0x73656373);
+    /// A music sequence with a single tempo event that represents the audio sample rate
     #[doc(alias = "kMusicSequenceType_Samples")]
     pub const Samples: Self = Self(0x73616d70);
 }
@@ -117,22 +130,19 @@ unsafe impl RefEncode for MusicSequenceType {
 
 /// describes different types of files that can be parsed by a music sequence
 ///
-/// let the system read iMelody files and read and write MIDI files (and any future types)
-///
-/// read and write MIDI files
-///
-/// read iMelody files
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefiletypeid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MusicSequenceFileTypeID(pub u32);
 impl MusicSequenceFileTypeID {
+    /// let the system read iMelody files and read and write MIDI files (and any future types)
     #[doc(alias = "kMusicSequenceFile_AnyType")]
     pub const AnyType: Self = Self(0);
+    /// read and write MIDI files
     #[doc(alias = "kMusicSequenceFile_MIDIType")]
     pub const MIDIType: Self = Self(0x6d696469);
+    /// read iMelody files
     #[doc(alias = "kMusicSequenceFile_iMelodyType")]
     pub const iMelodyType: Self = Self(0x696d656c);
 }
@@ -149,11 +159,6 @@ unsafe impl RefEncode for MusicSequenceFileTypeID {
 
 /// controls the behaviour of the create file calls
 ///
-/// Does not overwrite existing files.  Attempts to save over an existing file
-/// will return kAudio_FilePermissionError
-///
-/// Erase an existing file when creating a new file
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -161,8 +166,11 @@ unsafe impl RefEncode for MusicSequenceFileTypeID {
 pub struct MusicSequenceFileFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceFileFlags: u32 {
+/// Does not overwrite existing files.  Attempts to save over an existing file
+/// will return kAudio_FilePermissionError
         #[doc(alias = "kMusicSequenceFileFlags_Default")]
         const Default = 0;
+/// Erase an existing file when creating a new file
         #[doc(alias = "kMusicSequenceFileFlags_EraseFile")]
         const EraseFile = 1;
         const _ = !0;
@@ -605,19 +613,52 @@ pub const kAudioToolboxErr_CannotDoInCurrentContext: OSStatus = -10863;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerror_notrackdestination?language=objc)
 pub const kAudioToolboxError_NoTrackDestination: OSStatus = -66720;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_loopinfo?language=objc)
+/// read/write    - MusicTrackLoopInfo
+/// The default looping behaviour is off (track plays once)
+/// Looping is set by specifying the length of the loop. It loops from
+/// (TrackLength - loop length) to Track Length
+/// If numLoops is set to zero, it will loop forever.
+/// To turn looping off, you set this with loop length equal to zero.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_loopinfo?language=objc)
 pub const kSequenceTrackProperty_LoopInfo: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_offsettime?language=objc)
+/// read/write    - MusicTimeStamp
+/// offset's the track's start time to the specified beat. By default this value is zero.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_offsettime?language=objc)
 pub const kSequenceTrackProperty_OffsetTime: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_mutestatus?language=objc)
+/// read/write    - Boolean
+/// mute state of a track. By default this value is false (not muted)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_mutestatus?language=objc)
 pub const kSequenceTrackProperty_MuteStatus: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_solostatus?language=objc)
+/// read/write    - Boolean
+/// solo state of a track. By default this value is false (not soloed)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_solostatus?language=objc)
 pub const kSequenceTrackProperty_SoloStatus: u32 = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_automatedparameters?language=objc)
+/// read/write    - UInt32
+/// Determines whether a track is used for automating parameters.
+/// If set to != 0 the track is used to automate parameter events to an AUNode.
+/// The track can only contain parameter events and these events are interpreted
+/// as points in the automation curve
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_automatedparameters?language=objc)
 pub const kSequenceTrackProperty_AutomatedParameters: u32 = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_tracklength?language=objc)
+/// read/write    - MusicTimeStamp
+/// The time of the last event in the track plus any additional time that is allowed for fading out of ending notes
+/// or round a loop point to musical bar, etc.
+///
+/// If this is not set, the track length will always be adjusted to the end of the last active event in a track and
+/// is adjusted dynamically as events are added or removed.
+///
+/// The property will return the max of the user set track length, or the calculated length
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_tracklength?language=objc)
 pub const kSequenceTrackProperty_TrackLength: u32 = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_timeresolution?language=objc)
+/// read only    - SInt16 (only valid on the Tempo track)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_timeresolution?language=objc)
 pub const kSequenceTrackProperty_TimeResolution: u32 = 6;
 
 /// Used to control the looping behaviour of a track

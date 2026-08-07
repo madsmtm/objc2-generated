@@ -31,15 +31,6 @@ pub type CMTimeEpoch = i64;
 
 /// Flag bits for a CMTime.
 ///
-/// Allows simple clearing (eg. with calloc or memset) for initialization
-/// of arrays of CMTime structs to "invalid". This flag must be set, even
-/// if other flags are set as well.
-///
-///
-///
-///
-/// "Implied value" flag (other struct fields are ignored).
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -47,14 +38,23 @@ pub type CMTimeEpoch = i64;
 pub struct CMTimeFlags(pub u32);
 bitflags::bitflags! {
     impl CMTimeFlags: u32 {
+/// Must be set, or the CMTime is considered invalid.
+/// Allows simple clearing (eg. with calloc or memset) for initialization
+/// of arrays of CMTime structs to "invalid". This flag must be set, even
+/// if other flags are set as well.
         #[doc(alias = "kCMTimeFlags_Valid")]
         const Valid = 1<<0;
+/// Set whenever a CMTime value is rounded, or is derived from another rounded CMTime.
         #[doc(alias = "kCMTimeFlags_HasBeenRounded")]
         const HasBeenRounded = 1<<1;
+/// Set if the CMTime is +inf.    "Implied value" flag (other struct fields are ignored).
         #[doc(alias = "kCMTimeFlags_PositiveInfinity")]
         const PositiveInfinity = 1<<2;
+/// Set if the CMTime is -inf.    "Implied value" flag (other struct fields are ignored).
         #[doc(alias = "kCMTimeFlags_NegativeInfinity")]
         const NegativeInfinity = 1<<3;
+/// Set if the CMTime is indefinite/unknown. Example of usage: duration of a live broadcast.
+/// "Implied value" flag (other struct fields are ignored).
         #[doc(alias = "kCMTimeFlags_Indefinite")]
         const Indefinite = 1<<4;
         #[doc(alias = "kCMTimeFlags_ImpliedValueFlagsMask")]

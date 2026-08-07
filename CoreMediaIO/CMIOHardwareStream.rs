@@ -62,155 +62,351 @@ unsafe impl RefEncode for CMIOStreamDeck {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreamclassid?language=objc)
+/// The CMIOClassID that identifies the CMIOStream class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreamclassid?language=objc)
 pub const kCMIOStreamClassID: c_uint = 0x61737472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreamunknown?language=objc)
+/// The CMIOObjectID for a nonexistent CMIOObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreamunknown?language=objc)
 #[cfg(feature = "CMIOHardwareObject")]
 pub const kCMIOStreamUnknown: c_uint = kCMIOObjectUnknown;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusbusy?language=objc)
+/// Deck is busy.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusbusy?language=objc)
 pub const kCMIODeckStatusBusy: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatuslocal?language=objc)
+/// Deck is in local.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatuslocal?language=objc)
 pub const kCMIODeckStatusLocal: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusnotthreaded?language=objc)
+/// Deck is not threaded.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusnotthreaded?language=objc)
 pub const kCMIODeckStatusNotThreaded: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatustapeinserted?language=objc)
+/// Deck has new tape.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatustapeinserted?language=objc)
 pub const kCMIODeckStatusTapeInserted: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusopcode?language=objc)
+/// Use CMIOStreamDeck.mState
+/// &
+/// CMIOStreamDeck.mState2 to determine state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusopcode?language=objc)
 pub const kCMIODeckStatusOpcode: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatussearchingfordevice?language=objc)
+/// Searching for device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatussearchingfordevice?language=objc)
 pub const kCMIODeckStatusSearchingForDevice: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusnodevice?language=objc)
+/// No device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusnodevice?language=objc)
 pub const kCMIODeckStatusNoDevice: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatestop?language=objc)
+/// The deck is stopped.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatestop?language=objc)
 pub const kCMIODeckStateStop: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstateplay?language=objc)
+/// The deck is playing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstateplay?language=objc)
 pub const kCMIODeckStatePlay: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatepause?language=objc)
+/// The deck is paused.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatepause?language=objc)
 pub const kCMIODeckStatePause: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstateplayslow?language=objc)
+/// The deck is playing slow.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstateplayslow?language=objc)
 pub const kCMIODeckStatePlaySlow: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatereverseslow?language=objc)
+/// The deck is reversing slow.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatereverseslow?language=objc)
 pub const kCMIODeckStateReverseSlow: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstateplayreverse?language=objc)
+/// The deck is playing in reverse.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstateplayreverse?language=objc)
 pub const kCMIODeckStatePlayReverse: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatefastforward?language=objc)
+/// The deck is fast forwarding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatefastforward?language=objc)
 pub const kCMIODeckStateFastForward: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatefastrewind?language=objc)
+/// The deck is rewinding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatefastrewind?language=objc)
 pub const kCMIODeckStateFastRewind: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversehighspeed?language=objc)
+/// Reverse high speed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversehighspeed?language=objc)
 pub const kCMIODeckShuttleReverseHighSpeed: c_int = -10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversefastest?language=objc)
+/// Reverse fastest.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversefastest?language=objc)
 pub const kCMIODeckShuttleReverseFastest: c_int = -9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversefaster?language=objc)
+/// Reverse faster.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversefaster?language=objc)
 pub const kCMIODeckShuttleReverseFaster: c_int = -8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversefast?language=objc)
+/// Reverse fast.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversefast?language=objc)
 pub const kCMIODeckShuttleReverseFast: c_int = -7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverse1x?language=objc)
+/// Reverse 1x.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverse1x?language=objc)
 pub const kCMIODeckShuttleReverse1x: c_int = -6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslow3?language=objc)
+/// Reverse slow 3.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslow3?language=objc)
 pub const kCMIODeckShuttleReverseSlow3: c_int = -5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslow2?language=objc)
+/// Reverse slow 2.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslow2?language=objc)
 pub const kCMIODeckShuttleReverseSlow2: c_int = -4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslow1?language=objc)
+/// Reverse slow 1.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslow1?language=objc)
 pub const kCMIODeckShuttleReverseSlow1: c_int = -3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslowest?language=objc)
+/// Reverse slowest.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslowest?language=objc)
 pub const kCMIODeckShuttleReverseSlowest: c_int = -2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplaypreviousframe?language=objc)
+/// Reverse previous frame.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplaypreviousframe?language=objc)
 pub const kCMIODeckShuttlePlayPreviousFrame: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlepause?language=objc)
+/// Pause.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlepause?language=objc)
 pub const kCMIODeckShuttlePause: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplaynextframe?language=objc)
+/// Play next frame.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplaynextframe?language=objc)
 pub const kCMIODeckShuttlePlayNextFrame: c_int = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslowest?language=objc)
+/// Play slowest.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslowest?language=objc)
 pub const kCMIODeckShuttlePlaySlowest: c_int = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslow1?language=objc)
+/// Play slow 1.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslow1?language=objc)
 pub const kCMIODeckShuttlePlaySlow1: c_int = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslow2?language=objc)
+/// Play slow 2.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslow2?language=objc)
 pub const kCMIODeckShuttlePlaySlow2: c_int = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslow3?language=objc)
+/// Play slow 3.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslow3?language=objc)
 pub const kCMIODeckShuttlePlaySlow3: c_int = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplay1x?language=objc)
+/// Play 1x.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplay1x?language=objc)
 pub const kCMIODeckShuttlePlay1x: c_int = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayfast?language=objc)
+/// Play fast.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayfast?language=objc)
 pub const kCMIODeckShuttlePlayFast: c_int = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayfaster?language=objc)
+/// Play faster.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayfaster?language=objc)
 pub const kCMIODeckShuttlePlayFaster: c_int = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayfastest?language=objc)
+/// Play fastest.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayfastest?language=objc)
 pub const kCMIODeckShuttlePlayFastest: c_int = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayhighspeed?language=objc)
+/// Play high speed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayhighspeed?language=objc)
 pub const kCMIODeckShuttlePlayHighSpeed: c_int = 10;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydirection?language=objc)
+/// A UInt32 where a value of 0 means that this CMIOStream is an output stream and a value of 1 means that it is an input stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydirection?language=objc)
 pub const kCMIOStreamPropertyDirection: c_uint = 0x73646972;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyterminaltype?language=objc)
+/// A UInt32 whose value describes the general kind of functionality attached to the CMIOStream. Constants that describe some of the values of this property are defined
+/// in
+/// <IOKit
+/// /audio/IOAudioTypes.h>
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyterminaltype?language=objc)
 pub const kCMIOStreamPropertyTerminalType: c_uint = 0x7465726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertystartingchannel?language=objc)
+/// A UInt32 that specifies the first element in the owning device that corresponds to element one of this stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertystartingchannel?language=objc)
 pub const kCMIOStreamPropertyStartingChannel: c_uint = 0x7363686e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertylatency?language=objc)
+/// A UInt32 containing the number of frames of latency in the CMIOStream. Note that the owning CMIODevice may have additional latency so it should be queried as
+/// well. If both the device and the stream say they have latency, then the total latency for the stream is the device latency summed with the stream latency.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertylatency?language=objc)
 pub const kCMIOStreamPropertyLatency: c_uint = 0x6c746e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyformatdescription?language=objc)
+/// A CMFormatDescriptionRef that describes the current format for the CMIOStream. When getting this property, the client must release the CMFormatDescriptionRef
+/// when done with it. If settable, either one of the CMFormatDescriptionRefs obtained by getting the kCMIOStreamPropertyFormatDescriptions property can be
+/// used, or a new CMFormatDescriptionRef can be provided. In the event of the latter, the CMFormatDescriptionEquals() routine will be used to see if the
+/// stream can support the provided CMFormatDescriptionRef.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyformatdescription?language=objc)
 pub const kCMIOStreamPropertyFormatDescription: c_uint = 0x70667420;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyformatdescriptions?language=objc)
+/// An CFArray of CMFormatDescriptionRefs that describe the available data formats for the CMIOStream. The client must release the CFArray when done with it.
+/// This property is never settable, and is not present for streams whose kCMIOStreamPropertyFormatDescription property is not settable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyformatdescriptions?language=objc)
 pub const kCMIOStreamPropertyFormatDescriptions: c_uint = 0x70667461;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertystillimage?language=objc)
+/// A CMSampleBufferRef which holds a still image that is generated as soon as possible when getting this property. The client must release the CMSampleBufferRef when
+/// done with it. The qualifier contains the desired CMFormatDescriptionRef of the still. The description can be one of those obtained by getting the
+/// kCMIOStreamPropertyStillImageFormatDescriptions property, or a new CMFormatDescriptionRef can be provided. In the event of the latter, the
+/// CMFormatDescriptionEquals() routine will be used to see if the stream can support the provided CMFormatDescriptionRef. Getting this property might inject a
+/// discontinuity into the stream if it currently running, depending on the underlying hardware. The returned image might not have the same CMFormatDescriptionRef that
+/// was requested.
+/// This property is never settable, and is not present for streams which are unable to produce still images.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertystillimage?language=objc)
 pub const kCMIOStreamPropertyStillImage: c_uint = 0x73746d67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertystillimageformatdescriptions?language=objc)
+/// A CFArray of CMFormatDescriptionRefs that describe the available still image data formats for the CMIOStream. The client must release the CFArray when done with
+/// it. This property is never settable, and is not present for streams which are unable to produce still images.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertystillimageformatdescriptions?language=objc)
 pub const kCMIOStreamPropertyStillImageFormatDescriptions: c_uint = 0x73746674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyframerate?language=objc)
+/// A Float64 that indicates the current video frame rate of the CMIOStream. The frame rate might fall below this, but it will not exceed it. This property is only present
+/// for muxed or video streams which can determine their rate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyframerate?language=objc)
 pub const kCMIOStreamPropertyFrameRate: c_uint = 0x6e667274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyminimumframerate?language=objc)
+/// A Float64 that indicates the minumum video frame rate of the CMIOStream. This property is only present for muxed or video streams which can determine their rate and
+/// guarantee a minimum rate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyminimumframerate?language=objc)
 pub const kCMIOStreamPropertyMinimumFrameRate: c_uint = 0x6d667274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyframerates?language=objc)
+/// An array of Float64s that indicates the valid values for the video frame rate of the CMIOStream. This property is only present for muxed or video streams which can
+/// determine their rate. Moreover, it is limited to the rates that correspond to a single CMFormatDescriptionRef, as opposed to the super set of rates that would be
+/// associated with the full set of available CMFormatDescriptionRefs.
+/// If no qualifier is used, the rates of the current format (as reported via kCMIOStreamPropertyFormatDescription) will be returned.
+/// If a qualifier is present, it contains the CMFormatDescriptionRef whose frame rates are desired. The description can be one of those obtained by getting the
+/// kCMIOStreamPropertyFormatDescriptions property, or a new CMFormatDescriptionRef can be provided. In the event of the latter, the CMFormatDescriptionEquals()
+/// routine will be used to see if the stream can support the provided CMFormatDescriptionRef.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyframerates?language=objc)
 pub const kCMIOStreamPropertyFrameRates: c_uint = 0x6e667223;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyframerateranges?language=objc)
+/// An array of AudioValueRanges that contains the minimum and maximum ranges for the video frame rate of the CMIOStream.
+/// If no qualifier is used, the frame rate ranges of the current format (as reported via kCMIOStreamPropertyFormatDescription) will be returned.
+/// If a qualifier is present, it contains the CMFormatDescriptionRef whose frame rate ranges are desired. The description can be one of those obtained by getting the
+/// kCMIOStreamPropertyFormatDescriptions property, or a new CMFormatDescriptionRef can be provided. In the event of the latter, the CMFormatDescriptionEquals()
+/// routine will be used to see if the stream can support the provided CMFormatDescriptionRef.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyframerateranges?language=objc)
 pub const kCMIOStreamPropertyFrameRateRanges: c_uint = 0x66727267;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertynodatatimeoutinmsec?language=objc)
+/// A UInt32 that allows a client to specify how much time (in milliseconds) that a device should allow to go by without seeing data before it determines that it is
+/// experiencing a period of "no data." The default value is device dependent.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertynodatatimeoutinmsec?language=objc)
 pub const kCMIOStreamPropertyNoDataTimeoutInMSec: c_uint = 0x706d6e31;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydevicesynctimeoutinmsec?language=objc)
+/// A UInt32 that allows a client to specify how much time (in milliseconds) that a device should allow to go by without seeing data before it determines that there is a
+/// serious problem, and will never see data. A value of 0 means to ignore checking for the condition. When non-zero, the value takes precedence over
+/// kCMIOStreamPropertyNoDataTimeoutInMSec. This property is set by a client when it starts a device and knows by apriori means that data is present; once the client
+/// starts seeing data, this value should be reset to 0 by the client. When setting the value, the client should use a value that is long enough to take into account the
+/// amount of time the device may need to start up (including, if it has one, starting a transport). A time of 10000ms (10 seconds) is reasonable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydevicesynctimeoutinmsec?language=objc)
 pub const kCMIOStreamPropertyDeviceSyncTimeoutInMSec: c_uint = 0x706d6e32;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertynodataeventcount?language=objc)
+/// A UInt32 that is incremented every time a period of no data is determined (via the previous two properties). A client can listen to this property to get
+/// notifications that no-data events have occured.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertynodataeventcount?language=objc)
 pub const kCMIOStreamPropertyNoDataEventCount: c_uint = 0x706d6e33;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferunderruncount?language=objc)
+/// A UInt32 that is incremented every time a stream's buffers are not being serviced fast enough (such as a DCL overrun when transmitting to a FireWire device).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferunderruncount?language=objc)
 pub const kCMIOStreamPropertyOutputBufferUnderrunCount: c_uint = 0x706d6f75;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferrepeatcount?language=objc)
+/// A UInt32 indicating how many times the last output buffer is re-presented to the device when no fresh output buffers are available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferrepeatcount?language=objc)
 pub const kCMIOStreamPropertyOutputBufferRepeatCount: c_uint = 0x706d6f72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferqueuesize?language=objc)
+/// A UInt32 property that allows a client to control how large a queue to hold buffers that are to be sent to the stream; the larger the queue, the more latency until a
+/// buffer reaches the stream, but the less likelyhood that data will have to be repeated (or that the stream will run dry). Default value depends on the stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferqueuesize?language=objc)
 pub const kCMIOStreamPropertyOutputBufferQueueSize: c_uint = 0x706d6f71;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbuffersrequiredforstartup?language=objc)
+/// A UInt32 that allows a client to control how many buffers should be accumulated before actually starting to pass them onto the stream. Default value is to use
+/// 1/2 of the kCMIOStreamPropertyOutputBufferQueueSize.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbuffersrequiredforstartup?language=objc)
 pub const kCMIOStreamPropertyOutputBuffersRequiredForStartup: c_uint = 0x706d6f73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbuffersneededforthrottledplayback?language=objc)
+/// A UInt32 indicating the minimum number of buffers required for the stream to maintain throttled playback without dropping frames. Interested clients can use this to throttle
+/// the number of buffers in flight to avoid sending out more frames than necessary, thus helping with memory usage and responsiveness.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbuffersneededforthrottledplayback?language=objc)
 pub const kCMIOStreamPropertyOutputBuffersNeededForThrottledPlayback: c_uint = 0x6d696666;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyfirstoutputpresentationtimestamp?language=objc)
+/// A CMTime that specifies the presentation timestamp for the first buffer sent to a device; used for startup sync. This property is never settable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyfirstoutputpresentationtimestamp?language=objc)
 pub const kCMIOStreamPropertyFirstOutputPresentationTimeStamp: c_uint = 0x706f7074;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyendofdata?language=objc)
+/// A UInt32 where a value of 1 means that the stream has reached the end of its data and a value of 0 means that more data is available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyendofdata?language=objc)
 pub const kCMIOStreamPropertyEndOfData: c_uint = 0x706d6564;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyclock?language=objc)
+/// A CFTypeRef that encapsulates a clock abstraction for a device's stream. The clock can be created with CMIOStreamClockCreate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyclock?language=objc)
 pub const kCMIOStreamPropertyClock: c_uint = 0x706d636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertycanprocessdeckcommand?language=objc)
+/// A Boolean that indicates whether or not the stream can process deck commands. This property is never settable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertycanprocessdeckcommand?language=objc)
 pub const kCMIOStreamPropertyCanProcessDeckCommand: c_uint = 0x70646364;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeck?language=objc)
+/// A CMIOStreamDeck that represents the current status of a deck associated with a CMIO stream. The definitions of the values in the structure are defined by the deck
+/// being controlled. This property is never settable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeck?language=objc)
 pub const kCMIOStreamPropertyDeck: c_uint = 0x6465636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckframenumber?language=objc)
+/// A UInt64 that represents the current frame number read from a deck associated with a stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckframenumber?language=objc)
 pub const kCMIOStreamPropertyDeckFrameNumber: c_uint = 0x74636f64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckdropness?language=objc)
+/// A UInt32 value that represents the current drop frame state of the deck being controlled. 1 is dropframe, 0 is non-dropframe. This property is never settable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckdropness?language=objc)
 pub const kCMIOStreamPropertyDeckDropness: c_uint = 0x64726f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckthreaded?language=objc)
+/// A UInt32 value that represents the deck being controlled's current tape threaded state. 1 deck is threaded, 0 deck is not threaded. This property is never settable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckthreaded?language=objc)
 pub const kCMIOStreamPropertyDeckThreaded: c_uint = 0x74687264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydecklocal?language=objc)
+/// A UInt32 value that indicates whether the deck is being controlled locally or remotely. 1 indicates local mode, 0 indicates remote mode. This property is never settable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydecklocal?language=objc)
 pub const kCMIOStreamPropertyDeckLocal: c_uint = 0x6c6f636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckcueing?language=objc)
+/// A SInt32 value that represents the current cueing status of the deck being controlled. 0 = cueing, 1 = cue complete, -1 = cue failed. This property is never settable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckcueing?language=objc)
 pub const kCMIOStreamPropertyDeckCueing: c_uint = 0x63756563;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyinitialpresentationtimestampforlinkedandsyncedaudio?language=objc)
+/// A presentation timestamp to be used for a given AudioTimeStamp that was received for audio from the linked and synced CoreAudio audio device that is specified
+/// by kCMIOStreamPropertyLinkedAndSyncedCoreAudioDeviceUID. The AudioTimeStamp is passed as the qualifier data. If the DAL device isn't yet read to return a
+/// valid time, it should return kCMTimeInvalid. (CMTime)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyinitialpresentationtimestampforlinkedandsyncedaudio?language=objc)
 pub const kCMIOStreamPropertyInitialPresentationTimeStampForLinkedAndSyncedAudio: c_uint =
     0x69706c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyscheduledoutputnotificationproc?language=objc)
+/// A procedure to be called when the stream determines when a buffer was output. The procedure and a reference constant are specified by
+/// a CMIOStreamScheduledOutputNotificationProcAndRefCon structure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyscheduledoutputnotificationproc?language=objc)
 pub const kCMIOStreamPropertyScheduledOutputNotificationProc: c_uint = 0x736f6e70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertypreferredformatdescription?language=objc)
+/// A CMFormatDescriptionRef that describes the preferred format for the CMIOStream. When getting this property, the client must release the CMFormatDescriptionRef when
+/// done with it. Either one of the CMFormatDescriptionRefs obtained by getting the kCMIOStreamPropertyFormatDescriptions property can be used, or a new CMFormatDescriptionRef.
+/// CMFormatDescriptionRef can be provided. In the event of the latter, the FigFormatDescriptionEquals() routine will be used to see if the stream can support the provided
+/// Setting this property is not a guarantee that the CMIOStream will provide data in this format;  when possible, the CMIOStream will examine all of the values specified by
+/// the various clients sharing it, and select the most appropriate configuration. Typically, the value set for this property will only have an effect when the stream is
+/// active (unlike kCMIOStreamPropertyFormatDescription, which takes place immediately). Note that if the client is the device controller (set using kCMIODevicePropertyDeviceControl),
+/// setting the value of this property *will* directly affect the device, as if kCMIOStreamPropertyFormatDescription were used.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertypreferredformatdescription?language=objc)
 pub const kCMIOStreamPropertyPreferredFormatDescription: c_uint = 0x70726664;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertypreferredframerate?language=objc)
+/// A Float64 that indicates the current preferred video frame rate of the CMIOStream. Setting this property is not a guarantee that the CMIOStream will operate at that
+/// framerate;  when possible, the CMIOStream will examine all of the values specified by the various clients sharing it, and select the most appropriate configuration.
+/// Typically, the value set for this property will only have an effect when the stream is active (unlike kCMIOStreamPropertyFormatDescription, which takes place immediately).
+/// Note that if the client is the device controller (set using kCMIODevicePropertyDeviceControl), setting the value of this property will directly affect the device, as if
+/// kCMIOStreamPropertyFormatDescription were used.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertypreferredframerate?language=objc)
 pub const kCMIOStreamPropertyPreferredFrameRate: c_uint = 0x70726672;
 
 /// Gets the CMSimpleQueue of the specified CMIOStream and registers a 'queue altered' callback function to be invoked when the stream alters the queue.

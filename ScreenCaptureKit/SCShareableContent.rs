@@ -19,10 +19,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCShareableContentStyle(pub NSInteger);
 impl SCShareableContentStyle {
+    /// content not specified
     #[doc(alias = "SCShareableContentStyleNone")]
     pub const None: Self = Self(0);
+    /// window bound content stream
     #[doc(alias = "SCShareableContentStyleWindow")]
     pub const Window: Self = Self(1);
+    /// display bound content stream
     #[doc(alias = "SCShareableContentStyleDisplay")]
     pub const Display: Self = Self(2);
     #[doc(alias = "SCShareableContentStyleApplication")]

@@ -45,8 +45,10 @@ unsafe impl RefEncode for HKWorkoutSessionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWorkoutSessionType(pub NSInteger);
 impl HKWorkoutSessionType {
+    /// Represents a workout session running locally on the current device.
     #[doc(alias = "HKWorkoutSessionTypePrimary")]
     pub const Primary: Self = Self(0);
+    /// Represents a workout session being mirrored from a different device.
     #[doc(alias = "HKWorkoutSessionTypeMirrored")]
     pub const Mirrored: Self = Self(1);
 }

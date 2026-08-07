@@ -189,52 +189,102 @@ unsafe impl RefEncode for AudioObjectPropertyAddress {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarenoerror?language=objc)
+/// The function call completed successfully.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarenoerror?language=objc)
 pub const kAudioHardwareNoError: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarenotrunningerror?language=objc)
+/// The function call requires that the hardware be running but it isn't.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarenotrunningerror?language=objc)
 pub const kAudioHardwareNotRunningError: OSStatus = 0x73746f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareunspecifiederror?language=objc)
+/// The function call failed while doing something that doesn't provide any
+/// error messages.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareunspecifiederror?language=objc)
 pub const kAudioHardwareUnspecifiedError: OSStatus = 0x77686174;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareunknownpropertyerror?language=objc)
+/// The AudioObject doesn't know about the property at the given address.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareunknownpropertyerror?language=objc)
 pub const kAudioHardwareUnknownPropertyError: OSStatus = 0x77686f3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebadpropertysizeerror?language=objc)
+/// An improperly sized buffer was provided when accessing the data of a
+/// property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebadpropertysizeerror?language=objc)
 pub const kAudioHardwareBadPropertySizeError: OSStatus = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareillegaloperationerror?language=objc)
+/// The requested operation couldn't be completed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareillegaloperationerror?language=objc)
 pub const kAudioHardwareIllegalOperationError: OSStatus = 0x6e6f7065;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebadobjecterror?language=objc)
+/// The AudioObjectID passed to the function doesn't map to a valid AudioObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebadobjecterror?language=objc)
 pub const kAudioHardwareBadObjectError: OSStatus = 0x216f626a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebaddeviceerror?language=objc)
+/// The AudioObjectID passed to the function doesn't map to a valid AudioDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebaddeviceerror?language=objc)
 pub const kAudioHardwareBadDeviceError: OSStatus = 0x21646576;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebadstreamerror?language=objc)
+/// The AudioObjectID passed to the function doesn't map to a valid AudioStream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebadstreamerror?language=objc)
 pub const kAudioHardwareBadStreamError: OSStatus = 0x21737472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareunsupportedoperationerror?language=objc)
+/// The AudioObject doesn't support the requested operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareunsupportedoperationerror?language=objc)
 pub const kAudioHardwareUnsupportedOperationError: OSStatus = 0x756e6f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarenotreadyerror?language=objc)
+/// The AudioObject isn't ready to do the requested operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarenotreadyerror?language=objc)
 pub const kAudioHardwareNotReadyError: OSStatus = 0x6e726479;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceunsupportedformaterror?language=objc)
+/// The AudioStream doesn't support the requested format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceunsupportedformaterror?language=objc)
 pub const kAudioDeviceUnsupportedFormatError: OSStatus = 0x21646174;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepermissionserror?language=objc)
+/// The requested operation can't be completed because the process doesn't have
+/// permission.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepermissionserror?language=objc)
 pub const kAudioDevicePermissionsError: OSStatus = 0x21686f67;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectunknown?language=objc)
+/// This is the sentinel value. No object will have an ID whose value is 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectunknown?language=objc)
 pub const kAudioObjectUnknown: AudioObjectID = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeglobal?language=objc)
+/// The AudioObjectPropertyScope for properties that apply to the object as a
+/// whole. All objects have a global scope and for most it is their only scope.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeglobal?language=objc)
 pub const kAudioObjectPropertyScopeGlobal: AudioObjectPropertyScope = 0x676c6f62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeinput?language=objc)
+/// The AudioObjectPropertyScope for properties that apply to the input side of
+/// an object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeinput?language=objc)
 pub const kAudioObjectPropertyScopeInput: AudioObjectPropertyScope = 0x696e7074;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeoutput?language=objc)
+/// The AudioObjectPropertyScope for properties that apply to the output side of
+/// an object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeoutput?language=objc)
 pub const kAudioObjectPropertyScopeOutput: AudioObjectPropertyScope = 0x6f757470;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeplaythrough?language=objc)
+/// The AudioObjectPropertyScope for properties that apply to the play through
+/// side of an object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeplaythrough?language=objc)
 pub const kAudioObjectPropertyScopePlayThrough: AudioObjectPropertyScope = 0x70747275;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementmain?language=objc)
+/// The AudioObjectPropertyElement value for properties that apply to the main
+/// element or to the entire scope.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementmain?language=objc)
 pub const kAudioObjectPropertyElementMain: AudioObjectPropertyScope = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementmaster?language=objc)
+/// The deprecated synonym for kAudioObjectPropertyElementMain
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementmaster?language=objc)
 #[deprecated]
 pub const kAudioObjectPropertyElementMaster: AudioObjectPropertyScope =
     kAudioObjectPropertyElementMain;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyselectorwildcard?language=objc)
+/// The wildcard value for AudioObjectPropertySelectors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyselectorwildcard?language=objc)
 pub const kAudioObjectPropertySelectorWildcard: AudioObjectPropertySelector = 0x2a2a2a2a;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopewildcard?language=objc)
@@ -246,201 +296,533 @@ pub const kAudioObjectPropertyElementWildcard: AudioObjectPropertyElement = 0xFF
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectclassidwildcard?language=objc)
 pub const kAudioObjectClassIDWildcard: AudioClassID = 0x2a2a2a2a;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectclassid?language=objc)
+/// The AudioClassID that identifies the AudioObject class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectclassid?language=objc)
 pub const kAudioObjectClassID: AudioClassID = 0x616f626a;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertybaseclass?language=objc)
+/// An AudioClassID that identifies the class from which the class of the
+/// AudioObject is derived. This value must always be one of the standard
+/// classes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertybaseclass?language=objc)
 pub const kAudioObjectPropertyBaseClass: AudioObjectPropertySelector = 0x62636c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyclass?language=objc)
+/// An AudioClassID that identifies the class of the AudioObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyclass?language=objc)
 pub const kAudioObjectPropertyClass: AudioObjectPropertySelector = 0x636c6173;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyowner?language=objc)
+/// An AudioObjectID that identifies the the AudioObject that owns the given
+/// AudioObject. Note that all AudioObjects are owned by some other AudioObject.
+/// The only exception is the AudioSystemObject, for which the value of this
+/// property is kAudioObjectUnknown.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyowner?language=objc)
 pub const kAudioObjectPropertyOwner: AudioObjectPropertySelector = 0x73746476;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyname?language=objc)
+/// A CFString that contains the human readable name of the object. The caller
+/// is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyname?language=objc)
 pub const kAudioObjectPropertyName: AudioObjectPropertySelector = 0x6c6e616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertymodelname?language=objc)
+/// A CFString that contains the human readable model name of the object. The
+/// model name differs from kAudioObjectPropertyName in that two objects of the
+/// same model will have the same value for this property but may have different
+/// values for kAudioObjectPropertyName.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertymodelname?language=objc)
 pub const kAudioObjectPropertyModelName: AudioObjectPropertySelector = 0x6c6d6f64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertymanufacturer?language=objc)
+/// A CFString that contains the human readable name of the manufacturer of the
+/// hardware the AudioObject is a part of. The caller is responsible for
+/// releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertymanufacturer?language=objc)
 pub const kAudioObjectPropertyManufacturer: AudioObjectPropertySelector = 0x6c6d616b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementname?language=objc)
+/// A CFString that contains a human readable name for the given element in the
+/// given scope. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementname?language=objc)
 pub const kAudioObjectPropertyElementName: AudioObjectPropertySelector = 0x6c63686e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementcategoryname?language=objc)
+/// A CFString that contains a human readable name for the category of the given
+/// element in the given scope. The caller is responsible for releasing the
+/// returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementcategoryname?language=objc)
 pub const kAudioObjectPropertyElementCategoryName: AudioObjectPropertySelector = 0x6c63636e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementnumbername?language=objc)
+/// A CFString that contains a human readable name for the number of the given
+/// element in the given scope. The caller is responsible for releasing the
+/// returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementnumbername?language=objc)
 pub const kAudioObjectPropertyElementNumberName: AudioObjectPropertySelector = 0x6c636e6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyownedobjects?language=objc)
+/// An array of AudioObjectIDs that represent all the AudioObjects owned by the
+/// given object. The qualifier is an array of AudioClassIDs. If it is
+/// non-empty, the returned array of AudioObjectIDs will only refer to objects
+/// whose class is in the qualifier array or whose is a subclass of one in the
+/// qualifier array.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyownedobjects?language=objc)
 pub const kAudioObjectPropertyOwnedObjects: AudioObjectPropertySelector = 0x6f776e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyidentify?language=objc)
+/// A UInt32 where a value of one indicates that the object's hardware is
+/// drawing attention to itself, typically by flashing or lighting up its front
+/// panel display. A value of 0 indicates that this function is turned off. This
+/// makes it easy for a user to associate the physical hardware with its
+/// representation in an application. Typically, this property is only supported
+/// by AudioDevices and AudioBoxes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyidentify?language=objc)
 pub const kAudioObjectPropertyIdentify: AudioObjectPropertySelector = 0x6964656e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyserialnumber?language=objc)
+/// A CFString that contains the human readable serial number for the object.
+/// This property will typically be implemented by AudioBox and AudioDevice
+/// objects. Note that the serial number is not defined to be unique in the same
+/// way that an AudioBox's or AudioDevice's UID property are defined. This is
+/// purely an informational value. The caller is responsible for releasing the
+/// returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyserialnumber?language=objc)
 pub const kAudioObjectPropertySerialNumber: AudioObjectPropertySelector = 0x736e756d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyfirmwareversion?language=objc)
+/// A CFString that contains the human readable firmware version for the object.
+/// This property will typically be implemented by AudioBox and AudioDevice
+/// objects. Note that this is purely an informational value. The caller is
+/// responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyfirmwareversion?language=objc)
 pub const kAudioObjectPropertyFirmwareVersion: AudioObjectPropertySelector = 0x6677766e;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginclassid?language=objc)
+/// The AudioClassID that identifies the AudioPlugIn class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginclassid?language=objc)
 pub const kAudioPlugInClassID: AudioClassID = 0x61706c67;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertybundleid?language=objc)
+/// A CFString that contains the bundle identifier for the AudioPlugIn. The
+/// caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertybundleid?language=objc)
 pub const kAudioPlugInPropertyBundleID: AudioObjectPropertySelector = 0x70696964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertydevicelist?language=objc)
+/// An array of AudioObjectIDs that represent all the AudioDevices currently
+/// provided by the plug-in.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertydevicelist?language=objc)
 pub const kAudioPlugInPropertyDeviceList: AudioObjectPropertySelector = 0x64657623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertytranslateuidtodevice?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the AudioDevice
+/// that has the given UID. The UID is passed in via the qualifier as a CFString
+/// while the AudioObjectID for the AudioDevice is returned to the caller as the
+/// property's data. Note that an error is not returned if the UID doesn't refer
+/// to any AudioDevices. Rather, this property will return kAudioObjectUnknown
+/// as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertytranslateuidtodevice?language=objc)
 pub const kAudioPlugInPropertyTranslateUIDToDevice: AudioObjectPropertySelector = 0x75696464;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertyboxlist?language=objc)
+/// An array of AudioObjectIDs that represent all the AudioBox objects currently
+/// provided by the plug-in.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertyboxlist?language=objc)
 pub const kAudioPlugInPropertyBoxList: AudioObjectPropertySelector = 0x626f7823;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertytranslateuidtobox?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the AudioBox
+/// that has the given UID. The UID is passed in via the qualifier as a CFString
+/// while the AudioObjectID for the AudioBox is returned to the caller as the
+/// property's data. Note that an error is not returned if the UID doesn't refer
+/// to any AudioBoxes. Rather, this property will return kAudioObjectUnknown
+/// as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertytranslateuidtobox?language=objc)
 pub const kAudioPlugInPropertyTranslateUIDToBox: AudioObjectPropertySelector = 0x75696462;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertyclockdevicelist?language=objc)
+/// An array of AudioObjectIDs that represent all the AudioClockDevice objects
+/// currently provided by the plug-in.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertyclockdevicelist?language=objc)
 pub const kAudioPlugInPropertyClockDeviceList: AudioObjectPropertySelector = 0x636c6b23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertytranslateuidtoclockdevice?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the
+/// AudioClockDevice that has the given UID. The UID is passed in via the
+/// qualifier as a CFString while the AudioObjectID for the AudioClockDevice is
+/// returned to the caller as the property's data. Note that an error is not
+/// returned if the UID doesn't refer to any AudioClockDevices. Rather, this
+/// property will return kAudioObjectUnknown as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertytranslateuidtoclockdevice?language=objc)
 pub const kAudioPlugInPropertyTranslateUIDToClockDevice: AudioObjectPropertySelector = 0x75696463;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerclassid?language=objc)
+/// The AudioClassID that identifies the AudioTransportManager class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerclassid?language=objc)
 pub const kAudioTransportManagerClassID: AudioClassID = 0x7472706d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerpropertyendpointlist?language=objc)
+/// An array of AudioObjectIDs for all the AudioEndPoint objects the transport
+/// manager is tracking.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerpropertyendpointlist?language=objc)
 pub const kAudioTransportManagerPropertyEndPointList: AudioObjectPropertySelector = 0x656e6423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerpropertytranslateuidtoendpoint?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the
+/// AudioEndpoint that has the given UID. The UID is passed in via the qualifier
+/// as a CFString while the AudioObjectID for the AudioEndpoint is returned to
+/// the caller as the property's data. Note that an error is not returned if the
+/// UID doesn't refer to any AudioEndpoints. Rather, this property will return
+/// kAudioObjectUnknown as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerpropertytranslateuidtoendpoint?language=objc)
 pub const kAudioTransportManagerPropertyTranslateUIDToEndPoint: AudioObjectPropertySelector =
     0x75696465;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerpropertytransporttype?language=objc)
 pub const kAudioTransportManagerPropertyTransportType: AudioObjectPropertySelector = 0x7472616e;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxclassid?language=objc)
+/// The AudioClassID that identifies the AudioBox class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxclassid?language=objc)
 pub const kAudioBoxClassID: AudioClassID = 0x61626f78;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyboxuid?language=objc)
+/// A CFString that contains a persistent identifier for the AudioBox. An
+/// AudioBox's UID is persistent across boots. The content of the UID string is
+/// a black box and may contain information that is unique to a particular
+/// instance of an AudioBox's hardware or unique to the CPU. Therefore they are
+/// not suitable for passing between CPUs or for identifying similar models of
+/// hardware. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyboxuid?language=objc)
 pub const kAudioBoxPropertyBoxUID: AudioObjectPropertySelector = 0x62756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertytransporttype?language=objc)
+/// A UInt32 whose value indicates how the AudioBox is connected to the system.
+/// Constants for some of the values for this property can be found in the enum
+/// in the AudioDevice Constants section of AudioHardwareBase.h
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertytransporttype?language=objc)
 pub const kAudioBoxPropertyTransportType: AudioObjectPropertySelector = 0x7472616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyhasaudio?language=objc)
+/// A UInt32 where a non-zero value indicates that the box supports audio.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyhasaudio?language=objc)
 pub const kAudioBoxPropertyHasAudio: AudioObjectPropertySelector = 0x62686175;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyhasvideo?language=objc)
+/// A UInt32 where a non-zero value indicates that the box supports video.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyhasvideo?language=objc)
 pub const kAudioBoxPropertyHasVideo: AudioObjectPropertySelector = 0x62687669;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyhasmidi?language=objc)
+/// A UInt32 where a non-zero value indicates that the box supports MIDI.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyhasmidi?language=objc)
 pub const kAudioBoxPropertyHasMIDI: AudioObjectPropertySelector = 0x62686d69;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyisprotected?language=objc)
+/// A UInt32 where a non-zero value indicates that the box requires
+/// authentication to use.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyisprotected?language=objc)
 pub const kAudioBoxPropertyIsProtected: AudioObjectPropertySelector = 0x6270726f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyacquired?language=objc)
+/// A UInt32 where a non-zero value indicates that the box's contents are
+/// available to the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyacquired?language=objc)
 pub const kAudioBoxPropertyAcquired: AudioObjectPropertySelector = 0x62786f6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyacquisitionfailed?language=objc)
+/// An OSStatus that indicates the reason for an attempt to acquire a box
+/// failed. Note that this property is primarily used for notifications.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyacquisitionfailed?language=objc)
 pub const kAudioBoxPropertyAcquisitionFailed: AudioObjectPropertySelector = 0x62786f66;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertydevicelist?language=objc)
+/// An array of AudioObjectIDs that represent all the AudioDevice objects that
+/// came out of the given AudioBox. Note that until a box is enabled, this list
+/// will be empty.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertydevicelist?language=objc)
 pub const kAudioBoxPropertyDeviceList: AudioObjectPropertySelector = 0x62647623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyclockdevicelist?language=objc)
+/// An array of AudioObjectIDs that represent all the AudioClockDevice objects
+/// that came out of the given AudioBox. Note that until a box is enabled, this
+/// list will be empty.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyclockdevicelist?language=objc)
 pub const kAudioBoxPropertyClockDeviceList: AudioObjectPropertySelector = 0x62636c23;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceclassid?language=objc)
+/// The AudioClassID that identifies the AudioDevice class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceclassid?language=objc)
 pub const kAudioDeviceClassID: AudioClassID = 0x61646576;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeunknown?language=objc)
+/// The transport type ID returned when a device doesn't provide a transport
+/// type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeunknown?language=objc)
 pub const kAudioDeviceTransportTypeUnknown: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypebuiltin?language=objc)
+/// The transport type ID for AudioDevices built into the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypebuiltin?language=objc)
 pub const kAudioDeviceTransportTypeBuiltIn: u32 = 0x626c746e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeaggregate?language=objc)
+/// The transport type ID for aggregate devices.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeaggregate?language=objc)
 pub const kAudioDeviceTransportTypeAggregate: u32 = 0x67727570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypevirtual?language=objc)
+/// The transport type ID for AudioDevices that don't correspond to real audio
+/// hardware.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypevirtual?language=objc)
 pub const kAudioDeviceTransportTypeVirtual: u32 = 0x76697274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypepci?language=objc)
+/// The transport type ID for AudioDevices connected via the PCI bus.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypepci?language=objc)
 pub const kAudioDeviceTransportTypePCI: u32 = 0x70636920;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeusb?language=objc)
+/// The transport type ID for AudioDevices connected via USB.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeusb?language=objc)
 pub const kAudioDeviceTransportTypeUSB: u32 = 0x75736220;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypefirewire?language=objc)
+/// The transport type ID for AudioDevices connected via FireWire.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypefirewire?language=objc)
 pub const kAudioDeviceTransportTypeFireWire: u32 = 0x31333934;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypebluetooth?language=objc)
+/// The transport type ID for AudioDevices connected via Bluetooth.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypebluetooth?language=objc)
 pub const kAudioDeviceTransportTypeBluetooth: u32 = 0x626c7565;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypebluetoothle?language=objc)
+/// The transport type ID for AudioDevices connected via Bluetooth Low Energy.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypebluetoothle?language=objc)
 pub const kAudioDeviceTransportTypeBluetoothLE: u32 = 0x626c6561;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypehdmi?language=objc)
+/// The transport type ID for AudioDevices connected via HDMI.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypehdmi?language=objc)
 pub const kAudioDeviceTransportTypeHDMI: u32 = 0x68646d69;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypedisplayport?language=objc)
+/// The transport type ID for AudioDevices connected via DisplayPort.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypedisplayport?language=objc)
 pub const kAudioDeviceTransportTypeDisplayPort: u32 = 0x64707274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeairplay?language=objc)
+/// The transport type ID for AudioDevices connected via AirPlay.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeairplay?language=objc)
 pub const kAudioDeviceTransportTypeAirPlay: u32 = 0x61697270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeavb?language=objc)
+/// The transport type ID for AudioDevices connected via AVB.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeavb?language=objc)
 pub const kAudioDeviceTransportTypeAVB: u32 = 0x65617662;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypethunderbolt?language=objc)
+/// The transport type ID for AudioDevices connected via Thunderbolt.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypethunderbolt?language=objc)
 pub const kAudioDeviceTransportTypeThunderbolt: u32 = 0x7468756e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapturewired?language=objc)
+/// The transport type ID for Continuity Capture AudioDevices connected via a
+/// cable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapturewired?language=objc)
 pub const kAudioDeviceTransportTypeContinuityCaptureWired: u32 = 0x63637764;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapturewireless?language=objc)
+/// The transport type ID for Continuity Capture AudioDevices connected
+/// via wireless networking.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapturewireless?language=objc)
 pub const kAudioDeviceTransportTypeContinuityCaptureWireless: u32 = 0x6363776c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapture?language=objc)
+/// The transport type ID for AudioDevices connected via the Continuity Capture
+/// feature. This constant is deprecated. Please use
+/// kAudioDeviceTransportTypeContinuityCaptureWired and
+/// kAudioDeviceTransportTypeContinuityCaptureWireless to describe Continuity
+/// Capture devices.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapture?language=objc)
 #[deprecated = "Please use kAudioDeviceTransportTypeContinuityCaptureWired and kAudioDeviceTransportTypeContinuityCaptureWireless to describe Continuity Capture devices."]
 pub const kAudioDeviceTransportTypeContinuityCapture: u32 = 0x63636170;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyconfigurationapplication?language=objc)
+/// A CFString that contains the bundle ID for an application that provides a
+/// GUI for configuring the AudioDevice. By default, the value of this property
+/// is the bundle ID for Audio MIDI Setup. The caller is responsible for
+/// releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyconfigurationapplication?language=objc)
 pub const kAudioDevicePropertyConfigurationApplication: AudioObjectPropertySelector = 0x63617070;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceuid?language=objc)
+/// A CFString that contains a persistent identifier for the AudioDevice. An
+/// AudioDevice's UID is persistent across boots. The content of the UID string
+/// is a black box and may contain information that is unique to a particular
+/// instance of an AudioDevice's hardware or unique to the CPU. Therefore they
+/// are not suitable for passing between CPUs or for identifying similar models
+/// of hardware. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceuid?language=objc)
 pub const kAudioDevicePropertyDeviceUID: AudioObjectPropertySelector = 0x75696420;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertymodeluid?language=objc)
+/// A CFString that contains a persistent identifier for the model of an
+/// AudioDevice. The identifier is unique such that the identifier from two
+/// AudioDevices are equal if and only if the two AudioDevices are the exact
+/// same model from the same manufacturer. Further, the identifier has to be the
+/// same no matter on what machine the AudioDevice appears. The caller is
+/// responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertymodeluid?language=objc)
 pub const kAudioDevicePropertyModelUID: AudioObjectPropertySelector = 0x6d756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertytransporttype?language=objc)
+/// A UInt32 whose value indicates how the AudioDevice is connected to the CPU.
+/// Constants for some of the values for this property can be found in the enum
+/// in the AudioDevice Constants section of this file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertytransporttype?language=objc)
 pub const kAudioDevicePropertyTransportType: AudioObjectPropertySelector = 0x7472616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyrelateddevices?language=objc)
+/// An array of AudioDeviceIDs for devices related to the AudioDevice. For
+/// IOAudio-based devices, AudioDevices are related if they share the same
+/// IOAudioDevice object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyrelateddevices?language=objc)
 pub const kAudioDevicePropertyRelatedDevices: AudioObjectPropertySelector = 0x616b696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockdomain?language=objc)
+/// A UInt32 whose value indicates the clock domain to which this AudioDevice
+/// belongs. AudioDevices that have the same value for this property are able to
+/// be synchronized in hardware. However, a value of 0 indicates that the clock
+/// domain for the device is unspecified and should be assumed to be separate
+/// from every other device's clock domain, even if they have the value of 0 as
+/// their clock domain as well.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockdomain?language=objc)
 pub const kAudioDevicePropertyClockDomain: AudioObjectPropertySelector = 0x636c6b64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceisalive?language=objc)
+/// A UInt32 where a value of 1 means the device is ready and available and 0
+/// means the device is unusable and will most likely go away shortly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceisalive?language=objc)
 pub const kAudioDevicePropertyDeviceIsAlive: AudioObjectPropertySelector = 0x6c69766e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceisrunning?language=objc)
+/// A UInt32 where a value of 0 means the AudioDevice is not performing IO and
+/// a value of 1 means that it is. Note that the device can be running even if
+/// there are no active IOProcs such as by calling AudioDeviceStart() and
+/// passing a NULL IOProc. Note that the notification for this property is
+/// usually sent from the AudioDevice's IO thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceisrunning?language=objc)
 pub const kAudioDevicePropertyDeviceIsRunning: AudioObjectPropertySelector = 0x676f696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicecanbedefaultdevice?language=objc)
+/// A UInt32 where 1 means that the AudioDevice is a possible selection for
+/// kAudioHardwarePropertyDefaultInputDevice or
+/// kAudioHardwarePropertyDefaultOutputDevice depending on the scope.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicecanbedefaultdevice?language=objc)
 pub const kAudioDevicePropertyDeviceCanBeDefaultDevice: AudioObjectPropertySelector = 0x64666c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicecanbedefaultsystemdevice?language=objc)
+/// A UInt32 where 1 means that the AudioDevice is a possible selection for
+/// kAudioHardwarePropertyDefaultSystemOutputDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicecanbedefaultsystemdevice?language=objc)
 pub const kAudioDevicePropertyDeviceCanBeDefaultSystemDevice: AudioObjectPropertySelector =
     0x73666c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertylatency?language=objc)
+/// A UInt32 containing the number of frames of latency in the AudioDevice. Note
+/// that input and output latency may differ. Further, the AudioDevice's
+/// AudioStreams may have additional latency so they should be queried as well.
+/// If both the device and the stream say they have latency, then the total
+/// latency for the stream is the device latency summed with the stream latency.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertylatency?language=objc)
 pub const kAudioDevicePropertyLatency: AudioObjectPropertySelector = 0x6c746e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreams?language=objc)
+/// An array of AudioStreamIDs that represent the AudioStreams of the
+/// AudioDevice. Note that if a notification is received for this property, any
+/// cached AudioStreamIDs for the device become invalid and need to be
+/// re-fetched.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreams?language=objc)
 pub const kAudioDevicePropertyStreams: AudioObjectPropertySelector = 0x73746d23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycontrollist?language=objc)
+/// An array of AudioObjectIDs that represent the AudioControls of the
+/// AudioDevice. Note that if a notification is received for this property, any
+/// cached AudioObjectIDs for the device become invalid and need to be
+/// re-fetched.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycontrollist?language=objc)
 pub const kAudioObjectPropertyControlList: AudioObjectPropertySelector = 0x6374726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysafetyoffset?language=objc)
+/// A UInt32 whose value indicates the number for frames in ahead (for output)
+/// or behind (for input the current hardware position that is safe to do IO.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysafetyoffset?language=objc)
 pub const kAudioDevicePropertySafetyOffset: AudioObjectPropertySelector = 0x73616674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertynominalsamplerate?language=objc)
+/// A Float64 that indicates the current nominal sample rate of the AudioDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertynominalsamplerate?language=objc)
 pub const kAudioDevicePropertyNominalSampleRate: AudioObjectPropertySelector = 0x6e737274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyavailablenominalsamplerates?language=objc)
+/// An array of AudioValueRange structs that indicates the valid ranges for the
+/// nominal sample rate of the AudioDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyavailablenominalsamplerates?language=objc)
 pub const kAudioDevicePropertyAvailableNominalSampleRates: AudioObjectPropertySelector = 0x6e737223;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyicon?language=objc)
+/// A CFURLRef that indicates an image file that can be used to represent the
+/// device visually. The caller is responsible for releasing the returned
+/// CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyicon?language=objc)
 pub const kAudioDevicePropertyIcon: AudioObjectPropertySelector = 0x69636f6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyishidden?language=objc)
+/// A UInt32 where a non-zero value indicates that the device is not included
+/// in the normal list of devices provided by kAudioHardwarePropertyDevices nor
+/// can it be the default device. Hidden devices can only be discovered by
+/// knowing their UID and using kAudioHardwarePropertyDeviceForUID.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyishidden?language=objc)
 pub const kAudioDevicePropertyIsHidden: AudioObjectPropertySelector = 0x6869646e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertypreferredchannelsforstereo?language=objc)
+/// An array of two UInt32s, the first for the left channel, the second for the
+/// right channel, that indicate the channel numbers to use for stereo IO on the
+/// device. The value of this property can be different for input and output and
+/// there are no restrictions on the channel numbers that can be used.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertypreferredchannelsforstereo?language=objc)
 pub const kAudioDevicePropertyPreferredChannelsForStereo: AudioObjectPropertySelector = 0x64636832;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertypreferredchannellayout?language=objc)
+/// An AudioChannelLayout that indicates how each channel of the AudioDevice
+/// should be used.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertypreferredchannellayout?language=objc)
 pub const kAudioDevicePropertyPreferredChannelLayout: AudioObjectPropertySelector = 0x73726e64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdeviceclassid?language=objc)
+/// The AudioClassID that identifies the AudioClockDevice class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdeviceclassid?language=objc)
 pub const kAudioClockDeviceClassID: AudioObjectPropertySelector = 0x61636c6b;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertydeviceuid?language=objc)
+/// A CFString that contains a persistent identifier for the AudioClockDevice.
+/// An AudioClockDevice's UID is persistent across boots. The content of the UID
+/// string is a black box and may contain information that is unique to a
+/// particular instance of an clock's hardware or unique to the CPU. Therefore
+/// they are not suitable for passing between CPUs or for identifying similar
+/// models of hardware. The caller is responsible for releasing the returned
+/// CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertydeviceuid?language=objc)
 pub const kAudioClockDevicePropertyDeviceUID: AudioObjectPropertySelector = 0x63756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertytransporttype?language=objc)
+/// A UInt32 whose value indicates how the AudioClockDevice is connected to the
+/// CPU. Constants for some of the values for this property can be found in the
+/// enum in the AudioDevice Constants section of this file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertytransporttype?language=objc)
 pub const kAudioClockDevicePropertyTransportType: AudioObjectPropertySelector = 0x7472616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertyclockdomain?language=objc)
+/// A UInt32 whose value indicates the clock domain to which this
+/// AudioClockDevice belongs. AudioClockDevices and AudioDevices that have the
+/// same value for this property are able to be synchronized in hardware.
+/// However, a value of 0 indicates that the clock domain for the device is
+/// unspecified and should be assumed to be separate from every other device's
+/// clock domain, even if they have the value of 0 as their clock domain as well.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertyclockdomain?language=objc)
 pub const kAudioClockDevicePropertyClockDomain: AudioObjectPropertySelector = 0x636c6b64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertydeviceisalive?language=objc)
+/// A UInt32 where a value of 1 means the device is ready and available and 0
+/// means the device is usable and will most likely go away shortly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertydeviceisalive?language=objc)
 pub const kAudioClockDevicePropertyDeviceIsAlive: AudioObjectPropertySelector = 0x6c69766e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertydeviceisrunning?language=objc)
+/// A UInt32 where a value of 0 means the AudioClockDevice is not providing
+/// times and a value of 1 means that it is. Note that the notification for this
+/// property is usually sent from the AudioClockDevice's IO thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertydeviceisrunning?language=objc)
 pub const kAudioClockDevicePropertyDeviceIsRunning: AudioObjectPropertySelector = 0x676f696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertylatency?language=objc)
+/// A UInt32 containing the number of frames of latency in the AudioClockDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertylatency?language=objc)
 pub const kAudioClockDevicePropertyLatency: AudioObjectPropertySelector = 0x6c746e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertycontrollist?language=objc)
+/// An array of AudioObjectIDs that represent the AudioControls of the
+/// AudioClockDevice. Note that if a notification is received for this property,
+/// any cached AudioObjectIDs for the device become invalid and need to be
+/// re-fetched.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertycontrollist?language=objc)
 pub const kAudioClockDevicePropertyControlList: AudioObjectPropertySelector = 0x6374726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertynominalsamplerate?language=objc)
+/// A Float64 that indicates the current nominal sample rate of the
+/// AudioClockDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertynominalsamplerate?language=objc)
 pub const kAudioClockDevicePropertyNominalSampleRate: AudioObjectPropertySelector = 0x6e737274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertyavailablenominalsamplerates?language=objc)
+/// An array of AudioValueRange structs that indicates the valid ranges for the
+/// nominal sample rate of the AudioClockDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertyavailablenominalsamplerates?language=objc)
 pub const kAudioClockDevicePropertyAvailableNominalSampleRates: AudioObjectPropertySelector =
     0x6e737223;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceclassid?language=objc)
+/// The AudioClassID that identifies the AudioEndPointDevice class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceclassid?language=objc)
 pub const kAudioEndPointDeviceClassID: AudioClassID = 0x65646576;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicepropertycomposition?language=objc)
+/// A CFDictionary that describes the composition of the AudioEndPointDevice.
+/// The keys for this CFDicitionary are defined in the AudioEndPointDevice
+/// Constants section. The caller is responsible for releasing the returned
+/// CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicepropertycomposition?language=objc)
 pub const kAudioEndPointDevicePropertyComposition: AudioObjectPropertySelector = 0x61636f6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicepropertyendpointlist?language=objc)
+/// An array of AudioObjectIDs for all the AudioEndPoints in the device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicepropertyendpointlist?language=objc)
 pub const kAudioEndPointDevicePropertyEndPointList: AudioObjectPropertySelector = 0x61677270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicepropertyisprivate?language=objc)
+/// A pid_t where a value of 0 indicates that the device is public and a non-zero
+/// value indicates the pid of the process that owns the device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicepropertyisprivate?language=objc)
 pub const kAudioEndPointDevicePropertyIsPrivate: AudioObjectPropertySelector = 0x70726976;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointclassid?language=objc)
@@ -491,149 +873,348 @@ unsafe impl RefEncode for AudioStreamRangedDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamclassid?language=objc)
+/// The AudioClassID that identifies the AudioStream class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamclassid?language=objc)
 pub const kAudioStreamClassID: AudioClassID = 0x61737472;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeunknown?language=objc)
+/// The ID used when the terminal type for the AudioStream is non known.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeunknown?language=objc)
 pub const kAudioStreamTerminalTypeUnknown: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeline?language=objc)
+/// The ID for a terminal type of a line level stream. Note that this applies to
+/// both input streams and output streams
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeline?language=objc)
 pub const kAudioStreamTerminalTypeLine: u32 = 0x6c696e65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypedigitalaudiointerface?language=objc)
+/// The ID for a terminal type of stream from/to a digital audio interface as
+/// defined by ISO 60958 (aka SPDIF or AES/EBU). Note that this applies to both
+/// input streams and output streams
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypedigitalaudiointerface?language=objc)
 pub const kAudioStreamTerminalTypeDigitalAudioInterface: u32 = 0x73706466;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypespeaker?language=objc)
+/// The ID for a terminal type of a speaker.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypespeaker?language=objc)
 pub const kAudioStreamTerminalTypeSpeaker: u32 = 0x73706b72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeheadphones?language=objc)
+/// The ID for a terminal type of headphones.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeheadphones?language=objc)
 pub const kAudioStreamTerminalTypeHeadphones: u32 = 0x68647068;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypelfespeaker?language=objc)
+/// The ID for a terminal type of a speaker for low frequency effects.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypelfespeaker?language=objc)
 pub const kAudioStreamTerminalTypeLFESpeaker: u32 = 0x6c666573;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypereceiverspeaker?language=objc)
+/// The ID for a terminal type of a speaker on a telephone handset receiver.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypereceiverspeaker?language=objc)
 pub const kAudioStreamTerminalTypeReceiverSpeaker: u32 = 0x7273706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypemicrophone?language=objc)
+/// The ID for a terminal type of a microphone.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypemicrophone?language=objc)
 pub const kAudioStreamTerminalTypeMicrophone: u32 = 0x6d696372;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeheadsetmicrophone?language=objc)
+/// The ID for a terminal type of a microphone attached to an headset.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeheadsetmicrophone?language=objc)
 pub const kAudioStreamTerminalTypeHeadsetMicrophone: u32 = 0x686d6963;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypereceivermicrophone?language=objc)
+/// The ID for a terminal type of a microphone on a telephone handset receiver.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypereceivermicrophone?language=objc)
 pub const kAudioStreamTerminalTypeReceiverMicrophone: u32 = 0x726d6963;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypetty?language=objc)
+/// The ID for a terminal type of a device providing a TTY signal.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypetty?language=objc)
 pub const kAudioStreamTerminalTypeTTY: u32 = 0x7474795f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypehdmi?language=objc)
+/// The ID for a terminal type of a stream from/to an HDMI port.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypehdmi?language=objc)
 pub const kAudioStreamTerminalTypeHDMI: u32 = 0x68646d69;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypedisplayport?language=objc)
+/// The ID for a terminal type of a stream from/to an DisplayPort port.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypedisplayport?language=objc)
 pub const kAudioStreamTerminalTypeDisplayPort: u32 = 0x64707274;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyisactive?language=objc)
+/// A UInt32 where a non-zero value indicates that the stream is enabled and
+/// doing IO.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyisactive?language=objc)
 pub const kAudioStreamPropertyIsActive: AudioObjectPropertySelector = 0x73616374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertydirection?language=objc)
+/// A UInt32 where a value of 0 means that this AudioStream is an output stream
+/// and a value of 1 means that it is an input stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertydirection?language=objc)
 pub const kAudioStreamPropertyDirection: AudioObjectPropertySelector = 0x73646972;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyterminaltype?language=objc)
+/// A UInt32 whose value describes the general kind of functionality attached
+/// to the AudioStream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyterminaltype?language=objc)
 pub const kAudioStreamPropertyTerminalType: AudioObjectPropertySelector = 0x7465726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertystartingchannel?language=objc)
+/// A UInt32 that specifies the first element in the owning device that
+/// corresponds to element one of this stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertystartingchannel?language=objc)
 pub const kAudioStreamPropertyStartingChannel: AudioObjectPropertySelector = 0x7363686e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertylatency?language=objc)
+/// A UInt32 containing the number of frames of latency in the AudioStream. Note
+/// that the owning AudioDevice may have additional latency so it should be
+/// queried as well. If both the device and the stream say they have latency,
+/// then the total latency for the stream is the device latency summed with the
+/// stream latency.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertylatency?language=objc)
 pub const kAudioStreamPropertyLatency: AudioObjectPropertySelector = kAudioDevicePropertyLatency;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyvirtualformat?language=objc)
+/// An AudioStreamBasicDescription that describes the current data format for
+/// the AudioStream. The virtual format refers to the data format in which all
+/// IOProcs for the owning AudioDevice will perform IO transactions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyvirtualformat?language=objc)
 pub const kAudioStreamPropertyVirtualFormat: AudioObjectPropertySelector = 0x73666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyavailablevirtualformats?language=objc)
+/// An array of AudioStreamRangedDescriptions that describe the available data
+/// formats for the AudioStream. The virtual format refers to the data format in
+/// which all IOProcs for the owning AudioDevice will perform IO transactions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyavailablevirtualformats?language=objc)
 pub const kAudioStreamPropertyAvailableVirtualFormats: AudioObjectPropertySelector = 0x73666d61;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyphysicalformat?language=objc)
+/// An AudioStreamBasicDescription that describes the current data format for
+/// the AudioStream. The physical format refers to the data format in which the
+/// hardware for the owning AudioDevice performs its IO transactions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyphysicalformat?language=objc)
 pub const kAudioStreamPropertyPhysicalFormat: AudioObjectPropertySelector = 0x70667420;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyavailablephysicalformats?language=objc)
+/// An array of AudioStreamRangedDescriptions that describe the available data
+/// formats for the AudioStream. The physical format refers to the data format
+/// in which the hardware for the owning AudioDevice performs its IO
+/// transactions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyavailablephysicalformats?language=objc)
 pub const kAudioStreamPropertyAvailablePhysicalFormats: AudioObjectPropertySelector = 0x70667461;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolclassid?language=objc)
+/// The AudioClassID that identifies the AudioControl class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolclassid?language=objc)
 pub const kAudioControlClassID: AudioClassID = 0x6163746c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolpropertyscope?language=objc)
+/// An AudioServerPlugIn_PropertyScope that indicates which part of a device the
+/// control applies to.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolpropertyscope?language=objc)
 pub const kAudioControlPropertyScope: AudioObjectPropertySelector = 0x63736370;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolpropertyelement?language=objc)
+/// An AudioServerPlugIn_PropertyElement that indicates which element of the
+/// device the control applies to.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolpropertyelement?language=objc)
 pub const kAudioControlPropertyElement: AudioObjectPropertySelector = 0x63656c6d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioslidercontrolclassid?language=objc)
+/// The AudioClassID that identifies the AudioSliderControl class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioslidercontrolclassid?language=objc)
 pub const kAudioSliderControlClassID: AudioClassID = 0x736c6472;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioslidercontrolpropertyvalue?language=objc)
+/// A UInt32 that represents the value of the slider control.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioslidercontrolpropertyvalue?language=objc)
 pub const kAudioSliderControlPropertyValue: AudioObjectPropertySelector = 0x73647276;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioslidercontrolpropertyrange?language=objc)
+/// An array of two UInt32s that represents the inclusive range of values the
+/// slider control can take.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioslidercontrolpropertyrange?language=objc)
 pub const kAudioSliderControlPropertyRange: AudioObjectPropertySelector = 0x73647272;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolclassid?language=objc)
+/// The AudioClassID that identifies the LevelControl class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolclassid?language=objc)
 pub const kAudioLevelControlClassID: AudioClassID = 0x6c65766c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiovolumecontrolclassid?language=objc)
+/// A subclass of the LevelControl class that implements a general
+/// gain/attenuation stage.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiovolumecontrolclassid?language=objc)
 pub const kAudioVolumeControlClassID: AudioClassID = 0x766c6d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolfevolumecontrolclassid?language=objc)
+/// A subclass of the LevelControl class for an LFE channel that results from
+/// bass management. Note that LFE channels that are represented as normal audio
+/// channels must use kAudioVolumeControlClassID to manipulate the level.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolfevolumecontrolclassid?language=objc)
 pub const kAudioLFEVolumeControlClassID: AudioClassID = 0x73756276;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertyscalarvalue?language=objc)
+/// A Float32 that represents the value of the volume control. The range is
+/// between 0.0 and 1.0 (inclusive). Note that the set of all Float32 values
+/// between 0.0 and 1.0 inclusive is much larger than the set of actual values
+/// that the hardware can select. This means that the Float32 range has a many
+/// to one mapping with the underlying hardware values. As such, setting a
+/// scalar value will result in the control taking on the value nearest to what
+/// was set.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertyscalarvalue?language=objc)
 pub const kAudioLevelControlPropertyScalarValue: AudioObjectPropertySelector = 0x6c637376;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertydecibelvalue?language=objc)
+/// A Float32 that represents the value of the volume control in dB. Note that
+/// the set of all Float32 values in the dB range for the control is much larger
+/// than the set of actual values that the hardware can select. This means that
+/// the Float32 range has a many to one mapping with the underlying hardware
+/// values. As such, setting a dB value will result in the control taking on the
+/// value nearest to what was set.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertydecibelvalue?language=objc)
 pub const kAudioLevelControlPropertyDecibelValue: AudioObjectPropertySelector = 0x6c636476;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertydecibelrange?language=objc)
+/// An AudioValueRange that contains the minimum and maximum dB values the
+/// control can have.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertydecibelrange?language=objc)
 pub const kAudioLevelControlPropertyDecibelRange: AudioObjectPropertySelector = 0x6c636472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertyconvertscalartodecibels?language=objc)
+/// A Float32 that on input contains a scalar volume value for the and on exit
+/// contains the equivalent dB value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertyconvertscalartodecibels?language=objc)
 pub const kAudioLevelControlPropertyConvertScalarToDecibels: AudioObjectPropertySelector =
     0x6c637364;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertyconvertdecibelstoscalar?language=objc)
+/// A Float32 that on input contains a dB volume value for the and on exit
+/// contains the equivalent scalar value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertyconvertdecibelstoscalar?language=objc)
 pub const kAudioLevelControlPropertyConvertDecibelsToScalar: AudioObjectPropertySelector =
     0x6c636473;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiobooleancontrolclassid?language=objc)
+/// The AudioClassID that identifies the BooleanControl class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiobooleancontrolclassid?language=objc)
 pub const kAudioBooleanControlClassID: AudioClassID = 0x746f676c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiomutecontrolclassid?language=objc)
+/// A subclass of the AudioBooleanControl class where a true value means that
+/// mute is enabled making that element inaudible.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiomutecontrolclassid?language=objc)
 pub const kAudioMuteControlClassID: AudioClassID = 0x6d757465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosolocontrolclassid?language=objc)
+/// A subclass of the AudioBooleanControl class where a true value means that
+/// solo is enabled making just that element audible and the other elements
+/// inaudible.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosolocontrolclassid?language=objc)
 pub const kAudioSoloControlClassID: AudioClassID = 0x736f6c6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiojackcontrolclassid?language=objc)
+/// A subclass of the AudioBooleanControl class where a true value means
+/// something is plugged into that element.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiojackcontrolclassid?language=objc)
 pub const kAudioJackControlClassID: AudioClassID = 0x6a61636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolfemutecontrolclassid?language=objc)
+/// A subclass of the AudioBooleanControl class where true means that mute is
+/// enabled making that LFE element inaudible. This control is for LFE channels
+/// that result from bass management. Note that LFE channels that are
+/// represented as normal audio channels must use an AudioMuteControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolfemutecontrolclassid?language=objc)
 pub const kAudioLFEMuteControlClassID: AudioClassID = 0x7375626d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiophantompowercontrolclassid?language=objc)
+/// A subclass of the AudioBooleanControl class where true means that the
+/// element's hardware has phantom power enabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiophantompowercontrolclassid?language=objc)
 pub const kAudioPhantomPowerControlClassID: AudioClassID = 0x7068616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiophaseinvertcontrolclassid?language=objc)
+/// A subclass of the AudioBooleanControl class where true means that the phase
+/// of the signal on the given element is being inverted by 180 degrees.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiophaseinvertcontrolclassid?language=objc)
 pub const kAudioPhaseInvertControlClassID: AudioClassID = 0x70687369;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocliplightcontrolclassid?language=objc)
+/// A subclass of the AudioBooleanControl class where true means that the signal
+/// for the element has exceeded the sample range. Once a clip light is turned
+/// on, it is to stay on until either the value of the control is set to false
+/// or the current IO session stops and a new IO session starts.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocliplightcontrolclassid?language=objc)
 pub const kAudioClipLightControlClassID: AudioClassID = 0x636c6970;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotalkbackcontrolclassid?language=objc)
+/// An AudioBooleanControl where true means that the talkback channel is
+/// enabled. This control is for talkback channels that are handled outside of
+/// the regular IO channels. If the talkback channel is among the normal IO
+/// channels, it will use AudioMuteControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotalkbackcontrolclassid?language=objc)
 pub const kAudioTalkbackControlClassID: AudioClassID = 0x74616c62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolistenbackcontrolclassid?language=objc)
+/// An AudioBooleanControl where true means that the listenback channel is
+/// audible. This control is for listenback channels that are handled outside of
+/// the regular IO channels. If the listenback channel is among the normal IO
+/// channels, it will use AudioMuteControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolistenbackcontrolclassid?language=objc)
 pub const kAudioListenbackControlClassID: AudioClassID = 0x6c736e62;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiobooleancontrolpropertyvalue?language=objc)
+/// A UInt32 where 0 means off/false and non-zero means on/true.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiobooleancontrolpropertyvalue?language=objc)
 pub const kAudioBooleanControlPropertyValue: AudioObjectPropertySelector = 0x6263766c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolclassid?language=objc)
+/// The AudioClassID that identifies the AudioSelectorControl class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolclassid?language=objc)
 pub const kAudioSelectorControlClassID: AudioClassID = 0x736c6374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodatasourcecontrolclassid?language=objc)
+/// A subclass of the AudioSelectorControl class that identifies where the data
+/// for the element is coming from.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodatasourcecontrolclassid?language=objc)
 pub const kAudioDataSourceControlClassID: AudioClassID = 0x64737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodatadestinationcontrolclassid?language=objc)
+/// A subclass of the AudioSelectorControl class that identifies where the data
+/// for the element is going.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodatadestinationcontrolclassid?language=objc)
 pub const kAudioDataDestinationControlClassID: AudioClassID = 0x64657374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclocksourcecontrolclassid?language=objc)
+/// A subclass of the AudioSelectorControl class that identifies where the
+/// timing info for the object is coming from.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclocksourcecontrolclassid?language=objc)
 pub const kAudioClockSourceControlClassID: AudioClassID = 0x636c636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolinelevelcontrolclassid?language=objc)
+/// A subclass of the AudioSelectorControl class that identifies the nominal
+/// line level for the element. Note that this is not a gain stage but rather
+/// indicating the voltage standard (if any) used for the element, such as
+/// +4dBu, -10dBV, instrument, etc.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolinelevelcontrolclassid?language=objc)
 pub const kAudioLineLevelControlClassID: AudioClassID = 0x6e6c766c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohighpassfiltercontrolclassid?language=objc)
+/// A subclass of the AudioSelectorControl class that indicates the setting for
+/// the high pass filter on the given element.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohighpassfiltercontrolclassid?language=objc)
 pub const kAudioHighPassFilterControlClassID: AudioClassID = 0x68697066;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertycurrentitem?language=objc)
+/// An array of UInt32s that are the IDs of the items currently selected.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertycurrentitem?language=objc)
 pub const kAudioSelectorControlPropertyCurrentItem: AudioObjectPropertySelector = 0x73636369;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertyavailableitems?language=objc)
+/// An array of UInt32s that represent the IDs of all the items available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertyavailableitems?language=objc)
 pub const kAudioSelectorControlPropertyAvailableItems: AudioObjectPropertySelector = 0x73636169;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertyitemname?language=objc)
+/// This property translates the given item ID into a human readable name. The
+/// qualifier contains the ID of the item to be translated and name is returned
+/// as a CFString as the property data. The caller is responsible for releasing
+/// the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertyitemname?language=objc)
 pub const kAudioSelectorControlPropertyItemName: AudioObjectPropertySelector = 0x7363696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertyitemkind?language=objc)
+/// This property returns a UInt32 that identifies the kind of selector item the
+/// item ID refers to. The qualifier contains the ID of the item. Note that this
+/// property is optional for selector controls and that the meaning of the value
+/// depends on the specific subclass being queried.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertyitemkind?language=objc)
 pub const kAudioSelectorControlPropertyItemKind: AudioObjectPropertySelector = 0x636c6b6b;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolitemkindspacer?language=objc)
+/// This ID represents an item in a selector control's range that represents a
+/// spacer item in a pop-up menu. Items with this kind are not be selectable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolitemkindspacer?language=objc)
 pub const kAudioSelectorControlItemKindSpacer: u32 = 0x73706372;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclocksourceitemkindinternal?language=objc)
+/// This ID represents the device's internal clock.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclocksourceitemkindinternal?language=objc)
 pub const kAudioClockSourceItemKindInternal: u32 = 0x696e7420;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolclassid?language=objc)
+/// The AudioClassID that identifies the StereoPanControl class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolclassid?language=objc)
 pub const kAudioStereoPanControlClassID: AudioClassID = 0x7370616e;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolpropertyvalue?language=objc)
+/// A Float32 where 0.0 is full left, 1.0 is full right, and 0.5 is center.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolpropertyvalue?language=objc)
 pub const kAudioStereoPanControlPropertyValue: AudioObjectPropertySelector = 0x73706376;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolpropertypanningchannels?language=objc)
+/// An array of two UInt32s that indicate which elements of the device the
+/// signal is being panned between.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolpropertypanningchannels?language=objc)
 pub const kAudioStereoPanControlPropertyPanningChannels: AudioObjectPropertySelector = 0x73706363;
 
 /// Clients register an AudioObjectPropertyListenerProc with an AudioObject in order
@@ -688,11 +1269,24 @@ pub type AudioObjectPropertyListenerProc = Option<
 pub type AudioObjectPropertyListenerBlock =
     block2::Block<'static, fn(u32, NonNull<AudioObjectPropertyAddress>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycreator?language=objc)
+/// A CFString that contains the bundle ID of the plug-in that instantiated the
+/// object. The caller is responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycreator?language=objc)
 pub const kAudioObjectPropertyCreator: AudioObjectPropertySelector = 0x6f706c67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertylisteneradded?language=objc)
+/// An AudioObjectPropertyAddress indicating the address to which a new listener
+/// was added. Note that this property is not for applications to use. Rather,
+/// this property is for the HAL shell to notify AudioObjects implemented by an
+/// AudioPlugIn when a listener is added.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertylisteneradded?language=objc)
 pub const kAudioObjectPropertyListenerAdded: AudioObjectPropertySelector = 0x6c697361;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertylistenerremoved?language=objc)
+/// An AudioObjectPropertyAddress indicating the address to which a listener was
+/// removed. Note that this property is not for applications to use. Rather,
+/// this property is for the HAL shell to notify AudioObjects implemented by an
+/// AudioPlugIn when a listener is removed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertylistenerremoved?language=objc)
 pub const kAudioObjectPropertyListenerRemoved: AudioObjectPropertySelector = 0x6c697372;
 
 /// Prints to standard out a textural description of the AudioObject.
@@ -1089,7 +1683,9 @@ pub unsafe fn AudioObjectRemovePropertyListenerBlock(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosystemobjectclassid?language=objc)
+/// The AudioClassID that identifies the AudioSystemObject class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosystemobjectclassid?language=objc)
 pub const kAudioSystemObjectClassID: AudioClassID = 0x61737973;
 
 /// The values for kAudioHardwarePropertyPowerHint
@@ -1100,22 +1696,20 @@ pub const kAudioSystemObjectClassID: AudioClassID = 0x61737973;
 /// using the key, "AudioHardwarePowerHint". The values for this key are the strings
 /// that correspond to the values in the enum.
 ///
-/// This is the default value and it indicates that the system will not make any
-/// power optimizations that compromise latency or quality in order to save
-/// power. The info.plist value is "None" or the "AudioHardwarePowerHint" entry
-/// can be omitted entirely.
-///
-/// The system will choose to save power even at the expense of latency. The
-/// info.plist value is "Favor Saving Power"
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarepowerhint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioHardwarePowerHint(pub u32);
 impl AudioHardwarePowerHint {
+    /// This is the default value and it indicates that the system will not make any
+    /// power optimizations that compromise latency or quality in order to save
+    /// power. The info.plist value is "None" or the "AudioHardwarePowerHint" entry
+    /// can be omitted entirely.
     #[doc(alias = "kAudioHardwarePowerHintNone")]
     pub const None: Self = Self(0);
+    /// The system will choose to save power even at the expense of latency. The
+    /// info.plist value is "Favor Saving Power"
     #[doc(alias = "kAudioHardwarePowerHintFavorSavingPower")]
     pub const FavorSavingPower: Self = Self(1);
 }
@@ -1130,66 +1724,200 @@ unsafe impl RefEncode for AudioHardwarePowerHint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydevices?language=objc)
+/// An array of the AudioObjectIDs that represent all the devices currently
+/// available to the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydevices?language=objc)
 pub const kAudioHardwarePropertyDevices: AudioObjectPropertySelector = 0x64657623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydefaultinputdevice?language=objc)
+/// The AudioObjectID of the default input AudioDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydefaultinputdevice?language=objc)
 pub const kAudioHardwarePropertyDefaultInputDevice: AudioObjectPropertySelector = 0x64496e20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydefaultoutputdevice?language=objc)
+/// The AudioObjectID of the default output AudioDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydefaultoutputdevice?language=objc)
 pub const kAudioHardwarePropertyDefaultOutputDevice: AudioObjectPropertySelector = 0x644f7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydefaultsystemoutputdevice?language=objc)
+/// The AudioObjectID of the output AudioDevice to use for system related sound
+/// from the alert sound to digital call progress.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydefaultsystemoutputdevice?language=objc)
 pub const kAudioHardwarePropertyDefaultSystemOutputDevice: AudioObjectPropertySelector = 0x734f7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtodevice?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the AudioDevice
+/// that has the given UID. The UID is passed in via the qualifier as a CFString
+/// while the AudioObjectID for the AudioDevice is returned to the caller as the
+/// property's data. Note that an error is not returned if the UID doesn't refer
+/// to any AudioDevices. Rather, this property will return kAudioObjectUnknown
+/// as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtodevice?language=objc)
 pub const kAudioHardwarePropertyTranslateUIDToDevice: AudioObjectPropertySelector = 0x75696464;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertymixstereotomono?language=objc)
+/// A UInt32 where a value other than 0 indicates that AudioDevices should mix
+/// stereo signals down to mono. Note that the two channels on the device that
+/// comprise the stereo signal are defined on the device by
+/// kAudioDevicePropertyPreferredChannelsForStereo.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertymixstereotomono?language=objc)
 pub const kAudioHardwarePropertyMixStereoToMono: AudioObjectPropertySelector = 0x73746d6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertypluginlist?language=objc)
+/// An array of AudioObjectIDs that represent all the AudioPlugIn objects
+/// currently provided by the system
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertypluginlist?language=objc)
 pub const kAudioHardwarePropertyPlugInList: AudioObjectPropertySelector = 0x706c6723;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslatebundleidtoplugin?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the AudioPlugIn
+/// that has the given bundle ID. The bundle ID is passed in via the qualifier
+/// as a CFString while the AudioObjectID for the AudioPlugIn is returned to the
+/// caller as the property's data. Note that an error is not returned if the UID
+/// doesn't refer to any AudioPlugIns. Rather, this property will return
+/// kAudioObjectUnknown as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslatebundleidtoplugin?language=objc)
 pub const kAudioHardwarePropertyTranslateBundleIDToPlugIn: AudioObjectPropertySelector = 0x62696470;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytransportmanagerlist?language=objc)
+/// An array of the AudioObjectIDs for all the AudioTransportManager objects.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytransportmanagerlist?language=objc)
 pub const kAudioHardwarePropertyTransportManagerList: AudioObjectPropertySelector = 0x746d6723;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslatebundleidtotransportmanager?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the
+/// AudioTransportManager whose bundle has the given bundle ID. The bundle ID is
+/// passed in via the qualifier as a CFString while the AudioObjectID for the
+/// AudioTransportManager is returned to the caller as the property's data. Note
+/// that an error is not returned if the bundle ID doesn't refer to any
+/// AudioTransportManagers. Rather, this property will return
+/// kAudioObjectUnknown as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslatebundleidtotransportmanager?language=objc)
 pub const kAudioHardwarePropertyTranslateBundleIDToTransportManager: AudioObjectPropertySelector =
     0x746d6269;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyboxlist?language=objc)
+/// An array of AudioObjectIDs that represent all the AudioBox objects currently
+/// provided by the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyboxlist?language=objc)
 pub const kAudioHardwarePropertyBoxList: AudioObjectPropertySelector = 0x626f7823;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtobox?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the AudioBox
+/// that has the given UID. The UID is passed in via the qualifier as a CFString
+/// while the AudioObjectID for the AudioBox is returned to the caller as the
+/// property's data. Note that an error is not returned if the UID doesn't refer
+/// to any AudioBoxes. Rather, this property will return kAudioObjectUnknown
+/// as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtobox?language=objc)
 pub const kAudioHardwarePropertyTranslateUIDToBox: AudioObjectPropertySelector = 0x75696462;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyclockdevicelist?language=objc)
+/// An array of AudioObjectIDs that represent all the AudioClockDevice objects
+/// currently provided by the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyclockdevicelist?language=objc)
 pub const kAudioHardwarePropertyClockDeviceList: AudioObjectPropertySelector = 0x636c6b23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtoclockdevice?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the AudioClockDevice
+/// that has the given UID. The UID is passed in via the qualifier as a CFString
+/// while the AudioObjectID for the AudioClockDevice is returned to the caller
+/// as the property's data. Note that an error is not returned if the UID doesn't
+/// refer to any AudioClockDevice. Rather, this property will return
+/// kAudioObjectUnknown as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtoclockdevice?language=objc)
 pub const kAudioHardwarePropertyTranslateUIDToClockDevice: AudioObjectPropertySelector = 0x75696463;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessismain?language=objc)
+/// A UInt32 where 1 means that the current process contains the main instance
+/// of the HAL. The main instance of the HAL is the only instance in which
+/// plug-ins should save/restore their devices' settings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessismain?language=objc)
 pub const kAudioHardwarePropertyProcessIsMain: AudioObjectPropertySelector = 0x6d61696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyisinitingorexiting?language=objc)
+/// A UInt32 whose value will be non-zero if the HAL is either in the midst of
+/// initializing or in the midst of exiting the process.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyisinitingorexiting?language=objc)
 pub const kAudioHardwarePropertyIsInitingOrExiting: AudioObjectPropertySelector = 0x696e6f74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyuseridchanged?language=objc)
+/// This property exists so that clients can tell the HAL when they are changing
+/// the effective user ID of the process. The way it works is that a client will
+/// set the value of this property and the HAL will flush all its cached per-
+/// user preferences such as the default devices. The value of this property is
+/// a UInt32, but its value has no currently defined meaning and clients may
+/// pass any value when setting it to trigger the cache flush.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyuseridchanged?language=objc)
 pub const kAudioHardwarePropertyUserIDChanged: AudioObjectPropertySelector = 0x65756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessinputmute?language=objc)
+/// A UInt32 where a non-zero value indicates that all data coming into the process
+/// for all devices will be silent. A value of 0 indicates that input data will be
+/// received normally.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessinputmute?language=objc)
 pub const kAudioHardwarePropertyProcessInputMute: AudioObjectPropertySelector = 0x706d696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessisaudible?language=objc)
+/// A UInt32 where a non-zero value indicates that the audio of the process will
+/// be heard. A value of 0 indicates that all audio in the process will not be
+/// heard.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessisaudible?language=objc)
 pub const kAudioHardwarePropertyProcessIsAudible: AudioObjectPropertySelector = 0x706d7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertysleepingisallowed?language=objc)
+/// A UInt32 where 1 means that the process will allow the CPU to idle sleep
+/// even if there is audio IO in progress. A 0 means that the CPU will not be
+/// allowed to idle sleep. Note that this property won't affect when the CPU is
+/// forced to sleep.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertysleepingisallowed?language=objc)
 pub const kAudioHardwarePropertySleepingIsAllowed: AudioObjectPropertySelector = 0x736c6570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyunloadingisallowed?language=objc)
+/// A UInt32 where 1 means that this process wants the HAL to unload itself
+/// after a period of inactivity where there are no IOProcs and no listeners
+/// registered with any AudioObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyunloadingisallowed?language=objc)
 pub const kAudioHardwarePropertyUnloadingIsAllowed: AudioObjectPropertySelector = 0x756e6c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyhogmodeisallowed?language=objc)
+/// A UInt32 where 1 means that this process wants the HAL to automatically take
+/// hog mode and 0 means that the HAL should not automatically take hog mode on
+/// behalf of the process. Processes that only ever use the default device are
+/// the sort of that should set this property's value to 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyhogmodeisallowed?language=objc)
 pub const kAudioHardwarePropertyHogModeIsAllowed: AudioObjectPropertySelector = 0x686f6772;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyusersessionisactiveorheadless?language=objc)
+/// A UInt32 where a value other than 0 indicates that the login session of the
+/// user of the process is either an active console session or a headless
+/// session.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyusersessionisactiveorheadless?language=objc)
 pub const kAudioHardwarePropertyUserSessionIsActiveOrHeadless: AudioObjectPropertySelector =
     0x75736572;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyservicerestarted?language=objc)
+/// A UInt32 whose value has no meaning. Rather, this property exists so that
+/// clients can be informed when the service has been reset for some reason.
+/// When a reset happens, any state the client has, such as cached data or
+/// added listeners, must be re-established by the client.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyservicerestarted?language=objc)
 pub const kAudioHardwarePropertyServiceRestarted: AudioObjectPropertySelector = 0x73727374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertypowerhint?language=objc)
+/// A UInt32 whose values are drawn from the AudioHardwarePowerHint enum above.
+/// Only those values are allowed. This property allows a process to indicate how
+/// aggressive the system can be with optimizations that save power. The default
+/// value is kAudioHardwarePowerHintNone. Note that the value of this
+/// property can be set in an application's info.plist using the key,
+/// "AudioHardwarePowerHint". The values for this key are the strings that
+/// correspond to the values in the Power Hints enum.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertypowerhint?language=objc)
 pub const kAudioHardwarePropertyPowerHint: AudioObjectPropertySelector = 0x706f7768;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessobjectlist?language=objc)
+/// An array of AudioObjectIDs that represent the Process objects for all client processes
+/// currently connected to the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessobjectlist?language=objc)
 pub const kAudioHardwarePropertyProcessObjectList: AudioObjectPropertySelector = 0x70727323;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslatepidtoprocessobject?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the Process object
+/// that has the given PID. The PID is passed in via the qualifier as a pid_t
+/// while the AudioObjectID for the Process is returned to the caller as the
+/// property's data. Note that an error is not returned if the PID doesn't refer
+/// to any Process. Rather, this property will return kAudioObjectUnknown
+/// as the value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslatepidtoprocessobject?language=objc)
 pub const kAudioHardwarePropertyTranslatePIDToProcessObject: AudioObjectPropertySelector =
     0x69643270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytaplist?language=objc)
+/// An array of AudioObjectIDs that represent the Tap objects on the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytaplist?language=objc)
 pub const kAudioHardwarePropertyTapList: AudioObjectPropertySelector = 0x74707323;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtotap?language=objc)
+/// This property fetches the AudioObjectID that corresponds to the AudioTap
+/// that has the given UID. The UID is passed in via the qualifier as a CFString
+/// while the AudioObjectID for the AudioTap is returned to the caller as the
+/// property's data. Note that an error is not returned if the UID doesn't refer
+/// to any AudioTap. Rather, this property will return kAudioObjectUnknown as the
+/// value of the property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtotap?language=objc)
 pub const kAudioHardwarePropertyTranslateUIDToTap: AudioObjectPropertySelector = 0x75696474;
 
 /// When this routine is called, all IO on all devices within a process will be
@@ -1247,14 +1975,38 @@ pub unsafe fn AudioHardwareDestroyAggregateDevice(in_device_id: AudioObjectID) -
     unsafe { AudioHardwareDestroyAggregateDevice(in_device_id) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioplugincreateaggregatedevice?language=objc)
+/// This property is used to tell a plug-in to create a new
+/// AudioAggregateDevice. Its value is only read. The qualifier data for this
+/// property is a CFDictionary containing a description of the
+/// AudioAggregateDevice to create. The keys for the CFDictionary are defined in
+/// the AudioAggregateDevice Constants section. The value of the property that
+/// gets returned is the AudioObjectID of the newly created device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioplugincreateaggregatedevice?language=objc)
 pub const kAudioPlugInCreateAggregateDevice: AudioObjectPropertySelector = 0x63616767;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioplugindestroyaggregatedevice?language=objc)
+/// This property is used to tell a plug-in to destroy an AudioAggregateDevice.
+/// Like kAudioPlugInCreateAggregateDevice, this property is read only. The
+/// value of the property is the AudioObjectID of the AudioAggregateDevice to
+/// destroy.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioplugindestroyaggregatedevice?language=objc)
 pub const kAudioPlugInDestroyAggregateDevice: AudioObjectPropertySelector = 0x64616767;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagercreateendpointdevice?language=objc)
+/// This property is used to tell a transport manager to create a new
+/// AudioDevice. Its value is only read. The qualifier data for this
+/// property is a CFDictionary containing a description of the
+/// AudioDevice to create. The standard keys for the CFDictionary are defined in
+/// the AudioEndPointDevice Constants section. The value of the property that
+/// gets returned is the AudioObjectID of the newly created device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagercreateendpointdevice?language=objc)
 pub const kAudioTransportManagerCreateEndPointDevice: AudioObjectPropertySelector = 0x63646576;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerdestroyendpointdevice?language=objc)
+/// This property is used to tell a transport manager to destroy an AudioDevice.
+/// Like kAudioTransportManagerCreateDevice, this property is read only. The
+/// value of the property is the AudioObjectID of the AudioAggregateDevice to
+/// destroy.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerdestroyendpointdevice?language=objc)
 pub const kAudioTransportManagerDestroyEndPointDevice: AudioObjectPropertySelector = 0x64646576;
 
 /// An AudioDeviceIOProc is called by an AudioDevice to provide input data read from
@@ -1410,155 +2162,528 @@ unsafe impl RefEncode for AudioHardwareIOProcStreamUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicestarttimeisinputflag?language=objc)
+/// Set to indicate that the requested time refers to an input time. Clear to
+/// indicate that it is an output time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicestarttimeisinputflag?language=objc)
 pub const kAudioDeviceStartTimeIsInputFlag: u32 = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicestarttimedontconsultdeviceflag?language=objc)
+/// Set to indicate that the device should not be consulted when determining the
+/// start time. Clear to indicate that the device should be consulted. This flag
+/// cannot be set if kAudioDeviceStartTimeDontConsultHALFlag is set.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicestarttimedontconsultdeviceflag?language=objc)
 pub const kAudioDeviceStartTimeDontConsultDeviceFlag: u32 = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicestarttimedontconsulthalflag?language=objc)
+/// Set to indicate that the HAL should not be consulted when determining the
+/// start time. Clear to indicate that the HAL should be consulted. This flag
+/// cannot be set if kAudioDeviceStartTimeDontConsultDeviceFlag is set.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicestarttimedontconsulthalflag?language=objc)
 pub const kAudioDeviceStartTimeDontConsultHALFlag: u32 = 1 << 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplugin?language=objc)
+/// An OSStatus that contains any error codes generated by loading the IOAudio
+/// driver plug-in for the AudioDevice or kAudioHardwareNoError if the plug-in
+/// loaded successfully. This property only exists for IOAudio-based
+/// AudioDevices whose driver has specified a plug-in to load.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplugin?language=objc)
 pub const kAudioDevicePropertyPlugIn: AudioObjectPropertySelector = 0x706c7567;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicehaschanged?language=objc)
+/// The type of this property is a UInt32, but its value has no meaning. This
+/// property exists so that clients can listen to it and be told when the
+/// configuration of the AudioDevice has changed in ways that cannot otherwise
+/// be conveyed through other notifications. In response to this notification,
+/// clients should re-evaluate everything they need to know about the device,
+/// particularly the layout and values of the controls.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicehaschanged?language=objc)
 pub const kAudioDevicePropertyDeviceHasChanged: AudioObjectPropertySelector = 0x64696666;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceisrunningsomewhere?language=objc)
+/// A UInt32 where 1 means that the AudioDevice is running in at least one
+/// process on the system and 0 means that it isn't running at all.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceisrunningsomewhere?language=objc)
 pub const kAudioDevicePropertyDeviceIsRunningSomewhere: AudioObjectPropertySelector = 0x676f6e65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceprocessoroverload?language=objc)
+/// A UInt32 where the value has no meaning. This property exists so that
+/// clients can be notified when the AudioDevice detects that an IO cycle has
+/// run past its deadline. Note that the notification for this property is
+/// usually sent from the AudioDevice's IO thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceprocessoroverload?language=objc)
 pub const kAudioDeviceProcessorOverload: AudioObjectPropertySelector = 0x6f766572;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiostoppedabnormally?language=objc)
+/// A UInt32 where the value has no meaning. This property exists so that
+/// clients can be notified when IO on the device has stopped outside of the
+/// normal mechanisms. This typically comes up when IO is stopped after
+/// AudioDeviceStart has returned successfully but prior to the notification for
+/// kAudioDevicePropertyIsRunning being sent.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiostoppedabnormally?language=objc)
 pub const kAudioDevicePropertyIOStoppedAbnormally: AudioObjectPropertySelector = 0x73747064;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhogmode?language=objc)
+/// A pid_t indicating the process that currently owns exclusive access to the
+/// AudioDevice or a value of -1 indicating that the device is currently
+/// available to all processes. If the AudioDevice is in a non-mixable mode,
+/// the HAL will automatically take hog mode on behalf of the first process to
+/// start an IOProc.
+/// Note that when setting this property, the value passed in is ignored. If
+/// another process owns exclusive access, that remains unchanged. If the
+/// current process owns exclusive access, it is released and made available to
+/// all processes again. If no process has exclusive access (meaning the current
+/// value is -1), this process gains ownership of exclusive access.  On return,
+/// the pid_t pointed to by inPropertyData will contain the new value of the
+/// property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhogmode?language=objc)
 pub const kAudioDevicePropertyHogMode: AudioObjectPropertySelector = 0x6f696e6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertybufferframesize?language=objc)
+/// A UInt32 whose value indicates the number of frames in the IO buffers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertybufferframesize?language=objc)
 pub const kAudioDevicePropertyBufferFrameSize: AudioObjectPropertySelector = 0x6673697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertybufferframesizerange?language=objc)
+/// An AudioValueRange indicating the minimum and maximum values, inclusive, for
+/// kAudioDevicePropertyBufferFrameSize.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertybufferframesizerange?language=objc)
 pub const kAudioDevicePropertyBufferFrameSizeRange: AudioObjectPropertySelector = 0x66737a23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyusesvariablebufferframesizes?language=objc)
+/// A UInt32 that, if implemented by a device, indicates that the sizes of the
+/// buffers passed to an IOProc will vary by a small amount. The value of this
+/// property will indicate the largest buffer that will be passed and
+/// kAudioDevicePropertyBufferFrameSize will indicate the smallest buffer that
+/// will get passed to the IOProc. The usage of this property is narrowed to
+/// only allow for devices whose buffer sizes vary by small amounts greater than
+/// kAudioDevicePropertyBufferFrameSize. It is not intended to be a license for
+/// devices to be able to send buffers however they please. Rather, it is
+/// intended to allow for hardware whose natural rhythms lead to this necessity.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyusesvariablebufferframesizes?language=objc)
 pub const kAudioDevicePropertyUsesVariableBufferFrameSizes: AudioObjectPropertySelector =
     0x7666737a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiocycleusage?language=objc)
+/// A Float32 whose range is from 0 to 1. This value indicates how much of the
+/// client portion of the IO cycle the process will use. The client portion of
+/// the IO cycle is the portion of the cycle in which the device calls the
+/// IOProcs so this property does not the apply to the duration of the entire
+/// cycle.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiocycleusage?language=objc)
 pub const kAudioDevicePropertyIOCycleUsage: AudioObjectPropertySelector = 0x6e637963;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreamconfiguration?language=objc)
+/// This property returns the stream configuration of the device in an
+/// AudioBufferList (with the buffer pointers set to NULL) which describes the
+/// list of streams and the number of channels in each stream. This corresponds
+/// to what will be passed into the IOProc.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreamconfiguration?language=objc)
 pub const kAudioDevicePropertyStreamConfiguration: AudioObjectPropertySelector = 0x736c6179;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyioprocstreamusage?language=objc)
+/// An AudioHardwareIOProcStreamUsage structure which details the stream usage
+/// of a given IO proc. If a stream is marked as not being used, the given
+/// IOProc will see a corresponding NULL buffer pointer in the AudioBufferList
+/// passed to its IO proc. Note that the number of streams detailed in the
+/// AudioHardwareIOProcStreamUsage must include all the streams of that
+/// direction on the device. Also, when getting the value of the property, one
+/// must fill out the mIOProc field of the AudioHardwareIOProcStreamUsage with
+/// the address of the of the IOProc whose stream usage is to be retrieved.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyioprocstreamusage?language=objc)
 pub const kAudioDevicePropertyIOProcStreamUsage: AudioObjectPropertySelector = 0x73757365;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyactualsamplerate?language=objc)
+/// A Float64 that indicates the current actual sample rate of the AudioDevice
+/// as measured by its time stamps.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyactualsamplerate?language=objc)
 pub const kAudioDevicePropertyActualSampleRate: AudioObjectPropertySelector = 0x61737274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockdevice?language=objc)
+/// A CFString that contains the UID for the AudioClockDevice that is currently
+/// serving as the main time base of the device. The caller is responsible
+/// for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockdevice?language=objc)
 pub const kAudioDevicePropertyClockDevice: AudioObjectPropertySelector = 0x61706364;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiothreadosworkgroup?language=objc)
+/// An os_workgroup_t that represents the thread workgroup the AudioDevice's
+/// IO thread belongs to. The caller is responsible for releasing the returned
+/// object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiothreadosworkgroup?language=objc)
 pub const kAudioDevicePropertyIOThreadOSWorkgroup: AudioObjectPropertySelector = 0x6f737767;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyprocessmute?language=objc)
+/// A UInt32 where a non-zero value indicates that the current process's audio
+/// will be zeroed out by the system. Note that this property does not apply to
+/// aggregate devices, just real, physical devices.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyprocessmute?language=objc)
 pub const kAudioDevicePropertyProcessMute: AudioObjectPropertySelector = 0x6170706d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyjackisconnected?language=objc)
+/// A UInt32 where a value of 0 means that there isn't anything plugged into the
+/// jack associated withe given element and scope. This property is implemented
+/// by an AudioJackControl, a subclass of AudioBooleanControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyjackisconnected?language=objc)
 pub const kAudioDevicePropertyJackIsConnected: AudioObjectPropertySelector = 0x6a61636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumescalar?language=objc)
+/// A Float32 that represents the value of the volume control. The range is
+/// between 0.0 and 1.0 (inclusive). Note that the set of all Float32 values
+/// between 0.0 and 1.0 inclusive is much larger than the set of actual values
+/// that the hardware can select. This means that the Float32 range has a many
+/// to one mapping with the underlying hardware values. As such, setting a
+/// scalar value will result in the control taking on the value nearest to what
+/// was set. This property is implemented by an AudioControl object that is a
+/// subclass of AudioVolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumescalar?language=objc)
 pub const kAudioDevicePropertyVolumeScalar: AudioObjectPropertySelector = 0x766f6c6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumedecibels?language=objc)
+/// A Float32 that represents the value of the volume control in dB. Note that
+/// the set of all Float32 values in the dB range for the control is much larger
+/// than the set of actual values that the hardware can select. This means that
+/// the Float32 range has a many to one mapping with the underlying hardware
+/// values. As such, setting a dB value will result in the control taking on the
+/// value nearest to what was set. This property is implemented by an
+/// AudioControl object that is a subclass of AudioVolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumedecibels?language=objc)
 pub const kAudioDevicePropertyVolumeDecibels: AudioObjectPropertySelector = 0x766f6c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumerangedecibels?language=objc)
+/// An AudioValueRange that contains the minimum and maximum dB values the
+/// control can have. This property is implemented by an AudioControl object
+/// that is a subclass of AudioVolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumerangedecibels?language=objc)
 pub const kAudioDevicePropertyVolumeRangeDecibels: AudioObjectPropertySelector = 0x76646223;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumescalartodecibels?language=objc)
+/// A Float32 that on input contains a scalar volume value for the and on exit
+/// contains the equivalent dB value. This property is implemented by an
+/// AudioControl object that is a subclass of AudioVolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumescalartodecibels?language=objc)
 pub const kAudioDevicePropertyVolumeScalarToDecibels: AudioObjectPropertySelector = 0x76326462;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumedecibelstoscalar?language=objc)
+/// A Float32 that on input contains a dB volume value for the and on exit
+/// contains the equivalent scalar value. This property is implemented by an
+/// AudioControl object that is a subclass of AudioVolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumedecibelstoscalar?language=objc)
 pub const kAudioDevicePropertyVolumeDecibelsToScalar: AudioObjectPropertySelector = 0x64623276;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystereopan?language=objc)
+/// A Float32 where 0.0 is full left, 1.0 is full right, and 0.5 is center. This
+/// property is implemented by an AudioControl object that is a subclass of
+/// AudioStereoPanControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystereopan?language=objc)
 pub const kAudioDevicePropertyStereoPan: AudioObjectPropertySelector = 0x7370616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystereopanchannels?language=objc)
+/// An array of two UInt32s that indicate which elements of the owning object
+/// the signal is being panned between. This property is implemented by an
+/// AudioControl object that is a subclass of AudioStereoPanControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystereopanchannels?language=objc)
 pub const kAudioDevicePropertyStereoPanChannels: AudioObjectPropertySelector = 0x73706e23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertymute?language=objc)
+/// A UInt32 where a value of 1 means that mute is enabled making that element
+/// inaudible. The property is implemented by an AudioControl object that is a
+/// subclass of AudioMuteControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertymute?language=objc)
 pub const kAudioDevicePropertyMute: AudioObjectPropertySelector = 0x6d757465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysolo?language=objc)
+/// A UInt32 where a value of 1 means that just that element is audible and the
+/// other elements are inaudible. The property is implemented by an AudioControl
+/// object that is a subclass of AudioSoloControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysolo?language=objc)
 pub const kAudioDevicePropertySolo: AudioObjectPropertySelector = 0x736f6c6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyphantompower?language=objc)
+/// A UInt32 where a value of 1 means that the AudioDevice has enabled phantom
+/// power for the given element. The property is implemented by an AudioControl
+/// object that is a subclass of AudioPhantomPowerControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyphantompower?language=objc)
 pub const kAudioDevicePropertyPhantomPower: AudioObjectPropertySelector = 0x7068616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyphaseinvert?language=objc)
+/// A UInt32 where a value of 1 means that phase of the signal for the given
+/// element has been flipped 180 degrees. The property is implemented by an
+/// AudioControl object that is a subclass of AudioPhaseInvertControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyphaseinvert?language=objc)
 pub const kAudioDevicePropertyPhaseInvert: AudioObjectPropertySelector = 0x70687369;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertycliplight?language=objc)
+/// A UInt32 where a value of 1 means that the signal for the element has
+/// exceeded the sample range. Once a clip light is turned on, it is to stay on
+/// until either the value of the control is set to false or the current IO
+/// session stops and a new IO session starts. The property is implemented by an
+/// AudioControl object that is a subclass of AudioClipLightControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertycliplight?language=objc)
 pub const kAudioDevicePropertyClipLight: AudioObjectPropertySelector = 0x636c6970;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertytalkback?language=objc)
+/// A UInt32 where a value of 1 means that the talkback channel is enabled. The
+/// property is implemented by an AudioControl object that is a subclass of
+/// AudioTalkbackControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertytalkback?language=objc)
 pub const kAudioDevicePropertyTalkback: AudioObjectPropertySelector = 0x74616c62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertylistenback?language=objc)
+/// A UInt32 where a value of 1 means that the listenback channel is enabled.
+/// The property is implemented by an AudioControl object that is a subclass of
+/// AudioListenbackControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertylistenback?language=objc)
 pub const kAudioDevicePropertyListenback: AudioObjectPropertySelector = 0x6c736e62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasource?language=objc)
+/// An array of UInt32s whose values are the item IDs for the currently selected
+/// data sources. This property is implemented by an AudioControl object that is
+/// a subclass of AudioDataSourceControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasource?language=objc)
 pub const kAudioDevicePropertyDataSource: AudioObjectPropertySelector = 0x73737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasources?language=objc)
+/// An array of UInt32s that are represent all the IDs of all the data sources
+/// currently available. This property is implemented by an AudioControl object
+/// that is a subclass of AudioDataSourceControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasources?language=objc)
 pub const kAudioDevicePropertyDataSources: AudioObjectPropertySelector = 0x73736323;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasourcenameforidcfstring?language=objc)
+/// This property translates the given data source item ID into a human readable
+/// name using an AudioValueTranslation structure. The input data is the UInt32
+/// containing the item ID to translated and the output data is a CFString. The
+/// caller is responsible for releasing the returned CFObject. This property is
+/// implemented by an AudioControl object that is a subclass of
+/// AudioDataSourceControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasourcenameforidcfstring?language=objc)
 pub const kAudioDevicePropertyDataSourceNameForIDCFString: AudioObjectPropertySelector = 0x6c73636e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasourcekindforid?language=objc)
+/// This property returns a UInt32 that identifies the kind of data source
+/// the item ID refers to using an AudioValueTranslation structure. The input
+/// data is the UInt32 containing the item ID and the output data is the UInt32.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasourcekindforid?language=objc)
 pub const kAudioDevicePropertyDataSourceKindForID: AudioObjectPropertySelector = 0x7373636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksource?language=objc)
+/// An array of UInt32s whose values are the item IDs for the currently selected
+/// clock sources. This property is implemented by an AudioControl object that
+/// is a subclass of AudioClockControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksource?language=objc)
 pub const kAudioDevicePropertyClockSource: AudioObjectPropertySelector = 0x63737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksources?language=objc)
+/// An array of UInt32s that are represent all the IDs of all the clock sources
+/// currently available. This property is implemented by an AudioControl object
+/// that is a subclass of AudioClockControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksources?language=objc)
 pub const kAudioDevicePropertyClockSources: AudioObjectPropertySelector = 0x63736323;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksourcenameforidcfstring?language=objc)
+/// This property translates the given clock source item ID into a human
+/// readable name using an AudioValueTranslation structure. The input data is
+/// the UInt32 containing the item ID to translated and the output data is a
+/// CFString. The caller is responsible for releasing the returned CFObject.
+/// This property is implemented by an AudioControl object that is a subclass of
+/// AudioClockControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksourcenameforidcfstring?language=objc)
 pub const kAudioDevicePropertyClockSourceNameForIDCFString: AudioObjectPropertySelector =
     0x6c63736e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksourcekindforid?language=objc)
+/// This property returns a UInt32 that identifies the kind of clock source
+/// the item ID refers to using an AudioValueTranslation structure. The input
+/// data is the UInt32 containing the item ID and the output data is the UInt32.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksourcekindforid?language=objc)
 pub const kAudioDevicePropertyClockSourceKindForID: AudioObjectPropertySelector = 0x6373636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythru?language=objc)
+/// A UInt32 where a value of 0 means that play through is off and a value of 1
+/// means that it is on. This property is implemented by an AudioControl object
+/// that is a subclass of AudioMuteControl. Further, the control that implements
+/// this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythru?language=objc)
 pub const kAudioDevicePropertyPlayThru: AudioObjectPropertySelector = 0x74687275;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrusolo?language=objc)
+/// A UInt32 where a value of 1 means that just that play through element is
+/// audible and the other elements are inaudible. The property is implemented by
+/// an AudioControl object that is a subclass of AudioSoloControl. Further, the
+/// control that implements this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrusolo?language=objc)
 pub const kAudioDevicePropertyPlayThruSolo: AudioObjectPropertySelector = 0x74687273;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumescalar?language=objc)
+/// A Float32 that represents the value of the volume control. The range is
+/// between 0.0 and 1.0 (inclusive). Note that the set of all Float32 values
+/// between 0.0 and 1.0 inclusive is much larger than the set of actual values
+/// that the hardware can select. This means that the Float32 range has a many
+/// to one mapping with the underlying hardware values. As such, setting a
+/// scalar value will result in the control taking on the value nearest to what
+/// was set. This property is implemented by an AudioControl object that is a
+/// subclass of AudioVolumeControl.Further, the control that implements this
+/// property is only available through kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumescalar?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeScalar: AudioObjectPropertySelector = 0x6d767363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumedecibels?language=objc)
+/// A Float32 that represents the value of the volume control in dB. Note that
+/// the set of all Float32 values in the dB range for the control is much larger
+/// than the set of actual values that the hardware can select. This means that
+/// the Float32 range has a many to one mapping with the underlying hardware
+/// values. As such, setting a dB value will result in the control taking on the
+/// value nearest to what was set. This property is implemented by an
+/// AudioControl object that is a subclass of AudioVolumeControl. Further, the
+/// control that implements this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumedecibels?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeDecibels: AudioObjectPropertySelector = 0x6d766462;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumerangedecibels?language=objc)
+/// An AudioValueRange that contains the minimum and maximum dB values the
+/// control can have. This property is implemented by an AudioControl object
+/// that is a subclass of AudioVolumeControl. Further, the control that
+/// implements this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumerangedecibels?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeRangeDecibels: AudioObjectPropertySelector = 0x6d766423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumescalartodecibels?language=objc)
+/// A Float32 that on input contains a scalar volume value for the and on exit
+/// contains the equivalent dB value. This property is implemented by an
+/// AudioControl object that is a subclass of AudioVolumeControl. Further, the
+/// control that implements this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumescalartodecibels?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeScalarToDecibels: AudioObjectPropertySelector =
     0x6d763264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumedecibelstoscalar?language=objc)
+/// A Float32 that on input contains a dB volume value for the and on exit
+/// contains the equivalent scalar value. This property is implemented by an
+/// AudioControl object that is a subclass of AudioVolumeControl. Further, the
+/// control that implements this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumedecibelstoscalar?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeDecibelsToScalar: AudioObjectPropertySelector =
     0x6d763273;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrustereopan?language=objc)
+/// A Float32 where 0.0 is full left, 1.0 is full right, and 0.5 is center. This
+/// property is implemented by an AudioControl object that is a subclass of
+/// AudioStereoPanControl. Further, the control that implements this property is
+/// only available through kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrustereopan?language=objc)
 pub const kAudioDevicePropertyPlayThruStereoPan: AudioObjectPropertySelector = 0x6d73706e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrustereopanchannels?language=objc)
+/// An array of two UInt32s that indicate which elements of the owning object
+/// the signal is being panned between. This property is implemented by an
+/// AudioControl object that is a subclass of AudioStereoPanControl. Further,
+/// the control that implements this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrustereopanchannels?language=objc)
 pub const kAudioDevicePropertyPlayThruStereoPanChannels: AudioObjectPropertySelector = 0x6d737023;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestination?language=objc)
+/// An array of UInt32s whose values are the item IDs for the currently selected
+/// play through data destinations. This property is implemented by an
+/// AudioControl object that is a subclass of AudioDataDestinationControl.
+/// Further, the control that implements this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestination?language=objc)
 pub const kAudioDevicePropertyPlayThruDestination: AudioObjectPropertySelector = 0x6d646473;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestinations?language=objc)
+/// An array of UInt32s that are represent all the IDs of all the play through
+/// data destinations currently available. This property is implemented by an
+/// AudioControl object that is a subclass of AudioDataDestinationControl.
+/// Further, the control that implements this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestinations?language=objc)
 pub const kAudioDevicePropertyPlayThruDestinations: AudioObjectPropertySelector = 0x6d646423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestinationnameforidcfstring?language=objc)
+/// This property translates the given play through data destination item ID
+/// into a human readable name using an AudioValueTranslation structure. The
+/// input data is the UInt32 containing the item ID to translated and the output
+/// data is a CFString. The caller is responsible for releasing the returned
+/// CFObject. This property is implemented by an AudioControl object that is a
+/// subclass of AudioDataDestinationControl. Further, the control that
+/// implements this property is only available through
+/// kAudioDevicePropertyScopePlayThrough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestinationnameforidcfstring?language=objc)
 pub const kAudioDevicePropertyPlayThruDestinationNameForIDCFString: AudioObjectPropertySelector =
     0x6d646463;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevel?language=objc)
+/// An array of UInt32s whose values are the item IDs for the currently selected
+/// nominal line levels. This property is implemented by an AudioControl object
+/// that is a subclass of AudioLineLevelControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevel?language=objc)
 pub const kAudioDevicePropertyChannelNominalLineLevel: AudioObjectPropertySelector = 0x6e6c766c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevels?language=objc)
+/// An array of UInt32s that represent all the IDs of all the nominal line
+/// levels currently available. This property is implemented by an AudioControl
+/// object that is a subclass of AudioLineLevelControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevels?language=objc)
 pub const kAudioDevicePropertyChannelNominalLineLevels: AudioObjectPropertySelector = 0x6e6c7623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevelnameforidcfstring?language=objc)
+/// This property translates the given nominal line level item ID into a human
+/// readable name using an AudioValueTranslation structure. The input data is
+/// the UInt32 containing the item ID to be translated and the output data is a
+/// CFString. The caller is responsible for releasing the returned CFObject.
+/// This property is implemented by an AudioControl object that is a subclass of
+/// AudioLineLevelControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevelnameforidcfstring?language=objc)
 pub const kAudioDevicePropertyChannelNominalLineLevelNameForIDCFString:
     AudioObjectPropertySelector = 0x6c636e6c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersetting?language=objc)
+/// An array of UInt32s whose values are the item IDs for the currently selected
+/// high pass filter setting. This property is implemented by an AudioControl
+/// object that is a subclass of AudioHighPassFilterControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersetting?language=objc)
 pub const kAudioDevicePropertyHighPassFilterSetting: AudioObjectPropertySelector = 0x68697066;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersettings?language=objc)
+/// An array of UInt32s that represent all the IDs of all the high pass filter
+/// settings currently available. This property is implemented by an
+/// AudioControl object that is a subclass of AudioHighPassFilterControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersettings?language=objc)
 pub const kAudioDevicePropertyHighPassFilterSettings: AudioObjectPropertySelector = 0x68697023;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersettingnameforidcfstring?language=objc)
+/// This property translates the given high pass filter setting item ID into a
+/// human readable name using an AudioValueTranslation structure. The input data
+/// is the UInt32 containing the item ID to be translated and the output data is
+/// a CFString. The caller is responsible for releasing the returned CFObject.
+/// This property is implemented by an AudioControl object that is a subclass of
+/// AudioHighPassFilterControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersettingnameforidcfstring?language=objc)
 pub const kAudioDevicePropertyHighPassFilterSettingNameForIDCFString: AudioObjectPropertySelector =
     0x6869706c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumescalar?language=objc)
+/// A Float32 that represents the value of the LFE volume control. The range is
+/// between 0.0 and 1.0 (inclusive). Note that the set of all Float32 values
+/// between 0.0 and 1.0 inclusive is much larger than the set of actual values
+/// that the hardware can select. This means that the Float32 range has a many
+/// to one mapping with the underlying hardware values. As such, setting a
+/// scalar value will result in the control taking on the value nearest to what
+/// was set. This property is implemented by an AudioControl object that is a
+/// subclass of AudioLFEVolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumescalar?language=objc)
 pub const kAudioDevicePropertySubVolumeScalar: AudioObjectPropertySelector = 0x73766c6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumedecibels?language=objc)
+/// A Float32 that represents the value of the LFE volume control in dB. Note
+/// that the set of all Float32 values in the dB range for the control is much
+/// larger than the set of actual values that the hardware can select. This
+/// means that the Float32 range has a many to one mapping with the underlying
+/// hardware values. As such, setting a dB value will result in the control
+/// taking on the value nearest to what was set. This property is implemented by
+/// an AudioControl object that is a subclass of AudioLFE VolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumedecibels?language=objc)
 pub const kAudioDevicePropertySubVolumeDecibels: AudioObjectPropertySelector = 0x73766c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumerangedecibels?language=objc)
+/// An AudioValueRange that contains the minimum and maximum dB values the
+/// control can have. This property is implemented by an AudioControl object
+/// that is a subclass of AudioLFEVolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumerangedecibels?language=objc)
 pub const kAudioDevicePropertySubVolumeRangeDecibels: AudioObjectPropertySelector = 0x73766423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumescalartodecibels?language=objc)
+/// A Float32 that on input contains a scalar volume value for the and on exit
+/// contains the equivalent dB value. This property is implemented by an
+/// AudioControl object that is a subclass of AudioLFEVolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumescalartodecibels?language=objc)
 pub const kAudioDevicePropertySubVolumeScalarToDecibels: AudioObjectPropertySelector = 0x73763264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumedecibelstoscalar?language=objc)
+/// A Float32 that on input contains a dB volume value for the and on exit
+/// contains the equivalent scalar value. This property is implemented by an
+/// AudioControl object that is a subclass of AudioLFEVolumeControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumedecibelstoscalar?language=objc)
 pub const kAudioDevicePropertySubVolumeDecibelsToScalar: AudioObjectPropertySelector = 0x73643276;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubmute?language=objc)
+/// A UInt32 where a value of 1 means that mute is enabled making the LFE on
+/// that element inaudible. The property is implemented by an AudioControl
+/// object that is a subclass of AudioLFEMuteControl.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubmute?language=objc)
 pub const kAudioDevicePropertySubMute: AudioObjectPropertySelector = 0x736d7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionenable?language=objc)
+/// A UInt32 where 0 disables voice activity detection process and non-zero enables it.
+/// Voice activity detection can be used with input audio and has echo cancellation.
+/// Detection works when a process mute is used, but not with hardware mute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionenable?language=objc)
 pub const kAudioDevicePropertyVoiceActivityDetectionEnable: AudioObjectPropertySelector =
     0x7641642b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionstate?language=objc)
+/// A read-only UInt32 where 0 indicates no voice currently detected and 1 indicates voice.
+/// Used in conjunction with kAudioDevicePropertyVoiceActivityDetectionEnable.
+/// A client would normally register to listen to this property for changes and then query
+/// the state rather than continuously poll the value.
+/// NOTE: If input audio is not active/runnning or the voice activity detection is disabled,
+/// then it is not analyzed and this will provide 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionstate?language=objc)
 pub const kAudioDevicePropertyVoiceActivityDetectionState: AudioObjectPropertySelector = 0x76416453;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantscontrolsrestored?language=objc)
+/// A UInt32 where a value of 0 indicates that the controls for the device should not be
+/// saved/restored when the device is first published. If the device doesn't implement
+/// this property, it is assumed that the settings should be saved and restored.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantscontrolsrestored?language=objc)
 pub const kAudioDevicePropertyWantsControlsRestored: AudioObjectPropertySelector = 0x72657363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantsstreamformatsrestored?language=objc)
+/// A UInt32 where a value of 0 indicates that the stream formats for the device should
+/// not be saved/restored when the device is first published. If the device doesn't
+/// implement this property, it is assumed that the settings should be saved and restored.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantsstreamformatsrestored?language=objc)
 pub const kAudioDevicePropertyWantsStreamFormatsRestored: AudioObjectPropertySelector = 0x72657366;
 
 /// Creates an AudioDeviceIOProcID from an AudioDeviceIOProc and a client data
@@ -1871,23 +2996,56 @@ pub unsafe fn AudioDeviceGetNearestStartTime(
     unsafe { AudioDeviceGetNearestStartTime(in_device, io_requested_start_time, in_flags) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceclassid?language=objc)
+/// The AudioClassID that identifies the AudioAggregateDevice class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceclassid?language=objc)
 pub const kAudioAggregateDeviceClassID: AudioClassID = 0x61616767;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertyfullsubdevicelist?language=objc)
+/// A CFArray of CFStrings that contain the UIDs of all the devices, active or
+/// inactive, contained in the AudioAggregateDevice. The order of the items in
+/// the array is significant and is used to determine the order of the streams
+/// of the AudioAggregateDevice. The caller is responsible for releasing the
+/// returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertyfullsubdevicelist?language=objc)
 pub const kAudioAggregateDevicePropertyFullSubDeviceList: AudioObjectPropertySelector = 0x67727570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertyactivesubdevicelist?language=objc)
+/// An array of AudioObjectIDs for all the active sub-devices in the aggregate
+/// device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertyactivesubdevicelist?language=objc)
 pub const kAudioAggregateDevicePropertyActiveSubDeviceList: AudioObjectPropertySelector =
     0x61677270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertycomposition?language=objc)
+/// A CFDictionary that describes the composition of the AudioAggregateDevice.
+/// The keys for this CFDicitionary are defined in the AudioAggregateDevice
+/// Constants section. The caller is responsible for releasing the returned
+/// CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertycomposition?language=objc)
 pub const kAudioAggregateDevicePropertyComposition: AudioObjectPropertySelector = 0x61636f6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertymainsubdevice?language=objc)
+/// A CFString that contains the UID for the AudioDevice that is currently
+/// serving as the time base of the aggregate device. The caller is
+/// responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertymainsubdevice?language=objc)
 pub const kAudioAggregateDevicePropertyMainSubDevice: AudioObjectPropertySelector = 0x616d7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertyclockdevice?language=objc)
+/// A CFString that contains the UID for the AudioClockDevice that is currently
+/// serving as the time base of the aggregate device. If the aggregate
+/// device includes both a main audio device and a clock device, the clock
+/// device will control the time base. Setting this property will enable
+/// drift correction for all subdevices in the aggregate device. The caller is
+/// responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertyclockdevice?language=objc)
 pub const kAudioAggregateDevicePropertyClockDevice: AudioObjectPropertySelector = 0x61706364;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertytaplist?language=objc)
+/// A CFArray of CFStrings that contain the UUIDs of all the tap objects in the
+/// contained in the AudioAggregateDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertytaplist?language=objc)
 pub const kAudioAggregateDevicePropertyTapList: AudioObjectPropertySelector = 0x74617023;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertysubtaplist?language=objc)
+/// An array of AudioObjectIDs for all the active sub-taps in the aggregate
+/// device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertysubtaplist?language=objc)
 pub const kAudioAggregateDevicePropertySubTapList: AudioObjectPropertySelector = 0x61746170;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedriftcompensationminquality?language=objc)
@@ -1901,7 +3059,9 @@ pub const kAudioAggregateDriftCompensationHighQuality: u32 = 0x60;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedriftcompensationmaxquality?language=objc)
 pub const kAudioAggregateDriftCompensationMaxQuality: u32 = 0x7F;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceclassid?language=objc)
+/// The AudioClassID that identifies the AudioSubDevice class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceclassid?language=objc)
 pub const kAudioSubDeviceClassID: AudioClassID = 0x61737562;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationminquality?language=objc)
@@ -1920,47 +3080,110 @@ pub const kAudioSubDeviceDriftCompensationHighQuality: u32 = 0x60;
 #[deprecated]
 pub const kAudioSubDeviceDriftCompensationMaxQuality: u32 = 0x7F;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicepropertyextralatency?language=objc)
+/// A Float64 indicating the number of sample frames to add to or subtract from
+/// the latency compensation used for this AudioSubDevice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicepropertyextralatency?language=objc)
 pub const kAudioSubDevicePropertyExtraLatency: AudioObjectPropertySelector = 0x786c7463;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicepropertydriftcompensation?language=objc)
+/// A UInt32 where a value of 0 indicates that no drift compensation should be
+/// done for this AudioSubDevice and a value of 1 means that it should.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicepropertydriftcompensation?language=objc)
 pub const kAudioSubDevicePropertyDriftCompensation: AudioObjectPropertySelector = 0x64726674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicepropertydriftcompensationquality?language=objc)
+/// A UInt32 that controls the trade-off between quality and CPU load in the
+/// drift compensation. The range of values is from 0 to 128, where the lower
+/// the number, the worse the quality but also the less CPU is used to do the
+/// compensation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicepropertydriftcompensationquality?language=objc)
 pub const kAudioSubDevicePropertyDriftCompensationQuality: AudioObjectPropertySelector = 0x64726671;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapclassid?language=objc)
+/// The AudioClassID that identifies the AudioSubTap class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapclassid?language=objc)
 pub const kAudioSubTapClassID: AudioClassID = 0x73746170;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtappropertyextralatency?language=objc)
+/// A Float64 indicating the number of sample frames to add to or subtract from
+/// the latency compensation used for this AudioSubTap.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtappropertyextralatency?language=objc)
 pub const kAudioSubTapPropertyExtraLatency: AudioObjectPropertySelector = 0x786c7463;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtappropertydriftcompensation?language=objc)
+/// A UInt32 where a value of 0 indicates that no drift compensation should be
+/// done for this AudioSubTap and a value of 1 means that it should.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtappropertydriftcompensation?language=objc)
 pub const kAudioSubTapPropertyDriftCompensation: AudioObjectPropertySelector = 0x64726674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtappropertydriftcompensationquality?language=objc)
+/// A UInt32 that controls the trade-off between quality and CPU load in the
+/// drift compensation. The range of values is from 0 to 128, where the lower
+/// the number, the worse the quality but also the less CPU is used to do the
+/// compensation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtappropertydriftcompensationquality?language=objc)
 pub const kAudioSubTapPropertyDriftCompensationQuality: AudioObjectPropertySelector = 0x64726671;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocessclassid?language=objc)
+/// The AudioClassID that identifies the Process class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocessclassid?language=objc)
 pub const kAudioProcessClassID: AudioClassID = 0x636c6e74;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertypid?language=objc)
+/// A pid
+/// \
+/// _t indicating the process ID associated with the process.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertypid?language=objc)
 pub const kAudioProcessPropertyPID: AudioObjectPropertySelector = 0x70706964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertybundleid?language=objc)
+/// A CFString that contains the bundle ID of the process. The caller is
+/// responsible for releasing the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertybundleid?language=objc)
 pub const kAudioProcessPropertyBundleID: AudioObjectPropertySelector = 0x70626964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertydevices?language=objc)
+/// An array of AudioObjectIDs that represent the devices currently used by the
+/// process for input or used by the process for output. The scope will select
+/// the input or output device list.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertydevices?language=objc)
 pub const kAudioProcessPropertyDevices: AudioObjectPropertySelector = 0x70647623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertyisrunning?language=objc)
+/// A UInt32 where a value of 0 indicates that there is not audio IO in progress
+/// in the process, and a value of 1 indicates that there is audio IO in progress
+/// in the process. Note that audio IO may in progress even if no input or output
+/// streams are active.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertyisrunning?language=objc)
 pub const kAudioProcessPropertyIsRunning: AudioObjectPropertySelector = 0x7069723f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertyisrunninginput?language=objc)
+/// A UInt32 where a value of 0 indicates that the process is not running any
+/// IO or there is not any active input streams, and a value of 1 indicates that
+/// the process is running IO and there is at least one active input stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertyisrunninginput?language=objc)
 pub const kAudioProcessPropertyIsRunningInput: AudioObjectPropertySelector = 0x70697269;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertyisrunningoutput?language=objc)
+/// A UInt32 where a value of 0 indicates that the process is not running any
+/// IO or there is not any active output streams, and a value of 1 indicates that
+/// the process is running IO and there is at least one active output stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertyisrunningoutput?language=objc)
 pub const kAudioProcessPropertyIsRunningOutput: AudioObjectPropertySelector = 0x7069726f;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotapclassid?language=objc)
+/// The AudioClassID that identifies the Tap class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotapclassid?language=objc)
 pub const kAudioTapClassID: AudioClassID = 0x74636c73;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotappropertyuid?language=objc)
+/// A CFString that contains a persistent identifier for the Tap. A Taps UID
+/// persists until the tap is destroyed. The caller is responsible for releasing
+/// the returned CFObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotappropertyuid?language=objc)
 pub const kAudioTapPropertyUID: AudioObjectPropertySelector = 0x74756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotappropertydescription?language=objc)
+/// The CATapDescription used to initially create this tap. This property can be used
+/// to modify and set the description of an existing tap.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotappropertydescription?language=objc)
 pub const kAudioTapPropertyDescription: AudioObjectPropertySelector = 0x74647363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotappropertyformat?language=objc)
+/// An AudioStreamBasicDescription that describes the current data format for
+/// the tap. This is the format of that data that will be accessible in any aggregate
+/// device that contains the tap.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotappropertyformat?language=objc)
 pub const kAudioTapPropertyFormat: AudioObjectPropertySelector = 0x74666d74;
 
 /// This routine creates a new Tap using the provided description.
@@ -2000,13 +3223,6 @@ pub unsafe fn AudioHardwareDestroyProcessTap(in_tap_id: AudioObjectID) -> OSStat
 
 /// CATapMuteBehavior describes the playback behavior of the process being tapped. The default value is CATapUnmuted.
 ///
-/// Audio is captured by the tap and also sent to the audio hardware
-///
-/// Audio is captured by the tap but no audio is sent from the process to the audio hardware
-///
-/// Audio is captured by the tap and also sent to the audio hardware until the tap is read by another audio client.
-/// For the duration of the read activity on the tap no audio is sent to the audio hardware.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/catapmutebehavior?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
@@ -2015,10 +3231,14 @@ pub unsafe fn AudioHardwareDestroyProcessTap(in_tap_id: AudioObjectID) -> OSStat
 pub struct CATapMuteBehavior(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl CATapMuteBehavior {
+    /// Audio is captured by the tap and also sent to the audio hardware
     #[doc(alias = "CATapUnmuted")]
     pub const Unmuted: Self = Self(0);
+    /// Audio is captured by the tap but no audio is sent from the process to the audio hardware
     #[doc(alias = "CATapMuted")]
     pub const Muted: Self = Self(1);
+    /// Audio is captured by the tap and also sent to the audio hardware until the tap is read by another audio client.
+    /// For the duration of the read activity on the tap no audio is sent to the audio hardware.
     #[doc(alias = "CATapMutedWhenTapped")]
     pub const MutedWhenTapped: Self = Self(2);
 }

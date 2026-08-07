@@ -16,18 +16,16 @@ pub type AudioFormatPropertyID = u32;
 
 /// Different panning algorithms.
 ///
-/// Sound field panning algorithm
-///
-/// Vector based panning algorithm
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopanningmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioPanningMode(pub u32);
 impl AudioPanningMode {
+    /// Sound field panning algorithm
     #[doc(alias = "kPanningMode_SoundField")]
     pub const PanningMode_SoundField: Self = Self(3);
+    /// Vector based panning algorithm
     #[doc(alias = "kPanningMode_VectorBasedPanning")]
     pub const PanningMode_VectorBasedPanning: Self = Self(4);
 }
@@ -88,21 +86,19 @@ unsafe impl RefEncode for AudioPanningInfo {
 
 /// used for mType field of AudioBalanceFade struct
 ///
-/// the gain value never exceeds 1.0, the opposite channel fades out.
-/// This can reduce overall loudness when the balance or fade is not in the center.
-///
-/// The overall loudness remains constant, but gain can exceed 1.0.
-/// the gain value is 1.0 when the balance and fade are in the center.
-/// From there they can increase to +3dB (1.414) and decrease to -inf dB (0.0).
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobalancefadetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioBalanceFadeType(pub u32);
 impl AudioBalanceFadeType {
+    /// the gain value never exceeds 1.0, the opposite channel fades out.
+    /// This can reduce overall loudness when the balance or fade is not in the center.
     #[doc(alias = "kAudioBalanceFadeType_MaxUnityGain")]
     pub const MaxUnityGain: Self = Self(0);
+    /// The overall loudness remains constant, but gain can exceed 1.0.
+    /// the gain value is 1.0 when the balance and fade are in the center.
+    /// From there they can increase to +3dB (1.414) and decrease to -inf dB (0.0).
     #[doc(alias = "kAudioBalanceFadeType_EqualPower")]
     pub const EqualPower: Self = Self(1);
 }
@@ -230,85 +226,296 @@ unsafe impl RefEncode for ExtendedAudioFormatInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatinfo?language=objc)
+/// Retrieves general information about a format. The specifier is a
+/// magic cookie, or NULL.
+/// On input, the property value is an AudioStreamBasicDescription which
+/// should have at least the mFormatID filled out. On output it will be filled out
+/// as much as possible given the information known about the format
+/// and the contents of the magic cookie (if any is given).
+/// If multiple formats can be described by the AudioStreamBasicDescription and the associated magic cookie,
+/// this property will return the base level format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatinfo?language=objc)
 pub const kAudioFormatProperty_FormatInfo: AudioFormatPropertyID = 0x666d7469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatname?language=objc)
+/// Returns a name for a given format. The specifier is an
+/// AudioStreamBasicDescription describing the format to ask about.
+/// The value is a CFStringRef. The caller is responsible for releasing the
+/// returned string. For some formats (eg, Linear PCM) you will get back a
+/// descriptive string (e.g. 16-bit, interleaved, etc...)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatname?language=objc)
 pub const kAudioFormatProperty_FormatName: AudioFormatPropertyID = 0x666e616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_encodeformatids?language=objc)
+/// No specifier needed. Must be set to NULL.
+/// Returns an array of UInt32 format IDs for formats that are valid output formats
+/// for a converter.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_encodeformatids?language=objc)
 pub const kAudioFormatProperty_EncodeFormatIDs: AudioFormatPropertyID = 0x61636f66;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_decodeformatids?language=objc)
+/// No specifier needed. Must be set to NULL.
+/// Returns an array of UInt32 format IDs for formats that are valid input formats
+/// for a converter.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_decodeformatids?language=objc)
 pub const kAudioFormatProperty_DecodeFormatIDs: AudioFormatPropertyID = 0x61636966;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatlist?language=objc)
+/// Returns a list of AudioFormatListItem structs describing the audio formats contained within the compressed bit stream
+/// as described by the magic cookie. The specifier is an AudioFormatInfo struct. The mFormatID member of the
+/// ASBD struct must filled in. Formats are returned in order from the most to least 'rich', with
+/// channel count taking the highest precedence followed by sample rate. The kAudioFormatProperty_FormatList property
+/// is the preferred method for discovering format information of the audio data. If the audio data can only be described
+/// by a single AudioFormatListItem, this property would be equivalent to using the kAudioFormatProperty_FormatInfo property,
+/// which should be used by the application as a fallback case, to ensure backward compatibility with existing systems
+/// when kAudioFormatProperty_FormatList is not present on the running system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatlist?language=objc)
 pub const kAudioFormatProperty_FormatList: AudioFormatPropertyID = 0x666c7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_asbdfromesds?language=objc)
+/// Returns an audio stream description for a given ESDS. The specifier is an ESDS.
+/// The value is a AudioStreamBasicDescription. If multiple formats can be described
+/// by the ESDS this property will return the base level format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_asbdfromesds?language=objc)
 pub const kAudioFormatProperty_ASBDFromESDS: AudioFormatPropertyID = 0x65737364;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutfromesds?language=objc)
+/// Returns an audio channel layout for a given ESDS. The specifier is an
+/// ESDS. The value is a AudioChannelLayout.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutfromesds?language=objc)
 pub const kAudioFormatProperty_ChannelLayoutFromESDS: AudioFormatPropertyID = 0x6573636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_outputformatlist?language=objc)
+/// Returns a list of AudioFormatListItem structs describing the audio formats which may be obtained by decoding the format
+/// described by the specifier.
+/// The specifier is an AudioFormatInfo struct. At a minimum formatID member of the ASBD struct must filled in. Other fields
+/// may be filled in. If there is no magic cookie, then the number of channels and sample rate should be filled in.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_outputformatlist?language=objc)
 pub const kAudioFormatProperty_OutputFormatList: AudioFormatPropertyID = 0x6f666c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_firstplayableformatfromlist?language=objc)
+/// The specifier is a list of 1 or more AudioFormatListItem. Generally it is the list of these items returned from kAudioFormatProperty_FormatList. The property value retrieved is an UInt32 that specifies an index into that list. The list that the caller provides is generally sorted with the first item as the best format (most number of channels, highest sample rate), and the returned index represents the first item in that list that can be played by the system.
+/// Thus, the property is typically used to determine the best playable format for a given (layered) audio stream
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_firstplayableformatfromlist?language=objc)
 pub const kAudioFormatProperty_FirstPlayableFormatFromList: AudioFormatPropertyID = 0x6670666c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatisvbr?language=objc)
+/// Returns whether or not a format has a variable number of bytes per
+/// packet. The specifier is an AudioStreamBasicDescription describing
+/// the format to ask about. The value is a UInt32 where non-zero means
+/// the format is variable bytes per packet.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatisvbr?language=objc)
 pub const kAudioFormatProperty_FormatIsVBR: AudioFormatPropertyID = 0x66766272;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatisexternallyframed?language=objc)
+/// Returns whether or not a format requires external framing information,
+/// i.e. AudioStreamPacketDescriptions.
+/// The specifier is an AudioStreamBasicDescription describing
+/// the format to ask about. The value is a UInt32 where non-zero means
+/// the format is externally framed. Any format which has variable byte sized packets
+/// requires AudioStreamPacketDescriptions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatisexternallyframed?language=objc)
 pub const kAudioFormatProperty_FormatIsExternallyFramed: AudioFormatPropertyID = 0x66657866;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatemploysdependentpackets?language=objc)
+/// Returns whether or not a format is capable of combining independently
+/// decodable packets with dependent packets. The specifier is an
+/// AudioStreamBasicDescription describing the format to ask about.
+/// The value is a UInt32 where zero means that all packets in streams
+/// of the specified format are independently decodable and non-zero means
+/// that streams of the specified format may include dependent packets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatemploysdependentpackets?language=objc)
 pub const kAudioFormatProperty_FormatEmploysDependentPackets: AudioFormatPropertyID = 0x66646570;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatisencrypted?language=objc)
+/// Returns whether or not a format is encrypted. The specifier is a UInt32 format ID.
+/// The value is a UInt32 where non-zero means the format is encrypted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_formatisencrypted?language=objc)
 pub const kAudioFormatProperty_FormatIsEncrypted: AudioFormatPropertyID = 0x63727970;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_encoders?language=objc)
+/// The specifier is the format that you are interested in, e.g. 'aac '
+/// Returns an array of AudioClassDescriptions for all installed encoders for the given format
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_encoders?language=objc)
 pub const kAudioFormatProperty_Encoders: AudioFormatPropertyID = 0x6176656e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_decoders?language=objc)
+/// The specifier is the format that you are interested in, e.g. 'aac '
+/// Returns an array of AudioClassDescriptions for all installed decoders for the given format
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_decoders?language=objc)
 pub const kAudioFormatProperty_Decoders: AudioFormatPropertyID = 0x61766465;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availableencodebitrates?language=objc)
+/// The specifier is a UInt32 format ID.
+/// The property value is an array of AudioValueRange describing all available bit rates.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availableencodebitrates?language=objc)
 pub const kAudioFormatProperty_AvailableEncodeBitRates: AudioFormatPropertyID = 0x61656272;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availableencodesamplerates?language=objc)
+/// The specifier is a UInt32 format ID.
+/// The property value is an array of AudioValueRange describing all available sample rates.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availableencodesamplerates?language=objc)
 pub const kAudioFormatProperty_AvailableEncodeSampleRates: AudioFormatPropertyID = 0x61657372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availableencodechannellayouttags?language=objc)
+/// The specifier is an AudioStreamBasicDescription with at least the mFormatID
+/// and mChannelsPerFrame fields set.
+/// The property value is an array of AudioChannelLayoutTags for the format and number of
+/// channels specified. If mChannelsPerFrame is zero, then all layouts supported by
+/// the format are returned.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availableencodechannellayouttags?language=objc)
 pub const kAudioFormatProperty_AvailableEncodeChannelLayoutTags: AudioFormatPropertyID = 0x6165636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availableencodenumberchannels?language=objc)
+/// The specifier is an AudioStreamBasicDescription with at least the mFormatID field set.
+/// The property value is an array of UInt32 indicating the number of channels that can be encoded.
+/// A value of 0xFFFFFFFF indicates that any number of channels may be encoded.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availableencodenumberchannels?language=objc)
 pub const kAudioFormatProperty_AvailableEncodeNumberChannels: AudioFormatPropertyID = 0x61766e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availabledecodenumberchannels?language=objc)
+/// The specifier is an AudioStreamBasicDescription with at least the mFormatID field set.
+/// The property value is an array of UInt32 indicating the number of channels that can be decoded.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_availabledecodenumberchannels?language=objc)
 pub const kAudioFormatProperty_AvailableDecodeNumberChannels: AudioFormatPropertyID = 0x61646e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_asbdfrommpegpacket?language=objc)
+/// Returns an audio stream description for a given MPEG Packet. The specifier is an MPEG Packet.
+/// The value is a AudioStreamBasicDescription.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_asbdfrommpegpacket?language=objc)
 pub const kAudioFormatProperty_ASBDFromMPEGPacket: AudioFormatPropertyID = 0x61646d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_bitmapforlayouttag?language=objc)
+/// Returns a bitmap for an AudioChannelLayoutTag, if there is one.
+/// The specifier is a AudioChannelLayoutTag  containing the layout tag.
+/// The value is an UInt32 bitmap. The bits are as defined in CoreAudioTypes.h.
+/// To go in the other direction, i.e. get a layout tag for a bitmap,
+/// use kAudioFormatProperty_TagForChannelLayout where your layout tag
+/// is kAudioChannelLayoutTag_UseChannelBitmap and the bitmap is filled in.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_bitmapforlayouttag?language=objc)
 pub const kAudioFormatProperty_BitmapForLayoutTag: AudioFormatPropertyID = 0x626d7467;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_matrixmixmap?language=objc)
+/// Returns a matrix of scaling coefficients for converting audio from one channel map
+/// to another in a standard way, if one is known. Otherwise an error is returned.
+/// The specifier is an array of two pointers to AudioChannelLayout structures.
+/// The first points to the input layout, the second to the output layout.
+/// The value is a two dimensional array of Float32 where the first dimension (rows)
+/// is the input channel and the second dimension (columns) is the output channel.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_matrixmixmap?language=objc)
 pub const kAudioFormatProperty_MatrixMixMap: AudioFormatPropertyID = 0x6d6d6170;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channelmap?language=objc)
+/// Returns an array of SInt32 for reordering input channels.
+/// The specifier is an array of two pointers to AudioChannelLayout structures.
+/// The first points to the input layout, the second to the output layout.
+/// The length of the output array is equal to the number of output channels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channelmap?language=objc)
 pub const kAudioFormatProperty_ChannelMap: AudioFormatPropertyID = 0x63686d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_numberofchannelsforlayout?language=objc)
+/// This is a general call for parsing a AudioChannelLayout provided as the specifier,
+/// to determine the number of valid channels that are represented. So, if the
+/// LayoutTag is specified, it returns the number of channels for that layout. If
+/// the bitmap is specified, it returns the number of channels represented by that bitmap.
+/// If the layout tag is 'kAudioChannelLayoutTag_UseChannelDescriptions' it returns
+/// the number of channel descriptions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_numberofchannelsforlayout?language=objc)
 pub const kAudioFormatProperty_NumberOfChannelsForLayout: AudioFormatPropertyID = 0x6e63686d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_arechannellayoutsequivalent?language=objc)
+/// Returns a UInt32 which is 1 if two layouts are equivalent and 0 if they are not equivalent.
+/// In order to be equivalent, the layouts must describe the same channels in the same order.
+/// Whether the layout is represented by a bitmap, channel descriptions or a channel layout tag is not significant.
+/// The channel coordinates are only significant if the channel label is kAudioChannelLabel_UseCoordinates.
+/// The specifier is an array of two pointers to AudioChannelLayout structures.
+/// The value is a pointer to the UInt32 result.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_arechannellayoutsequivalent?language=objc)
 pub const kAudioFormatProperty_AreChannelLayoutsEquivalent: AudioFormatPropertyID = 0x63686571;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayouthash?language=objc)
+/// Returns a UInt32 which represents the hash of the provided channel layout.
+/// The specifier is a pointer to an AudioChannelLayout structure.
+/// The value is a pointer to the UInt32 result.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayouthash?language=objc)
 pub const kAudioFormatProperty_ChannelLayoutHash: AudioFormatPropertyID = 0x63686861;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_validatechannellayout?language=objc)
+/// The specifier is an AudioChannelLayout. The property value and size are not used and must be set to NULL.
+/// This property validates an AudioChannelLayout. This is useful if the layout has come from an untrusted source such as a file.
+/// It returns noErr if the AudioChannelLayout is OK, kAudio_ParamError if there is a structural problem with the layout,
+/// or kAudioFormatUnknownFormatError for unrecognized layout tags or channel labels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_validatechannellayout?language=objc)
 pub const kAudioFormatProperty_ValidateChannelLayout: AudioFormatPropertyID = 0x7661636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutfortag?language=objc)
+/// Returns the channel descriptions for a standard channel layout.
+/// The specifier is a AudioChannelLayoutTag (the mChannelLayoutTag field
+/// of the AudioChannelLayout struct) containing the layout constant.
+/// The value is an AudioChannelLayout structure. In typical use a AudioChannelLayout
+/// can be valid with just a defined AudioChannelLayoutTag (ie, those layouts
+/// have predefined speaker locations and orderings).
+/// Returns an error if the tag is kAudioChannelLayoutTag_UseChannelBitmap
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutfortag?language=objc)
 pub const kAudioFormatProperty_ChannelLayoutForTag: AudioFormatPropertyID = 0x636d706c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_tagforchannellayout?language=objc)
+/// Returns an AudioChannelLayoutTag for a layout, if there is one.
+/// The specifier is an AudioChannelLayout containing the layout description.
+/// The value is an AudioChannelLayoutTag.
+/// This can be used to reduce a layout specified by kAudioChannelLayoutTag_UseChannelDescriptions
+/// or kAudioChannelLayoutTag_UseChannelBitmap to a known AudioChannelLayoutTag.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_tagforchannellayout?language=objc)
 pub const kAudioFormatProperty_TagForChannelLayout: AudioFormatPropertyID = 0x636d7074;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutname?language=objc)
+/// Returns the a name for a particular channel layout. The specifier is
+/// an AudioChannelLayout containing the layout description. The value
+/// is a CFStringRef. The caller is responsible for releasing the
+/// returned string.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutname?language=objc)
 pub const kAudioFormatProperty_ChannelLayoutName: AudioFormatPropertyID = 0x6c6f6e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutsimplename?language=objc)
+/// Returns the a simpler name for a channel layout than does kAudioFormatProperty_ChannelLayoutName.
+/// It omits the channel labels from the name. The specifier is
+/// an AudioChannelLayout containing the layout description. The value
+/// is a CFStringRef. The caller is responsible for releasing the
+/// returned string.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutsimplename?language=objc)
 pub const kAudioFormatProperty_ChannelLayoutSimpleName: AudioFormatPropertyID = 0x6c736e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutforbitmap?language=objc)
+/// Returns the channel descriptions for a standard channel layout.
+/// The specifier is a UInt32 (the mChannelBitmap field
+/// of the AudioChannelLayout struct) containing the layout bitmap. The value
+/// is an AudioChannelLayout structure. In some uses, an AudioChannelLayout can be
+/// valid with the layoutTag set to "use bitmap" and the bitmap set appropriately.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channellayoutforbitmap?language=objc)
 pub const kAudioFormatProperty_ChannelLayoutForBitmap: AudioFormatPropertyID = 0x636d7062;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channelname?language=objc)
+/// Returns the name for a particular channel. The specifier is an
+/// AudioChannelDescription which has the mChannelLabel field set. The value
+/// is a CFStringRef. The caller is responsible for releasing the
+/// returned string.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channelname?language=objc)
 pub const kAudioFormatProperty_ChannelName: AudioFormatPropertyID = 0x636e616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channelshortname?language=objc)
+/// Returns an abbreviated name for a particular channel. The specifier is an
+/// AudioChannelDescription which has the mChannelLabel field set. The value
+/// is a CFStringRef. The caller is responsible for releasing the
+/// returned string.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_channelshortname?language=objc)
 pub const kAudioFormatProperty_ChannelShortName: AudioFormatPropertyID = 0x63736e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_tagsfornumberofchannels?language=objc)
+/// returns an array of AudioChannelLayoutTags for the number of channels specified.
+/// The specifier is a UInt32 number of channels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_tagsfornumberofchannels?language=objc)
 pub const kAudioFormatProperty_TagsForNumberOfChannels: AudioFormatPropertyID = 0x74616763;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_panningmatrix?language=objc)
+/// This call will pass in an AudioPanningInfo struct that specifies one of the
+/// kPanningMode_ constants for the panning algorithm and an AudioChannelLayout
+/// to describe the destination channel layout. As in kAudioFormatProperty_MatrixMixMap
+/// the return value is an array of Float32 values of the number of channels
+/// represented by this specified channel layout. It is presumed that the source
+/// being panned is mono (thus for a quad channel layout, 4 Float32 values are returned).
+/// The intention of this API is to provide support for panning operations that are
+/// strictly manipulating the respective volumes of the channels. Thus, more
+/// complex panners (like HRTF, distance filtering etc,) will not be represented
+/// by this API. The resultant volume scalars can then be applied to a mixer
+/// or some other processing code to adapt the individual volumes of the mixed
+/// output.
+/// The volume values will typically be presented within a 0->1 range (where 1 is unity gain)
+/// For stereo formats, vector based panning is equivalent to the equal-power pan mode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_panningmatrix?language=objc)
 pub const kAudioFormatProperty_PanningMatrix: AudioFormatPropertyID = 0x70616e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_balancefade?language=objc)
+/// get an array of coefficients for applying left/right balance and front/back fade.
+/// The specifier is an AudioBalanceFade struct.
+/// the return value is an array of Float32 values of the number of channels
+/// represented by this specified channel layout.
+/// The volume values will typically be presented within a 0->1 range (where 1 is unity gain)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_balancefade?language=objc)
 pub const kAudioFormatProperty_BalanceFade: AudioFormatPropertyID = 0x62616c66;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_id3tagsize?language=objc)
+/// Returns a UInt32 indicating the ID3 tag size.
+/// The specifier must begin with the ID3 tag header and be at least 10 bytes in length
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_id3tagsize?language=objc)
 pub const kAudioFormatProperty_ID3TagSize: AudioFormatPropertyID = 0x69643373;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_id3tagtodictionary?language=objc)
+/// Returns a CFDictionary containing key/value pairs for the frames in the ID3 tag
+/// The specifier is the entire ID3 tag
+/// Caller must call CFRelease for the returned dictionary
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_id3tagtodictionary?language=objc)
 pub const kAudioFormatProperty_ID3TagToDictionary: AudioFormatPropertyID = 0x69643364;
 
 /// Retrieve information about the given property

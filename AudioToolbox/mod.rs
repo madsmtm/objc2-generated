@@ -4510,10 +4510,24 @@ pub const kInstrumentInfoKey_LSB: &CStr = unsafe { CStr::from_bytes_with_nul_unc
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_program?language=objc)
 pub const kInstrumentInfoKey_Program: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"program\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareserviceproperty_servicerestarted?language=objc)
+/// A Float32 whose value has no meaning. Rather, this property exists so that
+/// clients can be informed when the service has been reset for some reason.
+/// When a reset happens, any state the client has with AHS, such as cached data
+/// or added listeners, must be re-established by the client.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareserviceproperty_servicerestarted?language=objc)
 #[cfg(feature = "objc2-core-audio")]
 pub const kAudioHardwareServiceProperty_ServiceRestarted: AudioObjectPropertySelector = 0x73727374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmainvolume?language=objc)
+/// A Float32 that represents the value of the volume control. The range is
+/// between 0.0 and 1.0 (inclusive). This actual volume controls this property
+/// manipulates depends on what the device provides. If the device has a true
+/// main volume control, this property directly controls that. If the device
+/// has individual channel volume controls, this property will apply to those
+/// identified by the device's preferred multi-channel layout (or preferred
+/// stereo pair if the device is stereo only). Note that this control maintains
+/// the relative balance between all the channels it affects.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmainvolume?language=objc)
 #[cfg(feature = "objc2-core-audio")]
 pub const kAudioHardwareServiceDeviceProperty_VirtualMainVolume: AudioObjectPropertySelector =
     0x766d7663;
@@ -4522,7 +4536,14 @@ pub const kAudioHardwareServiceDeviceProperty_VirtualMainVolume: AudioObjectProp
 #[deprecated]
 pub const kAudioHardwareServiceDeviceProperty_VirtualMasterVolume: AudioObjectPropertySelector =
     kAudioHardwareServiceDeviceProperty_VirtualMainVolume;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmainbalance?language=objc)
+/// A Float32 that represents the value of the stereo balance control. The range
+/// is from 0.0 (all power to the left) to 1.0 (all power to the right) with
+/// the value of 0.5 signifying that the channels have equal power. This control
+/// is only present for devices that have individual channel volume controls. It
+/// manipulates the relative balance between the volume controls on the channels
+/// identified as the device's default stereo pair.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmainbalance?language=objc)
 #[cfg(feature = "objc2-core-audio")]
 pub const kAudioHardwareServiceDeviceProperty_VirtualMainBalance: AudioObjectPropertySelector =
     0x766d6263;
@@ -6097,35 +6118,63 @@ pub unsafe fn AudioFileComponentGetGlobalInfo(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_canread?language=objc)
+/// Is file type readable? Returns a UInt32 1 or 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_canread?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_CanRead: AudioFilePropertyID = 0x636e7264;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_canwrite?language=objc)
+/// Is file type writeable? Returns a UInt32 1 or 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_canwrite?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_CanWrite: AudioFilePropertyID = 0x636e7772;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_filetypename?language=objc)
+/// Returns a CFString containing the name for the file type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_filetypename?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_FileTypeName: AudioFilePropertyID = 0x66746e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_utisfortype?language=objc)
+/// Returns a CFArray of CFStrings containing the universal type identifiers
+/// for this file type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_utisfortype?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_UTIsForType: AudioFilePropertyID = 0x66757469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_mimetypesfortype?language=objc)
+/// Returns a CFArray of CFStrings containing the MIME types
+/// for this file type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_mimetypesfortype?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_MIMETypesForType: AudioFilePropertyID = 0x666d696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_extensionsfortype?language=objc)
+/// Returns a CFArray of CFStrings containing the file extensions
+/// that are recognized for this file type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_extensionsfortype?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_ExtensionsForType: AudioFilePropertyID = 0x66657874;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_availableformatids?language=objc)
+/// Returns a array of format IDs for formats that can be read.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_availableformatids?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_AvailableFormatIDs: AudioFilePropertyID = 0x666d6964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_availablestreamdescriptionsforformat?language=objc)
+/// The specifier is the format ID for the requested format.
+/// Returns an array of AudioStreamBasicDescriptions which have all of the
+/// formats for a particular file type and format ID. The AudioStreamBasicDescriptions
+/// have the following fields filled in: mFormatID, mFormatFlags, mBitsPerChannel
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_availablestreamdescriptionsforformat?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_AvailableStreamDescriptionsForFormat: AudioFilePropertyID =
     0x73646964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_fastdispatchtable?language=objc)
+/// Deprecated. This selector is no longer called by the implementation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_fastdispatchtable?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_FastDispatchTable: AudioFilePropertyID = 0x66646674;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_hfstypecodesfortype?language=objc)
+/// Returns an array of HFSTypeCodes corresponding to this file type.
+/// The first type in the array is the preferred one for use when
+/// writing new files.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_hfstypecodesfortype?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_HFSTypeCodesForType: AudioFilePropertyID = 0x66686673;
 
@@ -6649,87 +6698,73 @@ pub type AudioFileComponentGetGlobalInfoProc = Option<
 /// The properties of a CoreAudioClock, accessible via CAClockGetProperty and
 /// CAClockSetProperty.
 ///
-///
-/// Type: CAClockTimebase. Selects the internal time reference for the clock
-/// (currently, host time, an audio device, or audio output unit).
-///
-/// Type: according to the internal timebase. If the timebase is
-/// kCAClockTimebase_AudioDevice, the value is an AudioDeviceID. For
-/// kCAClockTimebase_AudioOutputUnit, the value is an AudioUnit.
-///
-/// Type: CAClockSyncMode. Selects between internal synchronization and multiple
-/// external synchronization modes such as MIDI Time Code and MIDI beat clock.
-///
-/// Type: according to the sync mode. For kCAClockSyncMode_MIDIClockTransport or
-/// kCAClockSyncMode_MTCTransport, the value is a MIDIEndpointRef.
-///
-/// Type: CAClockSMPTEFormat. Specifies the SMPTE format (fps, drop or non-drop)
-/// expected for received SMPTE messages, and used for transmitted SMPTE
-/// messages and SMPTE time representations.
-///
-/// Type: CAClockSeconds. The SMPTE time, represented in seconds since
-/// 00:00:00:00, corresponding to a timeline position of 0 seconds.
-///
-/// Type: array of MIDIEndpointRef. When non-empty, the clock will transmit
-/// MIDI beat clock to the MIDI endpoints in this list. (As of macOS 10.6,
-/// the endpoints may be virtual sources. Previously, they had to be destinations.)
-///
-/// Type: array of MIDIEndpointRef. When non-empty, the clock will transmit
-/// MIDI Time Code to the MIDI endpoints in this list. (As of macOS 10.6,
-/// the endpoints may be virtual sources. Previously, they had to be destinations.)
-///
-/// Type: CAClockSeconds. When the sync mode is MIDI Time Code, this controls
-/// how long the reader will keep running after the last MTC message is received
-/// before stopping (default: 1 sec). Should be at least ~4 SMPTE frames in
-/// duration.
-///
-/// Type: array of CATempoMapEntry. Specifies a tempo map for the clock,
-/// defining the relationship between timeline positions in seconds and musical
-/// beats. Defaults to a constant tempo of 120 bpm.
-///
-/// Type: array of CAMeterTrackEntry. Specifies the positions of musical time
-/// signature changes in the timeline. Used only for converting between beats
-/// and CABarBeatTime's (a display representation of a beat time).
-///
-/// Type: CFStringRef. Sets a name for the clock. When a client sets the
-/// property, the clock retains a reference to the string. When a client gets
-/// the property, it receives a borrowed reference (i.e. the client must not
-/// release the string).
-///
-/// Type: UInt32. Specifies whether MIDI Song Position Pointer messages are
-/// sent to the clock's MIDI clock destinations (if any). Available starting
-/// in macOS 10.6.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockPropertyID(pub u32);
 impl CAClockPropertyID {
+    /// Type: CAClockTimebase. Selects the internal time reference for the clock
+    /// (currently, host time, an audio device, or audio output unit).
     #[doc(alias = "kCAClockProperty_InternalTimebase")]
     pub const InternalTimebase: Self = Self(0x696e7462);
+    /// Type: according to the internal timebase. If the timebase is
+    /// kCAClockTimebase_AudioDevice, the value is an AudioDeviceID. For
+    /// kCAClockTimebase_AudioOutputUnit, the value is an AudioUnit.
     #[doc(alias = "kCAClockProperty_TimebaseSource")]
     pub const TimebaseSource: Self = Self(0x69746273);
+    /// Type: CAClockSyncMode. Selects between internal synchronization and multiple
+    /// external synchronization modes such as MIDI Time Code and MIDI beat clock.
     #[doc(alias = "kCAClockProperty_SyncMode")]
     pub const SyncMode: Self = Self(0x73796e6d);
+    /// Type: according to the sync mode. For kCAClockSyncMode_MIDIClockTransport or
+    /// kCAClockSyncMode_MTCTransport, the value is a MIDIEndpointRef.
     #[doc(alias = "kCAClockProperty_SyncSource")]
     pub const SyncSource: Self = Self(0x73796e73);
+    /// Type: CAClockSMPTEFormat. Specifies the SMPTE format (fps, drop or non-drop)
+    /// expected for received SMPTE messages, and used for transmitted SMPTE
+    /// messages and SMPTE time representations.
     #[doc(alias = "kCAClockProperty_SMPTEFormat")]
     pub const SMPTEFormat: Self = Self(0x736d7066);
+    /// Type: CAClockSeconds. The SMPTE time, represented in seconds since
+    /// 00:00:00:00, corresponding to a timeline position of 0 seconds.
     #[doc(alias = "kCAClockProperty_SMPTEOffset")]
     pub const SMPTEOffset: Self = Self(0x736d706f);
+    /// Type: array of MIDIEndpointRef. When non-empty, the clock will transmit
+    /// MIDI beat clock to the MIDI endpoints in this list. (As of macOS 10.6,
+    /// the endpoints may be virtual sources. Previously, they had to be destinations.)
     #[doc(alias = "kCAClockProperty_MIDIClockDestinations")]
     pub const MIDIClockDestinations: Self = Self(0x6d626364);
+    /// Type: array of MIDIEndpointRef. When non-empty, the clock will transmit
+    /// MIDI Time Code to the MIDI endpoints in this list. (As of macOS 10.6,
+    /// the endpoints may be virtual sources. Previously, they had to be destinations.)
     #[doc(alias = "kCAClockProperty_MTCDestinations")]
     pub const MTCDestinations: Self = Self(0x6d746364);
+    /// Type: CAClockSeconds. When the sync mode is MIDI Time Code, this controls
+    /// how long the reader will keep running after the last MTC message is received
+    /// before stopping (default: 1 sec). Should be at least ~4 SMPTE frames in
+    /// duration.
     #[doc(alias = "kCAClockProperty_MTCFreewheelTime")]
     pub const MTCFreewheelTime: Self = Self(0x6d746677);
+    /// Type: array of CATempoMapEntry. Specifies a tempo map for the clock,
+    /// defining the relationship between timeline positions in seconds and musical
+    /// beats. Defaults to a constant tempo of 120 bpm.
     #[doc(alias = "kCAClockProperty_TempoMap")]
     pub const TempoMap: Self = Self(0x746d706f);
+    /// Type: array of CAMeterTrackEntry. Specifies the positions of musical time
+    /// signature changes in the timeline. Used only for converting between beats
+    /// and CABarBeatTime's (a display representation of a beat time).
     #[doc(alias = "kCAClockProperty_MeterTrack")]
     pub const MeterTrack: Self = Self(0x6d657472);
+    /// Type: CFStringRef. Sets a name for the clock. When a client sets the
+    /// property, the clock retains a reference to the string. When a client gets
+    /// the property, it receives a borrowed reference (i.e. the client must not
+    /// release the string).
     #[doc(alias = "kCAClockProperty_Name")]
     pub const Name: Self = Self(0x6e616d65);
+    /// Type: UInt32. Specifies whether MIDI Song Position Pointer messages are
+    /// sent to the clock's MIDI clock destinations (if any). Available starting
+    /// in macOS 10.6.
     #[doc(alias = "kCAClockProperty_SendMIDISPP")]
     pub const SendMIDISPP: Self = Self(0x6d737070);
 }
@@ -6746,34 +6781,30 @@ unsafe impl RefEncode for CAClockPropertyID {
 
 /// The available internal hardware time references for a clock.
 ///
-///
-/// The clock's reference time is host time (as returned
-/// by
-/// <code>
-/// mach_absolute_time()
-/// </code>
-/// or
-/// <code>
-/// HostTime()
-/// </code>
-/// ).
-///
-/// The clock's reference time is derived from an audio
-/// device.
-///
-/// The clock's reference time is derived from the audio
-/// device addressed by an output Audio Unit.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimebase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockTimebase(pub u32);
 impl CAClockTimebase {
+    /// The clock's reference time is host time (as returned
+    /// by
+    /// <code>
+    /// mach_absolute_time()
+    /// </code>
+    /// or
+    /// <code>
+    /// HostTime()
+    /// </code>
+    /// ).
     #[doc(alias = "kCAClockTimebase_HostTime")]
     pub const HostTime: Self = Self(0x686f7374);
+    /// The clock's reference time is derived from an audio
+    /// device.
     #[doc(alias = "kCAClockTimebase_AudioDevice")]
     pub const AudioDevice: Self = Self(0x61756469);
+    /// The clock's reference time is derived from the audio
+    /// device addressed by an output Audio Unit.
     #[doc(alias = "kCAClockTimebase_AudioOutputUnit")]
     pub const AudioOutputUnit: Self = Self(0x61756f75);
 }
@@ -6790,25 +6821,21 @@ unsafe impl RefEncode for CAClockTimebase {
 
 /// Specifies internal synchronization, or an external sync source type.
 ///
-///
-/// The clock is not driven by an external sync source.
-///
-/// The clock is driven by MIDI beat clock received from a CoreMIDI source
-/// endpoint.
-///
-/// The clock is driven by MIDI Time Code received from a CoreMIDI source
-/// endpoint.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksyncmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockSyncMode(pub u32);
 impl CAClockSyncMode {
+    /// The clock is not driven by an external sync source.
     #[doc(alias = "kCAClockSyncMode_Internal")]
     pub const Internal: Self = Self(0x696e7472);
+    /// The clock is driven by MIDI beat clock received from a CoreMIDI source
+    /// endpoint.
     #[doc(alias = "kCAClockSyncMode_MIDIClockTransport")]
     pub const MIDIClockTransport: Self = Self(0x6d636c6b);
+    /// The clock is driven by MIDI Time Code received from a CoreMIDI source
+    /// endpoint.
     #[doc(alias = "kCAClockSyncMode_MTCTransport")]
     pub const MTCTransport: Self = Self(0x6d6d7463);
 }
@@ -6839,40 +6866,32 @@ pub type CAClockSMPTEFormat = SMPTETimeType;
 /// The messages sent to a CAClockListenerProc to notify the client of
 /// changes to the clock's state.
 ///
-///
-/// A new start time was set or received from an external sync source.
-///
-/// The clock's time has started moving.
-///
-/// The clock's time has stopped moving.
-///
-/// The client has called CAClockArm().
-///
-/// The client has called CAClockDisarm().
-///
-/// A clock property has been changed.
-///
-/// The clock is receiving SMPTE (MTC) messages in a SMPTE format that does not
-/// match the clock's SMPTE format.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockMessage(pub u32);
 impl CAClockMessage {
+    /// A new start time was set or received from an external sync source.
     #[doc(alias = "kCAClockMessage_StartTimeSet")]
     pub const StartTimeSet: Self = Self(0x7374696d);
+    /// The clock's time has started moving.
     #[doc(alias = "kCAClockMessage_Started")]
     pub const Started: Self = Self(0x73747274);
+    /// The clock's time has stopped moving.
     #[doc(alias = "kCAClockMessage_Stopped")]
     pub const Stopped: Self = Self(0x73746f70);
+    /// The client has called CAClockArm().
     #[doc(alias = "kCAClockMessage_Armed")]
     pub const Armed: Self = Self(0x61726d64);
+    /// The client has called CAClockDisarm().
     #[doc(alias = "kCAClockMessage_Disarmed")]
     pub const Disarmed: Self = Self(0x6461726d);
+    /// A clock property has been changed.
     #[doc(alias = "kCAClockMessage_PropertyChanged")]
     pub const PropertyChanged: Self = Self(0x70636867);
+    /// The clock is receiving SMPTE (MTC) messages in a SMPTE format that does not
+    /// match the clock's SMPTE format.
     #[doc(alias = "kCAClockMessage_WrongSMPTEFormat")]
     pub const WrongSMPTEFormat: Self = Self(0x3f736d70);
 }
@@ -6889,43 +6908,36 @@ unsafe impl RefEncode for CAClockMessage {
 
 /// The various units in which a clock can represent and report time.
 ///
-///
-/// Absolute host time, as returned by
-/// <code>
-/// mach_absolute_time()
-/// </code>
-/// .
-///
-/// Absolute audio samples, as a Float64. Available when the internal timebase
-/// is an audio device (or audio output unit). The units are in arbitrary sample
-/// numbers, corresponding to the audio device's current time, and at the
-/// device's current sample rate.
-///
-/// Musical beats, as a Float64. This is a position on the clock's timeline.
-///
-/// Seconds, as a Float64. This is a position on the clock's timeline.
-///
-/// Seconds, as a Float64. This is the same as kCAClockTimeFormat_Seconds,
-/// except that the clock's SMPTE offset has been applied.
-///
-/// SMPTETime structure.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockTimeFormat(pub u32);
 impl CAClockTimeFormat {
+    /// Absolute host time, as returned by
+    /// <code>
+    /// mach_absolute_time()
+    /// </code>
+    /// .
     #[doc(alias = "kCAClockTimeFormat_HostTime")]
     pub const HostTime: Self = Self(0x686f7374);
+    /// Absolute audio samples, as a Float64. Available when the internal timebase
+    /// is an audio device (or audio output unit). The units are in arbitrary sample
+    /// numbers, corresponding to the audio device's current time, and at the
+    /// device's current sample rate.
     #[doc(alias = "kCAClockTimeFormat_Samples")]
     pub const Samples: Self = Self(0x73616d70);
+    /// Musical beats, as a Float64. This is a position on the clock's timeline.
     #[doc(alias = "kCAClockTimeFormat_Beats")]
     pub const Beats: Self = Self(0x62656174);
+    /// Seconds, as a Float64. This is a position on the clock's timeline.
     #[doc(alias = "kCAClockTimeFormat_Seconds")]
     pub const Seconds: Self = Self(0x73656373);
+    /// Seconds, as a Float64. This is the same as kCAClockTimeFormat_Seconds,
+    /// except that the clock's SMPTE offset has been applied.
     #[doc(alias = "kCAClockTimeFormat_SMPTESeconds")]
     pub const SMPTESeconds: Self = Self(0x736d7073);
+    /// SMPTETime structure.
     #[doc(alias = "kCAClockTimeFormat_SMPTETime")]
     pub const SMPTETime: Self = Self(0x736d7074);
     #[doc(alias = "kCAClockTimeFormat_AbsoluteSeconds")]

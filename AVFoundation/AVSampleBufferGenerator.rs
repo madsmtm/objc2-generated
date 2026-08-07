@@ -122,23 +122,19 @@ impl AVSampleBufferGenerator {
 
 /// Indicates the direction in which the samples should be generated for the AVSampleBufferRequest.
 ///
-///
-/// Indicates only one sample will be loaded at [AVSampleBufferRequest startCursor], and the [AVSampleBufferRequest limitCursor], [AVSampleBufferRequest preferredMinSampleCount], and [AVSampleBufferRequest maxSampleCount] will be ignored.
-///
-/// Indicates zero or more following samples may be loaded from [AVSampleBufferRequest startCursor], subject to [AVSampleBufferRequest limitCursor], [AVSampleBufferRequest preferredMinSampleCount], and [AVSampleBufferRequest maxSampleCount]
-///
-/// Indicates zero or more preceeding samples may be loaded from [AVSampleBufferRequest startCursor], subject to [AVSampleBufferRequest limitCursor], [AVSampleBufferRequest preferredMinSampleCount], and [AVSampleBufferRequest maxSampleCount]
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequestdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSampleBufferRequestDirection(pub NSInteger);
 impl AVSampleBufferRequestDirection {
+    /// Indicates zero or more following samples may be loaded from [AVSampleBufferRequest startCursor], subject to [AVSampleBufferRequest limitCursor], [AVSampleBufferRequest preferredMinSampleCount], and [AVSampleBufferRequest maxSampleCount]
     #[doc(alias = "AVSampleBufferRequestDirectionForward")]
     pub const Forward: Self = Self(1);
+    /// Indicates only one sample will be loaded at [AVSampleBufferRequest startCursor], and the [AVSampleBufferRequest limitCursor], [AVSampleBufferRequest preferredMinSampleCount], and [AVSampleBufferRequest maxSampleCount] will be ignored.
     #[doc(alias = "AVSampleBufferRequestDirectionNone")]
     pub const None: Self = Self(0);
+    /// Indicates zero or more preceeding samples may be loaded from [AVSampleBufferRequest startCursor], subject to [AVSampleBufferRequest limitCursor], [AVSampleBufferRequest preferredMinSampleCount], and [AVSampleBufferRequest maxSampleCount]
     #[doc(alias = "AVSampleBufferRequestDirectionReverse")]
     pub const Reverse: Self = Self(-1);
 }
@@ -153,23 +149,19 @@ unsafe impl RefEncode for AVSampleBufferRequestDirection {
 
 /// Defines the allowed values for AVSampleBufferRequest's mode property.
 ///
-///
-/// Sample data for requests with AVSampleBufferRequestModeImmediate will be loaded as soon as possible. The current time represented by AVSampleBufferGenerator's timebase has no influence on these requests.
-///
-/// AVSampleBufferRequestModeScheduled indicates that a request is needed by the time AVSampleBufferGenerator's timebase reaches the CMSampleBuffer's presentationTime or, if specificed, AVSampleBufferRequest's overrideTime. The AVSampleBufferGenerator will attempt to deliver sample data with sufficient leeway for downstream processing. It will also attempt to hold off on loading data until the CMSampleBuffer is needed. If AVSampleBufferGenerator's timebase has a rate of zero, this mode behaves like AVSampleBufferRequestModeImmediate.
-///
-/// The AVSampleBufferGenerator will attempt to read data for opportunistic requests as soon as possible. However, in situations with multiple competing requests, the AVSampleBufferGenerator may defer an opportunistic request in favor of another immediate request or a scheduled requests with a presentation time close to the timebase time. Because a request with AVSampleBufferRequestModeOpportunistic may be postponed indefinitely, this mode should not be used for time-sensitive processing.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequestmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSampleBufferRequestMode(pub NSInteger);
 impl AVSampleBufferRequestMode {
+    /// Sample data for requests with AVSampleBufferRequestModeImmediate will be loaded as soon as possible. The current time represented by AVSampleBufferGenerator's timebase has no influence on these requests.
     #[doc(alias = "AVSampleBufferRequestModeImmediate")]
     pub const Immediate: Self = Self(0);
+    /// AVSampleBufferRequestModeScheduled indicates that a request is needed by the time AVSampleBufferGenerator's timebase reaches the CMSampleBuffer's presentationTime or, if specificed, AVSampleBufferRequest's overrideTime. The AVSampleBufferGenerator will attempt to deliver sample data with sufficient leeway for downstream processing. It will also attempt to hold off on loading data until the CMSampleBuffer is needed. If AVSampleBufferGenerator's timebase has a rate of zero, this mode behaves like AVSampleBufferRequestModeImmediate.
     #[doc(alias = "AVSampleBufferRequestModeScheduled")]
     pub const Scheduled: Self = Self(1);
+    /// The AVSampleBufferGenerator will attempt to read data for opportunistic requests as soon as possible. However, in situations with multiple competing requests, the AVSampleBufferGenerator may defer an opportunistic request in favor of another immediate request or a scheduled requests with a presentation time close to the timebase time. Because a request with AVSampleBufferRequestModeOpportunistic may be postponed indefinitely, this mode should not be used for time-sensitive processing.
     #[doc(alias = "AVSampleBufferRequestModeOpportunistic")]
     pub const Opportunistic: Self = Self(2);
 }

@@ -36,11 +36,6 @@ cf_objc2_type!(
 /// Used with the SCPreferencesCallBack callback
 /// to describe the type of notification.
 ///
-/// preferences have been saved.
-///
-/// request has been made to apply the currently saved
-/// preferences to the active system configuration.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesnotification?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -48,8 +43,13 @@ cf_objc2_type!(
 pub struct SCPreferencesNotification(pub u32);
 bitflags::bitflags! {
     impl SCPreferencesNotification: u32 {
+/// Indicates when new
+/// preferences have been saved.
         #[doc(alias = "kSCPreferencesNotificationCommit")]
         const Commit = 1<<0;
+/// Key Indicates when a
+/// request has been made to apply the currently saved
+/// preferences to the active system configuration.
         #[doc(alias = "kSCPreferencesNotificationApply")]
         const Apply = 1<<1;
         const _ = !0;

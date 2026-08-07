@@ -6,13 +6,21 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributenone?language=objc)
+/// Specifies that a property has no special attributes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributenone?language=objc)
 pub const kJSPropertyAttributeNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributereadonly?language=objc)
+/// Specifies that a property is read-only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributereadonly?language=objc)
 pub const kJSPropertyAttributeReadOnly: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributedontenum?language=objc)
+/// Specifies that a property should not be enumerated by JSPropertyEnumerators and JavaScript for...in loops.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributedontenum?language=objc)
 pub const kJSPropertyAttributeDontEnum: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributedontdelete?language=objc)
+/// Specifies that the delete operation should fail on a property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributedontdelete?language=objc)
 pub const kJSPropertyAttributeDontDelete: c_uint = 1 << 3;
 
 /// A set of JSPropertyAttributes. Combine multiple attributes by logically ORing them together.
@@ -20,9 +28,13 @@ pub const kJSPropertyAttributeDontDelete: c_uint = 1 << 3;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertyattributes?language=objc)
 pub type JSPropertyAttributes = c_uint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjsclassattributenone?language=objc)
+/// Specifies that a class has no special attributes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjsclassattributenone?language=objc)
 pub const kJSClassAttributeNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjsclassattributenoautomaticprototype?language=objc)
+/// Specifies that a class should not automatically generate a shared prototype for its instance objects. Use kJSClassAttributeNoAutomaticPrototype in combination with JSObjectSetPrototype to manage prototypes manually.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjsclassattributenoautomaticprototype?language=objc)
 pub const kJSClassAttributeNoAutomaticPrototype: c_uint = 1 << 1;
 
 /// A set of JSClassAttributes. Combine multiple attributes by logically ORing them together.

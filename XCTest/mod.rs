@@ -48,8 +48,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTestErrorCode(pub NSInteger);
 impl XCTestErrorCode {
+    /// Indicates that a call to -waitForExpectationsWithTimeout:handler: timed out.
     #[doc(alias = "XCTestErrorCodeTimeoutWhileWaiting")]
     pub const TimeoutWhileWaiting: Self = Self(0);
+    /// Indicates that a failure assertion was raised while waiting in -waitForExpectationsWithTimeout:handler:.
     #[doc(alias = "XCTestErrorCodeFailureWhileWaiting")]
     pub const FailureWhileWaiting: Self = Self(1);
 }
