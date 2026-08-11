@@ -698,6 +698,11 @@ impl UIWritingToolsCoordinator {
         /// the user interacts with an issue, call this to bring up the relevant UI.
         ///
         /// Pass in context and range to identify the issue the user selected.
+        /// The context must match one of the contexts returned from
+        /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:requestsContextsFor:completion:)``
+        /// and the range must match the range in the context of one
+        /// of the grammar details returned for that context from
+        /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:requestsGrammarResultsFor:completion:)``
         /// Returns NO if the UI cannot be brought up.
         #[unsafe(method(showGrammarPresentationForRange:inContext:))]
         #[unsafe(method_family = none)]

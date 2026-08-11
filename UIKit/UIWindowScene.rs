@@ -144,6 +144,8 @@ impl UIWindowScene {
             sel: Sel,
         ) -> Option<Retained<CADisplayLink>>;
 
+        /// Indicates whether the window scene is full screen or windowed
+        /// - Note: Only supported on Mac Catalyst
         #[unsafe(method(isFullScreen))]
         #[unsafe(method_family = none)]
         pub fn isFullScreen(&self) -> bool;

@@ -11,6 +11,7 @@ extern_class!(
     #[unsafe(super(INNoteContent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INNoteContent")]
+    #[deprecated = "INTextNoteContent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INTextNoteContent;
 );
 
@@ -42,10 +43,12 @@ extern_conformance!(
 #[cfg(feature = "INNoteContent")]
 impl INTextNoteContent {
     extern_methods!(
+        #[deprecated = "INTextNoteContent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithText:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithText(this: Allocated<Self>, text: &NSString) -> Retained<Self>;
 
+        #[deprecated = "INTextNoteContent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;

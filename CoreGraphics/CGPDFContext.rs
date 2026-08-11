@@ -417,6 +417,8 @@ impl CGPDFTagType {
     pub const Form: Self = Self(702);
     #[doc(alias = "CGPDFTagTypeObject")]
     pub const Object: Self = Self(800);
+    #[doc(alias = "CGPDFTagTypeArtifact")]
+    pub const Artifact: Self = Self(900);
 }
 
 #[cfg(feature = "objc2")]
@@ -493,4 +495,82 @@ pub fn CGPDFContextEndTag(context: &CGContext) {
         fn CGPDFContextEndTag(context: &CGContext);
     }
     unsafe { CGPDFContextEndTag(context) }
+}
+
+#[cfg(feature = "CGContext")]
+#[inline]
+pub fn CGPDFContextBeginMarkedContentSequence(
+    context: &CGContext,
+    tag_type: CGPDFTagType,
+) -> Option<CFRetained<CGPDFMarkedContentItem>> {
+    extern "C-unwind" {
+        fn CGPDFContextBeginMarkedContentSequence(
+            context: &CGContext,
+            tag_type: CGPDFTagType,
+        ) -> Option<NonNull<CGPDFMarkedContentItem>>;
+    }
+    let ret = unsafe { CGPDFContextBeginMarkedContentSequence(context, tag_type) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CGContext")]
+#[inline]
+pub fn CGPDFContextBeginNonStructuralMarkedContentSequence(
+    context: &CGContext,
+    tag_type: CGPDFTagType,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextBeginNonStructuralMarkedContentSequence(
+            context: &CGContext,
+            tag_type: CGPDFTagType,
+        );
+    }
+    unsafe { CGPDFContextBeginNonStructuralMarkedContentSequence(context, tag_type) }
+}
+
+#[cfg(feature = "CGContext")]
+#[inline]
+pub fn CGPDFContextEndMarkedContentSequence(context: &CGContext) {
+    extern "C-unwind" {
+        fn CGPDFContextEndMarkedContentSequence(context: &CGContext);
+    }
+    unsafe { CGPDFContextEndMarkedContentSequence(context) }
+}
+
+#[cfg(feature = "CGContext")]
+#[inline]
+pub fn CGPDFContextBeginObjectReference(
+    context: &CGContext,
+) -> Option<CFRetained<CGPDFMarkedContentItem>> {
+    extern "C-unwind" {
+        fn CGPDFContextBeginObjectReference(
+            context: &CGContext,
+        ) -> Option<NonNull<CGPDFMarkedContentItem>>;
+    }
+    let ret = unsafe { CGPDFContextBeginObjectReference(context) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "CGContext")]
+#[inline]
+pub fn CGPDFContextEndObjectReference(context: &CGContext) {
+    extern "C-unwind" {
+        fn CGPDFContextEndObjectReference(context: &CGContext);
+    }
+    unsafe { CGPDFContextEndObjectReference(context) }
+}
+
+#[cfg(feature = "CGContext")]
+#[inline]
+pub fn CGPDFContextAddStructureTreeRootChild(
+    context: &CGContext,
+    structure_element: &CGPDFStructureElement,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CGPDFContextAddStructureTreeRootChild(
+            context: &CGContext,
+            structure_element: &CGPDFStructureElement,
+        ) -> OSStatus;
+    }
+    unsafe { CGPDFContextAddStructureTreeRootChild(context, structure_element) }
 }

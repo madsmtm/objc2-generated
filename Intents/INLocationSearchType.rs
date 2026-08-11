@@ -6,13 +6,16 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlocationsearchtype?language=objc)
 // NS_ENUM
+#[deprecated = "INLocationSearchType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INLocationSearchType(pub NSInteger);
 impl INLocationSearchType {
     #[doc(alias = "INLocationSearchTypeUnknown")]
+    #[deprecated = "INLocationSearchType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "INLocationSearchTypeByLocationTrigger")]
+    #[deprecated = "INLocationSearchType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const ByLocationTrigger: Self = Self(1);
 }
 

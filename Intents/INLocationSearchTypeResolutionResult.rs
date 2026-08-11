@@ -10,6 +10,7 @@ extern_class!(
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]
+    #[deprecated = "INLocationSearchTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INLocationSearchTypeResolutionResult;
 );
 
@@ -22,6 +23,7 @@ extern_conformance!(
 impl INLocationSearchTypeResolutionResult {
     extern_methods!(
         #[cfg(feature = "INLocationSearchType")]
+        #[deprecated = "INLocationSearchTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedLocationSearchType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedLocationSearchType(
@@ -29,6 +31,7 @@ impl INLocationSearchTypeResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INLocationSearchType")]
+        #[deprecated = "INLocationSearchTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithLocationSearchTypeToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithLocationSearchTypeToConfirm(

@@ -1583,6 +1583,8 @@ pub use self::__CGImageSource::kCGImageSourceDecodeToSDR;
 #[cfg(feature = "CGImageSource")]
 pub use self::__CGImageSource::kCGImageSourceGenerateImageSpecificLumaScaling;
 #[cfg(feature = "CGImageSource")]
+pub use self::__CGImageSource::kCGImageSourcePrioritizeQuality;
+#[cfg(feature = "CGImageSource")]
 pub use self::__CGImageSource::kCGImageSourceShouldAllowFloat;
 #[cfg(feature = "CGImageSource")]
 pub use self::__CGImageSource::kCGImageSourceShouldCache;

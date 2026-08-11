@@ -12,6 +12,7 @@ extern_class!(
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
+    #[deprecated = "INSetTaskAttributeIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INSetTaskAttributeIntent;
 );
 
@@ -64,6 +65,7 @@ impl INSetTaskAttributeIntent {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INSetTaskAttributeIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(targetTask))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetTask(&self) -> Option<Retained<INTask>>;
@@ -74,6 +76,7 @@ impl INSetTaskAttributeIntent {
         pub unsafe fn taskTitle(&self) -> Option<Retained<INSpeakableString>>;
 
         #[cfg(feature = "INTaskStatus")]
+        #[deprecated = "INSetTaskAttributeIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> INTaskStatus;
@@ -84,11 +87,13 @@ impl INSetTaskAttributeIntent {
         pub unsafe fn priority(&self) -> INTaskPriority;
 
         #[cfg(feature = "INSpatialEventTrigger")]
+        #[deprecated = "INSetTaskAttributeIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(spatialEventTrigger))]
         #[unsafe(method_family = none)]
         pub unsafe fn spatialEventTrigger(&self) -> Option<Retained<INSpatialEventTrigger>>;
 
         #[cfg(feature = "INTemporalEventTrigger")]
+        #[deprecated = "INSetTaskAttributeIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(temporalEventTrigger))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporalEventTrigger(&self) -> Option<Retained<INTemporalEventTrigger>>;
@@ -115,6 +120,7 @@ extern_protocol!(
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintenthandling?language=objc)
+    #[deprecated = "INSetTaskAttributeIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub unsafe trait INSetTaskAttributeIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",
@@ -133,6 +139,7 @@ extern_protocol!(
         ///
         ///
         /// See: INSetTaskAttributeIntentResponse
+        #[deprecated = "INSetTaskAttributeIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(handleSetTaskAttribute:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSetTaskAttribute_completion(
@@ -161,6 +168,7 @@ extern_protocol!(
         ///
         ///
         /// See: INSetTaskAttributeIntentResponse
+        #[deprecated = "INSetTaskAttributeIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(confirmSetTaskAttribute:completion:))]
         #[unsafe(method_family = none)]
@@ -190,6 +198,7 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        #[deprecated = "INSetTaskAttributeIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveTargetTaskForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -223,6 +232,7 @@ extern_protocol!(
             feature = "INTaskStatusResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSetTaskAttributeIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveStatusForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -256,6 +266,7 @@ extern_protocol!(
             feature = "INSpatialEventTriggerResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSetTaskAttributeIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveSpatialEventTriggerForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -274,7 +285,7 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
-        #[deprecated = "resolveTemporalEventTriggerForSetTaskAttribute:withCompletion: is deprecated. Use resolveTemporalEventTriggerForSetTaskAttribute:completion: instead"]
+        #[deprecated = "INSetTaskAttributeIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForSetTaskAttribute:withCompletion:))]
         #[unsafe(method_family = none)]

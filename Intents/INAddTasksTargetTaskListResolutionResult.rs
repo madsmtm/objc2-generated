@@ -8,11 +8,13 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtaskstargettasklistconfirmationreason?language=objc)
 // NS_ENUM
+#[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INAddTasksTargetTaskListConfirmationReason(pub NSInteger);
 impl INAddTasksTargetTaskListConfirmationReason {
     #[doc(alias = "INAddTasksTargetTaskListConfirmationReasonListShouldBeCreated")]
+    #[deprecated]
     pub const ListShouldBeCreated: Self = Self(1);
 }
 
@@ -32,6 +34,7 @@ extern_class!(
         feature = "INIntentResolutionResult",
         feature = "INTaskListResolutionResult"
     ))]
+    #[deprecated]
     pub struct INAddTasksTargetTaskListResolutionResult;
 );
 
@@ -50,6 +53,7 @@ extern_conformance!(
 impl INAddTasksTargetTaskListResolutionResult {
     extern_methods!(
         #[cfg(feature = "INTaskList")]
+        #[deprecated]
         #[unsafe(method(confirmationRequiredWithTaskListToConfirm:forReason:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithTaskListToConfirm_forReason(
@@ -57,6 +61,7 @@ impl INAddTasksTargetTaskListResolutionResult {
             reason: INAddTasksTargetTaskListConfirmationReason,
         ) -> Retained<Self>;
 
+        #[deprecated]
         #[unsafe(method(initWithTaskListResolutionResult:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTaskListResolutionResult(
@@ -74,6 +79,7 @@ impl INAddTasksTargetTaskListResolutionResult {
 impl INAddTasksTargetTaskListResolutionResult {
     extern_methods!(
         #[cfg(feature = "INTaskList")]
+        #[deprecated = "INTaskListResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedTaskList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedTaskList(
@@ -81,6 +87,7 @@ impl INAddTasksTargetTaskListResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTaskList")]
+        #[deprecated = "INTaskListResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(disambiguationWithTaskListsToDisambiguate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disambiguationWithTaskListsToDisambiguate(
@@ -88,6 +95,7 @@ impl INAddTasksTargetTaskListResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTaskList")]
+        #[deprecated = "INTaskListResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithTaskListToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithTaskListToConfirm(

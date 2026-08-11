@@ -80,11 +80,13 @@ impl INDeleteTasksTaskResolutionResult {
 impl INDeleteTasksTaskResolutionResult {
     extern_methods!(
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedTask(resolved_task: &INTask) -> Retained<Self>;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(disambiguationWithTasksToDisambiguate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disambiguationWithTasksToDisambiguate(
@@ -92,6 +94,7 @@ impl INDeleteTasksTaskResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithTaskToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithTaskToConfirm(

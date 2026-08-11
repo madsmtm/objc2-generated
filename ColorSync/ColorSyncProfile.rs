@@ -20,7 +20,9 @@ pub const COLORSYNC_PROFILE_INSTALL_ENTITLEMENT: &CStr = unsafe {
 };
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_md5_length?language=objc)
 pub const COLORSYNC_MD5_LENGTH: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofile?language=objc)
+/// A reference to an immutable International Color Consortium (ICC) color profile.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofile?language=objc)
 #[doc(alias = "ColorSyncProfileRef")]
 #[repr(C)]
 pub struct ColorSyncProfile {
@@ -36,7 +38,9 @@ cf_objc2_type!(
     unsafe impl RefEncode<"ColorSyncProfile"> for ColorSyncProfile {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmutableprofile?language=objc)
+/// A reference to a mutable ICC color profile.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmutableprofile?language=objc)
 #[doc(alias = "ColorSyncMutableProfileRef")]
 #[repr(C)]
 pub struct ColorSyncMutableProfile {
@@ -53,331 +57,468 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericgrayprofile?language=objc)
+    /// The generic gray color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericgrayprofile?language=objc)
     pub static kColorSyncGenericGrayProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericgraygamma22profile?language=objc)
+    /// The generic gray color profile with a gamma of 2.2.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericgraygamma22profile?language=objc)
     pub static kColorSyncGenericGrayGamma22Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericrgbprofile?language=objc)
+    /// The generic RGB color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericrgbprofile?language=objc)
     pub static kColorSyncGenericRGBProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericcmykprofile?language=objc)
+    /// The generic CMYK color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericcmykprofile?language=objc)
     pub static kColorSyncGenericCMYKProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdisplayp3profile?language=objc)
+    /// The Display P3 color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdisplayp3profile?language=objc)
     pub static kColorSyncDisplayP3Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsrgbprofile?language=objc)
+    /// The sRGB color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsrgbprofile?language=objc)
     pub static kColorSyncSRGBProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncadobergb1998profile?language=objc)
+    /// The Adobe RGB (1998) color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncadobergb1998profile?language=objc)
     pub static kColorSyncAdobeRGB1998Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericlabprofile?language=objc)
+    /// The generic CIELAB color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericlabprofile?language=objc)
     pub static kColorSyncGenericLabProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericxyzprofile?language=objc)
+    /// The generic CIEXYZ color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericxyzprofile?language=objc)
     pub static kColorSyncGenericXYZProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncacescglinearprofile?language=objc)
+    /// The ACEScg linear color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncacescglinearprofile?language=objc)
     pub static kColorSyncACESCGLinearProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdcip3profile?language=objc)
+    /// The DCI-P3 color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdcip3profile?language=objc)
     pub static kColorSyncDCIP3Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncitur709profile?language=objc)
+    /// The ITU-R BT.709 color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncitur709profile?language=objc)
     pub static kColorSyncITUR709Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncitur2020profile?language=objc)
+    /// The ITU-R BT.2020 color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncitur2020profile?language=objc)
     pub static kColorSyncITUR2020Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrommrgbprofile?language=objc)
+    /// The ROMM RGB (ProPhoto RGB) color profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrommrgbprofile?language=objc)
     pub static kColorSyncROMMRGBProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncwebsafecolorsprofile?language=objc)
+    /// The web-safe colors profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncwebsafecolorsprofile?language=objc)
     pub static kColorSyncWebSafeColorsProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileheader?language=objc)
+    /// A key for the profile's header data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileheader?language=objc)
     pub static kColorSyncProfileHeader: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileclass?language=objc)
+    /// A key for the profile's class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileclass?language=objc)
     pub static kColorSyncProfileClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecolorspace?language=objc)
+    /// A key for the profile's color space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecolorspace?language=objc)
     pub static kColorSyncProfileColorSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilepcs?language=objc)
+    /// A key for the profile's connection space (PCS).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilepcs?language=objc)
     pub static kColorSyncProfilePCS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileurl?language=objc)
+    /// A key for the profile's URL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileurl?language=objc)
     pub static kColorSyncProfileURL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofiledescription?language=objc)
+    /// A key for the profile's localized description.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofiledescription?language=objc)
     pub static kColorSyncProfileDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilemd5digest?language=objc)
+    /// A key for the profile's MD5 digest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilemd5digest?language=objc)
     pub static kColorSyncProfileMD5Digest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileisvalid?language=objc)
+    /// A key indicating whether the profile is valid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileisvalid?language=objc)
     pub static kColorSyncProfileIsValid: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigatob0tag?language=objc)
+    /// The signature of the device-to-PCS transform tag for the perceptual rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigatob0tag?language=objc)
     pub static kColorSyncSigAToB0Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigatob1tag?language=objc)
+    /// The signature of the device-to-PCS transform tag for the media-relative colorimetric rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigatob1tag?language=objc)
     pub static kColorSyncSigAToB1Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigatob2tag?language=objc)
+    /// The signature of the device-to-PCS transform tag for the saturation rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigatob2tag?language=objc)
     pub static kColorSyncSigAToB2Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbtoa0tag?language=objc)
+    /// The signature of the PCS-to-device transform tag for the perceptual rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbtoa0tag?language=objc)
     pub static kColorSyncSigBToA0Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbtoa1tag?language=objc)
+    /// The signature of the PCS-to-device transform tag for the media-relative colorimetric rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbtoa1tag?language=objc)
     pub static kColorSyncSigBToA1Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbtoa2tag?language=objc)
+    /// The signature of the PCS-to-device transform tag for the saturation rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbtoa2tag?language=objc)
     pub static kColorSyncSigBToA2Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigcmykdata?language=objc)
+    /// The signature identifying the CMYK data color space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigcmykdata?language=objc)
     pub static kColorSyncSigCmykData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggraydata?language=objc)
+    /// The signature identifying the grayscale data color space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggraydata?language=objc)
     pub static kColorSyncSigGrayData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiglabdata?language=objc)
+    /// The signature identifying the CIELAB data color space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiglabdata?language=objc)
     pub static kColorSyncSigLabData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigrgbdata?language=objc)
+    /// The signature identifying the RGB data color space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigrgbdata?language=objc)
     pub static kColorSyncSigRgbData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigxyzdata?language=objc)
+    /// The signature identifying the CIEXYZ data color space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigxyzdata?language=objc)
     pub static kColorSyncSigXYZData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigabstractclass?language=objc)
+    /// The signature identifying an abstract profile class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigabstractclass?language=objc)
     pub static kColorSyncSigAbstractClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbluetrctag?language=objc)
+    /// The signature of the blue channel's tone reproduction curve (TRC) tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbluetrctag?language=objc)
     pub static kColorSyncSigBlueTRCTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbluecoloranttag?language=objc)
+    /// The signature of the blue colorant tag, giving the blue channel's PCSXYZ values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbluecoloranttag?language=objc)
     pub static kColorSyncSigBlueColorantTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigmediablackpointtag?language=objc)
+    /// The signature of the media black point tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigmediablackpointtag?language=objc)
     pub static kColorSyncSigMediaBlackPointTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigcopyrighttag?language=objc)
+    /// The signature of the profile copyright tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigcopyrighttag?language=objc)
     pub static kColorSyncSigCopyrightTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigprofiledescriptiontag?language=objc)
+    /// The signature of the profile description tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigprofiledescriptiontag?language=objc)
     pub static kColorSyncSigProfileDescriptionTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigdevicemodeldesctag?language=objc)
+    /// The signature of the device model description tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigdevicemodeldesctag?language=objc)
     pub static kColorSyncSigDeviceModelDescTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigdevicemfgdesctag?language=objc)
+    /// The signature of the device manufacturer description tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigdevicemfgdesctag?language=objc)
     pub static kColorSyncSigDeviceMfgDescTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggreentrctag?language=objc)
+    /// The signature of the green channel's tone reproduction curve (TRC) tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggreentrctag?language=objc)
     pub static kColorSyncSigGreenTRCTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggreencoloranttag?language=objc)
+    /// The signature of the green colorant tag, giving the green channel's PCSXYZ values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggreencoloranttag?language=objc)
     pub static kColorSyncSigGreenColorantTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggamuttag?language=objc)
+    /// The signature of the gamut tag, marking which PCS colors fall outside the device gamut.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggamuttag?language=objc)
     pub static kColorSyncSigGamutTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggraytrctag?language=objc)
+    /// The signature of the grayscale tone reproduction curve (TRC) tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggraytrctag?language=objc)
     pub static kColorSyncSigGrayTRCTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiglinkclass?language=objc)
+    /// The signature identifying a device-link profile class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiglinkclass?language=objc)
     pub static kColorSyncSigLinkClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigdisplayclass?language=objc)
+    /// The signature identifying a display device profile class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigdisplayclass?language=objc)
     pub static kColorSyncSigDisplayClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsignamedcolor2tag?language=objc)
+    /// The signature of the named color (version 2) tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsignamedcolor2tag?language=objc)
     pub static kColorSyncSigNamedColor2Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsignamedcolorclass?language=objc)
+    /// The signature identifying a named color profile class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsignamedcolorclass?language=objc)
     pub static kColorSyncSigNamedColorClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigpreview0tag?language=objc)
+    /// The signature of the preview tag for the perceptual rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigpreview0tag?language=objc)
     pub static kColorSyncSigPreview0Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigpreview1tag?language=objc)
+    /// The signature of the preview tag for the media-relative colorimetric rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigpreview1tag?language=objc)
     pub static kColorSyncSigPreview1Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigpreview2tag?language=objc)
+    /// The signature of the preview tag for the saturation rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigpreview2tag?language=objc)
     pub static kColorSyncSigPreview2Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigoutputclass?language=objc)
+    /// The signature identifying an output (printer) device profile class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigoutputclass?language=objc)
     pub static kColorSyncSigOutputClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigprofilesequencedesctag?language=objc)
+    /// The signature of the profile sequence description tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigprofilesequencedesctag?language=objc)
     pub static kColorSyncSigProfileSequenceDescTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigredtrctag?language=objc)
+    /// The signature of the red channel's tone reproduction curve (TRC) tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigredtrctag?language=objc)
     pub static kColorSyncSigRedTRCTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigredcoloranttag?language=objc)
+    /// The signature of the red colorant tag, giving the red channel's PCSXYZ values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigredcoloranttag?language=objc)
     pub static kColorSyncSigRedColorantTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiginputclass?language=objc)
+    /// The signature identifying an input (scanner or camera) device profile class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiginputclass?language=objc)
     pub static kColorSyncSigInputClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigcolorspaceclass?language=objc)
+    /// The signature identifying a color-space conversion profile class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigcolorspaceclass?language=objc)
     pub static kColorSyncSigColorSpaceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigtechnologytag?language=objc)
+    /// The signature of the technology tag, identifying the device technology.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigtechnologytag?language=objc)
     pub static kColorSyncSigTechnologyTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigviewingconditionstag?language=objc)
+    /// The signature of the viewing conditions tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigviewingconditionstag?language=objc)
     pub static kColorSyncSigViewingConditionsTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigviewingconddesctag?language=objc)
+    /// The signature of the viewing conditions description tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigviewingconddesctag?language=objc)
     pub static kColorSyncSigViewingCondDescTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigmediawhitepointtag?language=objc)
+    /// The signature of the media white point tag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigmediawhitepointtag?language=objc)
     pub static kColorSyncSigMediaWhitePointTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecomputerdomain?language=objc)
+    /// The profile domain for profiles shared by all users of the computer.
+    ///
+    /// On macOS, these profiles are in the `/Library/ColorSync/Profiles` folder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecomputerdomain?language=objc)
     pub static kColorSyncProfileComputerDomain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileuserdomain?language=objc)
+    /// The profile domain for the current user's profiles.
+    ///
+    /// On macOS, these profiles are in the `~/Library/ColorSync/Profiles` folder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileuserdomain?language=objc)
     pub static kColorSyncProfileUserDomain: &'static CFString;
 }
 
 unsafe impl ConcreteType for ColorSyncProfile {
+    /// Returns the unique identifier for the ColorSync profile opaque type.
+    ///
+    /// - Returns: The `CFTypeID` for `ColorSyncProfile` objects.
     #[doc(alias = "ColorSyncProfileGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -389,6 +530,12 @@ unsafe impl ConcreteType for ColorSyncProfile {
 }
 
 impl ColorSyncProfile {
+    /// Creates a profile from ICC profile data.
+    ///
+    /// - Parameters:
+    /// - data: The ICC profile data.
+    /// - error: On failure, a pointer to an error describing the problem. Optional.
+    /// - Returns: A new profile, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCreate")]
     #[inline]
     pub unsafe fn new(
@@ -411,6 +558,12 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a profile from ICC profile data at a URL.
+    ///
+    /// - Parameters:
+    /// - url: The URL to the profile data.
+    /// - error: On failure, a pointer to an error describing the problem. Optional.
+    /// - Returns: A new profile, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -435,11 +588,21 @@ impl ColorSyncProfile {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdonotsubstituteprofiles?language=objc)
+    /// An option that, when set to `kCFBooleanTrue`, skips substituting a matching system-provided profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdonotsubstituteprofiles?language=objc)
     pub static kColorSyncDoNotSubstituteProfiles: &'static CFString;
 }
 
 impl ColorSyncProfile {
+    /// Creates a profile from ICC profile data at a URL, using the given options.
+    ///
+    /// - Parameters:
+    /// - url: The URL to the profile data.
+    /// - options: A dictionary with creation options, for example ``kColorSyncDoNotSubstituteProfiles``.
+    /// - error: On failure, a pointer to an error describing the problem. Optional.
+    /// - Returns: A new profile, or `NULL` in case of failure.
+    ///
     /// # Safety
     ///
     /// `options` generic should be of the correct type.
@@ -467,6 +630,10 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a profile from a predefined profile name.
+    ///
+    /// - Parameter name: The predefined profile name.
+    /// - Returns: A new profile, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCreateWithName")]
     #[inline]
     pub unsafe fn with_name(name: &CFString) -> Option<CFRetained<ColorSyncProfile>> {
@@ -478,6 +645,10 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a profile for the specified display.
+    ///
+    /// - Parameter displayID: The system-wide unique display ID (defined by IOKit); pass `0` for the main display.
+    /// - Returns: A new profile, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCreateWithDisplayID")]
     #[inline]
     pub unsafe fn with_display_id(display_id: u32) -> Option<CFRetained<ColorSyncProfile>> {
@@ -490,6 +661,16 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a profile for a device registered with ColorSync.
+    ///
+    /// See `ColorSyncDevice.h` for more information on `deviceClass`, `deviceID`, and `profileID`.
+    ///
+    /// - Parameters:
+    /// - deviceClass: The ColorSync device class.
+    /// - deviceID: The device ID registered with ColorSync.
+    /// - profileID: The profile ID registered with ColorSync; pass ``kColorSyncDeviceDefaultProfileID`` to get the default profile.
+    /// - Returns: A new profile, or `NULL` in case of failure.
+    ///
     /// # Safety
     ///
     /// `profile_id` should be of the correct type.
@@ -514,6 +695,9 @@ impl ColorSyncProfile {
 }
 
 impl ColorSyncMutableProfile {
+    /// Creates an empty mutable profile.
+    ///
+    /// - Returns: An empty mutable profile, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCreateMutable")]
     #[inline]
     pub unsafe fn new() -> Option<CFRetained<ColorSyncMutableProfile>> {
@@ -524,6 +708,10 @@ impl ColorSyncMutableProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a mutable copy of a profile.
+    ///
+    /// - Parameter prof: The profile whose data the function copies into the new mutable profile.
+    /// - Returns: A new mutable profile, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(prof: &ColorSyncProfile) -> Option<CFRetained<ColorSyncMutableProfile>> {
@@ -538,6 +726,24 @@ impl ColorSyncMutableProfile {
 }
 
 impl ColorSyncProfile {
+    /// Creates a device link profile from an array of profiles.
+    ///
+    /// Each dictionary in `profileInfo` contains a profile object and information on the usage of the
+    /// profile in the transform.
+    ///
+    /// Required keys:
+    /// - ``kColorSyncProfile``: A ``ColorSyncProfileRef``.
+    /// - ``kColorSyncRenderingIntent``: A `CFStringRef` defining the rendering intent.
+    /// - ``kColorSyncTransformTag``: A `CFStringRef` defining which tags to use.
+    ///
+    /// Optional key:
+    /// - ``kColorSyncBlackPointCompensation``: A `CFBooleanRef` to enable or disable black point compensation.
+    ///
+    /// - Parameters:
+    /// - profileInfo: An array of dictionaries, each containing a profile object and the information on the usage of the profile in the transform.
+    /// - options: A dictionary with additional public global options (for example, preferred CMM, quality, and so on). It can also contain custom options that are CMM specific.
+    /// - Returns: A new profile, or `NULL` in case of failure.
+    ///
     /// # Safety
     ///
     /// - `profile_info` generic generic should be of the correct type.
@@ -558,6 +764,13 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Verifies whether a profile can be used.
+    ///
+    /// - Parameters:
+    /// - prof: The profile to verify.
+    /// - errors: Returns error strings in case problems are found that would prevent use of the profile.
+    /// - warnings: Returns warning strings indicating problems due to lack of conformance with the ICC specification, but not preventing use of the profile.
+    /// - Returns: `true` if the profile can be used; otherwise, `false`.
     #[doc(alias = "ColorSyncProfileVerify")]
     #[inline]
     pub unsafe fn verify(
@@ -587,6 +800,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileVerify(self, errors, warnings) }
     }
 
+    /// Returns a Boolean value indicating whether the display profile describes a wide-gamut color space.
     #[doc(alias = "ColorSyncProfileIsWideGamut")]
     #[inline]
     pub unsafe fn is_wide_gamut(&self) -> bool {
@@ -596,6 +810,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsWideGamut(self) }
     }
 
+    /// Returns a Boolean value indicating whether the profile is matrix-based.
     #[doc(alias = "ColorSyncProfileIsMatrixBased")]
     #[inline]
     pub unsafe fn is_matrix_based(&self) -> bool {
@@ -605,6 +820,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsMatrixBased(self) }
     }
 
+    /// Returns a Boolean value indicating whether the profile uses ITU BT.2100 PQ transfer functions.
     #[doc(alias = "ColorSyncProfileIsPQBased")]
     #[inline]
     pub unsafe fn is_pq_based(&self) -> bool {
@@ -614,6 +830,7 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsPQBased(self) }
     }
 
+    /// Returns a Boolean value indicating whether the profile uses ITU BT.2100 HLG transfer functions.
     #[doc(alias = "ColorSyncProfileIsHLGBased")]
     #[inline]
     pub unsafe fn is_hlg_based(&self) -> bool {
@@ -623,6 +840,12 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsHLGBased(self) }
     }
 
+    /// Estimates the gamma of the profile for the specified display.
+    ///
+    /// - Parameters:
+    /// - displayID: The system-wide unique display ID (defined by IOKit).
+    /// - error: On failure, a pointer to an error describing the problem. Optional.
+    /// - Returns: A non-zero value on success, or `0.0` in case of error.
     #[doc(alias = "ColorSyncProfileEstimateGammaWithDisplayID")]
     #[inline]
     pub unsafe fn estimate_gamma_with_display_id(
@@ -644,6 +867,9 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileEstimateGammaWithDisplayID(display_id, error) }
     }
 
+    /// Converts the profile's `vcgt` tag to formula components used by `CGSetDisplayTransferByFormula`.
+    ///
+    /// The function performs this conversion only if a `vcgt` tag exists in the profile and the conversion is possible.
     #[doc(alias = "ColorSyncProfileGetDisplayTransferFormulaFromVCGT")]
     #[inline]
     pub unsafe fn display_transfer_formula_from_vcgt(
@@ -688,6 +914,12 @@ impl ColorSyncProfile {
         }
     }
 
+    /// Creates display transfer tables from the profile's `vcgt` tag.
+    ///
+    /// Creates three tables of floats (a red table, a green table, and a blue table), each of size
+    /// `nSamplesPerChannel`, packed into contiguous memory contained in the returned `CFDataRef`, from
+    /// the `vcgt` tag of the profile (if a `vcgt` tag exists in the profile). `CGSetDisplayTransferByTable`
+    /// uses these tables.
     #[doc(alias = "ColorSyncProfileCreateDisplayTransferTablesFromVCGT")]
     #[inline]
     pub unsafe fn display_transfer_tables_from_vcgt(
@@ -706,6 +938,12 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Estimates the gamma of a profile.
+    ///
+    /// - Parameters:
+    /// - prof: The profile to perform estimation on.
+    /// - error: On failure, a pointer to an error describing the problem. Optional.
+    /// - Returns: A non-zero value on success, or `0.0` in case of error.
     #[doc(alias = "ColorSyncProfileEstimateGamma")]
     #[inline]
     pub unsafe fn estimate_gamma(
@@ -728,7 +966,9 @@ impl ColorSyncProfile {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmd5?language=objc)
+/// An MD5 digest that uniquely identifies a profile, as defined by the ICC specification.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmd5?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ColorSyncMD5 {
@@ -746,6 +986,10 @@ unsafe impl RefEncode for ColorSyncMD5 {
 }
 
 impl ColorSyncProfile {
+    /// Returns the MD5 digest for a profile.
+    ///
+    /// - Parameter prof: The profile to compute the digest for.
+    /// - Returns: The MD5 digest for the profile, calculated as defined by the ICC specification, or a "zero" signature (filled with zeros) in case of failure.
     #[doc(alias = "ColorSyncProfileGetMD5")]
     #[inline]
     pub unsafe fn md_5(&self) -> ColorSyncMD5 {
@@ -755,6 +999,12 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileGetMD5(self) }
     }
 
+    /// Copies the flattened data from a profile.
+    ///
+    /// - Parameters:
+    /// - prof: The profile to copy the flattened data from.
+    /// - error: On failure, a pointer to an error describing the problem. Optional.
+    /// - Returns: The profile data on success, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCopyData")]
     #[inline]
     pub unsafe fn data(
@@ -779,6 +1029,12 @@ impl ColorSyncProfile {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Returns the URL of a profile.
+    ///
+    /// - Parameters:
+    /// - prof: The profile to get the URL from.
+    /// - error: On failure, a pointer to an error describing the problem. Optional.
+    /// - Returns: The profile's URL on success, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileGetURL")]
     #[inline]
     pub unsafe fn url(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> CFRetained<CFURL> {
@@ -800,6 +1056,10 @@ impl ColorSyncProfile {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// Copies the header from a profile.
+    ///
+    /// - Parameter prof: The profile to copy the header from.
+    /// - Returns: The profile header (in host endianness), or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCopyHeader")]
     #[inline]
     pub unsafe fn header(&self) -> CFRetained<CFData> {
@@ -814,6 +1074,11 @@ impl ColorSyncProfile {
 }
 
 impl ColorSyncMutableProfile {
+    /// Sets the header of a mutable profile.
+    ///
+    /// - Parameters:
+    /// - prof: The profile in which to set the header.
+    /// - header: The header data (must be in host endianness).
     #[doc(alias = "ColorSyncProfileSetHeader")]
     #[inline]
     pub unsafe fn set_header(&self, header: &CFData) {
@@ -825,6 +1090,10 @@ impl ColorSyncMutableProfile {
 }
 
 impl ColorSyncProfile {
+    /// Copies the localized description string of a profile.
+    ///
+    /// - Parameter prof: The profile to copy the description string from.
+    /// - Returns: The profile description, localized to the current locale.
     #[doc(alias = "ColorSyncProfileCopyDescriptionString")]
     #[inline]
     pub unsafe fn description_string(&self) -> Option<CFRetained<CFString>> {
@@ -837,6 +1106,10 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Copies the tag signatures of a profile.
+    ///
+    /// - Parameter prof: The profile to copy tag signatures from.
+    /// - Returns: An array with the signatures (`CFStringRef`) of the tags in the profile.
     #[doc(alias = "ColorSyncProfileCopyTagSignatures")]
     #[inline]
     pub unsafe fn tag_signatures(&self) -> Option<CFRetained<CFArray<CFString>>> {
@@ -849,6 +1122,12 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a Boolean value indicating whether a profile contains a given tag.
+    ///
+    /// - Parameters:
+    /// - prof: The profile in which to search for the tag.
+    /// - signature: The signature of the tag to search for.
+    /// - Returns: `true` if the tag exists; otherwise, `false`.
     #[doc(alias = "ColorSyncProfileContainsTag")]
     #[inline]
     pub unsafe fn contains_tag(&self, signature: &CFString) -> bool {
@@ -858,6 +1137,12 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileContainsTag(self, signature) }
     }
 
+    /// Copies a tag from a profile.
+    ///
+    /// - Parameters:
+    /// - prof: The profile to copy the tag from.
+    /// - signature: The signature of the tag to copy.
+    /// - Returns: The tag data, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCopyTag")]
     #[inline]
     pub unsafe fn tag(&self, signature: &CFString) -> Option<CFRetained<CFData>> {
@@ -873,6 +1158,12 @@ impl ColorSyncProfile {
 }
 
 impl ColorSyncMutableProfile {
+    /// Sets a tag in a mutable profile.
+    ///
+    /// - Parameters:
+    /// - prof: The profile in which to set the tag.
+    /// - signature: The signature of the tag to set in the profile.
+    /// - data: The tag data.
     #[doc(alias = "ColorSyncProfileSetTag")]
     #[inline]
     pub unsafe fn set_tag(&self, signature: &CFString, data: &CFData) {
@@ -886,6 +1177,11 @@ impl ColorSyncMutableProfile {
         unsafe { ColorSyncProfileSetTag(self, signature, data) }
     }
 
+    /// Removes a tag from a mutable profile.
+    ///
+    /// - Parameters:
+    /// - prof: The profile to remove the tag from.
+    /// - signature: The signature of the tag to remove.
     #[doc(alias = "ColorSyncProfileRemoveTag")]
     #[inline]
     pub unsafe fn remove_tag(&self, signature: &CFString) {
@@ -896,15 +1192,43 @@ impl ColorSyncMutableProfile {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileiteratecallback?language=objc)
+/// A callback that the framework invokes for each installed profile during iteration.
+///
+/// The framework passes only validated profiles to the callback. Return `false` to stop the iteration.
+///
+/// - Parameters:
+/// - profileInfo: A dictionary describing the profile.
+/// - userInfo: The user info passed to the iteration function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileiteratecallback?language=objc)
 pub type ColorSyncProfileIterateCallback =
     unsafe extern "C-unwind" fn(&CFDictionary, NonNull<c_void>) -> bool;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecacheseed?language=objc)
+    /// The current profile-cache seed (uint32_t), sent with ``kColorSyncProfileRepositoryChangeNotification``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecacheseed?language=objc)
     pub static kColorSyncProfileCacheSeed: &'static CFString;
 }
 
+/// Iterates over the installed profiles.
+///
+/// When called for the first time, this function returns only system profiles, because profile
+/// iteration is a slow process requiring multiple accesses to the file system. Clients are advised
+/// to register for ``kColorSyncProfileRepositoryChangeNotification`` using `CFNotificationCenter` or
+/// `NSNotificationCenter` to obtain all installed profiles. The notification callback receives, if
+/// possible, a `CFDictionary` containing a new seed value of the profile cache (key
+/// ``kColorSyncProfileCacheSeed`` / value `kCFNumberSInt32Type`). Comparing old and new seed values
+/// may prevent unnecessary calls to iterate installed profiles. Alternatively, call
+/// ``ColorSyncIterateInstalledProfilesWithOptions`` with the ``kColorSyncWaitForCacheReply``
+/// option set to `kCFBooleanTrue` to obtain all installed profiles in one call.
+///
+/// - Parameters:
+/// - callBack: A pointer to a client-provided function (can be `NULL`).
+/// - seed: A pointer to a cache seed owned by the client (can be `NULL`).
+/// - userInfo: User-defined data passed to the callback.
+/// - error: On failure, a pointer to an error describing the problem. Optional.
+///
 /// # Safety
 ///
 /// - `call_back` must be implemented correctly.
@@ -934,10 +1258,21 @@ pub unsafe fn ColorSyncIterateInstalledProfiles(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncwaitforcachereply?language=objc)
+    /// An iteration option that waits for the profile cache to finish updating before returning.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncwaitforcachereply?language=objc)
     pub static kColorSyncWaitForCacheReply: &'static CFString;
 }
 
+/// Iterates over the installed profiles, using the given options.
+///
+/// - Parameters:
+/// - callBack: A pointer to a client-provided function (can be `NULL`).
+/// - seed: A pointer to a cache seed owned by the client.
+/// - userInfo: User-defined data passed to the callback.
+/// - options: A dictionary with iteration options, for example ``kColorSyncWaitForCacheReply`` to wait for the cache to finish updating before returning.
+/// - error: On failure, a pointer to an error describing the problem. Optional.
+///
 /// # Safety
 ///
 /// - `call_back` must be implemented correctly.
@@ -972,6 +1307,27 @@ pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
 }
 
 impl ColorSyncProfile {
+    /// Installs a profile in the specified domain.
+    ///
+    /// The `domain` is either ``kColorSyncProfileComputerDomain`` or ``kColorSyncProfileUserDomain``.
+    /// ``kColorSyncProfileComputerDomain`` is for sharing the profiles (from
+    /// `/Library/ColorSync/Profiles`). ``kColorSyncProfileUserDomain`` is for user custom profiles
+    /// (installed under the home directory, that is, in `~/Library/ColorSync/Profiles`). `NULL` is the
+    /// same as ``kColorSyncProfileUserDomain``.
+    ///
+    /// The `subpath` is the file system representation of the path of the file to contain the installed
+    /// profile. The function interprets the last component of the path as a file name if it ends with the
+    /// extension `.icc`. Otherwise, the function interprets the subpath as the directory path and creates
+    /// the file name from the profile description tag, appended with the `.icc` extension.
+    ///
+    /// Using this function requires `COLORSYNC_PROFILE_INSTALL_ENTITLEMENT`.
+    ///
+    /// - Parameters:
+    /// - profile: The profile to install.
+    /// - domain: The domain to install into, either ``kColorSyncProfileComputerDomain`` or ``kColorSyncProfileUserDomain``.
+    /// - subpath: A string created from the file system representation of the path of the file to contain the installed profile.
+    /// - error: On failure, a pointer to an error describing the problem. Optional.
+    /// - Returns: `true` on success, or `false` in case of error.
     #[doc(alias = "ColorSyncProfileInstall")]
     #[inline]
     pub unsafe fn install(
@@ -997,6 +1353,19 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileInstall(self, domain, subpath, error) }
     }
 
+    /// Uninstalls a profile.
+    ///
+    /// The profile must return a valid URL for ``ColorSyncProfileGetURL``; that is, it must be created
+    /// with ``ColorSyncProfileCreateWithURL``. Also, the URL must be in either
+    /// ``kColorSyncProfileComputerDomain`` or ``kColorSyncProfileUserDomain``, including subfolders of
+    /// those.
+    ///
+    /// Using this function requires `COLORSYNC_PROFILE_INSTALL_ENTITLEMENT`.
+    ///
+    /// - Parameters:
+    /// - profile: The profile to uninstall.
+    /// - error: On failure, a pointer to an error describing the problem. Optional.
+    /// - Returns: `true` on success, or `false` in case of error.
     #[doc(alias = "ColorSyncProfileUninstall")]
     #[inline]
     pub unsafe fn uninstall(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> bool {

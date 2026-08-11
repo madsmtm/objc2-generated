@@ -31,6 +31,30 @@ extern "C" {
     pub static UISheetPresentationControllerDetentInactive: CGFloat;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerplacement?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UISheetPresentationControllerPlacement(pub NSInteger);
+impl UISheetPresentationControllerPlacement {
+    #[doc(alias = "UISheetPresentationControllerPlacementAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "UISheetPresentationControllerPlacementLeading")]
+    pub const Leading: Self = Self(1);
+    #[doc(alias = "UISheetPresentationControllerPlacementCenter")]
+    pub const Center: Self = Self(2);
+    #[doc(alias = "UISheetPresentationControllerPlacementTrailing")]
+    pub const Trailing: Self = Self(3);
+}
+
+unsafe impl Encode for UISheetPresentationControllerPlacement {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UISheetPresentationControllerPlacement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentresolutioncontext?language=objc)
     pub unsafe trait UISheetPresentationControllerDetentResolutionContext:
@@ -200,6 +224,18 @@ impl UISheetPresentationController {
         #[unsafe(method(setSourceView:))]
         #[unsafe(method_family = none)]
         pub fn setSourceView(&self, source_view: Option<&UIView>);
+
+        #[unsafe(method(preferredPlacement))]
+        #[unsafe(method_family = none)]
+        pub fn preferredPlacement(&self) -> UISheetPresentationControllerPlacement;
+
+        /// Setter for [`preferredPlacement`][Self::preferredPlacement].
+        #[unsafe(method(setPreferredPlacement:))]
+        #[unsafe(method_family = none)]
+        pub fn setPreferredPlacement(
+            &self,
+            preferred_placement: UISheetPresentationControllerPlacement,
+        );
 
         #[unsafe(method(prefersPageSizing))]
         #[unsafe(method_family = none)]

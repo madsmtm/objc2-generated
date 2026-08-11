@@ -10,7 +10,9 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransform?language=objc)
+/// A reference to a color transform that converts color data between profiles.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransform?language=objc)
 #[doc(alias = "ColorSyncTransformRef")]
 #[repr(C)]
 pub struct ColorSyncTransform {
@@ -27,6 +29,9 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for ColorSyncTransform {
+    /// Returns the type identifier for the `ColorSyncTransform` opaque type.
+    ///
+    /// - Returns: The `CFTypeID` for `ColorSyncTransform` objects.
     #[doc(alias = "ColorSyncTransformGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,6 +43,26 @@ unsafe impl ConcreteType for ColorSyncTransform {
 }
 
 impl ColorSyncTransform {
+    /// Creates a color transform from a sequence of profiles.
+    ///
+    /// Each dictionary in `profileSequence` contains a profile object and information on the
+    /// usage of the profile in the transform.
+    ///
+    /// Required keys:
+    ///
+    /// - ``kColorSyncProfile``: A ``ColorSyncProfileRef``.
+    /// - ``kColorSyncRenderingIntent``: A `CFStringRef` defining the rendering intent.
+    /// - ``kColorSyncTransformTag``: A `CFStringRef` defining which tags to use.
+    ///
+    /// Optional key:
+    ///
+    /// - ``kColorSyncBlackPointCompensation``: A `CFBooleanRef` to enable or disable black point compensation.
+    ///
+    /// - Parameters:
+    /// - profileSequence: An array of dictionaries, each one containing a profile object and the information on the usage of the profile in the transform.
+    /// - options: A dictionary with additional public global options (for example, preferred CMM, quality, and so on). It can also contain custom options that are CMM specific.
+    /// - Returns: A new ``ColorSyncTransformRef``, or `NULL` in case of failure.
+    ///
     /// # Safety
     ///
     /// - `profile_sequence` generic generic should be of the correct type.
@@ -58,6 +83,13 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Copies a property from a color transform.
+    ///
+    /// - Parameters:
+    /// - transform: The transform from which to copy the property.
+    /// - key: A `CFTypeRef` used as a key to identify the property.
+    /// - options: A dictionary with additional options.
+    ///
     /// # Safety
     ///
     /// - `key` should be of the correct type.
@@ -80,6 +112,13 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Sets a property on a color transform.
+    ///
+    /// - Parameters:
+    /// - transform: The transform in which to set the property.
+    /// - key: A `CFTypeRef` used as a key to identify the property.
+    /// - property: The `CFTypeRef` to set as the property.
+    ///
     /// # Safety
     ///
     /// - `key` should be of the correct type.
@@ -97,6 +136,9 @@ impl ColorSyncTransform {
         unsafe { ColorSyncTransformSetProperty(self, key, property) }
     }
 
+    /// Returns the profile sequence used to create a color transform.
+    ///
+    /// - Parameter transform: The transform from which to get the profile sequence used to create the transform.
     #[doc(alias = "ColorSyncTransformGetProfileSequence")]
     #[inline]
     pub unsafe fn profile_sequence(
@@ -112,25 +154,35 @@ impl ColorSyncTransform {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdatadepth?language=objc)
+/// The bit depth and numeric type of a color component in a pixel.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdatadepth?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ColorSyncDataDepth(pub c_uint);
 impl ColorSyncDataDepth {
+    /// One-bit values, used for gamut-check results.
     #[doc(alias = "kColorSync1BitGamut")]
     pub const Sync1BitGamut: Self = Self(1);
+    /// 8-bit integer components.
     #[doc(alias = "kColorSync8BitInteger")]
     pub const Sync8BitInteger: Self = Self(2);
+    /// 16-bit integer components.
     #[doc(alias = "kColorSync16BitInteger")]
     pub const Sync16BitInteger: Self = Self(3);
+    /// 16-bit floating-point (half-float) components.
     #[doc(alias = "kColorSync16BitFloat")]
     pub const Sync16BitFloat: Self = Self(4);
+    /// 32-bit integer components.
     #[doc(alias = "kColorSync32BitInteger")]
     pub const Sync32BitInteger: Self = Self(5);
+    /// 32-bit named-color index values.
     #[doc(alias = "kColorSync32BitNamedColorIndex")]
     pub const Sync32BitNamedColorIndex: Self = Self(6);
+    /// 32-bit floating-point components.
     #[doc(alias = "kColorSync32BitFloat")]
     pub const Sync32BitFloat: Self = Self(7);
+    /// 10-bit integer components.
     #[doc(alias = "kColorSync10BitInteger")]
     pub const Sync10BitInteger: Self = Self(8);
 }
@@ -145,23 +197,32 @@ unsafe impl RefEncode for ColorSyncDataDepth {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncalphainfo?language=objc)
+/// The location of the alpha component in a pixel, and whether it's premultiplied.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncalphainfo?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ColorSyncAlphaInfo(pub c_uint);
 impl ColorSyncAlphaInfo {
+    /// There is no alpha channel. For example, RGB.
     #[doc(alias = "kColorSyncAlphaNone")]
     pub const None: Self = Self(0);
+    /// The alpha component is stored last and the color components are premultiplied by it. For example, premultiplied RGBA.
     #[doc(alias = "kColorSyncAlphaPremultipliedLast")]
     pub const PremultipliedLast: Self = Self(1);
+    /// The alpha component is stored first and the color components are premultiplied by it. For example, premultiplied ARGB.
     #[doc(alias = "kColorSyncAlphaPremultipliedFirst")]
     pub const PremultipliedFirst: Self = Self(2);
+    /// The alpha component is stored last and is not premultiplied. For example, non-premultiplied RGBA.
     #[doc(alias = "kColorSyncAlphaLast")]
     pub const Last: Self = Self(3);
+    /// The alpha component is stored first and is not premultiplied. For example, non-premultiplied ARGB.
     #[doc(alias = "kColorSyncAlphaFirst")]
     pub const First: Self = Self(4);
+    /// There is no alpha channel; the least significant bits are ignored. For example, RGBX.
     #[doc(alias = "kColorSyncAlphaNoneSkipLast")]
     pub const NoneSkipLast: Self = Self(5);
+    /// There is no alpha channel; the most significant bits are ignored. For example, XRGB.
     #[doc(alias = "kColorSyncAlphaNoneSkipFirst")]
     pub const NoneSkipFirst: Self = Self(6);
 }
@@ -176,25 +237,70 @@ unsafe impl RefEncode for ColorSyncAlphaInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphainfomask?language=objc)
+/// The mask for extracting the ``ColorSyncAlphaInfo`` value from a ``ColorSyncDataLayout``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphainfomask?language=objc)
 pub const kColorSyncAlphaInfoMask: c_uint = 0x1F;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteordermask?language=objc)
+/// The mask for extracting the byte-order value from a ``ColorSyncDataLayout``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteordermask?language=objc)
 pub const kColorSyncByteOrderMask: c_uint = 0x7000;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorderdefault?language=objc)
+/// The default (host) byte order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorderdefault?language=objc)
 pub const kColorSyncByteOrderDefault: c_uint = 0 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder16little?language=objc)
+/// 16-bit, little-endian byte order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder16little?language=objc)
 pub const kColorSyncByteOrder16Little: c_uint = 1 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder32little?language=objc)
+/// 32-bit, little-endian byte order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder32little?language=objc)
 pub const kColorSyncByteOrder32Little: c_uint = 2 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder16big?language=objc)
+/// 16-bit, big-endian byte order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder16big?language=objc)
 pub const kColorSyncByteOrder16Big: c_uint = 3 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder32big?language=objc)
+/// 32-bit, big-endian byte order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder32big?language=objc)
 pub const kColorSyncByteOrder32Big: c_uint = 4 << 12;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdatalayout?language=objc)
+/// A bit field describing the alpha information and byte order of a pixel layout.
+///
+/// Combine a ``ColorSyncAlphaInfo`` value (within ``kColorSyncAlphaInfoMask``) with a byte-order
+/// value (within ``kColorSyncByteOrderMask``) to describe how color components are packed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdatalayout?language=objc)
 pub type ColorSyncDataLayout = u32;
 
 impl ColorSyncTransform {
+    /// Converts color data from a source layout to a destination layout using a color transform.
+    ///
+    /// Use this function with care for performance reasons. Color conversions are computationally
+    /// intensive and the recommended way to perform these is by using the vImage converter with a
+    /// ColorSync code fragment. vImage employs vectorized code which is not only faster but also more
+    /// battery efficient. Please visit the following link to see a sample application of vImage used in
+    /// conjunction with ColorSync:
+    /// <https
+    /// ://developer.apple.com/library/prerelease/content/samplecode/convertImage/Listings/convertImage_main_c.html>
+    /// More details regarding ColorSync code fragments are included below, as well.
+    ///
+    /// - Parameters:
+    /// - transform: The transform to use for converting color.
+    /// - width: The width of the image in pixels.
+    /// - height: The height of the image in pixels.
+    /// - dst: A pointer to the destination where the function writes the results.
+    /// - dstDepth: Describes the bit depth and type of the destination color components.
+    /// - dstLayout: Describes the format and byte packing of the destination pixels.
+    /// - dstBytesPerRow: The number of bytes in the row of data.
+    /// - src: A pointer to the data to convert.
+    /// - srcDepth: Describes the bit depth and type of the source color components.
+    /// - srcLayout: Describes the format and byte packing of the source pixels.
+    /// - srcBytesPerRow: The number of bytes in the row of data.
+    /// - options: A dictionary with additional options.
+    /// - Returns: `true` if the conversion succeeds, or `false` otherwise.
+    ///
     /// # Safety
     ///
     /// - `dst` must be a valid pointer.
@@ -252,255 +358,376 @@ impl ColorSyncTransform {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofile?language=objc)
+    /// A key for the profile object in a profile-sequence dictionary passed to ``ColorSyncTransformCreate``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofile?language=objc)
     pub static kColorSyncProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintent?language=objc)
+    /// A key for the rendering intent to use for the profile in a profile-sequence dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintent?language=objc)
     pub static kColorSyncRenderingIntent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentperceptual?language=objc)
+    /// A ``kColorSyncRenderingIntent`` value selecting the perceptual rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentperceptual?language=objc)
     pub static kColorSyncRenderingIntentPerceptual: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentrelative?language=objc)
+    /// A ``kColorSyncRenderingIntent`` value selecting the media-relative colorimetric rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentrelative?language=objc)
     pub static kColorSyncRenderingIntentRelative: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentsaturation?language=objc)
+    /// A ``kColorSyncRenderingIntent`` value selecting the saturation rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentsaturation?language=objc)
     pub static kColorSyncRenderingIntentSaturation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentabsolute?language=objc)
+    /// A ``kColorSyncRenderingIntent`` value selecting the ICC-absolute colorimetric rendering intent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentabsolute?language=objc)
     pub static kColorSyncRenderingIntentAbsolute: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentuseprofileheader?language=objc)
+    /// A ``kColorSyncRenderingIntent`` value selecting the rendering intent stored in the profile header.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentuseprofileheader?language=objc)
     pub static kColorSyncRenderingIntentUseProfileHeader: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformtag?language=objc)
+    /// A key for the tag identifying which tags of the profile to use in a profile-sequence dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformtag?language=objc)
     pub static kColorSyncTransformTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformdevicetopcs?language=objc)
+    /// A ``kColorSyncTransformTag`` value selecting the device-to-PCS conversion direction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformdevicetopcs?language=objc)
     pub static kColorSyncTransformDeviceToPCS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformpcstopcs?language=objc)
+    /// A ``kColorSyncTransformTag`` value selecting the PCS-to-PCS conversion direction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformpcstopcs?language=objc)
     pub static kColorSyncTransformPCSToPCS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformpcstodevice?language=objc)
+    /// A ``kColorSyncTransformTag`` value selecting the PCS-to-device conversion direction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformpcstodevice?language=objc)
     pub static kColorSyncTransformPCSToDevice: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformdevicetodevice?language=objc)
+    /// A ``kColorSyncTransformTag`` value selecting the device-to-device conversion direction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformdevicetodevice?language=objc)
     pub static kColorSyncTransformDeviceToDevice: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformgamutcheck?language=objc)
+    /// A ``kColorSyncTransformTag`` value that checks whether colors fall outside the destination gamut.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformgamutcheck?language=objc)
     pub static kColorSyncTransformGamutCheck: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncblackpointcompensation?language=objc)
+    /// A key whose `CFBooleanRef` value enables or disables black point compensation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncblackpointcompensation?language=objc)
     pub static kColorSyncBlackPointCompensation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncextendedrange?language=objc)
+    /// A key whose `CFBooleanRef` value enables or disables extended range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncextendedrange?language=objc)
     pub static kColorSyncExtendedRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynchdrderivative?language=objc)
+    /// A key for the HDR derivative to apply to the profile in a profile-sequence dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynchdrderivative?language=objc)
     pub static kColorSyncHDRDerivative: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncpqderivative?language=objc)
+    /// A ``kColorSyncHDRDerivative`` value selecting the PQ HDR derivative.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncpqderivative?language=objc)
     pub static kColorSyncPQDerivative: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynchlgderivative?language=objc)
+    /// A ``kColorSyncHDRDerivative`` value selecting the HLG HDR derivative.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynchlgderivative?language=objc)
     pub static kColorSyncHLGDerivative: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncpreferredcmm?language=objc)
+    /// A key whose value is the ``ColorSyncCMMRef`` of the preferred CMM.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncpreferredcmm?language=objc)
     pub static kColorSyncPreferredCMM: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconvertquality?language=objc)
+    /// A key for the quality of the conversion performed by the transform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconvertquality?language=objc)
     pub static kColorSyncConvertQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbestquality?language=objc)
+    /// A ``kColorSyncConvertQuality`` value that does not coalesce profile transforms; the default.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbestquality?language=objc)
     pub static kColorSyncBestQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncnormalquality?language=objc)
+    /// A ``kColorSyncConvertQuality`` value that coalesces all transforms.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncnormalquality?language=objc)
     pub static kColorSyncNormalQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdraftquality?language=objc)
+    /// A ``kColorSyncConvertQuality`` value that coalesces all transforms and does not interpolate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdraftquality?language=objc)
     pub static kColorSyncDraftQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconvertuseextendedrange?language=objc)
+    /// A key whose `CFBooleanRef` value allows float data to exceed the `[0.0, 1.0]` range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconvertuseextendedrange?language=objc)
     pub static kColorSyncConvertUseExtendedRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransforminfo?language=objc)
+    /// A key for a dictionary of information about the transform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransforminfo?language=objc)
     pub static kColorSyncTransformInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformcreator?language=objc)
+    /// A key for the name of the CMM that created the transform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformcreator?language=objc)
     pub static kColorSyncTransformCreator: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformsrcspace?language=objc)
+    /// A key for the transform's source color space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformsrcspace?language=objc)
     pub static kColorSyncTransformSrcSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformdstspace?language=objc)
+    /// A key for the transform's destination color space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformdstspace?language=objc)
     pub static kColorSyncTransformDstSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformcodefragmenttype?language=objc)
+    /// A key for the type of code fragment to create, or that the framework created.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformcodefragmenttype?language=objc)
     pub static kColorSyncTransformCodeFragmentType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformcodefragmentmd5?language=objc)
+    /// A key for the MD5 checksum of the code fragment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformcodefragmentmd5?language=objc)
     pub static kColorSyncTransformCodeFragmentMD5: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformfullconversiondata?language=objc)
+    /// A key for the full-conversion code fragment, containing all non-`NULL` components from the profile sequence.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformfullconversiondata?language=objc)
     pub static kColorSyncTransformFullConversionData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformsimplifiedconversiondata?language=objc)
+    /// A key for the simplified code fragment, collapsing the full conversion into one multi-dimensional table.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformsimplifiedconversiondata?language=objc)
     pub static kColorSyncTransformSimplifiedConversionData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformparametricconversiondata?language=objc)
+    /// A key for the parametric code fragment, consisting only of parametric curves, matrices, and BPC components.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformparametricconversiondata?language=objc)
     pub static kColorSyncTransformParametricConversionData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformprofilesequnce?language=objc)
+    /// A key for the profile sequence used to create the transform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformprofilesequnce?language=objc)
     pub static kColorSyncTransformProfileSequnce: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformuseitu709oetf?language=objc)
+    /// A key whose `CFBooleanRef` value uses the ITU-R BT.709 opto-electronic transfer function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformuseitu709oetf?language=objc)
     pub static kColorSyncTransformUseITU709OETF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionmatrix?language=objc)
+    /// A key for a conversion matrix component, represented as a `CFArray` of three `CFArray`s of four `Float32` `CFNumber`s.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionmatrix?language=objc)
     pub static kColorSyncConversionMatrix: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve0?language=objc)
+    /// A key for a parametric tone rendering curve of type 0, represented as a `CFArray` of seven `Float32` `CFNumber`s.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve0?language=objc)
     pub static kColorSyncConversionParamCurve0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve1?language=objc)
+    /// A key for a parametric tone rendering curve of type 1, represented as a `CFArray` of seven `Float32` `CFNumber`s.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve1?language=objc)
     pub static kColorSyncConversionParamCurve1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve2?language=objc)
+    /// A key for a parametric tone rendering curve of type 2, represented as a `CFArray` of seven `Float32` `CFNumber`s.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve2?language=objc)
     pub static kColorSyncConversionParamCurve2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve3?language=objc)
+    /// A key for a parametric tone rendering curve of type 3, represented as a `CFArray` of seven `Float32` `CFNumber`s.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve3?language=objc)
     pub static kColorSyncConversionParamCurve3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve4?language=objc)
+    /// A key for a parametric tone rendering curve of type 4, represented as a `CFArray` of seven `Float32` `CFNumber`s.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve4?language=objc)
     pub static kColorSyncConversionParamCurve4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversion1dlut?language=objc)
+    /// A key for a one-dimensional lookup table with interpolation, represented as `CFData` containing a `Float32` table.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversion1dlut?language=objc)
     pub static kColorSyncConversion1DLut: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversiongridpoints?language=objc)
+    /// A key for the number of grid points in a lookup table.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversiongridpoints?language=objc)
     pub static kColorSyncConversionGridPoints: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionchannelid?language=objc)
+    /// A key for the identifier of the channel a conversion component applies to.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionchannelid?language=objc)
     pub static kColorSyncConversionChannelID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversion3dlut?language=objc)
+    /// A key for a three-dimensional lookup table with interpolation, represented as `CFData`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversion3dlut?language=objc)
     pub static kColorSyncConversion3DLut: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionndlut?language=objc)
+    /// A key for a multi-dimensional lookup table with interpolation, represented as `CFData` for N inputs and M outputs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionndlut?language=objc)
     pub static kColorSyncConversionNDLut: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversioninpchan?language=objc)
+    /// A key for the number of input channels of a lookup table.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversioninpchan?language=objc)
     pub static kColorSyncConversionInpChan: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionoutchan?language=objc)
+    /// A key for the number of output channels of a lookup table.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionoutchan?language=objc)
     pub static kColorSyncConversionOutChan: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionbpc?language=objc)
+    /// A key for a black point compensation component, represented as a `CFArray` of `Float32` `CFNumber`s.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionbpc?language=objc)
     pub static kColorSyncConversionBPC: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncfixedpointrange?language=objc)
+    /// A key for the fixed-point range of the conversion data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncfixedpointrange?language=objc)
     pub static kColorSyncFixedPointRange: &'static CFString;
 }
 
+/// Creates a code fragment from a sequence of profiles.
+///
+/// Each dictionary in `profileSequence` contains a profile object and information on the
+/// usage of the profile in the code fragment.
+///
+/// Required keys:
+///
+/// - ``kColorSyncProfile``: A ``ColorSyncProfileRef``.
+/// - ``kColorSyncRenderingIntent``: A `CFStringRef` defining the rendering intent.
+/// - ``kColorSyncTransformTag``: A `CFStringRef` defining which tags to use.
+///
+/// Optional key:
+///
+/// - ``kColorSyncBlackPointCompensation``: A `CFBooleanRef` to enable or disable black point compensation.
+/// - ``kColorSyncExtendedRange``: A `CFBooleanRef` to enable or disable extended range; disabling implies floating point conversions.
+///
+/// - Parameters:
+/// - profileSequence: An array of dictionaries, each one containing a profile object and the information on the usage of the profile in the code fragment.
+/// - options: A dictionary with additional options as in the case of creating a `ColorSyncTransform`.
+/// - Returns: A `CFTypeRef` representing a ColorSync code fragment, or `NULL` in case of failure.
+///
 /// # Safety
 ///
 /// - `profile_sequence` generic generic should be of the correct type.

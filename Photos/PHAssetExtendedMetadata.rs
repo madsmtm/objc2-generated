@@ -9,8 +9,8 @@ use crate::*;
 extern_class!(
     /// Represents other asset attributes that are not included when fetching `PHAsset` directly.
     ///
-    /// When `PHAsset.extendedMetadata` is called, these properties are fetched. They can be
-    /// prefetched by toggling `PHFetchOptions.prefetchAssetExtendedMetadata` when fetching `PHAsset`.
+    /// When ``/Photos/PHAsset/extendedMetadata`` is called, these properties are fetched. They can be
+    /// prefetched by toggling ``/Photos/PHFetchOptions/prefetchAssetExtendedMetadata`` when fetching ``/Photos/PHAsset``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetextendedmetadata?language=objc)
     #[unsafe(super(NSObject))]
@@ -34,9 +34,9 @@ impl PHAssetExtendedMetadata {
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
         /// The original file name of this asset.
-        #[unsafe(method(originalFileName))]
+        #[unsafe(method(originalFilename))]
         #[unsafe(method_family = none)]
-        pub unsafe fn originalFileName(&self) -> Option<Retained<NSString>>;
+        pub unsafe fn originalFilename(&self) -> Option<Retained<NSString>>;
 
         /// The keywords associated with this asset
         #[unsafe(method(keywords))]

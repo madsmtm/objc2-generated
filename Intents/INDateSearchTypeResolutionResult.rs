@@ -10,6 +10,7 @@ extern_class!(
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]
+    #[deprecated = "INDateSearchTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INDateSearchTypeResolutionResult;
 );
 
@@ -22,6 +23,7 @@ extern_conformance!(
 impl INDateSearchTypeResolutionResult {
     extern_methods!(
         #[cfg(feature = "INDateSearchType")]
+        #[deprecated = "INDateSearchTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedDateSearchType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedDateSearchType(
@@ -29,6 +31,7 @@ impl INDateSearchTypeResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INDateSearchType")]
+        #[deprecated = "INDateSearchTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithDateSearchTypeToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithDateSearchTypeToConfirm(

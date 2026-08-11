@@ -330,6 +330,8 @@ pub use self::__PKConstants::PKPaymentNetworkEftpos;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkElCorteIngles;
 #[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkElcard;
+#[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkElectron;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkElo;
@@ -348,6 +350,8 @@ pub use self::__PKConstants::PKPaymentNetworkJCB;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkJaywan;
 #[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkMaal;
+#[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkMada;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkMaestro;
@@ -365,6 +369,8 @@ pub use self::__PKConstants::PKPaymentNetworkNAPAS;
 pub use self::__PKConstants::PKPaymentNetworkNanaco;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkPagoBancomat;
+#[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkPayPak;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkPostFinance;
 #[cfg(feature = "PKConstants")]

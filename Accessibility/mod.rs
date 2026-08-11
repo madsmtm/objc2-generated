@@ -21,6 +21,9 @@
 #[link(name = "Accessibility", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "AXAttributeConstants")]
+#[path = "AXAttributeConstants.rs"]
+mod __AXAttributeConstants;
 #[cfg(feature = "AXAudiograph")]
 #[path = "AXAudiograph.rs"]
 mod __AXAudiograph;
@@ -58,6 +61,8 @@ mod __AXSettings;
 #[path = "AXTechnology.rs"]
 mod __AXTechnology;
 
+#[cfg(feature = "AXAttributeConstants")]
+pub use self::__AXAttributeConstants::AXSpeechAttributeSSML;
 #[cfg(feature = "AXAudiograph")]
 pub use self::__AXAudiograph::AXCategoricalDataAxisDescriptor;
 #[cfg(feature = "AXAudiograph")]

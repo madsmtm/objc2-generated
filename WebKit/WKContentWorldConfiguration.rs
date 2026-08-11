@@ -47,44 +47,44 @@ extern_conformance!(
 impl WKContentWorldConfiguration {
     extern_methods!(
         /// A boolean value indicating whether every shadow root should be treated as open mode shadow root or not.
-        #[unsafe(method(openClosedShadowRootsEnabled))]
+        #[unsafe(method(allowAccessingClosedShadowRoots))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openClosedShadowRootsEnabled(&self) -> bool;
+        pub unsafe fn allowAccessingClosedShadowRoots(&self) -> bool;
 
-        /// Setter for [`openClosedShadowRootsEnabled`][Self::openClosedShadowRootsEnabled].
-        #[unsafe(method(setOpenClosedShadowRootsEnabled:))]
+        /// Setter for [`allowAccessingClosedShadowRoots`][Self::allowAccessingClosedShadowRoots].
+        #[unsafe(method(setAllowAccessingClosedShadowRoots:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOpenClosedShadowRootsEnabled(
+        pub unsafe fn setAllowAccessingClosedShadowRoots(
             &self,
-            open_closed_shadow_roots_enabled: bool,
+            allow_accessing_closed_shadow_roots: bool,
         );
 
         /// A boolean value indicating whether the capability to trigger autofill is exposed to scripts or not.
-        #[unsafe(method(autofillScriptingEnabled))]
+        #[unsafe(method(isAutofillScriptingEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn autofillScriptingEnabled(&self) -> bool;
+        pub unsafe fn isAutofillScriptingEnabled(&self) -> bool;
 
-        /// Setter for [`autofillScriptingEnabled`][Self::autofillScriptingEnabled].
+        /// Setter for [`isAutofillScriptingEnabled`][Self::isAutofillScriptingEnabled].
         #[unsafe(method(setAutofillScriptingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutofillScriptingEnabled(&self, autofill_scripting_enabled: bool);
 
         /// A boolean value indicating whether the ability to attach user info on an element is exposed to scripts or not.
-        #[unsafe(method(elementUserInfoEnabled))]
+        #[unsafe(method(isElementUserInfoEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementUserInfoEnabled(&self) -> bool;
+        pub unsafe fn isElementUserInfoEnabled(&self) -> bool;
 
-        /// Setter for [`elementUserInfoEnabled`][Self::elementUserInfoEnabled].
+        /// Setter for [`isElementUserInfoEnabled`][Self::isElementUserInfoEnabled].
         #[unsafe(method(setElementUserInfoEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setElementUserInfoEnabled(&self, element_user_info_enabled: bool);
 
         /// A boolean value indicating whether the behavior that elements with a name attribute overrides builtin methods on document object should be enabled or not.
-        #[unsafe(method(legacyBuiltinOverridesEnabled))]
+        #[unsafe(method(isLegacyBuiltinOverridesEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn legacyBuiltinOverridesEnabled(&self) -> bool;
+        pub unsafe fn isLegacyBuiltinOverridesEnabled(&self) -> bool;
 
-        /// Setter for [`legacyBuiltinOverridesEnabled`][Self::legacyBuiltinOverridesEnabled].
+        /// Setter for [`isLegacyBuiltinOverridesEnabled`][Self::isLegacyBuiltinOverridesEnabled].
         #[unsafe(method(setLegacyBuiltinOverridesEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLegacyBuiltinOverridesEnabled(
@@ -92,26 +92,26 @@ impl WKContentWorldConfiguration {
             legacy_builtin_overrides_enabled: bool,
         );
 
-        /// A boolean indicating whether or not `window.webkit.serializeNode` is available.
+        /// A boolean indicating whether or not `window.webkit.createNodeSnapshot` is available.
         ///
-        /// JavaScript can call `window.webkit.serializeNode` with a return value to create a `WKJSSerializedNode`
+        /// JavaScript can call `window.webkit.createNodeSnapshot` with a return value to create a `WKDOMNodeSnapshot`
         /// object for the application to use in future JavaScript programs.
-        /// Refer to the `WKJSSerializedNode` documentation for more information.
-        #[unsafe(method(nodeSerializationEnabled))]
+        /// Refer to the `WKDOMNodeSnapshot` documentation for more information.
+        #[unsafe(method(isNodeSnapshotCreationEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nodeSerializationEnabled(&self) -> bool;
+        pub unsafe fn isNodeSnapshotCreationEnabled(&self) -> bool;
 
-        /// Setter for [`nodeSerializationEnabled`][Self::nodeSerializationEnabled].
-        #[unsafe(method(setNodeSerializationEnabled:))]
+        /// Setter for [`isNodeSnapshotCreationEnabled`][Self::isNodeSnapshotCreationEnabled].
+        #[unsafe(method(setNodeSnapshotCreationEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNodeSerializationEnabled(&self, node_serialization_enabled: bool);
+        pub unsafe fn setNodeSnapshotCreationEnabled(&self, node_snapshot_creation_enabled: bool);
 
         /// A boolean indicating whether or not `window.webkit.createJSHandle` is available.
-        #[unsafe(method(jsHandleCreationEnabled))]
+        #[unsafe(method(isJSHandleCreationEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn jsHandleCreationEnabled(&self) -> bool;
+        pub unsafe fn isJSHandleCreationEnabled(&self) -> bool;
 
-        /// Setter for [`jsHandleCreationEnabled`][Self::jsHandleCreationEnabled].
+        /// Setter for [`isJSHandleCreationEnabled`][Self::isJSHandleCreationEnabled].
         #[unsafe(method(setJSHandleCreationEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJSHandleCreationEnabled(&self, js_handle_creation_enabled: bool);

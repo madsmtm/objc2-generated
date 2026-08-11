@@ -54,6 +54,9 @@ mod __PHAssetResourceUploadJob;
 #[cfg(feature = "PHAssetResourceUploadJobChangeRequest")]
 #[path = "PHAssetResourceUploadJobChangeRequest.rs"]
 mod __PHAssetResourceUploadJobChangeRequest;
+#[cfg(feature = "PHAssetResourceUploadJobOptions")]
+#[path = "PHAssetResourceUploadJobOptions.rs"]
+mod __PHAssetResourceUploadJobOptions;
 #[cfg(feature = "PHChange")]
 #[path = "PHChange.rs"]
 mod __PHChange;
@@ -180,6 +183,8 @@ pub use self::__PHAssetResourceUploadJob::PHAssetResourceUploadJob;
     feature = "PHChangeRequest"
 ))]
 pub use self::__PHAssetResourceUploadJobChangeRequest::PHAssetResourceUploadJobChangeRequest;
+#[cfg(feature = "PHAssetResourceUploadJobOptions")]
+pub use self::__PHAssetResourceUploadJobOptions::PHAssetResourceUploadJobOptions;
 #[cfg(feature = "PHChange")]
 pub use self::__PHChange::PHChange;
 #[cfg(all(feature = "PHChange", feature = "PHObject"))]

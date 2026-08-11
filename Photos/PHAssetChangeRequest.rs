@@ -52,6 +52,7 @@ impl PHAssetChangeRequest {
         pub unsafe fn placeholderForCreatedAsset(&self) -> Option<Retained<PHObjectPlaceholder>>;
 
         #[cfg(feature = "PhotosTypes")]
+        /// The rating for this asset
         #[unsafe(method(rating))]
         #[unsafe(method_family = none)]
         pub unsafe fn rating(&self) -> PHAssetRating;

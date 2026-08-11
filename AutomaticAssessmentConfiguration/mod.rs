@@ -28,61 +28,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication?language=objc)
-    #[unsafe(super(NSObject))]
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct AEAssessmentApplication;
-);
-
-extern_conformance!(
-    unsafe impl NSCopying for AEAssessmentApplication {}
-);
-
-unsafe impl CopyingHelper for AEAssessmentApplication {
-    type Result = Self;
-}
-
-extern_conformance!(
-    unsafe impl NSObjectProtocol for AEAssessmentApplication {}
-);
-
-impl AEAssessmentApplication {
-    extern_methods!(
-        #[unsafe(method(bundleIdentifier))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
-
-        #[unsafe(method(teamIdentifier))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn teamIdentifier(&self) -> Option<Retained<NSString>>;
-
-        #[unsafe(method(requiresSignatureValidation))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn requiresSignatureValidation(&self) -> bool;
-
-        /// Setter for [`requiresSignatureValidation`][Self::requiresSignatureValidation].
-        #[unsafe(method(setRequiresSignatureValidation:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setRequiresSignatureValidation(&self, requires_signature_validation: bool);
-
-        #[unsafe(method(initWithBundleIdentifier:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithBundleIdentifier(
-            this: Allocated<Self>,
-            bundle_identifier: &NSString,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithBundleIdentifier:teamIdentifier:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithBundleIdentifier_teamIdentifier(
-            this: Allocated<Self>,
-            bundle_identifier: &NSString,
-            team_identifier: Option<&NSString>,
-        ) -> Retained<Self>;
-    );
-}
-
 /// Identifies an item in the Apple menu.
 ///
 /// Use these constants with ``AEAssessmentConfiguration/allowedAppleMenuItems``
@@ -153,6 +98,194 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsystemsettings?language=objc)
     pub static AEAppleMenuItemSystemSettings: &'static AEAppleMenuItem;
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AEAssessmentApplication;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for AEAssessmentApplication {}
+);
+
+unsafe impl CopyingHelper for AEAssessmentApplication {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AEAssessmentApplication {}
+);
+
+impl AEAssessmentApplication {
+    extern_methods!(
+        #[unsafe(method(bundleIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
+
+        #[unsafe(method(teamIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn teamIdentifier(&self) -> Option<Retained<NSString>>;
+
+        #[unsafe(method(requiresSignatureValidation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiresSignatureValidation(&self) -> bool;
+
+        /// Setter for [`requiresSignatureValidation`][Self::requiresSignatureValidation].
+        #[unsafe(method(setRequiresSignatureValidation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiresSignatureValidation(&self, requires_signature_validation: bool);
+
+        #[unsafe(method(initWithBundleIdentifier:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithBundleIdentifier(
+            this: Allocated<Self>,
+            bundle_identifier: &NSString,
+        ) -> Retained<Self>;
+
+        #[unsafe(method(initWithBundleIdentifier:teamIdentifier:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithBundleIdentifier_teamIdentifier(
+            this: Allocated<Self>,
+            bundle_identifier: &NSString,
+            team_identifier: Option<&NSString>,
+        ) -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// A non-bundled, non-UI executable (e.g. a launchd daemon) designated as an assessment participant
+    /// by its on-disk path.
+    ///
+    /// Use this for a participant that has no bundle identifier and so cannot be expressed as an
+    /// ``AEAssessmentApplication``. It feeds only the app-launch allowlist under
+    /// ``AEAssessmentConfiguration/allowOnlyParticipantsToRun`` and, when its configuration permits,
+    /// network access; UI policies (frontmost app, window server, media, menu bar) do not apply.
+    ///
+    /// Matching is by exact on-disk path. At runtime the executable must also satisfy
+    /// ``requiresSignatureValidation`` (and the team identifier, if set), so a swapped or re-signed
+    /// binary is not silently trusted. Leave ``requiresSignatureValidation`` enabled (the default)
+    /// unless the executable is unsigned.
+    ///
+    /// - SeeAlso: ``AEAssessmentApplication`` for bundled participants.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentbinaryexecutable?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AEAssessmentBinaryExecutable;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for AEAssessmentBinaryExecutable {}
+);
+
+unsafe impl CopyingHelper for AEAssessmentBinaryExecutable {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AEAssessmentBinaryExecutable {}
+);
+
+impl AEAssessmentBinaryExecutable {
+    extern_methods!(
+        /// On-disk path of the executable.
+        #[unsafe(method(binaryExecutableURL))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn binaryExecutableURL(&self) -> Retained<NSURL>;
+
+        /// Team identifier the running executable's signature must match, or `nil` to skip the team check.
+        #[unsafe(method(teamIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn teamIdentifier(&self) -> Option<Retained<NSString>>;
+
+        /// Whether the running executable's code signature is validated. Defaults to `YES`.
+        #[unsafe(method(requiresSignatureValidation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiresSignatureValidation(&self) -> bool;
+
+        /// Setter for [`requiresSignatureValidation`][Self::requiresSignatureValidation].
+        #[unsafe(method(setRequiresSignatureValidation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiresSignatureValidation(&self, requires_signature_validation: bool);
+
+        #[unsafe(method(initWithBinaryExecutableURL:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithBinaryExecutableURL(
+            this: Allocated<Self>,
+            binary_executable_url: &NSURL,
+        ) -> Retained<Self>;
+
+        #[unsafe(method(initWithBinaryExecutableURL:teamIdentifier:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithBinaryExecutableURL_teamIdentifier(
+            this: Allocated<Self>,
+            binary_executable_url: &NSURL,
+            team_identifier: Option<&NSString>,
+        ) -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// The configuration applied to an ``AEAssessmentBinaryExecutable`` participant.
+    ///
+    /// A non-bundled executable (such as a launchd daemon) is headless, so it supports only the subset of
+    /// participant policies that apply to a process without UI: network access and whether the assessment
+    /// requires it. The UI-oriented policies of ``AEAssessmentParticipantConfiguration`` (allowed menu items,
+    /// graceful termination) do not apply.
+    ///
+    /// - SeeAlso: ``AEAssessmentBinaryExecutable``, ``AEAssessmentParticipantConfiguration``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentbinaryexecutableconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AEAssessmentBinaryExecutableConfiguration;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for AEAssessmentBinaryExecutableConfiguration {}
+);
+
+unsafe impl CopyingHelper for AEAssessmentBinaryExecutableConfiguration {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AEAssessmentBinaryExecutableConfiguration {}
+);
+
+impl AEAssessmentBinaryExecutableConfiguration {
+    extern_methods!(
+        /// Whether the executable may access the network during an assessment. Defaults to `YES`.
+        #[unsafe(method(allowsNetworkAccess))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsNetworkAccess(&self) -> bool;
+
+        /// Setter for [`allowsNetworkAccess`][Self::allowsNetworkAccess].
+        #[unsafe(method(setAllowsNetworkAccess:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsNetworkAccess(&self, allows_network_access: bool);
+
+        /// Whether the assessment requires this executable. Defaults to `NO`.
+        #[unsafe(method(isRequired))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isRequired(&self) -> bool;
+
+        /// Setter for [`isRequired`][Self::isRequired].
+        #[unsafe(method(setRequired:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequired(&self, required: bool);
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritem?language=objc)
@@ -299,8 +432,12 @@ extern_class!(
     /// - ``setConfiguration(_:for:)``
     /// - ``configurationsByApplication``
     /// - ``remove(_:)``
+    /// - ``setConfiguration(_:for:)-(AEAssessmentBinaryExecutableConfiguration,_)``
+    /// - ``configurationsByBinaryExecutable``
+    /// - ``removeBinaryExecutable(_:)``
     /// - ``mainParticipantConfiguration``
     /// - ``AEAssessmentApplication``
+    /// - ``AEAssessmentBinaryExecutable``
     /// - ``AEAssessmentParticipantConfiguration``
     ///
     /// ### Allowing accessibility
@@ -342,6 +479,10 @@ extern_class!(
     /// ### Allowing content capture
     ///
     /// - ``allowsScreenshots``
+    ///
+    /// ### Controlling force quit
+    ///
+    /// - ``allowsForceQuit``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -558,8 +699,7 @@ impl AEAssessmentConfiguration {
 
         /// A Boolean value that indicates whether to allow the speech-related accessibility features during an assessment.
         ///
-        /// - Important: This property is deprecated. Use ``AEAssessmentConfiguration/allowsAccessibilitySpokenContent``
-        /// instead.
+        /// - Important: This property is deprecated. Use ``AEAssessmentConfiguration/allowsAccessibilitySpokenContent`` instead.
         #[deprecated]
         #[unsafe(method(allowsAccessibilitySpeech))]
         #[unsafe(method_family = none)]
@@ -749,6 +889,20 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsStructuralInput(&self, allows_structural_input: bool);
 
+        /// A Boolean value that indicates whether to allow force quitting apps during an assessment.
+        ///
+        /// Users can force quit apps by pressing Shift-Option-Command-Escape to force quit the frontmost app. An assessment session disables force quit by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsForceQuit`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        ///
+        /// - Note: This property controls only the force quit keyboard shortcuts. Setting it to `false` does not remove the Force Quit item from the Apple menu. Use ``AEAssessmentConfiguration/allowedAppleMenuItems`` to configure the allowed Apple menu items.
+        #[unsafe(method(allowsForceQuit))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsForceQuit(&self) -> bool;
+
+        /// Setter for [`allowsForceQuit`][Self::allowsForceQuit].
+        #[unsafe(method(setAllowsForceQuit:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsForceQuit(&self, allows_force_quit: bool);
+
         /// The set of allowed directories and files that participants can access during an assessment.
         ///
         /// By default, participants have restricted file system access. Use this property to specify file URLs to directories and files that should be accessible during the assessment session.
@@ -867,6 +1021,23 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowPrivateRelay(&self, allow_private_relay: bool);
 
+        /// A Boolean value that indicates whether the assessment allows running inside a virtual machine.
+        ///
+        /// When set to `false`, the assessment session will only start if the device is not a virtual machine. This requirement is not enforced by default; virtual machines are allowed unless you opt out.
+        ///
+        /// > Important: This check is advisory, not a security guarantee. Setting `allowVirtualMachine` to `false` may not block an assessment session in every virtualized environment. Use this property to steer proctored exams toward physical hardware; it doesn't provide a cryptographic attestation that the session is running on a physical machine.
+        ///
+        /// For stronger assurances about the runtime environment, pair this property with
+        /// [App Attest](https://developer.apple.com/documentation/DeviceCheck) on macOS.
+        #[unsafe(method(allowVirtualMachine))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowVirtualMachine(&self) -> bool;
+
+        /// Setter for [`allowVirtualMachine`][Self::allowVirtualMachine].
+        #[unsafe(method(setAllowVirtualMachine:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowVirtualMachine(&self, allow_virtual_machine: bool);
+
         /// A Boolean value that indicates whether the device must be managed to start an assessment.
         ///
         /// When set to `true`, the assessment session will only start if the device is enrolled in a Mobile Device Management (MDM) solution. This requirement is disabled by default.
@@ -881,16 +1052,11 @@ impl AEAssessmentConfiguration {
 
         /// A Boolean value that indicates whether System Integrity Protection (SIP) must be enabled to start an assessment.
         ///
-        /// When set to `true`, the assessment session will only start if System Integrity Protection is enabled on the device.
-        /// This requirement is disabled by default.
+        /// When set to `true`, the assessment session will only start if System Integrity Protection is enabled on the device. This requirement is disabled by default.
         ///
-        /// > Important: This check is advisory, not a security guarantee. The framework can't reliably detect whether SIP is
-        /// enabled on systems where the user has administrator privileges, so setting `requiresSIP` to `true` may not block an
-        /// assessment session when SIP is in fact disabled. Use this property to prompt users to re-enable SIP if they turned
-        /// it off for unrelated reasons; it doesn't indicate whether the system was modified while SIP was previously disabled.
+        /// > Important: This check is advisory, not a security guarantee. The framework can't reliably detect whether SIP is enabled on systems where the user has administrator privileges, so setting `requiresSIP` to `true` may not block an assessment session when SIP is in fact disabled. Use this property to prompt users to re-enable SIP if they turned it off for unrelated reasons; it doesn't indicate whether the system was modified while SIP was previously disabled.
         ///
-        /// For stronger assurances that SIP is enabled, pair this property with
-        /// [App Attest](https://developer.apple.com/documentation/DeviceCheck) on macOS.
+        /// For stronger assurances that SIP is enabled, pair this property with [App Attest](https://developer.apple.com/documentation/DeviceCheck) on macOS.
         #[unsafe(method(requiresSIP))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSIP(&self) -> bool;
@@ -902,8 +1068,7 @@ impl AEAssessmentConfiguration {
 
         /// A Boolean value that indicates whether only a single user account must be logged in to start an assessment.
         ///
-        /// When set to `true`, the assessment session will only start if there is exactly one user account logged in on the
-        /// device. This requirement is disabled by default.
+        /// When set to `true`, the assessment session will only start if there is exactly one user account logged in on the device. This requirement is disabled by default.
         #[unsafe(method(requiresSingleUser))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSingleUser(&self) -> bool;
@@ -991,6 +1156,45 @@ impl AEAssessmentConfiguration {
         #[unsafe(method(removeApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeApplication(&self, application: &AEAssessmentApplication);
+
+        /// The collection of executable participants available during an assessment, along with their associated configurations.
+        ///
+        /// Add executables with ``AEAssessmentConfiguration/setConfiguration(_:for:)-(AEAssessmentBinaryExecutableConfiguration,_)`` and remove them with ``AEAssessmentConfiguration/removeBinaryExecutable(_:)``.
+        ///
+        /// - SeeAlso: ``AEAssessmentBinaryExecutable``
+        #[unsafe(method(configurationsByBinaryExecutable))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configurationsByBinaryExecutable(
+            &self,
+        ) -> Retained<
+            NSDictionary<AEAssessmentBinaryExecutable, AEAssessmentBinaryExecutableConfiguration>,
+        >;
+
+        /// Adds an executable participant to the list of participants available during an assessment.
+        ///
+        /// - Parameters:
+        /// - configuration: The configuration of the executable participant.
+        /// - binaryExecutable: The executable that you want to configure.
+        ///
+        /// - SeeAlso: ``AEAssessmentBinaryExecutable``
+        #[unsafe(method(setConfiguration:forBinaryExecutable:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setConfiguration_forBinaryExecutable(
+            &self,
+            configuration: &AEAssessmentBinaryExecutableConfiguration,
+            binary_executable: &AEAssessmentBinaryExecutable,
+        );
+
+        /// Removes the availability of a previously added executable participant.
+        ///
+        /// - Parameters:
+        /// - binaryExecutable: The executable that you want to remove from the list of allowed participants.
+        #[unsafe(method(removeBinaryExecutable:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn removeBinaryExecutable(
+            &self,
+            binary_executable: &AEAssessmentBinaryExecutable,
+        );
     );
 }
 

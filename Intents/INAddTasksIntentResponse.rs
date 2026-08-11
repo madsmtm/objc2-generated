@@ -9,21 +9,28 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode?language=objc)
 // NS_ENUM
+#[deprecated = "INAddTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAddTasksIntentResponseCode(pub NSInteger);
 impl INAddTasksIntentResponseCode {
     #[doc(alias = "INAddTasksIntentResponseCodeUnspecified")]
+    #[deprecated = "INAddTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unspecified: Self = Self(0);
     #[doc(alias = "INAddTasksIntentResponseCodeReady")]
+    #[deprecated = "INAddTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Ready: Self = Self(1);
     #[doc(alias = "INAddTasksIntentResponseCodeInProgress")]
+    #[deprecated = "INAddTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const InProgress: Self = Self(2);
     #[doc(alias = "INAddTasksIntentResponseCodeSuccess")]
+    #[deprecated = "INAddTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Success: Self = Self(3);
     #[doc(alias = "INAddTasksIntentResponseCodeFailure")]
+    #[deprecated = "INAddTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Failure: Self = Self(4);
     #[doc(alias = "INAddTasksIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INAddTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 
@@ -40,6 +47,7 @@ extern_class!(
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]
+    #[deprecated = "INAddTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INAddTasksIntentResponse;
 );
 
@@ -73,6 +81,7 @@ impl INAddTasksIntentResponse {
     extern_methods!(
         // -init (unavailable)
 
+        #[deprecated = "INAddTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithCode:userActivity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCode_userActivity(
@@ -81,11 +90,13 @@ impl INAddTasksIntentResponse {
             user_activity: Option<&NSUserActivity>,
         ) -> Retained<Self>;
 
+        #[deprecated = "INAddTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(code))]
         #[unsafe(method_family = none)]
         pub unsafe fn code(&self) -> INAddTasksIntentResponseCode;
 
         #[cfg(feature = "INTaskList")]
+        #[deprecated = "INAddTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(modifiedTaskList))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifiedTaskList(&self) -> Option<Retained<INTaskList>>;
@@ -94,11 +105,13 @@ impl INAddTasksIntentResponse {
         /// Setter for [`modifiedTaskList`][Self::modifiedTaskList].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "INAddTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(setModifiedTaskList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifiedTaskList(&self, modified_task_list: Option<&INTaskList>);
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INAddTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(addedTasks))]
         #[unsafe(method_family = none)]
         pub unsafe fn addedTasks(&self) -> Option<Retained<NSArray<INTask>>>;
@@ -107,6 +120,7 @@ impl INAddTasksIntentResponse {
         /// Setter for [`addedTasks`][Self::addedTasks].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "INAddTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(setAddedTasks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAddedTasks(&self, added_tasks: Option<&NSArray<INTask>>);

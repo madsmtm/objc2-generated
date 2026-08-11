@@ -11,6 +11,7 @@ extern_class!(
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]
+    #[deprecated = "INNotebookItemTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INNotebookItemTypeResolutionResult;
 );
 
@@ -23,12 +24,14 @@ extern_conformance!(
 impl INNotebookItemTypeResolutionResult {
     extern_methods!(
         #[cfg(feature = "INNotebookItemType")]
+        #[deprecated = "INNotebookItemTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedNotebookItemType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedNotebookItemType(
             resolved_notebook_item_type: INNotebookItemType,
         ) -> Retained<Self>;
 
+        #[deprecated = "INNotebookItemTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(disambiguationWithNotebookItemTypesToDisambiguate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disambiguationWithNotebookItemTypesToDisambiguate(
@@ -36,6 +39,7 @@ impl INNotebookItemTypeResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INNotebookItemType")]
+        #[deprecated = "INNotebookItemTypeResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithNotebookItemTypeToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithNotebookItemTypeToConfirm(

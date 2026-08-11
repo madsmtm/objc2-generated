@@ -10,7 +10,11 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmm?language=objc)
+/// A reference to a Color Management Module (CMM).
+///
+/// This type is a lightweight wrapper around a Core Foundation bundle.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmm?language=objc)
 #[doc(alias = "ColorSyncCMMRef")]
 #[repr(C)]
 pub struct ColorSyncCMM {
@@ -27,6 +31,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for ColorSyncCMM {
+    /// Returns the `CFTypeID` for `ColorSyncCMM`s.
     #[doc(alias = "ColorSyncCMMGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,6 +43,10 @@ unsafe impl ConcreteType for ColorSyncCMM {
 }
 
 impl ColorSyncCMM {
+    /// Creates a CMM object from a CMM bundle.
+    ///
+    /// - Parameter cmmBundle: The bundle containing the CMM.
+    /// - Returns: A new ``ColorSyncCMMRef``, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncCMMCreate")]
     #[inline]
     pub unsafe fn new(cmm_bundle: &CFBundle) -> Option<CFRetained<ColorSyncCMM>> {
@@ -48,6 +57,9 @@ impl ColorSyncCMM {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the bundle associated with a CMM.
+    ///
+    /// - Returns: The `CFBundleRef` for the CMM, or `NULL` for the built-in Apple CMM.
     #[doc(alias = "ColorSyncCMMGetBundle")]
     #[inline]
     pub unsafe fn bundle(&self) -> Option<CFRetained<CFBundle>> {
@@ -58,6 +70,11 @@ impl ColorSyncCMM {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Copies the localized name of a CMM.
+    ///
+    /// Use this function to get the name of the built-in CMM.
+    ///
+    /// - Returns: The localized name of the CMM.
     #[doc(alias = "ColorSyncCMMCopyLocalizedName")]
     #[inline]
     pub unsafe fn localized_name(&self) -> Option<CFRetained<CFString>> {
@@ -68,6 +85,11 @@ impl ColorSyncCMM {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Copies the identifier of a CMM.
+    ///
+    /// Use this function to get the identifier of the built-in CMM.
+    ///
+    /// - Returns: The identifier of the CMM.
     #[doc(alias = "ColorSyncCMMCopyCMMIdentifier")]
     #[inline]
     pub unsafe fn cmm_identifier(&self) -> Option<CFRetained<CFString>> {
@@ -79,10 +101,24 @@ impl ColorSyncCMM {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmiteratecallback?language=objc)
+/// A callback that the framework invokes for each installed CMM during iteration.
+///
+/// Return `false` to stop the iteration.
+///
+/// - Parameters:
+/// - cmm: The CMM for this iteration step.
+/// - userInfo: The user info passed to the iteration function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmiteratecallback?language=objc)
 pub type ColorSyncCMMIterateCallback =
     unsafe extern "C-unwind" fn(&ColorSyncCMM, NonNull<c_void>) -> bool;
 
+/// Iterates over the installed CMMs, invoking a callback for each one.
+///
+/// - Parameters:
+/// - callBack: A pointer to a client-provided function.
+/// - userInfo: A pointer to the user info that the framework passes to the callback. Optional.
+///
 /// # Safety
 ///
 /// - `call_back` must be implemented correctly.
@@ -101,17 +137,23 @@ pub unsafe fn ColorSyncIterateInstalledCMMs(
     unsafe { ColorSyncIterateInstalledCMMs(call_back, user_info) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializelinkprofileproc?language=objc)
+/// A function a CMM provider implements to initialize a device-link profile.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializelinkprofileproc?language=objc)
 #[cfg(feature = "ColorSyncProfile")]
 pub type CMMInitializeLinkProfileProc =
     unsafe extern "C-unwind" fn(&ColorSyncMutableProfile, &CFArray, Option<&CFDictionary>) -> bool;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializetransformproc?language=objc)
+/// A function a CMM provider implements to initialize a color transform.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializetransformproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
 pub type CMMInitializeTransformProc =
     unsafe extern "C-unwind" fn(&ColorSyncTransform, &CFArray, Option<&CFDictionary>) -> bool;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmmapplytransformproc?language=objc)
+/// A function a CMM provider implements to apply a color transform to image data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmmapplytransformproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
 pub type CMMApplyTransformProc = unsafe extern "C-unwind" fn(
     &ColorSyncTransform,
@@ -130,7 +172,9 @@ pub type CMMApplyTransformProc = unsafe extern "C-unwind" fn(
     Option<&CFDictionary>,
 ) -> bool;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmmcreatetransformpropertyproc?language=objc)
+/// A function a CMM provider implements to create a transform property for a given key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmmcreatetransformpropertyproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
 pub type CMMCreateTransformPropertyProc = unsafe extern "C-unwind" fn(
     Option<&ColorSyncTransform>,
@@ -139,21 +183,29 @@ pub type CMMCreateTransformPropertyProc = unsafe extern "C-unwind" fn(
 ) -> *const CFType;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmminitializelinkprofileprocname?language=objc)
+    /// The CMM bundle info-dictionary key whose value is the name of the function that initializes a device-link profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmminitializelinkprofileprocname?language=objc)
     pub static kCMMInitializeLinkProfileProcName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmminitializetransformprocname?language=objc)
+    /// The CMM bundle info-dictionary key whose value is the name of the function that initializes a color transform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmminitializetransformprocname?language=objc)
     pub static kCMMInitializeTransformProcName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmmapplytransformprocname?language=objc)
+    /// The CMM bundle info-dictionary key whose value is the name of the function that applies a color transform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmmapplytransformprocname?language=objc)
     pub static kCMMApplyTransformProcName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmmcreatetransformpropertyprocname?language=objc)
+    /// The CMM bundle info-dictionary key whose value is the name of the function that creates a transform property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmmcreatetransformpropertyprocname?language=objc)
     pub static kCMMCreateTransformPropertyProcName: &'static CFString;
 }

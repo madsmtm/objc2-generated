@@ -162,6 +162,13 @@ impl VTLowLatencySuperResolutionScalerConfiguration {
         pub unsafe fn isSupported() -> bool;
 
         #[cfg(feature = "objc2-foundation")]
+        /// Reports the set of supported scale factors to use when initializing a low latency super-resolution scaler configuration.
+        /// Note: not all scale factors are available for all source dimensions.
+        #[unsafe(method(supportedScaleFactors))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportedScaleFactors() -> Retained<NSArray<NSNumber>>;
+
+        #[cfg(feature = "objc2-foundation")]
         /// Returns an array of supported scale factors values, or an empty list if the processor doesn't support the dimensions.
         #[unsafe(method(supportedScaleFactorsForFrameWidth:frameHeight:))]
         #[unsafe(method_family = none)]
@@ -169,6 +176,30 @@ impl VTLowLatencySuperResolutionScalerConfiguration {
             frame_width: NSInteger,
             frame_height: NSInteger,
         ) -> Retained<NSArray<NSNumber>>;
+
+        /// The maximum value for either dimension of the source frame, in pixels, for a given spatial scale factor.
+        ///
+        /// Both `frameWidth` and `frameHeight` must be less than or equal to this value.
+        /// Use in conjunction with ``maximumPixelCountForSpatialScaleFactor:`` to determine valid frame dimensions.
+        /// For example, if ``maximumDimensionForSpatialScaleFactor:`` is 1920 and ``maximumPixelCountForSpatialScaleFactor:``
+        /// corresponds to 1920×1080, then 1920×1080, 1080×1920, and 1440×1440 are all valid, but 1920×1920 is not.
+        /// Returns `0` if an unsupported scale factor is provided or if processor is unsupported.
+        #[unsafe(method(maximumDimensionForSpatialScaleFactor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumDimensionForSpatialScaleFactor(
+            spatial_scale_factor: c_float,
+        ) -> NSInteger;
+
+        /// The maximum total number of pixels in the source frame for a given spatial scale factor.
+        ///
+        /// The product of `frameWidth` and `frameHeight` must be less than or equal to this value.
+        /// Use in conjunction with ``maximumDimensionForSpatialScaleFactor:`` to determine valid frame dimensions.
+        /// Returns `0` if an unsupported scale factor is provided or if processor is unsupported.
+        #[unsafe(method(maximumPixelCountForSpatialScaleFactor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumPixelCountForSpatialScaleFactor(
+            spatial_scale_factor: c_float,
+        ) -> NSInteger;
     );
 }
 

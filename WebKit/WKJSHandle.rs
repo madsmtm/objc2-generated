@@ -30,6 +30,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkjshandle?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKJSHandle;
 );
@@ -53,21 +54,21 @@ impl WKJSHandle {
         // -init (unavailable)
 
         #[cfg(feature = "WKFrameInfo")]
-        /// The frame in which the `WKJSHandle` can be used.
+        /// The frame from which the `WKJSHandle` originates and where it can be used.
         ///
         /// If the `WKJSHandle` is used as an argument to JavaScript in another frame or after the indicated frame has navigated,
         /// it will be interpreted as the JavaScript value `undefined`.
-        #[unsafe(method(frame))]
+        #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frame(&self, mtm: MainThreadMarker) -> Retained<WKFrameInfo>;
+        pub unsafe fn sourceFrame(&self) -> Retained<WKFrameInfo>;
 
         #[cfg(feature = "WKContentWorld")]
         /// The world in which the `WKJSHandle` can be used.
         ///
         /// If the `WKJSHandle` is used in another world it will be interpreted as the JavaScript value `undefined`.
-        #[unsafe(method(world))]
+        #[unsafe(method(contentWorld))]
         #[unsafe(method_family = none)]
-        pub unsafe fn world(&self, mtm: MainThreadMarker) -> Option<Retained<WKContentWorld>>;
+        pub unsafe fn contentWorld(&self) -> Option<Retained<WKContentWorld>>;
 
         #[cfg(all(feature = "WKFrameInfo", feature = "block2"))]
         /// The frame represented by the JavaScript value.
@@ -75,11 +76,11 @@ impl WKJSHandle {
         /// If the `WKJSHandle` represents a JavaScript Window proxy object, the result of this method will be a snapshot of the
         /// frame represented by that Window object.
         /// Otherwise the result of this method will be `nil`
-        #[unsafe(method(windowProxyFrameInfo:))]
+        #[unsafe(method(getWindowProxyFrameWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowProxyFrameInfo(
+        pub unsafe fn getWindowProxyFrameWithCompletionHandler(
             &self,
-            completion_handler: &block2::SendableBlock<'static, fn(*mut WKFrameInfo)>,
+            completion_handler: &block2::Block<'static, fn(*mut WKFrameInfo)>,
         );
     );
 }

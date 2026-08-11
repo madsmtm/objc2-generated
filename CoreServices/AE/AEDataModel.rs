@@ -16,51 +16,87 @@ pub type AEKeyword = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeboolean?language=objc)
 pub const typeBoolean: DescType = 0x626f6f6c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typechar?language=objc)
+/// Deprecated, use typeUTF8Text instead.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typechar?language=objc)
 pub const typeChar: DescType = 0x54455854;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typestyledunicodetext?language=objc)
+/// Not implemented
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typestyledunicodetext?language=objc)
 pub const typeStyledUnicodeText: DescType = 0x73757478;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeencodedstring?language=objc)
+/// Not implemented
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeencodedstring?language=objc)
 pub const typeEncodedString: DescType = 0x656e6373;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeunicodetext?language=objc)
 pub const typeUnicodeText: DescType = 0x75747874;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typecstring?language=objc)
+/// MacRoman characters followed by a NULL byte
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typecstring?language=objc)
 pub const typeCString: DescType = 0x63737472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typepstring?language=objc)
+/// Unsigned length byte followed by MacRoman characters
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typepstring?language=objc)
 pub const typePString: DescType = 0x70737472;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeutf16externalrepresentation?language=objc)
+/// big-endian 16 bit unicode with optional byte-order-mark, or little-endian 16 bit unicode with required byte-order-mark.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeutf16externalrepresentation?language=objc)
 pub const typeUTF16ExternalRepresentation: DescType = 0x75743136;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeutf8text?language=objc)
+/// 8 bit unicode
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeutf8text?language=objc)
 pub const typeUTF8Text: DescType = 0x75746638;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typesint16?language=objc)
+/// SInt16 : signed, 16 bit integer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typesint16?language=objc)
 pub const typeSInt16: DescType = 0x73686f72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeuint16?language=objc)
+/// UInt16 : unsigned, 16 bit integer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeuint16?language=objc)
 pub const typeUInt16: DescType = 0x75736872;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typesint32?language=objc)
+/// SInt32 : signed, 32 bit integer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typesint32?language=objc)
 pub const typeSInt32: DescType = 0x6c6f6e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeuint32?language=objc)
+/// UInt32 : unsigned, 32 bit integer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeuint32?language=objc)
 pub const typeUInt32: DescType = 0x6d61676e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typesint64?language=objc)
+/// SInt64 : signed, 64 bit integer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typesint64?language=objc)
 pub const typeSInt64: DescType = 0x636f6d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeuint64?language=objc)
+/// UInt64 : unsigned, 64 bit integer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeuint64?language=objc)
 pub const typeUInt64: DescType = 0x75636f6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeieee32bitfloatingpoint?language=objc)
+/// float
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeieee32bitfloatingpoint?language=objc)
 pub const typeIEEE32BitFloatingPoint: DescType = 0x73696e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeieee64bitfloatingpoint?language=objc)
+/// double
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeieee64bitfloatingpoint?language=objc)
 pub const typeIEEE64BitFloatingPoint: DescType = 0x646f7562;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/type128bitfloatingpoint?language=objc)
 pub const type128BitFloatingPoint: DescType = 0x6c64626c;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typedecimalstruct?language=objc)
 pub const typeDecimalStruct: DescType = 0x6465636d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeaelist?language=objc)
+/// An AEList descriptor type, created with AECreateList( , , isRecord = false, )
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeaelist?language=objc)
 pub const typeAEList: DescType = 0x6c697374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeaerecord?language=objc)
+/// An AERecord descriptor type, created with AECreateList( , , isRecord = true, )
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeaerecord?language=objc)
 pub const typeAERecord: DescType = 0x7265636f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeappleevent?language=objc)
+/// An AppleEvent descriptor type, created with AECreateAppleEvent()
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeappleevent?language=objc)
 pub const typeAppleEvent: DescType = 0x61657674;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeeventrecord?language=objc)
 pub const typeEventRecord: DescType = 0x65767263;
@@ -68,39 +104,59 @@ pub const typeEventRecord: DescType = 0x65767263;
 pub const typeTrue: DescType = 0x74727565;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typefalse?language=objc)
 pub const typeFalse: DescType = 0x66616c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typealias?language=objc)
+/// AliasPtr, from a valid AliasHandle. Deprecated; use typeFileURL or typeBookmark data to refer to files
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typealias?language=objc)
 pub const typeAlias: DescType = 0x616c6973;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeenumerated?language=objc)
 pub const typeEnumerated: DescType = 0x656e756d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typetype?language=objc)
+/// OSType
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typetype?language=objc)
 pub const typeType: DescType = 0x74797065;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeappparameters?language=objc)
 pub const typeAppParameters: DescType = 0x61707061;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeproperty?language=objc)
 pub const typeProperty: DescType = 0x70726f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typefsref?language=objc)
+/// FSRef.  Deprecated; use typeFileURL or typeBookmark data to refer to files in AppleEvents
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typefsref?language=objc)
 pub const typeFSRef: DescType = 0x66737266;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typefileurl?language=objc)
+/// a UTF-8 encoded full path, using native path separators
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typefileurl?language=objc)
 pub const typeFileURL: DescType = 0x6675726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typebookmarkdata?language=objc)
+/// the bytes of a CFURLBookmarkData
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typebookmarkdata?language=objc)
 pub const typeBookmarkData: DescType = 0x626d726b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typekeyword?language=objc)
+/// OSType
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typekeyword?language=objc)
 pub const typeKeyword: DescType = 0x6b657977;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typesectionh?language=objc)
 pub const typeSectionH: DescType = 0x73656374;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typewildcard?language=objc)
 pub const typeWildCard: DescType = 0x2a2a2a2a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeapplsignature?language=objc)
+/// OSType
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeapplsignature?language=objc)
 pub const typeApplSignature: DescType = 0x7369676e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeqdrectangle?language=objc)
+/// Deprecated
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeqdrectangle?language=objc)
 pub const typeQDRectangle: DescType = 0x71647274;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typefixed?language=objc)
 pub const typeFixed: DescType = 0x66697864;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeprocessserialnumber?language=objc)
+/// ProcessSerialNumber
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeprocessserialnumber?language=objc)
 pub const typeProcessSerialNumber: DescType = 0x70736e20;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeapplicationurl?language=objc)
 pub const typeApplicationURL: DescType = 0x6170726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typenull?language=objc)
+/// null or nonexistent data
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typenull?language=objc)
 pub const typeNull: DescType = 0x6e756c6c;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typecfattributedstringref?language=objc)
@@ -131,68 +187,120 @@ pub const typeKernelProcessID: DescType = 0x6b706964;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typemachport?language=objc)
 pub const typeMachPort: DescType = 0x706f7274;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeaudittoken?language=objc)
+/// Mac OS X 10.8, returned as keyAuditTokenAttr and is a typedef audit_token_t
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeaudittoken?language=objc)
 pub const typeAuditToken: DescType = 0x746f6b6e;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeapplicationbundleid?language=objc)
 pub const typeApplicationBundleID: DescType = 0x62756e64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keytransactionidattr?language=objc)
+/// AETransactionID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keytransactionidattr?language=objc)
 pub const keyTransactionIDAttr: AEKeyword = 0x7472616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyreturnidattr?language=objc)
+/// AEReturnID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyreturnidattr?language=objc)
 pub const keyReturnIDAttr: AEKeyword = 0x72746964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyeventclassattr?language=objc)
+/// AEEventClass
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyeventclassattr?language=objc)
 pub const keyEventClassAttr: AEKeyword = 0x6576636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyeventidattr?language=objc)
+/// AEEventID
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyeventidattr?language=objc)
 pub const keyEventIDAttr: AEKeyword = 0x65766964;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaddressattr?language=objc)
 pub const keyAddressAttr: AEKeyword = 0x61646472;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyoptionalkeywordattr?language=objc)
 pub const keyOptionalKeywordAttr: AEKeyword = 0x6f70746b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keytimeoutattr?language=objc)
+/// SInt32
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keytimeoutattr?language=objc)
 pub const keyTimeoutAttr: AEKeyword = 0x74696d6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyinteractlevelattr?language=objc)
+/// this attribute is read only - will be set in AESend
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyinteractlevelattr?language=objc)
 pub const keyInteractLevelAttr: AEKeyword = 0x696e7465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyeventsourceattr?language=objc)
+/// this attribute is read only - returned as typeShortInteger
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyeventsourceattr?language=objc)
 pub const keyEventSourceAttr: AEKeyword = 0x65737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keymissedkeywordattr?language=objc)
+/// this attribute is read only
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keymissedkeywordattr?language=objc)
 pub const keyMissedKeywordAttr: AEKeyword = 0x6d697373;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyoriginaladdressattr?language=objc)
+/// new in 1.0.1
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyoriginaladdressattr?language=objc)
 pub const keyOriginalAddressAttr: AEKeyword = 0x66726f6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaccepttimeoutattr?language=objc)
+/// new for Mac OS X
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaccepttimeoutattr?language=objc)
 pub const keyAcceptTimeoutAttr: AEKeyword = 0x6163746d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyreplyrequestedattr?language=objc)
+/// Was a reply requested for this event - returned as typeBoolean
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyreplyrequestedattr?language=objc)
 pub const keyReplyRequestedAttr: AEKeyword = 0x72657071;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysendereuidattr?language=objc)
+/// read only, returned as typeSInt32.  Will be the euid of the sender of this event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysendereuidattr?language=objc)
 pub const keySenderEUIDAttr: AEKeyword = 0x73656964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderegidattr?language=objc)
+/// read only, returned as typeSInt32.  Will be the egid of the sender of this event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderegidattr?language=objc)
 pub const keySenderEGIDAttr: AEKeyword = 0x73676964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderuidattr?language=objc)
+/// read only, returned as typeSInt32.  Will be the uid of the sender of this event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderuidattr?language=objc)
 pub const keySenderUIDAttr: AEKeyword = 0x75696473;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysendergidattr?language=objc)
+/// read only, returned as typeSInt32.  Will be the gid of the sender of this event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysendergidattr?language=objc)
 pub const keySenderGIDAttr: AEKeyword = 0x67696473;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderpidattr?language=objc)
+/// read only, returned as typeSInt32.  Will be the pid of the sender of this event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderpidattr?language=objc)
 pub const keySenderPIDAttr: AEKeyword = 0x73706964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderaudittokenattr?language=objc)
+/// read only, returned as an audit_token_t.  Will be the audit token of the sender of this event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderaudittokenattr?language=objc)
 pub const keySenderAuditTokenAttr: AEKeyword = 0x746f6b6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderapplescriptentitlementsattr?language=objc)
+/// read only, an AEDesc containing opaque data representing the entitlements held by the sender. Interpreted by sandbox routines.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderapplescriptentitlementsattr?language=objc)
 pub const keySenderApplescriptEntitlementsAttr: AEKeyword = 0x656e746c;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderapplicationidentifierentitlementattr?language=objc)
 pub const keySenderApplicationIdentifierEntitlementAttr: AEKeyword = 0x61696561;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderapplicationsandboxed?language=objc)
+/// read-only, an AEDesc typeBoolean, true if the sender application was in an application sandbox
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysenderapplicationsandboxed?language=objc)
 pub const keySenderApplicationSandboxed: AEKeyword = 0x73737362;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyactualsenderaudittoken?language=objc)
+/// read-only, an AEDesc typeAuditToken of the acual ( possibly over-ridden ) audit token for the sender of this event
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyactualsenderaudittoken?language=objc)
 pub const keyActualSenderAuditToken: AEKeyword = 0x61636174;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugpostheader?language=objc)
+/// headers of the HTTP post we sent - typeChar
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugpostheader?language=objc)
 pub const kAEDebugPOSTHeader: c_int = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugreplyheader?language=objc)
+/// headers returned by the server
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugreplyheader?language=objc)
 pub const kAEDebugReplyHeader: c_int = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugxmlrequest?language=objc)
+/// the XML request we sent
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugxmlrequest?language=objc)
 pub const kAEDebugXMLRequest: c_int = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugxmlresponse?language=objc)
+/// the XML reply from the server
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugxmlresponse?language=objc)
 pub const kAEDebugXMLResponse: c_int = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugxmldebugall?language=objc)
+/// everything!
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedebugxmldebugall?language=objc)
 pub const kAEDebugXMLDebugAll: c_int = -1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksoap1999schema?language=objc)
@@ -202,59 +310,109 @@ pub const kSOAP2001Schema: c_uint = 0x73733031;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyusernameattr?language=objc)
 pub const keyUserNameAttr: AEKeyword = 0x756e616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyuserpasswordattr?language=objc)
+/// not sent with the event
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyuserpasswordattr?language=objc)
 pub const keyUserPasswordAttr: AEKeyword = 0x70617373;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keydisableauthenticationattr?language=objc)
+/// When present and with a non zero value (that is, false, or integer 0),
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keydisableauthenticationattr?language=objc)
 pub const keyDisableAuthenticationAttr: AEKeyword = 0x61757468;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyxmldebuggingattr?language=objc)
+/// a bitfield of specifying which XML debugging data is to be returned with the event
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyxmldebuggingattr?language=objc)
 pub const keyXMLDebuggingAttr: AEKeyword = 0x78646267;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaerpcclass?language=objc)
+/// for outgoing XML events
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaerpcclass?language=objc)
 pub const kAERPCClass: AEKeyword = 0x72706320;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaexmlrpcscheme?language=objc)
+/// event ID: event should be sent to an XMLRPC endpoint
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaexmlrpcscheme?language=objc)
 pub const kAEXMLRPCScheme: AEKeyword = 0x52504332;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesoapscheme?language=objc)
+/// event ID: event should be sent to a SOAP endpoint
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesoapscheme?language=objc)
 pub const kAESOAPScheme: AEKeyword = 0x534f4150;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesharedscripthandler?language=objc)
+/// event ID: handler for incoming XML requests
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesharedscripthandler?language=objc)
 pub const kAESharedScriptHandler: AEKeyword = 0x77736370;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyrpcmethodname?language=objc)
+/// name of the method to call
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyrpcmethodname?language=objc)
 pub const keyRPCMethodName: AEKeyword = 0x6d657468;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyrpcmethodparam?language=objc)
+/// the list (or structure) of parameters
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyrpcmethodparam?language=objc)
 pub const keyRPCMethodParam: AEKeyword = 0x7061726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyrpcmethodparamorder?language=objc)
+/// if a structure, the order of parameters (a list)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyrpcmethodparamorder?language=objc)
 pub const keyRPCMethodParamOrder: AEKeyword = 0x2f6f7264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaepostheaderdata?language=objc)
+/// what we sent to the server
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaepostheaderdata?language=objc)
 pub const keyAEPOSTHeaderData: AEKeyword = 0x70686564;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaereplyheaderdata?language=objc)
+/// what the server sent to us
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaereplyheaderdata?language=objc)
 pub const keyAEReplyHeaderData: AEKeyword = 0x72686564;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaexmlrequestdata?language=objc)
+/// what we sent to the server
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaexmlrequestdata?language=objc)
 pub const keyAEXMLRequestData: AEKeyword = 0x78726571;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaexmlreplydata?language=objc)
+/// what the server sent to us
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaexmlreplydata?language=objc)
 pub const keyAEXMLReplyData: AEKeyword = 0x78726570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyadditionalhttpheaders?language=objc)
+/// list of additional HTTP headers (a list of 2 element lists)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyadditionalhttpheaders?language=objc)
 pub const keyAdditionalHTTPHeaders: AEKeyword = 0x61686564;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapaction?language=objc)
+/// the SOAPAction header (required for SOAP messages)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapaction?language=objc)
 pub const keySOAPAction: AEKeyword = 0x73616374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapmethodnamespace?language=objc)
+/// Optional namespace (defaults to m:)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapmethodnamespace?language=objc)
 pub const keySOAPMethodNameSpace: AEKeyword = 0x6d737063;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapmethodnamespaceuri?language=objc)
+/// Required namespace URI
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapmethodnamespaceuri?language=objc)
 pub const keySOAPMethodNameSpaceURI: AEKeyword = 0x6d737075;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapschemaversion?language=objc)
+/// Optional XML Schema version, defaults to kSOAP1999Schama
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapschemaversion?language=objc)
 pub const keySOAPSchemaVersion: AEKeyword = 0x73736368;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapstructuremetadata?language=objc)
 pub const keySOAPStructureMetaData: AEKeyword = 0x2f736d64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapsmdnamespace?language=objc)
+/// "myNamespace"
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapsmdnamespace?language=objc)
 pub const keySOAPSMDNamespace: AEKeyword = 0x73736e73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapsmdnamespaceuri?language=objc)
+/// "http://myUri.org/xsd"
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapsmdnamespaceuri?language=objc)
 pub const keySOAPSMDNamespaceURI: AEKeyword = 0x73736e75;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapsmdtype?language=objc)
+/// "MyStructType"
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keysoapsmdtype?language=objc)
 pub const keySOAPSMDType: AEKeyword = 0x73737470;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeusehttpproxyattr?language=objc)
+/// a typeBoolean.  Defaults to true.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeusehttpproxyattr?language=objc)
 pub const kAEUseHTTPProxyAttr: c_uint = 0x78757072;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehttpproxyportattr?language=objc)
+/// a typeSInt32
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehttpproxyportattr?language=objc)
 pub const kAEHTTPProxyPortAttr: c_uint = 0x78687470;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehttpproxyhostattr?language=objc)
+/// a typeChar
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehttpproxyhostattr?language=objc)
 pub const kAEHTTPProxyHostAttr: c_uint = 0x78687468;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesocks4protocol?language=objc)
@@ -262,17 +420,29 @@ pub const kAESocks4Protocol: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesocks5protocol?language=objc)
 pub const kAESocks5Protocol: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeusesocksattr?language=objc)
+/// a typeBoolean.  Defaults to true.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeusesocksattr?language=objc)
 pub const kAEUseSocksAttr: c_uint = 0x78736373;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesocksproxyattr?language=objc)
+/// a typeSInt32
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesocksproxyattr?language=objc)
 pub const kAESocksProxyAttr: c_uint = 0x78736f6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesockshostattr?language=objc)
+/// a typeChar
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesockshostattr?language=objc)
 pub const kAESocksHostAttr: c_uint = 0x78736873;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesocksportattr?language=objc)
+/// a typeSInt32
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesocksportattr?language=objc)
 pub const kAESocksPortAttr: c_uint = 0x78736870;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesocksuserattr?language=objc)
+/// a typeChar
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesocksuserattr?language=objc)
 pub const kAESocksUserAttr: c_uint = 0x78736875;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesockspasswordattr?language=objc)
+/// a typeChar
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesockspasswordattr?language=objc)
 pub const kAESocksPasswordAttr: c_uint = 0x78736877;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedesclistfactornone?language=objc)
@@ -282,9 +452,13 @@ pub const kAEDescListFactorType: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedesclistfactortypeandsize?language=objc)
 pub const kAEDescListFactorTypeAndSize: c_uint = 8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kautogeneratereturnid?language=objc)
+/// Pass this to AECreateAppleEvent() to indicate AE should create an unusued return ID for the AppleEvent
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kautogeneratereturnid?language=objc)
 pub const kAutoGenerateReturnID: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kanytransactionid?language=objc)
+/// Use this value when creating an AppleEvent whose transactionID is not related to other AppleEvents that are being sent.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kanytransactionid?language=objc)
 pub const kAnyTransactionID: c_int = 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaqueaedatastoragetype?language=objc)
@@ -304,10 +478,18 @@ unsafe impl RefEncode for OpaqueAEDataStorageType {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedatastoragetype?language=objc)
 pub type AEDataStorageType = *mut OpaqueAEDataStorageType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedatastorage?language=objc)
+/// A pointer to an `AEDataStorageType`, i.e. the type of the `dataHandle` field of an `AEDesc`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedatastorage?language=objc)
 pub type AEDataStorage = *mut AEDataStorageType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedesc?language=objc)
+/// The fundamental unit of the Apple Event data model: a tagged descriptor consisting of a
+/// four-character `descriptorType` and an opaque handle to the data itself. Every value
+/// exchanged in an Apple event — scalars, lists, records, and the event itself — is
+/// represented as an `AEDesc`. Always initialize a descriptor (with `AEInitializeDesc`, or by
+/// zero-filling it) before using it, and dispose of it with `AEDisposeDesc` once you're done.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedesc?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AEDesc {
@@ -329,7 +511,10 @@ unsafe impl RefEncode for AEDesc {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedescptr?language=objc)
 pub type AEDescPtr = *mut AEDesc;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aekeydesc?language=objc)
+/// A single keyword/value pair, as stored in an `AERecord`: `descKey` identifies the
+/// parameter or property, and `descContent` holds its value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aekeydesc?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AEKeyDesc {
@@ -348,34 +533,71 @@ unsafe impl RefEncode for AEKeyDesc {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedesclist?language=objc)
+/// An `AEDesc` whose `descriptorType` is `typeAEList` (or a related list type): an ordered,
+/// unkeyed collection of descriptors. Despite the distinct name, it's structurally just an
+/// `AEDesc` — the type alias exists to document intent at call sites that expect a list.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedesclist?language=objc)
 pub type AEDescList = AEDesc;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aerecord?language=objc)
+/// An `AEDescList` whose elements are each tagged with an `AEKeyword` (i.e. its
+/// `descriptorType` is `typeAERecord` or a related record type): an unordered collection of
+/// keyword/value pairs, accessed with the `AEGetKeyDesc`/`AEPutKeyDesc` family of calls.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aerecord?language=objc)
 pub type AERecord = AEDescList;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeaddressdesc?language=objc)
+/// An `AEDesc` that identifies a target or source process for Apple Event delivery — for
+/// example, by process serial number, bundle/application signature, or Mach port — rather than
+/// holding an application-level value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeaddressdesc?language=objc)
 pub type AEAddressDesc = AEDesc;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/appleevent?language=objc)
+/// An `AERecord` whose `descriptorType` is `typeAppleEvent`: it carries the well-known
+/// attributes that identify an event (event class, event ID, addressing, return ID,
+/// transaction ID, and so on, accessed with `AEGetAttributePtr`/`AEPutAttributePtr`) in
+/// addition to its ordinary keyword-tagged parameters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/appleevent?language=objc)
 pub type AppleEvent = AERecord;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/appleeventptr?language=objc)
+/// A pointer to an `AppleEvent`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/appleeventptr?language=objc)
 pub type AppleEventPtr = *mut AppleEvent;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aereturnid?language=objc)
+/// Identifies a particular AppleEvent so that a reply sent later can be matched back up with
+/// it. Pass `kAutoGenerateReturnID` to `AECreateAppleEvent` to have a fresh, unused ID chosen
+/// automatically.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aereturnid?language=objc)
 pub type AEReturnID = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aetransactionid?language=objc)
+/// Groups a set of related AppleEvents together as parts of a single logical transaction (for
+/// example, several events that must be handled as an atomic unit by the recipient). Pass
+/// `kAnyTransactionID` if the event isn't part of such a group.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aetransactionid?language=objc)
 pub type AETransactionID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventclass?language=objc)
+/// The four-character code identifying an event's class, e.g. `kCoreEventClass` (`'aevt'`).
+/// Together with the `AEEventID`, this determines which installed handler receives the event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventclass?language=objc)
 pub type AEEventClass = FourCharCode;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventid?language=objc)
+/// The four-character code identifying an event within its `AEEventClass`, e.g.
+/// `kAEOpenApplication` (`'oapp'`).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventid?language=objc)
 pub type AEEventID = FourCharCode;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aearraytype?language=objc)
+/// Selects which of the representations in `AEArrayData` is used to store an array's elements
+/// when converting to or from an `AEDescList` with `AEGetArray`/`AEPutArray`. One of
+/// `kAEDataArray`, `kAEPackedArray`, `kAEHandleArray`, `kAEDescArray`, or `kAEKeyDescArray`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aearraytype?language=objc)
 pub type AEArrayType = i8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedataarray?language=objc)
@@ -390,7 +612,12 @@ pub const kAEKeyDescArray: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehandlearray?language=objc)
 pub const kAEHandleArray: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aearraydata?language=objc)
+/// The set of possible in-memory representations for the elements of an array passed to
+/// `AEGetArray`/`AEPutArray`, selected by an `AEArrayType`: a flat C array of fixed-size data
+/// values, a flat array of packed (variable-size) values, an array of `Handle`s, an array of
+/// `AEDesc`s, or an array of `AEKeyDesc`s.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aearraydata?language=objc)
 #[repr(C, packed(2))]
 pub union AEArrayData {
     pub kAEDataArray: core::mem::ManuallyDrop<[i16; 1]>,
@@ -419,7 +646,9 @@ unsafe impl RefEncode for AEArrayData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aearraydatapointer?language=objc)
+/// A pointer to an `AEArrayData`, used as the output buffer parameter of `AEGetArray`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aearraydatapointer?language=objc)
 pub type AEArrayDataPointer = *mut AEArrayData;
 
 /// ************************************************************************
@@ -427,58 +656,107 @@ pub type AEArrayDataPointer = *mut AEArrayData;
 /// strictly part of the data format, but are declared here due to layering.
 /// ************************************************************************
 ///
+/// The relative priority at which a sent event is queued for delivery to its target: at the
+/// end of the queue (`kAENormalPriority`) or at the front (`kAEHighPriority`).
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aesendpriority?language=objc)
 pub type AESendPriority = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenormalpriority?language=objc)
+/// post message at the end of the event queue
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenormalpriority?language=objc)
 pub const kAENormalPriority: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehighpriority?language=objc)
+/// post message at the front of the event queue (same as nAttnMsg)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehighpriority?language=objc)
 pub const kAEHighPriority: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aesendmode?language=objc)
+/// A bitmask of flags passed to `AESend` (and related send calls) controlling reply behavior,
+/// user interaction, and recording while an event is sent — see the `kAE...` constants below.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aesendmode?language=objc)
 pub type AESendMode = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenoreply?language=objc)
+/// sender doesn't want a reply to event
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenoreply?language=objc)
 pub const kAENoReply: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaequeuereply?language=objc)
+/// sender wants a reply but won't wait
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaequeuereply?language=objc)
 pub const kAEQueueReply: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaewaitreply?language=objc)
+/// sender wants a reply and will wait
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaewaitreply?language=objc)
 pub const kAEWaitReply: c_uint = 0x00000003;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedontreconnect?language=objc)
+/// don't reconnect if there is a sessClosedErr from PPCToolbox
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedontreconnect?language=objc)
 pub const kAEDontReconnect: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaewantreceipt?language=objc)
+/// (nReturnReceipt) sender wants a receipt of message
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaewantreceipt?language=objc)
 pub const kAEWantReceipt: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeneverinteract?language=objc)
+/// server should not interact with user
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeneverinteract?language=objc)
 pub const kAENeverInteract: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaecaninteract?language=objc)
+/// server may try to interact with user
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaecaninteract?language=objc)
 pub const kAECanInteract: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaealwaysinteract?language=objc)
+/// server should always interact with user where appropriate
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaealwaysinteract?language=objc)
 pub const kAEAlwaysInteract: c_uint = 0x00000030;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaecanswitchlayer?language=objc)
+/// interaction may switch layer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaecanswitchlayer?language=objc)
 pub const kAECanSwitchLayer: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedontrecord?language=objc)
+/// don't record this event - available only in vers 1.0.1 and greater
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedontrecord?language=objc)
 pub const kAEDontRecord: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedontexecute?language=objc)
+/// don't send the event for recording - available only in vers 1.0.1 and greater
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedontexecute?language=objc)
 pub const kAEDontExecute: c_uint = 0x00002000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeprocessnonreplyevents?language=objc)
+/// allow processing of non-reply events while awaiting synchronous AppleEvent reply
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeprocessnonreplyevents?language=objc)
 pub const kAEProcessNonReplyEvents: c_uint = 0x00008000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedonotautomaticallyaddannotationstoevent?language=objc)
+/// if set, don't automatically add any sandbox or other annotations to the event
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedonotautomaticallyaddannotationstoevent?language=objc)
 pub const kAEDoNotAutomaticallyAddAnnotationsToEvent: c_uint = 0x00010000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedefaulttimeout?language=objc)
+/// timeout value determined by AEM
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedefaulttimeout?language=objc)
 pub const kAEDefaultTimeout: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/knotimeout?language=objc)
+/// wait until reply comes back, however long it takes
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/knotimeout?language=objc)
 pub const kNoTimeOut: c_int = -2;
 
 /// ************************************************************************
 /// These calls are used to set up and modify the coercion dispatch table.
 /// ************************************************************************
 ///
+/// The signature of a descriptor-based coercion handler, installed with
+/// `AEInstallCoercionHandler` (passing `fromTypeIsDesc` as true): given `fromDesc`, produces an
+/// equivalent descriptor of type `toType` in `toDesc`.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoercedescprocptr?language=objc)
 pub type AECoerceDescProcPtr =
     unsafe extern "C-unwind" fn(*const AEDesc, DescType, SRefCon, *mut AEDesc) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoerceptrprocptr?language=objc)
+/// The signature of a pointer-based coercion handler, installed with
+/// `AEInstallCoercionHandler` (passing `fromTypeIsDesc` as false): given a raw pointer/length to
+/// the source data, produces an equivalent descriptor of type `toType` in `result`. The Apple
+/// Event Manager can supply the source data this way more efficiently than as a descriptor.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoerceptrprocptr?language=objc)
 pub type AECoercePtrProcPtr = unsafe extern "C-unwind" fn(
     DescType,
     *const c_void,
@@ -488,10 +766,16 @@ pub type AECoercePtrProcPtr = unsafe extern "C-unwind" fn(
     *mut AEDesc,
 ) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoercedescupp?language=objc)
+/// The `AECoerceDescProcPtr` universal procedure pointer type, for use with
+/// `AEInstallCoercionHandler`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoercedescupp?language=objc)
 pub type AECoerceDescUPP = AECoerceDescProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoerceptrupp?language=objc)
+/// The `AECoercePtrProcPtr` universal procedure pointer type, for use with
+/// `AEInstallCoercionHandler`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoerceptrupp?language=objc)
 pub type AECoercePtrUPP = AECoercePtrProcPtr;
 
 /// # Safety
@@ -619,6 +903,34 @@ pub unsafe fn InvokeAECoercePtrUPP(
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoercionhandlerupp?language=objc)
 pub type AECoercionHandlerUPP = AECoerceDescUPP;
 
+/// Installs a coercion handler in either the application or system coercion handler dispatch table.
+///
+/// Before using AEInstallCoercionHandler to install a handler for a particular descriptor type, you
+/// can use the AEGetCoercionHandler function to determine whether the table already contains a
+/// coercion handler for that type. Version Notes See the Version Notes section for the AECoercePtr
+/// function for information on when to use descriptor-based versus pointer-based coercion handlers
+/// starting in macOS version 10.2. Your application should not install a coercion handler in a
+/// system coercion handler dispatch table with the goal that the handler will get called when other
+/// applications perform coercions - this won't work in macOS. For more information, see "Writing
+/// and Installing Coercion Handlers" in Apple Events Programming Guide.
+///
+/// - Parameters:
+/// - fromType: The descriptor type of the data coerced by the handler.
+/// - toType: The descriptor type of the resulting data. If there was already an entry in the
+/// specified coercion handler table for the same source descriptor type and result descriptor
+/// type, the existing entry is replaced.
+/// - handler: A universal procedure pointer to the coercion handler function to install.
+/// - handlerRefcon: A reference constant. The Apple Event Manager passes this value to the
+/// handler each time it calls it. If your handler doesn't require a reference constant, pass 0
+/// for this parameter.
+/// - fromTypeIsDesc: Specifies the form of the data to coerce. Pass TRUE if the coercion handler
+/// expects the data as a descriptor or FALSE if the coercion handler expects a pointer to the
+/// data. The Apple Event Manager can provide a pointer to data more efficiently than it can
+/// provide a descriptor, so all coercion functions should accept a pointer to data if possible.
+/// - isSysHandler: Specifies the coercion table to add the handler to. Pass TRUE to add the
+/// handler to the system coercion table or FALSE to add the handler to your application's
+/// coercion table. Use of the system coercion table is not recommended.
+///
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
@@ -657,6 +969,19 @@ pub unsafe fn AEInstallCoercionHandler(
     }
 }
 
+/// Removes a coercion handler from a coercion handler dispatch table.
+///
+/// - Parameters:
+/// - fromType: The descriptor type of the data coerced by the handler.
+/// - toType: The descriptor type of the resulting data.
+/// - handler: A universal procedure pointer to the coercion handler to remove. Although the
+/// parameters fromType and toType are sufficient to identify the handler, you can identify the
+/// handler explicitly as a safeguard. If you pass NULL for this parameter, the Apple Event
+/// Manager relies solely on the event class and event ID to identify the handler.
+/// - isSysHandler: Specifies the coercion table to remove the handler from. Pass TRUE to remove
+/// the handler from the system coercion table or FALSE to remove the handler from your
+/// application's coercion table. Use of the system coercion table is not recommended.
+///
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
@@ -680,6 +1005,25 @@ pub unsafe fn AERemoveCoercionHandler(
     unsafe { AERemoveCoercionHandler(from_type, to_type, handler, is_sys_handler) }
 }
 
+/// Gets the coercion handler for a specified descriptor type.
+///
+/// - Parameters:
+/// - fromType: The descriptor type of the data coerced by the handler.
+/// - toType: The descriptor type of the resulting data.
+/// - handler: A universal procedure pointer. On return, a pointer to the specified handler, if a
+/// coercion table entry exists that exactly matches the values supplied in the parameters
+/// fromType and toType. See AECoercionHandlerUPP.
+/// - handlerRefcon: A pointer to a reference constant. On return, the reference constant from the
+/// coercion table entry for the specified coercion handler. The Apple Event Manager passes this
+/// reference constant to the handler each time it calls the handler. The reference constant may
+/// have a value of 0.
+/// - fromTypeIsDesc: A pointer to a Boolean value. The AEGetCoercionHandler function returns a
+/// value of TRUE in this parameter if the coercion handler expects the data as a descriptor or
+/// FALSE, if the coercion handler expects a pointer to the data.
+/// - isSysHandler: Specifies the coercion table to get the handler from. Pass TRUE to get the
+/// handler from the system coercion table or FALSE to get the handler from your application's
+/// coercion table. Use of the system coercion table is not recommended.
+///
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
@@ -723,6 +1067,19 @@ pub unsafe fn AEGetCoercionHandler(
 /// The following calls provide for a coercion interface.
 /// ************************************************************************
 ///
+/// Coerces data to a desired descriptor type and creates a descriptor containing the newly coerced
+/// data.
+///
+/// - Parameters:
+/// - typeCode: The descriptor type of the source data.
+/// - dataPtr: A pointer to the data to coerce.
+/// - dataSize: The length, in bytes, of the data to coerce.
+/// - toType: The desired descriptor type of the resulting descriptor.
+/// - result: A pointer to a descriptor. On successful return, a descriptor containing the coerced
+/// data and matching the descriptor type specified in toType. On error, a null descriptor. If
+/// the function returns successfully, your application should call the AEDisposeDesc function
+/// to dispose of the resulting descriptor after it has finished using it. See AEDesc.
+///
 /// # Safety
 ///
 /// - `data_ptr` must be a valid pointer.
@@ -748,6 +1105,17 @@ pub unsafe fn AECoercePtr(
     unsafe { AECoercePtr(type_code, data_ptr, data_size, to_type, result) }
 }
 
+/// Coerces the data in a descriptor to another descriptor type and creates a descriptor containing
+/// the newly coerced data.
+///
+/// - Parameters:
+/// - theAEDesc: A pointer to the descriptor containing the data to coerce.
+/// - toType: The desired descriptor type of the resulting descriptor.
+/// - result: A pointer to a descriptor. On successful return, a descriptor containing the coerced
+/// data and matching the descriptor type specified in toType. On error, a null descriptor. If
+/// the function returns successfully, your application should call the AEDisposeDesc function
+/// to dispose of the resulting descriptor after it has finished using it.
+///
 /// # Safety
 ///
 /// - `the_ae_desc` struct field `dataHandle` must be a valid pointer.
@@ -776,6 +1144,14 @@ pub unsafe fn AECoerceDesc(
 /// (including disposing) of the descriptors so created.
 /// ************************************************************************
 ///
+/// The function sets the type of the descriptor to typeNull and sets the data handle to NULL.
+///
+/// If you need to initialize a descriptor that already has some data in it, use AEDisposeDesc to
+/// deallocate the memory and initialize the descriptor.
+///
+/// - Parameters:
+/// - desc: A pointer to a new descriptor.
+///
 /// # Safety
 ///
 /// - `desc` struct field `dataHandle` must be a valid pointer.
@@ -788,6 +1164,24 @@ pub unsafe fn AEInitializeDesc(desc: Option<&mut AEDesc>) {
     unsafe { AEInitializeDesc(desc) }
 }
 
+/// Creates a new descriptor that incorporates the specified data.
+///
+/// While it is possible to create an Apple event descriptor or a descriptor list or a descriptor
+/// with the AECreateDesc function (assuming you have access to the raw data for an Apple event,
+/// list, or descriptor), you typically create these structured objects with their specific creation
+/// routines - AECreateAppleEvent, AECreateList, or AECreateDesc.
+///
+/// - Parameters:
+/// - typeCode: The descriptor type for the new descriptor.
+/// - dataPtr: A pointer to the data for the new descriptor. This data is copied into a
+/// newly-allocated block of memory for the descriptor that is created. To minimize copying
+/// overhead, consider using AECreateDescFromExternalPtr.
+/// - dataSize: The length, in bytes, of the data for the new descriptor.
+/// - result: A pointer to a descriptor. On successful return, a descriptor that incorporates the
+/// data specified by the dataPtr parameter. On error, a null descriptor. If the function
+/// returns successfully, your application should call the AEDisposeDesc function to dispose of
+/// the resulting descriptor after it has finished using it.
+///
 /// # Safety
 ///
 /// - `data_ptr` must be a valid pointer.
@@ -811,6 +1205,20 @@ pub unsafe fn AECreateDesc(
     unsafe { AECreateDesc(type_code, data_ptr, data_size, result) }
 }
 
+/// Deallocates the memory used by a descriptor.
+///
+/// The AEDisposeDesc function deallocates the memory used by a descriptor. After calling this
+/// method, the descriptor becomes an empty descriptor with a type of typeNULL. Because all Apple
+/// event structures (except for keyword-specified descriptors) are descriptors, you can use
+/// AEDisposeDesc for any of them. Do not call AEDisposeDesc on a descriptor obtained from another
+/// Apple Event Manager function (such as the reply event from a call to AESend) unless that
+/// function returns successfully. Special Considerations If the AEDesc might contain an OSL token,
+/// dispose of it with AEDisposeToken.
+///
+/// - Parameters:
+/// - theAEDesc: A pointer to the descriptor to deallocate. On return, a null descriptor. If you
+/// pass a null descriptor in this parameter, AEDisposeDesc returns noErr.
+///
 /// # Safety
 ///
 /// - `the_ae_desc` struct field `dataHandle` must be a valid pointer.
@@ -823,6 +1231,24 @@ pub unsafe fn AEDisposeDesc(the_ae_desc: Option<&mut AEDesc>) -> OSErr {
     unsafe { AEDisposeDesc(the_ae_desc) }
 }
 
+/// Creates a copy of a descriptor.
+///
+/// It is common for applications to send Apple events that have one or more attributes or
+/// parameters in common. For example, if you send a series of Apple events to the same application,
+/// the address attribute is the same. In these cases, the most efficient way to create the
+/// necessary Apple events is to make a template Apple event that you can then copy - by calling the
+/// AEDuplicateDesc function - as needed. You then fill in or change the remaining parameters and
+/// attributes of the copy, send the copy by calling the AESend function and, after AESend returns a
+/// result code, dispose of the copy by calling AEDisposeDesc. You can use this approach to prepare
+/// structures of type AEDesc, AEDescList, AERecord, and AppleEvent.
+///
+/// - Parameters:
+/// - theAEDesc: A pointer to the descriptor to duplicate. See AEDesc.
+/// - result: A pointer to a descriptor. On return, the descriptor contains a copy of the
+/// descriptor specified by the theAEDesc parameter. If the function returns successfully, your
+/// application should call the AEDisposeDesc function to dispose of the resulting descriptor
+/// after it has finished using it.
+///
 /// # Safety
 ///
 /// - `the_ae_desc` struct field `dataHandle` must be a valid pointer.
@@ -837,12 +1263,52 @@ pub unsafe fn AEDuplicateDesc(the_ae_desc: Option<&AEDesc>, result: Option<&mut 
     unsafe { AEDuplicateDesc(the_ae_desc, result) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedisposeexternalprocptr?language=objc)
+/// The signature of the callback passed to `AECreateDescFromExternalPtr`, called by the Apple
+/// Event Manager to notify the caller that the external memory block it supplied (`dataPtr`,
+/// `dataLength`) is no longer needed and may be freed or reused.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedisposeexternalprocptr?language=objc)
 pub type AEDisposeExternalProcPtr = unsafe extern "C-unwind" fn(*const c_void, Size, SRefCon);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedisposeexternalupp?language=objc)
+/// The `AEDisposeExternalProcPtr` universal procedure pointer type, for use with
+/// `AECreateDescFromExternalPtr`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedisposeexternalupp?language=objc)
 pub type AEDisposeExternalUPP = AEDisposeExternalProcPtr;
 
+/// Creates a new descriptor that uses a memory buffer supplied by the caller.
+///
+/// This function is different than AECreateDesc, in that it creates a descriptor that uses the data
+/// block provided by the caller "in place," rather than allocate a block of memory and copy the
+/// data to it. This function can provide dramatically improved performance if you're working with
+/// large chunks of data. It attempts to copy the descriptor to the address space of any recipient
+/// process using virtual memory APIs, avoiding an actual memory copy. For example, you might want
+/// to use this function to pass a large image in an Apple event. You can use the AEGetDescDataRange
+/// function to access a specific section of a large block of data.
+///
+/// - Parameters:
+/// - descriptorType: The descriptor type for the new descriptor.
+/// - dataPtr: A pointer to the data for the new descriptor. The memory that is pointed to cannot
+/// be a Handle (which may move in memory), cannot be modified by the caller, and must be
+/// preserved in place (and not freed), until the disposeCallback function is called. If
+/// possible, the descriptor will be mapped into the address space of the recipient using shared
+/// memory, avoiding an actual memory copy. The pointer that is passed in does not need to be
+/// aligned to any particular boundary, but is optimized to transfer data on a page boundary.
+/// You can get the current page size (4096 on all current macOS systems) with the
+/// getpagesize(3) call. (Type man 3 getpagesize in a Terminal window for documentation.)
+/// - dataLength: The length, in bytes, of the data for the new descriptor.
+/// - disposeCallback: A universal procedure pointer to a dispose callback function of type
+/// AEDisposeExternalProcPtr. Your callback function will be called when the block of memory
+/// provided by dataPtr is no longer needed by the Apple Event Manager. The function can be
+/// called at any time, including during creation of the descriptor.
+/// - disposeRefcon: A reference constant the Apple Event Manager passes to the disposeCallback
+/// function whenever it calls the function. If your dispose function doesn't require a
+/// reference constant, pass 0 for this parameter.
+/// - theDesc: A pointer to a descriptor. On successful return, a descriptor that incorporates the
+/// data specified by the dataPtr parameter. On error, a null descriptor. If the function
+/// returns successfully, your application should call the AEDisposeDesc function to dispose of
+/// the resulting descriptor after it has finished using it.
+///
 /// # Safety
 ///
 /// - `data_ptr` must be a valid pointer.
@@ -882,6 +1348,19 @@ pub unsafe fn AECreateDescFromExternalPtr(
     }
 }
 
+/// Compare two AEDesc descriptors and return whether they are identical or not.
+///
+/// - Parameters:
+/// - desc1, desc2: A pointer to an AEDesc to be compared.
+/// - resultP: If non-NULL, on a noErr return will be filled in with true or false indicating
+/// whether the descriptors are equilavent or not. Two descriptors are identical if they are the
+/// same type and have the same data; typeAEList descriptors must contain the same number of
+/// items and every item in each list must itself be identical; typeAERecord descriptors must
+/// contain the same number of keys and values and each key/value must match between the two.
+/// typeAppleEvents match like typeAERecord and also require that most attributes of the two
+/// events are identical.
+/// - Note: Thread safe since macOS 10.8.
+///
 /// # Safety
 ///
 /// - `desc1` struct field `dataHandle` must be a valid pointer.
@@ -913,6 +1392,22 @@ pub unsafe fn AECompareDesc(
 /// maximumSize, but only maximumSize bytes will actually be retrieved.
 /// ************************************************************************
 ///
+/// Creates an empty descriptor list or Apple event record.
+///
+/// - Parameters:
+/// - factoringPtr: A pointer to the data at the beginning of each descriptor that is the same for
+/// all descriptors in the list. If there is no common data, or if you decide not to isolate the
+/// common data, pass NULL as the value of this parameter.
+/// - factoredSize: The size of the common data. If there is no common data, or if you decide not
+/// to isolate the common data, pass 0 as the value of this parameter. (See the Discussion
+/// section for more information.)
+/// - isRecord: A Boolean value that specifies the kind of list to create. Pass a value of TRUE to
+/// create an Apple event record (a data structure of type AERecord) or FALSE to create a
+/// descriptor list.
+/// - resultList: A pointer to a descriptor list variable. On successful return, the descriptor
+/// list or Apple event record that the AECreateList function creates. On error, a null
+/// descriptor. See AEDescList.
+///
 /// # Safety
 ///
 /// - `factoring_ptr` must be a valid pointer.
@@ -937,6 +1432,13 @@ pub unsafe fn AECreateList(
     unsafe { AECreateList(factoring_ptr, factored_size, is_record, result_list) }
 }
 
+/// Counts the number of descriptors in a descriptor list.
+///
+/// - Parameters:
+/// - theAEDescList: A pointer to the descriptor list to count
+/// - theCount: A pointer to a count variable. On return, the number of descriptors in the
+/// specified descriptor list. Currently an AEDescList is limited to 2^31 items.
+///
 /// # Safety
 ///
 /// - `the_ae_desc_list` struct field `dataHandle` must be a valid pointer.
@@ -956,6 +1458,20 @@ pub unsafe fn AECountItems(
     unsafe { AECountItems(the_ae_desc_list, the_count) }
 }
 
+/// Puts data specified in a buffer to a descriptor list as a descriptor, possibly replacing an
+/// existing descriptor in the list.
+///
+/// - Parameters:
+/// - theAEDescList: A pointer to the descriptor list to add a descriptor to. See AEDescList.
+/// - index: A one-based positive integer indicating the position to insert the descriptor at. If
+/// there is already a descriptor in the specified position, it is replaced. You can pass a
+/// value of zero or count + 1 to add the descriptor at the end of the list. AEPutPtr returns an
+/// error (AEIllegalIndex) if you pass a negative number or a value that is out of range.
+/// Currently the upper limit on index is 2^31 items.
+/// - typeCode: The descriptor type for the descriptor to be put into the list.
+/// - dataPtr: A pointer to the data for the descriptor to add.
+/// - dataSize: The length, in bytes, of the data for the descriptor to add.
+///
 /// # Safety
 ///
 /// - `the_ae_desc_list` struct field `dataHandle` must be a valid pointer.
@@ -981,6 +1497,17 @@ pub unsafe fn AEPutPtr(
     unsafe { AEPutPtr(the_ae_desc_list, index, type_code, data_ptr, data_size) }
 }
 
+/// Adds a descriptor to any descriptor list, possibly replacing an existing descriptor in the list.
+///
+/// - Parameters:
+/// - theAEDescList: A pointer to the descriptor list to add a descriptor to. See AEDescList.
+/// - index: A one-based positive integer indicating the position to insert the descriptor at. If
+/// there is already a descriptor in the specified position, it is replaced. You can pass a
+/// value of zero or count + 1 to add the descriptor at the end of the list. AEPutPtr returns an
+/// error (AEIllegalIndex) if you pass a negative number or a value that is out of range.
+/// Currently the upper limit on index is 2^31 items.
+/// - theAEDesc: A pointer to the descriptor to add to the list.
+///
 /// # Safety
 ///
 /// - `the_ae_desc_list` struct field `dataHandle` must be a valid pointer.
@@ -1003,6 +1530,36 @@ pub unsafe fn AEPutDesc(
     unsafe { AEPutDesc(the_ae_desc_list, index, the_ae_desc) }
 }
 
+/// Gets a copy of the data from a descriptor at a specified position in a descriptor list;
+/// typically used when your application needs to work with the extracted data directly.
+///
+/// - Parameters:
+/// - theAEDescList: A pointer to the descriptor list to add a descriptor to. See AEDescList.
+/// - index: A one-based positive integer indicating the position in the descriptor list of the
+/// descriptor to get the data from. AEGetNthPtr returns an error if you pass zero, a negative
+/// number, or a value that is out of range. Currently the upper limit on index is 2^31 items.
+/// - desiredType: The desired descriptor type for the copied data. For a list of AppleScript's
+/// predefined descriptor types. If the descriptor specified by the index parameter is not of
+/// the desired type, AEGetNthPtr attempts to coerce the data to this type. If you pass a value
+/// of typeWildCard, no coercion is performed, and the descriptor type of the copied data is the
+/// same as the descriptor type of the original descriptor.
+/// - theAEKeyword: A pointer to a keyword or NULL. On return, the keyword for the specified
+/// descriptor, if you are getting data from a list of keyword-specified descriptors; otherwise,
+/// AEGetNthPtr returns the value typeWildCard.
+/// - typeCode: A pointer to a descriptor type or NULL. On return, specifies the descriptor type
+/// of the data pointed to by dataPtr.
+/// - dataPtr: A pointer to a buffer, local variable, or other storage location created and
+/// disposed of by your application. The size in bytes must be at least as large as the value
+/// you pass in the maximumSize parameter. On return, contains the data from the descriptor at
+/// the position in the descriptor list specified by the index parameter.
+/// - maximumSize: The maximum length, in bytes, of the expected data. The AEGetNthPtr function
+/// will not return more data than you specify in this parameter.
+/// - actualSize: A pointer to a size variable or NULL. On return, the length, in bytes, of the
+/// data for the specified descriptor. If this value is larger than the value of the maximumSize
+/// parameter, the buffer pointed to by dataPtr was not large enough to contain all of the data
+/// for the descriptor, though AEGetNthPtr does not write beyond the end of the buffer. If the
+/// buffer was too small, you can resize it and call AEGetNthPtr again.
+///
 /// # Safety
 ///
 /// - `the_ae_desc_list` struct field `dataHandle` must be a valid pointer.
@@ -1048,6 +1605,29 @@ pub unsafe fn AEGetNthPtr(
     }
 }
 
+/// Copies a descriptor from a specified position in a descriptor list into a specified descriptor;
+/// typically used when your application needs to pass the extracted data to another function as a
+/// descriptor.
+///
+/// - Parameters:
+/// - theAEDescList: A pointer to the descriptor list to add a descriptor to. See AEDescList.
+/// - index: A one-based positive integer indicating the position in the descriptor list of the
+/// descriptor to get the data from. AEGetNthDesc returns an error if you pass zero, a negative
+/// number, or a value that is out of range. Currently the upper limit on index is 2^31 items.
+/// - desiredType: The desired descriptor type for the copied data. For a list of AppleScript's
+/// predefined descriptor types. If the descriptor specified by the index parameter is not of
+/// the desired type, AEGetNthDesc attempts to coerce the data to this type. If you pass a value
+/// of typeWildCard, no coercion is performed, and the descriptor type of the copied data is the
+/// same as the descriptor type of the original descriptor.
+/// - theAEKeyword: A pointer to a keyword or NULL. On return, the keyword for the specified
+/// descriptor, if you are getting data from a list of keyword-specified descriptors; otherwise,
+/// AEGetNthDesc returns the value typeWildCard.
+/// - result: A pointer to a descriptor. On successful return, a copy of the descriptor specified
+/// by the index parameter, coerced, if necessary, to the descriptor type specified by the
+/// desiredType parameter. On error, a null descriptor. If the function returns successfully,
+/// your application should call the AEDisposeDesc function to dispose of the resulting
+/// descriptor after it has finished using it.
+///
 /// # Safety
 ///
 /// - `the_ae_desc_list` struct field `dataHandle` must be a valid pointer.
@@ -1083,6 +1663,20 @@ pub unsafe fn AEGetNthDesc(
     }
 }
 
+/// Gets the data size and descriptor type of the descriptor at a specified position in a descriptor
+/// list.
+///
+/// - Parameters:
+/// - theAEDescList: A pointer to the descriptor list to add a descriptor to. See AEDescList.
+/// - index: A one-based positive integer indicating the position in the descriptor list of the
+/// descriptor to get the data from. AESizeOfNthItem returns an error if you pass zero, a
+/// negative number, or a value that is out of range. Currently the upper limit on index is 2^31
+/// items.
+/// - typeCode: A pointer to a descriptor type or NULL. On return, specifies the descriptor type
+/// of the descriptor.
+/// - dataSize: A pointer to a size variable or NULL. On return, the length (in bytes) of the data
+/// in the descriptor.
+///
 /// # Safety
 ///
 /// - `the_ae_desc_list` struct field `dataHandle` must be a valid pointer.
@@ -1107,6 +1701,29 @@ pub unsafe fn AESizeOfNthItem(
     unsafe { AESizeOfNthItem(the_ae_desc_list, index, type_code, data_size) }
 }
 
+/// Extracts data from an Apple event array created with the AEPutArray function and stores it as a
+/// standard array of fixed size items in the specified buffer.
+///
+/// - Parameters:
+/// - theAEDescList: A pointer to the descriptor list to add a descriptor to. See AEDescList.
+/// - arrayType: The Apple event array type to convert. Pass one of the constants: kAEDataArray,
+/// kAEPackedArray, kAEDescArray, kAEKeyDescArray
+/// - arrayPtr: A pointer to a buffer, allocated and disposed of by your application, for storing
+/// the array. The size in bytes must be at least as large as the value you pass in the
+/// maximumSize parameter. On return, the buffer contains the array of fixed-size items.
+/// - maximumSize: The maximum length, in bytes, of the expected data. The AEGetArray function
+/// will not return more data than you specify in this parameter.
+/// - itemType: A pointer to a descriptor type. On return, for arrays of type kAEDataArray,
+/// kAEPackedArray, or kAEHandleArray, the descriptor type of the items in the returned array.
+/// The AEGetArray function doesn't supply a value in itemType for arrays of type kAEDescArray
+/// and kAEKeyDescArray because they may contain descriptors of different types.
+/// - itemSize: A pointer to a size variable. On return, for arrays of type kAEDataArray or
+/// kAEPackedArray, the size (in bytes) of each item in the returned array. You don't get an
+/// item size for arrays of type kAEDescArray, kAEKeyDescArray, or kAEHandleArray because
+/// descriptors and handles (though not the data they point to) have a known size.
+/// - itemCount: A pointer to a size variable. On return, the number of items in the returned
+/// array. Currently the upper limit on the size of an array is 2^31 items.
+///
 /// # Safety
 ///
 /// - `the_ae_desc_list` struct field `dataHandle` must be a valid pointer.
@@ -1149,6 +1766,26 @@ pub unsafe fn AEGetArray(
     }
 }
 
+/// Extracts data from an Apple event array created with the AEPutArray function and stores it as a
+/// standard array of fixed size items in the specified buffer.
+///
+/// - Parameters:
+/// - theAEDescList: A pointer to the descriptor list to add a descriptor to. See AEDescList.
+/// - arrayType: The Apple event array type to convert. Pass one of the constants: kAEDataArray,
+/// kAEPackedArray, kAEDescArray, kAEKeyDescArray
+/// - arrayPtr: A pointer to a buffer, local variable, or other storage location, created and
+/// disposed of by your application, that contains the array to put into the descriptor list.
+/// - itemType: For arrays of type kAEDataArray, kAEPackedArray, or kAEHandleArray, the descriptor
+/// type of the array items to create. Use one of the constants such as typeLongInteger. You
+/// don't need to specify an item type for arrays of type kAEDescArray or kAEKeyDescArray
+/// because the data is already stored in descriptors which contain a descriptor type.
+/// - itemSize: For arrays of type kAEDataArray or kAEPackedArray, the size (in bytes) of the
+/// array items to create. You don't need to specify an item size for arrays of type
+/// kAEDescArray, kAEKeyDescArray, or kAEHandleArray because their descriptors (though not the
+/// data they point to) have a known size.
+/// - itemCount: A pointer to a size variable. On return, the number of items in the returned
+/// array. Currently the upper limit on the size of an array is 2^31 items.
+///
 /// # Safety
 ///
 /// - `the_ae_desc_list` struct field `dataHandle` must be a valid pointer.
@@ -1185,6 +1822,15 @@ pub unsafe fn AEPutArray(
     }
 }
 
+/// Deletes a descriptor from a descriptor list, causing all subsequent descriptors to move up one
+/// place.
+///
+/// - Parameters:
+/// - theAEDescList: A pointer to the descriptor list to add a descriptor to. See AEDescList.
+/// - index: A one-based positive integer indicating the position in the descriptor list of the
+/// descriptor to delete. AEDeleteItem returns an error if you pass zero, a negative number, or
+/// a value that is out of range. Currently the upper limit on index is 2^31 items.
+///
 /// # Safety
 ///
 /// - `the_ae_desc_list` struct field `dataHandle` must be a valid pointer.
@@ -1209,6 +1855,12 @@ pub unsafe fn AEDeleteItem(the_ae_desc_list: Option<&mut AEDescList>, index: c_l
 /// check if desc is truly an AERecord
 /// **********************************************************************
 ///
+/// Reports whether `theDesc`'s descriptor type is one that behaves as an `AERecord` — i.e.
+/// whether it's safe to use record/keyed-parameter calls (`AEGetKeyDesc`, `AEPutKeyDesc`, and
+/// so on) on it. This check exists because an `AERecord`'s `descriptorType` isn't required to
+/// be `typeAERecord` — records can carry an arbitrary, application-defined type instead (for
+/// example, an `AppleEvent`'s type is `typeAppleEvent`, not `typeAERecord`).
+///
 /// # Safety
 ///
 /// - `the_desc` struct field `dataHandle` must be a valid pointer.
@@ -1225,6 +1877,38 @@ pub unsafe fn AECheckIsRecord(the_desc: Option<&AEDesc>) -> bool {
 /// ************************************************************************
 /// The following calls create and manipulate the AppleEvent data type.
 /// ************************************************************************
+///
+/// Creates an Apple event with several important attributes but no parameters.
+///
+/// The AECreateAppleEvent function creates an empty Apple event. You can add parameters to the
+/// Apple event after you create it with the functions described in "Adding Parameters and
+/// Attributes to an Apple Event".
+///
+/// - Parameters:
+/// - theAEEventClass: The event class of the Apple event to create. This parameter becomes
+/// accessible through the keyEventClassAttr attribute of the Apple event. Some event classes
+/// are described in "Event Class Constants".
+/// - theAEEventID: The event ID of the Apple event to create. This parameter becomes accessible
+/// through the keyEventIDAttr attribute of the Apple event.
+/// - target: A pointer to an address descriptor. Before calling AECreateAppleEvent, you set the
+/// descriptor to identify the target (or server) application for the Apple event. This
+/// parameter becomes accessible through the keyAddressAttr attribute of the Apple event.
+/// - returnID: The return ID for the created Apple event. If you pass a value of
+/// kAutoGenerateReturnID, the Apple Event Manager assigns the created Apple event a return ID
+/// that is unique to the current session. If you pass any other value, the Apple Event Manager
+/// assigns that value for the ID. This parameter becomes accessible through the keyReturnIDAttr
+/// attribute of the Apple event. The return ID constant is described in "ID Constants for the
+/// AECreateAppleEvent Function".
+/// - transactionID: The transaction ID for this Apple event. A transaction is a sequence of Apple
+/// events that are sent back and forth between the client and server applications, beginning
+/// with the client's initial request for a service. All Apple events that are part of a
+/// transaction must have the same transaction ID. You can specify the kAnyTransactionID
+/// constant if the Apple event is not one of a series of interdependent Apple events. This
+/// parameter becomes accessible through the keyTransactionIDAttr attribute of the Apple event.
+/// - result: A pointer to an Apple event. On successful return, the new Apple event. On error, a
+/// null descriptor (one with descriptor type typeNull). If the function returns successfully,
+/// your application should call the AEDisposeDesc function to dispose of the resulting Apple
+/// event after it has finished using it. See the AppleEvent data type.
 ///
 /// # Safety
 ///
@@ -1271,6 +1955,18 @@ pub unsafe fn AECreateAppleEvent(
 /// for AERecord.
 /// ************************************************************************
 ///
+/// Puts a pointer to data, a descriptor type, and a keyword into an Apple event or Apple event
+/// record as an Apple event parameter.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to add a parameter to. See the AppleEvent data
+/// type.
+/// - theAEKeyword: The keyword for the parameter to add. If the Apple event already includes an
+/// parameter with this keyword, the parameter is replaced.
+/// - typeCode: The descriptor type for the parameter to add.
+/// - dataPtr: A pointer to the data for the parameter to add.
+/// - dataSize: The length, in bytes, of the data for the parameter to add.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1304,6 +2000,15 @@ pub unsafe fn AEPutParamPtr(
     }
 }
 
+/// Puts a descriptor and a keyword into an Apple event or Apple event record as an Apple event
+/// parameter.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to add a parameter to.
+/// - theAEKeyword: The keyword specifying the parameter to add. If the Apple event already has a
+/// parameter with this keyword, the parameter is replaced.
+/// - theAEDesc: A pointer to the descriptor for the parameter to add. See AEDesc.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1326,6 +2031,47 @@ pub unsafe fn AEPutParamDesc(
     unsafe { AEPutParamDesc(the_apple_event, the_ae_keyword, the_ae_desc) }
 }
 
+/// Gets a copy of the data for a specified Apple event parameter from an Apple event or an Apple
+/// event record (type AERecord); typically used when your application needs to work with the
+/// extracted data directly.
+///
+/// You should use this function only to extract data from value descriptors such as typeUTF8Text.
+/// Because this function allows you to specify a desired type, it can result in coercion. When used
+/// correctly, this has the positive effect of returning the data in the desired format. However, it
+/// can have side effects you may not be expecting, such as the overhead of calls to coercion
+/// handlers. See also the Version Notes section below for possible problems with coercion. To get
+/// Apple event parameter data for your application to use directly, call AEGetParamPtr. To get a
+/// descriptor for an Apple event parameter to pass on to another Apple Event Manager routine, call
+/// AEGetParamDesc. Before calling AEGetParamPtr, you can call the AESizeOfParam function to
+/// determine a size for the dataPtr buffer. However, unless you specify typeWildCard for the
+/// desiredType parameter, AEGetParamPtr may coerce the data, which may cause the size of the data
+/// to change. In some cases, you may get improved efficiency extracting information from an Apple
+/// event with the AEGetDescDataRange function.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to get the parameter data from. See AppleEvent.
+/// - theAEKeyword: The keyword that specifies the desired Apple event parameter.
+/// - desiredType: The desired descriptor type for the copied data. If the descriptor specified by
+/// the theAEKeyword parameter is not of the desired type, AEGetParamPtr attempts to coerce the
+/// data to this type. However, if the desired type is typeWildCard, no coercion is performed.
+/// On return, you can determine the actual descriptor type by examining the typeCode parameter.
+/// - actualType: A pointer to a descriptor type. On return, specifies the descriptor type of the
+/// data pointed to by dataPtr. The returned type is either the same as the type specified by
+/// the desiredType parameter or, if the desired type was typeWildcard, the true type of the
+/// descriptor. Specify NULL if you do not care about this return value.
+/// - dataPtr: A pointer to a buffer, local variable, or other storage location created and
+/// disposed of by your application. The size in bytes must be at least as large as the value
+/// you pass in the maximumSize parameter. On return, contains the parameter data. Specify NULL
+/// if you do not care about this return value.
+/// - maximumSize: The maximum length, in bytes, of the expected Apple event parameter data. The
+/// AEGetParamPtr function will not return more data than you specify in this parameter.
+/// - actualSize: A pointer to a variable of type Size. On return, the length, in bytes, of the
+/// data for the specified Apple event parameter. If this value is larger than the value you
+/// passed in the maximumSize parameter, the buffer pointed to by dataPtr was not large enough
+/// to contain all of the data for the parameter, though AEGetParamPtr does not write beyond the
+/// end of the buffer. If the buffer was too small, you can resize it and call AEGetParamPtr
+/// again. Specify NULL if you do not care about this return value.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1367,6 +2113,30 @@ pub unsafe fn AEGetParamPtr(
     }
 }
 
+/// Gets a copy of the descriptor for a keyword-specified Apple event parameter from an Apple event
+/// or an Apple event record (type AERecord); typically used when your application needs to pass the
+/// extracted data to another function as a descriptor.
+///
+/// To get Apple event parameter data for your application to use directly, call AEGetParamPtr. To
+/// get a descriptor for an Apple event parameter to pass on to another Apple Event Manager routine,
+/// call AEGetParamDesc. If the actual parameter you are getting with AEGetParamDesc is a record,
+/// AEGetParamDesc will only allow you to request it as a typeAERecord, typeAEList, or typeWildcard.
+/// For any other type, it will return errAECoercionFail.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to get the parameter descriptor from.
+/// - theAEKeyword: A keyword that specifies the desired Apple event parameter.
+/// - desiredType: The descriptor type for the desired Apple event parameter. If the requested
+/// Apple event parameter is not of the desired type, the Apple Event Manager attempts to coerce
+/// it to the desired type. However, if you pass a value of typeWildCard, no coercion is
+/// performed, and the descriptor type of the returned descriptor is the same as the descriptor
+/// type of the Apple event parameter.
+/// - result: A pointer to a descriptor. On successful return, a copy of the descriptor for the
+/// specified Apple event parameter, coerced, if necessary, to the descriptor type specified by
+/// the desiredType parameter. On error, a null descriptor. If the function returns
+/// successfully, your application should call the AEDisposeDesc function to dispose of the
+/// resulting descriptor after it has finished using it. See AEDesc.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1391,6 +2161,17 @@ pub unsafe fn AEGetParamDesc(
     unsafe { AEGetParamDesc(the_apple_event, the_ae_keyword, desired_type, result) }
 }
 
+/// Gets the size and descriptor type of an Apple event parameter from a descriptor of type AERecord
+/// or AppleEvent.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to get the parameter data from. See AppleEvent.
+/// - theAEKeyword: The keyword that specifies the desired parameter.
+/// - typeCode: A pointer to a descriptor type. On return, specifies the descriptor type of the
+/// Apple event parameter.
+/// - dataSize: A pointer to a size variable. On return, the length, in bytes, of the data in the
+/// Apple event parameter.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1415,6 +2196,13 @@ pub unsafe fn AESizeOfParam(
     unsafe { AESizeOfParam(the_apple_event, the_ae_keyword, type_code, data_size) }
 }
 
+/// Deletes a keyword-specified parameter from an Apple event or Apple event record.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event or Apple event record to delete the parameter
+/// from.
+/// - theAEKeyword: The keyword that specifies the parameter to delete.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1433,6 +2221,41 @@ pub unsafe fn AEDeleteParam(
     unsafe { AEDeleteParam(the_apple_event, the_ae_keyword) }
 }
 
+/// Gets a copy of the data for a specified Apple event attribute from an Apple event; typically
+/// used when your application needs to work with the data directly.
+///
+/// To get Apple event attribute data for your application to use directly, call AEGetAttributePtr.
+/// To get a descriptor for an Apple event attribute to pass on to another Apple Event Manager
+/// routine, call AEGetAttributeDesc. Before calling AEGetAttributePtr, you can call the
+/// AESizeOfAttribute function to determine a size for the dataPtr buffer. However, unless you
+/// specify typeWildCard for the desiredType parameter, AEGetAttributePtr may coerce the data, which
+/// may cause the size of the data to change.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to get the attribute data from.
+/// - theAEKeyword: The keyword that specifies the desired attribute.
+/// - desiredType: The desired descriptor type for the copied data. If the descriptor specified by
+/// the theAEKeyword parameter is not of the desired type, AEGetAttributePtr attempts to coerce
+/// the data to this type. However, if you pass a value of typeWildCard, no coercion is
+/// performed, and the descriptor type of the returned data is the same as the descriptor type
+/// of the Apple event attribute. On return, you can determine the actual descriptor type by
+/// examining the typeCode parameter.
+/// - typeCode: A pointer to a descriptor type. On return, specifies the descriptor type of the
+/// attribute data pointed to by dataPtr. The returned type is either the same as the type
+/// specified by the desiredType parameter or, if the desired type was type wildcard, the true
+/// type of the descriptor. For a list of AppleScript's predefined descriptor types, see
+/// "Descriptor Type Constants". See DescType.
+/// - dataPtr: A pointer to a buffer, local variable, or other storage location, created and
+/// disposed of by your application. The size in bytes must be at least as large as the value
+/// you pass in the maximumSize parameter. On return, contains the attribute data.
+/// - maximumSize: The maximum length, in bytes, of the expected attribute data. The
+/// AEGetAttributePtr function will not return more data than you specify in this parameter.
+/// - actualSize: A pointer to a size variable. On return, the length, in bytes, of the data for
+/// the specified Apple event attribute. If this value is larger than the value you passed in
+/// the maximumSize parameter, the buffer pointed to by dataPtr was not large enough to contain
+/// all of the data for the attribute, though AEGetAttributePtr does not write beyond the end of
+/// the buffer. If the buffer was too small, you can resize it and call AEGetAttributePtr again.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1474,6 +2297,29 @@ pub unsafe fn AEGetAttributePtr(
     }
 }
 
+/// Gets a copy of the descriptor for a specified Apple event attribute from an Apple event;
+/// typically used when your application needs to pass the descriptor on to another function.
+///
+/// To get Apple event attribute data for your application to use directly, call AEGetAttributePtr.
+/// To get a descriptor for an Apple event attribute to pass on to another Apple Event Manager
+/// routine, call AEGetAttributeDesc.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to get the attribute descriptor from. See
+/// AppleEvent.
+/// - theAEKeyword: The keyword that specifies the desired attribute.
+/// - desiredType: The desired descriptor type for the copied data. If the descriptor specified by
+/// the theAEKeyword parameter is not of the desired type, AEGetAttributePtr attempts to coerce
+/// the data to this type. However, if you pass a value of typeWildCard, no coercion is
+/// performed, and the descriptor type of the returned data is the same as the descriptor type
+/// of the Apple event attribute. On return, you can determine the actual descriptor type by
+/// examining the typeCode parameter.
+/// - result: A pointer to a descriptor. On successful return, a copy of the specified Apple event
+/// attribute, coerced, if necessary, to the descriptor type specified in desiredType. On error,
+/// a null descriptor. If the function returns successfully, your application should call the
+/// AEDisposeDesc function to dispose of the resulting descriptor after it has finished using
+/// it. See AEDesc.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1498,6 +2344,17 @@ pub unsafe fn AEGetAttributeDesc(
     unsafe { AEGetAttributeDesc(the_apple_event, the_ae_keyword, desired_type, result) }
 }
 
+/// Gets the size and descriptor type of an Apple event attribute from a descriptor of type
+/// AppleEvent.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to get the attribute data from.
+/// - theAEKeyword: The keyword that specifies the attribute.
+/// - typeCode: A pointer to a descriptor type. On return, specifies the descriptor type of the
+/// attribute. Can be NULL.
+/// - dataSize: A pointer to a size variable. On return, the length, in bytes, of the data in the
+/// attribute. Can be NULL.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1522,6 +2379,17 @@ pub unsafe fn AESizeOfAttribute(
     unsafe { AESizeOfAttribute(the_apple_event, the_ae_keyword, type_code, data_size) }
 }
 
+/// Adds a pointer to data, a descriptor type, and a keyword to an Apple event as an attribute.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to add an attribute to. See the AppleEvent data
+/// type.
+/// - theAEKeyword: The keyword for the attribute to add. If the Apple event already includes an
+/// attribute with this keyword, the attribute is replaced.
+/// - typeCode: The descriptor type for the attribute to add.
+/// - dataPtr: A pointer to the data for the attribute to add.
+/// - dataSize: The length, in bytes, of the data for the attribute to add.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1555,6 +2423,22 @@ pub unsafe fn AEPutAttributePtr(
     }
 }
 
+/// Adds a descriptor and a keyword to an Apple event as an attribute.
+///
+/// The AEPutAttributeDesc function takes a descriptor and a keyword and adds them to an Apple event
+/// as an attribute. If the descriptor type required for the attribute is different from the
+/// descriptor type of the descriptor, the Apple Event Manager attempts to coerce the descriptor
+/// into the required type, with one exception: the Apple Event Manager does not attempt to coerce
+/// the data for an address attribute, thereby allowing applications to use their own address types.
+///
+/// - Parameters:
+/// - theAppleEvent: A pointer to the Apple event to add an attribute to. See the AppleEvent data
+/// type.
+/// - theAEKeyword: The keyword for the attribute to add. If the Apple event already includes an
+/// attribute with this keyword, the attribute is replaced.
+/// - theAEDesc: A pointer to the descriptor to assign to the attribute. The descriptor type of
+/// the specified descriptor should match the defined descriptor type for that attribute.
+///
 /// # Safety
 ///
 /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -1589,6 +2473,12 @@ pub unsafe fn AEPutAttributeDesc(
 /// themselves may not be reliably flattened for storage.
 /// ************************************************************************
 ///
+/// Returns the amount of buffer space needed to flatten the AEDesc. Call this before AEFlattenDesc
+/// to make sure your buffer has enough room for the operation.
+///
+/// - Parameters:
+/// - theAEDesc: A pointer to the descriptor to be flattened.
+///
 /// # Safety
 ///
 /// - `the_ae_desc` struct field `dataHandle` must be a valid pointer.
@@ -1601,6 +2491,26 @@ pub unsafe fn AESizeOfFlattenedDesc(the_ae_desc: Option<&AEDesc>) -> Size {
     unsafe { AESizeOfFlattenedDesc(the_ae_desc) }
 }
 
+/// Fills a buffer with a flattened representation of the AEDesc and returns the amount of buffer
+/// used in actualSize.
+///
+/// If bufferSize was too small it returns errAEBufferTooSmall (-1741) and does not fill in any of
+/// the buffer. The resulting buffer is only useful with an AEUnflattenDescFromBytes call. Note: if
+/// you pass a NULL buffer pointer it returns noErr but fills in the actualSize field anyway.
+///
+/// - Parameters:
+/// - theAEDesc: A pointer to the descriptor to be flattened.
+/// - buffer: A pointer to memory, allocated by the application, where the flattened data will be
+/// stored. See the bufferSize parameter for information on how large a buffer you should
+/// allocate.
+/// - bufferSize: The size of the buffer pointed to by buffer. Prior to calling AEFlattenDesc, you
+/// call the AESizeOfFlattenedDesc function to determine the required size of the buffer for the
+/// flatten operation. If bufferSize is too small, AEFlattenDesc returns errAEBufferTooSmall and
+/// doesn't store any data in the buffer.
+/// - actualSize: A pointer to a size variable. On return, the variable contains the actual size
+/// of the flattened data. You can specify NULL for this parameter if you do not care about the
+/// returned size.
+///
 /// # Safety
 ///
 /// - `the_ae_desc` struct field `dataHandle` must be a valid pointer.
@@ -1639,17 +2549,13 @@ pub unsafe fn AEUnflattenDesc(buffer: *const c_void, result: Option<&mut AEDesc>
     unsafe { AEUnflattenDesc(buffer, result) }
 }
 
-/// Allocates an AEDesc (given a Null Desc) constructed from a flattened data
-/// buffer produced by calling AEFlattenDesc.
+/// Allocates an AEDesc (given a Null Desc) constructed from a flattened data buffer produced by calling AEFlattenDesc.
 ///
-///
-/// Parameter `buffer`: A pointer to data produced by `AEFlattenDesc`
-///
-/// Parameter `bufferLen`: The size of the data referenced by `buffer`
-///
-/// Parameter `result`: On successful completion, a pointer to an `AEDesc*` containing the unflattened descriptor. The caller is responsible for disposing of it.
-///
-/// Returns: `noErr` on success, `paramErr` if the buffer could not be parsed, or `memFullErr` for irrational memory sizes.
+/// - Parameters:
+/// - buffer: A pointer to data produced by `AEFlattenDesc`
+/// - bufferLen: The size of the data referenced by `buffer`
+/// - result: On successful completion, a pointer to an `AEDesc*` containing the unflattened descriptor. The caller is responsible for disposing of it.
+/// - Returns: `noErr` on success, `paramErr` if the buffer could not be parsed, or `memFullErr` for irrational memory sizes.
 ///
 /// # Safety
 ///
@@ -1678,6 +2584,20 @@ pub unsafe fn AEUnflattenDescFromBytes(
 /// directly.  This is not supported under Carbon.
 /// ************************************************************************
 ///
+/// Gets the data from the specified descriptor.
+///
+/// AEGetDescData no longer supports automatic coercion. If you'd like to coerce the descriptor use
+/// AECoerceDesc.
+///
+/// - Parameters:
+/// - theAEDesc: A pointer to the descriptor to get the data from.
+/// - dataPtr: A pointer to a buffer, local variable, or other storage location created and
+/// disposed of by your application. The size in bytes should be the same as the value you pass
+/// in the maximumSize parameter. On return, contains the data from the descriptor.
+/// - maximumSize: The length, in bytes, of the expected descriptor data. The AEGetDescData
+/// function will not return more data than you specify in this parameter. You typically
+/// determine the maximum size by calling AEGetDescDataSize.
+///
 /// # Safety
 ///
 /// - `the_ae_desc` struct field `dataHandle` must be a valid pointer.
@@ -1699,6 +2619,11 @@ pub unsafe fn AEGetDescData(
     unsafe { AEGetDescData(the_ae_desc, data_ptr, maximum_size) }
 }
 
+/// Gets the size, in bytes, of the data in the specified descriptor.
+///
+/// - Parameters:
+/// - theAEDesc: A pointer to the descriptor to obtain the data size for. See AEDesc.
+///
 /// # Safety
 ///
 /// - `the_ae_desc` struct field `dataHandle` must be a valid pointer.
@@ -1711,6 +2636,14 @@ pub unsafe fn AEGetDescDataSize(the_ae_desc: Option<&AEDesc>) -> Size {
     unsafe { AEGetDescDataSize(the_ae_desc) }
 }
 
+/// Copies the specified data into the specified descriptor, replacing any previous data.
+///
+/// - Parameters:
+/// - typeCode: Specifies the descriptor type of the data pointed to by dataPtr.
+/// - dataPtr: A pointer to the data to store in the specified descriptor.
+/// - dataSize: The size, in bytes, of the data pointed to by the dataSize parameter.
+/// - theAEDesc: A pointer to a descriptor. On return, contains the copied data.
+///
 /// # Safety
 ///
 /// - `data_ptr` must be a valid pointer.
@@ -1734,6 +2667,21 @@ pub unsafe fn AEReplaceDescData(
     unsafe { AEReplaceDescData(type_code, data_ptr, data_size, the_ae_desc) }
 }
 
+/// Retrieve a range of bytes from an AEDesc.
+///
+/// This obviates the need to retrieve the entire data from the event using AEGetDescData. This is
+/// only valid for data type AEDescs. If the requested length and offset are such that they do not
+/// fit entirely with the data of the desc, errAEBufferTooSmall is returned.
+///
+/// - Parameters:
+/// - dataDesc: A pointer to the descriptor to get the data from.
+/// - buffer: A pointer to a buffer, local variable, or other storage location created and
+/// disposed of by your application. The size in bytes should be at least as large as the value
+/// you pass in the length parameter. On return, contains the specified data from the
+/// descriptor.
+/// - offset: The zero-based offset to the data to be retrieved from the descriptor.
+/// - length: The number of bytes of contiguous data to retrieve.
+///
 /// # Safety
 ///
 /// - `data_desc` struct field `dataHandle` must be a valid pointer.
@@ -1761,11 +2709,19 @@ pub unsafe fn AEGetDescDataRange(
 /// A AEEventHandler is installed to process an AppleEvent
 /// ************************************************************************
 ///
+/// The signature of an AppleEvent handler procedure, installed with `AEInstallEventHandler` or
+/// `AEInstallSpecialHandler`. Given the incoming `theAppleEvent`, the handler should perform
+/// whatever action the event requests and, if appropriate, fill in `reply` with the result.
+/// `handlerRefcon` is the value that was passed to the install call.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventhandlerprocptr?language=objc)
 pub type AEEventHandlerProcPtr =
     unsafe extern "C-unwind" fn(*const AppleEvent, *mut AppleEvent, SRefCon) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventhandlerupp?language=objc)
+/// The `AEEventHandlerProcPtr` universal procedure pointer type, for use with
+/// `AEInstallEventHandler`/`AEInstallSpecialHandler`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventhandlerupp?language=objc)
 pub type AEEventHandlerUPP = AEEventHandlerProcPtr;
 
 /// # Safety

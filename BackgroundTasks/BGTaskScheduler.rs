@@ -162,7 +162,7 @@ impl BGTaskScheduler {
         /// - taskRequest: The task request object representing the parameters of the background task to be scheduled.
         /// - error: If an error occurs, upon return contains an error object that indicates why the request was rejected
         /// - Returns: `YES` if the request was successfully submitted; `NO` if there was an error
-        #[deprecated = "Use submitTaskRequest:completionHandler: instead to capture all error conditions"]
+        #[deprecated = "Use -submitTaskRequest:completionHandler: (Swift: submitTaskRequest(_:completionHandler:), or 'try await submitTaskRequest(_:)') to capture all error conditions"]
         #[unsafe(method(submitTaskRequest:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitTaskRequest_error(
@@ -195,10 +195,10 @@ impl BGTaskScheduler {
         ///
         /// The completion handler is called on an arbitrary queue.
         ///
-        /// - Note: The completion handler may be invoked on a arbitrary queue after an arbitrary amount of delay.
+        /// - Note: The completion handler may be invoked on an arbitrary queue after an arbitrary amount of delay.
         /// Do not call this method from the main thread or performance-critical contexts.
         ///
-        /// This method replaces the deprecated ``submitTaskRequest:error:`` method
+        /// This method replaces the deprecated ``BGTaskScheduler/submitTaskRequest:error:`` method.
         #[unsafe(method(submitTaskRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitTaskRequest_completionHandler(
@@ -227,7 +227,7 @@ impl BGTaskScheduler {
         /// objects. The array is empty if there are no scheduled tasks.
         ///
         /// The objects passed in the array are copies of the existing requests. Changing the attributes of a request has no
-        /// effect. To change the attributes submit a new task request using ``BGTaskScheduler/submitTaskRequest:error:``.
+        /// effect. To change the attributes submit a new task request using ``BGTaskScheduler/submitTaskRequest:completionHandler:``.
         ///
         /// - Parameters:
         /// - completionHandler: The completion handler called with the pending tasks.

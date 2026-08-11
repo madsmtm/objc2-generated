@@ -6,15 +6,19 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/intasktype?language=objc)
 // NS_ENUM
+#[deprecated = "INTaskType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTaskType(pub NSInteger);
 impl INTaskType {
     #[doc(alias = "INTaskTypeUnknown")]
+    #[deprecated = "INTaskType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "INTaskTypeNotCompletable")]
+    #[deprecated = "INTaskType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const NotCompletable: Self = Self(1);
     #[doc(alias = "INTaskTypeCompletable")]
+    #[deprecated = "INTaskType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Completable: Self = Self(2);
 }
 

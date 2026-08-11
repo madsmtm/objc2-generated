@@ -6,15 +6,19 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskpriority?language=objc)
 // NS_ENUM
+#[deprecated = "INTaskPriority is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTaskPriority(pub NSInteger);
 impl INTaskPriority {
     #[doc(alias = "INTaskPriorityUnknown")]
+    #[deprecated = "INTaskPriority is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "INTaskPriorityNotFlagged")]
+    #[deprecated = "INTaskPriority is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const NotFlagged: Self = Self(1);
     #[doc(alias = "INTaskPriorityFlagged")]
+    #[deprecated = "INTaskPriority is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Flagged: Self = Self(2);
 }
 

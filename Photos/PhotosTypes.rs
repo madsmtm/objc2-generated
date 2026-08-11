@@ -61,19 +61,29 @@ impl PHCollectionListSubtype {
     #[doc(alias = "PHCollectionListSubtypeMomentListYear")]
     #[deprecated = "Will be removed in a future release"]
     pub const MomentListYear: Self = Self(2);
-    /// A user-configurable, regular folder that can be created, or modified via `PHCollectionListChangeRequest`
+    /// A user-configurable folder containing albums or other folders.
+    ///
+    /// Can be created, or modified via ``/Photos/PHCollectionListChangeRequest``
     #[doc(alias = "PHCollectionListSubtypeRegularFolder")]
     pub const RegularFolder: Self = Self(100);
-    /// The collection list that contains the top-level user collections, there is always one root folder in the library and does not allow `PHCollectionEditOperationRename` or `PHCollectionEditOperationDelete`
+    /// The collection list that contains the top-level user collections.
+    ///
+    /// There is always one root folder in the library and does not allow ``/Photos/PHCollectionEditOperation/PHCollectionEditOperationRename`` or ``/Photos/PHCollectionEditOperation/PHCollectionEditOperationDelete``
     #[doc(alias = "PHCollectionListSubtypeRootFolder")]
     pub const RootFolder: Self = Self(101);
-    /// The collection list that contains the top-level user collections, there is always one root folder in the library and does not allow `PHCollectionEditOperationRename` or `PHCollectionEditOperationDelete`
+    /// The collection list that contains the top-level user collections.
+    ///
+    /// There is always one root folder in the library and does not allow ``/Photos/PHCollectionEditOperation/PHCollectionEditOperationRename`` or ``/Photos/PHCollectionEditOperation/PHCollectionEditOperationDelete``
     #[doc(alias = "PHCollectionListSubtypeSmartFolderEvents")]
     pub const SmartFolderEvents: Self = Self(200);
-    /// The collection list that contains the top-level user collections, there is always one root folder in the library and does not allow `PHCollectionEditOperationRename` or `PHCollectionEditOperationDelete`
+    /// The collection list that contains the top-level user collections.
+    ///
+    /// There is always one root folder in the library and does not allow ``/Photos/PHCollectionEditOperation/PHCollectionEditOperationRename`` or ``/Photos/PHCollectionEditOperation/PHCollectionEditOperationDelete``
     #[doc(alias = "PHCollectionListSubtypeSmartFolderFaces")]
     pub const SmartFolderFaces: Self = Self(201);
-    /// The collection list that contains the top-level user collections, there is always one root folder in the library and does not allow `PHCollectionEditOperationRename` or `PHCollectionEditOperationDelete`
+    /// The collection list that contains the top-level user collections.
+    ///
+    /// There is always one root folder in the library and does not allow ``/Photos/PHCollectionEditOperation/PHCollectionEditOperationRename`` or ``/Photos/PHCollectionEditOperation/PHCollectionEditOperationDelete``
     #[doc(alias = "PHCollectionListSubtypeAny")]
     pub const Any: Self = Self(NSIntegerMax as _);
 }
@@ -197,10 +207,13 @@ impl PHAssetCollectionSubtype {
     pub const SmartAlbumRAW: Self = Self(217);
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumCinematic")]
     pub const SmartAlbumCinematic: Self = Self(218);
+    /// A Smart Album that groups all photos and videos captured as spatial media.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSpatial")]
     pub const SmartAlbumSpatial: Self = Self(219);
+    /// A Smart Album that groups all videos captured using the device’s screenrecordings function.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumScreenRecordings")]
     pub const SmartAlbumScreenRecordings: Self = Self(220);
+    /// A Smart Album that groups all videos captured using the device’s screenrecordings function.
     #[doc(alias = "PHAssetCollectionSubtypeAny")]
     pub const Any: Self = Self(NSIntegerMax as _);
 }

@@ -9,21 +9,28 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintentresponsecode?language=objc)
 // NS_ENUM
+#[deprecated = "INSetTaskAttributeIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetTaskAttributeIntentResponseCode(pub NSInteger);
 impl INSetTaskAttributeIntentResponseCode {
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeUnspecified")]
+    #[deprecated = "INSetTaskAttributeIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unspecified: Self = Self(0);
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeReady")]
+    #[deprecated = "INSetTaskAttributeIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Ready: Self = Self(1);
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeInProgress")]
+    #[deprecated = "INSetTaskAttributeIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const InProgress: Self = Self(2);
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeSuccess")]
+    #[deprecated = "INSetTaskAttributeIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Success: Self = Self(3);
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeFailure")]
+    #[deprecated = "INSetTaskAttributeIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Failure: Self = Self(4);
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INSetTaskAttributeIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 
@@ -40,6 +47,7 @@ extern_class!(
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]
+    #[deprecated = "INSetTaskAttributeIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INSetTaskAttributeIntentResponse;
 );
 
@@ -73,6 +81,7 @@ impl INSetTaskAttributeIntentResponse {
     extern_methods!(
         // -init (unavailable)
 
+        #[deprecated = "INSetTaskAttributeIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithCode:userActivity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCode_userActivity(
@@ -81,11 +90,13 @@ impl INSetTaskAttributeIntentResponse {
             user_activity: Option<&NSUserActivity>,
         ) -> Retained<Self>;
 
+        #[deprecated = "INSetTaskAttributeIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(code))]
         #[unsafe(method_family = none)]
         pub unsafe fn code(&self) -> INSetTaskAttributeIntentResponseCode;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INSetTaskAttributeIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(modifiedTask))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifiedTask(&self) -> Option<Retained<INTask>>;
@@ -94,6 +105,7 @@ impl INSetTaskAttributeIntentResponse {
         /// Setter for [`modifiedTask`][Self::modifiedTask].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "INSetTaskAttributeIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(setModifiedTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifiedTask(&self, modified_task: Option<&INTask>);

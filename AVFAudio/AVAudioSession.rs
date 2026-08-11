@@ -545,7 +545,7 @@ impl AVAudioSession {
         ) -> Option<Retained<NSArray<AVAudioSessionDataSourceDescription>>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
-        /// Obtain the currently selected input data source.  Will be nil if no data sources are available.
+        /// Obtain the currently selected input data source.  Will be nil if no data sources are available. Key-value observable.
         #[unsafe(method(inputDataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputDataSource(

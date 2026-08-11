@@ -435,6 +435,9 @@ mod __WKContentWorldConfiguration;
 #[cfg(feature = "WKContextMenuElementInfo")]
 #[path = "WKContextMenuElementInfo.rs"]
 mod __WKContextMenuElementInfo;
+#[cfg(feature = "WKDOMNodeSnapshot")]
+#[path = "WKDOMNodeSnapshot.rs"]
+mod __WKDOMNodeSnapshot;
 #[cfg(feature = "WKDataDetectorTypes")]
 #[path = "WKDataDetectorTypes.rs"]
 mod __WKDataDetectorTypes;
@@ -474,9 +477,6 @@ mod __WKImmersiveEnvironmentDelegate;
 #[cfg(feature = "WKJSHandle")]
 #[path = "WKJSHandle.rs"]
 mod __WKJSHandle;
-#[cfg(feature = "WKJSSerializedNode")]
-#[path = "WKJSSerializedNode.rs"]
-mod __WKJSSerializedNode;
 #[cfg(feature = "WKNavigation")]
 #[path = "WKNavigation.rs"]
 mod __WKNavigation;
@@ -1832,6 +1832,8 @@ pub use self::__WKContentRuleListStore::WKContentRuleListStore;
 pub use self::__WKContentWorld::WKContentWorld;
 #[cfg(feature = "WKContentWorldConfiguration")]
 pub use self::__WKContentWorldConfiguration::WKContentWorldConfiguration;
+#[cfg(feature = "WKDOMNodeSnapshot")]
+pub use self::__WKDOMNodeSnapshot::WKDOMNodeSnapshot;
 #[cfg(feature = "WKDownload")]
 pub use self::__WKDownload::WKDownload;
 #[cfg(feature = "WKDownloadDelegate")]
@@ -1864,8 +1866,6 @@ pub use self::__WKImmersiveEnvironment::WKImmersiveEnvironment;
 pub use self::__WKImmersiveEnvironmentDelegate::WKImmersiveEnvironmentDelegate;
 #[cfg(feature = "WKJSHandle")]
 pub use self::__WKJSHandle::WKJSHandle;
-#[cfg(feature = "WKJSSerializedNode")]
-pub use self::__WKJSSerializedNode::WKJSSerializedNode;
 #[cfg(feature = "WKNavigation")]
 pub use self::__WKNavigation::WKNavigation;
 #[cfg(feature = "WKNavigationAction")]

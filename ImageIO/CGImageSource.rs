@@ -197,6 +197,52 @@ extern "C" {
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether to prioritize image quality over decode speed.
+    ///
+    /// When you set this key to
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleantrue>, the image source decodes the full-size image using the highest-quality decode method available for the file. The value of this key is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean>. The default value is
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse>.
+    ///
+    /// Currently, image sources support this option only for camera RAW images. This key is a no-op when it is absent or
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse>, when the image isn't a camera RAW format, or when no higher-quality decode method is available, so it is always safe to set.
+    ///
+    /// Include this key in the options dictionary you pass to the functions ``CGImageSourceCopyPropertiesAtIndex(_:_:_:)`` and ``CGImageSourceCreateImageAtIndex(_:_:_:)``.
+    ///
+    /// ## Example
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let options = [
+    /// kCGImageSourcePrioritizeQuality: true
+    /// ] as CFDictionary
+    /// let image = CGImageSourceCreateImageAtIndex(source, 0, options)
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSDictionary *options =
+    /// @
+    /// {
+    /// (id)kCGImageSourcePrioritizeQuality:
+    /// `true`};
+    /// CGImageRef image = CGImageSourceCreateImageAtIndex(source, 0, (CFDictionaryRef)options);
+    /// ```
+    /// }
+    /// }
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourceprioritizequality?language=objc)
+    pub static kCGImageSourcePrioritizeQuality: &'static CFString;
+}
+
+extern "C" {
     /// A Boolean value that indicates whether to create a thumbnail image automatically if the data source doesn't contain one.
     ///
     /// The value of this key is a

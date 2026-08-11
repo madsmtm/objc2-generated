@@ -12,6 +12,7 @@ extern_class!(
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
+    #[deprecated = "INAddTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INAddTasksIntent;
 );
 
@@ -62,21 +63,25 @@ impl INAddTasksIntent {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTaskList")]
+        #[deprecated = "INAddTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(targetTaskList))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetTaskList(&self) -> Option<Retained<INTaskList>>;
 
         #[cfg(feature = "INSpeakableString")]
+        #[deprecated = "INAddTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(taskTitles))]
         #[unsafe(method_family = none)]
         pub unsafe fn taskTitles(&self) -> Option<Retained<NSArray<INSpeakableString>>>;
 
         #[cfg(feature = "INSpatialEventTrigger")]
+        #[deprecated = "INAddTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(spatialEventTrigger))]
         #[unsafe(method_family = none)]
         pub unsafe fn spatialEventTrigger(&self) -> Option<Retained<INSpatialEventTrigger>>;
 
         #[cfg(feature = "INTemporalEventTrigger")]
+        #[deprecated = "INAddTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(temporalEventTrigger))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporalEventTrigger(&self) -> Option<Retained<INTemporalEventTrigger>>;
@@ -108,6 +113,7 @@ extern_protocol!(
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintenthandling?language=objc)
+    #[deprecated = "INAddTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub unsafe trait INAddTasksIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INAddTasksIntentResponse",
@@ -126,6 +132,7 @@ extern_protocol!(
         ///
         ///
         /// See: INAddTasksIntentResponse
+        #[deprecated = "INAddTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(handleAddTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleAddTasks_completion(
@@ -151,6 +158,7 @@ extern_protocol!(
         ///
         ///
         /// See: INAddTasksIntentResponse
+        #[deprecated = "INAddTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(confirmAddTasks:completion:))]
         #[unsafe(method_family = none)]
@@ -177,7 +185,7 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
-        #[deprecated = "resolveTargetTaskListForAddTasks:withCompletion: is deprecated. Use resolveTargetTaskListForAddTasks:completion: instead"]
+        #[deprecated = "INAddTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveTargetTaskListForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -212,6 +220,7 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INAddTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveTaskTitlesForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -230,6 +239,7 @@ extern_protocol!(
             feature = "INSpatialEventTriggerResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INAddTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveSpatialEventTriggerForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -248,7 +258,7 @@ extern_protocol!(
             feature = "INTemporalEventTriggerResolutionResult",
             feature = "block2"
         ))]
-        #[deprecated = "resolveTemporalEventTriggerForAddTasks:withCompletion: is deprecated. Use resolveTemporalEventTriggerForAddTasks:completion: instead"]
+        #[deprecated = "INAddTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveTemporalEventTriggerForAddTasks:withCompletion:))]
         #[unsafe(method_family = none)]

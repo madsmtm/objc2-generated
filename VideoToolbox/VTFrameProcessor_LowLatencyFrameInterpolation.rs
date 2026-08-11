@@ -193,7 +193,7 @@ impl VTLowLatencyFrameInterpolationConfiguration {
         /// For example, if ``maximumDimensionForSpatialScaleFactor:`` is 1920 and ``maximumPixelCountForSpatialScaleFactor:``
         /// corresponds to 1920×1080, then 1920×1080, 1080×1920, and 1440×1440 are all valid, but 1920×1920 is not.
         /// Pass `1` for `spatialScaleFactor` when using the processor for temporal interpolation without spatial scaling.
-        /// Returns `0` if an unsupported scale factor is provided.
+        /// Returns `0` if an unsupported scale factor is provided or if processor is unsupported.
         #[unsafe(method(maximumDimensionForSpatialScaleFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumDimensionForSpatialScaleFactor(
@@ -205,7 +205,7 @@ impl VTLowLatencyFrameInterpolationConfiguration {
         /// The product of `frameWidth` and `frameHeight` must be less than or equal to this value.
         /// Use in conjunction with ``maximumDimensionForSpatialScaleFactor:`` to determine valid frame dimensions.
         /// Pass `1` for `spatialScaleFactor` when using the processor for temporal interpolation without spatial scaling.
-        /// Returns `0` if an unsupported scale factor is provided.
+        /// Returns `0` if an unsupported scale factor is provided or if processor is unsupported.
         #[unsafe(method(maximumPixelCountForSpatialScaleFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumPixelCountForSpatialScaleFactor(

@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msupirequest?language=objc)
+    /// Request for UPI (Unified Payments Interface) device validation.
+    ///
+    /// In order to use this API, you must use the managed entitlement `com.apple.developer.upi-device-validation`. This API is only functional on devices with SMS capability, and only compatible with non-iMessagable recipients.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msupirequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MSUPIRequest;

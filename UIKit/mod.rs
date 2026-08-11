@@ -4819,6 +4819,8 @@ pub use self::__UISheetPresentationController::UISheetPresentationControllerDete
 pub use self::__UISheetPresentationController::UISheetPresentationControllerDetentInactive;
 #[cfg(feature = "UISheetPresentationController")]
 pub use self::__UISheetPresentationController::UISheetPresentationControllerDetentResolutionContext;
+#[cfg(feature = "UISheetPresentationController")]
+pub use self::__UISheetPresentationController::UISheetPresentationControllerPlacement;
 #[cfg(all(
     feature = "UIControl",
     feature = "UIResponder",

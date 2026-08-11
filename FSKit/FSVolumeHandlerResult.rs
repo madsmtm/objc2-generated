@@ -53,7 +53,7 @@ impl FSVolumeHandlerResult {
 extern_class!(
     /// The result of an activate call.
     ///
-    /// Use this type in your implementation of ``FSVolume/Handler/activate(options:replyHandler:)``.
+    /// Use this type in your implementation of ``FSVolume/Handler/activateVolume(options:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsactivateresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]

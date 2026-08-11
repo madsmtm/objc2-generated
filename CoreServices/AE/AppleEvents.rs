@@ -19,19 +19,29 @@ pub const keyErrorNumber: AEKeyword = 0x6572726e;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyerrorstring?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyErrorString: AEKeyword = 0x65727273;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyprocessserialnumber?language=objc)
+/// Keywords for special handlers
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyprocessserialnumber?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyProcessSerialNumber: AEKeyword = 0x70736e20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keypredispatch?language=objc)
+/// preHandler accessor call
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keypredispatch?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyPreDispatch: AEKeyword = 0x70686163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyselectproc?language=objc)
+/// more selector call
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyselectproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keySelectProc: AEKeyword = 0x73656c68;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerecordercount?language=objc)
+/// available only in vers 1.0.1 and greater
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerecordercount?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAERecorderCount: AEKeyword = 0x72656372;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeversion?language=objc)
+/// available only in vers 1.0.1 and greater
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeversion?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEVersion: AEKeyword = 0x76657273;
 
@@ -90,26 +100,37 @@ pub const kAEShowPreferences: AEEventID = 0x70726566;
 #[cfg(feature = "AEDataModel")]
 pub const keyAERestoreAppState: DescType = 0x7273746f;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaestartrecording?language=objc)
+/// available only in vers 1.0.1 and greater
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaestartrecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEStartRecording: AEEventID = 0x72656361;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaestoprecording?language=objc)
+/// available only in vers 1.0.1 and greater
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaestoprecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEStopRecording: AEEventID = 0x72656363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenotifystartrecording?language=objc)
+/// available only in vers 1.0.1 and greater
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenotifystartrecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAENotifyStartRecording: AEEventID = 0x72656331;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenotifystoprecording?language=objc)
+/// available only in vers 1.0.1 and greater
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenotifystoprecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAENotifyStopRecording: AEEventID = 0x72656330;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenotifyrecording?language=objc)
+/// available only in vers 1.0.1 and greater
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenotifyrecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAENotifyRecording: AEEventID = 0x72656372;
 
-/// AEEventSource is defined as an SInt8 for compatability with pascal.
-/// Important note: keyEventSourceAttr is returned by AttributePtr as a typeShortInteger.
-/// Be sure to pass at least two bytes of storage to AEGetAttributePtr - the result can be
-/// compared directly against the following enums.
+/// `AEEventSource` is defined as an `SInt8` for compatibility with Pascal.
+///
+/// - Note: `keyEventSourceAttr` is returned by `AEGetAttributePtr` as a `typeShortInteger`.
+/// Be sure to pass at least two bytes of storage to `AEGetAttributePtr` - the result
+/// can be compared directly against the following enum values.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventsource?language=objc)
 pub type AEEventSource = i8;
@@ -125,14 +146,34 @@ pub const kAELocalProcess: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocess?language=objc)
 pub const kAERemoteProcess: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/erraetargetaddressnotpermitted?language=objc)
+/// Mac OS X 10.8 and later, the target of an AppleEvent is not accessible to this process, perhaps due to sandboxing
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/erraetargetaddressnotpermitted?language=objc)
 pub const errAETargetAddressNotPermitted: c_int = -1742;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/erraeeventnotpermitted?language=objc)
+/// Mac OS X 10.8 and later, the target of the AppleEvent does not allow this sender to execute this event
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/erraeeventnotpermitted?language=objc)
 pub const errAEEventNotPermitted: c_int = -1743;
 
 /// ************************************************************************
 /// These calls are used to set up and modify the event dispatch table.D
 /// ************************************************************************
+///
+/// Installs a handler to be called by `AEProcessAppleEvent` for AppleEvents matching
+/// `theAEEventClass` and `theAEEventID`. Either or both can be `typeWildCard`, to match any
+/// class or ID respectively; a handler installed for an exact class/ID pair takes precedence
+/// over one installed with a wildcard.
+/// - Parameters:
+/// - theAEEventClass: The event class to handle, or `typeWildCard` to match any class.
+/// - theAEEventID: The event ID to handle, or `typeWildCard` to match any ID.
+/// - handler: The handler procedure to install.
+/// - handlerRefcon: An application-defined value passed back to `handler` whenever it's
+/// invoked, so the same handler procedure can be shared across multiple installations.
+/// - isSysHandler: Selects which handler table `handler` is installed into. Application code
+/// should normally pass `false`, installing into the per-application table that's searched
+/// first; `true` installs into the separate system handler table, consulted when no
+/// matching per-application handler is found — used by system software to supply default
+/// handling for events an application doesn't handle itself.
 ///
 /// # Safety
 ///
@@ -169,6 +210,10 @@ pub unsafe fn AEInstallEventHandler(
     }
 }
 
+/// Removes a handler previously installed with `AEInstallEventHandler`. `theAEEventClass`,
+/// `theAEEventID`, `handler`, and `isSysHandler` must all match the values originally passed
+/// to `AEInstallEventHandler`, or the handler will not be found.
+///
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
@@ -193,6 +238,19 @@ pub unsafe fn AERemoveEventHandler(
     unsafe { AERemoveEventHandler(the_ae_event_class, the_ae_event_id, handler, is_sys_handler) }
 }
 
+/// Looks up the handler (and its refcon) previously installed with `AEInstallEventHandler` for
+/// a given event class/ID pair, without removing it. Useful for inspecting or temporarily
+/// overriding the dispatch table — for example, saving the currently installed handler before
+/// installing a new one, so it can be restored, or chained to, afterward.
+/// - Parameters:
+/// - theAEEventClass: The event class to look up, or `typeWildCard`.
+/// - theAEEventID: The event ID to look up, or `typeWildCard`.
+/// - handler: On return, the currently installed handler procedure.
+/// - handlerRefcon: On return, the refcon that was passed to `AEInstallEventHandler` when
+/// the handler was installed.
+/// - isSysHandler: Selects which handler table to search — the per-application table
+/// (`false`) or the system handler table (`true`).
+///
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
@@ -234,6 +292,17 @@ pub unsafe fn AEGetEventHandler(
 /// AppleEvent manager.
 /// ************************************************************************
 ///
+/// Installs a handler for one of the Apple Event Manager's special dispatch hooks — identified
+/// by `functionClass` (one of the keywords declared above, such as `keyPreDispatch` or
+/// `keySelectProc`) rather than by an application-level event class/ID pair. These hooks let a
+/// handler participate in how the Apple Event Manager itself operates (for example, choosing
+/// which handler to dispatch to) rather than handling one particular kind of event.
+/// - Parameters:
+/// - functionClass: Which special hook to install `handler` for.
+/// - handler: The handler procedure to install.
+/// - isSysHandler: Selects which handler table `handler` is installed into — the
+/// per-application table (`false`) or the system handler table (`true`).
+///
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
@@ -256,6 +325,10 @@ pub unsafe fn AEInstallSpecialHandler(
     unsafe { AEInstallSpecialHandler(function_class, handler, is_sys_handler) }
 }
 
+/// Removes a handler previously installed with `AEInstallSpecialHandler`. `functionClass`,
+/// `handler`, and `isSysHandler` must all match the values originally passed to
+/// `AEInstallSpecialHandler`, or the handler will not be found.
+///
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
@@ -278,6 +351,14 @@ pub unsafe fn AERemoveSpecialHandler(
     unsafe { AERemoveSpecialHandler(function_class, handler, is_sys_handler) }
 }
 
+/// Looks up the handler previously installed with `AEInstallSpecialHandler` for a given
+/// special hook, without removing it.
+/// - Parameters:
+/// - functionClass: Which special hook to look up.
+/// - handler: On return, the currently installed handler procedure.
+/// - isSysHandler: Selects which handler table to search — the per-application table
+/// (`false`) or the system handler table (`true`).
+///
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
@@ -300,12 +381,10 @@ pub unsafe fn AEGetSpecialHandler(
     unsafe { AEGetSpecialHandler(function_class, handler, is_sys_handler) }
 }
 
-/// ************************************************************************
 /// This call was added in version 1.0.1. If called with the keyword
-/// keyAERecorderCount ('recr'), the number of recorders that are
-/// currently active is returned in 'result'
-/// (available only in vers 1.0.1 and greater).
-/// ************************************************************************
+/// `keyAERecorderCount` ('recr'), the number of recorders that are
+/// currently active is returned in `result` (available only in vers 1.0.1
+/// and greater).
 ///
 /// # Safety
 ///
@@ -320,34 +399,49 @@ pub unsafe fn AEManagerInfo(key_word: AEKeyword, result: Option<&mut c_long>) ->
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessurlkey?language=objc)
+    /// the full URL to this application, a CFURLRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessurlkey?language=objc)
     pub static kAERemoteProcessURLKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessnamekey?language=objc)
+    /// the visible name to this application, in the localization supplied by the server, a CFStringRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessnamekey?language=objc)
     pub static kAERemoteProcessNameKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessuseridkey?language=objc)
+    /// the userid of this application, if available.  If present, a CFNumberRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessuseridkey?language=objc)
     pub static kAERemoteProcessUserIDKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessprocessidkey?language=objc)
+    /// the process id of this application, if available.  If present, a CFNumberRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessprocessidkey?language=objc)
     pub static kAERemoteProcessProcessIDKey: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercontext?language=objc)
+/// An optional context parameter for asynchronous resolution.  The context is copied and the info pointer retained.  When the callback is made, the info pointer is passed to the callback.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercontext?language=objc)
 #[repr(C, packed(2))]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AERemoteProcessResolverContext {
+    /// Set to zero (0).
     pub version: CFIndex,
+    /// Info pointer to be passed to the callback.
     pub info: *mut c_void,
+    /// Callback made on the info pointer. This field may be NULL.
     pub retain: Option<CFAllocatorRetainCallBack>,
+    /// Callback made on the info pointer. This field may be NULL.
     pub release: Option<CFAllocatorReleaseCallBack>,
+    /// Callback made on the info pointer. This field may be NULL.
     pub copyDescription: Option<CFAllocatorCopyDescriptionCallBack>,
 }
 
@@ -370,7 +464,9 @@ unsafe impl RefEncode for AERemoteProcessResolverContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolver?language=objc)
+/// An opaque reference to an object that encapsulates the mechnanism by which a list of processes running on a remote machine are obtained.  Created by AECreateRemoteProcessResolver, and must be disposed of by AEDisposeRemoteProcessResolver. A AERemoteProcessResolverRef is not a CFType.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolver?language=objc)
 #[doc(alias = "AERemoteProcessResolverRef")]
 #[repr(C)]
 #[derive(Debug)]
@@ -385,6 +481,18 @@ unsafe impl RefEncode for AERemoteProcessResolver {
         Encoding::Pointer(&Encoding::Struct("AERemoteProcessResolver", &[]));
 }
 
+/// Create a Remote Process List Resolver object.
+///
+/// The allocator is used for any CoreFoundation types created or returned by this API. The
+/// resulting object can be scheduled on a run loop, or queried synchronously. Once the object has
+/// retreived results from the server, or got an error doing so, it will not re-fetch the data. To
+/// retrieve a new list of processes, create a new instance of this object.
+///
+/// - Parameters:
+/// - allocator: a CFAllocatorRef to use when creating CFTypes
+/// - url: a CFURL identifying the remote host and port.
+/// - Returns: a AECreateRemoteProcessResolverRef, which must be disposed of with AEDisposeRemoteProcessResolver.
+///
 /// # Safety
 ///
 /// `url` might not allow `None`.
@@ -402,6 +510,14 @@ pub unsafe fn AECreateRemoteProcessResolver(
     unsafe { AECreateRemoteProcessResolver(allocator, url) }
 }
 
+/// Disposes of a AERemoteProcessResolverRef.
+///
+/// If this resolver is currently scheduled on a run loop, it is unscheduled. In this case, the
+/// asynchronous callback will not be executed.
+///
+/// - Parameters:
+/// - ref: The AERemoteProcessResolverRef to dispose
+///
 /// # Safety
 ///
 /// `ref` must be a valid pointer.
@@ -414,6 +530,22 @@ pub unsafe fn AEDisposeRemoteProcessResolver(r#ref: *mut AERemoteProcessResolver
 }
 
 impl AERemoteProcessResolver {
+    /// Returns a CFArrayRef containing CFDictionary objects containing information about processses
+    /// running on a remote machine.
+    ///
+    /// If the result array is NULL, the query failed and the error out parameter will contain
+    /// information about the failure. If the resolver had not been previously scheduled for execution,
+    /// this call will block until the resulting array is available or an error occurs. If the resolver
+    /// had been scheduled but had not yet completed fetching the array, this call will block until the
+    /// resolver does complete. The array returned is owned by the resolver, so callers must retain it
+    /// before disposing of the resolver object itself.
+    ///
+    /// - Parameters:
+    /// - ref: The AERemoteProcessResolverRef to query
+    /// - outError: If the result is NULL, outError will contain a CFStreamError with information
+    /// about the type of failure
+    /// - Returns: a CFArray of CFDictionary objects containing information about the remote applications.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -436,11 +568,29 @@ impl AERemoteProcessResolver {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback?language=objc)
+/// A callback made when the asynchronous execution of a resolver completes, either due to success or failure. The data itself should be obtained with AERemoteProcessResolverGetProcesses.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback?language=objc)
 pub type AERemoteProcessResolverCallback =
     unsafe extern "C-unwind" fn(Option<&AERemoteProcessResolver>, *mut c_void);
 
 impl AERemoteProcessResolver {
+    /// Schedules a resolver for execution on a given runloop in a given mode.
+    ///
+    /// The resolver will move through various internal states as long as the specified run loop is run.
+    /// When the resolver completes, either with success or an error condition, the callback is
+    /// executed. There is no explicit unschedule of the resolver; you must dispose of it to remove it
+    /// from the run loop.
+    ///
+    /// - Parameters:
+    /// - ref: The AERemoteProcessResolverRef to schedule
+    /// - runLoop: a CFRunLoop
+    /// - runLoopMode: a CFString specifying the run loop mode
+    /// - callback: a callback to be executed when the resolver completes
+    /// - ctx: a AERemoteProcessResolverContext. If this parameter is not NULL, the info field of this
+    /// structure will be passed to the callback (otherwise, the callback info parameter will
+    /// explicitly be NULL.)
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -504,28 +654,18 @@ impl AERemoteProcessResolver {
 ///
 /// The target AEAddressDesc must refer to an already running application.
 ///
-///
-/// macOS Threading
-/// Thread safe since version 10.14.  Do not call this function on your main thread because it may take arbitrarily long
+/// - Note: Thread safe since version 10.14.  Do not call this function on your main thread because it may take arbitrarily long
 /// to return if the user needs to be prompted for consent.
 ///
-///
-/// Parameter `target`: A pointer to an address descriptor. Before calling AEDeterminePermissionToAutomateTarget, you set the descriptor to identify
+/// - Parameters:
+/// - target: A pointer to an address descriptor. Before calling AEDeterminePermissionToAutomateTarget, you set the descriptor to identify
 /// the target application for the Apple event.  The target address descriptor must refer to a running application.  If
 /// the target application is on another machine, then Remote AppleEvents must be enabled on that machine for the user.
-///
-///
-/// Parameter `theAEEventClass`: The event class of the Apple event to determine permission for.
-///
-///
-/// Parameter `theAEEventID`: The event ID of the Apple event to determine permission for.
-///
-///
-/// Parameter `askUserIfNeeded`: a Boolean; if true, and if this application does not yet have permission to send events to the target application, then
+/// - theAEEventClass: The event class of the Apple event to determine permission for.
+/// - theAEEventID: The event ID of the Apple event to determine permission for.
+/// - askUserIfNeeded: a Boolean; if true, and if this application does not yet have permission to send events to the target application, then
 /// prompt the user to obtain permission.  If false, do not prompt the user.
-///
-///
-/// Returns: If the current application is permitted to send the given AppleEvent to the target, then noErr will be returned.  If the
+/// - Returns: If the current application is permitted to send the given AppleEvent to the target, then noErr will be returned.  If the
 /// current application is not permitted to send the event, errAEEventNotPermitted will be returned.  If the target application
 /// is not running, then procNotFound will be returned.  If askUserIfNeeded is false, and this application is not yet permitted
 /// to send AppleEvents to the target, then errAEEventWouldRequireUserConsent will be returned.

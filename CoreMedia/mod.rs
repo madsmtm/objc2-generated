@@ -626,6 +626,8 @@ pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_DataType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_DataTypeNamespace;
 #[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_HumanReadableString;
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_LanguageTag;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_LocalID;
@@ -641,6 +643,8 @@ pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_Value;
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionMetadataSpecificationKey_DataType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionMetadataSpecificationKey_ExtendedLanguageTag;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionMetadataSpecificationKey_HumanReadableString;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionMetadataSpecificationKey_Identifier;
 #[cfg(feature = "CMFormatDescription")]

@@ -8,13 +8,16 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtaskstemporaleventtriggerunsupportedreason?language=objc)
 // NS_ENUM
+#[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INAddTasksTemporalEventTriggerUnsupportedReason(pub NSInteger);
 impl INAddTasksTemporalEventTriggerUnsupportedReason {
     #[doc(alias = "INAddTasksTemporalEventTriggerUnsupportedReasonTimeInPast")]
+    #[deprecated]
     pub const TimeInPast: Self = Self(1);
     #[doc(alias = "INAddTasksTemporalEventTriggerUnsupportedReasonInvalidRecurrence")]
+    #[deprecated]
     pub const InvalidRecurrence: Self = Self(2);
 }
 
@@ -38,6 +41,7 @@ extern_class!(
         feature = "INIntentResolutionResult",
         feature = "INTemporalEventTriggerResolutionResult"
     ))]
+    #[deprecated]
     pub struct INAddTasksTemporalEventTriggerResolutionResult;
 );
 
@@ -55,12 +59,14 @@ extern_conformance!(
 ))]
 impl INAddTasksTemporalEventTriggerResolutionResult {
     extern_methods!(
+        #[deprecated]
         #[unsafe(method(unsupportedForReason:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unsupportedForReason(
             reason: INAddTasksTemporalEventTriggerUnsupportedReason,
         ) -> Retained<Self>;
 
+        #[deprecated]
         #[unsafe(method(initWithTemporalEventTriggerResolutionResult:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTemporalEventTriggerResolutionResult(

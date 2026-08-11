@@ -114,6 +114,44 @@ impl THClient {
             >,
         );
 
+        #[cfg(all(feature = "THCredentials", feature = "block2"))]
+        /// Requests all active Thread credentials with active border routers around from the framework.
+        ///
+        /// When calling this method, you will receive credentials for active border routers around.
+        /// You receive all credentials agnostic to team ID.
+        /// Unlike ``retrieveAllActiveCredentials:``, this method returns active credentials
+        /// on the device regardless of who actually stored it.
+        ///
+        /// - Parameters:
+        /// - completion: The completion handler the framework calls when the
+        /// credentials become available.
+        ///
+        /// - Note: This method asks for user permission to share available credentials.
+        /// If user denies the permission then the completion will contain error with code 15.
+        ///
+        /// > Concurrency Note: You can call this method from synchronous code using a completion handler,
+        /// > as shown on this page, or you can call it as an asynchronous method that has the
+        /// > following declaration:
+        /// >
+        /// > ```swift
+        /// > var activeCredentialsForNearbyNetworks: Set
+        /// <THCredentials
+        /// > { get async throws }
+        /// > ```
+        /// >
+        /// > For information about concurrency and asynchronous code in Swift, see
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        #[unsafe(method(retrieveActiveCredentialsForNearbyNetworksWithCompletion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn retrieveActiveCredentialsForNearbyNetworksWithCompletion(
+            &self,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSSet<THCredentials>, *mut NSError),
+            >,
+        );
+
         #[cfg(feature = "block2")]
         /// Deletes Thread network credentials from the framework database for a Border
         /// Agent.
@@ -331,14 +369,12 @@ impl THClient {
         ///
         /// This method scans for Thread credential sharing capable Apple Border Routers, selects an eligible device, and requests to generate an ephemeral 9-digit code and start credential sharing mode.
         ///
-        /// When you call this method, an alert appears asking for user permission to
-        /// access credentials. The one-time admin code is displayed internally via an alert;
-        /// it is not returned to the caller.
+        /// When you call this method, the ephemeral 9-digit code appears on screen along with a warning message; it is not returned to the caller.
         ///
-        /// /// - Parameters:
+        /// - Parameters:
         /// - extendedPANID: The extended PAN identifier of the Thread network.
-        /// - completion: The completion handler the framework calls after the user
-        /// acknowledges the alert. The `error` parameter is nil on success, or
+        /// - completion: The completion handler the framework calls once credential
+        /// sharing mode has started. The `error` parameter is nil on success, or
         /// non-nil if credential sharing mode could not be enabled.
         ///
         /// > Concurrency Note: You can call this method from synchronous code using a completion handler,
@@ -347,20 +383,20 @@ impl THClient {
         /// >
         /// > ```swift
         /// > // Completion handler form:
-        /// > func enableCredentialSharingModeWithExtendedPANId(extendedPANId: Data, completion:
+        /// > func enableCredentialSharingMode(forExtendedPANID extendedPANID: Data, completion:
         /// @escaping (Error?) -> Void)
         /// >
         /// > // Async form (throws on failure):
-        /// > func enableCredentialSharingModeWithExtendedPANId(extendedPANId: Data) async throws
+        /// > func enableCredentialSharingMode(forExtendedPANID extendedPANID: Data) async throws
         /// > ```
         /// > For information about concurrency and asynchronous code in Swift, see
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
-        #[unsafe(method(enableCredentialSharingModeWithExtendedPANId:completion:))]
+        #[unsafe(method(enableCredentialSharingModeForExtendedPANID:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enableCredentialSharingModeWithExtendedPANId_completion(
+        pub unsafe fn enableCredentialSharingModeForExtendedPANID_completion(
             &self,
-            xpan_id: &NSData,
+            extended_panid: &NSData,
             completion: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );

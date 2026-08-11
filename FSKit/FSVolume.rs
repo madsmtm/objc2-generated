@@ -932,28 +932,16 @@ impl FSStatFSResult {
 }
 
 extern_protocol!(
-    /// Methods that all volumes implement to provide required capabilities.
+    /// Methods common to `FSVolumeHandler` and `FSVolumeOperations`
     ///
-    /// Conform to this protocol in your subclass of ``FSVolume``.
-    /// To provide additional capabilities, conform to the other `FSVolume` operations protocols, such as ``FSVolumeOpenCloseOperations`` and ``FSVolumeReadWriteOperations``.
-    ///
-    /// > Note: This protocol extends ``FSVolumePathConfOperations``, so your volume implementation must also conform to that protocol.
-    ///
-    /// > Deprecated: Use ``FSVolume/Handler`` instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeoperations?language=objc)
-    #[deprecated]
-    pub unsafe trait FSVolumeOperations:
-        NSObjectProtocol + FSVolumePathConfOperations
-    {
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumecommonoperations?language=objc)
+    pub unsafe trait FSVolumeCommonOperations {
         /// A property that provides the supported capabilities of the volume.
-        #[deprecated]
         #[unsafe(method(supportedVolumeCapabilities))]
         #[unsafe(method_family = none)]
         unsafe fn supportedVolumeCapabilities(&self) -> Retained<FSVolumeSupportedCapabilities>;
 
         /// A property that provides up-to-date statistics of the volume.
-        #[deprecated]
         #[unsafe(method(volumeStatistics))]
         #[unsafe(method_family = none)]
         unsafe fn volumeStatistics(&self) -> Retained<FSStatFSResult>;
@@ -973,12 +961,6 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn enableOpenUnlinkEmulation(&self) -> bool;
 
-        /// Setter for [`enableOpenUnlinkEmulation`][Self::enableOpenUnlinkEmulation].
-        #[optional]
-        #[unsafe(method(setEnableOpenUnlinkEmulation:))]
-        #[unsafe(method_family = none)]
-        unsafe fn setEnableOpenUnlinkEmulation(&self, enable_open_unlink_emulation: bool);
-
         /// A property that allows the file system to request for specific mount options from FSKit.
         ///
         /// FSKit reads this value after the volume replies to the ``mount(options:)`` call.
@@ -988,12 +970,85 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn requestedMountOptions(&self) -> FSMountOptions;
 
-        /// Setter for [`requestedMountOptions`][Self::requestedMountOptions].
-        #[optional]
-        #[unsafe(method(setRequestedMountOptions:))]
+        #[cfg(all(feature = "FSTaskOptions", feature = "block2"))]
+        /// Mounts this volume, using the specified options.
+        ///
+        /// FSKit calls this method as a signal that some process is trying to mount this volume.
+        /// Your file system receives a call to ``activate(options:)`` prior to receiving any mount calls.
+        ///
+        /// - Parameters:
+        /// - options: Options to apply to the mount. These can include security-scoped file paths. There are no defined options currently.
+        /// - reply: A block or closure to indicate success or failure. If mounting fails, pass an error as the one parameter to the reply handler. If mounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
+        #[unsafe(method(mountWithOptions:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn setRequestedMountOptions(&self, requested_mount_options: FSMountOptions);
+        unsafe fn mountWithOptions_replyHandler(
+            &self,
+            options: &FSTaskOptions,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
 
+        #[cfg(feature = "block2")]
+        /// Unmounts this volume.
+        ///
+        /// Clear and flush all cached state in your implementation of this method.
+        ///
+        /// - Parameters:
+        /// - reply: A block or closure to indicate success or failure. If unmounting fails, pass an error as the one parameter to the reply handler. If unmounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
+        #[unsafe(method(unmountWithReplyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn unmountWithReplyHandler(&self, reply: &block2::SendableBlock<'static, fn()>);
+
+        #[cfg(feature = "block2")]
+        /// Synchronizes the volume with its underlying resource.
+        ///
+        /// After calling this method, FSKit assumes that the volume has sent all pending I/O or metadata to its resource.
+        ///
+        /// - Parameters:
+        /// - flags: Timing flags, as defined in `mount.h.` These flags let the file system know whether to run the operation in a blocking or nonblocking fashion.
+        /// - reply: A block or closure to indicate success or failure. If synchronization fails, pass an error as the one parameter to the reply handler. If synchronization succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[unsafe(method(synchronizeWithFlags:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn synchronizeWithFlags_replyHandler(
+            &self,
+            flags: FSSyncFlags,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSItem", feature = "block2"))]
+        /// Reclaims an item, releasing any resources allocated for the item.
+        ///
+        /// FSKit guarantees that for every ``FSItem`` returned by the volume, a corresponding reclaim operation occurs after the upper layers no longer reference that item. To use this behavior, call ``FSItem/tryReclaim(_:)`` in your implementation of this method.
+        ///
+        /// > Note: Block device file systems may assess whether an underlying resource terminates before processing reclaim operations. On unary file systems, for example, the associated volumes unmount when such resources disconnect from the system. The unmount triggers a reclaiming of all items. Some implementations benefit greatly from short-circuiting in such cases. With a terminated resource, all I/O results in an error, making short-circuiting the most efficient response.
+        ///
+        /// - Parameters:
+        /// - item: The item to reclaim.
+        /// - reply: A block or closure to indicate success or failure. If removal fails, pass an error as the one parameter to the reply handler. If removal succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[unsafe(method(reclaimItem:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn reclaimItem_replyHandler(
+            &self,
+            item: &FSItem,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+    }
+);
+
+extern_protocol!(
+    /// Methods that all volumes implement to provide required capabilities.
+    ///
+    /// Conform to this protocol in your subclass of ``FSVolume``.
+    /// To provide additional capabilities, conform to the other `FSVolume` operations protocols, such as ``FSVolumeOpenCloseOperations`` and ``FSVolumeReadWriteOperations``.
+    ///
+    /// > Note: This protocol extends ``FSVolumePathConfOperations``, so your volume implementation must also conform to that protocol.
+    ///
+    /// > Deprecated: Use ``FSVolume/Handler`` instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeoperations?language=objc)
+    #[deprecated]
+    pub unsafe trait FSVolumeOperations:
+        NSObjectProtocol + FSVolumeCommonOperations + FSVolumePathConfOperations
+    {
         #[cfg(all(feature = "FSItem", feature = "FSTaskOptions", feature = "block2"))]
         /// Activates the volume using the specified options.
         ///
@@ -1039,53 +1094,6 @@ extern_protocol!(
             reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "FSTaskOptions", feature = "block2"))]
-        /// Mounts this volume, using the specified options.
-        ///
-        /// FSKit calls this method as a signal that some process is trying to mount this volume.
-        /// Your file system receives a call to ``activate(options:)`` prior to receiving any mount calls.
-        ///
-        /// - Parameters:
-        /// - options: Options to apply to the mount. These can include security-scoped file paths. There are no defined options currently.
-        /// - reply: A block or closure to indicate success or failure. If mounting fails, pass an error as the one parameter to the reply handler. If mounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
-        #[deprecated]
-        #[unsafe(method(mountWithOptions:replyHandler:))]
-        #[unsafe(method_family = none)]
-        unsafe fn mountWithOptions_replyHandler(
-            &self,
-            options: &FSTaskOptions,
-            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
-        );
-
-        #[cfg(feature = "block2")]
-        /// Unmounts this volume.
-        ///
-        /// Clear and flush all cached state in your implementation of this method.
-        ///
-        /// - Parameters:
-        /// - reply: A block or closure to indicate success or failure. If unmounting fails, pass an error as the one parameter to the reply handler. If unmounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
-        #[deprecated]
-        #[unsafe(method(unmountWithReplyHandler:))]
-        #[unsafe(method_family = none)]
-        unsafe fn unmountWithReplyHandler(&self, reply: &block2::SendableBlock<'static, fn()>);
-
-        #[cfg(feature = "block2")]
-        /// Synchronizes the volume with its underlying resource.
-        ///
-        /// After calling this method, FSKit assumes that the volume has sent all pending I/O or metadata to its resource.
-        ///
-        /// - Parameters:
-        /// - flags: Timing flags, as defined in `mount.h.` These flags let the file system know whether to run the operation in a blocking or nonblocking fashion.
-        /// - reply: A block or closure to indicate success or failure. If synchronization fails, pass an error as the one parameter to the reply handler. If synchronization succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
-        #[deprecated]
-        #[unsafe(method(synchronizeWithFlags:replyHandler:))]
-        #[unsafe(method_family = none)]
-        unsafe fn synchronizeWithFlags_replyHandler(
-            &self,
-            flags: FSSyncFlags,
-            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
-        );
-
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
         /// Looks up an item within a directory.
         ///
@@ -1107,25 +1115,6 @@ extern_protocol!(
             name: &FSFileName,
             directory: &FSItem,
             reply: &block2::SendableBlock<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
-        );
-
-        #[cfg(all(feature = "FSItem", feature = "block2"))]
-        /// Reclaims an item, releasing any resources allocated for the item.
-        ///
-        /// FSKit guarantees that for every ``FSItem`` returned by the volume, a corresponding reclaim operation occurs after the upper layers no longer reference that item. To use this behavior, call ``FSItem/tryReclaim(_:)`` in your implementation of this method.
-        ///
-        /// > Note: Block device file systems may assess whether an underlying resource terminates before processing reclaim operations. On unary file systems, for example, the associated volumes unmount when such resources disconnect from the system. The unmount triggers a reclaiming of all items. Some implementations benefit greatly from short-circuiting in such cases. With a terminated resource, all I/O results in an error, making short-circuiting the most efficient response.
-        ///
-        /// - Parameters:
-        /// - item: The item to reclaim.
-        /// - reply: A block or closure to indicate success or failure. If removal fails, pass an error as the one parameter to the reply handler. If removal succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
-        #[deprecated]
-        #[unsafe(method(reclaimItem:replyHandler:))]
-        #[unsafe(method_family = none)]
-        unsafe fn reclaimItem_replyHandler(
-            &self,
-            item: &FSItem,
-            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
@@ -1396,7 +1385,9 @@ extern_protocol!(
     /// > Important: This protocol replaces the ``FSVolumeOperations`` protocol. It exposes the same functionality, while using ``FSVolumeHandlerResult`` objects. These objects add the ability to reply with ``FSItemAttributes`` and free space from the relevant methods.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumehandler?language=objc)
-    pub unsafe trait FSVolumeHandler: NSObjectProtocol + FSVolumePathConfOperations {
+    pub unsafe trait FSVolumeHandler:
+        NSObjectProtocol + FSVolumeCommonOperations + FSVolumePathConfOperations
+    {
         #[unsafe(method(supportedVolumeCapabilities))]
         #[unsafe(method_family = none)]
         unsafe fn supportedVolumeCapabilities(&self) -> Retained<FSVolumeSupportedCapabilities>;
@@ -1405,30 +1396,6 @@ extern_protocol!(
         #[unsafe(method(volumeStatistics))]
         #[unsafe(method_family = none)]
         unsafe fn volumeStatistics(&self) -> Retained<FSStatFSResult>;
-
-        /// A property that allows the file system to use open-unlink emulation.
-        ///
-        /// _Open-unlink_ functionality refers to a file system's ability to support an open file being fully unlinked from the file system namespace.
-        /// If a file system doesn't support this functionality, FSKit can emulate it instead; this is called "open-unlink emulation".
-        ///
-        /// Implement this property to return `true` (Swift) or `YES` (Objective-C) to allow FSKit to perform open-unlink emulation.
-        /// If you don't implement this property at all, FSKit doesn't perform open-unlink emulation for this volume.
-        ///
-        /// FSKit reads this value after the file system replies to the `loadResource` message.
-        /// Changing the returned value during the runtime of the volume has no effect.
-        #[optional]
-        #[unsafe(method(enableOpenUnlinkEmulation))]
-        #[unsafe(method_family = none)]
-        unsafe fn enableOpenUnlinkEmulation(&self) -> bool;
-
-        /// A property that allows the file system to request for specific mount options from FSKit.
-        ///
-        /// FSKit reads this value after the volume replies to the ``mount(options:replyHandler:)`` call.
-        /// Changing the returned value during the runtime of the volume has no effect.
-        #[optional]
-        #[unsafe(method(requestedMountOptions))]
-        #[unsafe(method_family = none)]
-        unsafe fn requestedMountOptions(&self) -> FSMountOptions;
 
         #[cfg(all(
             feature = "FSTaskOptions",
@@ -1446,9 +1413,9 @@ extern_protocol!(
         /// - Parameters:
         /// - options: Options to apply to the activation. These can include security-scoped file paths. There are no defined options currently.
         /// - reply: A block or closure to indicate success or failure. If activation succeeds, pass an instance of ``FSActivateResult`` containing the root ``FSItem``, along with a `nil` error. If activation fails, pass the relevant error as the second parameter; FSKit ignores the ``FSActivateResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
-        #[unsafe(method(activateWithOptions:replyHandler:))]
+        #[unsafe(method(activateVolumeWithOptions:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn activateWithOptions_replyHandler(
+        unsafe fn activateVolumeWithOptions_replyHandler(
             &self,
             options: &FSTaskOptions,
             reply: &block2::SendableBlock<'static, fn(*mut FSActivateResult, *mut NSError)>,
@@ -1469,23 +1436,15 @@ extern_protocol!(
         /// - Parameters:
         /// - options: Options to apply to the deactivation.
         /// - reply: A block or closure to indicate success or failure. If activation fails, pass an error as the one parameter to the reply handler. If activation succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
-        #[unsafe(method(deactivateWithOptions:replyHandler:))]
+        #[unsafe(method(deactivateVolumeWithOptions:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn deactivateWithOptions_replyHandler(
+        unsafe fn deactivateVolumeWithOptions_replyHandler(
             &self,
             options: FSDeactivateOptions,
             reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
         #[cfg(all(feature = "FSTaskOptions", feature = "block2"))]
-        /// Mounts this volume, using the specified options.
-        ///
-        /// FSKit calls this method as a signal that some process is trying to mount this volume.
-        /// Your file system receives a call to ``activate(options:replyHandler:)`` prior to receiving any mount calls.
-        ///
-        /// - Parameters:
-        /// - options: Options to apply to the mount. These can include security-scoped file paths. There are no defined options currently.
-        /// - reply: A block or closure to indicate success or failure. If mounting fails, pass an error as the one parameter to the reply handler. If mounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
         #[unsafe(method(mountWithOptions:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn mountWithOptions_replyHandler(
@@ -1495,24 +1454,11 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
-        /// Unmounts this volume.
-        ///
-        /// Clear and flush all cached state in your implementation of this method.
-        ///
-        /// - Parameters:
-        /// - reply: A block or closure to indicate success or failure. If unmounting fails, pass an error as the one parameter to the reply handler. If unmounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
         #[unsafe(method(unmountWithReplyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn unmountWithReplyHandler(&self, reply: &block2::SendableBlock<'static, fn()>);
 
         #[cfg(feature = "block2")]
-        /// Synchronizes the volume with its underlying resource.
-        ///
-        /// After calling this method, FSKit assumes that the volume has sent all pending I/O or metadata to its resource.
-        ///
-        /// - Parameters:
-        /// - flags: Timing flags, as defined in `mount.h.` These flags let the file system know whether to run the operation in a blocking or nonblocking fashion.
-        /// - reply: A block or closure to indicate success or failure. If synchronization fails, pass an error as the one parameter to the reply handler. If synchronization succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
         #[unsafe(method(synchronizeWithFlags:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn synchronizeWithFlags_replyHandler(
@@ -1552,15 +1498,6 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "FSItem", feature = "block2"))]
-        /// Reclaims an item, releasing any resources allocated for the item.
-        ///
-        /// FSKit guarantees that for every ``FSItem`` returned by the volume, a corresponding reclaim operation occurs after the upper layers no longer reference that item. To use this behavior, call ``FSItem/tryReclaim(_:)`` in your implementation of this method.
-        ///
-        /// > Note: Block device file systems may assess whether an underlying resource terminates before processing reclaim operations. On unary file systems, for example, the associated volumes unmount when such resources disconnect from the system. The unmount triggers a reclaiming of all items. Some implementations benefit greatly from short-circuiting in such cases. With a terminated resource, all I/O results in an error, making short-circuiting the most efficient response.
-        ///
-        /// - Parameters:
-        /// - item: The item to reclaim.
-        /// - reply: A block or closure to indicate success or failure. If removal fails, pass an error as the one parameter to the reply handler. If removal succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
         #[unsafe(method(reclaimItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn reclaimItem_replyHandler(

@@ -6,15 +6,19 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskstatus?language=objc)
 // NS_ENUM
+#[deprecated = "INTaskStatus is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTaskStatus(pub NSInteger);
 impl INTaskStatus {
     #[doc(alias = "INTaskStatusUnknown")]
+    #[deprecated = "INTaskStatus is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "INTaskStatusNotCompleted")]
+    #[deprecated = "INTaskStatus is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const NotCompleted: Self = Self(1);
     #[doc(alias = "INTaskStatusCompleted")]
+    #[deprecated = "INTaskStatus is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Completed: Self = Self(2);
 }
 

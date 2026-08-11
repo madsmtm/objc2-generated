@@ -2011,11 +2011,13 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLResidencySet>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLTensor")]
-        /// Determines the size and alignment required to hold the data of a tensor you create with a descriptor in a buffer.
+        /// Determines the size and alignment required to hold the data plane of a tensor you create with a descriptor in a buffer.
+        ///
+        /// This method requires that `descriptor` does not configure any auxiliary planes.
         ///
         /// - Parameters:
-        /// - descriptor: A description of the properties for the new tensor.
-        /// - Returns: The size and alignment required to hold the data of a tensor you create with `descriptor` in a buffer.
+        /// - descriptor: The tensor descriptor configuring the data plane.
+        /// - Returns: The size and alignment required to hold the data plane of a tensor you create with `descriptor` in a buffer.
         #[unsafe(method(tensorSizeAndAlignWithDescriptor:))]
         #[unsafe(method_family = none)]
         fn tensorSizeAndAlignWithDescriptor(

@@ -45,6 +45,10 @@ extern_class!(
     pub struct NSPersistentCloudKitContainerEvent;
 );
 
+unsafe impl Send for NSPersistentCloudKitContainerEvent {}
+
+unsafe impl Sync for NSPersistentCloudKitContainerEvent {}
+
 extern_conformance!(
     unsafe impl NSCopying for NSPersistentCloudKitContainerEvent {}
 );
@@ -59,30 +63,65 @@ extern_conformance!(
 
 impl NSPersistentCloudKitContainerEvent {
     extern_methods!(
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(storeIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeIdentifier(&self) -> Retained<NSString>;
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> NSPersistentCloudKitContainerEventType;
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(endDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(succeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn succeeded(&self) -> bool;
 
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;

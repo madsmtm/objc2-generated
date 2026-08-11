@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Deprecated.
+#[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[cfg(all(feature = "INIntent", feature = "INSearchForNotebookItemsIntent"))]
 impl INSearchForNotebookItemsIntent {
     extern_methods!(

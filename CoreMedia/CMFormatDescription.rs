@@ -2965,6 +2965,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_humanreadablestring?language=objc)
+    pub static kCMMetadataFormatDescriptionKey_HumanReadableString: &'static CFString;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescription_structuraldependencykey_dependencyisinvalidflag?language=objc)
     pub static kCMMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag:
         &'static CFString;
@@ -2995,6 +3000,12 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionmetadataspecificationkey_setupdata?language=objc)
     pub static kCMMetadataFormatDescriptionMetadataSpecificationKey_SetupData: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionmetadataspecificationkey_humanreadablestring?language=objc)
+    pub static kCMMetadataFormatDescriptionMetadataSpecificationKey_HumanReadableString:
+        &'static CFString;
 }
 
 impl CMMetadataFormatDescription {

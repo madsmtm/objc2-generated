@@ -59,6 +59,8 @@ impl CTCellularPlanStatusAuthorization {
     pub const Authorized: Self = Self(1);
     #[doc(alias = "CTCellularPlanStatusAuthorizationRestricted")]
     pub const Restricted: Self = Self(2);
+    #[doc(alias = "CTCellularPlanStatusAuthorizationNotSupported")]
+    pub const NotSupported: Self = Self(3);
 }
 
 unsafe impl Encode for CTCellularPlanStatusAuthorization {

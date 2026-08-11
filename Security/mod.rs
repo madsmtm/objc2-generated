@@ -626,7 +626,7 @@ pub use self::__CSCommon::kSecCFErrorResourceSeal;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::kSecCFErrorResourceSideband;
 #[cfg(feature = "CSCommon")]
-pub use self::__CSCommon::kSecCS_MAX_SIGNATURES;
+pub use self::__CSCommon::kSecCSMaxSignatures;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::kSecNoGuest;
 #[cfg(feature = "CSCommon")]

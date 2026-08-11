@@ -9,21 +9,28 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintentresponsecode?language=objc)
 // NS_ENUM
+#[deprecated = "INSnoozeTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSnoozeTasksIntentResponseCode(pub NSInteger);
 impl INSnoozeTasksIntentResponseCode {
     #[doc(alias = "INSnoozeTasksIntentResponseCodeUnspecified")]
+    #[deprecated = "INSnoozeTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unspecified: Self = Self(0);
     #[doc(alias = "INSnoozeTasksIntentResponseCodeReady")]
+    #[deprecated = "INSnoozeTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Ready: Self = Self(1);
     #[doc(alias = "INSnoozeTasksIntentResponseCodeInProgress")]
+    #[deprecated = "INSnoozeTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const InProgress: Self = Self(2);
     #[doc(alias = "INSnoozeTasksIntentResponseCodeSuccess")]
+    #[deprecated = "INSnoozeTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Success: Self = Self(3);
     #[doc(alias = "INSnoozeTasksIntentResponseCodeFailure")]
+    #[deprecated = "INSnoozeTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Failure: Self = Self(4);
     #[doc(alias = "INSnoozeTasksIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INSnoozeTasksIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 
@@ -40,6 +47,7 @@ extern_class!(
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]
+    #[deprecated = "INSnoozeTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INSnoozeTasksIntentResponse;
 );
 
@@ -73,6 +81,7 @@ impl INSnoozeTasksIntentResponse {
     extern_methods!(
         // -init (unavailable)
 
+        #[deprecated = "INSnoozeTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithCode:userActivity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCode_userActivity(
@@ -81,11 +90,13 @@ impl INSnoozeTasksIntentResponse {
             user_activity: Option<&NSUserActivity>,
         ) -> Retained<Self>;
 
+        #[deprecated = "INSnoozeTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(code))]
         #[unsafe(method_family = none)]
         pub unsafe fn code(&self) -> INSnoozeTasksIntentResponseCode;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INSnoozeTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(snoozedTasks))]
         #[unsafe(method_family = none)]
         pub unsafe fn snoozedTasks(&self) -> Option<Retained<NSArray<INTask>>>;
@@ -94,6 +105,7 @@ impl INSnoozeTasksIntentResponse {
         /// Setter for [`snoozedTasks`][Self::snoozedTasks].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "INSnoozeTasksIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(setSnoozedTasks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSnoozedTasks(&self, snoozed_tasks: Option<&NSArray<INTask>>);

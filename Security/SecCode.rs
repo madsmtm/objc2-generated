@@ -502,12 +502,20 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfototalsignatures?language=objc)
+    /// Key in the dictionary returned by SecCodeCopySigningInformation. The value
+    /// is a CFNumber giving the total number of signature slots present on the code
+    /// object (ranging from 1 to kSecCSMaxSignatures).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfototalsignatures?language=objc)
     pub static kSecCodeInfoTotalSignatures: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfochosensignature?language=objc)
+    /// Key in the dictionary returned by SecCodeCopySigningInformation. The value
+    /// is a CFNumber containing the 1-based index of the signature slot that was
+    /// selected for validation and information retrieval.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfochosensignature?language=objc)
     pub static kSecCodeInfoChosenSignature: &'static CFString;
 }
 
@@ -637,7 +645,11 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfosignerinfoskid?language=objc)
+    /// Key in the dictionary returned by SecCodeCopySigningInformation. The value
+    /// is a CFData containing the Subject Key Identifier (SKID) of the leaf signing
+    /// certificate. Useful for looking up detached certificates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfosignerinfoskid?language=objc)
     pub static kSecCodeInfoSignerInfoSKID: &'static CFString;
 }
 

@@ -153,11 +153,62 @@ impl PHPhotoLibrary {
         /// - Parameters:
         /// - enable: `true` allows calls to the extension's host application; you can fulfill that protocol to create ``PHAssetResourceUploadJob`` objects. `false` stops calls to the extension's host application.
         /// - error: if either enabling or disabling was unsuccessful, `false` is returned and an error is set on the `error` parameter.
+        #[deprecated = "Use -enableUploadJobExtensionWithOptions:error: and -disableUploadJobExtensionWithError: instead"]
         #[unsafe(method(setUploadJobExtensionEnabled:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUploadJobExtensionEnabled_error(
             &self,
             enable: bool,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "PHAssetResourceUploadJobOptions")]
+        /// Enables the background asset resource upload job feature with the given options, atomically.
+        ///
+        /// The configuration is created with `options` already set, as a single change — unlike calling
+        /// ``setUploadJobExtensionOptions:error:`` afterward, as a separate change.
+        ///
+        /// - Parameters:
+        /// - options: the options to set for the newly enabled configuration, or `nil` to use default values.
+        /// - error: if enabling was unsuccessful, `false` is returned and an error is set on the `error` parameter.
+        #[unsafe(method(enableUploadJobExtensionWithOptions:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enableUploadJobExtensionWithOptions_error(
+            &self,
+            options: Option<&PHAssetResourceUploadJobOptions>,
+        ) -> Result<(), Retained<NSError>>;
+
+        /// Disables the background asset resource upload job feature.
+        ///
+        /// - Parameters:
+        /// - error: if disabling was unsuccessful, `false` is returned and an error is set on the `error` parameter.
+        #[unsafe(method(disableUploadJobExtensionWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn disableUploadJobExtensionWithError(&self) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "PHAssetResourceUploadJobOptions")]
+        /// The options for the calling app's background asset resource upload job configuration.
+        ///
+        /// The value is `nil` if the extension isn't enabled or the caller isn't authorized. Otherwise, the value is an
+        /// options object with default values if the configuration exists but no options have been set.
+        #[unsafe(method(uploadJobExtensionOptions))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn uploadJobExtensionOptions(
+            &self,
+        ) -> Option<Retained<PHAssetResourceUploadJobOptions>>;
+
+        #[cfg(feature = "PHAssetResourceUploadJobOptions")]
+        /// Sets the options for the calling app's background asset resource upload job configuration.
+        ///
+        /// To reset the configuration's options to their default values, pass a newly-initialized `PHAssetResourceUploadJobOptions` instance.
+        ///
+        /// - Parameters:
+        /// - options: the options to set.
+        /// - error: if the configuration could not be found, the caller isn't authorized, or the update failed, `false` is returned and an error is set on the `error` parameter.
+        #[unsafe(method(setUploadJobExtensionOptions:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUploadJobExtensionOptions_error(
+            &self,
+            options: &PHAssetResourceUploadJobOptions,
         ) -> Result<(), Retained<NSError>>;
 
         #[unsafe(method(unavailabilityReason))]

@@ -10,6 +10,7 @@ extern_class!(
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]
+    #[deprecated = "INTaskStatusResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INTaskStatusResolutionResult;
 );
 
@@ -22,6 +23,7 @@ extern_conformance!(
 impl INTaskStatusResolutionResult {
     extern_methods!(
         #[cfg(feature = "INTaskStatus")]
+        #[deprecated = "INTaskStatusResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedTaskStatus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedTaskStatus(
@@ -29,6 +31,7 @@ impl INTaskStatusResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTaskStatus")]
+        #[deprecated = "INTaskStatusResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithTaskStatusToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithTaskStatusToConfirm(

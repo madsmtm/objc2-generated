@@ -659,8 +659,6 @@ pub use self::__AVAssetExportSession::AVAssetExportSession;
 #[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReason;
 #[cfg(feature = "AVAssetExportSession")]
-pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReasonIncompatiblePreset;
-#[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReasonIncompatibleSessionSettings;
 #[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReasonIncompatibleTemporaryDirectoryContents;

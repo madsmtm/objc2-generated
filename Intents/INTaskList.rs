@@ -10,6 +10,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/intasklist?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "INTaskList is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INTaskList;
 );
 
@@ -36,6 +37,7 @@ extern_conformance!(
 impl INTaskList {
     extern_methods!(
         #[cfg(all(feature = "INSpeakableString", feature = "INTask"))]
+        #[deprecated = "INTaskList is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithTitle:tasks:groupName:createdDateComponents:modifiedDateComponents:identifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_tasks_groupName_createdDateComponents_modifiedDateComponents_identifier(
@@ -49,28 +51,34 @@ impl INTaskList {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INSpeakableString")]
+        #[deprecated = "INTaskList is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<INSpeakableString>;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskList is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(tasks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tasks(&self) -> Retained<NSArray<INTask>>;
 
         #[cfg(feature = "INSpeakableString")]
+        #[deprecated = "INTaskList is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(groupName))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupName(&self) -> Option<Retained<INSpeakableString>>;
 
+        #[deprecated = "INTaskList is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(createdDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn createdDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
+        #[deprecated = "INTaskList is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(modifiedDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifiedDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
+        #[deprecated = "INTaskList is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;

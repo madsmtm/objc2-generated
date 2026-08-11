@@ -10,6 +10,7 @@ extern_class!(
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]
+    #[deprecated = "INTaskPriorityResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INTaskPriorityResolutionResult;
 );
 
@@ -22,6 +23,7 @@ extern_conformance!(
 impl INTaskPriorityResolutionResult {
     extern_methods!(
         #[cfg(feature = "INTaskPriority")]
+        #[deprecated = "INTaskPriorityResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedTaskPriority:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedTaskPriority(
@@ -29,6 +31,7 @@ impl INTaskPriorityResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTaskPriority")]
+        #[deprecated = "INTaskPriorityResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithTaskPriorityToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithTaskPriorityToConfirm(

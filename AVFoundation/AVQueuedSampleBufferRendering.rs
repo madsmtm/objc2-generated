@@ -38,11 +38,7 @@ unsafe impl RefEncode for AVQueuedSampleBufferRenderingStatus {
 }
 
 extern_protocol!(
-    /// Defines methods for enqueueing CMSampleBuffers for presentation.
-    ///
-    /// AVSampleBufferDisplayLayer and AVSampleBufferAudioRenderer conform to this protocol. When used in conjunction with an AVSampleBufferRenderSynchronizer, an object conforming to AVQueuedSampleBufferRendering can only be attached to a single synchronizer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrendering?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrendering?language=objc)
     pub unsafe trait AVQueuedSampleBufferRendering: NSObjectProtocol {
         #[cfg(feature = "objc2-core-media")]
         /// The renderer's timebase, which governs how time stamps are interpreted.

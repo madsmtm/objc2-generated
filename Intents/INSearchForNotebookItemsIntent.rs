@@ -14,6 +14,7 @@ extern_class!(
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
+    #[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INSearchForNotebookItemsIntent;
 );
 
@@ -74,40 +75,48 @@ impl INSearchForNotebookItemsIntent {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INSpeakableString")]
+        #[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<INSpeakableString>>;
 
+        #[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(content))]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "INNotebookItemType")]
+        #[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(itemType))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemType(&self) -> INNotebookItemType;
 
         #[cfg(feature = "INTaskStatus")]
+        #[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> INTaskStatus;
 
         #[cfg(feature = "objc2-core-location")]
+        #[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLPlacemark>>;
 
         #[cfg(feature = "INLocationSearchType")]
+        #[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(locationSearchType))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationSearchType(&self) -> INLocationSearchType;
 
         #[cfg(feature = "INDateComponentsRange")]
+        #[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(dateTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateTime(&self) -> Option<Retained<INDateComponentsRange>>;
 
         #[cfg(feature = "INDateSearchType")]
+        #[deprecated = "INSearchForNotebookItemsIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(dateSearchType))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateSearchType(&self) -> INDateSearchType;
@@ -148,6 +157,7 @@ extern_protocol!(
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintenthandling?language=objc)
+    #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub unsafe trait INSearchForNotebookItemsIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",
@@ -166,6 +176,7 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForNotebookItemsIntentResponse
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(handleSearchForNotebookItems:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSearchForNotebookItems_completion(
@@ -194,6 +205,7 @@ extern_protocol!(
         ///
         ///
         /// See: INSearchForNotebookItemsIntentResponse
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(confirmSearchForNotebookItems:completion:))]
         #[unsafe(method_family = none)]
@@ -223,6 +235,7 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveTitleForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -241,6 +254,7 @@ extern_protocol!(
             feature = "INStringResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveContentForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -256,6 +270,7 @@ extern_protocol!(
             feature = "INNotebookItemTypeResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveItemTypeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -274,6 +289,7 @@ extern_protocol!(
             feature = "INTaskStatusResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveStatusForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -289,6 +305,7 @@ extern_protocol!(
             feature = "INPlacemarkResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveLocationForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -304,6 +321,7 @@ extern_protocol!(
             feature = "INLocationSearchTypeResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveLocationSearchTypeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -322,6 +340,7 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveDateTimeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -340,6 +359,7 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSearchForNotebookItemsIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveDateSearchTypeForSearchForNotebookItems:withCompletion:))]
         #[unsafe(method_family = none)]

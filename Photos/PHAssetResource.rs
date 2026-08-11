@@ -32,9 +32,15 @@ impl PHAssetResource {
         #[unsafe(method_family = none)]
         pub unsafe fn assetLocalIdentifier(&self) -> Retained<NSString>;
 
+        #[deprecated = "Use filename instead"]
         #[unsafe(method(originalFilename))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalFilename(&self) -> Retained<NSString>;
+
+        /// The filename associated with this asset resource (if any)
+        #[unsafe(method(filename))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn filename(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// The content type of the data associated with this asset resource (the data can be retrieved via `PHAssetResourceManager`)

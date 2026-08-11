@@ -6,16 +6,20 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptions?language=objc)
 // NS_OPTIONS
+#[deprecated = "INTemporalEventTriggerTypeOptions is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTemporalEventTriggerTypeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INTemporalEventTriggerTypeOptions: NSUInteger {
         #[doc(alias = "INTemporalEventTriggerTypeOptionNotScheduled")]
+#[deprecated = "INTemporalEventTriggerTypeOptions is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         const NotScheduled = 1<<0;
         #[doc(alias = "INTemporalEventTriggerTypeOptionScheduledNonRecurring")]
+#[deprecated = "INTemporalEventTriggerTypeOptions is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         const ScheduledNonRecurring = 1<<1;
         #[doc(alias = "INTemporalEventTriggerTypeOptionScheduledRecurring")]
+#[deprecated = "INTemporalEventTriggerTypeOptions is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         const ScheduledRecurring = 1<<2;
         const _ = !0;
     }

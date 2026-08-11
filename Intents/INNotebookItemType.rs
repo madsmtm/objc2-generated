@@ -6,17 +6,22 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype?language=objc)
 // NS_ENUM
+#[deprecated = "INNotebookItemType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INNotebookItemType(pub NSInteger);
 impl INNotebookItemType {
     #[doc(alias = "INNotebookItemTypeUnknown")]
+    #[deprecated = "INNotebookItemType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "INNotebookItemTypeNote")]
+    #[deprecated = "INNotebookItemType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Note: Self = Self(1);
     #[doc(alias = "INNotebookItemTypeTaskList")]
+    #[deprecated = "INNotebookItemType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const TaskList: Self = Self(2);
     #[doc(alias = "INNotebookItemTypeTask")]
+    #[deprecated = "INNotebookItemType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Task: Self = Self(3);
 }
 

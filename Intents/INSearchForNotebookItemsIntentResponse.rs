@@ -9,21 +9,28 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode?language=objc)
 // NS_ENUM
+#[deprecated = "INSearchForNotebookItemsIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForNotebookItemsIntentResponseCode(pub NSInteger);
 impl INSearchForNotebookItemsIntentResponseCode {
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeUnspecified")]
+    #[deprecated = "INSearchForNotebookItemsIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unspecified: Self = Self(0);
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeReady")]
+    #[deprecated = "INSearchForNotebookItemsIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Ready: Self = Self(1);
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeInProgress")]
+    #[deprecated = "INSearchForNotebookItemsIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const InProgress: Self = Self(2);
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeSuccess")]
+    #[deprecated = "INSearchForNotebookItemsIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Success: Self = Self(3);
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeFailure")]
+    #[deprecated = "INSearchForNotebookItemsIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Failure: Self = Self(4);
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INSearchForNotebookItemsIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 
@@ -40,6 +47,7 @@ extern_class!(
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]
+    #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INSearchForNotebookItemsIntentResponse;
 );
 
@@ -73,6 +81,7 @@ impl INSearchForNotebookItemsIntentResponse {
     extern_methods!(
         // -init (unavailable)
 
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithCode:userActivity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCode_userActivity(
@@ -81,11 +90,13 @@ impl INSearchForNotebookItemsIntentResponse {
             user_activity: Option<&NSUserActivity>,
         ) -> Retained<Self>;
 
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(code))]
         #[unsafe(method_family = none)]
         pub unsafe fn code(&self) -> INSearchForNotebookItemsIntentResponseCode;
 
         #[cfg(feature = "INNote")]
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(notes))]
         #[unsafe(method_family = none)]
         pub unsafe fn notes(&self) -> Option<Retained<NSArray<INNote>>>;
@@ -94,11 +105,13 @@ impl INSearchForNotebookItemsIntentResponse {
         /// Setter for [`notes`][Self::notes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(setNotes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNotes(&self, notes: Option<&NSArray<INNote>>);
 
         #[cfg(feature = "INTaskList")]
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(taskLists))]
         #[unsafe(method_family = none)]
         pub unsafe fn taskLists(&self) -> Option<Retained<NSArray<INTaskList>>>;
@@ -107,11 +120,13 @@ impl INSearchForNotebookItemsIntentResponse {
         /// Setter for [`taskLists`][Self::taskLists].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(setTaskLists:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTaskLists(&self, task_lists: Option<&NSArray<INTaskList>>);
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(tasks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tasks(&self) -> Option<Retained<NSArray<INTask>>>;
@@ -120,17 +135,20 @@ impl INSearchForNotebookItemsIntentResponse {
         /// Setter for [`tasks`][Self::tasks].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(setTasks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTasks(&self, tasks: Option<&NSArray<INTask>>);
 
         #[cfg(feature = "INSortType")]
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(sortType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortType(&self) -> INSortType;
 
         #[cfg(feature = "INSortType")]
         /// Setter for [`sortType`][Self::sortType].
+        #[deprecated = "INSearchForNotebookItemsIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(setSortType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSortType(&self, sort_type: INSortType);

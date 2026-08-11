@@ -10,6 +10,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/innote?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "INNote is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INNote;
 );
 
@@ -36,6 +37,7 @@ extern_conformance!(
 impl INNote {
     extern_methods!(
         #[cfg(all(feature = "INNoteContent", feature = "INSpeakableString"))]
+        #[deprecated = "INNote is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithTitle:contents:groupName:createdDateComponents:modifiedDateComponents:identifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_contents_groupName_createdDateComponents_modifiedDateComponents_identifier(
@@ -49,28 +51,34 @@ impl INNote {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INSpeakableString")]
+        #[deprecated = "INNote is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<INSpeakableString>;
 
         #[cfg(feature = "INNoteContent")]
+        #[deprecated = "INNote is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
         pub unsafe fn contents(&self) -> Retained<NSArray<INNoteContent>>;
 
         #[cfg(feature = "INSpeakableString")]
+        #[deprecated = "INNote is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(groupName))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupName(&self) -> Option<Retained<INSpeakableString>>;
 
+        #[deprecated = "INNote is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(createdDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn createdDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
+        #[deprecated = "INNote is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(modifiedDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifiedDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
+        #[deprecated = "INNote is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;

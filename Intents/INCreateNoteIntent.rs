@@ -12,6 +12,7 @@ extern_class!(
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
+    #[deprecated = "INCreateNoteIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INCreateNoteIntent;
 );
 
@@ -44,6 +45,7 @@ extern_conformance!(
 impl INCreateNoteIntent {
     extern_methods!(
         #[cfg(all(feature = "INNoteContent", feature = "INSpeakableString"))]
+        #[deprecated = "INCreateNoteIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithTitle:content:groupName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_content_groupName(
@@ -54,16 +56,19 @@ impl INCreateNoteIntent {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INSpeakableString")]
+        #[deprecated = "INCreateNoteIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<INSpeakableString>>;
 
         #[cfg(feature = "INNoteContent")]
+        #[deprecated = "INCreateNoteIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(content))]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Option<Retained<INNoteContent>>;
 
         #[cfg(feature = "INSpeakableString")]
+        #[deprecated = "INCreateNoteIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(groupName))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupName(&self) -> Option<Retained<INSpeakableString>>;
@@ -90,6 +95,7 @@ extern_protocol!(
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintenthandling?language=objc)
+    #[deprecated = "INCreateNoteIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub unsafe trait INCreateNoteIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INCreateNoteIntentResponse",
@@ -108,6 +114,7 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateNoteIntentResponse
+        #[deprecated = "INCreateNoteIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(handleCreateNote:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleCreateNote_completion(
@@ -133,6 +140,7 @@ extern_protocol!(
         ///
         ///
         /// See: INCreateNoteIntentResponse
+        #[deprecated = "INCreateNoteIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(confirmCreateNote:completion:))]
         #[unsafe(method_family = none)]
@@ -159,6 +167,7 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        #[deprecated = "INCreateNoteIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveTitleForCreateNote:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -177,6 +186,7 @@ extern_protocol!(
             feature = "INNoteContentResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INCreateNoteIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveContentForCreateNote:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -192,6 +202,7 @@ extern_protocol!(
             feature = "INSpeakableStringResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INCreateNoteIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveGroupNameForCreateNote:withCompletion:))]
         #[unsafe(method_family = none)]

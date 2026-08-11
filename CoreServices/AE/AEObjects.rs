@@ -6,196 +6,289 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// ** LOGICAL OPERATOR CONSTANTS  ***
+/// 0x414e4420
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeand?language=objc)
 pub const kAEAND: c_uint = 0x414e4420;
-/// ** LOGICAL OPERATOR CONSTANTS  ***
+/// 0x4f522020
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeor?language=objc)
 pub const kAEOR: c_uint = 0x4f522020;
-/// ** LOGICAL OPERATOR CONSTANTS  ***
+/// 0x4e4f5420
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenot?language=objc)
 pub const kAENOT: c_uint = 0x4e4f5420;
-/// ** ABSOLUTE ORDINAL CONSTANTS  ***
+/// 0x66697273
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaefirst?language=objc)
 pub const kAEFirst: c_uint = 0x66697273;
-/// ** ABSOLUTE ORDINAL CONSTANTS  ***
+/// 0x6c617374
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaelast?language=objc)
 pub const kAELast: c_uint = 0x6c617374;
-/// ** ABSOLUTE ORDINAL CONSTANTS  ***
+/// 0x6d696464
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaemiddle?language=objc)
 pub const kAEMiddle: c_uint = 0x6d696464;
-/// ** ABSOLUTE ORDINAL CONSTANTS  ***
+/// 0x616e7920
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeany?language=objc)
 pub const kAEAny: c_uint = 0x616e7920;
-/// ** ABSOLUTE ORDINAL CONSTANTS  ***
+/// 0x616c6c20
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeall?language=objc)
 pub const kAEAll: c_uint = 0x616c6c20;
-/// ** RELATIVE ORDINAL CONSTANTS  ***
+/// 0x6e657874
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenext?language=objc)
 pub const kAENext: c_uint = 0x6e657874;
-/// ** RELATIVE ORDINAL CONSTANTS  ***
+/// 0x70726576
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeprevious?language=objc)
 pub const kAEPrevious: c_uint = 0x70726576;
-/// ** KEYWORD CONSTANT    ***
+/// 0x72656c6f
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecompoperator?language=objc)
 pub const keyAECompOperator: c_uint = 0x72656c6f;
-/// ** KEYWORD CONSTANT    ***
+/// 0x7465726d
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaelogicalterms?language=objc)
 pub const keyAELogicalTerms: c_uint = 0x7465726d;
-/// ** KEYWORD CONSTANT    ***
+/// 0x6c6f6763
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaelogicaloperator?language=objc)
 pub const keyAELogicalOperator: c_uint = 0x6c6f6763;
-/// ** KEYWORD CONSTANT    ***
+/// 0x6f626a31
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeobject1?language=objc)
 pub const keyAEObject1: c_uint = 0x6f626a31;
-/// ** KEYWORD CONSTANT    ***
+/// 0x6f626a32
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeobject2?language=objc)
 pub const keyAEObject2: c_uint = 0x6f626a32;
-/// ** KEYWORD CONSTANT    ***
+/// 0x77616e74
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaedesiredclass?language=objc)
 pub const keyAEDesiredClass: c_uint = 0x77616e74;
-/// ** KEYWORD CONSTANT    ***
+/// 0x66726f6d
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecontainer?language=objc)
 pub const keyAEContainer: c_uint = 0x66726f6d;
-/// ** KEYWORD CONSTANT    ***
+/// 0x666f726d
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaekeyform?language=objc)
 pub const keyAEKeyForm: c_uint = 0x666f726d;
-/// ** KEYWORD CONSTANT    ***
+/// 0x73656c64
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaekeydata?language=objc)
 pub const keyAEKeyData: c_uint = 0x73656c64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerangestart?language=objc)
+/// 0x73746172
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerangestart?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAERangeStart: AEKeyword = 0x73746172;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerangestop?language=objc)
+/// 0x73746f70
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerangestop?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAERangeStop: AEKeyword = 0x73746f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keydisposetokenproc?language=objc)
+/// 0x78746f6b
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keydisposetokenproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyDisposeTokenProc: AEKeyword = 0x78746f6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecompareproc?language=objc)
+/// 0x636d7072
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecompareproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAECompareProc: AEKeyword = 0x636d7072;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecountproc?language=objc)
+/// 0x636f6e74
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecountproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAECountProc: AEKeyword = 0x636f6e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaemarktokenproc?language=objc)
+/// 0x6d6b6964
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaemarktokenproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEMarkTokenProc: AEKeyword = 0x6d6b6964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaemarkproc?language=objc)
+/// 0x6d61726b
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaemarkproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEMarkProc: AEKeyword = 0x6d61726b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeadjustmarksproc?language=objc)
+/// 0x61646a6d
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeadjustmarksproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEAdjustMarksProc: AEKeyword = 0x61646a6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaegeterrdescproc?language=objc)
+/// 0x696e6463
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaegeterrdescproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEGetErrDescProc: AEKeyword = 0x696e6463;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formabsoluteposition?language=objc)
+/// 0x696e6478
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/formabsoluteposition?language=objc)
 pub const formAbsolutePosition: c_uint = 0x696e6478;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formrelativeposition?language=objc)
+/// 0x72656c65
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/formrelativeposition?language=objc)
 pub const formRelativePosition: c_uint = 0x72656c65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formtest?language=objc)
+/// 0x74657374
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/formtest?language=objc)
 pub const formTest: c_uint = 0x74657374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formrange?language=objc)
+/// 0x72616e67
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/formrange?language=objc)
 pub const formRange: c_uint = 0x72616e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formpropertyid?language=objc)
+/// 0x70726f70
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/formpropertyid?language=objc)
 pub const formPropertyID: c_uint = 0x70726f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formname?language=objc)
+/// 0x6e616d65
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/formname?language=objc)
 pub const formName: c_uint = 0x6e616d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formuniqueid?language=objc)
+/// 0x49442020
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/formuniqueid?language=objc)
 pub const formUniqueID: c_uint = 0x49442020;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeobjectspecifier?language=objc)
+/// 0x6f626a20
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeobjectspecifier?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeObjectSpecifier: DescType = 0x6f626a20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeobjectbeingexamined?language=objc)
+/// 0x65786d6e
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeobjectbeingexamined?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeObjectBeingExamined: DescType = 0x65786d6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typecurrentcontainer?language=objc)
+/// 0x63636e74
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typecurrentcontainer?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeCurrentContainer: DescType = 0x63636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typetoken?language=objc)
+/// 0x746f6b65
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typetoken?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeToken: DescType = 0x746f6b65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typerelativedescriptor?language=objc)
+/// 0x72656c20
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typerelativedescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeRelativeDescriptor: DescType = 0x72656c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeabsoluteordinal?language=objc)
+/// 0x6162736f
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeabsoluteordinal?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeAbsoluteOrdinal: DescType = 0x6162736f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeindexdescriptor?language=objc)
+/// 0x696e6465
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeindexdescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeIndexDescriptor: DescType = 0x696e6465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typerangedescriptor?language=objc)
+/// 0x72616e67
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typerangedescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeRangeDescriptor: DescType = 0x72616e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typelogicaldescriptor?language=objc)
+/// 0x6c6f6769
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typelogicaldescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeLogicalDescriptor: DescType = 0x6c6f6769;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typecompdescriptor?language=objc)
+/// 0x636d7064
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typecompdescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeCompDescriptor: DescType = 0x636d7064;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeosltokenlist?language=objc)
+/// 0x6F73746C
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeosltokenlist?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeOSLTokenList: DescType = 0x6f73746c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeidominimum?language=objc)
+/// Resolve with no optional callbacks.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeidominimum?language=objc)
 pub const kAEIDoMinimum: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeidowhose?language=objc)
+/// Engage whose-clause resolution.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeidowhose?language=objc)
 pub const kAEIDoWhose: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeidomarking?language=objc)
+/// Call the mark and adjust-marks callbacks during resolution.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeidomarking?language=objc)
 pub const kAEIDoMarking: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaepasssubdescs?language=objc)
+/// Pass sub-specifiers down to accessor procs rather than pre-resolving them.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaepasssubdescs?language=objc)
 pub const kAEPassSubDescs: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeresolvenestedlists?language=objc)
+/// Resolve each element of a list specifier individually.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeresolvenestedlists?language=objc)
 pub const kAEResolveNestedLists: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehandlesimpleranges?language=objc)
+/// Let OSL handle simple `formRange` specifiers internally.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehandlesimpleranges?language=objc)
 pub const kAEHandleSimpleRanges: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeuserelativeiterators?language=objc)
+/// Use relative (prev/next) iteration when resolving relative-position specifiers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeuserelativeiterators?language=objc)
 pub const kAEUseRelativeIterators: c_uint = 0x0040;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typewhosedescriptor?language=objc)
+/// 0x77686f73
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typewhosedescriptor?language=objc)
 pub const typeWhoseDescriptor: c_uint = 0x77686f73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formwhose?language=objc)
+/// 0x77686f73
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/formwhose?language=objc)
 pub const formWhose: c_uint = 0x77686f73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typewhoserange?language=objc)
+/// 0x77726e67
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typewhoserange?language=objc)
 pub const typeWhoseRange: c_uint = 0x77726e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaewhoserangestart?language=objc)
+/// 0x77737472
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaewhoserangestart?language=objc)
 pub const keyAEWhoseRangeStart: c_uint = 0x77737472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaewhoserangestop?language=objc)
+/// 0x77737470
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaewhoserangestop?language=objc)
 pub const keyAEWhoseRangeStop: c_uint = 0x77737470;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeindex?language=objc)
+/// 0x6b696478
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeindex?language=objc)
 pub const keyAEIndex: c_uint = 0x6b696478;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaetest?language=objc)
+/// 0x6b747374
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaetest?language=objc)
 pub const keyAETest: c_uint = 0x6b747374;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ccnttokenrecord?language=objc)
+/// A replacement token record used when manually resolving `formRange` key data.
+///
+/// When an accessor proc receives key data whose descriptor type is
+/// `typeCurrentContainer` (`'ccnt'`), OSL has substituted the container token in
+/// place of the original container descriptor.  Applications that resolve range
+/// specifiers by calling ``AEResolve`` recursively can ignore this type; those that
+/// walk the key data themselves will find one of these records when the range
+/// boundary was expressed as a `typeCurrentContainer`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/ccnttokenrecord?language=objc)
 #[cfg(feature = "AEDataModel")]
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ccntTokenRecord {
+    /// The descriptor type of the token.
     pub tokenClass: DescType,
+    /// The token descriptor itself.
     pub token: AEDesc,
 }
 
@@ -220,7 +313,28 @@ pub type ccntTokenRecPtr = *mut ccntTokenRecord;
 #[cfg(feature = "AEDataModel")]
 pub type ccntTokenRecHandle = *mut ccntTokenRecPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslaccessorprocptr?language=objc)
+/// Locates objects of a given class within a container and returns a token for them.
+///
+/// This is the central callback of the Object Support Library.  OSL calls it once per
+/// resolution step when walking an object specifier chain.  The accessor must handle
+/// every `(desiredClass, containerClass, form)` combination it registers, and return
+/// `errAEEventNotHandled` for combinations it does not handle.
+///
+/// - Parameters:
+/// - desiredClass: The four-character class code of the objects to find.
+/// - container: The token (or null descriptor) identifying the container to search.
+/// - containerClass: The class code of the container described by `container`.
+/// - form: The key form (`formAbsolutePosition`, `formName`, etc.) describing how
+/// `selectionData` identifies the target object(s).
+/// - selectionData: A descriptor whose type and content depend on `form`.
+/// - value: On successful return, a token descriptor (type `typeToken` or any
+/// application-defined type) identifying the located object(s).  The caller owns
+/// this descriptor; it will be disposed via the ``OSLDisposeTokenProcPtr`` callback.
+/// - accessorRefcon: The refcon supplied when the accessor was installed.
+/// - Returns: `noErr` on success, `errAENoSuchObject` if the object does not exist,
+/// or `errAEEventNotHandled` if this accessor does not handle the given combination.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslaccessorprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLAccessorProcPtr = unsafe extern "C-unwind" fn(
     DescType,
@@ -232,40 +346,132 @@ pub type OSLAccessorProcPtr = unsafe extern "C-unwind" fn(
     SRefCon,
 ) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcompareprocptr?language=objc)
+/// Tests a relational operator between two object tokens and returns the Boolean result.
+///
+/// OSL calls this when resolving a `formTest` specifier that contains a comparison
+/// descriptor.  The two operands will already have been resolved to tokens by the time
+/// this callback is invoked.
+///
+/// - Parameters:
+/// - oper: The comparison operator, such as `kAEEquals` or `kAELessThan`.
+/// - obj1: The first operand token.
+/// - obj2: The second operand token.
+/// - result: On return, `true` if the comparison holds; `false` otherwise.
+/// - Returns: `noErr` on success, or an appropriate error code.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcompareprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLCompareProcPtr =
     unsafe extern "C-unwind" fn(DescType, *const AEDesc, *const AEDesc, *mut Boolean) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcountprocptr?language=objc)
+/// Returns the number of objects of a given class within a container.
+///
+/// OSL calls this when it needs to resolve an ordinal such as `kAELast`, `kAEMiddle`,
+/// or `kAEAll`, and when it needs to validate an absolute index.
+///
+/// - Parameters:
+/// - desiredType: The class code of the objects to count.
+/// - containerClass: The class code of the container.
+/// - container: A token identifying the container.
+/// - result: On return, the number of objects of `desiredType` within `container`.
+/// - Returns: `noErr` on success, or an appropriate error code.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcountprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLCountProcPtr =
     unsafe extern "C-unwind" fn(DescType, DescType, *const AEDesc, *mut c_long) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr?language=objc)
+/// Disposes of a token that is no longer needed.
+///
+/// OSL calls this whenever it is finished with a token returned by an accessor.
+/// Applications that store external references inside tokens (such as object IDs or
+/// locked memory) should release those resources here.  The descriptor itself is
+/// disposed by OSL after this callback returns; the callback must not call
+/// ``AEDisposeDesc`` on `unneededToken`.
+///
+/// - Parameters:
+/// - unneededToken: The token descriptor to clean up.
+/// - Returns: `noErr` on success.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLDisposeTokenProcPtr = unsafe extern "C-unwind" fn(*mut AEDesc) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr?language=objc)
+/// Creates and returns a mark token for the given container.
+///
+/// OSL calls this at the start of a marking pass (when `kAEIDoMarking` is set in
+/// ``AEResolve``'s flags).  The returned mark token is an opaque value that subsequent
+/// ``OSLMarkProcPtr`` calls will use to record which elements are selected.
+///
+/// - Parameters:
+/// - dContainerToken: A token identifying the container whose elements will be marked.
+/// - containerClass: The class code of the container.
+/// - result: On return, a newly created mark token.  OSL owns this descriptor and
+/// will dispose it; the callback must not dispose it.
+/// - Returns: `noErr` on success, or an appropriate error code.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLGetMarkTokenProcPtr =
     unsafe extern "C-unwind" fn(*const AEDesc, DescType, *mut AEDesc) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr?language=objc)
+/// Returns a pointer to the application's current error descriptor.
+///
+/// If an accessor or other OSL callback needs to return detailed error information
+/// beyond a simple `OSErr`, it can store an error descriptor in the location that this
+/// callback returns.  OSL will include that descriptor in the Apple Event reply if
+/// resolution fails.
+///
+/// - Parameters:
+/// - appDescPtr: On return, a pointer to the location where the application stores
+/// its error descriptor.  The pointer itself must remain valid for the lifetime
+/// of the Apple Event being processed.
+/// - Returns: `noErr` on success.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLGetErrDescProcPtr = unsafe extern "C-unwind" fn(*mut *mut AEDesc) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslmarkprocptr?language=objc)
+/// Marks a single token as selected during a marking pass.
+///
+/// OSL calls this once for each object that satisfies a `formTest` specifier when
+/// `kAEIDoMarking` is set.  The application records the selection by associating
+/// `index` with `dToken` using the mark token supplied by ``OSLGetMarkTokenProcPtr``.
+///
+/// - Parameters:
+/// - dToken: The token to mark.
+/// - markToken: The mark token returned by the `OSLGetMarkTokenProcPtr` callback.
+/// - index: A one-based sequential index assigned to this token within the current
+/// marking pass.
+/// - Returns: `noErr` on success.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslmarkprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLMarkProcPtr =
     unsafe extern "C-unwind" fn(*const AEDesc, *const AEDesc, c_long) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr?language=objc)
+/// Adjusts stored mark indices after OSL has narrowed a range.
+///
+/// After a `formRange` resolution, OSL may call this callback to renumber the marks
+/// that fall within `newStart`…`newStop` so they form a contiguous 1-based sequence.
+/// Marks outside that range should be removed.
+///
+/// - Parameters:
+/// - newStart: The first (one-based) mark index in the surviving range.
+/// - newStop: The last (one-based) mark index in the surviving range.
+/// - markToken: The mark token that was used during the marking pass.
+/// - Returns: `noErr` on success.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLAdjustMarksProcPtr =
     unsafe extern "C-unwind" fn(c_long, c_long, *const AEDesc) -> OSErr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslaccessorupp?language=objc)
+/// The UPP (Universal Procedure Pointer) type for each `OSL...ProcPtr` callback declared
+/// above, for use with the `New`/`Dispose`/`Invoke` wrappers below and with the OSL install
+/// calls (such as `AEInstallObjectAccessor`, `AESetObjectCallbacks`) that take one.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslaccessorupp?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLAccessorUPP = OSLAccessorProcPtr;
 
@@ -297,6 +503,8 @@ pub type OSLMarkUPP = OSLMarkProcPtr;
 #[cfg(feature = "AEDataModel")]
 pub type OSLAdjustMarksUPP = OSLAdjustMarksProcPtr;
 
+/// Creates an `OSLAccessorUPP` from `userRoutine`, for passing to `AEInstallObjectAccessor`.
+///
 /// # Safety
 ///
 /// - `user_routine` must be implemented correctly.
@@ -312,6 +520,8 @@ pub unsafe fn NewOSLAccessorUPP(
     unsafe { NewOSLAccessorUPP(user_routine) }
 }
 
+/// Creates an `OSLCompareUPP` from `userRoutine`, for passing to `AESetObjectCallbacks`.
+///
 /// # Safety
 ///
 /// - `user_routine` must be implemented correctly.
@@ -325,6 +535,8 @@ pub unsafe fn NewOSLCompareUPP(user_routine: Option<OSLCompareProcPtr>) -> Optio
     unsafe { NewOSLCompareUPP(user_routine) }
 }
 
+/// Creates an `OSLCountUPP` from `userRoutine`, for passing to `AESetObjectCallbacks`.
+///
 /// # Safety
 ///
 /// - `user_routine` must be implemented correctly.
@@ -338,6 +550,8 @@ pub unsafe fn NewOSLCountUPP(user_routine: Option<OSLCountProcPtr>) -> Option<OS
     unsafe { NewOSLCountUPP(user_routine) }
 }
 
+/// Creates an `OSLDisposeTokenUPP` from `userRoutine`, for passing to `AESetObjectCallbacks`.
+///
 /// # Safety
 ///
 /// `user_routine` must be a valid pointer.
@@ -354,6 +568,8 @@ pub unsafe fn NewOSLDisposeTokenUPP(
     unsafe { NewOSLDisposeTokenUPP(user_routine) }
 }
 
+/// Creates an `OSLGetMarkTokenUPP` from `userRoutine`, for passing to `AESetObjectCallbacks`.
+///
 /// # Safety
 ///
 /// - `user_routine` must be implemented correctly.
@@ -371,6 +587,8 @@ pub unsafe fn NewOSLGetMarkTokenUPP(
     unsafe { NewOSLGetMarkTokenUPP(user_routine) }
 }
 
+/// Creates an `OSLGetErrDescUPP` from `userRoutine`, for passing to `AESetObjectCallbacks`.
+///
 /// # Safety
 ///
 /// - `user_routine` must be implemented correctly.
@@ -388,6 +606,8 @@ pub unsafe fn NewOSLGetErrDescUPP(
     unsafe { NewOSLGetErrDescUPP(user_routine) }
 }
 
+/// Creates an `OSLMarkUPP` from `userRoutine`, for passing to `AESetObjectCallbacks`.
+///
 /// # Safety
 ///
 /// - `user_routine` must be implemented correctly.
@@ -401,6 +621,8 @@ pub unsafe fn NewOSLMarkUPP(user_routine: Option<OSLMarkProcPtr>) -> Option<OSLM
     unsafe { NewOSLMarkUPP(user_routine) }
 }
 
+/// Creates an `OSLAdjustMarksUPP` from `userRoutine`, for passing to `AESetObjectCallbacks`.
+///
 /// # Safety
 ///
 /// - `user_routine` must be implemented correctly.
@@ -418,6 +640,8 @@ pub unsafe fn NewOSLAdjustMarksUPP(
     unsafe { NewOSLAdjustMarksUPP(user_routine) }
 }
 
+/// Disposes of an `OSLAccessorUPP` created with `NewOSLAccessorUPP`.
+///
 /// # Safety
 ///
 /// `user_upp` must be a valid pointer.
@@ -430,6 +654,8 @@ pub unsafe fn DisposeOSLAccessorUPP(user_upp: *mut OSLAccessorUPP) {
     unsafe { DisposeOSLAccessorUPP(user_upp) }
 }
 
+/// Disposes of an `OSLCompareUPP` created with `NewOSLCompareUPP`.
+///
 /// # Safety
 ///
 /// `user_upp` must be a valid pointer.
@@ -442,6 +668,8 @@ pub unsafe fn DisposeOSLCompareUPP(user_upp: *mut OSLCompareUPP) {
     unsafe { DisposeOSLCompareUPP(user_upp) }
 }
 
+/// Disposes of an `OSLCountUPP` created with `NewOSLCountUPP`.
+///
 /// # Safety
 ///
 /// `user_upp` must be a valid pointer.
@@ -454,6 +682,8 @@ pub unsafe fn DisposeOSLCountUPP(user_upp: *mut OSLCountUPP) {
     unsafe { DisposeOSLCountUPP(user_upp) }
 }
 
+/// Disposes of an `OSLDisposeTokenUPP` created with `NewOSLDisposeTokenUPP`.
+///
 /// # Safety
 ///
 /// `user_upp` must be a valid pointer.
@@ -466,6 +696,8 @@ pub unsafe fn DisposeOSLDisposeTokenUPP(user_upp: *mut OSLDisposeTokenUPP) {
     unsafe { DisposeOSLDisposeTokenUPP(user_upp) }
 }
 
+/// Disposes of an `OSLGetMarkTokenUPP` created with `NewOSLGetMarkTokenUPP`.
+///
 /// # Safety
 ///
 /// `user_upp` must be a valid pointer.
@@ -478,6 +710,8 @@ pub unsafe fn DisposeOSLGetMarkTokenUPP(user_upp: *mut OSLGetMarkTokenUPP) {
     unsafe { DisposeOSLGetMarkTokenUPP(user_upp) }
 }
 
+/// Disposes of an `OSLGetErrDescUPP` created with `NewOSLGetErrDescUPP`.
+///
 /// # Safety
 ///
 /// `user_upp` must be a valid pointer.
@@ -490,6 +724,8 @@ pub unsafe fn DisposeOSLGetErrDescUPP(user_upp: *mut OSLGetErrDescUPP) {
     unsafe { DisposeOSLGetErrDescUPP(user_upp) }
 }
 
+/// Disposes of an `OSLMarkUPP` created with `NewOSLMarkUPP`.
+///
 /// # Safety
 ///
 /// `user_upp` must be a valid pointer.
@@ -502,6 +738,8 @@ pub unsafe fn DisposeOSLMarkUPP(user_upp: *mut OSLMarkUPP) {
     unsafe { DisposeOSLMarkUPP(user_upp) }
 }
 
+/// Disposes of an `OSLAdjustMarksUPP` created with `NewOSLAdjustMarksUPP`.
+///
 /// # Safety
 ///
 /// `user_upp` must be a valid pointer.
@@ -514,6 +752,9 @@ pub unsafe fn DisposeOSLAdjustMarksUPP(user_upp: *mut OSLAdjustMarksUPP) {
     unsafe { DisposeOSLAdjustMarksUPP(user_upp) }
 }
 
+/// Calls the `OSLAccessorProcPtr` callback referenced by `userUPP`, forwarding the given
+/// arguments to it.
+///
 /// # Safety
 ///
 /// - `container` struct field `dataHandle` must be a valid pointer.
@@ -563,6 +804,9 @@ pub unsafe fn InvokeOSLAccessorUPP(
     }
 }
 
+/// Calls the `OSLCompareProcPtr` callback referenced by `userUPP`, forwarding the given
+/// arguments to it.
+///
 /// # Safety
 ///
 /// - `obj1` struct field `dataHandle` must be a valid pointer.
@@ -593,6 +837,9 @@ pub unsafe fn InvokeOSLCompareUPP(
     unsafe { InvokeOSLCompareUPP(oper, obj1, obj2, result, user_upp) }
 }
 
+/// Calls the `OSLCountProcPtr` callback referenced by `userUPP`, forwarding the given
+/// arguments to it.
+///
 /// # Safety
 ///
 /// - `container` struct field `dataHandle` must be a valid pointer.
@@ -621,6 +868,9 @@ pub unsafe fn InvokeOSLCountUPP(
     unsafe { InvokeOSLCountUPP(desired_type, container_class, container, result, user_upp) }
 }
 
+/// Calls the `OSLDisposeTokenProcPtr` callback referenced by `userUPP`, forwarding the given
+/// arguments to it.
+///
 /// # Safety
 ///
 /// - `unneeded_token` struct field `dataHandle` must be a valid pointer.
@@ -641,6 +891,9 @@ pub unsafe fn InvokeOSLDisposeTokenUPP(
     unsafe { InvokeOSLDisposeTokenUPP(unneeded_token, user_upp) }
 }
 
+/// Calls the `OSLGetMarkTokenProcPtr` callback referenced by `userUPP`, forwarding the given
+/// arguments to it.
+///
 /// # Safety
 ///
 /// - `d_container_token` struct field `dataHandle` must be a valid pointer.
@@ -668,6 +921,9 @@ pub unsafe fn InvokeOSLGetMarkTokenUPP(
     unsafe { InvokeOSLGetMarkTokenUPP(d_container_token, container_class, result, user_upp) }
 }
 
+/// Calls the `OSLGetErrDescProcPtr` callback referenced by `userUPP`, forwarding the given
+/// arguments to it.
+///
 /// # Safety
 ///
 /// - `app_desc_ptr` must be a valid pointer.
@@ -689,6 +945,9 @@ pub unsafe fn InvokeOSLGetErrDescUPP(
     unsafe { InvokeOSLGetErrDescUPP(app_desc_ptr, user_upp) }
 }
 
+/// Calls the `OSLMarkProcPtr` callback referenced by `userUPP`, forwarding the given
+/// arguments to it.
+///
 /// # Safety
 ///
 /// - `d_token` struct field `dataHandle` must be a valid pointer.
@@ -716,6 +975,9 @@ pub unsafe fn InvokeOSLMarkUPP(
     unsafe { InvokeOSLMarkUPP(d_token, mark_token, index, user_upp) }
 }
 
+/// Calls the `OSLAdjustMarksProcPtr` callback referenced by `userUPP`, forwarding the given
+/// arguments to it.
+///
 /// # Safety
 ///
 /// - `mark_token` struct field `dataHandle` must be a valid pointer.
@@ -741,6 +1003,14 @@ pub unsafe fn InvokeOSLAdjustMarksUPP(
     unsafe { InvokeOSLAdjustMarksUPP(new_start, new_stop, mark_token, user_upp) }
 }
 
+/// Initialises the Object Support Library.
+///
+/// Call this once before calling any other OSL function.  On macOS the OSL is part
+/// of the Apple Event framework and is always available, so this call is essentially
+/// a no-op, but it must still be made for source compatibility.
+///
+/// - Returns: `noErr` on success.
+/// - Note: Thread safe since macOS 10.2.
 #[inline]
 pub unsafe fn AEObjectInit() -> OSErr {
     extern "C-unwind" {
@@ -749,6 +1019,38 @@ pub unsafe fn AEObjectInit() -> OSErr {
     unsafe { AEObjectInit() }
 }
 
+/// Registers the application's OSL callback procedures with the Object Support Library.
+///
+/// The OSL calls these procedures while resolving object specifiers via ``AEResolve``.
+/// All parameters are optional; pass `NULL` for any callback the application does not
+/// need to supply.  Registering a new set of callbacks replaces any previously
+/// registered set entirely.
+///
+/// Applications that implement scriptability typically call this once at startup,
+/// immediately after ``AEObjectInit``, before installing their object accessors with
+/// ``AEInstallObjectAccessor``.
+///
+/// - Parameters:
+/// - myCompareProc: Compares two tokens with a relational operator.  Required for
+/// `formTest` resolution.  See ``OSLCompareProcPtr``.
+/// - myCountProc: Returns the number of elements of a given class in a container.
+/// Required for ordinal resolution (`kAEAll`, `kAELast`, etc.).  See
+/// ``OSLCountProcPtr``.
+/// - myDisposeTokenProc: Disposes of tokens when OSL is finished with them.  Pass
+/// `NULL` only if your tokens carry no external resources.  See
+/// ``OSLDisposeTokenProcPtr``.
+/// - myGetMarkTokenProc: Creates a mark token at the start of a marking pass.
+/// Required only when `kAEIDoMarking` is passed to ``AEResolve``.  See
+/// ``OSLGetMarkTokenProcPtr``.
+/// - myMarkProc: Marks a token as selected during a marking pass.  Required only
+/// when `kAEIDoMarking` is passed to ``AEResolve``.  See ``OSLMarkProcPtr``.
+/// - myAdjustMarksProc: Renumbers marks after range narrowing.  Required only when
+/// `kAEIDoMarking` is passed to ``AEResolve``.  See ``OSLAdjustMarksProcPtr``.
+/// - myGetErrDescProcPtr: Returns a pointer to the application's error descriptor
+/// storage.  See ``OSLGetErrDescProcPtr``.
+/// - Returns: `noErr` on success.
+/// - Note: Thread safe since macOS 10.2.
+///
 /// # Safety
 ///
 /// - `my_compare_proc` must be implemented correctly.
@@ -800,6 +1102,39 @@ pub unsafe fn AESetObjectCallbacks(
     }
 }
 
+/// Resolves an object specifier into a token by recursively calling the installed accessor functions.
+///
+/// `AEResolve` walks the containment chain of `objectSpecifier` from outermost
+/// container inward, calling the appropriate ``OSLAccessorProcPtr`` at each step.
+/// The final result — a token descriptor identifying the target object(s) — is
+/// returned in `theToken`.
+///
+/// The caller owns the returned token and must dispose of it by calling
+/// ``AEDisposeToken`` (not ``AEDisposeDesc``) when finished, so that any
+/// application-level resources held by the token are released via the
+/// ``OSLDisposeTokenProcPtr`` callback.
+///
+/// The `callbackFlags` parameter is a bitwise OR of values from the `kAEI*` family:
+///
+/// | Flag                    | Effect                                                     |
+/// |-------------------------|------------------------------------------------------------|
+/// | `kAEIDoMinimum`         | No optional callbacks; accessor only.                      |
+/// | `kAEIDoWhose`           | Resolve whose-clause (`formWhose`) specifiers.             |
+/// | `kAEIDoMarking`         | Invoke mark / adjust-marks callbacks for `formTest`.       |
+/// | `kAEPassSubDescs`       | Pass unresolved sub-specifiers to accessors.               |
+/// | `kAEResolveNestedLists` | Resolve list specifiers element-by-element.                |
+/// | `kAEHandleSimpleRanges` | Let OSL handle `formRange` without a custom accessor.      |
+/// | `kAEUseRelativeIterators` | Use prev/next iteration for `formRelativePosition`.      |
+///
+/// - Parameters:
+/// - objectSpecifier: The object specifier descriptor to resolve.
+/// - callbackFlags: Flags controlling which optional OSL callbacks are engaged.
+/// - theToken: On successful return, a token identifying the resolved object(s).
+/// Dispose with ``AEDisposeToken`` when finished.
+/// - Returns: `noErr` on success, `errAENoSuchObject` if the specifier names an
+/// object that does not exist, or another Apple Event error if resolution fails.
+/// - Note: Thread safe since macOS 10.2.
+///
 /// # Safety
 ///
 /// - `object_specifier` struct field `dataHandle` must be a valid pointer.
@@ -823,6 +1158,33 @@ pub unsafe fn AEResolve(
     unsafe { AEResolve(object_specifier, callback_flags, the_token) }
 }
 
+/// Registers an object accessor function for a given class and container-type pair.
+///
+/// The OSL maintains a dispatch table that maps `(desiredClass, containerType)` pairs
+/// to accessor functions.  When ``AEResolve`` needs to locate an object of
+/// `desiredClass` inside a container of `containerType`, it looks up and calls the
+/// matching accessor.
+///
+/// Pass `typeWildCard` for either `desiredClass` or `containerType` (or both) to
+/// install a catch-all accessor that handles any class or any container type,
+/// respectively.  A specific entry always takes precedence over a wildcard entry.
+///
+/// If an entry for the same `(desiredClass, containerType)` pair already exists in
+/// the specified table, it is replaced.
+///
+/// - Parameters:
+/// - desiredClass: The class of objects this accessor can locate, or `typeWildCard`.
+/// - containerType: The descriptor type of containers this accessor searches, or
+/// `typeWildCard`.
+/// - theAccessor: The accessor function to install.  See ``OSLAccessorProcPtr``.
+/// - accessorRefcon: An arbitrary value passed through to the accessor each time it
+/// is called.  Pass `0` if not needed.
+/// - isSysHandler: Pass `true` to install in the system accessor table, `false` for
+/// the application table.  Use of the system table is not recommended.
+/// - Returns: `noErr` on success, or a Memory Manager error if the table entry could
+/// not be allocated.
+/// - Note: Thread safe since macOS 10.2.
+///
 /// # Safety
 ///
 /// - `the_accessor` must be implemented correctly.
@@ -858,6 +1220,19 @@ pub unsafe fn AEInstallObjectAccessor(
     }
 }
 
+/// Removes a previously installed object accessor from the dispatch table.
+///
+/// - Parameters:
+/// - desiredClass: The class code the accessor was registered for.
+/// - containerType: The container type the accessor was registered for.
+/// - theAccessor: The accessor function pointer.  Must match the value passed to
+/// ``AEInstallObjectAccessor`` exactly.
+/// - isSysHandler: Pass `true` to search the system accessor table; `false` for
+/// the application table.
+/// - Returns: `noErr` on success, or `errAEHandlerNotFound` if no matching entry
+/// exists.
+/// - Note: Thread safe since macOS 10.2.
+///
 /// # Safety
 ///
 /// - `the_accessor` must be implemented correctly.
@@ -882,6 +1257,20 @@ pub unsafe fn AERemoveObjectAccessor(
     unsafe { AERemoveObjectAccessor(desired_class, container_type, the_accessor, is_sys_handler) }
 }
 
+/// Retrieves the accessor function and refcon registered for a given class and container-type pair.
+///
+/// - Parameters:
+/// - desiredClass: The class code to look up.
+/// - containerType: The container type to look up.
+/// - accessor: On return, the installed accessor function, or a wildcard accessor
+/// if no exact match was found.
+/// - accessorRefcon: On return, the refcon associated with the returned accessor.
+/// - isSysHandler: Pass `true` to search the system accessor table; `false` for
+/// the application table.
+/// - Returns: `noErr` on success, or `errAEHandlerNotFound` if no matching entry
+/// (including wildcards) exists.
+/// - Note: Thread safe since macOS 10.2.
+///
 /// # Safety
 ///
 /// - `accessor` must be implemented correctly.
@@ -918,6 +1307,21 @@ pub unsafe fn AEGetObjectAccessor(
     }
 }
 
+/// Disposes of a token returned by ``AEResolve`` or ``AECallObjectAccessor``.
+///
+/// Unlike ``AEDisposeDesc``, this function first invokes the application's
+/// ``OSLDisposeTokenProcPtr`` callback (if one is installed) so that any
+/// application-level resources held inside the token can be released before the
+/// descriptor itself is freed.  Always use `AEDisposeToken` rather than
+/// `AEDisposeDesc` when disposing of tokens.
+///
+/// Passing a null descriptor (type `typeNull`) is safe and returns `noErr`.
+///
+/// - Parameters:
+/// - theToken: The token descriptor to dispose.  On return, a null descriptor.
+/// - Returns: `noErr` on success.
+/// - Note: Thread safe since macOS 10.2.
+///
 /// # Safety
 ///
 /// - `the_token` struct field `dataHandle` must be a valid pointer.
@@ -931,6 +1335,33 @@ pub unsafe fn AEDisposeToken(the_token: Option<&mut AEDesc>) -> OSErr {
     unsafe { AEDisposeToken(the_token) }
 }
 
+/// Looks up and directly calls the registered accessor for the given class and container.
+///
+/// This is the low-level mechanism that ``AEResolve`` uses internally.  Applications
+/// can call it directly when they need to drive object resolution step-by-step — for
+/// example, inside a custom accessor that needs to delegate part of the resolution
+/// to another accessor, or in an event handler that constructs tokens without going
+/// through the full resolver.
+///
+/// The function searches the application accessor table first, then the system table.
+/// Wildcard entries (`typeWildCard`) are matched if no specific entry is found.
+///
+/// The returned token must be disposed of with ``AEDisposeToken``.
+///
+/// - Parameters:
+/// - desiredClass: The class of object to locate.
+/// - containerToken: A token identifying the container to search.  For the
+/// top-level container, pass a null descriptor.
+/// - containerClass: The class code of the container described by `containerToken`.
+/// - keyForm: The form of the key data (`formAbsolutePosition`, `formName`, etc.).
+/// - keyData: A descriptor providing the selection criterion corresponding to
+/// `keyForm`.
+/// - token: On successful return, a token identifying the located object(s).
+/// Dispose with ``AEDisposeToken`` when finished.
+/// - Returns: `noErr` on success, `errAENoSuchObject` if the object does not exist,
+/// or `errAEHandlerNotFound` if no accessor is registered for the combination.
+/// - Note: Thread safe since macOS 10.2.
+///
 /// # Safety
 ///
 /// - `container_token` struct field `dataHandle` must be a valid pointer.

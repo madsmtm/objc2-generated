@@ -545,6 +545,19 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
             additional_authorization_scopes: Option<&NSString>,
         );
 
+        /// If true, the Platform SSO authorization scopes will be included in all requests.
+        #[unsafe(method(includePlatformSSOAuthorizationScopes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn includePlatformSSOAuthorizationScopes(&self) -> bool;
+
+        /// Setter for [`includePlatformSSOAuthorizationScopes`][Self::includePlatformSSOAuthorizationScopes].
+        #[unsafe(method(setIncludePlatformSSOAuthorizationScopes:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIncludePlatformSSOAuthorizationScopes(
+            &self,
+            include_platform_sso_authorization_scopes: bool,
+        );
+
         /// If true and there is a refresh token for the user in the SSO tokens, it will be included in the login request.
         #[unsafe(method(includePreviousRefreshTokenInLoginRequest))]
         #[unsafe(method_family = none)]
@@ -653,7 +666,9 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
             &self,
             unique_identifier_claim_name: Option<&NSString>,
         );
+    );
 
+    extern_methods!(
         /// The claim name for group membership request.
         #[unsafe(method(groupRequestClaimName))]
         #[unsafe(method_family = none)]
@@ -665,9 +680,7 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         #[unsafe(method(setGroupRequestClaimName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroupRequestClaimName(&self, group_request_claim_name: Option<&NSString>);
-    );
 
-    extern_methods!(
         /// The claim name for group responses in the id_token.
         #[unsafe(method(groupResponseClaimName))]
         #[unsafe(method_family = none)]
@@ -1062,7 +1075,9 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
             &self,
             custom_key_request_values: &NSArray<NSURLQueryItem>,
         );
+    );
 
+    extern_methods!(
         /// Sets custom claims to be added to the key request header.
         ///
         /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
@@ -1098,9 +1113,7 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
-    );
 
-    extern_methods!(
         /// The PreSharedKey to be used for HKPE. Setting this value will change the mode to PSK or AuthPSK if the hpkeAuthPublicKey is also set. Must be at least 32 bytes.
         #[unsafe(method(hpkePreSharedKey))]
         #[unsafe(method_family = none)]

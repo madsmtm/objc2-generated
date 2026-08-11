@@ -7,9 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object that describes a sticker someone sends in a message.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insticker?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insticker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INSticker;
@@ -38,11 +36,6 @@ extern_conformance!(
 impl INSticker {
     extern_methods!(
         #[cfg(feature = "INStickerType")]
-        /// Creates an object that represents a sticker a person sends in a message.
-        ///
-        /// - Parameters:
-        /// - type: The type of the sticker.
-        /// - emoji: The single emoji character that the sticker represents.
         #[unsafe(method(initWithType:emoji:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_emoji(

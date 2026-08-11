@@ -11,6 +11,7 @@ extern_class!(
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]
+    #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INTaskResolutionResult;
 );
 
@@ -23,11 +24,13 @@ extern_conformance!(
 impl INTaskResolutionResult {
     extern_methods!(
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedTask(resolved_task: &INTask) -> Retained<Self>;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(disambiguationWithTasksToDisambiguate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disambiguationWithTasksToDisambiguate(
@@ -35,6 +38,7 @@ impl INTaskResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithTaskToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithTaskToConfirm(

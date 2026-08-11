@@ -10,6 +10,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/intask?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INTask;
 );
 
@@ -65,6 +66,7 @@ impl INTask {
             feature = "INTaskType",
             feature = "INTemporalEventTrigger"
         ))]
+        #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithTitle:status:taskType:spatialEventTrigger:temporalEventTrigger:createdDateComponents:modifiedDateComponents:identifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_status_taskType_spatialEventTrigger_temporalEventTrigger_createdDateComponents_modifiedDateComponents_identifier(
@@ -80,38 +82,46 @@ impl INTask {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INSpeakableString")]
+        #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<INSpeakableString>;
 
         #[cfg(feature = "INTaskStatus")]
+        #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> INTaskStatus;
 
         #[cfg(feature = "INSpatialEventTrigger")]
+        #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(spatialEventTrigger))]
         #[unsafe(method_family = none)]
         pub unsafe fn spatialEventTrigger(&self) -> Option<Retained<INSpatialEventTrigger>>;
 
         #[cfg(feature = "INTemporalEventTrigger")]
+        #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(temporalEventTrigger))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporalEventTrigger(&self) -> Option<Retained<INTemporalEventTrigger>>;
 
+        #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(createdDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn createdDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
+        #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(modifiedDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifiedDateComponents(&self) -> Option<Retained<NSDateComponents>>;
 
+        #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "INTaskType")]
+        #[deprecated = "INTask is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(taskType))]
         #[unsafe(method_family = none)]
         pub unsafe fn taskType(&self) -> INTaskType;

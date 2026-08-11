@@ -54,9 +54,6 @@ impl NISession {
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NISessionDelegate>>);
 
         #[cfg(feature = "dispatch2")]
-        /// The dispatch queue on which the delegate calls are performed.
-        ///
-        /// If not provided or nil, delegate calls will be performed on the main queue.
         #[unsafe(method(delegateQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;

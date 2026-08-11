@@ -6,55 +6,108 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeuserterminology?language=objc)
+/// 0x61657574
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeuserterminology?language=objc)
 pub const kAEUserTerminology: OSType = 0x61657574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeterminologyextension?language=objc)
+/// 0x61657465
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeterminologyextension?language=objc)
 pub const kAETerminologyExtension: OSType = 0x61657465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaescriptingsizeresource?language=objc)
+/// 0x7363737a
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaescriptingsizeresource?language=objc)
 pub const kAEScriptingSizeResource: OSType = 0x7363737a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeosaxsizeresource?language=objc)
+/// Resource type of a scripting addition's (osax) size resource; see the `kOSIZ...` flag bits below.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeosaxsizeresource?language=objc)
 pub const kAEOSAXSizeResource: OSType = 0x6f73697a;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeuthasreturningparam?language=objc)
+/// if event has a keyASReturning param
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeuthasreturningparam?language=objc)
 pub const kAEUTHasReturningParam: c_uint = 31;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutoptional?language=objc)
+/// if something is optional
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutoptional?language=objc)
 pub const kAEUTOptional: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutlistofitems?language=objc)
+/// if property or reply is a list.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutlistofitems?language=objc)
 pub const kAEUTlistOfItems: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutenumerated?language=objc)
+/// if property or reply is of an enumerated type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutenumerated?language=objc)
 pub const kAEUTEnumerated: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutreadwrite?language=objc)
+/// if property is writable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutreadwrite?language=objc)
 pub const kAEUTReadWrite: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutchangesstate?language=objc)
+/// if an event changes state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutchangesstate?language=objc)
 pub const kAEUTChangesState: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeuttightbindingfunction?language=objc)
+/// if this is a tight-binding precedence function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeuttightbindingfunction?language=objc)
 pub const kAEUTTightBindingFunction: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutenumsaretypes?language=objc)
+/// if the enumeration is a list of types, not constants
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutenumsaretypes?language=objc)
 pub const kAEUTEnumsAreTypes: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutenumlistisexclusive?language=objc)
+/// if the list of enumerations is a proper set
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutenumlistisexclusive?language=objc)
 pub const kAEUTEnumListIsExclusive: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutreplyisreference?language=objc)
+/// if the reply is a reference, not a value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutreplyisreference?language=objc)
 pub const kAEUTReplyIsReference: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutdirectparamisreference?language=objc)
+/// if the direct parameter is a reference, not a value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutdirectparamisreference?language=objc)
 pub const kAEUTDirectParamIsReference: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutparamisreference?language=objc)
+/// if the parameter is a reference, not a value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutparamisreference?language=objc)
 pub const kAEUTParamIsReference: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutpropertyisreference?language=objc)
+/// if the property is a reference, not a value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutpropertyisreference?language=objc)
 pub const kAEUTPropertyIsReference: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutnotdirectparamistarget?language=objc)
+/// if the direct parameter is not the target of the event
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutnotdirectparamistarget?language=objc)
 pub const kAEUTNotDirectParamIsTarget: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutparamistarget?language=objc)
+/// if the parameter is the target of the event
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutparamistarget?language=objc)
 pub const kAEUTParamIsTarget: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutapostrophe?language=objc)
+/// if a term contains an apostrophe.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutapostrophe?language=objc)
 pub const kAEUTApostrophe: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutfeminine?language=objc)
+/// if a term is feminine gender.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutfeminine?language=objc)
 pub const kAEUTFeminine: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutmasculine?language=objc)
+/// if a term is masculine gender.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutmasculine?language=objc)
 pub const kAEUTMasculine: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutplural?language=objc)
+/// if a term is plural.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeutplural?language=objc)
 pub const kAEUTPlural: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tscriptingsizeresource?language=objc)
+/// The layout of an application's `'scsz'` (Scripting Size) resource, read by the Apple Event
+/// Manager/OSA to learn how much memory a scriptable application needs and how it wants to be
+/// dispatched to. `scriptingSizeFlags` holds the `kLaunchToGetTerminology`/
+/// `kDontFindAppBySignature`/`kAlwaysSendSubject` bits below; the remaining fields give the
+/// minimum, preferred, and maximum stack and heap sizes the application should be launched
+/// with.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/tscriptingsizeresource?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TScriptingSizeResource {
@@ -88,21 +141,35 @@ unsafe impl RefEncode for TScriptingSizeResource {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klaunchtogetterminology?language=objc)
+/// If kLaunchToGetTerminology is 0, 'aete' is read directly from res file.  If set to 1, then launch and use 'gdut' to get terminology.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klaunchtogetterminology?language=objc)
 pub const kLaunchToGetTerminology: c_uint = 1 << 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kdontfindappbysignature?language=objc)
+/// If kDontFindAppBySignature is 0, then find app with signature if lost.  If 1, then don't
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kdontfindappbysignature?language=objc)
 pub const kDontFindAppBySignature: c_uint = 1 << 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kalwayssendsubject?language=objc)
+/// If kAlwaysSendSubject 0, then send subject when appropriate. If 1, then every event has Subject Attribute
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kalwayssendsubject?language=objc)
 pub const kAlwaysSendSubject: c_uint = 1 << 13;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kreadextensiontermsmask?language=objc)
 pub const kReadExtensionTermsMask: c_uint = 1 << 15;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kosizdontopenresourcefile?language=objc)
+/// If set, resource file is not opened when osax is loaded
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kosizdontopenresourcefile?language=objc)
 pub const kOSIZDontOpenResourceFile: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kosizdontacceptremoteevents?language=objc)
+/// If set, handler will not be called with events from remote machines
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kosizdontacceptremoteevents?language=objc)
 pub const kOSIZdontAcceptRemoteEvents: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kosizopenwithreadpermission?language=objc)
+/// If set, file will be opened with read permission only
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kosizopenwithreadpermission?language=objc)
 pub const kOSIZOpenWithReadPermission: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kosizcodeinsharedlibraries?language=objc)
+/// If set, loader will look for handler in shared library, not osax resources
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kosizcodeinsharedlibraries?language=objc)
 pub const kOSIZCodeInSharedLibraries: c_uint = 11;

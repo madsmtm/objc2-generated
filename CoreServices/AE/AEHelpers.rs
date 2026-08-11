@@ -8,51 +8,95 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuilderrorcode?language=objc)
+/// Syntax Error Codes
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuilderrorcode?language=objc)
 pub type AEBuildErrorCode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoerr?language=objc)
+/// (No error)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoerr?language=objc)
 pub const aeBuildSyntaxNoErr: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadtoken?language=objc)
+/// Illegal character
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadtoken?language=objc)
 pub const aeBuildSyntaxBadToken: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadeof?language=objc)
+/// Unexpected end of format string
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadeof?language=objc)
 pub const aeBuildSyntaxBadEOF: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoeof?language=objc)
+/// Unexpected extra stuff past end
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoeof?language=objc)
 pub const aeBuildSyntaxNoEOF: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadnegative?language=objc)
+/// "-" not followed by digits
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadnegative?language=objc)
 pub const aeBuildSyntaxBadNegative: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxmissingquote?language=objc)
+/// Missing close "'"
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxmissingquote?language=objc)
 pub const aeBuildSyntaxMissingQuote: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadhex?language=objc)
+/// Non-digit in hex string
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadhex?language=objc)
 pub const aeBuildSyntaxBadHex: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxoddhex?language=objc)
+/// Odd # of hex digits
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxoddhex?language=objc)
 pub const aeBuildSyntaxOddHex: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosehex?language=objc)
+/// Missing hex quote close "�"
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosehex?language=objc)
 pub const aeBuildSyntaxNoCloseHex: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxuncoercedhex?language=objc)
+/// Hex string must be coerced to a type
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxuncoercedhex?language=objc)
 pub const aeBuildSyntaxUncoercedHex: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosestring?language=objc)
+/// Missing close quote
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosestring?language=objc)
 pub const aeBuildSyntaxNoCloseString: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbaddesc?language=objc)
+/// Illegal descriptor
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbaddesc?language=objc)
 pub const aeBuildSyntaxBadDesc: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbaddata?language=objc)
+/// Bad data value inside (� �)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbaddata?language=objc)
 pub const aeBuildSyntaxBadData: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnocloseparen?language=objc)
+/// Missing ")" after data value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnocloseparen?language=objc)
 pub const aeBuildSyntaxNoCloseParen: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosebracket?language=objc)
+/// Expected "," or "]"
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosebracket?language=objc)
 pub const aeBuildSyntaxNoCloseBracket: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosebrace?language=objc)
+/// Expected "," or "}"
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosebrace?language=objc)
 pub const aeBuildSyntaxNoCloseBrace: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnokey?language=objc)
+/// Missing keyword in record
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnokey?language=objc)
 pub const aeBuildSyntaxNoKey: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnocolon?language=objc)
+/// Missing ":" after keyword in record
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnocolon?language=objc)
 pub const aeBuildSyntaxNoColon: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxcoercedlist?language=objc)
+/// Cannot coerce a list
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxcoercedlist?language=objc)
 pub const aeBuildSyntaxCoercedList: c_uint = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxuncoerceddoubleat?language=objc)
+/// "@@" substitution must be coerced
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxuncoerceddoubleat?language=objc)
 pub const aeBuildSyntaxUncoercedDoubleAt: c_uint = 19;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuilderror?language=objc)
+/// A structure containing error state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuilderror?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AEBuildError {
@@ -73,6 +117,12 @@ unsafe impl RefEncode for AEBuildError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// AEPrintDescToHandle provides a way to turn an AEDesc into a textual
+/// representation.  This is most useful for debugging calls to
+/// AEBuildDesc and friends.  The Handle returned should be disposed by
+/// the caller.  The size of the handle is the actual number of
+/// characters in the string.
+///
 /// # Safety
 ///
 /// - `desc` struct field `dataHandle` must be a valid pointer.
@@ -88,7 +138,14 @@ pub unsafe fn AEPrintDescToHandle(desc: Option<&AEDesc>, result: Option<&mut Han
     unsafe { AEPrintDescToHandle(desc, result) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aestream?language=objc)
+/// The AEStream interface allows you to build AppleEvents by appending
+/// to an opaque structure (an `AEStreamRef`) and then turning this
+/// structure into an AppleEvent.  The basic idea is to open the
+/// stream, write data, and then close it - closing it produces an
+/// `AEDesc`, which may be partially complete, or may be a complete
+/// AppleEvent.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aestream?language=objc)
 #[doc(alias = "AEStreamRef")]
 #[repr(C)]
 #[derive(Debug)]
@@ -103,6 +160,12 @@ unsafe impl RefEncode for AEStream {
 }
 
 impl AEStream {
+    /// Creates a new, empty `AEStreamRef` with nothing yet written to it. This is the AEStream
+    /// counterpart to starting an AEBuild format string: the stream is a good choice over
+    /// AEBuild when the shape of the descriptor being built (how many list elements, how many
+    /// keyed parameters) isn't known until run time, since it lets you write to it in a loop
+    /// rather than assembling one large format string and argument list up front.
+    /// - Returns: NULL on memory allocation failure
     #[doc(alias = "AEStreamOpen")]
     #[inline]
     pub unsafe fn open() -> *mut AEStream {
@@ -112,6 +175,14 @@ impl AEStream {
         unsafe { AEStreamOpen() }
     }
 
+    /// Closes and disposes of an `AEStreamRef`, producing the finished result in `desc`. What
+    /// `desc` receives depends on how the stream was opened: a plain descriptor if the stream was
+    /// built with `AEStreamOpenDesc`/`AEStreamOpenList`/`AEStreamOpenRecord`, or a complete
+    /// `AppleEvent` if it was built with `AEStreamCreateEvent` or `AEStreamOpenEvent`.
+    /// You must dispose of `desc` yourself once you're done with it.
+    /// If you just want to dispose of the `AEStreamRef` without keeping its contents (for example,
+    /// on an error path), you can pass NULL for `desc`.
+    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
@@ -127,6 +198,10 @@ impl AEStream {
         unsafe { AEStreamClose(r#ref, desc) }
     }
 
+    /// Prepares `ref` to accumulate the raw bytes of a newly created descriptor of type
+    /// `newType`. Follow this with one or more calls to `AEStreamWriteData` to supply the
+    /// descriptor's contents, then `AEStreamCloseDesc` to finish it.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -141,6 +216,9 @@ impl AEStream {
         unsafe { AEStreamOpenDesc(r#ref, new_type) }
     }
 
+    /// Appends raw bytes to the descriptor most recently opened with `AEStreamOpenDesc` or
+    /// `AEStreamOpenKeyDesc`. Can be called more than once to append data incrementally.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -163,6 +241,10 @@ impl AEStream {
         unsafe { AEStreamWriteData(r#ref, data, length) }
     }
 
+    /// Finishes the descriptor most recently opened with `AEStreamOpenDesc` or
+    /// `AEStreamOpenKeyDesc`. After this, you can close the stream to retrieve the finished
+    /// descriptor, or, if you're assembling a list or record, continue adding further descs.
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -175,6 +257,10 @@ impl AEStream {
         unsafe { AEStreamCloseDesc(r#ref) }
     }
 
+    /// A convenience that combines `AEStreamOpenDesc`, `AEStreamWriteData`, and
+    /// `AEStreamCloseDesc` into a single call, for the common case where the entire descriptor's
+    /// data is already available in one buffer.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -200,6 +286,11 @@ impl AEStream {
         unsafe { AEStreamWriteDesc(r#ref, new_type, data, length) }
     }
 
+    /// Writes an entire, already-built `AEDesc` (which may itself be a list or record) to the
+    /// stream in one step, equivalent to opening a desc of the same type, writing its data, and
+    /// closing it. Useful for splicing a descriptor obtained elsewhere into a stream you're
+    /// assembling.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -216,6 +307,12 @@ impl AEStream {
         unsafe { AEStreamWriteAEDesc(r#ref, desc) }
     }
 
+    /// Begins a list at the current position in the stream. Append elements to the list with
+    /// `AEStreamOpenDesc`/`AEStreamWriteData`/`AEStreamCloseDesc`, `AEStreamWriteDesc`, or
+    /// `AEStreamWriteAEDesc`, in the order they should appear in the list. Finish the list with
+    /// `AEStreamCloseList`. Lists can be nested by opening another list (or record) as one of the
+    /// elements.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -229,6 +326,8 @@ impl AEStream {
         unsafe { AEStreamOpenList(r#ref) }
     }
 
+    /// Finishes the list most recently opened with `AEStreamOpenList`.
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -241,6 +340,12 @@ impl AEStream {
         unsafe { AEStreamCloseList(r#ref) }
     }
 
+    /// Begins a record at the current position in the stream, with descriptor type `newType`. A
+    /// record usually has type `typeAERecord` (`'reco'`), but application-defined "user-defined
+    /// record" types are common too. Add keyed entries with `AEStreamWriteKeyDesc`,
+    /// `AEStreamOpenKeyDesc`, or `AEStreamWriteKey` followed by a desc, and finish the record with
+    /// `AEStreamCloseRecord`.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -255,6 +360,10 @@ impl AEStream {
         unsafe { AEStreamOpenRecord(r#ref, new_type) }
     }
 
+    /// Changes the descriptor type of the record most recently opened with `AEStreamOpenRecord`,
+    /// without needing to reopen it. Useful when the record's final type isn't known until after
+    /// some of its keyed entries have already been written.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -269,6 +378,8 @@ impl AEStream {
         unsafe { AEStreamSetRecordType(r#ref, new_type) }
     }
 
+    /// Finishes the record most recently opened with `AEStreamOpenRecord`.
+    ///
     /// # Safety
     ///
     /// `ref` must be a valid pointer.
@@ -281,6 +392,10 @@ impl AEStream {
         unsafe { AEStreamCloseRecord(r#ref) }
     }
 
+    /// Adds a keyed descriptor to the record most recently opened with `AEStreamOpenRecord`,
+    /// in a single call. This is the stream analog of `AEPutParamDesc`/`AEPutKeyPtr`, and can
+    /// only be used while writing to a record (not a bare desc or list).
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -308,6 +423,11 @@ impl AEStream {
         unsafe { AEStreamWriteKeyDesc(r#ref, key, new_type, data, length) }
     }
 
+    /// Begins a keyed entry in the record most recently opened with `AEStreamOpenRecord`, for
+    /// cases where the entry's data isn't all available at once. Follow this with one or more
+    /// calls to `AEStreamWriteData` to supply the entry's contents, then `AEStreamCloseDesc` to
+    /// finish it — or open a nested list/record as the entry's value instead.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -330,6 +450,10 @@ impl AEStream {
         unsafe { AEStreamOpenKeyDesc(r#ref, key, new_type) }
     }
 
+    /// Writes just the keyword for the next entry in the record most recently opened with
+    /// `AEStreamOpenRecord`, without its value. Follow this with `AEStreamWriteDesc` or
+    /// `AEStreamWriteAEDesc` to supply the entry's value.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.
@@ -344,6 +468,13 @@ impl AEStream {
         unsafe { AEStreamWriteKey(r#ref, key) }
     }
 
+    /// Creates a new `AppleEvent` and returns a stream open on it, combining what would otherwise
+    /// be a call to `AECreateAppleEvent` followed by `AEStreamOpenEvent`. `clazz`, `id`, and the
+    /// `targetType`/`targetData`/`targetLength`/`returnID`/`transactionID` arguments populate the
+    /// event's meta fields exactly as `AECreateAppleEvent` would. After this call, add the event's
+    /// parameters using the other AEStream calls (`AEStreamWriteKeyDesc`, `AEStreamOpenList`,
+    /// etc.), then retrieve the finished `AppleEvent` with `AEStreamClose`.
+    ///
     /// # Safety
     ///
     /// `target_data` must be a valid pointer.
@@ -383,6 +514,12 @@ impl AEStream {
         }
     }
 
+    /// Opens a stream on an existing `AppleEvent`, for adding further parameters using the
+    /// AEStream calls. This is useful, for example, when constructing the reply record inside an
+    /// AppleEvent handler. Note that `AEStreamOpenEvent` consumes `event` — you can't access it
+    /// again until the stream is closed. When you're done adding parameters,
+    /// `AEStreamClose` reconstitutes the (now augmented) event.
+    ///
     /// # Safety
     ///
     /// - `event` struct field `dataHandle` must be a valid pointer.
@@ -397,6 +534,10 @@ impl AEStream {
         unsafe { AEStreamOpenEvent(event) }
     }
 
+    /// Marks `key` as an optional parameter keyword, by adding it to the event's
+    /// `keyOptionalKeywordAttr` attribute list. A handler that doesn't recognize an optional
+    /// parameter can ignore it instead of returning `errAEParamMissed`.
+    ///
     /// # Safety
     ///
     /// - `ref` might need manual memory-management.

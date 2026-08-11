@@ -8,11 +8,13 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetaskstaskunsupportedreason?language=objc)
 // NS_ENUM
+#[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSnoozeTasksTaskUnsupportedReason(pub NSInteger);
 impl INSnoozeTasksTaskUnsupportedReason {
     #[doc(alias = "INSnoozeTasksTaskUnsupportedReasonNoTasksFound")]
+    #[deprecated]
     pub const NoTasksFound: Self = Self(1);
 }
 
@@ -32,6 +34,7 @@ extern_class!(
         feature = "INIntentResolutionResult",
         feature = "INTaskResolutionResult"
     ))]
+    #[deprecated]
     pub struct INSnoozeTasksTaskResolutionResult;
 );
 
@@ -49,12 +52,14 @@ extern_conformance!(
 ))]
 impl INSnoozeTasksTaskResolutionResult {
     extern_methods!(
+        #[deprecated]
         #[unsafe(method(unsupportedForReason:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unsupportedForReason(
             reason: INSnoozeTasksTaskUnsupportedReason,
         ) -> Retained<Self>;
 
+        #[deprecated]
         #[unsafe(method(initWithTaskResolutionResult:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTaskResolutionResult(
@@ -72,11 +77,13 @@ impl INSnoozeTasksTaskResolutionResult {
 impl INSnoozeTasksTaskResolutionResult {
     extern_methods!(
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedTask(resolved_task: &INTask) -> Retained<Self>;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(disambiguationWithTasksToDisambiguate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disambiguationWithTasksToDisambiguate(
@@ -84,6 +91,7 @@ impl INSnoozeTasksTaskResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INTaskResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithTaskToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithTaskToConfirm(

@@ -7,145 +7,294 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceid?language=objc)
+    /// A key whose value is the `CFUUIDRef` identifying the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceid?language=objc)
     pub static kColorSyncDeviceID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceclass?language=objc)
+    /// A key whose value is one of the device-class constants below.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceclass?language=objc)
     pub static kColorSyncDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccameradeviceclass?language=objc)
+    /// The device class for a camera device.
+    ///
+    /// The string that represents a camera device is `cmra`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccameradeviceclass?language=objc)
     pub static kColorSyncCameraDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdisplaydeviceclass?language=objc)
+    /// The device class for a display device.
+    ///
+    /// The string that represents a display device is `mntr`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdisplaydeviceclass?language=objc)
     pub static kColorSyncDisplayDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprinterdeviceclass?language=objc)
+    /// The device class for a printer device.
+    ///
+    /// The string that represents a printer device is `prtr`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprinterdeviceclass?language=objc)
     pub static kColorSyncPrinterDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncscannerdeviceclass?language=objc)
+    /// The device class for a scanner device.
+    ///
+    /// The string that represents a scanner device is `scnr`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncscannerdeviceclass?language=objc)
     pub static kColorSyncScannerDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileurl?language=objc)
+    /// A key whose value is the `CFURLRef` of a device profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileurl?language=objc)
     pub static kColorSyncDeviceProfileURL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicedescription?language=objc)
+    /// A key whose value is the device's localized name in the current locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicedescription?language=objc)
     pub static kColorSyncDeviceDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicedescriptions?language=objc)
+    /// A key whose value is a `CFDictionary` of the device's localized names.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicedescriptions?language=objc)
     pub static kColorSyncDeviceDescriptions: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncfactoryprofiles?language=objc)
+    /// A key whose value is a `CFDictionary` describing the device's factory profiles.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncfactoryprofiles?language=objc)
     pub static kColorSyncFactoryProfiles: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccustomprofiles?language=objc)
+    /// A key whose value is a `CFDictionary` describing the device's custom profiles.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccustomprofiles?language=objc)
     pub static kColorSyncCustomProfiles: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicemodedescription?language=objc)
+    /// A key whose value is the device mode's localized name in the current locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicemodedescription?language=objc)
     pub static kColorSyncDeviceModeDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicemodedescriptions?language=objc)
+    /// A key whose value is a `CFDictionary` of the device mode's localized names.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicemodedescriptions?language=objc)
     pub static kColorSyncDeviceModeDescriptions: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicedefaultprofileid?language=objc)
+    /// A key whose value is the ProfileID of the device's default profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicedefaultprofileid?language=objc)
     pub static kColorSyncDeviceDefaultProfileID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicehostscope?language=objc)
+    /// A key specifying the host preference scope of a device; currently only `kCFPreferencesCurrentHost` is supported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicehostscope?language=objc)
     pub static kColorSyncDeviceHostScope: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceuserscope?language=objc)
+    /// A key specifying the user preference scope of a device; one of `kCFPreferencesCurrentUser` or `kCFPreferencesAnyUser`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceuserscope?language=objc)
     pub static kColorSyncDeviceUserScope: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilehostscope?language=objc)
+    /// A key specifying the host preference scope of a profile; currently only `kCFPreferencesCurrentHost` is supported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilehostscope?language=objc)
     pub static kColorSyncProfileHostScope: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileuserscope?language=objc)
+    /// A key specifying the user preference scope of a profile; one of `kCFPreferencesCurrentUser` or `kCFPreferencesAnyUser`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileuserscope?language=objc)
     pub static kColorSyncProfileUserScope: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileisfactory?language=objc)
+    /// A key in the device-profile-info dictionary whose value indicates whether the profile is a factory profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileisfactory?language=objc)
     pub static kColorSyncDeviceProfileIsFactory: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileisdefault?language=objc)
+    /// A key in the device-profile-info dictionary whose value indicates whether the profile is the default profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileisdefault?language=objc)
     pub static kColorSyncDeviceProfileIsDefault: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileiscurrent?language=objc)
+    /// A key in the device-profile-info dictionary whose value indicates whether the profile is the current profile.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileiscurrent?language=objc)
     pub static kColorSyncDeviceProfileIsCurrent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileid?language=objc)
+    /// A key in the device-profile-info dictionary whose value is the profile's ProfileID.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileid?language=objc)
     pub static kColorSyncDeviceProfileID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceregisterednotification?language=objc)
+    /// A notification that ColorSync posts when a device is registered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceregisterednotification?language=objc)
     pub static kColorSyncDeviceRegisteredNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceunregisterednotification?language=objc)
+    /// A notification that ColorSync posts when a device is unregistered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceunregisterednotification?language=objc)
     pub static kColorSyncDeviceUnregisteredNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofilesnotification?language=objc)
+    /// A notification that ColorSync posts when a device's profiles change.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofilesnotification?language=objc)
     pub static kColorSyncDeviceProfilesNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdisplaydeviceprofilesnotification?language=objc)
+    /// A notification that ColorSync posts when a display device's profiles change.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdisplaydeviceprofilesnotification?language=objc)
     pub static kColorSyncDisplayDeviceProfilesNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilerepositorychangenotification?language=objc)
+    /// A notification that ColorSync posts when the profile repository changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilerepositorychangenotification?language=objc)
     pub static kColorSyncProfileRepositoryChangeNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncregistrationupdatewindowserver?language=objc)
+    /// A notification concerning the window server's device registration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncregistrationupdatewindowserver?language=objc)
     pub static kColorSyncRegistrationUpdateWindowServer: &'static CFString;
 }
 
+/// Registers a device of the given class with ColorSync.
+///
+/// The `deviceInfo` dictionary requires the following keys:
+///
+/// - ``kColorSyncDeviceDescriptions``: A `CFDictionary` with localized names of the device.
+/// Localization keys must be five-character strings containing a language code and region code
+/// in the `lc_RG` format, and must contain (at least) the `en_US` locale.
+/// - ``kColorSyncFactoryProfiles``: A `CFDictionary` of factory profile info dictionaries. The keys
+/// are the profile IDs and the values are the profile info dictionaries.
+///
+/// It may also include the following optional keys:
+///
+/// - ``kColorSyncDeviceHostScope``: The host scope of the device; one of `kCFPreferencesCurrentHost`
+/// or `kCFPreferencesAnyHost`. If you don't specify it, the framework assumes `kCFPreferencesCurrentHost`.
+/// - ``kColorSyncDeviceUserScope``: The user scope of the device; one of `kCFPreferencesCurrentUser`
+/// or `kCFPreferencesAnyUser`. If you don't specify it, the framework assumes `kCFPreferencesCurrentUser`.
+///
+/// The factory profiles dictionary (the value for the key ``kColorSyncFactoryProfiles`` in
+/// `deviceInfo`) requires the following keys and values. A ProfileID (of `CFStringRef` type)
+/// identifies each profile and serves as the key. The value associated with the key
+/// is a profile info dictionary that describes an individual device profile.
+///
+/// - ``kColorSyncDeviceDefaultProfileID``: The associated value must be one of the ProfileIDs
+/// present in the dictionary. Presence of this key is not required if there is only one factory
+/// profile.
+///
+/// Each profile info `CFDictionary` requires the following keys:
+///
+/// - ``kColorSyncDeviceProfileURL``: The `CFURLRef` of the profile to register.
+/// - ``kColorSyncDeviceModeDescriptions``: A `CFDictionary` with localized device mode names for the
+/// profile. Localization keys must be five-character strings containing a language code and
+/// region code in the `lc_RG` format, and must contain (at least) the `en_US` locale.
+/// For example, `en_US` "Glossy Paper with best quality".
+///
+/// Example of a `deviceInfo` dictionary:
+///
+/// <
+/// <
+/// kColorSyncDeviceDescriptions
+/// <
+/// <
+/// en_US  My Little Printer
+/// de_DE  Mein Kleiner Drucker
+/// fr_FR  Mon petit immprimeur
+/// ...
+/// >>
+/// kColorSyncFactoryProfiles
+/// <
+/// <
+/// CFSTR("Profile 1")
+/// <
+/// <
+/// kColorSyncDeviceProfileURL    {CFURLRef}
+///
+/// kColorSyncDeviceModeDescriptions
+/// <
+/// <
+/// en_US Glossy Paper
+/// de_DE Glanzpapier
+/// fr_FR Papier glace
+/// ...
+/// >>
+/// ...
+///
+/// kColorSyncDeviceDefaultProfileID  CFSTR("Profile 1")
+/// >>
+/// kColorSyncDeviceUserScope   kCFPreferencesAnyUser
+///
+/// kColorSyncDeviceHostScope   kCFPreferencesCurrentHost
+/// <
+/// <
+///
+/// - Note: Scope for factory profiles is exactly the same as the device scope.
+/// - Note: Pass `kCFNull` in lieu of the profile URL, or no URL key/value pair at all, if a
+/// factory profile is not available. This enables setting a custom profile.
+/// - Note: For compatibility with the legacy API, create the profile
+/// keys as `CFString`s from `uint32_t` numbers as follows:
+/// `CFStringRef key = CFStringCreateWithFormat(NULL, NULL, CFSTR("%u"), (uint32_t) i);`
+///
+/// - Parameters:
+/// - deviceClass: The class of the device to register.
+/// - deviceID: The identifier of the device to register.
+/// - deviceInfo: A dictionary containing the information needed to register a device.
+/// - Returns: `true` on success and `false` in case of failure.
+///
 /// # Safety
 ///
 /// `device_info` generic should be of the correct type.
@@ -165,6 +314,12 @@ pub unsafe fn ColorSyncRegisterDevice(
     unsafe { ColorSyncRegisterDevice(device_class, device_id, device_info) }
 }
 
+/// Unregisters a device of the given class and identifier.
+///
+/// - Parameters:
+/// - deviceClass: The class of the device to unregister.
+/// - deviceID: The identifier of the device to unregister.
+/// - Returns: `true` on success and `false` in case of failure.
 #[inline]
 pub unsafe fn ColorSyncUnregisterDevice(device_class: &CFString, device_id: &CFUUID) -> bool {
     extern "C-unwind" {
@@ -173,6 +328,36 @@ pub unsafe fn ColorSyncUnregisterDevice(device_class: &CFString, device_id: &CFU
     unsafe { ColorSyncUnregisterDevice(device_class, device_id) }
 }
 
+/// Sets custom profiles for a device in lieu of its factory profiles.
+///
+/// The `profileInfo` dictionary requires the following keys:
+///
+/// - ProfileIDs, which must be a subset of the ProfileIDs you registered the device with, or
+/// ``kColorSyncDeviceDefaultProfileID`` for setting a custom default profile.
+///
+/// It requires the following values:
+///
+/// - The `CFURLRef` of the profile to set as a custom profile.
+///
+/// It may also include the following optional keys:
+///
+/// - ``kColorSyncProfileHostScope``: The host scope of the profile; one of `kCFPreferencesCurrentHost`
+/// or `kCFPreferencesAnyHost`. If you don't specify it, the framework assumes `kCFPreferencesCurrentHost`.
+/// - ``kColorSyncProfileUserScope``: The user scope of the profile; one of `kCFPreferencesCurrentUser`
+/// or `kCFPreferencesAnyUser`. If you don't specify it, the framework assumes `kCFPreferencesCurrentUser`.
+///
+/// - Note: Profile scope for custom profiles cannot exceed the scope of the factory profiles.
+/// - Note: There is only one host scope and user scope per dictionary (that is, per call).
+/// - Note: Pass `kCFNull` in lieu of the profile URL to unset the custom profile and reset the
+/// current profile to the factory profile.
+///
+/// - Parameters:
+/// - deviceClass: The class of the device.
+/// - deviceID: The identifier of the device.
+/// - profileInfo: A `CFDictionary` containing the information about custom profiles to set in
+/// lieu of factory profiles.
+/// - Returns: `true` on success and `false` in case of failure.
+///
 /// # Safety
 ///
 /// `profile_info` generic should be of the correct type.
@@ -192,6 +377,43 @@ pub unsafe fn ColorSyncDeviceSetCustomProfiles(
     unsafe { ColorSyncDeviceSetCustomProfiles(device_class, device_id, profile_info) }
 }
 
+/// Copies information about a device, resolved for the current host and current user.
+///
+/// Returns a dictionary with the following keys and values resolved for the current host and
+/// current user:
+///
+/// <
+/// <
+/// kColorSyncDeviceClass                   {camera, display, printer, scanner}
+/// kColorSyncDeviceID                      {CFUUIDRef registered with ColorSync}
+/// kColorSyncDeviceDescription             {localized device description}
+/// kColorSyncFactoryProfiles  (dictionary)
+/// <
+/// <
+/// {ProfileID}    (dictionary)
+/// <
+/// <
+/// kColorSyncDeviceProfileURL      {CFURLRef or kCFNull}
+/// kColorSyncDeviceModeDescription {localized mode description}
+/// >>
+/// ...
+/// kColorSyncDeviceDefaultProfileID {ProfileID}
+/// >>
+/// kColorSyncCustomProfiles  (dictionary)
+/// <
+/// <
+/// {ProfileID}    {CFURLRef or kCFNull}
+/// ...
+/// <
+/// <
+/// kColorSyncDeviceUserScope              {kCFPreferencesAnyUser or kCFPreferencesCurrentUser}
+/// kColorSyncDeviceHostScope              {kCFPreferencesAnyHost or kCFPreferencesCurrentHost}
+/// >>
+///
+/// - Parameters:
+/// - deviceClass: The class of the device.
+/// - devID: The identifier of the device.
+/// - Returns: A dictionary describing the device, or `NULL` if no matching device is registered.
 #[inline]
 pub unsafe fn ColorSyncDeviceCopyDeviceInfo(
     device_class: &CFString,
@@ -207,10 +429,34 @@ pub unsafe fn ColorSyncDeviceCopyDeviceInfo(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdeviceprofileiteratecallback?language=objc)
+/// A callback that ColorSync invokes for each device profile during iteration.
+///
+/// The `colorSyncDeviceProfileInfo` dictionary contains the following keys:
+///
+/// kColorSyncDeviceClass              {camera, display, printer, scanner}
+/// kColorSyncDeviceID                 {CFUUIDRef registered with ColorSync}
+/// kColorSyncDeviceDescription        {localized device description}
+/// kColorSyncDeviceModeDescription    {localized device mode description}
+/// kColorSyncDeviceProfileID          {ProfileID registered with ColorSync}
+/// kColorSyncDeviceProfileURL         {CFURLRef registered with ColorSync}
+/// kColorSyncDeviceProfileIsFactory   {kCFBooleanTrue or kCFBooleanFalse}
+/// kColorSyncDeviceProfileIsDefault   {kCFBooleanTrue or kCFBooleanFalse}
+/// kColorSyncDeviceProfileIsCurrent   {kCFBooleanTrue or kCFBooleanFalse}
+///
+/// - Parameters:
+/// - colorSyncDeviceProfileInfo: A dictionary describing the device profile.
+/// - userInfo: The user info passed to the iteration function. Optional.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdeviceprofileiteratecallback?language=objc)
 pub type ColorSyncDeviceProfileIterateCallback =
     unsafe extern "C-unwind" fn(&CFDictionary, *mut c_void) -> bool;
 
+/// Iterates over the profiles registered for all devices, invoking a callback for each.
+///
+/// - Parameters:
+/// - callBack: The callback to invoke for each registered device profile.
+/// - userInfo: Caller-supplied context passed through to the callback. Optional.
+///
 /// # Safety
 ///
 /// - `call_back` must be implemented correctly.

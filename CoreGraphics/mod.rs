@@ -120,6 +120,9 @@ mod __CGPDFDictionary;
 #[cfg(feature = "CGPDFDocument")]
 #[path = "CGPDFDocument.rs"]
 mod __CGPDFDocument;
+#[cfg(feature = "CGPDFMarkedContentItem")]
+#[path = "CGPDFMarkedContentItem.rs"]
+mod __CGPDFMarkedContentItem;
 #[cfg(feature = "CGPDFObject")]
 #[path = "CGPDFObject.rs"]
 mod __CGPDFObject;
@@ -138,6 +141,9 @@ mod __CGPDFStream;
 #[cfg(feature = "CGPDFString")]
 #[path = "CGPDFString.rs"]
 mod __CGPDFString;
+#[cfg(feature = "CGPDFStructureElement")]
+#[path = "CGPDFStructureElement.rs"]
+mod __CGPDFStructureElement;
 #[cfg(feature = "CGPSConverter")]
 #[path = "CGPSConverter.rs"]
 mod __CGPSConverter;
@@ -1047,6 +1053,14 @@ pub use self::__CGPDFContext::CGPDFContextAddDestinationAtPoint;
 #[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextAddDocumentMetadata;
 #[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
+pub use self::__CGPDFContext::CGPDFContextAddStructureTreeRootChild;
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
+pub use self::__CGPDFContext::CGPDFContextBeginMarkedContentSequence;
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
+pub use self::__CGPDFContext::CGPDFContextBeginNonStructuralMarkedContentSequence;
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
+pub use self::__CGPDFContext::CGPDFContextBeginObjectReference;
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextBeginPage;
 #[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextBeginTag;
@@ -1060,6 +1074,10 @@ pub use self::__CGPDFContext::CGPDFContextClose;
 pub use self::__CGPDFContext::CGPDFContextCreate;
 #[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextCreateWithURL;
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
+pub use self::__CGPDFContext::CGPDFContextEndMarkedContentSequence;
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
+pub use self::__CGPDFContext::CGPDFContextEndObjectReference;
 #[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextEndPage;
 #[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]

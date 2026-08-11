@@ -6,17 +6,22 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/indatesearchtype?language=objc)
 // NS_ENUM
+#[deprecated = "INDateSearchType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INDateSearchType(pub NSInteger);
 impl INDateSearchType {
     #[doc(alias = "INDateSearchTypeUnknown")]
+    #[deprecated = "INDateSearchType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "INDateSearchTypeByDueDate")]
+    #[deprecated = "INDateSearchType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const ByDueDate: Self = Self(1);
     #[doc(alias = "INDateSearchTypeByModifiedDate")]
+    #[deprecated = "INDateSearchType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const ByModifiedDate: Self = Self(2);
     #[doc(alias = "INDateSearchTypeByCreatedDate")]
+    #[deprecated = "INDateSearchType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const ByCreatedDate: Self = Self(3);
 }
 

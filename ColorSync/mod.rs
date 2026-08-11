@@ -470,6 +470,22 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_api_version?language=objc)
 pub const COLORSYNC_API_VERSION: c_uint = 0x1B000000;
+/// Returns the version of the ColorSync API.
+///
+/// - Returns: The API version as a binary-coded decimal `uint32_t`. From most to least
+/// significant byte, the value encodes the major OS version, minor OS version, patch
+/// version, and API version — that is, `(major
+/// <
+/// <
+/// 24) | (minor
+/// <
+/// <
+/// 16) | (dot
+/// <
+/// <
+/// 8) | (apiVersion
+/// &
+/// 0xFF)`.
 #[inline]
 pub unsafe fn ColorSyncAPIVersion() -> u32 {
     extern "C-unwind" {

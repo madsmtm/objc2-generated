@@ -66,6 +66,8 @@ impl AVAssetReaderOutput {
         ///
         /// In certain configurations, such as when outputSettings is nil, copyNextSampleBuffer may return marker-only sample buffers as well as sample buffers containing media data. Marker-only sample buffers can be identified by CMSampleBufferGetNumSamples returning 0. Clients who do not need the information attached to marker-only sample buffers may skip them.
         ///
+        /// The order of returned sample buffers depends on the output's configuration. For a track output with a `nil` ``AVAssetReaderTrackOutput/outputSettings`` dictionary, the output skips decoding and returns sample buffers in decode order. Preserve that order when working with the encoded samples directly, such as when passing them to ``AVAssetWriter``. When the output decodes the samples, it returns them in presentation order. Playback and downstream processing operate in presentation order, so decode order no longer matters after decoding.
+        ///
         /// This method throws an exception if this output is not added to an instance of AVAssetReader (using -addOutput:) and -startReading is not called on that asset reader.
         #[unsafe(method(copyNextSampleBuffer))]
         #[unsafe(method_family = copy)]
@@ -288,7 +290,7 @@ impl AVAssetReaderTrackOutput {
         /// The output settings used by the receiver.
         ///
         ///
-        /// The value of this property is an NSDictionary that contains values for keys as specified by either AVAudioSettings.h for audio tracks or AVVideoSettings.h for video tracks.  A value of nil indicates that the receiver will vend samples in their original format as stored in the target track.
+        /// The value is a dictionary that contains values for audio and video settings keys. A value of `nil` indicates that the track output vends samples in their original format as stored in the target track. In that case, the track output skips decoding and returns the samples in decode order. A non-`nil` value causes the track output to decode the samples and return them in presentation order.
         #[unsafe(method(outputSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;

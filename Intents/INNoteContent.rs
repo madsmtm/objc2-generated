@@ -10,6 +10,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "INNoteContent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INNoteContent;
 );
 

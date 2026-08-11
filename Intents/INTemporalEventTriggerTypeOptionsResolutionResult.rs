@@ -10,6 +10,7 @@ extern_class!(
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]
+    #[deprecated]
     pub struct INTemporalEventTriggerTypeOptionsResolutionResult;
 );
 
@@ -22,6 +23,7 @@ extern_conformance!(
 impl INTemporalEventTriggerTypeOptionsResolutionResult {
     extern_methods!(
         #[cfg(feature = "INTemporalEventTriggerTypeOptions")]
+        #[deprecated]
         #[unsafe(method(successWithResolvedTemporalEventTriggerTypeOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedTemporalEventTriggerTypeOptions(
@@ -29,6 +31,7 @@ impl INTemporalEventTriggerTypeOptionsResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTemporalEventTriggerTypeOptions")]
+        #[deprecated]
         #[unsafe(method(confirmationRequiredWithTemporalEventTriggerTypeOptionsToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithTemporalEventTriggerTypeOptionsToConfirm(

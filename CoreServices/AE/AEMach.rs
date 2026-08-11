@@ -4,14 +4,24 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyreplyportattr?language=objc)
+/// The `mach_port_t` to which an Apple Event reply should be directed. By default, replies go to the process's registered port. A client may specify its own port to receive queued replies.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyreplyportattr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyReplyPortAttr: AEKeyword = 0x72657070;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typereplyportattr?language=objc)
+/// `typeReplyPortAttr` was misnamed and is deprecated; use `keyReplyPortAttr` instead.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/typereplyportattr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeReplyPortAttr: DescType = keyReplyPortAttr;
 
+/// Returns the Mach port registered by the Apple Event framework for this process.
+///
+/// This port is considered public and will be used by other applications to target
+/// your process. You may add this port to a port set only if you are not also using
+/// routines from HIToolbox — in that case HIToolbox retains control of this port and
+/// Apple Events are dispatched through the main event loop.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn AEGetRegisteredMachPort() -> libc::mach_port_t {
@@ -21,6 +31,16 @@ pub unsafe fn AEGetRegisteredMachPort() -> libc::mach_port_t {
     unsafe { AEGetRegisteredMachPort() }
 }
 
+/// Sends an Apple Event to a target process.
+///
+/// If the target is the current process (specified by `typeProcessSerialNumber` of `{ 0, kCurrentProcess }`), the event is dispatched directly to the appropriate event handler without serialization.
+///
+/// - Parameters:
+/// - event: The event to send.
+/// - reply: The reply for the event; may be `NULL`.
+/// - sendMode: The mode flags controlling how the event is sent.
+/// - timeOutInTicks: The timeout in ticks; pass `0` for no timeout.
+///
 /// # Safety
 ///
 /// - `event` struct field `dataHandle` must be a valid pointer.

@@ -222,44 +222,54 @@ unsafe impl RefEncode for AVAssetTrackGroupOutputHandling {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// An enum that identifies various reasons why resumable export configuration has failed.
+/// The reason that configuring the export session for resumption failed.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereason?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AVAssetExportSessionResumptionFailureReason = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonincompatiblepreset?language=objc)
-    pub static AVAssetExportSessionResumptionFailureReasonIncompatiblePreset:
-        &'static AVAssetExportSessionResumptionFailureReason;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonunsupportedforpresetonplatform?language=objc)
+    /// Indicates that resumption isn't supported for this preset and platform combination.
+    ///
+    /// You can continue the export, but it runs as a non-resumable (default) export.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonunsupportedforpresetonplatform?language=objc)
     pub static AVAssetExportSessionResumptionFailureReasonUnsupportedForPresetOnPlatform:
         &'static AVAssetExportSessionResumptionFailureReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasontemporarydirectorydoesnotexist?language=objc)
+    /// Indicates that the specified temporary files directory doesn't exist.
+    ///
+    /// Create the temporary files directory and call ``configureForResumableExportWithCompletionHandler:`` again.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasontemporarydirectorydoesnotexist?language=objc)
     pub static AVAssetExportSessionResumptionFailureReasonTemporaryDirectoryDoesNotExist:
         &'static AVAssetExportSessionResumptionFailureReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonincompatiblesessionsettings?language=objc)
+    /// Indicates the export session settings are incompatible with resumable export.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonincompatiblesessionsettings?language=objc)
     pub static AVAssetExportSessionResumptionFailureReasonIncompatibleSessionSettings:
         &'static AVAssetExportSessionResumptionFailureReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonincompatibletemporarydirectorycontents?language=objc)
+    /// Indicates that the contents of the specified temporary files directory are inconsistent with the current resuming export.
+    ///
+    /// You're likely aliasing two distinct exports together. Use a unique temporary files directory for each export, or clear the directory before resuming.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonincompatibletemporarydirectorycontents?language=objc)
     pub static AVAssetExportSessionResumptionFailureReasonIncompatibleTemporaryDirectoryContents:
         &'static AVAssetExportSessionResumptionFailureReason;
 }
 
 extern_class!(
-    /// AVAssetExportSessionResumptionState details the current resumption state of the export session. A resumable export session is configured via configureForResumableExportWithCompletionHandler:.
+    /// The current resumption state of the export session.
+    ///
+    /// Configure a resumable export session with ``AVAssetExportSession/configureForResumableExportWithCompletionHandler:``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionstate?language=objc)
     #[unsafe(super(NSObject))]
@@ -273,28 +283,23 @@ extern_conformance!(
 
 impl AVAssetExportSessionResumptionState {
     extern_methods!(
-        /// Reports whether or not the export session has been successfully configure as resumable.
+        /// A Boolean value that indicates whether the export session is configured as resumable.
         ///
-        /// If YES, the export session in configured as resumable. If NO, the export session will remain
-        /// as non-resumable (default). exportAsynchronouslyWithCompletionHandler may still be called
-        /// if this returns as NO.
+        /// If `true`, the export session is configured as resumable. If `false`, the export session will remain as non-resumable (default). You can still call ``AVAssetExportSession/exportAsynchronouslyWithCompletionHandler:`` when this property is `false`.
         #[unsafe(method(isResumptionConfigured))]
         #[unsafe(method_family = none)]
         pub unsafe fn isResumptionConfigured(&self) -> bool;
 
-        /// Reports whether or not a resuming export is continuing from a previous state.
+        /// A Boolean value that indicates whether or not a resuming export is continuing from a previous state.
         ///
-        /// This indicates whether or not the export is resuming (YES) or starting from the beginning (NO).
-        /// Valid only if resumptionConfigured is YES.
+        /// A value of `true` means the export resumes from previous results; a value of `false` means it starts from the beginning. This value is valid only when ``resumptionConfigured`` is `true`.
         #[unsafe(method(isResumingFromPreviousState))]
         #[unsafe(method_family = none)]
         pub unsafe fn isResumingFromPreviousState(&self) -> bool;
 
-        /// Provides details on why the session was not able to be configured as resumable.
+        /// The reason that the export session couldn't be configured as resumable.
         ///
-        /// Reasons for failure include incompatible session settings and incompatible
-        /// directoryForTemporaryFiles contents.
-        /// Valid only if resumptionConfigured is NO.
+        /// This value is valid only when ``resumptionConfigured`` is `false`.
         #[unsafe(method(configurationFailureReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationFailureReason(
@@ -390,19 +395,19 @@ impl AVAssetExportSession {
             preset_name: &NSString,
         ) -> Option<Retained<Self>>;
 
-        /// Indicates the name of the preset with which the AVExportSession was initialized.
+        /// Indicates the name of the preset with which the export session was initialized.
         #[unsafe(method(presetName))]
         #[unsafe(method_family = none)]
         pub unsafe fn presetName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "AVAsset")]
-        /// Indicates the instance of AVAsset with which the AVExportSession was initialized.
+        /// Indicates the instance of AVAsset with which the export session was initialized.
         #[unsafe(method(asset))]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
         #[cfg(feature = "AVMediaFormat")]
-        /// Indicates the type of file to be written by the session.
+        /// Indicates the type of file to be written by the export session.
         ///
         /// The value of this property must be set before you invoke -exportAsynchronouslyWithCompletionHandler:; otherwise -exportAsynchronouslyWithCompletionHandler: will raise an NSInternalInconsistencyException. Setting the value of this property to a file type that's not among the session's supported file types will result in an NSInvalidArgumentException. See supportedFileTypes.
         #[unsafe(method(outputFileType))]
@@ -512,8 +517,8 @@ impl AVAssetExportSession {
         ///
         /// Not all export presets are compatible with all AVAssets. For example an video only asset is not compatible with an audio only preset.
         /// This method returns only the identifiers for presets that will be compatible with the given asset.
-        /// A client should pass in an AVAsset that is ready to be exported.
-        /// In order to ensure that the setup and running of an export operation will succeed using a given preset no significant changes
+        /// You should pass in an ``AVAsset`` that is ready to be exported.
+        /// In order to ensure that the setup and running of the export operation will succeed using a given preset no significant changes
         /// (such as adding or deleting tracks) should be made to the asset between retrieving compatible identifiers and performing the export operation.
         /// This method will access the tracks property of the AVAsset to build the returned NSArray. To avoid blocking the calling thread,
         /// the tracks property should be loaded using the AVAsynchronousKeyValueLoading protocol before calling this method.
@@ -540,7 +545,7 @@ impl AVAssetExportSession {
         /// - Parameter presetName: An NSString specifying the name of the preset template for the export.
         /// - Parameter asset: An AVAsset object that is intended to be exported.
         /// - Parameter outputFileType: An AVFileType indicating a file type to check; or nil, to query whether there are any compatible types.
-        /// - Parameter handler: A block called with the compatibility result.
+        /// - Parameter handler: A callback that receives the compatibility result.
         #[unsafe(method(determineCompatibilityOfExportPreset:withAsset:outputFileType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn determineCompatibilityOfExportPreset_withAsset_outputFileType_completionHandler(
@@ -621,7 +626,9 @@ impl AVAssetExportSession {
         ///
         /// If fileLengthLimit is not set on the export session, fileLengthLimit will be assumed to be the maximum file size specified by the preset (if any); else infinite.
         ///
-        /// - Parameter handler: A block called with the estimated maximum duration, or kCMTimeInvalid if an error occurs. The error parameter will be non-nil if an error occurs.
+        /// - Parameter handler: A callback that receives the estimated maximum duration, or
+        /// <doc
+        /// ://com.apple.documentation/documentation/coremedia/cmtime/invalid> if an error occurs. The error parameter will be non-nil if an error occurs.
         #[unsafe(method(estimateMaximumDurationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimateMaximumDurationWithCompletionHandler(
@@ -634,7 +641,7 @@ impl AVAssetExportSession {
         ///
         /// If timeRange is not set on the export session, timeRange will be assumed to be the full time range of the asset.
         ///
-        /// - Parameter handler: A block called with the estimated output file length in bytes, if it can be determined; 0 otherwise. The error parameter will be non-nil if an error occurs.
+        /// - Parameter handler: A callback that receives the estimated output file length in bytes, if it can be determined; 0 otherwise. The error parameter will be non-nil if an error occurs.
         #[unsafe(method(estimateOutputFileLengthWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimateOutputFileLengthWithCompletionHandler(
@@ -809,47 +816,32 @@ impl AVAssetExportSession {
 impl AVAssetExportSession {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// Attempt to configure the exportSession into resumption mode.
+        /// Attempts to configure the export session into resumption mode.
         ///
-        /// For select encoders, an export can be performed in temporal segments, and then
-        /// stitched together at the end.
+        /// For select encoders, an export can be performed in temporal segments, and then stitched together at the end.
         ///
-        /// The client is responsible for configuring the export session identically for subsequent
-        /// sessions, if the export is to be resumed from partial results from a previous run.
+        /// You are responsible for configuring the export session identically for subsequent sessions, if the export is to be resumed from partial results from a previous run.
         ///
-        /// IMPORTANT: directoryForTemporaryFiles MUST be specified for resumable exports.
-        /// This directory holds the temporary files for resumable exports which allows the export to
-        /// resume on a subsequent instantiation. The client is responsible for making the
-        /// directoryForTemporaryFiles unique and deterministic across app launches or device reboots
-        /// if the session is intended to be resumable after such events. The client must ensure that
-        /// it does not re-use a temporary directory corresponding to a different resumable export
-        /// session, or the contents between different exports may be erroneously combined.
+        /// - Important: ``directoryForTemporaryFiles`` must be specified for resumable exports. This directory holds the temporary files for resumable exports, which allows the export to resume on a subsequent instantiation. You are responsible for making the ``directoryForTemporaryFiles`` unique and deterministic across app launches or device reboots if the session is intended to be resumable after such events. You must ensure that it doesn't re-use a temporary directory corresponding to a different resumable export session, or the contents between different exports may be erroneously combined.
         ///
-        /// This method validates that the currently configured export properties allow resumption,
-        /// and interrogates the contents of directoryForTemporaryFiles to determine if this is a resuming
-        /// session or a new one. As such, this should be called after all settings are finalized for this
-        /// export session, i.e. just prior to exportAsynchronouslyWithCompletionHandler.
+        /// This method validates that the currently configured export properties allow resumption, and interrogates the contents of ``directoryForTemporaryFiles`` to determine whether this is a resuming session or a new one. As such, call this method after all settings are finalized for this export session, that is, just prior to ``exportAsynchronouslyWithCompletionHandler:``.
         ///
-        /// resumptionState details the currently configured resumption state of the export session.
-        /// Even if resumptionState indicates not all conditions for resumption are met, a client may still
-        /// call exportAsynchronouslyWithCompletionHandler using the current session, and the export
-        /// will be performed in the default (non-resuming) manner.
+        /// ``resumptionState`` details the currently configured resumption state of the export session. Even if resumptionState indicates that not all conditions for resumption are met, you may still call ``exportAsynchronouslyWithCompletionHandler:`` using the current session, and the export proceeds in the default, non-resuming manner.
         ///
         /// This method cannot be called after the export has started.
         ///
-        /// cancelExport may be called if an in-flight export needs to be interrupted. The partial results
-        /// will be maintained.
+        /// Call ``cancelExport`` if an in-flight export needs to be interrupted. The export maintains the partial results.
         ///
-        /// The client is responsible for deleting the temporary directory if the export will never be
-        /// resumed in the future.
+        /// You are responsible for deleting the temporary directory and its contents if the export will never be resumed.
         ///
-        /// Since intermediate files are written to support the resume functionality, resumable exports
-        /// will typically double the NAND accesses, since the samples need to be written to disk twice.
+        /// Because intermediate files are written to support the resume functionality, resumable exports typically double the NAND accesses, because the samples need to be written to disk twice.
+        ///
+        /// - Parameter handler: A callback that receives the resumption configuration state. If configuration fails, the system might call the handler synchronously.
         #[unsafe(method(configureForResumableExportWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configureForResumableExportWithCompletionHandler(
             &self,
-            completion_handler: &block2::SendableBlock<
+            handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<AVAssetExportSessionResumptionState>),
             >,

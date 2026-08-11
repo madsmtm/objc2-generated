@@ -8,6 +8,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrordomain?language=objc)
+    #[deprecated = "Use ScreenCaptureKit instead"]
     pub static RPRecordingErrorDomain: &'static NSErrorDomain;
 }
 

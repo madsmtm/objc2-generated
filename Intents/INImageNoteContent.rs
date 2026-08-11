@@ -11,6 +11,7 @@ extern_class!(
     #[unsafe(super(INNoteContent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INNoteContent")]
+    #[deprecated = "INImageNoteContent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INImageNoteContent;
 );
 
@@ -43,11 +44,13 @@ extern_conformance!(
 impl INImageNoteContent {
     extern_methods!(
         #[cfg(feature = "INImage")]
+        #[deprecated = "INImageNoteContent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithImage:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage(this: Allocated<Self>, image: &INImage) -> Retained<Self>;
 
         #[cfg(feature = "INImage")]
+        #[deprecated = "INImageNoteContent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<INImage>>;

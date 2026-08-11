@@ -6,15 +6,19 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/insorttype?language=objc)
 // NS_ENUM
+#[deprecated = "INSortType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSortType(pub NSInteger);
 impl INSortType {
     #[doc(alias = "INSortTypeUnknown")]
+    #[deprecated = "INSortType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "INSortTypeAsIs")]
+    #[deprecated = "INSortType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const AsIs: Self = Self(1);
     #[doc(alias = "INSortTypeByDate")]
+    #[deprecated = "INSortType is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const ByDate: Self = Self(2);
 }
 

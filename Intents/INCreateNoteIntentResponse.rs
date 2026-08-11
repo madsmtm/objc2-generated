@@ -9,21 +9,28 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode?language=objc)
 // NS_ENUM
+#[deprecated = "INCreateNoteIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCreateNoteIntentResponseCode(pub NSInteger);
 impl INCreateNoteIntentResponseCode {
     #[doc(alias = "INCreateNoteIntentResponseCodeUnspecified")]
+    #[deprecated = "INCreateNoteIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Unspecified: Self = Self(0);
     #[doc(alias = "INCreateNoteIntentResponseCodeReady")]
+    #[deprecated = "INCreateNoteIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Ready: Self = Self(1);
     #[doc(alias = "INCreateNoteIntentResponseCodeInProgress")]
+    #[deprecated = "INCreateNoteIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const InProgress: Self = Self(2);
     #[doc(alias = "INCreateNoteIntentResponseCodeSuccess")]
+    #[deprecated = "INCreateNoteIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Success: Self = Self(3);
     #[doc(alias = "INCreateNoteIntentResponseCodeFailure")]
+    #[deprecated = "INCreateNoteIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const Failure: Self = Self(4);
     #[doc(alias = "INCreateNoteIntentResponseCodeFailureRequiringAppLaunch")]
+    #[deprecated = "INCreateNoteIntentResponseCode is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
 
@@ -40,6 +47,7 @@ extern_class!(
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]
+    #[deprecated = "INCreateNoteIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INCreateNoteIntentResponse;
 );
 
@@ -73,6 +81,7 @@ impl INCreateNoteIntentResponse {
     extern_methods!(
         // -init (unavailable)
 
+        #[deprecated = "INCreateNoteIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithCode:userActivity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCode_userActivity(
@@ -81,11 +90,13 @@ impl INCreateNoteIntentResponse {
             user_activity: Option<&NSUserActivity>,
         ) -> Retained<Self>;
 
+        #[deprecated = "INCreateNoteIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(code))]
         #[unsafe(method_family = none)]
         pub unsafe fn code(&self) -> INCreateNoteIntentResponseCode;
 
         #[cfg(feature = "INNote")]
+        #[deprecated = "INCreateNoteIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(createdNote))]
         #[unsafe(method_family = none)]
         pub unsafe fn createdNote(&self) -> Option<Retained<INNote>>;
@@ -94,6 +105,7 @@ impl INCreateNoteIntentResponse {
         /// Setter for [`createdNote`][Self::createdNote].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "INCreateNoteIntentResponse is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(setCreatedNote:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCreatedNote(&self, created_note: Option<&INNote>);

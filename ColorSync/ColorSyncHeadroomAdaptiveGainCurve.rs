@@ -68,8 +68,8 @@ impl ColorSyncProfile {
     /// - profile: A profile whose CICP tag indicates a PQ, HLG, or linear transfer
     /// function. (Use linear for extended-range data.) Passing an SDR profile
     /// returns `NULL`.
-    /// - info: A dictionary describing the gain curve. See the Keys section below
-    /// for its structure.
+    /// - info: A dictionary describing the gain curve. See the key constants
+    /// declared below for its structure.
     /// - Returns: A new profile that the caller must release with `CFRelease`, or
     /// `NULL` on failure.
     ///
@@ -101,7 +101,7 @@ impl ColorSyncProfile {
     /// - Parameter profile: The profile to decode the HAGC tag from.
     /// - Returns: A dictionary describing the gain curve, which the caller must
     /// release with `CFRelease`, or `NULL` if the profile carries no HAGC tag.
-    /// See the Keys section below for the dictionary's contents.
+    /// See the key constants declared below for the dictionary's contents.
     #[doc(alias = "ColorSyncProfileCopyHeadroomAdaptiveGainCurveInfoDictionary")]
     #[cfg(feature = "ColorSyncProfile")]
     #[inline]
@@ -136,7 +136,7 @@ impl ColorSyncProfile {
 
 extern "C" {
     /// Application version (uint8_t). 3-bit field from ST 2094-50 Table C.1.
-    /// Must be `0`; any other value is rejected.
+    /// Must be `0`; the framework rejects any other value.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncheadroomadaptivegaincurveapplicationversion?language=objc)
     pub static kColorSyncHeadroomAdaptiveGainCurveApplicationVersion: &'static CFString;
@@ -155,9 +155,10 @@ extern "C" {
 
 extern "C" {
     /// Custom reference white luminance in nits (float), overriding the standard
-    /// 203-nit reference white. Must be greater than `0`. The encoding has a
-    /// resolution of 0.2 nits and a maximum of 10000 nits; values are clamped to
-    /// that range.
+    /// 203-nit reference white.
+    ///
+    /// Must be greater than `0`. The encoding has a resolution of 0.2 nits and a
+    /// maximum of 10000 nits; the framework clamps values to that range.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccustomhdrreferencewhite?language=objc)
     pub static kColorSyncCustomHDRReferenceWhite: &'static CFString;
@@ -167,8 +168,8 @@ extern "C" {
     /// Container (CFDictionaryRef) for Headroom-Adaptive tone mapping parameters.
     ///
     /// Present when Headroom-Adaptive tone mapping is encoded. Contains
-    /// `kColorSyncBaselineHeadroomStops` and either
-    /// `kColorSyncHeadroomAdaptiveGainCurveInfo` or, when set to `kCFBooleanFalse`,
+    /// ``kColorSyncBaselineHeadroomStops`` and either
+    /// ``kColorSyncHeadroomAdaptiveGainCurveInfo`` or, when set to `kCFBooleanFalse`,
     /// indicates the Reference-White Tone Mapping Operator (RWTMO) method.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncheadroomadaptivetonemappinginfo?language=objc)
@@ -204,10 +205,10 @@ extern "C" {
 }
 
 extern "C" {
-    /// CFArrayRef of per-alternate dictionaries (see Alternate curve keys below).
+    /// CFArrayRef of per-alternate dictionaries.
     ///
-    /// Count equals `kColorSyncAlternateCurveCount`. Only present when the
-    /// alternate curve count is greater than 0.
+    /// Count equals ``kColorSyncAlternateCurveCount``. Only present when the
+    /// alternate curve count is greater than 0. See the alternate curve keys below.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalternategaincurveinfo?language=objc)
     pub static kColorSyncAlternateGainCurveInfo: &'static CFString;
@@ -219,24 +220,28 @@ extern "C" {
     /// For standard primaries, pass a `CFNumberRef` (`uint8_t`): 0 = BT.709,
     /// 1 = Display P3, 2 = BT.2020. For custom primaries, pass a `CFArrayRef`
     /// of 8 `float` values encoding four xy chromaticity pairs in order R, G, B,
-    /// white point; each component in [0, 1] with x + y ≤ 1. Passing a numeric
-    /// value other than 0, 1, or 2 is rejected.
+    /// white point; each component in [0, 1] with x + y ≤ 1. The framework rejects
+    /// any numeric value other than 0, 1, or 2.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgaincurvechromaticities?language=objc)
     pub static kColorSyncGainCurveChromaticities: &'static CFString;
 }
 
 extern "C" {
-    /// CFBooleanRef. When true, all alternate curves share the component mixing
-    /// configuration from array index 0, reducing bitstream size.
+    /// CFBooleanRef indicating whether alternate curves share one component-mixing configuration.
+    ///
+    /// When true, all alternate curves share the component mixing configuration
+    /// from array index 0, reducing bitstream size.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccommoncomponentmixing?language=objc)
     pub static kColorSyncCommonComponentMixing: &'static CFString;
 }
 
 extern "C" {
-    /// CFBooleanRef. When true, all alternate curves share the gain curve x control
-    /// points, and slope interpolate flag from array index 0, reducing bitstream size.
+    /// CFBooleanRef indicating whether alternate curves share common gain-curve parameters.
+    ///
+    /// When true, all alternate curves share the gain curve x control points and
+    /// slope interpolate flag from array index 0, reducing bitstream size.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccommoncurveparameters?language=objc)
     pub static kColorSyncCommonCurveParameters: &'static CFString;
@@ -254,13 +259,13 @@ extern "C" {
 extern "C" {
     /// Component mixing type (uint8_t) matching `component_mixing_value` in ST 2094-50.
     ///
-    /// Determines how the scalar driving signal is derived from the RGB pixel:
+    /// Determines how the framework derives the scalar driving signal from the RGB pixel:
     /// - 0 = MAX(R, G, B)
-    /// - 1 = single component (the gain curve is applied to individual components)
+    /// - 1 = single component (the framework applies the gain curve to individual components)
     /// - 2 = luma_A (sum of 1/6 of each color channel and 1/2 of MAX(R, G, B))
-    /// - 3 = free-style (custom linear combination via `kColorSyncComponentCoefficients`)
+    /// - 3 = free-style (custom linear combination via ``kColorSyncComponentCoefficients``)
     ///
-    /// Shared across all alternates from index 0 when `kColorSyncCommonComponentMixing` is true.
+    /// Shared across all alternates from index 0 when ``kColorSyncCommonComponentMixing`` is true.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccomponentmix?language=objc)
     pub static kColorSyncComponentMix: &'static CFString;
@@ -268,7 +273,7 @@ extern "C" {
 
 extern "C" {
     /// Sub-dictionary of custom linear-combination coefficients for free-style
-    /// component mixing (component mixing type == 3).
+    /// component mixing.
     ///
     /// Each present key contributes its value as a weight in:
     /// `signal = R*red + G*green + B*blue + MAX*maxRGB + MIN*minRGB + C*component`.
@@ -323,37 +328,42 @@ extern "C" {
 extern "C" {
     /// Index of the last control point (uint8_t, 0–31), i.e. the number of control
     /// points minus 1. Shared across all alternates from index 0 when
-    /// `kColorSyncCommonCurveParameters` is true.
+    /// ``kColorSyncCommonCurveParameters`` is true.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncmaxcontrolpointindex?language=objc)
     pub static kColorSyncMaxControlPointIndex: &'static CFString;
 }
 
 extern "C" {
-    /// CFBooleanRef. When true, slopes at control points are computed by Piecewise
-    /// Cubic Hermite Interpolating Polynomial from the X,Y control point coordinates,
-    /// and `kColorSyncControlPointSlopes` must be absent. When false, explicit slopes
-    /// must be supplied in `kColorSyncControlPointSlopes` (see below). Shared across
-    /// all alternates from index 0 when `kColorSyncCommonCurveParameters` is true.
+    /// CFBooleanRef controlling how the framework determines control-point slopes.
+    ///
+    /// When true, the framework computes slopes at control points by Piecewise Cubic Hermite
+    /// Interpolating Polynomial from the X,Y control point coordinates, and you must omit
+    /// ``kColorSyncControlPointSlopes``. When false, you must supply explicit slopes
+    /// in ``kColorSyncControlPointSlopes`` (see below). Shared across
+    /// all alternates from index 0 when ``kColorSyncCommonCurveParameters`` is true.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncinterpolateslopes?language=objc)
     pub static kColorSyncInterpolateSlopes: &'static CFString;
 }
 
 extern "C" {
-    /// CFArrayRef of floating-point values representing the X-axis coordinates of the gain-curve control points,
-    /// normalized by the reference white, thus a value of 1.0 corresponds to the signal value at reference white.
-    /// Shared across all alternates from index 0 when `kColorSyncCommonCurveParameters` is true.
+    /// CFArrayRef of floats — the X-axis coordinates of the gain-curve control points.
+    ///
+    /// The coordinates are normalized by the reference white, so a value of `1.0`
+    /// corresponds to the signal value at reference white. Shared across all
+    /// alternates from index 0 when ``kColorSyncCommonCurveParameters`` is true.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccontrolpointsx?language=objc)
     pub static kColorSyncControlPointsX: &'static CFString;
 }
 
 extern "C" {
-    /// CFArrayRef of floats — Y-axis gain offsets at the control points, in stops
-    /// (float in the range [0.0, 6.0]). Values must be non-negative; the gain
-    /// direction (expand vs. compress) is inferred from the relationship between
-    /// this alternate's headroom and the baseline headroom.
+    /// CFArrayRef of floats — the Y-axis gain offsets at the control points.
+    ///
+    /// Values are in stops (float in the range [0.0, 6.0]) and must be non-negative;
+    /// the framework infers the gain direction (expand vs. compress) from the relationship
+    /// between this alternate's headroom and the baseline headroom.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccontrolpointsy?language=objc)
     pub static kColorSyncControlPointsY: &'static CFString;
@@ -361,7 +371,7 @@ extern "C" {
 
 extern "C" {
     /// CFArrayRef of floats — explicit tangent slopes at each control point, expressed
-    /// as tan(slope_angle). Only present when `kColorSyncInterpolateSlopes` is false.
+    /// as tan(slope_angle). Only present when ``kColorSyncInterpolateSlopes`` is false.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccontrolpointslopes?language=objc)
     pub static kColorSyncControlPointSlopes: &'static CFString;

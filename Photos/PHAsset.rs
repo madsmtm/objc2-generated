@@ -152,7 +152,7 @@ impl PHAsset {
         /// This might not be thread-safe.
         #[unsafe(method(addedDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addedDate(&self) -> Retained<NSDate>;
+        pub unsafe fn addedDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "objc2-core-location")]
         /// This property is not atomic.

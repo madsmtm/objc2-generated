@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// Deprecated.
+#[deprecated = "INSetTaskAttributeIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[cfg(all(feature = "INIntent", feature = "INSetTaskAttributeIntent"))]
 impl INSetTaskAttributeIntent {
     extern_methods!(

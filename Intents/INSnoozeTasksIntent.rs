@@ -12,6 +12,7 @@ extern_class!(
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
+    #[deprecated = "INSnoozeTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INSnoozeTasksIntent;
 );
 
@@ -44,6 +45,7 @@ extern_conformance!(
 impl INSnoozeTasksIntent {
     extern_methods!(
         #[cfg(all(feature = "INDateComponentsRange", feature = "INTask"))]
+        #[deprecated = "INSnoozeTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(initWithTasks:nextTriggerTime:all:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTasks_nextTriggerTime_all(
@@ -54,15 +56,18 @@ impl INSnoozeTasksIntent {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INTask")]
+        #[deprecated = "INSnoozeTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(tasks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tasks(&self) -> Option<Retained<NSArray<INTask>>>;
 
         #[cfg(feature = "INDateComponentsRange")]
+        #[deprecated = "INSnoozeTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(nextTriggerTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextTriggerTime(&self) -> Option<Retained<INDateComponentsRange>>;
 
+        #[deprecated = "INSnoozeTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(all))]
         #[unsafe(method_family = none)]
         pub unsafe fn all(&self) -> Option<Retained<NSNumber>>;
@@ -89,6 +94,7 @@ extern_protocol!(
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintenthandling?language=objc)
+    #[deprecated = "INSnoozeTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub unsafe trait INSnoozeTasksIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",
@@ -107,6 +113,7 @@ extern_protocol!(
         ///
         ///
         /// See: INSnoozeTasksIntentResponse
+        #[deprecated = "INSnoozeTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(handleSnoozeTasks:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSnoozeTasks_completion(
@@ -132,6 +139,7 @@ extern_protocol!(
         ///
         ///
         /// See: INSnoozeTasksIntentResponse
+        #[deprecated = "INSnoozeTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(confirmSnoozeTasks:completion:))]
         #[unsafe(method_family = none)]
@@ -159,6 +167,7 @@ extern_protocol!(
         ///
         ///
         /// See: INIntentResolutionResult
+        #[deprecated = "INSnoozeTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveTasksForSnoozeTasks:withCompletion:))]
         #[unsafe(method_family = none)]
@@ -177,6 +186,7 @@ extern_protocol!(
             feature = "INIntentResolutionResult",
             feature = "block2"
         ))]
+        #[deprecated = "INSnoozeTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[optional]
         #[unsafe(method(resolveNextTriggerTimeForSnoozeTasks:withCompletion:))]
         #[unsafe(method_family = none)]

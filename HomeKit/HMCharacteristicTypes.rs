@@ -707,7 +707,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// Characteristic type for rotation speed. The value of the characteristic is a float.
+    /// Characteristic type for rotation speed. The value of the characteristic is a float value in percent.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictyperotationspeed?language=objc)
     pub static HMCharacteristicTypeRotationSpeed: &'static NSString;

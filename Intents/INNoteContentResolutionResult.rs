@@ -11,6 +11,7 @@ extern_class!(
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]
+    #[deprecated = "INNoteContentResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
     pub struct INNoteContentResolutionResult;
 );
 
@@ -23,6 +24,7 @@ extern_conformance!(
 impl INNoteContentResolutionResult {
     extern_methods!(
         #[cfg(feature = "INNoteContent")]
+        #[deprecated = "INNoteContentResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(successWithResolvedNoteContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn successWithResolvedNoteContent(
@@ -30,6 +32,7 @@ impl INNoteContentResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INNoteContent")]
+        #[deprecated = "INNoteContentResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(disambiguationWithNoteContentsToDisambiguate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn disambiguationWithNoteContentsToDisambiguate(
@@ -37,6 +40,7 @@ impl INNoteContentResolutionResult {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INNoteContent")]
+        #[deprecated = "INNoteContentResolutionResult is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
         #[unsafe(method(confirmationRequiredWithNoteContentToConfirm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithNoteContentToConfirm(

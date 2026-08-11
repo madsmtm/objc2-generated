@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Deprecated.
+#[deprecated = "INAddTasksIntent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead."]
 #[cfg(all(feature = "INAddTasksIntent", feature = "INIntent"))]
 impl INAddTasksIntent {
     extern_methods!(

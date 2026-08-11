@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// A `WKJSSerializedNode` object contains the serialized representation of a DOM node
+    /// A `WKDOMNodeSnapshot` object contains a snapshot of a DOM node
     ///
     /// There are various ways that JavaScript executing inside web content results in some return value
     /// being passed up to the WebKit application.
@@ -15,28 +15,27 @@ extern_class!(
     /// When application JavaScript returns a JavaScript value, the default behavior is to try to convert it to a foundational type.
     /// e.g. a JavaScript Number becomes an NSNumber, or a JavaScript array becomes an NSArray, etc.
     ///
-    /// When the return value is a DOM node, the default conversion is to "stringify" it and return that to the application as an NSString.
-    /// If the JavaScript instead calls `window.webkit.serializeNode(...)` then WebKit will create a serialized representation of
+    /// If the JavaScript calls `window.webkit.createNodeSnapshot(...)` then WebKit will create a snapshot representation of
     /// that node as the return value.
     ///
     /// The node is an opaque object as far as the application is concerned, but it can be used as an argument to future JavaScript programs
     /// via `[WKWebView callAsyncJavaScript:...]`
     ///
-    /// Unlike `WKJSHandle` - which keeps an actual JavaScript object alive in its originating context - a `WKJSSerializedNode` is not attached
+    /// Unlike `WKJSHandle` - which keeps an actual JavaScript object alive in its originating context - a `WKDOMNodeSnapshot` is not attached
     /// to a live JavaScript object, and it can be used as an argument to a JavaScript program running in any context.
     /// e.g. In a different frame, or after a navigation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkjsserializednode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdomnodesnapshot?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct WKJSSerializedNode;
+    pub struct WKDOMNodeSnapshot;
 );
 
 extern_conformance!(
-    unsafe impl NSObjectProtocol for WKJSSerializedNode {}
+    unsafe impl NSObjectProtocol for WKDOMNodeSnapshot {}
 );
 
-impl WKJSSerializedNode {
+impl WKDOMNodeSnapshot {
     extern_methods!(
         // +new (unavailable)
 

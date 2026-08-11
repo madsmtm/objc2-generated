@@ -200,6 +200,8 @@ pub use self::__FSVolume::FSVolumeAccessCheckOperations;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeCaseFormat;
 #[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumeCommonOperations;
+#[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeHandler;
 #[cfg(all(feature = "FSEntityIdentifier", feature = "FSVolume"))]
 pub use self::__FSVolume::FSVolumeIdentifier;

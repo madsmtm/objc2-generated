@@ -108,6 +108,15 @@ impl CIRAWFilter {
             version: &CIRAWDecoderVersion,
         ) -> Retained<NSArray<NSString>>;
 
+        #[cfg(feature = "block2")]
+        #[unsafe(method(downloadResourcesWithTimeout:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn downloadResourcesWithTimeout_completionHandler(
+            &self,
+            timeout: NSTimeInterval,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+        ) -> Retained<NSProgress>;
+
         #[unsafe(method(supportedDecoderVersions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedDecoderVersions(&self) -> Retained<NSArray<CIRAWDecoderVersion>>;
@@ -319,13 +328,13 @@ impl CIRAWFilter {
         #[unsafe(method(setMoireReductionAmount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMoireReductionAmount(&self, moire_reduction_amount: c_float);
-
-        #[unsafe(method(isDespeckleSupported))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn isDespeckleSupported(&self) -> bool;
     );
 
     extern_methods!(
+        #[unsafe(method(isDespeckleSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isDespeckleSupported(&self) -> bool;
+
         #[unsafe(method(despeckleAmount))]
         #[unsafe(method_family = none)]
         pub unsafe fn despeckleAmount(&self) -> c_float;

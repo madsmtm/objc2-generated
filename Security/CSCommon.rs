@@ -10,8 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccs_max_signatures?language=objc)
-pub const kSecCS_MAX_SIGNATURES: c_uint = 2;
+/// The maximum number of signatures a single code object can carry.
+/// Defined as an enumerator so it remains an integer constant expression usable
+/// for array sizes and switch labels.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseccsmaxsignatures?language=objc)
+pub const kSecCSMaxSignatures: c_uint = 2;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsunimplemented?language=objc)
 pub const errSecCSUnimplemented: OSStatus = -67072;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidobjectref?language=objc)
@@ -372,10 +377,21 @@ bitflags::bitflags! {
         const StripDisallowedXattrs = 1<<24;
         #[doc(alias = "kSecCSMatchGuestRequirementInKernel")]
         const MatchGuestRequirementInKernel = 1<<23;
+/// When passed to a validation or inspection call on a dual-signed code
+/// object, select the classical (RSA) signature slot for validation and
+/// information retrieval. Mutually exclusive with kSecCSUsePostQuantumSignature;
+/// passing both returns errSecCSInvalidFlags.
+        #[doc(alias = "kSecCSUseClassicalSignature")]
+        const UseClassicalSignature = 1<<22;
+/// When passed to a validation or inspection call on a dual-signed code
+/// object, select the post-quantum (PQ) signature slot for validation and
+/// information retrieval. Mutually exclusive with kSecCSUseClassicalSignature.
+        #[doc(alias = "kSecCSUsePostQuantumSignature")]
+        const UsePostQuantumSignature = 1<<21;
         #[doc(alias = "kSecCSUseSignature1")]
-        const UseSignature1 = 1<<22;
+        const UseSignature1 = SecCSFlags::UseClassicalSignature.0;
         #[doc(alias = "kSecCSUseSignature2")]
-        const UseSignature2 = 1<<21;
+        const UseSignature2 = SecCSFlags::UsePostQuantumSignature.0;
         const _ = !0;
     }
 }

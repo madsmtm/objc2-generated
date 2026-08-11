@@ -38,6 +38,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpscreenrecorder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use ScreenCaptureKit instead"]
     pub struct RPScreenRecorder;
 );
 
@@ -47,6 +48,7 @@ extern_conformance!(
 
 impl RPScreenRecorder {
     extern_methods!(
+        #[deprecated = "Use ScreenCaptureKit instead"]
         #[unsafe(method(sharedRecorder))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedRecorder() -> Retained<RPScreenRecorder>;
