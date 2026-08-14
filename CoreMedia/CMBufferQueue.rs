@@ -420,7 +420,7 @@ impl CMBufferQueue {
     /// Returns: The dequeued buffer.  Will be NULL if the queue is empty.
     #[doc(alias = "CMBufferQueueDequeueAndRetain")]
     #[inline]
-    pub unsafe fn dequeue_and_retain(&self) -> Option<CFRetained<CMBuffer>> {
+    pub unsafe fn dequeue(&self) -> Option<CFRetained<CMBuffer>> {
         extern "C-unwind" {
             fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueue) -> Option<NonNull<CMBuffer>>;
         }
@@ -437,7 +437,7 @@ impl CMBufferQueue {
     /// Returns: The dequeued buffer.  Will be NULL if the queue is empty, or if the buffer to be dequeued is not yet ready.
     #[doc(alias = "CMBufferQueueDequeueIfDataReadyAndRetain")]
     #[inline]
-    pub unsafe fn dequeue_if_data_ready_and_retain(&self) -> Option<CFRetained<CMBuffer>> {
+    pub unsafe fn dequeue_if_data_ready(&self) -> Option<CFRetained<CMBuffer>> {
         extern "C-unwind" {
             fn CMBufferQueueDequeueIfDataReadyAndRetain(
                 queue: &CMBufferQueue,

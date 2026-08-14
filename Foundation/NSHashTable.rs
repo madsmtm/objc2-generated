@@ -246,11 +246,11 @@ unsafe impl RefEncode for NSHashEnumerator {
 
 /// # Safety
 ///
-/// `table` generic should be of the correct type.
+/// `table` must be a valid pointer.
 #[inline]
-pub unsafe fn NSFreeHashTable(table: &NSHashTable) {
+pub unsafe fn NSFreeHashTable(table: NonNull<NSHashTable>) {
     extern "C-unwind" {
-        fn NSFreeHashTable(table: &NSHashTable);
+        fn NSFreeHashTable(table: NonNull<NSHashTable>);
     }
     unsafe { NSFreeHashTable(table) }
 }

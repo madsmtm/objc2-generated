@@ -171,13 +171,12 @@ impl NSPanel {
 
 /// # Safety
 ///
-/// - `panel` should be of the correct type.
-/// - `panel` might not allow `None`.
+/// `panel` must be a valid pointer.
 #[deprecated = "Use NSAlert instead"]
 #[inline]
-pub unsafe fn NSReleaseAlertPanel(panel: Option<&AnyObject>) {
+pub unsafe fn NSReleaseAlertPanel(panel: *mut AnyObject) {
     extern "C-unwind" {
-        fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
+        fn NSReleaseAlertPanel(panel: *mut AnyObject);
     }
     unsafe { NSReleaseAlertPanel(panel) }
 }
