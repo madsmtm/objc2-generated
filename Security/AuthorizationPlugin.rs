@@ -298,68 +298,21 @@ unsafe impl Encode for AuthorizationCallbacks {
         "AuthorizationCallbacks",
         &[
             <u32>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                AuthorizationResult,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                AuthorizationString,
-                *mut AuthorizationContextFlags,
-                *mut *const AuthorizationValue,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                AuthorizationString,
-                AuthorizationContextFlags,
-                NonNull<AuthorizationValue>,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                AuthorizationString,
-                *mut *const AuthorizationValue,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                AuthorizationString,
-                NonNull<AuthorizationValue>,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                NonNull<*const AuthorizationValueVector>,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                *mut AuthorizationSessionId,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                AuthorizationString,
-                *mut *const AuthorizationValue,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                *mut *const CFType,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                NonNull<CFType>,
-                *mut *const CFArray,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                *mut *const CFType,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                AuthorizationString,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationEngine>,
-                AuthorizationString,
-            ) -> OSStatus>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }
@@ -410,16 +363,11 @@ unsafe impl Encode for AuthorizationPluginInterface {
         "AuthorizationPluginInterface",
         &[
             <u32>::ENCODING,
-            <unsafe extern "C-unwind" fn(NonNull<AuthorizationPlugin>) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(
-                NonNull<AuthorizationPlugin>,
-                NonNull<AuthorizationEngine>,
-                AuthorizationMechanismId,
-                NonNull<*mut AuthorizationMechanism>,
-            ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

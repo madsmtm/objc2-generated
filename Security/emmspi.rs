@@ -61,34 +61,12 @@ unsafe impl Encode for cssm_state_funcs {
     const ENCODING: Encoding = Encoding::Struct(
         "cssm_state_funcs",
         &[
-            <Option<
-                unsafe extern "C-unwind" fn(
-                    CSSM_MODULE_HANDLE,
-                    CSSM_SERVICE_MASK,
-                    *mut *mut c_void,
-                    CSSM_GUID_PTR,
-                    *mut CSSM_BOOL,
-                ) -> CSSM_RETURN,
-            >>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(CSSM_MODULE_HANDLE) -> CSSM_RETURN>>::ENCODING,
-            <Option<
-                unsafe extern "C-unwind" fn(CSSM_MODULE_HANDLE, CSSM_UPCALLS_PTR) -> CSSM_RETURN,
-            >>::ENCODING,
-            <Option<
-                unsafe extern "C-unwind" fn(
-                    CSSM_MODULE_HANDLE,
-                    CSSM_PROC_ADDR,
-                    CSSM_PROC_ADDR,
-                    CSSM_PRIVILEGE,
-                    *mut CSSM_PRIVILEGE,
-                    CSSM_BITMASK,
-                    *mut CSSM_BOOL,
-                ) -> CSSM_RETURN,
-            >>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const CSSM_GUID) -> CSSM_RETURN>>::ENCODING,
-            <Option<
-                unsafe extern "C-unwind" fn(*const CSSM_MANAGER_EVENT_NOTIFICATION) -> CSSM_RETURN,
-            >>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }
@@ -160,14 +138,17 @@ pub struct cssm_manager_registration_info {
     feature = "objc2"
 ))]
 unsafe impl Encode for cssm_manager_registration_info {
-    const ENCODING: Encoding = Encoding::Struct("cssm_manager_registration_info", &[
-        <Option<unsafe extern "C-unwind" fn(uint32,uint32,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn() -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_STATE_FUNCS_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn() -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const CSSM_MANAGER_EVENT_NOTIFICATION,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_FUNC_NAME_ADDR_PTR,uint32,) -> CSSM_RETURN>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "cssm_manager_registration_info",
+        &[
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(

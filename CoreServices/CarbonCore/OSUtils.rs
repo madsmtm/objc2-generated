@@ -324,7 +324,7 @@ unsafe impl Encode for DeferredTask {
             <QElemPtr>::ENCODING,
             <c_short>::ENCODING,
             <c_short>::ENCODING,
-            <DeferredTaskUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             Encoding::C_LONG,
             Encoding::C_LONG,
         ],

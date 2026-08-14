@@ -75,8 +75,8 @@ unsafe impl Encode for CGPatternCallbacks {
         "CGPatternCallbacks",
         &[
             <c_uint>::ENCODING,
-            <CGPatternDrawPatternCallback>::ENCODING,
-            <CGPatternReleaseInfoCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

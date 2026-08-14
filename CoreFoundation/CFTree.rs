@@ -80,9 +80,9 @@ unsafe impl Encode for CFTreeContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <CFTreeRetainCallBack>::ENCODING,
-            <CFTreeReleaseCallBack>::ENCODING,
-            <CFTreeCopyDescriptionCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

@@ -468,7 +468,7 @@ unsafe impl Encode for AlertStdAlertParamRec {
         &[
             <Boolean>::ENCODING,
             <Boolean>::ENCODING,
-            <ModalFilterUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <ConstStringPtr>::ENCODING,
             <ConstStringPtr>::ENCODING,
             <ConstStringPtr>::ENCODING,

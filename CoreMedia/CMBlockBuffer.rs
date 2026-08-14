@@ -94,8 +94,8 @@ unsafe impl Encode for CMBlockBufferCustomBlockSource {
         "?",
         &[
             <u32>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void, usize) -> *mut c_void>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize)>>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );

@@ -221,7 +221,7 @@ unsafe impl Encode for RoutineRecord {
             <i8>::ENCODING,
             <ISAType>::ENCODING,
             <RoutineFlagsType>::ENCODING,
-            <ProcPtr>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <u32>::ENCODING,
             <u32>::ENCODING,
         ],

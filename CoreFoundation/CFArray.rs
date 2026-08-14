@@ -68,10 +68,10 @@ unsafe impl Encode for CFArrayCallBacks {
         "?",
         &[
             <CFIndex>::ENCODING,
-            <CFArrayRetainCallBack>::ENCODING,
-            <CFArrayReleaseCallBack>::ENCODING,
-            <CFArrayCopyDescriptionCallBack>::ENCODING,
-            <CFArrayEqualCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

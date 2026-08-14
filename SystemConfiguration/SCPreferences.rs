@@ -107,9 +107,9 @@ unsafe impl Encode for SCPreferencesContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NonNull<c_void>>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(NonNull<c_void>)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NonNull<CFString>>>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

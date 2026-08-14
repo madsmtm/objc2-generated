@@ -238,12 +238,15 @@ pub struct AudioComponentPlugInInterface {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for AudioComponentPlugInInterface {
-    const ENCODING: Encoding = Encoding::Struct("AudioComponentPlugInInterface", &[
-        <unsafe extern "C-unwind" fn(NonNull<c_void>,AudioComponentInstance,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(NonNull<c_void>,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(i16,) -> AudioComponentMethod>::ENCODING,
-        <*mut c_void>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "AudioComponentPlugInInterface",
+        &[
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            <*mut c_void>::ENCODING,
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]

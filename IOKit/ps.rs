@@ -702,17 +702,20 @@ pub struct IOUPSPlugInInterface {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for IOUPSPlugInInterface {
-    const ENCODING: Encoding = Encoding::Struct("IOUPSPlugInInterface", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFDictionary,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFSet,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFDictionary,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOUPSEventCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFDictionary,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOUPSPlugInInterface",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]
@@ -752,18 +755,21 @@ pub struct IOUPSPlugInInterface_v140 {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for IOUPSPlugInInterface_v140 {
-    const ENCODING: Encoding = Encoding::Struct("IOUPSPlugInInterface_v140", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFDictionary,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFSet,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFDictionary,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOUPSEventCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFDictionary,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFType,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOUPSPlugInInterface_v140",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]

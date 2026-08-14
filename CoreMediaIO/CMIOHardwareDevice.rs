@@ -184,7 +184,7 @@ unsafe impl Encode for CMIODeviceSMPTETimeCallback {
     const ENCODING: Encoding = Encoding::Struct(
         "CMIODeviceSMPTETimeCallback",
         &[
-            <CMIODeviceGetSMPTETimeProc>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );

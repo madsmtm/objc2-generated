@@ -1009,16 +1009,19 @@ pub struct QLGeneratorInterfaceStruct {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for QLGeneratorInterfaceStruct {
-    const ENCODING: Encoding = Encoding::Struct("?", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut QLThumbnailRequest,*const CFURL,*const CFString,*const CFDictionary,CGSize,) -> OSStatus>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut QLThumbnailRequest,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut QLPreviewRequest,*const CFURL,*const CFString,*const CFDictionary,) -> OSStatus>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut QLPreviewRequest,)>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]

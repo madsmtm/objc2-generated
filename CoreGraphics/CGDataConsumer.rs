@@ -47,8 +47,8 @@ unsafe impl Encode for CGDataConsumerCallbacks {
     const ENCODING: Encoding = Encoding::Struct(
         "CGDataConsumerCallbacks",
         &[
-            <CGDataConsumerPutBytesCallback>::ENCODING,
-            <CGDataConsumerReleaseInfoCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

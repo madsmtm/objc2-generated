@@ -51,8 +51,8 @@ unsafe impl Encode for TSMTERec {
         "TSMTERec",
         &[
             <TEHandle>::ENCODING,
-            <TSMTEPreUpdateUPP>::ENCODING,
-            <TSMTEPostUpdateUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
             Encoding::C_LONG,
             Encoding::C_LONG,
         ],

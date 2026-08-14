@@ -77,11 +77,11 @@ unsafe impl Encode for CFDictionaryKeyCallBacks {
         "?",
         &[
             <CFIndex>::ENCODING,
-            <CFDictionaryRetainCallBack>::ENCODING,
-            <CFDictionaryReleaseCallBack>::ENCODING,
-            <CFDictionaryCopyDescriptionCallBack>::ENCODING,
-            <CFDictionaryEqualCallBack>::ENCODING,
-            <CFDictionaryHashCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }
@@ -155,10 +155,10 @@ unsafe impl Encode for CFDictionaryValueCallBacks {
         "?",
         &[
             <CFIndex>::ENCODING,
-            <CFDictionaryRetainCallBack>::ENCODING,
-            <CFDictionaryReleaseCallBack>::ENCODING,
-            <CFDictionaryCopyDescriptionCallBack>::ENCODING,
-            <CFDictionaryEqualCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

@@ -1346,16 +1346,16 @@ unsafe impl Encode for DataBrowserCallbacks_u_v1 {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
         &[
-            <DataBrowserItemDataUPP>::ENCODING,
-            <DataBrowserItemCompareUPP>::ENCODING,
-            <DataBrowserItemNotificationUPP>::ENCODING,
-            <DataBrowserAddDragItemUPP>::ENCODING,
-            <DataBrowserAcceptDragUPP>::ENCODING,
-            <DataBrowserReceiveDragUPP>::ENCODING,
-            <DataBrowserPostProcessDragUPP>::ENCODING,
-            <DataBrowserItemHelpContentUPP>::ENCODING,
-            <DataBrowserGetContextualMenuUPP>::ENCODING,
-            <DataBrowserSelectContextualMenuUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }
@@ -2081,13 +2081,13 @@ unsafe impl Encode for DataBrowserCustomCallbacks_u_v1 {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
         &[
-            <DataBrowserDrawItemUPP>::ENCODING,
-            <DataBrowserEditItemUPP>::ENCODING,
-            <DataBrowserHitTestUPP>::ENCODING,
-            <DataBrowserTrackingUPP>::ENCODING,
-            <DataBrowserItemDragRgnUPP>::ENCODING,
-            <DataBrowserItemAcceptDragUPP>::ENCODING,
-            <DataBrowserItemReceiveDragUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

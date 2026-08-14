@@ -60,10 +60,10 @@ unsafe impl Encode for CGDataProviderSequentialCallbacks {
         "CGDataProviderSequentialCallbacks",
         &[
             <c_uint>::ENCODING,
-            <CGDataProviderGetBytesCallback>::ENCODING,
-            <CGDataProviderSkipForwardCallback>::ENCODING,
-            <CGDataProviderRewindCallback>::ENCODING,
-            <CGDataProviderReleaseInfoCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }
@@ -105,10 +105,10 @@ unsafe impl Encode for CGDataProviderDirectCallbacks {
         "CGDataProviderDirectCallbacks",
         &[
             <c_uint>::ENCODING,
-            <CGDataProviderGetBytePointerCallback>::ENCODING,
-            <CGDataProviderReleaseBytePointerCallback>::ENCODING,
-            <CGDataProviderGetBytesAtPositionCallback>::ENCODING,
-            <CGDataProviderReleaseInfoCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

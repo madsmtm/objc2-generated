@@ -116,23 +116,26 @@ pub struct mds_funcs {
     feature = "objc2"
 ))]
 unsafe impl Encode for mds_funcs {
-    const ENCODING: Encoding = Encoding::Struct("mds_funcs", &[
-        <Option<unsafe extern "C-unwind" fn(MDS_HANDLE,*const c_char,*const CSSM_NET_ADDRESS,CSSM_DB_ACCESS_TYPE,*const CSSM_ACCESS_CREDENTIALS,*const c_void,*mut CSSM_DB_HANDLE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_HANDLE,*mut CSSM_NAME_LIST_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,*mut *mut c_char,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_HANDLE,CSSM_NAME_LIST_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,CSSM_DB_RECORDTYPE,*const CSSM_DB_RECORD_ATTRIBUTE_DATA,*const SecAsn1Item,*mut CSSM_DB_UNIQUE_RECORD_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,*const CSSM_DB_UNIQUE_RECORD,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,CSSM_DB_RECORDTYPE,CSSM_DB_UNIQUE_RECORD_PTR,*const CSSM_DB_RECORD_ATTRIBUTE_DATA,*const SecAsn1Item,CSSM_DB_MODIFY_MODE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,*const CSSM_QUERY,CSSM_HANDLE_PTR,CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,CSSM_DATA_PTR,*mut CSSM_DB_UNIQUE_RECORD_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,CSSM_HANDLE,CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,CSSM_DATA_PTR,*mut CSSM_DB_UNIQUE_RECORD_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,CSSM_HANDLE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,*const CSSM_DB_UNIQUE_RECORD,CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,CSSM_DATA_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,CSSM_DB_UNIQUE_RECORD_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,CSSM_DB_RECORDTYPE,*const c_char,uint32,*const CSSM_DB_SCHEMA_ATTRIBUTE_INFO,uint32,*const CSSM_DB_SCHEMA_INDEX_INFO,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(MDS_DB_HANDLE,CSSM_DB_RECORDTYPE,) -> CSSM_RETURN>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "mds_funcs",
+        &[
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(

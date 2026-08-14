@@ -607,7 +607,7 @@ unsafe impl Encode for ATSUBackgroundData {
         "ATSUBackgroundData",
         &[
             <ATSUBackgroundColor>::ENCODING,
-            <RedrawBackgroundUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

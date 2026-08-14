@@ -111,7 +111,7 @@ unsafe impl Encode for VTDecompressionOutputCallbackRecord {
     const ENCODING: Encoding = Encoding::Struct(
         "VTDecompressionOutputCallbackRecord",
         &[
-            <VTDecompressionOutputCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );

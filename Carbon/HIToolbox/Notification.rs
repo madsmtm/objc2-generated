@@ -50,7 +50,7 @@ unsafe impl Encode for NMRec {
             <Handle>::ENCODING,
             <Handle>::ENCODING,
             <StringPtr>::ENCODING,
-            <NMUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <SRefCon>::ENCODING,
         ],
     );

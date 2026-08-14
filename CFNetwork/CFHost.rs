@@ -79,9 +79,9 @@ unsafe impl Encode for CFHostClientContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <CFAllocatorRetainCallBack>::ENCODING,
-            <CFAllocatorReleaseCallBack>::ENCODING,
-            <CFAllocatorCopyDescriptionCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

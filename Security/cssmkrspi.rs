@@ -118,17 +118,20 @@ pub struct cssm_spi_kr_funcs {
     feature = "objc2"
 ))]
 unsafe impl Encode for cssm_spi_kr_funcs {
-    const ENCODING: Encoding = Encoding::Struct("cssm_spi_kr_funcs", &[
-        <Option<unsafe extern "C-unwind" fn(CSSM_KRSP_HANDLE,CSSM_CC_HANDLE,*const CSSM_CONTEXT,*const SecAsn1Item,*const CSSM_ACCESS_CREDENTIALS,CSSM_KR_POLICY_FLAGS,*mut sint32,CSSM_HANDLE_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_KRSP_HANDLE,CSSM_HANDLE,*mut sint32,CSSM_KR_PROFILE_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_KRSP_HANDLE,CSSM_CC_HANDLE,*const CSSM_CONTEXT,CSSM_CC_HANDLE,*const CSSM_CONTEXT,*const SecAsn1Item,CSSM_KR_POLICY_FLAGS,CSSM_DATA_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_KRSP_HANDLE,CSSM_CC_HANDLE,*const CSSM_CONTEXT,CSSM_CC_HANDLE,*const CSSM_CONTEXT,*const SecAsn1Item,CSSM_KR_POLICY_FLAGS,*const SecAsn1Item,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_KRSP_HANDLE,CSSM_CC_HANDLE,*const CSSM_CONTEXT,*const SecAsn1Item,*const CSSM_ACCESS_CREDENTIALS,*mut sint32,CSSM_HANDLE_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_KRSP_HANDLE,CSSM_HANDLE,*mut sint32,CSSM_HANDLE_PTR,*mut uint32,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_KRSP_HANDLE,CSSM_HANDLE,uint32,CSSM_CSP_HANDLE,*const CSSM_RESOURCE_CONTROL_CONTEXT,uint32,CSSM_KEY_PTR,CSSM_DATA_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_KRSP_HANDLE,CSSM_HANDLE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_KRSP_HANDLE,CSSM_CC_HANDLE,*const CSSM_CONTEXT,CSSM_CC_HANDLE,*const CSSM_CONTEXT,uint32,*const c_void,*mut *mut c_void,) -> CSSM_RETURN>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "cssm_spi_kr_funcs",
+        &[
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(

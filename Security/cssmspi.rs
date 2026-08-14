@@ -125,27 +125,12 @@ unsafe impl Encode for cssm_upcalls {
     const ENCODING: Encoding = Encoding::Struct(
         "cssm_upcalls",
         &[
-            <CSSM_UPCALLS_MALLOC>::ENCODING,
-            <CSSM_UPCALLS_FREE>::ENCODING,
-            <CSSM_UPCALLS_REALLOC>::ENCODING,
-            <CSSM_UPCALLS_CALLOC>::ENCODING,
-            <Option<
-                unsafe extern "C-unwind" fn(CSSM_CC_HANDLE, CSSM_MODULE_HANDLE_PTR) -> CSSM_RETURN,
-            >>::ENCODING,
-            <Option<
-                unsafe extern "C-unwind" fn(
-                    CSSM_MODULE_HANDLE,
-                    CSSM_GUID_PTR,
-                    CSSM_VERSION_PTR,
-                    *mut uint32,
-                    *mut CSSM_SERVICE_TYPE,
-                    *mut CSSM_ATTACH_FLAGS,
-                    *mut CSSM_KEY_HIERARCHY,
-                    CSSM_API_MEMORY_FUNCS_PTR,
-                    CSSM_FUNC_NAME_ADDR_PTR,
-                    uint32,
-                ) -> CSSM_RETURN,
-            >>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

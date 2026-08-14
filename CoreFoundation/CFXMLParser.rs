@@ -173,11 +173,11 @@ unsafe impl Encode for CFXMLParserCallBacks {
         "?",
         &[
             <CFIndex>::ENCODING,
-            <CFXMLParserCreateXMLStructureCallBack>::ENCODING,
-            <CFXMLParserAddChildCallBack>::ENCODING,
-            <CFXMLParserEndXMLStructureCallBack>::ENCODING,
-            <CFXMLParserResolveExternalEntityCallBack>::ENCODING,
-            <CFXMLParserHandleErrorCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }
@@ -222,9 +222,9 @@ unsafe impl Encode for CFXMLParserContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <CFXMLParserRetainCallBack>::ENCODING,
-            <CFXMLParserReleaseCallBack>::ENCODING,
-            <CFXMLParserCopyDescriptionCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

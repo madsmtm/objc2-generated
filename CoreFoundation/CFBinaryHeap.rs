@@ -28,9 +28,9 @@ unsafe impl Encode for CFBinaryHeapCompareContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }
@@ -87,25 +87,16 @@ pub struct CFBinaryHeapCallBacks {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for CFBinaryHeapCallBacks {
-    const ENCODING: Encoding =
-        Encoding::Struct(
-            "?",
-            &[
-                <CFIndex>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void,
-                >>::ENCODING,
-                <Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>>::ENCODING,
-                <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        *const c_void,
-                        *const c_void,
-                        *mut c_void,
-                    ) -> CFComparisonResult,
-                >>::ENCODING,
-            ],
-        );
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <CFIndex>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]

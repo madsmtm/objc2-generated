@@ -90,7 +90,7 @@ unsafe impl Encode for ListRec {
             Encoding::C_LONG,
             <Point>::ENCODING,
             <Point>::ENCODING,
-            <ListClickLoopUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <Cell>::ENCODING,
             Encoding::C_LONG,
             <Handle>::ENCODING,
@@ -404,7 +404,7 @@ pub union ListDefSpec_u {
     feature = "objc2-application-services"
 ))]
 unsafe impl Encode for ListDefSpec_u {
-    const ENCODING: Encoding = Encoding::Union("?", &[<ListDefUPP>::ENCODING]);
+    const ENCODING: Encoding = Encoding::Union("?", &[Encoding::Pointer(&Encoding::Unknown)]);
 }
 
 #[cfg(all(

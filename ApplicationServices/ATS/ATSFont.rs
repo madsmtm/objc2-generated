@@ -168,8 +168,8 @@ unsafe impl Encode for ATSFontFilter_filter {
         &[
             <ATSGeneration>::ENCODING,
             <ATSFontFamilyRef>::ENCODING,
-            <ATSFontFamilyApplierFunction>::ENCODING,
-            <ATSFontApplierFunction>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
             <*const FSRef>::ENCODING,
         ],
     );
@@ -1183,8 +1183,8 @@ unsafe impl Encode for ATSFontQuerySourceContext {
         &[
             <u32>::ENCODING,
             <*mut c_void>::ENCODING,
-            <CFAllocatorRetainCallBack>::ENCODING,
-            <CFAllocatorReleaseCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

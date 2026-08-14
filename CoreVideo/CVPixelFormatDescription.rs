@@ -203,7 +203,7 @@ unsafe impl Encode for CVFillExtendedPixelsCallBackData {
         "?",
         &[
             <CFIndex>::ENCODING,
-            <CVFillExtendedPixelsCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );

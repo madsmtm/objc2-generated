@@ -1110,7 +1110,10 @@ pub struct AURenderCallbackStruct {
 unsafe impl Encode for AURenderCallbackStruct {
     const ENCODING: Encoding = Encoding::Struct(
         "AURenderCallbackStruct",
-        &[<AURenderCallback>::ENCODING, <*mut c_void>::ENCODING],
+        &[
+            Encoding::Pointer(&Encoding::Unknown),
+            <*mut c_void>::ENCODING,
+        ],
     );
 }
 
@@ -1350,10 +1353,10 @@ unsafe impl Encode for HostCallbackInfo {
         "HostCallbackInfo",
         &[
             <*mut c_void>::ENCODING,
-            <HostCallback_GetBeatAndTempo>::ENCODING,
-            <HostCallback_GetMusicalTimeLocation>::ENCODING,
-            <HostCallback_GetTransportState>::ENCODING,
-            <HostCallback_GetTransportState2>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }
@@ -1476,7 +1479,10 @@ pub struct AUMIDIOutputCallbackStruct {
 unsafe impl Encode for AUMIDIOutputCallbackStruct {
     const ENCODING: Encoding = Encoding::Struct(
         "AUMIDIOutputCallbackStruct",
-        &[<AUMIDIOutputCallback>::ENCODING, <*mut c_void>::ENCODING],
+        &[
+            Encoding::Pointer(&Encoding::Unknown),
+            <*mut c_void>::ENCODING,
+        ],
     );
 }
 
@@ -1511,7 +1517,7 @@ unsafe impl Encode for AUInputSamplesInOutputCallbackStruct {
     const ENCODING: Encoding = Encoding::Struct(
         "AUInputSamplesInOutputCallbackStruct",
         &[
-            <AUInputSamplesInOutputCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -2645,8 +2651,8 @@ unsafe impl Encode for AudioOutputUnitMIDICallbacks {
         "AudioOutputUnitMIDICallbacks",
         &[
             <*mut c_void>::ENCODING,
-            <unsafe extern "C-unwind" fn(*mut c_void, u32, u32, u32, u32)>::ENCODING,
-            <unsafe extern "C-unwind" fn(*mut c_void, NonNull<u8>, u32)>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

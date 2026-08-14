@@ -247,238 +247,34 @@ pub struct cssm_spi_tp_funcs {
     feature = "objc2"
 ))]
 unsafe impl Encode for cssm_spi_tp_funcs {
-    const ENCODING: Encoding =
-        Encoding::Struct(
-            "cssm_spi_tp_funcs",
-            &[
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        *const CSSM_TP_AUTHORITY_ID,
-                        CSSM_TP_AUTHORITY_REQUEST_TYPE,
-                        *const CSSM_TP_REQUEST_SET,
-                        *const CSSM_TP_CALLERAUTH_CONTEXT,
-                        *mut sint32,
-                        CSSM_DATA_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        *const SecAsn1Item,
-                        *const CSSM_TP_CALLERAUTH_CONTEXT,
-                        *mut sint32,
-                        *mut CSSM_BOOL,
-                        *mut CSSM_TP_RESULT_SET_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        *const SecAsn1Item,
-                        *const CSSM_TP_CALLERAUTH_CONTEXT,
-                        *const CSSM_TP_CONFIRM_RESPONSE,
-                        *const CSSM_TP_AUTHORITY_ID,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        *const SecAsn1Item,
-                        *mut CSSM_TP_CONFIRM_RESPONSE_PTR,
-                        *mut sint32,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        *const CSSM_CERTGROUP,
-                        uint32,
-                        CSSM_LONG_HANDLE,
-                        CSSM_CSP_HANDLE,
-                        *const CSSM_RESOURCE_CONTROL_CONTEXT,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(CSSM_TP_HANDLE, CSSM_LONG_HANDLE) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        *const CSSM_TP_AUTHORITY_ID,
-                        CSSM_TP_FORM_TYPE,
-                        CSSM_DATA_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_TP_FORM_TYPE,
-                        *const SecAsn1Item,
-                        *const CSSM_TP_AUTHORITY_ID,
-                        *const CSSM_TP_AUTHORITY_ID,
-                        CSSM_ACCESS_CREDENTIALS_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        CSSM_CSP_HANDLE,
-                        *const CSSM_CERTGROUP,
-                        *const CSSM_TP_VERIFY_CONTEXT,
-                        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        uint32,
-                        *const CSSM_FIELD,
-                        CSSM_DATA_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        *const SecAsn1Item,
-                        *mut uint32,
-                        *mut CSSM_FIELD_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        CSSM_CC_HANDLE,
-                        *const SecAsn1Item,
-                        *const CSSM_CERTGROUP,
-                        *const CSSM_TP_VERIFY_CONTEXT,
-                        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-                        CSSM_DATA_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        CSSM_CSP_HANDLE,
-                        *const CSSM_ENCODED_CRL,
-                        *const CSSM_CERTGROUP,
-                        *const CSSM_TP_VERIFY_CONTEXT,
-                        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        uint32,
-                        *const CSSM_FIELD,
-                        CSSM_DATA_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        CSSM_CSP_HANDLE,
-                        *const SecAsn1Item,
-                        *const CSSM_CERTGROUP,
-                        *const CSSM_CERTGROUP,
-                        *const CSSM_TP_VERIFY_CONTEXT,
-                        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-                        CSSM_TP_CERTCHANGE_REASON,
-                        CSSM_DATA_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        CSSM_CSP_HANDLE,
-                        *const SecAsn1Item,
-                        *const CSSM_CERTGROUP,
-                        *const CSSM_CERTGROUP,
-                        *const CSSM_TP_VERIFY_CONTEXT,
-                        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-                        CSSM_DATA_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        CSSM_CC_HANDLE,
-                        *const CSSM_ENCODED_CRL,
-                        *const CSSM_CERTGROUP,
-                        *const CSSM_TP_VERIFY_CONTEXT,
-                        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-                        CSSM_DATA_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        CSSM_CSP_HANDLE,
-                        *const CSSM_ENCODED_CRL,
-                        *const CSSM_CERTGROUP,
-                        *const CSSM_TP_VERIFY_CONTEXT,
-                        CSSM_TP_VERIFY_CONTEXT_RESULT_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        CSSM_CSP_HANDLE,
-                        *const CSSM_DL_DB_LIST,
-                        *const c_void,
-                        *const CSSM_CERTGROUP,
-                        *mut CSSM_CERTGROUP_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        *const CSSM_DL_DB_LIST,
-                        *const CSSM_CERTGROUP,
-                        *mut CSSM_CERTGROUP_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        *const CSSM_CERTGROUP,
-                        *mut CSSM_TUPLEGROUP_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        *const CSSM_TUPLEGROUP,
-                        *mut CSSM_CERTGROUP_PTR,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-                <Option<
-                    unsafe extern "C-unwind" fn(
-                        CSSM_TP_HANDLE,
-                        CSSM_CL_HANDLE,
-                        CSSM_CC_HANDLE,
-                        *const CSSM_DL_DB_LIST,
-                        uint32,
-                        *const c_void,
-                        *mut *mut c_void,
-                    ) -> CSSM_RETURN,
-                >>::ENCODING,
-            ],
-        );
+    const ENCODING: Encoding = Encoding::Struct(
+        "cssm_spi_tp_funcs",
+        &[
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(

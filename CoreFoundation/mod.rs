@@ -1919,13 +1919,13 @@ unsafe impl Encode for CFAllocatorContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <CFAllocatorRetainCallBack>::ENCODING,
-            <CFAllocatorReleaseCallBack>::ENCODING,
-            <CFAllocatorCopyDescriptionCallBack>::ENCODING,
-            <CFAllocatorAllocateCallBack>::ENCODING,
-            <CFAllocatorReallocateCallBack>::ENCODING,
-            <CFAllocatorDeallocateCallBack>::ENCODING,
-            <CFAllocatorPreferredSizeCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

@@ -44,30 +44,8 @@ unsafe impl Encode for cssm_spi_ac_funcs {
     const ENCODING: Encoding = Encoding::Struct(
         "cssm_spi_ac_funcs",
         &[
-            <Option<
-                unsafe extern "C-unwind" fn(
-                    CSSM_AC_HANDLE,
-                    *const CSSM_TUPLEGROUP,
-                    *const CSSM_TUPLEGROUP,
-                    uint32,
-                    *const CSSM_LIST,
-                    *const CSSM_LIST,
-                    *const CSSM_LIST,
-                    CSSM_TUPLEGROUP_PTR,
-                ) -> CSSM_RETURN,
-            >>::ENCODING,
-            <Option<
-                unsafe extern "C-unwind" fn(
-                    CSSM_AC_HANDLE,
-                    CSSM_TP_HANDLE,
-                    CSSM_CL_HANDLE,
-                    CSSM_CC_HANDLE,
-                    *const CSSM_DL_DB_LIST,
-                    uint32,
-                    *const c_void,
-                    *mut *mut c_void,
-                ) -> CSSM_RETURN,
-            >>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

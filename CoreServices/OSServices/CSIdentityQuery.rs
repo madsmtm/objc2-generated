@@ -272,10 +272,10 @@ unsafe impl Encode for CSIdentityQueryClientContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <CFAllocatorRetainCallBack>::ENCODING,
-            <CFAllocatorReleaseCallBack>::ENCODING,
-            <CFAllocatorCopyDescriptionCallBack>::ENCODING,
-            <CSIdentityQueryReceiveEventCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

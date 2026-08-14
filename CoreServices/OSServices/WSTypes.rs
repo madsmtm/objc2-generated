@@ -74,9 +74,9 @@ unsafe impl Encode for WSClientContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <WSClientContextRetainCallBackProcPtr>::ENCODING,
-            <WSClientContextReleaseCallBackProcPtr>::ENCODING,
-            <WSClientContextCopyDescriptionCallBackProcPtr>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

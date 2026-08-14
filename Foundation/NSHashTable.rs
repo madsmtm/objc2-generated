@@ -456,21 +456,11 @@ unsafe impl Encode for NSHashTableCallBacks {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
         &[
-            <Option<
-                unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger,
-            >>::ENCODING,
-            <Option<
-                unsafe extern "C-unwind" fn(
-                    NonNull<NSHashTable>,
-                    NonNull<c_void>,
-                    NonNull<c_void>,
-                ) -> Bool,
-            >>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>)>>::ENCODING,
-            <Option<
-                unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>) -> *mut NSString,
-            >>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

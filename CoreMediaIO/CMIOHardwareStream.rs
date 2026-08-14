@@ -731,7 +731,7 @@ unsafe impl Encode for CMIOStreamScheduledOutputNotificationProcAndRefCon {
     const ENCODING: Encoding = Encoding::Struct(
         "CMIOStreamScheduledOutputNotificationProcAndRefCon",
         &[
-            <CMIOStreamScheduledOutputNotificationProc>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );

@@ -167,31 +167,34 @@ pub struct cssm_spi_dl_funcs {
     feature = "objc2"
 ))]
 unsafe impl Encode for cssm_spi_dl_funcs {
-    const ENCODING: Encoding = Encoding::Struct("cssm_spi_dl_funcs", &[
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_HANDLE,*const c_char,*const CSSM_NET_ADDRESS,CSSM_DB_ACCESS_TYPE,*const CSSM_ACCESS_CREDENTIALS,*const c_void,*mut CSSM_DB_HANDLE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_HANDLE,*const c_char,*const CSSM_NET_ADDRESS,*const CSSM_DBINFO,CSSM_DB_ACCESS_TYPE,*const CSSM_RESOURCE_CONTROL_CONTEXT,*const c_void,*mut CSSM_DB_HANDLE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_HANDLE,*const c_char,*const CSSM_NET_ADDRESS,*const CSSM_ACCESS_CREDENTIALS,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,CSSM_DB_RECORDTYPE,*const c_char,uint32,*const CSSM_DB_SCHEMA_ATTRIBUTE_INFO,uint32,*const CSSM_DB_SCHEMA_INDEX_INFO,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,CSSM_DB_RECORDTYPE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,CSSM_DB_ACCESS_TYPE,*const CSSM_ACCESS_CREDENTIALS,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,*const CSSM_STRING,*mut uint32,*mut CSSM_ACL_ENTRY_INFO_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,*const CSSM_ACCESS_CREDENTIALS,*const CSSM_ACL_EDIT,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,CSSM_ACL_OWNER_PROTOTYPE_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,*const CSSM_ACCESS_CREDENTIALS,*const CSSM_ACL_OWNER_PROTOTYPE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_HANDLE,*mut CSSM_NAME_LIST_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,*mut *mut c_char,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_HANDLE,CSSM_NAME_LIST_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,CSSM_DB_RECORDTYPE,*const CSSM_DB_RECORD_ATTRIBUTE_DATA,*const SecAsn1Item,*mut CSSM_DB_UNIQUE_RECORD_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,*const CSSM_DB_UNIQUE_RECORD,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,CSSM_DB_RECORDTYPE,CSSM_DB_UNIQUE_RECORD_PTR,*const CSSM_DB_RECORD_ATTRIBUTE_DATA,*const SecAsn1Item,CSSM_DB_MODIFY_MODE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,*const CSSM_QUERY,CSSM_HANDLE_PTR,CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,CSSM_DATA_PTR,*mut CSSM_DB_UNIQUE_RECORD_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,CSSM_HANDLE,CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,CSSM_DATA_PTR,*mut CSSM_DB_UNIQUE_RECORD_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,CSSM_HANDLE,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,*const CSSM_DB_UNIQUE_RECORD,CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR,CSSM_DATA_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,CSSM_DB_UNIQUE_RECORD_PTR,) -> CSSM_RETURN>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(CSSM_DL_DB_HANDLE,uint32,*const c_void,*mut *mut c_void,) -> CSSM_RETURN>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "cssm_spi_dl_funcs",
+        &[
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(

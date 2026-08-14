@@ -29,13 +29,16 @@ pub struct MDImporterInterfaceStruct {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for MDImporterInterfaceStruct {
-    const ENCODING: Encoding = Encoding::Struct("?", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFMutableDictionary,*const CFString,*const CFString,) -> Boolean>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]
@@ -65,13 +68,16 @@ pub struct MDExporterInterfaceStruct {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for MDExporterInterfaceStruct {
-    const ENCODING: Encoding = Encoding::Struct("?", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFDictionary,*const CFString,*const CFString,) -> Boolean>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]
@@ -101,13 +107,16 @@ pub struct MDImporterURLInterfaceStruct {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for MDImporterURLInterfaceStruct {
-    const ENCODING: Encoding = Encoding::Struct("?", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFMutableDictionary,*const CFString,*const CFURL,) -> Boolean>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]
@@ -137,13 +146,16 @@ pub struct MDImporterBundleWrapperURLInterfaceStruct {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for MDImporterBundleWrapperURLInterfaceStruct {
-    const ENCODING: Encoding = Encoding::Struct("?", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFMutableDictionary,*const CFString,*const CFURL,) -> Boolean>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]

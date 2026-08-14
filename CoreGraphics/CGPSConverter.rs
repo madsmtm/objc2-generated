@@ -71,13 +71,13 @@ unsafe impl Encode for CGPSConverterCallbacks {
         "CGPSConverterCallbacks",
         &[
             <c_uint>::ENCODING,
-            <CGPSConverterBeginDocumentCallback>::ENCODING,
             Encoding::Pointer(&Encoding::Unknown),
-            <CGPSConverterBeginPageCallback>::ENCODING,
-            <CGPSConverterEndPageCallback>::ENCODING,
-            <CGPSConverterProgressCallback>::ENCODING,
-            <CGPSConverterMessageCallback>::ENCODING,
-            <CGPSConverterReleaseInfoCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

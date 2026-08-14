@@ -111,11 +111,11 @@ unsafe impl Encode for CFSetCallBacks {
         "?",
         &[
             <CFIndex>::ENCODING,
-            <CFSetRetainCallBack>::ENCODING,
-            <CFSetReleaseCallBack>::ENCODING,
-            <CFSetCopyDescriptionCallBack>::ENCODING,
-            <CFSetEqualCallBack>::ENCODING,
-            <CFSetHashCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

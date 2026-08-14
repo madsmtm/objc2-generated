@@ -739,15 +739,18 @@ pub struct ContextualMenuInterfaceStruct {
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-services"))]
 unsafe impl Encode for ContextualMenuInterfaceStruct {
-    const ENCODING: Encoding = Encoding::Struct("ContextualMenuInterfaceStruct", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,CFUUIDBytes,*mut *mut c_void,) -> i32>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> u32>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> u32>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const AEDesc,*mut AEDescList,) -> OSStatus>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut AEDesc,i32,) -> OSStatus>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,)>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "ContextualMenuInterfaceStruct",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-services"))]

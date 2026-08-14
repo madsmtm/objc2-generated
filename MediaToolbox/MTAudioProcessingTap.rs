@@ -320,11 +320,11 @@ unsafe impl Encode for MTAudioProcessingTapCallbacks {
         &[
             <c_int>::ENCODING,
             <*mut c_void>::ENCODING,
-            <MTAudioProcessingTapInitCallback>::ENCODING,
-            <MTAudioProcessingTapFinalizeCallback>::ENCODING,
-            <MTAudioProcessingTapPrepareCallback>::ENCODING,
-            <MTAudioProcessingTapUnprepareCallback>::ENCODING,
-            <MTAudioProcessingTapProcessCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

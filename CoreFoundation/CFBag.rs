@@ -47,11 +47,11 @@ unsafe impl Encode for CFBagCallBacks {
         "?",
         &[
             <CFIndex>::ENCODING,
-            <CFBagRetainCallBack>::ENCODING,
-            <CFBagReleaseCallBack>::ENCODING,
-            <CFBagCopyDescriptionCallBack>::ENCODING,
-            <CFBagEqualCallBack>::ENCODING,
-            <CFBagHashCallBack>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

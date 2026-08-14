@@ -144,10 +144,10 @@ unsafe impl Encode for CTRunDelegateCallbacks {
         "?",
         &[
             <CFIndex>::ENCODING,
-            <CTRunDelegateDeallocateCallback>::ENCODING,
-            <CTRunDelegateGetAscentCallback>::ENCODING,
-            <CTRunDelegateGetDescentCallback>::ENCODING,
-            <CTRunDelegateGetWidthCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

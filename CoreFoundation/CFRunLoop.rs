@@ -437,18 +437,21 @@ pub struct CFRunLoopSourceContext {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for CFRunLoopSourceContext {
-    const ENCODING: Encoding = Encoding::Struct("?", &[
-        <CFIndex>::ENCODING,
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const CFString>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,*const c_void,) -> Boolean>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> CFHashCode>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*const CFRunLoopMode,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*const CFRunLoopMode,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,)>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <CFIndex>::ENCODING,
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]
@@ -482,17 +485,20 @@ pub struct CFRunLoopSourceContext1 {
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for CFRunLoopSourceContext1 {
-    const ENCODING: Encoding = Encoding::Struct("?", &[
-        <CFIndex>::ENCODING,
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const c_void>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const CFString>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,*const c_void,) -> Boolean>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> CFHashCode>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> libc::mach_port_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,CFIndex,*const CFAllocator,*mut c_void,) -> *mut c_void>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <CFIndex>::ENCODING,
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -623,9 +629,9 @@ unsafe impl Encode for CFRunLoopObserverContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }
@@ -800,9 +806,9 @@ unsafe impl Encode for CFRunLoopTimerContext {
         &[
             <CFIndex>::ENCODING,
             <*mut c_void>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

@@ -287,7 +287,7 @@ unsafe impl Encode for ATSULayoutOperationOverrideSpecifier {
         "ATSULayoutOperationOverrideSpecifier",
         &[
             <ATSULayoutOperationSelector>::ENCODING,
-            <ATSUDirectLayoutOperationOverrideUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

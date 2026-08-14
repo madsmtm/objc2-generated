@@ -775,7 +775,7 @@ unsafe impl Encode for IOHIDCompletion {
         "IOHIDCompletion",
         &[
             <*mut c_void>::ENCODING,
-            <IOHIDCompletionAction>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -3591,28 +3591,31 @@ pub struct IOHIDDeviceInterface {
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDDeviceInterface {
-    const ENCODING: Encoding = Encoding::Struct("IOHIDDeviceInterface", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *mut CFRunLoopSource,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut CFRunLoopSource>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut libc::mach_port_t,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> libc::mach_port_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,u32,IOHIDElementCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,u32,IOHIDElementCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut *mut IOHIDQueueInterface>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut *mut IOHIDOutputTransactionInterface>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*mut c_void,u32,u32,IOHIDReportCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*mut c_void,*mut u32,u32,IOHIDReportCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOHIDDeviceInterface",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -3714,28 +3717,31 @@ pub struct IOHIDDeviceInterface121 {
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDDeviceInterface121 {
-    const ENCODING: Encoding = Encoding::Struct("IOHIDDeviceInterface121", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *mut CFRunLoopSource,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut CFRunLoopSource>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut libc::mach_port_t,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> libc::mach_port_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,u32,IOHIDElementCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,u32,IOHIDElementCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut *mut IOHIDQueueInterface>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut *mut IOHIDOutputTransactionInterface>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*mut c_void,u32,u32,IOHIDReportCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*mut c_void,*mut u32,u32,IOHIDReportCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOHIDDeviceInterface121",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -3854,30 +3860,33 @@ pub struct IOHIDDeviceInterface122 {
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDDeviceInterface122 {
-    const ENCODING: Encoding = Encoding::Struct("IOHIDDeviceInterface122", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *mut CFRunLoopSource,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut CFRunLoopSource>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut libc::mach_port_t,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> libc::mach_port_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,u32,IOHIDElementCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,u32,IOHIDElementCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut *mut IOHIDQueueInterface>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut *mut IOHIDOutputTransactionInterface>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*mut c_void,u32,u32,IOHIDReportCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*mut c_void,*mut u32,u32,IOHIDReportCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFDictionary,*mut *const CFArray,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut c_void,u32,IOHIDReportCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOHIDDeviceInterface122",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -3940,26 +3949,29 @@ pub struct IOHIDQueueInterface {
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDQueueInterface {
-    const ENCODING: Encoding = Encoding::Struct("IOHIDQueueInterface", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *mut CFRunLoopSource,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut CFRunLoopSource>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut libc::mach_port_t,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> libc::mach_port_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,u32,u32,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,u32,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,) -> Boolean>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDEventStruct,AbsoluteTime,u32,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDCallbackFunction,*mut *mut c_void,*mut *mut c_void,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOHIDQueueInterface",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -4034,27 +4046,30 @@ pub struct IOHIDOutputTransactionInterface {
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDOutputTransactionInterface {
-    const ENCODING: Encoding = Encoding::Struct("IOHIDOutputTransactionInterface", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *mut CFRunLoopSource,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut CFRunLoopSource>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut libc::mach_port_t,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> libc::mach_port_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,) -> Boolean>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDElementCookie,*mut IOHIDEventStruct,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,u32,IOHIDCallbackFunction,*mut c_void,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOHIDOutputTransactionInterface",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -10414,23 +10429,26 @@ pub struct IOHIDDeviceDeviceInterface {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for IOHIDDeviceDeviceInterface {
-    const ENCODING: Encoding = Encoding::Struct("IOHIDDeviceDeviceInterface", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFString,*mut *const CFType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFString,*const CFType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFDictionary,*mut *const CFArray,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,*mut IOHIDValue,u32,IOHIDValueCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,*mut *mut IOHIDValue,u32,IOHIDValueCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut u8,CFIndex,IOHIDReportCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*const u8,CFIndex,u32,IOHIDReportCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*mut u8,*mut CFIndex,u32,IOHIDReportCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOHIDDeviceDeviceInterface",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]
@@ -10547,24 +10565,27 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for IOHIDDeviceTimeStampedDeviceInterface {
-    const ENCODING: Encoding = Encoding::Struct("IOHIDDeviceTimeStampedDeviceInterface", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFString,*mut *const CFType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFString,*const CFType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFDictionary,*mut *const CFArray,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,*mut IOHIDValue,u32,IOHIDValueCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,*mut *mut IOHIDValue,u32,IOHIDValueCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut u8,CFIndex,IOHIDReportCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*const u8,CFIndex,u32,IOHIDReportCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDReportType,u32,*mut u8,*mut CFIndex,u32,IOHIDReportCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut u8,CFIndex,IOHIDReportWithTimeStampCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOHIDDeviceTimeStampedDeviceInterface",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]
@@ -10722,22 +10743,25 @@ pub struct IOHIDDeviceQueueInterface {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for IOHIDDeviceQueueInterface {
-    const ENCODING: Encoding = Encoding::Struct("IOHIDDeviceQueueInterface", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,u32,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut u32,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,*mut Boolean,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDCallback,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *mut IOHIDValue,u32,IOOptionBits,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOHIDDeviceQueueInterface",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]
@@ -10936,22 +10960,25 @@ pub struct IOHIDDeviceTransactionInterface {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for IOHIDDeviceTransactionInterface {
-    const ENCODING: Encoding = Encoding::Struct("IOHIDDeviceTransactionInterface", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut *const CFType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOHIDTransactionDirectionType,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDTransactionDirectionType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,*mut Boolean,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,*mut IOHIDValue,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut IOHIDElement,*mut *mut IOHIDValue,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,u32,IOHIDCallback,*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOHIDDeviceTransactionInterface",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
+    );
 }
 
 #[cfg(feature = "objc2")]

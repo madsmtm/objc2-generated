@@ -573,7 +573,7 @@ unsafe impl Encode for IOUSBCompletion {
         "IOUSBCompletion",
         &[
             <*mut c_void>::ENCODING,
-            <IOUSBCompletionAction>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -608,7 +608,7 @@ unsafe impl Encode for IOUSBCompletionWithTimeStamp {
         "IOUSBCompletionWithTimeStamp",
         &[
             <*mut c_void>::ENCODING,
-            <IOUSBCompletionActionWithTimeStamp>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -643,7 +643,7 @@ unsafe impl Encode for IOUSBIsocCompletion {
         "IOUSBIsocCompletion",
         &[
             <*mut c_void>::ENCODING,
-            <IOUSBIsocCompletionAction>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -678,7 +678,7 @@ unsafe impl Encode for IOUSBLowLatencyIsocCompletion {
         "IOUSBLowLatencyIsocCompletion",
         &[
             <*mut c_void>::ENCODING,
-            <IOUSBLowLatencyIsocCompletionAction>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );

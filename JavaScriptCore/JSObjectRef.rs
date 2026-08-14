@@ -363,7 +363,7 @@ unsafe impl Encode for JSStaticValue {
         "?",
         &[
             <*const c_char>::ENCODING,
-            <JSObjectGetPropertyCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             Encoding::Pointer(&Encoding::Unknown),
             <JSPropertyAttributes>::ENCODING,
         ],
@@ -400,7 +400,7 @@ unsafe impl Encode for JSStaticFunction {
         "?",
         &[
             <*const c_char>::ENCODING,
-            <JSObjectCallAsFunctionCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <JSPropertyAttributes>::ENCODING,
         ],
     );
@@ -498,17 +498,17 @@ unsafe impl Encode for JSClassDefinition {
             <JSClassRef>::ENCODING,
             <*const JSStaticValue>::ENCODING,
             <*const JSStaticFunction>::ENCODING,
-            <JSObjectInitializeCallback>::ENCODING,
-            <JSObjectFinalizeCallback>::ENCODING,
-            Encoding::Pointer(&Encoding::Unknown),
-            <JSObjectGetPropertyCallback>::ENCODING,
             Encoding::Pointer(&Encoding::Unknown),
             Encoding::Pointer(&Encoding::Unknown),
-            <JSObjectGetPropertyNamesCallback>::ENCODING,
-            <JSObjectCallAsFunctionCallback>::ENCODING,
-            <JSObjectCallAsConstructorCallback>::ENCODING,
             Encoding::Pointer(&Encoding::Unknown),
-            <JSObjectConvertToTypeCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

@@ -190,13 +190,13 @@ unsafe impl Encode for CMBufferCallbacks {
         &[
             <u32>::ENCODING,
             <*mut c_void>::ENCODING,
-            <CMBufferGetTimeCallback>::ENCODING,
-            <CMBufferGetTimeCallback>::ENCODING,
-            <CMBufferGetTimeCallback>::ENCODING,
-            <CMBufferGetBooleanCallback>::ENCODING,
-            <CMBufferCompareCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
             <*const CFString>::ENCODING,
-            <CMBufferGetSizeCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

@@ -1590,33 +1590,36 @@ pub struct IOGraphicsAcceleratorInterfaceStruct {
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOGraphicsAcceleratorInterfaceStruct {
-    const ENCODING: Encoding = Encoding::Struct("IOGraphicsAcceleratorInterfaceStruct", &[
-        <*mut c_void>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,REFIID,*mut LPVOID,) -> HRESULT>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> ULONG>>::ENCODING,
-        <u16>::ENCODING,
-        <u16>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFDictionary,io_service_t,*mut i32,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*const CFDictionary,io_service_t,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,FourCharCode,*mut *const CFType,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,IOBlitType,IOBlitSourceDestType,*mut IOBlitProcPtr,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,IOBlitCompletionToken,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,u32,u32,u32,u32,u32,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,*mut i32,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,*mut IOBlitSurface,*mut c_void,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,*mut IOBlitSurface,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,*mut IOBlitSurface,*mut libc::vm_address_t,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,*mut IOBlitSurface,*mut IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,*mut IOBlitSurface,*mut IOOptionBits,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,*mut IOBlitSurface,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,IOBlitType,IOBlitSourceType,*mut IOBlitterPtr,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,IOOptionBits,) -> IOReturn>>::ENCODING,
-        <[*mut c_void; 24]>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOGraphicsAcceleratorInterfaceStruct",
+        &[
+            <*mut c_void>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            <u16>::ENCODING,
+            <u16>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            <[*mut c_void; 24]>::ENCODING,
+        ],
+    );
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]

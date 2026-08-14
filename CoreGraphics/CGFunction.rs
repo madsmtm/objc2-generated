@@ -49,8 +49,8 @@ unsafe impl Encode for CGFunctionCallbacks {
         "CGFunctionCallbacks",
         &[
             <c_uint>::ENCODING,
-            <CGFunctionEvaluateCallback>::ENCODING,
-            <CGFunctionReleaseInfoCallback>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
         ],
     );
 }

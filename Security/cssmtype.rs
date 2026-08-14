@@ -426,7 +426,7 @@ unsafe impl Encode for cssm_crypto_data {
         "cssm_crypto_data",
         &[
             <SecAsn1Item>::ENCODING,
-            <CSSM_CALLBACK>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -995,10 +995,10 @@ unsafe impl Encode for cssm_memory_funcs {
     const ENCODING: Encoding = Encoding::Struct(
         "cssm_memory_funcs",
         &[
-            <CSSM_MALLOC>::ENCODING,
-            <CSSM_FREE>::ENCODING,
-            <CSSM_REALLOC>::ENCODING,
-            <CSSM_CALLOC>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -1393,7 +1393,7 @@ unsafe impl Encode for cssm_access_credentials {
             <CSSM_STRING>::ENCODING,
             <CSSM_BASE_CERTS>::ENCODING,
             <CSSM_SAMPLEGROUP>::ENCODING,
-            <CSSM_CHALLENGE_CALLBACK>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -1661,7 +1661,7 @@ unsafe impl Encode for cssm_acl_entry_input {
         "cssm_acl_entry_input",
         &[
             <CSSM_ACL_ENTRY_PROTOTYPE>::ENCODING,
-            <CSSM_ACL_SUBJECT_CALLBACK>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -1826,7 +1826,10 @@ pub struct cssm_func_name_addr {
 unsafe impl Encode for cssm_func_name_addr {
     const ENCODING: Encoding = Encoding::Struct(
         "cssm_func_name_addr",
-        &[<CSSM_STRING>::ENCODING, <CSSM_PROC_ADDR>::ENCODING],
+        &[
+            <CSSM_STRING>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
+        ],
     );
 }
 
@@ -3459,7 +3462,7 @@ unsafe impl Encode for cssm_tp_callerauth_context {
             <CSSM_TP_POLICYINFO>::ENCODING,
             <CSSM_TIMESTRING>::ENCODING,
             <CSSM_TP_STOP_ON>::ENCODING,
-            <CSSM_TP_VERIFICATION_RESULTS_CALLBACK>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <uint32>::ENCODING,
             <CSSM_DATA_PTR>::ENCODING,
             <CSSM_DL_DB_LIST_PTR>::ENCODING,

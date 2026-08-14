@@ -52,7 +52,7 @@ unsafe impl Encode for TMTask {
         &[
             <QElemPtr>::ENCODING,
             <c_short>::ENCODING,
-            <TimerUPP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             Encoding::C_LONG,
             Encoding::C_LONG,
             Encoding::C_LONG,

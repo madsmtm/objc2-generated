@@ -653,7 +653,7 @@ unsafe impl Encode for MIDISysexSendRequest {
             <u32>::ENCODING,
             <Boolean>::ENCODING,
             <[Byte; 3]>::ENCODING,
-            <MIDICompletionProc>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
@@ -717,7 +717,7 @@ unsafe impl Encode for MIDISysexSendRequestUMP {
             <NonNull<u32>>::ENCODING,
             <u32>::ENCODING,
             <Boolean>::ENCODING,
-            <MIDICompletionProcUMP>::ENCODING,
+            Encoding::Pointer(&Encoding::Unknown),
             <*mut c_void>::ENCODING,
         ],
     );
