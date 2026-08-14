@@ -1346,7 +1346,6 @@ impl SecKeychain {
     /// - `keychain_or_array` should be of the correct type.
     /// - `service_name` must be a valid pointer or null.
     /// - `account_name` must be a valid pointer or null.
-    /// - `password_length` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainFindGenericPassword")]
     #[cfg(feature = "SecBase")]
@@ -1358,8 +1357,8 @@ impl SecKeychain {
         service_name: *const c_char,
         account_name_length: u32,
         account_name: *const c_char,
-        password_length: *mut u32,
-        password_data: *mut *mut c_void,
+        password_length: Option<&mut u32>,
+        password_data: Option<&mut *mut c_void>,
         item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -1369,8 +1368,8 @@ impl SecKeychain {
                 service_name: *const c_char,
                 account_name_length: u32,
                 account_name: *const c_char,
-                password_length: *mut u32,
-                password_data: *mut *mut c_void,
+                password_length: Option<&mut u32>,
+                password_data: Option<&mut *mut c_void>,
                 item_ref: Option<&mut Option<CFRetained<SecKeychainItem>>>,
             ) -> OSStatus;
         }

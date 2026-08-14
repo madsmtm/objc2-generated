@@ -918,13 +918,13 @@ impl SecCertificate {
         &self,
         keys: Option<&CFArray<CFString>>,
         error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
             fn SecCertificateCopyValues(
                 certificate: &SecCertificate,
                 keys: Option<&CFArray<CFString>>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
-            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFDictionary<CFString, CFType>>>>;
         }
         if let Some(error) = error.as_ref() {
             assert!(

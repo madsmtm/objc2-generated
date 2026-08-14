@@ -952,21 +952,21 @@ impl CFBundle {
 
     /// # Safety
     ///
-    /// - `ref_num` must be a valid pointer.
-    /// - `localized_ref_num` must be a valid pointer.
+    /// - `ref_num` might not allow `None`.
+    /// - `localized_ref_num` might not allow `None`.
     #[doc(alias = "CFBundleOpenBundleResourceFiles")]
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     #[inline]
     pub unsafe fn open_bundle_resource_files(
         &self,
-        ref_num: *mut CFBundleRefNum,
-        localized_ref_num: *mut CFBundleRefNum,
+        ref_num: Option<&mut CFBundleRefNum>,
+        localized_ref_num: Option<&mut CFBundleRefNum>,
     ) -> i32 {
         extern "C-unwind" {
             fn CFBundleOpenBundleResourceFiles(
                 bundle: &CFBundle,
-                ref_num: *mut CFBundleRefNum,
-                localized_ref_num: *mut CFBundleRefNum,
+                ref_num: Option<&mut CFBundleRefNum>,
+                localized_ref_num: Option<&mut CFBundleRefNum>,
             ) -> i32;
         }
         unsafe { CFBundleOpenBundleResourceFiles(self, ref_num, localized_ref_num) }
