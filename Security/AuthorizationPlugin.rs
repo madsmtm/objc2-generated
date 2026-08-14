@@ -107,32 +107,52 @@ pub type AuthorizationPluginId = AuthorizationString;
 
 /// Handle passed back by the plugin writer when creating a plugin.  Any pluginhost will only instantiate one instance.  The handle is used when creating mechanisms.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationpluginref?language=objc)
-pub type AuthorizationPluginRef = *mut c_void;
-
-/// Handle passed back by the plugin writer when creating an an instance of a mechanism in a plugin.  One instance will be created for any authorization.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationmechanismref?language=objc)
-pub type AuthorizationMechanismRef = *mut c_void;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/security/__opaqueauthorizationengine?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationplugin?language=objc)
+#[doc(alias = "AuthorizationPluginRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct __OpaqueAuthorizationEngine {
+pub struct AuthorizationPlugin {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for __OpaqueAuthorizationEngine {
-    const ENCODING_REF: Encoding =
-        Encoding::Pointer(&Encoding::Struct("__OpaqueAuthorizationEngine", &[]));
+unsafe impl RefEncode for AuthorizationPlugin {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Void);
+}
+
+/// Handle passed back by the plugin writer when creating an an instance of a mechanism in a plugin.  One instance will be created for any authorization.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationmechanism?language=objc)
+#[doc(alias = "AuthorizationMechanismRef")]
+#[repr(C)]
+#[derive(Debug)]
+pub struct AuthorizationMechanism {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AuthorizationMechanism {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Void);
 }
 
 /// Handle passed from the engine to an instance of a mechanism in a plugin (corresponds to a particular AuthorizationMechanismRef).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationengineref?language=objc)
-pub type AuthorizationEngineRef = *mut __OpaqueAuthorizationEngine;
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationengine?language=objc)
+#[doc(alias = "AuthorizationEngineRef")]
+#[repr(C)]
+#[derive(Debug)]
+pub struct AuthorizationEngine {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AuthorizationEngine {
+    const ENCODING_REF: Encoding =
+        Encoding::Pointer(&Encoding::Struct("__OpaqueAuthorizationEngine", &[]));
+}
 
 /// A unique value for an AuthorizationSession being evaluated, provided by the authorization engine.
 /// A session is represented by a top level call to an Authorization API.
@@ -219,79 +239,129 @@ pub const kAuthorizationCallbacksVersion: c_uint = 4;
 pub struct AuthorizationCallbacks {
     pub version: u32,
     pub SetResult:
-        unsafe extern "C-unwind" fn(AuthorizationEngineRef, AuthorizationResult) -> OSStatus,
-    pub RequestInterrupt: unsafe extern "C-unwind" fn(AuthorizationEngineRef) -> OSStatus,
-    pub DidDeactivate: unsafe extern "C-unwind" fn(AuthorizationEngineRef) -> OSStatus,
+        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, AuthorizationResult) -> OSStatus,
+    pub RequestInterrupt: unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>) -> OSStatus,
+    pub DidDeactivate: unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>) -> OSStatus,
     pub GetContextValue: unsafe extern "C-unwind" fn(
-        AuthorizationEngineRef,
+        NonNull<AuthorizationEngine>,
         AuthorizationString,
         *mut AuthorizationContextFlags,
         *mut *const AuthorizationValue,
     ) -> OSStatus,
     pub SetContextValue: unsafe extern "C-unwind" fn(
-        AuthorizationEngineRef,
+        NonNull<AuthorizationEngine>,
         AuthorizationString,
         AuthorizationContextFlags,
         NonNull<AuthorizationValue>,
     ) -> OSStatus,
     pub GetHintValue: unsafe extern "C-unwind" fn(
-        AuthorizationEngineRef,
+        NonNull<AuthorizationEngine>,
         AuthorizationString,
         *mut *const AuthorizationValue,
     ) -> OSStatus,
     pub SetHintValue: unsafe extern "C-unwind" fn(
-        AuthorizationEngineRef,
+        NonNull<AuthorizationEngine>,
         AuthorizationString,
         NonNull<AuthorizationValue>,
     ) -> OSStatus,
     pub GetArguments: unsafe extern "C-unwind" fn(
-        AuthorizationEngineRef,
+        NonNull<AuthorizationEngine>,
         NonNull<*const AuthorizationValueVector>,
     ) -> OSStatus,
     pub GetSessionId: unsafe extern "C-unwind" fn(
-        AuthorizationEngineRef,
+        NonNull<AuthorizationEngine>,
         *mut AuthorizationSessionId,
     ) -> OSStatus,
     pub GetImmutableHintValue: unsafe extern "C-unwind" fn(
-        AuthorizationEngineRef,
+        NonNull<AuthorizationEngine>,
         AuthorizationString,
         *mut *const AuthorizationValue,
     ) -> OSStatus,
     pub GetLAContext:
-        unsafe extern "C-unwind" fn(AuthorizationEngineRef, *mut *const CFType) -> OSStatus,
+        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, *mut *const CFType) -> OSStatus,
     pub GetTokenIdentities: unsafe extern "C-unwind" fn(
-        AuthorizationEngineRef,
+        NonNull<AuthorizationEngine>,
         NonNull<CFType>,
         *mut *const CFArray,
     ) -> OSStatus,
     pub GetTKTokenWatcher:
-        unsafe extern "C-unwind" fn(AuthorizationEngineRef, *mut *const CFType) -> OSStatus,
+        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, *mut *const CFType) -> OSStatus,
     pub RemoveHintValue:
-        unsafe extern "C-unwind" fn(AuthorizationEngineRef, AuthorizationString) -> OSStatus,
+        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, AuthorizationString) -> OSStatus,
     pub RemoveContextValue:
-        unsafe extern "C-unwind" fn(AuthorizationEngineRef, AuthorizationString) -> OSStatus,
+        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, AuthorizationString) -> OSStatus,
 }
 
 #[cfg(all(feature = "Authorization", feature = "objc2"))]
 unsafe impl Encode for AuthorizationCallbacks {
-    const ENCODING: Encoding = Encoding::Struct("AuthorizationCallbacks", &[
-        <u32>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationResult,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,*mut AuthorizationContextFlags,*mut *const AuthorizationValue,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,AuthorizationContextFlags,NonNull<AuthorizationValue>,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,*mut *const AuthorizationValue,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,NonNull<AuthorizationValue>,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,NonNull<*const AuthorizationValueVector>,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,*mut AuthorizationSessionId,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,*mut *const AuthorizationValue,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,*mut *const CFType,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,NonNull<CFType>,*mut *const CFArray,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,*mut *const CFType,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,) -> OSStatus>::ENCODING,
-    ]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "AuthorizationCallbacks",
+        &[
+            <u32>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                AuthorizationResult,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                AuthorizationString,
+                *mut AuthorizationContextFlags,
+                *mut *const AuthorizationValue,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                AuthorizationString,
+                AuthorizationContextFlags,
+                NonNull<AuthorizationValue>,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                AuthorizationString,
+                *mut *const AuthorizationValue,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                AuthorizationString,
+                NonNull<AuthorizationValue>,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                NonNull<*const AuthorizationValueVector>,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                *mut AuthorizationSessionId,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                AuthorizationString,
+                *mut *const AuthorizationValue,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                *mut *const CFType,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                NonNull<CFType>,
+                *mut *const CFArray,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                *mut *const CFType,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                AuthorizationString,
+            ) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(
+                NonNull<AuthorizationEngine>,
+                AuthorizationString,
+            ) -> OSStatus>::ENCODING,
+        ],
+    );
 }
 
 #[cfg(all(feature = "Authorization", feature = "objc2"))]
@@ -321,16 +391,17 @@ unsafe impl RefEncode for AuthorizationCallbacks {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AuthorizationPluginInterface {
     pub version: u32,
-    pub PluginDestroy: unsafe extern "C-unwind" fn(AuthorizationPluginRef) -> OSStatus,
+    pub PluginDestroy: unsafe extern "C-unwind" fn(NonNull<AuthorizationPlugin>) -> OSStatus,
     pub MechanismCreate: unsafe extern "C-unwind" fn(
-        AuthorizationPluginRef,
-        AuthorizationEngineRef,
+        NonNull<AuthorizationPlugin>,
+        NonNull<AuthorizationEngine>,
         AuthorizationMechanismId,
-        NonNull<AuthorizationMechanismRef>,
+        NonNull<*mut AuthorizationMechanism>,
     ) -> OSStatus,
-    pub MechanismInvoke: unsafe extern "C-unwind" fn(AuthorizationMechanismRef) -> OSStatus,
-    pub MechanismDeactivate: unsafe extern "C-unwind" fn(AuthorizationMechanismRef) -> OSStatus,
-    pub MechanismDestroy: unsafe extern "C-unwind" fn(AuthorizationMechanismRef) -> OSStatus,
+    pub MechanismInvoke: unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus,
+    pub MechanismDeactivate:
+        unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus,
+    pub MechanismDestroy: unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus,
 }
 
 #[cfg(all(feature = "Authorization", feature = "objc2"))]
@@ -339,16 +410,16 @@ unsafe impl Encode for AuthorizationPluginInterface {
         "AuthorizationPluginInterface",
         &[
             <u32>::ENCODING,
-            <unsafe extern "C-unwind" fn(AuthorizationPluginRef) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(NonNull<AuthorizationPlugin>) -> OSStatus>::ENCODING,
             <unsafe extern "C-unwind" fn(
-                AuthorizationPluginRef,
-                AuthorizationEngineRef,
+                NonNull<AuthorizationPlugin>,
+                NonNull<AuthorizationEngine>,
                 AuthorizationMechanismId,
-                NonNull<AuthorizationMechanismRef>,
+                NonNull<*mut AuthorizationMechanism>,
             ) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(AuthorizationMechanismRef) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(AuthorizationMechanismRef) -> OSStatus>::ENCODING,
-            <unsafe extern "C-unwind" fn(AuthorizationMechanismRef) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus>::ENCODING,
+            <unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus>::ENCODING,
         ],
     );
 }
@@ -358,49 +429,52 @@ unsafe impl RefEncode for AuthorizationPluginInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Initialize a plugin after it gets loaded.  This is the main entry point to a plugin.  This function will only be called once.
-/// After all Mechanism instances have been destroyed outPluginInterface->PluginDestroy will be called.
-///
-///
-/// Parameter `callbacks`: (input) A pointer to an AuthorizationCallbacks which contains the callbacks implemented by the AuthorizationEngine.
-///
-/// Parameter `outPlugin`: (output) On successful completion should contain a valid AuthorizationPluginRef.  This will be passed in to any subsequent calls the engine makes to  outPluginInterface->MechanismCreate and outPluginInterface->PluginDestroy.
-///
-/// Parameter `outPluginInterface`: (output) On successful completion should contain a pointer to a AuthorizationPluginInterface that will stay valid until outPluginInterface->PluginDestroy is called.
-///
-/// # Safety
-///
-/// - `callbacks` struct field `version` must be set correctly.
-/// - `callbacks` struct field `SetResult` must be implemented correctly.
-/// - `callbacks` struct field `RequestInterrupt` must be implemented correctly.
-/// - `callbacks` struct field `DidDeactivate` must be implemented correctly.
-/// - `callbacks` struct field `GetContextValue` must be implemented correctly.
-/// - `callbacks` struct field `SetContextValue` must be implemented correctly.
-/// - `callbacks` struct field `GetHintValue` must be implemented correctly.
-/// - `callbacks` struct field `SetHintValue` must be implemented correctly.
-/// - `callbacks` struct field `GetArguments` must be implemented correctly.
-/// - `callbacks` struct field `GetSessionId` must be implemented correctly.
-/// - `callbacks` struct field `GetImmutableHintValue` must be implemented correctly.
-/// - `callbacks` struct field `GetLAContext` must be implemented correctly.
-/// - `callbacks` struct field `GetTokenIdentities` must be implemented correctly.
-/// - `callbacks` struct field `GetTKTokenWatcher` must be implemented correctly.
-/// - `callbacks` struct field `RemoveHintValue` must be implemented correctly.
-/// - `callbacks` struct field `RemoveContextValue` must be implemented correctly.
-/// - `out_plugin` must be a valid pointer or null.
-/// - `out_plugin_interface` must be a valid pointer or null.
-#[cfg(feature = "Authorization")]
-#[inline]
-pub unsafe fn AuthorizationPluginCreate(
-    callbacks: &AuthorizationCallbacks,
-    out_plugin: &mut AuthorizationPluginRef,
-    out_plugin_interface: &mut *const AuthorizationPluginInterface,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationPluginCreate(
-            callbacks: &AuthorizationCallbacks,
-            out_plugin: &mut AuthorizationPluginRef,
-            out_plugin_interface: &mut *const AuthorizationPluginInterface,
-        ) -> OSStatus;
+impl AuthorizationPlugin {
+    /// Initialize a plugin after it gets loaded.  This is the main entry point to a plugin.  This function will only be called once.
+    /// After all Mechanism instances have been destroyed outPluginInterface->PluginDestroy will be called.
+    ///
+    ///
+    /// Parameter `callbacks`: (input) A pointer to an AuthorizationCallbacks which contains the callbacks implemented by the AuthorizationEngine.
+    ///
+    /// Parameter `outPlugin`: (output) On successful completion should contain a valid AuthorizationPluginRef.  This will be passed in to any subsequent calls the engine makes to  outPluginInterface->MechanismCreate and outPluginInterface->PluginDestroy.
+    ///
+    /// Parameter `outPluginInterface`: (output) On successful completion should contain a pointer to a AuthorizationPluginInterface that will stay valid until outPluginInterface->PluginDestroy is called.
+    ///
+    /// # Safety
+    ///
+    /// - `callbacks` struct field `version` must be set correctly.
+    /// - `callbacks` struct field `SetResult` must be implemented correctly.
+    /// - `callbacks` struct field `RequestInterrupt` must be implemented correctly.
+    /// - `callbacks` struct field `DidDeactivate` must be implemented correctly.
+    /// - `callbacks` struct field `GetContextValue` must be implemented correctly.
+    /// - `callbacks` struct field `SetContextValue` must be implemented correctly.
+    /// - `callbacks` struct field `GetHintValue` must be implemented correctly.
+    /// - `callbacks` struct field `SetHintValue` must be implemented correctly.
+    /// - `callbacks` struct field `GetArguments` must be implemented correctly.
+    /// - `callbacks` struct field `GetSessionId` must be implemented correctly.
+    /// - `callbacks` struct field `GetImmutableHintValue` must be implemented correctly.
+    /// - `callbacks` struct field `GetLAContext` must be implemented correctly.
+    /// - `callbacks` struct field `GetTokenIdentities` must be implemented correctly.
+    /// - `callbacks` struct field `GetTKTokenWatcher` must be implemented correctly.
+    /// - `callbacks` struct field `RemoveHintValue` must be implemented correctly.
+    /// - `callbacks` struct field `RemoveContextValue` must be implemented correctly.
+    /// - `out_plugin` must be a valid pointer or null.
+    /// - `out_plugin_interface` must be a valid pointer or null.
+    #[doc(alias = "AuthorizationPluginCreate")]
+    #[cfg(feature = "Authorization")]
+    #[inline]
+    pub unsafe fn create(
+        callbacks: &AuthorizationCallbacks,
+        out_plugin: &mut *mut AuthorizationPlugin,
+        out_plugin_interface: &mut *const AuthorizationPluginInterface,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationPluginCreate(
+                callbacks: &AuthorizationCallbacks,
+                out_plugin: &mut *mut AuthorizationPlugin,
+                out_plugin_interface: &mut *const AuthorizationPluginInterface,
+            ) -> OSStatus;
+        }
+        unsafe { AuthorizationPluginCreate(callbacks, out_plugin, out_plugin_interface) }
     }
-    unsafe { AuthorizationPluginCreate(callbacks, out_plugin, out_plugin_interface) }
 }

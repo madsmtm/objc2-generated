@@ -367,6 +367,7 @@ unsafe impl RefEncode for AERemoteProcessResolverContext {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolver?language=objc)
+#[doc(alias = "AERemoteProcessResolverRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct AERemoteProcessResolver {
@@ -380,9 +381,6 @@ unsafe impl RefEncode for AERemoteProcessResolver {
         Encoding::Pointer(&Encoding::Struct("AERemoteProcessResolver", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolverref?language=objc)
-pub type AERemoteProcessResolverRef = *mut AERemoteProcessResolver;
-
 /// # Safety
 ///
 /// `url` might not allow `None`.
@@ -390,12 +388,12 @@ pub type AERemoteProcessResolverRef = *mut AERemoteProcessResolver;
 pub unsafe fn AECreateRemoteProcessResolver(
     allocator: Option<&CFAllocator>,
     url: Option<&CFURL>,
-) -> AERemoteProcessResolverRef {
+) -> *mut AERemoteProcessResolver {
     extern "C-unwind" {
         fn AECreateRemoteProcessResolver(
             allocator: Option<&CFAllocator>,
             url: Option<&CFURL>,
-        ) -> AERemoteProcessResolverRef;
+        ) -> *mut AERemoteProcessResolver;
     }
     unsafe { AECreateRemoteProcessResolver(allocator, url) }
 }
@@ -404,9 +402,9 @@ pub unsafe fn AECreateRemoteProcessResolver(
 ///
 /// `ref` must be a valid pointer.
 #[inline]
-pub unsafe fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef) {
+pub unsafe fn AEDisposeRemoteProcessResolver(r#ref: *mut AERemoteProcessResolver) {
     extern "C-unwind" {
-        fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef);
+        fn AEDisposeRemoteProcessResolver(r#ref: *mut AERemoteProcessResolver);
     }
     unsafe { AEDisposeRemoteProcessResolver(r#ref) }
 }
@@ -414,17 +412,18 @@ pub unsafe fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef) 
 impl AERemoteProcessResolver {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
     /// - `out_error` might not allow `None`.
     #[doc(alias = "AERemoteProcessResolverGetProcesses")]
     #[inline]
     pub unsafe fn processes(
-        r#ref: AERemoteProcessResolverRef,
+        r#ref: Option<&AERemoteProcessResolver>,
         out_error: Option<&mut CFStreamError>,
     ) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
             fn AERemoteProcessResolverGetProcesses(
-                r#ref: AERemoteProcessResolverRef,
+                r#ref: Option<&AERemoteProcessResolver>,
                 out_error: Option<&mut CFStreamError>,
             ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
@@ -435,12 +434,13 @@ impl AERemoteProcessResolver {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback?language=objc)
 pub type AERemoteProcessResolverCallback =
-    Option<unsafe extern "C-unwind" fn(AERemoteProcessResolverRef, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut AERemoteProcessResolver, *mut c_void)>;
 
 impl AERemoteProcessResolver {
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
     /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
@@ -454,7 +454,7 @@ impl AERemoteProcessResolver {
     #[doc(alias = "AERemoteProcessResolverScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(
-        r#ref: AERemoteProcessResolverRef,
+        r#ref: Option<&AERemoteProcessResolver>,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
         callback: AERemoteProcessResolverCallback,
@@ -462,7 +462,7 @@ impl AERemoteProcessResolver {
     ) {
         extern "C-unwind" {
             fn AERemoteProcessResolverScheduleWithRunLoop(
-                r#ref: AERemoteProcessResolverRef,
+                r#ref: Option<&AERemoteProcessResolver>,
                 run_loop: Option<&CFRunLoop>,
                 run_loop_mode: Option<&CFString>,
                 callback: AERemoteProcessResolverCallback,

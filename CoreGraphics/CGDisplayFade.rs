@@ -23,11 +23,11 @@ pub type CGDisplayFadeInterval = c_float;
 
 /// # Safety
 ///
-/// `config` must be a valid pointer or null.
+/// `config` might need manual memory-management.
 #[cfg(all(feature = "CGDisplayConfiguration", feature = "CGError"))]
 #[inline]
 pub unsafe fn CGConfigureDisplayFadeEffect(
-    config: CGDisplayConfigRef,
+    config: Option<&CGDisplayConfig>,
     fade_out_seconds: CGDisplayFadeInterval,
     fade_in_seconds: CGDisplayFadeInterval,
     fade_red: c_float,
@@ -36,7 +36,7 @@ pub unsafe fn CGConfigureDisplayFadeEffect(
 ) -> CGError {
     extern "C-unwind" {
         fn CGConfigureDisplayFadeEffect(
-            config: CGDisplayConfigRef,
+            config: Option<&CGDisplayConfig>,
             fade_out_seconds: CGDisplayFadeInterval,
             fade_in_seconds: CGDisplayFadeInterval,
             fade_red: c_float,

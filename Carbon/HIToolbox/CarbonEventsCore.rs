@@ -12,21 +12,19 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaqueeventref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/event?language=objc)
+#[doc(alias = "EventRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueEventRef {
+pub struct Event {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueEventRef {
+unsafe impl RefEncode for Event {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueEventRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventref?language=objc)
-pub type EventRef = *mut OpaqueEventRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventalreadypostederr?language=objc)
 pub const eventAlreadyPostedErr: c_int = -9860;
@@ -122,34 +120,32 @@ pub type EventParamName = OSType;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventparamtype?language=objc)
 pub type EventParamType = OSType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaqueeventloopref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventloop?language=objc)
+#[doc(alias = "EventLoopRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueEventLoopRef {
+pub struct EventLoop {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueEventLoopRef {
+unsafe impl RefEncode for EventLoop {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueEventLoopRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventloopref?language=objc)
-pub type EventLoopRef = *mut OpaqueEventLoopRef;
-
 #[inline]
-pub unsafe fn GetCurrentEventLoop() -> EventLoopRef {
+pub unsafe fn GetCurrentEventLoop() -> *mut EventLoop {
     extern "C-unwind" {
-        fn GetCurrentEventLoop() -> EventLoopRef;
+        fn GetCurrentEventLoop() -> *mut EventLoop;
     }
     unsafe { GetCurrentEventLoop() }
 }
 
 #[inline]
-pub unsafe fn GetMainEventLoop() -> EventLoopRef {
+pub unsafe fn GetMainEventLoop() -> *mut EventLoop {
     extern "C-unwind" {
-        fn GetMainEventLoop() -> EventLoopRef;
+        fn GetMainEventLoop() -> *mut EventLoop;
     }
     unsafe { GetMainEventLoop() }
 }
@@ -164,22 +160,26 @@ pub unsafe fn RunCurrentEventLoop(in_timeout: EventTimeout) -> OSStatus {
 
 /// # Safety
 ///
-/// `in_event_loop` must be a valid pointer.
+/// - `in_event_loop` might need manual memory-management.
+/// - `in_event_loop` might not allow `None`.
 #[inline]
-pub unsafe fn QuitEventLoop(in_event_loop: EventLoopRef) -> OSStatus {
+pub unsafe fn QuitEventLoop(in_event_loop: Option<&EventLoop>) -> OSStatus {
     extern "C-unwind" {
-        fn QuitEventLoop(in_event_loop: EventLoopRef) -> OSStatus;
+        fn QuitEventLoop(in_event_loop: Option<&EventLoop>) -> OSStatus;
     }
     unsafe { QuitEventLoop(in_event_loop) }
 }
 
 /// # Safety
 ///
-/// `in_event_loop` must be a valid pointer.
+/// - `in_event_loop` might need manual memory-management.
+/// - `in_event_loop` might not allow `None`.
 #[inline]
-pub unsafe fn GetCFRunLoopFromEventLoop(in_event_loop: EventLoopRef) -> Option<CFRetained<CFType>> {
+pub unsafe fn GetCFRunLoopFromEventLoop(
+    in_event_loop: Option<&EventLoop>,
+) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
-        fn GetCFRunLoopFromEventLoop(in_event_loop: EventLoopRef) -> Option<NonNull<CFType>>;
+        fn GetCFRunLoopFromEventLoop(in_event_loop: Option<&EventLoop>) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { GetCFRunLoopFromEventLoop(in_event_loop) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -196,7 +196,7 @@ pub unsafe fn ReceiveNextEvent(
     in_list: *const EventTypeSpec,
     in_timeout: EventTimeout,
     in_pull_event: bool,
-    out_event: Option<&mut EventRef>,
+    out_event: Option<&mut *mut Event>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ReceiveNextEvent(
@@ -204,7 +204,7 @@ pub unsafe fn ReceiveNextEvent(
             in_list: *const EventTypeSpec,
             in_timeout: EventTimeout,
             in_pull_event: Boolean,
-            out_event: Option<&mut EventRef>,
+            out_event: Option<&mut *mut Event>,
         ) -> OSStatus;
     }
     let in_pull_event = in_pull_event as _;
@@ -232,7 +232,7 @@ pub unsafe fn CreateEvent(
     in_kind: u32,
     in_when: EventTime,
     in_attributes: EventAttributes,
-    out_event: Option<&mut EventRef>,
+    out_event: Option<&mut *mut Event>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateEvent(
@@ -241,7 +241,7 @@ pub unsafe fn CreateEvent(
             in_kind: u32,
             in_when: EventTime,
             in_attributes: EventAttributes,
-            out_event: Option<&mut EventRef>,
+            out_event: Option<&mut *mut Event>,
         ) -> OSStatus;
     }
     unsafe {
@@ -258,32 +258,34 @@ pub unsafe fn CreateEvent(
 
 /// # Safety
 ///
-/// `in_other` must be a valid pointer.
+/// - `in_other` might need manual memory-management.
+/// - `in_other` might not allow `None`.
 #[inline]
-pub unsafe fn CopyEvent(in_other: EventRef) -> EventRef {
+pub unsafe fn CopyEvent(in_other: Option<&Event>) -> *mut Event {
     extern "C-unwind" {
-        fn CopyEvent(in_other: EventRef) -> EventRef;
+        fn CopyEvent(in_other: Option<&Event>) -> *mut Event;
     }
     unsafe { CopyEvent(in_other) }
 }
 
 /// # Safety
 ///
-/// `in_other` must be a valid pointer.
+/// - `in_other` might need manual memory-management.
+/// - `in_other` might not allow `None`.
 #[inline]
 pub unsafe fn CopyEventAs(
     in_allocator: Option<&CFAllocator>,
-    in_other: EventRef,
+    in_other: Option<&Event>,
     in_event_class: OSType,
     in_event_kind: u32,
-) -> EventRef {
+) -> *mut Event {
     extern "C-unwind" {
         fn CopyEventAs(
             in_allocator: Option<&CFAllocator>,
-            in_other: EventRef,
+            in_other: Option<&Event>,
             in_event_class: OSType,
             in_event_kind: u32,
-        ) -> EventRef;
+        ) -> *mut Event;
     }
     unsafe { CopyEventAs(in_allocator, in_other, in_event_class, in_event_kind) }
 }
@@ -292,9 +294,9 @@ pub unsafe fn CopyEventAs(
 ///
 /// `in_event` must be a valid pointer.
 #[inline]
-pub unsafe fn RetainEvent(in_event: EventRef) -> EventRef {
+pub unsafe fn RetainEvent(in_event: *mut Event) -> *mut Event {
     extern "C-unwind" {
-        fn RetainEvent(in_event: EventRef) -> EventRef;
+        fn RetainEvent(in_event: *mut Event) -> *mut Event;
     }
     unsafe { RetainEvent(in_event) }
 }
@@ -303,9 +305,9 @@ pub unsafe fn RetainEvent(in_event: EventRef) -> EventRef {
 ///
 /// `in_event` must be a valid pointer.
 #[inline]
-pub unsafe fn GetEventRetainCount(in_event: EventRef) -> ItemCount {
+pub unsafe fn GetEventRetainCount(in_event: *mut Event) -> ItemCount {
     extern "C-unwind" {
-        fn GetEventRetainCount(in_event: EventRef) -> ItemCount;
+        fn GetEventRetainCount(in_event: *mut Event) -> ItemCount;
     }
     unsafe { GetEventRetainCount(in_event) }
 }
@@ -314,20 +316,21 @@ pub unsafe fn GetEventRetainCount(in_event: EventRef) -> ItemCount {
 ///
 /// `in_event` must be a valid pointer.
 #[inline]
-pub unsafe fn ReleaseEvent(in_event: EventRef) {
+pub unsafe fn ReleaseEvent(in_event: *mut Event) {
     extern "C-unwind" {
-        fn ReleaseEvent(in_event: EventRef);
+        fn ReleaseEvent(in_event: *mut Event);
     }
     unsafe { ReleaseEvent(in_event) }
 }
 
 /// # Safety
 ///
-/// - `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 /// - `in_data_ptr` must be a valid pointer.
 #[inline]
 pub unsafe fn SetEventParameter(
-    in_event: EventRef,
+    in_event: Option<&Event>,
     in_name: EventParamName,
     in_type: EventParamType,
     in_size: ByteCount,
@@ -335,7 +338,7 @@ pub unsafe fn SetEventParameter(
 ) -> OSStatus {
     extern "C-unwind" {
         fn SetEventParameter(
-            in_event: EventRef,
+            in_event: Option<&Event>,
             in_name: EventParamName,
             in_type: EventParamType,
             in_size: ByteCount,
@@ -347,13 +350,14 @@ pub unsafe fn SetEventParameter(
 
 /// # Safety
 ///
-/// - `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 /// - `out_actual_type` might not allow `None`.
 /// - `out_actual_size` might not allow `None`.
 /// - `out_data` must be a valid pointer.
 #[inline]
 pub unsafe fn GetEventParameter(
-    in_event: EventRef,
+    in_event: Option<&Event>,
     in_name: EventParamName,
     in_desired_type: EventParamType,
     out_actual_type: Option<&mut EventParamType>,
@@ -363,7 +367,7 @@ pub unsafe fn GetEventParameter(
 ) -> OSStatus {
     extern "C-unwind" {
         fn GetEventParameter(
-            in_event: EventRef,
+            in_event: Option<&Event>,
             in_name: EventParamName,
             in_desired_type: EventParamType,
             out_actual_type: Option<&mut EventParamType>,
@@ -387,55 +391,60 @@ pub unsafe fn GetEventParameter(
 
 /// # Safety
 ///
-/// `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[inline]
-pub unsafe fn RemoveEventParameter(in_event: EventRef, in_name: EventParamName) -> OSStatus {
+pub unsafe fn RemoveEventParameter(in_event: Option<&Event>, in_name: EventParamName) -> OSStatus {
     extern "C-unwind" {
-        fn RemoveEventParameter(in_event: EventRef, in_name: EventParamName) -> OSStatus;
+        fn RemoveEventParameter(in_event: Option<&Event>, in_name: EventParamName) -> OSStatus;
     }
     unsafe { RemoveEventParameter(in_event, in_name) }
 }
 
 /// # Safety
 ///
-/// `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[inline]
-pub unsafe fn GetEventClass(in_event: EventRef) -> OSType {
+pub unsafe fn GetEventClass(in_event: Option<&Event>) -> OSType {
     extern "C-unwind" {
-        fn GetEventClass(in_event: EventRef) -> OSType;
+        fn GetEventClass(in_event: Option<&Event>) -> OSType;
     }
     unsafe { GetEventClass(in_event) }
 }
 
 /// # Safety
 ///
-/// `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[inline]
-pub unsafe fn GetEventKind(in_event: EventRef) -> u32 {
+pub unsafe fn GetEventKind(in_event: Option<&Event>) -> u32 {
     extern "C-unwind" {
-        fn GetEventKind(in_event: EventRef) -> u32;
+        fn GetEventKind(in_event: Option<&Event>) -> u32;
     }
     unsafe { GetEventKind(in_event) }
 }
 
 /// # Safety
 ///
-/// `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[inline]
-pub unsafe fn GetEventTime(in_event: EventRef) -> EventTime {
+pub unsafe fn GetEventTime(in_event: Option<&Event>) -> EventTime {
     extern "C-unwind" {
-        fn GetEventTime(in_event: EventRef) -> EventTime;
+        fn GetEventTime(in_event: Option<&Event>) -> EventTime;
     }
     unsafe { GetEventTime(in_event) }
 }
 
 /// # Safety
 ///
-/// `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[inline]
-pub unsafe fn SetEventTime(in_event: EventRef, in_time: EventTime) -> OSStatus {
+pub unsafe fn SetEventTime(in_event: Option<&Event>, in_time: EventTime) -> OSStatus {
     extern "C-unwind" {
-        fn SetEventTime(in_event: EventRef, in_time: EventTime) -> OSStatus;
+        fn SetEventTime(in_event: Option<&Event>, in_time: EventTime) -> OSStatus;
     }
     unsafe { SetEventTime(in_event, in_time) }
 }
@@ -451,14 +460,14 @@ pub unsafe fn CreateEventWithCGEvent(
     in_allocator: Option<&CFAllocator>,
     in_event: Option<&CGEvent>,
     in_attributes: EventAttributes,
-    out_event: Option<&mut EventRef>,
+    out_event: Option<&mut *mut Event>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CreateEventWithCGEvent(
             in_allocator: Option<&CFAllocator>,
             in_event: Option<&CGEvent>,
             in_attributes: EventAttributes,
-            out_event: Option<&mut EventRef>,
+            out_event: Option<&mut *mut Event>,
         ) -> OSStatus;
     }
     unsafe { CreateEventWithCGEvent(in_allocator, in_event, in_attributes, out_event) }
@@ -466,52 +475,51 @@ pub unsafe fn CreateEventWithCGEvent(
 
 /// # Safety
 ///
-/// `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
-pub unsafe fn CopyEventCGEvent(in_event: EventRef) -> Option<CFRetained<CGEvent>> {
+pub unsafe fn CopyEventCGEvent(in_event: Option<&Event>) -> Option<CFRetained<CGEvent>> {
     extern "C-unwind" {
-        fn CopyEventCGEvent(in_event: EventRef) -> Option<NonNull<CGEvent>>;
+        fn CopyEventCGEvent(in_event: Option<&Event>) -> Option<NonNull<CGEvent>>;
     }
     let ret = unsafe { CopyEventCGEvent(in_event) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaqueeventqueueref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventqueue?language=objc)
+#[doc(alias = "EventQueueRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueEventQueueRef {
+pub struct EventQueue {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueEventQueueRef {
+unsafe impl RefEncode for EventQueue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueEventQueueRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventqueueref?language=objc)
-pub type EventQueueRef = *mut OpaqueEventQueueRef;
-
 #[inline]
-pub unsafe fn GetCurrentEventQueue() -> EventQueueRef {
+pub unsafe fn GetCurrentEventQueue() -> *mut EventQueue {
     extern "C-unwind" {
-        fn GetCurrentEventQueue() -> EventQueueRef;
+        fn GetCurrentEventQueue() -> *mut EventQueue;
     }
     unsafe { GetCurrentEventQueue() }
 }
 
 #[inline]
-pub unsafe fn GetMainEventQueue() -> EventQueueRef {
+pub unsafe fn GetMainEventQueue() -> *mut EventQueue {
     extern "C-unwind" {
-        fn GetMainEventQueue() -> EventQueueRef;
+        fn GetMainEventQueue() -> *mut EventQueue;
     }
     unsafe { GetMainEventQueue() }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventcomparatorprocptr?language=objc)
 pub type EventComparatorProcPtr =
-    Option<unsafe extern "C-unwind" fn(EventRef, *mut c_void) -> Boolean>;
+    Option<unsafe extern "C-unwind" fn(*mut Event, *mut c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventcomparatorupp?language=objc)
 pub type EventComparatorUPP = EventComparatorProcPtr;
@@ -540,18 +548,19 @@ pub unsafe fn DisposeEventComparatorUPP(user_upp: EventComparatorUPP) {
 
 /// # Safety
 ///
-/// - `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 /// - `in_compare_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
 pub unsafe fn InvokeEventComparatorUPP(
-    in_event: EventRef,
+    in_event: Option<&Event>,
     in_compare_data: *mut c_void,
     user_upp: EventComparatorUPP,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeEventComparatorUPP(
-            in_event: EventRef,
+            in_event: Option<&Event>,
             in_compare_data: *mut c_void,
             user_upp: EventComparatorUPP,
         ) -> Boolean;
@@ -562,18 +571,20 @@ pub unsafe fn InvokeEventComparatorUPP(
 
 /// # Safety
 ///
-/// - `in_queue` must be a valid pointer.
-/// - `in_event` must be a valid pointer.
+/// - `in_queue` might need manual memory-management.
+/// - `in_queue` might not allow `None`.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[inline]
 pub unsafe fn PostEventToQueue(
-    in_queue: EventQueueRef,
-    in_event: EventRef,
+    in_queue: Option<&EventQueue>,
+    in_event: Option<&Event>,
     in_priority: EventPriority,
 ) -> OSStatus {
     extern "C-unwind" {
         fn PostEventToQueue(
-            in_queue: EventQueueRef,
-            in_event: EventRef,
+            in_queue: Option<&EventQueue>,
+            in_event: Option<&Event>,
             in_priority: EventPriority,
         ) -> OSStatus;
     }
@@ -582,17 +593,18 @@ pub unsafe fn PostEventToQueue(
 
 /// # Safety
 ///
-/// - `in_queue` must be a valid pointer.
+/// - `in_queue` might need manual memory-management.
+/// - `in_queue` might not allow `None`.
 /// - `in_list` must be a valid pointer.
 #[inline]
 pub unsafe fn FlushEventsMatchingListFromQueue(
-    in_queue: EventQueueRef,
+    in_queue: Option<&EventQueue>,
     in_num_types: ItemCount,
     in_list: *const EventTypeSpec,
 ) -> OSStatus {
     extern "C-unwind" {
         fn FlushEventsMatchingListFromQueue(
-            in_queue: EventQueueRef,
+            in_queue: Option<&EventQueue>,
             in_num_types: ItemCount,
             in_list: *const EventTypeSpec,
         ) -> OSStatus;
@@ -602,18 +614,19 @@ pub unsafe fn FlushEventsMatchingListFromQueue(
 
 /// # Safety
 ///
-/// - `in_queue` must be a valid pointer.
+/// - `in_queue` might need manual memory-management.
+/// - `in_queue` might not allow `None`.
 /// - `in_comparator` must be implemented correctly.
 /// - `in_compare_data` must be a valid pointer.
 #[inline]
 pub unsafe fn FlushSpecificEventsFromQueue(
-    in_queue: EventQueueRef,
+    in_queue: Option<&EventQueue>,
     in_comparator: EventComparatorUPP,
     in_compare_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn FlushSpecificEventsFromQueue(
-            in_queue: EventQueueRef,
+            in_queue: Option<&EventQueue>,
             in_comparator: EventComparatorUPP,
             in_compare_data: *mut c_void,
         ) -> OSStatus;
@@ -623,67 +636,80 @@ pub unsafe fn FlushSpecificEventsFromQueue(
 
 /// # Safety
 ///
-/// `in_queue` must be a valid pointer.
+/// - `in_queue` might need manual memory-management.
+/// - `in_queue` might not allow `None`.
 #[inline]
-pub unsafe fn FlushEventQueue(in_queue: EventQueueRef) -> OSStatus {
+pub unsafe fn FlushEventQueue(in_queue: Option<&EventQueue>) -> OSStatus {
     extern "C-unwind" {
-        fn FlushEventQueue(in_queue: EventQueueRef) -> OSStatus;
+        fn FlushEventQueue(in_queue: Option<&EventQueue>) -> OSStatus;
     }
     unsafe { FlushEventQueue(in_queue) }
 }
 
 /// # Safety
 ///
-/// - `in_queue` must be a valid pointer.
+/// - `in_queue` might need manual memory-management.
+/// - `in_queue` might not allow `None`.
 /// - `in_comparator` must be implemented correctly.
 /// - `in_compare_data` must be a valid pointer.
 #[inline]
 pub unsafe fn FindSpecificEventInQueue(
-    in_queue: EventQueueRef,
+    in_queue: Option<&EventQueue>,
     in_comparator: EventComparatorUPP,
     in_compare_data: *mut c_void,
-) -> EventRef {
+) -> *mut Event {
     extern "C-unwind" {
         fn FindSpecificEventInQueue(
-            in_queue: EventQueueRef,
+            in_queue: Option<&EventQueue>,
             in_comparator: EventComparatorUPP,
             in_compare_data: *mut c_void,
-        ) -> EventRef;
+        ) -> *mut Event;
     }
     unsafe { FindSpecificEventInQueue(in_queue, in_comparator, in_compare_data) }
 }
 
 /// # Safety
 ///
-/// `in_queue` must be a valid pointer.
+/// - `in_queue` might need manual memory-management.
+/// - `in_queue` might not allow `None`.
 #[inline]
-pub unsafe fn GetNumEventsInQueue(in_queue: EventQueueRef) -> ItemCount {
+pub unsafe fn GetNumEventsInQueue(in_queue: Option<&EventQueue>) -> ItemCount {
     extern "C-unwind" {
-        fn GetNumEventsInQueue(in_queue: EventQueueRef) -> ItemCount;
+        fn GetNumEventsInQueue(in_queue: Option<&EventQueue>) -> ItemCount;
     }
     unsafe { GetNumEventsInQueue(in_queue) }
 }
 
 /// # Safety
 ///
-/// - `in_queue` must be a valid pointer.
-/// - `in_event` must be a valid pointer.
+/// - `in_queue` might need manual memory-management.
+/// - `in_queue` might not allow `None`.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[inline]
-pub unsafe fn RemoveEventFromQueue(in_queue: EventQueueRef, in_event: EventRef) -> OSStatus {
+pub unsafe fn RemoveEventFromQueue(
+    in_queue: Option<&EventQueue>,
+    in_event: Option<&Event>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn RemoveEventFromQueue(in_queue: EventQueueRef, in_event: EventRef) -> OSStatus;
+        fn RemoveEventFromQueue(
+            in_queue: Option<&EventQueue>,
+            in_event: Option<&Event>,
+        ) -> OSStatus;
     }
     unsafe { RemoveEventFromQueue(in_queue, in_event) }
 }
 
 /// # Safety
 ///
-/// - `in_queue` must be a valid pointer.
-/// - `in_event` must be a valid pointer.
+/// - `in_queue` might need manual memory-management.
+/// - `in_queue` might not allow `None`.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[inline]
-pub unsafe fn IsEventInQueue(in_queue: EventQueueRef, in_event: EventRef) -> bool {
+pub unsafe fn IsEventInQueue(in_queue: Option<&EventQueue>, in_event: Option<&Event>) -> bool {
     extern "C-unwind" {
-        fn IsEventInQueue(in_queue: EventQueueRef, in_event: EventRef) -> Boolean;
+        fn IsEventInQueue(in_queue: Option<&EventQueue>, in_event: Option<&Event>) -> Boolean;
     }
     let ret = unsafe { IsEventInQueue(in_queue, in_event) };
     ret != 0
@@ -694,30 +720,31 @@ pub const kEventQueueOptionsNone: c_uint = 0;
 
 /// # Safety
 ///
-/// - `in_queue` must be a valid pointer.
+/// - `in_queue` might need manual memory-management.
+/// - `in_queue` might not allow `None`.
 /// - `in_list` must be a valid pointer.
 #[inline]
 pub unsafe fn AcquireFirstMatchingEventInQueue(
-    in_queue: EventQueueRef,
+    in_queue: Option<&EventQueue>,
     in_num_types: ItemCount,
     in_list: *const EventTypeSpec,
     in_options: OptionBits,
-) -> EventRef {
+) -> *mut Event {
     extern "C-unwind" {
         fn AcquireFirstMatchingEventInQueue(
-            in_queue: EventQueueRef,
+            in_queue: Option<&EventQueue>,
             in_num_types: ItemCount,
             in_list: *const EventTypeSpec,
             in_options: OptionBits,
-        ) -> EventRef;
+        ) -> *mut Event;
     }
     unsafe { AcquireFirstMatchingEventInQueue(in_queue, in_num_types, in_list, in_options) }
 }
 
 #[inline]
-pub unsafe fn GetCurrentEvent() -> EventRef {
+pub unsafe fn GetCurrentEvent() -> *mut Event {
     extern "C-unwind" {
-        fn GetCurrentEvent() -> EventRef;
+        fn GetCurrentEvent() -> *mut Event;
     }
     unsafe { GetCurrentEvent() }
 }
@@ -917,13 +944,14 @@ pub unsafe fn InvokeEventLoopIdleTimerUPP(
 
 /// # Safety
 ///
-/// - `in_event_loop` must be a valid pointer.
+/// - `in_event_loop` might need manual memory-management.
+/// - `in_event_loop` might not allow `None`.
 /// - `in_timer_proc` must be implemented correctly.
 /// - `in_timer_data` must be a valid pointer.
 /// - `out_timer` might not allow `None`.
 #[inline]
 pub unsafe fn InstallEventLoopTimer(
-    in_event_loop: EventLoopRef,
+    in_event_loop: Option<&EventLoop>,
     in_fire_delay: EventTimerInterval,
     in_interval: EventTimerInterval,
     in_timer_proc: EventLoopTimerUPP,
@@ -932,7 +960,7 @@ pub unsafe fn InstallEventLoopTimer(
 ) -> OSStatus {
     extern "C-unwind" {
         fn InstallEventLoopTimer(
-            in_event_loop: EventLoopRef,
+            in_event_loop: Option<&EventLoop>,
             in_fire_delay: EventTimerInterval,
             in_interval: EventTimerInterval,
             in_timer_proc: EventLoopTimerUPP,
@@ -980,43 +1008,39 @@ pub unsafe fn SetEventLoopTimerNextFireTime(
     unsafe { SetEventLoopTimerNextFireTime(in_timer, in_next_fire) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaqueeventhandlerref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandler?language=objc)
+#[doc(alias = "EventHandlerRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueEventHandlerRef {
+pub struct EventHandler {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueEventHandlerRef {
+unsafe impl RefEncode for EventHandler {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueEventHandlerRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandlerref?language=objc)
-pub type EventHandlerRef = *mut OpaqueEventHandlerRef;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaqueeventhandlercallref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandlercall?language=objc)
+#[doc(alias = "EventHandlerCallRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueEventHandlerCallRef {
+pub struct EventHandlerCall {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueEventHandlerCallRef {
+unsafe impl RefEncode for EventHandlerCall {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueEventHandlerCallRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandlercallref?language=objc)
-pub type EventHandlerCallRef = *mut OpaqueEventHandlerCallRef;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandlerprocptr?language=objc)
 pub type EventHandlerProcPtr =
-    Option<unsafe extern "C-unwind" fn(EventHandlerCallRef, EventRef, *mut c_void) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(*mut EventHandlerCall, *mut Event, *mut c_void) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandlerupp?language=objc)
 pub type EventHandlerUPP = EventHandlerProcPtr;
@@ -1045,21 +1069,23 @@ pub unsafe fn DisposeEventHandlerUPP(user_upp: EventHandlerUPP) {
 
 /// # Safety
 ///
-/// - `in_handler_call_ref` must be a valid pointer.
-/// - `in_event` must be a valid pointer.
+/// - `in_handler_call_ref` might need manual memory-management.
+/// - `in_handler_call_ref` might not allow `None`.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[inline]
 pub unsafe fn InvokeEventHandlerUPP(
-    in_handler_call_ref: EventHandlerCallRef,
-    in_event: EventRef,
+    in_handler_call_ref: Option<&EventHandlerCall>,
+    in_event: Option<&Event>,
     in_user_data: *mut c_void,
     user_upp: EventHandlerUPP,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeEventHandlerUPP(
-            in_handler_call_ref: EventHandlerCallRef,
-            in_event: EventRef,
+            in_handler_call_ref: Option<&EventHandlerCall>,
+            in_event: Option<&Event>,
             in_user_data: *mut c_void,
             user_upp: EventHandlerUPP,
         ) -> OSStatus;
@@ -1067,26 +1093,25 @@ pub unsafe fn InvokeEventHandlerUPP(
     unsafe { InvokeEventHandlerUPP(in_handler_call_ref, in_event, in_user_data, user_upp) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaqueeventtargetref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventtarget?language=objc)
+#[doc(alias = "EventTargetRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueEventTargetRef {
+pub struct EventTarget {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueEventTargetRef {
+unsafe impl RefEncode for EventTarget {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueEventTargetRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventtargetref?language=objc)
-pub type EventTargetRef = *mut OpaqueEventTargetRef;
-
 /// # Safety
 ///
-/// - `in_target` must be a valid pointer.
+/// - `in_target` might need manual memory-management.
+/// - `in_target` might not allow `None`.
 /// - `in_handler` must be implemented correctly.
 /// - `in_list` must be a valid pointer.
 /// - `in_user_data` must be a valid pointer.
@@ -1094,21 +1119,21 @@ pub type EventTargetRef = *mut OpaqueEventTargetRef;
 /// - `out_ref` might not allow `None`.
 #[inline]
 pub unsafe fn InstallEventHandler(
-    in_target: EventTargetRef,
+    in_target: Option<&EventTarget>,
     in_handler: EventHandlerUPP,
     in_num_types: ItemCount,
     in_list: *const EventTypeSpec,
     in_user_data: *mut c_void,
-    out_ref: Option<&mut EventHandlerRef>,
+    out_ref: Option<&mut *mut EventHandler>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InstallEventHandler(
-            in_target: EventTargetRef,
+            in_target: Option<&EventTarget>,
             in_handler: EventHandlerUPP,
             in_num_types: ItemCount,
             in_list: *const EventTypeSpec,
             in_user_data: *mut c_void,
-            out_ref: Option<&mut EventHandlerRef>,
+            out_ref: Option<&mut *mut EventHandler>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1125,28 +1150,30 @@ pub unsafe fn InstallEventHandler(
 
 /// # Safety
 ///
-/// `in_handler_ref` must be a valid pointer.
+/// - `in_handler_ref` might need manual memory-management.
+/// - `in_handler_ref` might not allow `None`.
 #[inline]
-pub unsafe fn RemoveEventHandler(in_handler_ref: EventHandlerRef) -> OSStatus {
+pub unsafe fn RemoveEventHandler(in_handler_ref: Option<&EventHandler>) -> OSStatus {
     extern "C-unwind" {
-        fn RemoveEventHandler(in_handler_ref: EventHandlerRef) -> OSStatus;
+        fn RemoveEventHandler(in_handler_ref: Option<&EventHandler>) -> OSStatus;
     }
     unsafe { RemoveEventHandler(in_handler_ref) }
 }
 
 /// # Safety
 ///
-/// - `in_handler_ref` must be a valid pointer.
+/// - `in_handler_ref` might need manual memory-management.
+/// - `in_handler_ref` might not allow `None`.
 /// - `in_list` must be a valid pointer.
 #[inline]
 pub unsafe fn AddEventTypesToHandler(
-    in_handler_ref: EventHandlerRef,
+    in_handler_ref: Option<&EventHandler>,
     in_num_types: ItemCount,
     in_list: *const EventTypeSpec,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AddEventTypesToHandler(
-            in_handler_ref: EventHandlerRef,
+            in_handler_ref: Option<&EventHandler>,
             in_num_types: ItemCount,
             in_list: *const EventTypeSpec,
         ) -> OSStatus;
@@ -1156,17 +1183,18 @@ pub unsafe fn AddEventTypesToHandler(
 
 /// # Safety
 ///
-/// - `in_handler_ref` must be a valid pointer.
+/// - `in_handler_ref` might need manual memory-management.
+/// - `in_handler_ref` might not allow `None`.
 /// - `in_list` must be a valid pointer.
 #[inline]
 pub unsafe fn RemoveEventTypesFromHandler(
-    in_handler_ref: EventHandlerRef,
+    in_handler_ref: Option<&EventHandler>,
     in_num_types: ItemCount,
     in_list: *const EventTypeSpec,
 ) -> OSStatus {
     extern "C-unwind" {
         fn RemoveEventTypesFromHandler(
-            in_handler_ref: EventHandlerRef,
+            in_handler_ref: Option<&EventHandler>,
             in_num_types: ItemCount,
             in_list: *const EventTypeSpec,
         ) -> OSStatus;
@@ -1176,15 +1204,20 @@ pub unsafe fn RemoveEventTypesFromHandler(
 
 /// # Safety
 ///
-/// - `in_call_ref` must be a valid pointer.
-/// - `in_event` must be a valid pointer.
+/// - `in_call_ref` might need manual memory-management.
+/// - `in_call_ref` might not allow `None`.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[inline]
 pub unsafe fn CallNextEventHandler(
-    in_call_ref: EventHandlerCallRef,
-    in_event: EventRef,
+    in_call_ref: Option<&EventHandlerCall>,
+    in_event: Option<&Event>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn CallNextEventHandler(in_call_ref: EventHandlerCallRef, in_event: EventRef) -> OSStatus;
+        fn CallNextEventHandler(
+            in_call_ref: Option<&EventHandlerCall>,
+            in_event: Option<&Event>,
+        ) -> OSStatus;
     }
     unsafe { CallNextEventHandler(in_call_ref, in_event) }
 }
@@ -1196,30 +1229,40 @@ pub const kEventTargetSendToAllHandlers: c_uint = 1 << 1;
 
 /// # Safety
 ///
-/// - `in_event` must be a valid pointer.
-/// - `in_target` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
+/// - `in_target` might need manual memory-management.
+/// - `in_target` might not allow `None`.
 #[inline]
-pub unsafe fn SendEventToEventTarget(in_event: EventRef, in_target: EventTargetRef) -> OSStatus {
+pub unsafe fn SendEventToEventTarget(
+    in_event: Option<&Event>,
+    in_target: Option<&EventTarget>,
+) -> OSStatus {
     extern "C-unwind" {
-        fn SendEventToEventTarget(in_event: EventRef, in_target: EventTargetRef) -> OSStatus;
+        fn SendEventToEventTarget(
+            in_event: Option<&Event>,
+            in_target: Option<&EventTarget>,
+        ) -> OSStatus;
     }
     unsafe { SendEventToEventTarget(in_event, in_target) }
 }
 
 /// # Safety
 ///
-/// - `in_event` must be a valid pointer.
-/// - `in_target` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
+/// - `in_target` might need manual memory-management.
+/// - `in_target` might not allow `None`.
 #[inline]
 pub unsafe fn SendEventToEventTargetWithOptions(
-    in_event: EventRef,
-    in_target: EventTargetRef,
+    in_event: Option<&Event>,
+    in_target: Option<&EventTarget>,
     in_options: OptionBits,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SendEventToEventTargetWithOptions(
-            in_event: EventRef,
-            in_target: EventTargetRef,
+            in_event: Option<&Event>,
+            in_target: Option<&EventTarget>,
             in_options: OptionBits,
         ) -> OSStatus;
     }

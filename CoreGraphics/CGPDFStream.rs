@@ -10,6 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstream?language=objc)
+#[doc(alias = "CGPDFStreamRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFStream {
@@ -21,9 +22,6 @@ pub struct CGPDFStream {
 unsafe impl RefEncode for CGPDFStream {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFStream", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstreamref?language=objc)
-pub type CGPDFStreamRef = *mut CGPDFStream;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat?language=objc)
 // NS_ENUM
@@ -52,33 +50,30 @@ unsafe impl RefEncode for CGPDFDataFormat {
 impl CGPDFStream {
     /// # Safety
     ///
-    /// `stream` must be a valid pointer.
+    /// `stream` might need manual memory-management.
     #[doc(alias = "CGPDFStreamGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    pub unsafe fn dictionary(stream: CGPDFStreamRef) -> CGPDFDictionaryRef {
+    pub unsafe fn dictionary(&self) -> *mut CGPDFDictionary {
         extern "C-unwind" {
-            fn CGPDFStreamGetDictionary(stream: CGPDFStreamRef) -> CGPDFDictionaryRef;
+            fn CGPDFStreamGetDictionary(stream: &CGPDFStream) -> *mut CGPDFDictionary;
         }
-        unsafe { CGPDFStreamGetDictionary(stream) }
+        unsafe { CGPDFStreamGetDictionary(self) }
     }
 
     /// # Safety
     ///
-    /// `stream` must be a valid pointer.
+    /// `stream` might need manual memory-management.
     #[doc(alias = "CGPDFStreamCopyData")]
     #[inline]
-    pub unsafe fn data(
-        stream: CGPDFStreamRef,
-        format: &mut CGPDFDataFormat,
-    ) -> Option<CFRetained<CFData>> {
+    pub unsafe fn data(&self, format: &mut CGPDFDataFormat) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGPDFStreamCopyData(
-                stream: CGPDFStreamRef,
+                stream: &CGPDFStream,
                 format: &mut CGPDFDataFormat,
             ) -> Option<NonNull<CFData>>;
         }
-        let ret = unsafe { CGPDFStreamCopyData(stream, format) };
+        let ret = unsafe { CGPDFStreamCopyData(self, format) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }

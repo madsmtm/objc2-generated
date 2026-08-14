@@ -244,27 +244,25 @@ unsafe impl RefEncode for ATSJustWidthDeltaEntryOverride {
 #[cfg(feature = "objc2-core-text")]
 pub type ATSJustPriorityWidthDeltaOverrides = [ATSJustWidthDeltaEntryOverride; 4];
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsglyphvector?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsuline?language=objc)
+#[doc(alias = "ATSULineRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct ATSGlyphVector {
+pub struct ATSULine {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for ATSGlyphVector {
+unsafe impl RefEncode for ATSULine {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("ATSGlyphVector", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsulineref?language=objc)
-pub type ATSULineRef = *mut ATSGlyphVector;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsudirectlayoutoperationoverrideprocptr?language=objc)
 pub type ATSUDirectLayoutOperationOverrideProcPtr = Option<
     unsafe extern "C-unwind" fn(
         ATSULayoutOperationSelector,
-        ATSULineRef,
+        *mut ATSULine,
         URefCon,
         *mut c_void,
         *mut ATSULayoutOperationCallbackStatus,

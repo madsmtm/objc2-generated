@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstring?language=objc)
+#[doc(alias = "CGPDFStringRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFString {
@@ -23,57 +24,54 @@ unsafe impl RefEncode for CGPDFString {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFString", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringref?language=objc)
-pub type CGPDFStringRef = *mut CGPDFString;
-
 impl CGPDFString {
     /// # Safety
     ///
-    /// `string` must be a valid pointer.
+    /// `string` might need manual memory-management.
     #[doc(alias = "CGPDFStringGetLength")]
     #[inline]
-    pub unsafe fn length(string: CGPDFStringRef) -> usize {
+    pub unsafe fn length(&self) -> usize {
         extern "C-unwind" {
-            fn CGPDFStringGetLength(string: CGPDFStringRef) -> usize;
+            fn CGPDFStringGetLength(string: &CGPDFString) -> usize;
         }
-        unsafe { CGPDFStringGetLength(string) }
+        unsafe { CGPDFStringGetLength(self) }
     }
 
     /// # Safety
     ///
-    /// `string` must be a valid pointer.
+    /// `string` might need manual memory-management.
     #[doc(alias = "CGPDFStringGetBytePtr")]
     #[inline]
-    pub unsafe fn byte_ptr(string: CGPDFStringRef) -> *const c_uchar {
+    pub unsafe fn byte_ptr(&self) -> *const c_uchar {
         extern "C-unwind" {
-            fn CGPDFStringGetBytePtr(string: CGPDFStringRef) -> *const c_uchar;
+            fn CGPDFStringGetBytePtr(string: &CGPDFString) -> *const c_uchar;
         }
-        unsafe { CGPDFStringGetBytePtr(string) }
+        unsafe { CGPDFStringGetBytePtr(self) }
     }
 
     /// # Safety
     ///
-    /// `string` must be a valid pointer.
+    /// `string` might need manual memory-management.
     #[doc(alias = "CGPDFStringCopyTextString")]
     #[inline]
-    pub unsafe fn text_string(string: CGPDFStringRef) -> Option<CFRetained<CFString>> {
+    pub unsafe fn text_string(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
-            fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> Option<NonNull<CFString>>;
+            fn CGPDFStringCopyTextString(string: &CGPDFString) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CGPDFStringCopyTextString(string) };
+        let ret = unsafe { CGPDFStringCopyTextString(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     /// # Safety
     ///
-    /// `string` must be a valid pointer.
+    /// `string` might need manual memory-management.
     #[doc(alias = "CGPDFStringCopyDate")]
     #[inline]
-    pub unsafe fn date(string: CGPDFStringRef) -> Option<CFRetained<CFDate>> {
+    pub unsafe fn date(&self) -> Option<CFRetained<CFDate>> {
         extern "C-unwind" {
-            fn CGPDFStringCopyDate(string: CGPDFStringRef) -> Option<NonNull<CFDate>>;
+            fn CGPDFStringCopyDate(string: &CGPDFString) -> Option<NonNull<CFDate>>;
         }
-        let ret = unsafe { CGPDFStringCopyDate(string) };
+        let ret = unsafe { CGPDFStringCopyDate(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }

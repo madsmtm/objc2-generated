@@ -675,22 +675,20 @@ pub const kWindowModalityAppModal: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/kwindowmodalitywindowmodal?language=objc)
 pub const kWindowModalityWindowModal: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaquewindowgroupref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/windowgroup?language=objc)
+#[doc(alias = "WindowGroupRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueWindowGroupRef {
+pub struct WindowGroup {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueWindowGroupRef {
+unsafe impl RefEncode for WindowGroup {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueWindowGroupRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/windowgroupref?language=objc)
-pub type WindowGroupRef = *mut OpaqueWindowGroupRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/windowgroupattributes?language=objc)
 pub type WindowGroupAttributes = u32;

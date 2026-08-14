@@ -954,6 +954,8 @@ pub use self::__ColorSyncDeprecated::CMPathLocation;
 #[cfg(feature = "ColorSyncDeprecated")]
 pub use self::__ColorSyncDeprecated::CMProfLoc;
 #[cfg(feature = "ColorSyncDeprecated")]
+pub use self::__ColorSyncDeprecated::CMProfile;
+#[cfg(feature = "ColorSyncDeprecated")]
 pub use self::__ColorSyncDeprecated::CMProfileIterateData;
 #[cfg(feature = "ColorSyncDeprecated")]
 pub use self::__ColorSyncDeprecated::CMProfileIterateProcPtr;
@@ -965,8 +967,6 @@ pub use self::__ColorSyncDeprecated::CMProfileLocation;
 pub use self::__ColorSyncDeprecated::CMProfileMD5;
 #[cfg(feature = "ColorSyncDeprecated")]
 pub use self::__ColorSyncDeprecated::CMProfileMD5Ptr;
-#[cfg(feature = "ColorSyncDeprecated")]
-pub use self::__ColorSyncDeprecated::CMProfileRef;
 #[cfg(feature = "ColorSyncDeprecated")]
 pub use self::__ColorSyncDeprecated::CMProfileSequenceDescType;
 #[cfg(feature = "ColorSyncDeprecated")]
@@ -1014,7 +1014,7 @@ pub use self::__ColorSyncDeprecated::CMVideoCardGamma_u;
 #[cfg(feature = "ColorSyncDeprecated")]
 pub use self::__ColorSyncDeprecated::CMViewingConditionsType;
 #[cfg(feature = "ColorSyncDeprecated")]
-pub use self::__ColorSyncDeprecated::CMWorldRef;
+pub use self::__ColorSyncDeprecated::CMWorld;
 #[cfg(feature = "ColorSyncDeprecated")]
 pub use self::__ColorSyncDeprecated::CMXYZColor;
 #[cfg(feature = "ColorSyncDeprecated")]
@@ -1029,10 +1029,6 @@ pub use self::__ColorSyncDeprecated::NCMConcatProfileSet;
 pub use self::__ColorSyncDeprecated::NCMConcatProfileSpec;
 #[cfg(feature = "ColorSyncDeprecated")]
 pub use self::__ColorSyncDeprecated::NCMDeviceProfileInfo;
-#[cfg(feature = "ColorSyncDeprecated")]
-pub use self::__ColorSyncDeprecated::OpaqueCMProfileRef;
-#[cfg(feature = "ColorSyncDeprecated")]
-pub use self::__ColorSyncDeprecated::OpaqueCMWorldRef;
 #[cfg(feature = "ColorSyncDeprecated")]
 pub use self::__ColorSyncDeprecated::CS_MAX_PATH;
 #[cfg(feature = "Fonts")]

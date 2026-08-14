@@ -184,17 +184,9 @@ pub use self::__ATSFont::ATSFontIterator;
 #[cfg(feature = "ATSFont")]
 pub use self::__ATSFont::ATSFontIterator_;
 #[cfg(feature = "ATSFont")]
-pub use self::__ATSFont::ATSFontNotificationInfoRef;
+pub use self::__ATSFont::ATSFontNotification;
 #[cfg(feature = "ATSFont")]
-pub use self::__ATSFont::ATSFontNotificationInfoRef_;
-#[cfg(feature = "ATSFont")]
-pub use self::__ATSFont::ATSFontNotificationRef;
-#[cfg(feature = "ATSFont")]
-pub use self::__ATSFont::ATSFontNotificationRef_;
-#[cfg(feature = "ATSFont")]
-pub use self::__ATSFont::ATSFontNotificationSubscribe;
-#[cfg(feature = "ATSFont")]
-pub use self::__ATSFont::ATSFontNotificationUnsubscribe;
+pub use self::__ATSFont::ATSFontNotificationInfo;
 #[cfg(feature = "ATSFont")]
 pub use self::__ATSFont::ATSFontNotify;
 #[cfg(feature = "ATSFont")]
@@ -333,8 +325,6 @@ pub use self::__ATSLayoutTypes::kATSUseLineHeight;
 pub use self::__ATSLayoutTypes::kATSUseOriginFlags;
 #[cfg(feature = "ATSLayoutTypes")]
 pub use self::__ATSLayoutTypes::ATSGlyphInfoFlags;
-#[cfg(feature = "ATSLayoutTypes")]
-pub use self::__ATSLayoutTypes::ATSGlyphVector;
 #[cfg(all(feature = "ATSLayoutTypes", feature = "objc2-core-text"))]
 pub use self::__ATSLayoutTypes::ATSJustPriorityWidthDeltaOverrides;
 #[cfg(all(feature = "ATSLayoutTypes", feature = "objc2-core-text"))]
@@ -358,7 +348,7 @@ pub use self::__ATSLayoutTypes::ATSULayoutOperationOverrideSpecifier;
 #[cfg(feature = "ATSLayoutTypes")]
 pub use self::__ATSLayoutTypes::ATSULayoutOperationSelector;
 #[cfg(feature = "ATSLayoutTypes")]
-pub use self::__ATSLayoutTypes::ATSULineRef;
+pub use self::__ATSLayoutTypes::ATSULine;
 #[cfg(feature = "ATSTypes")]
 pub use self::__ATSTypes::kATSBoldQDStretch;
 #[cfg(feature = "ATSTypes")]

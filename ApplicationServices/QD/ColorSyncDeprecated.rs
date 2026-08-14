@@ -1969,39 +1969,35 @@ unsafe impl RefEncode for CMMultiLocalizedUniCodeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/opaquecmprofileref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmprofile?language=objc)
+#[doc(alias = "CMProfileRef")]
+#[deprecated]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueCMProfileRef {
+pub struct CMProfile {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueCMProfileRef {
+unsafe impl RefEncode for CMProfile {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueCMProfileRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmprofileref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmworld?language=objc)
+#[doc(alias = "CMWorldRef")]
 #[deprecated]
-pub type CMProfileRef = *mut OpaqueCMProfileRef;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/opaquecmworldref?language=objc)
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueCMWorldRef {
+pub struct CMWorld {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueCMWorldRef {
+unsafe impl RefEncode for CMWorld {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueCMWorldRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmworldref?language=objc)
-#[deprecated]
-pub type CMWorldRef = *mut OpaqueCMWorldRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmdisplayidtype?language=objc)
 #[deprecated]
@@ -2117,7 +2113,7 @@ unsafe impl RefEncode for CMAppleProfileHeader {
 pub struct CMConcatProfileSet {
     pub keyIndex: u16,
     pub count: u16,
-    pub profileSet: [CMProfileRef; 1],
+    pub profileSet: [*mut CMProfile; 1],
     _this_is_unsized: (),
 }
 
@@ -2128,7 +2124,7 @@ unsafe impl Encode for CMConcatProfileSet {
         &[
             <u16>::ENCODING,
             <u16>::ENCODING,
-            <[CMProfileRef; 1]>::ENCODING,
+            <[*mut CMProfile; 1]>::ENCODING,
         ],
     );
 }
@@ -2144,14 +2140,14 @@ unsafe impl RefEncode for CMConcatProfileSet {
 pub struct NCMConcatProfileSpec {
     pub renderingIntent: u32,
     pub transformTag: u32,
-    pub profile: CMProfileRef,
+    pub profile: *mut CMProfile,
 }
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for NCMConcatProfileSpec {
     const ENCODING: Encoding = Encoding::Struct(
         "NCMConcatProfileSpec",
-        &[<u32>::ENCODING, <u32>::ENCODING, <CMProfileRef>::ENCODING],
+        &[<u32>::ENCODING, <u32>::ENCODING, <*mut CMProfile>::ENCODING],
     );
 }
 

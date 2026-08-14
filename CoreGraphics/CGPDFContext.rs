@@ -97,30 +97,27 @@ pub fn CGPDFContextAddDocumentMetadata(context: &CGContext, metadata: Option<&CF
 
 /// # Safety
 ///
-/// `parent_tree_dictionary` must be a valid pointer.
+/// `parent_tree_dictionary` might need manual memory-management.
 #[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
 #[inline]
 pub unsafe fn CGPDFContextSetParentTree(
     context: &CGContext,
-    parent_tree_dictionary: CGPDFDictionaryRef,
+    parent_tree_dictionary: &CGPDFDictionary,
 ) {
     extern "C-unwind" {
-        fn CGPDFContextSetParentTree(
-            context: &CGContext,
-            parent_tree_dictionary: CGPDFDictionaryRef,
-        );
+        fn CGPDFContextSetParentTree(context: &CGContext, parent_tree_dictionary: &CGPDFDictionary);
     }
     unsafe { CGPDFContextSetParentTree(context, parent_tree_dictionary) }
 }
 
 /// # Safety
 ///
-/// `id_tree_dictionary` must be a valid pointer.
+/// `id_tree_dictionary` might need manual memory-management.
 #[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
 #[inline]
-pub unsafe fn CGPDFContextSetIDTree(context: &CGContext, id_tree_dictionary: CGPDFDictionaryRef) {
+pub unsafe fn CGPDFContextSetIDTree(context: &CGContext, id_tree_dictionary: &CGPDFDictionary) {
     extern "C-unwind" {
-        fn CGPDFContextSetIDTree(context: &CGContext, id_tree_dictionary: CGPDFDictionaryRef);
+        fn CGPDFContextSetIDTree(context: &CGContext, id_tree_dictionary: &CGPDFDictionary);
     }
     unsafe { CGPDFContextSetIDTree(context, id_tree_dictionary) }
 }

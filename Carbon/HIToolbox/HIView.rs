@@ -209,7 +209,7 @@ unsafe impl RefEncode for HITypeAndCreator {
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub union HIViewContentInfo_u {
-    pub iconRef: IconRef,
+    pub iconRef: *mut Icon,
     pub iconTypeAndCreator: HITypeAndCreator,
     pub imageRef: *mut CGImage,
     pub imageResource: *const CFString,
@@ -225,7 +225,7 @@ unsafe impl Encode for HIViewContentInfo_u {
     const ENCODING: Encoding = Encoding::Union(
         "?",
         &[
-            <IconRef>::ENCODING,
+            <*mut Icon>::ENCODING,
             <HITypeAndCreator>::ENCODING,
             <*mut CGImage>::ENCODING,
             <*const CFString>::ENCODING,
@@ -305,22 +305,20 @@ unsafe impl RefEncode for HIViewKind {
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/khiviewkindsignatureapple?language=objc)
 pub const kHIViewKindSignatureApple: c_uint = 0x6170706c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaquehiviewtrackingarearef?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/hiviewtrackingarea?language=objc)
+#[doc(alias = "HIViewTrackingAreaRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueHIViewTrackingAreaRef {
+pub struct HIViewTrackingArea {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueHIViewTrackingAreaRef {
+unsafe impl RefEncode for HIViewTrackingArea {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueHIViewTrackingAreaRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/hiviewtrackingarearef?language=objc)
-pub type HIViewTrackingAreaRef = *mut OpaqueHIViewTrackingAreaRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/keventparamhiviewtrackingarea?language=objc)
 pub const kEventParamHIViewTrackingArea: c_uint = 0x63747261;

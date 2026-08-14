@@ -65,21 +65,19 @@ unsafe impl RefEncode for ScrapFlavorInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaquescrapref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/scrap?language=objc)
+#[doc(alias = "ScrapRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueScrapRef {
+pub struct Scrap {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueScrapRef {
+unsafe impl RefEncode for Scrap {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueScrapRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/scrapref?language=objc)
-pub type ScrapRef = *mut OpaqueScrapRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/kscrapgetnamedscrap?language=objc)
 pub const kScrapGetNamedScrap: c_uint = 0;
@@ -88,7 +86,7 @@ pub const kScrapClearNamedScrap: c_uint = 1 << 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/scrappromisekeeperprocptr?language=objc)
 pub type ScrapPromiseKeeperProcPtr =
-    Option<unsafe extern "C-unwind" fn(ScrapRef, ScrapFlavorType, *mut c_void) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(*mut Scrap, ScrapFlavorType, *mut c_void) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/scrappromisekeeperupp?language=objc)
 pub type ScrapPromiseKeeperUPP = ScrapPromiseKeeperProcPtr;
@@ -123,20 +121,21 @@ pub unsafe fn DisposeScrapPromiseKeeperUPP(user_upp: ScrapPromiseKeeperUPP) {
 
 /// # Safety
 ///
-/// - `scrap` must be a valid pointer.
+/// - `scrap` might need manual memory-management.
+/// - `scrap` might not allow `None`.
 /// - `user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeScrapPromiseKeeperUPP(
-    scrap: ScrapRef,
+    scrap: Option<&Scrap>,
     flavor_type: ScrapFlavorType,
     user_data: *mut c_void,
     user_upp: ScrapPromiseKeeperUPP,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeScrapPromiseKeeperUPP(
-            scrap: ScrapRef,
+            scrap: Option<&Scrap>,
             flavor_type: ScrapFlavorType,
             user_data: *mut c_void,
             user_upp: ScrapPromiseKeeperUPP,

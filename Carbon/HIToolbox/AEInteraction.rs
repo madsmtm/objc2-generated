@@ -102,12 +102,13 @@ pub unsafe fn AEProcessAppleEvent(the_event_record: Option<&EventRecord>) -> OSE
 
 /// # Safety
 ///
-/// `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[cfg(feature = "CarbonEventsCore")]
 #[inline]
-pub unsafe fn AEProcessEvent(in_event: EventRef) -> OSStatus {
+pub unsafe fn AEProcessEvent(in_event: Option<&Event>) -> OSStatus {
     extern "C-unwind" {
-        fn AEProcessEvent(in_event: EventRef) -> OSStatus;
+        fn AEProcessEvent(in_event: Option<&Event>) -> OSStatus;
     }
     unsafe { AEProcessEvent(in_event) }
 }

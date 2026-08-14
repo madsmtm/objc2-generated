@@ -10,6 +10,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortable?language=objc)
+#[doc(alias = "CGPDFOperatorTableRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFOperatorTable {
@@ -22,19 +23,17 @@ unsafe impl RefEncode for CGPDFOperatorTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFOperatorTable", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortableref?language=objc)
-pub type CGPDFOperatorTableRef = *mut CGPDFOperatorTable;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatorcallback?language=objc)
 #[cfg(feature = "CGPDFScanner")]
-pub type CGPDFOperatorCallback = Option<unsafe extern "C-unwind" fn(CGPDFScannerRef, *mut c_void)>;
+pub type CGPDFOperatorCallback =
+    Option<unsafe extern "C-unwind" fn(NonNull<CGPDFScanner>, *mut c_void)>;
 
 impl CGPDFOperatorTable {
     #[doc(alias = "CGPDFOperatorTableCreate")]
     #[inline]
-    pub fn create() -> CGPDFOperatorTableRef {
+    pub fn create() -> *mut CGPDFOperatorTable {
         extern "C-unwind" {
-            fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef;
+            fn CGPDFOperatorTableCreate() -> *mut CGPDFOperatorTable;
         }
         unsafe { CGPDFOperatorTableCreate() }
     }
@@ -44,11 +43,14 @@ impl CGPDFOperatorTable {
     /// `table` must be a valid pointer.
     #[doc(alias = "CGPDFOperatorTableRetain")]
     #[inline]
-    pub unsafe fn retain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef {
+    pub unsafe fn retain(table: NonNull<CGPDFOperatorTable>) -> NonNull<CGPDFOperatorTable> {
         extern "C-unwind" {
-            fn CGPDFOperatorTableRetain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef;
+            fn CGPDFOperatorTableRetain(
+                table: NonNull<CGPDFOperatorTable>,
+            ) -> Option<NonNull<CGPDFOperatorTable>>;
         }
-        unsafe { CGPDFOperatorTableRetain(table) }
+        let ret = unsafe { CGPDFOperatorTableRetain(table) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
     /// # Safety
@@ -56,33 +58,29 @@ impl CGPDFOperatorTable {
     /// `table` must be a valid pointer.
     #[doc(alias = "CGPDFOperatorTableRelease")]
     #[inline]
-    pub unsafe fn release(table: CGPDFOperatorTableRef) {
+    pub unsafe fn release(table: NonNull<CGPDFOperatorTable>) {
         extern "C-unwind" {
-            fn CGPDFOperatorTableRelease(table: CGPDFOperatorTableRef);
+            fn CGPDFOperatorTableRelease(table: NonNull<CGPDFOperatorTable>);
         }
         unsafe { CGPDFOperatorTableRelease(table) }
     }
 
     /// # Safety
     ///
-    /// - `table` must be a valid pointer.
+    /// - `table` might need manual memory-management.
     /// - `callback` must be implemented correctly.
     #[doc(alias = "CGPDFOperatorTableSetCallback")]
     #[cfg(feature = "CGPDFScanner")]
     #[inline]
-    pub unsafe fn set_callback(
-        table: CGPDFOperatorTableRef,
-        name: &CStr,
-        callback: CGPDFOperatorCallback,
-    ) {
+    pub unsafe fn set_callback(&self, name: &CStr, callback: CGPDFOperatorCallback) {
         extern "C-unwind" {
             fn CGPDFOperatorTableSetCallback(
-                table: CGPDFOperatorTableRef,
+                table: &CGPDFOperatorTable,
                 name: NonNull<c_char>,
                 callback: CGPDFOperatorCallback,
             );
         }
         let name = NonNull::new(name.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFOperatorTableSetCallback(table, name, callback) }
+        unsafe { CGPDFOperatorTableSetCallback(self, name, callback) }
     }
 }

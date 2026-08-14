@@ -33,9 +33,7 @@ pub use self::__ATSUnicodeDirectAccess::kATSUDirectDataStyleSettingATSUStyleSett
 #[cfg(feature = "ATSUnicodeDirectAccess")]
 pub use self::__ATSUnicodeDirectAccess::ATSUDirectDataSelector;
 #[cfg(feature = "ATSUnicodeDirectAccess")]
-pub use self::__ATSUnicodeDirectAccess::ATSUStyleSettingRef;
-#[cfg(feature = "ATSUnicodeDirectAccess")]
-pub use self::__ATSUnicodeDirectAccess::LLCStyleInfo;
+pub use self::__ATSUnicodeDirectAccess::ATSUStyleSetting;
 #[cfg(feature = "ATSUnicodeFlattening")]
 pub use self::__ATSUnicodeFlattening::kATSFlatDataUstlCurrentVersion;
 #[cfg(feature = "ATSUnicodeFlattening")]

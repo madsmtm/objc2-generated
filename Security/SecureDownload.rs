@@ -10,22 +10,20 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/opaquesecuredownload?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/securedownload?language=objc)
+#[doc(alias = "SecureDownloadRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueSecureDownload {
+pub struct SecureDownload {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueSecureDownload {
+unsafe impl RefEncode for SecureDownload {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueSecureDownload", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadref?language=objc)
-pub type SecureDownloadRef = *mut OpaqueSecureDownload;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errsecuredownloadinvalidticket?language=objc)
 pub const errSecureDownloadInvalidTicket: c_int = -20052;
@@ -100,273 +98,292 @@ pub type SecureDownloadTrustEvaluateCallback = Option<
     ) -> SecTrustResultType,
 >;
 
-/// Create a SecureDownloadRef for use during the Secure Download process.
-///
-/// Parameter `ticket`: The download ticket.
-///
-/// Parameter `setup`: Called before trust is verified for each signer of the ticket.
-/// This allows the user to modify the SecTrustRef if needed
-/// (see the SecTrust documentation).  Returns a SecureDownloadTrustCallbackResult (see).
-///
-/// Parameter `setupContext`: User defined.  Passed as a parameter to the setupCallback.
-///
-/// Parameter `evaluate`: Called after SecTrustEvaluate has been called for a
-/// signer if the result was not trusted. This allows
-/// the developer to query the user as to whether or not
-/// to trust the signer.  Returns a SecTrustResultType
-///
-/// Parameter `evaluateContext`: User defined.  Passed as a parameter to the evaluate callback.
-///
-/// Parameter `downloadRef`: The returned reference.
-///
-/// Returns: Returns errSecureDownloadInvalidTicket if the ticket was invalid.  Otherwise
-/// see "Security Error Codes" (SecBase.h).
-/// .
-///
-/// # Safety
-///
-/// - `setup` must be implemented correctly.
-/// - `setup_context` must be a valid pointer.
-/// - `evaluate` must be implemented correctly.
-/// - `evaluate_context` must be a valid pointer.
-/// - `download_ref` must be a valid pointer.
-/// - `download_ref` might not allow `None`.
-#[cfg(feature = "SecTrust")]
-#[deprecated = "SecureDownload is not supported"]
-#[inline]
-pub unsafe fn SecureDownloadCreateWithTicket(
-    ticket: &CFData,
-    setup: SecureDownloadTrustSetupCallback,
-    setup_context: *mut c_void,
-    evaluate: SecureDownloadTrustEvaluateCallback,
-    evaluate_context: *mut c_void,
-    download_ref: Option<&mut SecureDownloadRef>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecureDownloadCreateWithTicket(
-            ticket: &CFData,
-            setup: SecureDownloadTrustSetupCallback,
-            setup_context: *mut c_void,
-            evaluate: SecureDownloadTrustEvaluateCallback,
-            evaluate_context: *mut c_void,
-            download_ref: Option<&mut SecureDownloadRef>,
-        ) -> OSStatus;
+impl SecureDownload {
+    /// Create a SecureDownloadRef for use during the Secure Download process.
+    ///
+    /// Parameter `ticket`: The download ticket.
+    ///
+    /// Parameter `setup`: Called before trust is verified for each signer of the ticket.
+    /// This allows the user to modify the SecTrustRef if needed
+    /// (see the SecTrust documentation).  Returns a SecureDownloadTrustCallbackResult (see).
+    ///
+    /// Parameter `setupContext`: User defined.  Passed as a parameter to the setupCallback.
+    ///
+    /// Parameter `evaluate`: Called after SecTrustEvaluate has been called for a
+    /// signer if the result was not trusted. This allows
+    /// the developer to query the user as to whether or not
+    /// to trust the signer.  Returns a SecTrustResultType
+    ///
+    /// Parameter `evaluateContext`: User defined.  Passed as a parameter to the evaluate callback.
+    ///
+    /// Parameter `downloadRef`: The returned reference.
+    ///
+    /// Returns: Returns errSecureDownloadInvalidTicket if the ticket was invalid.  Otherwise
+    /// see "Security Error Codes" (SecBase.h).
+    /// .
+    ///
+    /// # Safety
+    ///
+    /// - `setup` must be implemented correctly.
+    /// - `setup_context` must be a valid pointer.
+    /// - `evaluate` must be implemented correctly.
+    /// - `evaluate_context` must be a valid pointer.
+    /// - `download_ref` must be a valid pointer.
+    /// - `download_ref` might not allow `None`.
+    #[doc(alias = "SecureDownloadCreateWithTicket")]
+    #[cfg(feature = "SecTrust")]
+    #[deprecated = "SecureDownload is not supported"]
+    #[inline]
+    pub unsafe fn create_with_ticket(
+        ticket: &CFData,
+        setup: SecureDownloadTrustSetupCallback,
+        setup_context: *mut c_void,
+        evaluate: SecureDownloadTrustEvaluateCallback,
+        evaluate_context: *mut c_void,
+        download_ref: Option<&mut *mut SecureDownload>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecureDownloadCreateWithTicket(
+                ticket: &CFData,
+                setup: SecureDownloadTrustSetupCallback,
+                setup_context: *mut c_void,
+                evaluate: SecureDownloadTrustEvaluateCallback,
+                evaluate_context: *mut c_void,
+                download_ref: Option<&mut *mut SecureDownload>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            SecureDownloadCreateWithTicket(
+                ticket,
+                setup,
+                setup_context,
+                evaluate,
+                evaluate_context,
+                download_ref,
+            )
+        }
     }
-    unsafe {
-        SecureDownloadCreateWithTicket(
-            ticket,
-            setup,
-            setup_context,
-            evaluate,
-            evaluate_context,
-            download_ref,
-        )
-    }
-}
 
-/// Return a list of URL's from which the data can be downloaded.  The first
-/// URL in the list is the preferred download location.  The other URL's are
-/// backup locations in case earlier locations in the list could not be
-/// accessed.
-///
-/// Parameter `downloadRef`: A SecureDownloadRef instance.
-///
-/// Parameter `urls`: On return, the list of URL's to download.  Format is a CFArray of CFURL's.
-///
-/// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-///
-/// # Safety
-///
-/// `download_ref` must be a valid pointer.
-#[deprecated = "SecureDownload is not supported"]
-#[inline]
-pub unsafe fn SecureDownloadCopyURLs(
-    download_ref: SecureDownloadRef,
-    urls: &mut Option<CFRetained<CFArray<CFURL>>>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecureDownloadCopyURLs(
-            download_ref: SecureDownloadRef,
-            urls: &mut Option<CFRetained<CFArray<CFURL>>>,
-        ) -> OSStatus;
+    /// Return a list of URL's from which the data can be downloaded.  The first
+    /// URL in the list is the preferred download location.  The other URL's are
+    /// backup locations in case earlier locations in the list could not be
+    /// accessed.
+    ///
+    /// Parameter `downloadRef`: A SecureDownloadRef instance.
+    ///
+    /// Parameter `urls`: On return, the list of URL's to download.  Format is a CFArray of CFURL's.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` might need manual memory-management.
+    /// - `download_ref` might not allow `None`.
+    #[doc(alias = "SecureDownloadCopyURLs")]
+    #[deprecated = "SecureDownload is not supported"]
+    #[inline]
+    pub unsafe fn urls(
+        download_ref: Option<&SecureDownload>,
+        urls: &mut Option<CFRetained<CFArray<CFURL>>>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecureDownloadCopyURLs(
+                download_ref: Option<&SecureDownload>,
+                urls: &mut Option<CFRetained<CFArray<CFURL>>>,
+            ) -> OSStatus;
+        }
+        assert!(
+            urls.is_none(),
+            "parameter `urls` must point to `None` on entry"
+        );
+        unsafe { SecureDownloadCopyURLs(download_ref, urls) }
     }
-    assert!(
-        urls.is_none(),
-        "parameter `urls` must point to `None` on entry"
-    );
-    unsafe { SecureDownloadCopyURLs(download_ref, urls) }
-}
 
-/// Return the printable name of this download ticket.
-///
-/// Parameter `downloadRef`: A SecureDownloadRef instance.
-///
-/// Parameter `name`: On output, the download name.
-///
-/// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-///
-/// # Safety
-///
-/// `download_ref` must be a valid pointer.
-#[deprecated = "SecureDownload is not supported"]
-#[inline]
-pub unsafe fn SecureDownloadCopyName(
-    download_ref: SecureDownloadRef,
-    name: &mut Option<CFRetained<CFString>>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecureDownloadCopyName(
-            download_ref: SecureDownloadRef,
-            name: &mut Option<CFRetained<CFString>>,
-        ) -> OSStatus;
+    /// Return the printable name of this download ticket.
+    ///
+    /// Parameter `downloadRef`: A SecureDownloadRef instance.
+    ///
+    /// Parameter `name`: On output, the download name.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` might need manual memory-management.
+    /// - `download_ref` might not allow `None`.
+    #[doc(alias = "SecureDownloadCopyName")]
+    #[deprecated = "SecureDownload is not supported"]
+    #[inline]
+    pub unsafe fn name(
+        download_ref: Option<&SecureDownload>,
+        name: &mut Option<CFRetained<CFString>>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecureDownloadCopyName(
+                download_ref: Option<&SecureDownload>,
+                name: &mut Option<CFRetained<CFString>>,
+            ) -> OSStatus;
+        }
+        assert!(
+            name.is_none(),
+            "parameter `name` must point to `None` on entry"
+        );
+        unsafe { SecureDownloadCopyName(download_ref, name) }
     }
-    assert!(
-        name.is_none(),
-        "parameter `name` must point to `None` on entry"
-    );
-    unsafe { SecureDownloadCopyName(download_ref, name) }
-}
 
-/// Return the date the downlooad ticket was created.
-///
-/// Parameter `downloadRef`: A SecureDownloadRef instance.
-///
-/// Returns: A result code.
-///
-/// # Safety
-///
-/// `download_ref` must be a valid pointer.
-#[deprecated = "SecureDownload is not supported"]
-#[inline]
-pub unsafe fn SecureDownloadCopyCreationDate(
-    download_ref: SecureDownloadRef,
-    date: &mut Option<CFRetained<CFDate>>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecureDownloadCopyCreationDate(
-            download_ref: SecureDownloadRef,
-            date: &mut Option<CFRetained<CFDate>>,
-        ) -> OSStatus;
+    /// Return the date the downlooad ticket was created.
+    ///
+    /// Parameter `downloadRef`: A SecureDownloadRef instance.
+    ///
+    /// Returns: A result code.
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` might need manual memory-management.
+    /// - `download_ref` might not allow `None`.
+    #[doc(alias = "SecureDownloadCopyCreationDate")]
+    #[deprecated = "SecureDownload is not supported"]
+    #[inline]
+    pub unsafe fn creation_date(
+        download_ref: Option<&SecureDownload>,
+        date: &mut Option<CFRetained<CFDate>>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecureDownloadCopyCreationDate(
+                download_ref: Option<&SecureDownload>,
+                date: &mut Option<CFRetained<CFDate>>,
+            ) -> OSStatus;
+        }
+        assert!(
+            date.is_none(),
+            "parameter `date` must point to `None` on entry"
+        );
+        unsafe { SecureDownloadCopyCreationDate(download_ref, date) }
     }
-    assert!(
-        date.is_none(),
-        "parameter `date` must point to `None` on entry"
-    );
-    unsafe { SecureDownloadCopyCreationDate(download_ref, date) }
-}
 
-/// Return the size of the expected download.
-///
-/// Parameter `downloadRef`: A SecureDownloadRef instance.
-///
-/// Parameter `downloadSize`: On output, the size of the download.
-///
-/// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-///
-/// # Safety
-///
-/// - `download_ref` must be a valid pointer.
-/// - `download_size` might not allow `None`.
-#[deprecated = "SecureDownload is not supported"]
-#[inline]
-pub unsafe fn SecureDownloadGetDownloadSize(
-    download_ref: SecureDownloadRef,
-    download_size: Option<&mut i64>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecureDownloadGetDownloadSize(
-            download_ref: SecureDownloadRef,
-            download_size: Option<&mut i64>,
-        ) -> OSStatus;
+    /// Return the size of the expected download.
+    ///
+    /// Parameter `downloadRef`: A SecureDownloadRef instance.
+    ///
+    /// Parameter `downloadSize`: On output, the size of the download.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` might need manual memory-management.
+    /// - `download_ref` might not allow `None`.
+    /// - `download_size` might not allow `None`.
+    #[doc(alias = "SecureDownloadGetDownloadSize")]
+    #[deprecated = "SecureDownload is not supported"]
+    #[inline]
+    pub unsafe fn download_size(
+        download_ref: Option<&SecureDownload>,
+        download_size: Option<&mut i64>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecureDownloadGetDownloadSize(
+                download_ref: Option<&SecureDownload>,
+                download_size: Option<&mut i64>,
+            ) -> OSStatus;
+        }
+        unsafe { SecureDownloadGetDownloadSize(download_ref, download_size) }
     }
-    unsafe { SecureDownloadGetDownloadSize(download_ref, download_size) }
-}
 
-/// Check data received during Secure Download for validity.
-/// Call this function each time data is received.
-///
-/// Parameter `downloadRef`: A SecureDownloadRef instance.
-///
-/// Parameter `data`: The data to check.
-///
-/// Returns: Returns errSecureDownloadInvalidDownload if data is invalid.  Otherwise
-/// see "Security Error Codes" (SecBase.h).
-///
-/// # Safety
-///
-/// `download_ref` must be a valid pointer.
-#[deprecated = "SecureDownload is not supported"]
-#[inline]
-pub unsafe fn SecureDownloadUpdateWithData(
-    download_ref: SecureDownloadRef,
-    data: &CFData,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecureDownloadUpdateWithData(download_ref: SecureDownloadRef, data: &CFData)
-            -> OSStatus;
+    /// Check data received during Secure Download for validity.
+    /// Call this function each time data is received.
+    ///
+    /// Parameter `downloadRef`: A SecureDownloadRef instance.
+    ///
+    /// Parameter `data`: The data to check.
+    ///
+    /// Returns: Returns errSecureDownloadInvalidDownload if data is invalid.  Otherwise
+    /// see "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` might need manual memory-management.
+    /// - `download_ref` might not allow `None`.
+    #[doc(alias = "SecureDownloadUpdateWithData")]
+    #[deprecated = "SecureDownload is not supported"]
+    #[inline]
+    pub unsafe fn update_with_data(
+        download_ref: Option<&SecureDownload>,
+        data: &CFData,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecureDownloadUpdateWithData(
+                download_ref: Option<&SecureDownload>,
+                data: &CFData,
+            ) -> OSStatus;
+        }
+        unsafe { SecureDownloadUpdateWithData(download_ref, data) }
     }
-    unsafe { SecureDownloadUpdateWithData(download_ref, data) }
-}
 
-/// Concludes the secure download process.  Call this after all data has been received.
-///
-/// Parameter `downloadRef`: A SecureDownloadRef instance.
-///
-/// Returns: Returns errSecureDownloadInvalidDownload if data is invalid.  Otherwise
-/// see "Security Error Codes" (SecBase.h).
-///
-/// # Safety
-///
-/// `download_ref` must be a valid pointer.
-#[deprecated = "SecureDownload is not supported"]
-#[inline]
-pub unsafe fn SecureDownloadFinished(download_ref: SecureDownloadRef) -> OSStatus {
-    extern "C-unwind" {
-        fn SecureDownloadFinished(download_ref: SecureDownloadRef) -> OSStatus;
+    /// Concludes the secure download process.  Call this after all data has been received.
+    ///
+    /// Parameter `downloadRef`: A SecureDownloadRef instance.
+    ///
+    /// Returns: Returns errSecureDownloadInvalidDownload if data is invalid.  Otherwise
+    /// see "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` might need manual memory-management.
+    /// - `download_ref` might not allow `None`.
+    #[doc(alias = "SecureDownloadFinished")]
+    #[deprecated = "SecureDownload is not supported"]
+    #[inline]
+    pub unsafe fn finished(download_ref: Option<&SecureDownload>) -> OSStatus {
+        extern "C-unwind" {
+            fn SecureDownloadFinished(download_ref: Option<&SecureDownload>) -> OSStatus;
+        }
+        unsafe { SecureDownloadFinished(download_ref) }
     }
-    unsafe { SecureDownloadFinished(download_ref) }
-}
 
-/// Releases a SecureDownloadRef.
-///
-/// Parameter `downloadRef`: The SecureDownloadRef to release.
-///
-/// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-///
-/// # Safety
-///
-/// `download_ref` must be a valid pointer.
-#[deprecated = "SecureDownload is not supported"]
-#[inline]
-pub unsafe fn SecureDownloadRelease(download_ref: SecureDownloadRef) -> OSStatus {
-    extern "C-unwind" {
-        fn SecureDownloadRelease(download_ref: SecureDownloadRef) -> OSStatus;
+    /// Releases a SecureDownloadRef.
+    ///
+    /// Parameter `downloadRef`: The SecureDownloadRef to release.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `download_ref` must be a valid pointer.
+    #[doc(alias = "SecureDownloadRelease")]
+    #[deprecated = "SecureDownload is not supported"]
+    #[inline]
+    pub unsafe fn release(download_ref: *mut SecureDownload) -> OSStatus {
+        extern "C-unwind" {
+            fn SecureDownloadRelease(download_ref: *mut SecureDownload) -> OSStatus;
+        }
+        unsafe { SecureDownloadRelease(download_ref) }
     }
-    unsafe { SecureDownloadRelease(download_ref) }
-}
 
-/// Copies the ticket location from an x-securedownload URL.
-///
-/// Parameter `url`: The x-securedownload URL.
-///
-/// Parameter `ticketLocation`: On exit, the URL of the ticket.
-///
-/// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-#[deprecated = "SecureDownload is not supported"]
-#[inline]
-pub unsafe fn SecureDownloadCopyTicketLocation(
-    url: &CFURL,
-    ticket_location: &mut Option<CFRetained<CFURL>>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecureDownloadCopyTicketLocation(
-            url: &CFURL,
-            ticket_location: &mut Option<CFRetained<CFURL>>,
-        ) -> OSStatus;
+    /// Copies the ticket location from an x-securedownload URL.
+    ///
+    /// Parameter `url`: The x-securedownload URL.
+    ///
+    /// Parameter `ticketLocation`: On exit, the URL of the ticket.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    #[doc(alias = "SecureDownloadCopyTicketLocation")]
+    #[deprecated = "SecureDownload is not supported"]
+    #[inline]
+    pub unsafe fn ticket_location(
+        url: &CFURL,
+        ticket_location: &mut Option<CFRetained<CFURL>>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecureDownloadCopyTicketLocation(
+                url: &CFURL,
+                ticket_location: &mut Option<CFRetained<CFURL>>,
+            ) -> OSStatus;
+        }
+        assert!(
+            ticket_location.is_none(),
+            "parameter `ticket_location` must point to `None` on entry"
+        );
+        unsafe { SecureDownloadCopyTicketLocation(url, ticket_location) }
     }
-    assert!(
-        ticket_location.is_none(),
-        "parameter `ticket_location` must point to `None` on entry"
-    );
-    unsafe { SecureDownloadCopyTicketLocation(url, ticket_location) }
 }

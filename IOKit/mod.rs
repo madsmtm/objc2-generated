@@ -47,8 +47,6 @@ mod __serial;
 mod __usb;
 
 #[cfg(feature = "graphics")]
-pub(crate) use self::__graphics::_IOBlitMemory;
-#[cfg(feature = "graphics")]
 pub use self::__graphics::bm12Cursor;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::bm18Cursor;
@@ -1472,8 +1470,6 @@ pub use self::__graphics::IOBlitCursor;
 pub use self::__graphics::IOBlitCursorStruct;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::IOBlitMemory;
-#[cfg(feature = "graphics")]
-pub use self::__graphics::IOBlitMemoryRef;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::IOBlitOperation;
 #[cfg(feature = "graphics")]
@@ -9599,7 +9595,16 @@ unsafe impl RefEncode for IOAsyncCompletionContent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ionotificationport?language=objc)
+/// IOKitLib
+/// IOKitLib implements non-kernel task access to common IOKit object types - IORegistryEntry, IOService, IOIterator etc. These functions are generic - families may provide API that is more specific.
+/// <br>
+/// IOKitLib represents IOKit objects outside the kernel with the types io_object_t, io_registry_entry_t, io_service_t,
+/// &
+/// io_connect_t. Function names usually begin with the type of object they are compatible with - eg. IOObjectRelease can be used with any io_object_t. Inside the kernel, the c++ class hierarchy allows the subclasses of each object type to receive the same requests from user level clients, for example in the kernel, IOService is a subclass of IORegistryEntry, which means any of the IORegistryEntryXXX functions in IOKitLib may be used with io_service_t's as well as io_registry_t's. There are functions available to introspect the class of the kernel object which any io_object_t et al. represents.
+/// IOKit objects returned by all functions should be released with IOObjectRelease.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ionotificationport?language=objc)
+#[doc(alias = "IONotificationPortRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct IONotificationPort {
@@ -9611,17 +9616,6 @@ pub struct IONotificationPort {
 unsafe impl RefEncode for IONotificationPort {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("IONotificationPort", &[]));
 }
-
-/// IOKitLib
-/// IOKitLib implements non-kernel task access to common IOKit object types - IORegistryEntry, IOService, IOIterator etc. These functions are generic - families may provide API that is more specific.
-/// <br>
-/// IOKitLib represents IOKit objects outside the kernel with the types io_object_t, io_registry_entry_t, io_service_t,
-/// &
-/// io_connect_t. Function names usually begin with the type of object they are compatible with - eg. IOObjectRelease can be used with any io_object_t. Inside the kernel, the c++ class hierarchy allows the subclasses of each object type to receive the same requests from user level clients, for example in the kernel, IOService is a subclass of IORegistryEntry, which means any of the IORegistryEntryXXX functions in IOKitLib may be used with io_service_t's as well as io_registry_t's. There are functions available to introspect the class of the kernel object which any io_object_t et al. represents.
-/// IOKit objects returned by all functions should be released with IOObjectRelease.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ionotificationportref?language=objc)
-pub type IONotificationPortRef = *mut IONotificationPort;
 
 /// Callback function to be notified of IOService publication.
 ///
@@ -9728,9 +9722,9 @@ impl IONotificationPort {
     #[doc(alias = "IONotificationPortCreate")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub fn create(main_port: libc::mach_port_t) -> IONotificationPortRef {
+    pub fn create(main_port: libc::mach_port_t) -> *mut IONotificationPort {
         extern "C-unwind" {
-            fn IONotificationPortCreate(main_port: libc::mach_port_t) -> IONotificationPortRef;
+            fn IONotificationPortCreate(main_port: libc::mach_port_t) -> *mut IONotificationPort;
         }
         unsafe { IONotificationPortCreate(main_port) }
     }
@@ -9760,9 +9754,9 @@ impl IONotificationPort {
     /// `notify` must be a valid pointer.
     #[doc(alias = "IONotificationPortDestroy")]
     #[inline]
-    pub unsafe fn destroy(notify: IONotificationPortRef) {
+    pub unsafe fn destroy(notify: *mut IONotificationPort) {
         extern "C-unwind" {
-            fn IONotificationPortDestroy(notify: IONotificationPortRef);
+            fn IONotificationPortDestroy(notify: *mut IONotificationPort);
         }
         unsafe { IONotificationPortDestroy(notify) }
     }
@@ -9789,15 +9783,16 @@ impl IONotificationPort {
     ///
     /// # Safety
     ///
-    /// `notify` must be a valid pointer.
+    /// - `notify` might need manual memory-management.
+    /// - `notify` might not allow `None`.
     #[doc(alias = "IONotificationPortGetRunLoopSource")]
     #[inline]
     pub unsafe fn run_loop_source(
-        notify: IONotificationPortRef,
+        notify: Option<&IONotificationPort>,
     ) -> Option<CFRetained<CFRunLoopSource>> {
         extern "C-unwind" {
             fn IONotificationPortGetRunLoopSource(
-                notify: IONotificationPortRef,
+                notify: Option<&IONotificationPort>,
             ) -> Option<NonNull<CFRunLoopSource>>;
         }
         let ret = unsafe { IONotificationPortGetRunLoopSource(notify) };
@@ -9828,13 +9823,16 @@ impl IONotificationPort {
     ///
     /// # Safety
     ///
-    /// `notify` must be a valid pointer.
+    /// - `notify` might need manual memory-management.
+    /// - `notify` might not allow `None`.
     #[doc(alias = "IONotificationPortGetMachPort")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn mach_port(notify: IONotificationPortRef) -> libc::mach_port_t {
+    pub unsafe fn mach_port(notify: Option<&IONotificationPort>) -> libc::mach_port_t {
         extern "C-unwind" {
-            fn IONotificationPortGetMachPort(notify: IONotificationPortRef) -> libc::mach_port_t;
+            fn IONotificationPortGetMachPort(
+                notify: Option<&IONotificationPort>,
+            ) -> libc::mach_port_t;
         }
         unsafe { IONotificationPortGetMachPort(notify) }
     }
@@ -9852,14 +9850,17 @@ impl IONotificationPort {
     ///
     /// # Safety
     ///
-    /// `notify` must be a valid pointer.
+    /// - `notify` might need manual memory-management.
+    /// - `notify` might not allow `None`.
     #[doc(alias = "IONotificationPortSetImportanceReceiver")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn set_importance_receiver(notify: IONotificationPortRef) -> libc::kern_return_t {
+    pub unsafe fn set_importance_receiver(
+        notify: Option<&IONotificationPort>,
+    ) -> libc::kern_return_t {
         extern "C-unwind" {
             fn IONotificationPortSetImportanceReceiver(
-                notify: IONotificationPortRef,
+                notify: Option<&IONotificationPort>,
             ) -> libc::kern_return_t;
         }
         unsafe { IONotificationPortSetImportanceReceiver(notify) }
@@ -9875,16 +9876,20 @@ impl IONotificationPort {
     ///
     /// # Safety
     ///
-    /// - `notify` must be a valid pointer.
+    /// - `notify` might need manual memory-management.
+    /// - `notify` might not allow `None`.
     /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
     #[doc(alias = "IONotificationPortSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_dispatch_queue(notify: IONotificationPortRef, queue: Option<&DispatchQueue>) {
+    pub unsafe fn set_dispatch_queue(
+        notify: Option<&IONotificationPort>,
+        queue: Option<&DispatchQueue>,
+    ) {
         extern "C-unwind" {
             fn IONotificationPortSetDispatchQueue(
-                notify: IONotificationPortRef,
+                notify: Option<&IONotificationPort>,
                 queue: Option<&DispatchQueue>,
             );
         }
@@ -10256,7 +10261,8 @@ pub unsafe fn IOServiceAddNotification(
 ///
 /// # Safety
 ///
-/// - `notify_port` must be a valid pointer.
+/// - `notify_port` might need manual memory-management.
+/// - `notify_port` might not allow `None`.
 /// - `interest_type` might not allow `None`.
 /// - `callback` must be implemented correctly.
 /// - `ref_con` must be a valid pointer.
@@ -10264,7 +10270,7 @@ pub unsafe fn IOServiceAddNotification(
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOServiceAddInterestNotification(
-    notify_port: IONotificationPortRef,
+    notify_port: Option<&IONotificationPort>,
     service: io_service_t,
     interest_type: Option<&CStr>,
     callback: IOServiceInterestCallback,
@@ -10273,7 +10279,7 @@ pub unsafe fn IOServiceAddInterestNotification(
 ) -> libc::kern_return_t {
     extern "C-unwind" {
         fn IOServiceAddInterestNotification(
-            notify_port: IONotificationPortRef,
+            notify_port: Option<&IONotificationPort>,
             service: io_service_t,
             interest_type: *const io_name_t,
             callback: IOServiceInterestCallback,

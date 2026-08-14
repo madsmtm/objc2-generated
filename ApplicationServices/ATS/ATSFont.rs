@@ -219,39 +219,35 @@ unsafe impl RefEncode for ATSFontFilter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontnotificationref_?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontnotification?language=objc)
+#[doc(alias = "ATSFontNotificationRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct ATSFontNotificationRef_ {
+pub struct ATSFontNotification {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for ATSFontNotificationRef_ {
+unsafe impl RefEncode for ATSFontNotification {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("ATSFontNotificationRef_", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontnotificationref?language=objc)
-pub type ATSFontNotificationRef = *mut ATSFontNotificationRef_;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontnotificationinforef_?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontnotificationinfo?language=objc)
+#[doc(alias = "ATSFontNotificationInfoRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct ATSFontNotificationInfoRef_ {
+pub struct ATSFontNotificationInfo {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for ATSFontNotificationInfoRef_ {
+unsafe impl RefEncode for ATSFontNotificationInfo {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("ATSFontNotificationInfoRef_", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontnotificationinforef?language=objc)
-pub type ATSFontNotificationInfoRef = *mut ATSFontNotificationInfoRef_;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontnotifyoption?language=objc)
 #[repr(transparent)]
@@ -297,7 +293,7 @@ unsafe impl RefEncode for ATSFontNotifyAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsnotificationcallback?language=objc)
 pub type ATSNotificationCallback =
-    Option<unsafe extern "C-unwind" fn(ATSFontNotificationInfoRef, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut ATSFontNotificationInfo, *mut c_void)>;
 
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
@@ -1126,41 +1122,47 @@ pub unsafe fn ATSFontNotify(action: ATSFontNotifyAction, info: *mut c_void) -> O
     unsafe { ATSFontNotify(action, info) }
 }
 
-/// # Safety
-///
-/// - `callback` must be implemented correctly.
-/// - `i_refcon` must be a valid pointer.
-/// - `o_notification_ref` must be a valid pointer.
-/// - `o_notification_ref` might not allow `None`.
-#[deprecated = "ATS is no longer supported"]
-#[inline]
-pub unsafe fn ATSFontNotificationSubscribe(
-    callback: ATSNotificationCallback,
-    options: ATSFontNotifyOption,
-    i_refcon: *mut c_void,
-    o_notification_ref: Option<&mut ATSFontNotificationRef>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn ATSFontNotificationSubscribe(
-            callback: ATSNotificationCallback,
-            options: ATSFontNotifyOption,
-            i_refcon: *mut c_void,
-            o_notification_ref: Option<&mut ATSFontNotificationRef>,
-        ) -> OSStatus;
+impl ATSFontNotification {
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `i_refcon` must be a valid pointer.
+    /// - `o_notification_ref` must be a valid pointer.
+    /// - `o_notification_ref` might not allow `None`.
+    #[doc(alias = "ATSFontNotificationSubscribe")]
+    #[deprecated = "ATS is no longer supported"]
+    #[inline]
+    pub unsafe fn subscribe(
+        callback: ATSNotificationCallback,
+        options: ATSFontNotifyOption,
+        i_refcon: *mut c_void,
+        o_notification_ref: Option<&mut *mut ATSFontNotification>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn ATSFontNotificationSubscribe(
+                callback: ATSNotificationCallback,
+                options: ATSFontNotifyOption,
+                i_refcon: *mut c_void,
+                o_notification_ref: Option<&mut *mut ATSFontNotification>,
+            ) -> OSStatus;
+        }
+        unsafe { ATSFontNotificationSubscribe(callback, options, i_refcon, o_notification_ref) }
     }
-    unsafe { ATSFontNotificationSubscribe(callback, options, i_refcon, o_notification_ref) }
-}
 
-/// # Safety
-///
-/// `notification_ref` must be a valid pointer.
-#[deprecated = "ATS is no longer supported"]
-#[inline]
-pub unsafe fn ATSFontNotificationUnsubscribe(notification_ref: ATSFontNotificationRef) -> OSStatus {
-    extern "C-unwind" {
-        fn ATSFontNotificationUnsubscribe(notification_ref: ATSFontNotificationRef) -> OSStatus;
+    /// # Safety
+    ///
+    /// `notification_ref` must be a valid pointer.
+    #[doc(alias = "ATSFontNotificationUnsubscribe")]
+    #[deprecated = "ATS is no longer supported"]
+    #[inline]
+    pub unsafe fn unsubscribe(notification_ref: *mut ATSFontNotification) -> OSStatus {
+        extern "C-unwind" {
+            fn ATSFontNotificationUnsubscribe(
+                notification_ref: *mut ATSFontNotification,
+            ) -> OSStatus;
+        }
+        unsafe { ATSFontNotificationUnsubscribe(notification_ref) }
     }
-    unsafe { ATSFontNotificationUnsubscribe(notification_ref) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontquerysourcecontext?language=objc)

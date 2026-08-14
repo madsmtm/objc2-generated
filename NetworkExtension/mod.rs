@@ -778,10 +778,10 @@ impl NEVPNManager {
         ///
         /// # Safety
         ///
-        /// `authorization` must be a valid pointer.
+        /// `authorization` might need manual memory-management.
         #[unsafe(method(setAuthorization:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAuthorization(&self, authorization: AuthorizationRef);
+        pub unsafe fn setAuthorization(&self, authorization: &Authorization);
 
         /// An array of NEOnDemandRule objects.
         #[unsafe(method(onDemandRules))]

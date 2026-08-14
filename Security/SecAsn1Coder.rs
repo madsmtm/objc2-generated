@@ -10,6 +10,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1coder?language=objc)
+#[doc(alias = "SecAsn1CoderRef")]
+#[deprecated = "SecAsn1 is not supported"]
 #[repr(C)]
 #[derive(Debug)]
 pub struct SecAsn1Coder {
@@ -22,10 +24,6 @@ unsafe impl RefEncode for SecAsn1Coder {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("SecAsn1Coder", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1coderref?language=objc)
-#[deprecated = "SecAsn1 is not supported"]
-pub type SecAsn1CoderRef = *mut SecAsn1Coder;
-
 impl SecAsn1Coder {
     /// # Safety
     ///
@@ -33,9 +31,9 @@ impl SecAsn1Coder {
     #[doc(alias = "SecAsn1CoderCreate")]
     #[deprecated = "SecAsn1 is not supported"]
     #[inline]
-    pub unsafe fn create(coder: &mut SecAsn1CoderRef) -> OSStatus {
+    pub unsafe fn create(coder: &mut *mut SecAsn1Coder) -> OSStatus {
         extern "C-unwind" {
-            fn SecAsn1CoderCreate(coder: &mut SecAsn1CoderRef) -> OSStatus;
+            fn SecAsn1CoderCreate(coder: &mut *mut SecAsn1Coder) -> OSStatus;
         }
         unsafe { SecAsn1CoderCreate(coder) }
     }
@@ -46,172 +44,174 @@ impl SecAsn1Coder {
     #[doc(alias = "SecAsn1CoderRelease")]
     #[deprecated = "SecAsn1 is not supported"]
     #[inline]
-    pub unsafe fn release(coder: SecAsn1CoderRef) -> OSStatus {
+    pub unsafe fn release(coder: NonNull<SecAsn1Coder>) -> OSStatus {
         extern "C-unwind" {
-            fn SecAsn1CoderRelease(coder: SecAsn1CoderRef) -> OSStatus;
+            fn SecAsn1CoderRelease(coder: NonNull<SecAsn1Coder>) -> OSStatus;
         }
         unsafe { SecAsn1CoderRelease(coder) }
     }
-}
 
-/// # Safety
-///
-/// - `coder` must be a valid pointer.
-/// - `src` must be a valid pointer.
-/// - `templates` must be a valid pointer.
-/// - `dest` must be a valid pointer.
-#[cfg(feature = "SecAsn1Types")]
-#[deprecated = "SecAsn1 is not supported"]
-#[inline]
-pub unsafe fn SecAsn1Decode(
-    coder: SecAsn1CoderRef,
-    src: NonNull<c_void>,
-    len: usize,
-    templates: NonNull<SecAsn1Template>,
-    dest: NonNull<c_void>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecAsn1Decode(
-            coder: SecAsn1CoderRef,
-            src: NonNull<c_void>,
-            len: usize,
-            templates: NonNull<SecAsn1Template>,
-            dest: NonNull<c_void>,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `coder` might need manual memory-management.
+    /// - `src` must be a valid pointer.
+    /// - `templates` must be a valid pointer.
+    /// - `dest` must be a valid pointer.
+    #[doc(alias = "SecAsn1Decode")]
+    #[cfg(feature = "SecAsn1Types")]
+    #[deprecated = "SecAsn1 is not supported"]
+    #[inline]
+    pub unsafe fn decode(
+        &self,
+        src: NonNull<c_void>,
+        len: usize,
+        templates: NonNull<SecAsn1Template>,
+        dest: NonNull<c_void>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecAsn1Decode(
+                coder: &SecAsn1Coder,
+                src: NonNull<c_void>,
+                len: usize,
+                templates: NonNull<SecAsn1Template>,
+                dest: NonNull<c_void>,
+            ) -> OSStatus;
+        }
+        unsafe { SecAsn1Decode(self, src, len, templates, dest) }
     }
-    unsafe { SecAsn1Decode(coder, src, len, templates, dest) }
-}
 
-/// # Safety
-///
-/// - `coder` must be a valid pointer.
-/// - `src` struct field `Data` must be a valid pointer or null.
-/// - `templ` must be a valid pointer.
-/// - `dest` must be a valid pointer.
-#[cfg(feature = "SecAsn1Types")]
-#[deprecated = "SecAsn1 is not supported"]
-#[inline]
-pub unsafe fn SecAsn1DecodeData(
-    coder: SecAsn1CoderRef,
-    src: &SecAsn1Item,
-    templ: NonNull<SecAsn1Template>,
-    dest: NonNull<c_void>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecAsn1DecodeData(
-            coder: SecAsn1CoderRef,
-            src: &SecAsn1Item,
-            templ: NonNull<SecAsn1Template>,
-            dest: NonNull<c_void>,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `coder` might need manual memory-management.
+    /// - `src` struct field `Data` must be a valid pointer or null.
+    /// - `templ` must be a valid pointer.
+    /// - `dest` must be a valid pointer.
+    #[doc(alias = "SecAsn1DecodeData")]
+    #[cfg(feature = "SecAsn1Types")]
+    #[deprecated = "SecAsn1 is not supported"]
+    #[inline]
+    pub unsafe fn decode_data(
+        &self,
+        src: &SecAsn1Item,
+        templ: NonNull<SecAsn1Template>,
+        dest: NonNull<c_void>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecAsn1DecodeData(
+                coder: &SecAsn1Coder,
+                src: &SecAsn1Item,
+                templ: NonNull<SecAsn1Template>,
+                dest: NonNull<c_void>,
+            ) -> OSStatus;
+        }
+        unsafe { SecAsn1DecodeData(self, src, templ, dest) }
     }
-    unsafe { SecAsn1DecodeData(coder, src, templ, dest) }
-}
 
-/// # Safety
-///
-/// - `coder` must be a valid pointer.
-/// - `src` must be a valid pointer.
-/// - `templates` must be a valid pointer.
-/// - `dest` struct field `Data` must be a valid pointer or null.
-#[cfg(feature = "SecAsn1Types")]
-#[deprecated = "SecAsn1 is not supported"]
-#[inline]
-pub unsafe fn SecAsn1EncodeItem(
-    coder: SecAsn1CoderRef,
-    src: NonNull<c_void>,
-    templates: NonNull<SecAsn1Template>,
-    dest: &mut SecAsn1Item,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecAsn1EncodeItem(
-            coder: SecAsn1CoderRef,
-            src: NonNull<c_void>,
-            templates: NonNull<SecAsn1Template>,
-            dest: &mut SecAsn1Item,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `coder` might need manual memory-management.
+    /// - `src` must be a valid pointer.
+    /// - `templates` must be a valid pointer.
+    /// - `dest` struct field `Data` must be a valid pointer or null.
+    #[doc(alias = "SecAsn1EncodeItem")]
+    #[cfg(feature = "SecAsn1Types")]
+    #[deprecated = "SecAsn1 is not supported"]
+    #[inline]
+    pub unsafe fn encode_item(
+        &self,
+        src: NonNull<c_void>,
+        templates: NonNull<SecAsn1Template>,
+        dest: &mut SecAsn1Item,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecAsn1EncodeItem(
+                coder: &SecAsn1Coder,
+                src: NonNull<c_void>,
+                templates: NonNull<SecAsn1Template>,
+                dest: &mut SecAsn1Item,
+            ) -> OSStatus;
+        }
+        unsafe { SecAsn1EncodeItem(self, src, templates, dest) }
     }
-    unsafe { SecAsn1EncodeItem(coder, src, templates, dest) }
-}
 
-/// # Safety
-///
-/// `coder` must be a valid pointer.
-#[deprecated = "SecAsn1 is not supported"]
-#[inline]
-pub unsafe fn SecAsn1Malloc(coder: SecAsn1CoderRef, len: usize) -> NonNull<c_void> {
-    extern "C-unwind" {
-        fn SecAsn1Malloc(coder: SecAsn1CoderRef, len: usize) -> Option<NonNull<c_void>>;
+    /// # Safety
+    ///
+    /// `coder` might need manual memory-management.
+    #[doc(alias = "SecAsn1Malloc")]
+    #[deprecated = "SecAsn1 is not supported"]
+    #[inline]
+    pub unsafe fn malloc(&self, len: usize) -> NonNull<c_void> {
+        extern "C-unwind" {
+            fn SecAsn1Malloc(coder: &SecAsn1Coder, len: usize) -> Option<NonNull<c_void>>;
+        }
+        let ret = unsafe { SecAsn1Malloc(self, len) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
-    let ret = unsafe { SecAsn1Malloc(coder, len) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
-}
 
-/// # Safety
-///
-/// - `coder` must be a valid pointer.
-/// - `item` struct field `Data` must be a valid pointer or null.
-#[cfg(feature = "SecAsn1Types")]
-#[deprecated = "SecAsn1 is not supported"]
-#[inline]
-pub unsafe fn SecAsn1AllocItem(
-    coder: SecAsn1CoderRef,
-    item: &mut SecAsn1Item,
-    len: usize,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecAsn1AllocItem(coder: SecAsn1CoderRef, item: &mut SecAsn1Item, len: usize)
-            -> OSStatus;
+    /// # Safety
+    ///
+    /// - `coder` might need manual memory-management.
+    /// - `item` struct field `Data` must be a valid pointer or null.
+    #[doc(alias = "SecAsn1AllocItem")]
+    #[cfg(feature = "SecAsn1Types")]
+    #[deprecated = "SecAsn1 is not supported"]
+    #[inline]
+    pub unsafe fn alloc_item(&self, item: &mut SecAsn1Item, len: usize) -> OSStatus {
+        extern "C-unwind" {
+            fn SecAsn1AllocItem(
+                coder: &SecAsn1Coder,
+                item: &mut SecAsn1Item,
+                len: usize,
+            ) -> OSStatus;
+        }
+        unsafe { SecAsn1AllocItem(self, item, len) }
     }
-    unsafe { SecAsn1AllocItem(coder, item, len) }
-}
 
-/// # Safety
-///
-/// - `coder` must be a valid pointer.
-/// - `src` must be a valid pointer.
-/// - `dest` struct field `Data` must be a valid pointer or null.
-#[cfg(feature = "SecAsn1Types")]
-#[deprecated = "SecAsn1 is not supported"]
-#[inline]
-pub unsafe fn SecAsn1AllocCopy(
-    coder: SecAsn1CoderRef,
-    src: NonNull<c_void>,
-    len: usize,
-    dest: &mut SecAsn1Item,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecAsn1AllocCopy(
-            coder: SecAsn1CoderRef,
-            src: NonNull<c_void>,
-            len: usize,
-            dest: &mut SecAsn1Item,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `coder` might need manual memory-management.
+    /// - `src` must be a valid pointer.
+    /// - `dest` struct field `Data` must be a valid pointer or null.
+    #[doc(alias = "SecAsn1AllocCopy")]
+    #[cfg(feature = "SecAsn1Types")]
+    #[deprecated = "SecAsn1 is not supported"]
+    #[inline]
+    pub unsafe fn alloc_copy(
+        &self,
+        src: NonNull<c_void>,
+        len: usize,
+        dest: &mut SecAsn1Item,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn SecAsn1AllocCopy(
+                coder: &SecAsn1Coder,
+                src: NonNull<c_void>,
+                len: usize,
+                dest: &mut SecAsn1Item,
+            ) -> OSStatus;
+        }
+        unsafe { SecAsn1AllocCopy(self, src, len, dest) }
     }
-    unsafe { SecAsn1AllocCopy(coder, src, len, dest) }
-}
 
-/// # Safety
-///
-/// - `coder` must be a valid pointer.
-/// - `src` struct field `Data` must be a valid pointer or null.
-/// - `dest` struct field `Data` must be a valid pointer or null.
-#[cfg(feature = "SecAsn1Types")]
-#[deprecated = "SecAsn1 is not supported"]
-#[inline]
-pub unsafe fn SecAsn1AllocCopyItem(
-    coder: SecAsn1CoderRef,
-    src: &SecAsn1Item,
-    dest: &mut SecAsn1Item,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn SecAsn1AllocCopyItem(
-            coder: SecAsn1CoderRef,
-            src: &SecAsn1Item,
-            dest: &mut SecAsn1Item,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `coder` might need manual memory-management.
+    /// - `src` struct field `Data` must be a valid pointer or null.
+    /// - `dest` struct field `Data` must be a valid pointer or null.
+    #[doc(alias = "SecAsn1AllocCopyItem")]
+    #[cfg(feature = "SecAsn1Types")]
+    #[deprecated = "SecAsn1 is not supported"]
+    #[inline]
+    pub unsafe fn alloc_copy_item(&self, src: &SecAsn1Item, dest: &mut SecAsn1Item) -> OSStatus {
+        extern "C-unwind" {
+            fn SecAsn1AllocCopyItem(
+                coder: &SecAsn1Coder,
+                src: &SecAsn1Item,
+                dest: &mut SecAsn1Item,
+            ) -> OSStatus;
+        }
+        unsafe { SecAsn1AllocCopyItem(self, src, dest) }
     }
-    unsafe { SecAsn1AllocCopyItem(coder, src, dest) }
 }
 
 /// # Safety

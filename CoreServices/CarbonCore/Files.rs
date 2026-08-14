@@ -4364,22 +4364,20 @@ pub unsafe fn FNNotifyAll(message: FNMessage, flags: OptionBits) -> OSStatus {
     unsafe { FNNotifyAll(message, flags) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaquefnsubscriptionref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fnsubscription?language=objc)
+#[doc(alias = "FNSubscriptionRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueFNSubscriptionRef {
+pub struct FNSubscription {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueFNSubscriptionRef {
+unsafe impl RefEncode for FNSubscription {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueFNSubscriptionRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fnsubscriptionref?language=objc)
-pub type FNSubscriptionRef = *mut OpaqueFNSubscriptionRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kfnnoimplicitallsubscription?language=objc)
 pub const kFNNoImplicitAllSubscription: c_uint = 1 << 0;
@@ -4388,7 +4386,7 @@ pub const kFNNotifyInBackground: c_uint = 1 << 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fnsubscriptionprocptr?language=objc)
 pub type FNSubscriptionProcPtr =
-    Option<unsafe extern "C-unwind" fn(FNMessage, OptionBits, *mut c_void, FNSubscriptionRef)>;
+    Option<unsafe extern "C-unwind" fn(FNMessage, OptionBits, *mut c_void, *mut FNSubscription)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fnsubscriptionupp?language=objc)
 pub type FNSubscriptionUPP = FNSubscriptionProcPtr;
@@ -4420,7 +4418,8 @@ pub unsafe fn DisposeFNSubscriptionUPP(user_upp: FNSubscriptionUPP) {
 /// # Safety
 ///
 /// - `refcon` must be a valid pointer.
-/// - `subscription` must be a valid pointer.
+/// - `subscription` might need manual memory-management.
+/// - `subscription` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
 #[deprecated]
 #[inline]
@@ -4428,7 +4427,7 @@ pub unsafe fn InvokeFNSubscriptionUPP(
     message: FNMessage,
     flags: OptionBits,
     refcon: *mut c_void,
-    subscription: FNSubscriptionRef,
+    subscription: Option<&FNSubscription>,
     user_upp: FNSubscriptionUPP,
 ) {
     extern "C-unwind" {
@@ -4436,7 +4435,7 @@ pub unsafe fn InvokeFNSubscriptionUPP(
             message: FNMessage,
             flags: OptionBits,
             refcon: *mut c_void,
-            subscription: FNSubscriptionRef,
+            subscription: Option<&FNSubscription>,
             user_upp: FNSubscriptionUPP,
         );
     }
@@ -4457,7 +4456,7 @@ pub unsafe fn FNSubscribe(
     callback: FNSubscriptionUPP,
     refcon: *mut c_void,
     flags: OptionBits,
-    subscription: Option<&mut FNSubscriptionRef>,
+    subscription: Option<&mut *mut FNSubscription>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn FNSubscribe(
@@ -4465,7 +4464,7 @@ pub unsafe fn FNSubscribe(
             callback: FNSubscriptionUPP,
             refcon: *mut c_void,
             flags: OptionBits,
-            subscription: Option<&mut FNSubscriptionRef>,
+            subscription: Option<&mut *mut FNSubscription>,
         ) -> OSStatus;
     }
     unsafe { FNSubscribe(directory_ref, callback, refcon, flags, subscription) }
@@ -4485,7 +4484,7 @@ pub unsafe fn FNSubscribeByPath(
     callback: FNSubscriptionUPP,
     refcon: *mut c_void,
     flags: OptionBits,
-    subscription: Option<&mut FNSubscriptionRef>,
+    subscription: Option<&mut *mut FNSubscription>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn FNSubscribeByPath(
@@ -4493,7 +4492,7 @@ pub unsafe fn FNSubscribeByPath(
             callback: FNSubscriptionUPP,
             refcon: *mut c_void,
             flags: OptionBits,
-            subscription: Option<&mut FNSubscriptionRef>,
+            subscription: Option<&mut *mut FNSubscription>,
         ) -> OSStatus;
     }
     unsafe { FNSubscribeByPath(directory_path, callback, refcon, flags, subscription) }
@@ -4501,29 +4500,31 @@ pub unsafe fn FNSubscribeByPath(
 
 /// # Safety
 ///
-/// `subscription` must be a valid pointer.
+/// - `subscription` might need manual memory-management.
+/// - `subscription` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn FNUnsubscribe(subscription: FNSubscriptionRef) -> OSStatus {
+pub unsafe fn FNUnsubscribe(subscription: Option<&FNSubscription>) -> OSStatus {
     extern "C-unwind" {
-        fn FNUnsubscribe(subscription: FNSubscriptionRef) -> OSStatus;
+        fn FNUnsubscribe(subscription: Option<&FNSubscription>) -> OSStatus;
     }
     unsafe { FNUnsubscribe(subscription) }
 }
 
 /// # Safety
 ///
-/// - `subscription` must be a valid pointer.
+/// - `subscription` might need manual memory-management.
+/// - `subscription` might not allow `None`.
 /// - `ref` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn FNGetDirectoryForSubscription(
-    subscription: FNSubscriptionRef,
+    subscription: Option<&FNSubscription>,
     r#ref: Option<&mut FSRef>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn FNGetDirectoryForSubscription(
-            subscription: FNSubscriptionRef,
+            subscription: Option<&FNSubscription>,
             r#ref: Option<&mut FSRef>,
         ) -> OSStatus;
     }

@@ -736,12 +736,13 @@ pub unsafe fn CheckEventQueueForUserCancel() -> bool {
 
 /// # Safety
 ///
-/// `event` must be a valid pointer.
+/// - `event` might need manual memory-management.
+/// - `event` might not allow `None`.
 #[cfg(feature = "CarbonEventsCore")]
 #[inline]
-pub unsafe fn IsUserCancelEventRef(event: EventRef) -> bool {
+pub unsafe fn IsUserCancelEventRef(event: Option<&Event>) -> bool {
     extern "C-unwind" {
-        fn IsUserCancelEventRef(event: EventRef) -> Boolean;
+        fn IsUserCancelEventRef(event: Option<&Event>) -> Boolean;
     }
     let ret = unsafe { IsUserCancelEventRef(event) };
     ret != 0
@@ -1987,27 +1988,27 @@ pub const kEventSystemUserSessionDeactivated: c_uint = 11;
 
 #[cfg(feature = "CarbonEventsCore")]
 #[inline]
-pub unsafe fn GetApplicationEventTarget() -> EventTargetRef {
+pub unsafe fn GetApplicationEventTarget() -> *mut EventTarget {
     extern "C-unwind" {
-        fn GetApplicationEventTarget() -> EventTargetRef;
+        fn GetApplicationEventTarget() -> *mut EventTarget;
     }
     unsafe { GetApplicationEventTarget() }
 }
 
 #[cfg(feature = "CarbonEventsCore")]
 #[inline]
-pub unsafe fn GetEventDispatcherTarget() -> EventTargetRef {
+pub unsafe fn GetEventDispatcherTarget() -> *mut EventTarget {
     extern "C-unwind" {
-        fn GetEventDispatcherTarget() -> EventTargetRef;
+        fn GetEventDispatcherTarget() -> *mut EventTarget;
     }
     unsafe { GetEventDispatcherTarget() }
 }
 
 #[cfg(feature = "CarbonEventsCore")]
 #[inline]
-pub unsafe fn GetEventMonitorTarget() -> EventTargetRef {
+pub unsafe fn GetEventMonitorTarget() -> *mut EventTarget {
     extern "C-unwind" {
-        fn GetEventMonitorTarget() -> EventTargetRef;
+        fn GetEventMonitorTarget() -> *mut EventTarget;
     }
     unsafe { GetEventMonitorTarget() }
 }
@@ -2044,22 +2045,20 @@ unsafe impl RefEncode for EventHotKeyID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaqueeventhotkeyref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhotkey?language=objc)
+#[doc(alias = "EventHotKeyRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueEventHotKeyRef {
+pub struct EventHotKey {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueEventHotKeyRef {
+unsafe impl RefEncode for EventHotKey {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueEventHotKeyRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhotkeyref?language=objc)
-pub type EventHotKeyRef = *mut OpaqueEventHotKeyRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/keventhotkeynooptions?language=objc)
 pub const kEventHotKeyNoOptions: c_uint = 0;
@@ -2068,7 +2067,8 @@ pub const kEventHotKeyExclusive: c_uint = 1 << 0;
 
 /// # Safety
 ///
-/// - `in_target` must be a valid pointer.
+/// - `in_target` might need manual memory-management.
+/// - `in_target` might not allow `None`.
 /// - `out_ref` must be a valid pointer.
 /// - `out_ref` might not allow `None`.
 #[cfg(feature = "CarbonEventsCore")]
@@ -2077,18 +2077,18 @@ pub unsafe fn RegisterEventHotKey(
     in_hot_key_code: u32,
     in_hot_key_modifiers: u32,
     in_hot_key_id: EventHotKeyID,
-    in_target: EventTargetRef,
+    in_target: Option<&EventTarget>,
     in_options: OptionBits,
-    out_ref: Option<&mut EventHotKeyRef>,
+    out_ref: Option<&mut *mut EventHotKey>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn RegisterEventHotKey(
             in_hot_key_code: u32,
             in_hot_key_modifiers: u32,
             in_hot_key_id: EventHotKeyID,
-            in_target: EventTargetRef,
+            in_target: Option<&EventTarget>,
             in_options: OptionBits,
-            out_ref: Option<&mut EventHotKeyRef>,
+            out_ref: Option<&mut *mut EventHotKey>,
         ) -> OSStatus;
     }
     unsafe {
@@ -2107,9 +2107,9 @@ pub unsafe fn RegisterEventHotKey(
 ///
 /// `in_hot_key` must be a valid pointer.
 #[inline]
-pub unsafe fn UnregisterEventHotKey(in_hot_key: EventHotKeyRef) -> OSStatus {
+pub unsafe fn UnregisterEventHotKey(in_hot_key: *mut EventHotKey) -> OSStatus {
     extern "C-unwind" {
-        fn UnregisterEventHotKey(in_hot_key: EventHotKeyRef) -> OSStatus;
+        fn UnregisterEventHotKey(in_hot_key: *mut EventHotKey) -> OSStatus;
     }
     unsafe { UnregisterEventHotKey(in_hot_key) }
 }
@@ -2191,22 +2191,20 @@ pub const kEventInkGesture: c_uint = 11;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/keventinktext?language=objc)
 pub const kEventInkText: c_uint = 12;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaquetoolboxobjectclassref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/toolboxobjectclass?language=objc)
+#[doc(alias = "ToolboxObjectClassRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueToolboxObjectClassRef {
+pub struct ToolboxObjectClass {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueToolboxObjectClassRef {
+unsafe impl RefEncode for ToolboxObjectClass {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueToolboxObjectClassRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/toolboxobjectclassref?language=objc)
-pub type ToolboxObjectClassRef = *mut OpaqueToolboxObjectClassRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/keventparamtabletpointerrec?language=objc)
 pub const kEventParamTabletPointerRec: c_uint = 0x74627263;

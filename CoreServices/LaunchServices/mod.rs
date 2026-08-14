@@ -549,7 +549,7 @@ pub use self::__IconsCore::GetIconRefFromTypeInfo;
 #[cfg(feature = "IconsCore")]
 pub use self::__IconsCore::GetIconRefOwners;
 #[cfg(feature = "IconsCore")]
-pub use self::__IconsCore::IconRef;
+pub use self::__IconsCore::Icon;
 #[cfg(feature = "IconsCore")]
 pub use self::__IconsCore::IconServicesUsageFlags;
 #[cfg(feature = "IconsCore")]
@@ -558,8 +558,6 @@ pub use self::__IconsCore::IsDataAvailableInIconRef;
 pub use self::__IconsCore::IsIconRefComposite;
 #[cfg(feature = "IconsCore")]
 pub use self::__IconsCore::IsValidIconRef;
-#[cfg(feature = "IconsCore")]
-pub use self::__IconsCore::OpaqueIconRef;
 #[cfg(feature = "IconsCore")]
 pub use self::__IconsCore::OverrideIconRef;
 #[cfg(all(

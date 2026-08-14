@@ -10,6 +10,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionary?language=objc)
+#[doc(alias = "CGPDFDictionaryRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFDictionary {
@@ -22,280 +23,237 @@ unsafe impl RefEncode for CGPDFDictionary {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFDictionary", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryref?language=objc)
-pub type CGPDFDictionaryRef = *mut CGPDFDictionary;
-
 impl CGPDFDictionary {
     /// # Safety
     ///
-    /// `dict` must be a valid pointer.
+    /// `dict` might need manual memory-management.
     #[doc(alias = "CGPDFDictionaryGetCount")]
     #[inline]
-    pub unsafe fn count(dict: CGPDFDictionaryRef) -> usize {
+    pub unsafe fn count(&self) -> usize {
         extern "C-unwind" {
-            fn CGPDFDictionaryGetCount(dict: CGPDFDictionaryRef) -> usize;
+            fn CGPDFDictionaryGetCount(dict: &CGPDFDictionary) -> usize;
         }
-        unsafe { CGPDFDictionaryGetCount(dict) }
+        unsafe { CGPDFDictionaryGetCount(self) }
     }
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer.
+    /// - `dict` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetObject")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn object(
-        dict: CGPDFDictionaryRef,
-        key: &CStr,
-        value: Option<&mut CGPDFObjectRef>,
-    ) -> bool {
+    pub unsafe fn object(&self, key: &CStr, value: Option<&mut *mut CGPDFObject>) -> bool {
         extern "C-unwind" {
             fn CGPDFDictionaryGetObject(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 key: NonNull<c_char>,
-                value: Option<&mut CGPDFObjectRef>,
+                value: Option<&mut *mut CGPDFObject>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFDictionaryGetObject(dict, key, value) }
+        unsafe { CGPDFDictionaryGetObject(self, key, value) }
     }
 
     /// # Safety
     ///
-    /// `dict` must be a valid pointer.
+    /// `dict` might need manual memory-management.
     #[doc(alias = "CGPDFDictionaryGetBoolean")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn boolean(
-        dict: CGPDFDictionaryRef,
-        key: &CStr,
-        value: Option<&mut CGPDFBoolean>,
-    ) -> bool {
+    pub unsafe fn boolean(&self, key: &CStr, value: Option<&mut CGPDFBoolean>) -> bool {
         extern "C-unwind" {
             fn CGPDFDictionaryGetBoolean(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 key: NonNull<c_char>,
                 value: Option<&mut CGPDFBoolean>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFDictionaryGetBoolean(dict, key, value) }
+        unsafe { CGPDFDictionaryGetBoolean(self, key, value) }
     }
 
     /// # Safety
     ///
-    /// `dict` must be a valid pointer.
+    /// `dict` might need manual memory-management.
     #[doc(alias = "CGPDFDictionaryGetInteger")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn integer(
-        dict: CGPDFDictionaryRef,
-        key: &CStr,
-        value: Option<&mut CGPDFInteger>,
-    ) -> bool {
+    pub unsafe fn integer(&self, key: &CStr, value: Option<&mut CGPDFInteger>) -> bool {
         extern "C-unwind" {
             fn CGPDFDictionaryGetInteger(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 key: NonNull<c_char>,
                 value: Option<&mut CGPDFInteger>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFDictionaryGetInteger(dict, key, value) }
+        unsafe { CGPDFDictionaryGetInteger(self, key, value) }
     }
 
     /// # Safety
     ///
-    /// `dict` must be a valid pointer.
+    /// `dict` might need manual memory-management.
     #[doc(alias = "CGPDFDictionaryGetNumber")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn number(
-        dict: CGPDFDictionaryRef,
-        key: &CStr,
-        value: Option<&mut CGPDFReal>,
-    ) -> bool {
+    pub unsafe fn number(&self, key: &CStr, value: Option<&mut CGPDFReal>) -> bool {
         extern "C-unwind" {
             fn CGPDFDictionaryGetNumber(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 key: NonNull<c_char>,
                 value: Option<&mut CGPDFReal>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFDictionaryGetNumber(dict, key, value) }
+        unsafe { CGPDFDictionaryGetNumber(self, key, value) }
     }
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer.
+    /// - `dict` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetName")]
     #[inline]
-    pub unsafe fn name(
-        dict: CGPDFDictionaryRef,
-        key: &CStr,
-        value: Option<&mut *const c_char>,
-    ) -> bool {
+    pub unsafe fn name(&self, key: &CStr, value: Option<&mut *const c_char>) -> bool {
         extern "C-unwind" {
             fn CGPDFDictionaryGetName(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 key: NonNull<c_char>,
                 value: Option<&mut *const c_char>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFDictionaryGetName(dict, key, value) }
+        unsafe { CGPDFDictionaryGetName(self, key, value) }
     }
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer.
+    /// - `dict` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetString")]
     #[cfg(feature = "CGPDFString")]
     #[inline]
-    pub unsafe fn string(
-        dict: CGPDFDictionaryRef,
-        key: &CStr,
-        value: Option<&mut CGPDFStringRef>,
-    ) -> bool {
+    pub unsafe fn string(&self, key: &CStr, value: Option<&mut *mut CGPDFString>) -> bool {
         extern "C-unwind" {
             fn CGPDFDictionaryGetString(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 key: NonNull<c_char>,
-                value: Option<&mut CGPDFStringRef>,
+                value: Option<&mut *mut CGPDFString>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFDictionaryGetString(dict, key, value) }
+        unsafe { CGPDFDictionaryGetString(self, key, value) }
     }
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer.
+    /// - `dict` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetArray")]
     #[cfg(feature = "CGPDFArray")]
     #[inline]
-    pub unsafe fn array(
-        dict: CGPDFDictionaryRef,
-        key: &CStr,
-        value: Option<&mut CGPDFArrayRef>,
-    ) -> bool {
+    pub unsafe fn array(&self, key: &CStr, value: Option<&mut *mut CGPDFArray>) -> bool {
         extern "C-unwind" {
             fn CGPDFDictionaryGetArray(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 key: NonNull<c_char>,
-                value: Option<&mut CGPDFArrayRef>,
+                value: Option<&mut *mut CGPDFArray>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFDictionaryGetArray(dict, key, value) }
+        unsafe { CGPDFDictionaryGetArray(self, key, value) }
     }
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer.
+    /// - `dict` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetDictionary")]
     #[inline]
-    pub unsafe fn dictionary(
-        dict: CGPDFDictionaryRef,
-        key: &CStr,
-        value: Option<&mut CGPDFDictionaryRef>,
-    ) -> bool {
+    pub unsafe fn dictionary(&self, key: &CStr, value: Option<&mut *mut CGPDFDictionary>) -> bool {
         extern "C-unwind" {
             fn CGPDFDictionaryGetDictionary(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 key: NonNull<c_char>,
-                value: Option<&mut CGPDFDictionaryRef>,
+                value: Option<&mut *mut CGPDFDictionary>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFDictionaryGetDictionary(dict, key, value) }
+        unsafe { CGPDFDictionaryGetDictionary(self, key, value) }
     }
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer.
+    /// - `dict` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetStream")]
     #[cfg(feature = "CGPDFStream")]
     #[inline]
-    pub unsafe fn stream(
-        dict: CGPDFDictionaryRef,
-        key: &CStr,
-        value: Option<&mut CGPDFStreamRef>,
-    ) -> bool {
+    pub unsafe fn stream(&self, key: &CStr, value: Option<&mut *mut CGPDFStream>) -> bool {
         extern "C-unwind" {
             fn CGPDFDictionaryGetStream(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 key: NonNull<c_char>,
-                value: Option<&mut CGPDFStreamRef>,
+                value: Option<&mut *mut CGPDFStream>,
             ) -> bool;
         }
         let key = NonNull::new(key.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFDictionaryGetStream(dict, key, value) }
+        unsafe { CGPDFDictionaryGetStream(self, key, value) }
     }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierfunction?language=objc)
 #[cfg(feature = "CGPDFObject")]
 pub type CGPDFDictionaryApplierFunction =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(NonNull<c_char>, NonNull<CGPDFObject>, *mut c_void)>;
 
 impl CGPDFDictionary {
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer.
+    /// - `dict` might need manual memory-management.
     /// - `function` must be implemented correctly.
     /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryApplyFunction")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
     pub unsafe fn apply_function(
-        dict: CGPDFDictionaryRef,
+        &self,
         function: CGPDFDictionaryApplierFunction,
         info: *mut c_void,
     ) {
         extern "C-unwind" {
             fn CGPDFDictionaryApplyFunction(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 function: CGPDFDictionaryApplierFunction,
                 info: *mut c_void,
             );
         }
-        unsafe { CGPDFDictionaryApplyFunction(dict, function, info) }
+        unsafe { CGPDFDictionaryApplyFunction(self, function, info) }
     }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierblock?language=objc)
 #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
 pub type CGPDFDictionaryApplierBlock =
-    block2::Block<'static, fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
+    block2::Block<'static, fn(NonNull<c_char>, NonNull<CGPDFObject>, *mut c_void) -> bool>;
 
 impl CGPDFDictionary {
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer.
+    /// - `dict` might need manual memory-management.
     /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryApplyBlock")]
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
     #[inline]
-    pub unsafe fn apply_block(
-        dict: CGPDFDictionaryRef,
-        block: &CGPDFDictionaryApplierBlock,
-        info: *mut c_void,
-    ) {
+    pub unsafe fn apply_block(&self, block: &CGPDFDictionaryApplierBlock, info: *mut c_void) {
         extern "C-unwind" {
             fn CGPDFDictionaryApplyBlock(
-                dict: CGPDFDictionaryRef,
+                dict: &CGPDFDictionary,
                 block: &CGPDFDictionaryApplierBlock,
                 info: *mut c_void,
             );
         }
-        unsafe { CGPDFDictionaryApplyBlock(dict, block, info) }
+        unsafe { CGPDFDictionaryApplyBlock(self, block, info) }
     }
 }

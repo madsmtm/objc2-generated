@@ -88,285 +88,326 @@ pub unsafe fn AEPrintDescToHandle(desc: Option<&AEDesc>, result: Option<&mut Han
     unsafe { AEPrintDescToHandle(desc, result) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaqueaestreamref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aestream?language=objc)
+#[doc(alias = "AEStreamRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueAEStreamRef {
+pub struct AEStream {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueAEStreamRef {
+unsafe impl RefEncode for AEStream {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueAEStreamRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aestreamref?language=objc)
-pub type AEStreamRef = *mut OpaqueAEStreamRef;
+impl AEStream {
+    #[doc(alias = "AEStreamOpen")]
+    #[inline]
+    pub unsafe fn open() -> *mut AEStream {
+        extern "C-unwind" {
+            fn AEStreamOpen() -> *mut AEStream;
+        }
+        unsafe { AEStreamOpen() }
+    }
 
-#[inline]
-pub unsafe fn AEStreamOpen() -> AEStreamRef {
-    extern "C-unwind" {
-        fn AEStreamOpen() -> AEStreamRef;
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `desc` struct field `dataHandle` must be a valid pointer.
+    /// - `desc` might not allow `None`.
+    #[doc(alias = "AEStreamClose")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn close(r#ref: *mut AEStream, desc: Option<&mut AEDesc>) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamClose(r#ref: *mut AEStream, desc: Option<&mut AEDesc>) -> OSStatus;
+        }
+        unsafe { AEStreamClose(r#ref, desc) }
     }
-    unsafe { AEStreamOpen() }
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `desc` struct field `dataHandle` must be a valid pointer.
-/// - `desc` might not allow `None`.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamClose(r#ref: AEStreamRef, desc: Option<&mut AEDesc>) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamClose(r#ref: AEStreamRef, desc: Option<&mut AEDesc>) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    #[doc(alias = "AEStreamOpenDesc")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn open_desc(r#ref: Option<&AEStream>, new_type: DescType) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamOpenDesc(r#ref: Option<&AEStream>, new_type: DescType) -> OSStatus;
+        }
+        unsafe { AEStreamOpenDesc(r#ref, new_type) }
     }
-    unsafe { AEStreamClose(r#ref, desc) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamOpenDesc(r#ref: AEStreamRef, new_type: DescType) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamOpenDesc(r#ref: AEStreamRef, new_type: DescType) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    /// - `data` must be a valid pointer.
+    #[doc(alias = "AEStreamWriteData")]
+    #[inline]
+    pub unsafe fn write_data(
+        r#ref: Option<&AEStream>,
+        data: *const c_void,
+        length: Size,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamWriteData(
+                r#ref: Option<&AEStream>,
+                data: *const c_void,
+                length: Size,
+            ) -> OSStatus;
+        }
+        unsafe { AEStreamWriteData(r#ref, data, length) }
     }
-    unsafe { AEStreamOpenDesc(r#ref, new_type) }
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `data` must be a valid pointer.
-#[inline]
-pub unsafe fn AEStreamWriteData(r#ref: AEStreamRef, data: *const c_void, length: Size) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamWriteData(r#ref: AEStreamRef, data: *const c_void, length: Size) -> OSStatus;
+    /// # Safety
+    ///
+    /// `ref` must be a valid pointer.
+    #[doc(alias = "AEStreamCloseDesc")]
+    #[inline]
+    pub unsafe fn close_desc(r#ref: *mut AEStream) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamCloseDesc(r#ref: *mut AEStream) -> OSStatus;
+        }
+        unsafe { AEStreamCloseDesc(r#ref) }
     }
-    unsafe { AEStreamWriteData(r#ref, data, length) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[inline]
-pub unsafe fn AEStreamCloseDesc(r#ref: AEStreamRef) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamCloseDesc(r#ref: AEStreamRef) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    /// - `data` must be a valid pointer.
+    #[doc(alias = "AEStreamWriteDesc")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn write_desc(
+        r#ref: Option<&AEStream>,
+        new_type: DescType,
+        data: *const c_void,
+        length: Size,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamWriteDesc(
+                r#ref: Option<&AEStream>,
+                new_type: DescType,
+                data: *const c_void,
+                length: Size,
+            ) -> OSStatus;
+        }
+        unsafe { AEStreamWriteDesc(r#ref, new_type, data, length) }
     }
-    unsafe { AEStreamCloseDesc(r#ref) }
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `data` must be a valid pointer.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamWriteDesc(
-    r#ref: AEStreamRef,
-    new_type: DescType,
-    data: *const c_void,
-    length: Size,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamWriteDesc(
-            r#ref: AEStreamRef,
-            new_type: DescType,
-            data: *const c_void,
-            length: Size,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    /// - `desc` struct field `dataHandle` must be a valid pointer.
+    /// - `desc` might not allow `None`.
+    #[doc(alias = "AEStreamWriteAEDesc")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn write_ae_desc(r#ref: Option<&AEStream>, desc: Option<&AEDesc>) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamWriteAEDesc(r#ref: Option<&AEStream>, desc: Option<&AEDesc>) -> OSStatus;
+        }
+        unsafe { AEStreamWriteAEDesc(r#ref, desc) }
     }
-    unsafe { AEStreamWriteDesc(r#ref, new_type, data, length) }
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `desc` struct field `dataHandle` must be a valid pointer.
-/// - `desc` might not allow `None`.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamWriteAEDesc(r#ref: AEStreamRef, desc: Option<&AEDesc>) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamWriteAEDesc(r#ref: AEStreamRef, desc: Option<&AEDesc>) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    #[doc(alias = "AEStreamOpenList")]
+    #[inline]
+    pub unsafe fn open_list(r#ref: Option<&AEStream>) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamOpenList(r#ref: Option<&AEStream>) -> OSStatus;
+        }
+        unsafe { AEStreamOpenList(r#ref) }
     }
-    unsafe { AEStreamWriteAEDesc(r#ref, desc) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[inline]
-pub unsafe fn AEStreamOpenList(r#ref: AEStreamRef) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamOpenList(r#ref: AEStreamRef) -> OSStatus;
+    /// # Safety
+    ///
+    /// `ref` must be a valid pointer.
+    #[doc(alias = "AEStreamCloseList")]
+    #[inline]
+    pub unsafe fn close_list(r#ref: *mut AEStream) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamCloseList(r#ref: *mut AEStream) -> OSStatus;
+        }
+        unsafe { AEStreamCloseList(r#ref) }
     }
-    unsafe { AEStreamOpenList(r#ref) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[inline]
-pub unsafe fn AEStreamCloseList(r#ref: AEStreamRef) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamCloseList(r#ref: AEStreamRef) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    #[doc(alias = "AEStreamOpenRecord")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn open_record(r#ref: Option<&AEStream>, new_type: DescType) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamOpenRecord(r#ref: Option<&AEStream>, new_type: DescType) -> OSStatus;
+        }
+        unsafe { AEStreamOpenRecord(r#ref, new_type) }
     }
-    unsafe { AEStreamCloseList(r#ref) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamOpenRecord(r#ref: AEStreamRef, new_type: DescType) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamOpenRecord(r#ref: AEStreamRef, new_type: DescType) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    #[doc(alias = "AEStreamSetRecordType")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn set_record_type(r#ref: Option<&AEStream>, new_type: DescType) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamSetRecordType(r#ref: Option<&AEStream>, new_type: DescType) -> OSStatus;
+        }
+        unsafe { AEStreamSetRecordType(r#ref, new_type) }
     }
-    unsafe { AEStreamOpenRecord(r#ref, new_type) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamSetRecordType(r#ref: AEStreamRef, new_type: DescType) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamSetRecordType(r#ref: AEStreamRef, new_type: DescType) -> OSStatus;
+    /// # Safety
+    ///
+    /// `ref` must be a valid pointer.
+    #[doc(alias = "AEStreamCloseRecord")]
+    #[inline]
+    pub unsafe fn close_record(r#ref: *mut AEStream) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamCloseRecord(r#ref: *mut AEStream) -> OSStatus;
+        }
+        unsafe { AEStreamCloseRecord(r#ref) }
     }
-    unsafe { AEStreamSetRecordType(r#ref, new_type) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[inline]
-pub unsafe fn AEStreamCloseRecord(r#ref: AEStreamRef) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamCloseRecord(r#ref: AEStreamRef) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    /// - `data` must be a valid pointer.
+    #[doc(alias = "AEStreamWriteKeyDesc")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn write_key_desc(
+        r#ref: Option<&AEStream>,
+        key: AEKeyword,
+        new_type: DescType,
+        data: *const c_void,
+        length: Size,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamWriteKeyDesc(
+                r#ref: Option<&AEStream>,
+                key: AEKeyword,
+                new_type: DescType,
+                data: *const c_void,
+                length: Size,
+            ) -> OSStatus;
+        }
+        unsafe { AEStreamWriteKeyDesc(r#ref, key, new_type, data, length) }
     }
-    unsafe { AEStreamCloseRecord(r#ref) }
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `data` must be a valid pointer.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamWriteKeyDesc(
-    r#ref: AEStreamRef,
-    key: AEKeyword,
-    new_type: DescType,
-    data: *const c_void,
-    length: Size,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamWriteKeyDesc(
-            r#ref: AEStreamRef,
-            key: AEKeyword,
-            new_type: DescType,
-            data: *const c_void,
-            length: Size,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    #[doc(alias = "AEStreamOpenKeyDesc")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn open_key_desc(
+        r#ref: Option<&AEStream>,
+        key: AEKeyword,
+        new_type: DescType,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamOpenKeyDesc(
+                r#ref: Option<&AEStream>,
+                key: AEKeyword,
+                new_type: DescType,
+            ) -> OSStatus;
+        }
+        unsafe { AEStreamOpenKeyDesc(r#ref, key, new_type) }
     }
-    unsafe { AEStreamWriteKeyDesc(r#ref, key, new_type, data, length) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamOpenKeyDesc(
-    r#ref: AEStreamRef,
-    key: AEKeyword,
-    new_type: DescType,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamOpenKeyDesc(r#ref: AEStreamRef, key: AEKeyword, new_type: DescType) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    #[doc(alias = "AEStreamWriteKey")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn write_key(r#ref: Option<&AEStream>, key: AEKeyword) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamWriteKey(r#ref: Option<&AEStream>, key: AEKeyword) -> OSStatus;
+        }
+        unsafe { AEStreamWriteKey(r#ref, key) }
     }
-    unsafe { AEStreamOpenKeyDesc(r#ref, key, new_type) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamWriteKey(r#ref: AEStreamRef, key: AEKeyword) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamWriteKey(r#ref: AEStreamRef, key: AEKeyword) -> OSStatus;
+    /// # Safety
+    ///
+    /// `target_data` must be a valid pointer.
+    #[doc(alias = "AEStreamCreateEvent")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn create_event(
+        clazz: AEEventClass,
+        id: AEEventID,
+        target_type: DescType,
+        target_data: *const c_void,
+        target_length: Size,
+        return_id: i16,
+        transaction_id: i32,
+    ) -> *mut AEStream {
+        extern "C-unwind" {
+            fn AEStreamCreateEvent(
+                clazz: AEEventClass,
+                id: AEEventID,
+                target_type: DescType,
+                target_data: *const c_void,
+                target_length: Size,
+                return_id: i16,
+                transaction_id: i32,
+            ) -> *mut AEStream;
+        }
+        unsafe {
+            AEStreamCreateEvent(
+                clazz,
+                id,
+                target_type,
+                target_data,
+                target_length,
+                return_id,
+                transaction_id,
+            )
+        }
     }
-    unsafe { AEStreamWriteKey(r#ref, key) }
-}
 
-/// # Safety
-///
-/// `target_data` must be a valid pointer.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamCreateEvent(
-    clazz: AEEventClass,
-    id: AEEventID,
-    target_type: DescType,
-    target_data: *const c_void,
-    target_length: Size,
-    return_id: i16,
-    transaction_id: i32,
-) -> AEStreamRef {
-    extern "C-unwind" {
-        fn AEStreamCreateEvent(
-            clazz: AEEventClass,
-            id: AEEventID,
-            target_type: DescType,
-            target_data: *const c_void,
-            target_length: Size,
-            return_id: i16,
-            transaction_id: i32,
-        ) -> AEStreamRef;
+    /// # Safety
+    ///
+    /// - `event` struct field `dataHandle` must be a valid pointer.
+    /// - `event` might not allow `None`.
+    #[doc(alias = "AEStreamOpenEvent")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn open_event(event: Option<&mut AppleEvent>) -> *mut AEStream {
+        extern "C-unwind" {
+            fn AEStreamOpenEvent(event: Option<&mut AppleEvent>) -> *mut AEStream;
+        }
+        unsafe { AEStreamOpenEvent(event) }
     }
-    unsafe {
-        AEStreamCreateEvent(
-            clazz,
-            id,
-            target_type,
-            target_data,
-            target_length,
-            return_id,
-            transaction_id,
-        )
-    }
-}
 
-/// # Safety
-///
-/// - `event` struct field `dataHandle` must be a valid pointer.
-/// - `event` might not allow `None`.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamOpenEvent(event: Option<&mut AppleEvent>) -> AEStreamRef {
-    extern "C-unwind" {
-        fn AEStreamOpenEvent(event: Option<&mut AppleEvent>) -> AEStreamRef;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    #[doc(alias = "AEStreamOptionalParam")]
+    #[cfg(feature = "AEDataModel")]
+    #[inline]
+    pub unsafe fn optional_param(r#ref: Option<&AEStream>, key: AEKeyword) -> OSStatus {
+        extern "C-unwind" {
+            fn AEStreamOptionalParam(r#ref: Option<&AEStream>, key: AEKeyword) -> OSStatus;
+        }
+        unsafe { AEStreamOptionalParam(r#ref, key) }
     }
-    unsafe { AEStreamOpenEvent(event) }
-}
-
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[cfg(feature = "AEDataModel")]
-#[inline]
-pub unsafe fn AEStreamOptionalParam(r#ref: AEStreamRef, key: AEKeyword) -> OSStatus {
-    extern "C-unwind" {
-        fn AEStreamOptionalParam(r#ref: AEStreamRef, key: AEKeyword) -> OSStatus;
-    }
-    unsafe { AEStreamOptionalParam(r#ref, key) }
 }

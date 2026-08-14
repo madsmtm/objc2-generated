@@ -193,16 +193,16 @@ impl LSSharedFileList {
 
     /// # Safety
     ///
-    /// `in_authorization` must be a valid pointer.
+    /// `in_authorization` might need manual memory-management.
     #[doc(alias = "LSSharedFileListSetAuthorization")]
     #[cfg(feature = "objc2-security")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn set_authorization(&self, in_authorization: AuthorizationRef) -> OSStatus {
+    pub unsafe fn set_authorization(&self, in_authorization: &Authorization) -> OSStatus {
         extern "C-unwind" {
             fn LSSharedFileListSetAuthorization(
                 in_list: &LSSharedFileList,
-                in_authorization: AuthorizationRef,
+                in_authorization: &Authorization,
             ) -> OSStatus;
         }
         unsafe { LSSharedFileListSetAuthorization(self, in_authorization) }
@@ -330,7 +330,7 @@ impl LSSharedFileList {
 
     /// # Safety
     ///
-    /// - `in_icon_ref` must be a valid pointer or null.
+    /// - `in_icon_ref` might need manual memory-management.
     /// - `in_properties_to_set` generic should be of the correct type.
     #[doc(alias = "LSSharedFileListInsertItemURL")]
     #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
@@ -340,7 +340,7 @@ impl LSSharedFileList {
         &self,
         insert_after_this_item: &LSSharedFileListItem,
         in_display_name: Option<&CFString>,
-        in_icon_ref: IconRef,
+        in_icon_ref: Option<&Icon>,
         in_url: &CFURL,
         in_properties_to_set: Option<&CFDictionary<CFString, CFType>>,
         in_properties_to_clear: Option<&CFArray<CFString>>,
@@ -350,7 +350,7 @@ impl LSSharedFileList {
                 in_list: &LSSharedFileList,
                 insert_after_this_item: &LSSharedFileListItem,
                 in_display_name: Option<&CFString>,
-                in_icon_ref: IconRef,
+                in_icon_ref: Option<&Icon>,
                 in_url: &CFURL,
                 in_properties_to_set: Option<&CFDictionary<CFString, CFType>>,
                 in_properties_to_clear: Option<&CFArray<CFString>>,
@@ -372,7 +372,7 @@ impl LSSharedFileList {
 
     /// # Safety
     ///
-    /// - `in_icon_ref` must be a valid pointer or null.
+    /// - `in_icon_ref` might need manual memory-management.
     /// - `in_properties_to_set` generic should be of the correct type.
     #[doc(alias = "LSSharedFileListInsertItemFSRef")]
     #[cfg(all(
@@ -387,7 +387,7 @@ impl LSSharedFileList {
         &self,
         insert_after_this_item: &LSSharedFileListItem,
         in_display_name: Option<&CFString>,
-        in_icon_ref: IconRef,
+        in_icon_ref: Option<&Icon>,
         in_fs_ref: &FSRef,
         in_properties_to_set: Option<&CFDictionary<CFString, CFType>>,
         in_properties_to_clear: Option<&CFArray<CFString>>,
@@ -397,7 +397,7 @@ impl LSSharedFileList {
                 in_list: &LSSharedFileList,
                 insert_after_this_item: &LSSharedFileListItem,
                 in_display_name: Option<&CFString>,
-                in_icon_ref: IconRef,
+                in_icon_ref: Option<&Icon>,
                 in_fs_ref: &FSRef,
                 in_properties_to_set: Option<&CFDictionary<CFString, CFType>>,
                 in_properties_to_clear: Option<&CFArray<CFString>>,
@@ -474,11 +474,14 @@ impl LSSharedFileListItem {
     #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn copy_icon_ref(&self) -> IconRef {
+    pub unsafe fn copy_icon_ref(&self) -> NonNull<Icon> {
         extern "C-unwind" {
-            fn LSSharedFileListItemCopyIconRef(in_item: &LSSharedFileListItem) -> IconRef;
+            fn LSSharedFileListItemCopyIconRef(
+                in_item: &LSSharedFileListItem,
+            ) -> Option<NonNull<Icon>>;
         }
-        unsafe { LSSharedFileListItemCopyIconRef(self) }
+        let ret = unsafe { LSSharedFileListItemCopyIconRef(self) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
     #[doc(alias = "LSSharedFileListItemCopyDisplayName")]

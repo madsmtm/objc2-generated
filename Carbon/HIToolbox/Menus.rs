@@ -573,13 +573,13 @@ pub type MenuDefUPP = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MenuDefSpec_u_view {
     pub classID: *const CFString,
-    pub initEvent: EventRef,
+    pub initEvent: *mut Event,
 }
 
 #[cfg(all(feature = "CarbonEventsCore", feature = "objc2"))]
 unsafe impl Encode for MenuDefSpec_u_view {
     const ENCODING: Encoding =
-        Encoding::Struct("?", &[<*const CFString>::ENCODING, <EventRef>::ENCODING]);
+        Encoding::Struct("?", &[<*const CFString>::ENCODING, <*mut Event>::ENCODING]);
 }
 
 #[cfg(all(feature = "CarbonEventsCore", feature = "objc2"))]

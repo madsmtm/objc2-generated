@@ -26,38 +26,34 @@ pub const kTECChinesePluginSignature: c_uint = 0x707a686f;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kteckoreanpluginsignature?language=objc)
 pub const kTECKoreanPluginSignature: c_uint = 0x706b6f72;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaquetecobjectref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecobject?language=objc)
+#[doc(alias = "TECObjectRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueTECObjectRef {
+pub struct TECObject {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueTECObjectRef {
+unsafe impl RefEncode for TECObject {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueTECObjectRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecobjectref?language=objc)
-pub type TECObjectRef = *mut OpaqueTECObjectRef;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaquetecsnifferobjectref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecsnifferobject?language=objc)
+#[doc(alias = "TECSnifferObjectRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueTECSnifferObjectRef {
+pub struct TECSnifferObject {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueTECSnifferObjectRef {
+unsafe impl RefEncode for TECSnifferObject {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueTECSnifferObjectRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecsnifferobjectref?language=objc)
-pub type TECSnifferObjectRef = *mut OpaqueTECSnifferObjectRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginsig?language=objc)
 pub type TECPluginSig = OSType;
@@ -286,13 +282,13 @@ pub unsafe fn TECGetTextEncodingFromInternetName(
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCreateConverter(
-    new_encoding_converter: Option<&mut TECObjectRef>,
+    new_encoding_converter: Option<&mut *mut TECObject>,
     input_encoding: TextEncoding,
     output_encoding: TextEncoding,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCreateConverter(
-            new_encoding_converter: Option<&mut TECObjectRef>,
+            new_encoding_converter: Option<&mut *mut TECObject>,
             input_encoding: TextEncoding,
             output_encoding: TextEncoding,
         ) -> OSStatus;
@@ -308,13 +304,13 @@ pub unsafe fn TECCreateConverter(
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCreateConverterFromPath(
-    new_encoding_converter: Option<&mut TECObjectRef>,
+    new_encoding_converter: Option<&mut *mut TECObject>,
     in_path: *mut TextEncoding,
     in_encodings: ItemCount,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCreateConverterFromPath(
-            new_encoding_converter: Option<&mut TECObjectRef>,
+            new_encoding_converter: Option<&mut *mut TECObject>,
             in_path: *mut TextEncoding,
             in_encodings: ItemCount,
         ) -> OSStatus;
@@ -326,27 +322,29 @@ pub unsafe fn TECCreateConverterFromPath(
 ///
 /// `new_encoding_converter` must be a valid pointer.
 #[inline]
-pub unsafe fn TECDisposeConverter(new_encoding_converter: TECObjectRef) -> OSStatus {
+pub unsafe fn TECDisposeConverter(new_encoding_converter: *mut TECObject) -> OSStatus {
     extern "C-unwind" {
-        fn TECDisposeConverter(new_encoding_converter: TECObjectRef) -> OSStatus;
+        fn TECDisposeConverter(new_encoding_converter: *mut TECObject) -> OSStatus;
     }
     unsafe { TECDisposeConverter(new_encoding_converter) }
 }
 
 /// # Safety
 ///
-/// `encoding_converter` must be a valid pointer.
+/// - `encoding_converter` might need manual memory-management.
+/// - `encoding_converter` might not allow `None`.
 #[inline]
-pub unsafe fn TECClearConverterContextInfo(encoding_converter: TECObjectRef) -> OSStatus {
+pub unsafe fn TECClearConverterContextInfo(encoding_converter: Option<&TECObject>) -> OSStatus {
     extern "C-unwind" {
-        fn TECClearConverterContextInfo(encoding_converter: TECObjectRef) -> OSStatus;
+        fn TECClearConverterContextInfo(encoding_converter: Option<&TECObject>) -> OSStatus;
     }
     unsafe { TECClearConverterContextInfo(encoding_converter) }
 }
 
 /// # Safety
 ///
-/// - `encoding_converter` must be a valid pointer.
+/// - `encoding_converter` might need manual memory-management.
+/// - `encoding_converter` might not allow `None`.
 /// - `input_buffer` must be a valid pointer.
 /// - `actual_input_length` might not allow `None`.
 /// - `output_buffer` must be a valid pointer.
@@ -354,7 +352,7 @@ pub unsafe fn TECClearConverterContextInfo(encoding_converter: TECObjectRef) -> 
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECConvertText(
-    encoding_converter: TECObjectRef,
+    encoding_converter: Option<&TECObject>,
     input_buffer: ConstTextPtr,
     input_buffer_length: ByteCount,
     actual_input_length: Option<&mut ByteCount>,
@@ -364,7 +362,7 @@ pub unsafe fn TECConvertText(
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECConvertText(
-            encoding_converter: TECObjectRef,
+            encoding_converter: Option<&TECObject>,
             input_buffer: ConstTextPtr,
             input_buffer_length: ByteCount,
             actual_input_length: Option<&mut ByteCount>,
@@ -388,20 +386,21 @@ pub unsafe fn TECConvertText(
 
 /// # Safety
 ///
-/// - `encoding_converter` must be a valid pointer.
+/// - `encoding_converter` might need manual memory-management.
+/// - `encoding_converter` might not allow `None`.
 /// - `output_buffer` must be a valid pointer.
 /// - `actual_output_length` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECFlushText(
-    encoding_converter: TECObjectRef,
+    encoding_converter: Option<&TECObject>,
     output_buffer: TextPtr,
     output_buffer_length: ByteCount,
     actual_output_length: Option<&mut ByteCount>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECFlushText(
-            encoding_converter: TECObjectRef,
+            encoding_converter: Option<&TECObject>,
             output_buffer: TextPtr,
             output_buffer_length: ByteCount,
             actual_output_length: Option<&mut ByteCount>,
@@ -467,18 +466,19 @@ pub unsafe fn TECGetSubTextEncodings(
 
 /// # Safety
 ///
-/// - `encoding_converter` must be a valid pointer.
+/// - `encoding_converter` might need manual memory-management.
+/// - `encoding_converter` might not allow `None`.
 /// - `num_encodings` might not allow `None`.
 /// - `encoding_list` must be a valid pointer.
 #[inline]
 pub unsafe fn TECGetEncodingList(
-    encoding_converter: TECObjectRef,
+    encoding_converter: Option<&TECObject>,
     num_encodings: Option<&mut ItemCount>,
     encoding_list: *mut Handle,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECGetEncodingList(
-            encoding_converter: TECObjectRef,
+            encoding_converter: Option<&TECObject>,
             num_encodings: Option<&mut ItemCount>,
             encoding_list: *mut Handle,
         ) -> OSStatus;
@@ -494,14 +494,14 @@ pub unsafe fn TECGetEncodingList(
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCreateOneToManyConverter(
-    new_encoding_converter: Option<&mut TECObjectRef>,
+    new_encoding_converter: Option<&mut *mut TECObject>,
     input_encoding: TextEncoding,
     num_output_encodings: ItemCount,
     output_encodings: *mut TextEncoding,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCreateOneToManyConverter(
-            new_encoding_converter: Option<&mut TECObjectRef>,
+            new_encoding_converter: Option<&mut *mut TECObject>,
             input_encoding: TextEncoding,
             num_output_encodings: ItemCount,
             output_encodings: *mut TextEncoding,
@@ -519,7 +519,8 @@ pub unsafe fn TECCreateOneToManyConverter(
 
 /// # Safety
 ///
-/// - `encoding_converter` must be a valid pointer.
+/// - `encoding_converter` might need manual memory-management.
+/// - `encoding_converter` might not allow `None`.
 /// - `input_buffer` must be a valid pointer.
 /// - `actual_input_length` might not allow `None`.
 /// - `output_buffer` must be a valid pointer.
@@ -529,7 +530,7 @@ pub unsafe fn TECCreateOneToManyConverter(
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECConvertTextToMultipleEncodings(
-    encoding_converter: TECObjectRef,
+    encoding_converter: Option<&TECObject>,
     input_buffer: ConstTextPtr,
     input_buffer_length: ByteCount,
     actual_input_length: Option<&mut ByteCount>,
@@ -542,7 +543,7 @@ pub unsafe fn TECConvertTextToMultipleEncodings(
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECConvertTextToMultipleEncodings(
-            encoding_converter: TECObjectRef,
+            encoding_converter: Option<&TECObject>,
             input_buffer: ConstTextPtr,
             input_buffer_length: ByteCount,
             actual_input_length: Option<&mut ByteCount>,
@@ -572,7 +573,8 @@ pub unsafe fn TECConvertTextToMultipleEncodings(
 
 /// # Safety
 ///
-/// - `encoding_converter` must be a valid pointer.
+/// - `encoding_converter` might need manual memory-management.
+/// - `encoding_converter` might not allow `None`.
 /// - `output_buffer` must be a valid pointer.
 /// - `actual_output_length` might not allow `None`.
 /// - `out_encodings_buffer` must be a valid pointer.
@@ -580,7 +582,7 @@ pub unsafe fn TECConvertTextToMultipleEncodings(
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECFlushMultipleEncodings(
-    encoding_converter: TECObjectRef,
+    encoding_converter: Option<&TECObject>,
     output_buffer: TextPtr,
     output_buffer_length: ByteCount,
     actual_output_length: Option<&mut ByteCount>,
@@ -590,7 +592,7 @@ pub unsafe fn TECFlushMultipleEncodings(
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECFlushMultipleEncodings(
-            encoding_converter: TECObjectRef,
+            encoding_converter: Option<&TECObject>,
             output_buffer: TextPtr,
             output_buffer_length: ByteCount,
             actual_output_length: Option<&mut ByteCount>,
@@ -752,13 +754,13 @@ pub unsafe fn TECGetAvailableSniffers(
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECCreateSniffer(
-    encoding_sniffer: Option<&mut TECSnifferObjectRef>,
+    encoding_sniffer: Option<&mut *mut TECSnifferObject>,
     test_encodings: *mut TextEncoding,
     num_text_encodings: ItemCount,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECCreateSniffer(
-            encoding_sniffer: Option<&mut TECSnifferObjectRef>,
+            encoding_sniffer: Option<&mut *mut TECSnifferObject>,
             test_encodings: *mut TextEncoding,
             num_text_encodings: ItemCount,
         ) -> OSStatus;
@@ -768,7 +770,8 @@ pub unsafe fn TECCreateSniffer(
 
 /// # Safety
 ///
-/// - `encoding_sniffer` must be a valid pointer.
+/// - `encoding_sniffer` might need manual memory-management.
+/// - `encoding_sniffer` might not allow `None`.
 /// - `input_buffer` must be a valid pointer.
 /// - `test_encodings` must be a valid pointer.
 /// - `num_errs_array` must be a valid pointer.
@@ -776,7 +779,7 @@ pub unsafe fn TECCreateSniffer(
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn TECSniffTextEncoding(
-    encoding_sniffer: TECSnifferObjectRef,
+    encoding_sniffer: Option<&TECSnifferObject>,
     input_buffer: ConstTextPtr,
     input_buffer_length: ByteCount,
     test_encodings: *mut TextEncoding,
@@ -788,7 +791,7 @@ pub unsafe fn TECSniffTextEncoding(
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECSniffTextEncoding(
-            encoding_sniffer: TECSnifferObjectRef,
+            encoding_sniffer: Option<&TECSnifferObject>,
             input_buffer: ConstTextPtr,
             input_buffer_length: ByteCount,
             test_encodings: *mut TextEncoding,
@@ -818,35 +821,37 @@ pub unsafe fn TECSniffTextEncoding(
 ///
 /// `encoding_sniffer` must be a valid pointer.
 #[inline]
-pub unsafe fn TECDisposeSniffer(encoding_sniffer: TECSnifferObjectRef) -> OSStatus {
+pub unsafe fn TECDisposeSniffer(encoding_sniffer: *mut TECSnifferObject) -> OSStatus {
     extern "C-unwind" {
-        fn TECDisposeSniffer(encoding_sniffer: TECSnifferObjectRef) -> OSStatus;
+        fn TECDisposeSniffer(encoding_sniffer: *mut TECSnifferObject) -> OSStatus;
     }
     unsafe { TECDisposeSniffer(encoding_sniffer) }
 }
 
 /// # Safety
 ///
-/// `encoding_sniffer` must be a valid pointer.
+/// - `encoding_sniffer` might need manual memory-management.
+/// - `encoding_sniffer` might not allow `None`.
 #[inline]
-pub unsafe fn TECClearSnifferContextInfo(encoding_sniffer: TECSnifferObjectRef) -> OSStatus {
+pub unsafe fn TECClearSnifferContextInfo(encoding_sniffer: Option<&TECSnifferObject>) -> OSStatus {
     extern "C-unwind" {
-        fn TECClearSnifferContextInfo(encoding_sniffer: TECSnifferObjectRef) -> OSStatus;
+        fn TECClearSnifferContextInfo(encoding_sniffer: Option<&TECSnifferObject>) -> OSStatus;
     }
     unsafe { TECClearSnifferContextInfo(encoding_sniffer) }
 }
 
 /// # Safety
 ///
-/// `encoding_converter` must be a valid pointer.
+/// - `encoding_converter` might need manual memory-management.
+/// - `encoding_converter` might not allow `None`.
 #[inline]
 pub unsafe fn TECSetBasicOptions(
-    encoding_converter: TECObjectRef,
+    encoding_converter: Option<&TECObject>,
     control_flags: OptionBits,
 ) -> OSStatus {
     extern "C-unwind" {
         fn TECSetBasicOptions(
-            encoding_converter: TECObjectRef,
+            encoding_converter: Option<&TECObject>,
             control_flags: OptionBits,
         ) -> OSStatus;
     }

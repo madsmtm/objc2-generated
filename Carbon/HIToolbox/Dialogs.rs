@@ -526,7 +526,7 @@ pub struct AlertStdCFStringAlertParamRec {
     pub cancelButton: i16,
     pub position: u16,
     pub flags: OptionBits,
-    pub icon: IconRef,
+    pub icon: *mut Icon,
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-services"))]
@@ -544,7 +544,7 @@ unsafe impl Encode for AlertStdCFStringAlertParamRec {
             <i16>::ENCODING,
             <u16>::ENCODING,
             <OptionBits>::ENCODING,
-            <IconRef>::ENCODING,
+            <*mut Icon>::ENCODING,
         ],
     );
 }

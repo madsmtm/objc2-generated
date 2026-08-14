@@ -350,19 +350,20 @@ pub const kPlotIconRefNoMask: c_uint = 1 << 2;
 
 /// # Safety
 ///
-/// - `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` might need manual memory-management.
+/// - `the_icon_ref` might not allow `None`.
 /// - `icon_family` must be a valid pointer.
 /// - `icon_family` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn IconRefToIconFamily(
-    the_icon_ref: IconRef,
+    the_icon_ref: Option<&Icon>,
     which_icons: IconSelectorValue,
     icon_family: Option<&mut IconFamilyHandle>,
 ) -> OSErr {
     extern "C-unwind" {
         fn IconRefToIconFamily(
-            the_icon_ref: IconRef,
+            the_icon_ref: Option<&Icon>,
             which_icons: IconSelectorValue,
             icon_family: Option<&mut IconFamilyHandle>,
         ) -> OSErr;
@@ -408,7 +409,8 @@ pub unsafe fn GetIconFamilyData(
 ///
 /// - `test_pt` might not allow `None`.
 /// - `icon_rect` might not allow `None`.
-/// - `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` might need manual memory-management.
+/// - `the_icon_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn IconRefContainsCGPoint(
@@ -416,7 +418,7 @@ pub unsafe fn IconRefContainsCGPoint(
     icon_rect: Option<&CGRect>,
     align: IconAlignmentType,
     icon_services_usage_flags: IconServicesUsageFlags,
-    the_icon_ref: IconRef,
+    the_icon_ref: Option<&Icon>,
 ) -> bool {
     extern "C-unwind" {
         fn IconRefContainsCGPoint(
@@ -424,7 +426,7 @@ pub unsafe fn IconRefContainsCGPoint(
             icon_rect: Option<&CGRect>,
             align: IconAlignmentType,
             icon_services_usage_flags: IconServicesUsageFlags,
-            the_icon_ref: IconRef,
+            the_icon_ref: Option<&Icon>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -443,7 +445,8 @@ pub unsafe fn IconRefContainsCGPoint(
 ///
 /// - `test_rect` might not allow `None`.
 /// - `icon_rect` might not allow `None`.
-/// - `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` might need manual memory-management.
+/// - `the_icon_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn IconRefIntersectsCGRect(
@@ -451,7 +454,7 @@ pub unsafe fn IconRefIntersectsCGRect(
     icon_rect: Option<&CGRect>,
     align: IconAlignmentType,
     icon_services_usage_flags: IconServicesUsageFlags,
-    the_icon_ref: IconRef,
+    the_icon_ref: Option<&Icon>,
 ) -> bool {
     extern "C-unwind" {
         fn IconRefIntersectsCGRect(
@@ -459,7 +462,7 @@ pub unsafe fn IconRefIntersectsCGRect(
             icon_rect: Option<&CGRect>,
             align: IconAlignmentType,
             icon_services_usage_flags: IconServicesUsageFlags,
-            the_icon_ref: IconRef,
+            the_icon_ref: Option<&Icon>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -477,21 +480,22 @@ pub unsafe fn IconRefIntersectsCGRect(
 /// # Safety
 ///
 /// - `icon_rect` might not allow `None`.
-/// - `the_icon_ref` must be a valid pointer.
+/// - `the_icon_ref` might need manual memory-management.
+/// - `the_icon_ref` might not allow `None`.
 #[cfg(all(feature = "HIShape", feature = "objc2-core-services"))]
 #[inline]
 pub unsafe fn IconRefToHIShape(
     icon_rect: Option<&CGRect>,
     align: IconAlignmentType,
     icon_services_usage_flags: IconServicesUsageFlags,
-    the_icon_ref: IconRef,
+    the_icon_ref: Option<&Icon>,
 ) -> Option<CFRetained<HIShape>> {
     extern "C-unwind" {
         fn IconRefToHIShape(
             icon_rect: Option<&CGRect>,
             align: IconAlignmentType,
             icon_services_usage_flags: IconServicesUsageFlags,
-            the_icon_ref: IconRef,
+            the_icon_ref: Option<&Icon>,
         ) -> Option<NonNull<HIShape>>;
     }
     let ret =
@@ -501,12 +505,13 @@ pub unsafe fn IconRefToHIShape(
 
 /// # Safety
 ///
-/// `icon_ref` must be a valid pointer.
+/// - `icon_ref` might need manual memory-management.
+/// - `icon_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe fn IsIconRefMaskEmpty(icon_ref: IconRef) -> bool {
+pub unsafe fn IsIconRefMaskEmpty(icon_ref: Option<&Icon>) -> bool {
     extern "C-unwind" {
-        fn IsIconRefMaskEmpty(icon_ref: IconRef) -> Boolean;
+        fn IsIconRefMaskEmpty(icon_ref: Option<&Icon>) -> Boolean;
     }
     let ret = unsafe { IsIconRefMaskEmpty(icon_ref) };
     ret != 0
@@ -514,21 +519,22 @@ pub unsafe fn IsIconRefMaskEmpty(icon_ref: IconRef) -> bool {
 
 /// # Safety
 ///
-/// - `in_icon_ref` must be a valid pointer.
+/// - `in_icon_ref` might need manual memory-management.
+/// - `in_icon_ref` might not allow `None`.
 /// - `out_transform` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn GetIconRefVariant(
-    in_icon_ref: IconRef,
+    in_icon_ref: Option<&Icon>,
     in_variant: OSType,
     out_transform: Option<&mut IconTransformType>,
-) -> IconRef {
+) -> *mut Icon {
     extern "C-unwind" {
         fn GetIconRefVariant(
-            in_icon_ref: IconRef,
+            in_icon_ref: Option<&Icon>,
             in_variant: OSType,
             out_transform: Option<&mut IconTransformType>,
-        ) -> IconRef;
+        ) -> *mut Icon;
     }
     unsafe { GetIconRefVariant(in_icon_ref, in_variant, out_transform) }
 }

@@ -539,46 +539,8 @@ pub use self::__AEHelpers::AEBuildError;
 pub use self::__AEHelpers::AEBuildErrorCode;
 #[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
 pub use self::__AEHelpers::AEPrintDescToHandle;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamClose;
 #[cfg(feature = "AEHelpers")]
-pub use self::__AEHelpers::AEStreamCloseDesc;
-#[cfg(feature = "AEHelpers")]
-pub use self::__AEHelpers::AEStreamCloseList;
-#[cfg(feature = "AEHelpers")]
-pub use self::__AEHelpers::AEStreamCloseRecord;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamCreateEvent;
-#[cfg(feature = "AEHelpers")]
-pub use self::__AEHelpers::AEStreamOpen;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamOpenDesc;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamOpenEvent;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamOpenKeyDesc;
-#[cfg(feature = "AEHelpers")]
-pub use self::__AEHelpers::AEStreamOpenList;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamOpenRecord;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamOptionalParam;
-#[cfg(feature = "AEHelpers")]
-pub use self::__AEHelpers::AEStreamRef;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamSetRecordType;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamWriteAEDesc;
-#[cfg(feature = "AEHelpers")]
-pub use self::__AEHelpers::AEStreamWriteData;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamWriteDesc;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamWriteKey;
-#[cfg(all(feature = "AEDataModel", feature = "AEHelpers"))]
-pub use self::__AEHelpers::AEStreamWriteKeyDesc;
-#[cfg(feature = "AEHelpers")]
-pub use self::__AEHelpers::OpaqueAEStreamRef;
+pub use self::__AEHelpers::AEStream;
 #[cfg(all(feature = "AEDataModel", feature = "AEMach"))]
 pub use self::__AEMach::keyReplyPortAttr;
 #[cfg(all(feature = "AEDataModel", feature = "AEMach"))]
@@ -2571,8 +2533,6 @@ pub use self::__AppleEvents::AERemoteProcessResolver;
 pub use self::__AppleEvents::AERemoteProcessResolverCallback;
 #[cfg(feature = "AppleEvents")]
 pub use self::__AppleEvents::AERemoteProcessResolverContext;
-#[cfg(feature = "AppleEvents")]
-pub use self::__AppleEvents::AERemoteProcessResolverRef;
 #[cfg(all(feature = "AEDataModel", feature = "AppleEvents"))]
 pub use self::__AppleEvents::AERemoveEventHandler;
 #[cfg(all(feature = "AEDataModel", feature = "AppleEvents"))]

@@ -208,7 +208,7 @@ impl SCPreferences {
     ///
     /// # Safety
     ///
-    /// `authorization` must be a valid pointer or null.
+    /// `authorization` might need manual memory-management.
     #[doc(alias = "SCPreferencesCreateWithAuthorization")]
     #[cfg(feature = "objc2-security")]
     #[inline]
@@ -216,14 +216,14 @@ impl SCPreferences {
         allocator: Option<&CFAllocator>,
         name: &CFString,
         prefs_id: Option<&CFString>,
-        authorization: AuthorizationRef,
+        authorization: Option<&Authorization>,
     ) -> Option<CFRetained<SCPreferences>> {
         extern "C-unwind" {
             fn SCPreferencesCreateWithAuthorization(
                 allocator: Option<&CFAllocator>,
                 name: &CFString,
                 prefs_id: Option<&CFString>,
-                authorization: AuthorizationRef,
+                authorization: Option<&Authorization>,
             ) -> Option<NonNull<SCPreferences>>;
         }
         let ret = unsafe {

@@ -327,20 +327,10 @@ pub use self::__Authorization::errAuthorizationToolExecuteFailure;
 pub use self::__Authorization::kAuthorizationExternalFormLength;
 #[cfg(feature = "Authorization")]
 pub use self::__Authorization::kAuthorizationFlagCanNotPreAuthorize;
+#[cfg(feature = "Authorization")]
+pub use self::__Authorization::Authorization;
 #[cfg(all(feature = "Authorization", feature = "block2"))]
 pub use self::__Authorization::AuthorizationAsyncCallback;
-#[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationCopyInfo;
-#[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationCopyPrivilegedReference;
-#[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationCopyRights;
-#[cfg(all(feature = "Authorization", feature = "block2"))]
-pub use self::__Authorization::AuthorizationCopyRightsAsync;
-#[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationCreate;
-#[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationCreateFromExternalForm;
 #[cfg(feature = "Authorization")]
 pub use self::__Authorization::AuthorizationEnvironment;
 #[cfg(feature = "Authorization")]
@@ -348,19 +338,9 @@ pub use self::__Authorization::AuthorizationExternalForm;
 #[cfg(feature = "Authorization")]
 pub use self::__Authorization::AuthorizationFlags;
 #[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationFree;
-#[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationFreeItemSet;
-#[cfg(feature = "Authorization")]
 pub use self::__Authorization::AuthorizationItem;
 #[cfg(feature = "Authorization")]
 pub use self::__Authorization::AuthorizationItemSet;
-#[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationMakeExternalForm;
-#[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationOpaqueRef;
-#[cfg(feature = "Authorization")]
-pub use self::__Authorization::AuthorizationRef;
 #[cfg(feature = "Authorization")]
 pub use self::__Authorization::AuthorizationRights;
 #[cfg(feature = "Authorization")]
@@ -379,14 +359,6 @@ pub use self::__AuthorizationDB::kAuthorizationRuleClassAllow;
 pub use self::__AuthorizationDB::kAuthorizationRuleClassDeny;
 #[cfg(feature = "AuthorizationDB")]
 pub use self::__AuthorizationDB::kAuthorizationRuleIsAdmin;
-#[cfg(feature = "AuthorizationDB")]
-pub use self::__AuthorizationDB::AuthorizationRightGet;
-#[cfg(all(feature = "Authorization", feature = "AuthorizationDB"))]
-pub use self::__AuthorizationDB::AuthorizationRightRemove;
-#[cfg(all(feature = "Authorization", feature = "AuthorizationDB"))]
-pub use self::__AuthorizationDB::AuthorizationRightSet;
-#[cfg(feature = "AuthorizationPlugin")]
-pub(crate) use self::__AuthorizationPlugin::__OpaqueAuthorizationEngine;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::kAuthorizationCallbacksVersion;
 #[cfg(feature = "AuthorizationPlugin")]
@@ -396,19 +368,17 @@ pub use self::__AuthorizationPlugin::AuthorizationCallbacks;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationContextFlags;
 #[cfg(feature = "AuthorizationPlugin")]
-pub use self::__AuthorizationPlugin::AuthorizationEngineRef;
+pub use self::__AuthorizationPlugin::AuthorizationEngine;
+#[cfg(feature = "AuthorizationPlugin")]
+pub use self::__AuthorizationPlugin::AuthorizationMechanism;
 #[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
 pub use self::__AuthorizationPlugin::AuthorizationMechanismId;
 #[cfg(feature = "AuthorizationPlugin")]
-pub use self::__AuthorizationPlugin::AuthorizationMechanismRef;
-#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
-pub use self::__AuthorizationPlugin::AuthorizationPluginCreate;
+pub use self::__AuthorizationPlugin::AuthorizationPlugin;
 #[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
 pub use self::__AuthorizationPlugin::AuthorizationPluginId;
 #[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
 pub use self::__AuthorizationPlugin::AuthorizationPluginInterface;
-#[cfg(feature = "AuthorizationPlugin")]
-pub use self::__AuthorizationPlugin::AuthorizationPluginRef;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationResult;
 #[cfg(feature = "AuthorizationPlugin")]
@@ -1065,24 +1035,8 @@ pub use self::__SecAccess::kSecUseOnlyUID;
 pub use self::__SecAccess::SecAccessOwnerType;
 #[cfg(feature = "SecAccessControl")]
 pub use self::__SecAccessControl::SecAccessControlCreateFlags;
-#[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
-pub use self::__SecAsn1Coder::SecAsn1AllocCopy;
-#[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
-pub use self::__SecAsn1Coder::SecAsn1AllocCopyItem;
-#[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
-pub use self::__SecAsn1Coder::SecAsn1AllocItem;
 #[cfg(feature = "SecAsn1Coder")]
 pub use self::__SecAsn1Coder::SecAsn1Coder;
-#[cfg(feature = "SecAsn1Coder")]
-pub use self::__SecAsn1Coder::SecAsn1CoderRef;
-#[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
-pub use self::__SecAsn1Coder::SecAsn1Decode;
-#[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
-pub use self::__SecAsn1Coder::SecAsn1DecodeData;
-#[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
-pub use self::__SecAsn1Coder::SecAsn1EncodeItem;
-#[cfg(feature = "SecAsn1Coder")]
-pub use self::__SecAsn1Coder::SecAsn1Malloc;
 #[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
 pub use self::__SecAsn1Coder::SecAsn1OidCompare;
 #[cfg(all(feature = "SecAsn1Templates", feature = "SecAsn1Types"))]
@@ -2614,8 +2568,6 @@ pub use self::__SecCustomTransform::kSecTransformActionProcessData;
 #[cfg(feature = "SecCustomTransform")]
 pub use self::__SecCustomTransform::kSecTransformActionStartingExecution;
 #[cfg(feature = "SecCustomTransform")]
-pub use self::__SecCustomTransform::OpaqueSecTransformImplementation;
-#[cfg(feature = "SecCustomTransform")]
 pub use self::__SecCustomTransform::SecTranformCustomGetAttribute;
 #[cfg(all(feature = "SecCustomTransform", feature = "block2"))]
 pub use self::__SecCustomTransform::SecTransformActionBlock;
@@ -2632,7 +2584,7 @@ pub use self::__SecCustomTransform::SecTransformCreateFP;
 #[cfg(all(feature = "SecCustomTransform", feature = "block2"))]
 pub use self::__SecCustomTransform::SecTransformDataBlock;
 #[cfg(feature = "SecCustomTransform")]
-pub use self::__SecCustomTransform::SecTransformImplementationRef;
+pub use self::__SecCustomTransform::SecTransformImplementation;
 #[cfg(all(feature = "SecCustomTransform", feature = "block2"))]
 pub use self::__SecCustomTransform::SecTransformInstanceBlock;
 #[cfg(feature = "SecCustomTransform")]
@@ -3553,9 +3505,7 @@ pub use self::__SecProtocolTypes::SSLProtocol;
 #[cfg(feature = "SecRandom")]
 pub use self::__SecRandom::kSecRandomDefault;
 #[cfg(feature = "SecRandom")]
-pub use self::__SecRandom::SecRandomCopyBytes;
-#[cfg(feature = "SecRandom")]
-pub use self::__SecRandom::SecRandomRef;
+pub use self::__SecRandom::SecRandom;
 #[cfg(feature = "SecSharedCredential")]
 pub use self::__SecSharedCredential::kSecSharedPassword;
 #[cfg(all(feature = "SecSharedCredential", feature = "block2"))]
@@ -3739,33 +3689,13 @@ pub use self::__SecureDownload::errSecureDownloadInvalidDownload;
 #[cfg(feature = "SecureDownload")]
 pub use self::__SecureDownload::errSecureDownloadInvalidTicket;
 #[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::OpaqueSecureDownload;
-#[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::SecureDownloadCopyCreationDate;
-#[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::SecureDownloadCopyName;
-#[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::SecureDownloadCopyTicketLocation;
-#[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::SecureDownloadCopyURLs;
-#[cfg(all(feature = "SecTrust", feature = "SecureDownload"))]
-pub use self::__SecureDownload::SecureDownloadCreateWithTicket;
-#[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::SecureDownloadFinished;
-#[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::SecureDownloadGetDownloadSize;
-#[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::SecureDownloadRef;
-#[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::SecureDownloadRelease;
+pub use self::__SecureDownload::SecureDownload;
 #[cfg(feature = "SecureDownload")]
 pub use self::__SecureDownload::SecureDownloadTrustCallbackResult;
 #[cfg(all(feature = "SecTrust", feature = "SecureDownload"))]
 pub use self::__SecureDownload::SecureDownloadTrustEvaluateCallback;
 #[cfg(all(feature = "SecTrust", feature = "SecureDownload"))]
 pub use self::__SecureDownload::SecureDownloadTrustSetupCallback;
-#[cfg(feature = "SecureDownload")]
-pub use self::__SecureDownload::SecureDownloadUpdateWithData;
 #[cfg(feature = "SecureTransport")]
 pub use self::__SecureTransport::kSSLSessionConfig_3DES_fallback;
 #[cfg(feature = "SecureTransport")]

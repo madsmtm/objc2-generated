@@ -2638,7 +2638,8 @@ impl DispatchSource {
     ///
     /// # Safety
     ///
-    /// `queue` possibly has additional threading requirements.
+    /// - `type` might need manual memory-management.
+    /// - `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_source_create")]
     #[must_use]
     #[inline]

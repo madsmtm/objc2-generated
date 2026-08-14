@@ -41,7 +41,7 @@ impl SFAuthorization {
         /// Returns the AuthorizationRef for this SFAuthorization.
         #[unsafe(method(authorizationRef))]
         #[unsafe(method_family = none)]
-        pub unsafe fn authorizationRef(&self) -> AuthorizationRef;
+        pub unsafe fn authorizationRef(&self) -> *const Authorization;
 
         #[cfg(feature = "objc2-security")]
         /// Returns an authorization object initialized with the specified flags, rights and environment.

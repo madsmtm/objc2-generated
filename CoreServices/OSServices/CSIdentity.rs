@@ -487,20 +487,21 @@ impl CSIdentity {
 
     /// # Safety
     ///
-    /// - `authorization` must be a valid pointer.
+    /// - `authorization` might need manual memory-management.
+    /// - `authorization` might not allow `None`.
     /// - `error` might not allow `None`.
     #[doc(alias = "CSIdentityCommit")]
     #[cfg(feature = "objc2-security")]
     #[inline]
     pub unsafe fn commit(
         &self,
-        authorization: AuthorizationRef,
+        authorization: Option<&Authorization>,
         error: Option<&mut Option<CFRetained<CFError>>>,
     ) -> bool {
         extern "C-unwind" {
             fn CSIdentityCommit(
                 identity: &CSIdentity,
-                authorization: AuthorizationRef,
+                authorization: Option<&Authorization>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
@@ -568,7 +569,8 @@ impl CSIdentity {
     /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
-    /// - `authorization` must be a valid pointer.
+    /// - `authorization` might need manual memory-management.
+    /// - `authorization` might not allow `None`.
     #[doc(alias = "CSIdentityCommitAsynchronously")]
     #[cfg(feature = "objc2-security")]
     #[inline]
@@ -577,7 +579,7 @@ impl CSIdentity {
         client_context: Option<&CSIdentityClientContext>,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
-        authorization: AuthorizationRef,
+        authorization: Option<&Authorization>,
     ) -> bool {
         extern "C-unwind" {
             fn CSIdentityCommitAsynchronously(
@@ -585,7 +587,7 @@ impl CSIdentity {
                 client_context: Option<&CSIdentityClientContext>,
                 run_loop: Option<&CFRunLoop>,
                 run_loop_mode: Option<&CFString>,
-                authorization: AuthorizationRef,
+                authorization: Option<&Authorization>,
             ) -> Boolean;
         }
         let ret = unsafe {

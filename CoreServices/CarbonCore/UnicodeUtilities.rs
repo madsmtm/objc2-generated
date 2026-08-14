@@ -362,21 +362,19 @@ pub const kUCKeyTranslateNoDeadKeysMask: c_uint = 1 << kUCKeyTranslateNoDeadKeys
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kunicodecollationclass?language=objc)
 pub const kUnicodeCollationClass: c_uint = 0x75636f6c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaquecollatorref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/collator?language=objc)
+#[doc(alias = "CollatorRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueCollatorRef {
+pub struct Collator {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueCollatorRef {
+unsafe impl RefEncode for Collator {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueCollatorRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/collatorref?language=objc)
-pub type CollatorRef = *mut OpaqueCollatorRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uccollateoptions?language=objc)
 pub type UCCollateOptions = u32;
@@ -414,22 +412,20 @@ pub const kUCCollateTypeMask: UInt32 = kUCCollateTypeSourceMask << kUCCollateTyp
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uccollationvalue?language=objc)
 pub type UCCollationValue = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaqueuctypeselectref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uctypeselect?language=objc)
+#[doc(alias = "UCTypeSelectRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueUCTypeSelectRef {
+pub struct UCTypeSelect {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueUCTypeSelectRef {
+unsafe impl RefEncode for UCTypeSelect {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueUCTypeSelectRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uctypeselectref?language=objc)
-pub type UCTypeSelectRef = *mut OpaqueUCTypeSelectRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uctypeselectcompareresult?language=objc)
 pub type UCTypeSelectCompareResult = i32;
@@ -539,22 +535,20 @@ pub const kUCTypeSelectMaxListSize: c_uint = 0xFFFFFFFF;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kunicodetextbreakclass?language=objc)
 pub const kUnicodeTextBreakClass: c_uint = 0x7562726b;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaquetextbreaklocatorref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/textbreaklocator?language=objc)
+#[doc(alias = "TextBreakLocatorRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueTextBreakLocatorRef {
+pub struct TextBreakLocator {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueTextBreakLocatorRef {
+unsafe impl RefEncode for TextBreakLocator {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueTextBreakLocatorRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/textbreaklocatorref?language=objc)
-pub type TextBreakLocatorRef = *mut OpaqueTextBreakLocatorRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/uctextbreaktype?language=objc)
 pub type UCTextBreakType = u32;
@@ -669,23 +663,24 @@ pub unsafe fn UCKeyTranslate(
 
 /// # Safety
 ///
-/// - `locale` must be a valid pointer.
+/// - `locale` might need manual memory-management.
+/// - `locale` might not allow `None`.
 /// - `collator_ref` must be a valid pointer.
 /// - `collator_ref` might not allow `None`.
 #[cfg(feature = "MacLocales")]
 #[inline]
 pub unsafe fn UCCreateCollator(
-    locale: LocaleRef,
+    locale: Option<&Locale>,
     op_variant: LocaleOperationVariant,
     options: UCCollateOptions,
-    collator_ref: Option<&mut CollatorRef>,
+    collator_ref: Option<&mut *mut Collator>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCCreateCollator(
-            locale: LocaleRef,
+            locale: Option<&Locale>,
             op_variant: LocaleOperationVariant,
             options: UCCollateOptions,
-            collator_ref: Option<&mut CollatorRef>,
+            collator_ref: Option<&mut *mut Collator>,
         ) -> OSStatus;
     }
     unsafe { UCCreateCollator(locale, op_variant, options, collator_ref) }
@@ -693,13 +688,14 @@ pub unsafe fn UCCreateCollator(
 
 /// # Safety
 ///
-/// - `collator_ref` must be a valid pointer.
+/// - `collator_ref` might need manual memory-management.
+/// - `collator_ref` might not allow `None`.
 /// - `text_ptr` must be a valid pointer.
 /// - `actual_key_size` might not allow `None`.
 /// - `collation_key` must be a valid pointer.
 #[inline]
 pub unsafe fn UCGetCollationKey(
-    collator_ref: CollatorRef,
+    collator_ref: Option<&Collator>,
     text_ptr: *const UniChar,
     text_length: UniCharCount,
     max_key_size: ItemCount,
@@ -708,7 +704,7 @@ pub unsafe fn UCGetCollationKey(
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCGetCollationKey(
-            collator_ref: CollatorRef,
+            collator_ref: Option<&Collator>,
             text_ptr: *const UniChar,
             text_length: UniCharCount,
             max_key_size: ItemCount,
@@ -767,14 +763,15 @@ pub unsafe fn UCCompareCollationKeys(
 
 /// # Safety
 ///
-/// - `collator_ref` must be a valid pointer.
+/// - `collator_ref` might need manual memory-management.
+/// - `collator_ref` might not allow `None`.
 /// - `text1_ptr` must be a valid pointer.
 /// - `text2_ptr` must be a valid pointer.
 /// - `equivalent` might not allow `None`.
 /// - `order` might not allow `None`.
 #[inline]
 pub unsafe fn UCCompareText(
-    collator_ref: CollatorRef,
+    collator_ref: Option<&Collator>,
     text1_ptr: *const UniChar,
     text1_length: UniCharCount,
     text2_ptr: *const UniChar,
@@ -784,7 +781,7 @@ pub unsafe fn UCCompareText(
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCCompareText(
-            collator_ref: CollatorRef,
+            collator_ref: Option<&Collator>,
             text1_ptr: *const UniChar,
             text1_length: UniCharCount,
             text2_ptr: *const UniChar,
@@ -811,9 +808,9 @@ pub unsafe fn UCCompareText(
 /// - `collator_ref` must be a valid pointer.
 /// - `collator_ref` might not allow `None`.
 #[inline]
-pub unsafe fn UCDisposeCollator(collator_ref: Option<&mut CollatorRef>) -> OSStatus {
+pub unsafe fn UCDisposeCollator(collator_ref: Option<&mut *mut Collator>) -> OSStatus {
     extern "C-unwind" {
-        fn UCDisposeCollator(collator_ref: Option<&mut CollatorRef>) -> OSStatus;
+        fn UCDisposeCollator(collator_ref: Option<&mut *mut Collator>) -> OSStatus;
     }
     unsafe { UCDisposeCollator(collator_ref) }
 }
@@ -900,24 +897,25 @@ pub unsafe fn UCCompareTextNoLocale(
 
 /// # Safety
 ///
-/// - `locale` must be a valid pointer.
+/// - `locale` might need manual memory-management.
+/// - `locale` might not allow `None`.
 /// - `break_ref` must be a valid pointer.
 /// - `break_ref` might not allow `None`.
 #[cfg(feature = "MacLocales")]
 #[deprecated]
 #[inline]
 pub unsafe fn UCCreateTextBreakLocator(
-    locale: LocaleRef,
+    locale: Option<&Locale>,
     op_variant: LocaleOperationVariant,
     break_types: UCTextBreakType,
-    break_ref: Option<&mut TextBreakLocatorRef>,
+    break_ref: Option<&mut *mut TextBreakLocator>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCCreateTextBreakLocator(
-            locale: LocaleRef,
+            locale: Option<&Locale>,
             op_variant: LocaleOperationVariant,
             break_types: UCTextBreakType,
-            break_ref: Option<&mut TextBreakLocatorRef>,
+            break_ref: Option<&mut *mut TextBreakLocator>,
         ) -> OSStatus;
     }
     unsafe { UCCreateTextBreakLocator(locale, op_variant, break_types, break_ref) }
@@ -925,14 +923,15 @@ pub unsafe fn UCCreateTextBreakLocator(
 
 /// # Safety
 ///
-/// - `break_ref` must be a valid pointer.
+/// - `break_ref` might need manual memory-management.
+/// - `break_ref` might not allow `None`.
 /// - `text_ptr` must be a valid pointer.
 /// - `break_offset` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[deprecated]
 #[inline]
 pub unsafe fn UCFindTextBreak(
-    break_ref: TextBreakLocatorRef,
+    break_ref: Option<&TextBreakLocator>,
     break_type: UCTextBreakType,
     options: UCTextBreakOptions,
     text_ptr: *const UniChar,
@@ -942,7 +941,7 @@ pub unsafe fn UCFindTextBreak(
 ) -> OSStatus {
     extern "C-unwind" {
         fn UCFindTextBreak(
-            break_ref: TextBreakLocatorRef,
+            break_ref: Option<&TextBreakLocator>,
             break_type: UCTextBreakType,
             options: UCTextBreakOptions,
             text_ptr: *const UniChar,
@@ -970,204 +969,221 @@ pub unsafe fn UCFindTextBreak(
 /// - `break_ref` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn UCDisposeTextBreakLocator(break_ref: Option<&mut TextBreakLocatorRef>) -> OSStatus {
+pub unsafe fn UCDisposeTextBreakLocator(break_ref: Option<&mut *mut TextBreakLocator>) -> OSStatus {
     extern "C-unwind" {
-        fn UCDisposeTextBreakLocator(break_ref: Option<&mut TextBreakLocatorRef>) -> OSStatus;
+        fn UCDisposeTextBreakLocator(break_ref: Option<&mut *mut TextBreakLocator>) -> OSStatus;
     }
     unsafe { UCDisposeTextBreakLocator(break_ref) }
 }
 
-/// # Safety
-///
-/// - `locale` must be a valid pointer.
-/// - `new_selector` must be a valid pointer.
-/// - `new_selector` might not allow `None`.
-#[cfg(feature = "MacLocales")]
-#[inline]
-pub unsafe fn UCTypeSelectCreateSelector(
-    locale: LocaleRef,
-    op_variant: LocaleOperationVariant,
-    options: UCCollateOptions,
-    new_selector: Option<&mut UCTypeSelectRef>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn UCTypeSelectCreateSelector(
-            locale: LocaleRef,
-            op_variant: LocaleOperationVariant,
-            options: UCCollateOptions,
-            new_selector: Option<&mut UCTypeSelectRef>,
-        ) -> OSStatus;
+impl UCTypeSelect {
+    /// # Safety
+    ///
+    /// - `locale` might need manual memory-management.
+    /// - `locale` might not allow `None`.
+    /// - `new_selector` must be a valid pointer.
+    /// - `new_selector` might not allow `None`.
+    #[doc(alias = "UCTypeSelectCreateSelector")]
+    #[cfg(feature = "MacLocales")]
+    #[inline]
+    pub unsafe fn create_selector(
+        locale: Option<&Locale>,
+        op_variant: LocaleOperationVariant,
+        options: UCCollateOptions,
+        new_selector: Option<&mut *mut UCTypeSelect>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn UCTypeSelectCreateSelector(
+                locale: Option<&Locale>,
+                op_variant: LocaleOperationVariant,
+                options: UCCollateOptions,
+                new_selector: Option<&mut *mut UCTypeSelect>,
+            ) -> OSStatus;
+        }
+        unsafe { UCTypeSelectCreateSelector(locale, op_variant, options, new_selector) }
     }
-    unsafe { UCTypeSelectCreateSelector(locale, op_variant, options, new_selector) }
-}
 
-/// # Safety
-///
-/// `ref` must be a valid pointer.
-#[inline]
-pub unsafe fn UCTypeSelectFlushSelectorData(r#ref: UCTypeSelectRef) -> OSStatus {
-    extern "C-unwind" {
-        fn UCTypeSelectFlushSelectorData(r#ref: UCTypeSelectRef) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    #[doc(alias = "UCTypeSelectFlushSelectorData")]
+    #[inline]
+    pub unsafe fn flush_selector_data(r#ref: Option<&UCTypeSelect>) -> OSStatus {
+        extern "C-unwind" {
+            fn UCTypeSelectFlushSelectorData(r#ref: Option<&UCTypeSelect>) -> OSStatus;
+        }
+        unsafe { UCTypeSelectFlushSelectorData(r#ref) }
     }
-    unsafe { UCTypeSelectFlushSelectorData(r#ref) }
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `ref` might not allow `None`.
-#[inline]
-pub unsafe fn UCTypeSelectReleaseSelector(r#ref: Option<&mut UCTypeSelectRef>) -> OSStatus {
-    extern "C-unwind" {
-        fn UCTypeSelectReleaseSelector(r#ref: Option<&mut UCTypeSelectRef>) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `ref` might not allow `None`.
+    #[doc(alias = "UCTypeSelectReleaseSelector")]
+    #[inline]
+    pub unsafe fn release_selector(r#ref: Option<&mut *mut UCTypeSelect>) -> OSStatus {
+        extern "C-unwind" {
+            fn UCTypeSelectReleaseSelector(r#ref: Option<&mut *mut UCTypeSelect>) -> OSStatus;
+        }
+        unsafe { UCTypeSelectReleaseSelector(r#ref) }
     }
-    unsafe { UCTypeSelectReleaseSelector(r#ref) }
-}
 
-/// # Safety
-///
-/// - `in_ref` must be a valid pointer.
-/// - `in_text` might not allow `None`.
-#[inline]
-pub unsafe fn UCTypeSelectWouldResetBuffer(
-    in_ref: UCTypeSelectRef,
-    in_text: Option<&CFString>,
-    in_event_time: c_double,
-) -> bool {
-    extern "C-unwind" {
-        fn UCTypeSelectWouldResetBuffer(
-            in_ref: UCTypeSelectRef,
-            in_text: Option<&CFString>,
-            in_event_time: c_double,
-        ) -> Boolean;
+    /// # Safety
+    ///
+    /// - `in_ref` might need manual memory-management.
+    /// - `in_ref` might not allow `None`.
+    /// - `in_text` might not allow `None`.
+    #[doc(alias = "UCTypeSelectWouldResetBuffer")]
+    #[inline]
+    pub unsafe fn would_reset_buffer(
+        in_ref: Option<&UCTypeSelect>,
+        in_text: Option<&CFString>,
+        in_event_time: c_double,
+    ) -> bool {
+        extern "C-unwind" {
+            fn UCTypeSelectWouldResetBuffer(
+                in_ref: Option<&UCTypeSelect>,
+                in_text: Option<&CFString>,
+                in_event_time: c_double,
+            ) -> Boolean;
+        }
+        let ret = unsafe { UCTypeSelectWouldResetBuffer(in_ref, in_text, in_event_time) };
+        ret != 0
     }
-    let ret = unsafe { UCTypeSelectWouldResetBuffer(in_ref, in_text, in_event_time) };
-    ret != 0
-}
 
-/// # Safety
-///
-/// - `in_ref` must be a valid pointer.
-/// - `in_text` might not allow `None`.
-/// - `update_flag` might not allow `None`.
-#[inline]
-pub unsafe fn UCTypeSelectAddKeyToSelector(
-    in_ref: UCTypeSelectRef,
-    in_text: Option<&CFString>,
-    in_event_time: c_double,
-    update_flag: Option<&mut Boolean>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn UCTypeSelectAddKeyToSelector(
-            in_ref: UCTypeSelectRef,
-            in_text: Option<&CFString>,
-            in_event_time: c_double,
-            update_flag: Option<&mut Boolean>,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `in_ref` might need manual memory-management.
+    /// - `in_ref` might not allow `None`.
+    /// - `in_text` might not allow `None`.
+    /// - `update_flag` might not allow `None`.
+    #[doc(alias = "UCTypeSelectAddKeyToSelector")]
+    #[inline]
+    pub unsafe fn add_key_to_selector(
+        in_ref: Option<&UCTypeSelect>,
+        in_text: Option<&CFString>,
+        in_event_time: c_double,
+        update_flag: Option<&mut Boolean>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn UCTypeSelectAddKeyToSelector(
+                in_ref: Option<&UCTypeSelect>,
+                in_text: Option<&CFString>,
+                in_event_time: c_double,
+                update_flag: Option<&mut Boolean>,
+            ) -> OSStatus;
+        }
+        unsafe { UCTypeSelectAddKeyToSelector(in_ref, in_text, in_event_time, update_flag) }
     }
-    unsafe { UCTypeSelectAddKeyToSelector(in_ref, in_text, in_event_time, update_flag) }
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `in_text` might not allow `None`.
-/// - `result` might not allow `None`.
-#[inline]
-pub unsafe fn UCTypeSelectCompare(
-    r#ref: UCTypeSelectRef,
-    in_text: Option<&CFString>,
-    result: Option<&mut UCTypeSelectCompareResult>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn UCTypeSelectCompare(
-            r#ref: UCTypeSelectRef,
-            in_text: Option<&CFString>,
-            result: Option<&mut UCTypeSelectCompareResult>,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    /// - `in_text` might not allow `None`.
+    /// - `result` might not allow `None`.
+    #[doc(alias = "UCTypeSelectCompare")]
+    #[inline]
+    pub unsafe fn compare(
+        r#ref: Option<&UCTypeSelect>,
+        in_text: Option<&CFString>,
+        result: Option<&mut UCTypeSelectCompareResult>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn UCTypeSelectCompare(
+                r#ref: Option<&UCTypeSelect>,
+                in_text: Option<&CFString>,
+                result: Option<&mut UCTypeSelectCompareResult>,
+            ) -> OSStatus;
+        }
+        unsafe { UCTypeSelectCompare(r#ref, in_text, result) }
     }
-    unsafe { UCTypeSelectCompare(r#ref, in_text, result) }
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `list_data_ptr` must be a valid pointer.
-/// - `refcon` must be a valid pointer.
-/// - `user_upp` must be implemented correctly.
-/// - `closest_item` might not allow `None`.
-#[inline]
-pub unsafe fn UCTypeSelectFindItem(
-    r#ref: UCTypeSelectRef,
-    list_size: u32,
-    list_data_ptr: *mut c_void,
-    refcon: *mut c_void,
-    user_upp: IndexToUCStringUPP,
-    closest_item: Option<&mut u32>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn UCTypeSelectFindItem(
-            r#ref: UCTypeSelectRef,
-            list_size: u32,
-            list_data_ptr: *mut c_void,
-            refcon: *mut c_void,
-            user_upp: IndexToUCStringUPP,
-            closest_item: Option<&mut u32>,
-        ) -> OSStatus;
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    /// - `list_data_ptr` must be a valid pointer.
+    /// - `refcon` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
+    /// - `closest_item` might not allow `None`.
+    #[doc(alias = "UCTypeSelectFindItem")]
+    #[inline]
+    pub unsafe fn find_item(
+        r#ref: Option<&UCTypeSelect>,
+        list_size: u32,
+        list_data_ptr: *mut c_void,
+        refcon: *mut c_void,
+        user_upp: IndexToUCStringUPP,
+        closest_item: Option<&mut u32>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn UCTypeSelectFindItem(
+                r#ref: Option<&UCTypeSelect>,
+                list_size: u32,
+                list_data_ptr: *mut c_void,
+                refcon: *mut c_void,
+                user_upp: IndexToUCStringUPP,
+                closest_item: Option<&mut u32>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            UCTypeSelectFindItem(
+                r#ref,
+                list_size,
+                list_data_ptr,
+                refcon,
+                user_upp,
+                closest_item,
+            )
+        }
     }
-    unsafe {
-        UCTypeSelectFindItem(
-            r#ref,
-            list_size,
-            list_data_ptr,
-            refcon,
-            user_upp,
-            closest_item,
-        )
-    }
-}
 
-/// # Safety
-///
-/// - `ref` must be a valid pointer.
-/// - `curr_select` might not allow `None`.
-/// - `list_data_ptr` must be a valid pointer.
-/// - `refcon` must be a valid pointer.
-/// - `user_upp` must be implemented correctly.
-/// - `closest_item` might not allow `None`.
-#[inline]
-pub unsafe fn UCTypeSelectWalkList(
-    r#ref: UCTypeSelectRef,
-    curr_select: Option<&CFString>,
-    direction: UCTSWalkDirection,
-    list_size: u32,
-    list_data_ptr: *mut c_void,
-    refcon: *mut c_void,
-    user_upp: IndexToUCStringUPP,
-    closest_item: Option<&mut u32>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn UCTypeSelectWalkList(
-            r#ref: UCTypeSelectRef,
-            curr_select: Option<&CFString>,
-            direction: UCTSWalkDirection,
-            list_size: u32,
-            list_data_ptr: *mut c_void,
-            refcon: *mut c_void,
-            user_upp: IndexToUCStringUPP,
-            closest_item: Option<&mut u32>,
-        ) -> OSStatus;
-    }
-    unsafe {
-        UCTypeSelectWalkList(
-            r#ref,
-            curr_select,
-            direction,
-            list_size,
-            list_data_ptr,
-            refcon,
-            user_upp,
-            closest_item,
-        )
+    /// # Safety
+    ///
+    /// - `ref` might need manual memory-management.
+    /// - `ref` might not allow `None`.
+    /// - `curr_select` might not allow `None`.
+    /// - `list_data_ptr` must be a valid pointer.
+    /// - `refcon` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
+    /// - `closest_item` might not allow `None`.
+    #[doc(alias = "UCTypeSelectWalkList")]
+    #[inline]
+    pub unsafe fn walk_list(
+        r#ref: Option<&UCTypeSelect>,
+        curr_select: Option<&CFString>,
+        direction: UCTSWalkDirection,
+        list_size: u32,
+        list_data_ptr: *mut c_void,
+        refcon: *mut c_void,
+        user_upp: IndexToUCStringUPP,
+        closest_item: Option<&mut u32>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn UCTypeSelectWalkList(
+                r#ref: Option<&UCTypeSelect>,
+                curr_select: Option<&CFString>,
+                direction: UCTSWalkDirection,
+                list_size: u32,
+                list_data_ptr: *mut c_void,
+                refcon: *mut c_void,
+                user_upp: IndexToUCStringUPP,
+                closest_item: Option<&mut u32>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            UCTypeSelectWalkList(
+                r#ref,
+                curr_select,
+                direction,
+                list_size,
+                list_data_ptr,
+                refcon,
+                user_upp,
+                closest_item,
+            )
+        }
     }
 }

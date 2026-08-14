@@ -266,6 +266,4 @@ pub use self::__OBEXSession::OBEXTransportEventType;
 #[cfg(feature = "OBEXSession")]
 pub use self::__OBEXSession::OBEXTransportEventTypes;
 #[cfg(feature = "OBEXSession")]
-pub use self::__OBEXSession::OpaquePrivOBEXSessionData;
-#[cfg(feature = "OBEXSession")]
-pub use self::__OBEXSession::PrivOBEXSessionDataRef;
+pub use self::__OBEXSession::PrivOBEXSessionData;

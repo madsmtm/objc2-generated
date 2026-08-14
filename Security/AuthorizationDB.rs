@@ -27,118 +27,124 @@ pub const kAuthorizationRuleClassDeny: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationcomment?language=objc)
 pub const kAuthorizationComment: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"comment\0") };
-/// Retrieves a right definition as a dictionary.  There are no restrictions to keep anyone from retrieving these definitions.
-///
-///
-/// Parameter `rightName`: (input) the rightname (ASCII).  Wildcard rightname definitions are okay.
-///
-/// Parameter `rightDefinition`: (output/optional) the dictionary with all keys defining the right.  See documented keys.  Passing in NULL will just check if there is a definition.  The caller is responsible for releasing the returned dictionary.
-///
-///
-/// Returns: errAuthorizationSuccess 0 No error.
-///
-/// errAuthorizationDenied -60005 No definition found.
-#[inline]
-pub unsafe fn AuthorizationRightGet(
-    right_name: &CStr,
-    right_definition: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationRightGet(
-            right_name: NonNull<c_char>,
-            right_definition: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
-        ) -> OSStatus;
-    }
-    let right_name = NonNull::new(right_name.as_ptr().cast_mut()).unwrap();
-    if let Some(right_definition) = right_definition.as_ref() {
-        assert!(
-            right_definition.is_none(),
-            "parameter `right_definition` must point to `None` on entry"
-        );
-    };
-    unsafe { AuthorizationRightGet(right_name, right_definition) }
-}
-
-/// Create or update a right entry.  Only normal rights can be registered (wildcard rights are denied); wildcard rights are considered to be put in by an administrator putting together a site configuration.
-///
-///
-/// Parameter `authRef`: (input) authRef to authorize modifications.
-///
-/// Parameter `rightName`: (input) the rightname (ASCII).  Wildcard rightnames are not okay.
-///
-/// Parameter `rightDefinition`: (input) a CFString of the name of a rule to use (delegate) or CFDictionary containing keys defining one.
-///
-/// Parameter `descriptionKey`: (input/optional) a CFString to use as a key for looking up localized descriptions.  If no localization is found this will be the description itself.
-///
-/// Parameter `bundle`: (input/optional) a bundle to get localizations from if not the main bundle.
-///
-/// Parameter `localeTableName`: (input/optional) stringtable name to get localizations from.
-///
-///
-/// Returns: errAuthorizationSuccess 0 added right definition successfully.
-///
-/// errAuthorizationDenied -60005 Unable to create or update right definition.
-///
-/// errAuthorizationCanceled -60006 Authorization was canceled by user.
-///
-/// errAuthorizationInteractionNotAllowed -60007 Interaction was required but not possible.
-///
-/// # Safety
-///
-/// - `auth_ref` must be a valid pointer.
-/// - `right_definition` should be of the correct type.
 #[cfg(feature = "Authorization")]
-#[inline]
-pub unsafe fn AuthorizationRightSet(
-    auth_ref: AuthorizationRef,
-    right_name: &CStr,
-    right_definition: &CFType,
-    description_key: Option<&CFString>,
-    bundle: Option<&CFBundle>,
-    locale_table_name: Option<&CFString>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationRightSet(
-            auth_ref: AuthorizationRef,
-            right_name: NonNull<c_char>,
-            right_definition: &CFType,
-            description_key: Option<&CFString>,
-            bundle: Option<&CFBundle>,
-            locale_table_name: Option<&CFString>,
-        ) -> OSStatus;
+impl Authorization {
+    /// Retrieves a right definition as a dictionary.  There are no restrictions to keep anyone from retrieving these definitions.
+    ///
+    ///
+    /// Parameter `rightName`: (input) the rightname (ASCII).  Wildcard rightname definitions are okay.
+    ///
+    /// Parameter `rightDefinition`: (output/optional) the dictionary with all keys defining the right.  See documented keys.  Passing in NULL will just check if there is a definition.  The caller is responsible for releasing the returned dictionary.
+    ///
+    ///
+    /// Returns: errAuthorizationSuccess 0 No error.
+    ///
+    /// errAuthorizationDenied -60005 No definition found.
+    #[doc(alias = "AuthorizationRightGet")]
+    #[inline]
+    pub unsafe fn right_get(
+        right_name: &CStr,
+        right_definition: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationRightGet(
+                right_name: NonNull<c_char>,
+                right_definition: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
+            ) -> OSStatus;
+        }
+        let right_name = NonNull::new(right_name.as_ptr().cast_mut()).unwrap();
+        if let Some(right_definition) = right_definition.as_ref() {
+            assert!(
+                right_definition.is_none(),
+                "parameter `right_definition` must point to `None` on entry"
+            );
+        };
+        unsafe { AuthorizationRightGet(right_name, right_definition) }
     }
-    let right_name = NonNull::new(right_name.as_ptr().cast_mut()).unwrap();
-    unsafe {
-        AuthorizationRightSet(
-            auth_ref,
-            right_name,
-            right_definition,
-            description_key,
-            bundle,
-            locale_table_name,
-        )
-    }
-}
 
-/// Request to remove a right from the policy database.
-///
-///
-/// Parameter `authRef`: (input) authRef, to be used to authorize this action.
-///
-/// Parameter `rightName`: (input) the rightname (ASCII).  Wildcard rightnames are not okay.
-///
-/// # Safety
-///
-/// `auth_ref` must be a valid pointer.
-#[cfg(feature = "Authorization")]
-#[inline]
-pub unsafe fn AuthorizationRightRemove(auth_ref: AuthorizationRef, right_name: &CStr) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationRightRemove(
-            auth_ref: AuthorizationRef,
-            right_name: NonNull<c_char>,
-        ) -> OSStatus;
+    /// Create or update a right entry.  Only normal rights can be registered (wildcard rights are denied); wildcard rights are considered to be put in by an administrator putting together a site configuration.
+    ///
+    ///
+    /// Parameter `authRef`: (input) authRef to authorize modifications.
+    ///
+    /// Parameter `rightName`: (input) the rightname (ASCII).  Wildcard rightnames are not okay.
+    ///
+    /// Parameter `rightDefinition`: (input) a CFString of the name of a rule to use (delegate) or CFDictionary containing keys defining one.
+    ///
+    /// Parameter `descriptionKey`: (input/optional) a CFString to use as a key for looking up localized descriptions.  If no localization is found this will be the description itself.
+    ///
+    /// Parameter `bundle`: (input/optional) a bundle to get localizations from if not the main bundle.
+    ///
+    /// Parameter `localeTableName`: (input/optional) stringtable name to get localizations from.
+    ///
+    ///
+    /// Returns: errAuthorizationSuccess 0 added right definition successfully.
+    ///
+    /// errAuthorizationDenied -60005 Unable to create or update right definition.
+    ///
+    /// errAuthorizationCanceled -60006 Authorization was canceled by user.
+    ///
+    /// errAuthorizationInteractionNotAllowed -60007 Interaction was required but not possible.
+    ///
+    /// # Safety
+    ///
+    /// - `auth_ref` might need manual memory-management.
+    /// - `right_definition` should be of the correct type.
+    #[doc(alias = "AuthorizationRightSet")]
+    #[cfg(feature = "Authorization")]
+    #[inline]
+    pub unsafe fn right_set(
+        &self,
+        right_name: &CStr,
+        right_definition: &CFType,
+        description_key: Option<&CFString>,
+        bundle: Option<&CFBundle>,
+        locale_table_name: Option<&CFString>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationRightSet(
+                auth_ref: &Authorization,
+                right_name: NonNull<c_char>,
+                right_definition: &CFType,
+                description_key: Option<&CFString>,
+                bundle: Option<&CFBundle>,
+                locale_table_name: Option<&CFString>,
+            ) -> OSStatus;
+        }
+        let right_name = NonNull::new(right_name.as_ptr().cast_mut()).unwrap();
+        unsafe {
+            AuthorizationRightSet(
+                self,
+                right_name,
+                right_definition,
+                description_key,
+                bundle,
+                locale_table_name,
+            )
+        }
     }
-    let right_name = NonNull::new(right_name.as_ptr().cast_mut()).unwrap();
-    unsafe { AuthorizationRightRemove(auth_ref, right_name) }
+
+    /// Request to remove a right from the policy database.
+    ///
+    ///
+    /// Parameter `authRef`: (input) authRef, to be used to authorize this action.
+    ///
+    /// Parameter `rightName`: (input) the rightname (ASCII).  Wildcard rightnames are not okay.
+    ///
+    /// # Safety
+    ///
+    /// `auth_ref` might need manual memory-management.
+    #[doc(alias = "AuthorizationRightRemove")]
+    #[cfg(feature = "Authorization")]
+    #[inline]
+    pub unsafe fn right_remove(&self, right_name: &CStr) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationRightRemove(
+                auth_ref: &Authorization,
+                right_name: NonNull<c_char>,
+            ) -> OSStatus;
+        }
+        let right_name = NonNull::new(right_name.as_ptr().cast_mut()).unwrap();
+        unsafe { AuthorizationRightRemove(self, right_name) }
+    }
 }

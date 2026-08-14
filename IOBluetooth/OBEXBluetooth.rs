@@ -30,12 +30,12 @@ use crate::*;
 #[inline]
 pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
     in_sdp_service_ref: &IOBluetoothSDPServiceRecordRef,
-    out_session_ref: Option<&mut OBEXSessionRef>,
+    out_session_ref: Option<&mut *mut OBEXSessionRef>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
             in_sdp_service_ref: &IOBluetoothSDPServiceRecordRef,
-            out_session_ref: Option<&mut OBEXSessionRef>,
+            out_session_ref: Option<&mut *mut OBEXSessionRef>,
         ) -> OBEXError;
     }
     unsafe {
@@ -79,13 +79,13 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
 pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
     in_device_ref: &IOBluetoothDeviceRef,
     in_channel_id: BluetoothRFCOMMChannelID,
-    out_session_ref: Option<&mut OBEXSessionRef>,
+    out_session_ref: Option<&mut *mut OBEXSessionRef>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumber(
             in_device_ref: &IOBluetoothDeviceRef,
             in_channel_id: BluetoothRFCOMMChannelID,
-            out_session_ref: Option<&mut OBEXSessionRef>,
+            out_session_ref: Option<&mut *mut OBEXSessionRef>,
         ) -> OBEXError;
     }
     unsafe {
@@ -130,14 +130,14 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
     in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
     in_callback: OBEXSessionEventCallback,
     in_user_ref_con: *mut c_void,
-    out_session_ref: Option<&mut OBEXSessionRef>,
+    out_session_ref: Option<&mut *mut OBEXSessionRef>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
             in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
             in_callback: OBEXSessionEventCallback,
             in_user_ref_con: *mut c_void,
-            out_session_ref: Option<&mut OBEXSessionRef>,
+            out_session_ref: Option<&mut *mut OBEXSessionRef>,
         ) -> OBEXError;
     }
     unsafe {
@@ -153,7 +153,7 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobexsessionopenconnectioncallback?language=objc)
 #[cfg(feature = "OBEX")]
 pub type IOBluetoothOBEXSessionOpenConnectionCallback =
-    Option<unsafe extern "C-unwind" fn(OBEXSessionRef, OBEXError, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut OBEXSessionRef, OBEXError, *mut c_void)>;
 
 /// Parameter `inSessionRef`: A valid session reference.
 ///
@@ -176,20 +176,21 @@ pub type IOBluetoothOBEXSessionOpenConnectionCallback =
 ///
 /// # Safety
 ///
-/// - `in_session_ref` must be a valid pointer.
+/// - `in_session_ref` might need manual memory-management.
+/// - `in_session_ref` might not allow `None`.
 /// - `in_callback` must be implemented correctly.
 /// - `in_user_ref_con` must be a valid pointer.
 #[cfg(feature = "OBEX")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOBluetoothOBEXSessionOpenTransportConnection(
-    in_session_ref: OBEXSessionRef,
+    in_session_ref: Option<&OBEXSessionRef>,
     in_callback: IOBluetoothOBEXSessionOpenConnectionCallback,
     in_user_ref_con: *mut c_void,
 ) -> OBEXError {
     extern "C-unwind" {
         fn IOBluetoothOBEXSessionOpenTransportConnection(
-            in_session_ref: OBEXSessionRef,
+            in_session_ref: Option<&OBEXSessionRef>,
             in_callback: IOBluetoothOBEXSessionOpenConnectionCallback,
             in_user_ref_con: *mut c_void,
         ) -> OBEXError;

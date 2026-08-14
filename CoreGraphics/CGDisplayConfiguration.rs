@@ -10,48 +10,46 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/_cgdisplayconfigref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayconfig?language=objc)
+#[doc(alias = "CGDisplayConfigRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct _CGDisplayConfigRef {
+pub struct CGDisplayConfig {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for _CGDisplayConfigRef {
+unsafe impl RefEncode for CGDisplayConfig {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_CGDisplayConfigRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayconfigref?language=objc)
-pub type CGDisplayConfigRef = *mut _CGDisplayConfigRef;
 
 /// # Safety
 ///
 /// `config` must be a valid pointer or null.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe fn CGBeginDisplayConfiguration(config: Option<&mut CGDisplayConfigRef>) -> CGError {
+pub unsafe fn CGBeginDisplayConfiguration(config: Option<&mut *mut CGDisplayConfig>) -> CGError {
     extern "C-unwind" {
-        fn CGBeginDisplayConfiguration(config: Option<&mut CGDisplayConfigRef>) -> CGError;
+        fn CGBeginDisplayConfiguration(config: Option<&mut *mut CGDisplayConfig>) -> CGError;
     }
     unsafe { CGBeginDisplayConfiguration(config) }
 }
 
 /// # Safety
 ///
-/// `config` must be a valid pointer or null.
+/// `config` might need manual memory-management.
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 #[inline]
 pub unsafe fn CGConfigureDisplayOrigin(
-    config: CGDisplayConfigRef,
+    config: Option<&CGDisplayConfig>,
     display: CGDirectDisplayID,
     x: i32,
     y: i32,
 ) -> CGError {
     extern "C-unwind" {
         fn CGConfigureDisplayOrigin(
-            config: CGDisplayConfigRef,
+            config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             x: i32,
             y: i32,
@@ -62,20 +60,20 @@ pub unsafe fn CGConfigureDisplayOrigin(
 
 /// # Safety
 ///
-/// - `config` must be a valid pointer or null.
+/// - `config` might need manual memory-management.
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 #[inline]
 pub unsafe fn CGConfigureDisplayWithDisplayMode(
-    config: CGDisplayConfigRef,
+    config: Option<&CGDisplayConfig>,
     display: CGDirectDisplayID,
     mode: Option<&CGDisplayMode>,
     options: Option<&CFDictionary>,
 ) -> CGError {
     extern "C-unwind" {
         fn CGConfigureDisplayWithDisplayMode(
-            config: CGDisplayConfigRef,
+            config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             mode: Option<&CGDisplayMode>,
             options: Option<&CFDictionary>,
@@ -86,18 +84,18 @@ pub unsafe fn CGConfigureDisplayWithDisplayMode(
 
 /// # Safety
 ///
-/// `config` must be a valid pointer or null.
+/// `config` might need manual memory-management.
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError", feature = "libc"))]
 #[inline]
 pub unsafe fn CGConfigureDisplayStereoOperation(
-    config: CGDisplayConfigRef,
+    config: Option<&CGDisplayConfig>,
     display: CGDirectDisplayID,
     stereo: bool,
     force_blue_line: bool,
 ) -> CGError {
     extern "C-unwind" {
         fn CGConfigureDisplayStereoOperation(
-            config: CGDisplayConfigRef,
+            config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             stereo: libc::boolean_t,
             force_blue_line: libc::boolean_t,
@@ -110,17 +108,17 @@ pub unsafe fn CGConfigureDisplayStereoOperation(
 
 /// # Safety
 ///
-/// `config` must be a valid pointer or null.
+/// `config` might need manual memory-management.
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 #[inline]
 pub unsafe fn CGConfigureDisplayMirrorOfDisplay(
-    config: CGDisplayConfigRef,
+    config: Option<&CGDisplayConfig>,
     display: CGDirectDisplayID,
     master: CGDirectDisplayID,
 ) -> CGError {
     extern "C-unwind" {
         fn CGConfigureDisplayMirrorOfDisplay(
-            config: CGDisplayConfigRef,
+            config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             master: CGDirectDisplayID,
         ) -> CGError;
@@ -130,12 +128,12 @@ pub unsafe fn CGConfigureDisplayMirrorOfDisplay(
 
 /// # Safety
 ///
-/// `config` must be a valid pointer or null.
+/// `config` might need manual memory-management.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe fn CGCancelDisplayConfiguration(config: CGDisplayConfigRef) -> CGError {
+pub unsafe fn CGCancelDisplayConfiguration(config: Option<&CGDisplayConfig>) -> CGError {
     extern "C-unwind" {
-        fn CGCancelDisplayConfiguration(config: CGDisplayConfigRef) -> CGError;
+        fn CGCancelDisplayConfiguration(config: Option<&CGDisplayConfig>) -> CGError;
     }
     unsafe { CGCancelDisplayConfiguration(config) }
 }
@@ -169,16 +167,16 @@ unsafe impl RefEncode for CGConfigureOption {
 
 /// # Safety
 ///
-/// `config` must be a valid pointer or null.
+/// `config` might need manual memory-management.
 #[cfg(feature = "CGError")]
 #[inline]
 pub unsafe fn CGCompleteDisplayConfiguration(
-    config: CGDisplayConfigRef,
+    config: Option<&CGDisplayConfig>,
     option: CGConfigureOption,
 ) -> CGError {
     extern "C-unwind" {
         fn CGCompleteDisplayConfiguration(
-            config: CGDisplayConfigRef,
+            config: Option<&CGDisplayConfig>,
             option: CGConfigureOption,
         ) -> CGError;
     }
@@ -486,19 +484,19 @@ pub fn CGDisplayCopyColorSpace(display: CGDirectDisplayID) -> CFRetained<CGColor
 
 /// # Safety
 ///
-/// - `config` must be a valid pointer or null.
+/// - `config` might need manual memory-management.
 /// - `mode` generic should be of the correct type.
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe fn CGConfigureDisplayMode(
-    config: CGDisplayConfigRef,
+    config: Option<&CGDisplayConfig>,
     display: CGDirectDisplayID,
     mode: Option<&CFDictionary<CFString, CFType>>,
 ) -> CGError {
     extern "C-unwind" {
         fn CGConfigureDisplayMode(
-            config: CGDisplayConfigRef,
+            config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             mode: Option<&CFDictionary<CFString, CFType>>,
         ) -> CGError;

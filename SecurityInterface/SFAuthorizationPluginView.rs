@@ -105,20 +105,21 @@ impl SFAuthorizationPluginView {
         /// - `callbacks` struct field `RemoveHintValue` must be implemented correctly.
         /// - `callbacks` struct field `RemoveContextValue` must be implemented correctly.
         /// - `callbacks` might not allow `None`.
-        /// - `engine_ref` must be a valid pointer.
+        /// - `engine_ref` might need manual memory-management.
+        /// - `engine_ref` might not allow `None`.
         #[unsafe(method(initWithCallbacks:andEngineRef:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallbacks_andEngineRef(
             this: Allocated<Self>,
             callbacks: Option<&AuthorizationCallbacks>,
-            engine_ref: AuthorizationEngineRef,
+            engine_ref: Option<&AuthorizationEngine>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-security")]
         /// An accessor method to the AuthorizationEngineRef provided to the init method.  Use this value when calling the functions of the AuthorizationCallbacks when you need to set the result or set a context value.
         #[unsafe(method(engineRef))]
         #[unsafe(method_family = none)]
-        pub unsafe fn engineRef(&self) -> AuthorizationEngineRef;
+        pub unsafe fn engineRef(&self) -> *mut AuthorizationEngine;
 
         #[cfg(feature = "objc2-security")]
         /// An accessor method to the AuthorizationEngineRef provided to the init method.  Use this to get the function pointers to SetResult, SetContextValue, etc.  See the AuthorizationCallbacks documentation for more details.

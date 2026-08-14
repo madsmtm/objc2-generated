@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstream?language=objc)
+#[doc(alias = "CGPDFContentStreamRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFContentStream {
@@ -23,41 +24,42 @@ unsafe impl RefEncode for CGPDFContentStream {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFContentStream", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamref?language=objc)
-pub type CGPDFContentStreamRef = *mut CGPDFContentStream;
-
 impl CGPDFContentStream {
     #[doc(alias = "CGPDFContentStreamCreateWithPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
-    pub fn create_with_page(page: &CGPDFPage) -> CGPDFContentStreamRef {
+    pub fn create_with_page(page: &CGPDFPage) -> NonNull<CGPDFContentStream> {
         extern "C-unwind" {
-            fn CGPDFContentStreamCreateWithPage(page: &CGPDFPage) -> CGPDFContentStreamRef;
+            fn CGPDFContentStreamCreateWithPage(
+                page: &CGPDFPage,
+            ) -> Option<NonNull<CGPDFContentStream>>;
         }
-        unsafe { CGPDFContentStreamCreateWithPage(page) }
+        let ret = unsafe { CGPDFContentStreamCreateWithPage(page) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
     /// # Safety
     ///
-    /// - `stream` must be a valid pointer.
-    /// - `stream_resources` must be a valid pointer.
-    /// - `parent` must be a valid pointer.
+    /// - `stream` might need manual memory-management.
+    /// - `stream_resources` might need manual memory-management.
+    /// - `parent` might need manual memory-management.
     #[doc(alias = "CGPDFContentStreamCreateWithStream")]
     #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
     #[inline]
     pub unsafe fn create_with_stream(
-        stream: CGPDFStreamRef,
-        stream_resources: CGPDFDictionaryRef,
-        parent: CGPDFContentStreamRef,
-    ) -> CGPDFContentStreamRef {
+        stream: &CGPDFStream,
+        stream_resources: &CGPDFDictionary,
+        parent: &CGPDFContentStream,
+    ) -> NonNull<CGPDFContentStream> {
         extern "C-unwind" {
             fn CGPDFContentStreamCreateWithStream(
-                stream: CGPDFStreamRef,
-                stream_resources: CGPDFDictionaryRef,
-                parent: CGPDFContentStreamRef,
-            ) -> CGPDFContentStreamRef;
+                stream: &CGPDFStream,
+                stream_resources: &CGPDFDictionary,
+                parent: &CGPDFContentStream,
+            ) -> Option<NonNull<CGPDFContentStream>>;
         }
-        unsafe { CGPDFContentStreamCreateWithStream(stream, stream_resources, parent) }
+        let ret = unsafe { CGPDFContentStreamCreateWithStream(stream, stream_resources, parent) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
     /// # Safety
@@ -65,11 +67,14 @@ impl CGPDFContentStream {
     /// `cs` must be a valid pointer.
     #[doc(alias = "CGPDFContentStreamRetain")]
     #[inline]
-    pub unsafe fn retain(cs: CGPDFContentStreamRef) -> CGPDFContentStreamRef {
+    pub unsafe fn retain(cs: NonNull<CGPDFContentStream>) -> NonNull<CGPDFContentStream> {
         extern "C-unwind" {
-            fn CGPDFContentStreamRetain(cs: CGPDFContentStreamRef) -> CGPDFContentStreamRef;
+            fn CGPDFContentStreamRetain(
+                cs: NonNull<CGPDFContentStream>,
+            ) -> Option<NonNull<CGPDFContentStream>>;
         }
-        unsafe { CGPDFContentStreamRetain(cs) }
+        let ret = unsafe { CGPDFContentStreamRetain(cs) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
     /// # Safety
@@ -77,50 +82,44 @@ impl CGPDFContentStream {
     /// `cs` must be a valid pointer.
     #[doc(alias = "CGPDFContentStreamRelease")]
     #[inline]
-    pub unsafe fn release(cs: CGPDFContentStreamRef) {
+    pub unsafe fn release(cs: NonNull<CGPDFContentStream>) {
         extern "C-unwind" {
-            fn CGPDFContentStreamRelease(cs: CGPDFContentStreamRef);
+            fn CGPDFContentStreamRelease(cs: NonNull<CGPDFContentStream>);
         }
         unsafe { CGPDFContentStreamRelease(cs) }
     }
 
     /// # Safety
     ///
-    /// `cs` must be a valid pointer.
+    /// `cs` might need manual memory-management.
     #[doc(alias = "CGPDFContentStreamGetStreams")]
     #[inline]
-    pub unsafe fn streams(
-        cs: CGPDFContentStreamRef,
-    ) -> Option<CFRetained<CFArray<CGPDFContentStream>>> {
+    pub unsafe fn streams(&self) -> Option<CFRetained<CFArray<CGPDFContentStream>>> {
         extern "C-unwind" {
             fn CGPDFContentStreamGetStreams(
-                cs: CGPDFContentStreamRef,
+                cs: &CGPDFContentStream,
             ) -> Option<NonNull<CFArray<CGPDFContentStream>>>;
         }
-        let ret = unsafe { CGPDFContentStreamGetStreams(cs) };
+        let ret = unsafe { CGPDFContentStreamGetStreams(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
     /// # Safety
     ///
-    /// `cs` must be a valid pointer.
+    /// `cs` might need manual memory-management.
     #[doc(alias = "CGPDFContentStreamGetResource")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn resource(
-        cs: CGPDFContentStreamRef,
-        category: &CStr,
-        name: &CStr,
-    ) -> CGPDFObjectRef {
+    pub unsafe fn resource(&self, category: &CStr, name: &CStr) -> *mut CGPDFObject {
         extern "C-unwind" {
             fn CGPDFContentStreamGetResource(
-                cs: CGPDFContentStreamRef,
+                cs: &CGPDFContentStream,
                 category: NonNull<c_char>,
                 name: NonNull<c_char>,
-            ) -> CGPDFObjectRef;
+            ) -> *mut CGPDFObject;
         }
         let category = NonNull::new(category.as_ptr().cast_mut()).unwrap();
         let name = NonNull::new(name.as_ptr().cast_mut()).unwrap();
-        unsafe { CGPDFContentStreamGetResource(cs, category, name) }
+        unsafe { CGPDFContentStreamGetResource(self, category, name) }
     }
 }

@@ -20,22 +20,20 @@ pub const kKeyboardISO: c_uint = 0x49534f20;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/kkeyboardunknown?language=objc)
 pub const kKeyboardUnknown: c_uint = 1061109567;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaquekeyboardlayoutref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/keyboardlayout?language=objc)
+#[doc(alias = "KeyboardLayoutRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueKeyboardLayoutRef {
+pub struct KeyboardLayout {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueKeyboardLayoutRef {
+unsafe impl RefEncode for KeyboardLayout {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueKeyboardLayoutRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/keyboardlayoutref?language=objc)
-pub type KeyboardLayoutRef = *mut OpaqueKeyboardLayoutRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/keyboardlayoutpropertytag?language=objc)
 pub type KeyboardLayoutPropertyTag = u32;

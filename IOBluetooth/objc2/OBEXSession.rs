@@ -8,21 +8,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/opaqueprivobexsessiondata?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/privobexsessiondata?language=objc)
+#[doc(alias = "PrivOBEXSessionDataRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaquePrivOBEXSessionData {
+pub struct PrivOBEXSessionData {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
-unsafe impl RefEncode for OpaquePrivOBEXSessionData {
+unsafe impl RefEncode for PrivOBEXSessionData {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaquePrivOBEXSessionData", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/privobexsessiondataref?language=objc)
-pub type PrivOBEXSessionDataRef = *mut OpaquePrivOBEXSessionData;
 
 /// Pass these types in the OBEXTransportEvent, and then pass the struct on to the session object once you
 /// have filled it out. This is how you can communicate with the session when events happen - if data is

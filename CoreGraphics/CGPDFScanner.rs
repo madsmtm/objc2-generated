@@ -3,12 +3,14 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscanner?language=objc)
+#[doc(alias = "CGPDFScannerRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFScanner {
@@ -21,31 +23,29 @@ unsafe impl RefEncode for CGPDFScanner {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFScanner", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerref?language=objc)
-pub type CGPDFScannerRef = *mut CGPDFScanner;
-
 impl CGPDFScanner {
     /// # Safety
     ///
-    /// - `cs` must be a valid pointer.
-    /// - `table` must be a valid pointer or null.
+    /// - `cs` might need manual memory-management.
+    /// - `table` might need manual memory-management.
     /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFScannerCreate")]
     #[cfg(all(feature = "CGPDFContentStream", feature = "CGPDFOperatorTable"))]
     #[inline]
     pub unsafe fn create(
-        cs: CGPDFContentStreamRef,
-        table: CGPDFOperatorTableRef,
+        cs: &CGPDFContentStream,
+        table: Option<&CGPDFOperatorTable>,
         info: *mut c_void,
-    ) -> CGPDFScannerRef {
+    ) -> NonNull<CGPDFScanner> {
         extern "C-unwind" {
             fn CGPDFScannerCreate(
-                cs: CGPDFContentStreamRef,
-                table: CGPDFOperatorTableRef,
+                cs: &CGPDFContentStream,
+                table: Option<&CGPDFOperatorTable>,
                 info: *mut c_void,
-            ) -> CGPDFScannerRef;
+            ) -> Option<NonNull<CGPDFScanner>>;
         }
-        unsafe { CGPDFScannerCreate(cs, table, info) }
+        let ret = unsafe { CGPDFScannerCreate(cs, table, info) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
     /// # Safety
@@ -53,11 +53,12 @@ impl CGPDFScanner {
     /// `scanner` must be a valid pointer.
     #[doc(alias = "CGPDFScannerRetain")]
     #[inline]
-    pub unsafe fn retain(scanner: CGPDFScannerRef) -> CGPDFScannerRef {
+    pub unsafe fn retain(scanner: NonNull<CGPDFScanner>) -> NonNull<CGPDFScanner> {
         extern "C-unwind" {
-            fn CGPDFScannerRetain(scanner: CGPDFScannerRef) -> CGPDFScannerRef;
+            fn CGPDFScannerRetain(scanner: NonNull<CGPDFScanner>) -> Option<NonNull<CGPDFScanner>>;
         }
-        unsafe { CGPDFScannerRetain(scanner) }
+        let ret = unsafe { CGPDFScannerRetain(scanner) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
     /// # Safety
@@ -65,199 +66,197 @@ impl CGPDFScanner {
     /// `scanner` must be a valid pointer.
     #[doc(alias = "CGPDFScannerRelease")]
     #[inline]
-    pub unsafe fn release(scanner: CGPDFScannerRef) {
+    pub unsafe fn release(scanner: NonNull<CGPDFScanner>) {
         extern "C-unwind" {
-            fn CGPDFScannerRelease(scanner: CGPDFScannerRef);
+            fn CGPDFScannerRelease(scanner: NonNull<CGPDFScanner>);
         }
         unsafe { CGPDFScannerRelease(scanner) }
     }
 
     /// # Safety
     ///
-    /// `scanner` must be a valid pointer.
+    /// `scanner` might need manual memory-management.
     #[doc(alias = "CGPDFScannerScan")]
     #[inline]
-    pub unsafe fn scan(scanner: CGPDFScannerRef) -> bool {
+    pub unsafe fn scan(&self) -> bool {
         extern "C-unwind" {
-            fn CGPDFScannerScan(scanner: CGPDFScannerRef) -> bool;
+            fn CGPDFScannerScan(scanner: &CGPDFScanner) -> bool;
         }
-        unsafe { CGPDFScannerScan(scanner) }
+        unsafe { CGPDFScannerScan(self) }
     }
 
     /// # Safety
     ///
-    /// `scanner` must be a valid pointer.
+    /// `scanner` might need manual memory-management.
     #[doc(alias = "CGPDFScannerGetContentStream")]
     #[cfg(feature = "CGPDFContentStream")]
     #[inline]
-    pub unsafe fn content_stream(scanner: CGPDFScannerRef) -> CGPDFContentStreamRef {
+    pub unsafe fn content_stream(&self) -> NonNull<CGPDFContentStream> {
         extern "C-unwind" {
-            fn CGPDFScannerGetContentStream(scanner: CGPDFScannerRef) -> CGPDFContentStreamRef;
+            fn CGPDFScannerGetContentStream(
+                scanner: &CGPDFScanner,
+            ) -> Option<NonNull<CGPDFContentStream>>;
         }
-        unsafe { CGPDFScannerGetContentStream(scanner) }
+        let ret = unsafe { CGPDFScannerGetContentStream(self) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
     /// # Safety
     ///
-    /// - `scanner` must be a valid pointer.
+    /// - `scanner` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFScannerPopObject")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn pop_object(scanner: CGPDFScannerRef, value: Option<&mut CGPDFObjectRef>) -> bool {
+    pub unsafe fn pop_object(&self, value: Option<&mut *mut CGPDFObject>) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopObject(
-                scanner: CGPDFScannerRef,
-                value: Option<&mut CGPDFObjectRef>,
+                scanner: &CGPDFScanner,
+                value: Option<&mut *mut CGPDFObject>,
             ) -> bool;
         }
-        unsafe { CGPDFScannerPopObject(scanner, value) }
+        unsafe { CGPDFScannerPopObject(self, value) }
     }
 
     /// # Safety
     ///
-    /// `scanner` must be a valid pointer.
+    /// `scanner` might need manual memory-management.
     #[doc(alias = "CGPDFScannerPopBoolean")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn pop_boolean(scanner: CGPDFScannerRef, value: Option<&mut CGPDFBoolean>) -> bool {
+    pub unsafe fn pop_boolean(&self, value: Option<&mut CGPDFBoolean>) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopBoolean(
-                scanner: CGPDFScannerRef,
+                scanner: &CGPDFScanner,
                 value: Option<&mut CGPDFBoolean>,
             ) -> bool;
         }
-        unsafe { CGPDFScannerPopBoolean(scanner, value) }
+        unsafe { CGPDFScannerPopBoolean(self, value) }
     }
 
     /// # Safety
     ///
-    /// `scanner` must be a valid pointer.
+    /// `scanner` might need manual memory-management.
     #[doc(alias = "CGPDFScannerPopInteger")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn pop_integer(scanner: CGPDFScannerRef, value: Option<&mut CGPDFInteger>) -> bool {
+    pub unsafe fn pop_integer(&self, value: Option<&mut CGPDFInteger>) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopInteger(
-                scanner: CGPDFScannerRef,
+                scanner: &CGPDFScanner,
                 value: Option<&mut CGPDFInteger>,
             ) -> bool;
         }
-        unsafe { CGPDFScannerPopInteger(scanner, value) }
+        unsafe { CGPDFScannerPopInteger(self, value) }
     }
 
     /// # Safety
     ///
-    /// `scanner` must be a valid pointer.
+    /// `scanner` might need manual memory-management.
     #[doc(alias = "CGPDFScannerPopNumber")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn pop_number(scanner: CGPDFScannerRef, value: Option<&mut CGPDFReal>) -> bool {
+    pub unsafe fn pop_number(&self, value: Option<&mut CGPDFReal>) -> bool {
         extern "C-unwind" {
-            fn CGPDFScannerPopNumber(
-                scanner: CGPDFScannerRef,
-                value: Option<&mut CGPDFReal>,
-            ) -> bool;
+            fn CGPDFScannerPopNumber(scanner: &CGPDFScanner, value: Option<&mut CGPDFReal>)
+                -> bool;
         }
-        unsafe { CGPDFScannerPopNumber(scanner, value) }
+        unsafe { CGPDFScannerPopNumber(self, value) }
     }
 
     /// # Safety
     ///
-    /// - `scanner` must be a valid pointer.
+    /// - `scanner` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFScannerPopName")]
     #[inline]
-    pub unsafe fn pop_name(scanner: CGPDFScannerRef, value: Option<&mut *const c_char>) -> bool {
+    pub unsafe fn pop_name(&self, value: Option<&mut *const c_char>) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopName(
-                scanner: CGPDFScannerRef,
+                scanner: &CGPDFScanner,
                 value: Option<&mut *const c_char>,
             ) -> bool;
         }
-        unsafe { CGPDFScannerPopName(scanner, value) }
+        unsafe { CGPDFScannerPopName(self, value) }
     }
 
     /// # Safety
     ///
-    /// - `scanner` must be a valid pointer.
+    /// - `scanner` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFScannerPopString")]
     #[cfg(feature = "CGPDFString")]
     #[inline]
-    pub unsafe fn pop_string(scanner: CGPDFScannerRef, value: Option<&mut CGPDFStringRef>) -> bool {
+    pub unsafe fn pop_string(&self, value: Option<&mut *mut CGPDFString>) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopString(
-                scanner: CGPDFScannerRef,
-                value: Option<&mut CGPDFStringRef>,
+                scanner: &CGPDFScanner,
+                value: Option<&mut *mut CGPDFString>,
             ) -> bool;
         }
-        unsafe { CGPDFScannerPopString(scanner, value) }
+        unsafe { CGPDFScannerPopString(self, value) }
     }
 
     /// # Safety
     ///
-    /// - `scanner` must be a valid pointer.
+    /// - `scanner` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFScannerPopArray")]
     #[cfg(feature = "CGPDFArray")]
     #[inline]
-    pub unsafe fn pop_array(scanner: CGPDFScannerRef, value: Option<&mut CGPDFArrayRef>) -> bool {
+    pub unsafe fn pop_array(&self, value: Option<&mut *mut CGPDFArray>) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopArray(
-                scanner: CGPDFScannerRef,
-                value: Option<&mut CGPDFArrayRef>,
+                scanner: &CGPDFScanner,
+                value: Option<&mut *mut CGPDFArray>,
             ) -> bool;
         }
-        unsafe { CGPDFScannerPopArray(scanner, value) }
+        unsafe { CGPDFScannerPopArray(self, value) }
     }
 
     /// # Safety
     ///
-    /// - `scanner` must be a valid pointer.
+    /// - `scanner` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFScannerPopDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    pub unsafe fn pop_dictionary(
-        scanner: CGPDFScannerRef,
-        value: Option<&mut CGPDFDictionaryRef>,
-    ) -> bool {
+    pub unsafe fn pop_dictionary(&self, value: Option<&mut *mut CGPDFDictionary>) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopDictionary(
-                scanner: CGPDFScannerRef,
-                value: Option<&mut CGPDFDictionaryRef>,
+                scanner: &CGPDFScanner,
+                value: Option<&mut *mut CGPDFDictionary>,
             ) -> bool;
         }
-        unsafe { CGPDFScannerPopDictionary(scanner, value) }
+        unsafe { CGPDFScannerPopDictionary(self, value) }
     }
 
     /// # Safety
     ///
-    /// - `scanner` must be a valid pointer.
+    /// - `scanner` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFScannerPopStream")]
     #[cfg(feature = "CGPDFStream")]
     #[inline]
-    pub unsafe fn pop_stream(scanner: CGPDFScannerRef, value: Option<&mut CGPDFStreamRef>) -> bool {
+    pub unsafe fn pop_stream(&self, value: Option<&mut *mut CGPDFStream>) -> bool {
         extern "C-unwind" {
             fn CGPDFScannerPopStream(
-                scanner: CGPDFScannerRef,
-                value: Option<&mut CGPDFStreamRef>,
+                scanner: &CGPDFScanner,
+                value: Option<&mut *mut CGPDFStream>,
             ) -> bool;
         }
-        unsafe { CGPDFScannerPopStream(scanner, value) }
+        unsafe { CGPDFScannerPopStream(self, value) }
     }
 
     /// # Safety
     ///
-    /// `s` must be a valid pointer.
+    /// `s` might need manual memory-management.
     #[doc(alias = "CGPDFScannerStop")]
     #[inline]
-    pub unsafe fn stop(s: CGPDFScannerRef) {
+    pub unsafe fn stop(&self) {
         extern "C-unwind" {
-            fn CGPDFScannerStop(s: CGPDFScannerRef);
+            fn CGPDFScannerStop(s: &CGPDFScanner);
         }
-        unsafe { CGPDFScannerStop(s) }
+        unsafe { CGPDFScannerStop(self) }
     }
 }

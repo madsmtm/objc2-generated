@@ -117,9 +117,9 @@ impl CGPDFPage {
     #[doc(alias = "CGPDFPageGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    pub fn dictionary(&self) -> CGPDFDictionaryRef {
+    pub fn dictionary(&self) -> *mut CGPDFDictionary {
         extern "C-unwind" {
-            fn CGPDFPageGetDictionary(page: &CGPDFPage) -> CGPDFDictionaryRef;
+            fn CGPDFPageGetDictionary(page: &CGPDFPage) -> *mut CGPDFDictionary;
         }
         unsafe { CGPDFPageGetDictionary(self) }
     }

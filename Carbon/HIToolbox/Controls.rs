@@ -275,7 +275,7 @@ pub type ControlContentType = i16;
 #[derive(Clone, Copy)]
 pub union ControlImageContentInfo_u {
     pub resID: i16,
-    pub iconRef: IconRef,
+    pub iconRef: *mut Icon,
     pub imageRef: *mut CGImage,
 }
 
@@ -289,7 +289,7 @@ unsafe impl Encode for ControlImageContentInfo_u {
         "?",
         &[
             <i16>::ENCODING,
-            <IconRef>::ENCODING,
+            <*mut Icon>::ENCODING,
             <*mut CGImage>::ENCODING,
         ],
     );

@@ -85,24 +85,22 @@ unsafe impl RefEncode for AuthorizationFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationflagcannotpreauthorize?language=objc)
 pub const kAuthorizationFlagCanNotPreAuthorize: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationopaqueref?language=objc)
+/// Opaque reference to an authorization object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorization?language=objc)
+#[doc(alias = "AuthorizationRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct AuthorizationOpaqueRef {
+pub struct Authorization {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for AuthorizationOpaqueRef {
+unsafe impl RefEncode for Authorization {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("AuthorizationOpaqueRef", &[]));
 }
-
-/// Opaque reference to an authorization object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationref?language=objc)
-pub type AuthorizationRef = *const AuthorizationOpaqueRef;
 
 /// A zero terminated string in UTF-8 encoding.
 ///
@@ -215,155 +213,160 @@ pub type AuthorizationRights = AuthorizationItemSet;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationenvironment?language=objc)
 pub type AuthorizationEnvironment = AuthorizationItemSet;
 
-/// Create a new autorization object which can be used in other authorization calls.  When the authorization is no longer needed AuthorizationFree should be called.
-///
-/// When the kAuthorizationFlagInteractionAllowed flag is set, user interaction will happen when required.  Failing to set this flag will result in this call failing with a errAuthorizationInteractionNotAllowed status when interaction is required.
-///
-/// Setting the kAuthorizationFlagExtendRights flag will extend the currently available rights. If this flag is set the returned AuthorizationRef will grant all the rights requested when errAuthorizationSuccess is returned. If this flag is not set the operation will almost certainly succeed, but no attempt will be made to make the requested rights availible.
-/// Call AuthorizationCopyRights to figure out which of the requested rights are granted by the returned AuthorizationRef.
-///
-/// Setting the kAuthorizationFlagPartialRights flag will cause this call to succeed if only some of the requested rights are being granted by the returned AuthorizationRef. Unless this flag is set this API will fail if not all the requested rights could be obtained.
-///
-/// Setting the kAuthorizationFlagDestroyRights flag will prevent any rights obtained during this call from being preserved after returning from this API (This is most useful when the authorization parameter is NULL and the caller doesn't want to affect the session state in any way).
-///
-/// Setting the kAuthorizationFlagPreAuthorize flag will pre authorize the requested rights so that at a later time -- by calling AuthorizationMakeExternalForm() follow by AuthorizationCreateFromExternalForm() -- the obtained rights can be used in a different process.  Rights that can't be preauthorized will be treated as if they were authorized for the sake of returning an error (in other words if all rights are either authorized or could not be preauthorized this call will still succeed).
-/// The rights which could not be preauthorized are not currently authorized and may fail to authorize when a later call to AuthorizationCopyRights() is made, unless the kAuthorizationFlagExtendRights and kAuthorizationFlagInteractionAllowed flags are set.  Even then they might still fail if the user does not supply the correct credentials.
-/// The reason for passing in this flag is to provide correct audit trail information and to avoid unnecessary user interaction.
-///
-///
-/// Parameter `rights`: (input/optional) An AuthorizationItemSet containing rights for which authorization is being requested.  If none are specified the resulting AuthorizationRef will authorize nothing at all.
-///
-/// Parameter `environment`: (input/optional) An AuthorizationItemSet containing environment state used when making the autorization decision.  See the AuthorizationEnvironment type for details.
-///
-/// Parameter `flags`: (input) options specified by the AuthorizationFlags enum.  set all unused bits to zero to allow for future expansion.
-///
-/// Parameter `authorization`: (output optional) A pointer to an AuthorizationRef to be returned.  When the returned AuthorizationRef is no longer needed AuthorizationFree should be called to prevent anyone from using the acquired rights.  If NULL is specified no new rights are returned, but the system will attempt to authorize all the requested rights and return the appropriate status.
-///
-///
-/// Returns: errAuthorizationSuccess 0 authorization or all requested rights succeeded.
-///
-/// errAuthorizationDenied -60005 The authorization for one or more of the requested rights was denied.
-///
-/// errAuthorizationCanceled -60006 The authorization was canceled by the user.
-///
-/// errAuthorizationInteractionNotAllowed -60007 The authorization was denied since no interaction with the user was allowed.
-///
-/// # Safety
-///
-/// - `rights` struct field `items` must be a valid pointer or null.
-/// - `environment` struct field `items` must be a valid pointer or null.
-/// - `authorization` must be a valid pointer or null.
-#[inline]
-pub unsafe fn AuthorizationCreate(
-    rights: Option<&AuthorizationRights>,
-    environment: Option<&AuthorizationEnvironment>,
-    flags: AuthorizationFlags,
-    authorization: Option<&mut AuthorizationRef>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationCreate(
-            rights: Option<&AuthorizationRights>,
-            environment: Option<&AuthorizationEnvironment>,
-            flags: AuthorizationFlags,
-            authorization: Option<&mut AuthorizationRef>,
-        ) -> OSStatus;
+impl Authorization {
+    /// Create a new autorization object which can be used in other authorization calls.  When the authorization is no longer needed AuthorizationFree should be called.
+    ///
+    /// When the kAuthorizationFlagInteractionAllowed flag is set, user interaction will happen when required.  Failing to set this flag will result in this call failing with a errAuthorizationInteractionNotAllowed status when interaction is required.
+    ///
+    /// Setting the kAuthorizationFlagExtendRights flag will extend the currently available rights. If this flag is set the returned AuthorizationRef will grant all the rights requested when errAuthorizationSuccess is returned. If this flag is not set the operation will almost certainly succeed, but no attempt will be made to make the requested rights availible.
+    /// Call AuthorizationCopyRights to figure out which of the requested rights are granted by the returned AuthorizationRef.
+    ///
+    /// Setting the kAuthorizationFlagPartialRights flag will cause this call to succeed if only some of the requested rights are being granted by the returned AuthorizationRef. Unless this flag is set this API will fail if not all the requested rights could be obtained.
+    ///
+    /// Setting the kAuthorizationFlagDestroyRights flag will prevent any rights obtained during this call from being preserved after returning from this API (This is most useful when the authorization parameter is NULL and the caller doesn't want to affect the session state in any way).
+    ///
+    /// Setting the kAuthorizationFlagPreAuthorize flag will pre authorize the requested rights so that at a later time -- by calling AuthorizationMakeExternalForm() follow by AuthorizationCreateFromExternalForm() -- the obtained rights can be used in a different process.  Rights that can't be preauthorized will be treated as if they were authorized for the sake of returning an error (in other words if all rights are either authorized or could not be preauthorized this call will still succeed).
+    /// The rights which could not be preauthorized are not currently authorized and may fail to authorize when a later call to AuthorizationCopyRights() is made, unless the kAuthorizationFlagExtendRights and kAuthorizationFlagInteractionAllowed flags are set.  Even then they might still fail if the user does not supply the correct credentials.
+    /// The reason for passing in this flag is to provide correct audit trail information and to avoid unnecessary user interaction.
+    ///
+    ///
+    /// Parameter `rights`: (input/optional) An AuthorizationItemSet containing rights for which authorization is being requested.  If none are specified the resulting AuthorizationRef will authorize nothing at all.
+    ///
+    /// Parameter `environment`: (input/optional) An AuthorizationItemSet containing environment state used when making the autorization decision.  See the AuthorizationEnvironment type for details.
+    ///
+    /// Parameter `flags`: (input) options specified by the AuthorizationFlags enum.  set all unused bits to zero to allow for future expansion.
+    ///
+    /// Parameter `authorization`: (output optional) A pointer to an AuthorizationRef to be returned.  When the returned AuthorizationRef is no longer needed AuthorizationFree should be called to prevent anyone from using the acquired rights.  If NULL is specified no new rights are returned, but the system will attempt to authorize all the requested rights and return the appropriate status.
+    ///
+    ///
+    /// Returns: errAuthorizationSuccess 0 authorization or all requested rights succeeded.
+    ///
+    /// errAuthorizationDenied -60005 The authorization for one or more of the requested rights was denied.
+    ///
+    /// errAuthorizationCanceled -60006 The authorization was canceled by the user.
+    ///
+    /// errAuthorizationInteractionNotAllowed -60007 The authorization was denied since no interaction with the user was allowed.
+    ///
+    /// # Safety
+    ///
+    /// - `rights` struct field `items` must be a valid pointer or null.
+    /// - `environment` struct field `items` must be a valid pointer or null.
+    /// - `authorization` must be a valid pointer or null.
+    #[doc(alias = "AuthorizationCreate")]
+    #[inline]
+    pub unsafe fn create(
+        rights: Option<&AuthorizationRights>,
+        environment: Option<&AuthorizationEnvironment>,
+        flags: AuthorizationFlags,
+        authorization: Option<&mut *const Authorization>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationCreate(
+                rights: Option<&AuthorizationRights>,
+                environment: Option<&AuthorizationEnvironment>,
+                flags: AuthorizationFlags,
+                authorization: Option<&mut *const Authorization>,
+            ) -> OSStatus;
+        }
+        unsafe { AuthorizationCreate(rights, environment, flags, authorization) }
     }
-    unsafe { AuthorizationCreate(rights, environment, flags, authorization) }
-}
 
-/// Destroy an AutorizationRef object. If the kAuthorizationFlagDestroyRights flag is passed,
-/// any rights associated with the authorization are lost. Otherwise, only local resources
-/// are released, and the rights may still be available to other clients.
-///
-/// Setting the kAuthorizationFlagDestroyRights flag will prevent any rights that were obtained by the specified authorization object to be preserved after returning from this API.  This effectivaly locks down all potentially shared authorizations.
-///
-///
-/// Parameter `authorization`: (input) The authorization object on which this operation is performed.
-///
-///
-/// Parameter `flags`: (input) Bit mask of option flags to this call.
-///
-///
-/// Returns: errAuthorizationSuccess 0 No error.
-///
-/// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
-///
-/// # Safety
-///
-/// `authorization` must be a valid pointer.
-#[inline]
-pub unsafe fn AuthorizationFree(
-    authorization: AuthorizationRef,
-    flags: AuthorizationFlags,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationFree(
-            authorization: AuthorizationRef,
-            flags: AuthorizationFlags,
-        ) -> OSStatus;
+    /// Destroy an AutorizationRef object. If the kAuthorizationFlagDestroyRights flag is passed,
+    /// any rights associated with the authorization are lost. Otherwise, only local resources
+    /// are released, and the rights may still be available to other clients.
+    ///
+    /// Setting the kAuthorizationFlagDestroyRights flag will prevent any rights that were obtained by the specified authorization object to be preserved after returning from this API.  This effectivaly locks down all potentially shared authorizations.
+    ///
+    ///
+    /// Parameter `authorization`: (input) The authorization object on which this operation is performed.
+    ///
+    ///
+    /// Parameter `flags`: (input) Bit mask of option flags to this call.
+    ///
+    ///
+    /// Returns: errAuthorizationSuccess 0 No error.
+    ///
+    /// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// `authorization` must be a valid pointer.
+    #[doc(alias = "AuthorizationFree")]
+    #[inline]
+    pub unsafe fn free(
+        authorization: NonNull<Authorization>,
+        flags: AuthorizationFlags,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationFree(
+                authorization: NonNull<Authorization>,
+                flags: AuthorizationFlags,
+            ) -> OSStatus;
+        }
+        unsafe { AuthorizationFree(authorization, flags) }
     }
-    unsafe { AuthorizationFree(authorization, flags) }
-}
 
-/// Given a set of rights, return the subset that is currently authorized
-/// by the AuthorizationRef given.
-///
-/// When the kAuthorizationFlagInteractionAllowed flag is set, user interaction will happen when required.  Failing to set this flag will result in this call failing with a errAuthorizationInteractionNotAllowed status when interaction is required.
-///
-/// Setting the kAuthorizationFlagExtendRights flag will extend the currently available rights.
-///
-/// Setting the kAuthorizationFlagPartialRights flag will cause this call to succeed if only some of the requested rights are being granted by the returned AuthorizationRef.  Unless this flag is set this API will fail if not all the requested rights could be obtained.
-///
-/// Setting the kAuthorizationFlagDestroyRights flag will prevent any additional rights obtained during this call from being preserved after returning from this API.
-///
-/// Setting the kAuthorizationFlagPreAuthorize flag will pre authorize the requested rights so that at a later time -- by calling AuthorizationMakeExternalForm() follow by AuthorizationCreateFromExternalForm() -- the obtained rights can be used in a different process.  Rights that can't be preauthorized will be treated as if they were authorized for the sake of returning an error (in other words if all rights are either authorized or could not be preauthorized this call will still succeed), and they will be returned in authorizedRights with their kAuthorizationFlagCanNotPreAuthorize bit in the flags field set to 1.
-/// The rights which could not be preauthorized are not currently authorized and may fail to authorize when a later call to AuthorizationCopyRights() is made, unless the kAuthorizationFlagExtendRights and kAuthorizationFlagInteractionAllowed flags are set.  Even then they might still fail if the user does not supply the correct credentials.
-/// The reason for passing in this flag is to provide correct audit trail information and to avoid unnecessary user interaction.
-///
-///
-/// Parameter `authorization`: (input) The authorization object on which this operation is performed.
-///
-/// Parameter `rights`: (input) A rights set (see AuthorizationCreate).
-///
-/// Parameter `environment`: (input/optional) An AuthorizationItemSet containing environment state used when making the autorization decision.  See the AuthorizationEnvironment type for details.
-///
-/// Parameter `flags`: (input) options specified by the AuthorizationFlags enum.  set all unused bits to zero to allow for future expansion.
-///
-/// Parameter `authorizedRights`: (output/optional) A pointer to a newly allocated AuthorizationInfoSet in which the authorized subset of rights are returned (authorizedRights should be deallocated by calling AuthorizationFreeItemSet() when it is no longer needed).  If NULL the only information returned is the status.  Note that if the kAuthorizationFlagPreAuthorize flag was specified rights that could not be preauthorized are returned in authorizedRights, but their flags contains the kAuthorizationFlagCanNotPreAuthorize bit.
-///
-///
-/// Returns: errAuthorizationSuccess 0 No error.
-///
-/// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
-///
-/// errAuthorizationInvalidSet -60001 The rights parameter is invalid.
-///
-/// errAuthorizationInvalidPointer -60004 The authorizedRights parameter is invalid.
-///
-/// # Safety
-///
-/// - `authorization` must be a valid pointer.
-/// - `rights` struct field `items` must be a valid pointer or null.
-/// - `environment` struct field `items` must be a valid pointer or null.
-/// - `authorized_rights` must be a valid pointer or null.
-#[inline]
-pub unsafe fn AuthorizationCopyRights(
-    authorization: AuthorizationRef,
-    rights: &AuthorizationRights,
-    environment: Option<&AuthorizationEnvironment>,
-    flags: AuthorizationFlags,
-    authorized_rights: Option<&mut *mut AuthorizationRights>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationCopyRights(
-            authorization: AuthorizationRef,
-            rights: &AuthorizationRights,
-            environment: Option<&AuthorizationEnvironment>,
-            flags: AuthorizationFlags,
-            authorized_rights: Option<&mut *mut AuthorizationRights>,
-        ) -> OSStatus;
+    /// Given a set of rights, return the subset that is currently authorized
+    /// by the AuthorizationRef given.
+    ///
+    /// When the kAuthorizationFlagInteractionAllowed flag is set, user interaction will happen when required.  Failing to set this flag will result in this call failing with a errAuthorizationInteractionNotAllowed status when interaction is required.
+    ///
+    /// Setting the kAuthorizationFlagExtendRights flag will extend the currently available rights.
+    ///
+    /// Setting the kAuthorizationFlagPartialRights flag will cause this call to succeed if only some of the requested rights are being granted by the returned AuthorizationRef.  Unless this flag is set this API will fail if not all the requested rights could be obtained.
+    ///
+    /// Setting the kAuthorizationFlagDestroyRights flag will prevent any additional rights obtained during this call from being preserved after returning from this API.
+    ///
+    /// Setting the kAuthorizationFlagPreAuthorize flag will pre authorize the requested rights so that at a later time -- by calling AuthorizationMakeExternalForm() follow by AuthorizationCreateFromExternalForm() -- the obtained rights can be used in a different process.  Rights that can't be preauthorized will be treated as if they were authorized for the sake of returning an error (in other words if all rights are either authorized or could not be preauthorized this call will still succeed), and they will be returned in authorizedRights with their kAuthorizationFlagCanNotPreAuthorize bit in the flags field set to 1.
+    /// The rights which could not be preauthorized are not currently authorized and may fail to authorize when a later call to AuthorizationCopyRights() is made, unless the kAuthorizationFlagExtendRights and kAuthorizationFlagInteractionAllowed flags are set.  Even then they might still fail if the user does not supply the correct credentials.
+    /// The reason for passing in this flag is to provide correct audit trail information and to avoid unnecessary user interaction.
+    ///
+    ///
+    /// Parameter `authorization`: (input) The authorization object on which this operation is performed.
+    ///
+    /// Parameter `rights`: (input) A rights set (see AuthorizationCreate).
+    ///
+    /// Parameter `environment`: (input/optional) An AuthorizationItemSet containing environment state used when making the autorization decision.  See the AuthorizationEnvironment type for details.
+    ///
+    /// Parameter `flags`: (input) options specified by the AuthorizationFlags enum.  set all unused bits to zero to allow for future expansion.
+    ///
+    /// Parameter `authorizedRights`: (output/optional) A pointer to a newly allocated AuthorizationInfoSet in which the authorized subset of rights are returned (authorizedRights should be deallocated by calling AuthorizationFreeItemSet() when it is no longer needed).  If NULL the only information returned is the status.  Note that if the kAuthorizationFlagPreAuthorize flag was specified rights that could not be preauthorized are returned in authorizedRights, but their flags contains the kAuthorizationFlagCanNotPreAuthorize bit.
+    ///
+    ///
+    /// Returns: errAuthorizationSuccess 0 No error.
+    ///
+    /// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
+    ///
+    /// errAuthorizationInvalidSet -60001 The rights parameter is invalid.
+    ///
+    /// errAuthorizationInvalidPointer -60004 The authorizedRights parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// - `authorization` might need manual memory-management.
+    /// - `rights` struct field `items` must be a valid pointer or null.
+    /// - `environment` struct field `items` must be a valid pointer or null.
+    /// - `authorized_rights` must be a valid pointer or null.
+    #[doc(alias = "AuthorizationCopyRights")]
+    #[inline]
+    pub unsafe fn copy_rights(
+        &self,
+        rights: &AuthorizationRights,
+        environment: Option<&AuthorizationEnvironment>,
+        flags: AuthorizationFlags,
+        authorized_rights: Option<&mut *mut AuthorizationRights>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationCopyRights(
+                authorization: &Authorization,
+                rights: &AuthorizationRights,
+                environment: Option<&AuthorizationEnvironment>,
+                flags: AuthorizationFlags,
+                authorized_rights: Option<&mut *mut AuthorizationRights>,
+            ) -> OSStatus;
+        }
+        unsafe { AuthorizationCopyRights(self, rights, environment, flags, authorized_rights) }
     }
-    unsafe { AuthorizationCopyRights(authorization, rights, environment, flags, authorized_rights) }
 }
 
 /// Callback block passed to AuthorizationCopyRightsAsync.
@@ -378,187 +381,194 @@ pub unsafe fn AuthorizationCopyRights(
 pub type AuthorizationAsyncCallback =
     block2::Block<'static, fn(OSStatus, *mut AuthorizationRights)>;
 
-/// An asynchronous version of AuthorizationCopyRights.
-///
-///
-/// Parameter `callbackBlock`: (input) The callback block to be called upon completion.
-///
-/// # Safety
-///
-/// - `authorization` must be a valid pointer.
-/// - `rights` struct field `items` must be a valid pointer or null.
-/// - `environment` struct field `items` must be a valid pointer or null.
-#[cfg(feature = "block2")]
-#[inline]
-pub unsafe fn AuthorizationCopyRightsAsync(
-    authorization: AuthorizationRef,
-    rights: &AuthorizationRights,
-    environment: Option<&AuthorizationEnvironment>,
-    flags: AuthorizationFlags,
-    callback_block: &AuthorizationAsyncCallback,
-) {
-    extern "C-unwind" {
-        fn AuthorizationCopyRightsAsync(
-            authorization: AuthorizationRef,
-            rights: &AuthorizationRights,
-            environment: Option<&AuthorizationEnvironment>,
-            flags: AuthorizationFlags,
-            callback_block: &AuthorizationAsyncCallback,
-        );
+impl Authorization {
+    /// An asynchronous version of AuthorizationCopyRights.
+    ///
+    ///
+    /// Parameter `callbackBlock`: (input) The callback block to be called upon completion.
+    ///
+    /// # Safety
+    ///
+    /// - `authorization` might need manual memory-management.
+    /// - `rights` struct field `items` must be a valid pointer or null.
+    /// - `environment` struct field `items` must be a valid pointer or null.
+    #[doc(alias = "AuthorizationCopyRightsAsync")]
+    #[cfg(feature = "block2")]
+    #[inline]
+    pub unsafe fn copy_rights_async(
+        &self,
+        rights: &AuthorizationRights,
+        environment: Option<&AuthorizationEnvironment>,
+        flags: AuthorizationFlags,
+        callback_block: &AuthorizationAsyncCallback,
+    ) {
+        extern "C-unwind" {
+            fn AuthorizationCopyRightsAsync(
+                authorization: &Authorization,
+                rights: &AuthorizationRights,
+                environment: Option<&AuthorizationEnvironment>,
+                flags: AuthorizationFlags,
+                callback_block: &AuthorizationAsyncCallback,
+            );
+        }
+        unsafe { AuthorizationCopyRightsAsync(self, rights, environment, flags, callback_block) }
     }
-    unsafe {
-        AuthorizationCopyRightsAsync(authorization, rights, environment, flags, callback_block)
+
+    /// Returns sideband information (e.g. access credentials) obtained from a call to AuthorizationCreate.  The format of this data depends of the tag specified.
+    ///
+    ///
+    /// Parameter `authorization`: (input) The authorization object on which this operation is performed.
+    ///
+    /// Parameter `tag`: (input/optional) An optional string tag specifing which sideband information should be returned.  When NULL is specified all available information is returned.
+    ///
+    /// Parameter `info`: (output) A pointer to a newly allocated AuthorizationInfoSet in which the requested sideband infomation is returned (info should be deallocated by calling AuthorizationFreeItemSet() when it is no longer needed).
+    ///
+    ///
+    /// Returns: errAuthorizationSuccess 0 No error.
+    ///
+    /// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
+    ///
+    /// errAuthorizationInvalidTag -60003 The tag parameter is invalid.
+    ///
+    /// errAuthorizationInvalidPointer -60004 The info parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// - `authorization` might need manual memory-management.
+    /// - `tag` must be a valid pointer or null.
+    /// - `info` must be a valid pointer or null.
+    #[doc(alias = "AuthorizationCopyInfo")]
+    #[inline]
+    pub unsafe fn copy_info(
+        &self,
+        tag: AuthorizationString,
+        info: &mut *mut AuthorizationItemSet,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationCopyInfo(
+                authorization: &Authorization,
+                tag: AuthorizationString,
+                info: &mut *mut AuthorizationItemSet,
+            ) -> OSStatus;
+        }
+        unsafe { AuthorizationCopyInfo(self, tag, info) }
+    }
+
+    /// Turn an Authorization into an external "byte blob" form so it can be
+    /// transmitted to another process.
+    /// Note that *storing* the external form somewhere will probably not do what
+    /// you want, since authorizations are bounded by sessions, processes, and possibly
+    /// time limits. This is for online transmission of authorizations.
+    ///
+    ///
+    /// Parameter `authorization`: The (valid) authorization reference to externalize
+    ///
+    /// Parameter `extForm`: Pointer to an AuthorizationExternalForm variable to fill.
+    ///
+    ///
+    /// Returns: errAuthorizationSuccess 0 No error.
+    ///
+    /// errAuthorizationExternalizeNotAllowed -60009 Externalizing this authorization is not allowed.
+    ///
+    /// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// `authorization` might need manual memory-management.
+    #[doc(alias = "AuthorizationMakeExternalForm")]
+    #[inline]
+    pub unsafe fn external_form(&self, ext_form: &mut AuthorizationExternalForm) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationMakeExternalForm(
+                authorization: &Authorization,
+                ext_form: &mut AuthorizationExternalForm,
+            ) -> OSStatus;
+        }
+        unsafe { AuthorizationMakeExternalForm(self, ext_form) }
+    }
+
+    /// Internalize the external "byte blob" form of an authorization reference.
+    ///
+    ///
+    /// Parameter `extForm`: Pointer to an AuthorizationExternalForm value.
+    ///
+    /// Parameter `authorization`: Will be filled with a valid AuthorizationRef on success.
+    ///
+    ///
+    /// Returns: errAuthorizationInternalizeNotAllowed -60010 Internalizing this authorization is not allowed.
+    ///
+    /// # Safety
+    ///
+    /// `authorization` must be a valid pointer or null.
+    #[doc(alias = "AuthorizationCreateFromExternalForm")]
+    #[inline]
+    pub unsafe fn create_from_external_form(
+        ext_form: &AuthorizationExternalForm,
+        authorization: &mut *const Authorization,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationCreateFromExternalForm(
+                ext_form: &AuthorizationExternalForm,
+                authorization: &mut *const Authorization,
+            ) -> OSStatus;
+        }
+        unsafe { AuthorizationCreateFromExternalForm(ext_form, authorization) }
     }
 }
 
-/// Returns sideband information (e.g. access credentials) obtained from a call to AuthorizationCreate.  The format of this data depends of the tag specified.
-///
-///
-/// Parameter `authorization`: (input) The authorization object on which this operation is performed.
-///
-/// Parameter `tag`: (input/optional) An optional string tag specifing which sideband information should be returned.  When NULL is specified all available information is returned.
-///
-/// Parameter `info`: (output) A pointer to a newly allocated AuthorizationInfoSet in which the requested sideband infomation is returned (info should be deallocated by calling AuthorizationFreeItemSet() when it is no longer needed).
-///
-///
-/// Returns: errAuthorizationSuccess 0 No error.
-///
-/// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
-///
-/// errAuthorizationInvalidTag -60003 The tag parameter is invalid.
-///
-/// errAuthorizationInvalidPointer -60004 The info parameter is invalid.
-///
-/// # Safety
-///
-/// - `authorization` must be a valid pointer.
-/// - `tag` must be a valid pointer or null.
-/// - `info` must be a valid pointer or null.
-#[inline]
-pub unsafe fn AuthorizationCopyInfo(
-    authorization: AuthorizationRef,
-    tag: AuthorizationString,
-    info: &mut *mut AuthorizationItemSet,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationCopyInfo(
-            authorization: AuthorizationRef,
-            tag: AuthorizationString,
-            info: &mut *mut AuthorizationItemSet,
-        ) -> OSStatus;
+impl AuthorizationItemSet {
+    /// Release the memory allocated for an AuthorizationItemSet that was allocated
+    /// by an API call.
+    ///
+    ///
+    /// Parameter `set`: The AuthorizationItemSet to deallocate.
+    ///
+    ///
+    /// Returns: errAuthorizationSuccess 0 No error.
+    ///
+    /// errAuthorizationInvalidSet -60001 The set parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// `set` must be a valid pointer.
+    #[doc(alias = "AuthorizationFreeItemSet")]
+    #[inline]
+    pub unsafe fn free(set: NonNull<AuthorizationItemSet>) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationFreeItemSet(set: NonNull<AuthorizationItemSet>) -> OSStatus;
+        }
+        unsafe { AuthorizationFreeItemSet(set) }
     }
-    unsafe { AuthorizationCopyInfo(authorization, tag, info) }
 }
 
-/// Turn an Authorization into an external "byte blob" form so it can be
-/// transmitted to another process.
-/// Note that *storing* the external form somewhere will probably not do what
-/// you want, since authorizations are bounded by sessions, processes, and possibly
-/// time limits. This is for online transmission of authorizations.
-///
-///
-/// Parameter `authorization`: The (valid) authorization reference to externalize
-///
-/// Parameter `extForm`: Pointer to an AuthorizationExternalForm variable to fill.
-///
-///
-/// Returns: errAuthorizationSuccess 0 No error.
-///
-/// errAuthorizationExternalizeNotAllowed -60009 Externalizing this authorization is not allowed.
-///
-/// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
-///
-/// # Safety
-///
-/// `authorization` must be a valid pointer.
-#[inline]
-pub unsafe fn AuthorizationMakeExternalForm(
-    authorization: AuthorizationRef,
-    ext_form: &mut AuthorizationExternalForm,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationMakeExternalForm(
-            authorization: AuthorizationRef,
-            ext_form: &mut AuthorizationExternalForm,
-        ) -> OSStatus;
+impl Authorization {
+    /// From within a tool launched via the AuthorizationExecuteWithPrivileges function
+    /// ONLY, retrieve the AuthorizationRef originally passed to that function.
+    /// While AuthorizationExecuteWithPrivileges already verified the authorization to
+    /// launch your tool, the tool may want to avail itself of any additional pre-authorizations
+    /// the caller may have obtained through that reference.
+    ///
+    ///
+    /// This function has been deprecated and should no longer be used.
+    /// Use a launchd-launched helper tool and/or the Service Mangement framework
+    /// for this functionality.
+    ///
+    /// # Safety
+    ///
+    /// `authorization` must be a valid pointer or null.
+    #[doc(alias = "AuthorizationCopyPrivilegedReference")]
+    #[deprecated]
+    #[inline]
+    pub unsafe fn copy_privileged_reference(
+        authorization: &mut *const Authorization,
+        flags: AuthorizationFlags,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AuthorizationCopyPrivilegedReference(
+                authorization: &mut *const Authorization,
+                flags: AuthorizationFlags,
+            ) -> OSStatus;
+        }
+        unsafe { AuthorizationCopyPrivilegedReference(authorization, flags) }
     }
-    unsafe { AuthorizationMakeExternalForm(authorization, ext_form) }
-}
-
-/// Internalize the external "byte blob" form of an authorization reference.
-///
-///
-/// Parameter `extForm`: Pointer to an AuthorizationExternalForm value.
-///
-/// Parameter `authorization`: Will be filled with a valid AuthorizationRef on success.
-///
-///
-/// Returns: errAuthorizationInternalizeNotAllowed -60010 Internalizing this authorization is not allowed.
-///
-/// # Safety
-///
-/// `authorization` must be a valid pointer or null.
-#[inline]
-pub unsafe fn AuthorizationCreateFromExternalForm(
-    ext_form: &AuthorizationExternalForm,
-    authorization: &mut AuthorizationRef,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationCreateFromExternalForm(
-            ext_form: &AuthorizationExternalForm,
-            authorization: &mut AuthorizationRef,
-        ) -> OSStatus;
-    }
-    unsafe { AuthorizationCreateFromExternalForm(ext_form, authorization) }
-}
-
-/// Release the memory allocated for an AuthorizationItemSet that was allocated
-/// by an API call.
-///
-///
-/// Parameter `set`: The AuthorizationItemSet to deallocate.
-///
-///
-/// Returns: errAuthorizationSuccess 0 No error.
-///
-/// errAuthorizationInvalidSet -60001 The set parameter is invalid.
-///
-/// # Safety
-///
-/// `set` must be a valid pointer.
-#[inline]
-pub unsafe fn AuthorizationFreeItemSet(set: NonNull<AuthorizationItemSet>) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationFreeItemSet(set: NonNull<AuthorizationItemSet>) -> OSStatus;
-    }
-    unsafe { AuthorizationFreeItemSet(set) }
-}
-
-/// From within a tool launched via the AuthorizationExecuteWithPrivileges function
-/// ONLY, retrieve the AuthorizationRef originally passed to that function.
-/// While AuthorizationExecuteWithPrivileges already verified the authorization to
-/// launch your tool, the tool may want to avail itself of any additional pre-authorizations
-/// the caller may have obtained through that reference.
-///
-///
-/// This function has been deprecated and should no longer be used.
-/// Use a launchd-launched helper tool and/or the Service Mangement framework
-/// for this functionality.
-///
-/// # Safety
-///
-/// `authorization` must be a valid pointer or null.
-#[deprecated]
-#[inline]
-pub unsafe fn AuthorizationCopyPrivilegedReference(
-    authorization: &mut AuthorizationRef,
-    flags: AuthorizationFlags,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AuthorizationCopyPrivilegedReference(
-            authorization: &mut AuthorizationRef,
-            flags: AuthorizationFlags,
-        ) -> OSStatus;
-    }
-    unsafe { AuthorizationCopyPrivilegedReference(authorization, flags) }
 }

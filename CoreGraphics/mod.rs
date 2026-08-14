@@ -552,8 +552,6 @@ pub use self::__CGDirectDisplay::CGShieldingWindowLevel;
 pub use self::__CGDirectDisplayMetal::CGDirectDisplayCopyCurrentMetalDevice;
 #[cfg(feature = "CGDirectPalette")]
 pub use self::__CGDirectPalette::CGDeviceColor;
-#[cfg(feature = "CGDisplayConfiguration")]
-pub(crate) use self::__CGDisplayConfiguration::_CGDisplayConfigRef;
 #[cfg(all(feature = "CGDisplayConfiguration", feature = "CGError"))]
 pub use self::__CGDisplayConfiguration::CGBeginDisplayConfiguration;
 #[cfg(all(feature = "CGDisplayConfiguration", feature = "CGError"))]
@@ -596,7 +594,7 @@ pub use self::__CGDisplayConfiguration::CGConfigureOption;
 #[cfg(feature = "CGDisplayConfiguration")]
 pub use self::__CGDisplayConfiguration::CGDisplayChangeSummaryFlags;
 #[cfg(feature = "CGDisplayConfiguration")]
-pub use self::__CGDisplayConfiguration::CGDisplayConfigRef;
+pub use self::__CGDisplayConfiguration::CGDisplayConfig;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGDirectDisplay",
@@ -982,12 +980,8 @@ pub use self::__CGLayer::CGLayer;
 pub use self::__CGPDFArray::CGPDFArray;
 #[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject", feature = "block2"))]
 pub use self::__CGPDFArray::CGPDFArrayApplierBlock;
-#[cfg(feature = "CGPDFArray")]
-pub use self::__CGPDFArray::CGPDFArrayRef;
 #[cfg(feature = "CGPDFContentStream")]
 pub use self::__CGPDFContentStream::CGPDFContentStream;
-#[cfg(feature = "CGPDFContentStream")]
-pub use self::__CGPDFContentStream::CGPDFContentStreamRef;
 #[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextAccessPermissions;
 #[cfg(feature = "CGPDFContext")]
@@ -1104,8 +1098,6 @@ pub use self::__CGPDFDictionary::CGPDFDictionary;
 pub use self::__CGPDFDictionary::CGPDFDictionaryApplierBlock;
 #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFObject"))]
 pub use self::__CGPDFDictionary::CGPDFDictionaryApplierFunction;
-#[cfg(feature = "CGPDFDictionary")]
-pub use self::__CGPDFDictionary::CGPDFDictionaryRef;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::kCGPDFOutlineChildren;
 #[cfg(feature = "CGPDFDocument")]
@@ -1125,8 +1117,6 @@ pub use self::__CGPDFObject::CGPDFInteger;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFObject;
 #[cfg(feature = "CGPDFObject")]
-pub use self::__CGPDFObject::CGPDFObjectRef;
-#[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFObjectType;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFReal;
@@ -1134,26 +1124,18 @@ pub use self::__CGPDFObject::CGPDFReal;
 pub use self::__CGPDFOperatorTable::CGPDFOperatorCallback;
 #[cfg(feature = "CGPDFOperatorTable")]
 pub use self::__CGPDFOperatorTable::CGPDFOperatorTable;
-#[cfg(feature = "CGPDFOperatorTable")]
-pub use self::__CGPDFOperatorTable::CGPDFOperatorTableRef;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFBox;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPage;
 #[cfg(feature = "CGPDFScanner")]
 pub use self::__CGPDFScanner::CGPDFScanner;
-#[cfg(feature = "CGPDFScanner")]
-pub use self::__CGPDFScanner::CGPDFScannerRef;
 #[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFDataFormat;
 #[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFStream;
-#[cfg(feature = "CGPDFStream")]
-pub use self::__CGPDFStream::CGPDFStreamRef;
 #[cfg(feature = "CGPDFString")]
 pub use self::__CGPDFString::CGPDFString;
-#[cfg(feature = "CGPDFString")]
-pub use self::__CGPDFString::CGPDFStringRef;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverter;
 #[cfg(feature = "CGPSConverter")]

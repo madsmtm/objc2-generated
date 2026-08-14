@@ -501,7 +501,7 @@ unsafe impl RefEncode for TECSnifferContextRec {
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
 pub type TECPluginNewEncodingConverterPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut TECObjectRef,
+        *mut *mut TECObject,
         *mut TECConverterContextRec,
         TextEncoding,
         TextEncoding,
@@ -511,28 +511,28 @@ pub type TECPluginNewEncodingConverterPtr = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginclearcontextinfoptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
 pub type TECPluginClearContextInfoPtr =
-    Option<unsafe extern "C-unwind" fn(TECObjectRef, *mut TECConverterContextRec) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(*mut TECObject, *mut TECConverterContextRec) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginconverttextencodingptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
 pub type TECPluginConvertTextEncodingPtr =
-    Option<unsafe extern "C-unwind" fn(TECObjectRef, *mut TECConverterContextRec) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(*mut TECObject, *mut TECConverterContextRec) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginflushconversionptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
 pub type TECPluginFlushConversionPtr =
-    Option<unsafe extern "C-unwind" fn(TECObjectRef, *mut TECConverterContextRec) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(*mut TECObject, *mut TECConverterContextRec) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugindisposeencodingconverterptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
 pub type TECPluginDisposeEncodingConverterPtr =
-    Option<unsafe extern "C-unwind" fn(TECObjectRef, *mut TECConverterContextRec) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(*mut TECObject, *mut TECConverterContextRec) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginnewencodingsnifferptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
 pub type TECPluginNewEncodingSnifferPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut TECSnifferObjectRef,
+        *mut *mut TECSnifferObject,
         *mut TECSnifferContextRec,
         TextEncoding,
     ) -> OSStatus,
@@ -540,18 +540,21 @@ pub type TECPluginNewEncodingSnifferPtr = Option<
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginclearsniffercontextinfoptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginClearSnifferContextInfoPtr =
-    Option<unsafe extern "C-unwind" fn(TECSnifferObjectRef, *mut TECSnifferContextRec) -> OSStatus>;
+pub type TECPluginClearSnifferContextInfoPtr = Option<
+    unsafe extern "C-unwind" fn(*mut TECSnifferObject, *mut TECSnifferContextRec) -> OSStatus,
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginsnifftextencodingptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginSniffTextEncodingPtr =
-    Option<unsafe extern "C-unwind" fn(TECSnifferObjectRef, *mut TECSnifferContextRec) -> OSStatus>;
+pub type TECPluginSniffTextEncodingPtr = Option<
+    unsafe extern "C-unwind" fn(*mut TECSnifferObject, *mut TECSnifferContextRec) -> OSStatus,
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugindisposeencodingsnifferptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginDisposeEncodingSnifferPtr =
-    Option<unsafe extern "C-unwind" fn(TECSnifferObjectRef, *mut TECSnifferContextRec) -> OSStatus>;
+pub type TECPluginDisposeEncodingSnifferPtr = Option<
+    unsafe extern "C-unwind" fn(*mut TECSnifferObject, *mut TECSnifferContextRec) -> OSStatus,
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingetcountavailabletextencodingsptr?language=objc)
 #[cfg(feature = "TextCommon")]

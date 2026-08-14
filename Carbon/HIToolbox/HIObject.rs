@@ -217,20 +217,21 @@ impl HIObject {
     /// # Safety
     ///
     /// - `in_class_id` might not allow `None`.
-    /// - `in_construct_data` must be a valid pointer.
+    /// - `in_construct_data` might need manual memory-management.
+    /// - `in_construct_data` might not allow `None`.
     /// - `out_object` might not allow `None`.
     #[doc(alias = "HIObjectCreate")]
     #[cfg(feature = "CarbonEventsCore")]
     #[inline]
     pub unsafe fn new(
         in_class_id: Option<&CFString>,
-        in_construct_data: EventRef,
+        in_construct_data: Option<&Event>,
         out_object: Option<&mut Option<CFRetained<HIObject>>>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn HIObjectCreate(
                 in_class_id: Option<&CFString>,
-                in_construct_data: EventRef,
+                in_construct_data: Option<&Event>,
                 out_object: Option<&mut Option<CFRetained<HIObject>>>,
             ) -> OSStatus;
         }
@@ -246,9 +247,9 @@ impl HIObject {
     #[doc(alias = "HIObjectGetEventTarget")]
     #[cfg(feature = "CarbonEventsCore")]
     #[inline]
-    pub unsafe fn event_target(&self) -> EventTargetRef {
+    pub unsafe fn event_target(&self) -> *mut EventTarget {
         extern "C-unwind" {
-            fn HIObjectGetEventTarget(in_object: &HIObject) -> EventTargetRef;
+            fn HIObjectGetEventTarget(in_object: &HIObject) -> *mut EventTarget;
         }
         unsafe { HIObjectGetEventTarget(self) }
     }
@@ -330,13 +331,18 @@ impl HIObject {
 
     /// # Safety
     ///
-    /// `in_target` must be a valid pointer.
+    /// - `in_target` might need manual memory-management.
+    /// - `in_target` might not allow `None`.
     #[doc(alias = "HIObjectFromEventTarget")]
     #[cfg(feature = "CarbonEventsCore")]
     #[inline]
-    pub unsafe fn from_event_target(in_target: EventTargetRef) -> Option<CFRetained<HIObject>> {
+    pub unsafe fn from_event_target(
+        in_target: Option<&EventTarget>,
+    ) -> Option<CFRetained<HIObject>> {
         extern "C-unwind" {
-            fn HIObjectFromEventTarget(in_target: EventTargetRef) -> Option<NonNull<HIObject>>;
+            fn HIObjectFromEventTarget(
+                in_target: Option<&EventTarget>,
+            ) -> Option<NonNull<HIObject>>;
         }
         let ret = unsafe { HIObjectFromEventTarget(in_target) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -477,16 +483,17 @@ impl HIObject {
 
     /// # Safety
     ///
-    /// `in_ref` must be a valid pointer.
+    /// - `in_ref` might need manual memory-management.
+    /// - `in_ref` might not allow `None`.
     #[doc(alias = "HIObjectGetEventHandlerObject")]
     #[cfg(feature = "CarbonEventsCore")]
     #[inline]
     pub unsafe fn event_handler_object(
-        in_ref: EventHandlerCallRef,
+        in_ref: Option<&EventHandlerCall>,
     ) -> Option<CFRetained<HIObject>> {
         extern "C-unwind" {
             fn HIObjectGetEventHandlerObject(
-                in_ref: EventHandlerCallRef,
+                in_ref: Option<&EventHandlerCall>,
             ) -> Option<NonNull<HIObject>>;
         }
         let ret = unsafe { HIObjectGetEventHandlerObject(in_ref) };

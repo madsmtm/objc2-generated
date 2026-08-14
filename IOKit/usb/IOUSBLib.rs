@@ -2429,7 +2429,7 @@ pub struct IOUSBDeviceStruct942 {
     ///
     /// Returns: Returns the IONotificationPortRef if one exists, MACH_PORT_NULL otherwise.
     pub GetDeviceAsyncNotificationPort:
-        Option<unsafe extern "C-unwind" fn(*mut c_void) -> IONotificationPortRef>,
+        Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut IONotificationPort>,
 }
 
 #[cfg(all(
@@ -2490,7 +2490,7 @@ unsafe impl Encode for IOUSBDeviceStruct942 {
         <Option<unsafe extern "C-unwind" fn(*mut c_void,u64,IOAsyncCallback2,*mut c_void,*mut u64,) -> IOReturn>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*mut c_void,u64,) -> IOReturn>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*mut c_void,u64,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IONotificationPortRef>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut IONotificationPort>>::ENCODING,
     ]);
 }
 
@@ -9392,7 +9392,7 @@ pub struct IOUSBInterfaceStruct942 {
     ///
     /// Returns: Returns the IONotificationPortRef if one exists, MACH_PORT_NULL otherwise.
     pub GetInterfaceAsyncNotificationPort:
-        Option<unsafe extern "C-unwind" fn(*mut c_void) -> IONotificationPortRef>,
+        Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut IONotificationPort>,
 }
 
 #[cfg(all(
@@ -9479,7 +9479,7 @@ unsafe impl Encode for IOUSBInterfaceStruct942 {
         <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IOReturn>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*mut c_void,u32,) -> IOReturn>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*mut c_void,u8,u32,) -> IOReturn>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> IONotificationPortRef>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> *mut IONotificationPort>>::ENCODING,
     ]);
 }
 

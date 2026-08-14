@@ -93,21 +93,19 @@ pub const kFSEventStreamEventFlagItemCloned: c_uint = 0x00400000;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreameventid?language=objc)
 pub type FSEventStreamEventId = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/__fseventstream?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstream?language=objc)
+#[doc(alias = "FSEventStreamRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct __FSEventStream {
+pub struct FSEventStream {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for __FSEventStream {
+unsafe impl RefEncode for FSEventStream {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("__FSEventStream", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamref?language=objc)
-pub type FSEventStreamRef = *mut __FSEventStream;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamcontext?language=objc)
 #[repr(C, packed(2))]
@@ -143,7 +141,7 @@ unsafe impl RefEncode for FSEventStreamContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamcallback?language=objc)
 pub type FSEventStreamCallback = Option<
     unsafe extern "C-unwind" fn(
-        ConstFSEventStreamRef,
+        NonNull<FSEventStream>,
         *mut c_void,
         usize,
         NonNull<c_void>,
@@ -152,135 +150,138 @@ pub type FSEventStreamCallback = Option<
     ),
 >;
 
-/// # Safety
-///
-/// - `callback` must be implemented correctly.
-/// - `context` struct field `version` must be set correctly.
-/// - `context` struct field `info` must be a valid pointer or null.
-/// - `context` struct field `retain` must be implemented correctly.
-/// - `context` struct field `release` must be implemented correctly.
-/// - `context` struct field `copyDescription` must be implemented correctly.
-#[inline]
-pub unsafe fn FSEventStreamCreate(
-    allocator: Option<&CFAllocator>,
-    callback: FSEventStreamCallback,
-    context: Option<&mut FSEventStreamContext>,
-    paths_to_watch: &CFArray<CFString>,
-    since_when: FSEventStreamEventId,
-    latency: CFTimeInterval,
-    flags: FSEventStreamCreateFlags,
-) -> FSEventStreamRef {
-    extern "C-unwind" {
-        fn FSEventStreamCreate(
-            allocator: Option<&CFAllocator>,
-            callback: FSEventStreamCallback,
-            context: Option<&mut FSEventStreamContext>,
-            paths_to_watch: &CFArray<CFString>,
-            since_when: FSEventStreamEventId,
-            latency: CFTimeInterval,
-            flags: FSEventStreamCreateFlags,
-        ) -> FSEventStreamRef;
+impl FSEventStream {
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` struct field `version` must be set correctly.
+    /// - `context` struct field `info` must be a valid pointer or null.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    #[doc(alias = "FSEventStreamCreate")]
+    #[inline]
+    pub unsafe fn create(
+        allocator: Option<&CFAllocator>,
+        callback: FSEventStreamCallback,
+        context: Option<&mut FSEventStreamContext>,
+        paths_to_watch: &CFArray<CFString>,
+        since_when: FSEventStreamEventId,
+        latency: CFTimeInterval,
+        flags: FSEventStreamCreateFlags,
+    ) -> *mut FSEventStream {
+        extern "C-unwind" {
+            fn FSEventStreamCreate(
+                allocator: Option<&CFAllocator>,
+                callback: FSEventStreamCallback,
+                context: Option<&mut FSEventStreamContext>,
+                paths_to_watch: &CFArray<CFString>,
+                since_when: FSEventStreamEventId,
+                latency: CFTimeInterval,
+                flags: FSEventStreamCreateFlags,
+            ) -> *mut FSEventStream;
+        }
+        unsafe {
+            FSEventStreamCreate(
+                allocator,
+                callback,
+                context,
+                paths_to_watch,
+                since_when,
+                latency,
+                flags,
+            )
+        }
     }
-    unsafe {
-        FSEventStreamCreate(
-            allocator,
-            callback,
-            context,
-            paths_to_watch,
-            since_when,
-            latency,
-            flags,
-        )
-    }
-}
 
-/// # Safety
-///
-/// - `callback` must be implemented correctly.
-/// - `context` struct field `version` must be set correctly.
-/// - `context` struct field `info` must be a valid pointer or null.
-/// - `context` struct field `retain` must be implemented correctly.
-/// - `context` struct field `release` must be implemented correctly.
-/// - `context` struct field `copyDescription` must be implemented correctly.
-#[cfg(feature = "libc")]
-#[inline]
-pub unsafe fn FSEventStreamCreateRelativeToDevice(
-    allocator: Option<&CFAllocator>,
-    callback: FSEventStreamCallback,
-    context: Option<&mut FSEventStreamContext>,
-    device_to_watch: libc::dev_t,
-    paths_to_watch_relative_to_device: &CFArray<CFString>,
-    since_when: FSEventStreamEventId,
-    latency: CFTimeInterval,
-    flags: FSEventStreamCreateFlags,
-) -> FSEventStreamRef {
-    extern "C-unwind" {
-        fn FSEventStreamCreateRelativeToDevice(
-            allocator: Option<&CFAllocator>,
-            callback: FSEventStreamCallback,
-            context: Option<&mut FSEventStreamContext>,
-            device_to_watch: libc::dev_t,
-            paths_to_watch_relative_to_device: &CFArray<CFString>,
-            since_when: FSEventStreamEventId,
-            latency: CFTimeInterval,
-            flags: FSEventStreamCreateFlags,
-        ) -> FSEventStreamRef;
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` struct field `version` must be set correctly.
+    /// - `context` struct field `info` must be a valid pointer or null.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    #[doc(alias = "FSEventStreamCreateRelativeToDevice")]
+    #[cfg(feature = "libc")]
+    #[inline]
+    pub unsafe fn create_relative_to_device(
+        allocator: Option<&CFAllocator>,
+        callback: FSEventStreamCallback,
+        context: Option<&mut FSEventStreamContext>,
+        device_to_watch: libc::dev_t,
+        paths_to_watch_relative_to_device: &CFArray<CFString>,
+        since_when: FSEventStreamEventId,
+        latency: CFTimeInterval,
+        flags: FSEventStreamCreateFlags,
+    ) -> *mut FSEventStream {
+        extern "C-unwind" {
+            fn FSEventStreamCreateRelativeToDevice(
+                allocator: Option<&CFAllocator>,
+                callback: FSEventStreamCallback,
+                context: Option<&mut FSEventStreamContext>,
+                device_to_watch: libc::dev_t,
+                paths_to_watch_relative_to_device: &CFArray<CFString>,
+                since_when: FSEventStreamEventId,
+                latency: CFTimeInterval,
+                flags: FSEventStreamCreateFlags,
+            ) -> *mut FSEventStream;
+        }
+        unsafe {
+            FSEventStreamCreateRelativeToDevice(
+                allocator,
+                callback,
+                context,
+                device_to_watch,
+                paths_to_watch_relative_to_device,
+                since_when,
+                latency,
+                flags,
+            )
+        }
     }
-    unsafe {
-        FSEventStreamCreateRelativeToDevice(
-            allocator,
-            callback,
-            context,
-            device_to_watch,
-            paths_to_watch_relative_to_device,
-            since_when,
-            latency,
-            flags,
-        )
-    }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamGetLatestEventId(
-    stream_ref: ConstFSEventStreamRef,
-) -> FSEventStreamEventId {
-    extern "C-unwind" {
-        fn FSEventStreamGetLatestEventId(stream_ref: ConstFSEventStreamRef)
-            -> FSEventStreamEventId;
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamGetLatestEventId")]
+    #[inline]
+    pub unsafe fn latest_event_id(&self) -> FSEventStreamEventId {
+        extern "C-unwind" {
+            fn FSEventStreamGetLatestEventId(stream_ref: &FSEventStream) -> FSEventStreamEventId;
+        }
+        unsafe { FSEventStreamGetLatestEventId(self) }
     }
-    unsafe { FSEventStreamGetLatestEventId(stream_ref) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[cfg(feature = "libc")]
-#[inline]
-pub unsafe fn FSEventStreamGetDeviceBeingWatched(stream_ref: ConstFSEventStreamRef) -> libc::dev_t {
-    extern "C-unwind" {
-        fn FSEventStreamGetDeviceBeingWatched(stream_ref: ConstFSEventStreamRef) -> libc::dev_t;
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamGetDeviceBeingWatched")]
+    #[cfg(feature = "libc")]
+    #[inline]
+    pub unsafe fn device_being_watched(&self) -> libc::dev_t {
+        extern "C-unwind" {
+            fn FSEventStreamGetDeviceBeingWatched(stream_ref: &FSEventStream) -> libc::dev_t;
+        }
+        unsafe { FSEventStreamGetDeviceBeingWatched(self) }
     }
-    unsafe { FSEventStreamGetDeviceBeingWatched(stream_ref) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamCopyPathsBeingWatched(
-    stream_ref: ConstFSEventStreamRef,
-) -> CFRetained<CFArray<CFString>> {
-    extern "C-unwind" {
-        fn FSEventStreamCopyPathsBeingWatched(
-            stream_ref: ConstFSEventStreamRef,
-        ) -> Option<NonNull<CFArray<CFString>>>;
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamCopyPathsBeingWatched")]
+    #[inline]
+    pub unsafe fn paths_being_watched(&self) -> CFRetained<CFArray<CFString>> {
+        extern "C-unwind" {
+            fn FSEventStreamCopyPathsBeingWatched(
+                stream_ref: &FSEventStream,
+            ) -> Option<NonNull<CFArray<CFString>>>;
+        }
+        let ret = unsafe { FSEventStreamCopyPathsBeingWatched(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { FSEventStreamCopyPathsBeingWatched(stream_ref) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
 }
 
 #[inline]
@@ -332,184 +333,184 @@ pub unsafe fn FSEventsPurgeEventsForDeviceUpToEventId(
     ret != 0
 }
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamRetain(stream_ref: FSEventStreamRef) {
-    extern "C-unwind" {
-        fn FSEventStreamRetain(stream_ref: FSEventStreamRef);
+impl FSEventStream {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
+    #[doc(alias = "FSEventStreamRetain")]
+    #[inline]
+    pub unsafe fn retain(stream_ref: NonNull<FSEventStream>) {
+        extern "C-unwind" {
+            fn FSEventStreamRetain(stream_ref: NonNull<FSEventStream>);
+        }
+        unsafe { FSEventStreamRetain(stream_ref) }
     }
-    unsafe { FSEventStreamRetain(stream_ref) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamRelease(stream_ref: FSEventStreamRef) {
-    extern "C-unwind" {
-        fn FSEventStreamRelease(stream_ref: FSEventStreamRef);
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
+    #[doc(alias = "FSEventStreamRelease")]
+    #[inline]
+    pub unsafe fn release(stream_ref: NonNull<FSEventStream>) {
+        extern "C-unwind" {
+            fn FSEventStreamRelease(stream_ref: NonNull<FSEventStream>);
+        }
+        unsafe { FSEventStreamRelease(stream_ref) }
     }
-    unsafe { FSEventStreamRelease(stream_ref) }
-}
 
-/// # Safety
-///
-/// - `stream_ref` must be a valid pointer.
-/// - `run_loop` possibly has additional threading requirements.
-#[deprecated = "Use FSEventStreamSetDispatchQueue instead."]
-#[inline]
-pub unsafe fn FSEventStreamScheduleWithRunLoop(
-    stream_ref: FSEventStreamRef,
-    run_loop: &CFRunLoop,
-    run_loop_mode: &CFString,
-) {
-    extern "C-unwind" {
-        fn FSEventStreamScheduleWithRunLoop(
-            stream_ref: FSEventStreamRef,
-            run_loop: &CFRunLoop,
-            run_loop_mode: &CFString,
-        );
+    /// # Safety
+    ///
+    /// - `stream_ref` might need manual memory-management.
+    /// - `run_loop` possibly has additional threading requirements.
+    #[doc(alias = "FSEventStreamScheduleWithRunLoop")]
+    #[deprecated = "Use FSEventStreamSetDispatchQueue instead."]
+    #[inline]
+    pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
+        extern "C-unwind" {
+            fn FSEventStreamScheduleWithRunLoop(
+                stream_ref: &FSEventStream,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { FSEventStreamScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
-    unsafe { FSEventStreamScheduleWithRunLoop(stream_ref, run_loop, run_loop_mode) }
-}
 
-/// # Safety
-///
-/// - `stream_ref` must be a valid pointer.
-/// - `run_loop` possibly has additional threading requirements.
-#[deprecated = "Use FSEventStreamSetDispatchQueue instead."]
-#[inline]
-pub unsafe fn FSEventStreamUnscheduleFromRunLoop(
-    stream_ref: FSEventStreamRef,
-    run_loop: &CFRunLoop,
-    run_loop_mode: &CFString,
-) {
-    extern "C-unwind" {
-        fn FSEventStreamUnscheduleFromRunLoop(
-            stream_ref: FSEventStreamRef,
-            run_loop: &CFRunLoop,
-            run_loop_mode: &CFString,
-        );
+    /// # Safety
+    ///
+    /// - `stream_ref` might need manual memory-management.
+    /// - `run_loop` possibly has additional threading requirements.
+    #[doc(alias = "FSEventStreamUnscheduleFromRunLoop")]
+    #[deprecated = "Use FSEventStreamSetDispatchQueue instead."]
+    #[inline]
+    pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
+        extern "C-unwind" {
+            fn FSEventStreamUnscheduleFromRunLoop(
+                stream_ref: &FSEventStream,
+                run_loop: &CFRunLoop,
+                run_loop_mode: &CFString,
+            );
+        }
+        unsafe { FSEventStreamUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
     }
-    unsafe { FSEventStreamUnscheduleFromRunLoop(stream_ref, run_loop, run_loop_mode) }
-}
 
-/// # Safety
-///
-/// - `stream_ref` must be a valid pointer.
-/// - `q` possibly has additional threading requirements.
-#[cfg(feature = "dispatch2")]
-#[inline]
-pub unsafe fn FSEventStreamSetDispatchQueue(
-    stream_ref: FSEventStreamRef,
-    q: Option<&DispatchQueue>,
-) {
-    extern "C-unwind" {
-        fn FSEventStreamSetDispatchQueue(stream_ref: FSEventStreamRef, q: Option<&DispatchQueue>);
+    /// # Safety
+    ///
+    /// - `stream_ref` might need manual memory-management.
+    /// - `q` possibly has additional threading requirements.
+    #[doc(alias = "FSEventStreamSetDispatchQueue")]
+    #[cfg(feature = "dispatch2")]
+    #[inline]
+    pub unsafe fn set_dispatch_queue(&self, q: Option<&DispatchQueue>) {
+        extern "C-unwind" {
+            fn FSEventStreamSetDispatchQueue(stream_ref: &FSEventStream, q: Option<&DispatchQueue>);
+        }
+        unsafe { FSEventStreamSetDispatchQueue(self, q) }
     }
-    unsafe { FSEventStreamSetDispatchQueue(stream_ref, q) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamInvalidate(stream_ref: FSEventStreamRef) {
-    extern "C-unwind" {
-        fn FSEventStreamInvalidate(stream_ref: FSEventStreamRef);
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamInvalidate")]
+    #[inline]
+    pub unsafe fn invalidate(&self) {
+        extern "C-unwind" {
+            fn FSEventStreamInvalidate(stream_ref: &FSEventStream);
+        }
+        unsafe { FSEventStreamInvalidate(self) }
     }
-    unsafe { FSEventStreamInvalidate(stream_ref) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamStart(stream_ref: FSEventStreamRef) -> bool {
-    extern "C-unwind" {
-        fn FSEventStreamStart(stream_ref: FSEventStreamRef) -> Boolean;
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamStart")]
+    #[inline]
+    pub unsafe fn start(&self) -> bool {
+        extern "C-unwind" {
+            fn FSEventStreamStart(stream_ref: &FSEventStream) -> Boolean;
+        }
+        let ret = unsafe { FSEventStreamStart(self) };
+        ret != 0
     }
-    let ret = unsafe { FSEventStreamStart(stream_ref) };
-    ret != 0
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamFlushAsync(stream_ref: FSEventStreamRef) -> FSEventStreamEventId {
-    extern "C-unwind" {
-        fn FSEventStreamFlushAsync(stream_ref: FSEventStreamRef) -> FSEventStreamEventId;
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamFlushAsync")]
+    #[inline]
+    pub unsafe fn flush_async(&self) -> FSEventStreamEventId {
+        extern "C-unwind" {
+            fn FSEventStreamFlushAsync(stream_ref: &FSEventStream) -> FSEventStreamEventId;
+        }
+        unsafe { FSEventStreamFlushAsync(self) }
     }
-    unsafe { FSEventStreamFlushAsync(stream_ref) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamFlushSync(stream_ref: FSEventStreamRef) {
-    extern "C-unwind" {
-        fn FSEventStreamFlushSync(stream_ref: FSEventStreamRef);
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamFlushSync")]
+    #[inline]
+    pub unsafe fn flush_sync(&self) {
+        extern "C-unwind" {
+            fn FSEventStreamFlushSync(stream_ref: &FSEventStream);
+        }
+        unsafe { FSEventStreamFlushSync(self) }
     }
-    unsafe { FSEventStreamFlushSync(stream_ref) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamStop(stream_ref: FSEventStreamRef) {
-    extern "C-unwind" {
-        fn FSEventStreamStop(stream_ref: FSEventStreamRef);
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamStop")]
+    #[inline]
+    pub unsafe fn stop(&self) {
+        extern "C-unwind" {
+            fn FSEventStreamStop(stream_ref: &FSEventStream);
+        }
+        unsafe { FSEventStreamStop(self) }
     }
-    unsafe { FSEventStreamStop(stream_ref) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamShow(stream_ref: ConstFSEventStreamRef) {
-    extern "C-unwind" {
-        fn FSEventStreamShow(stream_ref: ConstFSEventStreamRef);
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamShow")]
+    #[inline]
+    pub unsafe fn show(&self) {
+        extern "C-unwind" {
+            fn FSEventStreamShow(stream_ref: &FSEventStream);
+        }
+        unsafe { FSEventStreamShow(self) }
     }
-    unsafe { FSEventStreamShow(stream_ref) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamCopyDescription(
-    stream_ref: ConstFSEventStreamRef,
-) -> CFRetained<CFString> {
-    extern "C-unwind" {
-        fn FSEventStreamCopyDescription(
-            stream_ref: ConstFSEventStreamRef,
-        ) -> Option<NonNull<CFString>>;
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamCopyDescription")]
+    #[inline]
+    pub unsafe fn description(&self) -> CFRetained<CFString> {
+        extern "C-unwind" {
+            fn FSEventStreamCopyDescription(
+                stream_ref: &FSEventStream,
+            ) -> Option<NonNull<CFString>>;
+        }
+        let ret = unsafe { FSEventStreamCopyDescription(self) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
     }
-    let ret = unsafe { FSEventStreamCopyDescription(stream_ref) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { CFRetained::from_raw(ret) }
-}
 
-/// # Safety
-///
-/// `stream_ref` must be a valid pointer.
-#[inline]
-pub unsafe fn FSEventStreamSetExclusionPaths(
-    stream_ref: FSEventStreamRef,
-    paths_to_exclude: &CFArray<CFString>,
-) -> bool {
-    extern "C-unwind" {
-        fn FSEventStreamSetExclusionPaths(
-            stream_ref: FSEventStreamRef,
-            paths_to_exclude: &CFArray<CFString>,
-        ) -> Boolean;
+    /// # Safety
+    ///
+    /// `stream_ref` might need manual memory-management.
+    #[doc(alias = "FSEventStreamSetExclusionPaths")]
+    #[inline]
+    pub unsafe fn set_exclusion_paths(&self, paths_to_exclude: &CFArray<CFString>) -> bool {
+        extern "C-unwind" {
+            fn FSEventStreamSetExclusionPaths(
+                stream_ref: &FSEventStream,
+                paths_to_exclude: &CFArray<CFString>,
+            ) -> Boolean;
+        }
+        let ret = unsafe { FSEventStreamSetExclusionPaths(self, paths_to_exclude) };
+        ret != 0
     }
-    let ret = unsafe { FSEventStreamSetExclusionPaths(stream_ref, paths_to_exclude) };
-    ret != 0
 }

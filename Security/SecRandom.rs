@@ -9,60 +9,69 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/__secrandom?language=objc)
+/// Reference to a (pseudo) random number generator.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrandom?language=objc)
+#[doc(alias = "SecRandomRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct __SecRandom {
+pub struct SecRandom {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for __SecRandom {
+unsafe impl RefEncode for SecRandom {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("__SecRandom", &[]));
 }
 
-/// Reference to a (pseudo) random number generator.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrandomref?language=objc)
-pub type SecRandomRef = *const __SecRandom;
-
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrandomdefault?language=objc)
-    pub static kSecRandomDefault: SecRandomRef;
+    pub static kSecRandomDefault: &'static SecRandom;
 }
 
-/// Return count random bytes in *bytes, allocated by the caller. It
-/// is critical to check the return value for error.
-///
-///
-/// Parameter `rnd`: Only
-/// `kSecRandomDefault`is supported.
-///
-///
-/// Parameter `count`: The number of bytes to generate.
-///
-///
-/// Parameter `bytes`: A buffer to fill with random output.
-///
-///
-/// Returns: Return 0 on success, any other value on failure.
-///
-///
-/// If
-/// `rnd`is unrecognized or unsupported,
-/// `kSecRandomDefault`is
-/// used.
-///
-/// # Safety
-///
-/// - `rnd` must be a valid pointer or null.
-/// - `bytes` must be a valid pointer.
-#[must_use]
-#[inline]
-pub unsafe fn SecRandomCopyBytes(rnd: SecRandomRef, count: usize, bytes: NonNull<c_void>) -> c_int {
-    extern "C-unwind" {
-        fn SecRandomCopyBytes(rnd: SecRandomRef, count: usize, bytes: NonNull<c_void>) -> c_int;
+impl SecRandom {
+    /// Return count random bytes in *bytes, allocated by the caller. It
+    /// is critical to check the return value for error.
+    ///
+    ///
+    /// Parameter `rnd`: Only
+    /// `kSecRandomDefault`is supported.
+    ///
+    ///
+    /// Parameter `count`: The number of bytes to generate.
+    ///
+    ///
+    /// Parameter `bytes`: A buffer to fill with random output.
+    ///
+    ///
+    /// Returns: Return 0 on success, any other value on failure.
+    ///
+    ///
+    /// If
+    /// `rnd`is unrecognized or unsupported,
+    /// `kSecRandomDefault`is
+    /// used.
+    ///
+    /// # Safety
+    ///
+    /// - `rnd` might need manual memory-management.
+    /// - `bytes` must be a valid pointer.
+    #[doc(alias = "SecRandomCopyBytes")]
+    #[must_use]
+    #[inline]
+    pub unsafe fn copy_bytes(
+        rnd: Option<&SecRandom>,
+        count: usize,
+        bytes: NonNull<c_void>,
+    ) -> c_int {
+        extern "C-unwind" {
+            fn SecRandomCopyBytes(
+                rnd: Option<&SecRandom>,
+                count: usize,
+                bytes: NonNull<c_void>,
+            ) -> c_int;
+        }
+        unsafe { SecRandomCopyBytes(rnd, count, bytes) }
     }
-    unsafe { SecRandomCopyBytes(rnd, count, bytes) }
 }

@@ -58,8 +58,6 @@ pub use self::__DictionaryServices::DCSDictionary;
 #[cfg(feature = "DictionaryServices")]
 pub use self::__DictionaryServices::DCSGetTermRangeInString;
 #[cfg(feature = "FSEvents")]
-pub(crate) use self::__FSEvents::__FSEventStream;
-#[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::kFSEventStreamCreateDeviceState;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::kFSEventStreamCreateFlagFileEvents;
@@ -130,53 +128,17 @@ pub use self::__FSEvents::kFSEventStreamEventFlagUnmount;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::kFSEventStreamEventFlagUserDropped;
 #[cfg(feature = "FSEvents")]
+pub use self::__FSEvents::FSEventStream;
+#[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::FSEventStreamCallback;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::FSEventStreamContext;
 #[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamCopyDescription;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamCopyPathsBeingWatched;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamCreate;
-#[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::FSEventStreamCreateFlags;
-#[cfg(all(feature = "FSEvents", feature = "libc"))]
-pub use self::__FSEvents::FSEventStreamCreateRelativeToDevice;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::FSEventStreamEventFlags;
 #[cfg(feature = "FSEvents")]
 pub use self::__FSEvents::FSEventStreamEventId;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamFlushAsync;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamFlushSync;
-#[cfg(all(feature = "FSEvents", feature = "libc"))]
-pub use self::__FSEvents::FSEventStreamGetDeviceBeingWatched;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamGetLatestEventId;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamInvalidate;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamRef;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamRelease;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamRetain;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamScheduleWithRunLoop;
-#[cfg(all(feature = "FSEvents", feature = "dispatch2"))]
-pub use self::__FSEvents::FSEventStreamSetDispatchQueue;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamSetExclusionPaths;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamShow;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamStart;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamStop;
-#[cfg(feature = "FSEvents")]
-pub use self::__FSEvents::FSEventStreamUnscheduleFromRunLoop;
 #[cfg(all(feature = "FSEvents", feature = "libc"))]
 pub use self::__FSEvents::FSEventsCopyUUIDForDevice;
 #[cfg(feature = "FSEvents")]

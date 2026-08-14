@@ -10,6 +10,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarray?language=objc)
+#[doc(alias = "CGPDFArrayRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFArray {
@@ -22,253 +23,214 @@ unsafe impl RefEncode for CGPDFArray {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFArray", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarrayref?language=objc)
-pub type CGPDFArrayRef = *mut CGPDFArray;
-
 impl CGPDFArray {
     /// # Safety
     ///
-    /// `array` must be a valid pointer.
+    /// `array` might need manual memory-management.
     #[doc(alias = "CGPDFArrayGetCount")]
     #[inline]
-    pub unsafe fn count(array: CGPDFArrayRef) -> usize {
+    pub unsafe fn count(&self) -> usize {
         extern "C-unwind" {
-            fn CGPDFArrayGetCount(array: CGPDFArrayRef) -> usize;
+            fn CGPDFArrayGetCount(array: &CGPDFArray) -> usize;
         }
-        unsafe { CGPDFArrayGetCount(array) }
+        unsafe { CGPDFArrayGetCount(self) }
     }
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer.
+    /// - `array` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetObject")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn object(
-        array: CGPDFArrayRef,
-        index: usize,
-        value: Option<&mut CGPDFObjectRef>,
-    ) -> bool {
+    pub unsafe fn object(&self, index: usize, value: Option<&mut *mut CGPDFObject>) -> bool {
         extern "C-unwind" {
             fn CGPDFArrayGetObject(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 index: usize,
-                value: Option<&mut CGPDFObjectRef>,
+                value: Option<&mut *mut CGPDFObject>,
             ) -> bool;
         }
-        unsafe { CGPDFArrayGetObject(array, index, value) }
+        unsafe { CGPDFArrayGetObject(self, index, value) }
     }
 
     /// # Safety
     ///
-    /// `array` must be a valid pointer.
+    /// `array` might need manual memory-management.
     #[doc(alias = "CGPDFArrayGetNull")]
     #[inline]
-    pub unsafe fn null(array: CGPDFArrayRef, index: usize) -> bool {
+    pub unsafe fn null(&self, index: usize) -> bool {
         extern "C-unwind" {
-            fn CGPDFArrayGetNull(array: CGPDFArrayRef, index: usize) -> bool;
+            fn CGPDFArrayGetNull(array: &CGPDFArray, index: usize) -> bool;
         }
-        unsafe { CGPDFArrayGetNull(array, index) }
+        unsafe { CGPDFArrayGetNull(self, index) }
     }
 
     /// # Safety
     ///
-    /// `array` must be a valid pointer.
+    /// `array` might need manual memory-management.
     #[doc(alias = "CGPDFArrayGetBoolean")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn boolean(
-        array: CGPDFArrayRef,
-        index: usize,
-        value: Option<&mut CGPDFBoolean>,
-    ) -> bool {
+    pub unsafe fn boolean(&self, index: usize, value: Option<&mut CGPDFBoolean>) -> bool {
         extern "C-unwind" {
             fn CGPDFArrayGetBoolean(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 index: usize,
                 value: Option<&mut CGPDFBoolean>,
             ) -> bool;
         }
-        unsafe { CGPDFArrayGetBoolean(array, index, value) }
+        unsafe { CGPDFArrayGetBoolean(self, index, value) }
     }
 
     /// # Safety
     ///
-    /// `array` must be a valid pointer.
+    /// `array` might need manual memory-management.
     #[doc(alias = "CGPDFArrayGetInteger")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn integer(
-        array: CGPDFArrayRef,
-        index: usize,
-        value: Option<&mut CGPDFInteger>,
-    ) -> bool {
+    pub unsafe fn integer(&self, index: usize, value: Option<&mut CGPDFInteger>) -> bool {
         extern "C-unwind" {
             fn CGPDFArrayGetInteger(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 index: usize,
                 value: Option<&mut CGPDFInteger>,
             ) -> bool;
         }
-        unsafe { CGPDFArrayGetInteger(array, index, value) }
+        unsafe { CGPDFArrayGetInteger(self, index, value) }
     }
 
     /// # Safety
     ///
-    /// `array` must be a valid pointer.
+    /// `array` might need manual memory-management.
     #[doc(alias = "CGPDFArrayGetNumber")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
-    pub unsafe fn number(
-        array: CGPDFArrayRef,
-        index: usize,
-        value: Option<&mut CGPDFReal>,
-    ) -> bool {
+    pub unsafe fn number(&self, index: usize, value: Option<&mut CGPDFReal>) -> bool {
         extern "C-unwind" {
             fn CGPDFArrayGetNumber(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 index: usize,
                 value: Option<&mut CGPDFReal>,
             ) -> bool;
         }
-        unsafe { CGPDFArrayGetNumber(array, index, value) }
+        unsafe { CGPDFArrayGetNumber(self, index, value) }
     }
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer.
+    /// - `array` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetName")]
     #[inline]
-    pub unsafe fn name(
-        array: CGPDFArrayRef,
-        index: usize,
-        value: Option<&mut *const c_char>,
-    ) -> bool {
+    pub unsafe fn name(&self, index: usize, value: Option<&mut *const c_char>) -> bool {
         extern "C-unwind" {
             fn CGPDFArrayGetName(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 index: usize,
                 value: Option<&mut *const c_char>,
             ) -> bool;
         }
-        unsafe { CGPDFArrayGetName(array, index, value) }
+        unsafe { CGPDFArrayGetName(self, index, value) }
     }
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer.
+    /// - `array` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetString")]
     #[cfg(feature = "CGPDFString")]
     #[inline]
-    pub unsafe fn string(
-        array: CGPDFArrayRef,
-        index: usize,
-        value: Option<&mut CGPDFStringRef>,
-    ) -> bool {
+    pub unsafe fn string(&self, index: usize, value: Option<&mut *mut CGPDFString>) -> bool {
         extern "C-unwind" {
             fn CGPDFArrayGetString(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 index: usize,
-                value: Option<&mut CGPDFStringRef>,
+                value: Option<&mut *mut CGPDFString>,
             ) -> bool;
         }
-        unsafe { CGPDFArrayGetString(array, index, value) }
+        unsafe { CGPDFArrayGetString(self, index, value) }
     }
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer.
+    /// - `array` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetArray")]
     #[inline]
-    pub unsafe fn array(
-        array: CGPDFArrayRef,
-        index: usize,
-        value: Option<&mut CGPDFArrayRef>,
-    ) -> bool {
+    pub unsafe fn array(&self, index: usize, value: Option<&mut *mut CGPDFArray>) -> bool {
         extern "C-unwind" {
             fn CGPDFArrayGetArray(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 index: usize,
-                value: Option<&mut CGPDFArrayRef>,
+                value: Option<&mut *mut CGPDFArray>,
             ) -> bool;
         }
-        unsafe { CGPDFArrayGetArray(array, index, value) }
+        unsafe { CGPDFArrayGetArray(self, index, value) }
     }
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer.
+    /// - `array` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
     pub unsafe fn dictionary(
-        array: CGPDFArrayRef,
+        &self,
         index: usize,
-        value: Option<&mut CGPDFDictionaryRef>,
+        value: Option<&mut *mut CGPDFDictionary>,
     ) -> bool {
         extern "C-unwind" {
             fn CGPDFArrayGetDictionary(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 index: usize,
-                value: Option<&mut CGPDFDictionaryRef>,
+                value: Option<&mut *mut CGPDFDictionary>,
             ) -> bool;
         }
-        unsafe { CGPDFArrayGetDictionary(array, index, value) }
+        unsafe { CGPDFArrayGetDictionary(self, index, value) }
     }
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer.
+    /// - `array` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetStream")]
     #[cfg(feature = "CGPDFStream")]
     #[inline]
-    pub unsafe fn stream(
-        array: CGPDFArrayRef,
-        index: usize,
-        value: Option<&mut CGPDFStreamRef>,
-    ) -> bool {
+    pub unsafe fn stream(&self, index: usize, value: Option<&mut *mut CGPDFStream>) -> bool {
         extern "C-unwind" {
             fn CGPDFArrayGetStream(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 index: usize,
-                value: Option<&mut CGPDFStreamRef>,
+                value: Option<&mut *mut CGPDFStream>,
             ) -> bool;
         }
-        unsafe { CGPDFArrayGetStream(array, index, value) }
+        unsafe { CGPDFArrayGetStream(self, index, value) }
     }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarrayapplierblock?language=objc)
 #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
 pub type CGPDFArrayApplierBlock =
-    block2::Block<'static, fn(usize, CGPDFObjectRef, *mut c_void) -> bool>;
+    block2::Block<'static, fn(usize, NonNull<CGPDFObject>, *mut c_void) -> bool>;
 
 impl CGPDFArray {
     /// # Safety
     ///
-    /// - `array` must be a valid pointer.
+    /// - `array` might need manual memory-management.
     /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayApplyBlock")]
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
     #[inline]
-    pub unsafe fn apply_block(
-        array: CGPDFArrayRef,
-        block: &CGPDFArrayApplierBlock,
-        info: *mut c_void,
-    ) {
+    pub unsafe fn apply_block(&self, block: &CGPDFArrayApplierBlock, info: *mut c_void) {
         extern "C-unwind" {
             fn CGPDFArrayApplyBlock(
-                array: CGPDFArrayRef,
+                array: &CGPDFArray,
                 block: &CGPDFArrayApplierBlock,
                 info: *mut c_void,
             );
         }
-        unsafe { CGPDFArrayApplyBlock(array, block, info) }
+        unsafe { CGPDFArrayApplyBlock(self, block, info) }
     }
 }

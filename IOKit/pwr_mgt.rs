@@ -1282,7 +1282,7 @@ pub unsafe fn IOPMCopyBatteryInfo(
 pub unsafe fn IORegisterApp(
     refcon: *mut c_void,
     the_driver: io_service_t,
-    the_port_ref: Option<&mut IONotificationPortRef>,
+    the_port_ref: Option<&mut *mut IONotificationPort>,
     callback: IOServiceInterestCallback,
     notifier: Option<&mut io_object_t>,
 ) -> io_connect_t {
@@ -1290,7 +1290,7 @@ pub unsafe fn IORegisterApp(
         fn IORegisterApp(
             refcon: *mut c_void,
             the_driver: io_service_t,
-            the_port_ref: Option<&mut IONotificationPortRef>,
+            the_port_ref: Option<&mut *mut IONotificationPort>,
             callback: IOServiceInterestCallback,
             notifier: Option<&mut io_object_t>,
         ) -> io_connect_t;
@@ -1424,14 +1424,14 @@ pub unsafe fn IORegisterApp(
 #[inline]
 pub unsafe fn IORegisterForSystemPower(
     refcon: *mut c_void,
-    the_port_ref: Option<&mut IONotificationPortRef>,
+    the_port_ref: Option<&mut *mut IONotificationPort>,
     callback: IOServiceInterestCallback,
     notifier: Option<&mut io_object_t>,
 ) -> io_connect_t {
     extern "C-unwind" {
         fn IORegisterForSystemPower(
             refcon: *mut c_void,
-            the_port_ref: Option<&mut IONotificationPortRef>,
+            the_port_ref: Option<&mut *mut IONotificationPort>,
             callback: IOServiceInterestCallback,
             notifier: Option<&mut io_object_t>,
         ) -> io_connect_t;

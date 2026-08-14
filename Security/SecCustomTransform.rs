@@ -274,28 +274,25 @@ pub type SecTransformDataBlock = block2::Block<'static, fn(NonNull<CFType>) -> *
 #[cfg(feature = "block2")]
 pub type SecTransformInstanceBlock = block2::Block<'static, fn() -> *mut CFError>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/opaquesectransformimplementation?language=objc)
+/// The SecTransformImplementationRef is a pointer to a block
+/// that implements an instance of a transform.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformimplementation?language=objc)
+#[doc(alias = "SecTransformImplementationRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueSecTransformImplementation {
+pub struct SecTransformImplementation {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueSecTransformImplementation {
+unsafe impl RefEncode for SecTransformImplementation {
     const ENCODING_REF: Encoding =
         Encoding::Pointer(&Encoding::Struct("OpaqueSecTransformImplementation", &[]));
 }
 
-/// The SecTransformImplementationRef is a pointer to a block
-/// that implements an instance of a transform.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformimplementationref?language=objc)
-pub type SecTransformImplementationRef = *const OpaqueSecTransformImplementation;
-
-#[cfg(feature = "SecTransform")]
-impl SecTransform {
+impl SecTransformImplementation {
     /// Be notified when a attribute is set. The supplied block is
     /// called when the attribute is set. This can be done for a
     /// specific named attribute or all attributes.
@@ -346,7 +343,7 @@ impl SecTransform {
     ///
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might need manual memory-management.
     /// - `attribute` should be of the correct type.
     /// - `new_action` block's return must be a valid pointer or null.
     #[doc(alias = "SecTransformSetAttributeAction")]
@@ -354,20 +351,20 @@ impl SecTransform {
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
     pub unsafe fn set_attribute_action(
-        r#ref: SecTransformImplementationRef,
+        &self,
         action: &CFString,
         attribute: Option<&SecTransformStringOrAttribute>,
         new_action: &SecTransformAttributeActionBlock,
     ) -> Option<CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTransformSetAttributeAction(
-                r#ref: SecTransformImplementationRef,
+                r#ref: &SecTransformImplementation,
                 action: &CFString,
                 attribute: Option<&SecTransformStringOrAttribute>,
                 new_action: &SecTransformAttributeActionBlock,
             ) -> Option<NonNull<CFError>>;
         }
-        let ret = unsafe { SecTransformSetAttributeAction(r#ref, action, attribute, new_action) };
+        let ret = unsafe { SecTransformSetAttributeAction(self, action, attribute, new_action) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
@@ -422,49 +419,49 @@ impl SecTransform {
     ///
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might need manual memory-management.
     /// - `new_action` block's return must be a valid pointer or null.
     #[doc(alias = "SecTransformSetDataAction")]
     #[cfg(feature = "block2")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
     pub unsafe fn set_data_action(
-        r#ref: SecTransformImplementationRef,
+        &self,
         action: &CFString,
         new_action: &SecTransformDataBlock,
     ) -> Option<CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTransformSetDataAction(
-                r#ref: SecTransformImplementationRef,
+                r#ref: &SecTransformImplementation,
                 action: &CFString,
                 new_action: &SecTransformDataBlock,
             ) -> Option<NonNull<CFError>>;
         }
-        let ret = unsafe { SecTransformSetDataAction(r#ref, action, new_action) };
+        let ret = unsafe { SecTransformSetDataAction(self, action, new_action) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might need manual memory-management.
     /// - `new_action` block's return must be a valid pointer or null.
     #[doc(alias = "SecTransformSetTransformAction")]
     #[cfg(feature = "block2")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
     pub unsafe fn set_transform_action(
-        r#ref: SecTransformImplementationRef,
+        &self,
         action: &CFString,
         new_action: &SecTransformActionBlock,
     ) -> Option<CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTransformSetTransformAction(
-                r#ref: SecTransformImplementationRef,
+                r#ref: &SecTransformImplementation,
                 action: &CFString,
                 new_action: &SecTransformActionBlock,
             ) -> Option<NonNull<CFError>>;
         }
-        let ret = unsafe { SecTransformSetTransformAction(r#ref, action, new_action) };
+        let ret = unsafe { SecTransformSetTransformAction(self, action, new_action) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 }
@@ -488,18 +485,18 @@ impl SecTransform {
 ///
 /// # Safety
 ///
-/// - `ref` must be a valid pointer.
+/// - `ref` might need manual memory-management.
 /// - `attribute` should be of the correct type.
 #[deprecated]
 #[inline]
 pub unsafe fn SecTranformCustomGetAttribute(
-    r#ref: SecTransformImplementationRef,
+    r#ref: &SecTransformImplementation,
     attribute: &SecTransformStringOrAttribute,
     r#type: SecTransformMetaAttributeType,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn SecTranformCustomGetAttribute(
-            r#ref: SecTransformImplementationRef,
+            r#ref: &SecTransformImplementation,
             attribute: &SecTransformStringOrAttribute,
             r#type: SecTransformMetaAttributeType,
         ) -> Option<NonNull<CFType>>;
@@ -508,8 +505,7 @@ pub unsafe fn SecTranformCustomGetAttribute(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-#[cfg(feature = "SecTransform")]
-impl SecTransform {
+impl SecTransformImplementation {
     /// Allow a custom transform to get an attribute value
     ///
     ///
@@ -529,25 +525,25 @@ impl SecTransform {
     ///
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might need manual memory-management.
     /// - `attribute` should be of the correct type.
     #[doc(alias = "SecTransformCustomGetAttribute")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
     pub unsafe fn custom_get_attribute(
-        r#ref: SecTransformImplementationRef,
+        &self,
         attribute: &SecTransformStringOrAttribute,
         r#type: SecTransformMetaAttributeType,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             #[link_name = "SecTranformCustomGetAttribute"]
             fn SecTransformCustomGetAttribute(
-                r#ref: SecTransformImplementationRef,
+                r#ref: &SecTransformImplementation,
                 attribute: &SecTransformStringOrAttribute,
                 r#type: SecTransformMetaAttributeType,
             ) -> Option<NonNull<CFType>>;
         }
-        let ret = unsafe { SecTransformCustomGetAttribute(r#ref, attribute, r#type) };
+        let ret = unsafe { SecTransformCustomGetAttribute(self, attribute, r#type) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
@@ -579,27 +575,27 @@ impl SecTransform {
     ///
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might need manual memory-management.
     /// - `attribute` should be of the correct type.
     /// - `value` should be of the correct type.
     #[doc(alias = "SecTransformCustomSetAttribute")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
     pub unsafe fn custom_set_attribute(
-        r#ref: SecTransformImplementationRef,
+        &self,
         attribute: &SecTransformStringOrAttribute,
         r#type: SecTransformMetaAttributeType,
         value: Option<&CFType>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn SecTransformCustomSetAttribute(
-                r#ref: SecTransformImplementationRef,
+                r#ref: &SecTransformImplementation,
                 attribute: &SecTransformStringOrAttribute,
                 r#type: SecTransformMetaAttributeType,
                 value: Option<&CFType>,
             ) -> Option<NonNull<CFType>>;
         }
-        let ret = unsafe { SecTransformCustomSetAttribute(r#ref, attribute, r#type, value) };
+        let ret = unsafe { SecTransformCustomSetAttribute(self, attribute, r#type, value) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
@@ -624,25 +620,25 @@ impl SecTransform {
     ///
     /// # Safety
     ///
-    /// - `ref` must be a valid pointer.
+    /// - `ref` might need manual memory-management.
     /// - `attribute` should be of the correct type.
     /// - `value` should be of the correct type.
     #[doc(alias = "SecTransformPushbackAttribute")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
     pub unsafe fn pushback_attribute(
-        r#ref: SecTransformImplementationRef,
+        &self,
         attribute: &SecTransformStringOrAttribute,
         value: &CFType,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn SecTransformPushbackAttribute(
-                r#ref: SecTransformImplementationRef,
+                r#ref: &SecTransformImplementation,
                 attribute: &SecTransformStringOrAttribute,
                 value: &CFType,
             ) -> Option<NonNull<CFType>>;
         }
-        let ret = unsafe { SecTransformPushbackAttribute(r#ref, attribute, value) };
+        let ret = unsafe { SecTransformPushbackAttribute(self, attribute, value) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 }
@@ -681,7 +677,7 @@ pub type SecTransformCreateFP = Option<
     unsafe extern "C-unwind" fn(
         NonNull<CFString>,
         NonNull<SecTransform>,
-        SecTransformImplementationRef,
+        NonNull<SecTransformImplementation>,
     ) -> NonNull<SecTransformInstanceBlock>,
 >;
 

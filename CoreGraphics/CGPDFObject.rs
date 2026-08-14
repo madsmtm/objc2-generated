@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -19,6 +20,7 @@ pub type CGPDFInteger = c_long;
 pub type CGPDFReal = CGFloat;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobject?language=objc)
+#[doc(alias = "CGPDFObjectRef")]
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFObject {
@@ -30,9 +32,6 @@ pub struct CGPDFObject {
 unsafe impl RefEncode for CGPDFObject {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFObject", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjectref?language=objc)
-pub type CGPDFObjectRef = *mut CGPDFObject;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype?language=objc)
 // NS_ENUM
@@ -73,34 +72,30 @@ unsafe impl RefEncode for CGPDFObjectType {
 impl CGPDFObject {
     /// # Safety
     ///
-    /// `object` must be a valid pointer.
+    /// `object` might need manual memory-management.
     #[doc(alias = "CGPDFObjectGetType")]
     #[inline]
-    pub unsafe fn r#type(object: CGPDFObjectRef) -> CGPDFObjectType {
+    pub unsafe fn r#type(&self) -> CGPDFObjectType {
         extern "C-unwind" {
-            fn CGPDFObjectGetType(object: CGPDFObjectRef) -> CGPDFObjectType;
+            fn CGPDFObjectGetType(object: &CGPDFObject) -> CGPDFObjectType;
         }
-        unsafe { CGPDFObjectGetType(object) }
+        unsafe { CGPDFObjectGetType(self) }
     }
 
     /// # Safety
     ///
-    /// - `object` must be a valid pointer.
+    /// - `object` might need manual memory-management.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFObjectGetValue")]
     #[inline]
-    pub unsafe fn value(
-        object: CGPDFObjectRef,
-        r#type: CGPDFObjectType,
-        value: *mut c_void,
-    ) -> bool {
+    pub unsafe fn value(&self, r#type: CGPDFObjectType, value: *mut c_void) -> bool {
         extern "C-unwind" {
             fn CGPDFObjectGetValue(
-                object: CGPDFObjectRef,
+                object: &CGPDFObject,
                 r#type: CGPDFObjectType,
                 value: *mut c_void,
             ) -> bool;
         }
-        unsafe { CGPDFObjectGetValue(object, r#type, value) }
+        unsafe { CGPDFObjectGetValue(self, r#type, value) }
     }
 }

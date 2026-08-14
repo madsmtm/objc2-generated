@@ -15,18 +15,16 @@ pub const kIBCarbonRuntimeObjectNotOfRequestedType: c_int = -10961;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/kibcarbonruntimecantfindobject?language=objc)
 pub const kIBCarbonRuntimeCantFindObject: c_int = -10962;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/opaqueibnibref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carbon/ibnib?language=objc)
+#[doc(alias = "IBNibRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueIBNibRef {
+pub struct IBNib {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueIBNibRef {
+unsafe impl RefEncode for IBNib {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueIBNibRef", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/carbon/ibnibref?language=objc)
-pub type IBNibRef = *mut OpaqueIBNibRef;

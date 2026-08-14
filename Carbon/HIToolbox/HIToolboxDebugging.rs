@@ -14,12 +14,13 @@ pub unsafe fn DebugPrintMainEventQueue() {
 
 /// # Safety
 ///
-/// `in_event` must be a valid pointer.
+/// - `in_event` might need manual memory-management.
+/// - `in_event` might not allow `None`.
 #[cfg(feature = "CarbonEventsCore")]
 #[inline]
-pub unsafe fn DebugPrintEvent(in_event: EventRef) {
+pub unsafe fn DebugPrintEvent(in_event: Option<&Event>) {
     extern "C-unwind" {
-        fn DebugPrintEvent(in_event: EventRef);
+        fn DebugPrintEvent(in_event: Option<&Event>);
     }
     unsafe { DebugPrintEvent(in_event) }
 }

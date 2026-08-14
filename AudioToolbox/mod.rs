@@ -1380,52 +1380,20 @@ pub use self::__AudioConverter::kConverterPrimeMethod_Pre;
 pub use self::__AudioConverter::kDitherAlgorithm_NoiseShaping;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::kDitherAlgorithm_TPDF;
+#[cfg(feature = "AudioConverter")]
+pub use self::__AudioConverter::AudioConverter;
 #[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
 pub use self::__AudioConverter::AudioConverterComplexInputDataProc;
 #[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
 pub use self::__AudioConverter::AudioConverterComplexInputDataProcRealtimeSafe;
 #[cfg(feature = "AudioConverter")]
-pub use self::__AudioConverter::AudioConverterConvertBuffer;
-#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
-pub use self::__AudioConverter::AudioConverterConvertComplexBuffer;
-#[cfg(feature = "AudioConverter")]
-pub use self::__AudioConverter::AudioConverterDispose;
-#[cfg(feature = "AudioConverter")]
-pub use self::__AudioConverter::AudioConverterFillBuffer;
-#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
-pub use self::__AudioConverter::AudioConverterFillComplexBuffer;
-#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
-pub use self::__AudioConverter::AudioConverterFillComplexBufferRealtimeSafe;
-#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
-pub use self::__AudioConverter::AudioConverterFillComplexBufferWithPacketDependencies;
-#[cfg(feature = "AudioConverter")]
-pub use self::__AudioConverter::AudioConverterGetProperty;
-#[cfg(feature = "AudioConverter")]
-pub use self::__AudioConverter::AudioConverterGetPropertyInfo;
-#[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::AudioConverterInputDataProc;
-#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
-pub use self::__AudioConverter::AudioConverterNew;
-#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
-pub use self::__AudioConverter::AudioConverterNewSpecific;
-#[cfg(all(feature = "AudioConverter", feature = "objc2-core-audio-types"))]
-pub use self::__AudioConverter::AudioConverterNewWithOptions;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::AudioConverterOptions;
-#[cfg(all(feature = "AudioConverter", feature = "block2"))]
-pub use self::__AudioConverter::AudioConverterPrepare;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::AudioConverterPrimeInfo;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::AudioConverterPropertyID;
-#[cfg(feature = "AudioConverter")]
-pub use self::__AudioConverter::AudioConverterRef;
-#[cfg(feature = "AudioConverter")]
-pub use self::__AudioConverter::AudioConverterReset;
-#[cfg(feature = "AudioConverter")]
-pub use self::__AudioConverter::AudioConverterSetProperty;
-#[cfg(feature = "AudioConverter")]
-pub use self::__AudioConverter::OpaqueAudioConverter;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::kAFInfoDictionary_Album;
 #[cfg(feature = "AudioFile")]
@@ -2109,45 +2077,13 @@ pub use self::__AudioQueue::kAudioQueueTimePitchAlgorithm_TimeDomain;
 #[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::kAudioQueueTimePitchAlgorithm_Varispeed;
 #[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueAddPropertyListener;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueAllocateBuffer;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueAllocateBufferWithPacketDescriptions;
+pub use self::__AudioQueue::AudioQueue;
 #[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
 pub use self::__AudioQueue::AudioQueueBuffer;
 #[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
 pub use self::__AudioQueue::AudioQueueBufferRef;
 #[cfg(all(feature = "AudioQueue", feature = "objc2-core-foundation"))]
 pub use self::__AudioQueue::AudioQueueChannelAssignment;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueCreateTimeline;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueDeviceGetCurrentTime;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueDeviceGetNearestStartTime;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueDeviceTranslateTime;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueDispose;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueDisposeTimeline;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueEnqueueBuffer;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueEnqueueBufferWithParameters;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueFlush;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueFreeBuffer;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueGetCurrentTime;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueGetParameter;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueGetProperty;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueGetPropertySize;
 #[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
 pub use self::__AudioQueue::AudioQueueInputCallback;
 #[cfg(all(
@@ -2158,34 +2094,6 @@ pub use self::__AudioQueue::AudioQueueInputCallback;
 pub use self::__AudioQueue::AudioQueueInputCallbackBlock;
 #[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::AudioQueueLevelMeterState;
-#[cfg(all(
-    feature = "AudioQueue",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-foundation"
-))]
-pub use self::__AudioQueue::AudioQueueNewInput;
-#[cfg(all(
-    feature = "AudioQueue",
-    feature = "block2",
-    feature = "dispatch2",
-    feature = "objc2-core-audio-types"
-))]
-pub use self::__AudioQueue::AudioQueueNewInputWithDispatchQueue;
-#[cfg(all(
-    feature = "AudioQueue",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-foundation"
-))]
-pub use self::__AudioQueue::AudioQueueNewOutput;
-#[cfg(all(
-    feature = "AudioQueue",
-    feature = "block2",
-    feature = "dispatch2",
-    feature = "objc2-core-audio-types"
-))]
-pub use self::__AudioQueue::AudioQueueNewOutputWithDispatchQueue;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueOfflineRender;
 #[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
 pub use self::__AudioQueue::AudioQueueOutputCallback;
 #[cfg(all(
@@ -2201,51 +2109,17 @@ pub use self::__AudioQueue::AudioQueueParameterID;
 #[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::AudioQueueParameterValue;
 #[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueuePause;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueuePrime;
+pub use self::__AudioQueue::AudioQueueProcessingTap;
 #[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
 pub use self::__AudioQueue::AudioQueueProcessingTapCallback;
 #[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueProcessingTapDispose;
-#[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::AudioQueueProcessingTapFlags;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueProcessingTapGetQueueTime;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueProcessingTapGetSourceAudio;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueProcessingTapNew;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueProcessingTapRef;
 #[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::AudioQueuePropertyID;
 #[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::AudioQueuePropertyListenerProc;
 #[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueRef;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueRemovePropertyListener;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueReset;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueSetOfflineRenderFormat;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueSetParameter;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueSetProperty;
-#[cfg(all(feature = "AudioQueue", feature = "objc2-core-audio-types"))]
-pub use self::__AudioQueue::AudioQueueStart;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueStop;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::AudioQueueTimelineRef;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::OpaqueAudioQueue;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::OpaqueAudioQueueProcessingTap;
-#[cfg(feature = "AudioQueue")]
-pub use self::__AudioQueue::OpaqueAudioQueueTimeline;
+pub use self::__AudioQueue::AudioQueueTimeline;
 #[cfg(feature = "AudioServices")]
 pub use self::__AudioServices::kAudioServicesBadPropertySizeError;
 #[cfg(feature = "AudioServices")]
@@ -3806,8 +3680,6 @@ pub use self::__AudioUnitUtilities::AUEventListenerRef;
     feature = "AudioUnitUtilities"
 ))]
 pub use self::__AudioUnitUtilities::AUListenerAddParameter;
-#[cfg(feature = "AudioUnitUtilities")]
-pub use self::__AudioUnitUtilities::AUListenerBase;
 #[cfg(all(
     feature = "AUComponent",
     feature = "AudioComponent",
@@ -3837,6 +3709,8 @@ pub use self::__AudioUnitUtilities::AUListenerRemoveParameter;
     feature = "AudioUnitUtilities"
 ))]
 pub use self::__AudioUnitUtilities::AUParameterFormatValue;
+#[cfg(feature = "AudioUnitUtilities")]
+pub use self::__AudioUnitUtilities::AUParameterListener;
 #[cfg(all(
     feature = "AUComponent",
     feature = "AudioComponent",
@@ -3849,15 +3723,7 @@ pub use self::__AudioUnitUtilities::AUParameterListenerBlock;
     feature = "AudioComponent",
     feature = "AudioUnitUtilities"
 ))]
-pub use self::__AudioUnitUtilities::AUParameterListenerNotify;
-#[cfg(all(
-    feature = "AUComponent",
-    feature = "AudioComponent",
-    feature = "AudioUnitUtilities"
-))]
 pub use self::__AudioUnitUtilities::AUParameterListenerProc;
-#[cfg(feature = "AudioUnitUtilities")]
-pub use self::__AudioUnitUtilities::AUParameterListenerRef;
 #[cfg(all(
     feature = "AUComponent",
     feature = "AudioComponent",
@@ -4094,43 +3960,12 @@ pub use self::__ExtendedAudioFile::kExtAudioFileProperty_IOBuffer;
 pub use self::__ExtendedAudioFile::kExtAudioFileProperty_IOBufferSizeBytes;
 #[cfg(feature = "ExtendedAudioFile")]
 pub use self::__ExtendedAudioFile::kExtAudioFileProperty_PacketTable;
-#[cfg(all(
-    feature = "AudioFile",
-    feature = "ExtendedAudioFile",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-foundation"
-))]
-pub use self::__ExtendedAudioFile::ExtAudioFileCreateWithURL;
 #[cfg(feature = "ExtendedAudioFile")]
-pub use self::__ExtendedAudioFile::ExtAudioFileDispose;
-#[cfg(feature = "ExtendedAudioFile")]
-pub use self::__ExtendedAudioFile::ExtAudioFileGetProperty;
-#[cfg(feature = "ExtendedAudioFile")]
-pub use self::__ExtendedAudioFile::ExtAudioFileGetPropertyInfo;
-#[cfg(all(feature = "ExtendedAudioFile", feature = "objc2-core-foundation"))]
-pub use self::__ExtendedAudioFile::ExtAudioFileOpenURL;
+pub use self::__ExtendedAudioFile::ExtAudioFile;
 #[cfg(feature = "ExtendedAudioFile")]
 pub use self::__ExtendedAudioFile::ExtAudioFilePacketTableInfoOverride;
 #[cfg(feature = "ExtendedAudioFile")]
 pub use self::__ExtendedAudioFile::ExtAudioFilePropertyID;
-#[cfg(all(feature = "ExtendedAudioFile", feature = "objc2-core-audio-types"))]
-pub use self::__ExtendedAudioFile::ExtAudioFileRead;
-#[cfg(feature = "ExtendedAudioFile")]
-pub use self::__ExtendedAudioFile::ExtAudioFileRef;
-#[cfg(feature = "ExtendedAudioFile")]
-pub use self::__ExtendedAudioFile::ExtAudioFileSeek;
-#[cfg(feature = "ExtendedAudioFile")]
-pub use self::__ExtendedAudioFile::ExtAudioFileSetProperty;
-#[cfg(feature = "ExtendedAudioFile")]
-pub use self::__ExtendedAudioFile::ExtAudioFileTell;
-#[cfg(all(feature = "AudioFile", feature = "ExtendedAudioFile"))]
-pub use self::__ExtendedAudioFile::ExtAudioFileWrapAudioFileID;
-#[cfg(all(feature = "ExtendedAudioFile", feature = "objc2-core-audio-types"))]
-pub use self::__ExtendedAudioFile::ExtAudioFileWrite;
-#[cfg(all(feature = "ExtendedAudioFile", feature = "objc2-core-audio-types"))]
-pub use self::__ExtendedAudioFile::ExtAudioFileWriteAsync;
-#[cfg(feature = "ExtendedAudioFile")]
-pub use self::__ExtendedAudioFile::OpaqueExtAudioFile;
 #[cfg(feature = "MusicDevice")]
 pub use self::__MusicDevice::kMusicDeviceMIDIEventListSelect;
 #[cfg(feature = "MusicDevice")]
@@ -6979,23 +6814,21 @@ pub const kCAClock_InvalidPlayRateError: OSStatus = -66806;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_cannotsettimeerror?language=objc)
 pub const kCAClock_CannotSetTimeError: OSStatus = -66805;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaquecaclock?language=objc)
+/// A reference to a Core Audio Clock object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclock?language=objc)
+#[doc(alias = "CAClockRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct OpaqueCAClock {
+pub struct CAClock {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for OpaqueCAClock {
+unsafe impl RefEncode for CAClock {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueCAClock", &[]));
 }
-
-/// A reference to a Core Audio Clock object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockref?language=objc)
-pub type CAClockRef = *mut OpaqueCAClock;
 
 /// MIDI quarter notes (see MIDI specs)
 ///
@@ -7092,598 +6925,611 @@ unsafe impl RefEncode for CAMeterTrackEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Create a new clock object.
-///
-///
-/// Parameter `inReservedFlags`: Must be 0.
-///
-///
-/// Parameter `outCAClock`: Must be non-null. On successful return, the new clock object.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `out_ca_clock` must be a valid pointer or null.
-#[inline]
-pub unsafe fn CAClockNew(in_reserved_flags: u32, out_ca_clock: &mut CAClockRef) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockNew(in_reserved_flags: u32, out_ca_clock: &mut CAClockRef) -> OSStatus;
+impl CAClock {
+    /// Create a new clock object.
+    ///
+    ///
+    /// Parameter `inReservedFlags`: Must be 0.
+    ///
+    ///
+    /// Parameter `outCAClock`: Must be non-null. On successful return, the new clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `out_ca_clock` must be a valid pointer or null.
+    #[doc(alias = "CAClockNew")]
+    #[inline]
+    pub unsafe fn new(in_reserved_flags: u32, out_ca_clock: &mut *mut CAClock) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockNew(in_reserved_flags: u32, out_ca_clock: &mut *mut CAClock) -> OSStatus;
+        }
+        unsafe { CAClockNew(in_reserved_flags, out_ca_clock) }
     }
-    unsafe { CAClockNew(in_reserved_flags, out_ca_clock) }
-}
 
-/// Dispose a clock object.
-///
-///
-/// Parameter `inCAClock`: The clock object to be disposed.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockDispose(in_ca_clock: CAClockRef) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockDispose(in_ca_clock: CAClockRef) -> OSStatus;
+    /// Dispose a clock object.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object to be disposed.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` must be a valid pointer.
+    #[doc(alias = "CAClockDispose")]
+    #[inline]
+    pub unsafe fn dispose(in_ca_clock: NonNull<CAClock>) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockDispose(in_ca_clock: NonNull<CAClock>) -> OSStatus;
+        }
+        unsafe { CAClockDispose(in_ca_clock) }
     }
-    unsafe { CAClockDispose(in_ca_clock) }
-}
 
-/// Gets information about a clock's property.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inPropertyID`: The property being queried.
-///
-///
-/// Parameter `outSize`: If non-null, on exit, this is set to the size of the
-/// property's value.
-///
-///
-/// Parameter `outWritable`: If non-null, on exit, this indicates whether the
-/// property value is settable.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockGetPropertyInfo(
-    in_ca_clock: CAClockRef,
-    in_property_id: CAClockPropertyID,
-    out_size: Option<&mut u32>,
-    out_writable: Option<&mut Boolean>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockGetPropertyInfo(
-            in_ca_clock: CAClockRef,
-            in_property_id: CAClockPropertyID,
-            out_size: Option<&mut u32>,
-            out_writable: Option<&mut Boolean>,
-        ) -> OSStatus;
+    /// Gets information about a clock's property.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inPropertyID`: The property being queried.
+    ///
+    ///
+    /// Parameter `outSize`: If non-null, on exit, this is set to the size of the
+    /// property's value.
+    ///
+    ///
+    /// Parameter `outWritable`: If non-null, on exit, this indicates whether the
+    /// property value is settable.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockGetPropertyInfo")]
+    #[inline]
+    pub unsafe fn property_info(
+        &self,
+        in_property_id: CAClockPropertyID,
+        out_size: Option<&mut u32>,
+        out_writable: Option<&mut Boolean>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockGetPropertyInfo(
+                in_ca_clock: &CAClock,
+                in_property_id: CAClockPropertyID,
+                out_size: Option<&mut u32>,
+                out_writable: Option<&mut Boolean>,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockGetPropertyInfo(self, in_property_id, out_size, out_writable) }
     }
-    unsafe { CAClockGetPropertyInfo(in_ca_clock, in_property_id, out_size, out_writable) }
-}
 
-/// Gets the current value of a clock's property.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inPropertyID`: The property being fetched.
-///
-///
-/// Parameter `ioPropertyDataSize`: On entry, the size (in bytes) of the memory pointed to
-/// by outPropertyData. On exit, the actual size of the
-/// property data returned.
-///
-///
-/// Parameter `outPropertyData`: The value of the property is copied to the memory
-/// this points to.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// - `in_ca_clock` must be a valid pointer.
-/// - `out_property_data` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockGetProperty(
-    in_ca_clock: CAClockRef,
-    in_property_id: CAClockPropertyID,
-    io_property_data_size: &mut u32,
-    out_property_data: NonNull<c_void>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockGetProperty(
-            in_ca_clock: CAClockRef,
-            in_property_id: CAClockPropertyID,
-            io_property_data_size: &mut u32,
-            out_property_data: NonNull<c_void>,
-        ) -> OSStatus;
+    /// Gets the current value of a clock's property.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inPropertyID`: The property being fetched.
+    ///
+    ///
+    /// Parameter `ioPropertyDataSize`: On entry, the size (in bytes) of the memory pointed to
+    /// by outPropertyData. On exit, the actual size of the
+    /// property data returned.
+    ///
+    ///
+    /// Parameter `outPropertyData`: The value of the property is copied to the memory
+    /// this points to.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `out_property_data` must be a valid pointer.
+    #[doc(alias = "CAClockGetProperty")]
+    #[inline]
+    pub unsafe fn property(
+        &self,
+        in_property_id: CAClockPropertyID,
+        io_property_data_size: &mut u32,
+        out_property_data: NonNull<c_void>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockGetProperty(
+                in_ca_clock: &CAClock,
+                in_property_id: CAClockPropertyID,
+                io_property_data_size: &mut u32,
+                out_property_data: NonNull<c_void>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CAClockGetProperty(
+                self,
+                in_property_id,
+                io_property_data_size,
+                out_property_data,
+            )
+        }
     }
-    unsafe {
-        CAClockGetProperty(
-            in_ca_clock,
-            in_property_id,
-            io_property_data_size,
-            out_property_data,
-        )
-    }
-}
 
-/// Changes the value of a clock's property.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inPropertyID`: The property being set.
-///
-///
-/// Parameter `inPropertyDataSize`: The size of the property data, in bytes.
-///
-///
-/// Parameter `inPropertyData`: Points to the property's new value.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// - `in_ca_clock` must be a valid pointer.
-/// - `in_property_data` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockSetProperty(
-    in_ca_clock: CAClockRef,
-    in_property_id: CAClockPropertyID,
-    in_property_data_size: u32,
-    in_property_data: NonNull<c_void>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockSetProperty(
-            in_ca_clock: CAClockRef,
-            in_property_id: CAClockPropertyID,
-            in_property_data_size: u32,
-            in_property_data: NonNull<c_void>,
-        ) -> OSStatus;
+    /// Changes the value of a clock's property.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inPropertyID`: The property being set.
+    ///
+    ///
+    /// Parameter `inPropertyDataSize`: The size of the property data, in bytes.
+    ///
+    ///
+    /// Parameter `inPropertyData`: Points to the property's new value.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `in_property_data` must be a valid pointer.
+    #[doc(alias = "CAClockSetProperty")]
+    #[inline]
+    pub unsafe fn set_property(
+        &self,
+        in_property_id: CAClockPropertyID,
+        in_property_data_size: u32,
+        in_property_data: NonNull<c_void>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockSetProperty(
+                in_ca_clock: &CAClock,
+                in_property_id: CAClockPropertyID,
+                in_property_data_size: u32,
+                in_property_data: NonNull<c_void>,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CAClockSetProperty(
+                self,
+                in_property_id,
+                in_property_data_size,
+                in_property_data,
+            )
+        }
     }
-    unsafe {
-        CAClockSetProperty(
-            in_ca_clock,
-            in_property_id,
-            in_property_data_size,
-            in_property_data,
-        )
-    }
-}
 
-/// Adds a callback function to receive notifications of changes to the clock's
-/// state.
-///
-/// Note: The CAClockListenerProc may be called on a realtime thread internal to
-/// the clock object.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inListenerProc`: The callback function.
-///
-///
-/// Parameter `inUserData`: This value is passed to the callback function, in the userData
-/// parameter.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// - `in_ca_clock` must be a valid pointer.
-/// - `in_listener_proc` must be implemented correctly.
-/// - `in_user_data` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockAddListener(
-    in_ca_clock: CAClockRef,
-    in_listener_proc: CAClockListenerProc,
-    in_user_data: NonNull<c_void>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockAddListener(
-            in_ca_clock: CAClockRef,
-            in_listener_proc: CAClockListenerProc,
-            in_user_data: NonNull<c_void>,
-        ) -> OSStatus;
+    /// Adds a callback function to receive notifications of changes to the clock's
+    /// state.
+    ///
+    /// Note: The CAClockListenerProc may be called on a realtime thread internal to
+    /// the clock object.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inListenerProc`: The callback function.
+    ///
+    ///
+    /// Parameter `inUserData`: This value is passed to the callback function, in the userData
+    /// parameter.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `in_listener_proc` must be implemented correctly.
+    /// - `in_user_data` must be a valid pointer.
+    #[doc(alias = "CAClockAddListener")]
+    #[inline]
+    pub unsafe fn add_listener(
+        &self,
+        in_listener_proc: CAClockListenerProc,
+        in_user_data: NonNull<c_void>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockAddListener(
+                in_ca_clock: &CAClock,
+                in_listener_proc: CAClockListenerProc,
+                in_user_data: NonNull<c_void>,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockAddListener(self, in_listener_proc, in_user_data) }
     }
-    unsafe { CAClockAddListener(in_ca_clock, in_listener_proc, in_user_data) }
-}
 
-/// Removes a listener callback function.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inListenerProc`: The callback function.
-///
-///
-/// Parameter `inUserData`: The same value as was passed for inUserData when this
-/// function was registered with CAClockAddListener. (This
-/// allows a single callback function to be registered more
-/// than once, with different userData arguments.)
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// - `in_ca_clock` must be a valid pointer.
-/// - `in_listener_proc` must be implemented correctly.
-/// - `in_user_data` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockRemoveListener(
-    in_ca_clock: CAClockRef,
-    in_listener_proc: CAClockListenerProc,
-    in_user_data: NonNull<c_void>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockRemoveListener(
-            in_ca_clock: CAClockRef,
-            in_listener_proc: CAClockListenerProc,
-            in_user_data: NonNull<c_void>,
-        ) -> OSStatus;
+    /// Removes a listener callback function.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inListenerProc`: The callback function.
+    ///
+    ///
+    /// Parameter `inUserData`: The same value as was passed for inUserData when this
+    /// function was registered with CAClockAddListener. (This
+    /// allows a single callback function to be registered more
+    /// than once, with different userData arguments.)
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `in_listener_proc` must be implemented correctly.
+    /// - `in_user_data` must be a valid pointer.
+    #[doc(alias = "CAClockRemoveListener")]
+    #[inline]
+    pub unsafe fn remove_listener(
+        &self,
+        in_listener_proc: CAClockListenerProc,
+        in_user_data: NonNull<c_void>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockRemoveListener(
+                in_ca_clock: &CAClock,
+                in_listener_proc: CAClockListenerProc,
+                in_user_data: NonNull<c_void>,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockRemoveListener(self, in_listener_proc, in_user_data) }
     }
-    unsafe { CAClockRemoveListener(in_ca_clock, in_listener_proc, in_user_data) }
-}
 
-/// Begin advancing the clock on its media timeline.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockStart(in_ca_clock: CAClockRef) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockStart(in_ca_clock: CAClockRef) -> OSStatus;
+    /// Begin advancing the clock on its media timeline.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockStart")]
+    #[inline]
+    pub unsafe fn start(&self) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockStart(in_ca_clock: &CAClock) -> OSStatus;
+        }
+        unsafe { CAClockStart(self) }
     }
-    unsafe { CAClockStart(in_ca_clock) }
-}
 
-/// Stop advancing the clock on its media timeline.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockStop(in_ca_clock: CAClockRef) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockStop(in_ca_clock: CAClockRef) -> OSStatus;
+    /// Stop advancing the clock on its media timeline.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockStop")]
+    #[inline]
+    pub unsafe fn stop(&self) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockStop(in_ca_clock: &CAClock) -> OSStatus;
+        }
+        unsafe { CAClockStop(self) }
     }
-    unsafe { CAClockStop(in_ca_clock) }
-}
 
-/// Allow received sync messages to start the clock.
-///
-/// If a clock is following and being controlled by an external transport
-/// (e.g. MIDI Time Code), call this to indicate that the client is ready to
-/// start its transport in response to the external transport having started.
-///
-/// The external time source will set the clock's start position and start
-/// the clock.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockArm(in_ca_clock: CAClockRef) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockArm(in_ca_clock: CAClockRef) -> OSStatus;
+    /// Allow received sync messages to start the clock.
+    ///
+    /// If a clock is following and being controlled by an external transport
+    /// (e.g. MIDI Time Code), call this to indicate that the client is ready to
+    /// start its transport in response to the external transport having started.
+    ///
+    /// The external time source will set the clock's start position and start
+    /// the clock.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockArm")]
+    #[inline]
+    pub unsafe fn arm(&self) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockArm(in_ca_clock: &CAClock) -> OSStatus;
+        }
+        unsafe { CAClockArm(self) }
     }
-    unsafe { CAClockArm(in_ca_clock) }
-}
 
-/// Disallow received sync messages from starting the clock.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockDisarm(in_ca_clock: CAClockRef) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockDisarm(in_ca_clock: CAClockRef) -> OSStatus;
+    /// Disallow received sync messages from starting the clock.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockDisarm")]
+    #[inline]
+    pub unsafe fn disarm(&self) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockDisarm(in_ca_clock: &CAClock) -> OSStatus;
+        }
+        unsafe { CAClockDisarm(self) }
     }
-    unsafe { CAClockDisarm(in_ca_clock) }
-}
 
-/// Alter the clock's playback rate.
-///
-/// Adjusts the ratio between the timebase and media time; e.g. at 0.5, the
-/// media time will move half as quickly as timebase time.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inPlayRate`: The clock's desired play rate.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockSetPlayRate(in_ca_clock: CAClockRef, in_play_rate: f64) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockSetPlayRate(in_ca_clock: CAClockRef, in_play_rate: f64) -> OSStatus;
+    /// Alter the clock's playback rate.
+    ///
+    /// Adjusts the ratio between the timebase and media time; e.g. at 0.5, the
+    /// media time will move half as quickly as timebase time.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inPlayRate`: The clock's desired play rate.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockSetPlayRate")]
+    #[inline]
+    pub unsafe fn set_play_rate(&self, in_play_rate: f64) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockSetPlayRate(in_ca_clock: &CAClock, in_play_rate: f64) -> OSStatus;
+        }
+        unsafe { CAClockSetPlayRate(self, in_play_rate) }
     }
-    unsafe { CAClockSetPlayRate(in_ca_clock, in_play_rate) }
-}
 
-/// Obtain the clock's playback rate.
-///
-/// Returns the clock's current play rate. If the clock is internally synced,
-/// this will be the last rate set by CAClockSetPlayRate. If the clock is
-/// externally synced, it will be the rate of the external sync source, where
-/// 1.0 means that it is running at exactly the same rate as the clock's
-/// timebase. (2.0 means twice as fast).
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `outPlayRate`: On exit, the clock's playback rate.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[inline]
-pub unsafe fn CAClockGetPlayRate(in_ca_clock: CAClockRef, out_play_rate: &mut f64) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockGetPlayRate(in_ca_clock: CAClockRef, out_play_rate: &mut f64) -> OSStatus;
+    /// Obtain the clock's playback rate.
+    ///
+    /// Returns the clock's current play rate. If the clock is internally synced,
+    /// this will be the last rate set by CAClockSetPlayRate. If the clock is
+    /// externally synced, it will be the rate of the external sync source, where
+    /// 1.0 means that it is running at exactly the same rate as the clock's
+    /// timebase. (2.0 means twice as fast).
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `outPlayRate`: On exit, the clock's playback rate.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockGetPlayRate")]
+    #[inline]
+    pub unsafe fn play_rate(&self, out_play_rate: &mut f64) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockGetPlayRate(in_ca_clock: &CAClock, out_play_rate: &mut f64) -> OSStatus;
+        }
+        unsafe { CAClockGetPlayRate(self, out_play_rate) }
     }
-    unsafe { CAClockGetPlayRate(in_ca_clock, out_play_rate) }
-}
 
-/// Converts seconds to a SMPTE time representation.
-///
-/// Converts seconds on the media timeline to a SMPTE time. The clock's current
-/// SMPTE format and offset must be set appropriately.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inSeconds`: The number of seconds to be converted (e.g. 3600 = 1 hour).
-///
-///
-/// Parameter `inSubframeDivisor`: The number of subframes per frame desired in outSMPTETime.
-///
-///
-/// Parameter `outSMPTETime`: On exit, the SMPTE time corresponding to inSeconds.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[cfg(feature = "objc2-core-audio-types")]
-#[inline]
-pub unsafe fn CAClockSecondsToSMPTETime(
-    in_ca_clock: CAClockRef,
-    in_seconds: CAClockSeconds,
-    in_subframe_divisor: u16,
-    out_smpte_time: &mut SMPTETime,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockSecondsToSMPTETime(
-            in_ca_clock: CAClockRef,
-            in_seconds: CAClockSeconds,
-            in_subframe_divisor: u16,
-            out_smpte_time: &mut SMPTETime,
-        ) -> OSStatus;
+    /// Converts seconds to a SMPTE time representation.
+    ///
+    /// Converts seconds on the media timeline to a SMPTE time. The clock's current
+    /// SMPTE format and offset must be set appropriately.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inSeconds`: The number of seconds to be converted (e.g. 3600 = 1 hour).
+    ///
+    ///
+    /// Parameter `inSubframeDivisor`: The number of subframes per frame desired in outSMPTETime.
+    ///
+    ///
+    /// Parameter `outSMPTETime`: On exit, the SMPTE time corresponding to inSeconds.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockSecondsToSMPTETime")]
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[inline]
+    pub unsafe fn seconds_to_smpte_time(
+        &self,
+        in_seconds: CAClockSeconds,
+        in_subframe_divisor: u16,
+        out_smpte_time: &mut SMPTETime,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockSecondsToSMPTETime(
+                in_ca_clock: &CAClock,
+                in_seconds: CAClockSeconds,
+                in_subframe_divisor: u16,
+                out_smpte_time: &mut SMPTETime,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockSecondsToSMPTETime(self, in_seconds, in_subframe_divisor, out_smpte_time) }
     }
-    unsafe {
-        CAClockSecondsToSMPTETime(in_ca_clock, in_seconds, in_subframe_divisor, out_smpte_time)
-    }
-}
 
-/// Converts a SMPTE time representation to seconds.
-///
-/// Converts SMPTE time to seconds on the media timeline. The clock's current
-/// SMPTE format and offset must be set appropriately.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inSMPTETime`: The SMPTE time to be converted to seconds.
-///
-///
-/// Parameter `outSeconds`: On exit, the number of seconds corresponding to inSMPTETime.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[cfg(feature = "objc2-core-audio-types")]
-#[inline]
-pub unsafe fn CAClockSMPTETimeToSeconds(
-    in_ca_clock: CAClockRef,
-    in_smpte_time: &SMPTETime,
-    out_seconds: &mut CAClockSeconds,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockSMPTETimeToSeconds(
-            in_ca_clock: CAClockRef,
-            in_smpte_time: &SMPTETime,
-            out_seconds: &mut CAClockSeconds,
-        ) -> OSStatus;
+    /// Converts a SMPTE time representation to seconds.
+    ///
+    /// Converts SMPTE time to seconds on the media timeline. The clock's current
+    /// SMPTE format and offset must be set appropriately.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inSMPTETime`: The SMPTE time to be converted to seconds.
+    ///
+    ///
+    /// Parameter `outSeconds`: On exit, the number of seconds corresponding to inSMPTETime.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockSMPTETimeToSeconds")]
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[inline]
+    pub unsafe fn smpte_time_to_seconds(
+        &self,
+        in_smpte_time: &SMPTETime,
+        out_seconds: &mut CAClockSeconds,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockSMPTETimeToSeconds(
+                in_ca_clock: &CAClock,
+                in_smpte_time: &SMPTETime,
+                out_seconds: &mut CAClockSeconds,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockSMPTETimeToSeconds(self, in_smpte_time, out_seconds) }
     }
-    unsafe { CAClockSMPTETimeToSeconds(in_ca_clock, in_smpte_time, out_seconds) }
-}
 
-/// Converts a number of beats to a CABarBeatTime structure.
-///
-/// Converts a beat position on the media timeline to a CABarBeatTime, using the
-/// clock's meter track. Examples using 4/4 time and a subbeat divisor of 480:
-///
-/// inBeats | outBarBeatTime: bars . beats . units
-/// --------|-------------------------------------
-/// 0        | 1.1.0
-/// 1        | 1.2.0
-/// 4        | 2.1.0
-/// 4.5        | 2.1.240
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inBeats`: The absolute beat count to be converted.
-///
-///
-/// Parameter `inSubbeatDivisor`: The number of units per beat.
-///
-///
-/// Parameter `outBarBeatTime`: On exit, the bar/beat/subbeat time corresponding to inBeats.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[cfg(feature = "MusicPlayer")]
-#[inline]
-pub unsafe fn CAClockBeatsToBarBeatTime(
-    in_ca_clock: CAClockRef,
-    in_beats: CAClockBeats,
-    in_subbeat_divisor: u16,
-    out_bar_beat_time: &mut CABarBeatTime,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockBeatsToBarBeatTime(
-            in_ca_clock: CAClockRef,
-            in_beats: CAClockBeats,
-            in_subbeat_divisor: u16,
-            out_bar_beat_time: &mut CABarBeatTime,
-        ) -> OSStatus;
+    /// Converts a number of beats to a CABarBeatTime structure.
+    ///
+    /// Converts a beat position on the media timeline to a CABarBeatTime, using the
+    /// clock's meter track. Examples using 4/4 time and a subbeat divisor of 480:
+    ///
+    /// inBeats | outBarBeatTime: bars . beats . units
+    /// --------|-------------------------------------
+    /// 0        | 1.1.0
+    /// 1        | 1.2.0
+    /// 4        | 2.1.0
+    /// 4.5        | 2.1.240
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inBeats`: The absolute beat count to be converted.
+    ///
+    ///
+    /// Parameter `inSubbeatDivisor`: The number of units per beat.
+    ///
+    ///
+    /// Parameter `outBarBeatTime`: On exit, the bar/beat/subbeat time corresponding to inBeats.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockBeatsToBarBeatTime")]
+    #[cfg(feature = "MusicPlayer")]
+    #[inline]
+    pub unsafe fn beats_to_bar_beat_time(
+        &self,
+        in_beats: CAClockBeats,
+        in_subbeat_divisor: u16,
+        out_bar_beat_time: &mut CABarBeatTime,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockBeatsToBarBeatTime(
+                in_ca_clock: &CAClock,
+                in_beats: CAClockBeats,
+                in_subbeat_divisor: u16,
+                out_bar_beat_time: &mut CABarBeatTime,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockBeatsToBarBeatTime(self, in_beats, in_subbeat_divisor, out_bar_beat_time) }
     }
-    unsafe {
-        CAClockBeatsToBarBeatTime(in_ca_clock, in_beats, in_subbeat_divisor, out_bar_beat_time)
-    }
-}
 
-/// Converts a CABarBeatTime structure to a number of beats.
-///
-/// Converts a CABarBeatTime structure (bars/beats/subbeats) to a beat
-/// position, using the clock's meter track.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inBarBeatTime`: The bar/beat/subunit time to be converted to beats.
-///
-///
-/// Parameter `outBeats`: On exit, the number of absolute beats corresponding to inBarBeatTime.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// `in_ca_clock` must be a valid pointer.
-#[cfg(feature = "MusicPlayer")]
-#[inline]
-pub unsafe fn CAClockBarBeatTimeToBeats(
-    in_ca_clock: CAClockRef,
-    in_bar_beat_time: &CABarBeatTime,
-    out_beats: &mut CAClockBeats,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockBarBeatTimeToBeats(
-            in_ca_clock: CAClockRef,
-            in_bar_beat_time: &CABarBeatTime,
-            out_beats: &mut CAClockBeats,
-        ) -> OSStatus;
+    /// Converts a CABarBeatTime structure to a number of beats.
+    ///
+    /// Converts a CABarBeatTime structure (bars/beats/subbeats) to a beat
+    /// position, using the clock's meter track.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inBarBeatTime`: The bar/beat/subunit time to be converted to beats.
+    ///
+    ///
+    /// Parameter `outBeats`: On exit, the number of absolute beats corresponding to inBarBeatTime.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` might need manual memory-management.
+    #[doc(alias = "CAClockBarBeatTimeToBeats")]
+    #[cfg(feature = "MusicPlayer")]
+    #[inline]
+    pub unsafe fn bar_beat_time_to_beats(
+        &self,
+        in_bar_beat_time: &CABarBeatTime,
+        out_beats: &mut CAClockBeats,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockBarBeatTimeToBeats(
+                in_ca_clock: &CAClock,
+                in_bar_beat_time: &CABarBeatTime,
+                out_beats: &mut CAClockBeats,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockBarBeatTimeToBeats(self, in_bar_beat_time, out_beats) }
     }
-    unsafe { CAClockBarBeatTimeToBeats(in_ca_clock, in_bar_beat_time, out_beats) }
-}
 
-/// Provides MIDI messages to a clock without using CoreMIDI
-///
-/// In some situations, a client may wish to drive a clock using MIDI Time Code or
-/// beat clock obtained from a source other than Core MIDI. To do so,
-/// construct MIDIPacketLists containing the timecode or beat clock messages,
-/// and pass them to this function.
-///
-///
-/// Parameter `inCAClock`: The clock object.
-///
-///
-/// Parameter `inMIDIPacketList`: The MIDI events to be parsed.
-///
-///
-/// Returns: An OSStatus error code.
-///
-/// # Safety
-///
-/// - `in_ca_clock` must be a valid pointer.
-/// - `in_midi_packet_list` must be a valid pointer.
-#[cfg(feature = "objc2-core-midi")]
-#[inline]
-pub unsafe fn CAClockParseMIDI(
-    in_ca_clock: CAClockRef,
-    in_midi_packet_list: NonNull<MIDIPacketList>,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CAClockParseMIDI(
-            in_ca_clock: CAClockRef,
-            in_midi_packet_list: NonNull<MIDIPacketList>,
-        ) -> OSStatus;
+    /// Provides MIDI messages to a clock without using CoreMIDI
+    ///
+    /// In some situations, a client may wish to drive a clock using MIDI Time Code or
+    /// beat clock obtained from a source other than Core MIDI. To do so,
+    /// construct MIDIPacketLists containing the timecode or beat clock messages,
+    /// and pass them to this function.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inMIDIPacketList`: The MIDI events to be parsed.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `in_midi_packet_list` must be a valid pointer.
+    #[doc(alias = "CAClockParseMIDI")]
+    #[cfg(feature = "objc2-core-midi")]
+    #[inline]
+    pub unsafe fn parse_midi(&self, in_midi_packet_list: NonNull<MIDIPacketList>) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockParseMIDI(
+                in_ca_clock: &CAClock,
+                in_midi_packet_list: NonNull<MIDIPacketList>,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockParseMIDI(self, in_midi_packet_list) }
     }
-    unsafe { CAClockParseMIDI(in_ca_clock, in_midi_packet_list) }
 }
 
 /// This will return the name of a sound bank from a DLS or SF2 bank.

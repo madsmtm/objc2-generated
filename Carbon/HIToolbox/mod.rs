@@ -3210,9 +3210,9 @@ pub use self::__CarbonEvents::EventClass;
 #[cfg(feature = "CarbonEvents")]
 pub use self::__CarbonEvents::EventClassID;
 #[cfg(feature = "CarbonEvents")]
-pub use self::__CarbonEvents::EventHotKeyID;
+pub use self::__CarbonEvents::EventHotKey;
 #[cfg(feature = "CarbonEvents")]
-pub use self::__CarbonEvents::EventHotKeyRef;
+pub use self::__CarbonEvents::EventHotKeyID;
 #[cfg(feature = "CarbonEvents")]
 pub use self::__CarbonEvents::EventMouseButton;
 #[cfg(feature = "CarbonEvents")]
@@ -3260,10 +3260,6 @@ pub use self::__CarbonEvents::IsUserCancelEventRef;
 #[cfg(feature = "CarbonEvents")]
 pub use self::__CarbonEvents::MouseTrackingResult;
 #[cfg(feature = "CarbonEvents")]
-pub use self::__CarbonEvents::OpaqueEventHotKeyRef;
-#[cfg(feature = "CarbonEvents")]
-pub use self::__CarbonEvents::OpaqueToolboxObjectClassRef;
-#[cfg(feature = "CarbonEvents")]
 pub use self::__CarbonEvents::PopSymbolicHotKeyMode;
 #[cfg(all(feature = "CarbonEvents", feature = "Menus"))]
 pub use self::__CarbonEvents::ProcessHICommand;
@@ -3280,7 +3276,7 @@ pub use self::__CarbonEvents::TabletPointerRec;
 #[cfg(feature = "CarbonEvents")]
 pub use self::__CarbonEvents::TabletProximityRec;
 #[cfg(feature = "CarbonEvents")]
-pub use self::__CarbonEvents::ToolboxObjectClassRef;
+pub use self::__CarbonEvents::ToolboxObjectClass;
 #[cfg(feature = "CarbonEvents")]
 pub use self::__CarbonEvents::UnregisterEventHotKey;
 #[cfg(feature = "CarbonEventsCore")]
@@ -3382,27 +3378,29 @@ pub use self::__CarbonEventsCore::DisposeEventLoopTimerUPP;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EnableSecureEventInput;
 #[cfg(feature = "CarbonEventsCore")]
+pub use self::__CarbonEventsCore::Event;
+#[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventAttributes;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventComparatorProcPtr;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventComparatorUPP;
 #[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::EventHandlerCallRef;
+pub use self::__CarbonEventsCore::EventHandler;
+#[cfg(feature = "CarbonEventsCore")]
+pub use self::__CarbonEventsCore::EventHandlerCall;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventHandlerProcPtr;
 #[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::EventHandlerRef;
-#[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventHandlerUPP;
+#[cfg(feature = "CarbonEventsCore")]
+pub use self::__CarbonEventsCore::EventLoop;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventLoopIdleTimerMessage;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventLoopIdleTimerProcPtr;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventLoopIdleTimerUPP;
-#[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::EventLoopRef;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventLoopTimer;
 #[cfg(feature = "CarbonEventsCore")]
@@ -3416,11 +3414,9 @@ pub use self::__CarbonEventsCore::EventParamType;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventPriority;
 #[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::EventQueueRef;
+pub use self::__CarbonEventsCore::EventQueue;
 #[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::EventRef;
-#[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::EventTargetRef;
+pub use self::__CarbonEventsCore::EventTarget;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::EventTime;
 #[cfg(feature = "CarbonEventsCore")]
@@ -3497,18 +3493,6 @@ pub use self::__CarbonEventsCore::NewEventHandlerUPP;
 pub use self::__CarbonEventsCore::NewEventLoopIdleTimerUPP;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::NewEventLoopTimerUPP;
-#[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::OpaqueEventHandlerCallRef;
-#[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::OpaqueEventHandlerRef;
-#[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::OpaqueEventLoopRef;
-#[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::OpaqueEventQueueRef;
-#[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::OpaqueEventRef;
-#[cfg(feature = "CarbonEventsCore")]
-pub use self::__CarbonEventsCore::OpaqueEventTargetRef;
 #[cfg(feature = "CarbonEventsCore")]
 pub use self::__CarbonEventsCore::PostEventToQueue;
 #[cfg(feature = "CarbonEventsCore")]
@@ -4376,6 +4360,8 @@ pub use self::__Drag::DisposeDragSendDataUPP;
 #[cfg(all(feature = "Drag", feature = "objc2-application-services"))]
 pub use self::__Drag::DisposeDragTrackingHandlerUPP;
 #[cfg(feature = "Drag")]
+pub use self::__Drag::Drag;
+#[cfg(feature = "Drag")]
 pub use self::__Drag::DragActions;
 #[cfg(feature = "Drag")]
 pub use self::__Drag::DragAttributes;
@@ -4397,8 +4383,6 @@ pub use self::__Drag::DragItemRef;
 pub use self::__Drag::DragReceiveHandlerProcPtr;
 #[cfg(all(feature = "Drag", feature = "objc2-application-services"))]
 pub use self::__Drag::DragReceiveHandlerUPP;
-#[cfg(feature = "Drag")]
-pub use self::__Drag::DragRef;
 #[cfg(feature = "Drag")]
 pub use self::__Drag::DragReference;
 #[cfg(feature = "Drag")]
@@ -4441,8 +4425,6 @@ pub use self::__Drag::NewDragReceiveHandlerUPP;
 pub use self::__Drag::NewDragSendDataUPP;
 #[cfg(all(feature = "Drag", feature = "objc2-application-services"))]
 pub use self::__Drag::NewDragTrackingHandlerUPP;
-#[cfg(feature = "Drag")]
-pub use self::__Drag::OpaqueDragRef;
 #[cfg(feature = "Drag")]
 pub use self::__Drag::PromiseHFSFlavor;
 #[cfg(feature = "Drag")]
@@ -5893,10 +5875,10 @@ pub use self::__HIDataBrowser::DataBrowserItemAcceptDragUPP;
 pub use self::__HIDataBrowser::DataBrowserItemCompareProcPtr;
 #[cfg(all(feature = "HIDataBrowser", feature = "HIObject"))]
 pub use self::__HIDataBrowser::DataBrowserItemCompareUPP;
+#[cfg(feature = "HIDataBrowser")]
+pub use self::__HIDataBrowser::DataBrowserItemData;
 #[cfg(all(feature = "HIDataBrowser", feature = "HIObject"))]
 pub use self::__HIDataBrowser::DataBrowserItemDataProcPtr;
-#[cfg(feature = "HIDataBrowser")]
-pub use self::__HIDataBrowser::DataBrowserItemDataRef;
 #[cfg(all(feature = "HIDataBrowser", feature = "HIObject"))]
 pub use self::__HIDataBrowser::DataBrowserItemDataUPP;
 #[cfg(all(
@@ -8120,13 +8102,11 @@ pub use self::__HIView::HIViewKind;
 #[cfg(all(feature = "Controls", feature = "HIView"))]
 pub use self::__HIView::HIViewPartCode;
 #[cfg(feature = "HIView")]
+pub use self::__HIView::HIViewTrackingArea;
+#[cfg(feature = "HIView")]
 pub use self::__HIView::HIViewTrackingAreaID;
 #[cfg(feature = "HIView")]
-pub use self::__HIView::HIViewTrackingAreaRef;
-#[cfg(feature = "HIView")]
 pub use self::__HIView::HIViewZOrderOp;
-#[cfg(feature = "HIView")]
-pub use self::__HIView::OpaqueHIViewTrackingAreaRef;
 #[cfg(feature = "HIWindowViews")]
 pub use self::__HIWindowViews::kControlKindHIGrowBoxView;
 #[cfg(all(feature = "Controls", feature = "HIView", feature = "HIWindowViews"))]
@@ -8158,9 +8138,7 @@ pub use self::__IBCarbonRuntime::kIBCarbonRuntimeCantFindObject;
 #[cfg(feature = "IBCarbonRuntime")]
 pub use self::__IBCarbonRuntime::kIBCarbonRuntimeObjectNotOfRequestedType;
 #[cfg(feature = "IBCarbonRuntime")]
-pub use self::__IBCarbonRuntime::IBNibRef;
-#[cfg(feature = "IBCarbonRuntime")]
-pub use self::__IBCarbonRuntime::OpaqueIBNibRef;
+pub use self::__IBCarbonRuntime::IBNib;
 #[cfg(feature = "IMKInputSession")]
 pub use self::__IMKInputSession::kIMKMouseTrackingMode;
 #[cfg(feature = "IMKInputSession")]
@@ -8228,15 +8206,13 @@ pub use self::__Keyboards::kKeyboardUnknown;
 #[cfg(feature = "Keyboards")]
 pub use self::__Keyboards::KBGetLayoutType;
 #[cfg(feature = "Keyboards")]
+pub use self::__Keyboards::KeyboardLayout;
+#[cfg(feature = "Keyboards")]
 pub use self::__Keyboards::KeyboardLayoutIdentifier;
 #[cfg(feature = "Keyboards")]
 pub use self::__Keyboards::KeyboardLayoutKind;
 #[cfg(feature = "Keyboards")]
 pub use self::__Keyboards::KeyboardLayoutPropertyTag;
-#[cfg(feature = "Keyboards")]
-pub use self::__Keyboards::KeyboardLayoutRef;
-#[cfg(feature = "Keyboards")]
-pub use self::__Keyboards::OpaqueKeyboardLayoutRef;
 #[cfg(feature = "Keyboards")]
 pub use self::__Keyboards::PhysicalKeyboardLayoutType;
 #[cfg(feature = "Lists")]
@@ -10082,8 +10058,6 @@ pub use self::__MacWindows::MeasureWindowTitleRecPtr;
 #[cfg(all(feature = "MacWindows", feature = "objc2-application-services"))]
 pub use self::__MacWindows::NewWindowPaintUPP;
 #[cfg(feature = "MacWindows")]
-pub use self::__MacWindows::OpaqueWindowGroupRef;
-#[cfg(feature = "MacWindows")]
 pub use self::__MacWindows::PropertyCreator;
 #[cfg(feature = "MacWindows")]
 pub use self::__MacWindows::PropertyTag;
@@ -10132,11 +10106,11 @@ pub use self::__MacWindows::WindowDefUPP;
 #[cfg(feature = "MacWindows")]
 pub use self::__MacWindows::WindowDrawerState;
 #[cfg(feature = "MacWindows")]
+pub use self::__MacWindows::WindowGroup;
+#[cfg(feature = "MacWindows")]
 pub use self::__MacWindows::WindowGroupAttributes;
 #[cfg(feature = "MacWindows")]
 pub use self::__MacWindows::WindowGroupContentOptions;
-#[cfg(feature = "MacWindows")]
-pub use self::__MacWindows::WindowGroupRef;
 #[cfg(feature = "MacWindows")]
 pub use self::__MacWindows::WindowLatentVisibility;
 #[cfg(feature = "MacWindows")]
@@ -10704,7 +10678,7 @@ pub use self::__Scrap::InvokeScrapPromiseKeeperUPP;
 #[cfg(feature = "Scrap")]
 pub use self::__Scrap::NewScrapPromiseKeeperUPP;
 #[cfg(feature = "Scrap")]
-pub use self::__Scrap::OpaqueScrapRef;
+pub use self::__Scrap::Scrap;
 #[cfg(feature = "Scrap")]
 pub use self::__Scrap::ScrapFlavorFlags;
 #[cfg(feature = "Scrap")]
@@ -10715,8 +10689,6 @@ pub use self::__Scrap::ScrapFlavorType;
 pub use self::__Scrap::ScrapPromiseKeeperProcPtr;
 #[cfg(feature = "Scrap")]
 pub use self::__Scrap::ScrapPromiseKeeperUPP;
-#[cfg(feature = "Scrap")]
-pub use self::__Scrap::ScrapRef;
 #[cfg(feature = "TextEdit")]
 pub use self::__TextEdit::addSize;
 #[cfg(feature = "TextEdit")]

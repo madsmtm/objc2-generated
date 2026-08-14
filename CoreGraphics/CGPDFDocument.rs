@@ -195,9 +195,9 @@ impl CGPDFDocument {
     #[doc(alias = "CGPDFDocumentGetCatalog")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    pub fn catalog(&self) -> CGPDFDictionaryRef {
+    pub fn catalog(&self) -> *mut CGPDFDictionary {
         extern "C-unwind" {
-            fn CGPDFDocumentGetCatalog(document: &CGPDFDocument) -> CGPDFDictionaryRef;
+            fn CGPDFDocumentGetCatalog(document: &CGPDFDocument) -> *mut CGPDFDictionary;
         }
         unsafe { CGPDFDocumentGetCatalog(self) }
     }
@@ -205,9 +205,9 @@ impl CGPDFDocument {
     #[doc(alias = "CGPDFDocumentGetInfo")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    pub fn info(&self) -> CGPDFDictionaryRef {
+    pub fn info(&self) -> *mut CGPDFDictionary {
         extern "C-unwind" {
-            fn CGPDFDocumentGetInfo(document: &CGPDFDocument) -> CGPDFDictionaryRef;
+            fn CGPDFDocumentGetInfo(document: &CGPDFDocument) -> *mut CGPDFDictionary;
         }
         unsafe { CGPDFDocumentGetInfo(self) }
     }
@@ -215,9 +215,9 @@ impl CGPDFDocument {
     #[doc(alias = "CGPDFDocumentGetID")]
     #[cfg(feature = "CGPDFArray")]
     #[inline]
-    pub fn id(&self) -> CGPDFArrayRef {
+    pub fn id(&self) -> *mut CGPDFArray {
         extern "C-unwind" {
-            fn CGPDFDocumentGetID(document: &CGPDFDocument) -> CGPDFArrayRef;
+            fn CGPDFDocumentGetID(document: &CGPDFDocument) -> *mut CGPDFArray;
         }
         unsafe { CGPDFDocumentGetID(self) }
     }

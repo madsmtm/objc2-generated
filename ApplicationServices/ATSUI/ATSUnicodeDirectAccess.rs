@@ -27,18 +27,16 @@ pub const kATSUDirectDataLayoutRecordATSLayoutRecordVersion1: c_uint = 100;
 pub const kATSUDirectDataLayoutRecordATSLayoutRecordCurrent: c_uint =
     kATSUDirectDataLayoutRecordATSLayoutRecordVersion1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/llcstyleinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsustylesetting?language=objc)
+#[doc(alias = "ATSUStyleSettingRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct LLCStyleInfo {
+pub struct ATSUStyleSetting {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for LLCStyleInfo {
+unsafe impl RefEncode for ATSUStyleSetting {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("LLCStyleInfo", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsustylesettingref?language=objc)
-pub type ATSUStyleSettingRef = *mut LLCStyleInfo;

@@ -55,23 +55,21 @@ unsafe impl RefEncode for AudioUnitEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aulistenerbase?language=objc)
+/// An object which receives notifications of Audio Unit parameter value changes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistener?language=objc)
+#[doc(alias = "AUParameterListenerRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct AUListenerBase {
+pub struct AUParameterListener {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for AUListenerBase {
+unsafe impl RefEncode for AUParameterListener {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("AUListenerBase", &[]));
 }
-
-/// An object which receives notifications of Audio Unit parameter value changes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistenerref?language=objc)
-pub type AUParameterListenerRef = *mut AUListenerBase;
 
 /// An object which receives Audio Unit events.
 ///
@@ -79,7 +77,7 @@ pub type AUParameterListenerRef = *mut AUListenerBase;
 /// as an argument.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventlistenerref?language=objc)
-pub type AUEventListenerRef = AUParameterListenerRef;
+pub type AUEventListenerRef = AUParameterListener;
 
 /// A block called when a parameter value changes.
 ///
@@ -150,14 +148,14 @@ pub type AUParameterListenerProc = Option<
 ))]
 #[inline]
 pub unsafe fn AUListenerCreateWithDispatchQueue(
-    out_listener: &mut AUParameterListenerRef,
+    out_listener: &mut *mut AUParameterListener,
     in_notification_interval: f32,
     in_dispatch_queue: &DispatchQueue,
     in_block: &AUParameterListenerBlock,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AUListenerCreateWithDispatchQueue(
-            out_listener: &mut AUParameterListenerRef,
+            out_listener: &mut *mut AUParameterListener,
             in_notification_interval: f32,
             in_dispatch_queue: &DispatchQueue,
             in_block: &AUParameterListenerBlock,
@@ -216,7 +214,7 @@ pub unsafe fn AUListenerCreate(
     in_run_loop: Option<&CFRunLoop>,
     in_run_loop_mode: Option<&CFString>,
     in_notification_interval: f32,
-    out_listener: &mut AUParameterListenerRef,
+    out_listener: &mut *mut AUParameterListener,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AUListenerCreate(
@@ -225,7 +223,7 @@ pub unsafe fn AUListenerCreate(
             in_run_loop: Option<&CFRunLoop>,
             in_run_loop_mode: Option<&CFString>,
             in_notification_interval: f32,
-            out_listener: &mut AUParameterListenerRef,
+            out_listener: &mut *mut AUParameterListener,
         ) -> OSStatus;
     }
     unsafe {
@@ -248,9 +246,9 @@ pub unsafe fn AUListenerCreate(
 ///
 /// `in_listener` must be a valid pointer.
 #[inline]
-pub unsafe fn AUListenerDispose(in_listener: AUParameterListenerRef) -> OSStatus {
+pub unsafe fn AUListenerDispose(in_listener: NonNull<AUParameterListener>) -> OSStatus {
     extern "C-unwind" {
-        fn AUListenerDispose(in_listener: AUParameterListenerRef) -> OSStatus;
+        fn AUListenerDispose(in_listener: NonNull<AUParameterListener>) -> OSStatus;
     }
     unsafe { AUListenerDispose(in_listener) }
 }
@@ -271,19 +269,19 @@ pub unsafe fn AUListenerDispose(in_listener: AUParameterListenerRef) -> OSStatus
 ///
 /// # Safety
 ///
-/// - `in_listener` must be a valid pointer.
+/// - `in_listener` might need manual memory-management.
 /// - `in_object` must be a valid pointer or null.
 /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
 pub unsafe fn AUListenerAddParameter(
-    in_listener: AUParameterListenerRef,
+    in_listener: &AUParameterListener,
     in_object: *mut c_void,
     in_parameter: &AudioUnitParameter,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AUListenerAddParameter(
-            in_listener: AUParameterListenerRef,
+            in_listener: &AUParameterListener,
             in_object: *mut c_void,
             in_parameter: &AudioUnitParameter,
         ) -> OSStatus;
@@ -301,19 +299,19 @@ pub unsafe fn AUListenerAddParameter(
 ///
 /// # Safety
 ///
-/// - `in_listener` must be a valid pointer.
+/// - `in_listener` might need manual memory-management.
 /// - `in_object` must be a valid pointer or null.
 /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
 pub unsafe fn AUListenerRemoveParameter(
-    in_listener: AUParameterListenerRef,
+    in_listener: &AUParameterListener,
     in_object: *mut c_void,
     in_parameter: &AudioUnitParameter,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AUListenerRemoveParameter(
-            in_listener: AUParameterListenerRef,
+            in_listener: &AUParameterListener,
             in_object: *mut c_void,
             in_parameter: &AudioUnitParameter,
         ) -> OSStatus;
@@ -344,13 +342,13 @@ pub unsafe fn AUListenerRemoveParameter(
 ///
 /// # Safety
 ///
-/// - `in_sending_listener` must be a valid pointer or null.
+/// - `in_sending_listener` might need manual memory-management.
 /// - `in_sending_object` must be a valid pointer or null.
 /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
 pub unsafe fn AUParameterSet(
-    in_sending_listener: AUParameterListenerRef,
+    in_sending_listener: Option<&AUParameterListener>,
     in_sending_object: *mut c_void,
     in_parameter: &AudioUnitParameter,
     in_value: AudioUnitParameterValue,
@@ -358,7 +356,7 @@ pub unsafe fn AUParameterSet(
 ) -> OSStatus {
     extern "C-unwind" {
         fn AUParameterSet(
-            in_sending_listener: AUParameterListenerRef,
+            in_sending_listener: Option<&AUParameterListener>,
             in_sending_object: *mut c_void,
             in_parameter: &AudioUnitParameter,
             in_value: AudioUnitParameterValue,
@@ -376,50 +374,53 @@ pub unsafe fn AUParameterSet(
     }
 }
 
-/// Notify listeners of a past parameter change.
-///
-/// Parameter `inSendingListener`: A parameter listener generating the change and which does not want to
-/// receive a callback as a result of it. May be NULL.
-///
-/// Parameter `inSendingObject`: The object generating the change and which does not want to receive a
-/// callback as a result of it. NULL is treated specially when inListener is
-/// non-null; it signifies that none of the specified listener's objects will
-/// receive notifications.
-///
-/// Parameter `inParameter`: The parameter which was changed.
-///
-/// Performs and schedules the notification callbacks of AUParameterSet, without
-/// actually setting an AudioUnit parameter value.
-///
-/// Clients scheduling ramped parameter changes to AudioUnits must make this call
-/// dynamically during playback in order for AudioUnitViews to be updated.  When the view's
-/// listener receives a notification, it will be passed the current value of the parameter.
-///
-/// A special meaning is applied if the mParameterID value of inParameter is equal to
-/// kAUParameterListener_AnyParameter. In this case, ANY listener for ANY parameter value
-/// changes on the specified AudioUnit will be notified of the current value of that
-/// parameter.
-///
-/// # Safety
-///
-/// - `in_sending_listener` must be a valid pointer or null.
-/// - `in_sending_object` must be a valid pointer or null.
-/// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
-#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
-#[inline]
-pub unsafe fn AUParameterListenerNotify(
-    in_sending_listener: AUParameterListenerRef,
-    in_sending_object: *mut c_void,
-    in_parameter: &AudioUnitParameter,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn AUParameterListenerNotify(
-            in_sending_listener: AUParameterListenerRef,
-            in_sending_object: *mut c_void,
-            in_parameter: &AudioUnitParameter,
-        ) -> OSStatus;
+impl AUParameterListener {
+    /// Notify listeners of a past parameter change.
+    ///
+    /// Parameter `inSendingListener`: A parameter listener generating the change and which does not want to
+    /// receive a callback as a result of it. May be NULL.
+    ///
+    /// Parameter `inSendingObject`: The object generating the change and which does not want to receive a
+    /// callback as a result of it. NULL is treated specially when inListener is
+    /// non-null; it signifies that none of the specified listener's objects will
+    /// receive notifications.
+    ///
+    /// Parameter `inParameter`: The parameter which was changed.
+    ///
+    /// Performs and schedules the notification callbacks of AUParameterSet, without
+    /// actually setting an AudioUnit parameter value.
+    ///
+    /// Clients scheduling ramped parameter changes to AudioUnits must make this call
+    /// dynamically during playback in order for AudioUnitViews to be updated.  When the view's
+    /// listener receives a notification, it will be passed the current value of the parameter.
+    ///
+    /// A special meaning is applied if the mParameterID value of inParameter is equal to
+    /// kAUParameterListener_AnyParameter. In this case, ANY listener for ANY parameter value
+    /// changes on the specified AudioUnit will be notified of the current value of that
+    /// parameter.
+    ///
+    /// # Safety
+    ///
+    /// - `in_sending_listener` might need manual memory-management.
+    /// - `in_sending_object` must be a valid pointer or null.
+    /// - `in_parameter` struct field `mAudioUnit` must be a valid pointer.
+    #[doc(alias = "AUParameterListenerNotify")]
+    #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+    #[inline]
+    pub unsafe fn notify(
+        in_sending_listener: Option<&AUParameterListener>,
+        in_sending_object: *mut c_void,
+        in_parameter: &AudioUnitParameter,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn AUParameterListenerNotify(
+                in_sending_listener: Option<&AUParameterListener>,
+                in_sending_object: *mut c_void,
+                in_parameter: &AudioUnitParameter,
+            ) -> OSStatus;
+        }
+        unsafe { AUParameterListenerNotify(in_sending_listener, in_sending_object, in_parameter) }
     }
-    unsafe { AUParameterListenerNotify(in_sending_listener, in_sending_object, in_parameter) }
 }
 
 /// Converts a linear value to a parameter value according to the parameter's units.

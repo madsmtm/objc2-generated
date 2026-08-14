@@ -1270,21 +1270,19 @@ unsafe impl RefEncode for IOBlitCursorStruct {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcursor?language=objc)
 pub type IOBlitCursor = IOBlitCursorStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/_ioblitmemory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitmemory?language=objc)
+#[doc(alias = "IOBlitMemoryRef")]
 #[repr(C)]
 #[derive(Debug)]
-pub struct _IOBlitMemory {
+pub struct IOBlitMemory {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for _IOBlitMemory {
+unsafe impl RefEncode for IOBlitMemory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_IOBlitMemory", &[]));
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitmemoryref?language=objc)
-pub type IOBlitMemoryRef = *mut _IOBlitMemory;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio1monochromepixelformat?language=objc)
 pub const kIO1MonochromePixelFormat: c_uint = 0x00000001;
@@ -1361,13 +1359,13 @@ pub const kIOBlitMemoryRequiresHostFlush: c_uint = 0x00000001;
 #[derive(Clone, Copy)]
 pub union IOBlitSurfaceStruct_memory {
     pub bytes: *mut u8,
-    pub r#ref: IOBlitMemoryRef,
+    pub r#ref: *mut IOBlitMemory,
 }
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for IOBlitSurfaceStruct_memory {
     const ENCODING: Encoding =
-        Encoding::Union("?", &[<*mut u8>::ENCODING, <IOBlitMemoryRef>::ENCODING]);
+        Encoding::Union("?", &[<*mut u8>::ENCODING, <*mut IOBlitMemory>::ENCODING]);
 }
 
 #[cfg(feature = "objc2")]
@@ -1386,7 +1384,7 @@ pub struct IOBlitSurfaceStruct {
     pub byteOffset: u32,
     pub palette: *mut u32,
     pub accessFlags: IOOptionBits,
-    pub interfaceRef: IOBlitMemoryRef,
+    pub interfaceRef: *mut IOBlitMemory,
     pub more: [u32; 14],
 }
 
@@ -1402,7 +1400,7 @@ unsafe impl Encode for IOBlitSurfaceStruct {
             <u32>::ENCODING,
             <*mut u32>::ENCODING,
             <IOOptionBits>::ENCODING,
-            <IOBlitMemoryRef>::ENCODING,
+            <*mut IOBlitMemory>::ENCODING,
             <[u32; 14]>::ENCODING,
         ],
     );
@@ -1415,9 +1413,6 @@ unsafe impl RefEncode for IOBlitSurfaceStruct {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitsurface?language=objc)
 pub type IOBlitSurface = IOBlitSurfaceStruct;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitmemory?language=objc)
-pub type IOBlitMemory = IOBlitSurface;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsynchronizewaitbeamexit?language=objc)
 pub const kIOBlitSynchronizeWaitBeamExit: c_uint = 0x00000001;
