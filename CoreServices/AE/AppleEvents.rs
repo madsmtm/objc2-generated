@@ -434,7 +434,7 @@ impl AERemoteProcessResolver {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback?language=objc)
 pub type AERemoteProcessResolverCallback =
-    Option<unsafe extern "C-unwind" fn(*mut AERemoteProcessResolver, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&AERemoteProcessResolver>, *mut c_void)>;
 
 impl AERemoteProcessResolver {
     /// # Safety

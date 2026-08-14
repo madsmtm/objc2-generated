@@ -476,8 +476,9 @@ impl MDQuery {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerycreateresultfunction?language=objc)
 #[cfg(feature = "MDItem")]
-pub type MDQueryCreateResultFunction =
-    Option<unsafe extern "C-unwind" fn(*mut MDQuery, *mut MDItem, *mut c_void) -> *const c_void>;
+pub type MDQueryCreateResultFunction = Option<
+    unsafe extern "C-unwind" fn(Option<&MDQuery>, Option<&MDItem>, *mut c_void) -> *const c_void,
+>;
 
 impl MDQuery {
     /// Sets the function used to create the result objects of the
@@ -606,9 +607,9 @@ impl MDQuery {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerycreatevaluefunction?language=objc)
 pub type MDQueryCreateValueFunction = Option<
     unsafe extern "C-unwind" fn(
-        *mut MDQuery,
-        *const CFString,
-        *const CFType,
+        Option<&MDQuery>,
+        Option<&CFString>,
+        Option<&CFType>,
         *mut c_void,
     ) -> *const c_void,
 >;

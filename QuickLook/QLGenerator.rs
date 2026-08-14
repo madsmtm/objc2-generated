@@ -985,26 +985,26 @@ pub struct QLGeneratorInterfaceStruct {
     pub GenerateThumbnailForURL: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut QLThumbnailRequest,
-            *const CFURL,
-            *const CFString,
-            *const CFDictionary,
+            Option<&QLThumbnailRequest>,
+            Option<&CFURL>,
+            Option<&CFString>,
+            Option<&CFDictionary>,
             CGSize,
         ) -> OSStatus,
     >,
     pub CancelThumbnailGeneration:
-        Option<unsafe extern "C-unwind" fn(*mut c_void, *mut QLThumbnailRequest)>,
+        Option<unsafe extern "C-unwind" fn(*mut c_void, Option<&QLThumbnailRequest>)>,
     pub GeneratePreviewForURL: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut QLPreviewRequest,
-            *const CFURL,
-            *const CFString,
-            *const CFDictionary,
+            Option<&QLPreviewRequest>,
+            Option<&CFURL>,
+            Option<&CFString>,
+            Option<&CFDictionary>,
         ) -> OSStatus,
     >,
     pub CancelPreviewGeneration:
-        Option<unsafe extern "C-unwind" fn(*mut c_void, *mut QLPreviewRequest)>,
+        Option<unsafe extern "C-unwind" fn(*mut c_void, Option<&QLPreviewRequest>)>,
 }
 
 #[cfg(feature = "objc2")]

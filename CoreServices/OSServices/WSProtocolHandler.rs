@@ -234,8 +234,8 @@ impl WSProtocolHandler {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerserializationprocptr?language=objc)
 pub type WSProtocolHandlerSerializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut WSProtocolHandler,
-        *const CFType,
+        Option<&WSProtocolHandler>,
+        Option<&CFType>,
         *mut c_void,
     ) -> *const CFString,
 >;
@@ -277,9 +277,9 @@ impl WSProtocolHandler {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerdeserializationprocptr?language=objc)
 pub type WSProtocolHandlerDeserializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut WSProtocolHandler,
-        *mut CFXMLTree,
-        *mut CFXMLTree,
+        Option<&WSProtocolHandler>,
+        Option<&CFXMLTree>,
+        Option<&CFXMLTree>,
         *mut c_void,
     ) -> *const CFType,
 >;

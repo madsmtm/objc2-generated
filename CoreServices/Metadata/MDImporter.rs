@@ -20,9 +20,9 @@ pub struct MDImporterInterfaceStruct {
     pub ImporterImportData: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut CFMutableDictionary,
-            *const CFString,
-            *const CFString,
+            Option<&CFMutableDictionary>,
+            Option<&CFString>,
+            Option<&CFString>,
         ) -> Boolean,
     >,
 }
@@ -59,9 +59,9 @@ pub struct MDExporterInterfaceStruct {
     pub ImporterExportData: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *const CFDictionary,
-            *const CFString,
-            *const CFString,
+            Option<&CFDictionary>,
+            Option<&CFString>,
+            Option<&CFString>,
         ) -> Boolean,
     >,
 }
@@ -98,9 +98,9 @@ pub struct MDImporterURLInterfaceStruct {
     pub ImporterImportURLData: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut CFMutableDictionary,
-            *const CFString,
-            *const CFURL,
+            Option<&CFMutableDictionary>,
+            Option<&CFString>,
+            Option<&CFURL>,
         ) -> Boolean,
     >,
 }
@@ -137,9 +137,9 @@ pub struct MDImporterBundleWrapperURLInterfaceStruct {
     pub ImporterImportBundleWrapperURLData: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut CFMutableDictionary,
-            *const CFString,
-            *const CFURL,
+            Option<&CFMutableDictionary>,
+            Option<&CFString>,
+            Option<&CFURL>,
         ) -> Boolean,
     >,
 }

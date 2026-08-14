@@ -66,7 +66,7 @@ pub type CMBuffer = CFType;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergettimecallback?language=objc)
 #[cfg(feature = "CMTime")]
 pub type CMBufferGetTimeCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void) -> CMTime>;
+    Option<unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> CMTime>;
 
 /// Client block that returns a CMTime from a CMBufferRef
 ///
@@ -83,7 +83,7 @@ pub type CMBufferGetTimeHandler = block2::Block<'static, fn(NonNull<CMBuffer>) -
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetbooleancallback?language=objc)
 pub type CMBufferGetBooleanCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void) -> Boolean>;
+    Option<unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> Boolean>;
 
 /// Client block that returns a Boolean from a CMBufferRef
 ///
@@ -98,13 +98,8 @@ pub type CMBufferGetBooleanHandler = block2::Block<'static, fn(NonNull<CMBuffer>
 /// Note that a CFComparatorFunction can be used here.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercomparecallback?language=objc)
-pub type CMBufferCompareCallback = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<CMBuffer>,
-        NonNull<CMBuffer>,
-        *mut c_void,
-    ) -> CFComparisonResult,
->;
+pub type CMBufferCompareCallback =
+    Option<unsafe extern "C-unwind" fn(&CMBuffer, &CMBuffer, *mut c_void) -> CFComparisonResult>;
 
 /// Client block that compares one CMBufferRef with another.
 ///
@@ -119,7 +114,7 @@ pub type CMBufferCompareHandler =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetsizecallback?language=objc)
 pub type CMBufferGetSizeCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void) -> usize>;
+    Option<unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> usize>;
 
 /// Client block that returns a size_t from a CMBufferRef
 ///
@@ -566,13 +561,13 @@ impl CMBufferQueue {
     #[inline]
     pub unsafe fn reset_with_callback(
         &self,
-        callback: unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void),
+        callback: unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void),
         refcon: *mut c_void,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueResetWithCallback(
                 queue: &CMBufferQueue,
-                callback: unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void),
+                callback: unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void),
                 refcon: *mut c_void,
             ) -> OSStatus;
         }
@@ -1018,13 +1013,13 @@ impl CMBufferQueue {
     #[inline]
     pub unsafe fn call_for_each_buffer(
         &self,
-        callback: unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void) -> OSStatus,
+        callback: unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> OSStatus,
         refcon: *mut c_void,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueCallForEachBuffer(
                 queue: &CMBufferQueue,
-                callback: unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void) -> OSStatus,
+                callback: unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> OSStatus,
                 refcon: *mut c_void,
             ) -> OSStatus;
         }
@@ -1041,9 +1036,8 @@ impl CMBufferQueue {
 /// If you do not have a more descriptive error code, use kCMBufferQueueError_InvalidBuffer.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationcallback?language=objc)
-pub type CMBufferValidationCallback = Option<
-    unsafe extern "C-unwind" fn(NonNull<CMBufferQueue>, NonNull<CMBuffer>, *mut c_void) -> OSStatus,
->;
+pub type CMBufferValidationCallback =
+    Option<unsafe extern "C-unwind" fn(&CMBufferQueue, &CMBuffer, *mut c_void) -> OSStatus>;
 
 /// Tests whether a buffer is OK to add to a queue.
 ///

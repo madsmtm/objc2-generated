@@ -141,7 +141,7 @@ unsafe impl RefEncode for FSEventStreamContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamcallback?language=objc)
 pub type FSEventStreamCallback = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<FSEventStream>,
+        &FSEventStream,
         *mut c_void,
         usize,
         NonNull<c_void>,

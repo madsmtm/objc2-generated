@@ -460,10 +460,10 @@ unsafe impl RefEncode for DataBrowserItemData {
 #[cfg(feature = "HIObject")]
 pub type DataBrowserItemDataProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserPropertyID,
-        *mut DataBrowserItemData,
+        Option<&DataBrowserItemData>,
         Boolean,
     ) -> OSStatus,
 >;
@@ -476,7 +476,7 @@ pub type DataBrowserItemDataUPP = DataBrowserItemDataProcPtr;
 #[cfg(feature = "HIObject")]
 pub type DataBrowserItemCompareProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserItemID,
         DataBrowserPropertyID,
@@ -491,17 +491,17 @@ pub type DataBrowserItemCompareUPP = DataBrowserItemCompareProcPtr;
 #[cfg(feature = "HIObject")]
 pub type DataBrowserItemNotificationWithItemProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserItemNotification,
-        *mut DataBrowserItemData,
+        Option<&DataBrowserItemData>,
     ),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemnotificationprocptr?language=objc)
 #[cfg(feature = "HIObject")]
 pub type DataBrowserItemNotificationProcPtr = Option<
-    unsafe extern "C-unwind" fn(*mut Control, DataBrowserItemID, DataBrowserItemNotification),
+    unsafe extern "C-unwind" fn(Option<&Control>, DataBrowserItemID, DataBrowserItemNotification),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemnotificationwithitemupp?language=objc)
@@ -516,8 +516,8 @@ pub type DataBrowserItemNotificationUPP = DataBrowserItemNotificationProcPtr;
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 pub type DataBrowserAddDragItemProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
-        *mut DragReference,
+        Option<&Control>,
+        Option<&DragReference>,
         DataBrowserItemID,
         *mut ItemReference,
     ) -> Boolean,
@@ -526,19 +526,27 @@ pub type DataBrowserAddDragItemProcPtr = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseracceptdragprocptr?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 pub type DataBrowserAcceptDragProcPtr = Option<
-    unsafe extern "C-unwind" fn(*mut Control, *mut DragReference, DataBrowserItemID) -> Boolean,
+    unsafe extern "C-unwind" fn(
+        Option<&Control>,
+        Option<&DragReference>,
+        DataBrowserItemID,
+    ) -> Boolean,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowserreceivedragprocptr?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 pub type DataBrowserReceiveDragProcPtr = Option<
-    unsafe extern "C-unwind" fn(*mut Control, *mut DragReference, DataBrowserItemID) -> Boolean,
+    unsafe extern "C-unwind" fn(
+        Option<&Control>,
+        Option<&DragReference>,
+        DataBrowserItemID,
+    ) -> Boolean,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowserpostprocessdragprocptr?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 pub type DataBrowserPostProcessDragProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Control, *mut DragReference, OSStatus)>;
+    Option<unsafe extern "C-unwind" fn(Option<&Control>, Option<&DragReference>, OSStatus)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseradddragitemupp?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
@@ -564,7 +572,7 @@ pub type DataBrowserPostProcessDragUPP = DataBrowserPostProcessDragProcPtr;
 ))]
 pub type DataBrowserGetContextualMenuProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         *mut *mut Menu,
         *mut u32,
         *mut *const CFString,
@@ -575,7 +583,7 @@ pub type DataBrowserGetContextualMenuProcPtr = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowserselectcontextualmenuprocptr?language=objc)
 #[cfg(all(feature = "HIObject", feature = "Menus"))]
 pub type DataBrowserSelectContextualMenuProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Control, *mut Menu, u32, i16, MenuItemIndex)>;
+    Option<unsafe extern "C-unwind" fn(Option<&Control>, Option<&Menu>, u32, i16, MenuItemIndex)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowsergetcontextualmenuupp?language=objc)
 #[cfg(all(
@@ -593,7 +601,7 @@ pub type DataBrowserSelectContextualMenuUPP = DataBrowserSelectContextualMenuPro
 #[cfg(all(feature = "HIObject", feature = "MacHelp", feature = "TextEdit"))]
 pub type DataBrowserItemHelpContentProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserPropertyID,
         HMContentRequest,
@@ -1489,7 +1497,7 @@ pub const kDataBrowserStopTracking: c_int = -1;
 #[cfg(feature = "HIObject")]
 pub type DataBrowserDrawItemProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserPropertyID,
         DataBrowserItemState,
@@ -1503,10 +1511,10 @@ pub type DataBrowserDrawItemProcPtr = Option<
 #[cfg(feature = "HIObject")]
 pub type DataBrowserEditItemProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserPropertyID,
-        *const CFString,
+        Option<&CFString>,
         *mut Rect,
         *mut Boolean,
     ) -> Boolean,
@@ -1516,7 +1524,7 @@ pub type DataBrowserEditItemProcPtr = Option<
 #[cfg(feature = "HIObject")]
 pub type DataBrowserHitTestProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserPropertyID,
         *const Rect,
@@ -1528,7 +1536,7 @@ pub type DataBrowserHitTestProcPtr = Option<
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 pub type DataBrowserTrackingProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserPropertyID,
         *const Rect,
@@ -1541,7 +1549,7 @@ pub type DataBrowserTrackingProcPtr = Option<
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
 pub type DataBrowserItemDragRgnProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserPropertyID,
         *const Rect,
@@ -1553,11 +1561,11 @@ pub type DataBrowserItemDragRgnProcPtr = Option<
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 pub type DataBrowserItemAcceptDragProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserPropertyID,
         *const Rect,
-        *mut DragReference,
+        Option<&DragReference>,
     ) -> DataBrowserDragFlags,
 >;
 
@@ -1565,11 +1573,11 @@ pub type DataBrowserItemAcceptDragProcPtr = Option<
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 pub type DataBrowserItemReceiveDragProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         DataBrowserItemID,
         DataBrowserPropertyID,
         DataBrowserDragFlags,
-        *mut DragReference,
+        Option<&DragReference>,
     ) -> Boolean,
 >;
 

@@ -36,16 +36,16 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugindynamicregisterfunction?language=objc)
 #[cfg(feature = "CFBundle")]
-pub type CFPlugInDynamicRegisterFunction = Option<unsafe extern "C-unwind" fn(*mut CFPlugIn)>;
+pub type CFPlugInDynamicRegisterFunction = Option<unsafe extern "C-unwind" fn(Option<&CFPlugIn>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginunloadfunction?language=objc)
 #[cfg(feature = "CFBundle")]
-pub type CFPlugInUnloadFunction = Option<unsafe extern "C-unwind" fn(*mut CFPlugIn)>;
+pub type CFPlugInUnloadFunction = Option<unsafe extern "C-unwind" fn(Option<&CFPlugIn>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginfactoryfunction?language=objc)
 #[cfg(feature = "CFUUID")]
 pub type CFPlugInFactoryFunction =
-    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const CFUUID) -> *mut c_void>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, Option<&CFUUID>) -> *mut c_void>;
 
 #[cfg(feature = "CFBundle")]
 unsafe impl ConcreteType for CFPlugIn {
@@ -275,8 +275,8 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetinterfacefunction?language=objc)
 pub type CFPlugInInstanceGetInterfaceFunction = Option<
     unsafe extern "C-unwind" fn(
-        *mut CFPlugInInstance,
-        *const CFString,
+        Option<&CFPlugInInstance>,
+        Option<&CFString>,
         *mut *mut c_void,
     ) -> Boolean,
 >;

@@ -668,7 +668,7 @@ pub type IOUPSEventCallbackFunction = Option<
         IOReturn,
         *mut c_void,
         *mut c_void,
-        *const CFDictionary,
+        Option<&CFDictionary>,
     ),
 >;
 
@@ -697,7 +697,7 @@ pub struct IOUPSPlugInInterface {
         ) -> IOReturn,
     >,
     pub sendCommand:
-        Option<unsafe extern "C-unwind" fn(*mut c_void, *const CFDictionary) -> IOReturn>,
+        Option<unsafe extern "C-unwind" fn(*mut c_void, Option<&CFDictionary>) -> IOReturn>,
 }
 
 #[cfg(feature = "objc2")]
@@ -748,7 +748,7 @@ pub struct IOUPSPlugInInterface_v140 {
         ) -> IOReturn,
     >,
     pub sendCommand:
-        Option<unsafe extern "C-unwind" fn(*mut c_void, *const CFDictionary) -> IOReturn>,
+        Option<unsafe extern "C-unwind" fn(*mut c_void, Option<&CFDictionary>) -> IOReturn>,
     pub createAsyncEventSource:
         Option<unsafe extern "C-unwind" fn(*mut c_void, *mut *const CFType) -> IOReturn>,
 }

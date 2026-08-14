@@ -675,9 +675,9 @@ impl SecTransformImplementation {
 #[cfg(all(feature = "SecTransform", feature = "block2"))]
 pub type SecTransformCreateFP = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<CFString>,
-        NonNull<SecTransform>,
-        NonNull<SecTransformImplementation>,
+        &CFString,
+        &SecTransform,
+        &SecTransformImplementation,
     ) -> NonNull<SecTransformInstanceBlock>,
 >;
 

@@ -105,14 +105,14 @@ unsafe impl RefEncode for IOBluetoothL2CAPChannelEvent {
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelincomingdatalistener?language=objc)
 #[cfg(feature = "IOBluetoothUserLib")]
 pub type IOBluetoothL2CAPChannelIncomingDataListener = Option<
-    unsafe extern "C-unwind" fn(*mut IOBluetoothL2CAPChannelRef, *mut c_void, u16, *mut c_void),
+    unsafe extern "C-unwind" fn(Option<&IOBluetoothL2CAPChannelRef>, *mut c_void, u16, *mut c_void),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelincomingeventlistener?language=objc)
 #[cfg(feature = "IOBluetoothUserLib")]
 pub type IOBluetoothL2CAPChannelIncomingEventListener = Option<
     unsafe extern "C-unwind" fn(
-        *mut IOBluetoothL2CAPChannelRef,
+        Option<&IOBluetoothL2CAPChannelRef>,
         *mut c_void,
         *mut IOBluetoothL2CAPChannelEvent,
     ),

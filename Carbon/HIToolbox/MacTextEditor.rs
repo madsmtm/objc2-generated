@@ -935,12 +935,12 @@ pub type TXNFindProcPtr = Option<
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txnactionnamemapperprocptr?language=objc)
 pub type TXNActionNameMapperProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const CFString, u32, *mut c_void) -> *const CFString>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFString>, u32, *mut c_void) -> *const CFString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txncontextualmenusetupprocptr?language=objc)
 #[cfg(feature = "Menus")]
 pub type TXNContextualMenuSetupProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Menu, TXNObject, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&Menu>, TXNObject, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txnscrollinfoprocptr?language=objc)
 pub type TXNScrollInfoProcPtr =

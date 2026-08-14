@@ -19,8 +19,14 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycallback?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
-pub type ODQueryCallback =
-    Option<unsafe extern "C-unwind" fn(*mut ODQueryRef, *const CFArray, *mut CFError, *mut c_void)>;
+pub type ODQueryCallback = Option<
+    unsafe extern "C-unwind" fn(
+        Option<&ODQueryRef>,
+        Option<&CFArray>,
+        Option<&CFError>,
+        *mut c_void,
+    ),
+>;
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for ODQueryRef {

@@ -71,7 +71,8 @@ pub type ControlPartCode = i16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controlactionprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type ControlActionProcPtr = Option<unsafe extern "C-unwind" fn(*mut Control, ControlPartCode)>;
+pub type ControlActionProcPtr =
+    Option<unsafe extern "C-unwind" fn(Option<&Control>, ControlPartCode)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controlactionupp?language=objc)
 #[cfg(feature = "HIObject")]
@@ -574,7 +575,7 @@ pub type ControlKeyFilterResult = i16;
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 pub type ControlKeyFilterProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         *mut i16,
         *mut i16,
         *mut EventModifiers,

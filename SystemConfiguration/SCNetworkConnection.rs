@@ -206,11 +206,7 @@ unsafe impl RefEncode for SCNetworkConnectionPPPStatus {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncallback?language=objc)
 pub type SCNetworkConnectionCallBack = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<SCNetworkConnection>,
-        SCNetworkConnectionStatus,
-        *mut c_void,
-    ),
+    unsafe extern "C-unwind" fn(&SCNetworkConnection, SCNetworkConnectionStatus, *mut c_void),
 >;
 
 unsafe impl ConcreteType for SCNetworkConnection {

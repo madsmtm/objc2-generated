@@ -60,11 +60,11 @@ unsafe impl RefEncode for CFMachPortContext {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcallback?language=objc)
 pub type CFMachPortCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void, CFIndex, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFMachPort>, *mut c_void, CFIndex, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportinvalidationcallback?language=objc)
 pub type CFMachPortInvalidationCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFMachPort>, *mut c_void)>;
 
 unsafe impl ConcreteType for CFMachPort {
     #[doc(alias = "CFMachPortGetTypeID")]

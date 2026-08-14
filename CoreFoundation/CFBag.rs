@@ -11,11 +11,11 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagretaincallback?language=objc)
 pub type CFBagRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagreleasecallback?language=objc)
 pub type CFBagReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcopydescriptioncallback?language=objc)
 pub type CFBagCopyDescriptionCallBack =

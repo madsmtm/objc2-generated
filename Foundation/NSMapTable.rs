@@ -509,15 +509,13 @@ pub unsafe fn NSAllMapTableValues(table: &NSMapTable) -> Retained<NSArray> {
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapTableKeyCallBacks {
-    pub hash:
-        Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>) -> NSUInteger>,
-    pub isEqual: Option<
-        unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>, NonNull<c_void>) -> Bool,
-    >,
-    pub retain: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
-    pub release: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
+    pub hash: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>) -> NSUInteger>,
+    pub isEqual:
+        Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>, NonNull<c_void>) -> Bool>,
+    pub retain: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>)>,
+    pub release: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>)>,
     pub describe:
-        Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>) -> *mut NSString>,
+        Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>) -> *mut NSString>,
     pub notAKeyMarker: *const c_void,
 }
 
@@ -547,10 +545,10 @@ unsafe impl RefEncode for NSMapTableKeyCallBacks {
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSMapTableValueCallBacks {
-    pub retain: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
-    pub release: Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>)>,
+    pub retain: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>)>,
+    pub release: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>)>,
     pub describe:
-        Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>) -> *mut NSString>,
+        Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>) -> *mut NSString>,
 }
 
 #[cfg(feature = "NSString")]

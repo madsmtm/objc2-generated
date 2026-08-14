@@ -6310,7 +6310,7 @@ unsafe impl RefEncode for AudioFileFDFTableExtended {
 pub type AudioFileComponentCreateURLProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
-        NonNull<CFURL>,
+        &CFURL,
         NonNull<AudioStreamBasicDescription>,
         u32,
     ) -> OSStatus,
@@ -6319,7 +6319,7 @@ pub type AudioFileComponentCreateURLProc = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenurlproc?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type AudioFileComponentOpenURLProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFURL>, i8, c_int) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, &CFURL, i8, c_int) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenwithcallbacksproc?language=objc)
 #[cfg(feature = "AudioFile")]
@@ -6498,9 +6498,8 @@ pub type AudioFileComponentRemoveUserDataProc =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentextensionisthisformatproc?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
-pub type AudioFileComponentExtensionIsThisFormatProc = Option<
-    unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFString>, NonNull<u32>) -> OSStatus,
->;
+pub type AudioFileComponentExtensionIsThisFormatProc =
+    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, &CFString, NonNull<u32>) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentfiledataisthisformatproc?language=objc)
 pub type AudioFileComponentFileDataIsThisFormatProc = Option<

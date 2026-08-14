@@ -169,11 +169,11 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamclientcallback?language=objc)
 pub type CFReadStreamClientCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFReadStream, CFStreamEventType, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFReadStream>, CFStreamEventType, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamclientcallback?language=objc)
 pub type CFWriteStreamClientCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFWriteStream, CFStreamEventType, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFWriteStream>, CFStreamEventType, *mut c_void)>;
 
 unsafe impl ConcreteType for CFReadStream {
     #[doc(alias = "CFReadStreamGetTypeID")]

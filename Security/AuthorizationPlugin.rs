@@ -239,57 +239,52 @@ pub const kAuthorizationCallbacksVersion: c_uint = 4;
 pub struct AuthorizationCallbacks {
     pub version: u32,
     pub SetResult:
-        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, AuthorizationResult) -> OSStatus,
-    pub RequestInterrupt: unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>) -> OSStatus,
-    pub DidDeactivate: unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>) -> OSStatus,
+        unsafe extern "C-unwind" fn(&AuthorizationEngine, AuthorizationResult) -> OSStatus,
+    pub RequestInterrupt: unsafe extern "C-unwind" fn(&AuthorizationEngine) -> OSStatus,
+    pub DidDeactivate: unsafe extern "C-unwind" fn(&AuthorizationEngine) -> OSStatus,
     pub GetContextValue: unsafe extern "C-unwind" fn(
-        NonNull<AuthorizationEngine>,
+        &AuthorizationEngine,
         AuthorizationString,
         *mut AuthorizationContextFlags,
         *mut *const AuthorizationValue,
     ) -> OSStatus,
     pub SetContextValue: unsafe extern "C-unwind" fn(
-        NonNull<AuthorizationEngine>,
+        &AuthorizationEngine,
         AuthorizationString,
         AuthorizationContextFlags,
         NonNull<AuthorizationValue>,
     ) -> OSStatus,
     pub GetHintValue: unsafe extern "C-unwind" fn(
-        NonNull<AuthorizationEngine>,
+        &AuthorizationEngine,
         AuthorizationString,
         *mut *const AuthorizationValue,
     ) -> OSStatus,
     pub SetHintValue: unsafe extern "C-unwind" fn(
-        NonNull<AuthorizationEngine>,
+        &AuthorizationEngine,
         AuthorizationString,
         NonNull<AuthorizationValue>,
     ) -> OSStatus,
     pub GetArguments: unsafe extern "C-unwind" fn(
-        NonNull<AuthorizationEngine>,
+        &AuthorizationEngine,
         NonNull<*const AuthorizationValueVector>,
     ) -> OSStatus,
-    pub GetSessionId: unsafe extern "C-unwind" fn(
-        NonNull<AuthorizationEngine>,
-        *mut AuthorizationSessionId,
-    ) -> OSStatus,
+    pub GetSessionId:
+        unsafe extern "C-unwind" fn(&AuthorizationEngine, *mut AuthorizationSessionId) -> OSStatus,
     pub GetImmutableHintValue: unsafe extern "C-unwind" fn(
-        NonNull<AuthorizationEngine>,
+        &AuthorizationEngine,
         AuthorizationString,
         *mut *const AuthorizationValue,
     ) -> OSStatus,
     pub GetLAContext:
-        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, *mut *const CFType) -> OSStatus,
-    pub GetTokenIdentities: unsafe extern "C-unwind" fn(
-        NonNull<AuthorizationEngine>,
-        NonNull<CFType>,
-        *mut *const CFArray,
-    ) -> OSStatus,
+        unsafe extern "C-unwind" fn(&AuthorizationEngine, *mut *const CFType) -> OSStatus,
+    pub GetTokenIdentities:
+        unsafe extern "C-unwind" fn(&AuthorizationEngine, &CFType, *mut *const CFArray) -> OSStatus,
     pub GetTKTokenWatcher:
-        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, *mut *const CFType) -> OSStatus,
+        unsafe extern "C-unwind" fn(&AuthorizationEngine, *mut *const CFType) -> OSStatus,
     pub RemoveHintValue:
-        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, AuthorizationString) -> OSStatus,
+        unsafe extern "C-unwind" fn(&AuthorizationEngine, AuthorizationString) -> OSStatus,
     pub RemoveContextValue:
-        unsafe extern "C-unwind" fn(NonNull<AuthorizationEngine>, AuthorizationString) -> OSStatus,
+        unsafe extern "C-unwind" fn(&AuthorizationEngine, AuthorizationString) -> OSStatus,
 }
 
 #[cfg(all(feature = "Authorization", feature = "objc2"))]
@@ -344,17 +339,16 @@ unsafe impl RefEncode for AuthorizationCallbacks {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AuthorizationPluginInterface {
     pub version: u32,
-    pub PluginDestroy: unsafe extern "C-unwind" fn(NonNull<AuthorizationPlugin>) -> OSStatus,
+    pub PluginDestroy: unsafe extern "C-unwind" fn(&AuthorizationPlugin) -> OSStatus,
     pub MechanismCreate: unsafe extern "C-unwind" fn(
-        NonNull<AuthorizationPlugin>,
-        NonNull<AuthorizationEngine>,
+        &AuthorizationPlugin,
+        &AuthorizationEngine,
         AuthorizationMechanismId,
         NonNull<*mut AuthorizationMechanism>,
     ) -> OSStatus,
-    pub MechanismInvoke: unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus,
-    pub MechanismDeactivate:
-        unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus,
-    pub MechanismDestroy: unsafe extern "C-unwind" fn(NonNull<AuthorizationMechanism>) -> OSStatus,
+    pub MechanismInvoke: unsafe extern "C-unwind" fn(&AuthorizationMechanism) -> OSStatus,
+    pub MechanismDeactivate: unsafe extern "C-unwind" fn(&AuthorizationMechanism) -> OSStatus,
+    pub MechanismDestroy: unsafe extern "C-unwind" fn(&AuthorizationMechanism) -> OSStatus,
 }
 
 #[cfg(all(feature = "Authorization", feature = "objc2"))]

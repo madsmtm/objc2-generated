@@ -212,15 +212,15 @@ unsafe impl RefEncode for CFNetServiceClientContext {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceclientcallback?language=objc)
 pub type CFNetServiceClientCallBack =
-    Option<unsafe extern "C-unwind" fn(NonNull<CFNetService>, *mut CFStreamError, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(&CFNetService, *mut CFStreamError, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorclientcallback?language=objc)
 pub type CFNetServiceMonitorClientCallBack = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<CFNetServiceMonitor>,
-        *mut CFNetService,
+        &CFNetServiceMonitor,
+        Option<&CFNetService>,
         CFNetServiceMonitorType,
-        *const CFData,
+        Option<&CFData>,
         *mut CFStreamError,
         *mut c_void,
     ),
@@ -229,9 +229,9 @@ pub type CFNetServiceMonitorClientCallBack = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserclientcallback?language=objc)
 pub type CFNetServiceBrowserClientCallBack = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<CFNetServiceBrowser>,
+        &CFNetServiceBrowser,
         CFOptionFlags,
-        *const CFType,
+        Option<&CFType>,
         *mut CFStreamError,
         *mut c_void,
     ),

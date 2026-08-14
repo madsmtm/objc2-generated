@@ -428,10 +428,12 @@ pub struct CFRunLoopSourceContext {
     pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
     pub equal: Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>,
     pub hash: Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>,
-    pub schedule:
-        Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CFRunLoop, *const CFRunLoopMode)>,
-    pub cancel:
-        Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CFRunLoop, *const CFRunLoopMode)>,
+    pub schedule: Option<
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&CFRunLoop>, Option<&CFRunLoopMode>),
+    >,
+    pub cancel: Option<
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&CFRunLoop>, Option<&CFRunLoopMode>),
+    >,
     pub perform: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
 }
 
@@ -477,7 +479,7 @@ pub struct CFRunLoopSourceContext1 {
         unsafe extern "C-unwind" fn(
             *mut c_void,
             CFIndex,
-            *const CFAllocator,
+            Option<&CFAllocator>,
             *mut c_void,
         ) -> *mut c_void,
     >,
@@ -643,7 +645,7 @@ unsafe impl RefEncode for CFRunLoopObserverContext {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercallback?language=objc)
 pub type CFRunLoopObserverCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFRunLoopObserver, CFRunLoopActivity, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFRunLoopObserver>, CFRunLoopActivity, *mut c_void)>;
 
 unsafe impl ConcreteType for CFRunLoopObserver {
     #[doc(alias = "CFRunLoopObserverGetTypeID")]
@@ -820,7 +822,7 @@ unsafe impl RefEncode for CFRunLoopTimerContext {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercallback?language=objc)
 pub type CFRunLoopTimerCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFRunLoopTimer, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFRunLoopTimer>, *mut c_void)>;
 
 unsafe impl ConcreteType for CFRunLoopTimer {
     #[doc(alias = "CFRunLoopTimerGetTypeID")]

@@ -122,22 +122,27 @@ unsafe impl RefEncode for CFXMLParserStatusCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreatexmlstructurecallback?language=objc)
 #[cfg(feature = "CFXMLNode")]
 pub type CFXMLParserCreateXMLStructureCallBack = Option<
-    unsafe extern "C-unwind" fn(*mut CFXMLParser, *const CFXMLNode, *mut c_void) -> *mut c_void,
+    unsafe extern "C-unwind" fn(
+        Option<&CFXMLParser>,
+        Option<&CFXMLNode>,
+        *mut c_void,
+    ) -> *mut c_void,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseraddchildcallback?language=objc)
-pub type CFXMLParserAddChildCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFXMLParser, *mut c_void, *mut c_void, *mut c_void)>;
+pub type CFXMLParserAddChildCallBack = Option<
+    unsafe extern "C-unwind" fn(Option<&CFXMLParser>, *mut c_void, *mut c_void, *mut c_void),
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserendxmlstructurecallback?language=objc)
 pub type CFXMLParserEndXMLStructureCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFXMLParser, *mut c_void, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFXMLParser>, *mut c_void, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserresolveexternalentitycallback?language=objc)
 #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
 pub type CFXMLParserResolveExternalEntityCallBack = Option<
     unsafe extern "C-unwind" fn(
-        *mut CFXMLParser,
+        Option<&CFXMLParser>,
         *mut CFXMLExternalID,
         *mut c_void,
     ) -> *const CFData,
@@ -145,7 +150,11 @@ pub type CFXMLParserResolveExternalEntityCallBack = Option<
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserhandleerrorcallback?language=objc)
 pub type CFXMLParserHandleErrorCallBack = Option<
-    unsafe extern "C-unwind" fn(*mut CFXMLParser, CFXMLParserStatusCode, *mut c_void) -> Boolean,
+    unsafe extern "C-unwind" fn(
+        Option<&CFXMLParser>,
+        CFXMLParserStatusCode,
+        *mut c_void,
+    ) -> Boolean,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercallbacks?language=objc)

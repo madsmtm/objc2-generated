@@ -86,7 +86,7 @@ pub const kScrapClearNamedScrap: c_uint = 1 << 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/scrappromisekeeperprocptr?language=objc)
 pub type ScrapPromiseKeeperProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Scrap, ScrapFlavorType, *mut c_void) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(Option<&Scrap>, ScrapFlavorType, *mut c_void) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/scrappromisekeeperupp?language=objc)
 pub type ScrapPromiseKeeperUPP = ScrapPromiseKeeperProcPtr;

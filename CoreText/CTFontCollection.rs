@@ -68,8 +68,8 @@ unsafe impl ConcreteType for CTFontCollection {
 #[cfg(feature = "CTFontDescriptor")]
 pub type CTFontCollectionSortDescriptorsCallback = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<CTFontDescriptor>,
-        NonNull<CTFontDescriptor>,
+        &CTFontDescriptor,
+        &CTFontDescriptor,
         NonNull<c_void>,
     ) -> CFComparisonResult,
 >;

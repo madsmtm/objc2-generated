@@ -1082,7 +1082,7 @@ pub type IOHIDReportWithTimeStampCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvaluecallback?language=objc)
 pub type IOHIDValueCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, NonNull<IOHIDValue>)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &IOHIDValue)>;
 
 /// Type and arguments of callout C function that is used when an element value completion routine is called.
 ///
@@ -1096,7 +1096,7 @@ pub type IOHIDValueCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvaluemultiplecallback?language=objc)
 pub type IOHIDValueMultipleCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, NonNull<CFDictionary>)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &CFDictionary)>;
 
 /// Type and arguments of callout C function that is used when a device routine is called.
 ///
@@ -1108,7 +1108,7 @@ pub type IOHIDValueMultipleCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicecallback?language=objc)
 pub type IOHIDDeviceCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, NonNull<IOHIDDevice>)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &IOHIDDevice)>;
 
 /// This is the type of a reference to the IOHIDQueue.
 ///
@@ -3842,7 +3842,7 @@ pub struct IOHIDDeviceInterface122 {
     pub copyMatchingElements: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *const CFDictionary,
+            Option<&CFDictionary>,
             *mut *const CFArray,
         ) -> IOReturn,
     >,
@@ -10352,17 +10352,17 @@ pub struct IOHIDDeviceDeviceInterface {
     pub open: Option<unsafe extern "C-unwind" fn(*mut c_void, IOOptionBits) -> IOReturn>,
     pub close: Option<unsafe extern "C-unwind" fn(*mut c_void, IOOptionBits) -> IOReturn>,
     pub getProperty: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *const CFString, *mut *const CFType) -> IOReturn,
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&CFString>, *mut *const CFType) -> IOReturn,
     >,
     pub setProperty: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *const CFString, *const CFType) -> IOReturn,
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&CFString>, Option<&CFType>) -> IOReturn,
     >,
     pub getAsyncEventSource:
         Option<unsafe extern "C-unwind" fn(*mut c_void, *mut *const CFType) -> IOReturn>,
     pub copyMatchingElements: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *const CFDictionary,
+            Option<&CFDictionary>,
             *mut *const CFArray,
             IOOptionBits,
         ) -> IOReturn,
@@ -10370,8 +10370,8 @@ pub struct IOHIDDeviceDeviceInterface {
     pub setValue: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut IOHIDElement,
-            *mut IOHIDValue,
+            Option<&IOHIDElement>,
+            Option<&IOHIDValue>,
             u32,
             IOHIDValueCallback,
             *mut c_void,
@@ -10381,7 +10381,7 @@ pub struct IOHIDDeviceDeviceInterface {
     pub getValue: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut IOHIDElement,
+            Option<&IOHIDElement>,
             *mut *mut IOHIDValue,
             u32,
             IOHIDValueCallback,
@@ -10478,17 +10478,17 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
     pub open: Option<unsafe extern "C-unwind" fn(*mut c_void, IOOptionBits) -> IOReturn>,
     pub close: Option<unsafe extern "C-unwind" fn(*mut c_void, IOOptionBits) -> IOReturn>,
     pub getProperty: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *const CFString, *mut *const CFType) -> IOReturn,
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&CFString>, *mut *const CFType) -> IOReturn,
     >,
     pub setProperty: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *const CFString, *const CFType) -> IOReturn,
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&CFString>, Option<&CFType>) -> IOReturn,
     >,
     pub getAsyncEventSource:
         Option<unsafe extern "C-unwind" fn(*mut c_void, *mut *const CFType) -> IOReturn>,
     pub copyMatchingElements: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *const CFDictionary,
+            Option<&CFDictionary>,
             *mut *const CFArray,
             IOOptionBits,
         ) -> IOReturn,
@@ -10496,8 +10496,8 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
     pub setValue: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut IOHIDElement,
-            *mut IOHIDValue,
+            Option<&IOHIDElement>,
+            Option<&IOHIDValue>,
             u32,
             IOHIDValueCallback,
             *mut c_void,
@@ -10507,7 +10507,7 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
     pub getValue: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut IOHIDElement,
+            Option<&IOHIDElement>,
             *mut *mut IOHIDValue,
             u32,
             IOHIDValueCallback,
@@ -10654,7 +10654,7 @@ pub struct IOHIDDeviceQueueInterface {
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if unsuccessful.
     pub addElement: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *mut IOHIDElement, IOOptionBits) -> IOReturn,
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&IOHIDElement>, IOOptionBits) -> IOReturn,
     >,
     /// Removes an element from this IOHIDDeviceQueueInterface instance.
     ///
@@ -10666,7 +10666,7 @@ pub struct IOHIDDeviceQueueInterface {
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if unsuccessful.
     pub removeElement: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *mut IOHIDElement, IOOptionBits) -> IOReturn,
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&IOHIDElement>, IOOptionBits) -> IOReturn,
     >,
     /// Determines whether an element has been added to this IOHIDDeviceQueueInterface instance.
     ///
@@ -10682,7 +10682,7 @@ pub struct IOHIDDeviceQueueInterface {
     pub containsElement: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut IOHIDElement,
+            Option<&IOHIDElement>,
             *mut Boolean,
             IOOptionBits,
         ) -> IOReturn,
@@ -10837,7 +10837,7 @@ pub struct IOHIDDeviceTransactionInterface {
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if unsuccessful.
     pub addElement: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *mut IOHIDElement, IOOptionBits) -> IOReturn,
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&IOHIDElement>, IOOptionBits) -> IOReturn,
     >,
     /// Removes an element from this IOHIDDeviceTransactionInterface instance.
     ///
@@ -10849,7 +10849,7 @@ pub struct IOHIDDeviceTransactionInterface {
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if unsuccessful.
     pub removeElement: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *mut IOHIDElement, IOOptionBits) -> IOReturn,
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&IOHIDElement>, IOOptionBits) -> IOReturn,
     >,
     /// Checks whether an element has been added to this IOHIDDeviceTransactionInterface instance.
     ///
@@ -10865,7 +10865,7 @@ pub struct IOHIDDeviceTransactionInterface {
     pub containsElement: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut IOHIDElement,
+            Option<&IOHIDElement>,
             *mut Boolean,
             IOOptionBits,
         ) -> IOReturn,
@@ -10887,8 +10887,8 @@ pub struct IOHIDDeviceTransactionInterface {
     pub setValue: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut IOHIDElement,
-            *mut IOHIDValue,
+            Option<&IOHIDElement>,
+            Option<&IOHIDValue>,
             IOOptionBits,
         ) -> IOReturn,
     >,
@@ -10908,7 +10908,7 @@ pub struct IOHIDDeviceTransactionInterface {
     pub getValue: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut IOHIDElement,
+            Option<&IOHIDElement>,
             *mut *mut IOHIDValue,
             IOOptionBits,
         ) -> IOReturn,

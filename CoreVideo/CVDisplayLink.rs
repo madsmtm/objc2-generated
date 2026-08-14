@@ -35,7 +35,7 @@ cf_objc2_type!(
 #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
 pub type CVDisplayLinkOutputCallback = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<CVDisplayLink>,
+        &CVDisplayLink,
         NonNull<CVTimeStamp>,
         NonNull<CVTimeStamp>,
         CVOptionFlags,

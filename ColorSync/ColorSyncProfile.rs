@@ -898,7 +898,7 @@ impl ColorSyncMutableProfile {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileiteratecallback?language=objc)
 pub type ColorSyncProfileIterateCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<CFDictionary>, NonNull<c_void>) -> bool>;
+    Option<unsafe extern "C-unwind" fn(&CFDictionary, NonNull<c_void>) -> bool>;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecacheseed?language=objc)

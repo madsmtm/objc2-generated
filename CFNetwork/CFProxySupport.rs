@@ -45,7 +45,7 @@ pub unsafe fn CFNetworkCopyProxiesForURL(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfproxyautoconfigurationresultcallback?language=objc)
 pub type CFProxyAutoConfigurationResultCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFArray>, *mut CFError)>;
+    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, &CFArray, Option<&CFError>)>;
 
 #[inline]
 pub unsafe fn CFNetworkCopyProxiesForAutoConfigurationScript(

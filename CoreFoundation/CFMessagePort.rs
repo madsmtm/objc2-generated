@@ -77,16 +77,16 @@ unsafe impl RefEncode for CFMessagePortContext {
 #[cfg(feature = "CFData")]
 pub type CFMessagePortCallBack = Option<
     unsafe extern "C-unwind" fn(
-        *mut CFMessagePort,
+        Option<&CFMessagePort>,
         i32,
-        *const CFData,
+        Option<&CFData>,
         *mut c_void,
     ) -> *const CFData,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportinvalidationcallback?language=objc)
 pub type CFMessagePortInvalidationCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFMessagePort, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFMessagePort>, *mut c_void)>;
 
 unsafe impl ConcreteType for CFMessagePort {
     #[doc(alias = "CFMessagePortGetTypeID")]

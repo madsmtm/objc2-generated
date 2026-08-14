@@ -53,7 +53,7 @@ unsafe impl RefEncode for CGPatternTiling {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterndrawpatterncallback?language=objc)
 #[cfg(feature = "CGContext")]
 pub type CGPatternDrawPatternCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGContext>)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, &CGContext)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatternreleaseinfocallback?language=objc)
 pub type CGPatternReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;

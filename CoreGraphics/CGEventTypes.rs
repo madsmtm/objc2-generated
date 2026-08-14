@@ -526,7 +526,7 @@ pub type CGEventTapCallBack = Option<
     unsafe extern "C-unwind" fn(
         CGEventTapProxy,
         CGEventType,
-        NonNull<CGEvent>,
+        &CGEvent,
         *mut c_void,
     ) -> *mut CGEvent,
 >;

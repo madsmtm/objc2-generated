@@ -243,10 +243,10 @@ pub type CSIdentityQueryEvent = CFIndex;
 #[cfg(feature = "CSIdentity")]
 pub type CSIdentityQueryReceiveEventCallback = Option<
     unsafe extern "C-unwind" fn(
-        *mut CSIdentityQuery,
+        Option<&CSIdentityQuery>,
         CSIdentityQueryEvent,
-        *const CFArray,
-        *mut CFError,
+        Option<&CFArray>,
+        Option<&CFError>,
         *mut c_void,
     ),
 >;

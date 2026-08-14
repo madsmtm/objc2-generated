@@ -21,7 +21,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetretaincallback?language=objc)
 pub type CFSetRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void>;
 
 /// Type of the callback function used by CFSets for releasing a retain on values.
 ///
@@ -31,7 +31,7 @@ pub type CFSetRetainCallBack =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreleasecallback?language=objc)
 pub type CFSetReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void)>;
 
 /// Type of the callback function used by CFSets for describing values.
 ///

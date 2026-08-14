@@ -2568,8 +2568,6 @@ pub use self::__OBEXBluetooth::IOBluetoothOBEXSessionCreateWithIOBluetoothSDPSer
 ))]
 pub use self::__OBEXBluetooth::IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel;
 #[cfg(all(feature = "OBEX", feature = "OBEXBluetooth"))]
-pub use self::__OBEXBluetooth::IOBluetoothOBEXSessionOpenConnectionCallback;
-#[cfg(all(feature = "OBEX", feature = "OBEXBluetooth"))]
 pub use self::__OBEXBluetooth::IOBluetoothOBEXSessionOpenTransportConnection;
 #[cfg(feature = "objc2")]
 pub use self::__objc2::*;

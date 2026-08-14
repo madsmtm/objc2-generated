@@ -4385,8 +4385,9 @@ pub const kFNNoImplicitAllSubscription: c_uint = 1 << 0;
 pub const kFNNotifyInBackground: c_uint = 1 << 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fnsubscriptionprocptr?language=objc)
-pub type FNSubscriptionProcPtr =
-    Option<unsafe extern "C-unwind" fn(FNMessage, OptionBits, *mut c_void, *mut FNSubscription)>;
+pub type FNSubscriptionProcPtr = Option<
+    unsafe extern "C-unwind" fn(FNMessage, OptionBits, *mut c_void, Option<&FNSubscription>),
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fnsubscriptionupp?language=objc)
 pub type FNSubscriptionUPP = FNSubscriptionProcPtr;
@@ -5429,11 +5430,11 @@ unsafe impl RefEncode for FSFileOperationClientContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fsfileoperationstatusprocptr?language=objc)
 pub type FSFileOperationStatusProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut FSFileOperation,
+        Option<&FSFileOperation>,
         *const FSRef,
         FSFileOperationStage,
         OSStatus,
-        *const CFDictionary,
+        Option<&CFDictionary>,
         *mut c_void,
     ),
 >;
@@ -5441,11 +5442,11 @@ pub type FSFileOperationStatusProcPtr = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fspathfileoperationstatusprocptr?language=objc)
 pub type FSPathFileOperationStatusProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut FSFileOperation,
+        Option<&FSFileOperation>,
         *const c_char,
         FSFileOperationStage,
         OSStatus,
-        *const CFDictionary,
+        Option<&CFDictionary>,
         *mut c_void,
     ),
 >;

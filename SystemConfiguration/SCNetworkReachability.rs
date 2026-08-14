@@ -186,11 +186,7 @@ unsafe impl RefEncode for SCNetworkReachabilityFlags {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycallback?language=objc)
 pub type SCNetworkReachabilityCallBack = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<SCNetworkReachability>,
-        SCNetworkReachabilityFlags,
-        *mut c_void,
-    ),
+    unsafe extern "C-unwind" fn(&SCNetworkReachability, SCNetworkReachabilityFlags, *mut c_void),
 >;
 
 impl SCNetworkReachability {

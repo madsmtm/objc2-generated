@@ -209,7 +209,7 @@ pub unsafe fn ColorSyncDeviceCopyDeviceInfo(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdeviceprofileiteratecallback?language=objc)
 pub type ColorSyncDeviceProfileIterateCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<CFDictionary>, *mut c_void) -> bool>;
+    Option<unsafe extern "C-unwind" fn(&CFDictionary, *mut c_void) -> bool>;
 
 /// # Safety
 ///

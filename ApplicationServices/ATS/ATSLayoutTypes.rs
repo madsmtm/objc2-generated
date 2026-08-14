@@ -262,7 +262,7 @@ unsafe impl RefEncode for ATSULine {
 pub type ATSUDirectLayoutOperationOverrideProcPtr = Option<
     unsafe extern "C-unwind" fn(
         ATSULayoutOperationSelector,
-        *mut ATSULine,
+        Option<&ATSULine>,
         URefCon,
         *mut c_void,
         *mut ATSULayoutOperationCallbackStatus,

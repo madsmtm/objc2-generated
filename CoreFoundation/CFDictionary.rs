@@ -40,11 +40,11 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryretaincallback?language=objc)
 pub type CFDictionaryRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryreleasecallback?language=objc)
 pub type CFDictionaryReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycopydescriptioncallback?language=objc)
 pub type CFDictionaryCopyDescriptionCallBack =

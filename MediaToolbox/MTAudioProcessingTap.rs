@@ -96,9 +96,8 @@ pub const kMTAudioProcessingTapFlag_EndOfStream: MTAudioProcessingTapFlags = 1 <
 /// is optional.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapinitcallback?language=objc)
-pub type MTAudioProcessingTapInitCallback = Option<
-    unsafe extern "C-unwind" fn(NonNull<MTAudioProcessingTap>, *mut c_void, NonNull<*mut c_void>),
->;
+pub type MTAudioProcessingTapInitCallback =
+    Option<unsafe extern "C-unwind" fn(&MTAudioProcessingTap, *mut c_void, NonNull<*mut c_void>)>;
 
 /// Finalize callback.
 ///
@@ -112,7 +111,7 @@ pub type MTAudioProcessingTapInitCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapfinalizecallback?language=objc)
 pub type MTAudioProcessingTapFinalizeCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<MTAudioProcessingTap>)>;
+    Option<unsafe extern "C-unwind" fn(&MTAudioProcessingTap)>;
 
 /// Audio processing preparation callback.
 ///
@@ -154,7 +153,7 @@ pub type MTAudioProcessingTapFinalizeCallback =
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
 pub type MTAudioProcessingTapPrepareCallback = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<MTAudioProcessingTap>,
+        &MTAudioProcessingTap,
         CMItemCount,
         NonNull<AudioStreamBasicDescription>,
     ),
@@ -174,7 +173,7 @@ pub type MTAudioProcessingTapPrepareCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapunpreparecallback?language=objc)
 pub type MTAudioProcessingTapUnprepareCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<MTAudioProcessingTap>)>;
+    Option<unsafe extern "C-unwind" fn(&MTAudioProcessingTap)>;
 
 /// A function called when an audio track has data to be processed by its tap.
 ///
@@ -253,7 +252,7 @@ pub type MTAudioProcessingTapUnprepareCallback =
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
 pub type MTAudioProcessingTapProcessCallback = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<MTAudioProcessingTap>,
+        &MTAudioProcessingTap,
         CMItemCount,
         MTAudioProcessingTapFlags,
         NonNull<AudioBufferList>,

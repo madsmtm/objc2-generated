@@ -35,7 +35,7 @@ pub const kCFFileDescriptorWriteCallBack: CFOptionFlags = 1 << 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcallback?language=objc)
 pub type CFFileDescriptorCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFFileDescriptor, CFOptionFlags, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFFileDescriptor>, CFOptionFlags, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcontext?language=objc)
 #[repr(C)]

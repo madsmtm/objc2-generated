@@ -130,9 +130,8 @@ unsafe impl RefEncode for SCPreferencesContext {
 /// Parameter `info`: A C pointer to a user-specified block of data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescallback?language=objc)
-pub type SCPreferencesCallBack = Option<
-    unsafe extern "C-unwind" fn(NonNull<SCPreferences>, SCPreferencesNotification, *mut c_void),
->;
+pub type SCPreferencesCallBack =
+    Option<unsafe extern "C-unwind" fn(&SCPreferences, SCPreferencesNotification, *mut c_void)>;
 
 unsafe impl ConcreteType for SCPreferences {
     /// Returns the type identifier of all SCPreferences instances.

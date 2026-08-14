@@ -175,7 +175,7 @@ extern "C" {
     feature = "CVPixelBuffer"
 ))]
 pub type CVFillExtendedPixelsCallBack =
-    Option<unsafe extern "C-unwind" fn(NonNull<CVPixelBuffer>, *mut c_void) -> Boolean>;
+    Option<unsafe extern "C-unwind" fn(&CVPixelBuffer, *mut c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvfillextendedpixelscallbackdata?language=objc)
 #[cfg(all(

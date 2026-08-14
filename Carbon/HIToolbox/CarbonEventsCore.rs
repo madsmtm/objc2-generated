@@ -519,7 +519,7 @@ pub unsafe fn GetMainEventQueue() -> *mut EventQueue {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventcomparatorprocptr?language=objc)
 pub type EventComparatorProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Event, *mut c_void) -> Boolean>;
+    Option<unsafe extern "C-unwind" fn(Option<&Event>, *mut c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventcomparatorupp?language=objc)
 pub type EventComparatorUPP = EventComparatorProcPtr;
@@ -828,7 +828,7 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventlooptimerprocptr?language=objc)
 pub type EventLoopTimerProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut EventLoopTimer, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&EventLoopTimer>, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/keventloopidletimerstarted?language=objc)
 pub const kEventLoopIdleTimerStarted: c_uint = 1;
@@ -842,7 +842,7 @@ pub type EventLoopIdleTimerMessage = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventloopidletimerprocptr?language=objc)
 pub type EventLoopIdleTimerProcPtr = Option<
-    unsafe extern "C-unwind" fn(*mut EventLoopTimer, EventLoopIdleTimerMessage, *mut c_void),
+    unsafe extern "C-unwind" fn(Option<&EventLoopTimer>, EventLoopIdleTimerMessage, *mut c_void),
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventlooptimerupp?language=objc)
@@ -1039,8 +1039,9 @@ unsafe impl RefEncode for EventHandlerCall {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandlerprocptr?language=objc)
-pub type EventHandlerProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut EventHandlerCall, *mut Event, *mut c_void) -> OSStatus>;
+pub type EventHandlerProcPtr = Option<
+    unsafe extern "C-unwind" fn(Option<&EventHandlerCall>, Option<&Event>, *mut c_void) -> OSStatus,
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandlerupp?language=objc)
 pub type EventHandlerUPP = EventHandlerProcPtr;

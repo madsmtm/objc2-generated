@@ -66,7 +66,7 @@ pub const kHIShapeParseFromBottomRight: c_uint = kHIShapeParseFromBottom | kHISh
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/hishapeenumerateprocptr?language=objc)
 pub type HIShapeEnumerateProcPtr = Option<
-    unsafe extern "C-unwind" fn(c_int, *const HIShape, *const CGRect, *mut c_void) -> OSStatus,
+    unsafe extern "C-unwind" fn(c_int, Option<&HIShape>, *const CGRect, *mut c_void) -> OSStatus,
 >;
 
 unsafe impl ConcreteType for HIShape {

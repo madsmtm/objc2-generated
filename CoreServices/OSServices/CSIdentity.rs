@@ -520,8 +520,9 @@ impl CSIdentity {
 pub const kCSIdentityCommitCompleted: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentitystatusupdatedcallback?language=objc)
-pub type CSIdentityStatusUpdatedCallback =
-    Option<unsafe extern "C-unwind" fn(*mut CSIdentity, CFIndex, *mut CFError, *mut c_void)>;
+pub type CSIdentityStatusUpdatedCallback = Option<
+    unsafe extern "C-unwind" fn(Option<&CSIdentity>, CFIndex, Option<&CFError>, *mut c_void),
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityclientcontext?language=objc)
 #[repr(C, packed(2))]

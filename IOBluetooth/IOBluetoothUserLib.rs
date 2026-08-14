@@ -335,8 +335,8 @@ unsafe impl RefEncode for IOBluetoothUserNotificationChannelDirection {
 pub type IOBluetoothUserNotificationCallback = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
-        *mut IOBluetoothUserNotificationRef,
-        *mut IOBluetoothObjectRef,
+        Option<&IOBluetoothUserNotificationRef>,
+        Option<&IOBluetoothObjectRef>,
     ),
 >;
 

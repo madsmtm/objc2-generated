@@ -81,7 +81,7 @@ impl ColorSyncCMM {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmiteratecallback?language=objc)
 pub type ColorSyncCMMIterateCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<ColorSyncCMM>, NonNull<c_void>) -> bool>;
+    Option<unsafe extern "C-unwind" fn(&ColorSyncCMM, NonNull<c_void>) -> bool>;
 
 /// # Safety
 ///
@@ -104,28 +104,20 @@ pub unsafe fn ColorSyncIterateInstalledCMMs(
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializelinkprofileproc?language=objc)
 #[cfg(feature = "ColorSyncProfile")]
 pub type CMMInitializeLinkProfileProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<ColorSyncMutableProfile>,
-        NonNull<CFArray>,
-        *const CFDictionary,
-    ) -> bool,
+    unsafe extern "C-unwind" fn(&ColorSyncMutableProfile, &CFArray, Option<&CFDictionary>) -> bool,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializetransformproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
 pub type CMMInitializeTransformProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<ColorSyncTransform>,
-        NonNull<CFArray>,
-        *const CFDictionary,
-    ) -> bool,
+    unsafe extern "C-unwind" fn(&ColorSyncTransform, &CFArray, Option<&CFDictionary>) -> bool,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmmapplytransformproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
 pub type CMMApplyTransformProc = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<ColorSyncTransform>,
+        &ColorSyncTransform,
         usize,
         usize,
         usize,
@@ -138,7 +130,7 @@ pub type CMMApplyTransformProc = Option<
         ColorSyncDataDepth,
         ColorSyncDataLayout,
         usize,
-        *const CFDictionary,
+        Option<&CFDictionary>,
     ) -> bool,
 >;
 
@@ -146,9 +138,9 @@ pub type CMMApplyTransformProc = Option<
 #[cfg(feature = "ColorSyncTransform")]
 pub type CMMCreateTransformPropertyProc = Option<
     unsafe extern "C-unwind" fn(
-        *mut ColorSyncTransform,
-        NonNull<CFType>,
-        *const CFDictionary,
+        Option<&ColorSyncTransform>,
+        &CFType,
+        Option<&CFDictionary>,
     ) -> *const CFType,
 >;
 

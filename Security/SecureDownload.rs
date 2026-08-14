@@ -73,7 +73,10 @@ unsafe impl RefEncode for SecureDownloadTrustCallbackResult {
 #[deprecated = "SecureDownload is not supported"]
 #[cfg(feature = "SecTrust")]
 pub type SecureDownloadTrustSetupCallback = Option<
-    unsafe extern "C-unwind" fn(*mut SecTrust, *mut c_void) -> SecureDownloadTrustCallbackResult,
+    unsafe extern "C-unwind" fn(
+        Option<&SecTrust>,
+        *mut c_void,
+    ) -> SecureDownloadTrustCallbackResult,
 >;
 
 /// This callback is used called after trust has been evaluated.
@@ -92,7 +95,7 @@ pub type SecureDownloadTrustSetupCallback = Option<
 #[cfg(feature = "SecTrust")]
 pub type SecureDownloadTrustEvaluateCallback = Option<
     unsafe extern "C-unwind" fn(
-        *mut SecTrust,
+        Option<&SecTrust>,
         SecTrustResultType,
         *mut c_void,
     ) -> SecTrustResultType,

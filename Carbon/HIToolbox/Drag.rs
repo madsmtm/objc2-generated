@@ -116,7 +116,7 @@ pub const kDragActionAll: c_uint = 0xFFFFFFFF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/draginputprocptr?language=objc)
 pub type DragInputProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Point, *mut i16, *mut c_void, *mut Drag) -> OSErr>;
+    Option<unsafe extern "C-unwind" fn(*mut Point, *mut i16, *mut c_void, Option<&Drag>) -> OSErr>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/draginputupp?language=objc)
 pub type DragInputUPP = DragInputProcPtr;
@@ -296,19 +296,25 @@ pub const kDragStandardDropLocationUnknown: c_uint = 0x756e6b6e;
 pub type StandardDropLocation = OSType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dragsenddataprocptr?language=objc)
-pub type DragSendDataProcPtr =
-    Option<unsafe extern "C-unwind" fn(FlavorType, *mut c_void, DragItemRef, *mut Drag) -> OSErr>;
+pub type DragSendDataProcPtr = Option<
+    unsafe extern "C-unwind" fn(FlavorType, *mut c_void, DragItemRef, Option<&Drag>) -> OSErr,
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dragtrackinghandlerprocptr?language=objc)
 #[cfg(feature = "objc2-application-services")]
 pub type DragTrackingHandlerProcPtr = Option<
-    unsafe extern "C-unwind" fn(DragTrackingMessage, WindowRef, *mut c_void, *mut Drag) -> OSErr,
+    unsafe extern "C-unwind" fn(
+        DragTrackingMessage,
+        WindowRef,
+        *mut c_void,
+        Option<&Drag>,
+    ) -> OSErr,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dragreceivehandlerprocptr?language=objc)
 #[cfg(feature = "objc2-application-services")]
 pub type DragReceiveHandlerProcPtr =
-    Option<unsafe extern "C-unwind" fn(WindowRef, *mut c_void, *mut Drag) -> OSErr>;
+    Option<unsafe extern "C-unwind" fn(WindowRef, *mut c_void, Option<&Drag>) -> OSErr>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dragdrawingprocptr?language=objc)
 #[cfg(feature = "objc2-application-services")]
@@ -320,7 +326,7 @@ pub type DragDrawingProcPtr = Option<
         RgnHandle,
         Point,
         *mut c_void,
-        *mut Drag,
+        Option<&Drag>,
     ) -> OSErr,
 >;
 

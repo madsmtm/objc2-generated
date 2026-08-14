@@ -1507,13 +1507,13 @@ pub struct IOGraphicsAcceleratorInterfaceStruct {
     pub Probe: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *const CFDictionary,
+            Option<&CFDictionary>,
             io_service_t,
             *mut i32,
         ) -> IOReturn,
     >,
     pub Start: Option<
-        unsafe extern "C-unwind" fn(*mut c_void, *const CFDictionary, io_service_t) -> IOReturn,
+        unsafe extern "C-unwind" fn(*mut c_void, Option<&CFDictionary>, io_service_t) -> IOReturn,
     >,
     pub Stop: Option<unsafe extern "C-unwind" fn(*mut c_void) -> IOReturn>,
     pub Reset: Option<unsafe extern "C-unwind" fn(*mut c_void, IOOptionBits) -> IOReturn>,

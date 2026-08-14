@@ -303,8 +303,9 @@ unsafe impl RefEncode for SKSearchType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchresultsfiltercallback?language=objc)
 #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
-pub type SKSearchResultsFilterCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut SKIndex, *const SKDocument, *mut c_void) -> Boolean>;
+pub type SKSearchResultsFilterCallBack = Option<
+    unsafe extern "C-unwind" fn(Option<&SKIndex>, Option<&SKDocument>, *mut c_void) -> Boolean,
+>;
 
 impl SKSearchGroup {
     /// # Safety

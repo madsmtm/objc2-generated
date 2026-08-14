@@ -27,7 +27,7 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcallback?language=objc)
 pub type CFUserNotificationCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFUserNotification, CFOptionFlags)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFUserNotification>, CFOptionFlags)>;
 
 unsafe impl ConcreteType for CFUserNotification {
     #[doc(alias = "CFUserNotificationGetTypeID")]

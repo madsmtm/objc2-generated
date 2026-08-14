@@ -366,8 +366,9 @@ impl WSMethodInvocation {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationcallbackprocptr?language=objc)
 #[deprecated = "No longer supported"]
-pub type WSMethodInvocationCallBackProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut WSMethodInvocation, *mut c_void, *const CFDictionary)>;
+pub type WSMethodInvocationCallBackProcPtr = Option<
+    unsafe extern "C-unwind" fn(Option<&WSMethodInvocation>, *mut c_void, Option<&CFDictionary>),
+>;
 
 impl WSMethodInvocation {
     /// # Safety
@@ -466,8 +467,8 @@ pub unsafe fn WSMethodResultIsFault(
 #[deprecated = "No longer supported"]
 pub type WSMethodInvocationSerializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut WSMethodInvocation,
-        *const CFType,
+        Option<&WSMethodInvocation>,
+        Option<&CFType>,
         *mut c_void,
     ) -> *const CFString,
 >;
@@ -510,9 +511,9 @@ impl WSMethodInvocation {
 #[deprecated = "No longer supported"]
 pub type WSMethodInvocationDeserializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut WSMethodInvocation,
-        *mut CFXMLTree,
-        *mut CFXMLTree,
+        Option<&WSMethodInvocation>,
+        Option<&CFXMLTree>,
+        Option<&CFXMLTree>,
         *mut c_void,
     ) -> *const CFType,
 >;

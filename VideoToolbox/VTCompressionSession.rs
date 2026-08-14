@@ -69,7 +69,7 @@ pub type VTCompressionOutputCallback = Option<
         *mut c_void,
         OSStatus,
         VTEncodeInfoFlags,
-        *mut CMSampleBuffer,
+        Option<&CMSampleBuffer>,
     ),
 >;
 

@@ -105,7 +105,7 @@ unsafe impl RefEncode for SCDynamicStoreContext {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecallback?language=objc)
 pub type SCDynamicStoreCallBack =
-    Option<unsafe extern "C-unwind" fn(NonNull<SCDynamicStore>, NonNull<CFArray>, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(&SCDynamicStore, &CFArray, *mut c_void)>;
 
 unsafe impl ConcreteType for SCDynamicStore {
     /// Returns the type identifier of all SCDynamicStore instances.

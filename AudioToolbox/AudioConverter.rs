@@ -944,7 +944,7 @@ impl AudioConverter {
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioConverterComplexInputDataProc = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<AudioConverter>,
+        &AudioConverter,
         NonNull<u32>,
         NonNull<AudioBufferList>,
         *mut *mut AudioStreamPacketDescription,
@@ -960,7 +960,7 @@ pub type AudioConverterComplexInputDataProc = Option<
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioConverterComplexInputDataProcRealtimeSafe = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<AudioConverter>,
+        &AudioConverter,
         NonNull<u32>,
         NonNull<AudioBufferList>,
         *mut *mut AudioStreamPacketDescription,
@@ -1273,7 +1273,7 @@ pub const kAudioConverterSampleRateConverterAlgorithm: AudioConverterPropertyID 
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterinputdataproc?language=objc)
 pub type AudioConverterInputDataProc = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<AudioConverter>,
+        &AudioConverter,
         NonNull<u32>,
         NonNull<NonNull<c_void>>,
         *mut c_void,

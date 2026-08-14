@@ -137,7 +137,7 @@ pub type ControlEditTextSelectionPtr = *mut ControlEditTextSelectionRec;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controledittextvalidationprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type ControlEditTextValidationProcPtr = Option<unsafe extern "C-unwind" fn(*mut Control)>;
+pub type ControlEditTextValidationProcPtr = Option<unsafe extern "C-unwind" fn(Option<&Control>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/editunicodepostupdateprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]

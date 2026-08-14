@@ -187,17 +187,14 @@ impl VTFrameSilo {
         &self,
         time_range: CMTimeRange,
         refcon: *mut c_void,
-        callback: unsafe extern "C-unwind" fn(*mut c_void, NonNull<CMSampleBuffer>) -> OSStatus,
+        callback: unsafe extern "C-unwind" fn(*mut c_void, &CMSampleBuffer) -> OSStatus,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTFrameSiloCallFunctionForEachSampleBuffer(
                 silo: &VTFrameSilo,
                 time_range: CMTimeRange,
                 refcon: *mut c_void,
-                callback: unsafe extern "C-unwind" fn(
-                    *mut c_void,
-                    NonNull<CMSampleBuffer>,
-                ) -> OSStatus,
+                callback: unsafe extern "C-unwind" fn(*mut c_void, &CMSampleBuffer) -> OSStatus,
             ) -> OSStatus;
         }
         unsafe { VTFrameSiloCallFunctionForEachSampleBuffer(self, time_range, refcon, callback) }

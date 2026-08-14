@@ -84,36 +84,37 @@ pub const kControlUserPaneBackgroundProcTag: c_uint = 0x6261636b;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanedrawprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 pub type ControlUserPaneDrawProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Control, ControlPartCode)>;
+    Option<unsafe extern "C-unwind" fn(Option<&Control>, ControlPartCode)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanehittestprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 pub type ControlUserPaneHitTestProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Control, Point) -> ControlPartCode>;
+    Option<unsafe extern "C-unwind" fn(Option<&Control>, Point) -> ControlPartCode>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanetrackingprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
-pub type ControlUserPaneTrackingProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Control, Point, ControlActionUPP) -> ControlPartCode>;
+pub type ControlUserPaneTrackingProcPtr = Option<
+    unsafe extern "C-unwind" fn(Option<&Control>, Point, ControlActionUPP) -> ControlPartCode,
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpaneidleprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type ControlUserPaneIdleProcPtr = Option<unsafe extern "C-unwind" fn(*mut Control)>;
+pub type ControlUserPaneIdleProcPtr = Option<unsafe extern "C-unwind" fn(Option<&Control>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanekeydownprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 pub type ControlUserPaneKeyDownProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Control, i16, i16, i16) -> ControlPartCode>;
+    Option<unsafe extern "C-unwind" fn(Option<&Control>, i16, i16, i16) -> ControlPartCode>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpaneactivateprocptr?language=objc)
 #[cfg(feature = "HIObject")]
 pub type ControlUserPaneActivateProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Control, Boolean)>;
+    Option<unsafe extern "C-unwind" fn(Option<&Control>, Boolean)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanefocusprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 pub type ControlUserPaneFocusProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Control, ControlFocusPart) -> ControlPartCode>;
+    Option<unsafe extern "C-unwind" fn(Option<&Control>, ControlFocusPart) -> ControlPartCode>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanedrawupp?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]

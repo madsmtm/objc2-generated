@@ -36,11 +36,11 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayretaincallback?language=objc)
 pub type CFArrayRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayreleasecallback?language=objc)
 pub type CFArrayReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycopydescriptioncallback?language=objc)
 pub type CFArrayCopyDescriptionCallBack =

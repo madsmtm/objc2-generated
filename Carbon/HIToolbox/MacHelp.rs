@@ -260,7 +260,7 @@ pub type HMHelpContentPtr = *mut HMHelpContentRec;
 #[cfg(all(feature = "HIObject", feature = "TextEdit"))]
 pub type HMControlContentProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Control,
+        Option<&Control>,
         Point,
         HMContentRequest,
         *mut HMContentProvidedType,
@@ -284,7 +284,7 @@ pub type HMWindowContentProcPtr = Option<
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
 pub type HMMenuTitleContentProcPtr = Option<
     unsafe extern "C-unwind" fn(
-        *mut Menu,
+        Option<&Menu>,
         HMContentRequest,
         *mut HMContentProvidedType,
         *mut HMHelpContentRec,

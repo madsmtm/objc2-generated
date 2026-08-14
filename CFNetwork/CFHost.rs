@@ -92,9 +92,8 @@ unsafe impl RefEncode for CFHostClientContext {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostclientcallback?language=objc)
-pub type CFHostClientCallBack = Option<
-    unsafe extern "C-unwind" fn(NonNull<CFHost>, CFHostInfoType, *const CFStreamError, *mut c_void),
->;
+pub type CFHostClientCallBack =
+    Option<unsafe extern "C-unwind" fn(&CFHost, CFHostInfoType, *const CFStreamError, *mut c_void)>;
 
 unsafe impl ConcreteType for CFHost {
     #[doc(alias = "CFHostGetTypeID")]

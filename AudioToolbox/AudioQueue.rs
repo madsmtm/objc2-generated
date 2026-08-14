@@ -659,7 +659,7 @@ pub type AudioQueueInputCallbackBlock = block2::Block<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueoutputcallback?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioQueueOutputCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<AudioQueue>, AudioQueueBufferRef)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, &AudioQueue, AudioQueueBufferRef)>;
 
 /// Defines a pointer to a callback function that is called when a recording audio
 /// queue has finished filling a buffer.
@@ -691,7 +691,7 @@ pub type AudioQueueOutputCallback =
 pub type AudioQueueInputCallback = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
-        NonNull<AudioQueue>,
+        &AudioQueue,
         AudioQueueBufferRef,
         NonNull<AudioTimeStamp>,
         u32,
@@ -714,7 +714,7 @@ pub type AudioQueueInputCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertylistenerproc?language=objc)
 pub type AudioQueuePropertyListenerProc =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<AudioQueue>, AudioQueuePropertyID)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, &AudioQueue, AudioQueuePropertyID)>;
 
 /// A function called when an audio queue has data to be processed by its tap
 ///
@@ -812,7 +812,7 @@ pub type AudioQueuePropertyListenerProc =
 pub type AudioQueueProcessingTapCallback = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
-        NonNull<AudioQueueProcessingTap>,
+        &AudioQueueProcessingTap,
         u32,
         NonNull<AudioTimeStamp>,
         NonNull<AudioQueueProcessingTapFlags>,

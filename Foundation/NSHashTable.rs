@@ -440,15 +440,13 @@ pub unsafe fn NSAllHashTableObjects(table: &NSHashTable) -> Retained<NSArray> {
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSHashTableCallBacks {
-    pub hash:
-        Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger>,
-    pub isEqual: Option<
-        unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>, NonNull<c_void>) -> Bool,
-    >,
-    pub retain: Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
-    pub release: Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>)>,
+    pub hash: Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>) -> NSUInteger>,
+    pub isEqual:
+        Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>, NonNull<c_void>) -> Bool>,
+    pub retain: Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>)>,
+    pub release: Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>)>,
     pub describe:
-        Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>) -> *mut NSString>,
+        Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>) -> *mut NSString>,
 }
 
 #[cfg(feature = "NSString")]

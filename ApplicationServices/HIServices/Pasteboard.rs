@@ -353,12 +353,7 @@ impl Pasteboard {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardpromisekeeperprocptr?language=objc)
 pub type PasteboardPromiseKeeperProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<Pasteboard>,
-        PasteboardItemID,
-        NonNull<CFString>,
-        *mut c_void,
-    ) -> OSStatus,
+    unsafe extern "C-unwind" fn(&Pasteboard, PasteboardItemID, &CFString, *mut c_void) -> OSStatus,
 >;
 
 impl Pasteboard {

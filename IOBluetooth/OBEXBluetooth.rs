@@ -150,11 +150,6 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobexsessionopenconnectioncallback?language=objc)
-#[cfg(feature = "OBEX")]
-pub type IOBluetoothOBEXSessionOpenConnectionCallback =
-    Option<unsafe extern "C-unwind" fn(*mut OBEXSessionRef, OBEXError, *mut c_void)>;
-
 /// Parameter `inSessionRef`: A valid session reference.
 ///
 /// Parameter `inCallback`: A valid callback.

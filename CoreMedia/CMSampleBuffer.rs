@@ -120,7 +120,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadycallback?language=objc)
 pub type CMSampleBufferMakeDataReadyCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<CMSampleBuffer>, *mut c_void) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(&CMSampleBuffer, *mut c_void) -> OSStatus>;
 
 /// Client block called by CMSampleBufferMakeDataReady (client provides it when calling CMSampleBufferCreateWithMakeDataReadyHandler).
 ///
@@ -1437,7 +1437,7 @@ impl CMSampleBuffer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatecallback?language=objc)
 pub type CMSampleBufferInvalidateCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<CMSampleBuffer>, u64)>;
+    Option<unsafe extern "C-unwind" fn(&CMSampleBuffer, u64)>;
 
 impl CMSampleBuffer {
     /// Sets the sample buffer's invalidation callback, which is called during CMSampleBufferInvalidate.
@@ -2467,7 +2467,7 @@ impl CMSampleBuffer {
     pub unsafe fn call_for_each_sample(
         &self,
         callback: unsafe extern "C-unwind" fn(
-            NonNull<CMSampleBuffer>,
+            &CMSampleBuffer,
             CMItemCount,
             *mut c_void,
         ) -> OSStatus,
@@ -2477,7 +2477,7 @@ impl CMSampleBuffer {
             fn CMSampleBufferCallForEachSample(
                 sbuf: &CMSampleBuffer,
                 callback: unsafe extern "C-unwind" fn(
-                    NonNull<CMSampleBuffer>,
+                    &CMSampleBuffer,
                     CMItemCount,
                     *mut c_void,
                 ) -> OSStatus,

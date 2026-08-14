@@ -293,7 +293,7 @@ unsafe impl RefEncode for ATSFontNotifyAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsnotificationcallback?language=objc)
 pub type ATSNotificationCallback =
-    Option<unsafe extern "C-unwind" fn(*mut ATSFontNotificationInfo, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(Option<&ATSFontNotificationInfo>, *mut c_void)>;
 
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
@@ -1217,7 +1217,7 @@ unsafe impl RefEncode for ATSFontQueryMessageID {
 pub type ATSFontQueryCallback = Option<
     unsafe extern "C-unwind" fn(
         ATSFontQueryMessageID,
-        *const CFPropertyList,
+        Option<&CFPropertyList>,
         *mut c_void,
     ) -> *const CFPropertyList,
 >;

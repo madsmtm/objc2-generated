@@ -33,11 +33,11 @@ cf_objc2_type!(
 #[cfg(feature = "CFDictionary")]
 pub type CFNotificationCallback = Option<
     unsafe extern "C-unwind" fn(
-        *mut CFNotificationCenter,
+        Option<&CFNotificationCenter>,
         *mut c_void,
-        *const CFNotificationName,
+        Option<&CFNotificationName>,
         *const c_void,
-        *const CFDictionary,
+        Option<&CFDictionary>,
     ),
 >;
 

@@ -73,8 +73,8 @@ unsafe impl RefEncode for CFBinaryHeapCompareContext {
 pub struct CFBinaryHeapCallBacks {
     pub version: CFIndex,
     pub retain:
-        Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>,
-    pub release: Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>,
+        Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void>,
+    pub release: Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void)>,
     pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
     pub compare: Option<
         unsafe extern "C-unwind" fn(

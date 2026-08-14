@@ -128,9 +128,9 @@ pub const kCFSocketCloseOnInvalidate: CFOptionFlags = 128;
 #[cfg(feature = "CFData")]
 pub type CFSocketCallBack = Option<
     unsafe extern "C-unwind" fn(
-        *mut CFSocket,
+        Option<&CFSocket>,
         CFSocketCallBackType,
-        *const CFData,
+        Option<&CFData>,
         *const c_void,
         *mut c_void,
     ),
