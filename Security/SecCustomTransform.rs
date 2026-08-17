@@ -464,48 +464,7 @@ impl SecTransformImplementation {
         let ret = unsafe { SecTransformSetTransformAction(self, action, new_action) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
-}
 
-/// Allow a custom transform to get an attribute value
-///
-///
-/// Parameter `ref`: A SecTransformImplementationRef that is bound to an instance
-/// of a custom transform.
-///
-///
-/// Parameter `attribute`: The name or the attribute handle of the attribute whose
-/// value is to be retrieved.
-///
-///
-/// Parameter `type`: The type of data to be retrieved for the attribute.  See the
-/// discussion on SecTransformMetaAttributeType for details.
-///
-///
-/// Returns: The value of the attribute.
-///
-/// # Safety
-///
-/// - `ref` might need manual memory-management.
-/// - `attribute` should be of the correct type.
-#[deprecated]
-#[inline]
-pub unsafe fn SecTranformCustomGetAttribute(
-    r#ref: &SecTransformImplementation,
-    attribute: &SecTransformStringOrAttribute,
-    r#type: SecTransformMetaAttributeType,
-) -> Option<CFRetained<CFType>> {
-    extern "C-unwind" {
-        fn SecTranformCustomGetAttribute(
-            r#ref: &SecTransformImplementation,
-            attribute: &SecTransformStringOrAttribute,
-            r#type: SecTransformMetaAttributeType,
-        ) -> Option<NonNull<CFType>>;
-    }
-    let ret = unsafe { SecTranformCustomGetAttribute(r#ref, attribute, r#type) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-impl SecTransformImplementation {
     /// Allow a custom transform to get an attribute value
     ///
     ///

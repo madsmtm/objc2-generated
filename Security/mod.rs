@@ -2567,8 +2567,6 @@ pub use self::__SecCustomTransform::kSecTransformActionInternalizeExtraData;
 pub use self::__SecCustomTransform::kSecTransformActionProcessData;
 #[cfg(feature = "SecCustomTransform")]
 pub use self::__SecCustomTransform::kSecTransformActionStartingExecution;
-#[cfg(feature = "SecCustomTransform")]
-pub use self::__SecCustomTransform::SecTranformCustomGetAttribute;
 #[cfg(all(feature = "SecCustomTransform", feature = "block2"))]
 pub use self::__SecCustomTransform::SecTransformActionBlock;
 #[cfg(feature = "SecCustomTransform")]
