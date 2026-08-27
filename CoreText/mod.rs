@@ -319,8 +319,6 @@ pub use self::__CTFont::kCTFontVendorURLNameKey;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontVersionNameKey;
 #[cfg(feature = "CTFont")]
-pub use self::__CTFont::ATSFontRef;
-#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFont;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontOptions;

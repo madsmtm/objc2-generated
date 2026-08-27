@@ -1899,12 +1899,77 @@ impl CTFont {
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }
     }
-}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/atsfontref?language=objc)
-pub type ATSFontRef = u32;
+    /// Returns the ATSFontRef and attributes.
+    ///
+    ///
+    /// Parameter `font`: The font reference.
+    ///
+    ///
+    /// Parameter `attributes`: A pointer to a CTFontDescriptorRef to receive a font descriptor containing additional attributes. Can be NULL. Must be released by caller.
+    ///
+    ///
+    /// Returns: This function returns a an ATSFontRef for the given font reference. Additional attributes from the font will be passed back as a font descriptor via the attributes parameter.
+    ///
+    /// # Safety
+    ///
+    /// `attributes` must be a valid pointer or null.
+    #[doc(alias = "CTFontGetPlatformFont")]
+    #[cfg(feature = "CTFontDescriptor")]
+    #[deprecated = "ATS is deprecated"]
+    #[inline]
+    pub unsafe fn platform_font(&self, attributes: *mut *const CTFontDescriptor) -> ATSFontRef {
+        extern "C-unwind" {
+            fn CTFontGetPlatformFont(
+                font: &CTFont,
+                attributes: *mut *const CTFontDescriptor,
+            ) -> ATSFontRef;
+        }
+        unsafe { CTFontGetPlatformFont(self, attributes) }
+    }
 
-impl CTFont {
+    /// Creates a new font reference from an ATSFontRef.
+    ///
+    ///
+    /// Parameter `platformFont`: A valid ATSFontRef.
+    ///
+    ///
+    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default font size of 12.0 will be used.
+    ///
+    ///
+    /// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
+    ///
+    ///
+    /// Parameter `attributes`: A CTFontDescriptorRef containing additional attributes that should be matched. Optional.
+    ///
+    ///
+    /// Returns: This function returns a new font reference for an ATSFontRef with the specified size, matrix, and additional attributes.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
+    #[doc(alias = "CTFontCreateWithPlatformFont")]
+    #[cfg(feature = "CTFontDescriptor")]
+    #[deprecated = "ATS is deprecated"]
+    #[inline]
+    pub unsafe fn with_platform_font(
+        platform_font: ATSFontRef,
+        size: CGFloat,
+        matrix: *const CGAffineTransform,
+        attributes: Option<&CTFontDescriptor>,
+    ) -> Option<CFRetained<CTFont>> {
+        extern "C-unwind" {
+            fn CTFontCreateWithPlatformFont(
+                platform_font: ATSFontRef,
+                size: CGFloat,
+                matrix: *const CGAffineTransform,
+                attributes: Option<&CTFontDescriptor>,
+            ) -> Option<NonNull<CTFont>>;
+        }
+        let ret = unsafe { CTFontCreateWithPlatformFont(platform_font, size, matrix, attributes) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     /// Returns a font reference for the given Quickdraw instance.
     ///
     ///
