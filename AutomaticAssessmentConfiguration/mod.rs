@@ -41,62 +41,87 @@ use crate::*;
 pub type AEAppleMenuItem = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemaboutthismac?language=objc)
+    /// The About This Mac item, which remains visible during an assessment session whether or not
+    /// ``AEAssessmentConfiguration/allowedAppleMenuItems`` names it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemaboutthismac?language=objc)
     pub static AEAppleMenuItemAboutThisMac: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemappstore?language=objc)
+    /// The App Store item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemappstore?language=objc)
     pub static AEAppleMenuItemAppStore: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemforcequit?language=objc)
+    /// The Force Quit item, covering both the Force Quit Applications window and quitting an app outright.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemforcequit?language=objc)
     pub static AEAppleMenuItemForceQuit: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemlocation?language=objc)
+    /// The Location item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemlocation?language=objc)
     pub static AEAppleMenuItemLocation: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemlockscreen?language=objc)
+    /// The Lock Screen item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemlockscreen?language=objc)
     pub static AEAppleMenuItemLockScreen: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemlogout?language=objc)
+    /// The Log Out item, covering both the command and its confirmation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemlogout?language=objc)
     pub static AEAppleMenuItemLogout: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemrecent?language=objc)
+    /// The Recent Items item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemrecent?language=objc)
     pub static AEAppleMenuItemRecent: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemrestart?language=objc)
+    /// The Restart item, covering both the command and its confirmation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemrestart?language=objc)
     pub static AEAppleMenuItemRestart: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemshutdown?language=objc)
+    /// The Shut Down item, covering both the command and its confirmation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemshutdown?language=objc)
     pub static AEAppleMenuItemShutDown: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsleep?language=objc)
+    /// The Sleep item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsleep?language=objc)
     pub static AEAppleMenuItemSleep: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsysteminformation?language=objc)
+    /// The System Information item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsysteminformation?language=objc)
     pub static AEAppleMenuItemSystemInformation: &'static AEAppleMenuItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsystemsettings?language=objc)
+    /// The System Settings item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsystemsettings?language=objc)
     pub static AEAppleMenuItemSystemSettings: &'static AEAppleMenuItem;
 }
 
@@ -161,15 +186,20 @@ extern_class!(
     ///
     /// Use this for a participant that has no bundle identifier and so cannot be expressed as an
     /// ``AEAssessmentApplication``. It feeds only the app-launch allowlist under
-    /// ``AEAssessmentConfiguration/allowOnlyParticipantsToRun`` and, when its configuration permits,
-    /// network access; UI policies (frontmost app, window server, media, menu bar) do not apply.
+    /// ``AEAssessmentConfiguration/allowsOnlyParticipantsToRun`` and, when its configuration permits,
+    /// network access; UI policies do not apply.
     ///
     /// Matching is by exact on-disk path. At runtime the executable must also satisfy
     /// ``requiresSignatureValidation`` (and the team identifier, if set), so a swapped or re-signed
-    /// binary is not silently trusted. Leave ``requiresSignatureValidation`` enabled (the default)
-    /// unless the executable is unsigned.
+    /// binary is not silently trusted.
     ///
-    /// - SeeAlso: ``AEAssessmentApplication`` for bundled participants.
+    /// With ``requiresSignatureValidation`` enabled (the default), an unsigned or invalidly signed binary
+    /// is treated as unavailable: a participant that isn't
+    /// ``AEAssessmentBinaryExecutableConfiguration/required`` is dropped from enforcement, while a
+    /// required one prevents the assessment session from beginning.
+    ///
+    /// - SeeAlso: ``AEAssessmentConfiguration/allowsOnlyParticipantsToRun`` for why the launch allowlist
+    /// requires a signature, and ``AEAssessmentApplication`` for bundled participants.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentbinaryexecutable?language=objc)
     #[unsafe(super(NSObject))]
@@ -202,6 +232,14 @@ impl AEAssessmentBinaryExecutable {
         pub unsafe fn teamIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Whether the running executable's code signature is validated. Defaults to `YES`.
+        ///
+        /// Disabling this waives only the availability check, not the signing requirement of
+        /// ``AEAssessmentConfiguration/allowsOnlyParticipantsToRun``: an unsigned or invalidly signed
+        /// executable still can't be added to that session's launch allowlist. Disabling it converts a
+        /// required participant's begin-time failure into a silent launch denial, and forgoes the
+        /// swap/re-sign protection for a signed one.
+        ///
+        /// - SeeAlso: ``AEAssessmentBinaryExecutableConfiguration/required``.
         #[unsafe(method(requiresSignatureValidation))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSignatureValidation(&self) -> bool;
@@ -233,8 +271,7 @@ extern_class!(
     ///
     /// A non-bundled executable (such as a launchd daemon) is headless, so it supports only the subset of
     /// participant policies that apply to a process without UI: network access and whether the assessment
-    /// requires it. The UI-oriented policies of ``AEAssessmentParticipantConfiguration`` (allowed menu items,
-    /// graceful termination) do not apply.
+    /// requires it. The UI-oriented policies of ``AEAssessmentParticipantConfiguration`` do not apply.
     ///
     /// - SeeAlso: ``AEAssessmentBinaryExecutable``, ``AEAssessmentParticipantConfiguration``.
     ///
@@ -269,6 +306,12 @@ impl AEAssessmentBinaryExecutableConfiguration {
         pub unsafe fn setAllowsNetworkAccess(&self, allows_network_access: bool);
 
         /// Whether the assessment requires this executable. Defaults to `NO`.
+        ///
+        /// Governs what happens when the executable cannot be enforced — for example, when signature
+        /// validation fails under ``AEAssessmentConfiguration/allowsOnlyParticipantsToRun``. A non-required
+        /// participant is silently dropped; a required one prevents the session from beginning.
+        ///
+        /// - SeeAlso: ``AEAssessmentBinaryExecutable/requiresSignatureValidation``.
         #[unsafe(method(isRequired))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRequired(&self) -> bool;
@@ -288,42 +331,62 @@ impl AEAssessmentBinaryExecutableConfiguration {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritem?language=objc)
+/// Identifies a menu bar item that can remain visible during an assessment session.
+///
+/// Use these constants with ``AEAssessmentConfiguration/allowedMenuBarItems`` to control which menu
+/// bar items stay visible while ``AEAssessmentConfiguration/allowsMenuBar`` is enabled. To allow a
+/// third-party menu extra, use its bundle identifier as the raw value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritem?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AEMenuBarItem = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritembattery?language=objc)
+    /// The Battery system menu bar item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritembattery?language=objc)
     pub static AEMenuBarItemBattery: &'static AEMenuBarItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritembluetooth?language=objc)
+    /// The Bluetooth system menu bar item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritembluetooth?language=objc)
     pub static AEMenuBarItemBluetooth: &'static AEMenuBarItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemclock?language=objc)
+    /// The Clock system menu bar item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemclock?language=objc)
     pub static AEMenuBarItemClock: &'static AEMenuBarItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemdisplays?language=objc)
+    /// The Displays system menu bar item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemdisplays?language=objc)
     pub static AEMenuBarItemDisplays: &'static AEMenuBarItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemkeyboard?language=objc)
+    /// The Input Menu system menu bar item, which selects keyboard layouts.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemkeyboard?language=objc)
     pub static AEMenuBarItemKeyboard: &'static AEMenuBarItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemvolume?language=objc)
+    /// The Volume system menu bar item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemvolume?language=objc)
     pub static AEMenuBarItemVolume: &'static AEMenuBarItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemwifi?language=objc)
+    /// The Wi-Fi system menu bar item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemwifi?language=objc)
     pub static AEMenuBarItemWifi: &'static AEMenuBarItem;
 }
 
@@ -423,7 +486,13 @@ extern_class!(
     /// let session = AEAssessmentSession(configuration: config)
     /// ```
     ///
-    /// While you provide a configuration instance when creating a session on iOS, iPadOS, and macOS, specific exceptions apply only to certain platforms. In particular, on macOS, you can selectively make specific apps besides your own available during an assessment — for example, to allow users to access a calculator or a dictionary. All other exceptions apply only to iOS and iPadOS.
+    /// While you provide a configuration instance when creating a session on iOS, iPadOS, and macOS, individual exceptions apply only to certain platforms. Check the availability annotation on each property: some apply everywhere, while the enablement requirements and most of the environment controls are macOS-only.
+    ///
+    /// ## Enablement requirements
+    ///
+    /// The properties under Requiring an environment gate whether a session can begin, rather than restricting behavior during one. When the device fails any of them, the system presents an alert naming every unmet requirement and the session doesn't start. Your delegate receives an error with the code `AEAssessmentErrorUnknown`; the specific unmet requirement isn't reported programmatically.
+    ///
+    /// These checks are advisory rather than security guarantees. They can't cryptographically attest to the state they describe, and the accuracy of an individual check varies — see the discussion on each property. Use them to steer proctored exams toward a known-good environment, and pair them with [App Attest](https://developer.apple.com/documentation/DeviceCheck) when you need stronger assurances.
     ///
     /// ## Topics
     ///
@@ -439,6 +508,7 @@ extern_class!(
     /// - ``AEAssessmentApplication``
     /// - ``AEAssessmentBinaryExecutable``
     /// - ``AEAssessmentParticipantConfiguration``
+    /// - ``allowsOnlyParticipantsToRun``
     ///
     /// ### Allowing accessibility
     ///
@@ -480,9 +550,41 @@ extern_class!(
     ///
     /// - ``allowsScreenshots``
     ///
+    /// ### Allowing text input
+    ///
+    /// - ``allowsAutoFill``
+    /// - ``allowsEmojiKeyboard``
+    /// - ``allowsStructuralInput``
+    ///
+    /// ### Allowing system services
+    ///
+    /// - ``allowsUserScriptExecution``
+    ///
+    /// ### Configuring the user interface
+    ///
+    /// - ``allowsDock``
+    /// - ``allowsMenuBar``
+    /// - ``allowedMenuBarItems``
+    /// - ``allowedAppleMenuItems``
+    /// - ``allowedDirectoriesAndFiles``
+    /// - ``AEAppleMenuItem``
+    /// - ``AEMenuBarItem``
+    ///
     /// ### Controlling force quit
     ///
-    /// - ``allowsForceQuit``
+    /// - ``allowsForceQuitKeyboardShortcuts``
+    ///
+    /// ### Requiring an environment
+    ///
+    /// - ``allowsLockdownMode``
+    /// - ``allowsPrivateRelay``
+    /// - ``allowsVirtualMachine``
+    /// - ``requiresManagedDevice``
+    /// - ``requiresReleaseOS``
+    /// - ``requiresSIP``
+    /// - ``requiresSingleUser``
+    /// - ``requiresUserAccountType``
+    /// - ``AEUserAccountType``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -630,6 +732,8 @@ impl AEAssessmentConfiguration {
         /// A Boolean value that indicates whether to allow Hover Text during an assessment.
         ///
         /// Users can enable Hover Text in the Settings app (Accessibility > Zoom > Hover Text) to magnify text under the pointer. An assessment session **does not** disable Hover Text by default, but you can disable it by setting ``AEAssessmentConfiguration/allowsAccessibilityHoverText`` to `NO` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        ///
+        /// This property governs Hover Typing as well as Hover Text.
         #[unsafe(method(allowsAccessibilityHoverText))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAccessibilityHoverText(&self) -> bool;
@@ -891,23 +995,26 @@ impl AEAssessmentConfiguration {
 
         /// A Boolean value that indicates whether to allow force quitting apps during an assessment.
         ///
-        /// Users can force quit apps by pressing Shift-Option-Command-Escape to force quit the frontmost app. An assessment session disables force quit by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsForceQuit`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        /// Users can force quit apps by pressing Shift-Option-Command-Escape to force quit the frontmost app. An assessment session disables force quit by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsForceQuitKeyboardShortcuts`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         ///
         /// - Note: This property controls only the force quit keyboard shortcuts. Setting it to `false` does not remove the Force Quit item from the Apple menu. Use ``AEAssessmentConfiguration/allowedAppleMenuItems`` to configure the allowed Apple menu items.
-        #[unsafe(method(allowsForceQuit))]
+        #[unsafe(method(allowsForceQuitKeyboardShortcuts))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsForceQuit(&self) -> bool;
+        pub unsafe fn allowsForceQuitKeyboardShortcuts(&self) -> bool;
 
-        /// Setter for [`allowsForceQuit`][Self::allowsForceQuit].
-        #[unsafe(method(setAllowsForceQuit:))]
+        /// Setter for [`allowsForceQuitKeyboardShortcuts`][Self::allowsForceQuitKeyboardShortcuts].
+        #[unsafe(method(setAllowsForceQuitKeyboardShortcuts:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsForceQuit(&self, allows_force_quit: bool);
+        pub unsafe fn setAllowsForceQuitKeyboardShortcuts(
+            &self,
+            allows_force_quit_keyboard_shortcuts: bool,
+        );
 
-        /// The set of allowed directories and files that participants can access during an assessment.
+        /// The set of directories and files that remain visible in the Finder during an assessment.
         ///
-        /// By default, participants have restricted file system access. Use this property to specify file URLs to directories and files that should be accessible during the assessment session.
+        /// Defaults to `nil`, which leaves Finder unrestricted. Setting a non-`nil` set hides everything except the given locations; pass an empty set to hide all of them.
         ///
-        /// The default value is `nil`, which preserves the default unrestricted access behavior.
+        /// This restricts what the Finder displays. It doesn't sandbox participants, which can still reach other paths programmatically. Entries that aren't file URLs are ignored.
         #[unsafe(method(allowedDirectoriesAndFiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedDirectoriesAndFiles(&self) -> Option<Retained<NSSet<NSURL>>>;
@@ -948,8 +1055,9 @@ impl AEAssessmentConfiguration {
 
         /// The set of allowed Apple menu items during an assessment.
         ///
-        /// By default, all Apple menu items are restricted during an assessment. Use this property
-        /// to specify which menu items should be accessible.
+        /// Defaults to `nil`, which leaves every Apple menu item available. Setting a non-`nil` set restricts
+        /// the menu to the items it names; pass an empty set to restrict all of them. Some constants cover
+        /// more than one menu item.
         ///
         /// - Note: ``AEAppleMenuItemAboutThisMac`` is always visible during assessment sessions regardless of configuration.
         #[unsafe(method(allowedAppleMenuItems))]
@@ -968,11 +1076,11 @@ impl AEAssessmentConfiguration {
 
         /// The set of menu bar items that should remain visible during an assessment.
         ///
-        /// When `allowsMenuBar` is `true`, the menu bar is restricted to only the items
+        /// When ``AEAssessmentConfiguration/allowsMenuBar`` is `true`, the menu bar is restricted to only the items
         /// specified in this set. If this property is `nil`, all menu bar items are allowed
         /// (unrestricted menu bar).
         ///
-        /// - Note: This property only takes effect when `allowsMenuBar` is `true`.
+        /// - Note: This property only takes effect when ``AEAssessmentConfiguration/allowsMenuBar`` is `true`.
         #[unsafe(method(allowedMenuBarItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedMenuBarItems(&self) -> Option<Retained<NSSet<AEMenuBarItem>>>;
@@ -988,59 +1096,62 @@ impl AEAssessmentConfiguration {
         );
 
         /// A Boolean value that indicates whether only participant applications are allowed to run during an assessment.
-        #[unsafe(method(allowOnlyParticipantsToRun))]
+        ///
+        /// Only validly signed participants can be permitted. The launch allowlist pins each entry to the code signing identifier and team identifier read from its signature, so an unsigned or invalidly signed participant has no identity to pin and is denied launch even though you configured it as a participant. This holds regardless of ``AEAssessmentBinaryExecutable/requiresSignatureValidation``.
+        ///
+        /// - SeeAlso: ``AEAssessmentBinaryExecutable`` for how an unenforceable executable participant affects the session.
+        #[unsafe(method(allowsOnlyParticipantsToRun))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowOnlyParticipantsToRun(&self) -> bool;
+        pub unsafe fn allowsOnlyParticipantsToRun(&self) -> bool;
 
-        /// Setter for [`allowOnlyParticipantsToRun`][Self::allowOnlyParticipantsToRun].
-        #[unsafe(method(setAllowOnlyParticipantsToRun:))]
+        /// Setter for [`allowsOnlyParticipantsToRun`][Self::allowsOnlyParticipantsToRun].
+        #[unsafe(method(setAllowsOnlyParticipantsToRun:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowOnlyParticipantsToRun(&self, allow_only_participants_to_run: bool);
+        pub unsafe fn setAllowsOnlyParticipantsToRun(&self, allows_only_participants_to_run: bool);
 
         /// A Boolean value that indicates whether the assessment allows Lockdown Mode to be active.
         ///
-        /// When set to `false`, the assessment session will only start if Lockdown Mode is not enabled on the device. This requirement is not enforced by default.
-        #[unsafe(method(allowLockdownMode))]
+        /// When set to `false`, the assessment session will only start if Lockdown Mode is not enabled on the device. Defaults to `true`, which doesn't enforce the requirement.
+        #[unsafe(method(allowsLockdownMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowLockdownMode(&self) -> bool;
+        pub unsafe fn allowsLockdownMode(&self) -> bool;
 
-        /// Setter for [`allowLockdownMode`][Self::allowLockdownMode].
-        #[unsafe(method(setAllowLockdownMode:))]
+        /// Setter for [`allowsLockdownMode`][Self::allowsLockdownMode].
+        #[unsafe(method(setAllowsLockdownMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowLockdownMode(&self, allow_lockdown_mode: bool);
+        pub unsafe fn setAllowsLockdownMode(&self, allows_lockdown_mode: bool);
 
         /// A Boolean value that indicates whether the assessment allows iCloud Private Relay to be active.
         ///
-        /// When set to `false`, the assessment session will only start if iCloud Private Relay is not enabled. This requirement is not enforced by default.
-        #[unsafe(method(allowPrivateRelay))]
+        /// When set to `false`, the assessment session will only start if iCloud Private Relay is not enabled, and won't start if that status can't be determined. Defaults to `true`, which doesn't enforce the requirement.
+        #[unsafe(method(allowsPrivateRelay))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowPrivateRelay(&self) -> bool;
+        pub unsafe fn allowsPrivateRelay(&self) -> bool;
 
-        /// Setter for [`allowPrivateRelay`][Self::allowPrivateRelay].
-        #[unsafe(method(setAllowPrivateRelay:))]
+        /// Setter for [`allowsPrivateRelay`][Self::allowsPrivateRelay].
+        #[unsafe(method(setAllowsPrivateRelay:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowPrivateRelay(&self, allow_private_relay: bool);
+        pub unsafe fn setAllowsPrivateRelay(&self, allows_private_relay: bool);
 
         /// A Boolean value that indicates whether the assessment allows running inside a virtual machine.
         ///
-        /// When set to `false`, the assessment session will only start if the device is not a virtual machine. This requirement is not enforced by default; virtual machines are allowed unless you opt out.
+        /// When set to `false`, the assessment session will only start if the device is not a virtual machine, and won't start if that status can't be determined. Defaults to `true`, which doesn't enforce the requirement.
         ///
-        /// > Important: This check is advisory, not a security guarantee. Setting `allowVirtualMachine` to `false` may not block an assessment session in every virtualized environment. Use this property to steer proctored exams toward physical hardware; it doesn't provide a cryptographic attestation that the session is running on a physical machine.
+        /// > Important: Setting this to `false` may not block a session in every virtualized environment.
         ///
-        /// For stronger assurances about the runtime environment, pair this property with
-        /// [App Attest](https://developer.apple.com/documentation/DeviceCheck) on macOS.
-        #[unsafe(method(allowVirtualMachine))]
+        /// - SeeAlso: ``AEAssessmentConfiguration`` for the limits that apply to every enablement requirement.
+        #[unsafe(method(allowsVirtualMachine))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowVirtualMachine(&self) -> bool;
+        pub unsafe fn allowsVirtualMachine(&self) -> bool;
 
-        /// Setter for [`allowVirtualMachine`][Self::allowVirtualMachine].
-        #[unsafe(method(setAllowVirtualMachine:))]
+        /// Setter for [`allowsVirtualMachine`][Self::allowsVirtualMachine].
+        #[unsafe(method(setAllowsVirtualMachine:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowVirtualMachine(&self, allow_virtual_machine: bool);
+        pub unsafe fn setAllowsVirtualMachine(&self, allows_virtual_machine: bool);
 
         /// A Boolean value that indicates whether the device must be managed to start an assessment.
         ///
-        /// When set to `true`, the assessment session will only start if the device is enrolled in a Mobile Device Management (MDM) solution. This requirement is disabled by default.
+        /// When set to `true`, the assessment session will only start if the device is enrolled in a Mobile Device Management (MDM) solution. Defaults to `false`.
         #[unsafe(method(requiresManagedDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresManagedDevice(&self) -> bool;
@@ -1050,13 +1161,27 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresManagedDevice(&self, requires_managed_device: bool);
 
+        /// A Boolean value that indicates whether the device must be running a final customer release of the operating system to start an assessment.
+        ///
+        /// When set to `true`, the assessment session will only start if the device is running a released build of the operating system, rather than a beta, seed, or other prerelease build. Defaults to `false`.
+        ///
+        /// - SeeAlso: ``AEAssessmentConfiguration`` for the limits that apply to every enablement requirement.
+        #[unsafe(method(requiresReleaseOS))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiresReleaseOS(&self) -> bool;
+
+        /// Setter for [`requiresReleaseOS`][Self::requiresReleaseOS].
+        #[unsafe(method(setRequiresReleaseOS:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiresReleaseOS(&self, requires_release_os: bool);
+
         /// A Boolean value that indicates whether System Integrity Protection (SIP) must be enabled to start an assessment.
         ///
-        /// When set to `true`, the assessment session will only start if System Integrity Protection is enabled on the device. This requirement is disabled by default.
+        /// When set to `true`, the assessment session will only start if System Integrity Protection is enabled on the device. Defaults to `false`.
         ///
-        /// > Important: This check is advisory, not a security guarantee. The framework can't reliably detect whether SIP is enabled on systems where the user has administrator privileges, so setting `requiresSIP` to `true` may not block an assessment session when SIP is in fact disabled. Use this property to prompt users to re-enable SIP if they turned it off for unrelated reasons; it doesn't indicate whether the system was modified while SIP was previously disabled.
+        /// > Important: The framework can't reliably detect whether SIP is enabled on systems where the user has administrator privileges, so setting `requiresSIP` to `true` may not block a session when SIP is in fact disabled. It also doesn't indicate whether the system was modified while SIP was previously disabled.
         ///
-        /// For stronger assurances that SIP is enabled, pair this property with [App Attest](https://developer.apple.com/documentation/DeviceCheck) on macOS.
+        /// - SeeAlso: ``AEAssessmentConfiguration`` for the limits that apply to every enablement requirement.
         #[unsafe(method(requiresSIP))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSIP(&self) -> bool;
@@ -1068,7 +1193,7 @@ impl AEAssessmentConfiguration {
 
         /// A Boolean value that indicates whether only a single user account must be logged in to start an assessment.
         ///
-        /// When set to `true`, the assessment session will only start if there is exactly one user account logged in on the device. This requirement is disabled by default.
+        /// When set to `true`, the assessment session will only start if there is exactly one user account logged in on the device. Defaults to `false`.
         #[unsafe(method(requiresSingleUser))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSingleUser(&self) -> bool;
@@ -1081,6 +1206,8 @@ impl AEAssessmentConfiguration {
         /// Specifies the type of user account required to start an assessment.
         ///
         /// This property defines the account requirement for starting an assessment session. Set it to `.standard` to require a non-administrator account, `.guest` to require a guest account, or `.any` (the default) to allow any account type.
+        ///
+        /// - SeeAlso: ``AEUserAccountType``.
         #[unsafe(method(requiresUserAccountType))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresUserAccountType(&self) -> AEUserAccountType;
@@ -1172,6 +1299,8 @@ impl AEAssessmentConfiguration {
 
         /// Adds an executable participant to the list of participants available during an assessment.
         ///
+        /// Ignores an executable whose ``AEAssessmentBinaryExecutable/binaryExecutableURL`` isn't a file URL.
+        ///
         /// - Parameters:
         /// - configuration: The configuration of the executable participant.
         /// - binaryExecutable: The executable that you want to configure.
@@ -1232,22 +1361,15 @@ extern_conformance!(
 
 impl AEAssessmentParticipantConfiguration {
     extern_methods!(
-        /// Returns the set of allowed menu item titles for the given language
-        /// identifier, or
-        /// `nil`if no items have been configured for that
-        /// identifier.
+        /// Returns the set of allowed menu item titles for the given language identifier, or `nil` if no
+        /// items have been configured for that identifier.
         ///
-        /// Menu item titles are matched against the participant application's
-        /// localized menu items at the time the assessment session begins.
-        /// The system resolves each language identifier to the best-matching
-        /// localization the application bundle provides, so an exact locale
-        /// match is not required.
+        /// Menu item titles are matched against the participant application's localized menu items at the
+        /// time the assessment session begins. The system resolves each language identifier to the
+        /// best-matching localization the application bundle provides, so an exact locale match is not
+        /// required.
         ///
-        ///
-        /// Parameter `languageIdentifier`: A BCP 47 language identifier
-        /// (for example,
-        /// `en`or
-        /// `zh-Hans`).
+        /// - Parameter languageIdentifier: A BCP 47 language identifier (for example, `en` or `zh-Hans`).
         #[unsafe(method(allowedMenuItemsForLanguageIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedMenuItemsForLanguageIdentifier(
@@ -1257,21 +1379,14 @@ impl AEAssessmentParticipantConfiguration {
 
         /// Sets the allowed menu item titles for the given language identifier.
         ///
-        /// Titles must match the participant application's localized menu item
-        /// strings for the corresponding language.
+        /// Titles must match the participant application's localized menu item strings for the corresponding
+        /// language. If multiple language identifiers resolve to the same application localization, the
+        /// system combines their sets of allowed menu items.
         ///
-        /// If multiple language identifiers resolve to the same application
-        /// localization, the system combines their sets of allowed menu items.
-        ///
-        ///
-        /// Parameter `menuItems`: The set of menu item titles to allow, or
-        /// `nil`to
-        /// remove the entry for
-        /// `languageIdentifier.`
-        /// Parameter `languageIdentifier`: A BCP 47 language identifier
-        /// (for example,
-        /// `en`or
-        /// `zh-Hans`).
+        /// - Parameters:
+        /// - menuItems: The set of menu item titles to allow, or `nil` to remove the entry for
+        /// `languageIdentifier`.
+        /// - languageIdentifier: A BCP 47 language identifier (for example, `en` or `zh-Hans`).
         #[unsafe(method(setAllowedMenuItems:forLanguageIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowedMenuItems_forLanguageIdentifier(
@@ -1280,12 +1395,11 @@ impl AEAssessmentParticipantConfiguration {
             language_identifier: &NSString,
         );
 
-        /// The set of language identifiers for which allowed menu items have
-        /// been configured.
+        /// The set of language identifiers for which allowed menu items have been configured.
         ///
         /// Contains only identifiers explicitly added via
-        /// `setAllowedMenuItems:forLanguageIdentifier:`. Does not include
-        /// identifiers inferred through localization resolution.
+        /// ``setAllowedMenuItems(_:forLanguageIdentifier:)``. Does not include identifiers inferred through
+        /// localization resolution.
         #[unsafe(method(allowedMenuItemLanguageIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedMenuItemLanguageIdentifiers(&self) -> Retained<NSSet<NSString>>;
