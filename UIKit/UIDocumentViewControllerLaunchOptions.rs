@@ -44,7 +44,7 @@ impl UIDocumentViewControllerLaunchOptions {
             browser_view_controller: &UIDocumentBrowserViewController,
         );
 
-        /// The title of the view. Default is the application's name.
+        /// The title of the launch view. Default is the application's name.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub fn title(&self) -> Retained<NSString>;
@@ -56,7 +56,7 @@ impl UIDocumentViewControllerLaunchOptions {
         #[unsafe(method_family = none)]
         pub fn setTitle(&self, title: &NSString);
 
-        /// The subtitle of the view. Default is `nil`.
+        /// The subtitle of the launch view. Default is `nil`.
         /// If `nil`, no subtitle will be displayed.
         #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]

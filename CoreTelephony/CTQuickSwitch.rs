@@ -101,7 +101,6 @@ impl CTQuickSwitchManager {
         #[unsafe(method(registerForLaunchOnQuickSwitchStateEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForLaunchOnQuickSwitchStateEvents(
-            &self,
             completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
@@ -109,7 +108,6 @@ impl CTQuickSwitchManager {
         #[unsafe(method(unregisterForLaunchOnQuickSwitchStateEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterForLaunchOnQuickSwitchStateEvents(
-            &self,
             completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     );

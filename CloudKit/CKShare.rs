@@ -113,7 +113,7 @@ extern_class!(
     /// <doc
     /// ://com.apple.documentation/documentation/swift/false>. CloudKit associates the participant with their iCloud account when they accept the share if they launch the process by tapping or clicking the share URL.
     ///
-    /// Participants with write permissions can modify or delete any record that you include in the share. However, only the owner can delete a shared hierarchy's root record. If a participant attempts to delete the share, CloudKit removes the participant. The share remains active for all other participants. If the owner deletes a share that manages a record hierarchy, CloudKit sets the root record's ``CKRecord/share`` property to `nil`. CloudKit deletes the share if the owner of the shared heirarchy deletes its root record.
+    /// Participants with write permissions can modify or delete any record that you include in the share. However, only the owner can delete a shared hierarchy's root record. If a participant attempts to delete the share, CloudKit removes the participant. The share remains active for all other participants. If the owner deletes a share that manages a record hierarchy, CloudKit sets the root record's ``CKRecord/share`` property to `nil`. CloudKit deletes the share if the owner of the shared hierarchy deletes its root record.
     ///
     /// You can customize the title and image the system displays when initiating a share or accepting an invitation to participate. You can also provide a custom UTI to indicate the content of the shared records. Use the keys that ``SystemFieldKey`` defines, as the following example shows:
     ///

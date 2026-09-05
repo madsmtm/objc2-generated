@@ -5,11 +5,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextviewportrenderingsurface?language=objc)
+    /// A protocol that identifies a view or layer as a drawable element for a text layout fragment.
+    ///
+    /// Typically an `NSView`, `UIView`, or `CALayer`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextviewportrenderingsurface?language=objc)
     pub unsafe trait NSTextViewportRenderingSurface: NSObjectProtocol {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextviewportrenderingsurfacekey?language=objc)
+    /// A protocol that lets you use an object to identify a rendering surface when storing or retrieving it.
+    ///
+    /// `NSString` and ``NSTextLayoutFragment`` conform to this protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextviewportrenderingsurfacekey?language=objc)
     pub unsafe trait NSTextViewportRenderingSurfaceKey: NSObjectProtocol {}
 );

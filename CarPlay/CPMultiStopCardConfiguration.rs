@@ -3,6 +3,8 @@
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-ui-kit")]
+use objc2_ui_kit::*;
 
 use crate::*;
 
@@ -37,10 +39,43 @@ impl CPMultiStopCardConfiguration {
             buttons: &NSArray<CPTextButton>,
         ) -> Retained<Self>;
 
-        /// Title of card presented to configure waypoints along a route. If no title is provided, the card title will default to "Trip Overview".
+        #[cfg(all(feature = "CPTextButton", feature = "objc2-ui-kit"))]
+        /// Initializes a MultiStopCardConfiguration with an optional title, an array of text buttons, and an optional image
+        ///
+        /// Your app should provide a
+        /// `UIImage`that is display-ready, containing
+        /// two
+        /// `UIImageAssets,`corresponding to night and day mode.
+        ///
+        /// When providing an image, your app should provide a
+        /// `UIImage`that is display-ready. If necessary for the image, provide
+        /// light and dark styles by using an asset from your asset catalog, prepared with light and dark styles
+        /// or by using
+        /// `UIImageAsset`to combine two
+        /// `UIImage`instances into a single image with
+        /// both styles.
+        ///
+        /// UIImageAsset is used to combine multiple UIImages with different trait collections into a single UIImage.
+        #[unsafe(method(initWithTitle:buttons:image:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTitle_buttons_image(
+            this: Allocated<Self>,
+            title: Option<&NSString>,
+            buttons: &NSArray<CPTextButton>,
+            image: Option<&UIImage>,
+        ) -> Retained<Self>;
+
+        /// Title of panel presented to configure waypoints along a route. If no panel is provided, the panel title will default to "Add Stop".
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
+
+        #[cfg(feature = "objc2-ui-kit")]
+        /// An optional image displayed alongside the
+        /// `title`in the options panel, serving as an entry point to the multi-stop panel.
+        #[unsafe(method(image))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "CPTextButton")]
         /// An array of text buttons to be displayed at the bottom of the card presented to configure waypoints along a route.

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcloudidentifier?language=objc)
+    /// A representation of a globally unique identifier for a PHAsset or PHCollection that can be used to identify the same asset or collection across different devices and photo libraries.
+    ///
+    /// Cloud identifiers are designed to work best when used with an account that has iCloud Photos enabled, but they also work on libraries that are not synced via iCloud Photos, including on devices that have never been signed in to an iCloud account. Use ``PHPhotoLibrary/cloudIdentifierMappingsForLocalIdentifiers:`` and ``PHPhotoLibrary/localIdentifierMappingsForCloudIdentifiers:`` to map between cloud identifiers and local identifiers.
+    ///
+    /// When resolving a cloud identifier to a local identifier, ``PHPhotoLibrary/localIdentifierMappingsForCloudIdentifiers:`` first looks for a record synced through iCloud Photos. If no synced record is found — for example, when resolving cloud identifiers between libraries on devices that do not have iCloud Photos enabled — it falls back to matching on media content, which may return more than one local identifier for a single cloud identifier (see `PHPhotosErrorMultipleLocalIdentifiersFound`). To skip the media-content fallback and only resolve identifiers backed by iCloud Photos synced records, use ``PHPhotoLibrary/localIdentifierMappingsForSyncedCloudIdentifiers:``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phcloudidentifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHCloudIdentifier;

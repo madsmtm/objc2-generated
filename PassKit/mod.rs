@@ -381,8 +381,6 @@ pub use self::__PKConstants::PKPaymentNetworkVisa;
 pub use self::__PKConstants::PKPaymentNetworkWaon;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKRadioTechnology;
-#[cfg(feature = "PKConstants")]
-pub use self::__PKConstants::PKTTRComponentIDCarKeys;
 #[cfg(feature = "PKContact")]
 pub use self::__PKContact::PKContact;
 #[cfg(feature = "PKDateComponentsRange")]

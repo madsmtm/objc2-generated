@@ -10,7 +10,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer?language=objc)
+    /// AVSampleBufferAudioRenderer can decompress and play compressed or uncompressed audio.
+    ///
+    /// An instance of AVSampleBufferAudioRenderer must be added to an AVSampleBufferRenderSynchronizer before the first sample buffer is enqueued.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleBufferAudioRenderer;
@@ -28,10 +32,22 @@ extern_conformance!(
 impl AVSampleBufferAudioRenderer {
     extern_methods!(
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
+        /// Indicates the status of the audio renderer.
+        ///
+        /// A renderer begins with status AVQueuedSampleBufferRenderingStatusUnknown.
+        ///
+        /// As sample buffers are enqueued for rendering using -enqueueSampleBuffer:, the renderer will transition to either AVQueuedSampleBufferRenderingStatusRendering or AVQueuedSampleBufferRenderingStatusFailed.
+        ///
+        /// If the status is AVQueuedSampleBufferRenderingStatusFailed, check the value of the renderer's error property for information on the error encountered. This is terminal status from which recovery is not always possible.
+        ///
+        /// This property is key value observable.
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVQueuedSampleBufferRenderingStatus;
 
+        /// If the renderer's status is AVQueuedSampleBufferRenderingStatusFailed, this describes the error that caused the failure.
+        ///
+        /// The value of this property is an NSError that describes what caused the renderer to no longer be able to render sample buffers. The value of this property is nil unless the value of status is AVQueuedSampleBufferRenderingStatusFailed.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
@@ -44,9 +60,9 @@ impl AVSampleBufferAudioRenderer {
         ///
         /// Modifying this property while the timebase's rate is not 0.0 may cause the rate to briefly change to 0.0.
         ///
-        /// On macOS, the audio device clock may be used as the AVSampleBufferRenderSynchronizer's and all attached AVQueuedSampleBufferRendering's timebase's clocks.  If the audioOutputDeviceUniqueID is modified, the clocks of all these timebases may also change.
+        /// On macOS, the audio device clock may be used as the AVSampleBufferRenderSynchronizer's and all attached AVQueuedSampleBufferRendering's timebase's clocks. If the audioOutputDeviceUniqueID is modified, the clocks of all these timebases may also change.
         ///
-        /// If multiple AVSampleBufferAudioRenderers with different values for audioOutputDeviceUniqueID are attached to the same AVSampleBufferRenderSynchronizer, audio may not stay in sync during playback.  To avoid this, ensure that all synchronized AVSampleBufferAudioRenderers are using the same audio output device.
+        /// If multiple AVSampleBufferAudioRenderers with different values for audioOutputDeviceUniqueID are attached to the same AVSampleBufferRenderSynchronizer, audio may not stay in sync during playback. To avoid this, ensure that all synchronized AVSampleBufferAudioRenderers are using the same audio output device.
         #[unsafe(method(audioOutputDeviceUniqueID))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioOutputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
@@ -90,7 +106,7 @@ impl AVSampleBufferAudioRenderer {
         #[cfg(feature = "AVAudioProcessingSettings")]
         /// Indicates the source audio channel layouts allowed by the receiver for spatialization.
         ///
-        /// Spatialization uses psychoacoustic methods to create a more immersive audio rendering when the content is played on specialized headphones and speaker arrangements. When an  AVSampleBufferAudioRenderer's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMonoAndStereo the  AVSampleBufferAudioRenderer will attempt to spatialize content tagged with a stereo channel layout, two-channel content with no layout specified as well as mono. It is considered incorrect to render a binaural recording with spatialization. A binaural recording is captured using two carefully placed microphones at each ear where the intent, when played on headphones, is to reproduce a naturally occurring spatial effect. Content tagged with a binaural channel layout will ignore this property value. When an  AVSampleBufferAudioRenderer's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMultichannel the  AVSampleBufferAudioRenderer will attempt to spatialize any decodable multichannel layout. Setting this property to AVAudioSpatializationFormatMonoStereoAndMultichannel indicates that the sender allows the  AVSampleBufferAudioRenderer to spatialize any decodable mono, stereo or multichannel layout. This property is not observable. The default value for this property is AVAudioSpatializationFormatMultichannel.
+        /// Spatialization uses psychoacoustic methods to create a more immersive audio rendering when the content is played on specialized headphones and speaker arrangements. When an AVSampleBufferAudioRenderer's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMonoAndStereo the AVSampleBufferAudioRenderer will attempt to spatialize content tagged with a stereo channel layout, two-channel content with no layout specified as well as mono. It is considered incorrect to render a binaural recording with spatialization. A binaural recording is captured using two carefully placed microphones at each ear where the intent, when played on headphones, is to reproduce a naturally occurring spatial effect. Content tagged with a binaural channel layout will ignore this property value. When an AVSampleBufferAudioRenderer's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMultichannel the AVSampleBufferAudioRenderer will attempt to spatialize any decodable multichannel layout. Setting this property to AVAudioSpatializationFormatMonoStereoAndMultichannel indicates that the sender allows the AVSampleBufferAudioRenderer to spatialize any decodable mono, stereo or multichannel layout. This property is not observable. The default value for this property is AVAudioSpatializationFormatMultichannel.
         #[unsafe(method(allowedAudioSpatializationFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedAudioSpatializationFormats(&self) -> AVAudioSpatializationFormats;
@@ -122,6 +138,13 @@ impl AVSampleBufferAudioRenderer {
 /// AVSampleBufferAudioRendererVolumeControl.
 impl AVSampleBufferAudioRenderer {
     extern_methods!(
+        /// Indicates the current audio volume of the AVSampleBufferAudioRenderer.
+        ///
+        /// A value of 0.0 means "silence all audio", while 1.0 means "play at the full volume of the audio media".
+        ///
+        /// This property should be used for frequent volume changes, for example via a volume knob or fader.
+        ///
+        /// This property is most useful on iOS to control the volume of the AVSampleBufferAudioRenderer relative to other audio output, not for setting absolute volume.
         #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
@@ -131,6 +154,9 @@ impl AVSampleBufferAudioRenderer {
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
+        /// Indicates whether or not audio output of the AVSampleBufferAudioRenderer is muted.
+        ///
+        /// Setting this property only affects audio muting for the renderer instance and not for the device.
         #[unsafe(method(isMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMuted(&self) -> bool;
@@ -145,11 +171,11 @@ impl AVSampleBufferAudioRenderer {
 extern "C" {
     /// A notification that fires whenever the receiver's enqueued media data has been flushed for a reason other than a call to the -flush method.
     ///
-    /// The renderer may flush enqueued media data when the user routes playback to a new destination.  The renderer may also flush enqueued media data when the playback rate of the attached AVSampleBufferRenderSynchronizer is changed (e.g. 1.0 -> 2.0 or 1.0 -> 0.0 -> 2.0), however no flush will occur for normal pauses (non-zero -> 0.0) and resumes (0.0 -> same non-zero rate as before).
+    /// The renderer may flush enqueued media data when the user routes playback to a new destination. The renderer may also flush enqueued media data when the playback rate of the attached AVSampleBufferRenderSynchronizer is changed (e.g. 1.0 -> 2.0 or 1.0 -> 0.0 -> 2.0), however no flush will occur for normal pauses (non-zero -> 0.0) and resumes (0.0 -> same non-zero rate as before).
     ///
-    /// When an automatic flush occurs, the attached render synchronizer's timebase will remain running at its current rate.  It is typically best to respond to this notification by enqueueing media data with timestamps starting at the timebase's current time.  To the listener, this will sound similar to muting the audio for a short period of time.  If it is more desirable to ensure that all audio is played than to keep the timeline moving, you may also stop the synchronizer, set the synchronizer's current time to the value of AVSampleBufferAudioRendererFlushTimeKey, start reenqueueing sample buffers with timestamps starting at that time, and restart the synchronizer.  To the listener, this will sound similar to pausing the audio for a short period of time.
+    /// When an automatic flush occurs, the attached render synchronizer's timebase will remain running at its current rate. It is typically best to respond to this notification by enqueueing media data with timestamps starting at the timebase's current time. To the listener, this will sound similar to muting the audio for a short period of time. If it is more desirable to ensure that all audio is played than to keep the timeline moving, you may also stop the synchronizer, set the synchronizer's current time to the value of AVSampleBufferAudioRendererFlushTimeKey, start reenqueueing sample buffers with timestamps starting at that time, and restart the synchronizer. To the listener, this will sound similar to pausing the audio for a short period of time.
     ///
-    /// This notification is delivered on an arbitrary thread.  If sample buffers are being enqueued with the renderer concurrently with the receipt of this notification, it is possible that one or more sample buffers will remain enqueued in the renderer.  This is generally undesirable, because the sample buffers that remain will likely have timestamps far ahead of the timebase's current time and so won't be rendered for some time.  The best practice is to invoke the -flush method, in a manner that is serialized with enqueueing sample buffers, after receiving this notification and before resuming the enqueueing of sample buffers.
+    /// This notification is delivered on an arbitrary thread. If sample buffers are being enqueued with the renderer concurrently with the receipt of this notification, it is possible that one or more sample buffers will remain enqueued in the renderer. This is generally undesirable, because the sample buffers that remain will likely have timestamps far ahead of the timebase's current time and so won't be rendered for some time. The best practice is to invoke the -flush method, in a manner that is serialized with enqueueing sample buffers, after receiving this notification and before resuming the enqueueing of sample buffers.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorendererwasflushedautomaticallynotification?language=objc)
     pub static AVSampleBufferAudioRendererWasFlushedAutomaticallyNotification:
@@ -181,11 +207,11 @@ impl AVSampleBufferAudioRenderer {
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Flushes enqueued sample buffers with presentation time stamps later than or equal to the specified time.
         ///
-        /// Parameter `completionHandler`: A block that is invoked, possibly asynchronously, after the flush operation completes or fails.
+        /// This method can be used to replace media data scheduled to be rendered in the future, without interrupting playback. One example of this is when the data that has already been enqueued is from a sequence of two songs and the second song is swapped for a new song. In this case, this method would be called with the time stamp of the first sample buffer from the second song. After the completion handler is executed with a YES parameter, media data may again be enqueued with timestamps at the specified time.
         ///
-        /// This method can be used to replace media data scheduled to be rendered in the future, without interrupting playback.  One example of this is when the data that has already been enqueued is from a sequence of two songs and the second song is swapped for a new song.  In this case, this method would be called with the time stamp of the first sample buffer from the second song.  After the completion handler is executed with a YES parameter, media data may again be enqueued with timestamps at the specified time.
+        /// If NO is provided to the completion handler, the flush did not succeed and the set of enqueued sample buffers remains unchanged. A flush can fail becuse the source time was too close to (or earlier than) the current time or because the current configuration of the receiver does not support flushing at a particular time. In these cases, the caller can choose to flush all enqueued media data by invoking the -flush method.
         ///
-        /// If NO is provided to the completion handler, the flush did not succeed and the set of enqueued sample buffers remains unchanged.  A flush can fail becuse the source time was too close to (or earlier than) the current time or because the current configuration of the receiver does not support flushing at a particular time.  In these cases, the caller can choose to flush all enqueued media data by invoking the -flush method.
+        /// - Parameter completionHandler: A block that is invoked, possibly asynchronously, after the flush operation completes or fails.
         #[unsafe(method(flushFromSourceTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushFromSourceTime_completionHandler(

@@ -522,6 +522,18 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CPTemplate")]
+        /// Called when the route sharing enabled status has been updated by the built-in system. Route sharing enabled is set to true when any vehicle features are enabled that rely on a route provided by the built‑in navigation system to func‑
+        /// tion.
+        #[optional]
+        #[unsafe(method(mapTemplate:didUpdateRouteSharingEnabled:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didUpdateRouteSharingEnabled(
+            &self,
+            map_template: &CPMapTemplate,
+            enabled: bool,
+        );
+
+        #[cfg(feature = "CPTemplate")]
         /// Determines if the template should provide UI for multi-stop routing while actively navigating, including the ability to add and remove stops.
         ///
         /// Returns: YES if the template should provide multi-stop routing functionalities, otherwise NO

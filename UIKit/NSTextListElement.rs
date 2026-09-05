@@ -23,6 +23,27 @@ extern_conformance!(
 impl NSTextListElement {
     extern_methods!(
         #[cfg(feature = "NSTextList")]
+        /// Creates a text list element with the parent, list elements, nesting level, and marker attributes you provide.
+        ///
+        /// - Parameters:
+        /// - parent: The parent `NSTextListElement` of this element, if any.
+        /// - textList: The ``NSTextList`` to add elements to.
+        /// - contents: An
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsattributedstring> that contains the contents of the text list element.
+        /// - markerAttributes: A dictionary of
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsattributedstring/key> keys and values that describe the marker attributes.
+        /// - children: An array of ``NSTextListElement`` elements.
+        ///
+        /// One of `contents`, `markerAttributes`, or `childElements` must be non-`nil`.
+        /// If `markerAttributes` is not `nil` this method uses it to format the marker;
+        /// otherwise it is derived from `contents`.
+        ///
+        /// To instantiate a text list element with a specific type, use either
+        /// ``textListElementWithChildElements:textList:nestingLevel:`` or
+        /// ``textListElementWithContents:markerAttributes:textList:childElements:`` instead.
+        ///
         /// # Safety
         ///
         /// `marker_attributes` generic should be of the correct type.
@@ -40,6 +61,18 @@ impl NSTextListElement {
         // -initWithAttributedString: (unavailable)
 
         #[cfg(feature = "NSTextList")]
+        /// Creates a text list element with the list elements, nesting level, and marker attributes you provide.
+        ///
+        /// - Parameters:
+        /// - contents: An
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsattributedstring> that contains the contents of the text list element.
+        /// - markerAttributes: A dictionary of
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsattributedstring/key> keys and values that describe the marker attributes.
+        /// - textList: The ``NSTextList`` to add elements to.
+        /// - children: An array of ``NSTextListElement`` elements.
+        ///
         /// # Safety
         ///
         /// `marker_attributes` generic should be of the correct type.
@@ -53,6 +86,18 @@ impl NSTextListElement {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextList")]
+        /// Creates a text list element with the list elements and nesting level you provide.
+        ///
+        /// Raises an exception when `nestingLevel
+        /// <
+        /// 0`.
+        ///
+        /// - Parameters:
+        /// - children: An array of ``NSTextListElement`` elements.
+        /// - textList: The ``NSTextList`` to add elements to.
+        /// - nestingLevel: An integer value that describes the level of nesting of these elements.
+        ///
+        /// - Returns: `nil` if `children.count` is zero.
         #[unsafe(method(textListElementWithChildElements:textList:nestingLevel:))]
         #[unsafe(method_family = none)]
         pub fn textListElementWithChildElements_textList_nestingLevel(
@@ -62,28 +107,37 @@ impl NSTextListElement {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSTextList")]
+        /// The value that represents the text list.
         #[unsafe(method(textList))]
         #[unsafe(method_family = none)]
         pub fn textList(&self) -> Retained<NSTextList>;
 
+        /// The text list element contents without markers and formatting.
         #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
         pub fn contents(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// A dictionary of attributed string keys and values that represent the list's marker attributes.
         #[unsafe(method(markerAttributes))]
         #[unsafe(method_family = none)]
         pub fn markerAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
+        /// An attributed string that represents the string the framework displays for this element taking into account markers and the indentation level of the list element.
+        ///
+        /// Derived from ``contents`` and ``textList`` configured with the text list
+        /// element's position inside the tree. Overrides `NSTextParagraph.attributedString`.
         #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
         pub fn attributedString(&self) -> Retained<NSAttributedString>;
 
+        /// An array that contains child text elements.
         #[unsafe(method(childElements))]
         #[unsafe(method_family = none)]
         pub fn childElements(&self) -> Retained<NSArray<NSTextListElement>>;
 
+        /// A text list element that refers to the enclosing text list element.
         #[unsafe(method(parentElement))]
         #[unsafe(method_family = none)]
         pub fn parentElement(&self) -> Option<Retained<NSTextListElement>>;
@@ -95,6 +149,10 @@ impl NSTextListElement {
 impl NSTextListElement {
     extern_methods!(
         #[cfg(feature = "NSTextContentManager")]
+        /// Creates a new text element with the content manager you provide.
+        ///
+        /// - Parameters:
+        /// - textContentManager: The content manager to associate with this element.
         #[unsafe(method(initWithTextContentManager:))]
         #[unsafe(method_family = init)]
         pub fn initWithTextContentManager(

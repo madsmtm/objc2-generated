@@ -31,7 +31,25 @@ unsafe impl RefEncode for NSTextStorageEditActions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorage?language=objc)
+    /// The fundamental storage mechanism of TextKit that contains the text managed by the system.
+    ///
+    /// `NSTextStorage` is a semi-abstract subclass of `NSMutableAttributedString`.
+    /// It implements change management (`beginEditing`/`endEditing`), verification
+    /// of attributes, delegate handling, and layout management notification. The one
+    /// aspect it does not implement is the actual attributed string storage — this
+    /// is left up to subclassers, which need to override the two
+    /// `NSMutableAttributedString` primitives in addition to two
+    /// `NSAttributedString` primitives:
+    ///
+    /// - `-string`
+    /// - `-attributesAtIndex:effectiveRange:`
+    /// - `-replaceCharactersInRange:withString:`
+    /// - `-setAttributes:range:`
+    ///
+    /// These primitives should perform the change then call
+    /// `edited:range:changeInLength:` to get everything else to happen.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorage?language=objc)
     #[unsafe(super(NSMutableAttributedString, NSAttributedString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextStorage;
@@ -51,20 +69,24 @@ extern_conformance!(
 
 impl NSTextStorage {
     extern_methods!(
-        /// ************************** Pending edit info ***************************
+        /// A mask that describes the kinds of edits pending for the text storage object.
         #[unsafe(method(editedMask))]
         #[unsafe(method_family = none)]
         pub fn editedMask(&self) -> NSTextStorageEditActions;
 
+        /// The range of text that contains changes.
+        ///
+        /// `{NSNotFound, 0}` when there is no pending changes.
         #[unsafe(method(editedRange))]
         #[unsafe(method_family = none)]
         pub fn editedRange(&self) -> NSRange;
 
+        /// The difference between the current length of the edited range and its length before editing.
         #[unsafe(method(changeInLength))]
         #[unsafe(method_family = none)]
         pub fn changeInLength(&self) -> NSInteger;
 
-        /// ************************** Delegate ***************************
+        /// The delegate for the text storage object.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextStorageDelegate>>>;
@@ -76,7 +98,17 @@ impl NSTextStorage {
         #[unsafe(method_family = none)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextStorageDelegate>>);
 
-        /// ************************** Edit management ***************************
+        /// Tracks changes made to the text storage object, allowing the text storage to record the full extent of changes.
+        ///
+        /// If there are no outstanding `beginEditing` calls, this method calls
+        /// ``processEditing`` to trigger post-editing processes. This method has to be
+        /// called by the primitives after changes are made if subclassed and overridden.
+        /// `editedRange` is the range in the original string (before the edit).
+        ///
+        /// - Parameters:
+        /// - editedMask: The type of edit (attributes, characters, or both).
+        /// - editedRange: The range in the original string before the edit.
+        /// - delta: The change in length resulting from the edit.
         #[unsafe(method(edited:range:changeInLength:))]
         #[unsafe(method_family = none)]
         pub fn edited_range_changeInLength(
@@ -86,24 +118,52 @@ impl NSTextStorage {
             delta: NSInteger,
         );
 
+        /// Sends out delegate notifications, fixes the attributes, and notifies text storage observer of the change.
+        ///
+        /// Sends `-textStorage:willProcessEditing`, fixes the attributes, sends
+        /// `-textStorage:didProcessEditing`, and notifies the text storage observer of change
+        /// with `-processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:`.
+        /// Invoked from ``edited:range:changeInLength:`` or `endEditing`.
         #[unsafe(method(processEditing))]
         #[unsafe(method_family = none)]
         pub fn processEditing(&self);
 
-        /// ************************** Attribute fixing ***************************
+        /// A Boolean value that indicates whether the receiver fixes invalidated attributes lazily.
+        ///
+        /// The concrete UIKit subclass fixes attributes lazily by default. The abstract
+        /// class (hence, all custom subclasses) is not lazy.
         #[unsafe(method(fixesAttributesLazily))]
         #[unsafe(method_family = none)]
         pub fn fixesAttributesLazily(&self) -> bool;
 
+        /// Notes the range of attributes that requires validation.
+        ///
+        /// If the `NSTextStorage` is not lazy this just calls
+        /// `fixAttributesInRange:`. If it is lazy this instead just records the range
+        /// needing fixing in order to do it later.
+        ///
+        /// - Parameters:
+        /// - range: The range of attributes to invalidate.
         #[unsafe(method(invalidateAttributesInRange:))]
         #[unsafe(method_family = none)]
         pub fn invalidateAttributesInRange(&self, range: NSRange);
 
+        /// Ensures all attributes in the range are validated and ready to be used.
+        ///
+        /// A lazy `NSTextStorage` is required to call this method before accessing any
+        /// attributes. This gives the attribute fixing a chance to occur if necessary.
+        /// Subclasses that wish to support laziness must call it from all attribute
+        /// accessors that they implement.
+        ///
+        /// - Parameters:
+        /// - range: The range to ensure attributes are fixed in.
         #[unsafe(method(ensureAttributesAreFixedInRange:))]
         #[unsafe(method_family = none)]
         pub fn ensureAttributesAreFixedInRange(&self, range: NSRange);
 
         /// ************************** NSTextStorageObserving ***************************
+        ///
+        /// An object conforming to `NSTextStorageObserving` that observes and retains the text storage.
         #[unsafe(method(textStorageObserver))]
         #[unsafe(method_family = none)]
         pub fn textStorageObserver(
@@ -143,10 +203,13 @@ impl DefaultRetained for NSTextStorage {
 }
 
 extern_protocol!(
-    /// **  NSTextStorage delegate methods ***
+    /// The optional methods that delegates of text storage objects implement.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstoragedelegate?language=objc)
     pub unsafe trait NSTextStorageDelegate: NSObjectProtocol {
+        /// Sent inside `processEditing` right before fixing attributes.
+        ///
+        /// Delegates can change the characters or attributes.
         #[optional]
         #[unsafe(method(textStorage:willProcessEditing:range:changeInLength:))]
         #[unsafe(method_family = none)]
@@ -158,6 +221,9 @@ extern_protocol!(
             delta: NSInteger,
         );
 
+        /// Sent inside `processEditing` right before notifying text storage observer.
+        ///
+        /// Delegates can change the attributes.
         #[optional]
         #[unsafe(method(textStorage:didProcessEditing:range:changeInLength:))]
         #[unsafe(method_family = none)]
@@ -184,8 +250,11 @@ extern "C" {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorageobserving?language=objc)
+    /// A protocol that defines the interface for objects observing changes in the text backing-store.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorageobserving?language=objc)
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
+        /// The document text storage object.
         #[unsafe(method(textStorage))]
         #[unsafe(method_family = none)]
         fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
@@ -195,6 +264,20 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);
 
+        /// Notifies the observer that the text storage has been edited.
+        ///
+        /// The `newCharRange` is the range in the final string which was explicitly
+        /// edited. The `invalidatedRange` includes portions that changed as a result of
+        /// attribute fixing — it is either equal to `newCharRange` or larger.
+        /// Controllers should not change the contents of the text storage during the
+        /// execution of this message.
+        ///
+        /// - Parameters:
+        /// - textStorage: The text storage that was edited.
+        /// - editMask: The type of edit.
+        /// - newCharRange: The range of characters that changed.
+        /// - delta: The change in length.
+        /// - invalidatedCharRange: The full invalidated range including attribute fixing.
         #[unsafe(method(processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:))]
         #[unsafe(method_family = none)]
         fn processEditingForTextStorage_edited_range_changeInLength_invalidatedRange(
@@ -207,6 +290,11 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
+        /// Performs an editing transaction on the text storage.
+        ///
+        /// - Parameters:
+        /// - textStorage: The text storage.
+        /// - transaction: The block to execute within the transaction.
         #[unsafe(method(performEditingTransactionForTextStorage:usingBlock:))]
         #[unsafe(method_family = none)]
         fn performEditingTransactionForTextStorage_usingBlock(

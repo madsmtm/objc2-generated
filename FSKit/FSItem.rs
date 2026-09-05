@@ -190,35 +190,66 @@ extern_conformance!(
 impl FSItem {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// Reclaims the `FSItem`, by executing the given `reclaimBlock`, only if conditions allow.
+        /// Reclaims the item by executing the given block, if conditions allow.
         ///
-        /// Should be invoked by the file system during the ``FSVolume/Handler/reclaimItem(_:replyHandler:)`` operation.
+        /// Invoke this method in your implementation of the ``FSVolume/Handler/reclaimItem(_:replyHandler:)`` operation.
         ///
-        /// FSKit internally maintains a count of how many times each FSItem has been returned to the kernel, via either a creation operation or a lookup. The kernel file system also maintains a count of how many times a vnode has been returned by a create or a lookup operation. When the kernel reclaims the vnode associated with an FSItem, the FSItem should only get reclaimed when both the kernel and user space counts agree.
-        /// This mechanism addresses a potential race condition wherein concurrent reclaim and lookup operations could lead to a lookup returning a deallocated FSItem, thereby inducing undefined behavior.
+        /// FSKit internally maintains a count of how many times it returns each ``FSItem`` to the kernel, via either a creation operation or a lookup. The kernel file system also maintains a count of how many times a create or a lookup operation returned a vnode. When the kernel reclaims the vnode associated with an FSItem, the FSItem is only eligible for reclaiming when both the kernel and user space counts agree.
+        /// This mechanism addresses a potential race condition in which concurrent reclaim and lookup operations might lead to a lookup returning a deallocated ``FSItem``, and as a result, induce undefined behavior.
+        /// File systems that don't invoke this method during reclaim are exposed to this race condition.
         ///
-        /// > Important: The caller must invoke this method within a synchronization context that ensures the FSItem is not concurrently returned by lookup operations.
-        ///
-        /// > Note: File systems which do not invoke this method during reclaim are exposed to this race condition.
+        /// > Important: The caller must invoke this method within a synchronization context that ensures the ``FSItem`` isn't concurrently returned by lookup operations.
         ///
         /// - Parameters:
-        /// - reclaimBlock The block to execute if reclaim should proceed. Should include all required cleanup operations for reclaiming this item, excluding only the final teardown of the `FSItem` instance itself.
+        /// - reclaimBlock The closure or block to run if the reclaim can proceed. In your closure or block, include all required cleanup operations for reclaiming this item, excluding only the final teardown of the ``FSItem`` instance itself.
         ///
-        /// - Returns: YES if the reclaim block was executed, NO otherwise. In case it returns NO, the ``FSVolume/Handler/reclaimItem(_:replyHandler:)`` implementation should call `replyHandler(nil)`.
+        /// - Returns: `true` (Swift) or YES (Obj-C)  if the reclaim block ran; otherwise, `false` (Swift) or `NO` (Obj-C). When your ``FSVolume/Handler/reclaimItem(_:replyHandler:)`` implementation receives a `false`/`NO` return value, call `replyHandler(nil)`.
         ///
         /// Example Usage:
         ///
+        /// @TabNavigator{
+        ///
+        /// @Tab("Swift") {
+        /// ```swift
+        /// func reclaimItem(_ item: FSItem,
+        /// replyHandler reply:
+        /// @escaping ((any Error)?) -> Void) {
+        /// var reclaimError: NSError? = nil // To be set during the reclaim block in case of an error.
+        ///
+        /// // *** CRITICAL SECTION BEGINS HERE ***
+        /// // (A synchronization context that ensures the FSItem isn't concurrently returned by lookup operations)
+        ///
+        /// // Calling `tryReclaim(_:)` with the cleanup logic within the passed block
+        /// let wasReclaimed = item.tryReclaim( {
+        /// // Closure includes all required cleanup operations for reclaiming this item.
+        /// // Sets `reclaimError` in case of an error during the cleanup phase.
+        /// } )
+        ///
+        /// // *** CRITICAL SECTION ENDS HERE ***
+        ///
+        /// if (wasReclaimed) {
+        /// // Clean up the FSItem if special teardown is needed.
+        /// reply(reclaimError)
+        /// } else {
+        /// // Do nothing; the FSItem wasn't reclaimed, so it's not yet time to run cleanup.
+        /// reply(nil)
+        /// }
+        /// }
+        /// ```
+        /// }
+        ///
+        /// @Tab("Objective-C") {
         /// ```objc
         /// - (void)reclaimItem:(FSItem *)item
         /// replyHandler:(void(^)(NSError * _Nullable error))reply
         /// {
-        /// __block NSError *reclaimError = nil; // To be set during the reclaim block in case of an error
+        /// __block NSError *reclaimError = nil; // To be set during the reclaim block in case of an error.
         ///
         /// // *** CRITICAL SECTION BEGINS HERE ***
-        /// // (A synchronization context that ensures the FSItem is not concurrently returned by lookup operations)
+        /// // (A synchronization context that ensures the FSItem isn't concurrently returned by lookup operations)
         ///
         /// // Calling `tryReclaimWithBlock:` with the cleanup logic within the passed block
-        /// BOOL wasReclaimed = [self tryReclaimWithBlock:^{
+        /// BOOL wasReclaimed = [item tryReclaimWithBlock:^{
         /// // Includes all required cleanup operations for reclaiming this item.
         /// // Sets `reclaimError` in case of an error during the cleanup phase
         /// }];
@@ -229,11 +260,13 @@ impl FSItem {
         /// // Clean up the FSItem if special teardown is needed.
         /// reply(reclaimError);
         /// } else {
-        /// // Do nothing, the FSItem shouldn't get deallocated yet.
+        /// // Do nothing; the FSItem wasn't reclaimed, so it's not yet time to run cleanup.
         /// reply(nil);
         /// }
         /// }
         /// ```
+        /// }
+        /// }
         #[unsafe(method(tryReclaimWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryReclaimWithBlock(

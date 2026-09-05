@@ -250,7 +250,7 @@ impl MPSGraphCompilationDescriptor {
         pub unsafe fn disableTypeInference(&self);
 
         /// Turns on Automatic Layout Conversion (for conv like operations) for GPU.
-        /// DEPRECATED: Layout conversion is now default, so this function is a no-op.
+        #[deprecated]
         #[unsafe(method(convertLayoutToNHWC))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertLayoutToNHWC(&self);

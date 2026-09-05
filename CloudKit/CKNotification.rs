@@ -495,7 +495,7 @@ extern_class!(
     ///
     /// Query subscriptions execute when a record that matches the subscription's predicate changes, for example, when the user modifies a field's value in the record. When CloudKit registers the change, it sends push notifications to the user's devices to inform your app about the change. You can then fetch the changes and cache them on-device. When appropriate, CloudKit excludes the device where the change originates.
     ///
-    /// You configure a subscription's notifications by setting it's ``CKSubscription/notificationInfo`` property. Do this before you save it to the server. A subscription generates either high-priority or medium-priority push notifications. CloudKit delivers medium-priority notifications to your app in the background. High-priority notifications are visual and the system displays them to the user. Visual notifications need the user's permission. For more information, see
+    /// You configure a subscription's notifications by setting its ``CKSubscription/notificationInfo`` property. Do this before you save it to the server. A subscription generates either high-priority or medium-priority push notifications. CloudKit delivers medium-priority notifications to your app in the background. High-priority notifications are visual and the system displays them to the user. Visual notifications need the user's permission. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/usernotifications/asking-permission-to-use-notifications>.
     ///
@@ -619,7 +619,7 @@ extern_class!(
     ///
     /// A record zone subscription executes when a user, or in certain scenarios, CloudKit, modifies a record in that zone, for example, when a field's value changes in a record. When CloudKit registers the change, it sends push notifications to the user's devices to inform your app about the change. You can then fetch the changes and cache them on-device. When appropriate, CloudKit excludes the device where the change originates.
     ///
-    /// You configure a subscription's notifications by setting it's ``CKSubscription/notificationInfo`` property. Do this before you save it to the server. A subscription generates either high-priority or medium-priority push notifications. CloudKit delivers medium-priority notifications to your app in the background. High-priority notifications are visual and the system displays them to the user. Visual notifications need the user's permission. For more information, see
+    /// You configure a subscription's notifications by setting its ``CKSubscription/notificationInfo`` property. Do this before you save it to the server. A subscription generates either high-priority or medium-priority push notifications. CloudKit delivers medium-priority notifications to your app in the background. High-priority notifications are visual and the system displays them to the user. Visual notifications need the user's permission. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/usernotifications/asking-permission-to-use-notifications>.
     ///
@@ -711,7 +711,7 @@ extern_class!(
     ///
     /// Database subscriptions execute when changes happen in any of a database's record zones, for example, when CloudKit saves a new record. When the subscription registers a change, it sends push notifications to the user's devices to inform your app about the change. You can then fetch the changes and cache them on-device. When appropriate, CloudKit excludes the device where the change originates.
     ///
-    /// You configure a subscription's notifications by setting it's ``CKSubscription/notificationInfo`` property. Do this before you save it to the server. A subscription generates either high-priority or medium-priority push notifications. CloudKit delivers medium-priority notifications to your app in the background. High-priority notifications are visual and the system displays them to the user. Visual notifications need the user's permission. For more information, see
+    /// You configure a subscription's notifications by setting its ``CKSubscription/notificationInfo`` property. Do this before you save it to the server. A subscription generates either high-priority or medium-priority push notifications. CloudKit delivers medium-priority notifications to your app in the background. High-priority notifications are visual and the system displays them to the user. Visual notifications need the user's permission. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/usernotifications/asking-permission-to-use-notifications>.
     ///

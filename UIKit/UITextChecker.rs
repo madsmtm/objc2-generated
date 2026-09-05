@@ -78,6 +78,23 @@ impl UITextChecker {
         #[unsafe(method(availableLanguages))]
         #[unsafe(method_family = none)]
         pub fn availableLanguages(mtm: MainThreadMarker) -> Retained<NSArray<NSString>>;
+
+        #[cfg(feature = "block2")]
+        #[unsafe(method(requestGrammarCheckingOfString:range:waitForAllResults:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub fn requestGrammarCheckingOfString_range_waitForAllResults_completionHandler(
+            &self,
+            string_to_check: &NSString,
+            range: NSRange,
+            wait_for_all_results: bool,
+            completion_handler: Option<
+                &block2::Block<'static, fn(NonNull<NSArray<NSTextCheckingResult>>)>,
+            >,
+        );
+
+        #[unsafe(method(ignoreGrammarRange:inSentence:))]
+        #[unsafe(method_family = none)]
+        pub fn ignoreGrammarRange_inSentence(&self, grammar_range: NSRange, sentence: &NSString);
     );
 }
 

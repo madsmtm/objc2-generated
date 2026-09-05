@@ -151,7 +151,7 @@ extern_class!(
     ///
     /// Participants are a key element of sharing in CloudKit. A participant provides information about an iCloud user and their participation in a share, including their identity, acceptance status, permissions, and role.
     ///
-    /// The acceptance status determines the participant's visibilty of the shared records. Statuses are: `pending`, `accepted`, `removed`, and `unknown`. If the status is `pending`, use ``CKAcceptSharesOperation`` to accept the share. Upon acceptance, CloudKit makes the shared records available in the participant's shared database. The records remain accessible for as long as the participant's status is `accepted`.
+    /// The acceptance status determines the participant's visibility of the shared records. Statuses are: `pending`, `accepted`, `removed`, and `unknown`. If the status is `pending`, use ``CKAcceptSharesOperation`` to accept the share. Upon acceptance, CloudKit makes the shared records available in the participant's shared database. The records remain accessible for as long as the participant's status is `accepted`.
     ///
     /// You don't create participants. Use the share's ``CKShare/participants`` property to access its existing participants. Use
     /// <doc

@@ -7,6 +7,68 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanstatusavailability?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct CTCellularPlanStatusAvailability(pub NSInteger);
+impl CTCellularPlanStatusAvailability {
+    #[doc(alias = "CTCellularPlanStatusAvailabilityUnavailable")]
+    pub const Unavailable: Self = Self(0);
+    #[doc(alias = "CTCellularPlanStatusAvailabilityAvailable")]
+    pub const Available: Self = Self(1);
+}
+
+unsafe impl Encode for CTCellularPlanStatusAvailability {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for CTCellularPlanStatusAvailability {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanstatusavailabilityconfidence?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct CTCellularPlanStatusAvailabilityConfidence(pub NSInteger);
+impl CTCellularPlanStatusAvailabilityConfidence {
+    #[doc(alias = "CTCellularPlanStatusAvailabilityConfidenceLow")]
+    pub const Low: Self = Self(0);
+    #[doc(alias = "CTCellularPlanStatusAvailabilityConfidenceHigh")]
+    pub const High: Self = Self(1);
+}
+
+unsafe impl Encode for CTCellularPlanStatusAvailabilityConfidence {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for CTCellularPlanStatusAvailabilityConfidence {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanstatusauthorization?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct CTCellularPlanStatusAuthorization(pub NSInteger);
+impl CTCellularPlanStatusAuthorization {
+    #[doc(alias = "CTCellularPlanStatusAuthorizationNotAuthorized")]
+    pub const NotAuthorized: Self = Self(0);
+    #[doc(alias = "CTCellularPlanStatusAuthorizationAuthorized")]
+    pub const Authorized: Self = Self(1);
+    #[doc(alias = "CTCellularPlanStatusAuthorizationRestricted")]
+    pub const Restricted: Self = Self(2);
+}
+
+unsafe impl Encode for CTCellularPlanStatusAuthorization {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for CTCellularPlanStatusAuthorization {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanstatus?language=objc)
     #[unsafe(super(NSObject))]
@@ -33,6 +95,43 @@ impl CTCellularPlanStatus {
         pub unsafe fn checkValidityOfToken_completionHandler(
             token: &NSString,
             completion_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[unsafe(method(requestAuthorizationForPhoneNumber:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requestAuthorizationForPhoneNumber_completion(
+            phone_number: &NSString,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(CTCellularPlanStatusAuthorization, *mut NSError),
+            >,
+        );
+
+        #[cfg(feature = "block2")]
+        #[unsafe(method(getAuthorizationStatusForPhoneNumber:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getAuthorizationStatusForPhoneNumber_completion(
+            phone_number: &NSString,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(CTCellularPlanStatusAuthorization, *mut NSError),
+            >,
+        );
+
+        #[cfg(feature = "block2")]
+        #[unsafe(method(getStatusHintForPhoneNumber:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getStatusHintForPhoneNumber_completion(
+            phone_number: &NSString,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(
+                    CTCellularPlanStatusAvailability,
+                    CTCellularPlanStatusAvailabilityConfidence,
+                    *mut NSError,
+                ),
+            >,
         );
     );
 }

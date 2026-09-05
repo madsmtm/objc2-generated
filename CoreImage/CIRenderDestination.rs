@@ -357,6 +357,36 @@ impl CIContext {
             at_point: CGPoint,
         ) -> Result<(), Retained<NSError>>;
 
+        #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
+        /// Returns a task with estimated resource statistics for a render, without executing the render.
+        ///
+        /// Call this method to analyze the cost of a render before you execute it. Query the
+        /// returned task's `plannedPixelsProcessed`, `plannedPixelsOverdrawn`, `plannedPassCount`,
+        /// and `plannedPeakMemory` properties to get the estimated statistics.
+        ///
+        /// The method renders as if the image is cropped to `fromRect` and places the origin of
+        /// `fromRect` at `atPoint` in the destination.
+        ///
+        /// - Parameters:
+        /// - image: The ``CIImage`` to estimate the render for.
+        /// - fromRect: The region of ``CIImage`` to render.
+        /// - destination: The ``CIRenderDestination`` to estimate the render to.
+        /// - atPoint: The point in the destination where the origin of `fromRect` is placed.
+        /// - error: On output, the error that caused estimation to fail, or `nil` if estimation succeeded.
+        ///
+        /// - Returns:
+        /// A ``CIRenderTask`` you can query for estimated statistics, or `nil` if `fromRect`
+        /// doesn't intersect `image.extent` or if estimation fails.
+        #[unsafe(method(estimateRender:fromRect:toDestination:atPoint:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn estimateRender_fromRect_toDestination_atPoint_error(
+            &self,
+            image: &CIImage,
+            from_rect: CGRect,
+            destination: &CIRenderDestination,
+            at_point: CGPoint,
+        ) -> Result<Retained<CIRenderTask>, Retained<NSError>>;
+
         #[unsafe(method(startTaskToClear:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startTaskToClear_error(

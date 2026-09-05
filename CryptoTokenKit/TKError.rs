@@ -35,6 +35,8 @@ impl TKErrorCode {
     pub const BadParameter: Self = Self(-8);
     #[doc(alias = "TKErrorCodeAuthenticationNeeded")]
     pub const AuthenticationNeeded: Self = Self(-9);
+    #[doc(alias = "TKErrorCodeInvalidatedDeviceKey")]
+    pub const InvalidatedDeviceKey: Self = Self(-10);
     #[deprecated]
     pub const TKErrorAuthenticationFailed: Self = Self(TKErrorCode::AuthenticationFailed.0);
     #[deprecated]

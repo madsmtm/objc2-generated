@@ -558,6 +558,30 @@ unsafe impl RefEncode for MTLMathFloatingPointFunctions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The rounding mode for narrowing floating-point conversions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfloatingpointconversionroundingmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct MTLFloatingPointConversionRoundingMode(pub NSInteger);
+impl MTLFloatingPointConversionRoundingMode {
+    /// Round-to-nearest-even (default). Standard IEEE 754 rounding mode.
+    #[doc(alias = "MTLFloatingPointConversionRoundingModeToNearestEven")]
+    pub const ToNearestEven: Self = Self(0);
+    /// Round-toward-zero.
+    #[doc(alias = "MTLFloatingPointConversionRoundingModeTowardZero")]
+    pub const TowardZero: Self = Self(1);
+}
+
+unsafe impl Encode for MTLFloatingPointConversionRoundingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLFloatingPointConversionRoundingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcompileoptions?language=objc)
     #[unsafe(super(NSObject))]
@@ -793,6 +817,20 @@ impl MTLCompileOptions {
         #[unsafe(method(setEnableLogging:))]
         #[unsafe(method_family = none)]
         pub fn setEnableLogging(&self, enable_logging: bool);
+
+        /// Sets the rounding mode for narrowing floating-point conversions. Default is MTLFloatingPointConversionRoundingModeToNearestEven.
+        #[unsafe(method(floatingPointConversionRoundingMode))]
+        #[unsafe(method_family = none)]
+        pub fn floatingPointConversionRoundingMode(&self)
+            -> MTLFloatingPointConversionRoundingMode;
+
+        /// Setter for [`floatingPointConversionRoundingMode`][Self::floatingPointConversionRoundingMode].
+        #[unsafe(method(setFloatingPointConversionRoundingMode:))]
+        #[unsafe(method_family = none)]
+        pub fn setFloatingPointConversionRoundingMode(
+            &self,
+            floating_point_conversion_rounding_mode: MTLFloatingPointConversionRoundingMode,
+        );
     );
 }
 

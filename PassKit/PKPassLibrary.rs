@@ -328,6 +328,7 @@ impl PKPassLibrary {
             feature = "PKSecureElementPass",
             feature = "block2"
         ))]
+        #[deprecated = "No longer supported"]
         #[unsafe(method(signData:withSecureElementPass:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn signData_withSecureElementPass_completion(

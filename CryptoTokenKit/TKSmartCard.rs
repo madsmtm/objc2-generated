@@ -29,7 +29,19 @@ impl TKSmartCardSlotManager {
         #[unsafe(method_family = none)]
         pub unsafe fn defaultManager() -> Option<Retained<TKSmartCardSlotManager>>;
 
-        /// Array of currently known slots in the system.  Slots are identified by NSString name instances.  Use KVO to be notified about slots arrivals and removals.
+        /// Array of currently known slots in the system. Slots are identified by NSString name instances.
+        /// Use KVO to be notified about slot arrivals and removals.
+        ///
+        /// Recommended pattern:
+        ///
+        /// ```text
+        ///  - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+        ///                          change:(NSDictionary *)change context:(void *)context {
+        ///      dispatch_async(self.myQueue, ^{
+        ///          // Process slot changes here
+        ///      });
+        ///  }
+        /// ```
         #[unsafe(method(slotNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn slotNames(&self) -> Retained<NSArray<NSString>>;
@@ -44,7 +56,7 @@ impl TKSmartCardSlotManager {
             reply: &block2::SendableBlock<'static, fn(*mut TKSmartCardSlot)>,
         );
 
-        /// Gets SmartCard reader slot with specified name.  If reader slot with this name does not exist, returns nil.
+        /// Gets SmartCard reader slot with specified name. If reader slot with this name does not exist, returns nil.
         #[unsafe(method(slotNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn slotNamed(&self, name: &NSString) -> Option<Retained<TKSmartCardSlot>>;

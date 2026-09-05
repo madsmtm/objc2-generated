@@ -95,6 +95,12 @@ pub use self::__CTCellularPlanProvisioningRequest::CTCellularPlanProvisioningAdd
 pub use self::__CTCellularPlanProvisioningRequest::CTCellularPlanProvisioningRequest;
 #[cfg(feature = "CTCellularPlanStatus")]
 pub use self::__CTCellularPlanStatus::CTCellularPlanStatus;
+#[cfg(feature = "CTCellularPlanStatus")]
+pub use self::__CTCellularPlanStatus::CTCellularPlanStatusAuthorization;
+#[cfg(feature = "CTCellularPlanStatus")]
+pub use self::__CTCellularPlanStatus::CTCellularPlanStatusAvailability;
+#[cfg(feature = "CTCellularPlanStatus")]
+pub use self::__CTCellularPlanStatus::CTCellularPlanStatusAvailabilityConfidence;
 #[cfg(feature = "CTQuickSwitch")]
 pub use self::__CTQuickSwitch::CTQuickSwitchManager;
 #[cfg(feature = "CTQuickSwitch")]

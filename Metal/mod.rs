@@ -1003,6 +1003,8 @@ pub use self::__MTLLibrary::MTLCompileOptions;
 #[cfg(feature = "MTLLibrary")]
 pub use self::__MTLLibrary::MTLCompileSymbolVisibility;
 #[cfg(feature = "MTLLibrary")]
+pub use self::__MTLLibrary::MTLFloatingPointConversionRoundingMode;
+#[cfg(feature = "MTLLibrary")]
 pub use self::__MTLLibrary::MTLFunction;
 #[cfg(feature = "MTLLibrary")]
 pub use self::__MTLLibrary::MTLFunctionConstant;

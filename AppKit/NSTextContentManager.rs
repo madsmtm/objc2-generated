@@ -7,15 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentmanagerenumerationoptions?language=objc)
+/// Values that control the order in which the framework enumerates text elements.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentmanagerenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextContentManagerEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextContentManagerEnumerationOptions: NSUInteger {
+/// The value that represents no custom enumeration handling.
         #[doc(alias = "NSTextContentManagerEnumerationOptionsNone")]
         const None = 0;
+/// Causes enumerations to start from the end of the text element.
         #[doc(alias = "NSTextContentManagerEnumerationOptionsReverse")]
         const Reverse = 1<<0;
         const _ = !0;
@@ -31,14 +35,44 @@ unsafe impl RefEncode for NSTextContentManagerEnumerationOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextelementprovider?language=objc)
+    /// A protocol the text content manager and its concrete subclasses conform to, which defines the interface for interacting with custom content types of a text document.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextelementprovider?language=objc)
     pub unsafe trait NSTextElementProvider: NSObjectProtocol {
         #[cfg(feature = "NSTextRange")]
+        /// The starting and ending locations for the document.
+        ///
+        /// The subclass could use its own implementation of a location object conforming
+        /// to ``NSTextLocation``.
         #[unsafe(method(documentRange))]
         #[unsafe(method_family = none)]
         fn documentRange(&self) -> Retained<NSTextRange>;
 
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange", feature = "block2"))]
+        /// Enumerates text elements starting at the text location you provide.
+        ///
+        /// If `textLocation` is `nil`, the method uses `documentRange.location` for
+        /// forward enumeration and `documentRange.endLocation` for reverse enumeration.
+        /// When enumerating backward, the method starts with the element preceding the
+        /// one containing `textLocation`. If enumerated at least one element, it
+        /// returns the edge of the enumerated range.
+        ///
+        /// The enumerated range might not match the range of the last element returned.
+        /// It enumerates the elements in the sequence, but it can skip a range (it can
+        /// limit the maximum number of text elements enumerated for a single invocation
+        /// or hide some elements from the layout).
+        ///
+        /// Subclasses are responsible for caching the ``NSTextElement`` objects they return.
+        /// The text layout system uses weak references to track elements internally, and elements that are deallocated without explicit layout invalidation may cause layout fragments to lose their content association.
+        ///
+        /// Returning `false` from block breaks out of the enumeration.
+        ///
+        /// - Parameters:
+        /// - textLocation: The ``NSTextLocation`` at which to start the enumeration.
+        /// - options: One of the possible `NSTextContentManagerEnumerationOptions` directions.
+        /// - block: A block called for each enumerated text element. Return `false` to end the enumeration process.
+        ///
+        /// - Returns: An ``NSTextLocation`` representing the edge of the enumerated range.
         #[unsafe(method(enumerateTextElementsFromLocation:options:usingBlock:))]
         #[unsafe(method_family = none)]
         fn enumerateTextElementsFromLocation_options_usingBlock(
@@ -49,6 +83,18 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
+        /// Replaces the characters specified by range with the text elements you provide.
+        ///
+        /// If the edges of `range` aren't at existing element range boundaries, the
+        /// method either splits the element if it allows the operation (for example,
+        /// ``NSTextParagraph``), or adjusts the replacement range.
+        ///
+        /// > Note:
+        /// > This method is for use by ``NSTextLayoutManager``.
+        ///
+        /// - Parameters:
+        /// - range: An ``NSTextRange``.
+        /// - textElements: The elements to replace the characters at `range`.
         #[unsafe(method(replaceContentsInRange:withTextElements:))]
         #[unsafe(method_family = none)]
         fn replaceContentsInRange_withTextElements(
@@ -58,6 +104,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
+        /// Synchronizes changes to the backing store.
+        ///
+        /// If `completionHandler` is `nil`, performs the operation synchronously. The
+        /// `completionHandler` gets passed `error` if the synchronization fails. It
+        /// should block (or fail if synchronous) when there's an active transaction.
+        ///
+        /// - Parameters:
+        /// - completionHandler: A completion handler to run upon successful completion, or to process an error upon failure.
         #[unsafe(method(synchronizeToBackingStore:))]
         #[unsafe(method_family = none)]
         fn synchronizeToBackingStore(
@@ -66,6 +120,17 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns a new location from location with the offset you provide.
+        ///
+        /// The offset value could be positive or negative indicating the logical
+        /// direction. Could return `nil` when the inputs don't produce any legal
+        /// location (i.e. out of bounds index).
+        ///
+        /// - Parameters:
+        /// - location: An ``NSTextLocation`` in the text element.
+        /// - offset: An offset of the number of characters to or from `location`.
+        ///
+        /// - Returns: A new ``NSTextLocation``, or `nil` if the offset exceeds the bounds of the text.
         #[optional]
         #[unsafe(method(locationFromLocation:withOffset:))]
         #[unsafe(method_family = none)]
@@ -76,6 +141,19 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns the offset between the two specified locations.
+        ///
+        /// The return value could be positive or negative. This method can return
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsnotfound> when the
+        /// method can't represent an offset as an integer value. This can occur, for
+        /// example, if the locations aren't in the same document.
+        ///
+        /// - Parameters:
+        /// - from: A starting location.
+        /// - to: An ending location.
+        ///
+        /// - Returns: An integer that represents the offset between the starting and ending locations.
         #[optional]
         #[unsafe(method(offsetFromLocation:toLocation:))]
         #[unsafe(method_family = none)]
@@ -86,6 +164,17 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(feature = "NSTextRange")]
+        /// A method you implement if the location backing store requires manual adjustment after editing.
+        ///
+        /// When `textRange` is intersecting or following the current edited range, the
+        /// method returns the range adjusted for the modification in the editing
+        /// session. Returns `nil` when no adjustment is necessary.
+        ///
+        /// - Parameters:
+        /// - textRange: An ``NSTextRange`` that the method adjusts.
+        /// - forEditingTextSelection: A Boolean value that indicates if `textRange` is for the text selection associated with the edit session.
+        ///
+        /// - Returns: The adjusted range, or `nil` when no adjustment is necessary.
         #[optional]
         #[unsafe(method(adjustedRangeFromRange:forEditingTextSelection:))]
         #[unsafe(method_family = none)]
@@ -98,7 +187,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentmanager?language=objc)
+    /// An abstract class that defines the interface and a default implementation for managing the text document contents.
+    ///
+    /// The concrete subclass overrides ``NSTextElementProvider`` for managing the
+    /// content backing store. It is the root object that strongly references the
+    /// rest of objects in the TextKit network via an array of
+    /// ``NSTextLayoutManager``. It manages the editing transaction by tracking the
+    /// ``NSTextLayoutManager`` that is active and focused for editing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContentManager;
@@ -122,10 +219,12 @@ extern_conformance!(
 
 impl NSTextContentManager {
     extern_methods!(
+        /// Creates a new content manager.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The delegate for the content manager object.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(
@@ -143,21 +242,41 @@ impl NSTextContentManager {
         );
 
         #[cfg(feature = "NSTextLayoutManager")]
+        /// The array of text layout managers associated with this text content manager.
+        ///
+        /// This property is KVO-compliant.
         #[unsafe(method(textLayoutManagers))]
         #[unsafe(method_family = none)]
         pub fn textLayoutManagers(&self) -> Retained<NSArray<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextLayoutManager")]
+        /// Adds the text layout manager you provide to the list of layout managers.
+        ///
+        /// - Parameters:
+        /// - textLayoutManager: The text layout manager to add.
         #[unsafe(method(addTextLayoutManager:))]
         #[unsafe(method_family = none)]
         pub fn addTextLayoutManager(&self, text_layout_manager: &NSTextLayoutManager);
 
         #[cfg(feature = "NSTextLayoutManager")]
+        /// Removes the text layout manager you specify from the list of layout managers.
+        ///
+        /// - Parameters:
+        /// - textLayoutManager: The text layout manager to remove.
         #[unsafe(method(removeTextLayoutManager:))]
         #[unsafe(method_family = none)]
         pub fn removeTextLayoutManager(&self, text_layout_manager: &NSTextLayoutManager);
 
         #[cfg(feature = "NSTextLayoutManager")]
+        /// The primary text layout manager for this content.
+        ///
+        /// The primary ``NSTextLayoutManager`` interacts with the user, allowing edits.
+        /// Setting this property to an ``NSTextLayoutManager`` not in
+        /// ``textLayoutManagers`` resets it to `nil`. It automatically synchronizes
+        /// pending edits before switching to a new primary object. The operation is
+        /// synchronous.
+        ///
+        /// This property is KVO-compliant.
         #[unsafe(method(primaryTextLayoutManager))]
         #[unsafe(method_family = none)]
         pub fn primaryTextLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
@@ -172,6 +291,15 @@ impl NSTextContentManager {
         );
 
         #[cfg(feature = "block2")]
+        /// Synchronizes changes to all nonprimary text layout managers.
+        ///
+        /// If `completionHandler` is `nil`, this method performs the operation
+        /// synchronously. The framework passes any error to the `completionHandler`.
+        /// The method blocks (or fails, if synchronous) when there's an active
+        /// transaction.
+        ///
+        /// - Parameters:
+        /// - completionHandler: A completion handler that runs on success, or to handle error conditions.
         #[unsafe(method(synchronizeTextLayoutManagers:))]
         #[unsafe(method_family = none)]
         pub fn synchronizeTextLayoutManagers(
@@ -180,21 +308,56 @@ impl NSTextContentManager {
         );
 
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
+        /// Returns an array of text elements that intersect with the range you specify.
+        ///
+        /// This method can return a set of elements that don't fill the entire range if
+        /// the entire range isn't synchronously available. Uses
+        /// ``NSTextElementProvider/enumerateTextElements(from:options:using:)`` to fill
+        /// the array.
+        ///
+        /// - Parameters:
+        /// - range: An ``NSTextRange`` that describes the range of text to process.
+        ///
+        /// - Returns: An array of ``NSTextElement``.
         #[unsafe(method(textElementsForRange:))]
         #[unsafe(method_family = none)]
         pub fn textElementsForRange(&self, range: &NSTextRange)
             -> Retained<NSArray<NSTextElement>>;
 
+        /// Indicates there's an active editing transaction from the primary text layout manager.
+        ///
+        /// The synchronization operations to non-primary text layout managers and the
+        /// backing store block (or fail when synchronous) while this property is `true`.
+        /// Non-primary text layout managers should avoid accessing the elements while
+        /// this is `true`. KVO-compliant.
         #[unsafe(method(hasEditingTransaction))]
         #[unsafe(method_family = none)]
         pub fn hasEditingTransaction(&self) -> bool;
 
         #[cfg(feature = "block2")]
+        /// Performs an editing transaction and invokes a block upon completion.
+        ///
+        /// Invoked by ``primaryTextLayoutManager`` controlling the active editing
+        /// transaction. Can be nested. The outermost transaction toggles
+        /// ``hasEditingTransaction`` and sends synchronization messages if enabled after
+        /// invoking `transaction`.
+        ///
+        /// - Parameters:
+        /// - transaction: The block to execute within the editing transaction.
         #[unsafe(method(performEditingTransactionUsingBlock:))]
         #[unsafe(method_family = none)]
         pub fn performEditingTransactionUsingBlock(&self, transaction: &block2::Block<'_, fn()>);
 
         #[cfg(feature = "NSTextRange")]
+        /// Records information about an edit action to the transaction.
+        ///
+        /// `originalTextRange` is the range edited before the action, and
+        /// `newTextRange` is the corresponding range after the action. The concrete
+        /// subclass should invoke this method for each edit action.
+        ///
+        /// - Parameters:
+        /// - originalTextRange: The range before the edit.
+        /// - newTextRange: The corresponding range after the edit.
         #[unsafe(method(recordEditActionInRange:newTextRange:))]
         #[unsafe(method_family = none)]
         pub fn recordEditActionInRange_newTextRange(
@@ -203,6 +366,9 @@ impl NSTextContentManager {
             new_text_range: &NSTextRange,
         );
 
+        /// Determines if the framework should automatically synchronize all text layout managers when exiting an editing transaction.
+        ///
+        /// The default value is `true`.
         #[unsafe(method(automaticallySynchronizesTextLayoutManagers))]
         #[unsafe(method_family = none)]
         pub fn automaticallySynchronizesTextLayoutManagers(&self) -> bool;
@@ -215,6 +381,9 @@ impl NSTextContentManager {
             automatically_synchronizes_text_layout_managers: bool,
         );
 
+        /// Determines whether to automatically synchronize with the backing store when an editing transaction finishes.
+        ///
+        /// The default value is `false`.
         #[unsafe(method(automaticallySynchronizesToBackingStore))]
         #[unsafe(method_family = none)]
         pub fn automaticallySynchronizesToBackingStore(&self) -> bool;
@@ -246,9 +415,15 @@ impl DefaultRetained for NSTextContentManager {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentmanagerdelegate?language=objc)
+    /// The optional methods that delegates of content manager objects implement for customizing or validating text elements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentmanagerdelegate?language=objc)
     pub unsafe trait NSTextContentManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
+        /// Returns a custom element for the specified location.
+        ///
+        /// When non-nil, `textContentManager` uses the element instead of creating one
+        /// based on its standard mapping logic.
         #[optional]
         #[unsafe(method(textContentManager:textElementAtLocation:))]
         #[unsafe(method_family = none)]
@@ -259,6 +434,9 @@ extern_protocol!(
         ) -> Option<Retained<NSTextElement>>;
 
         #[cfg(feature = "NSTextElement")]
+        /// Gives the delegate a chance to validate a text element before enumeration.
+        ///
+        /// Returning `false` indicates the text element should be skipped from the enumeration.
         #[optional]
         #[unsafe(method(textContentManager:shouldEnumerateTextElement:options:))]
         #[unsafe(method_family = none)]
@@ -272,9 +450,17 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentstoragedelegate?language=objc)
+    /// The optional methods that delegates of content storage objects implement to handle content processing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentstoragedelegate?language=objc)
     pub unsafe trait NSTextContentStorageDelegate: NSTextContentManagerDelegate {
         #[cfg(feature = "NSTextElement")]
+        /// Returns a custom `NSTextParagraph` for the specified range in the content storage's attributed string.
+        ///
+        /// When non-nil, `textContentStorage` uses the text paragraph instead of
+        /// creating the standard ``NSTextParagraph`` with the attributed substring in
+        /// range. The attributed string for a custom text paragraph must have
+        /// `range.length`.
         #[optional]
         #[unsafe(method(textContentStorage:textParagraphWithRange:))]
         #[unsafe(method_family = none)]
@@ -287,7 +473,25 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentstorage?language=objc)
+    /// A concrete object for managing the document's text content and generating the text elements necessary for layout.
+    ///
+    /// An ``NSTextContentStorage`` object provides the backing store for document
+    /// content. It stores the text in an attributed string object, and defaults to
+    /// using an ``NSTextStorage`` object. It also maps portions of the text to
+    /// ``NSTextElement`` objects to organize the text into paragraphs, lists, and
+    /// other common element types found in text content. During layout, TextKit
+    /// uses these elements to lay out and render the content into one or more
+    /// rendering surfaces.
+    ///
+    /// `NSTextContentStorage` is a concrete subclass of ``NSTextContentManager``
+    /// providing support for `NSAttributedString` backing store. It also implements
+    /// `NSTextStorageObserving` participating as a client of `NSTextStorage`. The
+    /// facility only supports a single `NSTextContentStorage` associated with a text
+    /// storage. When ``NSTextStorage`` is non-nil, ``attributedString`` is ignored.
+    /// By default, `NSTextContentStorage` is initialized with `NSTextStorage` as
+    /// the backing store.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentstorage?language=objc)
     #[unsafe(super(NSTextContentManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContentStorage;
@@ -316,6 +520,7 @@ extern_conformance!(
 
 impl NSTextContentStorage {
     extern_methods!(
+        /// The delegate for the content storage object.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(
@@ -332,6 +537,9 @@ impl NSTextContentStorage {
             delegate: Option<&ProtocolObject<dyn NSTextContentStorageDelegate>>,
         );
 
+        /// When `true`, `NSTextContentStorage` assumes the paragraph with `NSTextList` includes the text list marker string.
+        ///
+        /// Utilizes `NSTextList.includesTextListMarkers` as the default value.
         #[unsafe(method(includesTextListMarkers))]
         #[unsafe(method_family = none)]
         pub fn includesTextListMarkers(&self) -> bool;
@@ -341,6 +549,9 @@ impl NSTextContentStorage {
         #[unsafe(method_family = none)]
         pub fn setIncludesTextListMarkers(&self, includes_text_list_markers: bool);
 
+        /// An attributed string that contains the contents of the document.
+        ///
+        /// KVO-compliant.
         #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
         pub fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
@@ -353,6 +564,14 @@ impl NSTextContentStorage {
         pub fn setAttributedString(&self, attributed_string: Option<&NSAttributedString>);
 
         #[cfg(feature = "NSTextElement")]
+        /// Returns a new attributed string for the text element.
+        ///
+        /// Returns `nil` if `textElement` cannot be mapped to `NSAttributedString`.
+        ///
+        /// - Parameters:
+        /// - textElement: The text element to convert.
+        ///
+        /// - Returns: An attributed string representation, or `nil` if unmappable.
         #[unsafe(method(attributedStringForTextElement:))]
         #[unsafe(method_family = none)]
         pub fn attributedStringForTextElement(
@@ -361,6 +580,15 @@ impl NSTextContentStorage {
         ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSTextElement")]
+        /// Returns the text element corresponding to the attributed string.
+        ///
+        /// Returns `nil` when `attributedString` contains attributes not mappable to
+        /// ``NSTextElement``.
+        ///
+        /// - Parameters:
+        /// - attributedString: The attributed string to convert.
+        ///
+        /// - Returns: A text element, or `nil` if the attributes are unmappable.
         #[unsafe(method(textElementForAttributedString:))]
         #[unsafe(method_family = none)]
         pub fn textElementForAttributedString(
@@ -369,6 +597,17 @@ impl NSTextContentStorage {
         ) -> Option<Retained<NSTextElement>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns a new text location object based on an existing location and offset you provide.
+        ///
+        /// The offset value could be positive or negative indicating the logical
+        /// direction. Could return `nil` when the inputs don't produce any legal
+        /// location (i.e. out of bounds index).
+        ///
+        /// - Parameters:
+        /// - location: The base location.
+        /// - offset: The offset from the base location.
+        ///
+        /// - Returns: A new location, or `nil` if the result would be out of bounds.
         #[unsafe(method(locationFromLocation:withOffset:))]
         #[unsafe(method_family = none)]
         pub fn locationFromLocation_withOffset(
@@ -378,6 +617,19 @@ impl NSTextContentStorage {
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns the number of characters between the specified locations.
+        ///
+        /// The return value could be positive or negative. Could return `NSNotFound`
+        /// when the offset cannot be represented in an integer value (i.e. locations
+        /// are not in the same document).
+        ///
+        /// - Parameters:
+        /// - from: The starting location.
+        /// - to: The ending location.
+        ///
+        /// - Returns: The signed offset, or
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsnotfound> if the locations are not in the same document.
         #[unsafe(method(offsetFromLocation:toLocation:))]
         #[unsafe(method_family = none)]
         pub fn offsetFromLocation_toLocation(
@@ -387,6 +639,19 @@ impl NSTextContentStorage {
         ) -> NSInteger;
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns the text range, if any, in the backing store that required manual adjustment after editing.
+        ///
+        /// Should be implemented if the location backing store requires manual
+        /// adjustment after editing. When `textRange` is intersecting or following the
+        /// current edited range, the method returns the range adjusted for the
+        /// modification in the editing session. Returns `nil` when no adjustment is
+        /// necessary.
+        ///
+        /// - Parameters:
+        /// - textRange: The range to adjust.
+        /// - forEditingTextSelection: Indicates if `textRange` is for the text selection associated with the edit session.
+        ///
+        /// - Returns: The adjusted range, or `nil` if no adjustment is necessary.
         #[unsafe(method(adjustedRangeFromRange:forEditingTextSelection:))]
         #[unsafe(method_family = none)]
         pub fn adjustedRangeFromRange_forEditingTextSelection(
@@ -400,6 +665,7 @@ impl NSTextContentStorage {
 /// Methods declared on superclass `NSTextContentManager`.
 impl NSTextContentStorage {
     extern_methods!(
+        /// Creates a new content manager.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -423,7 +689,9 @@ impl DefaultRetained for NSTextContentStorage {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentstorageunsupportedattributeaddednotification?language=objc)
+    /// Posted by `NSTextContentStorage` when a text attribute unsupported by `NSTextContentStorage` is added to the underlying text storage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontentstorageunsupportedattributeaddednotification?language=objc)
     pub static NSTextContentStorageUnsupportedAttributeAddedNotification:
         &'static NSNotificationName;
 }

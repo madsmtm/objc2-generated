@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextelement?language=objc)
+    /// An abstract base class that represents the smallest units of text layout such as paragraphs or attachments.
+    ///
+    /// A text element is associated with an ``NSTextContentManager``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextElement;
@@ -21,6 +25,10 @@ extern_conformance!(
 impl NSTextElement {
     extern_methods!(
         #[cfg(feature = "NSTextContentManager")]
+        /// Creates a new text element with the content manager you provide.
+        ///
+        /// - Parameters:
+        /// - textContentManager: The content manager to associate with this element.
         #[unsafe(method(initWithTextContentManager:))]
         #[unsafe(method_family = init)]
         pub fn initWithTextContentManager(
@@ -29,6 +37,9 @@ impl NSTextElement {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextContentManager")]
+        /// The value that represents the current content manager.
+        ///
+        /// A text element can migrate between text content managers.
         #[unsafe(method(textContentManager))]
         #[unsafe(method_family = none)]
         pub fn textContentManager(&self) -> Option<Retained<NSTextContentManager>>;
@@ -42,6 +53,7 @@ impl NSTextElement {
         pub fn setTextContentManager(&self, text_content_manager: Option<&NSTextContentManager>);
 
         #[cfg(feature = "NSTextRange")]
+        /// A range value that represents the range of the element inside the document.
         #[unsafe(method(elementRange))]
         #[unsafe(method_family = none)]
         pub fn elementRange(&self) -> Option<Retained<NSTextRange>>;
@@ -52,14 +64,22 @@ impl NSTextElement {
         #[unsafe(method_family = none)]
         pub fn setElementRange(&self, element_range: Option<&NSTextRange>);
 
+        /// An array of zero or more child text elements.
+        ///
+        /// A concrete `NSTextElement` subclass can be structured in a tree. An element
+        /// can have zero or more child elements.
         #[unsafe(method(childElements))]
         #[unsafe(method_family = none)]
         pub fn childElements(&self) -> Retained<NSArray<NSTextElement>>;
 
+        /// A value that represents the parent element if this text element is a child of an enclosing element.
         #[unsafe(method(parentElement))]
         #[unsafe(method_family = none)]
         pub fn parentElement(&self) -> Option<Retained<NSTextElement>>;
 
+        /// A Boolean value that indicates whether this element is in the text layout.
+        ///
+        /// When `true`, the element is enumerated by ``NSTextContentManager``.
         #[unsafe(method(isRepresentedElement))]
         #[unsafe(method_family = none)]
         pub fn isRepresentedElement(&self) -> bool;
@@ -87,7 +107,9 @@ impl DefaultRetained for NSTextElement {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextparagraph?language=objc)
+    /// A class that represents a single paragraph backed by an attributed string as the contents.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextparagraph?language=objc)
     #[unsafe(super(NSTextElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextParagraph;
@@ -99,6 +121,10 @@ extern_conformance!(
 
 impl NSTextParagraph {
     extern_methods!(
+        /// Creates a new paragraph with the attributed string you provide.
+        ///
+        /// - Parameters:
+        /// - attributedString: The attributed string for the paragraph contents.
         #[unsafe(method(initWithAttributedString:))]
         #[unsafe(method_family = init)]
         pub fn initWithAttributedString(
@@ -106,16 +132,26 @@ impl NSTextParagraph {
             attributed_string: Option<&NSAttributedString>,
         ) -> Retained<Self>;
 
+        /// The source attributed string.
         #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
         pub fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "NSTextRange")]
+        /// The range of the paragraph's content within the document.
+        ///
+        /// The paragraph's content is the text up to but not including the paragraph
+        /// separator. Together with ``paragraphSeparatorRange``, this range covers the
+        /// entire ``NSTextElement/elementRange``.
         #[unsafe(method(paragraphContentRange))]
         #[unsafe(method_family = none)]
         pub fn paragraphContentRange(&self) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// The range of the paragraph separator within the document.
+        ///
+        /// Together with ``paragraphContentRange``, this range covers the entire
+        /// ``NSTextElement/elementRange``.
         #[unsafe(method(paragraphSeparatorRange))]
         #[unsafe(method_family = none)]
         pub fn paragraphSeparatorRange(&self) -> Option<Retained<NSTextRange>>;
@@ -126,6 +162,10 @@ impl NSTextParagraph {
 impl NSTextParagraph {
     extern_methods!(
         #[cfg(feature = "NSTextContentManager")]
+        /// Creates a new text element with the content manager you provide.
+        ///
+        /// - Parameters:
+        /// - textContentManager: The content manager to associate with this element.
         #[unsafe(method(initWithTextContentManager:))]
         #[unsafe(method_family = init)]
         pub fn initWithTextContentManager(

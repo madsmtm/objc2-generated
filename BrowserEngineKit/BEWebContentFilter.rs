@@ -84,27 +84,6 @@ impl BEWebContentFilter {
         /// response body representing the HTML of the blocking content that will be displayed
         /// in either the blocked main document or blocked subframe.
         ///
-        /// Parameter `url`: The URL to be evaluated.
-        ///
-        /// Parameter `mainDocumentURL`: The URL of the main document, also the root URL of the
-        /// transitive trust policy
-        ///
-        /// Parameter `completionHandler`: The completion block to be invoked when evaluation is
-        /// complete.
-        #[unsafe(method(evaluateURL:mainDocumentURL:completionHandler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn evaluateURL_mainDocumentURL_completionHandler(
-            &self,
-            url: &NSURL,
-            main_document_url: Option<&NSURL>,
-            completion_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSData)>,
-        );
-
-        #[cfg(feature = "block2")]
-        /// Evaluates whether a URL should be blocked and if yes, provides a
-        /// response body representing the HTML of the blocking content that will be displayed
-        /// in either the blocked main document or blocked subframe.
-        ///
         /// Parameter `url`: The URL to be evaluated, either a main frame or subframe URL.
         ///
         /// Parameter `mainFrameURL`: The URL of the main document and root of the transitive trust
@@ -139,28 +118,6 @@ impl BEWebContentFilter {
             &self,
             url: &NSURL,
             completion_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
-        );
-
-        #[cfg(feature = "block2")]
-        /// Request a blocked URL to be added to built-in web content filter's allowlist
-        ///
-        /// Parameter `url`: The URL to be added.
-        ///
-        /// Parameter `referrerURL`: The URL that initiated the permission request. This determines whether or not parent approval is done remotely or on-device.
-        ///
-        /// Parameter `completionHandler`: The completion block to be called when the add
-        /// operation is complete, with result of the operation. Result is BEWebContentFilterPermissionDecision that holds
-        /// the outcome of the request for access.
-        #[unsafe(method(requestPermissionForURL:referrerURL:completionHandler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn requestPermissionForURL_referrerURL_completionHandler(
-            &self,
-            url: &NSURL,
-            referrer_url: Option<&NSURL>,
-            completion_handler: &block2::SendableBlock<
-                'static,
-                fn(BEWebContentFilterPermissionDecision, *mut NSError),
-            >,
         );
 
         #[cfg(feature = "block2")]

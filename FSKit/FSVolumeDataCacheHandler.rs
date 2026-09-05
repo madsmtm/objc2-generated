@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// FSDataCacheMode defines the cache mode requested by the kernel for data operations.
+/// A type that defines the cache mode requested by the kernel for data operations.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdatacachemode?language=objc)
 // NS_ENUM
@@ -15,13 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSDataCacheMode(pub NSInteger);
 impl FSDataCacheMode {
-    /// No active caching.
+    /// A mode that indicates no active caching.
     #[doc(alias = "FSDataCacheModeNone")]
     pub const None: Self = Self(0);
-    /// Read access with caching enabled.
+    /// A mode that indicates read access with caching enabled.
     #[doc(alias = "FSDataCacheModeReadWithCache")]
     pub const ReadWithCache: Self = Self(1);
-    /// Read-write access with caching enabled.
+    /// A mode that indicates read-write access with caching enabled.
     #[doc(alias = "FSDataCacheModeReadWriteWithCache")]
     pub const ReadWriteWithCache: Self = Self(2);
 }
@@ -34,7 +34,7 @@ unsafe impl RefEncode for FSDataCacheMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// FSKernelCacheCoherencyType defines how data is cached by the kernel.
+/// A type that defines how the kernel caches data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fskernelcachecoherencytype?language=objc)
 // NS_ENUM
@@ -42,16 +42,16 @@ unsafe impl RefEncode for FSDataCacheMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSKernelCacheCoherencyType(pub NSInteger);
 impl FSKernelCacheCoherencyType {
-    /// No caching - all I/O goes directly to storage.
+    /// A type that indicates all I/O goes directly to storage, without caching.
     #[doc(alias = "FSKernelCacheCoherencyTypeNoCache")]
     pub const NoCache: Self = Self(0);
-    /// Cache only reads, writes bypass cache and go directly to storage.
+    /// A type that indicates that writes bypass the cache and go directly to storage.
     #[doc(alias = "FSKernelCacheCoherencyTypeReadCache")]
     pub const ReadCache: Self = Self(1);
-    /// Write-through caching: writes update both cache and storage synchronously.
+    /// A type that indicates writes update cache and storage synchronously.
     #[doc(alias = "FSKernelCacheCoherencyTypeWriteThrough")]
     pub const WriteThrough: Self = Self(2);
-    /// Write-back caching: writes update cache only, deferred write to storage.
+    /// A type that indicates writes immediately update the cache only, followed by a deferred write to storage.
     #[doc(alias = "FSKernelCacheCoherencyTypeWriteBack")]
     pub const WriteBack: Self = Self(3);
 }
@@ -64,7 +64,7 @@ unsafe impl RefEncode for FSKernelCacheCoherencyType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// FSKernelCacheCoherencyAction defines actions for cache state changes.
+/// A type that defines actions for cache state changes.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fskernelcachecoherencyaction?language=objc)
 // NS_ENUM
@@ -72,24 +72,24 @@ unsafe impl RefEncode for FSKernelCacheCoherencyType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSKernelCacheCoherencyAction(pub NSInteger);
 impl FSKernelCacheCoherencyAction {
-    /// Flush dirty data from cache to storage (preserves cache contents).
+    /// An action to flush dirty data from cache to storage, preserving cache contents.
     #[doc(alias = "FSKernelCacheCoherencyActionPush")]
     pub const Push: Self = Self(0);
-    /// Flush dirty data to storage and invalidate (clear) the cache.
+    /// An action to flush dirty data to storage and invalidate (clear) the cache.
     #[doc(alias = "FSKernelCacheCoherencyActionPushInvalidate")]
     pub const PushInvalidate: Self = Self(1);
-    /// Invalidate (clear) cache, discarding any dirty data without writing to storage.
+    /// An action to invalidate (clear) the cache, discarding any dirty data without writing to storage.
     #[doc(alias = "FSKernelCacheCoherencyActionInvalidate")]
     pub const Invalidate: Self = Self(2);
-    /// Update coherency mode while keeping cache valid (no push/invalidate required).
+    /// An action to update the coherency mode while keeping the cache valid, requiring no push or invalidation.
     #[doc(alias = "FSKernelCacheCoherencyActionUpdate")]
     pub const Update: Self = Self(3);
-    /// Invalidate all caches, revoke all access to the item, and trigger vnode reclamation.
+    /// An action to invalidate all caches, revoke all access to the item, and trigger vnode reclamation.
     ///
-    /// This action should be used when the module determines that an item no longer exists or
-    /// should no longer be accessible. Common scenarios include:
-    /// - The item was deleted by another client (detected via server notification)
-    /// - The module received a server callback indicating the file is gone
+    /// Use this action when the module determines that an item no longer exists or
+    /// is no longer accessible. Common scenarios include:
+    /// - Another client deleted the item, as detected via server notification.
+    /// - The module received a server callback indicating the file's absence.
     #[doc(alias = "FSKernelCacheCoherencyActionRevoke")]
     pub const Revoke: Self = Self(4);
 }
@@ -108,45 +108,54 @@ extern_protocol!(
     /// A volume that conforms to this protocol enables kernel data caching for improved I/O performance.
     /// This protocol allows filesystem modules to negotiate cache modes with the kernel and manage cache coherency.
     ///
-    /// When a file is opened, the module receives the requested ``FSDataCacheMode`` and returns a
-    /// ``FSKernelCacheCoherencyType`` indicating what caching behavior it can support. The kernel then
+    /// When a file opens, the module receives the requested ``FSVolume/DataCacheMode`` and returns a
+    /// ``FSVolume/KernelCacheCoherencyType`` indicating the kind of caching behavior it can support. The kernel then
     /// caches data according to the granted coherency type. The module can dynamically upgrade or
     /// downgrade cache modes as conditions change.
     ///
-    /// The kernel will request a caching mode expressed as a ``FSDataCacheMode`` value, which indicates
+    /// The kernel requests a caching mode expressed as a ``FSVolume/DataCacheMode`` value, which indicates
     /// what the kernel would like to cache (read-only data, read-write data, or no caching). The module
-    /// will then reply with a specific ``FSKernelCacheCoherencyType`` value, which defines how the kernel
+    /// then replies with a specific ``FSVolume/KernelCacheCoherencyType`` value, which defines how the kernel
     /// should cache the data (no caching, read-only caching, write-through caching, or write-back caching).
     /// When the module detects an asynchronous condition requiring a change in caching mode (such as an
-    /// lease break), the module will use a value from ``FSKernelCacheCoherencyAction`` to instruct the kernel
+    /// lease break), the module uses a value from ``FSVolume/KernelCacheCoherencyAction`` to instruct the kernel
     /// how to handle any cached data (push dirty pages, invalidate cache, or update coherency mode).
     ///
     /// The protocol supports deferred closing, where the kernel maintains cache state even after a file
-    /// is closed, enabling improved performance for frequently accessed files. ``FSKernelCacheCoherencyType/readCache``,
-    /// ``FSKernelCacheCoherencyType/writeThrough``, and ``FSKernelCacheCoherencyType/writeBack`` modes
+    /// is closed, enabling improved performance for frequently accessed files. The ``FSVolume/KernelCacheCoherencyType/readCache``,
+    /// ``FSVolume/KernelCacheCoherencyType/writeThrough``, and ``FSVolume/KernelCacheCoherencyType/writeBack`` modes
     /// support deferred closing.
     ///
-    /// **Cache Mode to Coherency Type Mapping:**
-    /// - ``FSDataCacheMode/none`` → ``FSKernelCacheCoherencyType/noCache`` only
-    /// - ``FSDataCacheMode/readWithCache`` → ``FSKernelCacheCoherencyType/noCache``, ``FSKernelCacheCoherencyType/readCache``
-    /// - ``FSDataCacheMode/readWriteWithCache`` → ``FSKernelCacheCoherencyType/noCache``, ``FSKernelCacheCoherencyType/readCache``, ``FSKernelCacheCoherencyType/writeBack``, ``FSKernelCacheCoherencyType/writeThrough``
+    /// The following table shows the mapping of cache modes to supported coherency types.
     ///
-    /// **Coherency Transition Rules:**
+    /// | Cache mode | Coherency type |
+    /// |------------|-----------------|
+    /// | ``FSVolume/DataCacheMode/none`` | ``FSVolume/KernelCacheCoherencyType/noCache`` |
+    /// | ``FSVolume/DataCacheMode/readWithCache`` | ``FSVolume/KernelCacheCoherencyType/noCache`` or ``FSVolume/KernelCacheCoherencyType/readCache`` |
+    /// | ``FSVolume/DataCacheMode/readWriteWithCache`` | ``FSVolume/KernelCacheCoherencyType/noCache``, ``FSVolume/KernelCacheCoherencyType/readCache``, ``FSVolume/KernelCacheCoherencyType/writeBack`` or ``FSVolume/KernelCacheCoherencyType/writeThrough`` |
     ///
-    /// Upgrades (less restrictive - use ``upgrade(_:cacheMode:context:replyHandler:)``):
-    /// - Called by the kernel when transitioning to more permissive caching
-    /// - Examples: ``noCache`` → ``readCache``, ``readCache`` → ``writeBack``
-    /// - No flush/purge required
+    /// ### Supporting coherency transitions
     ///
-    /// Downgrades (more restrictive - use ``FSVolume`` method ``setCacheState(for:cacheMode:coherencyType:action:)``):
-    /// - Initiated by the module when conditions change
-    /// - MUST use ``FSKernelCacheCoherencyAction/push``, ``FSKernelCacheCoherencyAction/pushInvalidate``, or ``FSKernelCacheCoherencyAction/invalidate`` actions
-    /// - MUST handle dirty data before downgrading
-    /// - Examples: ``writeBack`` → ``readCache``, ``writeThrough`` → ``noCache``
-    /// - Requires flush/purge of cached data
+    /// Transitioning between coherency types requires different behaviors from your volume implementation, depending on whether the new type is more or less permissive than its current value.
+    /// The following table expresses the permissiveness of the coherency types.
     ///
-    /// > Important: Filesystems that don't conform to this protocol can still be cached by the kernel,
-    /// but they have no control over caching behavior. The kernel caches data as it sees fit.
+    /// | Coherency type | Permissiveness |
+    /// |----------------|----------------|
+    /// | ``FSVolume/KernelCacheCoherencyType/noCache`` | Least permissive |
+    /// | ``FSVolume/KernelCacheCoherencyType/readCache`` |  |
+    /// | ``FSVolume/KernelCacheCoherencyType/writeBack`` |  |
+    /// | ``FSVolume/KernelCacheCoherencyType/writeThrough`` | Most permissive |
+    ///
+    /// When transitioning to more permissive caching, kernel performs an "upgrade" by calling ``upgrade(_:cacheMode:context:replyHandler:)``.
+    /// Your volume doesn't need to perform a flush or purge when upgrading to a more permissive coherency type.
+    ///
+    /// Transitioning to a less permissive coherency type is considered a "downgrade".
+    /// Your module initiates this process by calling ``FSVolume/setCacheState(for:cacheMode:coherencyType:action:)`` when conditions change.
+    /// In this scenario, set the `action` to ``FSVolume/KernelCacheCoherencyAction/push``, ``FSVolume/KernelCacheCoherencyAction/pushInvalidate``, or ``FSVolume/KernelCacheCoherencyAction/invalidate``.
+    /// Handle any dirty data by flushing or purging it before downgrading with this method call.
+    ///
+    /// > Important: If a file system doesn't conform to this protocol, the kernel may still cache it.
+    /// However, such a file system has no control over caching behavior; the kernel caches data as it sees fit.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumedatacachehandler?language=objc)
     pub unsafe trait FSVolumeDataCacheHandler: NSObjectProtocol {
@@ -168,20 +177,20 @@ extern_protocol!(
         ))]
         /// Opens an item with cache mode negotiation.
         ///
-        /// FSKit calls this method when a file is opened, providing the requested cache mode.
-        /// Module implementation should determine what level of caching it can support for this item,
+        /// FSKit calls this method when opening a file, providing the requested cache mode.
+        /// The module implementation determines what level of caching it can support for this item,
         /// considering factors such as server lease availability, file locking state, or other coherency requirements.
         ///
         /// The granted coherency type must be compatible with the requested cache mode, as defined
-        /// by the cache mode to coherency type mappings documented in this protocol. If the module grants
-        /// a coherency type that exceeds the cache mode's permissions, the kernel will use downgraded valid coherency type.
+        /// by the cache-mode-to-coherency-type mappings documented in the discussion of the ``FSVolume/DataCacheHandler`` protocol. If the module grants
+        /// a coherency type that exceeds the cache mode's permissions, the kernel downgrades to a valid coherency type.
         ///
         /// - Parameters:
         /// - item: The item to open.
-        /// - modes: The open modes (read, write, etc.).
-        /// - cacheMode: The requested cache mode indicating what data can be cached.
+        /// - modes: The open modes, such as read and write.
+        /// - cacheMode: The requested cache mode, indicating what data is eligible for caching.
         /// - context: An object that enables context-aware file system decisions throughout the operation.
-        /// - reply: A block or closure to indicate success or failure. If opening succeeds, pass an instance of ``FSOpenItemResult`` containing the granted ``FSKernelCacheCoherencyType``, along with a `nil` error. If opening fails, pass the relevant error as the second parameter; FSKit ignores the ``FSOpenItemResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        /// - reply: A block or closure to indicate success or failure. If opening succeeds, pass an instance of ``FSOpenItemResult`` containing the granted ``FSVolume/KernelCacheCoherencyType``, along with a `nil` error. If opening fails, pass the relevant error as the second parameter; FSKit ignores the ``FSOpenItemResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
         #[unsafe(method(openItem:modes:cacheMode:context:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn openItem_modes_cacheMode_context_replyHandler(
@@ -196,14 +205,13 @@ extern_protocol!(
         #[cfg(all(feature = "FSContext", feature = "FSItem", feature = "block2"))]
         /// Closes an item and releases associated cache resources.
         ///
-        /// FSKit calls this method when a file is being fully closed and all caching for the item
-        /// has been finalized by the kernel.
+        /// FSKit calls this method when fully closing a file, and after the kernel finalizes all caching for the item.
         ///
-        /// This method is called once per item when all references are released and the kernel
-        /// has completed its cache management. The module should perform any necessary cleanup
+        /// Your module receives this call once per item when all references are released and the kernel
+        /// has completed its cache management. The module performs any necessary cleanup
         /// operations for the item.
         ///
-        /// Note: This method has no error return because the OS considers the file closed regardless
+        /// > Note: This method doesn't return or throw an error because the OS considers the file closed regardless
         /// of whether the module encounters any issues during cleanup.
         ///
         /// - Parameters:
@@ -233,7 +241,7 @@ extern_protocol!(
         /// - item: The item for which to upgrade the cache mode.
         /// - cacheMode: The new (more permissive) cache mode being requested.
         /// - context: An object that enables context-aware file system decisions throughout the operation.
-        /// - reply: A block or closure to indicate success or failure. If successful, pass an instance of ``FSUpgradeItemResult`` containing the granted ``FSKernelCacheCoherencyType``, along with a `nil` error. If upgrading fails, pass the relevant error as the second parameter; FSKit ignores the ``FSUpgradeItemResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        /// - reply: A block or closure to indicate success or failure. If successful, pass an instance of ``FSUpgradeItemResult`` containing the granted ``FSVolume/KernelCacheCoherencyType``, along with a `nil` error. If upgrading fails, pass the relevant error as the second parameter; FSKit ignores the ``FSUpgradeItemResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
         #[unsafe(method(upgradeItem:cacheMode:context:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn upgradeItem_cacheMode_context_replyHandler(

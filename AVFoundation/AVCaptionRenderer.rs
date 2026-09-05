@@ -67,8 +67,6 @@ impl AVCaptionRenderer {
         #[cfg(feature = "objc2-core-media")]
         /// Determine render time ranges within an enclosing time range to account for visual changes among captions.
         ///
-        /// Returns: An NSArray of AVCaptionRendererScenes; perhaps empty if there are no captions intersecting with the consideredTimeRange
-        ///
         /// This is an optional service useful for optimizing drawing. A client can perform drawing without it.
         ///
         /// As captions may become active and inactive throughout the timeline, this method will return a NSArray holding scene objects with time ranges on whose edges there's a visual change. The client can use the ranges of time between these edges with -renderInContext:atTime: to ensure all visual changes are rendered. The returned time ranges consider activation/deactivation of captions, temporal overlapping, and intra-caption timing requirements (e.g., character reveal animations). Time ranges may be returned where no captions are active as this is also a change in the caption "scene".
@@ -76,6 +74,8 @@ impl AVCaptionRenderer {
         /// The returned NSArray contains AVCaptionRendererScenes, each holding the CMTimeRange of that scene but potentially other information that may be useful to the client during renderering.
         ///
         /// The consideredTimeRange parameter is a CMTimeRange expressing the limits for consideration. The extent of this range does not need to correspond to the timing of captions. It might be the range from 0 to some duration. For efficiency, the range can be limited to a window of time. It is also possible to use the range anchored at a time and extending in the direction of playback.
+        ///
+        /// - Returns: An NSArray of AVCaptionRendererScenes; perhaps empty if there are no captions intersecting with the consideredTimeRange
         #[unsafe(method(captionSceneChangesInRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captionSceneChangesInRange(
@@ -110,15 +110,13 @@ impl AVCaptionRenderer {
         ///
         /// Returns an attributed string containing a preview of captions rendered using the specified profile ID.
         ///
-        /// Parameter `profileID`: The identifier of the accessibility profile to use for caption appearance. Profile IDs can be obtained from MACaptionAppearanceCopyProfileIDs(). This determines font, color, background, and other visual characteristics.
+        /// - Important: It is strongly recommended that the caller take appropriate measures to prevent blocking essential services such as the user interface, for example, by avoiding calling this method in the main thread.
         ///
-        /// Parameter `extendedLanguageTag`: The IETF BCP 47 (RFC 4646) language identifier that will be used to generate the localized caption preview text.  If nil, the system language will be used.
+        /// - Parameter profileID: The identifier of the accessibility profile to use for caption appearance. Profile IDs can be obtained from MACaptionAppearanceCopyProfileIDs(). This determines font, color, background, and other visual characteristics.
+        /// - Parameter extendedLanguageTag: The IETF BCP 47 (RFC 4646) language identifier that will be used to generate the localized caption preview text. If nil, the system language will be used.
+        /// - Parameter renderSize: The size of the layer into which the captions will be rendered. This determines the layout and positioning of the caption text.
         ///
-        /// Parameter `renderSize`: The size of the layer into which the captions will be rendered. This determines the layout and positioning of the caption text.
-        ///
-        /// Returns: An NSAttributedString containing the caption preview.
-        ///
-        /// It is strongly recommended that the caller take appropriate measures to prevent blocking essential services such as the user interface, for example, by avoiding calling this method in the main thread.
+        /// - Returns: An NSAttributedString containing the caption preview.
         #[unsafe(method(captionPreviewForProfileID:extendedLanguageTag:renderSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captionPreviewForProfileID_extendedLanguageTag_renderSize(

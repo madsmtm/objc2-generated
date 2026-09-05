@@ -96,6 +96,38 @@ extern "C" {
     pub static AXReduceHighlightingEffectsEnabledDidChangeNotification: &'static NSNotificationName;
 }
 
+/// Returns whether application accessibility is currently enabled for
+/// this process.
+///
+/// Returns `YES` when at least one assistive technology — such as
+/// VoiceOver, Switch Control, Voice Control, or Full Keyboard Access —
+/// has requested access to this app's accessibility information.
+/// Apps can use this signal to avoid building expensive accessibility
+/// data when no assistive technology is consuming it.
+///
+/// The value can change during a process's lifetime; observe
+/// `AXApplicationAccessibilityEnabledDidChangeNotification` to react
+/// to changes.
+#[inline]
+pub unsafe fn AXApplicationAccessibilityEnabled() -> bool {
+    extern "C-unwind" {
+        fn AXApplicationAccessibilityEnabled() -> Bool;
+    }
+    unsafe { AXApplicationAccessibilityEnabled() }.as_bool()
+}
+
+extern "C" {
+    /// Posted when the value returned by `AXApplicationAccessibilityEnabled()`
+    /// changes.
+    ///
+    /// Posted on the main thread. The notification's `object` is `nil` and
+    /// its `userInfo` dictionary is empty — clients should re-read
+    /// `AXApplicationAccessibilityEnabled()` when handling the notification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axapplicationaccessibilityenableddidchangenotification?language=objc)
+    pub static AXApplicationAccessibilityEnabledDidChangeNotification: &'static NSNotificationName;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axsettingsfeature?language=objc)
 // NS_ENUM
 #[repr(transparent)]

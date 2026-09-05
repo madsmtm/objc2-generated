@@ -337,6 +337,7 @@ impl WKExtension {
         /// # Safety
         ///
         /// `user_info` should be of the correct type.
+        #[deprecated]
         #[unsafe(method(scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBackgroundRefreshWithPreferredDate_userInfo_scheduledCompletion(
@@ -350,7 +351,7 @@ impl WKExtension {
         /// # Safety
         ///
         /// `user_info` should be of the correct type.
-        #[deprecated = "Snapshots may no longer be manually scheduled."]
+        #[deprecated]
         #[unsafe(method(scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleSnapshotRefreshWithPreferredDate_userInfo_scheduledCompletion(
@@ -370,7 +371,6 @@ impl WKApplication {
         /// # Safety
         ///
         /// `user_info` should be of the correct type.
-        #[deprecated]
         #[unsafe(method(scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBackgroundRefreshWithPreferredDate_userInfo_scheduledCompletion(
@@ -384,7 +384,6 @@ impl WKApplication {
         /// # Safety
         ///
         /// `user_info` should be of the correct type.
-        #[deprecated = "Snapshots may no longer be manually scheduled."]
         #[unsafe(method(scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleSnapshotRefreshWithPreferredDate_userInfo_scheduledCompletion(

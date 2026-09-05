@@ -12,21 +12,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragmentenumerationoptions?language=objc)
+/// Values that describe options for enumerating text layout fragments.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragmentenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutFragmentEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextLayoutFragmentEnumerationOptions: NSUInteger {
+/// The value that represents no selected enumeration options.
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsNone")]
         const None = 0;
+/// Enumerates in reverse from the layout fragment before the one containing this location.
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsReverse")]
         const Reverse = 1<<0;
+/// When enumerating, tells the layout fragments to estimate their size.
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEstimatesSize")]
         const EstimatesSize = 1<<1;
+/// When enumerating, tells the layout fragments to lay out their contents.
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresLayout")]
         const EnsuresLayout = 1<<2;
+/// Synthesizes the extra line fragment when necessary.
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment")]
         const EnsuresExtraLineFragment = 1<<3;
         const _ = !0;
@@ -41,18 +48,24 @@ unsafe impl RefEncode for NSTextLayoutFragmentEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragmentstate?language=objc)
+/// Values that describe the possible layout states of a text layout fragment.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragmentstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutFragmentState(pub NSUInteger);
 impl NSTextLayoutFragmentState {
+    /// No layout information is available.
     #[doc(alias = "NSTextLayoutFragmentStateNone")]
     pub const None: Self = Self(0);
+    /// The text layout manager hasn't performed a full layout yet for the region covered by this layout fragment and is returning estimated bounds.
     #[doc(alias = "NSTextLayoutFragmentStateEstimatedUsageBounds")]
     pub const EstimatedUsageBounds: Self = Self(1);
+    /// The layout fragment measurements are available without text line fragments.
     #[doc(alias = "NSTextLayoutFragmentStateCalculatedUsageBounds")]
     pub const CalculatedUsageBounds: Self = Self(2);
+    /// Measurements for the text line fragments and layout fragment are available.
     #[doc(alias = "NSTextLayoutFragmentStateLayoutAvailable")]
     pub const LayoutAvailable: Self = Self(3);
 }
@@ -92,6 +105,11 @@ extern_conformance!(
 impl NSTextLayoutFragment {
     extern_methods!(
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
+        /// Creates a new layout fragment using the provided text element and range.
+        ///
+        /// - Parameters:
+        /// - textElement: The text element for this layout fragment.
+        /// - rangeInElement: The range inside the text element, or `nil` for the entire element.
         #[unsafe(method(initWithTextElement:range:))]
         #[unsafe(method_family = init)]
         pub fn initWithTextElement_range(
@@ -103,26 +121,45 @@ impl NSTextLayoutFragment {
         // -init (unavailable)
 
         #[cfg(feature = "NSTextLayoutManager")]
+        /// The text layout manager for this text layout fragment.
         #[unsafe(method(textLayoutManager))]
         #[unsafe(method_family = none)]
         pub fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextElement")]
+        /// The parent text element.
         #[unsafe(method(textElement))]
         #[unsafe(method_family = none)]
         pub fn textElement(&self) -> Option<Retained<NSTextElement>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// The range inside the text element relative to the document origin.
         #[unsafe(method(rangeInElement))]
         #[unsafe(method_family = none)]
         pub fn rangeInElement(&self) -> Retained<NSTextRange>;
 
         #[cfg(feature = "NSTextLineFragment")]
+        /// An array of text line fragments.
+        ///
+        /// Valid when ``state`` is `NSTextLayoutFragmentStateLayoutAvailable`.
+        /// KVO-compliant.
         #[unsafe(method(textLineFragments))]
         #[unsafe(method_family = none)]
         pub fn textLineFragments(&self) -> Retained<NSArray<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "objc2-core-foundation"))]
+        /// Returns the text line fragment for the vertical offset you provide, or the closest text line fragment beyond the vertical offset.
+        ///
+        /// Set `requiresExactMatch` to `true` to find the text line fragment that
+        /// contains the vertical offset, or set `requiresExactMatch` to `false` to find
+        /// the closest text line fragment matching or beyond the vertical offset.
+        /// Returns `nil` if there isn't a match.
+        ///
+        /// - Parameters:
+        /// - verticalOffset: The vertical offset to search for.
+        /// - requiresExactMatch: When `false`, returns the closest line fragment beyond `verticalOffset` if no line fragment contains it.
+        ///
+        /// - Returns: The matching line fragment, or `nil`.
         #[unsafe(method(textLineFragmentForVerticalOffset:requiresExactMatch:))]
         #[unsafe(method_family = none)]
         pub fn textLineFragmentForVerticalOffset_requiresExactMatch(
@@ -132,6 +169,18 @@ impl NSTextLayoutFragment {
         ) -> Option<Retained<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "NSTextRange"))]
+        /// Returns a text line fragment from a specific text location in the document.
+        ///
+        /// Set `isUpstreamAffinity` to `true` to find a text fragment by its element
+        /// range end location, such as when you enumerate over line fragments in
+        /// reverse order. Set `isUpstreamAffinity` to `false` to find a text fragment that
+        /// contains `textLocation`.
+        ///
+        /// - Parameters:
+        /// - textLocation: The text location to search for.
+        /// - isUpstreamAffinity: When the location is at the end of a text line fragment (and the beginning of another), `true` chooses the one ending with the location; `false` chooses the following.
+        ///
+        /// - Returns: The matching line fragment, or `nil`.
         #[unsafe(method(textLineFragmentForTextLocation:isUpstreamAffinity:))]
         #[unsafe(method_family = none)]
         pub fn textLineFragmentForTextLocation_isUpstreamAffinity(
@@ -140,6 +189,9 @@ impl NSTextLayoutFragment {
             is_upstream_affinity: bool,
         ) -> Option<Retained<NSTextLineFragment>>;
 
+        /// The queue on which the framework dispatches layout operations.
+        ///
+        /// When non-nil, the layout operation is dispatched to the queue asynchronously.
         #[unsafe(method(layoutQueue))]
         #[unsafe(method_family = none)]
         pub fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
@@ -153,51 +205,85 @@ impl NSTextLayoutFragment {
         #[unsafe(method_family = none)]
         pub unsafe fn setLayoutQueue(&self, layout_queue: Option<&NSOperationQueue>);
 
+        /// The layout information state.
+        ///
+        /// KVO-compliant.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub fn state(&self) -> NSTextLayoutFragmentState;
 
+        /// Invalidates any layout information associated with the text layout fragment.
         #[unsafe(method(invalidateLayout))]
         #[unsafe(method_family = none)]
         pub fn invalidateLayout(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The rectangle the framework uses for tiling the layout fragment inside the target layout coordinate system.
+        ///
+        /// Typically in an ``NSTextContainer`` coordinate system.
         #[unsafe(method(layoutFragmentFrame))]
         #[unsafe(method_family = none)]
         pub fn layoutFragmentFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The bounds defining the area required for rendering the contents.
+        ///
+        /// The coordinate system is relative to ``layoutFragmentFrame``. The coordinate
+        /// system is vertically flipped, meaning origin (`{0,0}`) is at the upper-left
+        /// corner. The size should be larger than `layoutFragmentFrame.size`. The origin
+        /// could be in the negative coordinate since the rendering could be stretched
+        /// out of `layoutFragmentFrame`. Only valid when ``state`` is greater than
+        /// `NSTextLayoutFragmentStateEstimatedUsageBounds`.
         #[unsafe(method(renderingSurfaceBounds))]
         #[unsafe(method_family = none)]
         pub fn renderingSurfaceBounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The amount of margin space reserved during paragraph layout between the leading edge of the text layout fragment and the start of the lines in the paragraph.
+        ///
+        /// The leading edge is according to the primary writing direction of the paragraph.
         #[unsafe(method(leadingPadding))]
         #[unsafe(method_family = none)]
         pub fn leadingPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The amount of margin space reserved during paragraph layout between the end of the lines in the paragraph and the trailing edge of the text layout fragment.
+        ///
+        /// The trailing edge is according to the primary writing direction of the paragraph.
         #[unsafe(method(trailingPadding))]
         #[unsafe(method_family = none)]
         pub fn trailingPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The amount of space reserved during paragraph layout between the top of the text layout fragment and the top of the first line in the paragraph.
         #[unsafe(method(topMargin))]
         #[unsafe(method_family = none)]
         pub fn topMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The amount of space reserved during paragraph layout between the bottom of the last line in the paragraph and the bottom of the text layout fragment.
         #[unsafe(method(bottomMargin))]
         #[unsafe(method_family = none)]
         pub fn bottomMargin(&self) -> CGFloat;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
+        /// Renders the visual representation of this element in the specified graphics context.
+        ///
+        /// - Parameters:
+        /// - point: The origin as a
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgpoint>.
+        /// - context: The graphics context to draw into.
         #[unsafe(method(drawAtPoint:inContext:))]
         #[unsafe(method_family = none)]
         pub fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContext);
 
         #[cfg(feature = "NSTextAttachment")]
+        /// The attachment view providers associated with the text layout fragment.
+        ///
+        /// The property contents are only valid with
+        /// `NSTextLayoutFragmentStateLayoutAvailable`.
         #[unsafe(method(textAttachmentViewProviders))]
         #[unsafe(method_family = none)]
         pub fn textAttachmentViewProviders(
@@ -205,6 +291,18 @@ impl NSTextLayoutFragment {
         ) -> Retained<NSArray<NSTextAttachmentViewProvider>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "objc2-core-foundation"))]
+        /// Returns the frame in the text layout fragment coordinate system for the attachment at the location you specify.
+        ///
+        /// Returns
+        /// <doc
+        /// ://com.apple.documentation/documentation/coregraphics/cgrectzero> if
+        /// `location` is not within any attachment or the state is not
+        /// `NSTextLayoutFragmentStateLayoutAvailable`.
+        ///
+        /// - Parameters:
+        /// - location: The document location of the attachment.
+        ///
+        /// - Returns: The frame of the attachment, or `CGRectZero`.
         #[unsafe(method(frameForTextAttachmentAtLocation:))]
         #[unsafe(method_family = none)]
         pub fn frameForTextAttachmentAtLocation(

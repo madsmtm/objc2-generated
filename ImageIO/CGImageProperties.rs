@@ -2176,6 +2176,16 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaisystemused?language=objc)
+    pub static kCGImagePropertyIPTCExtAISystemUsed: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaisystemversionused?language=objc)
+    pub static kCGImagePropertyIPTCExtAISystemVersionUsed: &'static CFString;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkorobject?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkOrObject: &'static CFString;
 }

@@ -66,10 +66,6 @@ unsafe impl Send for NIDLTDOAMeasurementFloorElevation {}
 unsafe impl Sync for NIDLTDOAMeasurementFloorElevation {}
 
 extern_conformance!(
-    unsafe impl NSCoding for NIDLTDOAMeasurementFloorElevation {}
-);
-
-extern_conformance!(
     unsafe impl NSCopying for NIDLTDOAMeasurementFloorElevation {}
 );
 
@@ -79,10 +75,6 @@ unsafe impl CopyingHelper for NIDLTDOAMeasurementFloorElevation {
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for NIDLTDOAMeasurementFloorElevation {}
-);
-
-extern_conformance!(
-    unsafe impl NSSecureCoding for NIDLTDOAMeasurementFloorElevation {}
 );
 
 impl NIDLTDOAMeasurementFloorElevation {

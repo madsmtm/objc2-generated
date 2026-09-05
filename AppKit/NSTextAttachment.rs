@@ -9,11 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsattachmentcharacter?language=objc)
+/// Specifies a character that denotes an attachment.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsattachmentcharacter?language=objc)
 pub const NSAttachmentCharacter: c_uint = 0xFFFC;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentlayout?language=objc)
+    /// A set of methods that defines the interface to attachment objects from a text layout manager.
+    ///
+    /// The `NSTextAttachmentLayout` protocol is the interface for working with
+    /// attachment objects with an ``NSTextAttachmentViewProvider`` using a
+    /// ``NSTextLayoutManager`` in macOS 12 and iOS 15 and later.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentlayout?language=objc)
     pub unsafe trait NSTextAttachmentLayout: NSObjectProtocol {
         #[cfg(all(
             feature = "NSImage",
@@ -21,6 +29,26 @@ extern_protocol!(
             feature = "NSTextRange",
             feature = "objc2-core-foundation"
         ))]
+        /// Returns the image object rendered at the bounds and inside the text container you specify.
+        ///
+        /// A custom implementation should return an image appropriate for the target
+        /// rendering context that you derive by arguments to this method. The default
+        /// ``NSTextAttachment`` implementation returns the contents of the `image`
+        /// property when non-`nil`. If the `image` property is `nil`, it returns an
+        /// image based on the `contents` and `fileType` properties.
+        ///
+        /// - Parameters:
+        /// - bounds: The
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgrect> that presents the image boundaries inside `textContainer`.
+        /// - attributes: A dictionary of
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsattributedstring/key> attributes.
+        /// - location: An ``NSTextLocation`` that indicates the location of the attachment inside the document.
+        /// - textContainer: The ``NSTextContainer`` that defines the area to fill in with text.
+        ///
+        /// - Returns: An optional image object.
+        ///
         /// # Safety
         ///
         /// `attributes` generic should be of the correct type.
@@ -39,6 +67,34 @@ extern_protocol!(
             feature = "NSTextRange",
             feature = "objc2-core-foundation"
         ))]
+        /// Returns the layout bounds of the attachment you specify.
+        ///
+        /// The framework interprets the bounds origin to match `position` inside
+        /// `proposedLineFragment`. The default ``NSTextAttachment`` implementation
+        /// returns bounds if the value isn't equivalent to
+        /// <doc
+        /// ://com.apple.documentation/documentation/coregraphics/cgrectzero>;
+        /// otherwise, it derives the bounds value from `image.size`. Conforming objects
+        /// can implement more sophisticated logic for negotiating the frame size based
+        /// on the available container space and proposed line fragment rectangle.
+        ///
+        /// - Parameters:
+        /// - attributes: A dictionary of
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsattributedstring/key> attributes.
+        /// - location: An ``NSTextLocation`` that indicates the location of the attachment inside the document.
+        /// - textContainer: The ``NSTextContainer`` that defines the area to fill in with text.
+        /// - proposedLineFragment: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgrect> that describes the boundaries of the line fragment.
+        /// - position: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgpoint> inside `proposedLineFragment`.
+        ///
+        /// - Returns: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgrect> that describes the boundaries of the attachment, or `CGRectZero`.
+        ///
         /// # Safety
         ///
         /// `attributes` generic should be of the correct type.
@@ -59,6 +115,19 @@ extern_protocol!(
             feature = "NSTextRange",
             feature = "NSView"
         ))]
+        /// Returns the text attachment view provider corresponding to the file type.
+        ///
+        /// The default implementation queries the text attachment view provider class
+        /// using the ``NSTextAttachment/textAttachmentViewProviderClass(forFileType:)``
+        /// method of ``NSTextAttachment``. When non-`nil`, it instantiates a view, then
+        /// fills properties declared in `NSTextAttachmentViewProvider` if implemented.
+        ///
+        /// - Parameters:
+        /// - parentView: The parent view.
+        /// - location: An ``NSTextLocation`` that indicates the location of the attachment inside the document.
+        /// - textContainer: The ``NSTextContainer`` that defines the area to fill in with text.
+        ///
+        /// - Returns: An ``NSTextAttachmentViewProvider``.
         #[unsafe(method(viewProviderForParentView:location:textContainer:))]
         #[unsafe(method_family = none)]
         fn viewProviderForParentView_location_textContainer(
@@ -71,7 +140,42 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachment?language=objc)
+    /// The values for the attachment characteristics of attributed strings and related objects.
+    ///
+    /// The
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nsattributedstring>
+    /// class uses text attachment objects as the values for attachment attributes
+    /// (stored in the attributed string under the
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nsattributedstring/key/1534036-attachment>
+    /// key in Swift or the ``NSAttachmentAttributeName`` key in Objective-C).
+    ///
+    /// A text attachment object contains either an
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nsdata> object or an
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/filewrapper> object,
+    /// which in turn holds the contents of the attached file. The properties of
+    /// this class configure the appearance of the text attachment in your
+    /// interface. In macOS, the text attachment also uses a cell object that
+    /// conforms to the
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nstextattachmentcellprotocol>
+    /// protocol to draw the image that represents the text and handles mouse
+    /// events. For more information about text attachments, see the
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nsattributedstring>
+    /// and
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nstextview>.
+    ///
+    /// In macOS 12 and iOS 15 and later, ``NSTextAttachmentViewProvider`` and
+    /// ``NSTextAttachmentLayout`` provide additional capabilities to represent
+    /// document locations in terms of an ``NSTextLocation`` or an ``NSTextRange``,
+    /// and provide support for view-based text attachments.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachment;
@@ -95,7 +199,20 @@ extern_conformance!(
 
 impl NSTextAttachment {
     extern_methods!(
-        /// ************************** Initialization ***************************
+        /// Creates a text attachment object with the specified data.
+        ///
+        /// This method is the designated initializer for the `NSTextAttachment` class.
+        ///
+        /// When either `contentData` or `uti` is `nil`, TextKit considers the receiver
+        /// to be an attachment without document contents. In this case, the
+        /// `NSAttributedString` external file writing methods try to save the value of
+        /// the ``NSTextAttachment/image`` property instead.
+        ///
+        /// - Parameters:
+        /// - contentData: Data to use for the text attachment contents. Can be `nil`.
+        /// - uti: A uniform type identifier specifying the data type of the attachment contents. Can be `nil`.
+        ///
+        /// - Returns: A new `NSTextAttachment` object.
         #[unsafe(method(initWithData:ofType:))]
         #[unsafe(method_family = init)]
         pub fn initWithData_ofType(
@@ -104,6 +221,10 @@ impl NSTextAttachment {
             uti: Option<&NSString>,
         ) -> Retained<Self>;
 
+        /// Creates a text attachment with the specified file wrapper.
+        ///
+        /// This method invokes `initWithData:ofType:` with `nil` arguments, then fills
+        /// the ``fileWrapper`` property.
         #[unsafe(method(initWithFileWrapper:))]
         #[unsafe(method_family = init)]
         pub fn initWithFileWrapper(
@@ -111,7 +232,10 @@ impl NSTextAttachment {
             file_wrapper: Option<&NSFileWrapper>,
         ) -> Retained<Self>;
 
-        /// ************************** Content properties ***************************
+        /// The contents for the text attachment.
+        ///
+        /// Modifying this property has a side effect of invalidating ``image`` and
+        /// ``fileWrapper`` properties.
         #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
         pub fn contents(&self) -> Option<Retained<NSData>>;
@@ -123,6 +247,10 @@ impl NSTextAttachment {
         #[unsafe(method_family = none)]
         pub fn setContents(&self, contents: Option<&NSData>);
 
+        /// The file type of the contents for the text attachment.
+        ///
+        /// A UTI describing the format for ``contents``. Modifying this property has a
+        /// side effect of invalidating ``image`` and ``fileWrapper`` properties.
         #[unsafe(method(fileType))]
         #[unsafe(method_family = none)]
         pub fn fileType(&self) -> Option<Retained<NSString>>;
@@ -135,7 +263,20 @@ impl NSTextAttachment {
         pub fn setFileType(&self, file_type: Option<&NSString>);
 
         #[cfg(feature = "NSImage")]
-        /// ************************** Rendering/layout properties ***************************
+        /// An instance of the relevant image class that represents the contents of the text attachment object.
+        ///
+        /// For details about using the
+        /// <doc
+        /// ://com.apple.documentation/documentation/uikit/uiimage> class to create
+        /// text attachments that automatically adjust to surrounding font and color
+        /// attributes, see the
+        /// <doc
+        /// ://com.apple.documentation/documentation/uikit/NSTextAttachment/init(image:)>
+        /// initializer.
+        ///
+        /// Modifying this property has the side effect of invalidating the
+        /// ``NSTextAttachment/contents``, ``NSTextAttachment/fileType``, and
+        /// ``NSTextAttachment/fileWrapper`` properties.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub fn image(&self) -> Option<Retained<NSImage>>;
@@ -147,6 +288,12 @@ impl NSTextAttachment {
         pub fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The layout bounds of the text attachment's graphical representation in the text coordinate system.
+        ///
+        /// The bounds rectangle origin is at the current glyph location on the text
+        /// baseline. The default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/coregraphics/cgrectzero>.
         #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub fn bounds(&self) -> CGRect;
@@ -157,7 +304,11 @@ impl NSTextAttachment {
         #[unsafe(method_family = none)]
         pub fn setBounds(&self, bounds: CGRect);
 
-        /// ************************** Non-image contents properties ***************************
+        /// The text attachment's file wrapper.
+        ///
+        /// The file wrapper holds the contents of the attached file. Modifying this
+        /// property has a side effect of invalidating the ``NSTextAttachment/image``,
+        /// ``NSTextAttachment/contents``, and ``NSTextAttachment/fileType`` properties.
         #[unsafe(method(fileWrapper))]
         #[unsafe(method_family = none)]
         pub fn fileWrapper(&self) -> Option<Retained<NSFileWrapper>>;
@@ -168,6 +319,9 @@ impl NSTextAttachment {
         pub fn setFileWrapper(&self, file_wrapper: Option<&NSFileWrapper>);
 
         #[cfg(feature = "NSTextAttachmentCell")]
+        /// The object that draws the icon for the text attachment and handles mouse events.
+        ///
+        /// By default an instance of `NSTextAttachmentCell` is used.
         #[unsafe(method(attachmentCell))]
         #[unsafe(method_family = none)]
         pub fn attachmentCell(
@@ -184,6 +338,13 @@ impl NSTextAttachment {
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The layout padding before and after the text attachment bounds.
+        ///
+        /// The layout and rendering bounds X origin is inset by the padding value. This
+        /// affects the relationship between the text attachment bounds and
+        /// `NSLayoutManager` glyph metrics methods
+        /// ``NSLayoutManager/location(forGlyphAt:)`` and
+        /// ``NSLayoutManager/attachmentSize(forGlyphAt:)``. The default value is `0.0`.
         #[unsafe(method(lineLayoutPadding))]
         #[unsafe(method_family = none)]
         pub fn lineLayoutPadding(&self) -> CGFloat;
@@ -194,12 +355,28 @@ impl NSTextAttachment {
         #[unsafe(method_family = none)]
         pub fn setLineLayoutPadding(&self, line_layout_padding: CGFloat);
 
+        /// Returns the text attachment view provider class, if any, for the file type you specify.
+        ///
+        /// - Parameters:
+        /// - fileType: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/string> that represents the file type.
+        ///
+        /// - Returns: The text attachment view provider class, or `nil` if there is no class for the specified file type.
         #[unsafe(method(textAttachmentViewProviderClassForFileType:))]
         #[unsafe(method_family = none)]
         pub fn textAttachmentViewProviderClassForFileType(
             file_type: &NSString,
         ) -> Option<&'static AnyClass>;
 
+        /// Registers a specific file type with the attachment view provider.
+        ///
+        /// - Parameters:
+        /// - textAttachmentViewProviderClass: The text attachment view provider class.
+        /// - fileType: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/string> that represents the file type.
+        ///
         /// # Safety
         ///
         /// `text_attachment_view_provider_class` probably has further requirements.
@@ -210,6 +387,11 @@ impl NSTextAttachment {
             file_type: &NSString,
         );
 
+        /// A Boolean value that indicates whether the text attachment tries to use a text attachment view provider.
+        ///
+        /// When `true`, the text attachment tries to use a view provider returned by
+        /// ``NSTextAttachmentLayout/viewProvider(for:location:textContainer:)``.
+        /// Default is `true`.
         #[unsafe(method(allowsTextAttachmentView))]
         #[unsafe(method_family = none)]
         pub fn allowsTextAttachmentView(&self) -> bool;
@@ -219,6 +401,11 @@ impl NSTextAttachment {
         #[unsafe(method_family = none)]
         pub fn setAllowsTextAttachmentView(&self, allows_text_attachment_view: bool);
 
+        /// A Boolean value that indicates whether the text attachment is configured to use text attachment view providers.
+        ///
+        /// The default implementation of this property checks
+        /// ``NSTextAttachment/allowsTextAttachmentView``,
+        /// ``textAttachmentViewProviderClassForFileType:``, and ``contents``.
         #[unsafe(method(usesTextAttachmentView))]
         #[unsafe(method_family = none)]
         pub fn usesTextAttachmentView(&self) -> bool;
@@ -254,12 +441,15 @@ pub unsafe trait NSAttributedStringAttachmentConveniences:
     ClassType + Sized + private_NSAttributedStringAttachmentConveniences::Sealed
 {
     extern_methods!(
+        /// Returns an attributed string containing the specified attachment using `NSAttachmentCharacter` as the base character.
         #[unsafe(method(attributedStringWithAttachment:))]
         #[unsafe(method_family = none)]
         fn attributedStringWithAttachment(
             attachment: &NSTextAttachment,
         ) -> Retained<NSAttributedString>;
 
+        /// Returns an attributed string containing the specified attachment with attributes using `NSAttachmentCharacter` as the base character.
+        ///
         /// # Safety
         ///
         /// `attributes` generic should be of the correct type.
@@ -276,7 +466,16 @@ impl private_NSAttributedStringAttachmentConveniences::Sealed for NSAttributedSt
 unsafe impl NSAttributedStringAttachmentConveniences for NSAttributedString {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider?language=objc)
+    /// A container object that associates a text attachment at a particular document location with a view object.
+    ///
+    /// Use `NSTextAttachmentViewProvider` when you need to represent document
+    /// locations in terms of an ``NSTextLocation`` or an ``NSTextRange`` or you
+    /// want to support view-based text attachments. The view provider controls the
+    /// view placement and layout without requiring view classes to be aware of the
+    /// text attachment coordination using a ``NSTextLayoutManager`` in macOS 12 or
+    /// iOS 15 and later.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachmentViewProvider;
@@ -294,6 +493,13 @@ impl NSTextAttachmentViewProvider {
             feature = "NSTextRange",
             feature = "NSView"
         ))]
+        /// Creates a new text attachment view whose content starts at the location you provide.
+        ///
+        /// - Parameters:
+        /// - textAttachment: The ``NSTextAttachment`` for this view.
+        /// - parentView: The parent view of this attachment.
+        /// - textLayoutManager: The ``NSTextLayoutManager`` for this view.
+        /// - location: The ``NSTextLocation`` that identifies the start of the text.
         #[unsafe(method(initWithTextAttachment:parentView:textLayoutManager:location:))]
         #[unsafe(method_family = init)]
         pub fn initWithTextAttachment_parentView_textLayoutManager_location(
@@ -308,21 +514,42 @@ impl NSTextAttachmentViewProvider {
 
         // +new (unavailable)
 
+        /// The text attachment for this view.
+        ///
+        /// Specify the value of this property at initialization time using the
+        /// ``NSTextAttachmentViewProvider/init(textAttachment:parentView:textLayoutManager:location:)``
+        /// initializer.
         #[unsafe(method(textAttachment))]
         #[unsafe(method_family = none)]
         pub fn textAttachment(&self) -> Option<Retained<NSTextAttachment>>;
 
         #[cfg(feature = "NSTextLayoutManager")]
+        /// The text layout manager for this view.
+        ///
+        /// Specify the value of this property at initialization time using the
+        /// ``NSTextAttachmentViewProvider/init(textAttachment:parentView:textLayoutManager:location:)``
+        /// initializer.
         #[unsafe(method(textLayoutManager))]
         #[unsafe(method_family = none)]
         pub fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// The location that indicates the start of the text attachment.
+        ///
+        /// Specify the value of this property at initialization time using the
+        /// ``NSTextAttachmentViewProvider/init(textAttachment:parentView:textLayoutManager:location:)``
+        /// initializer.
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub fn location(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// The text attachment's view.
+        ///
+        /// The getter first invokes ``loadView`` if the view hasn't been set yet.
+        ///
+        /// > Important: Subclasses must call the superclass implementation if they
+        /// override the setter or getter.
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
         pub fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
@@ -333,10 +560,21 @@ impl NSTextAttachmentViewProvider {
         #[unsafe(method_family = none)]
         pub fn setView(&self, view: Option<&NSView>);
 
+        /// Creates the custom view hierarchy for this attachment.
+        ///
+        /// Use this method to create a custom view hierarchy. Don't call this method
+        /// directly; the framework calls it at the appropriate time.
         #[unsafe(method(loadView))]
         #[unsafe(method_family = none)]
         pub fn loadView(&self);
 
+        /// A Boolean value that determines the text attachment's bounds policy.
+        ///
+        /// If `true`, the framework calls the `textAttachment` property's
+        /// ``NSTextAttachmentViewProvider/attachmentBounds(for:location:textContainer:proposedLineFragment:position:)``
+        /// method and examines the text attachment view provider to determine the
+        /// bounds instead of using the `bounds` property of this instance. Defaults to
+        /// `false`.
         #[unsafe(method(tracksTextAttachmentViewBounds))]
         #[unsafe(method_family = none)]
         pub fn tracksTextAttachmentViewBounds(&self) -> bool;
@@ -351,6 +589,23 @@ impl NSTextAttachmentViewProvider {
             feature = "NSTextRange",
             feature = "objc2-core-foundation"
         ))]
+        /// Returns the layout bounds for an attachment at a specific text location that contains the text attributes you specify.
+        ///
+        /// - Parameters:
+        /// - attributes: A dictionary that contains a list of key and attribute pairs that describe the customization of the string.
+        /// - location: An ``NSTextLocation`` that indicates the location of the attachment inside the document.
+        /// - textContainer: The ``NSTextContainer`` that defines the area to fill in with text.
+        /// - proposedLineFragment: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgrect> that describes the boundaries of the line fragment.
+        /// - position: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgpoint> inside `proposedLineFragment`.
+        ///
+        /// - Returns: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgrect> that describes the bounds of the attachment.
+        ///
         /// # Safety
         ///
         /// `attributes` generic should be of the correct type.

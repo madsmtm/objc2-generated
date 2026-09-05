@@ -792,6 +792,9 @@ mod __UIPasteboard;
 #[cfg(feature = "UIPencilInteraction")]
 #[path = "UIPencilInteraction.rs"]
 mod __UIPencilInteraction;
+#[cfg(feature = "UIPhotoSearchSuggestion")]
+#[path = "UIPhotoSearchSuggestion.rs"]
+mod __UIPhotoSearchSuggestion;
 #[cfg(feature = "UIPickerView")]
 #[path = "UIPickerView.rs"]
 mod __UIPickerView;
@@ -4335,6 +4338,8 @@ pub use self::__UIPencilInteraction::UIPencilInteractionSqueeze;
 pub use self::__UIPencilInteraction::UIPencilInteractionTap;
 #[cfg(feature = "UIPencilInteraction")]
 pub use self::__UIPencilInteraction::UIPencilPreferredAction;
+#[cfg(all(feature = "UIInputSuggestion", feature = "UIPhotoSearchSuggestion"))]
+pub use self::__UIPhotoSearchSuggestion::UIPhotoSearchSuggestion;
 #[cfg(all(feature = "UIPickerView", feature = "UIResponder", feature = "UIView"))]
 pub use self::__UIPickerView::UIPickerView;
 #[cfg(feature = "UIPickerView")]

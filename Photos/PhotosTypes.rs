@@ -61,12 +61,19 @@ impl PHCollectionListSubtype {
     #[doc(alias = "PHCollectionListSubtypeMomentListYear")]
     #[deprecated = "Will be removed in a future release"]
     pub const MomentListYear: Self = Self(2);
+    /// A user-configurable, regular folder that can be created, or modified via `PHCollectionListChangeRequest`
     #[doc(alias = "PHCollectionListSubtypeRegularFolder")]
     pub const RegularFolder: Self = Self(100);
+    /// The collection list that contains the top-level user collections, there is always one root folder in the library and does not allow `PHCollectionEditOperationRename` or `PHCollectionEditOperationDelete`
+    #[doc(alias = "PHCollectionListSubtypeRootFolder")]
+    pub const RootFolder: Self = Self(101);
+    /// The collection list that contains the top-level user collections, there is always one root folder in the library and does not allow `PHCollectionEditOperationRename` or `PHCollectionEditOperationDelete`
     #[doc(alias = "PHCollectionListSubtypeSmartFolderEvents")]
     pub const SmartFolderEvents: Self = Self(200);
+    /// The collection list that contains the top-level user collections, there is always one root folder in the library and does not allow `PHCollectionEditOperationRename` or `PHCollectionEditOperationDelete`
     #[doc(alias = "PHCollectionListSubtypeSmartFolderFaces")]
     pub const SmartFolderFaces: Self = Self(201);
+    /// The collection list that contains the top-level user collections, there is always one root folder in the library and does not allow `PHCollectionEditOperationRename` or `PHCollectionEditOperationDelete`
     #[doc(alias = "PHCollectionListSubtypeAny")]
     pub const Any: Self = Self(NSIntegerMax as _);
 }
@@ -425,7 +432,20 @@ unsafe impl RefEncode for PHAssetAdjustmentsState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype?language=objc)
+/// Identifies a specific type of resource associated with a photo or video asset.
+///
+/// The set of resource types may expand in future OS releases. Additionally, assets synced from a device running
+/// a newer OS may contain resource types that are not defined in the SDK version your app was built with.
+///
+/// When switching over resource type values, always include an `
+/// default` case that handles
+/// unrecognized types gracefully — for example, by skipping the resource or preserving it as opaque data.
+/// Do not use `fatalError` or other trapping assertions for unknown values.
+///
+/// If your app performs backup and restore of photo library assets, preserve all resources including those with
+/// unrecognized types to maintain full fidelity when restoring to a device that may understand those types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

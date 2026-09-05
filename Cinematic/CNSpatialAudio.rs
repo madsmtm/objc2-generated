@@ -123,8 +123,6 @@ impl CNAssetSpatialAudioInfo {
         /// Parameter `asset`: An instance of AVAsset.
         ///
         /// Parameter `completionHandler`: Completion handler to return the result
-        ///
-        /// Returns: Boolean
         #[unsafe(method(checkIfContainsSpatialAudio:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkIfContainsSpatialAudio_completionHandler(
@@ -138,8 +136,6 @@ impl CNAssetSpatialAudioInfo {
         /// Parameter `asset`: An instance of AVAsset
         ///
         /// Parameter `completionHandler`: Completion handler to return the result
-        ///
-        /// Returns: An instance of CNAssetSpatialAudioInfo delivered via the completion handler or an error on failure
         #[unsafe(method(loadFromAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromAsset_completionHandler(

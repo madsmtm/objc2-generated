@@ -38,6 +38,21 @@ extern_class!(
     /// Database changes don't require any additional input, but the sync engine does expect you to provide the individual record zone changes — in batches — and return them from your delegate's implementation of ``CKSyncEngineDelegate/syncEngine:nextRecordZoneChangeBatchForContext:``.
     /// After the engine sends the changes, it notifies your delegate about their success (or failure) by dispatching events of type ``CKSyncEngineSentDatabaseChangesEvent`` and ``CKSyncEngineSentRecordZoneChangesEvent``.
     ///
+    /// ### Batches
+    ///
+    /// The sync engine sends record zone changes to the server in batches, where each batch corresponds to a single network request.
+    /// After your app registers pending changes through ``CKSyncEngineState/addPendingRecordZoneChanges:``, the engine drives a send operation by repeatedly invoking ``CKSyncEngineDelegate/syncEngine:nextRecordZoneChangeBatchForContext:`` to gather those changes into batches and sending each batch as one request.
+    /// It keeps asking for batches until your delegate returns `nil` or the operation is cancelled, meaning a single send operation may span many batches.
+    ///
+    /// Each batch is bounded by the server's per-request limit of 250 records (saves plus deletes combined); a batch that exceeds the limit fails with ``CKError/Code/limitExceeded`` and the sync engine treats it like any other send failure.
+    /// To stay within the limit automatically, build your batches with ``CKSyncEngineRecordZoneChangeBatch/initWithPendingChanges:recordProvider:``, which walks your pending changes in order and stops once the batch is full.
+    /// Any changes that don't fit stay in ``CKSyncEngineState/pendingRecordZoneChanges``, so the engine picks them up on the next call.
+    ///
+    /// After each batch finishes, the engine dispatches a ``CKSyncEngineSentRecordZoneChangesEvent`` (or ``CKSyncEngineSentDatabaseChangesEvent``, for database changes) that describes only the records in that batch, so a single send operation produces one sent-changes event per batch rather than a single event for the whole operation.
+    ///
+    /// When your delegate builds a batch, include only changes that fall within the scope specified by ``CKSyncEngineSendChangesContext/options`` on the provided context.
+    /// Returning changes outside that scope causes the send to fail with ``CKError/Code/invalidArguments``.
+    ///
     /// ### Fetch changes from iCloud
     ///
     /// By default, a sync engine attempts to discover an existing ``CKDatabaseSubscription`` for the associated database and uses that to receive silent notifications about remote record changes.

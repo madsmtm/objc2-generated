@@ -266,11 +266,11 @@ impl AVCaptureVideoPreviewLayer {
         #[unsafe(method_family = none)]
         pub unsafe fn isOrientationSupported(&self) -> bool;
 
-        #[cfg(feature = "AVCaptureSession")]
+        #[cfg(feature = "AVCaptureDevice")]
         /// Specifies the orientation of the preview layer.
         ///
         ///
-        /// AVCaptureVideoOrientation and its constants are defined in AVCaptureSession.h. The value of
+        /// AVCaptureVideoOrientation and its constants are defined in AVCaptureDevice.h. The value of
         /// "
         /// orientationSupported" must be YES in order to set @"orientation". An exception will be raised if this requirement is ignored. This property is deprecated. Use AVCaptureConnection's -videoOrientation instead.
         #[deprecated = "Use AVCaptureConnection's videoOrientation instead."]
@@ -278,7 +278,7 @@ impl AVCaptureVideoPreviewLayer {
         #[unsafe(method_family = none)]
         pub unsafe fn orientation(&self) -> AVCaptureVideoOrientation;
 
-        #[cfg(feature = "AVCaptureSession")]
+        #[cfg(feature = "AVCaptureDevice")]
         /// Setter for [`orientation`][Self::orientation].
         #[deprecated = "Use AVCaptureConnection's videoOrientation instead."]
         #[unsafe(method(setOrientation:))]

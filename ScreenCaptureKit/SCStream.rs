@@ -62,7 +62,7 @@ impl SCFrameStatus {
     /// new frame was not generated because the display has gone blank.
     #[doc(alias = "SCFrameStatusBlank")]
     pub const Blank: Self = Self(2);
-    /// new frame was not generated because updates haves been suspended
+    /// new frame was not generated because updates have been suspended
     #[doc(alias = "SCFrameStatusSuspended")]
     pub const Suspended: Self = Self(3);
     /// new frame that is indicated as the first frame sent after the stream has started.
@@ -886,6 +886,8 @@ extern "C" {
 
 extern "C" {
     /// The key for the CFDictionary attached to the CMSampleBuffer for the video orientation.
+    ///
+    /// The orientation value follows the CGImagePropertyOrientation enum.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfovideoorientation?language=objc)
     pub static SCStreamFrameInfoVideoOrientation: &'static SCStreamFrameInfo;

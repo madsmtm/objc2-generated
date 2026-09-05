@@ -159,7 +159,9 @@ unsafe impl RefEncode for NSTextTableLayoutAlgorithm {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock?language=objc)
+    /// An object that defines the size, spacing, and appearance of a block of text in an attributed string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextBlock;
@@ -402,7 +404,9 @@ impl DefaultRetained for NSTextBlock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttableblock?language=objc)
+    /// An object that represents a single cell in a text table.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttableblock?language=objc)
     #[unsafe(super(NSTextBlock, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTableBlock;
@@ -489,7 +493,9 @@ impl DefaultRetained for NSTextTableBlock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable?language=objc)
+    /// An object that represents a table of rows and columns in an attributed string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable?language=objc)
     #[unsafe(super(NSTextBlock, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTable;

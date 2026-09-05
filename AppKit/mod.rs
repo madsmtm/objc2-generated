@@ -6315,6 +6315,8 @@ pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticTextCompletionNo
 #[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSSpellCheckerDidChangeAutomaticTextReplacementNotification;
 #[cfg(feature = "NSSpellChecker")]
+pub use self::__NSSpellChecker::NSTextCheckingAutomaticCapitalizationEnabledKey;
+#[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingDocumentAuthorKey;
 #[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingDocumentTitleKey;
@@ -6338,6 +6340,8 @@ pub use self::__NSSpellChecker::NSTextCheckingRegularExpressionsKey;
 pub use self::__NSSpellChecker::NSTextCheckingReplacementsKey;
 #[cfg(feature = "NSSpellChecker")]
 pub use self::__NSSpellChecker::NSTextCheckingSelectedRangeKey;
+#[cfg(feature = "NSSpellChecker")]
+pub use self::__NSSpellChecker::NSTextCheckingWaitForAllGrammarCheckingResultsKey;
 #[cfg(feature = "NSSpellProtocol")]
 pub use self::__NSSpellProtocol::NSChangeSpelling;
 #[cfg(feature = "NSSpellProtocol")]

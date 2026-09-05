@@ -10,7 +10,7 @@ use crate::*;
 extern_class!(
     /// An operation that converts user identities into share participants.
     ///
-    /// Participants are a fundamental part of sharing in CloudKit. A participant provides information about a user and their participation in a share, which includes their identity, acceptance status, role, and permissions. The acceptance status manages the user's visibilty of the shared records. The role and permissions control what actions the user can perform on those records.
+    /// Participants are a fundamental part of sharing in CloudKit. A participant provides information about a user and their participation in a share, which includes their identity, acceptance status, role, and permissions. The acceptance status manages the user's visibility of the shared records. The role and permissions control what actions the user can perform on those records.
     ///
     /// You don't create participants. Instead, create an instance of ``CKUserIdentity/LookupInfo`` for each user. Provide the user's email address or phone number, and then use this operation to convert them into participants that you can add to a share. CloudKit limits the number of participants in a share to 100, and each participant must have an active iCloud account.
     ///

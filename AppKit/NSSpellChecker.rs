@@ -66,6 +66,16 @@ extern "C" {
     pub static NSTextCheckingGenerateInlinePredictionsKey: &'static NSTextCheckingOptionKey;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingautomaticcapitalizationenabledkey?language=objc)
+    pub static NSTextCheckingAutomaticCapitalizationEnabledKey: &'static NSTextCheckingOptionKey;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingwaitforallgrammarcheckingresultskey?language=objc)
+    pub static NSTextCheckingWaitForAllGrammarCheckingResultsKey: &'static NSTextCheckingOptionKey;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscorrectionresponse?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -346,6 +356,15 @@ impl NSSpellChecker {
             tag: NSInteger,
         );
 
+        #[unsafe(method(ignoreGrammarRange:inSentence:inSpellDocumentWithTag:))]
+        #[unsafe(method_family = none)]
+        pub fn ignoreGrammarRange_inSentence_inSpellDocumentWithTag(
+            &self,
+            grammar_range: NSRange,
+            sentence: &NSString,
+            tag: NSInteger,
+        );
+
         #[unsafe(method(guessesForWordRange:inString:language:inSpellDocumentWithTag:))]
         #[unsafe(method_family = none)]
         pub fn guessesForWordRange_inString_language_inSpellDocumentWithTag(
@@ -496,13 +515,13 @@ impl NSSpellChecker {
         #[unsafe(method(isAutomaticCapitalizationEnabled))]
         #[unsafe(method_family = none)]
         pub fn isAutomaticCapitalizationEnabled() -> bool;
-
-        #[unsafe(method(isAutomaticPeriodSubstitutionEnabled))]
-        #[unsafe(method_family = none)]
-        pub fn isAutomaticPeriodSubstitutionEnabled() -> bool;
     );
 
     extern_methods!(
+        #[unsafe(method(isAutomaticPeriodSubstitutionEnabled))]
+        #[unsafe(method_family = none)]
+        pub fn isAutomaticPeriodSubstitutionEnabled() -> bool;
+
         #[unsafe(method(isAutomaticTextCompletionEnabled))]
         #[unsafe(method_family = none)]
         pub fn isAutomaticTextCompletionEnabled() -> bool;

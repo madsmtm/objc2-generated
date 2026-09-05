@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Abstract base class for all result objects in FSKit `Handler` protocols.
+    /// An abstract base class for all result objects in FSKit handler-style protocols.
     ///
     /// This class provides the common functionality needed for all result objects. All specialized result classes inherit from this base class.
     ///
@@ -24,11 +24,13 @@ extern_conformance!(
 impl FSVolumeHandlerResult {
     extern_methods!(
         #[cfg(feature = "FSItem")]
-        /// The set of attributes that FSKit requires the file system module to populate in the ``FSItem/Attributes`` instances.
+        /// A set of attributes to populate.
         ///
-        /// > Note: Different operations may require different attribute sets. Access this property through the relevant result subclass (e.g., `FSLookupItemResult.requestedAttributes`).
+        /// Your module populates these attributes in ``FSItem/Attributes`` instances.
         ///
-        /// > Note: Incomplete population of requested attributes results in undefined behavior. All populated attributes are cached by FSKit and may be used in subsequent operations, regardless of whether they were explicitly requested.
+        /// Different operations may require different attribute sets. Access this property through the relevant result subclass, such as ``FSLookupItemResult.requestedAttributes`.
+        ///
+        /// > Important: Be sure to populate all requested attributes. FSKit caches all populated attributes and may use them in subsequent operations, even if not explicitly requested.
         #[unsafe(method(requestedAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestedAttributes() -> Retained<FSItemGetAttributesRequest>;
@@ -49,7 +51,9 @@ impl FSVolumeHandlerResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/activate(options:replyHandler:)``
+    /// The result of an activate call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/Handler/activate(options:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsactivateresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -64,7 +68,7 @@ extern_conformance!(
 impl FSActivateResult {
     extern_methods!(
         #[cfg(feature = "FSItem")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates an activate result instance.
         ///
         /// - Parameters:
         /// - rootItem: The root ``FSItem`` of the volume.
@@ -87,7 +91,9 @@ impl FSActivateResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/lookupItem(named:in:replyHandler:)``
+    /// The result of an item lookup call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/Handler/lookupItem(named:in:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fslookupitemresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -102,11 +108,11 @@ extern_conformance!(
 impl FSLookupItemResult {
     extern_methods!(
         #[cfg(all(feature = "FSFileName", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an item-lookup operation.
         ///
         /// - Parameters:
-        /// - foundItem: The ``FSItem`` that was found in the directory lookup.
-        /// - itemName: The item's name as it exists within the file system. This may differ from the requested name to handle case-insensitive file systems or Unicode normalization.
+        /// - foundItem: The ``FSItem`` found by the directory lookup.
+        /// - itemName: The item's name as it exists within the file system. The value may differ from the requested name in order to handle case-insensitive file systems or Unicode normalization.
         /// - itemAttributes: The ``FSItemAttributes`` of the found item.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithFoundItem:itemName:itemAttributes:))]
@@ -129,7 +135,9 @@ impl FSLookupItemResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/createItem(named:type:in:attributes:replyHandler:)``
+    /// The result of a create-item call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/Handler/createItem(named:type:in:attributes:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscreateitemresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -144,14 +152,14 @@ extern_conformance!(
 impl FSCreateItemResult {
     extern_methods!(
         #[cfg(all(feature = "FSFileName", feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an item-creation operation.
         ///
         /// - Parameters:
         /// - newItem: The newly-created ``FSItem``.
         /// - newItemName: The name of the newly-created item as it exists within the file system.
         /// - newItemAttributes: The ``FSItemAttributes`` of the newly-created item.
         /// - directoryAttributes: The updated ``FSItemAttributes`` of the parent directory.
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation completes, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithNewItem:newItemName:newItemAttributes:directoryAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -175,7 +183,9 @@ impl FSCreateItemResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/createSymbolicLink(named:in:attributes:linkContents:replyHandler:)``
+    /// The result of a create-symlink call.
+    ///
+    /// Use this type in your implementation of  ``FSVolume/Handler/createSymbolicLink(named:in:attributes:linkContents:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscreatesymlinkresult?language=objc)
     #[unsafe(super(FSCreateItemResult, FSVolumeHandlerResult, NSObject))]
@@ -193,14 +203,14 @@ impl FSCreateSymlinkResult {}
 impl FSCreateSymlinkResult {
     extern_methods!(
         #[cfg(all(feature = "FSFileName", feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an item-creation operation.
         ///
         /// - Parameters:
         /// - newItem: The newly-created ``FSItem``.
         /// - newItemName: The name of the newly-created item as it exists within the file system.
         /// - newItemAttributes: The ``FSItemAttributes`` of the newly-created item.
         /// - directoryAttributes: The updated ``FSItemAttributes`` of the parent directory.
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation completes, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithNewItem:newItemName:newItemAttributes:directoryAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -224,7 +234,9 @@ impl FSCreateSymlinkResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/createLink(to:named:in:replyHandler:)``
+    /// The result of a create-link call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/Handler/createLink(to:named:in:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscreatelinkresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -239,13 +251,13 @@ extern_conformance!(
 impl FSCreateLinkResult {
     extern_methods!(
         #[cfg(all(feature = "FSFileName", feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for a link-creation operation.
         ///
         /// - Parameters:
         /// - linkName: The name of the newly-created hard link.
         /// - linkAttributes: The ``FSItemAttributes`` of the linked item (the target of the hard link).
         /// - directoryAttributes: The updated ``FSItemAttributes`` of the parent directory.
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithLinkName:linkAttributes:directoryAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -268,7 +280,9 @@ impl FSCreateLinkResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/renameItem(_:inDirectory:named:to:inDirectory:overItem:replyHandler:)``
+    /// The result of a rename-item call.
+    ///
+    /// Use this type in your implementation of  ``FSVolume/Handler/renameItem(_:inDirectory:named:to:inDirectory:overItem:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsrenameitemresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -283,15 +297,15 @@ extern_conformance!(
 impl FSRenameItemResult {
     extern_methods!(
         #[cfg(all(feature = "FSFileName", feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an item-renaming operation.
         ///
         /// - Parameters:
         /// - newName: The updated item name as it exists within the destination directory.
         /// - renamedItemAttributes: The ``FSItemAttributes`` of the renamed item.
         /// - sourceDirectoryAttributes: The updated ``FSItemAttributes`` of the source directory.
         /// - destinationDirectoryAttributes: The updated ``FSItemAttributes`` of the destination directory.
-        /// - overItemAttributes: The ``FSItemAttributes`` of the overwritten item, if any. Pass `nil` if no item was overwritten.
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - overItemAttributes: The ``FSItemAttributes`` of the overwritten item, if any. Pass `nil` if the action didn't overwrite any item.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithNewName:renamedItemAttributes:sourceDirectoryAttributes:destinationDirectoryAttributes:overItemAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -316,7 +330,9 @@ impl FSRenameItemResult {
 }
 
 extern_class!(
-    /// Result class for``FSVolume/Handler/removeItem(_:named:from:replyHandler:)``
+    /// The result of a remove-item call.
+    ///
+    /// Use this type in your implementation of``FSVolume/Handler/removeItem(_:named:from:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsremoveitemresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -331,12 +347,12 @@ extern_conformance!(
 impl FSRemoveItemResult {
     extern_methods!(
         #[cfg(all(feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an item-removal operation.
         ///
         /// - Parameters:
         /// - itemAttributes: The ``FSItemAttributes`` of the removed item.
         /// - directoryAttributes: The updated ``FSItemAttributes`` of the parent directory.
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation finishes, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithItemAttributes:directoryAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -358,7 +374,9 @@ impl FSRemoveItemResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/getAttributes(_:of:replyHandler:)``
+    /// The result of a get-attributes call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/Handler/getAttributes(_:of:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsgetattributesresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -373,7 +391,7 @@ extern_conformance!(
 impl FSGetAttributesResult {
     extern_methods!(
         #[cfg(feature = "FSItem")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an attribute-getting operation.
         ///
         /// - Parameters:
         /// - attributes: The requested ``FSItemAttributes`` for the item.
@@ -396,7 +414,9 @@ impl FSGetAttributesResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/setAttributes(_:on:replyHandler:)``
+    /// The restlt of a set-attributes call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/Handler/setAttributes(_:on:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssetattributesresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -411,11 +431,11 @@ extern_conformance!(
 impl FSSetAttributesResult {
     extern_methods!(
         #[cfg(all(feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an attribute-setting operation.
         ///
         /// - Parameters:
         /// - attributes: The updated ``FSItemAttributes`` for the item.
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -436,7 +456,9 @@ impl FSSetAttributesResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``
+    /// The result of an enumerate-directory call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsenumeratedirectoryresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -464,7 +486,9 @@ impl FSEnumerateDirectoryResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/Handler/readSymbolicLink(_:replyHandler:)``
+    /// The result of a read-symlink call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/Handler/readSymbolicLink(_:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsreadsymlinkresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -479,7 +503,7 @@ extern_conformance!(
 impl FSReadSymlinkResult {
     extern_methods!(
         #[cfg(all(feature = "FSFileName", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for a symlink-reading operation.
         ///
         /// - Parameters:
         /// - contents: The contents of the symbolic link.
@@ -504,7 +528,9 @@ impl FSReadSymlinkResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/XattrHandler/getXattr(named:of:replyHandler:)``
+    /// The result of a get-extended-attributes call.
+    ///
+    /// Use this type in your implementation ``FSVolume/XattrHandler/getXattr(named:of:context:replyHandler:)``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsgetxattrresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -518,7 +544,7 @@ extern_conformance!(
 
 impl FSGetXattrResult {
     extern_methods!(
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an extended-attribute-getting operation.
         ///
         /// - Parameters:
         /// - value: The extended attribute value for the requested attribute name.
@@ -541,7 +567,9 @@ impl FSGetXattrResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/XattrHandler/setXattr(named:to:on:policy:replyHandler:)``
+    /// The result of a set-extended-attributes call.
+    ///
+    /// Use this type in your implementation of  ``FSVolume/XattrHandler/setXattr(named:to:on:policy:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssetxattrresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -556,10 +584,10 @@ extern_conformance!(
 impl FSSetXattrResult {
     extern_methods!(
         #[cfg(feature = "FSFreeSpace")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an extended-attribute-setting operation.
         ///
         /// - Parameters:
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithFreeSpace:))]
         #[unsafe(method_family = init)]
@@ -579,7 +607,9 @@ impl FSSetXattrResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/XattrHandler/xattrs(of:)``
+    /// The result of a list-extended-attributes call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/XattrHandler/supportedXattrNames(for:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fslistxattrsresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -617,7 +647,9 @@ impl FSListXattrsResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/ReadWriteHandler/read(from:at:length:into:replyHandler:)``
+    /// The result of a read-file call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/ReadWriteHandler/read(from:at:length:into:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsreadfileresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -632,7 +664,7 @@ extern_conformance!(
 impl FSReadFileResult {
     extern_methods!(
         #[cfg(feature = "FSItem")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for a file-reading operation.
         ///
         /// - Parameters:
         /// - actuallyRead: The number of bytes actually read from the file. This may be less than the requested length if the end of file was reached.
@@ -657,7 +689,9 @@ impl FSReadFileResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/ReadWriteHandler/write(contents:to:at:replyHandler:)``
+    /// The result of a read-file call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/ReadWriteHandler/write(contents:to:at:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fswritefileresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -672,12 +706,12 @@ extern_conformance!(
 impl FSWriteFileResult {
     extern_methods!(
         #[cfg(all(feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for a file-writing operation.
         ///
         /// - Parameters:
         /// - actuallyWritten: The number of bytes actually written to the file. This should match the requested write length unless an error occurred.
-        /// - attributes: The updated ``FSItemAttributes`` of the file after the write operation (e.g., updated size, modification time).
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - attributes: The updated ``FSItemAttributes`` of the file after the write operation. Examples of attributes you might need to update are the updated file size and modification time.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithBytesWritten:itemAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -699,7 +733,9 @@ impl FSWriteFileResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/AccessCheckHandler/checkAccess(to:requestedAccess:replyHandler:)``
+    /// The result of a check-access call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/AccessCheckHandler/checkAccess(to:requestedAccess:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscheckaccessresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -713,10 +749,10 @@ extern_conformance!(
 
 impl FSCheckAccessResult {
     extern_methods!(
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an access-checking operation.
         ///
         /// - Parameters:
-        /// - accessAllowed: A Boolean value indicating whether the file system grants the requested access to the item. Pass `YES` to allow access, `NO` to deny access.
+        /// - accessAllowed: A Boolean value indicating whether the file system grants the requested access to the item. Pass `true` (Swift) or `YES` (Obj-C) to allow access, `false` (Swift) or `NO` (Obj-C) to deny access.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithAccessAllowed:))]
         #[unsafe(method_family = init)]
@@ -736,7 +772,9 @@ impl FSCheckAccessResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/RenameHandler/setVolumeName(_:replyHandler:)``
+    /// The result of a rename-volume call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/RenameHandler/setVolumeName(_:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumerenameresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -751,7 +789,7 @@ extern_conformance!(
 impl FSVolumeRenameResult {
     extern_methods!(
         #[cfg(feature = "FSFileName")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for a volume-renaming operation.
         ///
         /// - Parameters:
         /// - newName: The new volume name.
@@ -774,7 +812,9 @@ impl FSVolumeRenameResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/PreallocateHandler/preallocateSpace(for:at:length:flags:replyHandler:)``
+    /// The result of a preallocate call.
+    ///
+    /// Use this type in your implementation of  ``FSVolume/PreallocateHandler/preallocateSpace(for:at:length:flags:context:replyHandler:)``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fspreallocateresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -789,12 +829,12 @@ extern_conformance!(
 impl FSPreallocateResult {
     extern_methods!(
         #[cfg(all(feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for a preallocate operation.
         ///
         /// - Parameters:
         /// - bytesAllocated: The number of bytes actually allocated for the file during the preallocation operation.
         /// - attributes: The updated ``FSItemAttributes`` of the file after the preallocation operation.
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithBytesAllocated:itemAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -816,7 +856,9 @@ impl FSPreallocateResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/ItemDeactivationHandler/deactivateItem(_:replyHandler:)``
+    /// The result of a deactivate-item call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/ItemDeactivationHandler/deactivateItem(_:context:replyHandler:)``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdeactivateitemresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -831,10 +873,10 @@ extern_conformance!(
 impl FSDeactivateItemResult {
     extern_methods!(
         #[cfg(feature = "FSFreeSpace")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an item-deactivation operation.
         ///
         /// - Parameters:
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithFreeSpace:))]
         #[unsafe(method_family = init)]
@@ -854,7 +896,9 @@ impl FSDeactivateItemResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/SeekRegionHandler/seek(within:from:region:context:replyHandler:)``
+    /// A seek-region result.
+    ///
+    /// Use this type in your implementation of ``FSVolume/SeekRegionHandler/seek(within:from:region:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsseekregionresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -869,10 +913,10 @@ extern_conformance!(
 impl FSSeekRegionResult {
     extern_methods!(
         #[cfg(feature = "libc")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for a region-seeking operation.
         ///
         /// - Parameters:
-        /// - returnedOffset: The offset of the requested region (greater than or equal to the supplied offset).
+        /// - returnedOffset: The offset of the requested region, greater than or equal to the supplied offset.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithReturnedOffset:))]
         #[unsafe(method_family = init)]
@@ -892,7 +936,9 @@ impl FSSeekRegionResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/KernelOffloadedIOHandler/blockmapFile(_:offset:length:flags:operationID:packer:replyHandler:)``
+    /// The result of a blockmap call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/KernelOffloadedIOHandler/blockmapFile(_:offset:length:flags:operationID:packer:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsblockmapresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -907,10 +953,10 @@ extern_conformance!(
 impl FSBlockmapResult {
     extern_methods!(
         #[cfg(feature = "FSFreeSpace")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for a blockmap operation.
         ///
         /// - Parameters:
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithFreeSpace:))]
         #[unsafe(method_family = init)]
@@ -930,7 +976,9 @@ impl FSBlockmapResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/KernelOffloadedIOHandler/completeIO(for:offset:length:status:flags:operationID:providing:replyHandler:)``
+    /// The result of a complete-I/O call.
+    ///
+    /// Use this type in your implementation of  ``FSVolume/KernelOffloadedIOHandler/completeIO(for:offset:length:status:flags:operationID:replyHandler:)``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscompleteioresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -945,7 +993,7 @@ extern_conformance!(
 impl FSCompleteIOResult {
     extern_methods!(
         #[cfg(feature = "FSItem")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an I/O-completion operation.
         ///
         /// - Parameters:
         /// - attributes: The updated ``FSItemAttributes`` of the file after the I/O completion operation (e.g., updated size, modification time).
@@ -968,7 +1016,9 @@ impl FSCompleteIOResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/KernelOffloadedIOHandler/createFile(named:in:attributes:packer:replyHandler:)``
+    /// The result of a kernel-offloaded create-file call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/KernelOffloadedIOHandler/createFile(named:in:attributes:packer:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscreatefilekoioresult?language=objc)
     #[unsafe(super(FSCreateItemResult, FSVolumeHandlerResult, NSObject))]
@@ -986,14 +1036,14 @@ impl FSCreateFileKOIOResult {}
 impl FSCreateFileKOIOResult {
     extern_methods!(
         #[cfg(all(feature = "FSFileName", feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an item-creation operation.
         ///
         /// - Parameters:
         /// - newItem: The newly-created ``FSItem``.
         /// - newItemName: The name of the newly-created item as it exists within the file system.
         /// - newItemAttributes: The ``FSItemAttributes`` of the newly-created item.
         /// - directoryAttributes: The updated ``FSItemAttributes`` of the parent directory.
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation completes, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithNewItem:newItemName:newItemAttributes:directoryAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -1017,7 +1067,9 @@ impl FSCreateFileKOIOResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/KernelOffloadedIOHandler/lookupItem(named:in:packer:replyHandler:)``
+    /// The result of a kernel-offloaded lookup-item call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/KernelOffloadedIOHandler/lookupItem(named:in:packer:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fslookupitemkoioresult?language=objc)
     #[unsafe(super(FSLookupItemResult, FSVolumeHandlerResult, NSObject))]
@@ -1035,11 +1087,11 @@ impl FSLookupItemKOIOResult {}
 impl FSLookupItemKOIOResult {
     extern_methods!(
         #[cfg(all(feature = "FSFileName", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for an item-lookup operation.
         ///
         /// - Parameters:
-        /// - foundItem: The ``FSItem`` that was found in the directory lookup.
-        /// - itemName: The item's name as it exists within the file system. This may differ from the requested name to handle case-insensitive file systems or Unicode normalization.
+        /// - foundItem: The ``FSItem`` found by the directory lookup.
+        /// - itemName: The item's name as it exists within the file system. The value may differ from the requested name in order to handle case-insensitive file systems or Unicode normalization.
         /// - itemAttributes: The ``FSItemAttributes`` of the found item.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithFoundItem:itemName:itemAttributes:))]
@@ -1062,7 +1114,9 @@ impl FSLookupItemKOIOResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/KernelOffloadedIOHandler/preallocateSpace(for:at:length:flags:packer:replyHandler:)``
+    /// The result of a kernel-offloaded preallocate call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/KernelOffloadedIOHandler/preallocateSpace(for:at:length:flags:packer:context:replyHandler:)``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fspreallocatekoioresult?language=objc)
     #[unsafe(super(FSPreallocateResult, FSVolumeHandlerResult, NSObject))]
@@ -1080,12 +1134,12 @@ impl FSPreallocateKOIOResult {}
 impl FSPreallocateKOIOResult {
     extern_methods!(
         #[cfg(all(feature = "FSFreeSpace", feature = "FSItem"))]
-        /// Creates a result instance with all required properties populated.
+        /// Creates a result for a preallocate operation.
         ///
         /// - Parameters:
         /// - bytesAllocated: The number of bytes actually allocated for the file during the preallocation operation.
         /// - attributes: The updated ``FSItemAttributes`` of the file after the preallocation operation.
-        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space will cause FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
+        /// - freeSpace: An ``FSFreeSpace`` instance populated with the volume's updated free space. Passing a `nil` free space causes FSKit to calculate the free space when the operation is done, based on the volume's ``FSVolume/Handler/volumeStatistics`` property. This behavior may lead to degraded performance.
         /// - Returns: A populated result instance, or `nil` if validation fails.
         #[unsafe(method(initWithBytesAllocated:itemAttributes:freeSpace:))]
         #[unsafe(method_family = init)]
@@ -1107,7 +1161,9 @@ impl FSPreallocateKOIOResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/DataCacheHandler/open(_:modes:cacheMode:context:replyHandler:)``
+    /// The result of an open-item call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/DataCacheHandler/open(_:modes:cacheMode:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsopenitemresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -1122,7 +1178,7 @@ extern_conformance!(
 impl FSOpenItemResult {
     extern_methods!(
         #[cfg(feature = "FSVolumeDataCacheHandler")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates an open-item result.
         ///
         /// - Parameters:
         /// - grantedCoherency: The ``FSKernelCacheCoherencyType`` granted by the module for this item.
@@ -1145,7 +1201,9 @@ impl FSOpenItemResult {
 }
 
 extern_class!(
-    /// Result class for ``FSVolume/DataCacheHandler/upgrade(_:cacheMode:context:replyHandler:)``
+    /// The result of an upgrade-item call.
+    ///
+    /// Use this type in your implementation of ``FSVolume/DataCacheHandler/upgrade(_:cacheMode:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsupgradeitemresult?language=objc)
     #[unsafe(super(FSVolumeHandlerResult, NSObject))]
@@ -1160,7 +1218,7 @@ extern_conformance!(
 impl FSUpgradeItemResult {
     extern_methods!(
         #[cfg(feature = "FSVolumeDataCacheHandler")]
-        /// Creates a result instance with all required properties populated.
+        /// Creates an upgrade-item result.
         ///
         /// - Parameters:
         /// - grantedCoherency: The ``FSKernelCacheCoherencyType`` granted by the module after the upgrade.

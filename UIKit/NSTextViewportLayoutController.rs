@@ -9,9 +9,17 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextviewportlayoutcontrollerdelegate?language=objc)
+    /// The protocol that viewport layout controller delegates implement to manage layout and rendering surfaces.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextviewportlayoutcontrollerdelegate?language=objc)
     pub unsafe trait NSTextViewportLayoutControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the current viewport bounds, typically the view visible bounds with overdraw.
+        ///
+        /// - Parameters:
+        /// - textViewportLayoutController: The viewport layout controller requesting the bounds.
+        ///
+        /// - Returns: The viewport bounds rect.
         #[unsafe(method(viewportBoundsForTextViewportLayoutController:))]
         #[unsafe(method_family = none)]
         fn viewportBoundsForTextViewportLayoutController(
@@ -20,6 +28,15 @@ extern_protocol!(
         ) -> CGRect;
 
         #[cfg(feature = "NSTextLayoutFragment")]
+        /// Called when the viewport layout controller lays out a given text layout fragment.
+        ///
+        /// The delegate should arrange to present the text layout fragment in the UI,
+        /// e.g. a sublayer or subview. Layout information such as `viewportBounds` on
+        /// `textViewportLayoutController` is not up-to-date at the point of this call.
+        ///
+        /// - Parameters:
+        /// - textViewportLayoutController: The viewport layout controller.
+        /// - textLayoutFragment: The layout fragment to configure a rendering surface for.
         #[unsafe(method(textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:))]
         #[unsafe(method_family = none)]
         fn textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment(
@@ -28,6 +45,13 @@ extern_protocol!(
             text_layout_fragment: &NSTextLayoutFragment,
         );
 
+        /// Called when the viewport layout controller is about to layout.
+        ///
+        /// Layout information on `textViewportLayoutController` is up-to-date at the
+        /// point of this call.
+        ///
+        /// - Parameters:
+        /// - textViewportLayoutController: The viewport layout controller about to layout.
         #[optional]
         #[unsafe(method(textViewportLayoutControllerWillLayout:))]
         #[unsafe(method_family = none)]
@@ -36,6 +60,13 @@ extern_protocol!(
             text_viewport_layout_controller: &NSTextViewportLayoutController,
         );
 
+        /// Called when the viewport layout controller has finished layout.
+        ///
+        /// Layout information on `textViewportLayoutController` is up-to-date at the
+        /// point of this call.
+        ///
+        /// - Parameters:
+        /// - textViewportLayoutController: The viewport layout controller that finished layout.
         #[optional]
         #[unsafe(method(textViewportLayoutControllerDidLayout:))]
         #[unsafe(method_family = none)]
@@ -45,6 +76,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSTextViewportRenderingSurface")]
+        /// Asks the delegate to cache a rendering surface for later retrieval.
+        ///
+        /// - Parameters:
+        /// - textViewportLayoutController: The viewport layout controller.
+        /// - renderingSurface: The rendering surface to cache.
+        /// - renderingSurfaceKey: The key identifying the rendering surface.
         #[optional]
         #[unsafe(method(textViewportLayoutController:cacheRenderingSurface:forKey:))]
         #[unsafe(method_family = none)]
@@ -56,6 +93,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSTextViewportRenderingSurface")]
+        /// Asks the delegate to return a previously cached rendering surface.
+        ///
+        /// - Parameters:
+        /// - textViewportLayoutController: The viewport layout controller.
+        /// - renderingSurfaceKey: The key identifying the rendering surface.
+        ///
+        /// - Returns: The cached rendering surface, or `nil`.
         #[optional]
         #[unsafe(method(textViewportLayoutController:retrieveCachedRenderingSurfaceForKey:))]
         #[unsafe(method_family = none)]
@@ -65,6 +109,10 @@ extern_protocol!(
             rendering_surface_key: &ProtocolObject<dyn NSTextViewportRenderingSurfaceKey>,
         ) -> Retained<ProtocolObject<dyn NSTextViewportRenderingSurface>>;
 
+        /// Triggers relayout of the view.
+        ///
+        /// - Parameters:
+        /// - textViewportLayoutController: The viewport layout controller requesting a relayout.
         #[optional]
         #[unsafe(method(textViewportLayoutControllerReceivedSetNeedsLayout:))]
         #[unsafe(method_family = none)]
@@ -77,6 +125,18 @@ extern_protocol!(
             feature = "NSTextLayoutFragment",
             feature = "NSTextViewportRenderingSurface"
         ))]
+        /// Returns a rendering surface for the specified text layout fragment.
+        ///
+        /// Invoked right before
+        /// `textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:`.
+        /// The returned rendering surface is registered and mapped by
+        /// ``renderingSurfaceForKey:``.
+        ///
+        /// - Parameters:
+        /// - textViewportLayoutController: The viewport layout controller.
+        /// - textLayoutFragment: The layout fragment needing a rendering surface.
+        ///
+        /// - Returns: A rendering surface, or `nil`.
         #[optional]
         #[unsafe(method(textViewportLayoutController:renderingSurfaceForTextLayoutFragment:))]
         #[unsafe(method_family = none)]
@@ -102,6 +162,10 @@ extern_conformance!(
 impl NSTextViewportLayoutController {
     extern_methods!(
         #[cfg(feature = "NSTextLayoutManager")]
+        /// Creates a new viewport layout controller with the specified text layout manager.
+        ///
+        /// - Parameters:
+        /// - textLayoutManager: The text layout manager providing layout fragments.
         #[unsafe(method(initWithTextLayoutManager:))]
         #[unsafe(method_family = init)]
         pub fn initWithTextLayoutManager(
@@ -113,6 +177,7 @@ impl NSTextViewportLayoutController {
 
         // -init (unavailable)
 
+        /// The viewport layout delegate.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(
@@ -130,25 +195,41 @@ impl NSTextViewportLayoutController {
         );
 
         #[cfg(feature = "NSTextLayoutManager")]
+        /// The text layout manager for this viewport layout controller.
         #[unsafe(method(textLayoutManager))]
         #[unsafe(method_family = none)]
         pub fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The visible bounds of the view, plus the overdraw area.
+        ///
+        /// Not KVO-compliant.
         #[unsafe(method(viewportBounds))]
         #[unsafe(method_family = none)]
         pub fn viewportBounds(&self) -> CGRect;
 
         #[cfg(feature = "NSTextRange")]
+        /// The text range of the current viewport layout.
+        ///
+        /// Not KVO-compliant.
         #[unsafe(method(viewportRange))]
         #[unsafe(method_family = none)]
         pub fn viewportRange(&self) -> Option<Retained<NSTextRange>>;
 
+        /// Performs layout in the viewport.
         #[unsafe(method(layoutViewport))]
         #[unsafe(method_family = none)]
         pub fn layoutViewport(&self);
 
         #[cfg(all(feature = "NSTextRange", feature = "objc2-core-foundation"))]
+        /// Relocates the viewport to start with the specified location.
+        ///
+        /// This is used to programmatically scroll to the specified location.
+        ///
+        /// - Parameters:
+        /// - textLocation: The document location to scroll to.
+        ///
+        /// - Returns: The suggested viewport anchor point.
         #[unsafe(method(relocateViewportToTextLocation:))]
         #[unsafe(method_family = none)]
         pub fn relocateViewportToTextLocation(
@@ -157,11 +238,30 @@ impl NSTextViewportLayoutController {
         ) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Adjusts the viewport rect by the specified offset if needed.
+        ///
+        /// This is used to artificially move the viewport without affecting viewport
+        /// content. The offset can be both positive and negative.
+        ///
+        /// - Parameters:
+        /// - verticalOffset: The vertical offset to adjust by.
         #[unsafe(method(adjustViewportByVerticalOffset:))]
         #[unsafe(method_family = none)]
         pub fn adjustViewportByVerticalOffset(&self, vertical_offset: CGFloat);
 
         #[cfg(feature = "NSTextViewportRenderingSurface")]
+        /// Returns a rendering surface corresponding to the specified key.
+        ///
+        /// The mapping is registered via the returned rendering surfaces from
+        /// `textViewportLayoutController:renderingSurfaceForTextLayoutFragment:`. In
+        /// addition, it can return auxiliary rendering surfaces registered through
+        /// `addRenderingSurface:key:group:placement:`. The mappings are cleared at the
+        /// beginning of each ``layoutViewport``.
+        ///
+        /// - Parameters:
+        /// - key: The key identifying the rendering surface.
+        ///
+        /// - Returns: The rendering surface, or `nil`.
         #[unsafe(method(renderingSurfaceForKey:))]
         #[unsafe(method_family = none)]
         pub fn renderingSurfaceForKey(

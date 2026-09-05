@@ -9,20 +9,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectiongranularity?language=objc)
+/// Values that describe the different granularities available to make a selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectiongranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionGranularity(pub NSInteger);
 impl NSTextSelectionGranularity {
+    /// A value that represents selection by character.
     #[doc(alias = "NSTextSelectionGranularityCharacter")]
     pub const Character: Self = Self(0);
+    /// A value that represents selection by word.
     #[doc(alias = "NSTextSelectionGranularityWord")]
     pub const Word: Self = Self(1);
+    /// A value that represents selection by paragraph.
     #[doc(alias = "NSTextSelectionGranularityParagraph")]
     pub const Paragraph: Self = Self(2);
+    /// A value that represents selection by line.
     #[doc(alias = "NSTextSelectionGranularityLine")]
     pub const Line: Self = Self(3);
+    /// A value that represents selection by sentence.
     #[doc(alias = "NSTextSelectionGranularitySentence")]
     pub const Sentence: Self = Self(4);
 }
@@ -35,14 +42,18 @@ unsafe impl RefEncode for NSTextSelectionGranularity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionaffinity?language=objc)
+/// Values that describe the visual location of the text cursor, or the direction of the non-anchored edge of the selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionaffinity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionAffinity(pub NSInteger);
 impl NSTextSelectionAffinity {
+    /// The value that defines the visual location of the text cursor at the tail of the previous line.
     #[doc(alias = "NSTextSelectionAffinityUpstream")]
     pub const Upstream: Self = Self(0);
+    /// The value that defines the visual location of the text cursor at the head of the line containing the selection location.
     #[doc(alias = "NSTextSelectionAffinityDownstream")]
     pub const Downstream: Self = Self(1);
 }
@@ -77,6 +88,15 @@ extern_conformance!(
 impl NSTextSelection {
     extern_methods!(
         #[cfg(feature = "NSTextRange")]
+        /// Creates a new text selection with the ranges, affinity, and granularity you specify.
+        ///
+        /// `textRanges` should be ordered and not overlapping. Otherwise, they will be
+        /// normalized by reordering and merging overlapping ranges.
+        ///
+        /// - Parameters:
+        /// - textRanges: An array of text ranges for this selection.
+        /// - affinity: The affinity of the selection.
+        /// - granularity: The granularity of the selection.
         #[unsafe(method(initWithRanges:affinity:granularity:))]
         #[unsafe(method_family = init)]
         pub fn initWithRanges_affinity_granularity(
@@ -87,6 +107,7 @@ impl NSTextSelection {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextRange")]
+        /// Creates a new text selection with the range, affinity, and granularity you specify.
         #[unsafe(method(initWithRange:affinity:granularity:))]
         #[unsafe(method_family = init)]
         pub fn initWithRange_affinity_granularity(
@@ -97,6 +118,7 @@ impl NSTextSelection {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextRange")]
+        /// Creates a new text selection at the specified location with the given affinity.
         #[unsafe(method(initWithLocation:affinity:))]
         #[unsafe(method_family = init)]
         pub fn initWithLocation_affinity(
@@ -108,23 +130,45 @@ impl NSTextSelection {
         // -init (unavailable)
 
         #[cfg(feature = "NSTextRange")]
+        /// An array of disjoint logical ranges in the selection.
+        ///
+        /// The array must be logically ordered. When editing, all ranges in a text
+        /// selection constitute a single insertion point.
         #[unsafe(method(textRanges))]
         #[unsafe(method_family = none)]
         pub fn textRanges(&self) -> Retained<NSArray<NSTextRange>>;
 
+        /// The granularity of the selection.
+        ///
+        /// `NSTextSelectionGranularityCharacter` by default. Extending operations
+        /// should modify the selection by the granularity.
         #[unsafe(method(granularity))]
         #[unsafe(method_family = none)]
         pub fn granularity(&self) -> NSTextSelectionGranularity;
 
+        /// Either upstream or downstream selection.
+        ///
+        /// `NSTextSelectionAffinityDownstream` by default. For a 0-length selection, it
+        /// describes the visual location of the text cursor between the head of line
+        /// containing the selection location (downstream) or tail of the previous line
+        /// (upstream). For a selection with contents, it describes the logical direction
+        /// of the non-anchored edge of the selection.
         #[unsafe(method(affinity))]
         #[unsafe(method_family = none)]
         pub fn affinity(&self) -> NSTextSelectionAffinity;
 
+        /// A Boolean value indicating whether this is a transient text selection during drag handling.
         #[unsafe(method(isTransient))]
         #[unsafe(method_family = none)]
         pub fn isTransient(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The anchor position offset from the beginning of a line fragment in visual order.
+        ///
+        /// That is, from the left for a horizontal line fragment and from the top for a
+        /// vertical. Navigating between lines uses this point when the current line
+        /// fragment associated with the selection is shorter than the next line visited.
+        /// The default value is `0.0`.
         #[unsafe(method(anchorPositionOffset))]
         #[unsafe(method_family = none)]
         pub fn anchorPositionOffset(&self) -> CGFloat;
@@ -135,6 +179,7 @@ impl NSTextSelection {
         #[unsafe(method_family = none)]
         pub fn setAnchorPositionOffset(&self, anchor_position_offset: CGFloat);
 
+        /// A Boolean value indicating whether the selection should be interpreted as logical or visual.
         #[unsafe(method(isLogical))]
         #[unsafe(method_family = none)]
         pub fn isLogical(&self) -> bool;
@@ -145,6 +190,9 @@ impl NSTextSelection {
         pub fn setLogical(&self, logical: bool);
 
         #[cfg(feature = "NSTextRange")]
+        /// The secondary character location when the user taps or clicks at a directional boundary.
+        ///
+        /// Setting a non-nil location has a side effect of making ``logical`` `false`.
         #[unsafe(method(secondarySelectionLocation))]
         #[unsafe(method_family = none)]
         pub fn secondarySelectionLocation(
@@ -160,6 +208,7 @@ impl NSTextSelection {
             secondary_selection_location: Option<&ProtocolObject<dyn NSTextLocation>>,
         );
 
+        /// The template attributes used for characters replacing the contents of this selection.
         #[unsafe(method(typingAttributes))]
         #[unsafe(method_family = none)]
         pub fn typingAttributes(&self) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -179,6 +228,14 @@ impl NSTextSelection {
         );
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns a copy of this selection, replacing the text ranges with the ones you provide.
+        ///
+        /// All other attributes remain the same.
+        ///
+        /// - Parameters:
+        /// - textRanges: The new text ranges for the returned selection.
+        ///
+        /// - Returns: A new ``NSTextSelection`` with the updated ranges.
         #[unsafe(method(textSelectionWithTextRanges:))]
         #[unsafe(method_family = none)]
         pub fn textSelectionWithTextRanges(

@@ -9,7 +9,7 @@ use crate::*;
 
 /// A value that indicates a location in a directory from which to enumerate.
 ///
-/// Your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)`` defines the semantics of this value; it's opaque to FSKit.
+/// Your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:context:replyHandler:)`` defines the semantics of this value; it's opaque to FSKit.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectorycookie?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
@@ -228,7 +228,7 @@ impl FSVolumeIdentifier {
 extern_class!(
     /// An object used to provide items during a directory enumeration.
     ///
-    /// You use this type in your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``.
+    /// You use this type in your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:context:replyHandler:)``.
     ///
     /// Packing allows your implementation to provide information FSKit needs, including each item's name, type, and identifier (such as an inode number).
     /// Some directory enumerations require other attributes, as indicated by the ``FSItemGetAttributesRequest`` sent to the enumerate method.
@@ -250,13 +250,13 @@ impl FSDirectoryEntryPacker {
         #[cfg(all(feature = "FSFileName", feature = "FSItem"))]
         /// Provides a directory entry during enumeration.
         ///
-        /// You call this method in your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``, for each directory entry you want to provide to the enumeration.
+        /// You call this method in your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:context:replyHandler:)``, for each directory entry you want to provide to the enumeration.
         ///
         /// - Parameters:
         /// - name: The item's name.
         /// - itemType: The type of the item.
         /// - itemID: The item's identifier. Typically this is an inode number, or one of the constants defined by ``FSItem/Identifier`` like ``FSItem/Identifier/rootDirectory``.
-        /// - nextCookie: A value to indicate the next entry in the directory to enumerate. FSKit passes this value as the `cookie` parameter on the next call to ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``. Use whatever value is appropriate for your implementation; the value is opaque to FSKit.
+        /// - nextCookie: A value to indicate the next entry in the directory to enumerate. FSKit passes this value as the `cookie` parameter on the next call to ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:context:replyHandler:)``. Use whatever value is appropriate for your implementation; the value is opaque to FSKit.
         /// - attributes: The item's attributes. Pass `nil` if the enumeration call didn't request attributes.
         /// - Returns: `true` (Swift) or `YES` (Objective-C) if packing was successful and enumeration can continue with the next directory entry. If the value is `false` (Swift) or `NO` (Objective-C), stop enumerating. This result can happen when the entry is too big for the remaining space in the buffer.
         #[unsafe(method(packEntryWithName:itemType:itemID:nextCookie:attributes:))]
@@ -586,7 +586,7 @@ extern_class!(
     /// You implement a volume for your file system type by subclassing this class, and also conforming to the ``FSVolume/Handler`` and ``FSVolume/PathConfOperations`` protocols.
     /// This protocol defines the minimum set of operations supported by a volume, such as mounting, activating, creating and removing items, and more.
     ///
-    /// Your volume can provide additional functionality by conforming to other volume operations protocols.
+    /// Your volume can provide additional functionality by conforming to other volume handler protocols.
     /// These protocols add support for operations like open and close, read and write, extended attribute (Xattr) manipulation, and more.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume?language=objc)
@@ -939,6 +939,8 @@ extern_protocol!(
     ///
     /// > Note: This protocol extends ``FSVolumePathConfOperations``, so your volume implementation must also conform to that protocol.
     ///
+    /// > Deprecated: Use ``FSVolume/Handler`` instead.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeoperations?language=objc)
     #[deprecated]
     pub unsafe trait FSVolumeOperations:
@@ -979,7 +981,7 @@ extern_protocol!(
 
         /// A property that allows the file system to request for specific mount options from FSKit.
         ///
-        /// FSKit reads this value after the volume replies to the ``mount(options:replyHandler:)`` call.
+        /// FSKit reads this value after the volume replies to the ``mount(options:)`` call.
         /// Changing the returned value during the runtime of the volume has no effect.
         #[optional]
         #[unsafe(method(requestedMountOptions))]
@@ -1023,7 +1025,7 @@ extern_protocol!(
         /// Prior to calling this method, FSKit has already issued a sync call to perform any
         /// cleanup-related I/O.
         ///
-        /// FSKit unmounts any mounted volume with a call to ``unmount(replyHandler:)`` prior to the deactivate callback.
+        /// FSKit unmounts any mounted volume with a call to ``unmount()`` prior to the deactivate callback.
         ///
         /// - Parameters:
         /// - options: Options to apply to the deactivation.
@@ -1041,7 +1043,7 @@ extern_protocol!(
         /// Mounts this volume, using the specified options.
         ///
         /// FSKit calls this method as a signal that some process is trying to mount this volume.
-        /// Your file system receives a call to ``activate(options:replyHandler:)`` prior to receiving any mount calls.
+        /// Your file system receives a call to ``activate(options:)`` prior to receiving any mount calls.
         ///
         /// - Parameters:
         /// - options: Options to apply to the mount. These can include security-scoped file paths. There are no defined options currently.
@@ -1110,7 +1112,7 @@ extern_protocol!(
         #[cfg(all(feature = "FSItem", feature = "block2"))]
         /// Reclaims an item, releasing any resources allocated for the item.
         ///
-        /// FSKit guarantees that for every ``FSItem`` returned by the volume, a corresponding reclaim operation occurs after the upper layers no longer reference that item.
+        /// FSKit guarantees that for every ``FSItem`` returned by the volume, a corresponding reclaim operation occurs after the upper layers no longer reference that item. To use this behavior, call ``FSItem/tryReclaim(_:)`` in your implementation of this method.
         ///
         /// > Note: Block device file systems may assess whether an underlying resource terminates before processing reclaim operations. On unary file systems, for example, the associated volumes unmount when such resources disconnect from the system. The unmount triggers a reclaiming of all items. Some implementations benefit greatly from short-circuiting in such cases. With a terminated resource, all I/O results in an error, making short-circuiting the most efficient response.
         ///
@@ -1240,7 +1242,7 @@ extern_protocol!(
         /// - sourceName: The name of the item within the source directory.
         /// - destinationName: The new name of the item as it appears in `destinationDirectory`.
         /// - destinationDirectory: The directory to contain the renamed object, which may be the same as `sourceDirectory`.
-        /// - overItem: The file system object if the destination exists, as discovered in a prior lookup. If this parameter is non-`nil`, mark `overItem` as deleted, so the file system can free its allocated space on the next call to ``reclaimItem(_:replyHandler:)``. After doing so, ensure the operation finishes without errors.
+        /// - overItem: The file system object if the destination exists, as discovered in a prior lookup. If this parameter is non-`nil`, mark `overItem` as deleted, so the file system can free its allocated space on the next call to ``reclaimItem(_:)``. After doing so, ensure the operation finishes without errors.
         /// - reply: A block or closure to indicate success or failure. If renaming succeeds, pass the ``FSFileName`` as it exists within `destinationDirectory` and a `nil` error. If renaming fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
         #[deprecated]
         #[unsafe(method(renameItem:inDirectory:named:toNewName:inDirectory:overItem:replyHandler:))]
@@ -1260,7 +1262,7 @@ extern_protocol!(
         /// Removes an existing item from a given directory.
         ///
         /// Don't actually remove the item object itself in your implementation; instead, only remove the given item name from the given directory.
-        /// Remove and deallocate the item in ``reclaimItem(_:replyHandler:)``.
+        /// Remove and deallocate the item in ``reclaimItem(_:)``.
         ///
         /// - Parameters:
         /// - item: The item to remove.
@@ -1552,7 +1554,7 @@ extern_protocol!(
         #[cfg(all(feature = "FSItem", feature = "block2"))]
         /// Reclaims an item, releasing any resources allocated for the item.
         ///
-        /// FSKit guarantees that for every ``FSItem`` returned by the volume, a corresponding reclaim operation occurs after the upper layers no longer reference that item.
+        /// FSKit guarantees that for every ``FSItem`` returned by the volume, a corresponding reclaim operation occurs after the upper layers no longer reference that item. To use this behavior, call ``FSItem/tryReclaim(_:)`` in your implementation of this method.
         ///
         /// > Note: Block device file systems may assess whether an underlying resource terminates before processing reclaim operations. On unary file systems, for example, the associated volumes unmount when such resources disconnect from the system. The unmount triggers a reclaiming of all items. Some implementations benefit greatly from short-circuiting in such cases. With a terminated resource, all I/O results in an error, making short-circuiting the most efficient response.
         ///
@@ -1919,6 +1921,8 @@ unsafe impl RefEncode for FSSetXattrPolicy {
 extern_protocol!(
     /// Methods and properties implemented by volumes that natively or partially support extended attributes.
     ///
+    /// > Deprecated: Use ``FSVolume/XattrHandler``
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumexattroperations?language=objc)
     #[deprecated]
     pub unsafe trait FSVolumeXattrOperations: NSObjectProtocol {
@@ -2161,6 +2165,8 @@ extern_protocol!(
     ///
     /// If a file system volume doesn't conform to this protocol, the kernel layer can skip making such calls to the volume.
     ///
+    /// > Deprecated: Use ``FSVolume/OpenCloseHandler`` instead.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeopencloseoperations?language=objc)
     #[deprecated]
     pub unsafe trait FSVolumeOpenCloseOperations: NSObjectProtocol {
@@ -2285,6 +2291,8 @@ extern_protocol!(
     /// You can conform to both if you need to provide kernel-offloaded I/O only for certain files.
     /// In that case, files with the ``FSItem/Attribute/inhibitKernelOffloadedIO`` attribute set use this protocol, and those without it use ``FSVolumeKernelOffloadedIOOperations``.
     /// A volume that doesn't conform to either protocol can't support any I/O operation.
+    ///
+    /// > Deprecated: Use ``FSVolume/ReadWriteHandler`` instead.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumereadwriteoperations?language=objc)
     #[deprecated]
@@ -2492,6 +2500,8 @@ unsafe impl RefEncode for FSAccessMask {
 extern_protocol!(
     /// Methods and properties implemented by volumes that want to enforce access check operations.
     ///
+    /// > Deprecated: Use ``FSVolume/AccessCheckHandler`` instead.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeaccesscheckoperations?language=objc)
     #[deprecated]
     pub unsafe trait FSVolumeAccessCheckOperations: NSObjectProtocol {
@@ -2574,6 +2584,8 @@ extern_protocol!(
 
 extern_protocol!(
     /// Methods and properties implemented by volumes that support renaming the volume.
+    ///
+    /// > Deprecated: Use ``FSVolume/RenameHandler`` instead.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumerenameoperations?language=objc)
     #[deprecated]
@@ -2674,7 +2686,7 @@ bitflags::bitflags! {
 /// Allocates space from the physical end of file.
 ///
 /// When implementing this behavior, ignore any offset in the preallocate call.
-/// This flag is currently set for all ``FSVolume/PreallocateHandler/preallocateSpace(for:at:length:flags:replyHandler:)`` calls.
+/// This flag is currently set for all ``FSVolume/PreallocateHandler/preallocateSpace(for:at:length:flags:context:replyHandler:)`` calls.
         #[doc(alias = "FSPreallocateFlagsFromEOF")]
         const FromEOF = 0x00000010;
         const _ = !0;
@@ -2698,6 +2710,8 @@ extern_protocol!(
     /// This process can improve performance later.
     ///
     /// In a kernel-based file system, you typically preallocate space with the `VNOP_ALLOCATE` operation, called from `fcntl(F_PREALLOCATE)`.
+    ///
+    /// > Deprecated: Use ``FSVolume/PreallocateHandler`` instead.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumepreallocateoperations?language=objc)
     #[deprecated]
@@ -2752,7 +2766,7 @@ extern_protocol!(
     ///
     /// In a kernel-based file system, you typically preallocate space with the `VNOP_ALLOCATE` operation, called from `fcntl(F_PREALLOCATE)`.
     ///
-    /// > Important: This protocol replaces the ``FSVolumePreallocateOperations`` protocol. It exposes the same functionality, while using the ``FSPreallocateResult`` object. This objects adds the ability to reply with ``FSItemAttributes`` and free space from ``preallocateSpace(for:at:length:flags:replyHandler:)``.
+    /// > Important: This protocol replaces the ``FSVolumePreallocateOperations`` protocol. It exposes the same functionality, while using the ``FSPreallocateResult`` object. This objects adds the ability to reply with ``FSItemAttributes`` and free space from ``preallocateSpace(for:at:length:flags:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumepreallocatehandler?language=objc)
     pub unsafe trait FSVolumePreallocateHandler: NSObjectProtocol {
@@ -2797,7 +2811,7 @@ extern_protocol!(
 
 /// Options to specify the item deactivation policy.
 ///
-/// Callers may want to set a deactivation policy because ``FSVolume/ItemDeactivation/deactivateItem(_:replyHandler:)`` processing blocks the kernel.
+/// Callers may want to set a deactivation policy because ``FSVolume/ItemDeactivation/deactivateItem(_:)`` processing blocks the kernel.
 /// Setting a deactivation policy allows the file system to take action at a definitive point in the item's life cycle.
 /// These options allow the file system to instruct the FSKit kernel of which circumstances require the expense of a round-trip call to the module.
 ///
@@ -2860,7 +2874,7 @@ extern_protocol!(
         /// Notifies the file system that the kernel is no longer making immediate use of the given item.
         ///
         /// This method gives a file system a chance to release resources associated with an item.
-        /// However, this method prescribes no specific action; it's acceptable to defer all reclamation until ``FSVolume/Operations/reclaimItem(_:replyHandler:)``.
+        /// However, this method prescribes no specific action; it's acceptable to defer all reclamation until ``FSVolume/Operations/reclaimItem(_:)``.
         /// This method is the equivalent of VFS's `VNOP_INACTIVE`.
         ///
         /// FSKit restricts calls to this method based on the current value of ``FSVolume/ItemDeactivation/itemDeactivationPolicy``.
@@ -2882,7 +2896,7 @@ extern_protocol!(
 extern_protocol!(
     /// Methods and properties implemented by volumes that support deactivating items.
     ///
-    /// > Important: This protocol replaces the ``FSVolumeItemDeactivation`` protocol. It exposes the same functionality, while using the ``FSDeactivateItemResult`` object. This object adds the ability to reply with free space from ``deactivateItem(_:replyHandler:)``.
+    /// > Important: This protocol replaces the ``FSVolumeItemDeactivation`` protocol. It exposes the same functionality, while using the ``FSDeactivateItemResult`` object. This object adds the ability to reply with free space from ``deactivateItem(_:context:replyHandler:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeitemdeactivationhandler?language=objc)
     pub unsafe trait FSVolumeItemDeactivationHandler: NSObjectProtocol {
@@ -3006,10 +3020,10 @@ impl FSVolume {
         /// the kernel about cache policy changes that need to be applied immediately.
         /// This allows module-initiated updates outside the normal open/close/upgrade/downgrade flow.
         ///
-        /// When downgrading coherency type, the action must be ``FSKernelCacheCoherencyAction/push``,
-        /// ``FSKernelCacheCoherencyAction/pushInvalidate``, or ``FSKernelCacheCoherencyAction/invalidate``
+        /// When downgrading coherency type, the action must be ``FSVolume/KernelCacheCoherencyAction/push``,
+        /// ``FSVolume/KernelCacheCoherencyAction/pushInvalidate``, or ``FSVolume/KernelCacheCoherencyAction/invalidate``
         /// to instruct the kernel how to handle cached data.
-        /// If the action (push/invalidate) fails, the cache state remains unchanged and an error is returned.
+        /// If the action fails, the cache state remains unchanged and the method returns an error.
         ///
         /// > Important: This method must be called without holding any module-internal locks.
         /// The kernel may issue additional operations back into the module to satisfy cache state changes,

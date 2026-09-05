@@ -50,16 +50,6 @@ impl CPMapPanelSection {
             items: &NSArray<CPMapPanelItem>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "CPMapPanelItem", feature = "CPPanelItem"))]
-        /// Update the items in this section. If this section is currently visible in a panel,
-        /// the panel will refresh to show the new items.
-        ///
-        ///
-        /// Parameter `items`: The new array of items to display in this section.
-        #[unsafe(method(updateItems:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn updateItems(&self, items: &NSArray<CPMapPanelItem>);
-
         /// The title of the section.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]

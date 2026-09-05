@@ -28,12 +28,12 @@ impl FSFreeSpace {
 
         /// Populates this instance with the given free space value and atomically assigns a sequence number.
         ///
-        /// > Important: FSKit uses internal sequencing technology within this method to determine the most up-to-date free space of the volume. To ensure correctness, this method should be called within an isolation context covering the volume's free space.
+        /// > Important: FSKit uses internal sequencing technology within this method to determine the most up-to-date free space of the volume. To ensure correctness, call this method within an isolation context covering the volume's free space.
         #[unsafe(method(populateWithBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn populateWithBytes(&self, free_space_bytes: u64);
 
-        /// Returns a sentinel instance indicating no free space update occurred.
+        /// A sentinel instance that indicates no free space update occurred.
         #[unsafe(method(noUpdate))]
         #[unsafe(method_family = none)]
         pub unsafe fn noUpdate() -> Retained<FSFreeSpace>;

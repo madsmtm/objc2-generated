@@ -43,7 +43,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer?language=objc)
+    /// AVSampleBufferDisplayLayer is a subclass of CALayer that can decompress and display compressed or uncompressed video frames.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -85,7 +87,7 @@ impl AVSampleBufferDisplayLayer {
         ///
         /// By default, this property is NULL, in which case time stamps will be interpreted
         /// according to the host time clock (mach_absolute_time with the appropriate timescale
-        /// conversion; this is the same as Core Animation's CACurrentMediaTime).  With no
+        /// conversion; this is the same as Core Animation's CACurrentMediaTime). With no
         /// control timebase, once frames are enqueued, it is not possible to adjust exactly
         /// when they are displayed.
         ///
@@ -95,7 +97,7 @@ impl AVSampleBufferDisplayLayer {
         /// If you are synchronizing video to audio, you can use a timebase whose source clock
         /// is a CMAudioDeviceClock for the appropriate audio device to prevent drift.
         ///
-        /// Note that prior to OSX 10.10 and iOS 8.0, the control timebase could not be changed after enqueueSampleBuffer: was called.  As of OSX 10.10 and iOS 8.0, the control timebase may be changed at any time.
+        /// Note that prior to OSX 10.10 and iOS 8.0, the control timebase could not be changed after enqueueSampleBuffer: was called. As of OSX 10.10 and iOS 8.0, the control timebase may be changed at any time.
         #[unsafe(method(controlTimebase))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlTimebase(&self) -> Option<Retained<CMTimebase>>;
@@ -109,9 +111,7 @@ impl AVSampleBufferDisplayLayer {
         #[cfg(feature = "AVAnimation")]
         /// A string defining how the video is displayed within an AVSampleBufferDisplayLayer bounds rect.
         ///
-        /// Options are AVLayerVideoGravityResizeAspect, AVLayerVideoGravityResizeAspectFill
-        /// and AVLayerVideoGravityResize. AVLayerVideoGravityResizeAspect is default.
-        /// See
+        /// Options are AVLayerVideoGravityResizeAspect, AVLayerVideoGravityResizeAspectFill and AVLayerVideoGravityResize. AVLayerVideoGravityResizeAspect is default. See
         /// <AVFoundation
         /// /AVAnimation.h> for a description of these options.
         #[unsafe(method(videoGravity))]
@@ -128,10 +128,7 @@ impl AVSampleBufferDisplayLayer {
 
         /// Boolean indicating that the first video frame has been made ready for display.
         ///
-        /// Use this property as an indicator of when best to show or animate-in an AVSampleBufferDisplayLayer into view.
-        /// An AVSampleBufferDisplayLayer may be displayed, or made visible, while this property is NO, however the layer will not have any user-visible content until the value becomes YES. Note that if an animation is added to an AVSampleBufferDisplayLayer before it becomes readyForDisplay the video image displayed inside might not animate with the receiver.
-        /// readyForDisplay will change to NO when the layer can no longer display frames. readyForDisplay will be YES when the first video frame has been made ready for display.
-        /// This property is not key-value observable.  AVSampleBufferDisplayLayerReadyForDisplayDidChangeNotification is posted when this value changes.
+        /// Use this property as an indicator of when best to show or animate-in an AVSampleBufferDisplayLayer into view. An AVSampleBufferDisplayLayer may be displayed, or made visible, while this property is NO, however the layer will not have any user-visible content until the value becomes YES. Note that if an animation is added to an AVSampleBufferDisplayLayer before it becomes readyForDisplay the video image displayed inside might not animate with the receiver. readyForDisplay will change to NO when the layer can no longer display frames. readyForDisplay will be YES when the first video frame has been made ready for display. This property is not key-value observable. AVSampleBufferDisplayLayerReadyForDisplayDidChangeNotification is posted when this value changes.
         #[unsafe(method(isReadyForDisplay))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
@@ -182,7 +179,7 @@ impl AVSampleBufferDisplayLayer {
         ///
         /// The timebase is used to interpret time stamps.
         ///
-        /// The timebase is read-only.  Use the AVSampleBufferRenderSynchronizer to set the rate or time.
+        /// The timebase is read-only. Use the AVSampleBufferRenderSynchronizer to set the rate or time.
         #[deprecated = "Use sampleBufferRenderer's timebase instead"]
         #[unsafe(method(timebase))]
         #[unsafe(method_family = none)]
@@ -228,7 +225,7 @@ impl AVSampleBufferDisplayLayer {
         /// Attachments with the kCMSampleBufferAttachmentKey_ prefix must be set via
         /// CMSetAttachment.
         ///
-        /// IMPORTANT NOTE:  When using CMSampleBuffers that wrap CVPixelBuffer, it is important that such CVPixelBuffers be IOSurface-backed.
+        /// IMPORTANT NOTE: When using CMSampleBuffers that wrap CVPixelBuffer, it is important that such CVPixelBuffers be IOSurface-backed.
         /// CoreVideo allocates IOSurface-backed CVPixelBuffers when the pixel buffer attribute dictionary passed to CVPixelBufferPoolCreate contains
         /// an entry with key kCVPixelBufferIOSurfacePropertiesKey and value being a dictionary (which can be an empty dictionary).
         ///
@@ -248,8 +245,7 @@ impl AVSampleBufferDisplayLayer {
         #[unsafe(method_family = none)]
         pub unsafe fn flush(&self);
 
-        /// Instructs the layer to discard pending enqueued sample buffers and remove any
-        /// currently displayed image.
+        /// Instructs the layer to discard pending enqueued sample buffers and remove any currently displayed image.
         ///
         /// It is not possible to determine which sample buffers have been decoded,
         /// so the next frame passed to enqueueSampleBuffer: should be an IDR frame
@@ -299,8 +295,7 @@ impl AVSampleBufferDisplayLayer {
         pub unsafe fn isReadyForMoreMediaData(&self) -> bool;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
-        /// Instructs the target to invoke a client-supplied block repeatedly,
-        /// at its convenience, in order to gather sample buffers for display.
+        /// Instructs the target to invoke a client-supplied block repeatedly, at its convenience, in order to gather sample buffers for display.
         ///
         /// The block should enqueue sample buffers to the layer either until the layer's
         /// readyForMoreMediaData property becomes NO or until there is no more data
@@ -377,8 +372,8 @@ impl AVSampleBufferDisplayLayer {
     extern_methods!(
         /// Indicates whether video playback prevents display and device sleep.
         ///
-        /// Default is YES on iOS, tvOS and in Mac Catalyst apps.  Default is NO on macOS.
-        /// Setting this property to NO does not force the display to sleep, it simply stops preventing display sleep.  Other apps or frameworks within your app may still be preventing display sleep for various reasons.
+        /// Default is YES on iOS, tvOS and in Mac Catalyst apps. Default is NO on macOS.
+        /// Setting this property to NO does not force the display to sleep, it simply stops preventing display sleep. Other apps or frameworks within your app may still be preventing display sleep for various reasons.
         /// Note: If sample buffers are being enqueued for playback at the user's request, you should ensure that the value of this property is set to YES. If video is not being displayed as part of the user's primary focus, you should ensure that the value of this property is set to NO.
         #[unsafe(method(preventsDisplaySleepDuringVideoPlayback))]
         #[unsafe(method_family = none)]
@@ -402,7 +397,7 @@ impl AVSampleBufferDisplayLayer {
         /// Indicates whether video playback prevents the app from automatically getting backgrounded.
         ///
         /// Default is YES.
-        /// Setting this property to YES prevents an application that is playing video from automatically getting backgrounded.  This property does not prevent the user from backgrounding the application.
+        /// Setting this property to YES prevents an application that is playing video from automatically getting backgrounded. This property does not prevent the user from backgrounding the application.
         /// Note: If sample buffers are being enqueued for playback at the user's request, you should ensure that the value of this property is set to YES. If video is not being displayed as part of the user's primary focus, you should ensure that the value of this property is set to NO.
         #[unsafe(method(preventsAutomaticBackgroundingDuringVideoPlayback))]
         #[unsafe(method_family = none)]
@@ -424,7 +419,6 @@ impl AVSampleBufferDisplayLayer {
 impl AVSampleBufferDisplayLayer {
     extern_methods!(
         /// Whether or not decoded output is being obscured due to insufficient external protection.
-        ///
         ///
         /// The value of this property indicates whether the layer is purposefully obscuring its visual output
         /// because the requirement for an external protection mechanism is not met by the current device

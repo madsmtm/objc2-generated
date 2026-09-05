@@ -224,6 +224,8 @@ extern_class!(
     /// The system doesn't mount block device file systems until they pass a file system check.
     /// For an ``FSUnaryFileSystem`` that uses `FSBlockDeviceResource`, conform to `FSManageableResourceMaintenanceOperations`.
     ///
+    /// > Important: Don't mix direct I/O operations (``read(into:startingAt:length:)`` and ``write(from:startingAt:length:)``) with metadata operations (``metadataRead(into:startingAt:length:)``, ``metadataWrite(from:startingAt:length:)``, and ``delayedMetadataWrite(from:startingAt:length:)``) on the same range. Direct I/O bypasses the buffer cache, so mixing the two may result in stale or inconsistent data.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsblockdeviceresource?language=objc)
     #[unsafe(super(FSResource, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -390,7 +392,7 @@ impl FSBlockDeviceResource {
         /// For the read to succeed, requests must conform to any transfer requirements of the underlying resource.
         /// Disk drives typically require sector (`physicalBlockSize`) addressed operations of one or more sector-aligned offsets.
         ///
-        /// This method doesn't support partial reading of metadata.
+        /// > Important: The Kernel Buffer Cache is keyed by offset alone and doesn't detect overlapping byte ranges between buffers. As a result, the byte ranges of any two metadata operations must never intersect. All accesses to a given disk region must use the same (offset, length) pair.
         ///
         /// - Parameters:
         /// - buffer: A buffer to receive the data.
@@ -421,7 +423,7 @@ impl FSBlockDeviceResource {
         /// For the write to succeed, requests must conform to any transfer requirements of the underlying resource.
         /// Disk drives typically require sector (`physicalBlockSize`) addressed operations of one or more sector-aligned offsets.
         ///
-        /// This method doesn't support partial writing of metadata.
+        /// > Important: The Kernel Buffer Cache is keyed by offset alone and doesn't detect overlapping byte ranges between buffers. As a result, the byte ranges of any two metadata operations must never intersect. All accesses to a given disk region must use the same (offset, length) pair.
         ///
         /// - Parameters:
         /// - buffer: A buffer to provide the data.
@@ -459,7 +461,7 @@ impl FSBlockDeviceResource {
         /// For the write to succeed, requests must conform to any transfer requirements of the underlying resource.
         /// Disk drives typically require sector (`physicalBlockSize`) addressed operations of one or more sector-aligned offsets.
         ///
-        /// This method doesn't support partial writing of metadata.
+        /// > Important: The Kernel Buffer Cache is keyed by offset alone and doesn't detect overlapping byte ranges between buffers. As a result, the byte ranges of any two metadata operations must never intersect. All accesses to a given disk region must use the same (offset, length) pair.
         ///
         /// - Parameters:
         /// - buffer: A buffer to provide the data.

@@ -361,12 +361,12 @@ impl CKFetchDatabaseChangesOperation {
         /// The closure returns no value and takes the following parameters:
         ///
         /// - The change token to store and use in subsequent instances of ``CKFetchDatabaseChangesOperation``.
-        /// - A Boolen value that indicates whether this is the final database change. If ``CKFetchDatabaseChangesOperation/fetchAllChanges`` is
+        /// - A Boolean value that indicates whether this is the final database change. If ``CKFetchDatabaseChangesOperation/fetchAllChanges`` is
         /// <doc
         /// ://com.apple.documentation/documentation/swift/false>, it's the app's responsibility to create additional instances of ``CKFetchDatabaseChangesOperation`` to fetch further changes.
         /// - An error object that contains information about a problem, or `nil` if CloudKit successfully retrieves the database changes.
         ///
-        /// - Note: The change token and error parameters are mutally exclusive — that is, the closure provides one of them but not both.
+        /// - Note: The change token and error parameters are mutually exclusive — that is, the closure provides one of them but not both.
         ///
         /// Your app is responsible for saving the change token at the end of the operation and providing it to future uses of ``CKFetchDatabaseChangesOperation``. If the server returns a ``CKError/Code/changeTokenExpired`` error, the ``CKFetchDatabaseChangesOperation/previousServerChangeToken`` value is stale and your app needs to clear its local cache and refetch the database changes, starting with a `nil` change token.
         ///

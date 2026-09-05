@@ -9,22 +9,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationdirection?language=objc)
+/// Values that describe the direction of a selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationDirection(pub NSInteger);
 impl NSTextSelectionNavigationDirection {
+    /// The value that represents a logical forward selection based on the flow of text stored in the document.
     #[doc(alias = "NSTextSelectionNavigationDirectionForward")]
     pub const Forward: Self = Self(0);
+    /// The value that represents a logical backward selection based on the flow of text stored in the document.
     #[doc(alias = "NSTextSelectionNavigationDirectionBackward")]
     pub const Backward: Self = Self(1);
+    /// The value that represents a selection in the right direction along the current line.
     #[doc(alias = "NSTextSelectionNavigationDirectionRight")]
     pub const Right: Self = Self(2);
+    /// The value that represents a selection in the left direction along the current line.
     #[doc(alias = "NSTextSelectionNavigationDirectionLeft")]
     pub const Left: Self = Self(3);
+    /// The value that represents a selection in the up direction, above the current line.
     #[doc(alias = "NSTextSelectionNavigationDirectionUp")]
     pub const Up: Self = Self(4);
+    /// The value that represents a selection in the down direction, below the current line.
     #[doc(alias = "NSTextSelectionNavigationDirectionDown")]
     pub const Down: Self = Self(5);
 }
@@ -37,24 +45,45 @@ unsafe impl RefEncode for NSTextSelectionNavigationDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationdestination?language=objc)
+/// Values that affect how the framework handles navigation across different textual boundaries during a selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationdestination?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationDestination(pub NSInteger);
 impl NSTextSelectionNavigationDestination {
+    /// The selection moves to the next extended grapheme cluster boundary.
+    ///
+    /// When the movement direction isn't along the line (for example up and
+    /// down for a horizontal line), it moves to the adjacent line using the
+    /// anchor point instead of resolving to the logical direction. This could
+    /// result in a location inside a cluster depending on the specific
+    /// characteristics of a given script. For example, certain Indic scripts
+    /// combine characters in specific ways depending on usage and position to
+    /// form composite characters. The framework returns a location consistent
+    /// with the rules of the script and the direction of movement.
     #[doc(alias = "NSTextSelectionNavigationDestinationCharacter")]
     pub const Character: Self = Self(0);
+    /// The selection moves to the next word boundary, ignoring punctuation, whitespace, and format characters preceding the next word.
     #[doc(alias = "NSTextSelectionNavigationDestinationWord")]
     pub const Word: Self = Self(1);
+    /// The selection moves to the next line boundary.
+    ///
+    /// The boundary of a line can be logical, based on the line separator
+    /// characters, as well as visual using soft line wrapping.
     #[doc(alias = "NSTextSelectionNavigationDestinationLine")]
     pub const Line: Self = Self(2);
+    /// The selection moves to the next sentence boundary, ignoring punctuation, whitespace, and format characters preceding the next sentence.
     #[doc(alias = "NSTextSelectionNavigationDestinationSentence")]
     pub const Sentence: Self = Self(3);
+    /// The selection moves to the next paragraph boundary, ignoring the end-of-line elastic characters and paragraph separators.
     #[doc(alias = "NSTextSelectionNavigationDestinationParagraph")]
     pub const Paragraph: Self = Self(4);
+    /// The selection moves to the next container or page boundary, ignoring the end-of-line elastic characters and container/page separators.
     #[doc(alias = "NSTextSelectionNavigationDestinationContainer")]
     pub const Container: Self = Self(5);
+    /// The selection moves to the document boundary.
     #[doc(alias = "NSTextSelectionNavigationDestinationDocument")]
     pub const Document: Self = Self(6);
 }
@@ -67,17 +96,24 @@ unsafe impl RefEncode for NSTextSelectionNavigationDestination {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationmodifier?language=objc)
+/// Values that describe how the framework handles different kinds of selection modifiers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationmodifier?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationModifier(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextSelectionNavigationModifier: NSUInteger {
+/// The value that indicates the framework extends the selection by not moving the initial location while in a drag selection.
         #[doc(alias = "NSTextSelectionNavigationModifierExtend")]
         const Extend = 1<<0;
+/// The value that indicates the framework extends the selection visually inside the rectangular area defined by the anchor and drag positions.
         #[doc(alias = "NSTextSelectionNavigationModifierVisual")]
         const Visual = 1<<1;
+/// The value that indicates the framework extends the selection visually inside the rectangular area defined by the anchor and dragged positions.
+///
+/// This produces an ``NSTextSelection`` per line.
         #[doc(alias = "NSTextSelectionNavigationModifierMultiple")]
         const Multiple = 1<<2;
         const _ = !0;
@@ -92,14 +128,18 @@ unsafe impl RefEncode for NSTextSelectionNavigationModifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationwritingdirection?language=objc)
+/// Values that describe writing direction for selection navigation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationwritingdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationWritingDirection(pub NSInteger);
 impl NSTextSelectionNavigationWritingDirection {
+    /// Left-to-right writing direction.
     #[doc(alias = "NSTextSelectionNavigationWritingDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
+    /// Right-to-left writing direction.
     #[doc(alias = "NSTextSelectionNavigationWritingDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -112,14 +152,18 @@ unsafe impl RefEncode for NSTextSelectionNavigationWritingDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationlayoutorientation?language=objc)
+/// Values that describe text layout orientation for selection navigation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectionnavigationlayoutorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationLayoutOrientation(pub NSInteger);
 impl NSTextSelectionNavigationLayoutOrientation {
+    /// Lines render horizontally and grow from top to bottom.
     #[doc(alias = "NSTextSelectionNavigationLayoutOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// Lines render vertically and grow from right to left.
     #[doc(alias = "NSTextSelectionNavigationLayoutOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -145,6 +189,10 @@ extern_conformance!(
 
 impl NSTextSelectionNavigation {
     extern_methods!(
+        /// Creates a new text selection navigation with the data source you provide.
+        ///
+        /// - Parameters:
+        /// - dataSource: The data source providing layout and document content information.
         #[unsafe(method(initWithDataSource:))]
         #[unsafe(method_family = init)]
         pub fn initWithDataSource(
@@ -156,12 +204,14 @@ impl NSTextSelectionNavigation {
 
         // -init (unavailable)
 
+        /// The data source object providing the layout and document content information.
         #[unsafe(method(textSelectionDataSource))]
         #[unsafe(method_family = none)]
         pub fn textSelectionDataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextSelectionDataSource>>>;
 
+        /// A Boolean value that indicates whether the object could produce selections with multiple disjoint ranges.
         #[unsafe(method(allowsNonContiguousRanges))]
         #[unsafe(method_family = none)]
         pub fn allowsNonContiguousRanges(&self) -> bool;
@@ -171,6 +221,9 @@ impl NSTextSelectionNavigation {
         #[unsafe(method_family = none)]
         pub fn setAllowsNonContiguousRanges(&self, allows_non_contiguous_ranges: bool);
 
+        /// A Boolean value that indicates whether the coordinate system rotates for navigation methods based on the text container layout orientation.
+        ///
+        /// The default value is `false`.
         #[unsafe(method(rotatesCoordinateSystemForLayoutOrientation))]
         #[unsafe(method_family = none)]
         pub fn rotatesCoordinateSystemForLayoutOrientation(&self) -> bool;
@@ -183,11 +236,27 @@ impl NSTextSelectionNavigation {
             rotates_coordinate_system_for_layout_orientation: bool,
         );
 
+        /// Flushes cached layout information.
+        ///
+        /// Should be called whenever the document contents change.
         #[unsafe(method(flushLayoutCache))]
         #[unsafe(method_family = none)]
         pub fn flushLayoutCache(&self);
 
         #[cfg(feature = "NSTextSelection")]
+        /// Returns a new selection that results from applying the navigation operations you specify to the text selection you provide.
+        ///
+        /// Returns `nil` when the requested operation does not produce any logically
+        /// valid result.
+        ///
+        /// - Parameters:
+        /// - textSelection: The starting text selection.
+        /// - direction: The navigation direction.
+        /// - destination: The navigation destination granularity.
+        /// - extending: Whether to extend the selection.
+        /// - confined: If `true`, confines movement to the text element the selection already lies within.
+        ///
+        /// - Returns: The resulting text selection, or `nil` if the operation is invalid.
         #[unsafe(method(destinationSelectionForTextSelection:direction:destination:extending:confined:))]
         #[unsafe(method_family = none)]
         pub fn destinationSelectionForTextSelection_direction_destination_extending_confined(
@@ -204,6 +273,17 @@ impl NSTextSelectionNavigation {
             feature = "NSTextSelection",
             feature = "objc2-core-foundation"
         ))]
+        /// Returns an array of text selections produced with a tap or mouse down at the specified point.
+        ///
+        /// - Parameters:
+        /// - point: The interaction point in the container coordinate system.
+        /// - containerLocation: The location identifying which text container the point belongs to.
+        /// - anchors: The last text selection state if `selecting` is `true` or the extend modifier is active.
+        /// - modifiers: The active selection modifiers.
+        /// - selecting: `true` if currently in a text selection dragging session.
+        /// - bounds: The view area in the container coordinate system that can interact with events (typically the view's visible area).
+        ///
+        /// - Returns: An array of text selections for the interaction.
         #[unsafe(method(textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:))]
         #[unsafe(method_family = none)]
         pub fn textSelectionsInteractingAtPoint_inContainerAtLocation_anchors_modifiers_selecting_bounds(
@@ -217,6 +297,15 @@ impl NSTextSelectionNavigation {
         ) -> Retained<NSArray<NSTextSelection>>;
 
         #[cfg(feature = "NSTextSelection")]
+        /// Returns a text selection expanded to the nearest boundaries for the specified granularity enclosing the given selection.
+        ///
+        /// The returned selection will have `granularity` set to `selectionGranularity`.
+        ///
+        /// - Parameters:
+        /// - selectionGranularity: The granularity to expand to.
+        /// - textSelection: The selection to expand.
+        ///
+        /// - Returns: The expanded text selection.
         #[unsafe(method(textSelectionForSelectionGranularity:enclosingTextSelection:))]
         #[unsafe(method_family = none)]
         pub fn textSelectionForSelectionGranularity_enclosingTextSelection(
@@ -230,6 +319,16 @@ impl NSTextSelectionNavigation {
             feature = "NSTextSelection",
             feature = "objc2-core-foundation"
         ))]
+        /// Returns a text selection expanded to the nearest boundaries for the specified granularity that contains the given point.
+        ///
+        /// The returned selection will have `granularity` set to `selectionGranularity`.
+        ///
+        /// - Parameters:
+        /// - selectionGranularity: The granularity to expand to.
+        /// - point: The point in the container coordinate system.
+        /// - location: The location identifying the text container.
+        ///
+        /// - Returns: The expanded text selection, or `nil`.
         #[unsafe(method(textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:))]
         #[unsafe(method_family = none)]
         pub fn textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation(
@@ -240,6 +339,16 @@ impl NSTextSelectionNavigation {
         ) -> Option<Retained<NSTextSelection>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
+        /// Returns the resolved location for inserting the next input when the selection is at a bidirectional boundary.
+        ///
+        /// Returns `nil` if `textSelection` has `isLogical == YES` or
+        /// `secondarySelectionLocation == nil`.
+        ///
+        /// - Parameters:
+        /// - textSelection: The current text selection.
+        /// - writingDirection: The active input writing direction.
+        ///
+        /// - Returns: The resolved insertion location, or `nil`.
         #[unsafe(method(resolvedInsertionLocationForTextSelection:writingDirection:))]
         #[unsafe(method_family = none)]
         pub fn resolvedInsertionLocationForTextSelection_writingDirection(
@@ -249,6 +358,21 @@ impl NSTextSelectionNavigation {
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
+        /// Returns the ranges that should be deleted based on the text selection and movement arguments.
+        ///
+        /// The selection after deletion should contain a 0-length range starting at the
+        /// location of the first range returned. `destination` is ignored when
+        /// `textSelection` has a non-empty selection. `allowsDecomposition` only applies
+        /// to `NSTextSelectionNavigationDirectionBackward` and
+        /// `NSTextSelectionNavigationDestinationCharacter` with a 0-length selection.
+        ///
+        /// - Parameters:
+        /// - textSelection: The current text selection.
+        /// - direction: The deletion direction.
+        /// - destination: The deletion destination granularity.
+        /// - allowsDecomposition: Whether to allow character decomposition during backward deletion.
+        ///
+        /// - Returns: An array of ranges to delete.
         #[unsafe(method(deletionRangesForTextSelection:direction:destination:allowsDecomposition:))]
         #[unsafe(method_family = none)]
         pub fn deletionRangesForTextSelection_direction_destination_allowsDecomposition(
@@ -262,14 +386,34 @@ impl NSTextSelectionNavigation {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectiondatasource?language=objc)
+    /// The protocol that provides layout and document content information for text selection navigation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectiondatasource?language=objc)
     pub unsafe trait NSTextSelectionDataSource: NSObjectProtocol {
         #[cfg(feature = "NSTextRange")]
+        /// The starting and ending locations for the document.
         #[unsafe(method(documentRange))]
         #[unsafe(method_family = none)]
         fn documentRange(&self) -> Retained<NSTextRange>;
 
         #[cfg(all(feature = "NSTextRange", feature = "block2"))]
+        /// Enumerates the textual segment boundaries starting at the specified location.
+        ///
+        /// The segmentation logic should be based on the natural language semantics and
+        /// rules such as Unicode Text Segmentation UAX 29. It is allowed to have custom
+        /// text segmentation behavior for specialized document contents (i.e. text
+        /// editors with structured document contents such as a programming language).
+        /// `NSStringEnumerationByLines` should be aware of the visual line boundaries
+        /// based on soft line wrapping. For forward enumeration, location may be at the
+        /// trailing edge of a visual line; the implementation must enumerate into
+        /// subsequent content rather than only within the current line fragment.
+        ///
+        /// - Parameters:
+        /// - location: The starting location.
+        /// - options: One or more
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsstring/enumerationoptions> values controlling segmentation type and direction.
+        /// - block: A block called for each substring segment.
         #[unsafe(method(enumerateSubstringsFromLocation:options:usingBlock:))]
         #[unsafe(method_family = none)]
         fn enumerateSubstringsFromLocation_options_usingBlock(
@@ -283,6 +427,18 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
+        /// Returns a text range corresponding to the specified granularity enclosing the given location.
+        ///
+        /// Returns `nil` when `documentRange.isEmpty` is `true`. When location falls at a
+        /// visual line boundary, results for `NSTextSelectionGranularityLine` should be
+        /// consistent with ``lineFragmentRangeForPoint:inContainerAtLocation:`` for the
+        /// same position.
+        ///
+        /// - Parameters:
+        /// - selectionGranularity: The granularity to expand to.
+        /// - location: The document location.
+        ///
+        /// - Returns: The enclosing range, or `nil`.
         #[unsafe(method(textRangeForSelectionGranularity:enclosingLocation:))]
         #[unsafe(method_family = none)]
         fn textRangeForSelectionGranularity_enclosingLocation(
@@ -292,6 +448,17 @@ extern_protocol!(
         ) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns a new location from the specified location with the given offset.
+        ///
+        /// The offset value could be positive or negative indicating the logical
+        /// direction. Could return `nil` when the inputs don't produce any legal
+        /// location (i.e. out of bounds index).
+        ///
+        /// - Parameters:
+        /// - location: The base location.
+        /// - offset: The offset from the base location.
+        ///
+        /// - Returns: A new location, or `nil` if out of bounds.
         #[unsafe(method(locationFromLocation:withOffset:))]
         #[unsafe(method_family = none)]
         fn locationFromLocation_withOffset(
@@ -301,6 +468,20 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns the offset between the two specified locations.
+        ///
+        /// The return value could be positive or negative. Could return `NSNotFound`
+        /// when the offset cannot be represented in an integer value (i.e. locations
+        /// are not in the same document). If either location is invalid or
+        /// out-of-document, return 0 to avoid arithmetic overflow.
+        ///
+        /// - Parameters:
+        /// - from: The starting location.
+        /// - to: The ending location.
+        ///
+        /// - Returns: The signed offset, or
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsnotfound> if the locations are not in the same document.
         #[unsafe(method(offsetFromLocation:toLocation:))]
         #[unsafe(method_family = none)]
         fn offsetFromLocation_toLocation(
@@ -310,6 +491,16 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns the base writing direction at the specified location.
+        ///
+        /// It is recommended to return the resolved base direction, either
+        /// `NSTextSelectionNavigationWritingDirectionLeftToRight` or
+        /// `NSTextSelectionNavigationWritingDirectionRightToLeft`.
+        ///
+        /// - Parameters:
+        /// - location: The document location.
+        ///
+        /// - Returns: An ``NSTextSelectionNavigationWritingDirection``, ideally the resolved base direction (either `NSTextSelectionNavigationWritingDirectionLeftToRight` or `NSTextSelectionNavigationWritingDirectionRightToLeft`).
         #[unsafe(method(baseWritingDirectionAtLocation:))]
         #[unsafe(method_family = none)]
         fn baseWritingDirectionAtLocation(
@@ -322,6 +513,24 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// Enumerates all the caret offsets from left to right in visual order.
+        ///
+        /// `caretOffset` is the absolute horizontal position measured from the left edge
+        /// of the text container; implementors must account for the line fragment's
+        /// origin within the container and the typographic line's position within the
+        /// fragment (non-zero for center- or right-aligned text). When `leadingEdge` is
+        /// `true`, it indicates `caretOffset` is at the edge logically preceding the
+        /// character. For LTR characters, it is on the left, and on the right for RTL
+        /// characters. The block must be called twice per character — once for the
+        /// leading edge and once for the trailing edge — except for empty line
+        /// fragments (e.g. empty paragraphs) where a single leading-edge call is
+        /// sufficient. The location objects passed to the block must be positionally
+        /// equivalent (via `isEqual:`) to locations returned by other data source
+        /// methods for the same document positions.
+        ///
+        /// - Parameters:
+        /// - location: A location identifying the line fragment to enumerate.
+        /// - block: A block called for each caret offset.
         #[unsafe(method(enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:))]
         #[unsafe(method_family = none)]
         fn enumerateCaretOffsetsInLineFragmentAtLocation_usingBlock(
@@ -334,6 +543,18 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSTextRange", feature = "objc2-core-foundation"))]
+        /// Returns the range of the line fragment whose visual bounds contain the specified point.
+        ///
+        /// This is a containment test: for points at or past the trailing edge of a
+        /// line's last glyph, return the current line fragment's range, not the next.
+        /// For multi-container layouts, `location` identifies which text container the
+        /// point belongs to.
+        ///
+        /// - Parameters:
+        /// - point: The point to test in the container coordinate system.
+        /// - location: The location identifying the text container.
+        ///
+        /// - Returns: The line fragment range containing the point, or `nil`.
         #[unsafe(method(lineFragmentRangeForPoint:inContainerAtLocation:))]
         #[unsafe(method_family = none)]
         fn lineFragmentRangeForPoint_inContainerAtLocation(
@@ -343,6 +564,15 @@ extern_protocol!(
         ) -> Option<Retained<NSTextRange>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "block2"))]
+        /// Enumerates the text container or page boundaries.
+        ///
+        /// This optional method should be implemented when the text selection data
+        /// provider supports container/page boundary layout functionality.
+        ///
+        /// - Parameters:
+        /// - location: The starting location.
+        /// - reverse: Whether to enumerate in reverse.
+        /// - block: A block called for each boundary location.
         #[optional]
         #[unsafe(method(enumerateContainerBoundariesFromLocation:reverse:usingBlock:))]
         #[unsafe(method_family = none)]
@@ -357,6 +587,15 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSTextRange")]
+        /// Returns the text layout orientation at the specified location.
+        ///
+        /// If not implemented, ``NSTextSelectionNavigation`` assumes
+        /// `NSTextSelectionNavigationLayoutOrientationHorizontal`.
+        ///
+        /// - Parameters:
+        /// - location: The document location.
+        ///
+        /// - Returns: The layout orientation at the location.
         #[optional]
         #[unsafe(method(textLayoutOrientationAtLocation:))]
         #[unsafe(method_family = none)]
@@ -364,5 +603,23 @@ extern_protocol!(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> NSTextSelectionNavigationLayoutOrientation;
+
+        #[cfg(all(feature = "NSTextRange", feature = "objc2-core-foundation"))]
+        /// Converts an interaction point from display space into the text container's coordinate system.
+        ///
+        /// `NSTextSelectionNavigation` calls this method before hit-testing to allow the data source to undo any display transform (rotation, flip, path layout, etc.) applied to the text.
+        ///
+        /// - Parameters:
+        /// - point: The interaction point in display/view-space coordinates.
+        /// - containerLocation: The location identifying the text container the interaction occurred in.
+        /// - Returns: The point mapped into the text container's coordinate system. Return `point` unchanged when no transform is active.
+        #[optional]
+        #[unsafe(method(convertInteractionPoint:toContainerAtLocation:))]
+        #[unsafe(method_family = none)]
+        fn convertInteractionPoint_toContainerAtLocation(
+            &self,
+            point: CGPoint,
+            container_location: &ProtocolObject<dyn NSTextLocation>,
+        ) -> CGPoint;
     }
 );

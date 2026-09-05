@@ -15,7 +15,30 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlayer?language=objc)
+    /// AVPlayerLayer is a subclass of CALayer to which an AVPlayer can direct its visual output.
+    ///
+    /// To create an AVPlayerLayer instance:
+    ///
+    /// AVPlayer *player = ...;
+    /// // ... set up an AVPlayer
+    ///
+    /// CALayer *superlayer = ...;
+    /// AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+    ///
+    /// // ... set up the AVPlayerLayer's geometry. For example: set the AVPlayerLayer frame according to the presentationSize of the AVPlayer's currentItem.
+    ///
+    /// [superlayer addSublayer:playerLayer];
+    ///
+    /// AVPlayerLayer provides a property 'videoGravity' that defines how the video content is displayed within the AVPlayerLayer property 'bounds' rect.
+    /// The value for the@"contents" key of an AVPlayerLayer is opaque and effectively read-only.
+    ///
+    /// Note that during playback AVPlayer may compensate for temporal drift between its visual output
+    /// and its audible output to one or more independently-clocked audio output devices by adjusting the timing of its
+    /// associated AVPlayerLayers. The effects of these adjustments are usually very minute; however, clients that
+    /// wish to remain entirely unaffected by such adjustments may wish to place other layers for which timing is
+    /// important into indepedently timed subtrees of their layer trees.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]
@@ -54,7 +77,7 @@ impl AVPlayerLayer {
         #[cfg(feature = "AVPlayer")]
         /// Returns an instance of AVPlayerLayer to display the visual output of the specified AVPlayer.
         ///
-        /// Returns: An instance of AVPlayerLayer.
+        /// - Returns: An instance of AVPlayerLayer.
         #[unsafe(method(playerLayerWithPlayer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playerLayerWithPlayer(player: Option<&AVPlayer>) -> Retained<AVPlayerLayer>;
@@ -74,9 +97,7 @@ impl AVPlayerLayer {
         #[cfg(feature = "AVAnimation")]
         /// A string defining how the video is displayed within an AVPlayerLayer bounds rect.
         ///
-        /// Options are AVLayerVideoGravityResizeAspect, AVLayerVideoGravityResizeAspectFill
-        /// and AVLayerVideoGravityResize. AVLayerVideoGravityResizeAspect is default.
-        /// See
+        /// Options are AVLayerVideoGravityResizeAspect, AVLayerVideoGravityResizeAspectFill and AVLayerVideoGravityResize. AVLayerVideoGravityResizeAspect is default. See
         /// <AVFoundation
         /// /AVAnimation.h> for a description of these options.
         #[unsafe(method(videoGravity))]
@@ -93,10 +114,7 @@ impl AVPlayerLayer {
 
         /// Boolean indicating that the first video frame has been made ready for display for the current item of the associated AVPlayer.
         ///
-        /// Use this property as an indicator of when best to show or animate-in an AVPlayerLayer into view.
-        /// An AVPlayerLayer may be displayed, or made visible, while this property is NO, however the layer will not have any user-visible content until the value becomes YES. Note that if an animation is added to an AVPlayerLayer before it becomes readyForDisplay the video image displayed inside might not animate with the receiver.
-        /// This property remains NO for an AVPlayer currentItem whose AVAsset contains no enabled video tracks.
-        /// This property is key-value observable.
+        /// Use this property as an indicator of when best to show or animate-in an AVPlayerLayer into view. An AVPlayerLayer may be displayed, or made visible, while this property is NO, however the layer will not have any user-visible content until the value becomes YES. Note that if an animation is added to an AVPlayerLayer before it becomes readyForDisplay the video image displayed inside might not animate with the receiver. This property remains NO for an AVPlayer currentItem whose AVAsset contains no enabled video tracks. This property is key-value observable.
         #[unsafe(method(isReadyForDisplay))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;

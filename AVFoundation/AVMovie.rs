@@ -35,7 +35,23 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmovie?language=objc)
+    /// AVMovie represents the audiovisual containers in a file that conforms to the QuickTime movie file format or to one of the related ISO base media file formats (such as MPEG-4).
+    ///
+    /// AVMovie supports operations involving the format-specific portions of the QuickTime Movie model that are not supported by AVAsset. For instance, you can retrieve the movie header from an existing QuickTime movie file. You can also use AVMovie to write a movie header into a new file, thereby creating a reference movie.
+    ///
+    /// A mutable subclass of AVMovie, AVMutableMovie, provides methods that support the familiar Movie editing model; for instance, you can use AVMutableMovie to copy media data from one track and paste that data into another track. You can also use AVMutableMovie to establish track references from one track to another (for example, to set one track as a chapter track of another track). If you want to perform editing operations on individual tracks, you can use the associated classes AVMovieTrack and AVMutableMovieTrack.
+    ///
+    /// You need to use AVMovie and AVMutableMovie only when operating on format-specific features of a QuickTime or ISO base media file. You generally do not need to use these classes just to open and play QuickTime movie files or ISO base media files. Instead, you can use the classes AVURLAsset and AVPlayerItem. If however you already have an AVMutableMovie and want to play it or inspect it, you can make an immutable snapshot of the AVMutableMovie like this:
+    ///
+    /// // myMutableMovie is of type AVMutableMovie; the client wants to inspect and play it in its current state
+    /// AVMovie *immutableSnapshotOfMyMovie = [myMutableMovie copy];
+    /// AVPlayerItem *playerItemForSnapshotOfMovie = [[AVPlayerItem alloc] initWithAsset:immutableSnapshotOfMyMovie];
+    ///
+    /// When performing media insertions, AVMutableMovie interleaves the media data from the tracks in the source asset in order to create movie files that are optimized for playback. It's possible, however, that performing a series of media insertions may result in a movie file that is not optimally interleaved. You can create a well-interleaved, self-contained, fast-start movie file from an instance of AVMutableMovie by passing that instance to an AVAssetExportSession using the export preset AVAssetExportPresetPassthrough and setting the setShouldOptimizeForNetworkUse property to YES.
+    ///
+    /// AVMovie conforms to NSMutableCopying, but creating a mutable copy of a movie can cause its properties to be loaded synchronously. This can cause the calling thread to block while synchronous I/O is performed. To avoid the worst side-effects of blocking, such as user interface hangs, avoid making a mutable copy from the main thread or from a thread owned by Swift's concurrency thread pool.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmovie?language=objc)
     #[unsafe(super(AVAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAsset")]
@@ -78,22 +94,21 @@ impl AVMovie {
         #[cfg(feature = "AVMediaFormat")]
         /// Provides the file types the AVMovie class understands.
         ///
-        /// Returns: An NSArray of UTIs identifying the file types the AVMovie class understands.
+        /// - Returns: An NSArray of UTIs identifying the file types the AVMovie class understands.
         #[unsafe(method(movieTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieTypes() -> Retained<NSArray<AVFileType>>;
 
         /// Creates an AVMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
-        /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// - Parameter URL: An NSURL object that specifies a file containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -107,15 +122,14 @@ impl AVMovie {
 
         /// Creates an AVMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
-        /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// - Parameter URL: An NSURL object that specifies a file containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -130,14 +144,13 @@ impl AVMovie {
 
         /// Creates an AVMovie object from a movie header stored in an NSData object.
         ///
-        /// Parameter `data`: An NSData object containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// You can use this method to operate on movie headers that are not stored in files; this might include movie headers on the pasteboard (which do not contain media data). In general you should avoid loading an entire movie file with its media data into an instance of NSData! By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter data: An NSData object containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -151,15 +164,14 @@ impl AVMovie {
 
         /// Creates an AVMovie object from a movie header stored in an NSData object.
         ///
-        /// Parameter `data`: An NSData object containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter data: An NSData object containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -280,13 +292,12 @@ impl AVMovie {
         #[cfg(feature = "AVMediaFormat")]
         /// Creates an NSData object containing the movie header of the AVMovie object.
         ///
-        /// Parameter `fileType`: A UTI indicating the specific file format of the movie header (e.g. AVFileTypeQuickTimeMovie for a QuickTime movie).
-        ///
-        /// Parameter `outError`: If an error occurs reading the movie header, describes the nature of the failure.
-        ///
-        /// Returns: An NSData object.
-        ///
         /// The movie header will be a pure reference movie, with no base URL, suitable for use on the pasteboard.
+        ///
+        /// - Parameter fileType: A UTI indicating the specific file format of the movie header (e.g. AVFileTypeQuickTimeMovie for a QuickTime movie).
+        /// - Parameter outError: If an error occurs reading the movie header, describes the nature of the failure.
+        ///
+        /// - Returns: An NSData object.
         #[unsafe(method(movieHeaderWithFileType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieHeaderWithFileType_error(
@@ -297,15 +308,12 @@ impl AVMovie {
         #[cfg(feature = "AVMediaFormat")]
         /// Writes the movie header to a destination URL.
         ///
-        /// Parameter `URL`: An NSURL object indicating where to write the movie header.
-        ///
-        /// Parameter `fileType`: A UTI indicating the specific file format (e.g. AVFileTypeQuickTimeMovie for a QuickTime movie).
-        ///
-        /// Parameter `options`: An NSUInteger whose bits specify options for the writing of the movie header. See AVMovieWritingOptions above.
-        ///
-        /// Parameter `outError`: If an error occurs writing the movie header, describes the nature of the failure.
-        ///
         /// Note that modifications to instances of AVMutableMovie, to their constituent AVMutableMovieTracks, or to their collections of metadata are committed to storage when their movie headers are written.
+        ///
+        /// - Parameter URL: An NSURL object indicating where to write the movie header.
+        /// - Parameter fileType: A UTI indicating the specific file format (e.g. AVFileTypeQuickTimeMovie for a QuickTime movie).
+        /// - Parameter options: An NSUInteger whose bits specify options for the writing of the movie header. See AVMovieWritingOptions above.
+        /// - Parameter outError: If an error occurs writing the movie header, describes the nature of the failure.
         #[unsafe(method(writeMovieHeaderToURL:fileType:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeMovieHeaderToURL_fileType_options_error(
@@ -318,9 +326,9 @@ impl AVMovie {
         #[cfg(feature = "AVMediaFormat")]
         /// Indicates whether a movie header for the AVMovie object can be created for the specified file type.
         ///
-        /// Parameter `fileType`: A UTI indicating a movie file format (e.g. AVFileTypeQuickTimeMovie for a QuickTime movie).
-        ///
         /// This method returns a BOOL that indicates whether a movie header of the specified type can be created for the receiver. For example, this method returns NO if the movie contains tracks whose media types or media subtypes are not allowed by the specified file type.
+        ///
+        /// - Parameter fileType: A UTI indicating a movie file format (e.g. AVFileTypeQuickTimeMovie for a QuickTime movie).
         #[unsafe(method(isCompatibleWithFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCompatibleWithFileType(&self, file_type: &AVFileType) -> bool;
@@ -338,13 +346,11 @@ impl AVMovie {
         ))]
         /// Provides an instance of AVMovieTrack that represents the track of the specified trackID.
         ///
-        /// Parameter `trackID`: The trackID of the requested AVMovieTrack.
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
-        /// Returns: An instance of AVMovieTrack; may be nil if no track of the specified trackID is available.
+        /// - Parameter trackID: The trackID of the requested AVMovieTrack.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// - Returns: An instance of AVMovieTrack; may be nil if no track of the specified trackID is available.
         #[deprecated = "Use loadTrackWithTrackID:completionHandler: instead"]
         #[unsafe(method(trackWithTrackID:))]
         #[unsafe(method_family = none)]
@@ -361,9 +367,8 @@ impl AVMovie {
         ))]
         /// Loads an instance of AVMovieTrack that represents the track of the specified trackID.
         ///
-        /// Parameter `trackID`: The trackID of the requested AVMovieTrack.
-        ///
-        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
+        /// - Parameter trackID: The trackID of the requested AVMovieTrack.
+        /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
@@ -382,13 +387,11 @@ impl AVMovie {
         ))]
         /// Provides an array of AVMovieTracks of the asset that present media of the specified media type.
         ///
-        /// Parameter `mediaType`: The media type according to which the receiver filters its AVMovieTracks. (Media types are defined in AVMediaFormat.h)
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
-        /// Returns: An NSArray of AVMovieTracks; may be empty if no tracks of the specified media type are available.
+        /// - Parameter mediaType: The media type according to which the receiver filters its AVMovieTracks. (Media types are defined in AVMediaFormat.h)
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// - Returns: An NSArray of AVMovieTracks; may be empty if no tracks of the specified media type are available.
         #[deprecated = "Use loadTracksWithMediaType:completionHandler: instead"]
         #[unsafe(method(tracksWithMediaType:))]
         #[unsafe(method_family = none)]
@@ -405,9 +408,8 @@ impl AVMovie {
         ))]
         /// Loads an array of AVMovieTracks of the asset that present media of the specified media type.
         ///
-        /// Parameter `mediaType`: The media type according to which AVAsset filters its AVMovieTracks. (Media types are defined in AVMediaFormat.h.)
-        ///
-        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
+        /// - Parameter mediaType: The media type according to which AVAsset filters its AVMovieTracks. (Media types are defined in AVMediaFormat.h.)
+        /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
@@ -426,13 +428,11 @@ impl AVMovie {
         ))]
         /// Provides an array of AVMovieTracks of the asset that present media with the specified characteristic.
         ///
-        /// Parameter `mediaCharacteristic`: The media characteristic according to which the receiver filters its AVMovieTracks. (Media characteristics are defined in AVMediaFormat.h)
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
-        /// Returns: An NSArray of AVMovieTracks; may be empty if no tracks with the specified characteristic are available.
+        /// - Parameter mediaCharacteristic: The media characteristic according to which the receiver filters its AVMovieTracks. (Media characteristics are defined in AVMediaFormat.h)
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// - Returns: An NSArray of AVMovieTracks; may be empty if no tracks with the specified characteristic are available.
         #[deprecated = "Use loadTracksWithMediaCharacteristic:completionHandler: instead"]
         #[unsafe(method(tracksWithMediaCharacteristic:))]
         #[unsafe(method_family = none)]
@@ -449,9 +449,8 @@ impl AVMovie {
         ))]
         /// Loads an array of AVMovieTracks of the asset that present media with the specified characteristic.
         ///
-        /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
-        ///
-        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
+        /// - Parameter mediaCharacteristic: The media characteristic according to which AVAsset filters its AVMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
+        /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
@@ -467,7 +466,6 @@ impl AVMovie {
 
 extern_class!(
     /// AVMutableMovie adds to its immutable superclass, AVMovie, several categories of methods for editing QuickTime movie files, e.g. inserting and removing time ranges of media, adding and removing tracks, and modifying the metadata collections stored therein.
-    ///
     ///
     /// By default, after creating an AVMutableMovie the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
     ///
@@ -513,17 +511,15 @@ impl AVMutableMovie {
     extern_methods!(
         /// Creates an AVMutableMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
-        /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object.
-        ///
-        /// Parameter `outError`: If an error occurs creating a movie, describes the nature of the failure.
-        ///
-        /// Returns: An AVMutableMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// - Parameter URL: An NSURL object that specifies a file containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object.
+        /// - Parameter outError: If an error occurs creating a movie, describes the nature of the failure.
+        ///
+        /// - Returns: An AVMutableMovie object
         ///
         /// # Safety
         ///
@@ -537,17 +533,15 @@ impl AVMutableMovie {
 
         /// Creates an AVMutableMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
-        /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object.
-        ///
-        /// Parameter `outError`: If an error occurs creating a movie, describes the nature of the failure.
-        ///
-        /// Returns: An AVMutableMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// - Parameter URL: An NSURL object that specifies a file containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object.
+        /// - Parameter outError: If an error occurs creating a movie, describes the nature of the failure.
+        ///
+        /// - Returns: An AVMutableMovie object
         ///
         /// # Safety
         ///
@@ -562,17 +556,15 @@ impl AVMutableMovie {
 
         /// Creates an AVMutableMovie object from a movie header stored in an NSData object.
         ///
-        /// Parameter `data`: An NSData object containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object.
-        ///
-        /// Parameter `outError`: If an error occurs creating a movie, describes the nature of the failure.
-        ///
-        /// Returns: An AVMutableMovie object
-        ///
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter data: An NSData object containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object.
+        /// - Parameter outError: If an error occurs creating a movie, describes the nature of the failure.
+        ///
+        /// - Returns: An AVMutableMovie object
         ///
         /// # Safety
         ///
@@ -586,17 +578,15 @@ impl AVMutableMovie {
 
         /// Creates an AVMutableMovie object from a movie header stored in an NSData object.
         ///
-        /// Parameter `data`: An NSData object containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object.
-        ///
-        /// Parameter `outError`: If an error occurs creating a movie, describes the nature of the failure.
-        ///
-        /// Returns: An AVMutableMovie object
-        ///
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter data: An NSData object containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object.
+        /// - Parameter outError: If an error occurs creating a movie, describes the nature of the failure.
+        ///
+        /// - Returns: An AVMutableMovie object
         ///
         /// # Safety
         ///
@@ -611,16 +601,14 @@ impl AVMutableMovie {
 
         /// Creates an AVMutableMovie object without tracks (and therefore without media).
         ///
-        /// Parameter `movie`: If you wish to transfer settings from an existing movie (including movie userdata and metadata, preferred rate, preferred volume, etc.), pass a reference to an AVMovie object representing that movie. Otherwise pass nil. The userdata and metadata from the source movie may need to be converted if the format of that movie differs from fileType; you may wish to inspect the userdata or metadata of the receiver to ensure that important data was copied.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object. Pass nil for default initialization behavior.
-        ///
-        /// Parameter `outError`: If an error occurs creating a movie, describes the nature of the failure.
-        ///
-        /// Returns: An AVMutableMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter movie: If you wish to transfer settings from an existing movie (including movie userdata and metadata, preferred rate, preferred volume, etc.), pass a reference to an AVMovie object representing that movie. Otherwise pass nil. The userdata and metadata from the source movie may need to be converted if the format of that movie differs from fileType; you may wish to inspect the userdata or metadata of the receiver to ensure that important data was copied.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object. Pass nil for default initialization behavior.
+        /// - Parameter outError: If an error occurs creating a movie, describes the nature of the failure.
+        ///
+        /// - Returns: An AVMutableMovie object
         ///
         /// # Safety
         ///
@@ -634,16 +622,14 @@ impl AVMutableMovie {
 
         /// Creates an AVMutableMovie object without tracks (and therefore without media).
         ///
-        /// Parameter `movie`: If you wish to transfer settings from an existing movie (including movie userdata and metadata, preferred rate, preferred volume, etc.), pass a reference to an AVMovie object representing that movie. Otherwise pass nil. The userdata and metadata from the source movie may need to be converted if the format of that movie differs from fileType; you may wish to inspect the userdata or metadata of the receiver to ensure that important data was copied.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object. Pass nil for default initialization behavior.
-        ///
-        /// Parameter `outError`: If an error occurs creating a movie, describes the nature of the failure.
-        ///
-        /// Returns: An AVMutableMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter movie: If you wish to transfer settings from an existing movie (including movie userdata and metadata, preferred rate, preferred volume, etc.), pass a reference to an AVMovie object representing that movie. Otherwise pass nil. The userdata and metadata from the source movie may need to be converted if the format of that movie differs from fileType; you may wish to inspect the userdata or metadata of the receiver to ensure that important data was copied.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMutableMovie object. Pass nil for default initialization behavior.
+        /// - Parameter outError: If an error occurs creating a movie, describes the nature of the failure.
+        ///
+        /// - Returns: An AVMutableMovie object
         ///
         /// # Safety
         ///
@@ -721,15 +707,14 @@ impl AVMutableMovie {
     extern_methods!(
         /// Creates an AVMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
-        /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// - Parameter URL: An NSURL object that specifies a file containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -743,15 +728,14 @@ impl AVMutableMovie {
 
         /// Creates an AVMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
-        /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// - Parameter URL: An NSURL object that specifies a file containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -766,14 +750,13 @@ impl AVMutableMovie {
 
         /// Creates an AVMovie object from a movie header stored in an NSData object.
         ///
-        /// Parameter `data`: An NSData object containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// You can use this method to operate on movie headers that are not stored in files; this might include movie headers on the pasteboard (which do not contain media data). In general you should avoid loading an entire movie file with its media data into an instance of NSData! By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter data: An NSData object containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -787,15 +770,14 @@ impl AVMutableMovie {
 
         /// Creates an AVMovie object from a movie header stored in an NSData object.
         ///
-        /// Parameter `data`: An NSData object containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter data: An NSData object containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -891,26 +873,17 @@ impl AVMutableMovie {
         #[cfg(feature = "objc2-core-media")]
         /// Inserts all the tracks of a timeRange of an asset into a movie.
         ///
-        /// Parameter `timeRange`: The time range of the asset to be inserted.
-        ///
-        /// Parameter `asset`: An AVAsset object indicating the source of the inserted media. Only instances of AVURLAsset and AVComposition are supported.
-        /// Must not be nil.
-        ///
-        /// Parameter `startTime`: The time in the target movie at which the media is to be inserted.
-        ///
-        /// Parameter `copySampleData`: A BOOL value that indicates whether sample data is to be copied from the source to the destination during edits.
-        /// If YES, the sample data is written to the location specified by the track property mediaDataStorage if non-nil,
-        /// or else by the movie property defaultMediaDataStorage if non-nil; if both are nil, the method will fail and return NO.
-        /// If NO, sample data will not be written and sample references to the samples in their original container will be added as necessary.
-        /// Note that in this case, this method will fail if the source AVAsset is not able to provide sample reference information for the original container.
-        ///
-        /// Parameter `outError`: If the insertion fails, an NSError object that describes the nature of the failure.
-        ///
-        /// Returns: A BOOL value that indicates the success of the insertion.
-        ///
         /// This method may add new tracks to the target movie to ensure that all tracks of the asset are represented in the inserted timeRange.
         /// Existing content at the specified startTime will be pushed out by the duration of timeRange.
         /// Note that metadata will not be automatically copied.
+        ///
+        /// - Parameter timeRange: The time range of the asset to be inserted.
+        /// - Parameter asset: An AVAsset object indicating the source of the inserted media. Only instances of AVURLAsset and AVComposition are supported. Must not be nil.
+        /// - Parameter startTime: The time in the target movie at which the media is to be inserted.
+        /// - Parameter copySampleData: A BOOL value that indicates whether sample data is to be copied from the source to the destination during edits. If YES, the sample data is written to the location specified by the track property mediaDataStorage if non-nil, or else by the movie property defaultMediaDataStorage if non-nil; if both are nil, the method will fail and return NO. If NO, sample data will not be written and sample references to the samples in their original container will be added as necessary. Note that in this case, this method will fail if the source AVAsset is not able to provide sample reference information for the original container.
+        /// - Parameter outError: If the insertion fails, an NSError object that describes the nature of the failure.
+        ///
+        /// - Returns: A BOOL value that indicates the success of the insertion.
         #[unsafe(method(insertTimeRange:ofAsset:atTime:copySampleData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertTimeRange_ofAsset_atTime_copySampleData_error(
@@ -924,7 +897,7 @@ impl AVMutableMovie {
         #[cfg(feature = "objc2-core-media")]
         /// Adds an empty time range to the target movie.
         ///
-        /// Parameter `timeRange`: The time range to be made empty. Note that you cannot add empty time ranges to the end of a movie.
+        /// - Parameter timeRange: The time range to be made empty. Note that you cannot add empty time ranges to the end of a movie.
         #[unsafe(method(insertEmptyTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertEmptyTimeRange(&self, time_range: CMTimeRange);
@@ -932,7 +905,7 @@ impl AVMutableMovie {
         #[cfg(feature = "objc2-core-media")]
         /// Removes a specified time range from a movie.
         ///
-        /// Parameter `timeRange`: The time range to be removed.
+        /// - Parameter timeRange: The time range to be removed.
         #[unsafe(method(removeTimeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeRange(&self, time_range: CMTimeRange);
@@ -940,9 +913,8 @@ impl AVMutableMovie {
         #[cfg(feature = "objc2-core-media")]
         /// Changes the duration of a time range of a movie.
         ///
-        /// Parameter `timeRange`: The time range to be scaled.
-        ///
-        /// Parameter `duration`: The new duration of the time range.
+        /// - Parameter timeRange: The time range to be scaled.
+        /// - Parameter duration: The new duration of the time range.
         #[unsafe(method(scaleTimeRange:toDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleTimeRange_toDuration(&self, time_range: CMTimeRange, duration: CMTime);
@@ -954,20 +926,19 @@ impl AVMutableMovie {
 impl AVMutableMovie {
     extern_methods!(
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMovieTrack"))]
-        /// Provides a reference to a track of a mutable movie into which any time range of an AVAssetTrack
-        /// can be inserted (via -[AVMutableMovieTrack insertTimeRange:ofTrack:atTime:copySampleData:error:]).
-        ///
-        /// Parameter `track`: A reference to the AVAssetTrack from which a time range may be inserted.
-        ///
-        /// Returns: An AVMutableMovieTrack that can accommodate the insertion.
-        /// If no such track is available, the result is nil. A new track of the same media type
-        /// as the AVAssetTrack can be created via -addMutableTrackWithMediaType:copySettingsFromTrack:options:,
-        /// and this new track will be compatible.
+        /// Provides a reference to a track of a mutable movie into which any time range of an AVAssetTrack can be inserted (via -[AVMutableMovieTrack insertTimeRange:ofTrack:atTime:copySampleData:error:]).
         ///
         /// For best performance, the number of tracks in a movie should be kept to a minimum, corresponding to the
         /// number for which media data must be presented in parallel. If media data of the same type is to be presented
         /// serially, even from multiple assets, a single track of that media type should be used. This method,
         /// -mutableTrackCompatibleWithTrack:, can help the client to identify an existing target track for an insertion.
+        ///
+        /// - Parameter track: A reference to the AVAssetTrack from which a time range may be inserted.
+        ///
+        /// - Returns: An AVMutableMovieTrack that can accommodate the insertion.
+        /// If no such track is available, the result is nil. A new track of the same media type
+        /// as the AVAssetTrack can be created via -addMutableTrackWithMediaType:copySettingsFromTrack:options:,
+        /// and this new track will be compatible.
         #[unsafe(method(mutableTrackCompatibleWithTrack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mutableTrackCompatibleWithTrack(
@@ -982,17 +953,15 @@ impl AVMutableMovie {
         ))]
         /// Adds an empty track to the target movie.
         ///
-        /// Parameter `mediaType`: The media type of the new track (e.g. AVMediaTypeVideo for a video track).
-        ///
-        /// Parameter `track`: If you wish to transfer settings from an existing track, including width, height, preferred volume, etc., pass a reference to an AVAssetTrack representing that track. Otherwise pass nil.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the new AVMutableMovieTrack object. Pass nil for default initialization behavior.
-        ///
-        /// Returns: An AVMutableMovieTrack object
-        ///
         /// The trackID of the newly added track is a property of the returned instance of AVMutableMovieTrack.
         /// This method throws an exception if media type is not equal to the track's media type, or if any option is invalid.
         /// Note that metadata will not be automatically copied.
+        ///
+        /// - Parameter mediaType: The media type of the new track (e.g. AVMediaTypeVideo for a video track).
+        /// - Parameter track: If you wish to transfer settings from an existing track, including width, height, preferred volume, etc., pass a reference to an AVAssetTrack representing that track. Otherwise pass nil.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the new AVMutableMovieTrack object. Pass nil for default initialization behavior.
+        ///
+        /// - Returns: An AVMutableMovieTrack object
         ///
         /// # Safety
         ///
@@ -1009,14 +978,13 @@ impl AVMutableMovie {
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMovieTrack"))]
         /// Adds one or more empty tracks to the target movie, copying track settings from the source tracks.
         ///
-        /// Parameter `existingTracks`: An array of AVAssetTrack objects.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the new AVMutableMovieTrack objects. Pass nil for default initialization behavior.
-        ///
-        /// Returns: An array of AVMutableMovieTrack objects; the index of a track in this array is the same as the index of its source track in the existingTracks array.
-        ///
         /// This method creates one or more empty tracks in the target movie and configures those tracks with settings (such as track userdata and metadata, width, height, and preferred volume) copied from the source tracks in the existingTracks array. Also, properties involving pairs of tracks (such as track references) are copied from the source tracks to the target tracks.
         /// This method throws an exception if any option is invalid.
+        ///
+        /// - Parameter existingTracks: An array of AVAssetTrack objects.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the new AVMutableMovieTrack objects. Pass nil for default initialization behavior.
+        ///
+        /// - Returns: An array of AVMutableMovieTrack objects; the index of a track in this array is the same as the index of its source track in the existingTracks array.
         ///
         /// # Safety
         ///
@@ -1032,7 +1000,7 @@ impl AVMutableMovie {
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMovieTrack"))]
         /// Removes a track from the target movie.
         ///
-        /// Parameter `track`: The track to be removed.
+        /// - Parameter track: The track to be removed.
         #[unsafe(method(removeTrack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrack(&self, track: &AVMovieTrack);
@@ -1072,13 +1040,11 @@ impl AVMutableMovie {
         ))]
         /// Provides an instance of AVMutableMovieTrack that represents the track of the specified trackID.
         ///
-        /// Parameter `trackID`: The trackID of the requested AVMutableMovieTrack.
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
-        /// Returns: An instance of AVMutableMovieTrack; may be nil if no track of the specified trackID is available.
+        /// - Parameter trackID: The trackID of the requested AVMutableMovieTrack.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// - Returns: An instance of AVMutableMovieTrack; may be nil if no track of the specified trackID is available.
         #[unsafe(method(trackWithTrackID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackWithTrackID(
@@ -1094,9 +1060,8 @@ impl AVMutableMovie {
         ))]
         /// Loads an instance of AVMutableMovieTrack that represents the track of the specified trackID.
         ///
-        /// Parameter `trackID`: The trackID of the requested AVMutableMovieTrack.
-        ///
-        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
+        /// - Parameter trackID: The trackID of the requested AVMutableMovieTrack.
+        /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
@@ -1115,13 +1080,11 @@ impl AVMutableMovie {
         ))]
         /// Provides an array of AVMutableMovieTracks of the asset that present media of the specified media type.
         ///
-        /// Parameter `mediaType`: The media type according to which the receiver filters its AVMutableMovieTracks. (Media types are defined in AVMediaFormat.h)
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
-        /// Returns: An NSArray of AVMutableMovieTracks; may be empty if no tracks of the specified media type are available.
+        /// - Parameter mediaType: The media type according to which the receiver filters its AVMutableMovieTracks. (Media types are defined in AVMediaFormat.h)
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// - Returns: An NSArray of AVMutableMovieTracks; may be empty if no tracks of the specified media type are available.
         #[unsafe(method(tracksWithMediaType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaType(
@@ -1137,9 +1100,8 @@ impl AVMutableMovie {
         ))]
         /// Loads an array of AVMutableMovieTracks of the asset that present media of the specified media type.
         ///
-        /// Parameter `mediaType`: The media type according to which AVAsset filters its AVMutableMovieTracks. (Media types are defined in AVMediaFormat.h.)
-        ///
-        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
+        /// - Parameter mediaType: The media type according to which AVAsset filters its AVMutableMovieTracks. (Media types are defined in AVMediaFormat.h.)
+        /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
@@ -1158,13 +1120,11 @@ impl AVMutableMovie {
         ))]
         /// Provides an array of AVMutableMovieTracks of the asset that present media with the specified characteristic.
         ///
-        /// Parameter `mediaCharacteristic`: The media characteristic according to which the receiver filters its AVMutableMovieTracks. (Media characteristics are defined in AVMediaFormat.h)
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
-        /// Returns: An NSArray of AVMutableMovieTracks; may be empty if no tracks with the specified characteristic are available.
+        /// - Parameter mediaCharacteristic: The media characteristic according to which the receiver filters its AVMutableMovieTracks. (Media characteristics are defined in AVMediaFormat.h)
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// - Returns: An NSArray of AVMutableMovieTracks; may be empty if no tracks with the specified characteristic are available.
         #[unsafe(method(tracksWithMediaCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaCharacteristic(
@@ -1180,9 +1140,8 @@ impl AVMutableMovie {
         ))]
         /// Loads an array of AVMutableMovieTracks of the asset that present media with the specified characteristic.
         ///
-        /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVMutableMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
-        ///
-        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
+        /// - Parameter mediaCharacteristic: The media characteristic according to which AVAsset filters its AVMutableMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
+        /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
@@ -1223,11 +1182,10 @@ impl AVMediaDataStorage {
 
         /// Creates an AVMediaDataStorage object associated with a file URL.
         ///
-        /// Parameter `URL`: An NSURL object that specifies a file where sample data that is added to a movie or track should be written.
+        /// - Parameter URL: An NSURL object that specifies a file where sample data that is added to a movie or track should be written.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMediaDataStorage object. Currently no keys are defined.
         ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMediaDataStorage object. Currently no keys are defined.
-        ///
-        /// Returns: An AVMediaDataStorage object
+        /// - Returns: An AVMediaDataStorage object
         ///
         /// # Safety
         ///
@@ -1248,34 +1206,32 @@ impl AVMediaDataStorage {
 }
 
 extern "C" {
-    /// Posted after the value of
-    /// "
-    /// containsMovieFragments" has already been loaded and the AVFragmentedMovie is added to an AVFragmentedMovieMinder, either when 1) movie fragments are detected in the movie file on disk after it had previously contained none or when 2) no movie fragments are detected in the movie file on disk after it had previously contained one or more.
+    /// Posted after the value of@"containsMovieFragments" has already been loaded and the AVFragmentedMovie is added to an AVFragmentedMovieMinder, either when 1) movie fragments are detected in the movie file on disk after it had previously contained none or when 2) no movie fragments are detected in the movie file on disk after it had previously contained one or more.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmoviecontainsmoviefragmentsdidchangenotification?language=objc)
     pub static AVFragmentedMovieContainsMovieFragmentsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// Posted when the duration of an AVFragmentedMovie changes while it's being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of
-    /// "
-    /// duration" has reached AVKeyValueStatusLoaded.
+    /// Posted when the duration of an AVFragmentedMovie changes while it's being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of@"duration" has reached AVKeyValueStatusLoaded.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmoviedurationdidchangenotification?language=objc)
     pub static AVFragmentedMovieDurationDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// Posted when the movie file on disk is defragmented while an AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only if the defragmentation occurs after the status of the value of
-    /// "
-    /// canContainMovieFragments" has reached AVKeyValueStatusLoaded.
+    /// Posted when the movie file on disk is defragmented while an AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only if the defragmentation occurs after the status of the value of@"canContainMovieFragments" has reached AVKeyValueStatusLoaded.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmoviewasdefragmentednotification?language=objc)
     pub static AVFragmentedMovieWasDefragmentedNotification: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovie?language=objc)
+    /// A subclass of AVMovie for handling fragmented movie files. An AVFragmentedMovie is capable of changing the values of certain of its properties and those of its tracks, if it's associated with an instance of AVFragmentedMovieMinder when one or more movie fragments are appended to the movie file.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovie?language=objc)
     #[unsafe(super(AVMovie, AVAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAsset")]
@@ -1328,15 +1284,14 @@ impl AVFragmentedMovie {
     extern_methods!(
         /// Creates an AVMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
-        /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// - Parameter URL: An NSURL object that specifies a file containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -1350,15 +1305,14 @@ impl AVFragmentedMovie {
 
         /// Creates an AVMovie object from a movie header stored in a QuickTime movie file or ISO base media file.
         ///
-        /// Parameter `URL`: An NSURL object that specifies a file containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// - Parameter URL: An NSURL object that specifies a file containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -1373,14 +1327,13 @@ impl AVFragmentedMovie {
 
         /// Creates an AVMovie object from a movie header stored in an NSData object.
         ///
-        /// Parameter `data`: An NSData object containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// You can use this method to operate on movie headers that are not stored in files; this might include movie headers on the pasteboard (which do not contain media data). In general you should avoid loading an entire movie file with its media data into an instance of NSData! By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter data: An NSData object containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -1394,15 +1347,14 @@ impl AVFragmentedMovie {
 
         /// Creates an AVMovie object from a movie header stored in an NSData object.
         ///
-        /// Parameter `data`: An NSData object containing a movie header.
-        ///
-        /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
-        ///
-        /// Returns: An AVMovie object
-        ///
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// - Parameter data: An NSData object containing a movie header.
+        /// - Parameter options: An NSDictionary object that contains keys for specifying options for the initialization of the AVMovie object.
+        ///
+        /// - Returns: An AVMovie object
         ///
         /// # Safety
         ///
@@ -1459,13 +1411,11 @@ impl AVFragmentedMovie {
         ))]
         /// Provides an instance of AVFragmentedMovieTrack that represents the track of the specified trackID.
         ///
-        /// Parameter `trackID`: The trackID of the requested AVFragmentedMovieTrack.
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
-        /// Returns: An instance of AVFragmentedMovieTrack; may be nil if no track of the specified trackID is available.
+        /// - Parameter trackID: The trackID of the requested AVFragmentedMovieTrack.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// - Returns: An instance of AVFragmentedMovieTrack; may be nil if no track of the specified trackID is available.
         #[deprecated = "Use loadTrackWithTrackID:completionHandler: instead"]
         #[unsafe(method(trackWithTrackID:))]
         #[unsafe(method_family = none)]
@@ -1482,9 +1432,8 @@ impl AVFragmentedMovie {
         ))]
         /// Loads an instance of AVFragmentedMovieTrack that represents the track of the specified trackID.
         ///
-        /// Parameter `trackID`: The trackID of the requested AVFragmentedMovieTrack.
-        ///
-        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
+        /// - Parameter trackID: The trackID of the requested AVFragmentedMovieTrack.
+        /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
@@ -1503,13 +1452,11 @@ impl AVFragmentedMovie {
         ))]
         /// Provides an array of AVFragmentedMovieTracks of the asset that present media of the specified media type.
         ///
-        /// Parameter `mediaType`: The media type according to which the receiver filters its AVFragmentedMovieTracks. (Media types are defined in AVMediaFormat.h)
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
-        /// Returns: An NSArray of AVFragmentedMovieTracks; may be empty if no tracks of the specified media type are available.
+        /// - Parameter mediaType: The media type according to which the receiver filters its AVFragmentedMovieTracks. (Media types are defined in AVMediaFormat.h)
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// - Returns: An NSArray of AVFragmentedMovieTracks; may be empty if no tracks of the specified media type are available.
         #[deprecated = "Use loadTracksWithMediaType:completionHandler: instead"]
         #[unsafe(method(tracksWithMediaType:))]
         #[unsafe(method_family = none)]
@@ -1526,9 +1473,8 @@ impl AVFragmentedMovie {
         ))]
         /// Loads an array of AVFragmentedMovieTracks of the asset that present media of the specified media type.
         ///
-        /// Parameter `mediaType`: The media type according to which AVAsset filters its AVFragmentedMovieTracks. (Media types are defined in AVMediaFormat.h.)
-        ///
-        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
+        /// - Parameter mediaType: The media type according to which AVAsset filters its AVFragmentedMovieTracks. (Media types are defined in AVMediaFormat.h.)
+        /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
@@ -1547,13 +1493,11 @@ impl AVFragmentedMovie {
         ))]
         /// Provides an array of AVFragmentedMovieTracks of the asset that present media with the specified characteristic.
         ///
-        /// Parameter `mediaCharacteristic`: The media characteristic according to which the receiver filters its AVFragmentedMovieTracks. (Media characteristics are defined in AVMediaFormat.h)
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
-        /// Returns: An NSArray of AVFragmentedMovieTracks; may be empty if no tracks with the specified characteristic are available.
+        /// - Parameter mediaCharacteristic: The media characteristic according to which the receiver filters its AVFragmentedMovieTracks. (Media characteristics are defined in AVMediaFormat.h)
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// - Returns: An NSArray of AVFragmentedMovieTracks; may be empty if no tracks with the specified characteristic are available.
         #[deprecated = "loadTracksWithMediaCharacteristic:completionHandler:"]
         #[unsafe(method(tracksWithMediaCharacteristic:))]
         #[unsafe(method_family = none)]
@@ -1570,9 +1514,8 @@ impl AVFragmentedMovie {
         ))]
         /// Loads an array of AVFragmentedMovieTracks of the asset that present media with the specified characteristic.
         ///
-        /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVFragmentedMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
-        ///
-        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
+        /// - Parameter mediaCharacteristic: The media characteristic according to which AVAsset filters its AVFragmentedMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
+        /// - Parameter completionHandler: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
@@ -1608,11 +1551,10 @@ impl AVFragmentedMovieMinder {
     extern_methods!(
         /// Creates an AVFragmentedMovieMinder, adds the specified movie to it, and sets the mindingInterval to the specified value.
         ///
-        /// Parameter `movie`: An instance of AVFragmentedMovie to add to the AVFragmentedMovieMinder
+        /// - Parameter movie: An instance of AVFragmentedMovie to add to the AVFragmentedMovieMinder
+        /// - Parameter mindingInterval: The initial minding interval of the AVFragmentedMovieMinder.
         ///
-        /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedMovieMinder.
-        ///
-        /// Returns: A new instance of AVFragmentedMovieMinder.
+        /// - Returns: A new instance of AVFragmentedMovieMinder.
         #[unsafe(method(fragmentedMovieMinderWithMovie:mindingInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentedMovieMinderWithMovie_mindingInterval(
@@ -1622,11 +1564,10 @@ impl AVFragmentedMovieMinder {
 
         /// Creates an AVFragmentedMovieMinder, adds the specified movie to it, and sets the mindingInterval to the specified value.
         ///
-        /// Parameter `movie`: An instance of AVFragmentedMovie to add to the AVFragmentedMovieMinder
+        /// - Parameter movie: An instance of AVFragmentedMovie to add to the AVFragmentedMovieMinder
+        /// - Parameter mindingInterval: The initial minding interval of the AVFragmentedMovieMinder.
         ///
-        /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedMovieMinder.
-        ///
-        /// Returns: A new instance of AVFragmentedMovieMinder.
+        /// - Returns: A new instance of AVFragmentedMovieMinder.
         #[unsafe(method(initWithMovie:mindingInterval:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMovie_mindingInterval(
@@ -1652,14 +1593,14 @@ impl AVFragmentedMovieMinder {
 
         /// Adds a fragmented movie to the array of movies being minded.
         ///
-        /// Parameter `movie`: The fragmented movie to add to the minder.
+        /// - Parameter movie: The fragmented movie to add to the minder.
         #[unsafe(method(addFragmentedMovie:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addFragmentedMovie(&self, movie: &AVFragmentedMovie);
 
         /// Removes a fragmented movie from the array of movies being minded.
         ///
-        /// Parameter `movie`: The fragmented movie to remove from the minder.
+        /// - Parameter movie: The fragmented movie to remove from the minder.
         #[unsafe(method(removeFragmentedMovie:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFragmentedMovie(&self, movie: &AVFragmentedMovie);
@@ -1722,8 +1663,6 @@ impl AVFragmentedMovieMinder {
 }
 
 /// SynchronousAssetInterface.
-///
-/// AVMutableMovie (SynchronousAssetInterface)
 ///
 /// Redeclarations of async-only AVAsset interfaces to allow synchronous usage in the synchronous subclass.
 ///

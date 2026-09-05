@@ -89,6 +89,15 @@ impl PHCollection {
             feature = "PHFetchOptions",
             feature = "PHFetchResult"
         ))]
+        /// Retrieves collections from the specified collection list
+        ///
+        /// By default, the returned `PHFetchResult` object contains all collections in the specified collection list. To retrieve a more specific set of assets, provide a `PHFetchOptions` object that contains a filter predicate.
+        ///
+        /// - Parameters:
+        /// - collectionList: The collection list from which to fetch collections
+        /// - options: Options that specify a filter predicate and sort order for the fetched collections, or nil to use default options
+        ///
+        /// - Returns: A fetch result that contains the requested `PHCollection` objects, or an empty fetch result if no objects match the request.
         #[unsafe(method(fetchCollectionsInCollectionList:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCollectionsInCollectionList_options(
@@ -97,6 +106,14 @@ impl PHCollection {
         ) -> Retained<PHFetchResult<PHCollection>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
+        /// Retrieves collections from the root of the photo library’s hierarchy of user-created albums and folders
+        ///
+        /// This is the equivalent to calling `fetchCollectionsInCollectionList:options:` with the collection list matching the type `PHCollectionListTypeFolder` and subtype `PHCollectionListSubtypeRootFolder`
+        ///
+        /// - Parameters:
+        /// - options: Options that specify a filter predicate and sort order for the fetched collections, or nil to use default options
+        ///
+        /// - Returns: A fetch result containing the matching collection lists, in the library's natural order.
         #[unsafe(method(fetchTopLevelUserCollectionsWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchTopLevelUserCollectionsWithOptions(

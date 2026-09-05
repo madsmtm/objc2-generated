@@ -34,7 +34,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer?language=objc)
+    /// AVSampleBufferVideoRenderer provides a mechanism to enqueue sample buffers for rendering.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleBufferVideoRenderer;
@@ -80,11 +82,10 @@ impl AVSampleBufferVideoRenderer {
         #[cfg(feature = "block2")]
         /// Instructs the video renderer to discard pending enqueued sample buffers and call the provided block when complete.
         ///
-        /// Parameter `removeDisplayedImage`: Set YES to remove any currently displayed image, NO to preserve any current image.
-        ///
-        /// Parameter `handler`: The handler to invoke when flush operation is complete. May be nil.
-        ///
         /// A flush resets decoder state. The next frame passed to enqueueSampleBuffer: should be an IDR frame (also known as a key frame or sync sample).
+        ///
+        /// - Parameter removeDisplayedImage: Set YES to remove any currently displayed image, NO to preserve any current image.
+        /// - Parameter handler: The handler to invoke when flush operation is complete. May be nil.
         #[unsafe(method(flushWithRemovalOfDisplayedImage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushWithRemovalOfDisplayedImage_completionHandler(
@@ -114,7 +115,7 @@ impl AVSampleBufferVideoRenderer {
         #[cfg(feature = "objc2-core-video")]
         /// Returns a retained reference to the pixel buffer currently displayed in the AVSampleBufferVideoRenderer's target. This will return NULL if the displayed pixel buffer is protected, no image is currently being displayed, or if the image is unavailable.
         ///
-        /// This will return NULL if the rate is non-zero.  Clients must release the pixel buffer after use.
+        /// This will return NULL if the rate is non-zero. Clients must release the pixel buffer after use.
         ///
         /// Do not write to the returned CVPixelBuffer's attachments or pixel data.
         #[unsafe(method(copyDisplayedPixelBuffer))]
@@ -135,7 +136,7 @@ impl AVSampleBufferVideoRenderer {
         /// Messaging -flush resets such expectations.
         /// (For example, it's OK to make this expectation, then in response to a seek back, flush and then enqueue buffers with lower PTS values.)
         ///
-        /// Parameter `minimumUpcomingPresentationTime`: A lower bound on PTS values for buffers that will be passed to -enqueueSampleBuffer: in the future.
+        /// - Parameter minimumUpcomingPresentationTime: A lower bound on PTS values for buffers that will be passed to -enqueueSampleBuffer: in the future.
         #[unsafe(method(expectMinimumUpcomingSampleBufferPresentationTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectMinimumUpcomingSampleBufferPresentationTime(
@@ -178,9 +179,9 @@ impl AVSampleBufferVideoRenderer {
         #[cfg(all(feature = "AVVideoPerformanceMetrics", feature = "block2"))]
         /// Gathers a snapshot of the video performance metrics and calls the completion handler with the results.
         ///
-        /// Parameter `completionHandler`: The handler to invoke with the video performance metrics.
-        ///
         /// If there are no performance metrics available, the completion handler will be called with nil videoPerformanceMetrics.
+        ///
+        /// - Parameter completionHandler: The handler to invoke with the video performance metrics.
         #[unsafe(method(loadVideoPerformanceMetricsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadVideoPerformanceMetricsWithCompletionHandler(

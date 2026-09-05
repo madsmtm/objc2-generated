@@ -13,7 +13,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlinefragment?language=objc)
+    /// A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlinefragment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextLineFragment;
@@ -33,6 +35,13 @@ extern_conformance!(
 
 impl NSTextLineFragment {
     extern_methods!(
+        /// Creates a new line fragment with the attributed string and range you provide.
+        ///
+        /// - Parameters:
+        /// - attributedString: The source attributed string.
+        /// - range: An
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/nsrange> that specifies which characters to include.
         #[unsafe(method(initWithAttributedString:range:))]
         #[unsafe(method_family = init)]
         pub fn initWithAttributedString_range(
@@ -41,6 +50,8 @@ impl NSTextLineFragment {
             range: NSRange,
         ) -> Retained<Self>;
 
+        /// Creates a new line fragment with the string, attributes, and range you provide.
+        ///
         /// # Safety
         ///
         /// `attributes` generic should be of the correct type.
@@ -55,41 +66,88 @@ impl NSTextLineFragment {
 
         // -init (unavailable)
 
+        /// The source attributed string.
         #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
         pub fn attributedString(&self) -> Retained<NSAttributedString>;
 
+        /// The string range for the source attributed string corresponding to this line fragment.
         #[unsafe(method(characterRange))]
         #[unsafe(method_family = none)]
         pub fn characterRange(&self) -> NSRange;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The typographic bounds specifying the dimensions of the line fragment for laying out line fragments to each other.
+        ///
+        /// The origin value is offset from the beginning of the line fragment group
+        /// belonging to the parent layout fragment.
         #[unsafe(method(typographicBounds))]
         #[unsafe(method_family = none)]
         pub fn typographicBounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The rendering origin for the leftmost glyph in the line fragment coordinate system.
         #[unsafe(method(glyphOrigin))]
         #[unsafe(method_family = none)]
         pub fn glyphOrigin(&self) -> CGPoint;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
+        /// Renders the line fragment contents at the specified point.
+        ///
+        /// The origin can be specified as
+        /// `(CGRectGetMinX(typographicBounds), CGRectGetMinY(typographicBounds))`
+        /// relative to the parent layout fragment coordinate system.
+        ///
+        /// - Parameters:
+        /// - point: The origin as a
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgpoint>.
+        /// - context: The graphics context to draw into.
         #[unsafe(method(drawAtPoint:inContext:))]
         #[unsafe(method_family = none)]
         pub fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContext);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the location of the character at the specified index.
+        ///
+        /// The location is on the upstream edge of the glyph, in the coordinate system
+        /// relative to the line fragment origin.
+        ///
+        /// - Parameters:
+        /// - index: The character index within this line fragment.
+        ///
+        /// - Returns: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgpoint> on the upstream edge of the glyph, in the coordinate system relative to the line fragment origin.
         #[unsafe(method(locationForCharacterAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn locationForCharacterAtIndex(&self, index: NSInteger) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the character index for the point inside the line fragment coordinate system.
+        ///
+        /// - Parameters:
+        /// - point: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgpoint> in the line fragment coordinate system.
+        ///
+        /// - Returns: The character index nearest to the point.
         #[unsafe(method(characterIndexForPoint:))]
         #[unsafe(method_family = none)]
         pub fn characterIndexForPoint(&self, point: CGPoint) -> NSInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the fraction of the distance through the glyph for the point.
+        ///
+        /// The fraction of distance is from the upstream edge.
+        ///
+        /// - Parameters:
+        /// - point: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/corefoundation/cgpoint> in the line fragment coordinate system.
+        ///
+        /// - Returns: A value between 0.0 and 1.0 indicating the fraction through the glyph.
         #[unsafe(method(fractionOfDistanceThroughGlyphForPoint:))]
         #[unsafe(method_family = none)]
         pub fn fractionOfDistanceThroughGlyphForPoint(&self, point: CGPoint) -> CGFloat;

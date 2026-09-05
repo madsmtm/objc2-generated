@@ -56,6 +56,8 @@ bitflags::bitflags! {
         const UserKeyInvalid = 1<<5;
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsSetupAssistant")]
         const SetupAssistant = 1<<6;
+        #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsOpenIDFallback")]
+        const OpenIDFallback = 1<<7;
         const _ = !0;
     }
 }

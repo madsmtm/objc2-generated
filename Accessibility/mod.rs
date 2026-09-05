@@ -151,6 +151,10 @@ pub use self::__AXSettings::AXAnimatedImagesEnabled;
 #[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXAnimatedImagesEnabledDidChangeNotification;
 #[cfg(feature = "AXSettings")]
+pub use self::__AXSettings::AXApplicationAccessibilityEnabled;
+#[cfg(feature = "AXSettings")]
+pub use self::__AXSettings::AXApplicationAccessibilityEnabledDidChangeNotification;
+#[cfg(feature = "AXSettings")]
 pub use self::__AXSettings::AXAssistiveAccessEnabled;
 #[cfg(all(feature = "AXSettings", feature = "block2"))]
 pub use self::__AXSettings::AXOpenSettingsFeature;

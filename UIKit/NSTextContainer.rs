@@ -10,7 +10,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontainer?language=objc)
+    /// A region where text layout occurs.
+    ///
+    /// An ``NSLayoutManager`` or ``NSTextLayoutManager`` uses ``NSTextContainer``
+    /// to determine where to break lines, lay out portions of text, and so on. An
+    /// ``NSTextContainer`` object typically defines rectangular regions, but you
+    /// can define exclusion paths inside the text container to create regions where
+    /// text doesn't flow. You can also subclass to create text containers with
+    /// nonrectangular regions, such as circular regions, regions with holes in
+    /// them, or regions that flow alongside graphics.
+    ///
+    /// You can access instances of the ``NSTextContainer``, ``NSLayoutManager``,
+    /// and ``NSTextStorage`` classes from threads other than the main thread as
+    /// long as the app guarantees access from only one thread at a time. The same
+    /// restrictions apply to ``NSTextLayoutManager`` and ``NSTextContentStorage``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontainer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContainer;
@@ -36,18 +51,46 @@ extern_conformance!(
 impl NSTextContainer {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
-        /// ************************** Initialization ***************************
+        /// Initializes a text container with a specified bounding rectangle.
+        ///
+        /// The new text container must be added to an ``NSLayoutManager`` or
+        /// ``NSTextLayoutManager`` object before it can be used. The text container
+        /// must also have an associated
+        /// <doc
+        /// ://com.apple.documentation/documentation/appkit/nstextview> object for
+        /// text to be displayed. This method is the designated initializer for the
+        /// `NSTextContainer` class.
+        ///
+        /// - Parameters:
+        /// - size: The size of the text container's bounding rectangle.
+        ///
+        /// ## See Also
+        ///
+        /// - [Text Layout Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TextLayout/TextLayout.html#//apple_ref/doc/uid/10000158i)
+        /// - [Cocoa Text Architecture Guide](https://developer.apple.com/library/archive/documentation/TextFonts/Conceptual/CocoaTextArchitecture/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009459)
+        /// - ``NSLayoutManager/addTextContainer(_:)``
+        /// - [Text System Storage Layer Overview](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TextStorageLayer/TextStorageLayer.html#//apple_ref/doc/uid/10000087i)
         #[unsafe(method(initWithSize:))]
         #[unsafe(method_family = init)]
         pub fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "NSTextLayoutManager")]
+        /// The ``NSTextLayoutManager`` owning the text container.
+        ///
+        /// When non-nil, the legacy `layoutManager` should be `nil`.
         #[unsafe(method(textLayoutManager))]
         #[unsafe(method_family = none)]
         pub fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// *********************** Container shape properties ************************
+        /// The size of the text container's bounding rectangle.
+        ///
+        /// This property defines the maximum size for the layout area returned from
+        /// ``NSTextContainer/lineFragmentRect(forProposedRect:at:writingDirection:remaining:)``.
+        /// A value of `0.0` or less means no limitation.
+        ///
+        /// If you don't specify an explicit size when you initialize a text container,
+        /// the system uses a default large size of (`10000000.0`, `10000000.0`).
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub fn size(&self) -> CGSize;
@@ -59,6 +102,13 @@ impl NSTextContainer {
         pub fn setSize(&self, size: CGSize);
 
         #[cfg(feature = "NSParagraphStyle")]
+        /// The behavior of the last line inside the text container.
+        ///
+        /// The ``NSLineBreakMode`` constants specify what happens when a line is too
+        /// long for its container. For example, wrapping can occur on word boundaries
+        /// (the default) or character boundaries, or the line can be clipped or
+        /// truncated. The default value of this property is
+        /// ``NSLineBreakMode/byWordWrapping``.
         #[unsafe(method(lineBreakMode))]
         #[unsafe(method_family = none)]
         pub fn lineBreakMode(&self) -> NSLineBreakMode;
@@ -70,6 +120,9 @@ impl NSTextContainer {
         pub fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[cfg(feature = "UIBezierPath")]
+        /// An array of path objects that represents the regions where text doesn't display in the text container.
+        ///
+        /// The default value is an empty array.
         #[unsafe(method(exclusionPaths))]
         #[unsafe(method_family = none)]
         pub fn exclusionPaths(&self) -> Retained<NSArray<UIBezierPath>>;
@@ -83,7 +136,19 @@ impl NSTextContainer {
         pub fn setExclusionPaths(&self, exclusion_paths: &NSArray<UIBezierPath>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// *********************** Layout constraint properties ************************
+        /// The value for the text inset within line fragment rectangles.
+        ///
+        /// The padding appears at the beginning and end of the line fragment
+        /// rectangles. The layout manager and text layout manager use this value to
+        /// determine the layout width. The default value of this property is `5.0`.
+        ///
+        /// Line fragment padding is not designed to express text margins. Instead, you
+        /// should use insets on your text view, adjust the paragraph margin attributes,
+        /// or change the position of the text view within its superview.
+        ///
+        /// ## See Also
+        ///
+        /// - ``lineFragmentRect(forProposedRect:at:writingDirection:remaining:)``
         #[unsafe(method(lineFragmentPadding))]
         #[unsafe(method_family = none)]
         pub fn lineFragmentPadding(&self) -> CGFloat;
@@ -94,6 +159,12 @@ impl NSTextContainer {
         #[unsafe(method_family = none)]
         pub fn setLineFragmentPadding(&self, line_fragment_padding: CGFloat);
 
+        /// The maximum number of lines that the text container can store.
+        ///
+        /// The layout manager and text layout manager use the value of this property to
+        /// determine the maximum number of lines associated with the text container.
+        /// The default value of this property is `0`, which indicates that there is no
+        /// limit.
         #[unsafe(method(maximumNumberOfLines))]
         #[unsafe(method_family = none)]
         pub fn maximumNumberOfLines(&self) -> NSUInteger;
@@ -104,7 +175,27 @@ impl NSTextContainer {
         pub fn setMaximumNumberOfLines(&self, maximum_number_of_lines: NSUInteger);
 
         #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
-        /// ************************** Line fragments ***************************
+        /// Returns the bounds of a line fragment rectangle inside the text container for the proposed rectangle.
+        ///
+        /// The bounds of the line fragment rectangle are determined by the intersection
+        /// of `proposedRect` and the text container's bounding rectangle defined by its
+        /// ``NSTextContainer/size`` property. The regions defined by the
+        /// ``NSTextContainer/exclusionPaths`` property are excluded from the return
+        /// value. It is possible that `proposedRect` can be divided into multiple line
+        /// fragments due to exclusion paths. In that case, `remainingRect` returns the
+        /// remainder that can be passed in as the proposed rectangle for the next
+        /// iteration.
+        ///
+        /// This method can be overridden by subclasses for further text container
+        /// region customization.
+        ///
+        /// - Parameters:
+        /// - proposedRect: A rectangle in which to lay out text proposed by the layout manager or text layout manager.
+        /// - characterIndex: The character location inside the text storage for the line fragment being processed.
+        /// - baseWritingDirection: The direction of advancement for line fragments inside a visual horizontal line. The values passed into the method are either ``NSWritingDirection/leftToRight`` or ``NSWritingDirection/rightToLeft``.
+        /// - remainingRect: The remainder of the proposed rectangle that was excluded from the returned rectangle. It can be passed in as the proposed rectangle for the next iteration.
+        ///
+        /// - Returns: The bounds of the line fragment rect.
         #[unsafe(method(lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:))]
         #[unsafe(method_family = none)]
         pub fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
@@ -115,11 +206,42 @@ impl NSTextContainer {
             remaining_rect: Option<&mut CGRect>,
         ) -> CGRect;
 
+        /// A Boolean that indicates whether the text container's region is a rectangle with no holes or gaps, and whose edges are parallel to the text view's coordinate system axes.
+        ///
+        /// The value of this property is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> when the text
+        /// container's region is a rectangle with no holes or gaps and the edges are
+        /// parallel to the text view's coordinate system axes. The default value of
+        /// this property is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>
+        /// when the ``NSTextContainer/exclusionPaths`` property contains one or more
+        /// items, when the ``NSTextContainer/maximumNumberOfLines`` property is not
+        /// zero, or when you override the
+        /// ``NSTextContainer/lineFragmentRect(forProposedRect:at:writingDirection:remaining:)``
+        /// method. Otherwise, the default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
         #[unsafe(method(isSimpleRectangularTextContainer))]
         #[unsafe(method_family = none)]
         pub fn isSimpleRectangularTextContainer(&self) -> bool;
 
-        /// ************************** View synchronization ***************************
+        /// A Boolean that controls whether the text container adjusts the width of its bounding rectangle when its text view resizes.
+        ///
+        /// When the value of this property is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>, the text container
+        /// adjusts its width when the width of its text view changes. The default value
+        /// of this property is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>.
+        ///
+        /// For more information about size tracking, see [Text System Storage Layer Overview](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TextStorageLayer/TextStorageLayer.html#//apple_ref/doc/uid/10000087i).
+        ///
+        /// ## See Also
+        ///
+        /// - ``NSTextContainer/size``
         #[unsafe(method(widthTracksTextView))]
         #[unsafe(method_family = none)]
         pub fn widthTracksTextView(&self) -> bool;
@@ -129,6 +251,21 @@ impl NSTextContainer {
         #[unsafe(method_family = none)]
         pub fn setWidthTracksTextView(&self, width_tracks_text_view: bool);
 
+        /// A Boolean that controls whether the text container adjusts the height of its bounding rectangle when its text view resizes.
+        ///
+        /// When the value of this property is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>, the text container
+        /// adjusts its height when the height of its text view changes. The default
+        /// value of this property is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>.
+        ///
+        /// For more information about size tracking, see [Text System Storage Layer Overview](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TextStorageLayer/TextStorageLayer.html#//apple_ref/doc/uid/10000087i).
+        ///
+        /// ## See Also
+        ///
+        /// - ``NSTextContainer/size``
         #[unsafe(method(heightTracksTextView))]
         #[unsafe(method_family = none)]
         pub fn heightTracksTextView(&self) -> bool;

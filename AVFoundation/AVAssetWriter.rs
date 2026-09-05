@@ -45,8 +45,7 @@ unsafe impl RefEncode for AVAssetWriterStatus {
 }
 
 extern_class!(
-    /// AVAssetWriter provides services for writing media data to a new file,
-    ///
+    /// AVAssetWriter provides services for writing media data to a new file.
     ///
     /// Instances of AVAssetWriter can write media to new files in formats such as the QuickTime movie file format or the MPEG-4 file format. AVAssetWriter has support for automatic interleaving of media data for multiple concurrent tracks. Source media data can be obtained from instances of AVAssetReader for one or more assets or from other sources outside of AVFoundation.
     ///
@@ -73,19 +72,15 @@ impl AVAssetWriter {
         #[cfg(feature = "AVMediaFormat")]
         /// Returns an instance of AVAssetWriter configured to write to a file in a specified container format.
         ///
-        ///
-        /// Parameter `outputURL`: The location of the file to be written. The URL must be a file URL.
-        ///
-        /// Parameter `outputFileType`: A UTI indicating the format of the file to be written.
-        ///
-        /// Parameter `outError`: On return, if initialization of the AVAssetWriter fails, points to an NSError describing the nature of the failure.
-        ///
-        /// Returns: An instance of AVAssetWriter.
-        ///
-        ///
         /// Writing will fail if a file already exists at the specified URL.
         ///
         /// UTIs for container formats that can be written are declared in AVMediaFormat.h.
+        ///
+        /// - Parameter outputURL: The location of the file to be written. The URL must be a file URL.
+        /// - Parameter outputFileType: A UTI indicating the format of the file to be written.
+        /// - Parameter outError: On return, if initialization of the AVAssetWriter fails, points to an NSError describing the nature of the failure.
+        ///
+        /// - Returns: An instance of AVAssetWriter.
         #[unsafe(method(assetWriterWithURL:fileType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterWithURL_fileType_error(
@@ -96,19 +91,15 @@ impl AVAssetWriter {
         #[cfg(feature = "AVMediaFormat")]
         /// Creates an instance of AVAssetWriter configured to write to a file in a specified container format.
         ///
-        ///
-        /// Parameter `outputURL`: The location of the file to be written. The URL must be a file URL.
-        ///
-        /// Parameter `outputFileType`: A UTI indicating the format of the file to be written.
-        ///
-        /// Parameter `outError`: On return, if initialization of the AVAssetWriter fails, points to an NSError describing the nature of the failure.
-        ///
-        /// Returns: An instance of AVAssetWriter.
-        ///
-        ///
         /// Writing will fail if a file already exists at the specified URL.
         ///
         /// This method throws an exception if the output file type is not declared in AVMediaFormat.h.
+        ///
+        /// - Parameter outputURL: The location of the file to be written. The URL must be a file URL.
+        /// - Parameter outputFileType: A UTI indicating the format of the file to be written.
+        /// - Parameter outError: On return, if initialization of the AVAssetWriter fails, points to an NSError describing the nature of the failure.
+        ///
+        /// - Returns: An instance of AVAssetWriter.
         #[unsafe(method(initWithURL:fileType:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_fileType_error(
@@ -120,12 +111,6 @@ impl AVAssetWriter {
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Creates an instance of AVAssetWriter configured to output segment data in a specified container format.
         ///
-        ///
-        /// Parameter `outputContentType`: A UTType indicating the format of the segment data to be output.
-        ///
-        /// Returns: An instance of AVAssetWriter.
-        ///
-        ///
         /// Clients that want to receive segment data through the -assetWriter:didOutputSegmentData:segmentType:segmentReport: or -assetWriter:didOutputSegmentData:segmentType: delegate method should use this initializer instead of -initWithURL:fileType:error:.
         ///
         /// Clients may use +typeWithIdentifier: with a UTI to create an instance of UTType. See
@@ -133,6 +118,10 @@ impl AVAssetWriter {
         /// /UTType.h>.
         ///
         /// This method throws an exception if the output content type UTI for container format is not declared in AVMediaFormat.h.
+        ///
+        /// - Parameter outputContentType: A UTType indicating the format of the segment data to be output.
+        ///
+        /// - Returns: An instance of AVAssetWriter.
         #[unsafe(method(initWithContentType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentType(
@@ -158,14 +147,12 @@ impl AVAssetWriter {
         #[cfg(feature = "AVMediaFormat")]
         /// The media types for which inputs can be added to the receiver.
         ///
-        ///
         /// Some media types may not be accepted within the file format with which an AVAssetWriter was initialized.
         #[unsafe(method(availableMediaTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableMediaTypes(&self) -> Retained<NSArray<AVMediaType>>;
 
         /// The status of writing samples to the receiver's output file.
-        ///
         ///
         /// The value of this property is an AVAssetWriterStatus that indicates whether writing is in progress, has completed successfully, has been canceled, or has failed. Clients of AVAssetWriterInput objects should check the value of this property after appending samples fails to determine why no more samples could be written. This property is thread safe.
         #[unsafe(method(status))]
@@ -174,7 +161,6 @@ impl AVAssetWriter {
 
         /// If the receiver's status is AVAssetWriterStatusFailed, this describes the error that caused the failure.
         ///
-        ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to write to its output file. If the receiver's status is not AVAssetWriterStatusFailed, the value of this property is nil. This property is thread safe.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
@@ -182,7 +168,6 @@ impl AVAssetWriter {
 
         #[cfg(feature = "AVMetadataItem")]
         /// A collection of metadata to be written to the receiver's output file.
-        ///
         ///
         /// The value of this property is an array of AVMetadataItem objects representing the collection of top-level metadata to be written in the output file.
         ///
@@ -201,7 +186,6 @@ impl AVAssetWriter {
 
         /// Specifies whether the output file should be written in way that makes it more suitable for playback over a network
         ///
-        ///
         /// When the value of this property is YES, the output file will be written in such a way that playback can start after only a small amount of the file is downloaded.
         ///
         /// This property cannot be set after writing has started.
@@ -216,12 +200,11 @@ impl AVAssetWriter {
 
         /// Specifies a directory that is suitable for containing temporary files generated during the process of writing an asset.
         ///
+        /// AVAssetWriter may need to write temporary files when configured in certain ways, such as when performsMultiPassEncodingIfSupported is set to YES on one or more of its inputs. This property can be used to control where in the filesystem those temporary files are created. All temporary files will be deleted when asset writing is completed, is canceled, or fails.
         ///
-        /// AVAssetWriter may need to write temporary files when configured in certain ways, such as when performsMultiPassEncodingIfSupported is set to YES on one or more of its inputs.  This property can be used to control where in the filesystem those temporary files are created.  All temporary files will be deleted when asset writing is completed, is canceled, or fails.
+        /// When the value of this property is nil, the asset writer will choose a suitable location when writing temporary files. The default value is nil.
         ///
-        /// When the value of this property is nil, the asset writer will choose a suitable location when writing temporary files.  The default value is nil.
-        ///
-        /// This property cannot be set after writing has started.  The asset writer will fail if a file cannot be created in this directory (for example, due to insufficient permissions).
+        /// This property cannot be set after writing has started. The asset writer will fail if a file cannot be created in this directory (for example, due to insufficient permissions).
         #[unsafe(method(directoryForTemporaryFiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn directoryForTemporaryFiles(&self) -> Option<Retained<NSURL>>;
@@ -247,17 +230,14 @@ impl AVAssetWriter {
         #[cfg(feature = "AVMediaFormat")]
         /// Tests whether output settings for a specific media type are supported by the receiver's file format.
         ///
-        ///
-        /// Parameter `outputSettings`: The output settings that are to be tested.
-        ///
-        /// Parameter `mediaType`: The media type for which the output settings are to be tested. Media types are defined in AVMediaFormat.h.
-        ///
-        /// Returns: A BOOL indicating whether the given output settings can be used for the given media type.
-        ///
-        ///
         /// This method determines whether the output settings for the specified media type can be used with the receiver's file format. For example, video compression settings that specify H.264 compression are not compatible with file formats that cannot contain H.264-compressed video.
         ///
         /// Attempting to add an input with output settings and a media type for which this method returns NO will cause an exception to be thrown.
+        ///
+        /// - Parameter outputSettings: The output settings that are to be tested.
+        /// - Parameter mediaType: The media type for which the output settings are to be tested. Media types are defined in AVMediaFormat.h.
+        ///
+        /// - Returns: A BOOL indicating whether the given output settings can be used for the given media type.
         ///
         /// # Safety
         ///
@@ -273,23 +253,17 @@ impl AVAssetWriter {
         #[cfg(feature = "AVAssetWriterInput")]
         /// Tests whether an input can be added to the receiver.
         ///
-        ///
-        /// Parameter `input`: The AVAssetWriterInput object to be tested.
-        ///
-        /// Returns: A BOOL indicating whether the input can be added to the receiver.
-        ///
-        ///
         /// An input that accepts media data of a type that is not compatible with the receiver, or with output settings that are not compatible with the receiver, cannot be added.
+        ///
+        /// - Parameter input: The AVAssetWriterInput object to be tested.
+        ///
+        /// - Returns: A BOOL indicating whether the input can be added to the receiver.
         #[unsafe(method(canAddInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canAddInput(&self, input: &AVAssetWriterInput) -> bool;
 
         #[cfg(feature = "AVAssetWriterInput")]
         /// Adds an input to the receiver.
-        ///
-        ///
-        /// Parameter `input`: The AVAssetWriterInput object to be added.
-        ///
         ///
         /// Inputs are created with a media type and output settings. These both must be compatible with the receiver.
         ///
@@ -298,25 +272,25 @@ impl AVAssetWriter {
         /// This method throws an exception if any of the following conditions are satisfied:
         /// - the input's media type is not allowed for this asset writer
         /// - writing uncompressed video in a specific format
-        /// - passthrough* to files (other than AVFileTypeQuickTimeMovie) is missing a format hint in the AVAssetWriterInput initializer
-        /// - passthrough* is not supported for this media/file type combination (for example, AVFileTypeWAVE only supports AVMediaTypeAudio)
+        /// - passthrough\* to files (other than AVFileTypeQuickTimeMovie) is missing a format hint in the AVAssetWriterInput initializer
+        /// - passthrough\* is not supported for this media/file type combination (for example, AVFileTypeWAVE only supports AVMediaTypeAudio)
         ///
-        /// Passthrough is indicated when the input's output settings are nil.
+        /// \*Passthrough is indicated when the input's output settings are nil.
+        ///
+        /// - Parameter input: The AVAssetWriterInput object to be added.
         #[unsafe(method(addInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addInput(&self, input: &AVAssetWriterInput);
 
         /// Prepares the receiver for accepting input and for writing its output to its output file.
         ///
-        ///
-        /// Returns: A BOOL indicating whether writing successfully started.
-        ///
-        ///
         /// This method must be called after all inputs have been added and other configuration properties have been set in order to tell the receiver to prepare for writing. After this method is called, clients can start writing sessions using startSessionAtSourceTime: and can write media samples using the methods provided by each of the receiver's inputs.
         ///
         /// If writing cannot be started, this method returns NO. Clients can check the values of the status and error properties for more information on why writing could not be started.
         ///
-        /// On iOS, if the status of an AVAssetWriter is AVAssetWriterStatusWriting when the client app goes into the background, its status will change to AVAssetWriterStatusFailed and appending to any of its inputs will fail.  You may want to use -[UIApplication beginBackgroundTaskWithExpirationHandler:] to avoid being interrupted in the middle of a writing session and to finish writing the data that has already been appended.  For more information about executing code in the background, see the iOS Application Programming Guide.
+        /// On iOS, if the status of an AVAssetWriter is AVAssetWriterStatusWriting when the client app goes into the background, its status will change to AVAssetWriterStatusFailed and appending to any of its inputs will fail. You may want to use -[UIApplication beginBackgroundTaskWithExpirationHandler:] to avoid being interrupted in the middle of a writing session and to finish writing the data that has already been appended. For more information about executing code in the background, see the iOS Application Programming Guide.
+        ///
+        /// - Returns: A BOOL indicating whether writing successfully started.
         #[unsafe(method(startWriting))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWriting(&self) -> bool;
@@ -324,17 +298,15 @@ impl AVAssetWriter {
         #[cfg(feature = "objc2-core-media")]
         /// Initiates a sample-writing session for the receiver.
         ///
-        ///
-        /// Parameter `startTime`: The starting asset time for the sample-writing session, in the timeline of the source samples.
-        ///
-        ///
         /// Sequences of sample data appended to the asset writer inputs are considered to fall within "sample-writing sessions", initiated with this method. Accordingly, this method must be called after writing has started (using -startWriting) but before any sample data is appended to the receiver's inputs.
         ///
-        /// Each writing session has a start time which, where allowed by the file format being written, defines the mapping from the timeline of source samples to the timeline of the written file. In the case of the QuickTime movie file format, the first session begins at movie time 0, so a sample appended with timestamp T will be played at movie time (T-startTime).  Samples with timestamps earlier than startTime will still be added to the output file but will be edited out (i.e. not presented during playback). If the earliest appended sample for an input has a timestamp later than than startTime, an empty edit will be inserted to preserve synchronization between tracks of the output asset.
+        /// Each writing session has a start time which, where allowed by the file format being written, defines the mapping from the timeline of source samples to the timeline of the written file. In the case of the QuickTime movie file format, the first session begins at movie time 0, so a sample appended with timestamp T will be played at movie time (T-startTime). Samples with timestamps earlier than startTime will still be added to the output file but will be edited out (i.e. not presented during playback). If the earliest appended sample for an input has a timestamp later than than startTime, an empty edit will be inserted to preserve synchronization between tracks of the output asset.
         ///
-        /// To end the session started by use of this method, use -endSessionAtSourceTime: or -finishWritingWithCompletionHandler:.  It is an error to invoke -startSessionAtSourceTime: twice in a row without invoking -endSessionAtSourceTime: in between.
+        /// To end the session started by use of this method, use -endSessionAtSourceTime: or -finishWritingWithCompletionHandler:. It is an error to invoke -startSessionAtSourceTime: twice in a row without invoking -endSessionAtSourceTime: in between.
         ///
         /// NOTE: Multiple sample-writing sessions are currently not supported. It is an error to call -startSessionAtSourceTime: a second time after calling -endSessionAtSourceTime:.
+        ///
+        /// - Parameter startTime: The starting asset time for the sample-writing session, in the timeline of the source samples.
         #[unsafe(method(startSessionAtSourceTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startSessionAtSourceTime(&self, start_time: CMTime);
@@ -342,29 +314,26 @@ impl AVAssetWriter {
         #[cfg(feature = "objc2-core-media")]
         /// Concludes a sample-writing session.
         ///
-        ///
-        /// Parameter `endTime`: The ending asset time for the sample-writing session, in the timeline of the source samples.
-        ///
-        ///
         /// Call this method to complete a session started with -startSessionAtSourceTime:.
         ///
         /// The endTime defines the moment on the timeline of source samples at which the session ends. In the case of the QuickTime movie file format, each sample-writing session's startTime...endTime pair corresponds to a period of movie time into which the session's samples are inserted. Samples with timestamps that are later than the session end time will still be added to the written file but will be edited out (i.e. not presented during playback). So if the first session has duration D1 = endTime - startTime, it will be inserted into the written file at time 0 through D1; the second session would be inserted into the written file at time D1 through D1+D2, etc. It is legal to have a session with no samples; this will cause creation of an empty edit of the prescribed duration.
         ///
         /// It is not mandatory to call -endSessionAtSourceTime:; if -finishWritingWithCompletionHandler: is called without first invoking -endSessionAtSourceTime:, the session's effective end time will be the latest end timestamp of the session's appended samples (i.e. no samples will be edited out at the end).
         ///
-        /// It is an error to append samples outside of a sample-writing session.  To append more samples after invoking -endSessionAtSourceTime:, you must first start a new session using -startSessionAtSourceTime:.
+        /// It is an error to append samples outside of a sample-writing session. To append more samples after invoking -endSessionAtSourceTime:, you must first start a new session using -startSessionAtSourceTime:.
         ///
         /// NOTE: Multiple sample-writing sessions are currently not supported. It is an error to call -startSessionAtSourceTime: a second time after calling -endSessionAtSourceTime:.
         ///
         /// This method throws an exception if the session is ended without first starting it.
+        ///
+        /// - Parameter endTime: The ending asset time for the sample-writing session, in the timeline of the source samples.
         #[unsafe(method(endSessionAtSourceTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endSessionAtSourceTime(&self, end_time: CMTime);
 
         /// Cancels the creation of the output file.
         ///
-        ///
-        /// If the status of the receiver is "failed" or "completed," -cancelWriting is a no-op.  Otherwise, this method will block until writing is canceled.
+        /// If the status of the receiver is "failed" or "completed," -cancelWriting is a no-op. Otherwise, this method will block until writing is canceled.
         ///
         /// If an output file was created by the receiver during the writing process, -cancelWriting will delete the file.
         ///
@@ -375,19 +344,17 @@ impl AVAssetWriter {
 
         /// Completes the writing of the output file.
         ///
-        ///
-        /// Returns: A BOOL indicating whether writing successfully finished.
-        ///
-        ///
-        /// This method is deprecated.  Use finishWritingWithCompletionHandler: instead.
+        /// This method is deprecated. Use finishWritingWithCompletionHandler: instead.
         ///
         /// This method will block until writing is finished. When this method returns successfully, the file being written by the receiver is complete and ready to use.
         ///
-        /// Because this method is blocking and can take a long time to execute (especially with shouldOptimizeForNetworkUse set to YES), it should not be called from the main thread.  Doing so can cause the finishWriting operation to fail.
+        /// Because this method is blocking and can take a long time to execute (especially with shouldOptimizeForNetworkUse set to YES), it should not be called from the main thread. Doing so can cause the finishWriting operation to fail.
         ///
         /// If writing cannot be finished, this method returns NO. Clients can check the values of the status and error properties for more information on why writing could not be finished.
         ///
         /// This method should not be called concurrently with -[AVAssetWriterInput appendSampleBuffer:] or -[AVAssetWriterInputPixelBufferAdaptor appendPixelBuffer:withPresentationTime:].
+        ///
+        /// - Returns: A BOOL indicating whether writing successfully finished.
         #[deprecated]
         #[unsafe(method(finishWriting))]
         #[unsafe(method_family = none)]
@@ -395,7 +362,6 @@ impl AVAssetWriter {
 
         #[cfg(feature = "block2")]
         /// Marks all unfinished inputs as finished and completes the writing of the output file.
-        ///
         ///
         /// This method returns immediately and causes its work to be performed asynchronously.
         ///
@@ -417,7 +383,6 @@ impl AVAssetWriter {
         #[cfg(feature = "objc2-core-media")]
         /// For file types that support movie fragments, specifies the frequency at which movie fragments should be written.
         ///
-        ///
         /// When movie fragments are used, a partially written asset whose writing is unexpectedly interrupted can be successfully opened and played up to multiples of the specified time interval. The default value of this property is kCMTimeInvalid, which indicates that movie fragments should not be used.
         ///
         /// When using movie fragments, for best writing performance to external storage devices, set the movieFragmentInterval to 10 seconds or greater.
@@ -436,7 +401,6 @@ impl AVAssetWriter {
         #[cfg(feature = "objc2-core-media")]
         /// For file types that support movie fragments, specifies the interval at which initial movie fragment should be written.
         ///
-        ///
         /// This property is irrelevant if the movieFragmentInterval property is not set. The default value is kCMTimeInvalid, which indicates that the interval for initial movie fragment is same as the one specified by movieFragmentInterval property.
         ///
         /// This property cannot be set after writing has started.
@@ -454,7 +418,6 @@ impl AVAssetWriter {
         );
 
         /// For file types that support movie fragments, specifies the initial movie fragment sequence number.
-        ///
         ///
         /// The value must be equal to or greater than 1.
         ///
@@ -477,7 +440,6 @@ impl AVAssetWriter {
 
         /// For file types that support fragmented MPEG-4, specifies whether the movie fragments should be produced in way that makes them suitable for combining with movie fragments produced by one or more other instances of AVAssetWriter into a single fragment stream of uniform encoding.
         ///
-        ///
         /// The default value is NO.
         ///
         /// When multiple instances of AVAssetWriter are used to produce distinct streams that complement each other, for example to create HLS encoding or bitrate variants, it’s not necessary to set this property to YES.
@@ -495,10 +457,9 @@ impl AVAssetWriter {
         #[cfg(feature = "objc2-core-media")]
         /// For file types that support movie fragments, provides a hint of the final duration of the file to be written
         ///
+        /// The value of this property must be a nonnegative, numeric CMTime. Alternatively, if the value of this property is an invalid CMTime (e.g. kCMTimeInvalid), no overall duration hint will be written to the file. The default value is kCMTimeInvalid.
         ///
-        /// The value of this property must be a nonnegative, numeric CMTime.  Alternatively, if the value of this property is an invalid CMTime (e.g. kCMTimeInvalid), no overall duration hint will be written to the file.  The default value is kCMTimeInvalid.
-        ///
-        /// This property is currently ignored if movie fragments are not being written.  Use the movieFragmentInterval property to enable movie fragments.
+        /// This property is currently ignored if movie fragments are not being written. Use the movieFragmentInterval property to enable movie fragments.
         ///
         /// This property cannot be set after writing has started.
         #[unsafe(method(overallDurationHint))]
@@ -513,7 +474,6 @@ impl AVAssetWriter {
 
         #[cfg(feature = "objc2-core-media")]
         /// For file types that contain a 'moov' atom, such as QuickTime Movie files, specifies the asset-level time scale to be used.
-        ///
         ///
         /// The default value is 0, which indicates that the receiver should choose a convenient value, if applicable.
         ///
@@ -536,22 +496,27 @@ impl AVAssetWriter {
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Tests whether an input group can be added to the receiver.
         ///
-        ///
-        /// Parameter `inputGroup`: The AVAssetWriterInputGroup object to be tested.
-        ///
-        /// Returns: A BOOL indicating whether the input group can be added to the receiver.
-        ///
-        ///
         /// If outputFileType specifies a container format that does not support mutually exclusive relationships among tracks, or if the specified instance of AVAssetWriterInputGroup contains inputs with media types that cannot be related, the group cannot be added to the AVAssetWriter.
         ///
         /// This method throws an exception if any of the following conditions are satisfied:
         /// - this writer's output file type does not support mutually exclusive relationships among tracks (allowed types are AVFileTypeQuickTimeMovie, AVFileTypeAppleM4A, AVFileTypeAppleM4V, AVFileType3GPP, AVFileTypeMPEG4)
         /// - any AVAssetWriterInput in the input group is also present in an input group already added
+        ///
+        /// - Parameter inputGroup: The AVAssetWriterInputGroup object to be tested.
+        ///
+        /// - Returns: A BOOL indicating whether the input group can be added to the receiver.
         #[unsafe(method(canAddInputGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canAddInputGroup(&self, input_group: &AVAssetWriterInputGroup) -> bool;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Adds an instance of AVAssetWriterInputGroup to the AVAssetWriter. The AVAssetWriter will mark the tracks associated with grouped inputs as mutually exclusive to each other for playback or other processing, if the output container format supports mutually exlusive relationships among tracks.
+        ///
+        /// When an input group is added to an AVAssetWriter, the value of marksOutputTrackAsEnabled will automatically be set to YES for the default input and set to NO for all of the other inputs in the group.
+        ///
+        /// Input groups cannot be added after writing has started.
+        ///
+        /// - Parameter inputGroup: The collection of AVAssetWriterInputs to be grouped together.
         #[unsafe(method(addInputGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addInputGroup(&self, input_group: &AVAssetWriterInputGroup);
@@ -559,8 +524,7 @@ impl AVAssetWriter {
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// The instances of AVAssetWriterInputGroup that have been added to the AVAssetWriter.
         ///
-        ///
-        /// The value of this property is an NSArray containing concrete instances of AVAssetWriterInputGroup.  Input groups can be added to the receiver using the addInputGroup: method.
+        /// The value of this property is an NSArray containing concrete instances of AVAssetWriterInputGroup. Input groups can be added to the receiver using the addInputGroup: method.
         #[unsafe(method(inputGroups))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputGroups(&self) -> Retained<NSArray<AVAssetWriterInputGroup>>;
@@ -568,7 +532,13 @@ impl AVAssetWriter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputgroup?language=objc)
+    /// Associates tracks corresponding to inputs with each other in a mutually exclusive relationship.
+    ///
+    /// This class is used to associate tracks corresponding to multiple AVAssetWriterInputs as mutually exclusive to each other for playback or other processing. For example, if you are creating an asset with multiple audio tracks using different spoken languages, only one of which should be played at a time, group the inputs corresponding to those tracks into a single instance of AVAssetWriterInputGroup and add the group to the AVAssetWriter via -[AVAssetWriter addInputGroup:]. If the output format supports mutually exlusive relationships among tracks, the AVAssetWriter will mark the tracks as mutually exclusive to each other.
+    ///
+    /// Note that because AVAssetWriterInputGroup is a subclass of AVMediaSelectionGroup, clients can examine the media selection options that will be available on the output asset before the asset is written. Best results for examining the options of the AVAssetWriterInputGroup will be obtained after associating the AVAssetWriterInputs of the AVAsset as appropriate via -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:] and by initializing each AVAssetWriterInput with a source format hint, where appropriate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputgroup?language=objc)
     #[unsafe(super(AVMediaSelectionGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVMediaSelectionGroup")]
@@ -598,6 +568,12 @@ impl AVAssetWriterInputGroup {
         // +new (unavailable)
 
         #[cfg(feature = "AVAssetWriterInput")]
+        /// Creates an instance of AVAssetWriterInputGroup, for use with -[AVAssetWriter addInputGroup:].
+        ///
+        /// - Parameter inputs: The collection of AVAssetWriterInputs to be grouped together.
+        /// - Parameter defaultInput: The instance of AVAssetWriterInput in the group to designate as the default. When the input group is added to an AVAssetWriter via -addInputGroup:, the value of marksOutputTrackAsEnabled will automatically be set to YES for the default input and set to NO for all of the other inputs in the group.
+        ///
+        /// - Returns: An instance of AVAssetWriterInputGroup, for use with -[AVAssetWriter addInputGroup:].
         #[unsafe(method(assetWriterInputGroupWithInputs:defaultInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputGroupWithInputs_defaultInput(
@@ -606,6 +582,12 @@ impl AVAssetWriterInputGroup {
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVAssetWriterInput")]
+        /// Creates an instance of AVAssetWriterInputGroup, for use with -[AVAssetWriter addInputGroup:].
+        ///
+        /// - Parameter inputs: The collection of AVAssetWriterInputs to be grouped together.
+        /// - Parameter defaultInput: The instance of AVAssetWriterInput in the group to designate as the default. When the input group is added to an AVAssetWriter via -addInputGroup:, the value of marksOutputTrackAsEnabled will automatically be set to YES for the default input and set to NO for all of the other inputs in the group.
+        ///
+        /// - Returns: An instance of AVAssetWriterInputGroup, for use with -[AVAssetWriter addInputGroup:].
         #[unsafe(method(initWithInputs:defaultInput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInputs_defaultInput(
@@ -617,7 +599,6 @@ impl AVAssetWriterInputGroup {
         #[cfg(feature = "AVAssetWriterInput")]
         /// The inputs grouped together by the receiver.
         ///
-        ///
         /// The value of this property is an NSArray containing concrete instances of AVAssetWriterInput.
         #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
@@ -625,7 +606,6 @@ impl AVAssetWriterInputGroup {
 
         #[cfg(feature = "AVAssetWriterInput")]
         /// The input designated at the defaultInput of the receiver.
-        ///
         ///
         /// The value of this property is a concrete instance of AVAssetWriterInput.
         #[unsafe(method(defaultInput))]
@@ -639,7 +619,6 @@ impl AVAssetWriter {
     extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Specifies preferred segment interval.
-        ///
         ///
         /// The default value is kCMTimeInvalid, which means that the receiver will choose an appropriate default value. The value can be set to positive numeric or kCMTimeIndefinite.
         /// If the value is kCMTimeIndefinite, every time a client calls -flushSegment the receiver outputs a segment data.
@@ -661,7 +640,6 @@ impl AVAssetWriter {
         #[cfg(feature = "objc2-core-media")]
         /// Specifies start time of initial segment.
         ///
-        ///
         /// A numeric time must be set if the value of preferredOutputSegmentInterval property is positive numeric. If not, this property is irrelevant.
         ///
         /// This property cannot be set after writing has started.
@@ -677,7 +655,6 @@ impl AVAssetWriter {
 
         #[cfg(feature = "AVMediaFormat")]
         /// Specifies a file type profile for the specified file type.
-        ///
         ///
         /// The default value is nil, which means that the receiver will choose an appropriate default profile based on the specified file type.
         ///
@@ -703,7 +680,6 @@ impl AVAssetWriter {
 
         /// An object that implements one or more of the methods in the AVAssetWriterDelegate protocol.
         ///
-        ///
         /// This property cannot be set after writing has started.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -723,7 +699,6 @@ impl AVAssetWriter {
 
         /// Closes the current segment and outputs it to the -assetWriter:didOutputSegmentData:segmentType:segmentReport: or -assetWriter:didOutputSegmentData:segmentType: delegate method.
         ///
-        ///
         /// This method throws an exception if the delegate method to output segment data is not implemented, or if the value of the preferredOutputSegmentInterval property is not kCMTimeIndefinite.
         #[unsafe(method(flushSegment))]
         #[unsafe(method_family = none)]
@@ -737,16 +712,6 @@ extern_protocol!(
         #[cfg(feature = "AVAssetSegmentReport")]
         /// A method invoked when a segment data is output.
         ///
-        ///
-        /// Parameter `writer`: An AVAssetWriter instance.
-        ///
-        /// Parameter `segmentData`: An instance of NSData containing a segment data.
-        ///
-        /// Parameter `segmentType`: A segment type of the segment data. Segment types are declared in AVAssetSegmentReport.h.
-        ///
-        /// Parameter `segmentReport`: An AVAssetSegmentReport instance.
-        ///
-        ///
         /// If this method is implemented, normal file writing will be suppressed. The instance of AVAssetWriter must be initialized by -initWithContentType: initializer.
         /// Then, clients append media data to AVAssetWriterInputs added to the receiver, call -markAsFinished for each input to mark the input as finished and call -finishWritingWithCompletionHandler: to finish writing as is the case in normal file writing.
         ///
@@ -759,7 +724,7 @@ extern_protocol!(
         /// See more detailed description of AVAssetSegmentReport in AVAssetSegmentReport.h.
         ///
         /// If the file type is AVFileTypeMPEG4 and the outputFileTypeProfile is AVFileTypeProfileMPEG4AppleHLS or AVFileTypeProfileMPEG4CMAFCompliant, when the segmentType is AVAssetSegmentTypeInitialization, the segment contains a 'moov' atom that does not contain any sample tables other than the sample descriptions, and is suitable for use as an initialization segment for the following segment data sequences.
-        /// When the segmentType is AVAssetSegmentTypeSeparable, the segment contains a 'moof' atom  that contains one 'moof' atom followed by one 'mdat' atom.
+        /// When the segmentType is AVAssetSegmentTypeSeparable, the segment contains a 'moof' atom that contains one 'moof' atom followed by one 'mdat' atom.
         ///
         /// 1. If the value of preferredOutputSegmentInterval property is positive numeric, when (a sample's output PTS - InitialSegmentStartTime) >= (interval * N) (N = 1, 2, 3...), the receiver waits for next sync sample and outputs a segment data that includes all samples appended since the previous interval to the delegate method when the sync sample appears, so that the next segment can start with the sync sample.
         /// In this configuration, passthrough (by passing nil to output settings for AVAssetWriterInputs) and compression are available. The media type of input can be AVMediaTypeVideo or AVMediaTypeAudio.
@@ -771,6 +736,11 @@ extern_protocol!(
         /// In this configuration, only passthrough is available. The media type of input can be AVMediaTypeVideo or AVMediaTypeAudio.
         /// Only one input of each media type can be added.
         /// The client should call -flushSegment prior to a sync sample so that the next segment can start with the sync sample. Otherwise, it is an error.
+        ///
+        /// - Parameter writer: An AVAssetWriter instance.
+        /// - Parameter segmentData: An instance of NSData containing a segment data.
+        /// - Parameter segmentType: A segment type of the segment data. Segment types are declared in AVAssetSegmentReport.h.
+        /// - Parameter segmentReport: An AVAssetSegmentReport instance.
         #[optional]
         #[unsafe(method(assetWriter:didOutputSegmentData:segmentType:segmentReport:))]
         #[unsafe(method_family = none)]
@@ -785,17 +755,13 @@ extern_protocol!(
         #[cfg(feature = "AVAssetSegmentReport")]
         /// A method invoked when a segment data is output.
         ///
-        ///
-        /// Parameter `writer`: An AVAssetWriter instance.
-        ///
-        /// Parameter `segmentData`: An instance of NSData containing a segment data.
-        ///
-        /// Parameter `segmentType`: A segment type of the segment data. Segment types are declared in AVAssetSegmentReport.h.
-        ///
-        ///
         /// The usage of this method is same as -assetWriter:didOutputSegmentData:segmentType:segmentReport: except that this method does not deliver AVAssetSegmentReport.
         ///
         /// If clients implement the -assetWriter:didOutputSegmentData:segmentType:segmentReport: method, that method is called instead of this one.
+        ///
+        /// - Parameter writer: An AVAssetWriter instance.
+        /// - Parameter segmentData: An instance of NSData containing a segment data.
+        /// - Parameter segmentType: A segment type of the segment data. Segment types are declared in AVAssetSegmentReport.h.
         #[optional]
         #[unsafe(method(assetWriter:didOutputSegmentData:segmentType:))]
         #[unsafe(method_family = none)]

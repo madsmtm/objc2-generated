@@ -98,7 +98,7 @@ impl SCContentSharingPickerConfiguration {
         #[unsafe(method_family = none)]
         pub fn setAllowsChangingSelectedContent(&self, allows_changing_selected_content: bool);
 
-        /// showsMicrophoneControl Indicates whether the system picker view will show microphone control for user. Default is YES.
+        /// showsMicrophoneControl Indicates whether the system picker view will show microphone control for user. Default is NO.
         #[unsafe(method(showsMicrophoneControl))]
         #[unsafe(method_family = none)]
         pub fn showsMicrophoneControl(&self) -> bool;

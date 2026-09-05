@@ -44,6 +44,41 @@ extern "C" {
     pub static AVCaptureDeviceSubjectAreaDidChangeNotification: &'static NSNotificationName;
 }
 
+/// Constants indicating video orientation, for use with AVCaptureDeviceRotationCoordinator.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation?language=objc)
+// NS_ENUM
+#[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVCaptureVideoOrientation(pub NSInteger);
+impl AVCaptureVideoOrientation {
+    /// Indicates that video should be oriented vertically, port on the bottom.
+    #[doc(alias = "AVCaptureVideoOrientationPortrait")]
+    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
+    pub const Portrait: Self = Self(1);
+    /// Indicates that video should be oriented vertically, port on the top.
+    #[doc(alias = "AVCaptureVideoOrientationPortraitUpsideDown")]
+    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
+    pub const PortraitUpsideDown: Self = Self(2);
+    /// Indicates that video should be oriented horizontally, port on the right.
+    #[doc(alias = "AVCaptureVideoOrientationLandscapeRight")]
+    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
+    pub const LandscapeRight: Self = Self(3);
+    /// Indicates that video should be oriented horizontally, port on the left.
+    #[doc(alias = "AVCaptureVideoOrientationLandscapeLeft")]
+    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
+    pub const LandscapeLeft: Self = Self(4);
+}
+
+unsafe impl Encode for AVCaptureVideoOrientation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVCaptureVideoOrientation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// An AVCaptureDevice represents a physical device that provides realtime input media data, such as video and audio.
     ///
@@ -393,6 +428,13 @@ impl AVCaptureDevice {
         #[unsafe(method(minSupportedExternalSyncFrameDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn minSupportedExternalSyncFrameDuration(&self) -> CMTime;
+
+        /// Whether adjusting the signal compensation delay property of an external sync device is supported while the session is running.
+        ///
+        /// This property returns `true` if the ``signalCompensationDelay`` of an ``AVExternalSyncDevice`` being followed by this device's ``AVCaptureDeviceInput`` can be adjusted while the ``AVCaptureSession`` is running.
+        #[unsafe(method(isAdjustingSignalCompensationDelayWhileRunningSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isAdjustingSignalCompensationDelayWhileRunningSupported(&self) -> bool;
 
         /// Indicates whether the receiver should enable auto video frame rate.
         ///
@@ -3424,6 +3466,21 @@ impl AVCaptureDeviceRotationCoordinator {
         #[unsafe(method(videoRotationAngleForHorizonLevelCapture))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoRotationAngleForHorizonLevelCapture(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Returns a video rotation angle in degrees from this camera relative to the provided orientation.
+        ///
+        /// - Parameter orientation: Specify the device orientation, represented with the ``AVCaptureVideoOrientation`` enum.
+        ///
+        /// The returned video rotation angle represents the amount by which photos or movies captured from the camera should be rotated to be upright relative to the provided orientation. A returned video rotation angle of 0 degrees means that the output will be in the camera's unrotated, native sensor orientation. The returned video rotation angle for an orientation may differ between cameras. For example, some cameras are upright when the device is held with the port on the bottom, while others are upright when holding the device with the port on the left or right. External cameras return 0 degrees for all given video orientations because the relationship between the device and the camera is unknown.
+        ///
+        /// The angle returned from this property is distinct from the angles returned by -videoRotationAngleForHorizonLevelCapture and -videoRotationAngleForHorizonLevelPreview because those return angles relative to the horizon which change dynamically as the device is physically rotated, while this returns the static angle relative to the provided orientation regardless of how the device is physically oriented at the time this method is called.
+        #[unsafe(method(videoRotationAngleRelativeToDeviceOrientation:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn videoRotationAngleRelativeToDeviceOrientation(
+            &self,
+            device_orientation: AVCaptureVideoOrientation,
+        ) -> CGFloat;
     );
 }
 

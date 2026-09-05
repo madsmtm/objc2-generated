@@ -8,6 +8,7 @@ extern_class!(
     /// A context object that provides information about the initiator of a file system operation.
     ///
     /// This object contains the user ID and group ID of the process that initiated the file system operation, allowing file systems to make authorization decisions based on the caller's identity.
+    /// Use this context in handler methods that provide the context as a parameter.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontext?language=objc)
     #[unsafe(super(NSObject))]
@@ -21,18 +22,22 @@ extern_conformance!(
 
 impl FSContext {
     extern_methods!(
+        /// The caller's real user ID.
         #[unsafe(method(realUserID))]
         #[unsafe(method_family = none)]
         pub unsafe fn realUserID(&self) -> NSInteger;
 
+        /// The caller's effective user ID.
         #[unsafe(method(effectiveUserID))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectiveUserID(&self) -> NSInteger;
 
+        /// The caller's real group ID.
         #[unsafe(method(realGroupID))]
         #[unsafe(method_family = none)]
         pub unsafe fn realGroupID(&self) -> NSInteger;
 
+        /// The caller's effective group ID.
         #[unsafe(method(effectiveGroupID))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectiveGroupID(&self) -> NSInteger;

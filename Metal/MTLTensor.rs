@@ -52,8 +52,8 @@ impl MTLTensorDataType {
     #[doc(alias = "MTLTensorDataTypeUInt4")]
     pub const UInt4: Self = Self(144);
     /// An 8-bit floating point format data type with 8 exponent bits.
-    #[doc(alias = "MTLTensorDataTypeFloat8UE8M0")]
-    pub const Float8UE8M0: Self = Self(145);
+    #[doc(alias = "MTLTensorDataTypeMetalFloat8UE8M0")]
+    pub const MetalFloat8UE8M0: Self = Self(145);
     /// A 2-bit unsigned integer format data type.
     #[doc(alias = "MTLTensorDataTypeUInt2")]
     pub const UInt2: Self = Self(149);
@@ -61,14 +61,14 @@ impl MTLTensorDataType {
     #[doc(alias = "MTLTensorDataTypeInt2")]
     pub const Int2: Self = Self(150);
     /// An 8-bit floating point format data type with 5 exponent bits, 2 mantissa bits and 1 sign bit.
-    #[doc(alias = "MTLTensorDataTypeFloat8E5M2")]
-    pub const Float8E5M2: Self = Self(141);
+    #[doc(alias = "MTLTensorDataTypeMetalFloat8E5M2")]
+    pub const MetalFloat8E5M2: Self = Self(141);
     /// An 8-bit floating point format data type with 4 exponent bits, 3 mantissa bits and 1 sign bit.
-    #[doc(alias = "MTLTensorDataTypeFloat8E4M3")]
-    pub const Float8E4M3: Self = Self(142);
+    #[doc(alias = "MTLTensorDataTypeMetalFloat8E4M3")]
+    pub const MetalFloat8E4M3: Self = Self(142);
     /// A 4-bit floating point format data type with 2 exponent bits, 1 mantissa bit and 1 sign bit.
-    #[doc(alias = "MTLTensorDataTypeFloat4E2M1")]
-    pub const Float4E2M1: Self = Self(148);
+    #[doc(alias = "MTLTensorDataTypeMetalFloat4E2M1")]
+    pub const MetalFloat4E2M1: Self = Self(148);
 }
 
 unsafe impl Encode for MTLTensorDataType {

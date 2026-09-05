@@ -250,11 +250,6 @@ extern "C" {
     pub static PKContactFieldPhoneticName: &'static PKContactField;
 }
 
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkttrcomponentidcarkeys?language=objc)
-    pub static PKTTRComponentIDCarKeys: &'static NSString;
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]

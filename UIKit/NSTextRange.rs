@@ -7,12 +7,35 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlocation?language=objc)
+    /// An interface you implement that represents an abstract location inside your document's content.
+    ///
+    /// A concrete class conforming to the protocol should be associated with a
+    /// particular document backing store type. The interpretation of a location in
+    /// enumeration operations depends on the logical direction. When enumerating
+    /// forward, it should start with the item containing the location. The
+    /// enumeration should start with an item preceding the location for reverse
+    /// operations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlocation?language=objc)
     pub unsafe trait NSTextLocation: NSObjectProtocol {
+        /// Compares and returns the logical ordering to location.
+        ///
+        /// - Parameters:
+        /// - location: The location to compare the current location to.
+        ///
+        /// - Returns: A
+        /// <doc
+        /// ://com.apple.documentation/documentation/foundation/comparisonresult>.
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         fn compare(&self, location: &ProtocolObject<dyn NSTextLocation>) -> NSComparisonResult;
 
+        /// Returns `true` for locations representing the same document position.
+        ///
+        /// Must not depend on auxiliary state such as affinity or visual-edge
+        /// preference. Locations from different data source methods are compared using
+        /// `isEqual:` and must agree when they refer to the same position.
+        ///
         /// # Safety
         ///
         /// `location` should be of the correct type.
@@ -20,6 +43,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn isEqual(&self, location: Option<&AnyObject>) -> bool;
 
+        /// Must be consistent with results from `isEqual:` while also avoiding hash collisions.
         #[unsafe(method(hash))]
         #[unsafe(method_family = none)]
         fn hash(&self) -> NSUInteger;
@@ -56,9 +80,11 @@ impl NSTextRange {
     extern_methods!(
         /// Creates a new text range with the starting and ending locations you specify.
         ///
+        /// Returns an empty range when `endLocation` is `nil`.
+        ///
         /// - Parameters:
         /// - location: The starting location.
-        /// - endLocation: The ending location.
+        /// - endLocation: The ending location, or `nil` for an empty range.
         #[unsafe(method(initWithLocation:endLocation:))]
         #[unsafe(method_family = init)]
         pub fn initWithLocation_endLocation(

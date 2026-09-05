@@ -1108,6 +1108,8 @@ pub use self::__AVCaptureDevice::AVCaptureSystemUserInterface;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureTorchMode;
 #[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureVideoOrientation;
+#[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureVideoStabilizationMode;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureWhiteBalanceChromaticityValues;
@@ -1257,8 +1259,6 @@ pub use self::__AVCaptureSession::AVCaptureSessionInterruptionSystemPressureStat
 pub use self::__AVCaptureSession::AVCaptureSessionRuntimeErrorNotification;
 #[cfg(feature = "AVCaptureSession")]
 pub use self::__AVCaptureSession::AVCaptureSessionWasInterruptedNotification;
-#[cfg(feature = "AVCaptureSession")]
-pub use self::__AVCaptureSession::AVCaptureVideoOrientation;
 #[cfg(feature = "AVCaptureSession")]
 pub use self::__AVCaptureSession::AVVideoFieldMode;
 #[cfg(feature = "AVCaptureSessionPreset")]

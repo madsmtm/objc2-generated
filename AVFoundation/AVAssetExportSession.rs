@@ -194,9 +194,6 @@ unsafe impl RefEncode for AVAssetExportSessionStatus {
 
 /// A bitfield type that specifies output handling policies for alternate tracks in a track group.
 ///
-///
-/// Preserve alternate tracks via pass-through.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -204,11 +201,13 @@ unsafe impl RefEncode for AVAssetExportSessionStatus {
 pub struct AVAssetTrackGroupOutputHandling(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAssetTrackGroupOutputHandling: NSUInteger {
-/// No specific processing directives are applied to alternate tracks.  The output is produced without regard to alternate track group assignments in the original asset.
+/// No specific processing directives are applied to alternate tracks. The output is produced without regard to alternate track group assignments in the original asset.
         #[doc(alias = "AVAssetTrackGroupOutputHandlingNone")]
         const None = 0;
+/// Preserve alternate tracks via pass-through.
         #[doc(alias = "AVAssetTrackGroupOutputHandlingPreserveAlternateTracks")]
         const PreserveAlternateTracks = 1<<0;
+/// Preserve alternate tracks via pass-through.
         #[doc(alias = "AVAssetTrackGroupOutputHandlingDefaultPolicy")]
         const DefaultPolicy = AVAssetTrackGroupOutputHandling::None.0;
         const _ = !0;
@@ -260,9 +259,7 @@ extern "C" {
 }
 
 extern_class!(
-    /// AVAssetExportSessionResumptionState details the current resumption state
-    /// of the export session.
-    /// A resumable export session is configured via configureForResumableExportWithCompletionHandler:.
+    /// AVAssetExportSessionResumptionState details the current resumption state of the export session. A resumable export session is configured via configureForResumableExportWithCompletionHandler:.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionstate?language=objc)
     #[unsafe(super(NSObject))]
@@ -278,8 +275,8 @@ impl AVAssetExportSessionResumptionState {
     extern_methods!(
         /// Reports whether or not the export session has been successfully configure as resumable.
         ///
-        /// If YES, the export session in configured as resumable.  If NO, the export session will remain
-        /// as non-resumable (default).  exportAsynchronouslyWithCompletionHandler may still be called
+        /// If YES, the export session in configured as resumable. If NO, the export session will remain
+        /// as non-resumable (default). exportAsynchronouslyWithCompletionHandler may still be called
         /// if this returns as NO.
         #[unsafe(method(isResumptionConfigured))]
         #[unsafe(method_family = none)]
@@ -320,9 +317,7 @@ impl AVAssetExportSessionResumptionState {
 }
 
 extern_class!(
-    /// An AVAssetExportSession creates a new timed media resource from the contents of an
-    /// existing AVAsset in the form described by a specified export preset.
-    ///
+    /// An AVAssetExportSession creates a new timed media resource from the contents of an existing AVAsset in the form described by a specified export preset.
     ///
     /// Prior to initializing an instance of AVAssetExportSession, you can invoke
     /// +allExportPresets to obtain the complete list of presets available. Use
@@ -365,13 +360,12 @@ impl AVAssetExportSession {
         #[cfg(feature = "AVAsset")]
         /// Returns an instance of AVAssetExportSession for the specified source asset and preset.
         ///
-        /// Parameter `asset`: An AVAsset object that is intended to be exported.
-        ///
-        /// Parameter `presetName`: An NSString specifying the name of the preset template for the export.
-        ///
-        /// Returns: An instance of AVAssetExportSession.
-        ///
         /// If the specified asset belongs to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie, the results of any export-related operation are undefined if you mutate the asset after the operation commences. These operations include but are not limited to: 1) testing the compatibility of export presets with the asset, 2) calculating the maximum duration or estimated length of the output file, and 3) the export operation itself.
+        ///
+        /// - Parameter asset: An AVAsset object that is intended to be exported.
+        /// - Parameter presetName: An NSString specifying the name of the preset template for the export.
+        ///
+        /// - Returns: An instance of AVAssetExportSession.
         #[unsafe(method(exportSessionWithAsset:presetName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportSessionWithAsset_presetName(
@@ -382,13 +376,12 @@ impl AVAssetExportSession {
         #[cfg(feature = "AVAsset")]
         /// Initialize an AVAssetExportSession with the specified preset and set the source to the contents of the asset.
         ///
-        /// Parameter `asset`: An AVAsset object that is intended to be exported.
-        ///
-        /// Parameter `presetName`: An NSString specifying the name of the preset template for the export.
-        ///
-        /// Returns: Returns the initialized AVAssetExportSession.
-        ///
         /// If the specified asset belongs to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie, the results of any export-related operation are undefined if you mutate the asset after the operation commences. These operations include but are not limited to: 1) testing the compatibility of export presets with the asset, 2) calculating the maximum duration or estimated length of the output file, and 3) the export operation itself.
+        ///
+        /// - Parameter asset: An AVAsset object that is intended to be exported.
+        /// - Parameter presetName: An NSString specifying the name of the preset template for the export.
+        ///
+        /// - Returns: Returns the initialized AVAssetExportSession.
         #[unsafe(method(initWithAsset:presetName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_presetName(
@@ -397,16 +390,21 @@ impl AVAssetExportSession {
             preset_name: &NSString,
         ) -> Option<Retained<Self>>;
 
+        /// Indicates the name of the preset with which the AVExportSession was initialized.
         #[unsafe(method(presetName))]
         #[unsafe(method_family = none)]
         pub unsafe fn presetName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "AVAsset")]
+        /// Indicates the instance of AVAsset with which the AVExportSession was initialized.
         #[unsafe(method(asset))]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Indicates the type of file to be written by the session.
+        ///
+        /// The value of this property must be set before you invoke -exportAsynchronouslyWithCompletionHandler:; otherwise -exportAsynchronouslyWithCompletionHandler: will raise an NSInternalInconsistencyException. Setting the value of this property to a file type that's not among the session's supported file types will result in an NSInvalidArgumentException. See supportedFileTypes.
         #[unsafe(method(outputFileType))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFileType(&self) -> Option<Retained<AVFileType>>;
@@ -419,6 +417,9 @@ impl AVAssetExportSession {
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputFileType(&self, output_file_type: Option<&AVFileType>);
 
+        /// Indicates the URL of the export session's output. You may use [[UTType typeWithIdentifier:outputFileType] preferredFilenameExtension] to obtain an appropriate path extension for the outputFileType you have specified. For more information, see
+        /// <UniformTypeIdentifiers
+        /// /UTType.h>.
         #[unsafe(method(outputURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputURL(&self) -> Option<Retained<NSURL>>;
@@ -430,6 +431,7 @@ impl AVAssetExportSession {
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputURL(&self, output_url: Option<&NSURL>);
 
+        /// Indicates that the output file should be optimized for network use, e.g. that a QuickTime movie file should support "fast start".
         #[unsafe(method(shouldOptimizeForNetworkUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldOptimizeForNetworkUse(&self) -> bool;
@@ -442,7 +444,7 @@ impl AVAssetExportSession {
         /// Determines whether or not parallelization can be employed in the export.
         ///
         /// On select platforms, there may be opportunities to expedite the export by using additional resources in parallel.
-        /// If set to YES, export parallelization will be enabled, only if parallelization requirements are met.  There will
+        /// If set to YES, export parallelization will be enabled, only if parallelization requirements are met. There will
         /// be no error signaled if export parallelization is not achievable, and instead the export will proceed as normal
         /// (without parallelization).
         /// If set to NO, export parallelization will not be used.
@@ -455,10 +457,12 @@ impl AVAssetExportSession {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsParallelizedExport(&self, allows_parallelized_export: bool);
 
+        /// Indicates the status of the export session.
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVAssetExportSessionStatus;
 
+        /// Describes the error that occured if the export status is AVAssetExportSessionStatusFailed.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
@@ -466,16 +470,9 @@ impl AVAssetExportSession {
         #[cfg(feature = "block2")]
         /// Starts the asynchronous execution of an export session.
         ///
-        /// Parameter `handler`: If internal preparation for export fails, the handler will be invoked synchronously.
-        /// The handler may also be called asynchronously after -exportAsynchronouslyWithCompletionHandler: returns,
-        /// in the following cases:
-        /// 1) if a failure occurs during the export, including failures of loading, re-encoding, or writing media data to the output,
-        /// 2) if -cancelExport is invoked,
-        /// 3) if export session succeeds, having completely written its output to the outputURL.
-        /// In each case, AVAssetExportSession.status will signal the terminal state of the asset reader, and if a failure occurs, the NSError
-        /// that describes the failure can be obtained from the error property.
-        ///
         /// Initiates an asynchronous export operation and returns immediately.
+        ///
+        /// - Parameter handler: If internal preparation for export fails, the handler will be invoked synchronously. The handler may also be called asynchronously after -exportAsynchronouslyWithCompletionHandler: returns, in the following cases: 1) if a failure occurs during the export, including failures of loading, re-encoding, or writing media data to the output, 2) if -cancelExport is invoked, 3) if export session succeeds, having completely written its output to the outputURL. In each case, AVAssetExportSession.status will signal the terminal state of the asset reader, and if a failure occurs, the NSError that describes the failure can be obtained from the error property.
         #[unsafe(method(exportAsynchronouslyWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportAsynchronouslyWithCompletionHandler(
@@ -483,6 +480,7 @@ impl AVAssetExportSession {
             handler: &block2::SendableBlock<'static, fn()>,
         );
 
+        /// Specifies the progress of the export on a scale from 0 to 1.0. A value of 0 means the export has not yet begun, A value of 1.0 means the export is complete. This property is not key-value observable.
         #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> c_float;
@@ -504,7 +502,7 @@ impl AVAssetExportSession {
         /// Returns an array of NSStrings with the names of all available presets. Note that not all presets are
         /// compatible with all AVAssets.
         ///
-        /// Returns: An NSArray containing an NSString for each of the available preset names.
+        /// - Returns: An NSArray containing an NSString for each of the available preset names.
         #[unsafe(method(allExportPresets))]
         #[unsafe(method_family = none)]
         pub unsafe fn allExportPresets() -> Retained<NSArray<NSString>>;
@@ -517,12 +515,12 @@ impl AVAssetExportSession {
         /// A client should pass in an AVAsset that is ready to be exported.
         /// In order to ensure that the setup and running of an export operation will succeed using a given preset no significant changes
         /// (such as adding or deleting tracks) should be made to the asset between retrieving compatible identifiers and performing the export operation.
-        /// This method will access the tracks property of the AVAsset to build the returned NSArray.  To avoid blocking the calling thread,
+        /// This method will access the tracks property of the AVAsset to build the returned NSArray. To avoid blocking the calling thread,
         /// the tracks property should be loaded using the AVAsynchronousKeyValueLoading protocol before calling this method.
         ///
-        /// Parameter `asset`: An AVAsset object that is intended to be exported.
+        /// - Parameter asset: An AVAsset object that is intended to be exported.
         ///
-        /// Returns: An NSArray containing NSString values for the identifiers of compatible export types.
+        /// - Returns: An NSArray containing NSString values for the identifiers of compatible export types.
         /// The array is a complete list of the valid identifiers that can be used as arguments to
         /// initWithAsset:presetName: with the specified asset.
         #[deprecated]
@@ -533,20 +531,16 @@ impl AVAssetExportSession {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "AVAsset", feature = "AVMediaFormat", feature = "block2"))]
-        /// Performs an inspection on the compatibility of an export preset, AVAsset and output file type.  Calls the completion handler with YES if
-        /// the arguments are compatible; NO otherwise.
+        /// Performs an inspection on the compatibility of an export preset, AVAsset and output file type. Calls the completion handler with YES if the arguments are compatible; NO otherwise.
         ///
-        /// Not all export presets are compatible with all AVAssets and file types.  This method can be used to query compatibility.
+        /// Not all export presets are compatible with all AVAssets and file types. This method can be used to query compatibility.
         /// In order to ensure that the setup and running of an export operation will succeed using a given preset no significant changes
         /// (such as adding or deleting tracks) should be made to the asset between retrieving compatible identifiers and performing the export operation.
         ///
-        /// Parameter `presetName`: An NSString specifying the name of the preset template for the export.
-        ///
-        /// Parameter `asset`: An AVAsset object that is intended to be exported.
-        ///
-        /// Parameter `outputFileType`: An AVFileType indicating a file type to check; or nil, to query whether there are any compatible types.
-        ///
-        /// Parameter `handler`: A block called with the compatibility result.
+        /// - Parameter presetName: An NSString specifying the name of the preset template for the export.
+        /// - Parameter asset: An AVAsset object that is intended to be exported.
+        /// - Parameter outputFileType: An AVFileType indicating a file type to check; or nil, to query whether there are any compatible types.
+        /// - Parameter handler: A block called with the compatibility result.
         #[unsafe(method(determineCompatibilityOfExportPreset:withAsset:outputFileType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn determineCompatibilityOfExportPreset_withAsset_outputFileType_completionHandler(
@@ -562,6 +556,9 @@ impl AVAssetExportSession {
 impl AVAssetExportSession {
     extern_methods!(
         #[cfg(feature = "AVMediaFormat")]
+        /// Indicates the types of files the target can write, according to the preset the target was initialized with.
+        ///
+        /// Does not perform an inspection of the AVAsset to determine whether its contents are compatible with the supported file types. If you need to make that determination before initiating the export, use - (void)determineCompatibleFileTypesWithCompletionHandler:(void (^)(NSArray *compatibleFileTypes))handler:.
         #[unsafe(method(supportedFileTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedFileTypes(&self) -> Retained<NSArray<AVFileType>>;
@@ -569,9 +566,9 @@ impl AVAssetExportSession {
         #[cfg(all(feature = "AVMediaFormat", feature = "block2"))]
         /// Performs an inspection on the AVAsset and Preset the object was initialized with to determine a list of file types the ExportSession can write.
         ///
-        /// Parameter `handler`: Called when the inspection completes with an array of file types the ExportSession can write.  Note that this may have a count of zero.
-        ///
         /// This method is different than the supportedFileTypes property in that it performs an inspection of the AVAsset in order to determine its compatibility with each of the session's supported file types.
+        ///
+        /// - Parameter handler: Called when the inspection completes with an array of file types the ExportSession can write. Note that this may have a count of zero.
         #[unsafe(method(determineCompatibleFileTypesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn determineCompatibleFileTypesWithCompletionHandler(
@@ -585,6 +582,7 @@ impl AVAssetExportSession {
 impl AVAssetExportSession {
     extern_methods!(
         #[cfg(feature = "objc2-core-media")]
+        /// Specifies a time range to be exported from the source. The default timeRange of an export session is kCMTimeZero..kCMTimePositiveInfinity, meaning that the full duration of the asset will be exported.
         #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
@@ -596,16 +594,19 @@ impl AVAssetExportSession {
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Provides an estimate of the maximum duration of exported media that is possible given the source asset, the export preset, and the current value of fileLengthLimit. The export will not stop when it reaches this maximum duration; set the timeRange property to export only a certain time range.
         #[deprecated = "Use estimateMaximumDurationWithCompletionHandler: instead"]
         #[unsafe(method(maxDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxDuration(&self) -> CMTime;
 
+        /// Indicates the estimated byte size of exported file. Returns zero when export preset is AVAssetExportPresetPassthrough, AVAssetExportPresetAppleProRes422LPCM or AVAssetExportPresetAppleProRes4444LPCM. This property will also return zero if a numeric value (ie. not invalid, indefinite, or infinite) for the timeRange property has not been set. Note that the returned value does not take into account the source asset information. For a more accurate estimation, use estimateOutputFileLengthWithCompletionHandler.
         #[deprecated = "Use estimateOutputFileLengthWithCompletionHandler: instead"]
         #[unsafe(method(estimatedOutputFileLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedOutputFileLength(&self) -> c_longlong;
 
+        /// Indicates the file length that the output of the session should not exceed. Depending on the content of the source asset, it is possible for the output to slightly exceed the file length limit. The length of the output file should be tested if you require that a strict limit be observed before making use of the output. See also maxDuration and timeRange.
         #[unsafe(method(fileLengthLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileLengthLimit(&self) -> c_longlong;
@@ -620,7 +621,7 @@ impl AVAssetExportSession {
         ///
         /// If fileLengthLimit is not set on the export session, fileLengthLimit will be assumed to be the maximum file size specified by the preset (if any); else infinite.
         ///
-        /// Parameter `handler`: A block called with the estimated maximum duration, or kCMTimeInvalid if an error occurs.  The error parameter will be non-nil if an error occurs.
+        /// - Parameter handler: A block called with the estimated maximum duration, or kCMTimeInvalid if an error occurs. The error parameter will be non-nil if an error occurs.
         #[unsafe(method(estimateMaximumDurationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimateMaximumDurationWithCompletionHandler(
@@ -633,7 +634,7 @@ impl AVAssetExportSession {
         ///
         /// If timeRange is not set on the export session, timeRange will be assumed to be the full time range of the asset.
         ///
-        /// Parameter `handler`: A block called with the estimated output file length in bytes, if it can be determined; 0 otherwise.  The error parameter will be non-nil if an error occurs.
+        /// - Parameter handler: A block called with the estimated output file length in bytes, if it can be determined; 0 otherwise. The error parameter will be non-nil if an error occurs.
         #[unsafe(method(estimateOutputFileLengthWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimateOutputFileLengthWithCompletionHandler(
@@ -647,6 +648,9 @@ impl AVAssetExportSession {
 impl AVAssetExportSession {
     extern_methods!(
         #[cfg(feature = "AVMetadataItem")]
+        /// Specifies an NSArray of AVMetadataItems that are to be written to the output file by the export session.
+        ///
+        /// If the value of this key is nil, any existing metadata in the exported asset will be translated as accurately as possible into the appropriate metadata keyspace for the output file and written to the output.
         #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSArray<AVMetadataItem>>>;
@@ -660,6 +664,9 @@ impl AVAssetExportSession {
         pub unsafe fn setMetadata(&self, metadata: Option<&NSArray<AVMetadataItem>>);
 
         #[cfg(feature = "AVMetadataItem")]
+        /// Specifies a filter object to be used during export to determine which metadata items should be transferred from the source asset.
+        ///
+        /// If the value of this key is nil, no filter will be applied. This is the default. The filter will not be applied to metadata set with via the metadata property. To apply the filter to metadata before it is set on the metadata property, see the methods in AVMetadataItem's AVMetadataItemArrayFiltering category.
         #[unsafe(method(metadataItemFilter))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemFilter(&self) -> Option<Retained<AVMetadataItemFilter>>;
@@ -679,6 +686,9 @@ impl AVAssetExportSession {
 impl AVAssetExportSession {
     extern_methods!(
         #[cfg(feature = "AVAudioProcessingSettings")]
+        /// Indicates the processing algorithm used to manage audio pitch for scaled audio edits.
+        ///
+        /// Constants for various time pitch algorithms, e.g. AVAudioTimePitchAlgorithmSpectral, are defined in AVAudioProcessingSettings.h. An NSInvalidArgumentException will be raised if this property is set to a value other than the constants defined in that file. The default value is AVAudioTimePitchAlgorithmSpectral.
         #[unsafe(method(audioTimePitchAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimePitchAlgorithm(&self) -> Retained<AVAudioTimePitchAlgorithm>;
@@ -695,6 +705,7 @@ impl AVAssetExportSession {
         );
 
         #[cfg(feature = "AVAudioMix")]
+        /// Indicates whether non-default audio mixing is enabled for export and supplies the parameters for audio mixing. Ignored when export preset is AVAssetExportPresetPassthrough.
         #[unsafe(method(audioMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMix(&self) -> Option<Retained<AVAudioMix>>;
@@ -708,6 +719,7 @@ impl AVAssetExportSession {
         pub unsafe fn setAudioMix(&self, audio_mix: Option<&AVAudioMix>);
 
         #[cfg(feature = "AVVideoComposition")]
+        /// Indicates whether video composition is enabled for export and supplies the instructions for video composition. Ignored when export preset is AVAssetExportPresetPassthrough.
         #[unsafe(method(videoComposition))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;
@@ -721,6 +733,7 @@ impl AVAssetExportSession {
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
 
         #[cfg(feature = "AVVideoCompositing")]
+        /// Indicates the custom video compositor instance used, if any.
         #[unsafe(method(customVideoCompositor))]
         #[unsafe(method_family = none)]
         pub unsafe fn customVideoCompositor(
@@ -729,11 +742,10 @@ impl AVAssetExportSession {
 
         /// Defines export policy for handling alternate audio tracks
         ///
-        ///
         /// Specifies the handling of audio tracks that are members of the same alternate track group corresponding to an exported audio track in the source asset.
         /// If no audio track group is present, the value of this property has no effect.
         /// If necessary, use the trackGroups property of AVAsset to determine whether any audio track groups are present.
-        /// The AVAudioMix property is not allowed to be used when also specifying alternate track output handling.  An exception will be thrown if both are specified.
+        /// The AVAudioMix property is not allowed to be used when also specifying alternate track output handling. An exception will be thrown if both are specified.
         #[unsafe(method(audioTrackGroupHandling))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTrackGroupHandling(&self) -> AVAssetTrackGroupOutputHandling;
@@ -753,10 +765,9 @@ impl AVAssetExportSession {
     extern_methods!(
         /// Determines whether the export session can perform multiple passes over the source media to achieve better results.
         ///
+        /// When the value for this property is YES, the export session can produce higher quality results at the expense of longer export times. Setting this property to YES may also require the export session to write temporary data to disk during the export. To control the location of temporary data, use the property directoryForTemporaryFiles.
         ///
-        /// When the value for this property is YES, the export session can produce higher quality results at the expense of longer export times.  Setting this property to YES may also require the export session to write temporary data to disk during the export.  To control the location of temporary data, use the property directoryForTemporaryFiles.
-        ///
-        /// The default value is NO.  Not all export session configurations can benefit from performing multiple passes over the source media.  In these cases, setting this property to YES has no effect.
+        /// The default value is NO. Not all export session configurations can benefit from performing multiple passes over the source media. In these cases, setting this property to YES has no effect.
         ///
         /// This property cannot be set after the export has started.
         #[unsafe(method(canPerformMultiplePassesOverSourceMediaData))]
@@ -773,12 +784,11 @@ impl AVAssetExportSession {
 
         /// Specifies a directory that is suitable for containing temporary files generated during the export process
         ///
+        /// AVAssetExportSession may need to write temporary files when configured in certain ways, such as when canPerformMultiplePassesOverSourceMediaData is set to YES. This property can be used to control where in the filesystem those temporary files are created. All temporary files will be deleted when the export is completed, is canceled, or fails.
         ///
-        /// AVAssetExportSession may need to write temporary files when configured in certain ways, such as when canPerformMultiplePassesOverSourceMediaData is set to YES.  This property can be used to control where in the filesystem those temporary files are created.  All temporary files will be deleted when the export is completed, is canceled, or fails.
+        /// When the value of this property is nil, the export session will choose a suitable location when writing temporary files. The default value is nil.
         ///
-        /// When the value of this property is nil, the export session will choose a suitable location when writing temporary files.  The default value is nil.
-        ///
-        /// This property cannot be set after the export has started.  The export will fail if the URL points to a location that is not a directory, does not exist, is not on the local file system, or if a file cannot be created in this directory (for example, due to insufficient permissions or sandboxing restrictions).
+        /// This property cannot be set after the export has started. The export will fail if the URL points to a location that is not a directory, does not exist, is not on the local file system, or if a file cannot be created in this directory (for example, due to insufficient permissions or sandboxing restrictions).
         #[unsafe(method(directoryForTemporaryFiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn directoryForTemporaryFiles(&self) -> Option<Retained<NSURL>>;
@@ -807,17 +817,17 @@ impl AVAssetExportSession {
         /// The client is responsible for configuring the export session identically for subsequent
         /// sessions, if the export is to be resumed from partial results from a previous run.
         ///
-        /// IMPORTANT:  directoryForTemporaryFiles MUST be specified for resumable exports.
+        /// IMPORTANT: directoryForTemporaryFiles MUST be specified for resumable exports.
         /// This directory holds the temporary files for resumable exports which allows the export to
-        /// resume on a subsequent instantiation.  The client is responsible for making the
+        /// resume on a subsequent instantiation. The client is responsible for making the
         /// directoryForTemporaryFiles unique and deterministic across app launches or device reboots
-        /// if the session is intended to be resumable after such events.  The client must ensure that
+        /// if the session is intended to be resumable after such events. The client must ensure that
         /// it does not re-use a temporary directory corresponding to a different resumable export
         /// session, or the contents between different exports may be erroneously combined.
         ///
         /// This method validates that the currently configured export properties allow resumption,
         /// and interrogates the contents of directoryForTemporaryFiles to determine if this is a resuming
-        /// session or a new one.  As such, this should be called after all settings are finalized for this
+        /// session or a new one. As such, this should be called after all settings are finalized for this
         /// export session, i.e. just prior to exportAsynchronouslyWithCompletionHandler.
         ///
         /// resumptionState details the currently configured resumption state of the export session.
@@ -827,7 +837,7 @@ impl AVAssetExportSession {
         ///
         /// This method cannot be called after the export has started.
         ///
-        /// cancelExport may be called if an in-flight export needs to be interrupted.  The partial results
+        /// cancelExport may be called if an in-flight export needs to be interrupted. The partial results
         /// will be maintained.
         ///
         /// The client is responsible for deleting the temporary directory if the export will never be

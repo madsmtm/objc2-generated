@@ -987,7 +987,7 @@ impl CKNotificationInfo {
         /// <doc
         /// ://com.apple.documentation/documentation/usernotifications/generating-a-remote-notification> for more information about the `mutable-content` flag, and
         /// <doc
-        /// ://com.apple.documentation/documentation/usernotifications/modifying-content-in-newly-delivered-notifications> for information about how to modify push notifiction content in your app extension prior to delivery.
+        /// ://com.apple.documentation/documentation/usernotifications/modifying-content-in-newly-delivered-notifications> for information about how to modify push notification content in your app extension prior to delivery.
         ///
         /// The default value of this property is
         /// <doc

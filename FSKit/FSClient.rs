@@ -51,16 +51,17 @@ impl FSClient {
         );
 
         #[cfg(all(feature = "FSResource", feature = "block2"))]
-        /// Asynchronously mounts a single volume file system with given resource
+        /// Asynchronously mounts a single volume file system with a given resource.
         ///
-        /// This method allows a client with the `com.apple.developer.fskit.mount` entitlement to mount a single volume file system.
-        /// The volume will be mounted within the `/Volumes/` directory.
+        /// This method allows a client with the `com.apple.developer.fskit.mount` entitlement to mount a single-volume file system.
+        /// Calling this method performs the complete workflow of resource loading, volume activation, mount point creation, and actual mounting.
+        /// The system mounts the volume within the `/Volumes/` directory.
         ///
         /// The caller can only mount modules that are visible to them.
         ///
         /// - Parameters:
-        /// - resource: The resource that will be used to mount
-        /// - bundleID: The bundle identifier of the file system extension
+        /// - resource: The resource to mount.
+        /// - bundleID: The bundle identifier of the file system extension.
         /// - options: An array of strings containing the `mount_XXX` mount options
         /// - completionHandler: A block or closure to indicate success or failure. If mount fails, the first parameter is nil and second parameter contains an error. If mount succeeds, the first parameter contains the URL of the mount path, and second parameter is `nil`.
         #[unsafe(method(mountSingleVolumeForResource:bundleID:options:completionHandler:))]
@@ -75,7 +76,10 @@ impl FSClient {
 
         /// Opens the File System Extensions settings in System Settings.
         ///
-        /// - Returns: `YES` if the settings were successfully opened, `NO` otherwise.
+        /// Calling this method allows someone using your app to navigate to the File System Extensions pane in System Settings.
+        /// From this pane, they can view, enable, and disable file system extensions.
+        ///
+        /// - Returns: `true` (Swift) or `YES` (Obj-C) if the settings were successfully opened; otherwise, `false` (Swift) or `NO`(Obj-C).
         #[unsafe(method(openFileSystemExtensionsSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn openFileSystemExtensionsSettings(&self) -> bool;

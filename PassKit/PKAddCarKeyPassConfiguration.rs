@@ -85,39 +85,6 @@ impl PKAddCarKeyPassConfiguration {
         #[unsafe(method(setProductPlanIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProductPlanIdentifier(&self, product_plan_identifier: Option<&NSString>);
-
-        #[unsafe(method(vehicleIdentifier))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn vehicleIdentifier(&self) -> Option<Retained<NSString>>;
-
-        /// Setter for [`vehicleIdentifier`][Self::vehicleIdentifier].
-        ///
-        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        #[unsafe(method(setVehicleIdentifier:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setVehicleIdentifier(&self, vehicle_identifier: Option<&NSString>);
-
-        #[unsafe(method(ownerPairingToken))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn ownerPairingToken(&self) -> Option<Retained<NSString>>;
-
-        /// Setter for [`ownerPairingToken`][Self::ownerPairingToken].
-        ///
-        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        #[unsafe(method(setOwnerPairingToken:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setOwnerPairingToken(&self, owner_pairing_token: Option<&NSString>);
-
-        #[unsafe(method(region))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn region(&self) -> Option<Retained<NSString>>;
-
-        /// Setter for [`region`][Self::region].
-        ///
-        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        #[unsafe(method(setRegion:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setRegion(&self, region: Option<&NSString>);
     );
 }
 

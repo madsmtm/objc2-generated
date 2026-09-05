@@ -184,6 +184,8 @@ extern_protocol!(
     /// In that case, files with the ``FSItem/Attribute/inhibitKernelOffloadedIO`` attribute set use ``FSVolumeReadWriteOperations``, and those without it use this protocol.
     /// A volume that doesn't conform to either protocol can't support any file I/O operation.
     ///
+    /// > Deprecated: Use ``FSVolume/KernelOffloadedIOHandler`` instead.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumekerneloffloadediooperations?language=objc)
     #[deprecated]
     pub unsafe trait FSVolumeKernelOffloadedIOOperations: NSObjectProtocol {
@@ -192,7 +194,7 @@ extern_protocol!(
         ///
         /// FSKit calls this method when the kernel needs to get a mapping of logical-to-physical offsets of the file's data.
         /// This call may occur as part of an I/O operation on the file, or just to get the mapping as part of an `fcntl(F_LOG2PHYS)` system call.
-        /// In the case of an I/O operation on the file, `operationID` has a nonzero value; a future call to ``completeIO(for:offset:length:status:flags:operationID:replyHandler:)`` uses the same `operationID` to indicate which operation it completes.
+        /// In the case of an I/O operation on the file, `operationID` has a nonzero value; a future call to ``completeIO(for:offset:length:status:flags:operationID:)`` uses the same `operationID` to indicate which operation it completes.
         /// In the case of an `fcntl(F_LOG2PHYS)` system call, the `operationID` parameter is `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift).
         /// In both cases the kernel retains the mapping, and it may perform I/O to this range (or a part of it) at any time.
         ///
@@ -203,7 +205,7 @@ extern_protocol!(
         /// - offset: The starting logical offset of the range to be mapped (in bytes).
         /// - length: The length of the range to be mapped (in bytes).
         /// - flags: Flags that affect the behavior of the blockmap operation.
-        /// - operationID: A unique identifier of the blockmap call. Any value other than `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift) indicates the beginning of an I/O operation. A value of `0` or ``FSOperationID/unspecified`` indicates the kernel maps the file without performing I/O. In this case, FSKit doesn't perform a corresponding call to ``completeIO(for:offset:length:status:flags:operationID:replyHandler:)``.
+        /// - operationID: A unique identifier of the blockmap call. Any value other than `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift) indicates the beginning of an I/O operation. A value of `0` or ``FSOperationID/unspecified`` indicates the kernel maps the file without performing I/O. In this case, FSKit doesn't perform a corresponding call to ``completeIO(for:offset:length:status:flags:operationID:)``.
         /// - packer: An extent packer you use to pack the requested range of the file's allocated disk space. FSKit sends all of the packed extents to the kernel when it invokes `reply`.
         /// - reply: A block or closure to indicate success or failure. If mapping fails, pass an error as the one parameter to the reply handler. If mapping succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
         #[deprecated]
@@ -225,7 +227,7 @@ extern_protocol!(
         ///
         /// Implement this method by updating a file's metadata, such as its size and modification time.
         ///
-        /// FSKit may call this method without an earlier call to ``blockmapFile(_:offset:length:flags:operationID:packer:replyHandler:)``.
+        /// FSKit may call this method without an earlier call to ``blockmapFile(_:offset:length:flags:operationID:packer:)``.
         /// In this case, the `operationID` is `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift).
         ///
         /// - Parameters:
@@ -234,7 +236,7 @@ extern_protocol!(
         /// - length: The length of the I/O range (in bytes).
         /// - status: Any error that occurred during the operation. If no error occurred, this parameter is `nil`.
         /// - flags: Flags that affect the behavior of the complete I/O operation.
-        /// - operationID: A unique identifier of the blockmap call. Any value other than `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift) corresponds to a previous call to ``blockmapFile(_:offset:length:flags:operationID:packer:replyHandler:)`` with the same `operationID`.
+        /// - operationID: A unique identifier of the blockmap call. Any value other than `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift) corresponds to a previous call to ``blockmapFile(_:offset:length:flags:operationID:packer:)`` with the same `operationID`.
         /// - reply: A block or closure to indicate success or failure. If completing I/O fails, pass an error as the one parameter to the reply handler. If completing I/O succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
         #[deprecated]
         #[unsafe(method(completeIOForFile:offset:length:status:flags:operationID:replyHandler:))]
@@ -253,13 +255,13 @@ extern_protocol!(
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
         /// Creates a new file item and map its disk space.
         ///
-        /// This method allows the module to opportunistically supply extents, avoiding future calls to ``blockmapFile(_:offset:length:flags:operationID:packer:replyHandler:)``.
+        /// This method allows the module to opportunistically supply extents, avoiding future calls to ``blockmapFile(_:offset:length:flags:operationID:packer:)``.
         /// Only perform this technique opportunistically.
         /// In particular, don't perform additional I/O to fetch extent data.
         ///
         /// Packing extents in this method requires that `attributes` defines a size greater than 0.
         ///
-        /// An implementation that doesn't supply the extents can ignore the packer and call the corresponding method in the ``FSVolume/Operations`` protocol, ``FSVolume/Operations/createItem(named:type:inDirectory:attributes:replyHandler:)``.
+        /// An implementation that doesn't supply the extents can ignore the packer and call the corresponding method in the ``FSVolume/Operations`` protocol, ``FSVolume/Operations/createItem(named:type:inDirectory:attributes:)``.
         ///
         /// - Parameters:
         /// - name: The new file's name.
@@ -282,7 +284,7 @@ extern_protocol!(
         #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
         /// Looks up an item within a directory and maps its disk space.
         ///
-        /// This method allows the module to opportunistically supply extents, avoiding future calls to ``blockmapFile(_:offset:length:flags:operationID:packer:replyHandler:)``.
+        /// This method allows the module to opportunistically supply extents, avoiding future calls to ``blockmapFile(_:offset:length:flags:operationID:packer:)``.
         /// Only perform this technique opportunistically.
         /// In particular, don't perform additional I/O to fetch extent data.
         ///
@@ -310,7 +312,7 @@ extern_protocol!(
         ))]
         /// Preallocates and maps disk space for the given file.
         ///
-        /// This method allows the module to opportunistically supply extents, avoiding future calls to ``blockmapFile(_:offset:length:flags:operationID:packer:replyHandler:)``.
+        /// This method allows the module to opportunistically supply extents, avoiding future calls to ``blockmapFile(_:offset:length:flags:operationID:packer:)``.
         ///
         /// > Important: Only implement this method if your file system conforms to ``FSVolume/PreallocateOperations``.
         ///
@@ -367,7 +369,7 @@ extern_protocol!(
         ///
         /// FSKit calls this method when the kernel needs to get a mapping of logical-to-physical offsets of the file's data.
         /// This call may occur as part of an I/O operation on the file, or just to get the mapping as part of an `fcntl(F_LOG2PHYS)` system call.
-        /// In the case of an I/O operation on the file, `operationID` has a nonzero value; a future call to ``completeIO(for:offset:length:status:flags:operationID:providing:replyHandler:)`` uses the same `operationID` to indicate which operation it completes.
+        /// In the case of an I/O operation on the file, `operationID` has a nonzero value; a future call to ``completeIO(for:offset:length:status:flags:operationID:replyHandler:)`` uses the same `operationID` to indicate which operation it completes.
         /// In the case of an `fcntl(F_LOG2PHYS)` system call, the `operationID` parameter is `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift).
         /// In both cases the kernel retains the mapping, and it may perform I/O to this range (or a part of it) at any time.
         ///
@@ -378,7 +380,7 @@ extern_protocol!(
         /// - offset: The starting logical offset of the range to be mapped (in bytes).
         /// - length: The length of the range to be mapped (in bytes).
         /// - flags: Flags that affect the behavior of the blockmap operation.
-        /// - operationID: A unique identifier of the blockmap call. Any value other than `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift) indicates the beginning of an I/O operation. A value of `0` or ``FSOperationID/unspecified`` indicates the kernel maps the file without performing I/O. In this case, FSKit doesn't perform a corresponding call to ``completeIO(for:offset:length:status:flags:operationID:providing:replyHandler:)``.
+        /// - operationID: A unique identifier of the blockmap call. Any value other than `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift) indicates the beginning of an I/O operation. A value of `0` or ``FSOperationID/unspecified`` indicates the kernel maps the file without performing I/O. In this case, FSKit doesn't perform a corresponding call to ``completeIO(for:offset:length:status:flags:operationID:replyHandler:)``.
         /// - packer: An extent packer you use to pack the requested range of the file's allocated disk space. FSKit sends all of the packed extents to the kernel when it invokes `reply`.
         /// - reply: A block or closure to indicate success or failure. If mapping succeeds, pass an instance of ``FSBlockmapResult`` containing the volume's updated free space, along with a `nil` error. If mapping fails, pass the relevant error as the second parameter; FSKit ignores the ``FSBlockmapResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
         #[unsafe(method(blockmapFile:offset:length:flags:operationID:packer:replyHandler:))]
@@ -414,7 +416,6 @@ extern_protocol!(
         /// - status: Any error that occurred during the operation. If no error occurred, this parameter is `nil`.
         /// - flags: Flags that affect the behavior of the complete I/O operation.
         /// - operationID: A unique identifier of the blockmap call. Any value other than `0` (Objective-C) or ``FSOperationID/unspecified`` (Swift) corresponds to a previous call to ``blockmapFile(_:offset:length:flags:operationID:packer:replyHandler:)`` with the same `operationID`.
-        /// - attributes: The desired set of attributes to provide with the reply.
         /// - reply: A block or closure to indicate success or failure. If completing I/O succeeds, pass an instance of ``FSCompleteIOResult`` containing the updated ``FSItemAttributes`` of the file, along with a `nil` error. If completing I/O fails, pass the relevant error as the second parameter; FSKit ignores the ``FSCompleteIOResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
         #[unsafe(method(completeIOForFile:offset:length:status:flags:operationID:replyHandler:))]
         #[unsafe(method_family = none)]
@@ -444,7 +445,7 @@ extern_protocol!(
         ///
         /// Packing extents in this method requires that `attributes` defines a size greater than 0.
         ///
-        /// An implementation that doesn't supply the extents can ignore the packer and call the corresponding method in the ``FSVolume/Handler`` protocol, ``FSVolume/Handler/createItem(named:type:in:attributes:providing:replyHandler:)``.
+        /// An implementation that doesn't supply the extents can ignore the packer and call the corresponding method in the ``FSVolume/Handler`` protocol, ``FSVolume/Handler/createItem(named:type:in:attributes:context:replyHandler:)``.
         ///
         /// - Parameters:
         /// - name: The new file's name.
@@ -481,7 +482,6 @@ extern_protocol!(
         /// - Parameters:
         /// - name: The name of the file to look up.
         /// - directory: The directory in which to look up the file.
-        /// - attributes: The desired set of attributes to provide with the reply.
         /// - packer: An extent packer you use to pack the file's allocated disk space.
         /// - context: An object that enables context-aware file system decisions throughout the operation.
         /// - reply: A block or closure to indicate success or failure. If lookup succeeds, pass an instance of ``FSLookupItemKOIOResult`` containing the found ``FSItem`` together with its ``FSFileName`` (as saved within the file system) and its ``FSItemAttributes``, along with a `nil` error. If lookup fails, pass the relevant error as the second parameter; FSKit ignores the ``FSLookupItemKOIOResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
@@ -515,7 +515,6 @@ extern_protocol!(
         /// - offset: The offset from which to allocate.
         /// - length: The length of the space in bytes.
         /// - flags: Flags that affect the preallocation behavior.
-        /// - attributes: The desired set of attributes to provide with the reply.
         /// - packer: An extent packer you use to pack the file's preallocated disk space.
         /// - context: An object that enables context-aware file system decisions throughout the operation.
         /// - reply: A block or closure to indicate success or failure. If preallocation succeeds, pass an instance of ``FSPreallocateKOIOResult`` containing the amount of bytes allocated, the updated ``FSItemAttributes`` of the file, the volume's update free space, along with a `nil` error. If preallocation fails, pass the relevant error as the second parameter; FSKit ignores the ``FSPreallocateKOIOResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.

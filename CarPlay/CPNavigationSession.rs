@@ -289,5 +289,15 @@ impl CPNavigationSession {
         #[unsafe(method(setCurrentSegment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentSegment(&self, current_segment: &CPRouteSegment);
+
+        /// Whether the vehicle is presently using route data for any features in its built-in navigation system.
+        #[unsafe(method(isRouteSharingEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isRouteSharingEnabled(&self) -> bool;
+
+        /// Whether the connected vehicle supports the route sharing feature.
+        #[unsafe(method(isRouteSharingSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isRouteSharingSupported(&self) -> bool;
     );
 }

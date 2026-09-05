@@ -133,41 +133,6 @@ extern "C" {
     pub static AVCaptureSessionInterruptionEndedNotification: &'static NSNotificationName;
 }
 
-/// Constants indicating video orientation, for use with AVCaptureVideoPreviewLayer (see AVCaptureVideoPreviewLayer.h) and AVCaptureConnection (see below).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation?language=objc)
-// NS_ENUM
-#[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct AVCaptureVideoOrientation(pub NSInteger);
-impl AVCaptureVideoOrientation {
-    /// Indicates that video should be oriented vertically, home button on the bottom.
-    #[doc(alias = "AVCaptureVideoOrientationPortrait")]
-    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
-    pub const Portrait: Self = Self(1);
-    /// Indicates that video should be oriented vertically, home button on the top.
-    #[doc(alias = "AVCaptureVideoOrientationPortraitUpsideDown")]
-    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
-    pub const PortraitUpsideDown: Self = Self(2);
-    /// Indicates that video should be oriented horizontally, home button on the right.
-    #[doc(alias = "AVCaptureVideoOrientationLandscapeRight")]
-    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
-    pub const LandscapeRight: Self = Self(3);
-    /// Indicates that video should be oriented horizontally, home button on the left.
-    #[doc(alias = "AVCaptureVideoOrientationLandscapeLeft")]
-    #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
-    pub const LandscapeLeft: Self = Self(4);
-}
-
-unsafe impl Encode for AVCaptureVideoOrientation {
-    const ENCODING: Encoding = NSInteger::ENCODING;
-}
-
-unsafe impl RefEncode for AVCaptureVideoOrientation {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 extern_class!(
     /// AVCaptureSession is the central hub of the AVFoundation capture classes.
     ///
@@ -1247,6 +1212,7 @@ impl AVCaptureConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn isVideoOrientationSupported(&self) -> bool;
 
+        #[cfg(feature = "AVCaptureDevice")]
         /// Indicates whether the video flowing through the connection should be rotated to a given orientation.
         ///
         ///
@@ -1256,6 +1222,7 @@ impl AVCaptureConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn videoOrientation(&self) -> AVCaptureVideoOrientation;
 
+        #[cfg(feature = "AVCaptureDevice")]
         /// Setter for [`videoOrientation`][Self::videoOrientation].
         #[deprecated = "Use -videoRotationAngle instead"]
         #[unsafe(method(setVideoOrientation:))]

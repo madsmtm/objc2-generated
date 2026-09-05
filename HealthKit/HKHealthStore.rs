@@ -146,6 +146,38 @@ impl HKHealthStore {
         #[unsafe(method_family = none)]
         pub unsafe fn earliestPermittedSampleDate(&self) -> Retained<NSDate>;
 
+        #[cfg(all(feature = "HKObjectType", feature = "block2"))]
+        /// Reports, for each of the given object types, the earliest date from which the caller is
+        /// authorized to read samples when the user has granted only limited access.
+        ///
+        /// Use this method to discover the lower time bound that the user has imposed on the caller's
+        /// read access — for example, to clamp the startDate of a query predicate so it does not
+        /// request data the caller is not authorized to read.
+        ///
+        /// A type appears in the returned dictionary only when the caller has been granted limited
+        /// read access to that type with a specific earliest readable date. For an included type,
+        /// the value is that earliest date — samples older than it may not be read.
+        ///
+        /// The completion is invoked on an arbitrary background queue. On failure, earliestDates
+        /// will be nil and error will describe the failure; on success, earliestDates is
+        /// non-nil but may be empty if no requested type has a limited-access earliest date.
+        ///
+        /// Parameter `types`: The set of object types to query. Types without a limited-access earliest
+        /// date are silently omitted from the result.
+        ///
+        /// Parameter `completion`: Block invoked with a dictionary mapping each qualifying type to its earliest
+        /// readable date, or with a non-nil error on failure.
+        #[unsafe(method(getEarliestAuthorizedSampleDateForTypes:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getEarliestAuthorizedSampleDateForTypes_completion(
+            &self,
+            types: &NSSet<HKObjectType>,
+            completion: &block2::SendableBlock<
+                'static,
+                fn(*mut NSDictionary<HKObjectType, NSDate>, *mut NSError),
+            >,
+        );
+
         #[cfg(all(feature = "HKObject", feature = "block2"))]
         /// Saves an HKObject.
         ///

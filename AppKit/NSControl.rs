@@ -706,43 +706,64 @@ unsafe impl RefEncode for NSControlBorderShape {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolevents?language=objc)
+/// Constants describing the types of events possible for controls.
+///
+/// Associate both a target and action with one or more control events by calling
+/// ``addTarget(_:action:for:)`` for each target-action pair you want to specify.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolevents?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlEvents(pub NSUInteger);
 bitflags::bitflags! {
     impl NSControlEvents: NSUInteger {
+/// A tracking began event in the control.
         #[doc(alias = "NSControlEventTrackingBegan")]
         const TrackingBegan = 1<<0;
+/// A repeated tracking began event in the control. For this event the click count is greater than one.
         #[doc(alias = "NSControlEventTrackingRepeated")]
         const TrackingRepeated = 1<<1;
+/// An event where the pointer or touch moves inside the bounds of the control.
         #[doc(alias = "NSControlEventTrackingInside")]
         const TrackingInside = 1<<2;
+/// An event where the pointer or touch moves outside the bounds of the control.
         #[doc(alias = "NSControlEventTrackingOutside")]
         const TrackingOutside = 1<<3;
+/// An event where tracking transitions from outside to inside the bounds of the control.
         #[doc(alias = "NSControlEventTrackingEntered")]
         const TrackingEntered = 1<<4;
+/// An event where tracking transitions from inside to outside the bounds of the control.
         #[doc(alias = "NSControlEventTrackingExited")]
         const TrackingExited = 1<<5;
+/// A tracking ended event where the pointer or touch is inside the bounds of the control.
         #[doc(alias = "NSControlEventTrackingEndedInside")]
         const TrackingEndedInside = 1<<6;
+/// A tracking ended event where the pointer or touch is outside the bounds of the control.
         #[doc(alias = "NSControlEventTrackingEndedOutside")]
         const TrackingEndedOutside = 1<<7;
+/// A system event canceling the current tracking for the control.
         #[doc(alias = "NSControlEventTrackingCancelled")]
         const TrackingCancelled = 1<<8;
+/// An event where dragging or otherwise manipulating a control causes it to emit a series of different values.
         #[doc(alias = "NSControlEventValueChanged")]
         const ValueChanged = 1<<12;
+/// A semantic action triggered by buttons.
         #[doc(alias = "NSControlEventPrimaryActionTriggered")]
         const PrimaryActionTriggered = 1<<13;
+/// A menu action has triggered prior to the menu being presented.
         #[doc(alias = "NSControlEventMenuActionTriggered")]
         const MenuActionTriggered = 1<<14;
+/// All tracking events.
         #[doc(alias = "NSControlEventAllTrackingEvents")]
         const AllTrackingEvents = 0x00000FFF;
+/// A range of control-event values available for app use.
         #[doc(alias = "NSControlEventApplicationReserved")]
         const ApplicationReserved = 0x0F000000;
+/// A range of control-event values reserved for internal framework use.
         #[doc(alias = "NSControlEventSystemReserved")]
         const SystemReserved = 0xF0000000;
+/// All events, including system events.
         #[doc(alias = "NSControlEventAllEvents")]
         const AllEvents = 0xFFFFFFFF;
         const _ = !0;
@@ -761,6 +782,12 @@ unsafe impl RefEncode for NSControlEvents {
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 impl NSControl {
     extern_methods!(
+        /// Associates a target object and action method with one or more control events.
+        ///
+        /// You can call this method multiple times to specify multiple target-action pairs for a
+        /// particular event. Passing `nil` as the target routes the action message up the responder
+        /// chain. The control does not retain the target.
+        ///
         /// # Safety
         ///
         /// - `target` should be of the correct type.
@@ -774,6 +801,10 @@ impl NSControl {
             control_events: NSControlEvents,
         );
 
+        /// Stops the delivery of the specified events to the given target object.
+        ///
+        /// Pass `nil` as the action to remove all actions for the target.
+        ///
         /// # Safety
         ///
         /// - `target` should be of the correct type.

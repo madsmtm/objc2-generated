@@ -13,7 +13,9 @@ use objc2_media_toolbox::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiomix?language=objc)
+    /// Allows custom audio processing to be performed on audio tracks during playback or other operations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiomix?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioMix;
@@ -89,6 +91,7 @@ extern_conformance!(
 
 impl AVMutableAudioMix {
     extern_methods!(
+        /// Returns a new instance of AVMutableAudioMix with a nil array of inputParameters.
         #[unsafe(method(audioMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMix() -> Retained<Self>;
@@ -151,7 +154,20 @@ unsafe impl RefEncode for AVAudioMixInputParametersTrackID {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters?language=objc)
+    /// Provides time-varying parameters to apply to an input of an audio mix. Audio volume is currently supported as a time-varying parameter.
+    ///
+    /// Use an instance of AVAudioMixInputParameters to apply audio volume ramps for an input to an audio mix.
+    /// AVAudioMixInputParameters are associated with audio tracks via the trackID property.
+    ///
+    /// Notes on audio volume ramps:
+    ///
+    /// Before the first time at which a volume is set, a volume of 1.0 used; after the last time for which a volume has been set, the last volume is used.
+    /// Within the timeRange of a volume ramp, the volume is interpolated between the startVolume and endVolume of the ramp.
+    /// For example, setting the volume to 1.0 at time 0 and also setting a volume ramp from a volume of 0.5 to 0.2 with a timeRange of [4.0, 5.0]
+    /// results in an audio volume parameters that hold the volume constant at 1.0 from 0.0 sec to 4.0 sec, then cause it to jump to 0.5 and
+    /// descend to 0.2 from 4.0 sec to 9.0 sec, holding constant at 0.2 thereafter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioMixInputParameters;
@@ -205,6 +221,14 @@ impl AVAudioMixInputParameters {
         pub unsafe fn audioTapProcessor(&self) -> Option<Retained<MTAudioProcessingTap>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Obtains the volume ramp that includes the specified time.
+        ///
+        /// - Parameter time: If a ramp with a timeRange that contains the specified time has been set, information about the effective ramp for that time is supplied. Otherwise, information about the first ramp that starts after the specified time is supplied.
+        /// - Parameter startVolume: A pointer to a float to receive the starting volume value for the volume ramp. May be NULL.
+        /// - Parameter endVolume: A pointer to a float to receive the ending volume value for the volume ramp. May be NULL.
+        /// - Parameter timeRange: A pointer to a CMTimeRange to receive the timeRange of the volume ramp. May be NULL.
+        ///
+        /// - Returns: An indication of success. NO will be returned if the specified time is beyond the duration of the last volume ramp that has been set.
         #[unsafe(method(getVolumeRampForTime:startVolume:endVolume:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getVolumeRampForTime_startVolume_endVolume_timeRange(
@@ -260,12 +284,16 @@ extern_conformance!(
 impl AVMutableAudioMixInputParameters {
     extern_methods!(
         #[cfg(feature = "AVAssetTrack")]
+        /// Returns a new instance of AVMutableAudioMixInputParameters with no volume ramps and a trackID set to the specified track's trackID.
+        ///
+        /// - Parameter track: A reference to an AVAssetTrack.
         #[unsafe(method(audioMixInputParametersWithTrack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMixInputParametersWithTrack(
             track: Option<&AVAssetTrack>,
         ) -> Retained<Self>;
 
+        /// Returns a new instance of AVMutableAudioMixInputParameters with no volume ramps and a trackID initialized to AVAudioMixInputParametersTrackMixID.
         #[unsafe(method(audioMixInputParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioMixInputParameters() -> Retained<Self>;
@@ -325,6 +353,9 @@ impl AVMutableAudioMixInputParameters {
         );
 
         #[cfg(feature = "objc2-core-media")]
+        /// Sets a volume ramp to apply during the specified timeRange.
+        ///
+        /// This method throws an exception if the time range's start or duration is not numeric.
         #[unsafe(method(setVolumeRampFromStartVolume:toEndVolume:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolumeRampFromStartVolume_toEndVolume_timeRange(
@@ -335,6 +366,9 @@ impl AVMutableAudioMixInputParameters {
         );
 
         #[cfg(feature = "objc2-core-media")]
+        /// Sets the value of the audio volume at a specific time.
+        ///
+        /// This method throws an exception if the time is not numeric.
         #[unsafe(method(setVolume:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume_atTime(&self, volume: c_float, time: CMTime);
