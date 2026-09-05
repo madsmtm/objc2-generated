@@ -755,31 +755,23 @@ unsafe impl RefEncode for AudioUnitParameterEvent_eventValues {
 ///
 /// See AudioUnitScheduleParameters
 ///
-///
-/// The scope for the parameter
-///
-/// The element for the parameter
-///
-/// The parameterID for the parameter
-///
-///
-/// The event type. This field further defines how the union described by
-/// eventValues is to be interpreted.
-///
-///
-/// If the parameter event type is _Immediate, then the immediate struct of this
-/// union should be used.
-/// If the parameter event type is _Ramped, then the ramp struct of this union
-/// should be used.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterevent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AudioUnitParameterEvent {
+    /// The scope for the parameter
     pub scope: AudioUnitScope,
+    /// The element for the parameter
     pub element: AudioUnitElement,
+    /// The parameterID for the parameter
     pub parameter: AudioUnitParameterID,
+    /// The event type. This field further defines how the union described by
+    /// eventValues is to be interpreted.
     pub eventType: AUParameterEventType,
+    /// If the parameter event type is _Immediate, then the immediate struct of this
+    /// union should be used.
+    /// If the parameter event type is _Ramped, then the ramp struct of this union
+    /// should be used.
     pub eventValues: AudioUnitParameterEvent_eventValues,
 }
 
@@ -807,23 +799,18 @@ unsafe impl RefEncode for AudioUnitParameterEvent {
 /// to deal with audio unit parameters, but is included in this header file for
 /// completeness.
 ///
-///
-/// The audio unit instance to which the specified parameter applies.
-///
-/// The parameterID for the parameter
-///
-/// The scope for the parameter
-///
-/// The element for the parameter
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameter?language=objc)
 #[cfg(feature = "AudioComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitParameter {
+    /// The audio unit instance to which the specified parameter applies.
     pub mAudioUnit: AudioUnit,
+    /// The parameterID for the parameter
     pub mParameterID: AudioUnitParameterID,
+    /// The scope for the parameter
     pub mScope: AudioUnitScope,
+    /// The element for the parameter
     pub mElement: AudioUnitElement,
 }
 
@@ -850,23 +837,18 @@ unsafe impl RefEncode for AudioUnitParameter {
 /// to deal with audio unit properties, but is included in this header file for
 /// completeness.
 ///
-///
-/// The audio unit instance which the specified property applies too
-///
-/// The propertyID for the property
-///
-/// The scope for the property
-///
-/// The element for the property
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitproperty?language=objc)
 #[cfg(feature = "AudioComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitProperty {
+    /// The audio unit instance which the specified property applies too
     pub mAudioUnit: AudioUnit,
+    /// The propertyID for the property
     pub mPropertyID: AudioUnitPropertyID,
+    /// The scope for the property
     pub mScope: AudioUnitScope,
+    /// The element for the property
     pub mElement: AudioUnitElement,
 }
 

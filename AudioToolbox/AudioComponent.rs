@@ -215,23 +215,19 @@ pub type AudioComponentMethod = unsafe extern "C-unwind" fn(NonNull<c_void>, ...
 
 /// A structure used to represent an audio plugin's routines
 ///
-/// the function used to open (or create) an audio plugin instance
-///
-/// the function used to close (or dispose) an audio plugin instance
-///
-/// this is used to return a function pointer for a given selector,
-/// or NULL if that selector is not implemented
-///
-/// must be NULL
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentplugininterface?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioComponentPlugInInterface {
+    /// the function used to open (or create) an audio plugin instance
     pub Open: unsafe extern "C-unwind" fn(NonNull<c_void>, AudioComponentInstance) -> OSStatus,
+    /// the function used to close (or dispose) an audio plugin instance
     pub Close: unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus,
+    /// this is used to return a function pointer for a given selector,
+    /// or NULL if that selector is not implemented
     pub Lookup: unsafe extern "C-unwind" fn(i16) -> Option<AudioComponentMethod>,
+    /// must be NULL
     pub reserved: *mut c_void,
 }
 

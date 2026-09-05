@@ -42,17 +42,6 @@ unsafe impl RefEncode for AudioPanningMode {
 
 /// This struct is for use with kAudioFormatProperty_PanningMatrix.
 ///
-///
-///
-///
-/// mGainScale is used to multiply the panning values.
-/// In typical usage you are applying an existing volume.
-/// value in 0 -> 1 (where 1 is unity gain) to the panned values.
-/// 1 would give you panning at unity.
-/// 0 would give you back a matrix of zeroes.
-///
-/// This is the channel map that is going to be used to determine channel volumes for this pan.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopanninginfo?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
@@ -61,7 +50,13 @@ pub struct AudioPanningInfo {
     pub mPanningMode: AudioPanningMode,
     pub mCoordinateFlags: u32,
     pub mCoordinates: [f32; 3],
+    /// mGainScale is used to multiply the panning values.
+    /// In typical usage you are applying an existing volume.
+    /// value in 0 -> 1 (where 1 is unity gain) to the panned values.
+    /// 1 would give you panning at unity.
+    /// 0 would give you back a matrix of zeroes.
     pub mGainScale: f32,
+    /// This is the channel map that is going to be used to determine channel volumes for this pan.
     pub mOutputChannelMap: NonNull<AudioChannelLayout>,
 }
 
@@ -115,22 +110,18 @@ unsafe impl RefEncode for AudioBalanceFadeType {
 
 /// this struct is used with kAudioFormatProperty_BalanceFade
 ///
-/// -1 is full left, 0 is center, +1 is full right
-///
-/// -1 is full rear, 0 is center, +1 is full front
-///
-/// an AudioBalanceFadeType constant
-///
-/// a pointer to an AudioChannelLayout
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobalancefade?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioBalanceFade {
+    /// -1 is full left, 0 is center, +1 is full right
     pub mLeftRightBalance: f32,
+    /// -1 is full rear, 0 is center, +1 is full front
     pub mBackFrontFade: f32,
+    /// an AudioBalanceFadeType constant
     pub mType: AudioBalanceFadeType,
+    /// a pointer to an AudioChannelLayout
     pub mChannelLayout: NonNull<AudioChannelLayout>,
 }
 
@@ -154,19 +145,16 @@ unsafe impl RefEncode for AudioBalanceFade {
 
 /// this struct is used as a specifier for the kAudioFormatProperty_FormatList property
 ///
-/// an AudioStreamBasicDescription
-///
-/// a pointer to the decompression info for the data described in mASBD
-///
-/// the size in bytes of mMagicCookie
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioformatinfo?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioFormatInfo {
+    /// an AudioStreamBasicDescription
     pub mASBD: AudioStreamBasicDescription,
+    /// a pointer to the decompression info for the data described in mASBD
     pub mMagicCookie: NonNull<c_void>,
+    /// the size in bytes of mMagicCookie
     pub mMagicCookieSize: u32,
 }
 
@@ -189,22 +177,18 @@ unsafe impl RefEncode for AudioFormatInfo {
 
 /// this struct is used as a specifier for the kAudioFormatProperty_FormatList property
 ///
-/// an AudioStreamBasicDescription
-///
-/// a pointer to the decompression info for the data described in mASBD
-///
-/// the size in bytes of mMagicCookie
-///
-/// an AudioClassDescription specifying the codec to be used in answering the question.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendedaudioformatinfo?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ExtendedAudioFormatInfo {
+    /// an AudioStreamBasicDescription
     pub mASBD: AudioStreamBasicDescription,
+    /// a pointer to the decompression info for the data described in mASBD
     pub mMagicCookie: *const c_void,
+    /// the size in bytes of mMagicCookie
     pub mMagicCookieSize: u32,
+    /// an AudioClassDescription specifying the codec to be used in answering the question.
     pub mClassDescription: AudioClassDescription,
 }
 

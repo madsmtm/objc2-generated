@@ -61,16 +61,13 @@ pub type AudioCodecPropertyID = u32;
 /// The first four + sizeof(void *) bytes of the buffer pointed at by outPropertyData
 /// will contain this struct.
 ///
-///
-/// The size of the magic cookie
-///
-/// Generic const pointer to magic cookie
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecmagiccookieinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioCodecMagicCookieInfo {
+    /// The size of the magic cookie
     pub mMagicCookieSize: u32,
+    /// Generic const pointer to magic cookie
     pub mMagicCookie: *const c_void,
 }
 
@@ -722,16 +719,13 @@ pub const kAudioCodecContentSource_Passthrough: i32 = 42;
 /// Specifies the number of leading and trailing empty frames
 /// which have to be inserted.
 ///
-///
-/// An unsigned integer specifying the number of leading empty frames
-///
-/// An unsigned integer specifying the number of trailing empty frames
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecprimeinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioCodecPrimeInfo {
+    /// An unsigned integer specifying the number of leading empty frames
     pub leadingFrames: u32,
+    /// An unsigned integer specifying the number of trailing empty frames
     pub trailingFrames: u32,
 }
 

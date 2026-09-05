@@ -20,24 +20,20 @@ pub type MusicDeviceInstrumentID = u32;
 /// This struct is the common usage for MusicDeviceStartNote, as most synths that implement this functionality
 /// will only allow for the specification of a note number and velocity when starting a new note.
 ///
-///
-/// Should be set to 2
-///
-/// The pitch of the new note, typically specified using a MIDI note number (and a fractional pitch) within the
-/// range of 0
-/// <
-/// 128. So 60 is middle C, 60.5 is middle C + 50 cents.
-///
-/// The velocity of the new note - this can be a fractional value - specified as MIDI (within the range of 0
-/// <
-/// 128)
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestdnoteparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MusicDeviceStdNoteParams {
+    /// Should be set to 2
     pub argCount: u32,
+    /// The pitch of the new note, typically specified using a MIDI note number (and a fractional pitch) within the
+    /// range of 0
+    /// <
+    /// 128. So 60 is middle C, 60.5 is middle C + 50 cents.
     pub mPitch: f32,
+    /// The velocity of the new note - this can be a fractional value - specified as MIDI (within the range of 0
+    /// <
+    /// 128)
     pub mVelocity: f32,
 }
 
@@ -60,17 +56,14 @@ unsafe impl RefEncode for MusicDeviceStdNoteParams {
 /// This struct is used to describe a parameterID (a control in MIDI terminology, though it is not limited to
 /// MIDI CC specifications) and the value of this parameter.
 ///
-///
-/// The parameter ID
-///
-/// The value of that parameter
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/noteparamscontrolvalue?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NoteParamsControlValue {
+    /// The parameter ID
     pub mID: AudioUnitParameterID,
+    /// The value of that parameter
     pub mValue: AudioUnitParameterValue,
 }
 
@@ -98,28 +91,23 @@ unsafe impl RefEncode for NoteParamsControlValue {
 /// for the common use case, as many audio unit instruments will not respond to control values provided
 /// in the start note function
 ///
-///
-/// The number of controls + 2 (for mPitch and mVelocity)
-///
-/// The pitch of the new note, typically specified using a MIDI note number (and a fractional pitch) within the
-/// range of 0
-/// <
-/// 128. So 60 is middle C, 60.5 is middle C + 50 cents.
-///
-/// The velocity of the new note - this can be a fractional value - specified as MIDI (within the range of 0
-/// <
-/// 128)
-///
-/// A variable length array with the number of elements: argCount - 2.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicenoteparams?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[allow(clippy::manual_non_exhaustive)]
 pub struct MusicDeviceNoteParams {
+    /// The number of controls + 2 (for mPitch and mVelocity)
     pub argCount: u32,
+    /// The pitch of the new note, typically specified using a MIDI note number (and a fractional pitch) within the
+    /// range of 0
+    /// <
+    /// 128. So 60 is middle C, 60.5 is middle C + 50 cents.
     pub mPitch: f32,
+    /// The velocity of the new note - this can be a fractional value - specified as MIDI (within the range of 0
+    /// <
+    /// 128)
     pub mVelocity: f32,
+    /// A variable length array with the number of elements: argCount - 2.
     pub mControls: [NoteParamsControlValue; 1],
     _this_is_unsized: (),
 }

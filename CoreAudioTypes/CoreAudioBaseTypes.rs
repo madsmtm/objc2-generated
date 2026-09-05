@@ -45,15 +45,13 @@ pub const kAudio_MemFullError: OSStatus = -108;
 /// This structure holds a pair of numbers that represent a continuous range of
 /// values.
 ///
-/// The minimum value.
-///
-/// The maximum value.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiovaluerange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioValueRange {
+    /// The minimum value.
     pub mMinimum: f64,
+    /// The maximum value.
     pub mMaximum: f64,
 }
 
@@ -70,21 +68,17 @@ unsafe impl RefEncode for AudioValueRange {
 
 /// This stucture holds the buffers necessary for translation operations.
 ///
-/// The buffer containing the data to be translated.
-///
-/// The number of bytes in the buffer pointed at by mInputData.
-///
-/// The buffer to hold the result of the translation.
-///
-/// The number of bytes in the buffer pointed at by mOutputData.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiovaluetranslation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioValueTranslation {
+    /// The buffer containing the data to be translated.
     pub mInputData: NonNull<c_void>,
+    /// The number of bytes in the buffer pointed at by mInputData.
     pub mInputDataSize: u32,
+    /// The buffer to hold the result of the translation.
     pub mOutputData: NonNull<c_void>,
+    /// The number of bytes in the buffer pointed at by mOutputData.
     pub mOutputDataSize: u32,
 }
 
@@ -108,18 +102,15 @@ unsafe impl RefEncode for AudioValueTranslation {
 
 /// A structure to hold a buffer of audio data.
 ///
-/// The number of interleaved channels in the buffer.
-///
-/// The number of bytes in the buffer pointed at by mData.
-///
-/// A pointer to the buffer of audio data.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiobuffer?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioBuffer {
+    /// The number of interleaved channels in the buffer.
     pub mNumberChannels: u32,
+    /// The number of bytes in the buffer pointed at by mData.
     pub mDataByteSize: u32,
+    /// A pointer to the buffer of audio data.
     pub mData: *mut c_void,
 }
 
@@ -138,15 +129,13 @@ unsafe impl RefEncode for AudioBuffer {
 
 /// A variable length array of AudioBuffer structures.
 ///
-/// The number of AudioBuffers in the mBuffers array.
-///
-/// A variable length array of AudioBuffers.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist?language=objc)
 #[repr(C)]
 #[allow(clippy::manual_non_exhaustive)]
 pub struct AudioBufferList {
+    /// The number of AudioBuffers in the mBuffers array.
     pub mNumberBuffers: u32,
+    /// A variable length array of AudioBuffers.
     pub mBuffers: [AudioBuffer; 1],
     _this_is_unsized: (),
 }
@@ -193,37 +182,27 @@ pub type AudioFormatFlags = u32;
 /// indivisible chunk of compressed data, for example an AAC packet will contain
 /// 1024 sample frames.
 ///
-///
-/// The number of sample frames per second of the data in the stream.
-///
-/// The AudioFormatID indicating the general kind of data in the stream.
-///
-/// The AudioFormatFlags for the format indicated by mFormatID.
-///
-/// The number of bytes in a packet of data.
-///
-/// The number of sample frames in each packet of data.
-///
-/// The number of bytes in a single sample frame of data.
-///
-/// The number of channels in each frame of data.
-///
-/// The number of bits of sample data for each channel in a frame of data.
-///
-/// Pads the structure out to force an even 8 byte alignment.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamBasicDescription {
+    /// The number of sample frames per second of the data in the stream.
     pub mSampleRate: f64,
+    /// The AudioFormatID indicating the general kind of data in the stream.
     pub mFormatID: AudioFormatID,
+    /// The AudioFormatFlags for the format indicated by mFormatID.
     pub mFormatFlags: AudioFormatFlags,
+    /// The number of bytes in a packet of data.
     pub mBytesPerPacket: u32,
+    /// The number of sample frames in each packet of data.
     pub mFramesPerPacket: u32,
+    /// The number of bytes in a single sample frame of data.
     pub mBytesPerFrame: u32,
+    /// The number of channels in each frame of data.
     pub mChannelsPerFrame: u32,
+    /// The number of bits of sample data for each channel in a frame of data.
     pub mBitsPerChannel: u32,
+    /// Pads the structure out to force an even 8 byte alignment.
     pub mReserved: u32,
 }
 
@@ -563,20 +542,17 @@ pub const kAudioFormatFlagsNativeFloatPacked: AudioFormatFlags =
 /// each packet may not be the same or where there is extraneous data between
 /// packets.
 ///
-/// The number of bytes from the start of the buffer to the beginning of the
-/// packet.
-///
-/// The number of sample frames of data in the packet. For formats with a
-/// constant number of frames per packet, this field is set to 0.
-///
-/// The number of bytes in the packet.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiostreampacketdescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamPacketDescription {
+    /// The number of bytes from the start of the buffer to the beginning of the
+    /// packet.
     pub mStartOffset: i64,
+    /// The number of sample frames of data in the packet. For formats with a
+    /// constant number of frames per packet, this field is set to 0.
     pub mVariableFramesInPacket: u32,
+    /// The number of bytes in the packet.
     pub mDataByteSize: u32,
 }
 
@@ -595,16 +571,6 @@ unsafe impl RefEncode for AudioStreamPacketDescription {
 
 /// A structure to provide a description of the dependencies of one audio packet on other audio packets.
 ///
-///
-/// 1 if the packet is independently decodable, 0 otherwise.
-///
-/// The count of packets that must be decoded after this packet in order to refresh the decoder,
-/// if the packet is independently decodable.  This value should be ignored if
-/// ``mIsIndependentlyDecodable`` is 0.
-///
-/// Currently unused.
-///
-/// Reserved for future use.
 ///
 ///
 /// For independently decodable packets, the ``mPreRollCount`` indicates how many additional packets need
@@ -627,9 +593,15 @@ unsafe impl RefEncode for AudioStreamPacketDescription {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamPacketDependencyDescription {
+    /// 1 if the packet is independently decodable, 0 otherwise.
     pub mIsIndependentlyDecodable: u32,
+    /// The count of packets that must be decoded after this packet in order to refresh the decoder,
+    /// if the packet is independently decodable.  This value should be ignored if
+    /// ``mIsIndependentlyDecodable`` is 0.
     pub mPreRollCount: u32,
+    /// Currently unused.
     pub mFlags: u32,
+    /// Reserved for future use.
     pub mReserved: u32,
 }
 
@@ -740,36 +712,27 @@ unsafe impl RefEncode for SMPTETimeFlags {
 
 /// A structure for holding a SMPTE time.
 ///
-/// The number of subframes in the full message.
-///
-/// The number of subframes per frame (typically 80).
-///
-/// The total number of messages received.
-///
-/// The kind of SMPTE time using the SMPTE time type constants.
-///
-/// A set of flags that indicate the SMPTE state.
-///
-/// The number of hours in the full message.
-///
-/// The number of minutes in the full message.
-///
-/// The number of seconds in the full message.
-///
-/// The number of frames in the full message.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SMPTETime {
+    /// The number of subframes in the full message.
     pub mSubframes: i16,
+    /// The number of subframes per frame (typically 80).
     pub mSubframeDivisor: i16,
+    /// The total number of messages received.
     pub mCounter: u32,
+    /// The kind of SMPTE time using the SMPTE time type constants.
     pub mType: SMPTETimeType,
+    /// A set of flags that indicate the SMPTE state.
     pub mFlags: SMPTETimeFlags,
+    /// The number of hours in the full message.
     pub mHours: i16,
+    /// The number of minutes in the full message.
     pub mMinutes: i16,
+    /// The number of seconds in the full message.
     pub mSeconds: i16,
+    /// The number of frames in the full message.
     pub mFrames: i16,
 }
 
@@ -841,31 +804,24 @@ unsafe impl RefEncode for AudioTimeStampFlags {
 
 /// A structure that holds different representations of the same point in time.
 ///
-/// The absolute sample frame time.
-///
-/// The host machine's time base, mach_absolute_time.
-///
-/// The ratio of actual host ticks per sample frame to the nominal host ticks
-/// per sample frame.
-///
-/// The word clock time.
-///
-/// The SMPTE time.
-///
-/// A set of flags indicating which representations of the time are valid.
-///
-/// Pads the structure out to force an even 8 byte alignment.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestamp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioTimeStamp {
+    /// The absolute sample frame time.
     pub mSampleTime: f64,
+    /// The host machine's time base, mach_absolute_time.
     pub mHostTime: u64,
+    /// The ratio of actual host ticks per sample frame to the nominal host ticks
+    /// per sample frame.
     pub mRateScalar: f64,
+    /// The word clock time.
     pub mWordClockTime: u64,
+    /// The SMPTE time.
     pub mSMPTETime: SMPTETime,
+    /// A set of flags indicating which representations of the time are valid.
     pub mFlags: AudioTimeStampFlags,
+    /// Pads the structure out to force an even 8 byte alignment.
     pub mReserved: u32,
 }
 
@@ -892,18 +848,15 @@ unsafe impl RefEncode for AudioTimeStamp {
 
 /// This structure is used to describe codecs installed on the system.
 ///
-/// The four char code codec type.
-///
-/// The four char code codec subtype.
-///
-/// The four char code codec manufacturer.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audioclassdescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioClassDescription {
+    /// The four char code codec type.
     pub mType: OSType,
+    /// The four char code codec subtype.
     pub mSubType: OSType,
+    /// The four char code codec manufacturer.
     pub mManufacturer: OSType,
 }
 
@@ -2204,18 +2157,15 @@ pub const kAudioChannelLayoutTag_Unknown: AudioChannelLayoutTag = 0xFFFF0000;
 
 /// This structure describes a single channel.
 ///
-/// The AudioChannelLabel that describes the channel.
-///
-/// Flags that control the interpretation of mCoordinates.
-///
-/// An ordered triple that specifies a precise speaker location.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochanneldescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioChannelDescription {
+    /// The AudioChannelLabel that describes the channel.
     pub mChannelLabel: AudioChannelLabel,
+    /// Flags that control the interpretation of mCoordinates.
     pub mChannelFlags: AudioChannelFlags,
+    /// An ordered triple that specifies a precise speaker location.
     pub mCoordinates: [f32; 3],
 }
 
@@ -2238,23 +2188,19 @@ unsafe impl RefEncode for AudioChannelDescription {
 
 /// This structure is used to specify channel layouts in files and hardware.
 ///
-/// The AudioChannelLayoutTag that indicates the layout.
-///
-/// If mChannelLayoutTag is set to kAudioChannelLayoutTag_UseChannelBitmap, this
-/// field is the channel usage bitmap.
-///
-/// The number of items in the mChannelDescriptions array.
-///
-/// A variable length array of AudioChannelDescriptions that describe the
-/// layout.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout?language=objc)
 #[repr(C)]
 #[allow(clippy::manual_non_exhaustive)]
 pub struct AudioChannelLayout {
+    /// The AudioChannelLayoutTag that indicates the layout.
     pub mChannelLayoutTag: AudioChannelLayoutTag,
+    /// If mChannelLayoutTag is set to kAudioChannelLayoutTag_UseChannelBitmap, this
+    /// field is the channel usage bitmap.
     pub mChannelBitmap: AudioChannelBitmap,
+    /// The number of items in the mChannelDescriptions array.
     pub mNumberChannelDescriptions: u32,
+    /// A variable length array of AudioChannelDescriptions that describe the
+    /// layout.
     pub mChannelDescriptions: [AudioChannelDescription; 1],
     _this_is_unsized: (),
 }
@@ -2283,15 +2229,13 @@ impl AudioChannelLayout {
 
 /// this struct is used as output from the kAudioFormatProperty_FormatList property
 ///
-/// an AudioStreamBasicDescription
-///
-/// an AudioChannelLayoutTag
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audioformatlistitem?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFormatListItem {
+    /// an AudioStreamBasicDescription
     pub mASBD: AudioStreamBasicDescription,
+    /// an AudioChannelLayoutTag
     pub mChannelLayoutTag: AudioChannelLayoutTag,
 }
 

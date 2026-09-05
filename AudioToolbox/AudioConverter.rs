@@ -357,29 +357,25 @@ pub const kConverterPrimeMethod_None: u32 = 2;
 /// kConverterPrimeMethod_Normal, which requires no pre-seeking of the input stream and
 /// generates no latency at the output.
 ///
-///
-/// Specifies the number of leading (previous) input frames, relative to the normal/desired
-/// start input frame, required by the converter to perform a high quality conversion. If
-/// using kConverterPrimeMethod_Pre, the client should "pre-seek" the input stream provided
-/// through the input proc by leadingFrames. If no frames are available previous to the
-/// desired input start frame (because, for example, the desired start frame is at the very
-/// beginning of available audio), then provide "leadingFrames" worth of initial zero frames
-/// in the input proc.  Do not "pre-seek" in the default case of
-/// kConverterPrimeMethod_Normal or when using kConverterPrimeMethod_None.
-///
-///
-/// Specifies the number of trailing input frames (past the normal/expected end input frame)
-/// required by the converter to perform a high quality conversion.  The client should be
-/// prepared to provide this number of additional input frames except when using
-/// kConverterPrimeMethod_None. If no more frames of input are available in the input stream
-/// (because, for example, the desired end frame is at the end of an audio file), then zero
-/// (silent) trailing frames will be synthesized for the client.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterprimeinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioConverterPrimeInfo {
+    /// Specifies the number of leading (previous) input frames, relative to the normal/desired
+    /// start input frame, required by the converter to perform a high quality conversion. If
+    /// using kConverterPrimeMethod_Pre, the client should "pre-seek" the input stream provided
+    /// through the input proc by leadingFrames. If no frames are available previous to the
+    /// desired input start frame (because, for example, the desired start frame is at the very
+    /// beginning of available audio), then provide "leadingFrames" worth of initial zero frames
+    /// in the input proc.  Do not "pre-seek" in the default case of
+    /// kConverterPrimeMethod_Normal or when using kConverterPrimeMethod_None.
     pub leadingFrames: u32,
+    /// Specifies the number of trailing input frames (past the normal/expected end input frame)
+    /// required by the converter to perform a high quality conversion.  The client should be
+    /// prepared to provide this number of additional input frames except when using
+    /// kConverterPrimeMethod_None. If no more frames of input are available in the input stream
+    /// (because, for example, the desired end frame is at the end of an audio file), then zero
+    /// (silent) trailing frames will be synthesized for the client.
     pub trailingFrames: u32,
 }
 

@@ -6939,21 +6939,17 @@ unsafe impl RefEncode for CAClockTime_time {
 
 /// Represents a time value using one of several possible units.
 ///
-///
-/// Specifies the time's format and units.
-///
-/// Must be 0.
-///
-/// The time value. Use the member of the union appropriate to the format (see the
-/// description of CAClockTimeFormat).
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktime?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct CAClockTime {
+    /// Specifies the time's format and units.
     pub format: CAClockTimeFormat,
+    /// Must be 0.
     pub reserved: u32,
+    /// The time value. Use the member of the union appropriate to the format (see the
+    /// description of CAClockTimeFormat).
     pub time: CAClockTime_time,
 }
 
@@ -6979,16 +6975,13 @@ unsafe impl RefEncode for CAClockTime {
 /// The clock's tempo map defines the correspondence between seconds and musical
 /// beats, and is used in conversions between the two.
 ///
-///
-/// The beat time at which the tempo changes.
-///
-/// The new tempo as of that time.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/catempomapentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CATempoMapEntry {
+    /// The beat time at which the tempo changes.
     pub beats: CAClockBeats,
+    /// The new tempo as of that time.
     pub tempoBPM: CAClockTempo,
 }
 
@@ -7010,19 +7003,15 @@ unsafe impl RefEncode for CATempoMapEntry {
 /// The meter track is used for converting between beats as floating-point
 /// numbers (CAClockBeats) and their display representations (CABarBeatTime).
 ///
-///
-/// The beat time at which the time signature (meter) changes.
-///
-/// The numerator of the new time signature.
-///
-/// The denominator of the new time signature (1, 2, 4, 8, etc.).
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cametertrackentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAMeterTrackEntry {
+    /// The beat time at which the time signature (meter) changes.
     pub beats: CAClockBeats,
+    /// The numerator of the new time signature.
     pub meterNumer: u16,
+    /// The denominator of the new time signature (1, 2, 4, 8, etc.).
     pub meterDenom: u16,
 }
 

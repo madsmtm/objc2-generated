@@ -107,16 +107,14 @@ unsafe impl RefEncode for AudioUnitEvent_mArgument {
 
 /// Describes a change to an Audio Unit's state.
 ///
-/// The type of event.
-///
-/// Specifies the parameter or property which has changed.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitevent?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AudioUnitEvent {
+    /// The type of event.
     pub mEventType: AudioUnitEventType,
+    /// Specifies the parameter or property which has changed.
     pub mArgument: AudioUnitEvent_mArgument,
 }
 

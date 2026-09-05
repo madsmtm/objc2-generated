@@ -407,19 +407,16 @@ unsafe impl RefEncode for AudioFileMarker {
 
 /// A list of AudioFileMarker.
 ///
-/// This defines the SMPTE timing scheme used in the marker list. See CAFFile.h for the values used here.
-///
-/// The number of markers in the mMarkers list.
-///
-/// A list of AudioFileMarker.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilemarkerlist?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[allow(clippy::manual_non_exhaustive)]
 pub struct AudioFileMarkerList {
+    /// This defines the SMPTE timing scheme used in the marker list. See CAFFile.h for the values used here.
     pub mSMPTE_TimeType: u32,
+    /// The number of markers in the mMarkers list.
     pub mNumberMarkers: u32,
+    /// A list of AudioFileMarker.
     pub mMarkers: [AudioFileMarker; 1],
     _this_is_unsized: (),
 }
@@ -486,25 +483,20 @@ unsafe impl RefEncode for AudioFileRegionFlags {
 /// Generally a region consists of at least two markers marking the beginning and end of the segment.
 /// There may also be other markers defining other meta information such as sync point.
 ///
-/// each region must have a unique ID.
-///
-/// The name of the region.
-///
-/// AudioFileRegionFlags.
-///
-/// The number of markers in the mMarkers array.
-///
-/// A variable length array of AudioFileMarkers.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregion?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[allow(clippy::manual_non_exhaustive)]
 pub struct AudioFileRegion {
+    /// each region must have a unique ID.
     pub mRegionID: u32,
+    /// The name of the region.
     pub mName: NonNull<CFString>,
+    /// AudioFileRegionFlags.
     pub mFlags: AudioFileRegionFlags,
+    /// The number of markers in the mMarkers array.
     pub mNumberMarkers: u32,
+    /// A variable length array of AudioFileMarkers.
     pub mMarkers: [AudioFileMarker; 1],
     _this_is_unsized: (),
 }
@@ -532,20 +524,17 @@ unsafe impl RefEncode for AudioFileRegion {
 ///
 /// This is the struct used by the kAudioFilePropertyRegionList property.
 ///
-/// This defines the SMPTE timing scheme used in the file. See CAFFile.h for the values used here.
-///
-/// The number of regions in the mRegions list.
-///
-/// A list of AudioFileRegions. Note that AudioFileMarkers are variable length, so this list cannot
-/// be accessed as an array. Use the NextAudioFileRegion macro for traversing the list instead.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionlist?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[allow(clippy::manual_non_exhaustive)]
 pub struct AudioFileRegionList {
+    /// This defines the SMPTE timing scheme used in the file. See CAFFile.h for the values used here.
     pub mSMPTE_TimeType: u32,
+    /// The number of regions in the mRegions list.
     pub mNumberRegions: u32,
+    /// A list of AudioFileRegions. Note that AudioFileMarkers are variable length, so this list cannot
+    /// be accessed as an array. Use the NextAudioFileRegion macro for traversing the list instead.
     pub mRegions: [AudioFileRegion; 1],
     _this_is_unsized: (),
 }
@@ -669,8 +658,11 @@ unsafe impl RefEncode for AudioBytePacketTranslation {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFilePacketTableInfo {
+    /// the number of valid frames in the file.
     pub mNumberValidFrames: i64,
+    /// the number of invalid frames at the beginning of the file.
     pub mPrimingFrames: i32,
+    /// the number of invalid frames at the end of the file.
     pub mRemainderFrames: i32,
 }
 
@@ -721,7 +713,9 @@ unsafe impl RefEncode for AudioPacketRangeByteCountTranslation {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioPacketRollDistanceTranslation {
+    /// a packet number
     pub mPacket: i64,
+    /// a count of packets that must be decoded prior to the packet with the specified number in order to achieve the best practice for the decoding of that packet
     pub mRollDistance: i64,
 }
 
@@ -746,7 +740,9 @@ unsafe impl RefEncode for AudioPacketRollDistanceTranslation {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioIndependentPacketTranslation {
+    /// a packet number
     pub mPacket: i64,
+    /// a packet number not equal to mPacket of an independent packet
     pub mIndependentlyDecodablePacket: i64,
 }
 
@@ -771,8 +767,11 @@ unsafe impl RefEncode for AudioIndependentPacketTranslation {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioPacketDependencyInfoTranslation {
+    /// a packet number
     pub mPacket: i64,
+    /// 1 means that the specified packet is independently decodable; 0 means it's not
     pub mIsIndependentlyDecodable: u32,
+    /// if the packet is independently decodable, the count of packets that must be decoded after the packet with the specified number in order to refresh the decoder
     pub mNumberPrerollPackets: u32,
 }
 
@@ -2244,15 +2243,13 @@ pub const kAudioFileGlobalInfo_TypesForExtension: AudioFilePropertyID = 0x746578
 /// This struct is used to specify a desired audio file type and data format ID  so
 /// that a list of stream descriptions of available formats can be obtained.
 ///
-/// a four char code for the file type such as kAudioFileAIFFType, kAudioFileCAFType, etc.
-///
-/// a four char code for the format ID such as kAudioFormatLinearPCM, kAudioFormatMPEG4AAC, etc.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofiletypeandformatid?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFileTypeAndFormatID {
+    /// a four char code for the file type such as kAudioFileAIFFType, kAudioFileCAFType, etc.
     pub mFileType: AudioFileTypeID,
+    /// a four char code for the format ID such as kAudioFormatLinearPCM, kAudioFormatMPEG4AAC, etc.
     pub mFormatID: u32,
 }
 

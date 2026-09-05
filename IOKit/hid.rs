@@ -750,22 +750,16 @@ pub type IOHIDCompletionAction =
 
 /// Struct specifying action to perform when set/get report completes.
 ///
-///
-/// The target to pass to the action function.
-///
-///
-/// The function to call.
-///
-///
-/// The parameter to pass to the action function.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcompletion?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDCompletion {
+    /// The target to pass to the action function.
     pub target: *mut c_void,
+    /// The function to call.
     pub action: Option<IOHIDCompletionAction>,
+    /// The parameter to pass to the action function.
     pub parameter: *mut c_void,
 }
 

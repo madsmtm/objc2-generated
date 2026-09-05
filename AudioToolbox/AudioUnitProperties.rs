@@ -1017,19 +1017,16 @@ pub const kAudioUnitProperty_PeerURL: AudioUnitPropertyID = 102;
 ///
 /// The structure is set on the destination audio unit's input element
 ///
-/// The audio unit that is the source for the connection
-///
-/// The source audio unit's output element to be used in the connection
-///
-/// The destination audio unit's input element to be used in the connection
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitconnection?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitConnection {
+    /// The audio unit that is the source for the connection
     pub sourceAudioUnit: AudioUnit,
+    /// The source audio unit's output element to be used in the connection
     pub sourceOutputNumber: u32,
+    /// The destination audio unit's input element to be used in the connection
     pub destInputNumber: u32,
 }
 
@@ -1128,19 +1125,17 @@ unsafe impl RefEncode for AURenderCallbackStruct {
 
 /// Used to publish and set factory presets on an audio unit
 ///
-/// If
-/// <
-/// 0, then preset is a user preset
-/// If >= 0, then this field is used to select the factory preset
-///
-/// If a factory preset, the name of the specified factory preset
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aupreset?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUPreset {
+    /// If
+    /// <
+    /// 0, then preset is a user preset
+    /// If >= 0, then this field is used to select the factory preset
     pub presetNumber: i32,
+    /// If a factory preset, the name of the specified factory preset
     pub presetName: *const CFString,
 }
 
@@ -1388,16 +1383,14 @@ unsafe impl RefEncode for AUDependentParameter {
 
 /// The location and class name of one or more view factory objects an Audio Unit publishes
 ///
-/// Contains the location of the bundle which the host app can then use to locate the bundle
-///
-/// Contains the names of the classes that implements the required protocol (AUCocoaUIBase). This class is a view factory that creates the NSView object that is the AudioUnit view.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitcocoaviewinfo?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[allow(clippy::manual_non_exhaustive)]
 pub struct AudioUnitCocoaViewInfo {
+    /// Contains the location of the bundle which the host app can then use to locate the bundle
     pub mCocoaAUViewBundleLocation: NonNull<CFURL>,
+    /// Contains the names of the classes that implements the required protocol (AUCocoaUIBase). This class is a view factory that creates the NSView object that is the AudioUnit view.
     pub mCocoaAUViewClass: [NonNull<CFString>; 1],
     _this_is_unsized: (),
 }
@@ -1528,15 +1521,13 @@ unsafe impl RefEncode for AUInputSamplesInOutputCallbackStruct {
 /// This structure contains the suggested update rate and history duration for parameters which have the kAudioUnitParameterFlag_PlotHistory flag set.
 /// The structure is filled out by getting kAudioUnitProperty_ParameterHistoryInfo.
 ///
-/// This is the number of times per second that it is suggested that the host get the value of this parameter.
-///
-/// This is the duration in seconds of history that should be plotted.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterhistoryinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitParameterHistoryInfo {
+    /// This is the number of times per second that it is suggested that the host get the value of this parameter.
     pub updatesPerSecond: f32,
+    /// This is the duration in seconds of history that should be plotted.
     pub historyDurationInSeconds: f32,
 }
 
@@ -1748,53 +1739,44 @@ unsafe impl RefEncode for AudioUnitParameterOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// UNUSED - set to zero - UTF8 encoded C string (originally).
-///
-/// Only valid if the unit field equals kAudioUnitParameterUnit_CustomUnit, in
-/// which case, unitName must contain a valid CFStringRef. As with cfNameString,
-/// if (flags
-/// &
-/// kAudioUnitParameterFlag_CFNameRelease) is non-zero, the
-/// AudioUnit must return a +1 reference to this string, and the host must
-/// release it.
-///
-/// Only valid if kAudioUnitParameterFlag_HasClump is set.
-///
-/// Only valid if kAudioUnitParameterFlag_HasCFNameString is set.
-///
-/// If the "unit" field contains a value not in the enum above, then assume
-/// kAudioUnitParameterUnit_Generic
-///
-/// The parameter's minimum value.
-///
-/// The parameter's maximum value.
-///
-/// The parameter's default value.
-///
-/// Due to some vagaries about the ways in which Parameter's CFNames have been
-/// described, it was necessary to add a flag:
-/// kAudioUnitParameterFlag_CFNameRelease. In normal usage a parameter name is
-/// essentially a static object, but sometimes an audio unit will generate
-/// parameter names dynamically.. As these are expected to be CFStrings, in that
-/// case the host should release those names when it is finished with them, but
-/// there was no way to communicate this distinction in behavior. Thus, if an
-/// audio unit will (or could) generate a name dynamically, it should set this
-/// flag in the parameter's info. The host should check for this flag, and if
-/// present, release the parameter name when it is finished with it.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterinfo?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitParameterInfo {
+    /// UNUSED - set to zero - UTF8 encoded C string (originally).
     pub name: [c_char; 52],
+    /// Only valid if the unit field equals kAudioUnitParameterUnit_CustomUnit, in
+    /// which case, unitName must contain a valid CFStringRef. As with cfNameString,
+    /// if (flags
+    /// &
+    /// kAudioUnitParameterFlag_CFNameRelease) is non-zero, the
+    /// AudioUnit must return a +1 reference to this string, and the host must
+    /// release it.
     pub unitName: *const CFString,
+    /// Only valid if kAudioUnitParameterFlag_HasClump is set.
     pub clumpID: u32,
+    /// Only valid if kAudioUnitParameterFlag_HasCFNameString is set.
     pub cfNameString: *const CFString,
+    /// If the "unit" field contains a value not in the enum above, then assume
+    /// kAudioUnitParameterUnit_Generic
     pub unit: AudioUnitParameterUnit,
+    /// The parameter's minimum value.
     pub minValue: AudioUnitParameterValue,
+    /// The parameter's maximum value.
     pub maxValue: AudioUnitParameterValue,
+    /// The parameter's default value.
     pub defaultValue: AudioUnitParameterValue,
+    /// Due to some vagaries about the ways in which Parameter's CFNames have been
+    /// described, it was necessary to add a flag:
+    /// kAudioUnitParameterFlag_CFNameRelease. In normal usage a parameter name is
+    /// essentially a static object, but sometimes an audio unit will generate
+    /// parameter names dynamically.. As these are expected to be CFStrings, in that
+    /// case the host should release those names when it is finished with them, but
+    /// there was no way to communicate this distinction in behavior. Thus, if an
+    /// audio unit will (or could) generate a name dynamically, it should set this
+    /// flag in the parameter's info. The host should check for this flag, and if
+    /// present, release the parameter name when it is finished with it.
     pub flags: AudioUnitParameterOptions,
 }
 
@@ -2308,18 +2290,6 @@ pub const kOtherPluginFormat_kVST: u32 = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kotherpluginformat_au?language=objc)
 pub const kOtherPluginFormat_AU: u32 = 3;
 
-/// One of the OtherPluginFormat values
-///
-///
-/// struct AudioClassDescription {
-/// OSType mType;
-/// OSType mSubType;
-/// OSType mManufacturer;
-/// };
-/// is defined in
-/// <CoreAudioTypes
-/// /CoreAudioTypes.h>
-///
 /// mType specifies a generic, plug-in format defined descriptor
 /// mSubType is usually left to the manufacturer to use at their discretion
 /// mManufacturer is a registered code to identify all plugins from the same manufacturer
@@ -2329,7 +2299,16 @@ pub const kOtherPluginFormat_AU: u32 = 3;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitOtherPluginDesc {
+    /// One of the OtherPluginFormat values
     pub format: u32,
+    /// struct AudioClassDescription {
+    /// OSType mType;
+    /// OSType mSubType;
+    /// OSType mManufacturer;
+    /// };
+    /// is defined in
+    /// <CoreAudioTypes
+    /// /CoreAudioTypes.h>
     pub plugin: AudioClassDescription,
 }
 
@@ -2768,16 +2747,13 @@ unsafe impl RefEncode for AUVoiceIOOtherAudioDuckingLevel {
 
 /// The configuration of ducking other (i.e. non-voice) audio
 ///
-///
-/// Enables advanced ducking which ducks other audio based on the presence of voice activity from local and/or remote chat participants.
-///
-/// Ducking level of other audio
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckingconfiguration?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUVoiceIOOtherAudioDuckingConfiguration {
+    /// Enables advanced ducking which ducks other audio based on the presence of voice activity from local and/or remote chat participants.
     pub mEnableAdvancedDucking: Boolean,
+    /// Ducking level of other audio
     pub mDuckingLevel: AUVoiceIOOtherAudioDuckingLevel,
 }
 
@@ -2894,18 +2870,15 @@ pub const kAudioUnitProperty_MeterClipping: AudioUnitPropertyID = 3011;
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_InputAnchorTimeStamp: AudioUnitPropertyID = 3016;
 
-/// The maximum value seen on the channel since the last time the property was retrieved.
-///
-/// TRUE if there was an infinite value on this channel.
-///
-/// TRUE if there was a floating point Not-A-Number value on this channel.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitmeterclipping?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitmeterclipping?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitMeterClipping {
+    /// The maximum value seen on the channel since the last time the property was retrieved.
     pub peakValueSinceLastCall: f32,
+    /// TRUE if there was an infinite value on this channel.
     pub sawInfinity: Boolean,
+    /// TRUE if there was a floating point Not-A-Number value on this channel.
     pub sawNotANumber: Boolean,
 }
 

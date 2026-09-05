@@ -100,16 +100,13 @@ unsafe impl RefEncode for AVAudioVoiceProcessingOtherAudioDuckingLevel {
 
 /// The configuration of ducking other (i.e. non-voice) audio
 ///
-///
-/// Enables advanced ducking which ducks other audio based on the presence of voice activity from local and/or remote chat participants.
-///
-/// Ducking level of other audio
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudioVoiceProcessingOtherAudioDuckingConfiguration {
+    /// Enables advanced ducking which ducks other audio based on the presence of voice activity from local and/or remote chat participants.
     pub enableAdvancedDucking: Bool,
+    /// Ducking level of other audio
     pub duckingLevel: AVAudioVoiceProcessingOtherAudioDuckingLevel,
 }
 

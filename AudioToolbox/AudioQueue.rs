@@ -407,39 +407,31 @@ unsafe impl RefEncode for AudioQueueProcessingTapFlags {
 /// mPacketDescriptionCapacity, mmPacketDescriptions, and mPacketDescriptionCount
 /// fields may only be used with buffers allocated with this function.
 ///
-///
-/// The size of the buffer, in bytes. This size is set when the buffer is allocated and
-/// cannot be changed.
-///
-/// A pointer to the audio data in the buffer. Although you can write data to this buffer,
-/// you cannot make it point to another address.
-///
-/// The number of bytes of valid audio data in the buffer. You set this value when providing
-/// data for playback; the audio queue sets this value when recording data from a recording
-/// queue.
-///
-/// A value you may specify to identify the buffer when it is passed back in recording or
-/// playback callback functions.
-///
-/// The maximum number of packet descriptions that can be stored in mPacketDescriptions.
-///
-/// An array of AudioStreamPacketDescriptions associated with the buffer.
-///
-/// The number of valid packet descriptions in the buffer. You set this value when providing
-/// buffers for playback; the audio queue sets this value when returning buffers from
-/// a recording queue.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuebuffer?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioQueueBuffer {
+    /// The size of the buffer, in bytes. This size is set when the buffer is allocated and
+    /// cannot be changed.
     pub mAudioDataBytesCapacity: u32,
+    /// A pointer to the audio data in the buffer. Although you can write data to this buffer,
+    /// you cannot make it point to another address.
     pub mAudioData: NonNull<c_void>,
+    /// The number of bytes of valid audio data in the buffer. You set this value when providing
+    /// data for playback; the audio queue sets this value when recording data from a recording
+    /// queue.
     pub mAudioDataByteSize: u32,
+    /// A value you may specify to identify the buffer when it is passed back in recording or
+    /// playback callback functions.
     pub mUserData: *mut c_void,
+    /// The maximum number of packet descriptions that can be stored in mPacketDescriptions.
     pub mPacketDescriptionCapacity: u32,
+    /// An array of AudioStreamPacketDescriptions associated with the buffer.
     pub mPacketDescriptions: *const AudioStreamPacketDescription,
+    /// The number of valid packet descriptions in the buffer. You set this value when providing
+    /// buffers for playback; the audio queue sets this value when returning buffers from
+    /// a recording queue.
     pub mPacketDescriptionCount: u32,
 }
 
@@ -487,16 +479,13 @@ pub type AudioQueueBufferRef = *mut AudioQueueBuffer;
 /// In macOS v10.5, audio queues have one parameter available: kAudioQueueParam_Volume,
 /// which controls the queue's playback volume.
 ///
-///
-/// The parameter.
-///
-/// The value of the specified parameter.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueparameterevent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioQueueParameterEvent {
+    /// The parameter.
     pub mID: AudioQueueParameterID,
+    /// The value of the specified parameter.
     pub mValue: AudioQueueParameterValue,
 }
 
@@ -518,15 +507,13 @@ unsafe impl RefEncode for AudioQueueParameterEvent {
 
 /// Specifies the current level metering information for one channel of an audio queue.
 ///
-/// The audio channel's average RMS power.
-///
-/// The audio channel's peak RMS power
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuelevelmeterstate?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioQueueLevelMeterState {
+    /// The audio channel's average RMS power.
     pub mAveragePower: f32,
+    /// The audio channel's peak RMS power
     pub mPeakPower: f32,
 }
 
@@ -563,17 +550,15 @@ unsafe impl RefEncode for AudioQueueProcessingTap {
 /// Specifies an audio device channel to which the queue will play or from which
 /// it will record.
 ///
-/// On iOS, this is a port UID obtained from AVAudioSession. On macOS, this is the UID
-/// obtained from an AudioDeviceID.
-///
-/// The 1-based index of the channel.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuechannelassignment?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioQueueChannelAssignment {
+    /// On iOS, this is a port UID obtained from AVAudioSession. On macOS, this is the UID
+    /// obtained from an AudioDeviceID.
     pub mDeviceUID: NonNull<CFString>,
+    /// The 1-based index of the channel.
     pub mChannelNumber: u32,
 }
 

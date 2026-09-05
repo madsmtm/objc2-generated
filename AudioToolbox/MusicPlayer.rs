@@ -313,15 +313,13 @@ unsafe impl RefEncode for MIDIMetaEvent {
 
 /// Provides a general struct for specifying a user defined event.
 ///
-/// the size in bytes of the data
-///
-/// size bytes of user defined event data
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventuserdata?language=objc)
 #[repr(C)]
 #[allow(clippy::manual_non_exhaustive)]
 pub struct MusicEventUserData {
+    /// the size in bytes of the data
     pub length: u32,
+    /// size bytes of user defined event data
     pub data: [u8; 1],
     _this_is_unsized: (),
 }
@@ -469,25 +467,19 @@ unsafe impl RefEncode for AUPresetEvent {
 /// of the measure. In 4/4 time, beat will have a value from 1 to 4. Music
 /// applications often use beat divisions such as 480 and 960.
 ///
-///
-/// A measure number.
-///
-/// A beat number (1..n).
-///
-/// The numerator of the fractional number of beats.
-///
-/// The denominator of the fractional number of beats.
-///
-/// Must be 0.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cabarbeattime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CABarBeatTime {
+    /// A measure number.
     pub bar: i32,
+    /// A beat number (1..n).
     pub beat: u16,
+    /// The numerator of the fractional number of beats.
     pub subbeat: u16,
+    /// The denominator of the fractional number of beats.
     pub subbeatDivisor: u16,
+    /// Must be 0.
     pub reserved: u16,
 }
 
