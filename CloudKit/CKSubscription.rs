@@ -183,15 +183,12 @@ extern_class!(
     /// ```objc
     /// // Only proceed if the subscription doesn't already exist.
     /// if([[NSUserDefaults standardUserDefaults]
-    /// boolForKey:
-    /// "
-    /// didCreateQuerySubscription"] == NO) {
+    /// boolForKey:@"didCreateQuerySubscription"] == NO) {
     ///
     /// // Define a predicate that matches records with a tags field
     /// // that contains the word 'Swift'.
     /// NSPredicate *predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// tags CONTAINS 'Swift'"];
+    /// @"tags CONTAINS 'Swift'"];
     ///
     /// // Create a subscription and scope it to the 'FeedItem' record type.
     /// // Provide a unique identifier for the subscription and declare the
@@ -199,13 +196,9 @@ extern_class!(
     /// CKQuerySubscriptionOptions options =
     /// CKQuerySubscriptionOptionsFiresOnRecordCreation;
     /// CKQuerySubscription *subscription = [[CKQuerySubscription alloc]
-    /// initWithRecordType:
-    /// "
-    /// FeedItem"
+    /// initWithRecordType:@"FeedItem"
     /// predicate:predicate
-    /// subscriptionID:
-    /// "
-    /// tagged-feed-changes"
+    /// subscriptionID:@"tagged-feed-changes"
     /// options:options];
     ///
     /// // Further specialize the subscription to only evaluate
@@ -221,9 +214,7 @@ extern_class!(
     /// // Create an operation that saves the subscription to the server.
     /// CKModifySubscriptionsOperation *operation =
     /// [[CKModifySubscriptionsOperation alloc]
-    /// initWithSubscriptionsToSave:
-    /// @
-    /// [subscription]
+    /// initWithSubscriptionsToSave:@[subscription]
     /// subscriptionIDsToDelete:NULL];
     ///
     /// operation.modifySubscriptionsCompletionBlock =
@@ -234,9 +225,7 @@ extern_class!(
     /// // Record that the system successfully creates the subscription
     /// // to prevent unnecessary trips to the server in later launches.
     /// [[NSUserDefaults standardUserDefaults]
-    /// setBool:YES forKey:
-    /// "
-    /// didCreateQuerySubscription"];
+    /// setBool:YES forKey:@"didCreateQuerySubscription"];
     /// }
     /// };
     ///
@@ -397,9 +386,7 @@ extern_class!(
     /// ```objc
     /// // Only proceed if the subscription doesn't already exist.
     /// if([[NSUserDefaults standardUserDefaults]
-    /// boolForKey:
-    /// "
-    /// didCreateFeedSubscription"] == NO) {
+    /// boolForKey:@"didCreateFeedSubscription"] == NO) {
     ///
     /// // Create a subscription that's scoped to a specific record zone. Provide
     /// // a subscription ID that's unique within the context of the user's
@@ -407,14 +394,10 @@ extern_class!(
     /// CKRecordZoneSubscription *subscription =
     /// [[CKRecordZoneSubscription alloc]
     /// initWithZoneID:recordZone.zoneID
-    /// subscriptionID:
-    /// "
-    /// feed-changes"];
+    /// subscriptionID:@"feed-changes"];
     ///
     /// // Scope the subscription to just the 'FeedItem' record type.
-    /// subscription.recordType =
-    /// "
-    /// FeedItem";
+    /// subscription.recordType =@"FeedItem";
     ///
     /// // Configure the notification so that the system delivers it silently
     /// // and therefore doesn't require permission from the user.
@@ -425,9 +408,7 @@ extern_class!(
     /// // Create an operation that saves the subscription to the server.
     /// CKModifySubscriptionsOperation *operation =
     /// [[CKModifySubscriptionsOperation alloc]
-    /// initWithSubscriptionsToSave:
-    /// @
-    /// [subscription]
+    /// initWithSubscriptionsToSave:@[subscription]
     /// subscriptionIDsToDelete:NULL];
     ///
     /// operation.modifySubscriptionsCompletionBlock =
@@ -438,9 +419,7 @@ extern_class!(
     /// // Record that the system successfully creates the subscription
     /// // to prevent unnecessary trips to the server in later launches.
     /// [[NSUserDefaults standardUserDefaults]
-    /// setBool:YES forKey:
-    /// "
-    /// didCreateFeedSubscription"];
+    /// setBool:YES forKey:@"didCreateFeedSubscription"];
     /// }
     /// };
     ///
@@ -572,22 +551,16 @@ extern_class!(
     /// ```objc
     /// // Only proceed if the subscription doesn't already exist.
     /// if([[NSUserDefaults standardUserDefaults]
-    /// boolForKey:
-    /// "
-    /// didCreateFeedSubscription"] == NO) {
+    /// boolForKey:@"didCreateFeedSubscription"] == NO) {
     ///
     /// // Create a subscription with an ID that's unique within the scope of
     /// // the user's private database.
     /// CKDatabaseSubscription *subscription =
     /// [[CKDatabaseSubscription alloc]
-    /// initWithSubscriptionID:
-    /// "
-    /// feed-changes"];
+    /// initWithSubscriptionID:@"feed-changes"];
     ///
     /// // Scope the subscription to just the 'FeedItem' record type.
-    /// subscription.recordType =
-    /// "
-    /// FeedItem";
+    /// subscription.recordType =@"FeedItem";
     ///
     /// // Configure the notification so that the system delivers it silently
     /// // and, therefore, doesn't require permission from the user.
@@ -598,9 +571,7 @@ extern_class!(
     /// // Create an operation that saves the subscription to the server.
     /// CKModifySubscriptionsOperation *operation =
     /// [[CKModifySubscriptionsOperation alloc]
-    /// initWithSubscriptionsToSave:
-    /// @
-    /// [subscription]
+    /// initWithSubscriptionsToSave:@[subscription]
     /// subscriptionIDsToDelete:NULL];
     ///
     /// operation.modifySubscriptionsCompletionBlock =
@@ -611,9 +582,7 @@ extern_class!(
     /// // Record that the system successfully creates the subscription
     /// // to prevent unnecessary trips to the server in later launches.
     /// [[NSUserDefaults standardUserDefaults]
-    /// setBool:YES forKey:
-    /// "
-    /// didCreateFeedSubscription"];
+    /// setBool:YES forKey:@"didCreateFeedSubscription"];
     /// }
     /// };
     ///
@@ -764,15 +733,7 @@ impl CKNotificationInfo {
         ///
         /// This property is an array of field names that CloudKit uses to extract the corresponding values from the record that triggers the push notification. The values must be strings, numbers, or dates. Don't specify keys that use other value types. CloudKit may truncate strings with a length greater than 100 characters when it adds them to a notification's payload.
         ///
-        /// If you use `%
-        /// @
-        /// ` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$
-        /// @
-        /// `, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$
-        /// @
-        /// `, the second item replaces the variable `%2$
-        /// @
-        /// `, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
+        /// If you use `%@` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$@`, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$@`, the second item replaces the variable `%2$@`, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
         #[unsafe(method(alertLocalizationArgs))]
         #[unsafe(method_family = none)]
         pub unsafe fn alertLocalizationArgs(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
@@ -829,15 +790,7 @@ impl CKNotificationInfo {
         ///
         /// This property is an array of field names that CloudKit uses to extract the corresponding values from the record that triggers the push notification. The values must be strings, numbers, or dates. Don't specify keys that use other value types. CloudKit may truncate strings with a length greater than 100 characters when it adds them to a notification's payload.
         ///
-        /// If you use `%
-        /// @
-        /// ` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$
-        /// @
-        /// `, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$
-        /// @
-        /// `, the second item replaces the variable `%2$
-        /// @
-        /// `, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
+        /// If you use `%@` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$@`, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$@`, the second item replaces the variable `%2$@`, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
         #[unsafe(method(titleLocalizationArgs))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleLocalizationArgs(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
@@ -897,15 +850,7 @@ impl CKNotificationInfo {
         ///
         /// This property is an array of field names that CloudKit uses to extract the corresponding values from the record that triggers the push notification. The values must be strings, numbers, or dates. Don't specify keys that use other value types. CloudKit may truncate strings with a length greater than 100 characters when it adds them to a notification's payload.
         ///
-        /// If you use `%
-        /// @
-        /// ` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$
-        /// @
-        /// `, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$
-        /// @
-        /// `, the second item replaces the variable `%2$
-        /// @
-        /// `, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
+        /// If you use `%@` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$@`, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$@`, the second item replaces the variable `%2$@`, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
         #[unsafe(method(subtitleLocalizationArgs))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleLocalizationArgs(

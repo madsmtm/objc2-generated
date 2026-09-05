@@ -177,22 +177,10 @@ impl MLMultiArray {
         /// ```objc
         /// NSArray
         /// <NSNumber
-        /// *> *shape =
-        /// @
-        /// [
-        /// @
-        /// 2,
-        /// @
-        /// 3];
+        /// *> *shape =@[@2, @3];
         /// NSArray
         /// <NSNumber
-        /// *> *strides =
-        /// @
-        /// [
-        /// @
-        /// 4,
-        /// @
-        /// 1];
+        /// *> *strides =@[@4, @1];
         ///
         /// MLMultiArray *multiArray = [[MLMultiArray alloc] initWithShape:shape
         /// dataType:MLMultiArrayDataTypeFloat32
@@ -222,25 +210,9 @@ impl MLMultiArray {
         /// ```objc
         /// int32_t *buffer = malloc(sizeof(int32_t) * 2 * 3 * 4);
         /// MLMultiArray *multiArray = [[MLMultiArray alloc] initWithDataPointer:buffer
-        /// shape:
-        /// @
-        /// [
-        /// @
-        /// 2,
-        /// @
-        /// 3,
-        /// @
-        /// 4]
+        /// shape:@[@2, @3, @4]
         /// dataType:MLMultiArrayDataTypeInt32
-        /// strides:
-        /// @
-        /// [
-        /// @
-        /// 12,
-        /// @
-        /// 4,
-        /// @
-        /// 1]
+        /// strides:@[@12, @4, @1]
         /// deallocator:^(void *bytes) { free(bytes); }
         /// error:NULL];
         /// ```
@@ -279,27 +251,15 @@ impl MLMultiArray {
         ///
         /// ```objc
         /// CVPixelBufferRef pixelBuffer = NULL;
-        /// NSDictionary* pixelBufferAttributes =
-        /// @
-        /// {
-        /// (id)kCVPixelBufferIOSurfacePropertiesKey:
-        /// @
-        /// {}
+        /// NSDictionary* pixelBufferAttributes =@{
+        /// (id)kCVPixelBufferIOSurfacePropertiesKey:@{}
         /// };
         ///
         /// // Since shape == [2, 3, 4], width is 4 (= shape[2]) and height is 6 (= shape[0] * shape[1]).
         /// CVPixelBufferCreate(kCFAllocatorDefault, 4, 6, kCVPixelFormatType_OneComponent16Half, (__bridge CFDictionaryRef)pixelBufferAttributes,
         /// &pixelBuffer
         /// );
-        /// MLMultiArray *multiArray = [[MLMultiArray alloc] initWithPixelBuffer:pixelBuffer shape:
-        /// @
-        /// [
-        /// @
-        /// 2,
-        /// @
-        /// 3,
-        /// @
-        /// 4]];
+        /// MLMultiArray *multiArray = [[MLMultiArray alloc] initWithPixelBuffer:pixelBuffer shape:@[@2, @3, @4]];
         /// ```
         ///
         /// - Parameters:
@@ -324,29 +284,13 @@ impl MLMultiArray {
         /// The buffer pointer is valid only within the block.
         ///
         /// ```objc
-        /// MLMultiArray * A = [[MLMultiArray alloc] initWithShape:
-        /// @
-        /// [
-        /// @
-        /// 3,
-        /// @
-        /// 2] dataType:MLMultiArrayDataTypeInt32 error:NULL];
-        /// A[
-        /// @
-        /// [
-        /// @
-        /// 1,
-        /// @
-        /// 2]] =
-        /// @
-        /// 42;
+        /// MLMultiArray * A = [[MLMultiArray alloc] initWithShape:@[@3, @2] dataType:MLMultiArrayDataTypeInt32 error:NULL];
+        /// A[@[@1, @2]] = @42;
         /// [A getBytesWithHandler:^(const void *bytes, NSInteger size) {
         /// const int32_t *scalarBuffer = (const int32_t *)bytes;
         /// const int strideY = A.strides[0].intValue;
         /// // Print 42
-        /// NSLog(
-        /// "
-        /// Scalar at (1, 2): %d", scalarBuffer[1 * strideY + 2]);
+        /// NSLog(@"Scalar at (1, 2): %d", scalarBuffer[1 * strideY + 2]);
         /// }];
         /// ```
         /// - Parameters:
@@ -366,13 +310,7 @@ impl MLMultiArray {
         /// Use `strides` parameter passed in the block because the method may switch to a new backing buffer with different strides.
         ///
         /// ```objc
-        /// MLMultiArray * A = [[MLMultiArray alloc] initWithShape:
-        /// @
-        /// [
-        /// @
-        /// 3,
-        /// @
-        /// 2] dataType:MLMultiArrayDataTypeInt32 error:NULL];
+        /// MLMultiArray * A = [[MLMultiArray alloc] initWithShape:@[@3, @2] dataType:MLMultiArrayDataTypeInt32 error:NULL];
         /// [A getMutableBytesWithHandler:^(void *bytes, NSInteger __unused size, NSArray
         /// <NSNumber
         /// *> *strides) {
@@ -414,30 +352,10 @@ impl MLMultiArray {
         ///
         /// ```objc
         /// // Obj-C
-        /// MLMultiArray *A = [[MLMultiArray alloc] initWithShape:
-        /// @
-        /// [
-        /// @
-        /// 2,
-        /// @
-        /// 3] dataType:MLMultiArrayDataTypeInt32 error:NULL];
-        /// MLMultiArray *B = [[MLMultiArray alloc] initWithShape:
-        /// @
-        /// [
-        /// @
-        /// 2,
-        /// @
-        /// 2] dataType:MLMultiArrayDataTypeInt32 error:NULL];
-        /// MLMultiArray *C = [MLMultiArray multiArrayByConcatenatingMultiArrays:
-        /// @
-        /// [A, B] alongAxis:1 dataType:MLMultiArrayDataTypeInt32];
-        /// assert(C.shape ==
-        /// @
-        /// [
-        /// @
-        /// 2,
-        /// @
-        /// 5])
+        /// MLMultiArray *A = [[MLMultiArray alloc] initWithShape:@[@2, @3] dataType:MLMultiArrayDataTypeInt32 error:NULL];
+        /// MLMultiArray *B = [[MLMultiArray alloc] initWithShape:@[@2, @2] dataType:MLMultiArrayDataTypeInt32 error:NULL];
+        /// MLMultiArray *C = [MLMultiArray multiArrayByConcatenatingMultiArrays:@[A, B] alongAxis:1 dataType:MLMultiArrayDataTypeInt32];
+        /// assert(C.shape ==@[@2, @5])
         /// ```
         ///
         /// Numeric data will be up or down casted as needed.
@@ -509,31 +427,13 @@ impl MLMultiArray {
         /// ```objc
         /// NSArray
         /// <NSNumber
-        /// *> *shape =
-        /// @
-        /// [
-        /// @
-        /// 2,
-        /// @
-        /// 3];
+        /// *> *shape =@[@2, @3];
         /// NSArray
         /// <NSNumber
-        /// *> *sourceStrides =
-        /// @
-        /// [
-        /// @
-        /// 3,
-        /// @
-        /// 1];
+        /// *> *sourceStrides =@[@3, @1];
         /// NSArray
         /// <NSNumber
-        /// *> *destinationStrides =
-        /// @
-        /// [
-        /// @
-        /// 4,
-        /// @
-        /// 1];
+        /// *> *destinationStrides =@[@4, @1];
         /// MLMultiArray *source = [[MLMultiArray alloc] initWithShape:shape
         /// dataType:MLMultiArrayDataTypeDouble
         /// strides:sourceStrides];

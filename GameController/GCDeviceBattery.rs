@@ -8,8 +8,7 @@ use crate::*;
 /// This is the battery status and it's represented by one of the following values:
 /// GCControllerBatteryStateUnknown means that the current state of battery is unknown or cannot be determined
 /// GCControllerBatteryStateDischarging means that controller is on battery and discharging at this moment
-/// GCControllerBatteryStateCharging means that controller is plugged in, but it's battery level is less than 100%
-/// GCControllerBatteryStateFull means that controller is plugged in and it's battery level is 100%
+/// GCControllerBatteryStateCharging means that controller is plugged in, but it's battery level is less than 100% GCControllerBatteryStateFull means that controller is plugged in and it's battery level is 100%
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebatterystate?language=objc)
 // NS_ENUM

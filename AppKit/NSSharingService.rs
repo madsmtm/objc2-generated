@@ -643,9 +643,7 @@ extern_protocol!(
         ///
         /// ```objc
         /// NSMutableArray *sharingServices = [proposedServices mutableCopy];
-        /// NSSharingService * customService = [[NSSharingService alloc] initWithTitle:
-        /// "
-        /// Service Title"
+        /// NSSharingService * customService = [[NSSharingService alloc] initWithTitle:@"Service Title"
         /// image:image alternateImage:alternateImage
         /// handler:^{ [self doCustomServiceWithItems:items]; } ];
         /// [sharingServices addObject:customService];

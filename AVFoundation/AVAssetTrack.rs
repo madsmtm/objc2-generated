@@ -304,9 +304,7 @@ impl AVAssetTrack {
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
         /// Provides an NSArray of AVMetadataItems, one for each metadata item in the container of the specified format.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// availableMetadataFormats" has been loaded
+        /// Becomes callable without blocking when the key@"availableMetadataFormats" has been loaded
         ///
         /// - Parameter format: The metadata format for which items are requested.
         ///
@@ -425,9 +423,7 @@ impl AVAssetTrack {
 
         /// Provides an NSArray of AVAssetTracks, one for each track associated with the receiver with the specified type of track association.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// availableTrackAssociationTypes" has been loaded.
+        /// Becomes callable without blocking when the key@"availableTrackAssociationTypes" has been loaded.
         ///
         /// - Parameter trackAssociationType: The type of track association for which associated tracks are requested.
         ///
@@ -510,27 +506,21 @@ impl AVAssetTrack {
 }
 
 extern "C" {
-    /// Posted when the timeRange of an AVFragmentedAssetTrack changes while the associated instance of AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of
-    /// "
-    /// timeRange" has reached AVKeyValueStatusLoaded.
+    /// Posted when the timeRange of an AVFragmentedAssetTrack changes while the associated instance of AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of@"timeRange" has reached AVKeyValueStatusLoaded.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettracktimerangedidchangenotification?language=objc)
     pub static AVAssetTrackTimeRangeDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// Posted when the array of segments of an AVFragmentedAssetTrack changes while the associated instance of AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of
-    /// "
-    /// segments" has reached AVKeyValueStatusLoaded.
+    /// Posted when the array of segments of an AVFragmentedAssetTrack changes while the associated instance of AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of@"segments" has reached AVKeyValueStatusLoaded.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettracksegmentsdidchangenotification?language=objc)
     pub static AVAssetTrackSegmentsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// Posted when the collection of track associations of an AVAssetTrack changes, but only for changes that occur after the status of the value of
-    /// "
-    /// availableTrackAssociationTypes" has reached AVKeyValueStatusLoaded.
+    /// Posted when the collection of track associations of an AVAssetTrack changes, but only for changes that occur after the status of the value of@"availableTrackAssociationTypes" has reached AVKeyValueStatusLoaded.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettracktrackassociationsdidchangenotification?language=objc)
     pub static AVAssetTrackTrackAssociationsDidChangeNotification: &'static NSString;

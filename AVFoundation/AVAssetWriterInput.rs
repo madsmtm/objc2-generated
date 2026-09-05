@@ -1014,13 +1014,9 @@ impl AVAssetWriterInputTaggedPixelBufferGroupAdaptor {
         /// Below is a sample code sketch focusing on data flow that illustrates how you might append a taggedPixelBufferGroup instance.
         /// ```objc
         /// // Set up an AVAssetWriterInput and AVAssetWriterInputTaggedPixelBufferGroupAdaptor instance
-        /// AVAssetWriterInput *assetWriterInput = [[AVAssetWriterInput alloc] initWithMediaType:AVMediaTypeVideo outputSettings:
-        /// @
-        /// {
+        /// AVAssetWriterInput *assetWriterInput = [[AVAssetWriterInput alloc] initWithMediaType:AVMediaTypeVideo outputSettings:@{
         /// ..,
-        /// AVVideoCompressionPropertiesKey:
-        /// @
-        /// { (NSString *)kVTCompressionPropertyKey_MVHEVCVideoLayerIDs : .. }}];
+        /// AVVideoCompressionPropertiesKey:@{ (NSString *)kVTCompressionPropertyKey_MVHEVCVideoLayerIDs : .. }}];
         ///
         /// AVAssetWriterInputTaggedPixelBufferGroupAdaptor *assetWriterInputAdaptor = [[AVAssetWriterInputTaggedPixelBufferGroupAdaptor alloc] initWithAssetWriterInput:assetWriterInput ..];
         /// ```

@@ -3904,21 +3904,14 @@ impl NEFilterControlProvider {
         ///
         /// Here is a sample remediationMap dictionary:
         ///
-        /// remediationMap =
-        /// @
-        /// { NEFilterProviderRemediationMapRemediationURLs :
-        /// @
-        /// {
-        /// "
-        /// RemediateKey1" : @"http://www.remediation_url_1.com",
-        /// "
-        /// RemediateKey2" : @"http://www.remediation_url_2.com"
+        /// remediationMap =@{ NEFilterProviderRemediationMapRemediationURLs :
+        /// @{
+        /// @"RemediateKey1" : @"http://www.remediation_url_1.com",
+        /// @"RemediateKey2" : @"http://www.remediation_url_2.com"
         /// },
         /// NEFilterProviderRemediationMapRemediationButtonTexts :
-        /// @
-        /// {
-        /// "
-        /// RemediationButtonText1" : @"Remediate URL"
+        /// @{
+        /// @"RemediationButtonText1" : @"Remediate URL"
         /// }
         /// };
         #[unsafe(method(remediationMap))]

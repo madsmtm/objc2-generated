@@ -105,40 +105,28 @@ impl NSPasteboardItem {
         /// for (NSPasteboardItem *item in items) {
         /// NSUInteger itemIndex = idx++;
         /// [item
-        /// detectPatternsForPatterns:[NSSet setWithArray:
-        /// @
-        /// [NSPasteboardDetectionPatternEmailAddress,
+        /// detectPatternsForPatterns:[NSSet setWithArray:@[NSPasteboardDetectionPatternEmailAddress,
         /// NSPasteboardDetectionPatternPostalAddress]]
         /// completionHandler:^(NSSet
         /// <NSPasteboardDetectionPattern
         /// > *matchedPatterns, NSError *error) {
         /// if (error) {
-        /// NSLog(
-        /// "
-        /// Item %lu: Error: %
-        /// "
-        /// , itemIndex, error);
+        /// NSLog(@"Item %lu: Error: %@", itemIndex, error);
         /// return;
         /// }
         /// BOOL matchedEmail = [matchedPatterns containsObject:NSPasteboardDetectionPatternEmailAddress];
         /// BOOL matchedPostal = [matchedPatterns containsObject: NSPasteboardDetectionPatternPostalAddress];
         /// if (matchedEmail) {
-        /// NSLog(
-        /// "
-        /// Item %lu - Email address(es) detected", itemIndex);
+        /// NSLog(@"Item %lu - Email address(es) detected", itemIndex);
         /// }
         /// if (matchedPostal) {
-        /// NSLog(
-        /// "
-        /// Item %lu - Postal address(es) detected", itemIndex);
+        /// NSLog(@"Item %lu - Postal address(es) detected", itemIndex);
         /// }
         /// if (!matchedEmail
         /// &
         /// &
         /// !matchedPostal) {
-        /// NSLog(
-        /// "
-        /// Item %lu - Matched neither email nor postal addresses.", itemIndex);
+        /// NSLog(@"Item %lu - Matched neither email nor postal addresses.", itemIndex);
         /// }
         /// }];
         /// }
@@ -173,44 +161,28 @@ impl NSPasteboardItem {
         /// for (NSPasteboardItem *item in items) {
         /// NSUInteger itemIndex = idx++;
         /// [item
-        /// detectValuesForPatterns:[NSSet setWithArray:
-        /// @
-        /// [NSPasteboardDetectionPatternProbableWebSearch,
+        /// detectValuesForPatterns:[NSSet setWithArray:@[NSPasteboardDetectionPatternProbableWebSearch,
         /// NSPasteboardDetectionPatternProbableWebURL]]
         /// completionHandler:^(NSDictionary
         /// <NSPasteboardDetectionPattern
         /// , id> *patternValues, NSError *error) {
         /// if (error) {
-        /// NSLog(
-        /// "
-        /// Item %lu: Error: %
-        /// "
-        /// , itemIndex, error);
+        /// NSLog(@"Item %lu: Error: %@", itemIndex, error);
         /// return;
         /// }
         /// NSString *searchString = (NSString*)patternValues[NSPasteboardDetectionPatternProbableWebSearch];
         /// NSString *urlString = (NSString*)patternValues[NSPasteboardDetectionPatternProbableWebURL] ;
         /// if (searchString != nil) {
-        /// NSLog(
-        /// "
-        /// Item %lu - Web search retrieved: %
-        /// "
-        /// , itemIndex, searchString);
+        /// NSLog(@"Item %lu - Web search retrieved: %@", itemIndex, searchString);
         /// }
         /// if (urlString != nil) {
-        /// NSLog(
-        /// "
-        /// Item %lu - Web URL retrieved: %
-        /// "
-        /// , itemIndex, urlString);
+        /// NSLog(@"Item %lu - Web URL retrieved: %@", itemIndex, urlString);
         /// }
         /// if (searchString == nil
         /// &
         /// &
         /// urlString == nil) {
-        /// NSLog(
-        /// "
-        /// Item %lu - No web patterns retrieved.", itemIndex);
+        /// NSLog(@"Item %lu - No web patterns retrieved.", itemIndex);
         /// }
         /// }];
         /// }
@@ -249,31 +221,19 @@ impl NSPasteboardItem {
         /// for (NSPasteboardItem *item in items) {
         /// NSUInteger itemIndex = idx++;
         /// [item
-        /// detectMetadataForTypes:[NSSet setWithArray:
-        /// @
-        /// [NSPasteboardMetadataTypeContentType]]
+        /// detectMetadataForTypes:[NSSet setWithArray:@[NSPasteboardMetadataTypeContentType]]
         /// completionHandler:^(NSDictionary
         /// <NSPasteboardMetadataType
         /// , id> *metadata, NSError *error) {
         /// if (error) {
-        /// NSLog(
-        /// "
-        /// Item %lu - Error: %
-        /// "
-        /// , itemIndex, error);
+        /// NSLog(@"Item %lu - Error: %@", itemIndex, error);
         /// return;
         /// }
         /// UTType *contentType = (UTType*)metadata[NSPasteboardMetadataTypeContentType];
         /// if (contentType) {
-        /// NSLog(
-        /// "
-        /// Item %lu - Content type is: %
-        /// "
-        /// , itemIndex, contentType.identifier);
+        /// NSLog(@"Item %lu - Content type is: %@", itemIndex, contentType.identifier);
         /// } else {
-        /// NSLog(
-        /// "
-        /// Item %lu - Couldn't get content type", itemIndex);
+        /// NSLog(@"Item %lu - Couldn't get content type", itemIndex);
         /// }
         /// }];
         /// }

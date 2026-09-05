@@ -332,9 +332,7 @@ impl UISearchTextField {
 
         #[cfg(feature = "UISearchSuggestion")]
         /// An array of suggestions that will be presented as a menu beneath the search field when nonempty.
-        /// Set to nil or
-        /// @
-        /// [] to dismiss the menu.
+        /// Set to nil or@[] to dismiss the menu.
         /// The menu will also dismiss and the property will be set to nil when a suggestion is selected.
         /// The delegate is expected to execute any necessary updating when a suggestion is selected.
         #[unsafe(method(searchSuggestions))]

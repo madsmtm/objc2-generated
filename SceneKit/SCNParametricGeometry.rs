@@ -198,15 +198,9 @@ impl SCNPlane {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -221,12 +215,8 @@ impl SCNPlane {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -237,15 +227,9 @@ impl SCNPlane {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -492,15 +476,9 @@ impl SCNBox {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -515,12 +493,8 @@ impl SCNBox {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -531,15 +505,9 @@ impl SCNBox {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -757,15 +725,9 @@ impl SCNPyramid {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -780,12 +742,8 @@ impl SCNPyramid {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -796,15 +754,9 @@ impl SCNPyramid {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -974,15 +926,9 @@ impl SCNSphere {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -997,12 +943,8 @@ impl SCNSphere {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -1013,15 +955,9 @@ impl SCNSphere {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -1208,15 +1144,9 @@ impl SCNCylinder {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -1231,12 +1161,8 @@ impl SCNCylinder {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -1247,15 +1173,9 @@ impl SCNCylinder {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -1461,15 +1381,9 @@ impl SCNCone {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -1484,12 +1398,8 @@ impl SCNCone {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -1500,15 +1410,9 @@ impl SCNCone {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -1714,15 +1618,9 @@ impl SCNTube {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -1737,12 +1635,8 @@ impl SCNTube {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -1753,15 +1647,9 @@ impl SCNTube {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -1962,15 +1850,9 @@ impl SCNCapsule {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -1985,12 +1867,8 @@ impl SCNCapsule {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -2001,15 +1879,9 @@ impl SCNCapsule {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -2198,15 +2070,9 @@ impl SCNTorus {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -2221,12 +2087,8 @@ impl SCNTorus {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -2237,15 +2099,9 @@ impl SCNTorus {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -2473,15 +2329,9 @@ impl SCNFloor {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -2496,12 +2346,8 @@ impl SCNFloor {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -2512,15 +2358,9 @@ impl SCNFloor {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -2833,15 +2673,9 @@ impl SCNText {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -2856,12 +2690,8 @@ impl SCNText {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -2872,15 +2702,9 @@ impl SCNText {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]
@@ -3116,15 +2940,9 @@ impl SCNShape {
         /// 3 │ (1.0, 1.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons        channel 0                 channel 1           ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (2.0, 0.0, 0.0)   ┆        │           │           │        ┆                  (positions)                  (UVs)             ┆                                                               bytesPerIndex:…];
         /// 5 │ (2.0, 1.0, 0.0)   ┆        │UV1     UV2│UV1     UV2│        ┆                                                                 ┆
-        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:
-        /// @
-        /// [0, 1]];
+        /// 6 │ (2.0, 2.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 2.0, 0.0)   ┆        │UVO       UV4       UV3│        ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆        │         POS2          │        ┆                quad A          quad B          pentagon C       ┆                                             sourceChannels:@[0, 1]];
         /// UVs               ┆        │                       │        ┆           ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐   ┆
         /// 0 │ (0.0, 0.0)        ┆        │           C           │        ┆     4 4 5 0 0 1 1 2 2 3 3 5 2 4 3 3 0 2 1 7 1 6 2 5 3 2 4 1 0   ┆
         /// 1 │ (0.0, 1.0)        ┆        │                       │        ┆     └───┘└──────────────────────────────────────────────────┘   ┆
@@ -3139,12 +2957,8 @@ impl SCNShape {
         /// 1 │ (0.0, 2.0, 0.0)   ┆        │UV0     UV3│UV3     UV4│        ┆     4 4 5 0  1  2  3  5  4  3  2  7  6  5  2  1                 ┆                                                              primitiveCount:3
         /// 2 │ (2.0, 2.0, 0.0)   ┆        │           │           │        ┆     └───┘ └───────────────────────────────────┘                 ┆                                                               bytesPerIndex:…];
         /// 3 │ (2.0, 4.0, 0.0)   ┆        │     A     │     B     │        ┆   polygons              channel 0                               ┆
-        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]];
+        /// 4 │ (4.0, 4.0, 0.0)   ┆        │           │           │        ┆                    (positions and UVs)                          ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 5 │ (4.0, 2.0, 0.0)   ┆        │UV1     UV2│UV2     UV5│        ┆                                                                 ┆                                                   elements:@[element]];
         /// 6 │ (4.0, 0.0, 0.0)   ┆   POS1 ├───────────┴───────────┤ POS5   ┆                                                                 ┆
         /// 7 │ (0.0, 0.0, 0.0)   ┆        │UV1       UV2       UV5│        ┆                                                                 ┆                                            === or equivalently ===
         /// ┆        │         POS2          │        ┆                                                                 ┆
@@ -3155,15 +2969,9 @@ impl SCNShape {
         /// 3 │ (0.5, 0.0)        ┆        └───────────────────────┘        ┆                                                                 ┆                                                  interleavedIndicesChannels:…
         /// 4 │ (1.0, 0.0)        ┆   POS7                          POS6    ┆                                                                 ┆                                                               bytesPerIndex:…];
         /// 5 │ (1.0, 0.5)        ┆                                         ┆                                                                 ┆
-        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:
-        /// @
-        /// [positionSource, texcoordsSource]
-        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:
-        /// @
-        /// [element]
-        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:
-        /// @
-        /// [0, 0]];                                                                                                                                               ┆
+        /// 6 │ (1.0, 1.0)        ┆                                         ┆                                                                 ┆   SCNGeometry *geometry = [SCNGeometry geometryWithSources:@[positionSource, texcoordsSource]
+        /// 7 │ (0.0, 1.0)        ┆                                         ┆                                                                 ┆                                                   elements:@[element]
+        /// ┆                                         ┆                                                                 ┆                                             sourceChannels:@[0, 0]];                                                                                                                                               ┆
         /// ```
         #[unsafe(method(geometryWithSources:elements:sourceChannels:))]
         #[unsafe(method_family = none)]

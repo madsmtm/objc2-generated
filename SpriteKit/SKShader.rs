@@ -77,9 +77,7 @@ impl SKShader {
 
         /// Loads a shader source file named 'name' from the main bundle. This is simpler yet functionally equivalent to the following code
         ///
-        /// [SKShader shaderWithSource:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:
-        /// "
-        /// fsh"]
+        /// [SKShader shaderWithSource:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"fsh"]
         /// encoding:NSUTF8StringEncoding
         /// error:NULL]];
         ///

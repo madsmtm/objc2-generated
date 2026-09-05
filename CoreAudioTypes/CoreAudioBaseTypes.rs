@@ -2257,8 +2257,7 @@ unsafe impl RefEncode for AudioFormatListItem {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// @
-/// deprecated    in version 10.5
+/// @ deprecated    in version 10.5
 ///
 ///
 /// Constants that describe the various kinds of MPEG-4 audio data.

@@ -57,16 +57,9 @@ impl UIMotionEffect {
         /// `keyPaths` should be expressed relative to the effect's target view. Only key paths
         /// which would animate if set in an animation block may be targeted by motion effects.
         ///
-        /// Example return value: `
-        /// @
-        /// {
-        /// "
-        /// center": [NSValue
+        /// Example return value: `@{ @"center": [NSValue
         /// valueFromCGPoint:CGPointMake(3.4, 1.2)],
-        /// "
-        /// layer.shadowOffset.x":
-        /// @
-        /// (-1.1) }`
+        /// @"layer.shadowOffset.x": @(-1.1) }`
         #[unsafe(method(keyPathsAndRelativeValuesForViewerOffset:))]
         #[unsafe(method_family = none)]
         pub fn keyPathsAndRelativeValuesForViewerOffset(

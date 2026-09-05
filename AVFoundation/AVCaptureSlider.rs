@@ -124,20 +124,12 @@ impl AVCaptureSlider {
         ///
         /// To modify the presentation of the slider's value, set `localizedValueFormat` to a format string to display the slider's value with any annotation.
         ///
-        /// The format string may only contain `%
-        /// @
-        /// ` and no other placeholders like `%d`, `%s`, etc. Invalid format strings will result in the value's default presentation.
+        /// The format string may only contain `%@` and no other placeholders like `%d`, `%s`, etc. Invalid format strings will result in the value's default presentation.
         ///
         /// Examples of valid format strings are:
-        /// - `%
-        /// %
-        /// %` for "40%"
-        /// - `%
-        /// @
-        /// fps` for "60 fps"
-        /// - `+ %
-        /// @
-        /// ` for "+ 20"
+        /// - `%%%` for "40%"
+        /// - `%@ fps` for "60 fps"
+        /// - `+ %@` for "+ 20"
         #[unsafe(method(localizedValueFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedValueFormat(&self) -> Option<Retained<NSString>>;

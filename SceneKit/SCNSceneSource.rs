@@ -31,9 +31,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// The up axis of the file. If the file is oriented Y-up, for example, then this is the string
-    /// @
-    /// "0.0 1.0 0.0"
+    /// The up axis of the file. If the file is oriented Y-up, for example, then this is the string@"0.0 1.0 0.0"
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetupaxiskey?language=objc)
     pub static SCNSceneSourceAssetUpAxisKey: &'static NSString;
@@ -72,9 +70,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// A NSNumber encapsulating a floating-point value indicating how many meters the unit is. For example, if the name is
-    /// @
-    /// "centimeter", then this will be 0.01.
+    /// A NSNumber encapsulating a floating-point value indicating how many meters the unit is. For example, if the name is@"centimeter", then this will be 0.01.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetunitmeterkey?language=objc)
     pub static SCNSceneSourceAssetUnitMeterKey: &'static NSString;

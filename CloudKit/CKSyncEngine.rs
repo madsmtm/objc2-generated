@@ -313,9 +313,7 @@ extern_protocol!(
         ///
         /// // By default, the sync engine will automatically fetch changes for all zones.
         /// // If you know that you only want to sync a specific set of zones, you can override that here.
-        /// options.scope = [[CKSyncEngineFetchChangesScope alloc] initWithZoneIDs:
-        /// @
-        /// [...]];
+        /// options.scope = [[CKSyncEngineFetchChangesScope alloc] initWithZoneIDs:@[...]];
         ///
         /// // You can prioritize specific zones to be fetched first by putting them in order.
         /// NSMutableArray
@@ -330,9 +328,7 @@ extern_protocol!(
         ///
         /// // You could also prioritize special, well-known zones if that makes sense for your app.
         /// // For example, if you have a top-level metadata zone that you'd like to sync first, you can prioritize that here.
-        /// CKRecordZoneID *topLevelZoneID = [[CKRecordZoneID alloc] initWithZoneName:
-        /// "
-        /// MyImportantMetadata"];
+        /// CKRecordZoneID *topLevelZoneID = [[CKRecordZoneID alloc] initWithZoneName:@"MyImportantMetadata"];
         /// [prioritizedZoneIDs addObject:topLevelZoneID];
         ///
         /// options.prioritizedZoneIDs = prioritizedZoneIDs;

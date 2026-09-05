@@ -55,14 +55,10 @@ extern_class!(
     /// - Key names in predicates correspond to fields in the currently evaluated record. Key names can include the names of the record's metadata properties, such as `creationDate`, or any data fields you add to the record. You can't use key paths to specify fields in related records.
     ///
     /// - Predicates support the following variable substitution strings:
-    /// - Use `%
-    /// @
-    /// ` for value objects, such as strings, numbers, and dates.
+    /// - Use `%@` for value objects, such as strings, numbers, and dates.
     /// - Use `%K` for the name of a field. This substitution variable indicates that the system uses the substitution string to look up a field name.
     ///
-    /// - With one exception, the `CONTAINS` operator is only for testing list membership. The exception is when you use it to perform full-text searches in conjunction with the `self` key path. The `self` key path causes the server to look in searchable string-based fields for the specified token string. For example, a predicate string of `
-    /// "
-    /// self contains 'blue'"` searches for the word _blue_ in all fields that you mark for inclusion in full-text searches. You can't use the `self` key path to search in fields with a type that isn't a string.
+    /// - With one exception, the `CONTAINS` operator is only for testing list membership. The exception is when you use it to perform full-text searches in conjunction with the `self` key path. The `self` key path causes the server to look in searchable string-based fields for the specified token string. For example, a predicate string of `@"self contains 'blue'"` searches for the word _blue_ in all fields that you mark for inclusion in full-text searches. You can't use the `self` key path to search in fields with a type that isn't a string.
     /// - You can combine the `ANY` and `SOME` aggregate operators with the `IN` and `CONTAINS` operators to perform list membership tests.
     /// - The `distanceToLocation:fromLocation:` operator function performs a radius-based location comparison and that comparison must determine whether the location value is inside the circular area you provide. You can't use it to search for locations outside the specified circular area. Location indexes have a resolution of no less than 10 km.
     /// - CloudKit doesn't support the `ALL` aggregate operator.
@@ -107,11 +103,7 @@ extern_class!(
     ///
     /// ```objc
     /// CKReference* recordToMatch = [[CKReference alloc] initWithRecordID:employeeID action:CKReferenceActionNone];
-    /// NSPredicate* predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// employee == %
-    /// "
-    /// , recordToMatch];
+    /// NSPredicate* predicate = [NSPredicate predicateWithFormat:@"employee == %@", recordToMatch];
     /// ```
     ///
     /// To match the contents of a field to a specific value, use a predicate similar to the ones in Listing 2. All of the listed predicates generate the same set of results, which in the example means that the `favoriteColors` field contains the value _red_. The value in the field must match the value you specify in the predicate exactly. String-based comparisons are case-insensitive, but otherwise, all comparisons must be an exact match of the specified value.
@@ -120,22 +112,10 @@ extern_class!(
     ///
     /// ```objc
     /// NSPredicate *predicate = nil;
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// ANY favoriteColors = 'red'"];
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// favoriteColors CONTAINS 'red'"];
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// 'red' IN favoriteColors"];
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// %K CONTAINS %
-    /// "
-    /// ,
-    /// "
-    /// favoriteColors", @"red"];
+    /// predicate = [NSPredicate predicateWithFormat:@"ANY favoriteColors = 'red'"];
+    /// predicate = [NSPredicate predicateWithFormat:@"favoriteColors CONTAINS 'red'"];
+    /// predicate = [NSPredicate predicateWithFormat:@"'red' IN favoriteColors"];
+    /// predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS %@", @"favoriteColors", @"red"];
     /// ```
     ///
     /// You can match more than one value at a time by using a predicate similar to the ones in Listing 3. In the example, the predicates report a match if the value in the `favoriteColor` field of a record matches either of the values `red` or `green`.
@@ -144,12 +124,8 @@ extern_class!(
     ///
     /// ```objc
     /// NSPredicate *predicate = nil;
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// ANY { 'red', 'green' } = favoriteColor"];
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// favoriteColor IN { 'red', 'green' }"];
+    /// predicate = [NSPredicate predicateWithFormat:@"ANY { 'red', 'green' } = favoriteColor"];
+    /// predicate = [NSPredicate predicateWithFormat:@"favoriteColor IN { 'red', 'green' }"];
     /// ```
     ///
     /// For fields that contain string values, you can match the beginning portion of the string using the `BEGINSWITH` operator as Listing 4 shows. You can't use other string comparison operators, such as `CONTAINS` or `ENDSWITH`. When using this operator, the field must contain a string value and must start with the string you specify. Matches are case-sensitive. In the examples, the predicate matches records where the `favoriteColors` field contains the strings _red_, _reddish_, or _red_` `_green_` `_duct_` `_tape_.
@@ -157,18 +133,10 @@ extern_class!(
     /// Listing 4. Matching a field that starts with a string value
     ///
     /// ```objc
-    /// NSString* matchString =
-    /// "
-    /// red";
+    /// NSString* matchString =@"red";
     /// NSPredicate *predicate = nil;
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// ANY favoriteColors BEGINSWITH 'red'"]
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// ANY favoriteColors BEGINSWITH %
-    /// "
-    /// , matchString]
+    /// predicate = [NSPredicate predicateWithFormat:@"ANY favoriteColors BEGINSWITH 'red'"]
+    /// predicate = [NSPredicate predicateWithFormat:@"ANY favoriteColors BEGINSWITH %@", matchString]
     /// ```
     ///
     /// To perform a tokenized search of a record's fields, use the special operator `self`. A tokenized search searches any fields where you enable full-text search, which is all string-based fields by default. CloudKit treats each distinct word in the tokenized string as a separate token for the purpose of searching. Comparisons are case- and diacritic-insensitive. These token strings can be in a single field or in multiple fields.
@@ -179,9 +147,7 @@ extern_class!(
     ///
     /// ```objc
     /// NSPredicate *predicate = nil;
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// self contains 'bob smith'"];
+    /// predicate = [NSPredicate predicateWithFormat:@"self contains 'bob smith'"];
     /// ```
     ///
     /// To search for multiple tokens present in the fields, use the `AND` predicate operator, as Listing 6 shows.
@@ -190,9 +156,7 @@ extern_class!(
     ///
     /// ```objc
     /// NSPredicate *predicate = nil;
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// self contains 'bob' AND self contains 'smith'"];
+    /// predicate = [NSPredicate predicateWithFormat:@"self contains 'bob' AND self contains 'smith'"];
     /// ```
     ///
     /// To test whether two locations are near each other, create a predicate using the `distanceToLocation:fromLocation:` function as Listing 7 shows. Predicates that use this function must have the structure in the listing. In your code, replace the `location` variable with a field name from one of your records. This data type for the field must be a
@@ -205,11 +169,7 @@ extern_class!(
     /// CLLocation* fixedLoc = [[CLLocation alloc] initWithLatitude:37.331913 longitude:-122.030210];
     /// CGFloat radius = 10; // kilometers
     /// NSPredicate *predicate =
-    /// [NSPredicate predicateWithFormat:
-    /// "
-    /// distanceToLocation:fromLocation:(location, %
-    /// @
-    /// )
+    /// [NSPredicate predicateWithFormat:@"distanceToLocation:fromLocation:(location, %@)
     /// <
     /// %f", fixedLoc, radius]];
     /// ```
@@ -222,9 +182,7 @@ extern_class!(
     ///
     /// ```objc
     /// NSPredicate *predicate = nil;
-    /// predicate = [NSPredicate predicateWithFormat:
-    /// "
-    /// TRUEPREDICATE"];
+    /// predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
     /// ```
     ///
     /// ### Indexes and Full-Text Search

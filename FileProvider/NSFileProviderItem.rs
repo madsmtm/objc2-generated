@@ -588,9 +588,7 @@ extern_protocol!(
         /// reorders favorites.
         ///
         /// When favoriting folders on other platforms, set the rank to the time since the
-        /// unix epoch in milliseconds.  Special value
-        /// @
-        /// (NSFileProviderFavoriteRankUnranked)
+        /// unix epoch in milliseconds.  Special value@(NSFileProviderFavoriteRankUnranked)
         /// may be used if no rank is available: the system will then figure out the best
         /// rank and set it.  Please persist and sync the new value.
         ///
@@ -943,11 +941,7 @@ extern_protocol!(
         /// </key
         /// >
         /// <string
-        /// >Are you sure you want to move %
-        /// @
-        /// into %
-        /// @
-        /// ?
+        /// >Are you sure you want to move %@ into %@?
         /// </string
         /// >
         /// <key
@@ -979,9 +973,7 @@ extern_protocol!(
         /// </key
         /// >
         /// <string
-        /// >If you move it, people added to the shared folder “%
-        /// @
-        /// ” will be able to access it
+        /// >If you move it, people added to the shared folder “%@” will be able to access it
         /// </string
         /// >
         /// <key

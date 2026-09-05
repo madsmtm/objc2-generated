@@ -701,9 +701,7 @@ extern "C" {
     /// Used to store alternate identities for the record. Values will have standardized form as
     /// specified by Microsoft LDAP schema (1.2.840.113556.1.4.867).
     ///
-    /// Kerberos:user
-    /// @
-    /// REALM
+    /// Kerberos:user@REALM
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodattributetypealtsecurityidentities?language=objc)
     pub static kODAttributeTypeAltSecurityIdentities: &'static ODAttributeType;
@@ -3931,13 +3929,7 @@ extern "C" {
     ///
     /// Used in Password Content policy strings to compare the new
     /// password against the password history, for example:
-    /// [NSString stringWithFormat:
-    /// "
-    /// none %
-    /// @
-    /// in %
-    /// "
-    /// , kODPolicyAttributePasswordHashes, kODPolicyAttributePasswordHistory];
+    /// [NSString stringWithFormat:@"none %@ in %@", kODPolicyAttributePasswordHashes, kODPolicyAttributePasswordHistory];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributepasswordhashes?language=objc)
     pub static kODPolicyAttributePasswordHashes: &'static ODPolicyAttributeType;
@@ -3953,13 +3945,7 @@ extern "C" {
     ///
     /// Used in Password Content policy strings to compare the new
     /// password against the password history, for example:
-    /// [NSString stringWithFormat:
-    /// "
-    /// none %
-    /// @
-    /// in %
-    /// "
-    /// , kODPolicyAttributePasswordHashes, kODPolicyAttributePasswordHistory];
+    /// [NSString stringWithFormat:@"none %@ in %@", kODPolicyAttributePasswordHashes, kODPolicyAttributePasswordHistory];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodpolicyattributepasswordhistory?language=objc)
     pub static kODPolicyAttributePasswordHistory: &'static ODPolicyAttributeType;
@@ -4019,16 +4005,9 @@ extern "C" {
     /// In the policy below, password changes are required every 90 days
     /// (kODPolicyAttributeExpiresEveryNDays = 90).
     ///
-    /// [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
+    /// [NSString stringWithFormat:@"%@
     /// <
-    /// %
-    /// @
-    /// + (%
-    /// @
-    /// * DAYS_TO_SECONDS)",
+    /// %@ + (%@ * DAYS_TO_SECONDS)",
     /// kODPolicyAttributeCurrentTime,
     /// kODPolicyAttributeLastPasswordChangeTime,
     /// kODPolicyAttributeExpiresEveryNDays];
@@ -4049,18 +4028,9 @@ extern "C" {
     /// authentications between the hours of 8:00 AM and 5:00 PM, the
     /// policy string would be (kODPolicyAttributeEnableAtTimeOfDay is
     /// set to 0800 and  kODPolicyAttributeExpiresAtTimeOfDay is 1700):
-    /// [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
-    /// > %
-    /// @
-    /// and %
-    /// @
+    /// [NSString stringWithFormat:@"%@ > %@ and %@
     /// <
-    /// %
-    /// "
-    /// ,
+    /// %@",
     /// kODPolicyAttributeCurrentTimeOfDay,
     /// kODPolicyAttributeEnableAtTimeOfDay,
     /// kODPolicyAttributeCurrentTimeOfDay,
@@ -4085,18 +4055,9 @@ extern "C" {
     /// would be (kODPolicyAttributeEnableOnDayOfWeek is set to the
     /// number for Monday and kODPolicyAttributeExpiresOnDayOfWeek is
     /// set to the number for Friday):
-    /// [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
-    /// > %
-    /// @
-    /// and %
-    /// @
+    /// [NSString stringWithFormat:@"%@ > %@ and %@
     /// <
-    /// %
-    /// "
-    /// ,
+    /// %@",
     /// kODPolicyAttributeCurrentDayOfWeek,
     /// kODPolicyAttributeEnableOnDayOfWeek,
     /// kODPolicyAttributeCurrentDayOfWeek,
@@ -4199,14 +4160,9 @@ extern "C" {
     /// match the units of kODPolicyAttributeCurrentTime.  The special
     /// keyword DAYS_TO_SECONDS can be used for the conversion.
     ///
-    /// [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
+    /// [NSString stringWithFormat:@"%@
     /// <
-    /// %
-    /// @
-    /// + 90 * DAYS_TO_SECONDS",
+    /// %@ + 90 * DAYS_TO_SECONDS",
     /// kODPolicyAttributeCurrentTime,
     /// kODPolicyAttributeLastAuthenticationTime];
     ///
@@ -4230,16 +4186,9 @@ extern "C" {
     /// converted to seconds to match the units of the other times.  The
     /// special keyword DAYS_TO_SECONDS can be used for the conversion.
     ///
-    /// [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
+    /// [NSString stringWithFormat:@"%@
     /// <
-    /// %
-    /// @
-    /// + %
-    /// @
-    /// * DAYS_TO_SECONDS",
+    /// %@ + %@ * DAYS_TO_SECONDS",
     /// kODPolicyAttributeCurrentTime,
     /// kODPolicyAttributeLastPasswordChangeTime,
     /// kODPolicyAttributeExpiresEveryNDays];
@@ -4268,25 +4217,13 @@ extern "C" {
     /// new round of password changes.
     ///
     /// For example:
-    /// @
-    /// { kODPolicyKeyIdentifier :
-    /// "
-    /// change on next auth",
-    /// kODPolicyKeyParameters :
-    /// @
-    /// { kODPolicyAttributeNewPasswordRequiredTime :
-    /// @
-    /// (
+    /// @{ kODPolicyKeyIdentifier : @"change on next auth",
+    /// kODPolicyKeyParameters :@{ kODPolicyAttributeNewPasswordRequiredTime : @(
     /// <time
     /// >) },
-    /// kODPolicyKeyContent    : [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
+    /// kODPolicyKeyContent    : [NSString stringWithFormat:@"%@
     /// <
-    /// %
-    /// "
-    /// ,
+    /// %@",
     /// kODPolicyAttributeLastPasswordChangeTime,
     /// kODPolicyAttributeNewPasswordRequiredTime]};
     ///
@@ -4309,25 +4246,11 @@ extern "C" {
     /// converted to seconds to match the units of the other times.  The
     /// special keyword DAYS_TO_SECONDS can be used for the conversion.
     ///
-    /// @
-    /// { kODPolicyKeyIdentifier :
-    /// "
-    /// expires after 10 days",
-    /// kODPolicyKeyParameters :
-    /// @
-    /// {kODPolicyAttributeDaysUntilExpiration :
-    /// @
-    /// 10 },
-    /// kODPolicyKeyContent    : [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
+    /// @{ kODPolicyKeyIdentifier : @"expires after 10 days",
+    /// kODPolicyKeyParameters :@{kODPolicyAttributeDaysUntilExpiration : @10 },
+    /// kODPolicyKeyContent    : [NSString stringWithFormat:@"%@
     /// <
-    /// %
-    /// @
-    /// + (%
-    /// @
-    /// * DAYS_TO_SECONDS)",
+    /// %@ + (%@ * DAYS_TO_SECONDS)",
     /// kODPolicyAttributeCurrentTime,
     /// kODPolicyAttributeCreationTime,
     /// kODPolicyAttributeDaysUntilExpiration]};
@@ -4353,25 +4276,11 @@ extern "C" {
     /// in the policy.  The special keyword DAYS_TO_SECONDS can be used
     /// for the conversion.
     ///
-    /// @
-    /// { kODPolicyKeyIdentifier :
-    /// "
-    /// expires every 90 days",
-    /// kODPolicyKeyParameters :
-    /// @
-    /// { kODPolicyAttributeExpiresEveryNDays :
-    /// @
-    /// 90 },
-    /// kODPolicyKeyContent    : [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
+    /// @{ kODPolicyKeyIdentifier : @"expires every 90 days",
+    /// kODPolicyKeyParameters :@{ kODPolicyAttributeExpiresEveryNDays : @90 },
+    /// kODPolicyKeyContent    : [NSString stringWithFormat:@"%@
     /// <
-    /// %
-    /// @
-    /// + %
-    /// @
-    /// * DAYS_TO_SECONDS",
+    /// %@ + %@ * DAYS_TO_SECONDS",
     /// kODPolicyAttributeCurrentTime,
     /// kODPolicyAttributeLastPasswordChangeTime,
     /// kODPolicyAttributeExpiresEveryNDays]};
@@ -4393,22 +4302,9 @@ extern "C" {
     /// control when authentications are allowed. This policy would
     /// enable authentications on Jan 1, 2014 (assumes the date
     /// formatter is properly configured for the locale):
-    /// @
-    /// { kODPolicyKeyIdentifier :
-    /// "
-    /// enable on Jan 1",
-    /// kODPolicyKeyParameters :
-    /// @
-    /// { kODPolicyAttributeEnableOnDate : [localFormatter dateWithString:
-    /// "
-    /// 01/01/2014"] },
-    /// kODPolicyKeyContent    : [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
-    /// >= %
-    /// "
-    /// ,
+    /// @{ kODPolicyKeyIdentifier : @"enable on Jan 1",
+    /// kODPolicyKeyParameters :@{ kODPolicyAttributeEnableOnDate : [localFormatter dateWithString:@"01/01/2014"] },
+    /// kODPolicyKeyContent    : [NSString stringWithFormat:@"%@ >= %@",
     /// kODPolicyAttributeCurrentDate,
     /// kODPolicyAttributeEnableOnDate]};
     ///
@@ -4429,23 +4325,11 @@ extern "C" {
     /// control when authentications are allowed. This policy would
     /// disallow authentications on Jan 1, 2014 (assumes the date
     /// formatter is properly configured for the locale):
-    /// @
-    /// { kODPolicyKeyIdentifier :
-    /// "
-    /// expires on Jan 1",
-    /// kODPolicyKeyParameters :
-    /// @
-    /// { kODPolicyAttributeExpiresOnDate : [localFormatter dateWithString:
-    /// "
-    /// 01/01/2014"] },
-    /// kODPolicyKeyContent    : [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
+    /// @{ kODPolicyKeyIdentifier : @"expires on Jan 1",
+    /// kODPolicyKeyParameters :@{ kODPolicyAttributeExpiresOnDate : [localFormatter dateWithString:@"01/01/2014"] },
+    /// kODPolicyKeyContent    : [NSString stringWithFormat:@"%@
     /// <
-    /// %
-    /// "
-    /// ,
+    /// %@",
     /// kODPolicyAttributeCurrentDate,
     /// kODPolicyAttributeExpiresOnDate]};
     ///
@@ -4467,30 +4351,12 @@ extern "C" {
     /// day of the week.  For example, to allow authentications only on
     /// Monday through Friday, the policy would be (assumes Monday = 2
     /// and Friday = 6 in the local calendar):
-    /// @
-    /// { kODPolicyKeyIdentifier :
-    /// "
-    /// mon-fri only",
-    /// kODPolicyKeyParameters :
-    /// @
-    /// { kODPolicyAttributeEnableOnDayOfWeek :
-    /// @
-    /// 2,
-    /// kODPolicyAttributeExpiresOnDayOfWeek :
-    /// @
-    /// 6 },
-    /// kOPolicyKeyPolicy      : [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
-    /// > %
-    /// @
-    /// and %
-    /// @
+    /// @{ kODPolicyKeyIdentifier : @"mon-fri only",
+    /// kODPolicyKeyParameters :@{ kODPolicyAttributeEnableOnDayOfWeek : @2,
+    /// kODPolicyAttributeExpiresOnDayOfWeek :@6 },
+    /// kOPolicyKeyPolicy      : [NSString stringWithFormat:@"%@ > %@ and %@
     /// <
-    /// %
-    /// "
-    /// ,
+    /// %@",
     /// kODPolicyAttributeCurrentDayOfWeek,
     /// kODPolicyAttributeEnableOnDayOfWeek,
     /// kODPolicyAttributeCurrentDayOfWeek,
@@ -4530,30 +4396,12 @@ extern "C" {
     /// times of when when authentications are allowed.  For example, to
     /// enable authentications between the hours of 8:00 AM and 5:00 PM,
     /// the policy would be:
-    /// @
-    /// { kODPolicyKeyIdentifier :
-    /// "
-    /// school hours",
-    /// kODPolicyKeyParameters :
-    /// @
-    /// { kODPolicyAttributeEnableAtTimeOfDay  :
-    /// @
-    /// 800,
-    /// kODPolicyAttributeExpiresAtTimeOfDay :
-    /// @
-    /// 1700 },
-    /// kODPolicyKeyContent    : [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
-    /// > %
-    /// @
-    /// and %
-    /// @
+    /// @{ kODPolicyKeyIdentifier : @"school hours",
+    /// kODPolicyKeyParameters :@{ kODPolicyAttributeEnableAtTimeOfDay  : @800,
+    /// kODPolicyAttributeExpiresAtTimeOfDay :@1700 },
+    /// kODPolicyKeyContent    : [NSString stringWithFormat:@"%@ > %@ and %@
     /// <
-    /// %
-    /// "
-    /// ,
+    /// %@",
     /// kODPolicyAttributeCurrentTimeOfDay,
     /// kODPolicyAttributeEnableAtTimeOfDay,
     /// kODPolicyAttributeCurrentTimeOfDay,
@@ -4599,25 +4447,11 @@ extern "C" {
     /// converted to seconds to match the units of the other times.  The
     /// special keyword DAYS_TO_SECONDS can be used for the conversion.
     ///
-    /// @
-    /// { kODPolicyKeyIdentifier :
-    /// "
-    /// expires after 10 days",
-    /// kODPolicyKeyParameters :
-    /// @
-    /// {kODPolicyAttributeDaysUntilExpiration :
-    /// @
-    /// 10 },
-    /// kODPolicyKeyContent    : [NSString stringWithFormat:
-    /// "
-    /// %
-    /// @
+    /// @{ kODPolicyKeyIdentifier : @"expires after 10 days",
+    /// kODPolicyKeyParameters :@{kODPolicyAttributeDaysUntilExpiration : @10 },
+    /// kODPolicyKeyContent    : [NSString stringWithFormat:@"%@
     /// <
-    /// %
-    /// @
-    /// + (%
-    /// @
-    /// * DAYS_TO_SECONDS)",
+    /// %@ + (%@ * DAYS_TO_SECONDS)",
     /// kODPolicyAttributeCurrentTime,
     /// kODPolicyAttributeCreationTime,
     /// kODPolicyAttributeDaysUntilExpiration]};

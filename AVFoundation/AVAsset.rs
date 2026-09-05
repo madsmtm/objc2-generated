@@ -73,9 +73,7 @@ impl AVAsset {
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the duration of the asset.
         ///
-        /// If
-        /// "
-        /// providesPreciseDurationAndTiming" is NO, a best-available estimate of the duration is returned. The degree of precision preferred for timing-related properties can be set at initialization time for assets initialized with URLs
+        /// If@"providesPreciseDurationAndTiming" is NO, a best-available estimate of the duration is returned. The degree of precision preferred for timing-related properties can be set at initialization time for assets initialized with URLs
         ///
         /// - Seealso: AVURLAssetPreferPreciseDurationAndTimingKey for AVURLAsset below.
         #[unsafe(method(duration))]
@@ -131,9 +129,7 @@ impl AVAsset {
 /// AVAssetAsynchronousLoading.
 impl AVAsset {
     extern_methods!(
-        /// Indicates that the asset provides precise timing. See
-        /// "
-        /// duration" above and AVURLAssetPreferPreciseDurationAndTimingKey below.
+        /// Indicates that the asset provides precise timing. See@"duration" above and AVURLAssetPreferPreciseDurationAndTimingKey below.
         #[unsafe(method(providesPreciseDurationAndTiming))]
         #[unsafe(method_family = none)]
         pub unsafe fn providesPreciseDurationAndTiming(&self) -> bool;
@@ -213,9 +209,7 @@ impl AVAsset {
         #[cfg(all(feature = "AVAssetTrack", feature = "objc2-core-media"))]
         /// Provides an instance of AVAssetTrack that represents the track of the specified trackID.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
         /// - Parameter trackID: The trackID of the requested AVAssetTrack.
         ///
@@ -251,9 +245,7 @@ impl AVAsset {
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
         /// Provides an array of AVAssetTracks of the asset that present media of the specified media type.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
         /// - Parameter mediaType: The media type according to which AVAsset filters its AVAssetTracks. (Media types are defined in AVMediaFormat.h.)
         ///
@@ -289,9 +281,7 @@ impl AVAsset {
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
         /// Provides an array of AVAssetTracks of the asset that present media with the specified characteristic.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
         /// - Parameter mediaCharacteristic: The media characteristic according to which AVAsset filters its AVAssetTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
@@ -369,9 +359,7 @@ impl AVAsset {
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
         /// Provides an NSArray of AVMetadataItems, one for each metadata item in the container of the specified format; can subsequently be filtered according to language via +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:], according to locale via +[AVMetadataItem metadataItemsFromArray:withLocale:], or according to key via +[AVMetadataItem metadataItemsFromArray:withKey:keySpace:].
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// availableMetadataFormats" has been loaded
+        /// Becomes callable without blocking when the key@"availableMetadataFormats" has been loaded
         ///
         /// - Parameter format: The metadata format for which items are requested.
         ///
@@ -524,9 +512,7 @@ impl AVAsset {
         #[cfg(all(feature = "AVMediaFormat", feature = "AVMediaSelectionGroup"))]
         /// Provides an instance of AVMediaSelectionGroup that contains one or more options with the specified media characteristic.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// availableMediaCharacteristicsWithMediaSelectionOptions" has been loaded.
+        /// Becomes callable without blocking when the key@"availableMediaCharacteristicsWithMediaSelectionOptions" has been loaded.
         ///
         /// If the asset has no AVMediaSelectionGroup containing options with the specified media characteristic, the return value will be nil.
         ///
@@ -673,9 +659,7 @@ extern "C" {
     /// If nil is passed as the value of the options parameter to -[AVURLAsset initWithURL:options:], or if a dictionary that lacks a value for the key AVURLAssetPreferPreciseDurationAndTimingKey is passed instead, a default value of NO is assumed. If the asset is intended to be played only, because AVPlayer will support approximate random access by time when full precision isn't available, the default value of NO will suffice.
     /// Pass YES if longer loading times are acceptable in cases in which precise timing is required. If the asset is intended to be inserted into an AVMutableComposition, precise random access is typically desirable and the value of YES is recommended.
     /// Note that such precision may require additional parsing of the resource in advance of operations that make use of any portion of it, depending on the specifics of its container format. Many container formats provide sufficient summary information for precise timing and do not require additional parsing to prepare for it; QuickTime movie files and MPEG-4 files are examples of such formats. Other formats do not provide sufficient summary information, and precise random access for them is possible only after a preliminary examination of a file's contents.
-    /// If you pass YES for an asset that you intend to play via an instance of AVPlayerItem and you are prepared for playback to commence before the value of -[AVPlayerItem duration] becomes available, you can omit the key
-    /// "
-    /// duration" from the array of AVAsset keys you pass to -[AVPlayerItem initWithAsset:automaticallyLoadedAssetKeys:] in order to prevent AVPlayerItem from automatically loading the value of duration while the item becomes ready to play.
+    /// If you pass YES for an asset that you intend to play via an instance of AVPlayerItem and you are prepared for playback to commence before the value of -[AVPlayerItem duration] becomes available, you can omit the key@"duration" from the array of AVAsset keys you pass to -[AVPlayerItem initWithAsset:automaticallyLoadedAssetKeys:] in order to prevent AVPlayerItem from automatically loading the value of duration while the item becomes ready to play.
     /// If precise duration and timing is not possible for the timed media resource referenced by the asset's URL, AVAsset.providesPreciseDurationAndTiming will be NO even if precise timing is requested via the use of this key.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetpreferprecisedurationandtimingkey?language=objc)
@@ -1204,27 +1188,21 @@ impl AVURLAsset {
 }
 
 extern "C" {
-    /// Posted when the duration of an AVFragmentedAsset changes while it's being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of
-    /// "
-    /// duration" has reached AVKeyValueStatusLoaded.
+    /// Posted when the duration of an AVFragmentedAsset changes while it's being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of@"duration" has reached AVKeyValueStatusLoaded.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdurationdidchangenotification?language=objc)
     pub static AVAssetDurationDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// Posted after the value of
-    /// "
-    /// containsFragments" has already been loaded and the AVFragmentedAsset is added to an AVFragmentedAssetMinder, either when 1) fragments are detected in the asset on disk after it had previously contained none or when 2) no fragments are detected in the asset on disk after it had previously contained one or more.
+    /// Posted after the value of@"containsFragments" has already been loaded and the AVFragmentedAsset is added to an AVFragmentedAssetMinder, either when 1) fragments are detected in the asset on disk after it had previously contained none or when 2) no fragments are detected in the asset on disk after it had previously contained one or more.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetcontainsfragmentsdidchangenotification?language=objc)
     pub static AVAssetContainsFragmentsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// Posted when the asset on disk is defragmented while an AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only if the defragmentation occurs after the status of the value of
-    /// "
-    /// canContainFragments" has reached AVKeyValueStatusLoaded.
+    /// Posted when the asset on disk is defragmented while an AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only if the defragmentation occurs after the status of the value of@"canContainFragments" has reached AVKeyValueStatusLoaded.
     ///
     /// After this notification is posted, the value of the asset properties canContainFragments and containsFragments will both be NO.
     ///
@@ -1233,18 +1211,14 @@ extern "C" {
 }
 
 extern "C" {
-    /// Posted when the collection of arrays of timed metadata groups representing chapters of an AVAsset change and when any of the contents of the timed metadata groups change, but only for changes that occur after the status of the value of
-    /// "
-    /// availableChapterLocales" has reached AVKeyValueStatusLoaded.
+    /// Posted when the collection of arrays of timed metadata groups representing chapters of an AVAsset change and when any of the contents of the timed metadata groups change, but only for changes that occur after the status of the value of@"availableChapterLocales" has reached AVKeyValueStatusLoaded.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetchaptermetadatagroupsdidchangenotification?language=objc)
     pub static AVAssetChapterMetadataGroupsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// Posted when the collection of media selection groups provided by an AVAsset changes and when any of the contents of its media selection groups change, but only for changes that occur after the status of the value of
-    /// "
-    /// availableMediaCharacteristicsWithMediaSelectionOptions" has reached AVKeyValueStatusLoaded.
+    /// Posted when the collection of media selection groups provided by an AVAsset changes and when any of the contents of its media selection groups change, but only for changes that occur after the status of the value of@"availableMediaCharacteristicsWithMediaSelectionOptions" has reached AVKeyValueStatusLoaded.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetmediaselectiongroupsdidchangenotification?language=objc)
     pub static AVAssetMediaSelectionGroupsDidChangeNotification: &'static NSString;
@@ -1404,9 +1378,7 @@ impl AVFragmentedAsset {
         #[cfg(all(feature = "AVAssetTrack", feature = "objc2-core-media"))]
         /// Provides an instance of AVFragmentedAssetTrack that represents the track of the specified trackID.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
         /// - Parameter trackID: The trackID of the requested AVFragmentedAssetTrack.
         ///
@@ -1442,9 +1414,7 @@ impl AVFragmentedAsset {
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
         /// Provides an array of AVFragmentedAssetTracks of the asset that present media of the specified media type.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
         /// - Parameter mediaType: The media type according to which the receiver filters its AVFragmentedAssetTracks. (Media types are defined in AVMediaFormat.h)
         ///
@@ -1480,9 +1450,7 @@ impl AVFragmentedAsset {
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
         /// Provides an array of AVFragmentedAssetTracks of the asset that present media with the specified characteristic.
         ///
-        /// Becomes callable without blocking when the key
-        /// "
-        /// tracks" has been loaded
+        /// Becomes callable without blocking when the key@"tracks" has been loaded
         ///
         /// - Parameter mediaCharacteristic: The media characteristic according to which the receiver filters its AVFragmentedAssetTracks. (Media characteristics are defined in AVMediaFormat.h)
         ///

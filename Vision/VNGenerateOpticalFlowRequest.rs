@@ -59,15 +59,9 @@ extern_class!(
     ///
     /// - (nullable VNPixelBufferObservation*) opticalFlowFromImage:(CVPixelBufferRef)fromImage toImage:(CVPixelBuffer)toImage error:(NSError**)error
     /// {
-    /// VNImageRequestHandler* imageRequestHandler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:fromImage options:
-    /// @
-    /// {}];
-    /// VNGenerateOpticalFlowRequest* request = [[VNGenerateOpticalFlowRequest alloc] initWithTargetedCVPixelBuffer:toImage options:
-    /// @
-    /// {}];
-    /// if (![imageRequestHandler performRequests:
-    /// @
-    /// [ request ] error:error])
+    /// VNImageRequestHandler* imageRequestHandler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:fromImage options:@{}];
+    /// VNGenerateOpticalFlowRequest* request = [[VNGenerateOpticalFlowRequest alloc] initWithTargetedCVPixelBuffer:toImage options:@{}];
+    /// if (![imageRequestHandler performRequests:@[ request ] error:error])
     /// {
     /// return nil;
     /// }

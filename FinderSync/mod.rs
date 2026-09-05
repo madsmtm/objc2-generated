@@ -106,9 +106,7 @@ impl FIFinderSyncController {
         /// Sets the badge for a file or directory.
         ///
         /// Adds the specified badge to the given file or directory. Setting the
-        /// identifier to an empty string (`
-        /// "
-        /// "`) removes the badge.
+        /// identifier to an empty string (`@""`) removes the badge.
         ///
         /// Avoid adding badges to items that the Finder hasn't displayed yet.
         /// When setting the initial badge, call this method from your Finder Sync

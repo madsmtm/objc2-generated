@@ -212,9 +212,7 @@ impl CKRecord {
         ///
         /// ```objc
         /// // Create a new record of type "employee".
-        /// CKRecord* myRecord = [[CKRecord alloc] initWithRecordType:
-        /// "
-        /// employee"];
+        /// CKRecord* myRecord = [[CKRecord alloc] initWithRecordType:@"employee"];
         /// ```
         ///
         /// New records exist only in memory until you explicitly save them to iCloud. In addition, new records are sparse by default and have no values for the fields you define. Until you set the value of a key explicitly, getting the value of a key in a new record returns `nil`. Even though a record has an associated type, CloudKit ignores the type information until you save the record.
@@ -351,12 +349,8 @@ impl CKRecord {
         ///
         /// ```objc
         /// // Equivalent ways to get a value.
-        /// id value = [myRecord objectForKey:
-        /// "
-        /// hiredAt"];
-        /// value = myRecord[
-        /// "
-        /// hiredAt"];
+        /// id value = [myRecord objectForKey:@"hiredAt"];
+        /// value = myRecord[@"hiredAt"];
         /// ```
         #[unsafe(method(objectForKey:))]
         #[unsafe(method_family = none)]
@@ -385,12 +379,8 @@ impl CKRecord {
         ///
         /// ```objc
         /// // Equivalent ways to set a value.
-        /// [myRecord setObject:[NSDate date] forKey:
-        /// "
-        /// hiredAt"];
-        /// myRecord[
-        /// "
-        /// hiredAt"] = [NSDate date];
+        /// [myRecord setObject:[NSDate date] forKey:@"hiredAt"];
+        /// myRecord[@"hiredAt"] = [NSDate date];
         /// ```
         #[unsafe(method(setObject:forKey:))]
         #[unsafe(method_family = none)]

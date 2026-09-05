@@ -144,11 +144,7 @@ impl AVPlayerItem {
         #[cfg(feature = "AVAsset")]
         /// Returns an instance of AVPlayerItem for playing an AVAsset.
         ///
-        /// Equivalent to +playerItemWithAsset:automaticallyLoadedAssetKeys:, passing
-        /// @
-        /// [
-        /// "
-        /// duration" ] as the value of automaticallyLoadedAssetKeys.
+        /// Equivalent to +playerItemWithAsset:automaticallyLoadedAssetKeys:, passing@[ @"duration" ] as the value of automaticallyLoadedAssetKeys.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable. If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
         ///
@@ -193,11 +189,7 @@ impl AVPlayerItem {
         #[cfg(feature = "AVAsset")]
         /// Initializes an AVPlayerItem with an AVAsset.
         ///
-        /// Equivalent to -initWithAsset:automaticallyLoadedAssetKeys:, passing
-        /// @
-        /// [
-        /// "
-        /// duration" ] as the value of automaticallyLoadedAssetKeys.
+        /// Equivalent to -initWithAsset:automaticallyLoadedAssetKeys:, passing@[ @"duration" ] as the value of automaticallyLoadedAssetKeys.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable. If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
         ///
@@ -276,9 +268,7 @@ impl AVPlayerItem {
         ///
         /// This property is observable. The duration of an item can change dynamically during playback.
         ///
-        /// Unless you omit
-        /// "
-        /// duration" from the array of asset keys you pass to +playerItemWithAsset:automaticallyLoadedAssetKeys: or
+        /// Unless you omit@"duration" from the array of asset keys you pass to +playerItemWithAsset:automaticallyLoadedAssetKeys: or
         /// -initWithAsset:automaticallyLoadedAssetKeys:, the value of this property will accord with the properties of the underlying
         /// AVAsset and the current state of playback once the receiver becomes ready to play.
         ///

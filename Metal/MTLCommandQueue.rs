@@ -128,8 +128,7 @@ extern_conformance!(
 
 impl MTLCommandQueueDescriptor {
     extern_methods!(
-        /// @
-        /// Specify upper bound on uncompleted command buffers that may be enqueued on this queue
+        /// @ Specify upper bound on uncompleted command buffers that may be enqueued on this queue
         #[unsafe(method(maxCommandBufferCount))]
         #[unsafe(method_family = none)]
         pub fn maxCommandBufferCount(&self) -> NSUInteger;
@@ -144,8 +143,7 @@ impl MTLCommandQueueDescriptor {
         pub unsafe fn setMaxCommandBufferCount(&self, max_command_buffer_count: NSUInteger);
 
         #[cfg(feature = "MTLLogState")]
-        /// @
-        /// Specify the MTLLogState to enable shader logging
+        /// @ Specify the MTLLogState to enable shader logging
         #[unsafe(method(logState))]
         #[unsafe(method_family = none)]
         pub fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;

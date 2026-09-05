@@ -430,17 +430,7 @@ impl MPSGraphPooling4DOpDescriptor {
 
         /// Defines strides for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
         ///
-        /// Default value: `
-        /// @
-        /// [
-        /// @
-        /// 1,
-        /// @
-        /// 1,
-        /// @
-        /// 1,
-        /// @
-        /// 1 ]`
+        /// Default value: `@[ @1, @1, @1, @1 ]`
         #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
         pub unsafe fn strides(&self) -> Retained<NSArray<NSNumber>>;
@@ -454,17 +444,7 @@ impl MPSGraphPooling4DOpDescriptor {
 
         /// Defines dilation rates for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
         ///
-        /// Default value: `
-        /// @
-        /// [
-        /// @
-        /// 1,
-        /// @
-        /// 1,
-        /// @
-        /// 1,
-        /// @
-        /// 1 ]`
+        /// Default value: `@[ @1, @1, @1, @1 ]`
         #[unsafe(method(dilationRates))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRates(&self) -> Retained<NSArray<NSNumber>>;
@@ -482,25 +462,7 @@ impl MPSGraphPooling4DOpDescriptor {
         /// amount before the first spatial dimension (slowest running index of spatial dimensions),
         /// `paddingValues[1]` defines the padding amount after the first spatial dimension etc.
         /// Used only when `paddingStyle = MPSGraphPaddingStyleExplicit`.
-        /// Default value: `
-        /// @
-        /// [
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0 ]`
+        /// Default value: `@[ @0, @0, @0, @0, @0, @0, @0, @0 ]`
         #[unsafe(method(paddingValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn paddingValues(&self) -> Retained<NSArray<NSNumber>>;

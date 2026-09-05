@@ -57,17 +57,7 @@ impl MPSGraphStencilOpDescriptor {
         ///
         /// Only used when `paddingStyle` is `MPSGraphPaddingStyleExplicitOffset`.
         /// For example zero offset means that the first stencil window will align its top-left corner (in 4 dimensions) to the top-left corner of the input tensor.
-        /// Default value: `
-        /// @
-        /// [
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0 ]`
+        /// Default value: `@[ @0, @0, @0, @0 ]`
         #[unsafe(method(offsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn offsets(&self) -> Retained<MPSShape>;
@@ -84,17 +74,7 @@ impl MPSGraphStencilOpDescriptor {
         /// The property that defines strides for spatial dimensions.
         ///
         /// Must be four numbers, one for each spatial dimension, fastest running index last.
-        /// Default value: `
-        /// @
-        /// [
-        /// @
-        /// 1,
-        /// @
-        /// 1,
-        /// @
-        /// 1,
-        /// @
-        /// 1 ]`
+        /// Default value: `@[ @1, @1, @1, @1 ]`
         #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
         pub unsafe fn strides(&self) -> Retained<MPSShape>;
@@ -111,17 +91,7 @@ impl MPSGraphStencilOpDescriptor {
         /// The property that defines dilation rates for spatial dimensions.
         ///
         /// Must be four numbers, one for each spatial dimension, fastest running index last.
-        /// Default value: `
-        /// @
-        /// [
-        /// @
-        /// 1,
-        /// @
-        /// 1,
-        /// @
-        /// 1,
-        /// @
-        /// 1 ]`
+        /// Default value: `@[ @1, @1, @1, @1 ]`
         #[unsafe(method(dilationRates))]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRates(&self) -> Retained<MPSShape>;
@@ -142,25 +112,7 @@ impl MPSGraphStencilOpDescriptor {
         /// amount before the first spatial dimension (slowest running index of spatial dimensions),
         /// `paddingValues[1]` defines the padding amount after the first spatial dimension etc.
         /// Used only when `paddingStyle = MPSGraphPaddingStyleExplicit`.
-        /// Default value: `
-        /// @
-        /// [
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0,
-        /// @
-        /// 0 ]`
+        /// Default value: `@[ @0, @0, @0, @0, @0, @0, @0, @0 ]`
         #[unsafe(method(explicitPadding))]
         #[unsafe(method_family = none)]
         pub unsafe fn explicitPadding(&self) -> Retained<MPSShape>;

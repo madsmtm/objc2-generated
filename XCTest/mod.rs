@@ -4279,9 +4279,7 @@ impl XCTestExpectation {
 
         /// The expectedFulfillmentCount is the number of times -fulfill must be called on the expectation in order for it
         /// to report complete fulfillment to its waiter. By default, expectations have an expectedFufillmentCount of 1.
-        /// This value must be greater than 0 and is not meaningful if combined with
-        /// @
-        /// inverted.
+        /// This value must be greater than 0 and is not meaningful if combined with@inverted.
         ///
         /// This property is not atomic.
         ///

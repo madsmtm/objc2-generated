@@ -177,9 +177,7 @@ extern_protocol!(
         /// describes the option 'TraySwitch'. It has 2 choices: 'True' and 'False'.
         /// If another panel caused the choice of the option key 'TraySwitch' to be
         /// altered to 'True'then this method will be called with the 'option' parameter
-        /// set to
-        /// "
-        /// TraySwitch" and the 'choice parameter set to @"True".
+        /// set to@"TraySwitch" and the 'choice parameter set to @"True".
         #[unsafe(method(PPDOptionKeyValueDidChange:ppdChoice:))]
         #[unsafe(method_family = none)]
         unsafe fn PPDOptionKeyValueDidChange_ppdChoice(&self, option: &NSString, choice: &NSString);
@@ -363,9 +361,7 @@ extern_protocol!(
         ///
         /// If a panel wishes to switch the value of the option key 'MediaType'
         /// to the choice 'Transparency' then it should invoke this callback
-        /// passing
-        /// "
-        /// MediaType" and @"Transparency" as the 'option' and
+        /// passing@"MediaType" and @"Transparency" as the 'option' and
         /// 'choice' parameters. If that choice is allowed then YES will be
         /// returned otherwise NO.
         ///

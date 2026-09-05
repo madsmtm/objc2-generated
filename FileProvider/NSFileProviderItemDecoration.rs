@@ -56,9 +56,7 @@ extern_protocol!(
     /// </key
     /// >
     /// <string
-    /// >%
-    /// @
-    /// unread comments
+    /// >%@ unread comments
     /// </string
     /// >
     /// <key

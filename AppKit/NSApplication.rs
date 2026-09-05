@@ -1585,9 +1585,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// NSImage displayed in place of NSApplicationIcon. If not specified, use [NSImage imageNamed:
-    /// "
-    /// NSApplicationIcon"]; if not available, generic icon.
+    /// NSImage displayed in place of NSApplicationIcon. If not specified, use [NSImage imageNamed:@"NSApplicationIcon"]; if not available, generic icon.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationicon?language=objc)
     pub static NSAboutPanelOptionApplicationIcon: &'static NSAboutPanelOptionKey;

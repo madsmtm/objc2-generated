@@ -296,15 +296,7 @@ impl CKNotification {
         ///
         /// This property is an array of field names that CloudKit uses to extract the corresponding values from the record that triggers the push notification. The values are strings, numbers, or dates. CloudKit may truncate strings with a length greater than 100 characters when it adds them to a notification's payload.
         ///
-        /// If you use `%
-        /// @
-        /// ` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$
-        /// @
-        /// `, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$
-        /// @
-        /// `, the second item replaces the variable `%2$
-        /// @
-        /// `, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
+        /// If you use `%@` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$@`, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$@`, the second item replaces the variable `%2$@`, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
         ///
         /// This property is not atomic.
         ///
@@ -346,15 +338,7 @@ impl CKNotification {
         ///
         /// This property is an array of field names that CloudKit uses to extract the corresponding values from the record that triggers the push notification. The values are strings, numbers, or dates. CloudKit may truncate strings with a length greater than 100 characters when it adds them to a notification's payload.
         ///
-        /// If you use `%
-        /// @
-        /// ` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$
-        /// @
-        /// `, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$
-        /// @
-        /// `, the second item replaces the variable `%2$
-        /// @
-        /// `, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
+        /// If you use `%@` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$@`, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$@`, the second item replaces the variable `%2$@`, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
         ///
         /// This property is not atomic.
         ///
@@ -395,15 +379,7 @@ impl CKNotification {
         ///
         /// This property is an array of field names that CloudKit uses to extract the corresponding values from the record that triggers the push notification. The values are strings, numbers, or dates. CloudKit may truncate strings with a length greater than 100 characters when it adds them to a notification's payload.
         ///
-        /// If you use `%
-        /// @
-        /// ` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$
-        /// @
-        /// `, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$
-        /// @
-        /// `, the second item replaces the variable `%2$
-        /// @
-        /// `, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
+        /// If you use `%@` for your substitution variables, CloudKit replaces those variables by traversing the array in order. If you use variables of the form `%n$@`, where `n` is an integer, `n` represents the index (starting at 1) of the item in the array to use. So, the first item in the array replaces the variable `%1$@`, the second item replaces the variable `%2$@`, and so on. You can use indexed substitution variables to change the order of items in the resulting string, which might be necessary when you localize your app's content.
         ///
         /// This property is not atomic.
         ///

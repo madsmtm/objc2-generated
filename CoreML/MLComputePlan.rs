@@ -22,16 +22,12 @@ extern_class!(
     /// }
     /// MLModelStructureProgram *program = computePlan.modelStructure.program;
     /// if (!program) {
-    /// [NSException raise:NSInternalInconsistencyException format:
-    /// "
-    /// Unexpected model type."];
+    /// [NSException raise:NSInternalInconsistencyException format:@"Unexpected model type."];
     /// }
     ///
     /// MLModelStructureFunction *mainFunction = program.functions["main"];
     /// if (!mainFunction) {
-    /// [NSException raise:NSInternalInconsistencyException format:
-    /// "
-    /// Missing main function."];
+    /// [NSException raise:NSInternalInconsistencyException format:@"Missing main function."];
     /// }
     ///
     /// NSArray

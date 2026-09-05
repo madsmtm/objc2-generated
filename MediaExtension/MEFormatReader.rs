@@ -876,7 +876,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
-        /// @
+        /// @    
         ///
         ///
         /// Moves the cursor a given number of samples in presentation order.

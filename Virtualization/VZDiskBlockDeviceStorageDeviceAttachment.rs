@@ -19,9 +19,7 @@ extern_class!(
     ///
     /// An example use of this API is:
     /// ```text
-    /// NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:
-    /// "
-    /// /dev/rdisk42"];
+    /// NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:@"/dev/rdisk42"];
     /// if (!fileHandle) {
     /// // Handle errors.
     /// }

@@ -240,9 +240,7 @@ impl NSAlert {
         /// The default value of this property is `NO`, which specifies the absence of a suppression checkbox in the alert. Set the value to `YES` to show a suppression checkbox in the alert.
         /// By default, a suppression checkbox has the title, “Do not show this message again.” In macOS 11.0 and later, if the alert displays multiple buttons that prompt the user to make a choice, the title is “Do not ask again.” To customize it, use the checkbox’s title property, as follows:
         ///
-        /// myAlert.suppressionButton.title =
-        /// "
-        /// Do not show this warning again";
+        /// myAlert.suppressionButton.title =@"Do not show this warning again";
         ///
         /// To create an alert that responds to the selection state of the suppression checkbox, check `myAlert.suppressionButton.state`.
         #[unsafe(method(showsSuppressionButton))]

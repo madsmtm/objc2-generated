@@ -22,9 +22,7 @@ extern_protocol!(
         ///
         /// For example, you could define the description method like this:
         /// - (NSString *) description {
-        /// return [NSString withString:
-        /// "
-        /// Filter View"];
+        /// return [NSString withString:@"Filter View"];
         /// }
         #[unsafe(method(interfaceVersion))]
         #[unsafe(method_family = none)]

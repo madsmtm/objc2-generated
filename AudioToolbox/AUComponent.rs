@@ -980,8 +980,7 @@ extern "C" {
     /// The notification's userInfo dictionary may contain the following keys, depending on
     /// the reason for the invalidation and the platform in which it's running:
     ///
-    /// "
-    /// audioUnit", a NSValue whose pointerValue is the AudioUnit or
+    /// @"audioUnit", a NSValue whose pointerValue is the AudioUnit or
     /// AudioComponentInstance which is wrapping the AUAudioUnit communicating with
     /// the extension process. (This may be null if there is no such component instance.).
     /// For example:
@@ -991,28 +990,18 @@ extern "C" {
     /// addObserverForName:(NSString *)kAudioComponentInstanceInvalidationNotification
     /// object:nil queue:nil usingBlock:^(NSNotification *note) {
     /// AUAudioUnit *auAudioUnit = (AUAudioUnit *)note.object;
-    /// NSValue *val = note.userInfo[
-    /// "
-    /// audioUnit"];
+    /// NSValue *val = note.userInfo[@"audioUnit"];
     /// AudioUnit audioUnit = (AudioUnit)val.pointerValue;
-    /// NSLog(
-    /// "
-    /// Received kAudioComponentInstanceInvalidationNotification: auAudioUnit %
-    /// @
-    /// , audioUnit %p",
+    /// NSLog(@"Received kAudioComponentInstanceInvalidationNotification: auAudioUnit %@, audioUnit %p",
     /// auAudioUnit, audioUnit);
     /// }];
     /// ```
     ///
-    /// "
-    /// Service PID", a NSNumber with the process ID for the service.
-    /// "
-    /// Host PID", a NSNumber with the process ID for the host.
-    /// "
-    /// Executable Path", a NSString with the path for the executable that may be responsible
+    /// @"Service PID", a NSNumber with the process ID for the service.
+    /// @"Host PID", a NSNumber with the process ID for the host.
+    /// @"Executable Path", a NSString with the path for the executable that may be responsible
     /// for the abnormal exit.
-    /// "
-    /// Descriptions" a NSArray of NSValues representing byte encoded
+    /// @"Descriptions" a NSArray of NSValues representing byte encoded
     /// AudioComponentDescriptions that may be responsible for the abnormal exit.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentinstanceinvalidationnotification?language=objc)

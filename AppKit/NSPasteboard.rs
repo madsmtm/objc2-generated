@@ -479,40 +479,28 @@ impl NSPasteboard {
         ///
         /// ```obj-c
         /// [NSPasteboard.generalPasteboard
-        /// detectPatternsForPatterns:[NSSet setWithArray:
-        /// @
-        /// [NSPasteboardDetectionPatternEmailAddress,
+        /// detectPatternsForPatterns:[NSSet setWithArray:@[NSPasteboardDetectionPatternEmailAddress,
         /// NSPasteboardDetectionPatternPostalAddress]]
         /// completionHandler:^(NSSet
         /// <NSPasteboardDetectionPattern
         /// > *matchedPatterns, NSError *error) {
         /// if (error) {
-        /// NSLog(
-        /// "
-        /// Error: %
-        /// "
-        /// , error);
+        /// NSLog(@"Error: %@", error);
         /// return;
         /// }
         /// BOOL matchedEmail = [matchedPatterns containsObject:NSPasteboardDetectionPatternEmailAddress];
         /// BOOL matchedPostal = [matchedPatterns containsObject: NSPasteboardDetectionPatternPostalAddress];
         /// if (matchedEmail) {
-        /// NSLog(
-        /// "
-        /// Email address(es) detected");
+        /// NSLog(@"Email address(es) detected");
         /// }
         /// if (matchedPostal) {
-        /// NSLog(
-        /// "
-        /// Postal address(es) detected");
+        /// NSLog(@"Postal address(es) detected");
         /// }
         /// if (!matchedEmail
         /// &
         /// &
         /// !matchedPostal) {
-        /// NSLog(
-        /// "
-        /// Matched neither email nor postal addresses.");
+        /// NSLog(@"Matched neither email nor postal addresses.");
         /// }
         /// }];
         /// ```
@@ -540,44 +528,28 @@ impl NSPasteboard {
         ///
         /// ```obj-c
         /// [NSPasteboard.generalPasteboard
-        /// detectValuesForPatterns:[NSSet setWithArray:
-        /// @
-        /// [NSPasteboardDetectionPatternProbableWebSearch,
+        /// detectValuesForPatterns:[NSSet setWithArray:@[NSPasteboardDetectionPatternProbableWebSearch,
         /// NSPasteboardDetectionPatternProbableWebURL]]
         /// completionHandler:^(NSDictionary
         /// <NSPasteboardDetectionPattern
         /// , id> *patternValues, NSError *error) {
         /// if (error) {
-        /// NSLog(
-        /// "
-        /// Error: %
-        /// "
-        /// , error);
+        /// NSLog(@"Error: %@", error);
         /// return;
         /// }
         /// NSString *searchString = (NSString*)patternValues[NSPasteboardDetectionPatternProbableWebSearch];
         /// NSString *urlString = (NSString*)patternValues[NSPasteboardDetectionPatternProbableWebURL] ;
         /// if (searchString != nil) {
-        /// NSLog(
-        /// "
-        /// Web search retrieved: %
-        /// "
-        /// , searchString);
+        /// NSLog(@"Web search retrieved: %@", searchString);
         /// }
         /// if (urlString != nil) {
-        /// NSLog(
-        /// "
-        /// Web URL retrieved: %
-        /// "
-        /// , urlString);
+        /// NSLog(@"Web URL retrieved: %@", urlString);
         /// }
         /// if (searchString == nil
         /// &
         /// &
         /// urlString == nil) {
-        /// NSLog(
-        /// "
-        /// No web patterns retrieved.");
+        /// NSLog(@"No web patterns retrieved.");
         /// }
         /// }];
         /// ```
@@ -609,31 +581,19 @@ impl NSPasteboard {
         ///
         /// ```obj-c
         /// [NSPasteboard.generalPasteboard
-        /// detectMetadataForTypes:[NSSet setWithArray:
-        /// @
-        /// [NSPasteboardMetadataTypeContentType]]
+        /// detectMetadataForTypes:[NSSet setWithArray:@[NSPasteboardMetadataTypeContentType]]
         /// completionHandler:^(NSDictionary
         /// <NSPasteboardMetadataType
         /// , id> *metadata, NSError *error) {
         /// if (error) {
-        /// NSLog(
-        /// "
-        /// Error: %
-        /// "
-        /// , error);
+        /// NSLog(@"Error: %@", error);
         /// return;
         /// }
         /// UTType *contentType = (UTType*)metadata[NSPasteboardMetadataTypeContentType];
         /// if (contentType) {
-        /// NSLog(
-        /// "
-        /// Content type is: %
-        /// "
-        /// , contentType.identifier);
+        /// NSLog(@"Content type is: %@", contentType.identifier);
         /// } else {
-        /// NSLog(
-        /// "
-        /// Couldn't get content type");
+        /// NSLog(@"Couldn't get content type");
         /// }
         /// }];
         /// ```

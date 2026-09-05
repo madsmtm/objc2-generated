@@ -31,9 +31,7 @@ extern_class!(
     ///
     /// An example use of this API is:
     /// ```text
-    /// NSURL *url = [[NSURL alloc] initWithString:
-    /// "
-    /// nbd://localhost:10809/myDisk"]
+    /// NSURL *url = [[NSURL alloc] initWithString:@"nbd://localhost:10809/myDisk"]
     /// NSError *error = nil;
     /// VZNetworkBlockDeviceStorageDeviceAttachment *attachment =
     /// [[VZNetworkBlockDeviceStorageDeviceAttachment alloc] initWithURL:url

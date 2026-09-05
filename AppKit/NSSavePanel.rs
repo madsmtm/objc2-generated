@@ -145,12 +145,8 @@ impl NSSavePanel {
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[cfg(target_vendor = "apple")]
-        /// `NSSavePanel`: An array of UTTypes specifying the file types the user can save the file as. Set to `
-        /// @
-        /// []` to specify that any file type can be used. If no extension is given by the user, the first preferred extension from the array will be used as the extension for the save panel. If the user specifies a type not in the array, and `allowsOtherFileTypes` is `YES`, they will be presented with another dialog when prompted to save. The default value is the empty array.
-        /// `NSOpenPanel`: This property determines which files should be enabled in the open panel. Using the deprecated methods to show the open panel (the ones that take a "types:" parameter) will overwrite this value, and should not be used. `allowedContentTypes` can be changed while the panel is running (ie: from an accessory view). This is also known as the "enabled file types". Set to `
-        /// @
-        /// []` to specify that all files should be enabled.
+        /// `NSSavePanel`: An array of UTTypes specifying the file types the user can save the file as. Set to `@[]` to specify that any file type can be used. If no extension is given by the user, the first preferred extension from the array will be used as the extension for the save panel. If the user specifies a type not in the array, and `allowsOtherFileTypes` is `YES`, they will be presented with another dialog when prompted to save. The default value is the empty array.
+        /// `NSOpenPanel`: This property determines which files should be enabled in the open panel. Using the deprecated methods to show the open panel (the ones that take a "types:" parameter) will overwrite this value, and should not be used. `allowedContentTypes` can be changed while the panel is running (ie: from an accessory view). This is also known as the "enabled file types". Set to `@[]` to specify that all files should be enabled.
         #[unsafe(method(allowedContentTypes))]
         #[unsafe(method_family = none)]
         pub fn allowedContentTypes(&self) -> Retained<NSArray<UTType>>;

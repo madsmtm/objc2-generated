@@ -3130,9 +3130,7 @@ pub const kAudioSubTapPropertyDriftCompensationQuality: AudioObjectPropertySelec
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocessclassid?language=objc)
 pub const kAudioProcessClassID: AudioClassID = 0x636c6e74;
 
-/// A pid
-/// \
-/// _t indicating the process ID associated with the process.
+/// A pid\_t indicating the process ID associated with the process.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertypid?language=objc)
 pub const kAudioProcessPropertyPID: AudioObjectPropertySelector = 0x70706964;

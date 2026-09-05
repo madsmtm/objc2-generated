@@ -27,9 +27,7 @@ extern_class!(
     /// `SBObject`):
     ///
     /// ```objc
-    /// iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:
-    /// "
-    /// com.apple.iTunes"];
+    /// iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
     /// iTunesTrack *track = [iTunes currentTrack];
     /// ```
     ///

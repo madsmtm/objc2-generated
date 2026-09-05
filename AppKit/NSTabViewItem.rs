@@ -137,9 +137,7 @@ impl NSTabViewItem {
         /// `-image`based on the classname as the view controller.
         /// An image named "ViewControllerClassName-TabViewItem" will be searched for first, followed by "ViewControllerClassName". It will search first using +[NSImage imageNamed:], then in
         /// `viewController.nibBundle,`and lastly in the bundle containing the view controller's class.
-        /// As defined by: -[NSImage imageNamed:imageName], -[viewController.nibBundle imageForResource:imageName], -[[NSBundle bundleForClass:[viewController class]] imageForResource:imageName]. One pass with imageName as [NSStringFromClass([viewController class]) stringByAppendingString:
-        /// "
-        /// -TabViewItem"], followed by imageName as NSStringFromClass([viewController class]).
+        /// As defined by: -[NSImage imageNamed:imageName], -[viewController.nibBundle imageForResource:imageName], -[[NSBundle bundleForClass:[viewController class]] imageForResource:imageName]. One pass with imageName as [NSStringFromClass([viewController class]) stringByAppendingString:@"-TabViewItem"], followed by imageName as NSStringFromClass([viewController class]).
         #[unsafe(method(viewController))]
         #[unsafe(method_family = none)]
         pub fn viewController(&self, mtm: MainThreadMarker) -> Option<Retained<NSViewController>>;

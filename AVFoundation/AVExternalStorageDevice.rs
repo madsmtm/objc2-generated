@@ -163,8 +163,7 @@ impl AVExternalStorageDeviceDiscoverySession {
 
         // +new (unavailable)
 
-        /// @
-        /// property sharedSession
+        /// @property sharedSession
         ///
         /// Returns the singleton instance of the external storage device discovery session.
         ///

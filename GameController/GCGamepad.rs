@@ -94,11 +94,8 @@ impl GCGamepad {
         /// in the diamond pattern given below:
         ///
         /// Y
-        /// /
-        /// \
-        /// X   B
-        /// \
-        /// /
+        /// /\ X   B
+        /// \ /
         /// A
         #[deprecated]
         #[unsafe(method(buttonA))]

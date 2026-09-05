@@ -54,22 +54,14 @@ extern_class!(
     /// {
     /// VNTrackOpticalFlowRequest* request = [[VNTrackOpticalFlowRequest alloc] init];
     ///
-    /// VNImageRequestHandler* imageRequestHandler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:fromImage options:
-    /// @
-    /// {}];
-    /// if (![imageRequestHandler performRequests:
-    /// @
-    /// [ request ] error:error])
+    /// VNImageRequestHandler* imageRequestHandler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:fromImage options:@{}];
+    /// if (![imageRequestHandler performRequests:@[ request ] error:error])
     /// {
     /// return nil;
     /// }
     ///
-    /// imageRequestHandler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:toImage options:
-    /// @
-    /// {}];
-    /// if (![imageRequestHandler performRequests:
-    /// @
-    /// [ request ] error:error])
+    /// imageRequestHandler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:toImage options:@{}];
+    /// if (![imageRequestHandler performRequests:@[ request ] error:error])
     /// {
     /// return nil;
     /// }

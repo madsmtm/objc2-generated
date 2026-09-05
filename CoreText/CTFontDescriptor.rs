@@ -206,18 +206,8 @@ extern "C" {
     /// An OpenType setting dictionary contains a tuple of a kCTFontOpenTypeFeatureTag key-value pair and a kCTFontOpenTypeFeatureValue key-value pair.
     ///
     /// Starting with OS X 10.10 and iOS 8.0, settings are also accepted (but not returned) in the following simplified forms:
-    /// An OpenType setting can be either an array pair of tag string and value number, or a tag string on its own. For example:
-    /// @
-    /// [
-    /// "
-    /// c2sc", @1 ] or simply @"c2sc". An unspecified value enables the feature and a value of zero disables it.
-    /// An AAT setting can be specified as an array pair of type and selector numbers. For example:
-    /// @
-    /// [
-    /// @
-    /// (kUpperCaseType),
-    /// @
-    /// (kUpperCaseSmallCapsSelector) ].
+    /// An OpenType setting can be either an array pair of tag string and value number, or a tag string on its own. For example:@[ @"c2sc", @1 ] or simply @"c2sc". An unspecified value enables the feature and a value of zero disables it.
+    /// An AAT setting can be specified as an array pair of type and selector numbers. For example:@[ @(kUpperCaseType), @(kUpperCaseSmallCapsSelector) ].
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturesettingsattribute?language=objc)
     pub static kCTFontFeatureSettingsAttribute: &'static CFString;

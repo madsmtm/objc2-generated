@@ -73,14 +73,10 @@ extern_protocol!(
         /// ```
         ///
         /// In this example:
-        /// - The JavaScript code sends a message to your application code with the body
-        /// "
-        /// Fulfill me with 42"
+        /// - The JavaScript code sends a message to your application code with the body@"Fulfill me with 42"
         /// - JavaScript execution is suspended while waiting for the resulting promise to resolve.
         /// - Your message handler is invoked with that message and a block to call with the reply when ready.
-        /// - Your message handler sends the value
-        /// @
-        /// 42 as a reply.
+        /// - Your message handler sends the value@42 as a reply.
         /// - The JavaScript promise is fulfilled with the value 42.
         /// - JavaScript execution continues and the value 42 is returned.
         #[unsafe(method(userContentController:didReceiveScriptMessage:replyHandler:))]

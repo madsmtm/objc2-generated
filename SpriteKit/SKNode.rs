@@ -458,14 +458,10 @@ impl SKNode {
 
         /// Simplified shorthand for enumerateChildNodesWithName that returns an array of the matching nodes.
         /// This allows subscripting of the form:
-        /// NSArray *childrenMatchingName = node[
-        /// "
-        /// name"]
+        /// NSArray *childrenMatchingName = node[@"name"]
         ///
         /// or even complex like:
-        /// NSArray *siblingsBeginningWithA = node[
-        /// "
-        /// ../a*"]
+        /// NSArray *siblingsBeginningWithA = node[@"../a*"]
         ///
         ///
         /// Parameter `name`: An Xpath style path that can include simple regular expressions for matching node names.

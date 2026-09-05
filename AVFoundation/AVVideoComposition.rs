@@ -1718,9 +1718,7 @@ impl AVVideoComposition {
         /// In the course of validation, the receiver will invoke its validationDelegate with reference to any trouble spots in the video composition.
         /// An exception will be raised if the delegate modifies the receiver's array of instructions or the array of layerInstructions of any AVVideoCompositionInstruction contained therein during validation.
         ///
-        /// - Parameter asset: Pass a reference to an AVAsset if you wish to validate the timeRanges of the instructions against the duration of the asset and the trackIDs of the layer instructions against the asset's tracks. Pass nil to skip that validation. Clients should ensure that the keys
-        /// "
-        /// tracks" and @"duration" are already loaded on the AVAsset before validation is attempted.
+        /// - Parameter asset: Pass a reference to an AVAsset if you wish to validate the timeRanges of the instructions against the duration of the asset and the trackIDs of the layer instructions against the asset's tracks. Pass nil to skip that validation. Clients should ensure that the keys@"tracks" and @"duration" are already loaded on the AVAsset before validation is attempted.
         /// - Parameter timeRange: A CMTimeRange. Only those instructions with timeRanges that overlap with the specified timeRange will be validated. To validate all instructions that may be used for playback or other processing, regardless of timeRange, pass CMTimeRangeMake(kCMTimeZero, kCMTimePositiveInfinity).
         /// - Parameter validationDelegate: Indicates an object implementing the AVVideoCompositionValidationHandling protocol to receive information about troublesome portions of a video composition during processing of -isValidForAsset:. May be nil.
         #[deprecated = "Use isValidForTracks:assetDuration:timeRange:validationDelegate: instead"]

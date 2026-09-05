@@ -480,9 +480,7 @@ extern "C" {
     ///
     /// For example, to specify that the encoder should include an average of 30 non-droppable frames for each second of video:
     ///
-    /// [myVideoSettings setObject:
-    /// @
-    /// 30 forKey:AVVideoAverageNonDroppableFrameRateKey];
+    /// [myVideoSettings setObject:@30 forKey:AVVideoAverageNonDroppableFrameRateKey];
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaveragenondroppableframeratekey?language=objc)
     pub static AVVideoAverageNonDroppableFrameRateKey: &'static NSString;
