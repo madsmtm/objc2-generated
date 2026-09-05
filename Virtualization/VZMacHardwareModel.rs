@@ -27,9 +27,9 @@ extern_class!(
     /// The VZMacHardwareModel.dataRepresentation property provides a unique binary representation that can be serialized.
     /// The hardware model then can be recreated from the binary representation with -[VZMacHardwareModel initWithDataRepresentation:].
     ///
-    /// See also: VZMacOSInstaller
+    /// See: VZMacOSInstaller
     ///
-    /// See also: VZMacOSRestoreImage
+    /// See: VZMacOSRestoreImage
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmachardwaremodel?language=objc)
     #[unsafe(super(NSObject))]

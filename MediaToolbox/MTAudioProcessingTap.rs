@@ -332,7 +332,7 @@ unsafe impl RefEncode for MTAudioProcessingTapCallbacks {
 }
 
 impl MTAudioProcessingTap {
-    /// Create a new processing tap.
+    /// Creates a new processing tap.
     ///
     /// This function creates a processing tap.
     /// The processing tap will then be used to process decoded data.
@@ -387,6 +387,70 @@ impl MTAudioProcessingTap {
             "parameter `tap_out` must point to `None` on entry"
         );
         unsafe { MTAudioProcessingTapCreate(allocator, callbacks, flags, tap_out) }
+    }
+
+    /// Creates a new processing tap.
+    ///
+    /// This function creates a processing tap.
+    /// The processing tap will then be used to process decoded data.
+    /// The processing is performed on audio either before or after any effects or other
+    /// processing (varispeed, etc) is applied by the audio queue.
+    ///
+    ///
+    /// Parameter `allocator`: The allocator to use to allocate memory for the new tap. Pass NULL or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// Parameter `callbacks`: Callbacks struct.  MTAudioProcessingTap will make a copy of this struct.
+    ///
+    /// Parameter `flags`: Flags that are used to control aspects of the processing tap.
+    /// Valid flags are:
+    /// - kMTAudioProcessingTapCreationFlag_PreEffects:
+    /// processing is done before any further effects are applied by the audio queue to the audio.
+    /// - kMTAudioProcessingTapCreationFlag_PostEffects:
+    /// processing is done after all processing is done, including that of other taps.
+    ///
+    /// Parameter `preferredFormat`: A CMAudioFormatDescription for the preferred format of audio processed by the tap. The format ID of the AudioStreamBasicDescription must be kAudioFormatLinearPCM. If the AudioStreamBasicDescription specified a channel count greater than 2, an AudioChannelLayout must also be specified.
+    /// Because the actual format of the tap may differ from the specified preferred format in its LPCM numeric type, channel interleaving, and sample size, you should provide a prepare callback with particular attention to the mFormatFlags, mBytesPerPacket, and mBitsPerChannel fields of the AudioStreamBasicDescription. If any of these differs from the format in which you wish to operate, you can set up conversions between the tap's format and your required processing format.
+    ///
+    /// Parameter `tapOut`: The processing tap object.
+    ///
+    ///
+    /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `callbacks` must be a valid pointer.
+    #[doc(alias = "MTAudioProcessingTapCreateWithPreferredFormat")]
+    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
+    #[inline]
+    pub unsafe fn with_preferred_format(
+        allocator: Option<&CFAllocator>,
+        callbacks: NonNull<MTAudioProcessingTapCallbacks>,
+        flags: MTAudioProcessingTapCreationFlags,
+        preferred_format: Option<&CMAudioFormatDescription>,
+        tap_out: &mut Option<CFRetained<MTAudioProcessingTap>>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn MTAudioProcessingTapCreateWithPreferredFormat(
+                allocator: Option<&CFAllocator>,
+                callbacks: NonNull<MTAudioProcessingTapCallbacks>,
+                flags: MTAudioProcessingTapCreationFlags,
+                preferred_format: Option<&CMAudioFormatDescription>,
+                tap_out: &mut Option<CFRetained<MTAudioProcessingTap>>,
+            ) -> OSStatus;
+        }
+        assert!(
+            tap_out.is_none(),
+            "parameter `tap_out` must point to `None` on entry"
+        );
+        unsafe {
+            MTAudioProcessingTapCreateWithPreferredFormat(
+                allocator,
+                callbacks,
+                flags,
+                preferred_format,
+                tap_out,
+            )
+        }
     }
 
     /// Used by a processing tap to retrieve a custom storage pointer.

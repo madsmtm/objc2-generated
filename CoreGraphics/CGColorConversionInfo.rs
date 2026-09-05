@@ -110,9 +110,9 @@ impl CGColorConversionInfo {
     #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
     #[inline]
     pub unsafe fn new_for_tone_mapping(
-        from: &CGColorSpace,
+        source: &CGColorSpace,
         source_headroom: c_float,
-        to: &CGColorSpace,
+        target: &CGColorSpace,
         target_headroom: c_float,
         method: CGToneMapping,
         options: Option<&CFDictionary>,
@@ -120,9 +120,9 @@ impl CGColorConversionInfo {
     ) -> Option<CFRetained<CGColorConversionInfo>> {
         extern "C-unwind" {
             fn CGColorConversionInfoCreateForToneMapping(
-                from: &CGColorSpace,
+                source: &CGColorSpace,
                 source_headroom: c_float,
-                to: &CGColorSpace,
+                target: &CGColorSpace,
                 target_headroom: c_float,
                 method: CGToneMapping,
                 options: Option<&CFDictionary>,
@@ -137,9 +137,9 @@ impl CGColorConversionInfo {
         };
         let ret = unsafe {
             CGColorConversionInfoCreateForToneMapping(
-                from,
+                source,
                 source_headroom,
-                to,
+                target,
                 target_headroom,
                 method,
                 options,

@@ -5,6 +5,7 @@ use core::ptr::NonNull;
 #[cfg(feature = "dispatch2")]
 use dispatch2::*;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
 
@@ -112,6 +113,7 @@ extern_protocol!(
         /// `nil`to
         /// drain the pending input states from the queue.
         ///
+        /// ```text
         /// physicalInput.inputStateQueueDepth = 20;
         /// physicalInput.inputStateAvailableHandler = ^(__kindof id
         /// <GCDevicePhysicalInput
@@ -147,6 +149,7 @@ extern_protocol!(
         /// }
         /// }
         /// };
+        /// ```
         ///
         /// # Safety
         ///
@@ -170,8 +173,10 @@ extern_protocol!(
             >,
         );
 
-        /// The maximum number of input states to buffer.  If your application does not
-        /// drain the pending input states in the queue before this limit is reached, older
+        /// The maximum number of input states to buffer.
+        ///
+        /// If your application does not call `-nextInputState` to drain the pending
+        /// input states in the queue before this limit is reached, older
         /// input states will be discarded - resulting in your application "missing" input
         /// state changes.
         ///
@@ -201,5 +206,22 @@ extern_protocol!(
                 AnyObject, /* GCDevicePhysicalInputState+ GCDevicePhysicalInputStateDiff */
             >,
         >;
+
+        /// Returns the buffered input state that best aligns with the provided spatial
+        /// accessory anchor timestamp.
+        ///
+        ///
+        /// Parameter `timestamp`: The timestamp obtained from `ar_accessory_anchor_get_timestamp` for a spatial
+        /// accessory anchor.
+        ///
+        ///
+        /// Returns: The buffered accessory input state that most closely aligns with the provided
+        /// spatial accessory anchor timestamp.
+        #[unsafe(method(inputStateForSpatialAccessoryAnchorTimestamp:))]
+        #[unsafe(method_family = none)]
+        unsafe fn inputStateForSpatialAccessoryAnchorTimestamp(
+            &self,
+            timestamp: NSTimeInterval,
+        ) -> Option<Retained<ProtocolObject<dyn GCDevicePhysicalInputState>>>;
     }
 );

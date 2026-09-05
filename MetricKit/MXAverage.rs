@@ -13,6 +13,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxaverage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use AverageStatistics instead."]
     pub struct MXAverage<UnitType: ?Sized = AnyObject>;
 );
 
@@ -48,6 +49,7 @@ extern_conformance!(
 impl<UnitType: Message + AsRef<NSUnit>> MXAverage<UnitType> {
     extern_methods!(
         /// An NSMeasurement that contains the average measurement.
+        #[deprecated = "Use AverageStatistics instead."]
         #[unsafe(method(averageMeasurement))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageMeasurement(&self) -> Retained<NSMeasurement<UnitType>>;
@@ -55,6 +57,7 @@ impl<UnitType: Message + AsRef<NSUnit>> MXAverage<UnitType> {
         /// An NSInteger representation of the number of samples in the distribution used to formulate the average.
         ///
         /// This value is negative if an unknown number of samples was used to compute the average.
+        #[deprecated = "Use AverageStatistics instead."]
         #[unsafe(method(sampleCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleCount(&self) -> NSInteger;
@@ -62,6 +65,7 @@ impl<UnitType: Message + AsRef<NSUnit>> MXAverage<UnitType> {
         /// An double representation of the standard deviation of the distribution.
         ///
         /// This value is negative an unknown number of samples was used to compute the standard deviation.
+        #[deprecated = "Use AverageStatistics instead."]
         #[unsafe(method(standardDeviation))]
         #[unsafe(method_family = none)]
         pub unsafe fn standardDeviation(&self) -> c_double;

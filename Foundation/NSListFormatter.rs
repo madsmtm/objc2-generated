@@ -7,7 +7,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslistformatter?language=objc)
+    /// An object that provides locale-correct formatting of a list of items using the appropriate separator and conjunction.
+    ///
+    /// The list formatter isn't aware of the context where the formatted string will be used and doesn't provide capitalization customization of the list items. The formatted result may not be grammatically correct if placed in a sentence, and it should only be used in a standalone manner.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslistformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -38,6 +42,9 @@ extern_conformance!(
 impl NSListFormatter {
     extern_methods!(
         #[cfg(feature = "NSLocale")]
+        /// Specifies the locale to format the items.
+        ///
+        /// Defaults to `autoupdatingCurrentLocale`. Also resets to `autoupdatingCurrentLocale` on assignment of `nil`.
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub fn locale(&self) -> Retained<NSLocale>;
@@ -50,6 +57,9 @@ impl NSListFormatter {
         #[unsafe(method_family = none)]
         pub fn setLocale(&self, locale: Option<&NSLocale>);
 
+        /// Specifies how each object should be formatted.
+        ///
+        /// If not set, the object is formatted using its instance method in the following order: `descriptionWithLocale:`, `localizedDescription`, and `description`.
         #[unsafe(method(itemFormatter))]
         #[unsafe(method_family = none)]
         pub fn itemFormatter(&self) -> Option<Retained<NSFormatter>>;
@@ -62,11 +72,21 @@ impl NSListFormatter {
         pub fn setItemFormatter(&self, item_formatter: Option<&NSFormatter>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns a string constructed from an array of strings using the list format specific to the current locale.
+        ///
+        /// It is recommended to join only disjointed strings that are ready to display in a bullet-point list. Sentences, phrases with punctuations, and appositions may not work well when joined together.
         #[unsafe(method(localizedStringByJoiningStrings:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringByJoiningStrings(strings: &NSArray<NSString>) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns a string constructed from an array using the locale-aware format.
+        ///
+        /// Each item is formatted using the `itemFormatter`. If the `itemFormatter` does not apply to a particular item,
+        /// the method will fall back to the item's `descriptionWithLocale:` or `localizedDescription` if implemented, or `description` if not.
+        ///
+        /// Returns `nil` if `items` is `nil` or if the list formatter cannot generate a string representation for all items in the array.
+        ///
         /// # Safety
         ///
         /// `items` generic should be of the correct type.
@@ -75,6 +95,14 @@ impl NSListFormatter {
         pub unsafe fn stringFromItems(&self, items: &NSArray) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Creates a formatted string for an array of items.
+        ///
+        /// The list formatter uses `itemFormatter` to format each item in the array. If `itemFormatter` doesn't apply to a particular item, the list formatter falls back to the item's `description(withLocale:)` or `localizedDescription` if implemented. If those methods aren't implemented, the formatter uses `description` instead.
+        ///
+        /// - Parameters:
+        /// - obj: An array of objects to format as a list.
+        /// - Returns: A formatted string representing the list of objects in an array. Returns `nil` if the formatter can't generate a description for all objects in the array, or if `obj` is `nil`.
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.

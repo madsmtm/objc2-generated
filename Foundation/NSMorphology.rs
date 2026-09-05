@@ -6,18 +6,24 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalgender?language=objc)
+/// A representation of grammatical gender, used for inflecting strings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalgender?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalGender(pub NSInteger);
 impl NSGrammaticalGender {
+    /// The grammatical gender is not set.
     #[doc(alias = "NSGrammaticalGenderNotSet")]
     pub const NotSet: Self = Self(0);
+    /// The feminine grammatical gender.
     #[doc(alias = "NSGrammaticalGenderFeminine")]
     pub const Feminine: Self = Self(1);
+    /// The masculine grammatical gender.
     #[doc(alias = "NSGrammaticalGenderMasculine")]
     pub const Masculine: Self = Self(2);
+    /// The neuter grammatical gender.
     #[doc(alias = "NSGrammaticalGenderNeuter")]
     pub const Neuter: Self = Self(3);
 }
@@ -30,40 +36,57 @@ unsafe impl RefEncode for NSGrammaticalGender {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech?language=objc)
+/// A representation of grammatical parts of speech, used for inflecting strings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalPartOfSpeech(pub NSInteger);
 impl NSGrammaticalPartOfSpeech {
+    /// The part of speech is not set.
     #[doc(alias = "NSGrammaticalPartOfSpeechNotSet")]
     pub const NotSet: Self = Self(0);
+    /// A word that introduces a noun.
     #[doc(alias = "NSGrammaticalPartOfSpeechDeterminer")]
     pub const Determiner: Self = Self(1);
+    /// A word that substitutes for a noun.
     #[doc(alias = "NSGrammaticalPartOfSpeechPronoun")]
     pub const Pronoun: Self = Self(2);
+    /// A letter of an alphabet.
     #[doc(alias = "NSGrammaticalPartOfSpeechLetter")]
     pub const Letter: Self = Self(3);
+    /// A word that modifies a verb, an adjective, or another adverb.
     #[doc(alias = "NSGrammaticalPartOfSpeechAdverb")]
     pub const Adverb: Self = Self(4);
+    /// A function word associated with another word or phrase to express a grammatical or semantic relation.
     #[doc(alias = "NSGrammaticalPartOfSpeechParticle")]
     pub const Particle: Self = Self(5);
+    /// A word that modifies a noun.
     #[doc(alias = "NSGrammaticalPartOfSpeechAdjective")]
     pub const Adjective: Self = Self(6);
+    /// A word governing, and usually preceding, a noun or pronoun to express a relation.
     #[doc(alias = "NSGrammaticalPartOfSpeechAdposition")]
     pub const Adposition: Self = Self(7);
+    /// A word that describes an action.
     #[doc(alias = "NSGrammaticalPartOfSpeechVerb")]
     pub const Verb: Self = Self(8);
+    /// A word that represents a person, place, or thing.
     #[doc(alias = "NSGrammaticalPartOfSpeechNoun")]
     pub const Noun: Self = Self(9);
+    /// A word that connects words, phrases, or clauses.
     #[doc(alias = "NSGrammaticalPartOfSpeechConjunction")]
     pub const Conjunction: Self = Self(10);
+    /// A word that represents a number.
     #[doc(alias = "NSGrammaticalPartOfSpeechNumeral")]
     pub const Numeral: Self = Self(11);
+    /// A word that expresses a strong emotion.
     #[doc(alias = "NSGrammaticalPartOfSpeechInterjection")]
     pub const Interjection: Self = Self(12);
+    /// A word governing, and usually preceding, a noun or pronoun to express a relation to another word.
     #[doc(alias = "NSGrammaticalPartOfSpeechPreposition")]
     pub const Preposition: Self = Self(13);
+    /// An abbreviation.
     #[doc(alias = "NSGrammaticalPartOfSpeechAbbreviation")]
     pub const Abbreviation: Self = Self(14);
 }
@@ -76,24 +99,33 @@ unsafe impl RefEncode for NSGrammaticalPartOfSpeech {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber?language=objc)
+/// A representation of grammatical number, used for inflecting strings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalNumber(pub NSInteger);
 impl NSGrammaticalNumber {
+    /// The grammatical number is not set.
     #[doc(alias = "NSGrammaticalNumberNotSet")]
     pub const NotSet: Self = Self(0);
+    /// The singular form.
     #[doc(alias = "NSGrammaticalNumberSingular")]
     pub const Singular: Self = Self(1);
+    /// The zero form.
     #[doc(alias = "NSGrammaticalNumberZero")]
     pub const Zero: Self = Self(2);
+    /// The plural form.
     #[doc(alias = "NSGrammaticalNumberPlural")]
     pub const Plural: Self = Self(3);
+    /// The dual plural form.
     #[doc(alias = "NSGrammaticalNumberPluralTwo")]
     pub const PluralTwo: Self = Self(4);
+    /// The paucal (few) plural form.
     #[doc(alias = "NSGrammaticalNumberPluralFew")]
     pub const PluralFew: Self = Self(5);
+    /// The plural form for many.
     #[doc(alias = "NSGrammaticalNumberPluralMany")]
     pub const PluralMany: Self = Self(6);
 }
@@ -245,7 +277,9 @@ unsafe impl RefEncode for NSGrammaticalDefiniteness {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphology?language=objc)
+    /// A description of the grammatical properties of a string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphology?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMorphology;
@@ -277,6 +311,7 @@ extern_conformance!(
 
 impl NSMorphology {
     extern_methods!(
+        /// The grammatical gender used for inflecting strings.
         #[unsafe(method(grammaticalGender))]
         #[unsafe(method_family = none)]
         pub fn grammaticalGender(&self) -> NSGrammaticalGender;
@@ -286,6 +321,7 @@ impl NSMorphology {
         #[unsafe(method_family = none)]
         pub fn setGrammaticalGender(&self, grammatical_gender: NSGrammaticalGender);
 
+        /// The grammatical part of speech used for inflecting strings.
         #[unsafe(method(partOfSpeech))]
         #[unsafe(method_family = none)]
         pub fn partOfSpeech(&self) -> NSGrammaticalPartOfSpeech;
@@ -295,6 +331,7 @@ impl NSMorphology {
         #[unsafe(method_family = none)]
         pub fn setPartOfSpeech(&self, part_of_speech: NSGrammaticalPartOfSpeech);
 
+        /// The grammatical number used for inflecting strings.
         #[unsafe(method(number))]
         #[unsafe(method_family = none)]
         pub fn number(&self) -> NSGrammaticalNumber;
@@ -438,6 +475,7 @@ impl NSMorphologyPronoun {
 impl NSMorphology {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns the custom pronoun behavior for the specified language.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(customPronounForLanguage:))]
         #[unsafe(method_family = none)]
@@ -447,6 +485,7 @@ impl NSMorphology {
         ) -> Option<Retained<NSMorphologyCustomPronoun>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
+        /// Sets the custom pronoun behavior for the specified language.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(setCustomPronoun:forLanguage:error:_))]
         #[unsafe(method_family = none)]
@@ -459,7 +498,9 @@ impl NSMorphology {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologycustompronoun?language=objc)
+    /// A custom pronoun behavior for use in a specific language.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologycustompronoun?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSTermOfAddress instead"]
@@ -493,18 +534,21 @@ extern_conformance!(
 impl NSMorphologyCustomPronoun {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value that indicates whether custom pronouns are supported for the specified language.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(isSupportedForLanguage:))]
         #[unsafe(method_family = none)]
         pub fn isSupportedForLanguage(language: &NSString) -> bool;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns the list of pronoun form keys required for the specified language.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(requiredKeysForLanguage:))]
         #[unsafe(method_family = none)]
         pub fn requiredKeysForLanguage(language: &NSString) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The subject pronoun form.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(subjectForm))]
         #[unsafe(method_family = none)]
@@ -520,6 +564,7 @@ impl NSMorphologyCustomPronoun {
         pub fn setSubjectForm(&self, subject_form: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The object pronoun form.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(objectForm))]
         #[unsafe(method_family = none)]
@@ -535,6 +580,7 @@ impl NSMorphologyCustomPronoun {
         pub fn setObjectForm(&self, object_form: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The possessive pronoun form.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(possessiveForm))]
         #[unsafe(method_family = none)]
@@ -550,6 +596,7 @@ impl NSMorphologyCustomPronoun {
         pub fn setPossessiveForm(&self, possessive_form: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The possessive adjective form.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(possessiveAdjectiveForm))]
         #[unsafe(method_family = none)]
@@ -565,6 +612,7 @@ impl NSMorphologyCustomPronoun {
         pub fn setPossessiveAdjectiveForm(&self, possessive_adjective_form: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The reflexive pronoun form.
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(reflexiveForm))]
         #[unsafe(method_family = none)]
@@ -604,10 +652,12 @@ impl DefaultRetained for NSMorphologyCustomPronoun {
 /// NSMorphologyUserSettings.
 impl NSMorphology {
     extern_methods!(
+        /// A Boolean value that indicates whether the morphology has no specific settings.
         #[unsafe(method(isUnspecified))]
         #[unsafe(method_family = none)]
         pub fn isUnspecified(&self) -> bool;
 
+        /// The current user's morphology.
         #[unsafe(method(userMorphology))]
         #[unsafe(method_family = none)]
         pub fn userMorphology() -> Retained<NSMorphology>;

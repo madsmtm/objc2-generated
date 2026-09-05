@@ -228,11 +228,6 @@ impl NSFont {
         #[unsafe(method_family = none)]
         pub fn labelFontSize() -> CGFloat;
 
-        #[cfg(all(feature = "NSCell", feature = "objc2-core-foundation"))]
-        #[unsafe(method(systemFontSizeForControlSize:))]
-        #[unsafe(method_family = none)]
-        pub fn systemFontSizeForControlSize(control_size: NSControlSize) -> CGFloat;
-
         /// ******* Core font attribute ********
         #[unsafe(method(fontName))]
         #[unsafe(method_family = none)]
@@ -344,9 +339,7 @@ impl NSFont {
         #[unsafe(method(advancementForCGGlyph:))]
         #[unsafe(method_family = none)]
         pub fn advancementForCGGlyph(&self, glyph: CGGlyph) -> NSSize;
-    );
 
-    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         /// # Safety
@@ -361,7 +354,9 @@ impl NSFont {
             glyphs: NonNull<CGGlyph>,
             glyph_count: NSUInteger,
         );
+    );
 
+    extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         /// # Safety
@@ -598,5 +593,15 @@ impl NSFont {
             style: &NSFontTextStyle,
             options: &NSDictionary<NSFontTextStyleOptionKey, AnyObject>,
         ) -> Retained<NSFont>;
+    );
+}
+
+/// NSFont_AppKitAdditions.
+impl NSFont {
+    extern_methods!(
+        #[cfg(all(feature = "NSCell", feature = "objc2-core-foundation"))]
+        #[unsafe(method(systemFontSizeForControlSize:))]
+        #[unsafe(method_family = none)]
+        pub fn systemFontSizeForControlSize(control_size: NSControlSize) -> CGFloat;
     );
 }

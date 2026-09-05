@@ -15,30 +15,60 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTensorDataType(pub NSInteger);
 impl MTLTensorDataType {
+    /// An invalid data type.
     #[doc(alias = "MTLTensorDataTypeNone")]
     pub const None: Self = Self(0);
+    /// A single-precision floating point data type.
     #[doc(alias = "MTLTensorDataTypeFloat32")]
     pub const Float32: Self = Self(3);
+    /// A half-precision floating point data type.
     #[doc(alias = "MTLTensorDataTypeFloat16")]
     pub const Float16: Self = Self(16);
+    /// A 16-bit floating point data type with 8 exponent bits, 7 mantissa bits and 1 sign bit.
     #[doc(alias = "MTLTensorDataTypeBFloat16")]
     pub const BFloat16: Self = Self(121);
+    /// An 8-bit signed integer data type.
     #[doc(alias = "MTLTensorDataTypeInt8")]
     pub const Int8: Self = Self(45);
+    /// An 8-bit unsigned integer data type.
     #[doc(alias = "MTLTensorDataTypeUInt8")]
     pub const UInt8: Self = Self(49);
+    /// A 16-bit signed integer data type.
     #[doc(alias = "MTLTensorDataTypeInt16")]
     pub const Int16: Self = Self(37);
+    /// A 16-bit unsigned integer data type.
     #[doc(alias = "MTLTensorDataTypeUInt16")]
     pub const UInt16: Self = Self(41);
+    /// A 32-bit integer data type.
     #[doc(alias = "MTLTensorDataTypeInt32")]
     pub const Int32: Self = Self(29);
+    /// A 32-bit unsigned integer data type.
     #[doc(alias = "MTLTensorDataTypeUInt32")]
     pub const UInt32: Self = Self(33);
+    /// A 4-bit signed integer format data type.
     #[doc(alias = "MTLTensorDataTypeInt4")]
     pub const Int4: Self = Self(143);
+    /// A 4-bit unsigned integer format data type.
     #[doc(alias = "MTLTensorDataTypeUInt4")]
     pub const UInt4: Self = Self(144);
+    /// An 8-bit floating point format data type with 8 exponent bits.
+    #[doc(alias = "MTLTensorDataTypeFloat8UE8M0")]
+    pub const Float8UE8M0: Self = Self(145);
+    /// A 2-bit unsigned integer format data type.
+    #[doc(alias = "MTLTensorDataTypeUInt2")]
+    pub const UInt2: Self = Self(149);
+    /// A 2-bit signed integer format data type.
+    #[doc(alias = "MTLTensorDataTypeInt2")]
+    pub const Int2: Self = Self(150);
+    /// An 8-bit floating point format data type with 5 exponent bits, 2 mantissa bits and 1 sign bit.
+    #[doc(alias = "MTLTensorDataTypeFloat8E5M2")]
+    pub const Float8E5M2: Self = Self(141);
+    /// An 8-bit floating point format data type with 4 exponent bits, 3 mantissa bits and 1 sign bit.
+    #[doc(alias = "MTLTensorDataTypeFloat8E4M3")]
+    pub const Float8E4M3: Self = Self(142);
+    /// A 4-bit floating point format data type with 2 exponent bits, 1 mantissa bit and 1 sign bit.
+    #[doc(alias = "MTLTensorDataTypeFloat4E2M1")]
+    pub const Float4E2M1: Self = Self(148);
 }
 
 unsafe impl Encode for MTLTensorDataType {
@@ -61,6 +91,14 @@ extern_class!(
 );
 
 extern_conformance!(
+    unsafe impl NSCopying for MTLTensorExtents {}
+);
+
+unsafe impl CopyingHelper for MTLTensorExtents {
+    type Result = Self;
+}
+
+extern_conformance!(
     unsafe impl NSObjectProtocol for MTLTensorExtents {}
 );
 
@@ -68,11 +106,11 @@ impl MTLTensorExtents {
     extern_methods!(
         /// Creates a new tensor extents with the rank and extent values you provide.
         ///
-        /// Zero rank extents represent scalars. `values` can only be `nil`if `rank` is 0.
+        /// Zero rank extents represent scalars. `values` can only be `nil` if `rank` is 0.
         /// - Parameters:
         /// - rank: the number of dimensions.
         /// - values: an array of length `rank` that specifies the size of each dimension. The first dimension is the innermost dimension.
-        /// - Returns: Tensor extents with the rank and extent values you provide. Returns `nil` if `rank` exceeds 0 and `values` is nil or if `rank` exceeds ``MTL_TENSOR_MAX_RANK``.
+        /// - Returns: Tensor extents with the rank and extent values you provide. Returns `nil` if `rank` exceeds 0 and `values` is `nil` or if `rank` exceeds ``MTL_TENSOR_MAX_RANK``.
         ///
         /// # Safety
         ///
@@ -194,6 +232,196 @@ unsafe impl RefEncode for MTLTensorUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The possible tensor plane types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorplanetype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct MTLTensorPlaneType(pub NSInteger);
+impl MTLTensorPlaneType {
+    /// The data plane. This is the main plane of a tensor. Tensors always have a data plane.
+    #[doc(alias = "MTLTensorPlaneTypeData")]
+    pub const Data: Self = Self(0);
+    /// The scale auxiliary plane. Contains scale factors for elements in the data plane.
+    #[doc(alias = "MTLTensorPlaneTypeScales")]
+    pub const Scales: Self = Self(1);
+}
+
+unsafe impl Encode for MTLTensorPlaneType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLTensorPlaneType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// A configuration for an auxiliary plane in a multi-plane tensor.
+    ///
+    /// Use this descriptor to configure an auxiliary plane's data type and block
+    /// factors before attaching it to a ``MTLTensorDescriptor``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorauxiliaryplanedescriptor?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct MTLTensorAuxiliaryPlaneDescriptor;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for MTLTensorAuxiliaryPlaneDescriptor {}
+);
+
+unsafe impl CopyingHelper for MTLTensorAuxiliaryPlaneDescriptor {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLTensorAuxiliaryPlaneDescriptor {}
+);
+
+impl MTLTensorAuxiliaryPlaneDescriptor {
+    extern_methods!(
+        /// The data format of all elements in the plane.
+        ///
+        /// The default value of this property is ``MTLTensorDataType/MTLTensorDataTypeFloat8UE8M0``.
+        #[unsafe(method(dataType))]
+        #[unsafe(method_family = none)]
+        pub fn dataType(&self) -> MTLTensorDataType;
+
+        /// Setter for [`dataType`][Self::dataType].
+        #[unsafe(method(setDataType:))]
+        #[unsafe(method_family = none)]
+        pub fn setDataType(&self, data_type: MTLTensorDataType);
+
+        /// A ``MTLTensorExtents`` instance that describes how many data plane elements correspond to one element in this plane.
+        ///
+        /// The rank of the block factors must match the rank of the tensor's
+        /// dimensions.
+        ///
+        /// The first element of the block factors must be 32. All remaining elements
+        /// must be 1.
+        ///
+        /// The default value is a 1D block size of width 32.
+        #[unsafe(method(blockFactors))]
+        #[unsafe(method_family = none)]
+        pub fn blockFactors(&self) -> Retained<MTLTensorExtents>;
+
+        /// Setter for [`blockFactors`][Self::blockFactors].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setBlockFactors:))]
+        #[unsafe(method_family = none)]
+        pub fn setBlockFactors(&self, block_factors: &MTLTensorExtents);
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl MTLTensorAuxiliaryPlaneDescriptor {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub fn new() -> Retained<Self>;
+    );
+}
+
+impl DefaultRetained for MTLTensorAuxiliaryPlaneDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
+}
+
+extern_class!(
+    /// A map of auxiliary plane descriptors keyed by plane type.
+    ///
+    /// Use this collection to associate ``MTLTensorPlaneType`` values with
+    /// ``MTLTensorAuxiliaryPlaneDescriptor`` configurations, then attach
+    /// it to a ``MTLTensorDescriptor`` to create a multi-plane tensor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorauxiliaryplanedescriptormap?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct MTLTensorAuxiliaryPlaneDescriptorMap;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for MTLTensorAuxiliaryPlaneDescriptorMap {}
+);
+
+unsafe impl CopyingHelper for MTLTensorAuxiliaryPlaneDescriptorMap {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLTensorAuxiliaryPlaneDescriptorMap {}
+);
+
+impl MTLTensorAuxiliaryPlaneDescriptorMap {
+    extern_methods!(
+        /// Sets the auxiliary plane descriptor for the given plane type.
+        ///
+        /// ``MTLTensorPlaneType/MTLTensorPlaneTypeData`` is not a valid plane type for this method.
+        /// The data plane is always present, and you configure it directly on ``MTLTensorDescriptor``.
+        ///
+        /// ``MTLTensorPlaneType/MTLTensorPlaneTypeScales`` auxiliary planes only support
+        /// ``MTLTensorDataType/MTLTensorDataTypeFloat8UE8M0`` as a data type.
+        ///
+        /// - Parameters:
+        /// - descriptor: The descriptor configuring the auxiliary plane.
+        /// - plane: The plane type to associate the descriptor with.
+        #[unsafe(method(setDescriptor:forPlane:))]
+        #[unsafe(method_family = none)]
+        pub fn setDescriptor_forPlane(
+            &self,
+            descriptor: &MTLTensorAuxiliaryPlaneDescriptor,
+            plane: MTLTensorPlaneType,
+        );
+
+        /// Returns the auxiliary plane descriptor for the given plane type, or `nil` if
+        /// none has been set.
+        ///
+        /// - Parameters:
+        /// - plane: The plane type to look up.
+        /// - Returns: The descriptor for the given plane type, or `nil`.
+        #[unsafe(method(descriptorForPlane:))]
+        #[unsafe(method_family = none)]
+        pub fn descriptorForPlane(
+            &self,
+            plane: MTLTensorPlaneType,
+        ) -> Option<Retained<MTLTensorAuxiliaryPlaneDescriptor>>;
+
+        /// Empties the map of all its elements.
+        #[unsafe(method(reset))]
+        #[unsafe(method_family = none)]
+        pub fn reset(&self);
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl MTLTensorAuxiliaryPlaneDescriptorMap {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub fn new() -> Retained<Self>;
+    );
+}
+
+impl DefaultRetained for MTLTensorAuxiliaryPlaneDescriptorMap {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
+}
+
 extern_class!(
     /// A configuration type for creating new tensor instances.
     ///
@@ -219,6 +447,10 @@ impl MTLTensorDescriptor {
     extern_methods!(
         /// An array of sizes, in elements, one for each dimension of the tensors you create with this descriptor.
         ///
+        /// You are responsible for ensuring `dimensions` meets the following requirements:
+        /// - `dimensions[i]` must be greater than 0.
+        /// - If ``dataType`` is a format ``MTLTensorDataType``, `dimensions[0]` must be a multiple of 32 elements.
+        ///
         /// The default value of this property is a rank one extents with size one.
         #[unsafe(method(dimensions))]
         #[unsafe(method_family = none)]
@@ -236,7 +468,7 @@ impl MTLTensorDescriptor {
         /// You are responsible for ensuring `strides` meets the following requirements:
         /// - The first element of `strides` is one.
         /// - If ``usage`` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``, the second element of `strides` is aligned to 64 bytes, and for any `i` larger than one, `strides[i]` is equal to `strides[i-1] * dimensions[i-1]`.
-        /// - If ``dataType`` is a sub-byte ``MTLTensorDataType``, for any `i` greater than or equal to 1, `strides[i]` is aligned to 128 bytes. This is not a requirement for non-sub-byte data types, but following this convention improves performance.
+        /// - If ``dataType`` is a format ``MTLTensorDataType``, for any `i` greater than or equal to 1, `strides[i]` is aligned to 128 bytes. This is not a requirement for non-format data types, but following this convention improves performance.
         ///
         /// Only set this property when creating tensors from a buffer.
         #[unsafe(method(strides))]
@@ -250,7 +482,7 @@ impl MTLTensorDescriptor {
         #[unsafe(method_family = none)]
         pub fn setStrides(&self, strides: Option<&MTLTensorExtents>);
 
-        /// A data format for the tensors you create with this descriptor.
+        /// The data format of all elements in the data plane.
         ///
         /// The default value of this property is ``MTLTensorDataType/MTLTensorDataTypeFloat32``.
         #[unsafe(method(dataType))]
@@ -275,6 +507,29 @@ impl MTLTensorDescriptor {
         #[unsafe(method(setUsage:))]
         #[unsafe(method_family = none)]
         pub fn setUsage(&self, usage: MTLTensorUsage);
+
+        /// The auxiliary plane configurations for this tensor.
+        ///
+        /// Set this property with a populated ``MTLTensorAuxiliaryPlaneDescriptorMap``
+        /// to create a multi-plane tensor. When `nil`, the tensor has only a data plane.
+        ///
+        /// Multi-plane tensors do not support ``MTLTensorUsage/MTLTensorUsageMachineLearning``.
+        /// Use ``MTLTensorUsage/MTLTensorUsageCompute`` or ``MTLTensorUsage/MTLTensorUsageRender``.
+        ///
+        /// Multi-plane tensors do not support data types larger than one byte as the data plane type
+        ///
+        /// The default value is `nil`.
+        #[unsafe(method(auxiliaryPlanes))]
+        #[unsafe(method_family = none)]
+        pub fn auxiliaryPlanes(&self) -> Option<Retained<MTLTensorAuxiliaryPlaneDescriptorMap>>;
+
+        /// Setter for [`auxiliaryPlanes`][Self::auxiliaryPlanes].
+        #[unsafe(method(setAuxiliaryPlanes:))]
+        #[unsafe(method_family = none)]
+        pub fn setAuxiliaryPlanes(
+            &self,
+            auxiliary_planes: Option<&MTLTensorAuxiliaryPlaneDescriptorMap>,
+        );
 
         #[cfg(feature = "MTLResource")]
         /// A packed set of the `storageMode`, `cpuCacheMode` and `hazardTrackingMode` properties.
@@ -352,6 +607,155 @@ impl DefaultRetained for MTLTensorDescriptor {
     }
 }
 
+extern_class!(
+    /// Per-plane buffer backing storage for multi-plane tensor creation.
+    ///
+    /// Use this type to associate each plane of a tensor with a
+    /// ``MTLBuffer`` and byte offset, then pass it to the tensor
+    /// creation API on ``MTLDevice``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorbufferattachments?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct MTLTensorBufferAttachments;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for MTLTensorBufferAttachments {}
+);
+
+unsafe impl CopyingHelper for MTLTensorBufferAttachments {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLTensorBufferAttachments {}
+);
+
+impl MTLTensorBufferAttachments {
+    extern_methods!(
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
+        /// Sets the buffer and byte offset to use as backing storage for the given
+        /// plane.
+        ///
+        /// The buffer must not be `nil`. The offset must be aligned to 128 bytes if
+        /// the plane uses a format ``MTLTensorDataType``, otherwise it must be aligned
+        /// to the size of the plane's data type in bytes.
+        ///
+        /// - Parameters:
+        /// - buffer: The buffer to back the plane.
+        /// - offset: The byte offset into the buffer.
+        /// - plane: The plane type to associate the buffer with.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
+        /// - `buffer` contents should be of the correct type.
+        /// - `offset` might not be bounds-checked.
+        #[unsafe(method(setBuffer:offset:forPlane:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setBuffer_offset_forPlane(
+            &self,
+            buffer: &ProtocolObject<dyn MTLBuffer>,
+            offset: NSUInteger,
+            plane: MTLTensorPlaneType,
+        );
+
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
+        /// Returns the buffer backing the given plane, or `nil` if none has been set.
+        ///
+        /// - Parameters:
+        /// - plane: The plane type to look up.
+        /// - Returns: The buffer for the given plane, or `nil`.
+        #[unsafe(method(bufferForPlane:))]
+        #[unsafe(method_family = none)]
+        pub fn bufferForPlane(
+            &self,
+            plane: MTLTensorPlaneType,
+        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+
+        /// Returns the byte offset into the buffer for the given plane.
+        ///
+        /// - Parameters:
+        /// - plane: The plane type to look up.
+        /// - Returns: The byte offset for the given plane.
+        #[unsafe(method(offsetForPlane:))]
+        #[unsafe(method_family = none)]
+        pub fn offsetForPlane(&self, plane: MTLTensorPlaneType) -> NSUInteger;
+
+        /// Empties the container of all its elements.
+        #[unsafe(method(reset))]
+        #[unsafe(method_family = none)]
+        pub fn reset(&self);
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl MTLTensorBufferAttachments {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub fn new() -> Retained<Self>;
+    );
+}
+
+impl DefaultRetained for MTLTensorBufferAttachments {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
+}
+
+extern_protocol!(
+    /// A type that represents the configuration and storage of an auxiliary plane in a multi-plane tensor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorauxiliaryplane?language=objc)
+    pub unsafe trait MTLTensorAuxiliaryPlane: NSObjectProtocol {
+        /// The data format of all elements in the plane.
+        #[unsafe(method(dataType))]
+        #[unsafe(method_family = none)]
+        fn dataType(&self) -> MTLTensorDataType;
+
+        /// Describes how many data plane elements correspond to one element in this plane.
+        #[unsafe(method(blockFactors))]
+        #[unsafe(method_family = none)]
+        fn blockFactors(&self) -> Retained<MTLTensorExtents>;
+
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLBuffer",
+            feature = "MTLResource"
+        ))]
+        /// The buffer that provides the underlying storage for this plane, or `nil` if no buffer was provided at initialization.
+        #[unsafe(method(buffer))]
+        #[unsafe(method_family = none)]
+        fn buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+
+        /// Byte offset into `buffer` where this plane's data begins, or 0 if no buffer was provided at initialization.
+        #[unsafe(method(bufferOffset))]
+        #[unsafe(method_family = none)]
+        fn bufferOffset(&self) -> NSUInteger;
+
+        /// The type of information this plane stores.
+        #[unsafe(method(planeType))]
+        #[unsafe(method_family = none)]
+        fn planeType(&self) -> MTLTensorPlaneType;
+    }
+);
+
 extern_protocol!(
     /// A resource representing a multi-dimensional array that you can use with machine learning workloads.
     ///
@@ -365,7 +769,7 @@ extern_protocol!(
         fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLBuffer")]
-        /// A buffer instance this tensor shares its storage with or nil if this tensor does not wrap an underlying buffer.
+        /// A buffer instance this tensor shares its storage with or `nil` if this tensor does not wrap an underlying buffer.
         #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
         fn buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -375,19 +779,43 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn bufferOffset(&self) -> NSUInteger;
 
-        /// An array of strides, in elements, one for each dimension of this tensor.
+        /// An array of strides, in elements, one for each dimension of this tensor, if applicable.
         ///
-        /// This property only applies if this tensor shares its storage with a buffer, otherwise it's nil.
+        /// You are responsible for ensuring `strides` meets the following
+        /// requirements:
+        /// - The first element of `strides` must be 1.
+        /// - If ``usage`` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``,
+        /// the second element of `strides` must be aligned to 64 bytes, and for any
+        /// `i` larger than 1, `strides[i]` must equal
+        /// `strides[i-1] * dimensions[i-1]`.
+        /// - If ``dataType`` is a format ``MTLTensorDataType``, for any `i`
+        /// greater than or equal to 1, `strides[i]` must be aligned to 128 bytes.
+        /// This is not a requirement for non-format data types, but following this
+        /// convention improves performance.
+        ///
+        /// This property is non-nil only for tensors created from a buffer.
         #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
         fn strides(&self) -> Option<Retained<MTLTensorExtents>>;
 
         /// An array of sizes, in elements, one for each dimension of this tensor.
+        ///
+        /// You are responsible for ensuring `dimensions` meets the following
+        /// requirements:
+        /// - `dimensions[i]` must be greater than 0.
+        /// - If ``dataType`` is a format ``MTLTensorDataType``,
+        /// `dimensions[0]` must be a multiple of 32 elements.
+        /// - If the tensor has auxiliary planes, each dimension must be evenly
+        /// divisible by its corresponding block factor.
+        /// - If ``dataType`` is a format ``MTLTensorDataType``, or the tensor has
+        /// auxiliary planes, the tensor must have rank 1 or higher.
+        ///
+        /// The default value of this property is a rank one extents with size one.
         #[unsafe(method(dimensions))]
         #[unsafe(method_family = none)]
         fn dimensions(&self) -> Retained<MTLTensorExtents>;
 
-        /// An underlying data format of this tensor.
+        /// The underlying data format of the data plane.
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         fn dataType(&self) -> MTLTensorDataType;
@@ -397,15 +825,37 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn usage(&self) -> MTLTensorUsage;
 
-        /// Replaces the contents of a slice of this tensor with data you provide.
+        /// The auxiliary planes of this tensor.
+        ///
+        /// Returns an array of ``MTLTensorAuxiliaryPlane`` objects describing each
+        /// auxiliary plane configured on this tensor. For single-plane tensors, this
+        /// array is empty.
+        #[unsafe(method(auxiliaryPlanes))]
+        #[unsafe(method_family = none)]
+        fn auxiliaryPlanes(&self)
+            -> Retained<NSArray<ProtocolObject<dyn MTLTensorAuxiliaryPlane>>>;
+
+        /// Replaces a slice of the data plane plane of this tensor with data from a pointer you
+        /// provide.
+        ///
+        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared`` for CPU access via this method.
+        /// Strides must be monotonically non-decreasing: for any `i > 0`, `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        ///
+        /// The first dimension of `sliceOrigin` and `sliceDimensions` must be
+        /// byte aligned.
         ///
         /// - Parameters:
-        /// - sliceOrigin: An array of offsets, in elements, to the first element of the slice that this method writes data to.
-        /// - sliceDimensions: An array of sizes, in elements, of the slice this method writes data to.
-        /// - bytes: A pointer to bytes of data that this method copies into the slice you specify with `sliceOrigin` and `sliceDimensions`.
-        /// - strides: An array of strides, in elements, that describes the layout of the data in `bytes`. You are responsible for ensuring `strides` meets the following requirements:
-        /// - Elements of `strides`are in monotonically non-decreasing order.
-        /// - For any `i` larger than zero, `strides[i]` is greater than or equal to `strides[i-1] * dimensions[i-1]`.
+        /// - sliceOrigin: An array of per-dimension offsets that together locate the first element
+        /// to write to in the tensor. Each element in this array corresponds to the dimension at the
+        /// same index in `sliceDimensions`. Each offset value represents the number of elements from
+        /// the start of that dimension.
+        /// - sliceDimensions: An array of per-dimension sizes that together define the extent of the
+        /// slice to write to in the tensor. Each element in this array corresponds to the dimension
+        /// at the same index in `sliceOrigin`. Each size value represents the number of elements to
+        /// include along that dimension, starting from the corresponding offset in `sliceOrigin`.
+        /// - bytes: A pointer to bytes of data to copy into the slice.
+        /// - strides: An array of strides, in elements, that describes the layout
+        /// of the data in `bytes`.
         ///
         /// # Safety
         ///
@@ -420,15 +870,28 @@ extern_protocol!(
             strides: &MTLTensorExtents,
         );
 
-        /// Copies the data corresponding to a slice of this tensor into a pointer you provide.
+        /// Copies data from a slice of the data plane of this tensor into a pointer you
+        /// provide.
+        ///
+        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared`` for CPU access via this method.
+        /// Strides must be monotonically non-decreasing: for any `i > 0`, `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        ///
+        /// The first dimension of `sliceOrigin` and `sliceDimensions` must be
+        /// byte aligned.
         ///
         /// - Parameters:
-        /// - bytes: A pointer to bytes of data that this method copies into the slice you specify with `sliceOrigin` and `sliceDimensions`.
-        /// - strides: An array of strides, in elements, that describes the layout of the data in `bytes`. You are responsible for ensuring `strides` meets the following requirements:
-        /// - Elements of `strides`are in monotonically non-decreasing order.
-        /// - For any `i` larger than zero, `strides[i]` is greater than or equal to `strides[i-1] * dimensions[i-1]`.
-        /// - sliceOrigin: An array of offsets, in elements, to the first element of the slice that this method reads data from.
-        /// - sliceDimensions: An array of sizes, in elements, of the slice this method reads data from.
+        /// - bytes: A pointer to bytes of data that this method copies the slice
+        /// into.
+        /// - strides: An array of strides, in elements, that describes the layout
+        /// of the data in `bytes`.
+        /// - sliceOrigin: An array of per-dimension offsets that together locate the first element
+        /// to copy in the tensor. Each element in this array corresponds to the dimension at the
+        /// same index in `sliceDimensions`. Each offset value represents the number of elements from
+        /// the start of that dimension.
+        /// - sliceDimensions: An array of per-dimension sizes that together define the extent of the
+        /// slice to copy from the tensor. Each element in this array corresponds to the dimension
+        /// at the same index in `sliceOrigin`. Each size value represents the number of elements to
+        /// include along that dimension, starting from the corresponding offset in `sliceOrigin`.
         ///
         /// # Safety
         ///
@@ -441,6 +904,89 @@ extern_protocol!(
             strides: &MTLTensorExtents,
             slice_origin: &MTLTensorExtents,
             slice_dimensions: &MTLTensorExtents,
+        );
+
+        /// Copies data from a slice of a plane of this tensor into a pointer you
+        /// provide.
+        ///
+        /// When reading from auxiliary planes, specify `sliceOrigin` and
+        /// `sliceDimensions` in plane coordinates by applying the auxiliary plane's
+        /// block factors.
+        ///
+        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared`` for CPU access via this method.
+        /// Strides must be monotonically non-decreasing: for any `i > 0`, `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        ///
+        /// The first dimension of `sliceOrigin` and `sliceDimensions` must be
+        /// byte aligned.
+        ///
+        /// - Parameters:
+        /// - bytes: A pointer to bytes of data that this method copies the slice
+        /// into.
+        /// - strides: An array of strides, in elements, that describes the layout
+        /// of the data in `bytes`.
+        /// - sliceOrigin: An array of per-dimension offsets that together locate the first element
+        /// to copy in the tensor. Each element in this array corresponds to the dimension at the
+        /// same index in `sliceDimensions`. Each offset value represents the number of elements from
+        /// the start of that dimension.
+        /// - sliceDimensions: An array of per-dimension sizes that together define the extent of the
+        /// slice to copy from the tensor. Each element in this array corresponds to the dimension
+        /// at the same index in `sliceOrigin`. Each size value represents the number of elements to
+        /// include along that dimension, starting from the corresponding offset in `sliceOrigin`.
+        /// - plane: The plane the method reads data from.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
+        #[unsafe(method(getBytes:strides:fromSliceOrigin:sliceDimensions:plane:))]
+        #[unsafe(method_family = none)]
+        unsafe fn getBytes_strides_fromSliceOrigin_sliceDimensions_plane(
+            &self,
+            bytes: NonNull<c_void>,
+            strides: &MTLTensorExtents,
+            slice_origin: &MTLTensorExtents,
+            slice_dimensions: &MTLTensorExtents,
+            plane: MTLTensorPlaneType,
+        );
+
+        /// Replaces a slice of a plane of this tensor with data from a pointer you
+        /// provide.
+        ///
+        /// When writing to auxiliary planes, specify `sliceOrigin` and
+        /// `sliceDimensions` in plane coordinates by applying the auxiliary plane's
+        /// block factors.
+        ///
+        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared`` for CPU access via this method.
+        /// Strides must be monotonically non-decreasing: for any `i > 0`, `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        ///
+        /// The first dimension of `sliceOrigin` and `sliceDimensions` must be
+        /// byte aligned.
+        ///
+        /// - Parameters:
+        /// - sliceOrigin: An array of per-dimension offsets that together locate the first element
+        /// to write to in the tensor. Each element in this array corresponds to the dimension at the
+        /// same index in `sliceDimensions`. Each offset value represents the number of elements from
+        /// the start of that dimension.
+        /// - sliceDimensions: An array of per-dimension sizes that together define the extent of the
+        /// slice to write to in the tensor. Each element in this array corresponds to the dimension
+        /// at the same index in `sliceOrigin`. Each size value represents the number of elements to
+        /// include along that dimension, starting from the corresponding offset in `sliceOrigin`.
+        /// - plane: The plane the method writes data to.
+        /// - bytes: A pointer to bytes of data to copy into the slice.
+        /// - strides: An array of strides, in elements, that describes the layout
+        /// of the data in `bytes`.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
+        #[unsafe(method(replaceSliceOrigin:sliceDimensions:plane:withBytes:strides:))]
+        #[unsafe(method_family = none)]
+        unsafe fn replaceSliceOrigin_sliceDimensions_plane_withBytes_strides(
+            &self,
+            slice_origin: &MTLTensorExtents,
+            slice_dimensions: &MTLTensorExtents,
+            plane: MTLTensorPlaneType,
+            bytes: NonNull<c_void>,
+            strides: &MTLTensorExtents,
         );
     }
 );

@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-ui-kit")]
 use objc2_ui_kit::*;
@@ -121,6 +123,47 @@ impl CPNavigationAlert {
             duration: NSTimeInterval,
         ) -> Retained<Self>;
 
+        #[cfg(all(feature = "CPAlertAction", feature = "objc2-ui-kit"))]
+        /// Initialize a
+        /// `CPNavigationAlert`with a title, image, an array of actions, and duration.
+        ///
+        ///
+        /// Parameter `titleVariants`: An array of titles. The system will select a title that fits in the available space. The variant strings should be provided as localized, displayable content.
+        ///
+        ///
+        /// Parameter `subtitleVariants`: An array of subtitles. The system will select a subtitle that fits in the available space. The variant strings should be provided as localized, displayable content.
+        ///
+        ///
+        /// Parameter `avatarImage`: An optional
+        /// `UIImage`to display in this navigation alert. Animated images are not supported. It will be displayed in the top leading corner.
+        ///
+        ///
+        /// Parameter `alertImage`: An optional
+        /// `UIImage`to display in this navigation alert. Animated images are not supported. It will be displayed above the action buttons. Note that this image may be hidden by the system if the available screen space is too small.
+        ///
+        ///
+        /// Parameter `actions`: An array of
+        /// `CPAlertAction`objects. The number of actions will be clamped to
+        /// `maximumActionsCount.`
+        ///
+        /// Parameter `duration`: The duration for which this alert should be visible. Specify 0 for an alert
+        /// that displays indefinitely.
+        ///
+        ///
+        /// Returns: an initialized
+        /// `CPNavigationAlert.`
+        #[unsafe(method(initWithTitleVariants:subtitleVariants:avatarImage:alertImage:actions:duration:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTitleVariants_subtitleVariants_avatarImage_alertImage_actions_duration(
+            this: Allocated<Self>,
+            title_variants: &NSArray<NSString>,
+            subtitle_variants: &NSArray<NSString>,
+            avatar_image: Option<&UIImage>,
+            alert_image: Option<&UIImage>,
+            actions: &NSArray<CPAlertAction>,
+            duration: NSTimeInterval,
+        ) -> Retained<Self>;
+
         /// The navigation alert may be updated with new title and subtitle variants, either
         /// after it has already been displayed on screen, or before its initial presentation on screen.
         ///
@@ -136,6 +179,48 @@ impl CPNavigationAlert {
             &self,
             new_title_variants: &NSArray<NSString>,
             new_subtitle_variants: &NSArray<NSString>,
+        );
+
+        #[cfg(all(feature = "CPAlertAction", feature = "objc2-ui-kit"))]
+        /// Update the navigation alert with new title variants, subtitle variants, image, actions, and duration.
+        ///
+        /// Updating an alert that has already been dismissed has no effect.
+        ///
+        ///
+        /// Parameter `newTitleVariants`: An updated array of title variants.
+        ///
+        /// Parameter `newSubtitleVariants`: An updated array of subtitle variants.
+        ///
+        /// Parameter `avatarImage`: An optional updated
+        /// `UIImage`to display.
+        ///
+        /// Parameter `alertImage`: An optional updated
+        /// `UIImage`to display. Note that this image may be hidden by the system if the available screen space is too small.
+        ///
+        /// Parameter `actions`: An updated array of
+        /// `CPAlertAction`objects. The number of actions will be clamped to
+        /// `maximumActionsCount.`
+        /// Parameter `duration`: The updated duration for which this alert should be visible. Specify -1 to keep duration unaltered. Specify 0 for an alert that displays indefinitely.
+        ///
+        /// When providing an image, your app should provide a
+        /// `UIImage`that is display-ready. If necessary for the image, provide
+        /// light and dark styles by using an asset from your asset catalog, prepared with light and dark styles
+        /// or by using
+        /// `UIImageAsset`to combine two
+        /// `UIImage`instances into a single image with
+        /// both styles.
+        ///
+        /// UIImageAsset is used to combine multiple UIImages with different trait collections into a single UIImage.
+        #[unsafe(method(updateTitleVariants:subtitleVariants:avatarImage:alertImage:actions:duration:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateTitleVariants_subtitleVariants_avatarImage_alertImage_actions_duration(
+            &self,
+            new_title_variants: &NSArray<NSString>,
+            new_subtitle_variants: &NSArray<NSString>,
+            avatar_image: Option<&UIImage>,
+            alert_image: Option<&UIImage>,
+            actions: &NSArray<CPAlertAction>,
+            duration: NSTimeInterval,
         );
 
         #[unsafe(method(titleVariants))]
@@ -156,6 +241,16 @@ impl CPNavigationAlert {
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
+        #[cfg(feature = "objc2-ui-kit")]
+        #[unsafe(method(avatarImage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn avatarImage(&self) -> Option<Retained<UIImage>>;
+
+        #[cfg(feature = "objc2-ui-kit")]
+        #[unsafe(method(alertImage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn alertImage(&self) -> Option<Retained<UIImage>>;
+
         #[cfg(feature = "CPAlertAction")]
         #[unsafe(method(primaryAction))]
         #[unsafe(method_family = none)]
@@ -169,6 +264,37 @@ impl CPNavigationAlert {
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
+
+        #[cfg(feature = "CPAlertAction")]
+        /// The array of actions associated with this navigation alert.
+        ///
+        /// If the alert was created with the older
+        /// `primaryAction`/
+        /// `secondaryAction`initializer,
+        /// this property returns those actions as an array for backward compatibility.
+        #[unsafe(method(actions))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn actions(&self) -> Retained<NSArray<CPAlertAction>>;
+
+        /// The maximum number of actions that a
+        /// `CPNavigationAlert`can display.
+        #[unsafe(method(maximumActionsCount))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumActionsCount(mtm: MainThreadMarker) -> NSInteger;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The maximum image size for the alert image that a
+        /// `CPNavigationAlert`can display.
+        #[unsafe(method(maximumAlertImageSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumAlertImageSize(mtm: MainThreadMarker) -> CGSize;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The maximum image size for the avatar image that a
+        /// `CPNavigationAlert`can display.
+        #[unsafe(method(maximumAvatarImageSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumAvatarImageSize(mtm: MainThreadMarker) -> CGSize;
     );
 }
 

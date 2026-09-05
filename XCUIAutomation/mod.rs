@@ -1998,6 +1998,11 @@ impl XCUIDevice {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Provides access to VoiceOver for UI testing.
+        #[unsafe(method(voiceOverService))]
+        #[unsafe(method_family = none)]
+        pub fn voiceOverService(&self) -> Retained<XCUIVoiceOverService>;
+
         /// The location currently being simulated by the device, if any.
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
@@ -2309,6 +2314,153 @@ impl XCUIScreenshot {
         #[unsafe(method_family = none)]
         pub fn PNGRepresentation(&self) -> Retained<NSData>;
     );
+}
+
+extern_class!(
+    /// The speech output that VoiceOver produces when focusing an element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuivoiceoveroutput?language=objc)
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct XCUIVoiceOverOutput;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for XCUIVoiceOverOutput {}
+);
+
+impl XCUIVoiceOverOutput {
+    extern_methods!(
+        /// What VoiceOver spoke for this element, e.g.@"Add Favorites, button".
+        #[unsafe(method(utterance))]
+        #[unsafe(method_family = none)]
+        pub fn utterance(&self) -> Retained<NSString>;
+    );
+}
+
+extern_class!(
+    /// Provides programmatic control of VoiceOver for UI testing.
+    ///
+    /// Access this service through the
+    /// `voiceOverService`property on
+    /// `XCUIDevice.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuivoiceoverservice?language=objc)
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct XCUIVoiceOverService;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for XCUIVoiceOverService {}
+);
+
+impl XCUIVoiceOverService {
+    extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        /// Provides debugging information about the service.
+        #[unsafe(method(debugDescription))]
+        #[unsafe(method_family = none)]
+        pub fn debugDescription(&self) -> Retained<NSString>;
+
+        /// Enable VoiceOver.
+        #[unsafe(method(enableAndReturnError:_))]
+        #[unsafe(method_family = none)]
+        pub fn enableAndReturnError(&self) -> Result<(), Retained<NSError>>;
+
+        /// Disable VoiceOver.
+        #[unsafe(method(disableAndReturnError:_))]
+        #[unsafe(method_family = none)]
+        pub fn disableAndReturnError(&self) -> Result<(), Retained<NSError>>;
+
+        /// Whether VoiceOver is currently enabled.
+        #[unsafe(method(isEnabled))]
+        #[unsafe(method_family = none)]
+        pub fn isEnabled(&self) -> bool;
+
+        /// Move VoiceOver to the next element and return its speech.
+        #[unsafe(method(moveForwardAndReturnError:_))]
+        #[unsafe(method_family = none)]
+        pub fn moveForwardAndReturnError(
+            &self,
+        ) -> Result<Retained<XCUIVoiceOverOutput>, Retained<NSError>>;
+
+        /// Move VoiceOver to the previous element and return its speech.
+        #[unsafe(method(moveBackwardAndReturnError:_))]
+        #[unsafe(method_family = none)]
+        pub fn moveBackwardAndReturnError(
+            &self,
+        ) -> Result<Retained<XCUIVoiceOverOutput>, Retained<NSError>>;
+
+        /// Return the speech for the currently focused element.
+        #[unsafe(method(currentSpeechAndReturnError:_))]
+        #[unsafe(method_family = none)]
+        pub fn currentSpeechAndReturnError(
+            &self,
+        ) -> Result<Retained<XCUIVoiceOverOutput>, Retained<NSError>>;
+
+        /// Move VoiceOver into the current container and return its speech.
+        #[unsafe(method(moveInAndReturnError:_))]
+        #[unsafe(method_family = none)]
+        pub fn moveInAndReturnError(
+            &self,
+        ) -> Result<Retained<XCUIVoiceOverOutput>, Retained<NSError>>;
+
+        /// Move VoiceOver out of the current container and return its speech.
+        #[unsafe(method(moveOutAndReturnError:_))]
+        #[unsafe(method_family = none)]
+        pub fn moveOutAndReturnError(
+            &self,
+        ) -> Result<Retained<XCUIVoiceOverOutput>, Retained<NSError>>;
+    );
+}
+
+extern "C" {
+    /// Error domain for XCUIVoiceOverService errors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuivoiceoverserviceerrordomain?language=objc)
+    pub static XCUIVoiceOverServiceErrorDomain: &'static NSErrorDomain;
+}
+
+/// Error codes for XCUIVoiceOverService operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuivoiceoverserviceerror?language=objc)
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct XCUIVoiceOverServiceError(pub NSInteger);
+impl XCUIVoiceOverServiceError {
+    /// VoiceOver daemon did not start within the timeout.
+    #[doc(alias = "XCUIVoiceOverServiceErrorFailedToStart")]
+    pub const FailedToStart: Self = Self(1);
+    /// A navigation or speech method was called without first calling
+    /// `enable().`
+    #[doc(alias = "XCUIVoiceOverServiceErrorNotRunning")]
+    pub const NotRunning: Self = Self(2);
+    /// VoiceOver did not produce any speech within the timeout.
+    #[doc(alias = "XCUIVoiceOverServiceErrorNoSpeech")]
+    pub const NoSpeech: Self = Self(3);
+    /// VoiceOver daemon did not stop within the timeout after
+    /// `disable().`
+    #[doc(alias = "XCUIVoiceOverServiceErrorFailedToStop")]
+    pub const FailedToStop: Self = Self(4);
+}
+
+unsafe impl Encode for XCUIVoiceOverServiceError {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for XCUIVoiceOverServiceError {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern_class!(

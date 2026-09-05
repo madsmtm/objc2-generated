@@ -525,6 +525,9 @@ mod __NSPrinter;
 #[cfg(feature = "NSProgressIndicator")]
 #[path = "NSProgressIndicator.rs"]
 mod __NSProgressIndicator;
+#[cfg(feature = "NSRefreshController")]
+#[path = "NSRefreshController.rs"]
+mod __NSRefreshController;
 #[cfg(feature = "NSResponder")]
 #[path = "NSResponder.rs"]
 mod __NSResponder;
@@ -651,6 +654,9 @@ mod __NSStatusBarButton;
 #[cfg(feature = "NSStatusItem")]
 #[path = "NSStatusItem.rs"]
 mod __NSStatusItem;
+#[cfg(feature = "NSStatusItemExpandedInterfaceSession")]
+#[path = "NSStatusItemExpandedInterfaceSession.rs"]
+mod __NSStatusItemExpandedInterfaceSession;
 #[cfg(feature = "NSStepper")]
 #[path = "NSStepper.rs"]
 mod __NSStepper;
@@ -774,6 +780,9 @@ mod __NSTextRange;
 #[cfg(feature = "NSTextSelection")]
 #[path = "NSTextSelection.rs"]
 mod __NSTextSelection;
+#[cfg(feature = "NSTextSelectionManager")]
+#[path = "NSTextSelectionManager.rs"]
+mod __NSTextSelectionManager;
 #[cfg(feature = "NSTextSelectionNavigation")]
 #[path = "NSTextSelectionNavigation.rs"]
 mod __NSTextSelectionNavigation;
@@ -792,6 +801,9 @@ mod __NSTextView;
 #[cfg(feature = "NSTextViewportLayoutController")]
 #[path = "NSTextViewportLayoutController.rs"]
 mod __NSTextViewportLayoutController;
+#[cfg(feature = "NSTextViewportRenderingSurface")]
+#[path = "NSTextViewportRenderingSurface.rs"]
+mod __NSTextViewportRenderingSurface;
 #[cfg(feature = "NSTintConfiguration")]
 #[path = "NSTintConfiguration.rs"]
 mod __NSTintConfiguration;
@@ -867,6 +879,15 @@ mod __NSView;
 #[cfg(feature = "NSViewController")]
 #[path = "NSViewController.rs"]
 mod __NSViewController;
+#[cfg(feature = "NSViewCornerConfiguration")]
+#[path = "NSViewCornerConfiguration.rs"]
+mod __NSViewCornerConfiguration;
+#[cfg(feature = "NSViewCornerRadii")]
+#[path = "NSViewCornerRadii.rs"]
+mod __NSViewCornerRadii;
+#[cfg(feature = "NSViewCornerRadius")]
+#[path = "NSViewCornerRadius.rs"]
+mod __NSViewCornerRadius;
 #[cfg(feature = "NSViewLayoutRegion")]
 #[path = "NSViewLayoutRegion.rs"]
 mod __NSViewLayoutRegion;
@@ -2433,6 +2454,8 @@ pub use self::__NSAttributedString::NSOfficeOpenXMLTextDocumentType;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSOpenDocumentTextDocumentType;
 #[cfg(feature = "NSAttributedString")]
+pub use self::__NSAttributedString::NSPaperMarginDocumentAttribute;
+#[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSPaperSizeDocumentAttribute;
 #[cfg(feature = "NSAttributedString")]
 pub use self::__NSAttributedString::NSParagraphStyleAttributeName;
@@ -3165,6 +3188,8 @@ pub use self::__NSComboButton::NSComboButtonStyle;
 pub use self::__NSControl::NSControl;
 #[cfg(feature = "NSControl")]
 pub use self::__NSControl::NSControlBorderShape;
+#[cfg(feature = "NSControl")]
+pub use self::__NSControl::NSControlEvents;
 #[cfg(feature = "NSControl")]
 pub use self::__NSControl::NSControlTextDidBeginEditingNotification;
 #[cfg(feature = "NSControl")]
@@ -5058,6 +5083,8 @@ pub use self::__NSMenu::NSMenuSelectionMode;
 pub use self::__NSMenu::NSMenuWillSendActionNotification;
 #[cfg(feature = "NSMenuItem")]
 pub use self::__NSMenuItem::NSMenuItem;
+#[cfg(feature = "NSMenuItem")]
+pub use self::__NSMenuItem::NSMenuItemImageVisibility;
 #[cfg(all(feature = "NSMenuItem", feature = "NSUserInterfaceItemIdentification"))]
 pub use self::__NSMenuItem::NSMenuItemImportFromDeviceIdentifier;
 #[cfg(feature = "NSMenuItemBadge")]
@@ -5747,6 +5774,8 @@ pub use self::__NSProgressIndicator::NSProgressIndicatorSpinningStyle;
 pub use self::__NSProgressIndicator::NSProgressIndicatorStyle;
 #[cfg(feature = "NSProgressIndicator")]
 pub use self::__NSProgressIndicator::NSProgressIndicatorThickness;
+#[cfg(feature = "NSRefreshController")]
+pub use self::__NSRefreshController::NSRefreshController;
 #[cfg(feature = "NSResponder")]
 pub use self::__NSResponder::NSResponder;
 #[cfg(feature = "NSResponder")]
@@ -5822,6 +5851,8 @@ pub use self::__NSSavePanel::NSSavePanel;
 pub use self::__NSScreen::NSScreen;
 #[cfg(feature = "NSScreen")]
 pub use self::__NSScreen::NSScreenColorSpaceDidChangeNotification;
+#[cfg(feature = "NSScreen")]
+pub use self::__NSScreen::NSScreenTouchCapabilities;
 #[cfg(feature = "NSScrollEdgeEffect")]
 pub use self::__NSScrollEdgeEffect::NSScrollEdgeEffectStyle;
 #[cfg(feature = "NSScrollView")]
@@ -5980,6 +6011,8 @@ pub use self::__NSSegmentedControl::NSSegmentSwitchTracking;
     feature = "NSView"
 ))]
 pub use self::__NSSegmentedControl::NSSegmentedControl;
+#[cfg(feature = "NSSegmentedControl")]
+pub use self::__NSSegmentedControl::NSSegmentedControlRole;
 #[cfg(feature = "NSShadow")]
 pub use self::__NSShadow::NSShadow;
 #[cfg(feature = "NSSharingCollaborationModeRestriction")]
@@ -6381,6 +6414,10 @@ pub use self::__NSStatusItem::NSStatusItem;
 pub use self::__NSStatusItem::NSStatusItemAutosaveName;
 #[cfg(feature = "NSStatusItem")]
 pub use self::__NSStatusItem::NSStatusItemBehavior;
+#[cfg(feature = "NSStatusItem")]
+pub use self::__NSStatusItem::NSStatusItemExpandedInterfaceDelegate;
+#[cfg(feature = "NSStatusItemExpandedInterfaceSession")]
+pub use self::__NSStatusItemExpandedInterfaceSession::NSStatusItemExpandedInterfaceSession;
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -6420,8 +6457,6 @@ pub use self::__NSStringDrawing::NSAttributedStringNSStringDrawingDeprecated;
 pub use self::__NSStringDrawing::NSStringDrawing;
 #[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringDrawingContext;
-#[cfg(feature = "NSStringDrawing")]
-pub use self::__NSStringDrawing::NSStringDrawingDeprecated;
 #[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringDrawingOptions;
 #[cfg(feature = "NSStringDrawing")]
@@ -6903,6 +6938,12 @@ pub use self::__NSTextSelection::NSTextSelection;
 pub use self::__NSTextSelection::NSTextSelectionAffinity;
 #[cfg(feature = "NSTextSelection")]
 pub use self::__NSTextSelection::NSTextSelectionGranularity;
+#[cfg(feature = "NSTextSelectionManager")]
+pub use self::__NSTextSelectionManager::NSTextSelectionManager;
+#[cfg(feature = "NSTextSelectionManager")]
+pub use self::__NSTextSelectionManager::NSTextSelectionManagerDelegate;
+#[cfg(feature = "NSTextSelectionManager")]
+pub use self::__NSTextSelectionManager::NSTextSelectionMode;
 #[cfg(feature = "NSTextSelectionNavigation")]
 pub use self::__NSTextSelectionNavigation::NSTextSelectionDataSource;
 #[cfg(feature = "NSTextSelectionNavigation")]
@@ -6965,6 +7006,8 @@ pub use self::__NSTextView::NSPasteboardTypeFindPanelSearchOptionKey;
 pub use self::__NSTextView::NSSelectionAffinity;
 #[cfg(feature = "NSTextView")]
 pub use self::__NSTextView::NSSelectionGranularity;
+#[cfg(feature = "NSTextView")]
+pub use self::__NSTextView::NSTextAttachmentViewProviderReusePolicy;
 #[cfg(all(
     feature = "NSResponder",
     feature = "NSText",
@@ -7000,6 +7043,10 @@ pub use self::__NSTextView::NSTouchBarItemIdentifierTextStyle;
 pub use self::__NSTextViewportLayoutController::NSTextViewportLayoutController;
 #[cfg(feature = "NSTextViewportLayoutController")]
 pub use self::__NSTextViewportLayoutController::NSTextViewportLayoutControllerDelegate;
+#[cfg(feature = "NSTextViewportRenderingSurface")]
+pub use self::__NSTextViewportRenderingSurface::NSTextViewportRenderingSurface;
+#[cfg(feature = "NSTextViewportRenderingSurface")]
+pub use self::__NSTextViewportRenderingSurface::NSTextViewportRenderingSurfaceKey;
 #[cfg(feature = "NSTintConfiguration")]
 pub use self::__NSTintConfiguration::NSTintConfiguration;
 #[cfg(feature = "NSTintProminence")]
@@ -7111,6 +7158,8 @@ pub use self::__NSToolbarItem::NSToolbarWritingToolsItemIdentifier;
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroup;
 #[cfg(feature = "NSToolbarItemGroup")]
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroupControlRepresentation;
+#[cfg(feature = "NSToolbarItemGroup")]
+pub use self::__NSToolbarItemGroup::NSToolbarItemGroupRole;
 #[cfg(feature = "NSToolbarItemGroup")]
 pub use self::__NSToolbarItemGroup::NSToolbarItemGroupSelectionMode;
 #[cfg(feature = "NSTouch")]
@@ -7226,6 +7275,8 @@ pub use self::__NSView::NSViewContentSelectionInfo;
 #[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewDidUpdateTrackingAreasNotification;
 #[cfg(feature = "NSView")]
+pub use self::__NSView::NSViewExclusiveGestureBehavior;
+#[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewFocusDidChangeNotification;
 #[cfg(feature = "NSView")]
 pub use self::__NSView::NSViewFrameDidChangeNotification;
@@ -7247,6 +7298,12 @@ pub use self::__NSViewController::NSViewController;
 pub use self::__NSViewController::NSViewControllerPresentationAnimator;
 #[cfg(feature = "NSViewController")]
 pub use self::__NSViewController::NSViewControllerTransitionOptions;
+#[cfg(feature = "NSViewCornerConfiguration")]
+pub use self::__NSViewCornerConfiguration::NSViewCornerConfiguration;
+#[cfg(feature = "NSViewCornerRadii")]
+pub use self::__NSViewCornerRadii::NSViewCornerRadii;
+#[cfg(feature = "NSViewCornerRadius")]
+pub use self::__NSViewCornerRadius::NSViewCornerRadius;
 #[cfg(feature = "NSViewLayoutRegion")]
 pub use self::__NSViewLayoutRegion::NSViewLayoutRegion;
 #[cfg(feature = "NSViewLayoutRegion")]

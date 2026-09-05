@@ -106,6 +106,24 @@ impl NSTextTab {
         #[unsafe(method_family = none)]
         pub fn columnTerminatorsForLocale(a_locale: Option<&NSLocale>) -> Retained<NSCharacterSet>;
 
+        #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
+        #[unsafe(method(initWithTextAlignment:location:options:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithTextAlignment_location_options(
+            this: Allocated<Self>,
+            alignment: NSTextAlignment,
+            loc: CGFloat,
+            options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "NSText")]
+        #[unsafe(method(alignment))]
+        #[unsafe(method_family = none)]
+        pub fn alignment(&self) -> NSTextAlignment;
+
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
@@ -174,6 +192,11 @@ extern_conformance!(
 
 impl NSParagraphStyle {
     extern_methods!(
+        #[cfg(feature = "NSText")]
+        #[unsafe(method(alignment))]
+        #[unsafe(method_family = none)]
+        pub fn alignment(&self) -> NSTextAlignment;
+
         #[unsafe(method(defaultParagraphStyle))]
         #[unsafe(method_family = none)]
         pub fn defaultParagraphStyle() -> Retained<NSParagraphStyle>;
@@ -261,6 +284,11 @@ impl NSParagraphStyle {
         #[unsafe(method_family = none)]
         pub fn textLists(&self) -> Retained<NSArray<NSTextList>>;
 
+        #[cfg(feature = "NSTextTable")]
+        #[unsafe(method(textBlocks))]
+        #[unsafe(method_family = none)]
+        pub fn textBlocks(&self) -> Retained<NSArray<NSTextBlock>>;
+
         #[unsafe(method(allowsDefaultTighteningForTruncation))]
         #[unsafe(method_family = none)]
         pub fn allowsDefaultTighteningForTruncation(&self) -> bool;
@@ -328,6 +356,17 @@ extern_conformance!(
 
 impl NSMutableParagraphStyle {
     extern_methods!(
+        #[cfg(feature = "NSText")]
+        #[unsafe(method(alignment))]
+        #[unsafe(method_family = none)]
+        pub fn alignment(&self) -> NSTextAlignment;
+
+        #[cfg(feature = "NSText")]
+        /// Setter for [`alignment`][Self::alignment].
+        #[unsafe(method(setAlignment:))]
+        #[unsafe(method_family = none)]
+        pub fn setAlignment(&self, alignment: NSTextAlignment);
+
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(lineSpacing))]
         #[unsafe(method_family = none)]
@@ -521,6 +560,19 @@ impl NSMutableParagraphStyle {
         #[unsafe(method_family = none)]
         pub fn setTextLists(&self, text_lists: &NSArray<NSTextList>);
 
+        #[cfg(feature = "NSTextTable")]
+        #[unsafe(method(textBlocks))]
+        #[unsafe(method_family = none)]
+        pub fn textBlocks(&self) -> Retained<NSArray<NSTextBlock>>;
+
+        #[cfg(feature = "NSTextTable")]
+        /// Setter for [`textBlocks`][Self::textBlocks].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setTextBlocks:))]
+        #[unsafe(method_family = none)]
+        pub fn setTextBlocks(&self, text_blocks: &NSArray<NSTextBlock>);
+
         #[unsafe(method(addTabStop:))]
         #[unsafe(method_family = none)]
         pub fn addTabStop(&self, an_object: &NSTextTab);
@@ -553,50 +605,4 @@ impl DefaultRetained for NSMutableParagraphStyle {
     fn default_retained() -> Retained<Self> {
         Self::new()
     }
-}
-
-impl NSTextTab {
-    extern_methods!(
-        #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
-        /// # Safety
-        ///
-        /// `options` generic should be of the correct type.
-        #[unsafe(method(initWithTextAlignment:location:options:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithTextAlignment_location_options(
-            this: Allocated<Self>,
-            alignment: NSTextAlignment,
-            loc: CGFloat,
-            options: &NSDictionary<NSTextTabOptionKey, AnyObject>,
-        ) -> Retained<Self>;
-
-        #[cfg(feature = "NSText")]
-        #[unsafe(method(alignment))]
-        #[unsafe(method_family = none)]
-        pub fn alignment(&self) -> NSTextAlignment;
-    );
-}
-
-impl NSParagraphStyle {
-    extern_methods!(
-        #[cfg(feature = "NSText")]
-        #[unsafe(method(alignment))]
-        #[unsafe(method_family = none)]
-        pub fn alignment(&self) -> NSTextAlignment;
-    );
-}
-
-impl NSMutableParagraphStyle {
-    extern_methods!(
-        #[cfg(feature = "NSText")]
-        #[unsafe(method(alignment))]
-        #[unsafe(method_family = none)]
-        pub fn alignment(&self) -> NSTextAlignment;
-
-        #[cfg(feature = "NSText")]
-        /// Setter for [`alignment`][Self::alignment].
-        #[unsafe(method(setAlignment:))]
-        #[unsafe(method_family = none)]
-        pub fn setAlignment(&self, alignment: NSTextAlignment);
-    );
 }

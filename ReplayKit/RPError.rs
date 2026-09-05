@@ -8,7 +8,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrordomain?language=objc)
-    pub static RPRecordingErrorDomain: &'static NSString;
+    pub static RPRecordingErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode?language=objc)

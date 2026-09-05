@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-ui-kit")]
 use objc2_ui_kit::*;
@@ -77,7 +79,7 @@ impl CPThumbnailImage {
         pub unsafe fn setImage(&self, image: &UIImage);
 
         #[cfg(feature = "CPImageOverlay")]
-        /// An optional  overlay for the thumbnail.
+        /// An optional overlay for the thumbnail.
         #[unsafe(method(imageOverlay))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageOverlay(&self) -> Option<Retained<CPImageOverlay>>;
@@ -99,6 +101,27 @@ impl CPThumbnailImage {
         #[unsafe(method(setSportsOverlay:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSportsOverlay(&self, sports_overlay: Option<&CPSportsOverlay>);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the recommended maximum image size for a
+        /// `CPThumbnailImage`with the given aspect ratio.
+        ///
+        ///
+        /// Use this method to determine the correct size for images before providing them to
+        /// `CPThumbnailImage.`Supplying a correctly-sized image avoids unnecessary memory use from
+        /// oversized images being held in the thumbnail pipeline.
+        ///
+        ///
+        /// Parameter `aspectRatio`: The width-to-height ratio of the image.
+        ///
+        /// Returns: The recommended
+        /// `CGSize`at which to size the image.
+        #[unsafe(method(maximumImageSizeForAspectRatio:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumImageSizeForAspectRatio(
+            aspect_ratio: CGFloat,
+            mtm: MainThreadMarker,
+        ) -> CGSize;
     );
 }
 

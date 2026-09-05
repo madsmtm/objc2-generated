@@ -137,6 +137,11 @@ impl IOUSBHostPipe {
         /// Parameter `request`: IOUSBDeviceRequest structure.
         ///
         /// Parameter `data`: An NSMutableData* defining the memory to use for the request's data phase.
+        /// For optimized performance, use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `bytesTransferred`: An NSUInteger reference which will be updated with the byte count
         /// of the completed data phase.
@@ -164,6 +169,11 @@ impl IOUSBHostPipe {
         /// Parameter `request`: IOUSBDeviceRequest structure.
         ///
         /// Parameter `data`: An NSMutableData* defining the memory to use for the request's data phase.
+        /// For optimized performance, use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `bytesTransferred`: An NSUInteger reference which will be updated with the byte count
         /// of the completed data phase.
@@ -209,6 +219,11 @@ impl IOUSBHostPipe {
         /// Parameter `request`: Reference IOUSBDeviceRequest structure.
         ///
         /// Parameter `data`: An NSMutableData* defining the memory to use for the request's data phase.
+        /// For optimized performance, use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `completionTimeout`: Timeout of the request.  If 0, the request will
         /// never timeout. The default value is IOUSBHostDefaultControlCompletionTimeout.
@@ -242,6 +257,11 @@ impl IOUSBHostPipe {
         /// Parameter `request`: Reference IOUSBDeviceRequest structure.
         ///
         /// Parameter `data`: An NSMutableData* defining the memory to use for the request's data phase.
+        /// For optimized performance, use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
@@ -330,6 +350,11 @@ impl IOUSBHostPipe {
         /// until the request is complete.
         ///
         /// Parameter `data`: An NSMutableData* containing the buffer to use for the transfer. nil will send a zero length packet.
+        /// For optimized performance, use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `bytesTransferred`: NSUInteger pointer which will be updated with the bytes transferred
         /// during the request
@@ -354,6 +379,11 @@ impl IOUSBHostPipe {
         /// pipe.
         ///
         /// Parameter `data`: An NSMutableData* containing the buffer to use for the transfer. nil will send a zero length packet.
+        /// For optimized performance, use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `completionTimeout`: Timeout of the request.  If 0, the request will never timeout.
         /// Must be 0 for interrupt pipes and streams.
@@ -386,9 +416,20 @@ impl IOUSBHostPipe {
         /// initialization requirements and usage.
         ///
         /// Parameter `data`: An NSMutableData* to be used as the backing store for the I/O.
+        /// For optimized performance, use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `frameList`: Pointer first element in an IOUSBHostIsochronousFrame array.  The array
-        /// must contain at least frameListCount elements.
+        /// must contain at least frameListCount elements.  For optimized performance,
+        /// use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// with
+        /// IOUSBHostObjectDataOptionsKernelUserShared.
         ///
         /// Parameter `frameListCount`: Number of elements in
         /// <code>
@@ -434,9 +475,20 @@ impl IOUSBHostPipe {
         /// initialization requirements and usage.
         ///
         /// Parameter `data`: An NSMutableData* to be used as the backing store for the I/O.
+        /// For optimized performance, use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `frameList`: Pointer first element in an IOUSBHostIsochronousFrame array.  The array
-        /// must contain at least frameListCount elements.
+        /// must contain at least frameListCount elements.  For optimized performance,
+        /// use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// with
+        /// IOUSBHostObjectDataOptionsKernelUserShared.
         ///
         /// Parameter `frameListCount`: Number of elements in
         /// <code>
@@ -485,10 +537,21 @@ impl IOUSBHostPipe {
         /// for information regarding structure
         /// initialization requirements and usage.
         ///
-        /// Parameter `data`: An NSMutableData* to be used as the backing store for the I/O.
+        /// Parameter `data`: An NSMutableData* to be used as the backing store for the I/O.  For optimized performance,
+        /// use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `transactionList`: Pointer to the first element in an IOUSBHostIsochronousTransaction
-        /// array.  The array must contain at least transactionListCount elements.
+        /// array.  The array must contain at least transactionListCount elements.  For optimized performance,
+        /// use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// with
+        /// IOUSBHostObjectDataOptionsKernelUserShared.
         ///
         /// Parameter `transactionListCount`: Number of elements in
         /// <code>
@@ -542,10 +605,21 @@ impl IOUSBHostPipe {
         /// for information regarding structure
         /// initialization requirements and usage.
         ///
-        /// Parameter `data`: An NSMutableData* to be used as the backing store for the I/O.
+        /// Parameter `data`: An NSMutableData* to be used as the backing store for the I/O.  For optimized performance,
+        /// use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// .
         ///
         /// Parameter `transactionList`: Pointer to the first element in an IOUSBHostIsochronousTransaction
-        /// array.  The array must contain at least transactionListCount elements.
+        /// array.  The array must contain at least transactionListCount elements.  For optimized performance,
+        /// use an NSMutableData allocated by
+        /// <code>
+        /// [IOUSBHostObject dataWithCapacity:options]
+        /// </code>
+        /// with
+        /// IOUSBHostObjectDataOptionsKernelUserShared.
         ///
         /// Parameter `transactionListCount`: Number of elements in
         /// <code>

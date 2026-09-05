@@ -202,6 +202,14 @@ impl AVAssetReaderTrackOutput {
         ///
         /// ProRes 4444 encoded media can contain a mathematically lossless alpha channel. To preserve the alpha channel during decompression use a pixel format with an alpha component such as kCVPixelFormatType_4444AYpCbCr16 or kCVPixelFormatType_64ARGB. To test whether your source contains an alpha channel check that the track's format description has kCMFormatDescriptionExtension_Depth and that its value is 32.
         ///
+        /// Video Orientation and Transforms:
+        ///
+        /// AVAssetReaderTrackOutput does not automatically apply the video track's transform when reading sample buffers. Sample buffers are returned in their encoded orientation, which may differ from the display orientation indicated by the track's preferredTransform property. The preferredTransform describes how the video frames should be rotated, scaled, and offset for display purposes.
+        ///
+        /// Rotation information can be obtained from the AVAssetTrack's preferredTransform property. Clients can choose to apply this transform manually if needed for their specific use case, such as when processing frames for display or analysis.
+        ///
+        /// For workflows that use AVAssetReader to read samples and AVAssetWriter to write them (such as transcoding or remuxing), it is generally more efficient to pass through the preferredTransform to the output file without modifying the pixel data. This avoids the computational cost and potential quality loss from rotating every frame. In such cases, the same transform matrix should be used when configuring the AVAssetWriterInput to maintain the correct display orientation in the output file.
+        ///
         /// # Safety
         ///
         /// `output_settings` generic should be of the correct type.
@@ -242,6 +250,14 @@ impl AVAssetReaderTrackOutput {
         /// ProRes encoded media can contain up to 12bits/ch. If your source is ProRes encoded and you wish to preserve more than 8bits/ch during decompression then use one of the following pixel formats: kCVPixelFormatType_4444AYpCbCr16, kCVPixelFormatType_422YpCbCr16, kCVPixelFormatType_422YpCbCr10, or kCVPixelFormatType_64ARGB.  AVAssetReader does not support scaling with any of these high bit depth pixel formats. If you use them then do not specify kCVPixelBufferWidthKey or kCVPixelBufferHeightKey in your outputSettings dictionary. If you plan to append these sample buffers to an AVAssetWriterInput then note that only the ProRes encoders support these pixel formats.
         ///
         /// ProRes 4444 encoded media can contain a mathematically lossless alpha channel. To preserve the alpha channel during decompression use a pixel format with an alpha component such as kCVPixelFormatType_4444AYpCbCr16 or kCVPixelFormatType_64ARGB.  To test whether your source contains an alpha channel check that the track's format description has kCMFormatDescriptionExtension_Depth and that its value is 32.
+        ///
+        /// Video Orientation and Transforms:
+        ///
+        /// AVAssetReaderTrackOutput does not automatically apply the video track's transform when reading sample buffers. Sample buffers are returned in their encoded orientation, which may differ from the display orientation indicated by the track's preferredTransform property. The preferredTransform describes how the video frames should be rotated, scaled, and offset for display purposes.
+        ///
+        /// Rotation information can be obtained from the AVAssetTrack's preferredTransform property. Clients can choose to apply this transform manually if needed for their specific use case, such as when processing frames for display or analysis.
+        ///
+        /// For workflows that use AVAssetReader to read samples and AVAssetWriter to write them (such as transcoding or remuxing), it is generally more efficient to pass through the preferredTransform to the output file without modifying the pixel data. This avoids the computational cost and potential quality loss from rotating every frame. In such cases, the same transform matrix should be used when configuring the AVAssetWriterInput to maintain the correct display orientation in the output file.
         ///
         /// This method throws an exception for any of the following reasons:
         /// - the output settings dictionary contains an unsupported key mentioned above
@@ -331,7 +347,7 @@ impl AVAssetReaderAudioMixOutput {
         /// Returns an instance of AVAssetReaderAudioMixOutput for reading mixed audio from the specified audio tracks, with optional audio settings.
         ///
         ///
-        /// Parameter `tracks`: An NSArray of AVAssetTrack objects from which the created object should read sample buffers to be mixed.
+        /// Parameter `audioTracks`: An NSArray of AVAssetTrack objects from which the created object should read sample buffers to be mixed.
         ///
         /// Parameter `audioSettings`: An NSDictionary of audio settings to be used for audio output.
         ///
@@ -358,7 +374,7 @@ impl AVAssetReaderAudioMixOutput {
         /// Creates an instance of AVAssetReaderAudioMixOutput for reading mixed audio from the specified audio tracks, with optional audio settings.
         ///
         ///
-        /// Parameter `tracks`: An NSArray of AVAssetTrack objects from which the created object should read sample buffers to be mixed.
+        /// Parameter `audioTracks`: An NSArray of AVAssetTrack objects from which the created object should read sample buffers to be mixed.
         ///
         /// Parameter `audioSettings`: An NSDictionary of audio settings to be used for audio output.
         ///
@@ -477,7 +493,7 @@ impl AVAssetReaderVideoCompositionOutput {
         /// Creates an instance of AVAssetReaderVideoCompositionOutput for reading composited video from the specified video tracks and supplying media data according to the specified video settings.
         ///
         ///
-        /// Parameter `tracks`: An NSArray of AVAssetTrack objects from which the resulting AVAssetReaderVideoCompositionOutput should read video frames for compositing.
+        /// Parameter `videoTracks`: An NSArray of AVAssetTrack objects from which the resulting AVAssetReaderVideoCompositionOutput should read video frames for compositing.
         ///
         /// Parameter `videoSettings`: An NSDictionary of video settings to be used for video output.  See AVVideoSettings.h for more information about how to construct a video settings dictionary.
         ///
@@ -508,7 +524,7 @@ impl AVAssetReaderVideoCompositionOutput {
         /// Creates an instance of AVAssetReaderVideoCompositionOutput for reading composited video from the specified video tracks and supplying media data according to the specified video settings.
         ///
         ///
-        /// Parameter `tracks`: An NSArray of AVAssetTrack objects from which the resulting AVAssetReaderVideoCompositionOutput should read video frames for compositing.
+        /// Parameter `videoTracks`: An NSArray of AVAssetTrack objects from which the resulting AVAssetReaderVideoCompositionOutput should read video frames for compositing.
         ///
         /// Parameter `videoSettings`: An NSDictionary of video settings to be used for video output.  See AVVideoSettings.h for more information about how to construct a video settings dictionary.
         ///
@@ -612,7 +628,7 @@ impl AVAssetReaderOutputMetadataAdaptor {
         /// Creates a new timed metadata group adaptor for retrieving timed metadata group objects from an asset reader output.
         ///
         ///
-        /// Parameter `assetReaderOutput`: An instance of AVAssetReaderTrackOutput that vends sample buffers containing metadata, e.g. an AVAssetReaderTrackOutput object initialized with a track of media type AVMediaTypeMetadata and nil outputSettings.
+        /// Parameter `trackOutput`: An instance of AVAssetReaderTrackOutput that vends sample buffers containing metadata, e.g. an AVAssetReaderTrackOutput object initialized with a track of media type AVMediaTypeMetadata and nil outputSettings.
         ///
         /// Returns: An instance of AVAssetReaderOutputMetadataAdaptor
         ///
@@ -629,7 +645,7 @@ impl AVAssetReaderOutputMetadataAdaptor {
         /// Creates a new timed metadata group adaptor for retrieving timed metadata group objects from an asset reader output.
         ///
         ///
-        /// Parameter `assetReaderOutput`: An instance of AVAssetReaderTrackOutput that vends sample buffers containing metadata, e.g. an AVAssetReaderTrackOutput object initialized with a track of media type AVMediaTypeMetadata and nil outputSettings.
+        /// Parameter `trackOutput`: An instance of AVAssetReaderTrackOutput that vends sample buffers containing metadata, e.g. an AVAssetReaderTrackOutput object initialized with a track of media type AVMediaTypeMetadata and nil outputSettings.
         ///
         /// Returns: An instance of AVAssetReaderOutputMetadataAdaptor
         ///

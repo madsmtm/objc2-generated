@@ -146,7 +146,7 @@ impl CIFilterGenerator {
 
         /// This methods allows you to export an input or output key of an object in the filter chain to be available through the inputKeys or outputKeys API when converted into a CIFilter
         ///
-        /// When you create a CIFilter from the CIFilterGenerator, you might want the client of the filter being able to set some of the paramters of the filter chain. To do so these parameters have to be exported as keys much like the inputKeys and outputKeys of all CIFilters.
+        /// When you create a CIFilter from the CIFilterGenerator, you might want the client of the filter being able to set some of the parameters of the filter chain. To do so these parameters have to be exported as keys much like the inputKeys and outputKeys of all CIFilters.
         ///
         /// Parameter `key`: The key path that is to be exported from the target object (eg. inputImage)
         ///
@@ -226,7 +226,7 @@ impl CIFilterGenerator {
         /// Register the resulting filter of the chain in the CIFilter repository.
         ///
         /// This method allows you to register the filter chain as a named filter in the filter repository. You can then create a CIFilter object from it using the filterWithName: method. Make sure you set the class attributes first - see CIFilter for a description of the classAttributes that are needed to register a filter.
-        /// When registering Core Image automatically adds the kCIFilterGeneratorCategory to the filters categories. The kCIFilterGeneratorCategory is purely for identification purpose and will not be exposed in the filter browser as a seperate category.
+        /// When registering Core Image automatically adds the kCIFilterGeneratorCategory to the filters categories. The kCIFilterGeneratorCategory is purely for identification purpose and will not be exposed in the filter browser as a separate category.
         ///
         ///
         /// Parameter `name`: The name under which the filter will be registered. This name has to be unique.
@@ -236,7 +236,7 @@ impl CIFilterGenerator {
 
         /// Write the CIFilterGenerator into a file
         ///
-        /// Returns: Returns true when the chain with written our succesfully
+        /// Returns: Returns true when the chain was written out successfully
         #[unsafe(method(writeToURL:atomically:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_atomically(&self, a_url: &NSURL, flag: bool) -> bool;

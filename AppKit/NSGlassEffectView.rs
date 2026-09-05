@@ -143,6 +143,21 @@ impl NSGlassEffectView {
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub fn setStyle(&self, style: NSGlassEffectViewStyle);
+
+        /// Enables interactive glass behavior, which adds a visual response to user interactions.
+        ///
+        /// This should be enabled for glass that is used as the background for interactive controls or when used as the container of interactive controls.
+        ///
+        /// When `YES`, the glass effect will provide visual feedback when it is interacted with.
+        /// When `NO`, the glass effect remains static. The default value is `NO`.
+        #[unsafe(method(effectIsInteractive))]
+        #[unsafe(method_family = none)]
+        pub fn effectIsInteractive(&self) -> bool;
+
+        /// Setter for [`effectIsInteractive`][Self::effectIsInteractive].
+        #[unsafe(method(setEffectIsInteractive:))]
+        #[unsafe(method_family = none)]
+        pub fn setEffectIsInteractive(&self, effect_is_interactive: bool);
     );
 }
 

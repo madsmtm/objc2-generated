@@ -74,6 +74,15 @@ extern_protocol!(
     }
 );
 
+extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotolibrarypersistentchangesobserver?language=objc)
+    pub unsafe trait PHPhotoLibraryPersistentChangesObserver: NSObjectProtocol {
+        #[unsafe(method(photoLibraryPersistentChangesDidUpdate:))]
+        #[unsafe(method_family = none)]
+        unsafe fn photoLibraryPersistentChangesDidUpdate(&self, photo_library: &PHPhotoLibrary);
+    }
+);
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotolibrary?language=objc)
     #[unsafe(super(NSObject))]
@@ -126,6 +135,31 @@ impl PHPhotoLibrary {
             handler: &block2::Block<'static, fn(PHAuthorizationStatus)>,
         );
 
+        /// A Boolean value that indicates whether background asset resource uploading is enabled.
+        ///
+        /// The value is `true` if the extension is enabled and active, and is `false` otherwise.
+        ///
+        /// The extension's host app uses this property to determine the background processing status. See ``PHAssetResourceUploadJob`` and ````PHAssetResourceUploadJobChangeRequest`` for more information.
+        #[unsafe(method(isUploadJobExtensionEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isUploadJobExtensionEnabled(&self) -> bool;
+
+        /// Enables or disables the background asset resource upload job feature.
+        ///
+        /// You must call this function before you create ``PHAssetResourceUploadJob`` in the extension's host application.
+        ///
+        /// To enable background uploads, you must have both full library access and register the extension with the extension point: "com.apple.photos.background-upload".
+        ///
+        /// - Parameters:
+        /// - enable: `true` allows calls to the extension's host application; you can fulfill that protocol to create ``PHAssetResourceUploadJob`` objects. `false` stops calls to the extension's host application.
+        /// - error: if either enabling or disabling was unsuccessful, `false` is returned and an error is set on the `error` parameter.
+        #[unsafe(method(setUploadJobExtensionEnabled:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUploadJobExtensionEnabled_error(
+            &self,
+            enable: bool,
+        ) -> Result<(), Retained<NSError>>;
+
         #[unsafe(method(unavailabilityReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn unavailabilityReason(&self) -> Option<Retained<NSError>>;
@@ -173,6 +207,30 @@ impl PHPhotoLibrary {
         pub unsafe fn unregisterChangeObserver(
             &self,
             observer: &ProtocolObject<dyn PHPhotoLibraryChangeObserver>,
+        );
+
+        /// Registers an observer to be notified when persistent changes occur in the photo library.
+        ///
+        /// The observer is held weakly by the photo library. The observer's ``PHPhotoLibraryPersistentChangesObserver/photoLibraryPersistentChangesDidUpdate:`` method
+        /// is called on an arbitrary serial queue when changes are committed to the photo library. Use
+        /// ``fetchPersistentChangesSinceToken:error:`` to retrieve the specific changes.
+        ///
+        /// Requires read-write photo library authorization (``PHAccessLevel/PHAccessLevelReadWrite``).
+        #[unsafe(method(registerPersistentChangesObserver:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn registerPersistentChangesObserver(
+            &self,
+            observer: &ProtocolObject<dyn PHPhotoLibraryPersistentChangesObserver>,
+        );
+
+        /// Unregisters a previously registered persistent changes observer.
+        ///
+        /// After calling this method, the observer will no longer receive persistent changes callbacks.
+        #[unsafe(method(unregisterPersistentChangesObserver:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn unregisterPersistentChangesObserver(
+            &self,
+            observer: &ProtocolObject<dyn PHPhotoLibraryPersistentChangesObserver>,
         );
 
         #[cfg(all(

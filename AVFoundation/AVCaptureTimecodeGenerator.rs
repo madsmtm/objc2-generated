@@ -173,7 +173,7 @@ pub struct AVCaptureTimecode {
 #[cfg(feature = "objc2-core-media")]
 unsafe impl Encode for AVCaptureTimecode {
     const ENCODING: Encoding = Encoding::Struct(
-        "?",
+        "AVCaptureTimecode",
         &[
             <u8>::ENCODING,
             <u8>::ENCODING,

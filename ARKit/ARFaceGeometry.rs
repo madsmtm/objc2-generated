@@ -103,12 +103,11 @@ impl ARFaceGeometry {
         #[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
         /// Creates and returns a face geometry by applying a set of given blend shape coefficients.
         ///
-        ///
         /// An empty dictionary can be provided to create a neutral face geometry.
         ///
-        /// Parameter `blendShapes`: A dictionary of blend shape coefficients.
+        /// - Parameter blendShapes: A dictionary of blend shape coefficients.
         ///
-        /// Returns: Face geometry after applying the blend shapes.
+        /// - Returns: Face geometry after applying the blend shapes.
         #[unsafe(method(initWithBlendShapes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBlendShapes(

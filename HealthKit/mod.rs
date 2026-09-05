@@ -162,6 +162,9 @@ mod __HKLiveWorkoutBuilder;
 #[cfg(feature = "HKLiveWorkoutDataSource")]
 #[path = "HKLiveWorkoutDataSource.rs"]
 mod __HKLiveWorkoutDataSource;
+#[cfg(feature = "HKLiveWorkoutZoneUpdate")]
+#[path = "HKLiveWorkoutZoneUpdate.rs"]
+mod __HKLiveWorkoutZoneUpdate;
 #[cfg(feature = "HKMedicationConcept")]
 #[path = "HKMedicationConcept.rs"]
 mod __HKMedicationConcept;
@@ -279,6 +282,9 @@ mod __HKWorkout;
 #[cfg(feature = "HKWorkoutActivity")]
 #[path = "HKWorkoutActivity.rs"]
 mod __HKWorkoutActivity;
+#[cfg(feature = "HKWorkoutActivityType")]
+#[path = "HKWorkoutActivityType.rs"]
+mod __HKWorkoutActivityType;
 #[cfg(feature = "HKWorkoutBuilder")]
 #[path = "HKWorkoutBuilder.rs"]
 mod __HKWorkoutBuilder;
@@ -380,6 +386,8 @@ pub use self::__HKCategoryValues::HKCategoryValueEnvironmentalAudioExposureEvent
 pub use self::__HKCategoryValues::HKCategoryValueHeadphoneAudioExposureEvent;
 #[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueLowCardioFitnessEvent;
+#[cfg(feature = "HKCategoryValues")]
+pub use self::__HKCategoryValues::HKCategoryValueMenopausalState;
 #[cfg(feature = "HKCategoryValues")]
 pub use self::__HKCategoryValues::HKCategoryValueMenstrualFlow;
 #[cfg(feature = "HKCategoryValues")]
@@ -654,6 +662,8 @@ pub use self::__HKLiveWorkoutBuilder::HKLiveWorkoutBuilder;
 pub use self::__HKLiveWorkoutBuilder::HKLiveWorkoutBuilderDelegate;
 #[cfg(feature = "HKLiveWorkoutDataSource")]
 pub use self::__HKLiveWorkoutDataSource::HKLiveWorkoutDataSource;
+#[cfg(feature = "HKLiveWorkoutZoneUpdate")]
+pub use self::__HKLiveWorkoutZoneUpdate::HKLiveWorkoutZoneUpdate;
 #[cfg(feature = "HKMedicationConcept")]
 pub use self::__HKMedicationConcept::HKMedicationConcept;
 #[cfg(feature = "HKMedicationConcept")]
@@ -1052,6 +1062,8 @@ pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierAudioExposureEvent;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBladderIncontinence;
 #[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBleedingAfterMenopause;
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBleedingAfterPregnancy;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierBleedingDuringPregnancy;
@@ -1125,6 +1137,8 @@ pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierLowHeartRateEvent;
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierLowerBackPain;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierMemoryLapse;
+#[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierMenopausalState;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierMenstrualFlow;
 #[cfg(feature = "HKTypeIdentifiers")]
@@ -1542,8 +1556,6 @@ pub use self::__HKWorkout::HKPredicateKeyPathWorkoutType;
 #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKWorkout"))]
 pub use self::__HKWorkout::HKWorkout;
 #[cfg(feature = "HKWorkout")]
-pub use self::__HKWorkout::HKWorkoutActivityType;
-#[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutEvent;
 #[cfg(feature = "HKWorkout")]
 pub use self::__HKWorkout::HKWorkoutEventType;
@@ -1575,6 +1587,8 @@ pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivitySumQuantity;
 pub use self::__HKWorkoutActivity::HKPredicateKeyPathWorkoutActivityType;
 #[cfg(feature = "HKWorkoutActivity")]
 pub use self::__HKWorkoutActivity::HKWorkoutActivity;
+#[cfg(feature = "HKWorkoutActivityType")]
+pub use self::__HKWorkoutActivityType::HKWorkoutActivityType;
 #[cfg(feature = "HKWorkoutBuilder")]
 pub use self::__HKWorkoutBuilder::HKWorkoutBuilder;
 #[cfg(feature = "HKWorkoutConfiguration")]

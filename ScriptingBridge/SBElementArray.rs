@@ -212,10 +212,24 @@ impl<ObjectType: Message> SBElementArray<ObjectType> {
 /// Methods declared on superclass `NSMutableArray`.
 impl<ObjectType: Message> SBElementArray<ObjectType> {
     extern_methods!(
+        /// Initializes a newly allocated array.
+        ///
+        /// This method is a designated initializer.
+        ///
+        /// - Returns: An array.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns an array, initialized with enough memory to initially hold a given number of objects.
+        ///
+        /// Mutable arrays expand as needed; `numItems` simply establishes the object's initial capacity.
+        ///
+        /// This method is a designated initializer.
+        ///
+        /// - Parameter numItems: The initial capacity of the new array.
+        /// - Returns: An array initialized with enough memory to hold `numItems` objects. The returned object might be
+        /// different than the original receiver.
         #[unsafe(method(initWithCapacity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCapacity(
@@ -228,6 +242,22 @@ impl<ObjectType: Message> SBElementArray<ObjectType> {
 /// Methods declared on superclass `NSArray`.
 impl<ObjectType: Message> SBElementArray<ObjectType> {
     extern_methods!(
+        /// Initializes a newly allocated array to include a given number of objects from a given C array.
+        ///
+        /// Elements are added to the new array in the same order they appear in `objects`, up to but not including index
+        /// `count`.
+        ///
+        /// After an immutable array has been initialized in this way, it can't be modified.
+        ///
+        /// This method is a designated initializer.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects.
+        /// - cnt: The number of values from the `objects` C array to include in the new array. This number will be the count
+        /// of the new array -- it must not be negative or greater than the number of elements in `objects`.
+        /// - Returns: A newly allocated array including the first `count` objects from `objects`. The returned object might be
+        /// different than the original receiver.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer or null.

@@ -24,6 +24,12 @@ extern_class!(
     pub struct AVAudioUnitGenerator;
 );
 
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+unsafe impl Send for AVAudioUnitGenerator {}
+
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+unsafe impl Sync for AVAudioUnitGenerator {}
+
 #[cfg(all(
     feature = "AVAudioMixing",
     feature = "AVAudioNode",
@@ -75,11 +81,21 @@ impl AVAudioUnitGenerator {
         ) -> Retained<Self>;
 
         /// Bypass state of the audio unit.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bypass))]
         #[unsafe(method_family = none)]
         pub unsafe fn bypass(&self) -> bool;
 
         /// Setter for [`bypass`][Self::bypass].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBypass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBypass(&self, bypass: bool);

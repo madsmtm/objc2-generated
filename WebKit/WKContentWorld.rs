@@ -53,6 +53,17 @@ impl WKContentWorld {
         #[unsafe(method_family = none)]
         pub unsafe fn defaultClientWorld(mtm: MainThreadMarker) -> Retained<WKContentWorld>;
 
+        #[cfg(feature = "WKContentWorldConfiguration")]
+        /// Creates a world with the given WKContentWorldConfiguration
+        ///
+        /// Unlike all other worlds, worlds created with this factory method cannot be retrieved later.
+        /// Clients therefore need to take care to reference them for as long as they are needed.
+        #[unsafe(method(worldWithConfiguration:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn worldWithConfiguration(
+            configuration: &WKContentWorldConfiguration,
+        ) -> Retained<WKContentWorld>;
+
         /// Retrieves a named content world for API client use.
         ///
         /// Parameter `name`: The name of the WKContentWorld to retrieve.
@@ -71,6 +82,7 @@ impl WKContentWorld {
         /// The name of the WKContentWorld
         ///
         /// The pageWorld and defaultClientWorld instances will have a nil name.
+        /// Instances created with `worldWithConfiguration` will also have a nil name.
         /// All other instances will have the non-nil name they were accessed by.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]

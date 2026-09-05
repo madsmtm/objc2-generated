@@ -31,9 +31,8 @@ bitflags::bitflags! {
 ///
 /// A pixel in the image frame that gets classified as person will have an intensity value equal to 'ARSegmentationClassPerson'.
 ///
-/// See: -[ARFrame segmentationBuffer]
-///
-/// See: ARSegmentationClass
+/// - SeeAlso: ``ARFrame/segmentationBuffer``
+/// - SeeAlso: ``ARSegmentationClass``
         #[doc(alias = "ARFrameSemanticPersonSegmentation")]
         const PersonSegmentation = 1<<0;
 /// Person segmentation with depth.
@@ -41,32 +40,30 @@ bitflags::bitflags! {
 /// A pixel in the image frame that gets classified as person will have an intensity value equal to 'ARSegmentationClassPerson'.
 /// Additionally, every pixel in the image frame that gets classified as person will also have a depth value.
 ///
-/// See: -[ARFrame estimatedDepthData]
-///
-/// See: -[ARFrame segmentationBuffer]
+/// - SeeAlso: ``ARFrame/estimatedDepthData``
+/// - SeeAlso: ``ARFrame/segmentationBuffer``
         #[doc(alias = "ARFrameSemanticPersonSegmentationWithDepth")]
         const PersonSegmentationWithDepth = (1<<1)|(1<<0);
 /// Body detection.
 ///
-/// Once activated an ARFrame will contain information about a detected body.
+/// Once activated an `ARFrame` will contain information about a detected body.
 ///
-/// See: -[ARFrame detectedBody]
-///
-/// See: ARBody2D
+/// - SeeAlso: ``ARFrame/detectedBody``
+/// - SeeAlso: ``ARBody2D``
         #[doc(alias = "ARFrameSemanticBodyDetection")]
         const BodyDetection = 1<<2;
 /// Scene Depth.
 ///
-/// Each capturedImage will have an associated scene depth data.
+/// Each `capturedImage` will have an associated scene depth data.
 ///
-/// See: - [ARFrame sceneDepth]
+/// - SeeAlso: ``ARFrame/sceneDepth``
         #[doc(alias = "ARFrameSemanticSceneDepth")]
         const SceneDepth = 1<<3;
 /// Smoothed Scene Depth.
 ///
-/// Each capturedImage will have an associated scene depth data that is temporally smoothed.
+/// Each `capturedImage` will have an associated scene depth data that is temporally smoothed.
 ///
-/// See: - [ARFrame smoothedSceneDepth]
+/// - SeeAlso: ``ARFrame/smoothedSceneDepth``
         #[doc(alias = "ARFrameSemanticSmoothedSceneDepth")]
         const SmoothedSceneDepth = 1<<4;
         const _ = !0;
@@ -237,7 +234,7 @@ impl ARConfiguration {
 
         /// Determines how the coordinate system should be aligned with the world.
         ///
-        /// The default is ARWorldAlignmentGravity.
+        /// The default is `ARWorldAlignmentGravity`.
         #[unsafe(method(worldAlignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldAlignment(&self) -> ARWorldAlignment;
@@ -273,14 +270,13 @@ impl ARConfiguration {
 
         /// The type of semantic understanding to provide with each frame.
         ///
-        ///
         /// Use the `supportsFrameSemantics` class method to check if the configuration type you intend to run supports the set of frame semantics.
-        /// For example, when running a session with a configuration of type ARWorldTrackingConfiguration one would need to use `+[ ARWorldTrackingConfiguration
-        /// supportsFrameSemantics:]` to perform said check. An exception is thrown if the option is not supported. Defaults to ARFrameSemanticNone.
+        /// For example, when running a session with a configuration of type `ARWorldTrackingConfiguration` one would need to use `+[
+        /// ARWorldTrackingConfiguration supportsFrameSemantics:]` to perform said check. An exception is thrown if the option is not supported. Defaults to
+        /// `ARFrameSemanticNone`.
         ///
-        /// See: ARFrameSemantics
-        ///
-        /// See: +[ARConfiguration supportsFrameSemantics:]
+        /// - SeeAlso: ``ARFrameSemantics``
+        /// - SeeAlso: ``ARConfiguration/supportsFrameSemantics:``
         #[unsafe(method(frameSemantics))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameSemantics(&self) -> ARFrameSemantics;
@@ -292,13 +288,16 @@ impl ARConfiguration {
 
         /// Determines whether the type of frame semantics is supported by the device and ARConfiguration class.
         ///
-        ///
         /// Semantic frame understanding is not supported on all devices. Use the `supportsFrameSemantics` class method to check if the configuration
         /// type you intend to run supports the set of frame semantics. For example, when running a session with a configuration of type
         /// ARWorldTrackingConfiguration one would need to use
         /// `+[ ARWorldTrackingConfiguration supportsFrameSemantics:]` to perform said check.
         ///
-        /// See: ARFrameSemantics
+        /// - Parameter frameSemantics: The frame semantics to check for support.
+        ///
+        /// - Returns: `YES` if the frame semantics are supported on this device and configuration class, `NO` otherwise.
+        ///
+        /// - SeeAlso: ``ARFrameSemantics``
         #[unsafe(method(supportsFrameSemantics:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsFrameSemantics(frame_semantics: ARFrameSemantics) -> bool;
@@ -306,7 +305,7 @@ impl ARConfiguration {
         #[cfg(feature = "objc2-av-foundation")]
         /// Returns a pointer to the capture device of the camera that's used for rendering, so developers can adjust capture settings.
         ///
-        /// May return nil if it is not recommended to modify capture settings, for example if the primary camera is used for tracking.
+        /// Note: Modifying capture settings can impact performance of tracking or other algorithms, particularly on devices with a single rear camera.
         #[unsafe(method(configurableCaptureDeviceForPrimaryCamera))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurableCaptureDeviceForPrimaryCamera(
@@ -315,7 +314,7 @@ impl ARConfiguration {
         #[cfg(feature = "ARVideoFormat")]
         /// Returns a video format using a 4K resolution from the list of supported video formats.
         ///
-        /// May return nil if 4K is not supported for this configuration or device.
+        /// May return `nil` if 4K is not supported for this configuration or device.
         #[unsafe(method(recommendedVideoFormatFor4KResolution))]
         #[unsafe(method_family = none)]
         pub unsafe fn recommendedVideoFormatFor4KResolution() -> Option<Retained<ARVideoFormat>>;
@@ -327,14 +326,13 @@ impl ARConfiguration {
         /// Using this format may consume more power. Other video formats may support capturing high resolution frames as well, albeit at a lower
         /// quality or resolution.
         ///
-        /// See: [ARSession captureHighResolutionFrameWithCompletion:]
+        /// - SeeAlso: ``ARSession/captureHighResolutionFrameWithCompletion:``
         #[unsafe(method(recommendedVideoFormatForHighResolutionFrameCapturing))]
         #[unsafe(method_family = none)]
         pub unsafe fn recommendedVideoFormatForHighResolutionFrameCapturing(
         ) -> Option<Retained<ARVideoFormat>>;
 
-        /// Whether HDR capturing is allowed if the current video format supports it. Defaults to
-        /// `NO.`
+        /// Whether HDR capturing is allowed if the current video format supports it. Defaults to `NO`.
         #[unsafe(method(videoHDRAllowed))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoHDRAllowed(&self) -> bool;
@@ -350,8 +348,7 @@ impl ARConfiguration {
 extern_class!(
     /// A configuration for running world tracking.
     ///
-    ///
-    /// World tracking provides 6 degrees of freedom tracking of the device.
+    /// World tracking provides `6` degrees of freedom tracking of the device.
     /// By finding feature points in the scene, world tracking enables performing hit-tests against the frame.
     /// Tracking can no longer be resumed once the session is paused.
     ///
@@ -394,9 +391,9 @@ impl ARWorldTrackingConfiguration {
 
         /// The mode of environment texturing to run.
         ///
-        /// If set, texture information will be accumulated and updated. Adding an AREnvironmentProbeAnchor to the session
+        /// If set, texture information will be accumulated and updated. Adding an `AREnvironmentProbeAnchor` to the session
         /// will get the current environment texture available from that probe's perspective which can be used for lighting
-        /// virtual objects in the scene. Defaults to AREnvironmentTexturingNone.
+        /// virtual objects in the scene. Defaults to `AREnvironmentTexturingNone`.
         #[unsafe(method(environmentTexturing))]
         #[unsafe(method_family = none)]
         pub unsafe fn environmentTexturing(&self) -> AREnvironmentTexturing;
@@ -451,7 +448,7 @@ impl ARWorldTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Images to detect in the scene.
         ///
-        /// If set the session will attempt to detect the specified images. When an image is detected an ARImageAnchor will be added to the session.
+        /// If set the session will attempt to detect the specified images. When an image is detected an `ARImageAnchor` will be added to the session.
         #[unsafe(method(detectionImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionImages(&self) -> Retained<NSSet<ARReferenceImage>>;
@@ -466,10 +463,11 @@ impl ARWorldTrackingConfiguration {
 
         /// Enables the estimation of a scale factor which may be used to correct the physical size of an image.
         ///
-        /// If set to true ARKit will attempt to use the computed camera positions in order to compute the scale by which the given physical size
+        /// If set to `true` ARKit will attempt to use the computed camera positions in order to compute the scale by which the given physical size
         /// differs from the estimated one. The information about the estimated scale can be found as the property estimatedScaleFactor on the ARImageAnchor.
         ///
-        /// Note: When set to true the transform of a returned ARImageAnchor will use the estimated scale factor to correct the translation. Default value is NO.
+        /// - Note: When set to true the transform of a returned `ARImageAnchor` will use the estimated scale factor to correct the translation. Default value is
+        /// `NO`.
         #[unsafe(method(automaticImageScaleEstimationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticImageScaleEstimationEnabled(&self) -> bool;
@@ -502,7 +500,7 @@ impl ARWorldTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Objects to detect in the scene.
         ///
-        /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the
+        /// If set, the session will attempt to detect the specified objects. When an object is detected an `ARObjectAnchor` will be added to the
         /// session.
         #[unsafe(method(detectionObjects))]
         #[unsafe(method_family = none)]
@@ -516,10 +514,26 @@ impl ARWorldTrackingConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setDetectionObjects(&self, detection_objects: &NSSet<ARReferenceObject>);
 
+        #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
+        /// Objects to track in the scene.
+        ///
+        /// If set, the session will attempt to track the specified objects. When an object is detected an `ARObjectAnchor` will be added to the
+        /// session.
+        #[unsafe(method(trackingObjects))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn trackingObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
+
+        #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
+        /// Setter for [`trackingObjects`][Self::trackingObjects].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setTrackingObjects:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTrackingObjects(&self, tracking_objects: &NSSet<ARReferenceObject>);
+
         /// Enable/disable a collaborative session. Disabled by default.
         ///
-        ///
-        /// When enabled, ARSession will output collaboration data for other participants using its delegate didOutputCollaborationData.
+        /// When enabled, `ARSession` will output collaboration data for other participants using its delegate `didOutputCollaborationData`.
         /// It is the responsibility of the caller to send the data to each participant. When data is received by a participant, it
         /// should be passed to the ARSession by calling updateWithCollaborationData.
         #[unsafe(method(isCollaborationEnabled))]
@@ -537,13 +551,13 @@ impl ARWorldTrackingConfiguration {
         pub unsafe fn supportsUserFaceTracking() -> bool;
 
         /// Enable or disable running Face Tracking using the front facing camera. Disabled by default.
+        ///
         /// When enabled, ARSession detects faces (if visible in the front-facing camera image) and adds to its list of anchors,
         /// an ARFaceAnchor object representing each face.
         ///
+        /// The transform of the `ARFaceAnchor` objects will be in the world coordinate space.
         ///
-        /// The transform of the ARFaceAnchor objects will be in the world coordinate space.
-        ///
-        /// See: ARFaceAnchor
+        /// - SeeAlso: ``ARFaceAnchor``
         #[unsafe(method(userFaceTrackingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn userFaceTrackingEnabled(&self) -> bool;
@@ -569,6 +583,10 @@ impl ARWorldTrackingConfiguration {
         pub unsafe fn supportsAppClipCodeTracking() -> bool;
 
         /// Indicates whether the scene reconstruction type is supported for the configuration on this device.
+        ///
+        /// - Parameter sceneReconstruction: The scene reconstruction type to check for support.
+        ///
+        /// - Returns: `YES` if the scene reconstruction type is supported on this device, `NO` otherwise.
         #[unsafe(method(supportsSceneReconstruction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsSceneReconstruction(
@@ -577,10 +595,10 @@ impl ARWorldTrackingConfiguration {
 
         /// Type of scene reconstruction to run. Defaults to ARSceneReconstructionNone.
         ///
-        /// See: ARMeshAnchor
-        ///
-        /// If set to a value other than ARSceneReconstructionNone, output of scene reconstruction will be added to the session as
+        /// If set to a value other than `ARSceneReconstructionNone`, output of scene reconstruction will be added to the session as
         /// ARMeshAnchor objects.
+        ///
+        /// - SeeAlso: ``ARMeshAnchor``
         #[unsafe(method(sceneReconstruction))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneReconstruction(&self) -> ARSceneReconstruction;
@@ -590,10 +608,16 @@ impl ARWorldTrackingConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setSceneReconstruction(&self, scene_reconstruction: ARSceneReconstruction);
 
+        /// Initializes a new world tracking configuration.
+        ///
+        /// - Returns: An initialized world tracking configuration.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Unavailable. Use init instead.
+        ///
+        /// - Returns: This method is unavailable.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -604,8 +628,7 @@ impl ARWorldTrackingConfiguration {
 extern_class!(
     /// A configuration for running orientation tracking.
     ///
-    ///
-    /// Orientation tracking provides 3 degrees of freedom tracking of the device.
+    /// Orientation tracking provides `3` degrees of freedom tracking of the device.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arorientationtrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
@@ -644,10 +667,16 @@ impl AROrientationTrackingConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoFocusEnabled(&self, auto_focus_enabled: bool);
 
+        /// Initializes a new orientation tracking configuration.
+        ///
+        /// - Returns: An initialized orientation tracking configuration.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Unavailable. Use init instead.
+        ///
+        /// - Returns: This method is unavailable.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -657,7 +686,6 @@ impl AROrientationTrackingConfiguration {
 #[cfg(feature = "objc2")]
 extern_class!(
     /// A configuration for running face tracking.
-    ///
     ///
     /// Face tracking uses the front facing camera to track the face in 3D providing details on the topology and expression of the face.
     /// A detected face will be added to the session as an ARFaceAnchor object which contains information about head pose, mesh, eye pose, and blend shape
@@ -717,8 +745,7 @@ impl ARFaceTrackingConfiguration {
 
         /// Enable or disable World Tracking. Disabled by default.
         ///
-        ///
-        /// When enabled, ARSession uses the back facing camera to track the device's orientation and position in the world. The camera transform and
+        /// When enabled, `ARSession` uses the back facing camera to track the device's orientation and position in the world. The camera transform and
         /// the ARFaceAnchor transform will be in the world coordinate space.
         #[unsafe(method(isWorldTrackingEnabled))]
         #[unsafe(method_family = none)]
@@ -729,10 +756,28 @@ impl ARFaceTrackingConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setWorldTrackingEnabled(&self, world_tracking_enabled: bool);
 
+        /// Enable or disable environment texturing.
+        ///
+        /// When enabled, the system automatically generates and updates the environment texture at the device position. Disabled by default.
+        #[unsafe(method(isEnvironmentTexturingEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEnvironmentTexturingEnabled(&self) -> bool;
+
+        /// Setter for [`isEnvironmentTexturingEnabled`][Self::isEnvironmentTexturingEnabled].
+        #[unsafe(method(setEnvironmentTexturingEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setEnvironmentTexturingEnabled(&self, environment_texturing_enabled: bool);
+
+        /// Initializes a new face tracking configuration.
+        ///
+        /// - Returns: An initialized face tracking configuration.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Unavailable. Use init instead.
+        ///
+        /// - Returns: This method is unavailable.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -742,7 +787,6 @@ impl ARFaceTrackingConfiguration {
 #[cfg(feature = "objc2")]
 extern_class!(
     /// A configuration for running image tracking.
-    ///
     ///
     /// Image tracking provides 6 degrees of freedom tracking of known images. Four images may be tracked simultaneously.
     ///
@@ -814,10 +858,16 @@ impl ARImageTrackingConfiguration {
             maximum_number_of_tracked_images: NSInteger,
         );
 
+        /// Initializes a new image tracking configuration.
+        ///
+        /// - Returns: An initialized image tracking configuration.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Unavailable. Use init instead.
+        ///
+        /// - Returns: This method is unavailable.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -826,14 +876,7 @@ impl ARImageTrackingConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A configuration for scanning objects.
-    ///
-    ///
-    /// The object scanning configuration runs world tracking, capturing additional detail in order to create reference objects.
-    /// Running object scanning will consume additional power in order to provide more detailed features.
-    /// The createReferenceObject method can be called on the session to capture a scan of an object in the world.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arobjectscanningconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arobjectscanningconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -885,10 +928,16 @@ impl ARObjectScanningConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setPlaneDetection(&self, plane_detection: ARPlaneDetection);
 
+        /// Initializes a new object scanning configuration.
+        ///
+        /// - Returns: An initialized object scanning configuration.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Unavailable. Use init instead.
+        ///
+        /// - Returns: This method is unavailable.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -899,13 +948,11 @@ impl ARObjectScanningConfiguration {
 extern_class!(
     /// A configuration for running body tracking.
     ///
-    ///
-    /// Body tracking provides 6 degrees of freedom tracking of a detected body in the scene. By default, ARFrameSemanticBodyDetection will be
+    /// Body tracking provides 6 degrees of freedom tracking of a detected body in the scene. By default, `ARFrameSemanticBodyDetection` will be
     /// enabled.
     ///
-    /// See: ARBodyAnchor
-    ///
-    /// See: -[ARFrame detectedBody]
+    /// - SeeAlso: ``ARBodyAnchor``
+    /// - SeeAlso: ``ARFrame/detectedBody``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arbodytrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
@@ -963,7 +1010,7 @@ impl ARBodyTrackingConfiguration {
 
         /// The mode of environment texturing to run.
         ///
-        /// If set, texture information will be accumulated and updated. Adding an AREnvironmentProbeAnchor to the session
+        /// If set, texture information will be accumulated and updated. Adding an `AREnvironmentProbeAnchor` to the session
         /// will get the current environment texture available from that probe's perspective which can be used for lighting
         /// virtual objects in the scene. Defaults to AREnvironmentTexturingNone.
         #[unsafe(method(environmentTexturing))]
@@ -1003,7 +1050,7 @@ impl ARBodyTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Images to detect in the scene.
         ///
-        /// If set the session will attempt to detect the specified images. When an image is detected an ARImageAnchor will be added to the session.
+        /// If set the session will attempt to detect the specified images. When an image is detected an `ARImageAnchor` will be added to the session.
         #[unsafe(method(detectionImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionImages(&self) -> Retained<NSSet<ARReferenceImage>>;
@@ -1021,7 +1068,8 @@ impl ARBodyTrackingConfiguration {
         /// If set to true ARKit will attempt to use the computed camera positions in order to compute the scale by which the given physical size
         /// differs from the estimated one. The information about the estimated scale can be found as the property estimatedScaleFactor on the ARImageAnchor.
         ///
-        /// Note: When set to true the transform of a returned ARImageAnchor will use the estimated scale factor to correct the translation. Default value is NO.
+        /// - Note: When set to true the transform of a returned `ARImageAnchor` will use the estimated scale factor to correct the translation. Default value is
+        /// `NO`.
         #[unsafe(method(automaticImageScaleEstimationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticImageScaleEstimationEnabled(&self) -> bool;
@@ -1039,7 +1087,8 @@ impl ARBodyTrackingConfiguration {
         /// If set to true ARKit will attempt to use the computed camera positions in order to compute the scale by which the given physical size
         /// differs from the default one. The information about the estimated scale can be found as the property estimatedScaleFactor on the ARBodyAnchor.
         ///
-        /// Note: When set to true the transform of a returned ARBodyAnchor will use the estimated scale factor to correct the translation. Default value is NO.
+        /// - Note: When set to true the transform of a returned `ARBodyAnchor` will use the estimated scale factor to correct the translation. Default value is
+        /// `NO`.
         #[unsafe(method(automaticSkeletonScaleEstimationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticSkeletonScaleEstimationEnabled(&self) -> bool;
@@ -1084,10 +1133,16 @@ impl ARBodyTrackingConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAppClipCodeTracking() -> bool;
 
+        /// Initializes a new body tracking configuration.
+        ///
+        /// - Returns: An initialized body tracking configuration.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Unavailable. Use init instead.
+        ///
+        /// - Returns: This method is unavailable.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -1098,8 +1153,7 @@ impl ARBodyTrackingConfiguration {
 extern_class!(
     /// A configuration for running positional tracking.
     ///
-    ///
-    /// Positional tracking provides 6 degrees of freedom tracking of the device by running the camera at lowest possible resolution and frame
+    /// Positional tracking provides `6` degrees of freedom tracking of the device by running the camera at lowest possible resolution and frame
     /// rate.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arpositionaltrackingconfiguration?language=objc)
@@ -1159,10 +1213,16 @@ impl ARPositionalTrackingConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialWorldMap(&self, initial_world_map: Option<&ARWorldMap>);
 
+        /// Initializes a new positional tracking configuration.
+        ///
+        /// - Returns: An initialized positional tracking configuration.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Unavailable. Use init instead.
+        ///
+        /// - Returns: This method is unavailable.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -1172,7 +1232,6 @@ impl ARPositionalTrackingConfiguration {
 #[cfg(feature = "objc2")]
 extern_class!(
     /// A configuration for running geographical world tracking.
-    ///
     ///
     /// It allows placing geo-referenced anchors (ARGeoAnchor) in the scene by running world tracking with location and compass.
     ///
@@ -1207,7 +1266,7 @@ impl ARGeoTrackingConfiguration {
 
         /// The mode of environment texturing to run.
         ///
-        /// If set, texture information will be accumulated and updated. Adding an AREnvironmentProbeAnchor to the session
+        /// If set, texture information will be accumulated and updated. Adding an `AREnvironmentProbeAnchor` to the session
         /// will get the current environment texture available from that probe's perspective which can be used for lighting
         /// virtual objects in the scene. Defaults to AREnvironmentTexturingNone.
         #[unsafe(method(environmentTexturing))]
@@ -1247,7 +1306,7 @@ impl ARGeoTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Images to detect in the scene.
         ///
-        /// If set the session will attempt to detect the specified images. When an image is detected an ARImageAnchor will be added to the session.
+        /// If set the session will attempt to detect the specified images. When an image is detected an `ARImageAnchor` will be added to the session.
         #[unsafe(method(detectionImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionImages(&self) -> Retained<NSSet<ARReferenceImage>>;
@@ -1265,7 +1324,8 @@ impl ARGeoTrackingConfiguration {
         /// If set to true ARKit will attempt to use the computed camera positions in order to compute the scale by which the given physical size
         /// differs from the estimated one. The information about the estimated scale can be found as the property estimatedScaleFactor on the ARImageAnchor.
         ///
-        /// Note: When set to true the transform of a returned ARImageAnchor will use the estimated scale factor to correct the translation. Default value is NO.
+        /// - Note: When set to true the transform of a returned `ARImageAnchor` will use the estimated scale factor to correct the translation. Default value is
+        /// `NO`.
         #[unsafe(method(automaticImageScaleEstimationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn automaticImageScaleEstimationEnabled(&self) -> bool;
@@ -1298,7 +1358,7 @@ impl ARGeoTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Objects to detect in the scene.
         ///
-        /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the
+        /// If set, the session will attempt to detect the specified objects. When an object is detected an `ARObjectAnchor` will be added to the
         /// session.
         #[unsafe(method(detectionObjects))]
         #[unsafe(method_family = none)]
@@ -1311,6 +1371,23 @@ impl ARGeoTrackingConfiguration {
         #[unsafe(method(setDetectionObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDetectionObjects(&self, detection_objects: &NSSet<ARReferenceObject>);
+
+        #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
+        /// Objects to track in the scene.
+        ///
+        /// If set, the session will attempt to track the specified objects. When an object is detected an `ARObjectAnchor` will be added to the
+        /// session.
+        #[unsafe(method(trackingObjects))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn trackingObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
+
+        #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
+        /// Setter for [`trackingObjects`][Self::trackingObjects].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setTrackingObjects:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTrackingObjects(&self, tracking_objects: &NSSet<ARReferenceObject>);
 
         /// Enable or disable app clip code tracking. Disabled by default. When enabled, detected app clip codes will be surfaced as an ARAppClipCodeAnchor.
         #[unsafe(method(appClipCodeTrackingEnabled))]
@@ -1330,13 +1407,11 @@ impl ARGeoTrackingConfiguration {
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// Determines the availability of geo tracking at the current location.
         ///
-        ///
         /// This method will attempt to acquire a location fix on a background thread, then check availability.
         ///
-        ///
-        /// Parameter `completionHandler`: Completion handler that is called when availability has been determined. This handler is executed on an arbitrary serial
-        /// queue. It takes the following parameters: isAvailable - True if geo tracking is available at the current location, otherwise false. error - An error
-        /// that indicates why geo tracking is not available at the current location.
+        /// - Parameter completionHandler: Completion handler that is called when availability has been determined. This handler is executed on an arbitrary
+        /// serial queue. It takes the following parameters: isAvailable - True if geo tracking is available at the current location, otherwise false. error - An
+        /// error that indicates why geo tracking is not available at the current location.
         #[unsafe(method(checkAvailabilityWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkAvailabilityWithCompletionHandler(
@@ -1350,9 +1425,9 @@ impl ARGeoTrackingConfiguration {
         ))]
         /// Determines the availability of geo tracking at the given location.
         ///
-        /// Parameter `coordinate`: Location at which to check.
-        ///
-        /// Parameter `completionHandler`: Completion handler that is called when availability has been determined. This handler is executed on an arbitrary serial
+        /// - Parameters:
+        /// - coordinate: Location at which to check.
+        /// - completionHandler: Completion handler that is called when availability has been determined. This handler is executed on an arbitrary serial
         /// queue. It takes the following parameters: isAvailable - True if geo tracking is available at the given location, otherwise false. error - An error
         /// that indicates why geo tracking is not available at the given location.
         #[unsafe(method(checkAvailabilityAtCoordinate:completionHandler:))]
@@ -1362,10 +1437,16 @@ impl ARGeoTrackingConfiguration {
             completion_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
+        /// Initializes a new geo tracking configuration.
+        ///
+        /// - Returns: An initialized geo tracking configuration.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Unavailable. Use init instead.
+        ///
+        /// - Returns: This method is unavailable.
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;

@@ -234,7 +234,7 @@ impl CKSyncEngine {
         #[cfg(feature = "block2")]
         /// Cancels any in-progress or pending sync operations.
         ///
-        /// The sync engine processes cancelation requests asynchronously, meaning it's possible for in-progress operations to complete even after this method returns.
+        /// The sync engine processes cancellation requests asynchronously, meaning it's possible for in-progress operations to complete even after this method returns.
         #[unsafe(method(cancelOperationsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelOperationsWithCompletionHandler(
@@ -263,7 +263,7 @@ extern_protocol!(
         /// - Important: If `event` is an instance of ``CKSyncEngineStateUpdateEvent``, you must persist the attached state to disk alongside your app data.
         /// The sync engine requires you to provide it with the most recent serialized state at initialization, and it's your responsibility to make sure this is available across app launches.
         ///
-        /// The sync engines provides events serially; your delegate won't receive the subsequent event until it finishes processing the current one and returns from this method.
+        /// The sync engine provides events serially; your delegate won't receive the subsequent event until it finishes processing the current one and returns from this method.
         #[unsafe(method(syncEngine:handleEvent:))]
         #[unsafe(method_family = none)]
         unsafe fn syncEngine_handleEvent(
@@ -754,7 +754,7 @@ unsafe impl RefEncode for CKSyncEngineSyncReason {
 extern_class!(
     /// The context of an attempt to fetch changes from the server.
     ///
-    /// The sync engine might attempt to fetch changes to the server for many reasons.
+    /// The sync engine might attempt to fetch changes from the server for many reasons.
     /// For example, if you call ``CKSyncEngine/fetchChangesWithCompletionHandler:``, it tries to fetch changes immediately.
     /// Or if it receives a push notification, it schedules a sync and fetch changes when the scheduler task runs.
     ///

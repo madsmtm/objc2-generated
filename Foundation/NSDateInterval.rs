@@ -6,7 +6,22 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateinterval?language=objc)
+    /// An object representing the span of time between a specific start date and end date.
+    ///
+    /// In Swift, this object bridges to ``DateInterval``; use ``NSDateInterval`` when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// An `NSDateInterval` object represents a closed interval between two dates. The `NSDateInterval` class provides a programmatic interface for calculating the duration of a time interval and determining whether a date falls within it, as well as comparing date intervals and checking to see whether they intersect.
+    ///
+    /// An `NSDateInterval` object consists of a ``startDate`` and an ``endDate``. The ``startDate`` and ``endDate`` of a date interval can be equal, in which case its ``duration`` is `0`. However, ``endDate`` cannot occur earlier than ``startDate``.
+    ///
+    /// You can use the ``DateIntervalFormatter`` class to create string representations of `NSDateInterval` objects that are suitable for display in the current locale.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``DateInterval`` structure, which bridges to the `NSDateInterval` class. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateinterval?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDateInterval;
@@ -43,25 +58,38 @@ extern_conformance!(
 impl NSDateInterval {
     extern_methods!(
         #[cfg(feature = "NSDate")]
+        /// The start date of the date interval.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub fn startDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
+        /// The end date of the date interval.
         #[unsafe(method(endDate))]
         #[unsafe(method_family = none)]
         pub fn endDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
+        /// The duration of the date interval.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub fn duration(&self) -> NSTimeInterval;
 
+        /// Initializes a date interval by setting the start and end date to the current date.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
+        /// Initializes a date interval with a given start date and duration.
+        ///
+        /// - Parameters:
+        /// - startDate: The start date of the date interval.
+        /// - duration: The duration from the start date for the date interval.
+        ///
+        /// This method raises an `NSArgumentException` if `duration` is less than `0`.
+        ///
+        /// This is the designated initializer.
         #[unsafe(method(initWithStartDate:duration:))]
         #[unsafe(method_family = init)]
         pub fn initWithStartDate_duration(
@@ -71,6 +99,13 @@ impl NSDateInterval {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
+        /// Initializes a date interval from a given start date and end date.
+        ///
+        /// - Parameters:
+        /// - startDate: The start date of the date interval.
+        /// - endDate: The end date of the date interval.
+        ///
+        /// This method raises an `NSArgumentException` if `endDate` occurs earlier than `startDate`.
         #[unsafe(method(initWithStartDate:endDate:))]
         #[unsafe(method_family = init)]
         pub fn initWithStartDate_endDate(
@@ -80,18 +115,42 @@ impl NSDateInterval {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// If both the start dates and the durations are equal, then the intervals are considered equal and `NSOrderedSame` is returned as the result.
+        ///
+        /// - Parameters:
+        /// - dateInterval: The date interval with which to compare the receiver.
+        /// - Returns: An `NSComparisonResult` value that indicates the temporal ordering of the receiver and the given date interval:
+        /// `NSOrderedAscending` if the receiver's start date occurs earlier, or both start dates are equal and the receiver's duration is less.
+        /// `NSOrderedDescending` if the receiver's start date occurs later, or both start dates are equal and the receiver's duration is greater.
+        /// `NSOrderedSame` if the start dates and durations are equal.
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         pub fn compare(&self, date_interval: &NSDateInterval) -> NSComparisonResult;
 
+        /// Indicates whether the receiver is equal to the specified date interval.
+        ///
+        /// - Parameters:
+        /// - dateInterval: The date interval with which to check the receiver for equality.
+        /// - Returns: `YES` if the start date and duration of `dateInterval` and the receiver are equal. Otherwise, `NO`.
         #[unsafe(method(isEqualToDateInterval:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToDateInterval(&self, date_interval: &NSDateInterval) -> bool;
 
+        /// Indicates whether the receiver intersects with the specified date interval.
+        ///
+        /// - Parameters:
+        /// - dateInterval: The date interval with which to check the receiver for intersection.
         #[unsafe(method(intersectsDateInterval:))]
         #[unsafe(method_family = none)]
         pub fn intersectsDateInterval(&self, date_interval: &NSDateInterval) -> bool;
 
+        /// Returns the intersection between the receiver and the specified date interval.
+        ///
+        /// - Parameters:
+        /// - dateInterval: The date interval with which to calculate the intersection of the receiver.
+        /// - Returns: A date interval for the intersection of the receiver and `dateInterval`, or `nil` if no intersection occurs.
+        ///
+        /// Calculating the intersection of date intervals is a commutative and associative operation. The intersection of a date interval with itself is equal to itself.
         #[unsafe(method(intersectionWithDateInterval:))]
         #[unsafe(method_family = none)]
         pub fn intersectionWithDateInterval(
@@ -100,6 +159,11 @@ impl NSDateInterval {
         ) -> Option<Retained<NSDateInterval>>;
 
         #[cfg(feature = "NSDate")]
+        /// Indicates whether the receiver contains the specified date.
+        ///
+        /// - Parameters:
+        /// - date: The date for which to test membership of the date interval.
+        /// - Returns: `YES` if the receiver contains `date`. Otherwise, `NO`.
         #[unsafe(method(containsDate:))]
         #[unsafe(method_family = none)]
         pub fn containsDate(&self, date: &NSDate) -> bool;

@@ -24,6 +24,11 @@ extern_conformance!(
 #[cfg(feature = "UITab")]
 impl UISearchTab {
     extern_methods!(
+        /// The system-assigned identifier for search tabs.
+        #[unsafe(method(identifier))]
+        #[unsafe(method_family = none)]
+        pub fn identifier(mtm: MainThreadMarker) -> Retained<NSString>;
+
         /// Determines if the search tab should automatically activate the embedded search field when the tab becomes visible.
         ///
         /// When this property is set to `YES`, the search field will be activated when the tab is selected. Moreover, when search is cancelled,

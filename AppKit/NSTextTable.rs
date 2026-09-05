@@ -13,16 +13,20 @@ use crate::*;
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct NSTextBlockValueType(pub NSUInteger);
+pub struct NSTextBlockValueType(pub NSInteger);
 impl NSTextBlockValueType {
-    #[doc(alias = "NSTextBlockAbsoluteValueType")]
-    pub const AbsoluteValueType: Self = Self(0);
-    #[doc(alias = "NSTextBlockPercentageValueType")]
-    pub const PercentageValueType: Self = Self(1);
+    #[doc(alias = "NSTextBlockValueTypeAbsolute")]
+    pub const Absolute: Self = Self(0);
+    #[doc(alias = "NSTextBlockValueTypePercentage")]
+    pub const Percentage: Self = Self(1);
+    #[deprecated]
+    pub const NSTextBlockAbsoluteValueType: Self = Self(NSTextBlockValueType::Absolute.0);
+    #[deprecated]
+    pub const NSTextBlockPercentageValueType: Self = Self(NSTextBlockValueType::Percentage.0);
 }
 
 unsafe impl Encode for NSTextBlockValueType {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
+    const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
 unsafe impl RefEncode for NSTextBlockValueType {
@@ -33,24 +37,36 @@ unsafe impl RefEncode for NSTextBlockValueType {
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct NSTextBlockDimension(pub NSUInteger);
+pub struct NSTextBlockDimension(pub NSInteger);
 impl NSTextBlockDimension {
-    #[doc(alias = "NSTextBlockWidth")]
+    #[doc(alias = "NSTextBlockDimensionWidth")]
     pub const Width: Self = Self(0);
-    #[doc(alias = "NSTextBlockMinimumWidth")]
+    #[doc(alias = "NSTextBlockDimensionMinimumWidth")]
     pub const MinimumWidth: Self = Self(1);
-    #[doc(alias = "NSTextBlockMaximumWidth")]
+    #[doc(alias = "NSTextBlockDimensionMaximumWidth")]
     pub const MaximumWidth: Self = Self(2);
-    #[doc(alias = "NSTextBlockHeight")]
+    #[doc(alias = "NSTextBlockDimensionHeight")]
     pub const Height: Self = Self(4);
-    #[doc(alias = "NSTextBlockMinimumHeight")]
+    #[doc(alias = "NSTextBlockDimensionMinimumHeight")]
     pub const MinimumHeight: Self = Self(5);
-    #[doc(alias = "NSTextBlockMaximumHeight")]
+    #[doc(alias = "NSTextBlockDimensionMaximumHeight")]
     pub const MaximumHeight: Self = Self(6);
+    #[deprecated]
+    pub const NSTextBlockWidth: Self = Self(NSTextBlockDimension::Width.0);
+    #[deprecated]
+    pub const NSTextBlockMinimumWidth: Self = Self(NSTextBlockDimension::MinimumWidth.0);
+    #[deprecated]
+    pub const NSTextBlockMaximumWidth: Self = Self(NSTextBlockDimension::MaximumWidth.0);
+    #[deprecated]
+    pub const NSTextBlockHeight: Self = Self(NSTextBlockDimension::Height.0);
+    #[deprecated]
+    pub const NSTextBlockMinimumHeight: Self = Self(NSTextBlockDimension::MinimumHeight.0);
+    #[deprecated]
+    pub const NSTextBlockMaximumHeight: Self = Self(NSTextBlockDimension::MaximumHeight.0);
 }
 
 unsafe impl Encode for NSTextBlockDimension {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
+    const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
 unsafe impl RefEncode for NSTextBlockDimension {
@@ -63,12 +79,18 @@ unsafe impl RefEncode for NSTextBlockDimension {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockLayer(pub NSInteger);
 impl NSTextBlockLayer {
-    #[doc(alias = "NSTextBlockPadding")]
+    #[doc(alias = "NSTextBlockLayerPadding")]
     pub const Padding: Self = Self(-1);
-    #[doc(alias = "NSTextBlockBorder")]
+    #[doc(alias = "NSTextBlockLayerBorder")]
     pub const Border: Self = Self(0);
-    #[doc(alias = "NSTextBlockMargin")]
+    #[doc(alias = "NSTextBlockLayerMargin")]
     pub const Margin: Self = Self(1);
+    #[deprecated]
+    pub const NSTextBlockPadding: Self = Self(NSTextBlockLayer::Padding.0);
+    #[deprecated]
+    pub const NSTextBlockBorder: Self = Self(NSTextBlockLayer::Border.0);
+    #[deprecated]
+    pub const NSTextBlockMargin: Self = Self(NSTextBlockLayer::Margin.0);
 }
 
 unsafe impl Encode for NSTextBlockLayer {
@@ -83,20 +105,28 @@ unsafe impl RefEncode for NSTextBlockLayer {
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct NSTextBlockVerticalAlignment(pub NSUInteger);
+pub struct NSTextBlockVerticalAlignment(pub NSInteger);
 impl NSTextBlockVerticalAlignment {
-    #[doc(alias = "NSTextBlockTopAlignment")]
-    pub const TopAlignment: Self = Self(0);
-    #[doc(alias = "NSTextBlockMiddleAlignment")]
-    pub const MiddleAlignment: Self = Self(1);
-    #[doc(alias = "NSTextBlockBottomAlignment")]
-    pub const BottomAlignment: Self = Self(2);
-    #[doc(alias = "NSTextBlockBaselineAlignment")]
-    pub const BaselineAlignment: Self = Self(3);
+    #[doc(alias = "NSTextBlockVerticalAlignmentTop")]
+    pub const Top: Self = Self(0);
+    #[doc(alias = "NSTextBlockVerticalAlignmentMiddle")]
+    pub const Middle: Self = Self(1);
+    #[doc(alias = "NSTextBlockVerticalAlignmentBottom")]
+    pub const Bottom: Self = Self(2);
+    #[doc(alias = "NSTextBlockVerticalAlignmentBaseline")]
+    pub const Baseline: Self = Self(3);
+    #[deprecated]
+    pub const NSTextBlockTopAlignment: Self = Self(NSTextBlockVerticalAlignment::Top.0);
+    #[deprecated]
+    pub const NSTextBlockMiddleAlignment: Self = Self(NSTextBlockVerticalAlignment::Middle.0);
+    #[deprecated]
+    pub const NSTextBlockBottomAlignment: Self = Self(NSTextBlockVerticalAlignment::Bottom.0);
+    #[deprecated]
+    pub const NSTextBlockBaselineAlignment: Self = Self(NSTextBlockVerticalAlignment::Baseline.0);
 }
 
 unsafe impl Encode for NSTextBlockVerticalAlignment {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
+    const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
 unsafe impl RefEncode for NSTextBlockVerticalAlignment {
@@ -107,16 +137,21 @@ unsafe impl RefEncode for NSTextBlockVerticalAlignment {
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct NSTextTableLayoutAlgorithm(pub NSUInteger);
+pub struct NSTextTableLayoutAlgorithm(pub NSInteger);
 impl NSTextTableLayoutAlgorithm {
-    #[doc(alias = "NSTextTableAutomaticLayoutAlgorithm")]
-    pub const AutomaticLayoutAlgorithm: Self = Self(0);
-    #[doc(alias = "NSTextTableFixedLayoutAlgorithm")]
-    pub const FixedLayoutAlgorithm: Self = Self(1);
+    #[doc(alias = "NSTextTableLayoutAlgorithmAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSTextTableLayoutAlgorithmFixed")]
+    pub const Fixed: Self = Self(1);
+    #[deprecated]
+    pub const NSTextTableAutomaticLayoutAlgorithm: Self =
+        Self(NSTextTableLayoutAlgorithm::Automatic.0);
+    #[deprecated]
+    pub const NSTextTableFixedLayoutAlgorithm: Self = Self(NSTextTableLayoutAlgorithm::Fixed.0);
 }
 
 unsafe impl Encode for NSTextTableLayoutAlgorithm {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
+    const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
 unsafe impl RefEncode for NSTextTableLayoutAlgorithm {
@@ -161,7 +196,7 @@ impl NSTextBlock {
         #[unsafe(method_family = none)]
         pub fn setValue_type_forDimension(
             &self,
-            val: CGFloat,
+            value: CGFloat,
             r#type: NSTextBlockValueType,
             dimension: NSTextBlockDimension,
         );
@@ -181,7 +216,7 @@ impl NSTextBlock {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setContentWidth:type:))]
         #[unsafe(method_family = none)]
-        pub fn setContentWidth_type(&self, val: CGFloat, r#type: NSTextBlockValueType);
+        pub fn setContentWidth_type(&self, content_width: CGFloat, r#type: NSTextBlockValueType);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentWidth))]
@@ -193,6 +228,52 @@ impl NSTextBlock {
         pub fn contentWidthValueType(&self) -> NSTextBlockValueType;
 
         #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(setWidth:type:forLayer:))]
+        #[unsafe(method_family = none)]
+        pub fn setWidth_type_forLayer(
+            &self,
+            width: CGFloat,
+            r#type: NSTextBlockValueType,
+            layer: NSTextBlockLayer,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(setWidth:type:forLayer:rectEdge:))]
+        #[unsafe(method_family = none)]
+        pub fn setWidth_type_forLayer_rectEdge(
+            &self,
+            width: CGFloat,
+            r#type: NSTextBlockValueType,
+            layer: NSTextBlockLayer,
+            rect_edge: CGRectEdge,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(widthForLayer:rectEdge:))]
+        #[unsafe(method_family = none)]
+        pub fn widthForLayer_rectEdge(
+            &self,
+            layer: NSTextBlockLayer,
+            rect_edge: CGRectEdge,
+        ) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[unsafe(method(widthValueTypeForLayer:rectEdge:))]
+        #[unsafe(method_family = none)]
+        pub fn widthValueTypeForLayer_rectEdge(
+            &self,
+            layer: NSTextBlockLayer,
+            rect_edge: CGRectEdge,
+        ) -> NSTextBlockValueType;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[deprecated]
+        #[unsafe(method(widthForLayer:edge:))]
+        #[unsafe(method_family = none)]
+        pub fn widthForLayer_edge(&self, layer: NSTextBlockLayer, edge: NSRectEdge) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        #[deprecated]
         #[unsafe(method(setWidth:type:forLayer:edge:))]
         #[unsafe(method_family = none)]
         pub fn setWidth_type_forLayer_edge(
@@ -203,21 +284,7 @@ impl NSTextBlock {
             edge: NSRectEdge,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(setWidth:type:forLayer:))]
-        #[unsafe(method_family = none)]
-        pub fn setWidth_type_forLayer(
-            &self,
-            val: CGFloat,
-            r#type: NSTextBlockValueType,
-            layer: NSTextBlockLayer,
-        );
-
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(widthForLayer:edge:))]
-        #[unsafe(method_family = none)]
-        pub fn widthForLayer_edge(&self, layer: NSTextBlockLayer, edge: NSRectEdge) -> CGFloat;
-
+        #[deprecated]
         #[unsafe(method(widthValueTypeForLayer:edge:))]
         #[unsafe(method_family = none)]
         pub fn widthValueTypeForLayer_edge(
@@ -249,16 +316,32 @@ impl NSTextBlock {
         pub fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[cfg(feature = "NSColor")]
+        #[unsafe(method(setBorderColor:))]
+        #[unsafe(method_family = none)]
+        pub fn setBorderColor(&self, color: Option<&NSColor>);
+
+        #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
+        #[unsafe(method(setBorderColor:rectEdge:))]
+        #[unsafe(method_family = none)]
+        pub fn setBorderColor_rectEdge(
+            &self,
+            border_color: Option<&NSColor>,
+            rect_edge: CGRectEdge,
+        );
+
+        #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
+        #[unsafe(method(borderColorForRectEdge:))]
+        #[unsafe(method_family = none)]
+        pub fn borderColorForRectEdge(&self, rect_edge: CGRectEdge) -> Option<Retained<NSColor>>;
+
+        #[cfg(feature = "NSColor")]
+        #[deprecated]
         #[unsafe(method(setBorderColor:forEdge:))]
         #[unsafe(method_family = none)]
         pub fn setBorderColor_forEdge(&self, color: Option<&NSColor>, edge: NSRectEdge);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method(setBorderColor:))]
-        #[unsafe(method_family = none)]
-        pub fn setBorderColor(&self, color: Option<&NSColor>);
-
-        #[cfg(feature = "NSColor")]
+        #[deprecated]
         #[unsafe(method(borderColorForEdge:))]
         #[unsafe(method_family = none)]
         pub fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Retained<NSColor>>;
@@ -295,7 +378,7 @@ impl NSTextBlock {
         pub fn drawBackgroundWithFrame_inView_characterRange_layoutManager(
             &self,
             frame_rect: NSRect,
-            control_view: &NSView,
+            control_view: Option<&NSView>,
             char_range: NSRange,
             layout_manager: &NSLayoutManager,
         );
@@ -354,8 +437,8 @@ impl NSTextTableBlock {
             table: &NSTextTable,
             row: NSInteger,
             row_span: NSInteger,
-            col: NSInteger,
-            col_span: NSInteger,
+            column: NSInteger,
+            column_span: NSInteger,
         ) -> Retained<Self>;
 
         #[unsafe(method(table))]
@@ -436,12 +519,12 @@ impl NSTextTable {
     extern_methods!(
         #[unsafe(method(numberOfColumns))]
         #[unsafe(method_family = none)]
-        pub fn numberOfColumns(&self) -> NSUInteger;
+        pub fn numberOfColumns(&self) -> NSInteger;
 
         /// Setter for [`numberOfColumns`][Self::numberOfColumns].
         #[unsafe(method(setNumberOfColumns:))]
         #[unsafe(method_family = none)]
-        pub fn setNumberOfColumns(&self, number_of_columns: NSUInteger);
+        pub fn setNumberOfColumns(&self, number_of_columns: NSInteger);
 
         #[unsafe(method(layoutAlgorithm))]
         #[unsafe(method_family = none)]

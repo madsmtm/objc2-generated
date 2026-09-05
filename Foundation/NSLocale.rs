@@ -7,13 +7,80 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalekey?language=objc)
+/// The keys used to access components of a locale.
+///
+/// Use these keys with the methods ``NSLocale/object(forKey:)`` and ``NSLocale/displayName(forKey:value:)``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalekey?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSLocaleKey = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale?language=objc)
+    /// Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.
+    ///
+    /// In Swift, this object bridges to ``Locale``; use ``NSLocale`` when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// You typically use a locale to format and interpret information about and according to the user's customs and preferences.
+    ///
+    /// You can initialize any number of locale instances with ``init(localeIdentifier:)`` using one of the locale identifiers found in the ``availableLocaleIdentifiers`` array. However, you usually use a locale configured to match the preferences of the current user.
+    ///
+    /// Use the ``current`` property to get the locale matching the current user's preferences. If you need to be alerted when the user does make changes to region settings, register for the ``currentLocaleDidChangeNotification`` notification. Alternatively, you can use the ``autoupdatingCurrent`` property to get a locale that automatically updates with the user's configuration settings:
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let locale = NSLocale.autoupdatingCurrent
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSLocale* locale = [NSLocale autoupdatingCurrentLocale];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// You can inspect a locale by reading its properties, as listed in Getting Information About a Locale. For properties containing a code or identifier, you can then obtain a string suitable for presentation to the user with the methods listed in Getting Display Information About a Locale. For example, you can report the user's language as a string localized in that language using the autoupdating locale obtained in the previous example:
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let code = locale.languageCode!
+    /// let language = locale.localizedString(forLanguageCode: code)!
+    ///
+    /// print("\(language)")
+    /// // Prints "English" for locale en_US, "français" for fr_FR
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSString* code = locale.languageCode;
+    /// NSString* language = [locale localizedStringForLanguageCode:code];
+    ///
+    /// NSLog(@"%@",language);
+    /// // Prints "English" for locale en_US, "français" for fr_FR
+    /// ```
+    /// }
+    /// }
+    ///
+    /// You frequently use a locale in conjunction with a formatter. For example, the ``DateFormatter`` class has a ``DateFormatter/locale`` property that ensures dates are converted to strings that match the user's expectations about date formatting. By default, this property indicates the user's current locale, which is usually the behavior you want, but you can instead set it to another locale instance to obtain a different output. See [Data Formatting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DataFormatting/DataFormatting.html#//apple_ref/doc/uid/10000029i) for more information about working with formatters.
+    ///
+    /// ``NSLocale`` is _toll-free bridged_ with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cflocale>. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``Locale`` structure, which bridges to the ``NSLocale`` class. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLocale;
@@ -66,11 +133,14 @@ extern_conformance!(
 impl NSLocale {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns the object corresponding to the specified key.
         #[unsafe(method(objectForKey:))]
         #[unsafe(method_family = none)]
         pub fn objectForKey(&self, key: &NSLocaleKey) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the display name for the given locale component value.
+        ///
         /// # Safety
         ///
         /// `value` should be of the correct type.
@@ -83,6 +153,7 @@ impl NSLocale {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes a locale using a given locale identifier.
         #[unsafe(method(initWithLocaleIdentifier:))]
         #[unsafe(method_family = init)]
         pub fn initWithLocaleIdentifier(this: Allocated<Self>, string: &NSString)
@@ -94,11 +165,13 @@ impl NSLocale {
 impl NSLocale {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The identifier for the locale.
         #[unsafe(method(localeIdentifier))]
         #[unsafe(method_family = none)]
         pub fn localeIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized string for the specified locale identifier.
         #[unsafe(method(localizedStringForLocaleIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForLocaleIdentifier(
@@ -107,11 +180,13 @@ impl NSLocale {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The language code for the locale.
         #[unsafe(method(languageCode))]
         #[unsafe(method_family = none)]
         pub fn languageCode(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized string for the specified language code.
         #[unsafe(method(localizedStringForLanguageCode:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForLanguageCode(
@@ -126,12 +201,14 @@ impl NSLocale {
         pub fn languageIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The country or region code for the locale.
         #[deprecated]
         #[unsafe(method(countryCode))]
         #[unsafe(method_family = none)]
         pub fn countryCode(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized string for the specified country or region code.
         #[unsafe(method(localizedStringForCountryCode:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForCountryCode(
@@ -148,11 +225,13 @@ impl NSLocale {
         pub fn regionCode(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The script code for the locale.
         #[unsafe(method(scriptCode))]
         #[unsafe(method_family = none)]
         pub fn scriptCode(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized string for the specified script code.
         #[unsafe(method(localizedStringForScriptCode:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForScriptCode(
@@ -161,11 +240,13 @@ impl NSLocale {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The variant code for the locale.
         #[unsafe(method(variantCode))]
         #[unsafe(method_family = none)]
         pub fn variantCode(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized string for the specified variant code.
         #[unsafe(method(localizedStringForVariantCode:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForVariantCode(
@@ -174,16 +255,19 @@ impl NSLocale {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSCharacterSet")]
+        /// The exemplar character set for the locale.
         #[unsafe(method(exemplarCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn exemplarCharacterSet(&self) -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSString")]
+        /// The calendar identifier for the locale.
         #[unsafe(method(calendarIdentifier))]
         #[unsafe(method_family = none)]
         pub fn calendarIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized string for the specified calendar identifier.
         #[unsafe(method(localizedStringForCalendarIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForCalendarIdentifier(
@@ -192,11 +276,13 @@ impl NSLocale {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The collation identifier for the locale.
         #[unsafe(method(collationIdentifier))]
         #[unsafe(method_family = none)]
         pub fn collationIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized string for the specified collation identifier.
         #[unsafe(method(localizedStringForCollationIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForCollationIdentifier(
@@ -204,31 +290,37 @@ impl NSLocale {
             collation_identifier: &NSString,
         ) -> Option<Retained<NSString>>;
 
+        /// A Boolean value that indicates whether the locale uses the metric system.
         #[unsafe(method(usesMetricSystem))]
         #[unsafe(method_family = none)]
         pub fn usesMetricSystem(&self) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// The decimal separator for the locale.
         #[unsafe(method(decimalSeparator))]
         #[unsafe(method_family = none)]
         pub fn decimalSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The grouping separator for the locale.
         #[unsafe(method(groupingSeparator))]
         #[unsafe(method_family = none)]
         pub fn groupingSeparator(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The currency symbol for the locale.
         #[unsafe(method(currencySymbol))]
         #[unsafe(method_family = none)]
         pub fn currencySymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The currency code for the locale.
         #[unsafe(method(currencyCode))]
         #[unsafe(method_family = none)]
         pub fn currencyCode(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized string for the specified currency code.
         #[unsafe(method(localizedStringForCurrencyCode:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForCurrencyCode(
@@ -237,11 +329,13 @@ impl NSLocale {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The collator identifier for the locale.
         #[unsafe(method(collatorIdentifier))]
         #[unsafe(method_family = none)]
         pub fn collatorIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized string for the specified collator identifier.
         #[unsafe(method(localizedStringForCollatorIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForCollatorIdentifier(
@@ -250,21 +344,25 @@ impl NSLocale {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The begin quotation delimiter for the locale.
         #[unsafe(method(quotationBeginDelimiter))]
         #[unsafe(method_family = none)]
         pub fn quotationBeginDelimiter(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The end quotation delimiter for the locale.
         #[unsafe(method(quotationEndDelimiter))]
         #[unsafe(method_family = none)]
         pub fn quotationEndDelimiter(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The begin quotation delimiter for the locale when using alternate quotation marks.
         #[unsafe(method(alternateQuotationBeginDelimiter))]
         #[unsafe(method_family = none)]
         pub fn alternateQuotationBeginDelimiter(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The end quotation delimiter for the locale when using alternate quotation marks.
         #[unsafe(method(alternateQuotationEndDelimiter))]
         #[unsafe(method_family = none)]
         pub fn alternateQuotationEndDelimiter(&self) -> Retained<NSString>;
@@ -274,39 +372,52 @@ impl NSLocale {
 /// NSLocaleCreation.
 impl NSLocale {
     extern_methods!(
+        /// A locale representing the user's region settings at the time the property is read.
         #[unsafe(method(autoupdatingCurrentLocale))]
         #[unsafe(method_family = none)]
         pub fn autoupdatingCurrentLocale() -> Retained<NSLocale>;
 
+        /// An object representing the user's current locale.
         #[unsafe(method(currentLocale))]
         #[unsafe(method_family = none)]
         pub fn currentLocale() -> Retained<NSLocale>;
 
+        /// The default generic root locale with little localization.
         #[unsafe(method(systemLocale))]
         #[unsafe(method_family = none)]
         pub fn systemLocale() -> Retained<NSLocale>;
 
         #[cfg(feature = "NSString")]
+        /// Creates and returns a locale initialized with the given locale identifier.
         #[unsafe(method(localeWithLocaleIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn localeWithLocaleIdentifier(ident: &NSString) -> Retained<Self>;
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalelanguagedirection?language=objc)
+/// The directions that a language may take across a page of text.
+///
+/// Use these constants with the methods ``NSLocale/lineDirection(forLanguage:)`` and ``NSLocale/characterDirection(forLanguage:)``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalelanguagedirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLocaleLanguageDirection(pub NSUInteger);
 impl NSLocaleLanguageDirection {
+    /// The language direction is unknown.
     #[doc(alias = "NSLocaleLanguageDirectionUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The language direction is from left to right.
     #[doc(alias = "NSLocaleLanguageDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(1);
+    /// The language direction is from right to left.
     #[doc(alias = "NSLocaleLanguageDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(2);
+    /// The language direction is from top to bottom.
     #[doc(alias = "NSLocaleLanguageDirectionTopToBottom")]
     pub const TopToBottom: Self = Self(3);
+    /// The language direction is from bottom to top.
     #[doc(alias = "NSLocaleLanguageDirectionBottomToTop")]
     pub const BottomToTop: Self = Self(4);
 }
@@ -323,36 +434,43 @@ unsafe impl RefEncode for NSLocaleLanguageDirection {
 impl NSLocale {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of NSString objects, each of which identifies a locale available on the system.
         #[unsafe(method(availableLocaleIdentifiers))]
         #[unsafe(method_family = none)]
         pub fn availableLocaleIdentifiers() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of NSString objects that represents all known legal ISO language codes.
         #[unsafe(method(ISOLanguageCodes))]
         #[unsafe(method_family = none)]
         pub fn ISOLanguageCodes() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of NSString objects that represents all known legal ISO country codes.
         #[unsafe(method(ISOCountryCodes))]
         #[unsafe(method_family = none)]
         pub fn ISOCountryCodes() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of NSString objects that represents all known legal ISO currency codes.
         #[unsafe(method(ISOCurrencyCodes))]
         #[unsafe(method_family = none)]
         pub fn ISOCurrencyCodes() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of common ISO currency codes.
         #[unsafe(method(commonISOCurrencyCodes))]
         #[unsafe(method_family = none)]
         pub fn commonISOCurrencyCodes() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An ordered list of the user's preferred languages.
         #[unsafe(method(preferredLanguages))]
         #[unsafe(method_family = none)]
         pub fn preferredLanguages() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Returns a dictionary that is the result of parsing a locale ID.
         #[unsafe(method(componentsFromLocaleIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn componentsFromLocaleIdentifier(
@@ -360,6 +478,7 @@ impl NSLocale {
         ) -> Retained<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Returns a locale identifier from the components specified in a given dictionary.
         #[unsafe(method(localeIdentifierFromComponents:))]
         #[unsafe(method_family = none)]
         pub fn localeIdentifierFromComponents(
@@ -367,32 +486,38 @@ impl NSLocale {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the canonical identifier for a given locale identification string.
         #[unsafe(method(canonicalLocaleIdentifierFromString:))]
         #[unsafe(method_family = none)]
         pub fn canonicalLocaleIdentifierFromString(string: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a canonical language identifier by mapping an arbitrary locale identification string to the canonical identifier.
         #[unsafe(method(canonicalLanguageIdentifierFromString:))]
         #[unsafe(method_family = none)]
         pub fn canonicalLanguageIdentifierFromString(string: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a locale identifier from a Windows locale code.
         #[unsafe(method(localeIdentifierFromWindowsLocaleCode:))]
         #[unsafe(method_family = none)]
         pub fn localeIdentifierFromWindowsLocaleCode(lcid: u32) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a Windows locale code from the locale identifier.
         #[unsafe(method(windowsLocaleCodeFromLocaleIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn windowsLocaleCodeFromLocaleIdentifier(locale_identifier: &NSString) -> u32;
 
         #[cfg(feature = "NSString")]
+        /// Returns the direction of the sequence of characters in a line for the specified ISO language code.
         #[unsafe(method(characterDirectionForLanguage:))]
         #[unsafe(method_family = none)]
         pub fn characterDirectionForLanguage(iso_lang_code: &NSString)
             -> NSLocaleLanguageDirection;
 
         #[cfg(feature = "NSString")]
+        /// Returns the direction of the sequence of lines for the specified ISO language code.
         #[unsafe(method(lineDirectionForLanguage:))]
         #[unsafe(method_family = none)]
         pub fn lineDirectionForLanguage(iso_lang_code: &NSString) -> NSLocaleLanguageDirection;
@@ -400,197 +525,259 @@ impl NSLocale {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscurrentlocaledidchangenotification?language=objc)
+    /// A notification that indicates that the user's locale changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscurrentlocaledidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSCurrentLocaleDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleidentifier?language=objc)
+    /// The locale identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleidentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleIdentifier: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalelanguagecode?language=objc)
+    /// The locale language code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalelanguagecode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleLanguageCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecountrycode?language=objc)
+    /// The locale country code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecountrycode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCountryCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalescriptcode?language=objc)
+    /// The locale script code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalescriptcode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleScriptCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalevariantcode?language=objc)
+    /// The locale variant code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalevariantcode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleVariantCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleexemplarcharacterset?language=objc)
+    /// The locale exemplar character set.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleexemplarcharacterset?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleExemplarCharacterSet: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecalendar?language=objc)
+    /// The locale calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecalendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCalendar: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecollationidentifier?language=objc)
+    /// The locale collation identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecollationidentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCollationIdentifier: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleusesmetricsystem?language=objc)
+    /// A Boolean value that indicates whether the locale uses the metric system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleusesmetricsystem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleUsesMetricSystem: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalemeasurementsystem?language=objc)
+    /// The measurement system for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalemeasurementsystem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleMeasurementSystem: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaledecimalseparator?language=objc)
+    /// The decimal separator for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaledecimalseparator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleDecimalSeparator: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalegroupingseparator?language=objc)
+    /// The grouping separator for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalegroupingseparator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleGroupingSeparator: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecurrencysymbol?language=objc)
+    /// The currency symbol for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecurrencysymbol?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCurrencySymbol: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecurrencycode?language=objc)
+    /// The currency code for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecurrencycode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCurrencyCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecollatoridentifier?language=objc)
+    /// The collator identifier for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecollatoridentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCollatorIdentifier: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalequotationbegindelimiterkey?language=objc)
+    /// The begin quotation delimiter key for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalequotationbegindelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleQuotationBeginDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalequotationenddelimiterkey?language=objc)
+    /// The end quotation delimiter key for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalequotationenddelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleQuotationEndDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalealternatequotationbegindelimiterkey?language=objc)
+    /// The alternate begin quotation delimiter key for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalealternatequotationbegindelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleAlternateQuotationBeginDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalealternatequotationenddelimiterkey?language=objc)
+    /// The alternate end quotation delimiter key for the locale.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalealternatequotationenddelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleAlternateQuotationEndDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgregoriancalendar?language=objc)
+    /// Identifier for the Gregorian calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgregoriancalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSGregorianCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbuddhistcalendar?language=objc)
+    /// Identifier for the Buddhist calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbuddhistcalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSBuddhistCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nschinesecalendar?language=objc)
+    /// Identifier for the Chinese calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nschinesecalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSChineseCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshebrewcalendar?language=objc)
+    /// Identifier for the Hebrew calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshebrewcalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHebrewCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsislamiccalendar?language=objc)
+    /// Identifier for the Islamic calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsislamiccalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSIslamicCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsislamiccivilcalendar?language=objc)
+    /// Identifier for the Islamic civil calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsislamiccivilcalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSIslamicCivilCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjapanesecalendar?language=objc)
+    /// Identifier for the Japanese calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjapanesecalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSJapaneseCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrepublicofchinacalendar?language=objc)
+    /// Identifier for the Republic of China calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrepublicofchinacalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSRepublicOfChinaCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersiancalendar?language=objc)
+    /// Identifier for the Persian calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersiancalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSPersianCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindiancalendar?language=objc)
+    /// Identifier for the Indian calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindiancalendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSIndianCalendar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601calendar?language=objc)
+    /// Identifier for the ISO8601 calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601calendar?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSISO8601Calendar: &'static NSString;

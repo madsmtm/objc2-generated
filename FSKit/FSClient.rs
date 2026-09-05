@@ -49,6 +49,36 @@ impl FSClient {
                 fn(*mut NSArray<FSModuleIdentity>, *mut NSError),
             >,
         );
+
+        #[cfg(all(feature = "FSResource", feature = "block2"))]
+        /// Asynchronously mounts a single volume file system with given resource
+        ///
+        /// This method allows a client with the `com.apple.developer.fskit.mount` entitlement to mount a single volume file system.
+        /// The volume will be mounted within the `/Volumes/` directory.
+        ///
+        /// The caller can only mount modules that are visible to them.
+        ///
+        /// - Parameters:
+        /// - resource: The resource that will be used to mount
+        /// - bundleID: The bundle identifier of the file system extension
+        /// - options: An array of strings containing the `mount_XXX` mount options
+        /// - completionHandler: A block or closure to indicate success or failure. If mount fails, the first parameter is nil and second parameter contains an error. If mount succeeds, the first parameter contains the URL of the mount path, and second parameter is `nil`.
+        #[unsafe(method(mountSingleVolumeForResource:bundleID:options:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mountSingleVolumeForResource_bundleID_options_completionHandler(
+            &self,
+            resource: &FSResource,
+            bundle_id: &NSString,
+            options: &NSArray<NSString>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSURL, *mut NSError)>,
+        );
+
+        /// Opens the File System Extensions settings in System Settings.
+        ///
+        /// - Returns: `YES` if the settings were successfully opened, `NO` otherwise.
+        #[unsafe(method(openFileSystemExtensionsSettings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn openFileSystemExtensionsSettings(&self) -> bool;
     );
 }
 

@@ -6,38 +6,67 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctionsoptions?language=objc)
+/// Defines the memory and personality options for an `NSPointerFunctions` object.
+///
+/// When specifying a value, you can use only one of the options listed in Memory Options, only one of the options listed in Personality Options, and any number of other options.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctionsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPointerFunctionsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPointerFunctionsOptions: NSUInteger {
+/// Use strong write-barriers to backing store; use garbage-collected memory on copy-in.
+///
+/// This is the default memory value. As a special case, if you do not use garbage collection and specify this value in conjunction with `NSPointerFunctionsObjectPersonality` or `NSPointerFunctionsObjectPointerPersonality` then the `NSPointerFunctions` object uses `retain` and `release`. If you do not use garbage collection, and specify this value in conjunction with a valid non-object personality, it is the same as specifying `NSPointerFunctionsMallocMemory`.
         #[doc(alias = "NSPointerFunctionsStrongMemory")]
         const StrongMemory = 0<<0;
+/// Use weak read and write barriers; use garbage-collected memory on copyIn.
+///
+/// If you do not use garbage collection, for object personalities, it will hold a non-retained object pointer.
         #[doc(alias = "NSPointerFunctionsZeroingWeakMemory")]
 #[deprecated = "GC no longer supported"]
         const ZeroingWeakMemory = 1<<0;
+/// Take no action when pointers are deleted.
+///
+/// This is usually the preferred memory option for holding arbitrary pointers. The acquire function is only used for copy-in operations. This option is unlikely to be a good choice for objects.
         #[doc(alias = "NSPointerFunctionsOpaqueMemory")]
         const OpaqueMemory = 2<<0;
+/// Use `free()` on removal, `calloc()` on copy in.
         #[doc(alias = "NSPointerFunctionsMallocMemory")]
         const MallocMemory = 3<<0;
+/// Use Mach memory.
         #[doc(alias = "NSPointerFunctionsMachVirtualMemory")]
         const MachVirtualMemory = 4<<0;
+/// Uses weak read and write barriers appropriate for ARC or GC.
+///
+/// Using `NSPointerFunctionsWeakMemory` object references will turn to `NULL` on last release.
         #[doc(alias = "NSPointerFunctionsWeakMemory")]
         const WeakMemory = 5<<0;
+/// Use `hash` and `isEqual` methods for hashing and equality comparisons, use the `description` method for a description.
+///
+/// This is the default personality value. As a special case, if you do not use garbage collection and specify this value in conjunction with `NSPointerFunctionsStrongMemory` then the `NSPointerFunctions` object uses `retain` and `release`.
         #[doc(alias = "NSPointerFunctionsObjectPersonality")]
         const ObjectPersonality = 0<<8;
+/// Use shifted pointer for the hash value and direct comparison to determine equality.
         #[doc(alias = "NSPointerFunctionsOpaquePersonality")]
         const OpaquePersonality = 1<<8;
+/// Use shifted pointer for the hash value and direct comparison to determine equality; use the `description` method for a description.
+///
+/// As a special case, if you do not use garbage collection and specify this value in conjunction with `NSPointerFunctionsStrongMemory` then the `NSPointerFunctions` object uses `retain` and `release`.
         #[doc(alias = "NSPointerFunctionsObjectPointerPersonality")]
         const ObjectPointerPersonality = 2<<8;
+/// Use a string hash and `strcmp`; C-string '`%s`' style description.
         #[doc(alias = "NSPointerFunctionsCStringPersonality")]
         const CStringPersonality = 3<<8;
+/// Use a memory hash and `memcmp` (using a size function that you must set---see `sizeFunction`).
         #[doc(alias = "NSPointerFunctionsStructPersonality")]
         const StructPersonality = 4<<8;
+/// Use unshifted value as hash and equality.
         #[doc(alias = "NSPointerFunctionsIntegerPersonality")]
         const IntegerPersonality = 5<<8;
+/// Use the memory acquire function to allocate and copy items on input (see `acquireFunction`).
         #[doc(alias = "NSPointerFunctionsCopyIn")]
         const CopyIn = 1<<16;
         const _ = !0;
@@ -53,7 +82,17 @@ unsafe impl RefEncode for NSPointerFunctionsOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions?language=objc)
+    /// An instance of `NSPointerFunctions` defines callout functions appropriate for managing a pointer reference held somewhere else.
+    ///
+    /// The functions specified by an instance of `NSPointerFunctions` are separated into two clusters—those that define "personality" such as "object" or "C-string", and those that describe memory management issues such as a memory deallocation function. There are constants for common personalities and memory manager selections (see `Memory and Personality Options`).
+    ///
+    /// ``NSHashTable``, ``NSMapTable``, and ``NSPointerArray`` use an `NSPointerFunctions` object to define the acquisition and retention behavior for the pointers they manage. Note, however, that not all combinations of personality and memory management behavior are valid for these collections. The pointer collection objects copy the `NSPointerFunctions` object on input and output, so you cannot usefully subclass `NSPointerFunctions`.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSPointerFunctions` is not suitable for subclassing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPointerFunctions;
@@ -75,6 +114,9 @@ extern_conformance!(
 
 impl NSPointerFunctions {
     extern_methods!(
+        /// Returns an `NSPointerFunctions` object initialized with the given options.
+        ///
+        /// - Parameter options: The options for the new `NSPointerFunctions` object.
         #[unsafe(method(initWithOptions:))]
         #[unsafe(method_family = init)]
         pub fn initWithOptions(
@@ -82,12 +124,17 @@ impl NSPointerFunctions {
             options: NSPointerFunctionsOptions,
         ) -> Retained<Self>;
 
+        /// Returns a new `NSPointerFunctions` object initialized with the given options.
+        ///
+        /// - Parameter options: The options for the new `NSPointerFunctions` object.
+        /// - Returns: A new `NSPointerFunctions` object initialized with the given options.
         #[unsafe(method(pointerFunctionsWithOptions:))]
         #[unsafe(method_family = none)]
         pub fn pointerFunctionsWithOptions(
             options: NSPointerFunctionsOptions,
         ) -> Retained<NSPointerFunctions>;
 
+        /// The hash function.
         #[unsafe(method(hashFunction))]
         #[unsafe(method_family = none)]
         pub fn hashFunction(
@@ -116,6 +163,7 @@ impl NSPointerFunctions {
             >,
         );
 
+        /// The function used to compare pointers.
         #[unsafe(method(isEqualFunction))]
         #[unsafe(method_family = none)]
         pub fn isEqualFunction(
@@ -146,6 +194,9 @@ impl NSPointerFunctions {
             >,
         );
 
+        /// The function used to determine the size of pointers.
+        ///
+        /// This function is used for copy-in operations (unless the collection has an object personality).
         #[unsafe(method(sizeFunction))]
         #[unsafe(method_family = none)]
         pub fn sizeFunction(
@@ -165,6 +216,9 @@ impl NSPointerFunctions {
         );
 
         #[cfg(feature = "NSString")]
+        /// The function used to describe elements.
+        ///
+        /// This function is used by description methods for hash and map tables.
         #[unsafe(method(descriptionFunction))]
         #[unsafe(method_family = none)]
         pub fn descriptionFunction(
@@ -186,6 +240,9 @@ impl NSPointerFunctions {
             >,
         );
 
+        /// The function used to relinquish memory.
+        ///
+        /// This specifies the function to use when an item is removed from a table or pointer array.
         #[unsafe(method(relinquishFunction))]
         #[unsafe(method_family = none)]
         pub fn relinquishFunction(
@@ -214,6 +271,9 @@ impl NSPointerFunctions {
             >,
         );
 
+        /// The function used to acquire memory.
+        ///
+        /// This specifies the function to use for copy-in operations.
         #[unsafe(method(acquireFunction))]
         #[unsafe(method_family = none)]
         pub fn acquireFunction(
@@ -244,6 +304,9 @@ impl NSPointerFunctions {
             >,
         );
 
+        /// Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
+        ///
+        /// If you use garbage collection, read and write barrier functions must be used when pointers are from memory scanned by the collector.
         #[deprecated = "Garbage collection no longer supported"]
         #[unsafe(method(usesStrongWriteBarrier))]
         #[unsafe(method_family = none)]
@@ -255,6 +318,9 @@ impl NSPointerFunctions {
         #[unsafe(method_family = none)]
         pub fn setUsesStrongWriteBarrier(&self, uses_strong_write_barrier: bool);
 
+        /// Specifies whether, in a garbage collected environment, pointers should use weak read and write barriers.
+        ///
+        /// If you use garbage collection, read and write barrier functions must be used when pointers are from memory scanned by the collector.
         #[deprecated = "Garbage collection no longer supported"]
         #[unsafe(method(usesWeakReadAndWriteBarriers))]
         #[unsafe(method_family = none)]

@@ -52,12 +52,12 @@ impl ScreenSaverDefaults {
 /// Methods declared on superclass `NSUserDefaults`.
 impl ScreenSaverDefaults {
     extern_methods!(
-        /// -init is equivalent to -initWithSuiteName:nil
+        /// Creates a new defaults object and initializes it with the app's current settings.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// -initWithSuiteName: initializes an instance of NSUserDefaults that searches the shared preferences search list for the domain 'suitename'. For example, using the identifier of an application group will cause the receiver to search the preferences for that group. Passing the current application's bundle identifier, NSGlobalDomain, or the corresponding CFPreferences constants is an error. Passing nil will search the default search list.
+        /// Creates a new defaults object and initializes it with the settings from the specified database.
         #[unsafe(method(initWithSuiteName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSuiteName(
@@ -65,7 +65,7 @@ impl ScreenSaverDefaults {
             suitename: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
-        /// -initWithUser: is equivalent to -init
+        /// Creates a user defaults object initialized with the defaults for the specified user account.
         #[deprecated = "Use -init instead"]
         #[unsafe(method(initWithUser:))]
         #[unsafe(method_family = init)]

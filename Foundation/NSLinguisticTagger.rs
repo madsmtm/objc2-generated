@@ -6,294 +6,415 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme?language=objc)
+/// Constants for the tag schemes specified when initializing a linguistic tagger.
+///
+/// ## Discussion
+///
+/// When initializing a linguistic tagger with ``NSLinguisticTagger/init(tagSchemes:options:)``, you specify one or more tag schemes that correspond to the kind of information you're interested in for a selection of natural language text. To ensure optimal performance, avoid specifying tag schemes that you won't use.
+///
+/// Some tag schemes are only available for certain units and languages. Use the ``NSLinguisticTagger/availableTagSchemes(for:language:)`` or ``NSLinguisticTagger/availableTagSchemes(forLanguage:)`` methods to determine the possible values for a specified language and linguistic unit.
+///
+/// When working with linguistic tags using the methods described in Getting Linguistic Tags and Enumerating Linguistic Tags, the returned tag value depends on the specified scheme. For example, given the token "Überraschung", the returned tag is ``NSLinguisticTag/noun`` when using the ``lexicalClass`` tag scheme, "de" (German language) when using the ``language`` tag scheme, and "Latn" (Latin script) when using the ``script`` tag scheme, as shown in the following code.
+///
+/// ```swift
+/// let tagger = NSLinguisticTagger(tagSchemes: [.lexicalClass, .language, .script], options: 0)
+/// tagger.string = "Überraschung"
+///
+/// tagger.tag(at: 0, unit: .word, scheme: .lexicalClass, tokenRange: nil) // Noun
+/// tagger.tag(at: 0, unit: .word, scheme: .language, tokenRange: nil) // de
+/// tagger.tag(at: 0, unit: .word, scheme: .script, tokenRange: nil) // Latn
+/// ```
+///
+/// The following table lists the available tag schemes, their applicable linguistic units, and possible tag values.
+///
+/// | Linguistic tag scheme | Applicable linguistic units | Possible tag values |
+/// |---|---|---|
+/// | ``tokenType`` | ``NSLinguisticTaggerUnit/word`` | See Token Types |
+/// | ``lexicalClass`` | ``NSLinguisticTaggerUnit/word`` | See Lexical Classes |
+/// | ``nameType`` | ``NSLinguisticTaggerUnit/word`` | See Name Types |
+/// | ``nameTypeOrLexicalClass`` | ``NSLinguisticTaggerUnit/word`` | See Name Types and Lexical Classes |
+/// | ``lemma`` | ``NSLinguisticTaggerUnit/word`` | A stem of the word |
+/// | ``language`` | ``NSLinguisticTaggerUnit/word``, ``NSLinguisticTaggerUnit/sentence``, ``NSLinguisticTaggerUnit/paragraph``, ``NSLinguisticTaggerUnit/document`` | A BCP-47 language tag |
+/// | ``script`` | ``NSLinguisticTaggerUnit/word``, ``NSLinguisticTaggerUnit/sentence``, ``NSLinguisticTaggerUnit/paragraph``, ``NSLinguisticTaggerUnit/document`` | An ISO 15924 script code |
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSLinguisticTagScheme = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemetokentype?language=objc)
+    /// Classifies tokens according to their broad type:  word, punctuation, or whitespace.
+    ///
+    /// For possible values, see Token Types.
+    ///
+    /// To classify tokens by a more specific type, for example, distinguishing words between nouns and verbs, use the `NSLinguisticTagSchemeLexicalClass` scheme.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemetokentype?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeTokenType: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelexicalclass?language=objc)
+    /// Classifies tokens according to class: part of speech for words, type of punctuation or whitespace, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelexicalclass?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeLexicalClass: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemenametype?language=objc)
+    /// Classifies tokens as to whether they are part of named entities of various types or not.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemenametype?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeNameType: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemenametypeorlexicalclass?language=objc)
+    /// Follows `NSLinguisticTagSchemeNameType` for names, `NSLinguisticTagSchemeLexicalClass` for all other tokens.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemenametypeorlexicalclass?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeNameTypeOrLexicalClass: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelemma?language=objc)
+    /// Supplies a stem form for each word token (if known).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelemma?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeLemma: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelanguage?language=objc)
+    /// Tags tokens according to their most likely language (if known).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelanguage?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeLanguage: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemescript?language=objc)
+    /// Tags tokens according to their script.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemescript?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeScript: &'static NSLinguisticTagScheme;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag?language=objc)
+/// A token, lexical class, name, lemma, language, or script returned by a linguistic tagger for natural language text.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSLinguisticTag = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagword?language=objc)
+    /// Tokens considered to be words or word-like linguistic items.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagword?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagWord: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpunctuation?language=objc)
+    /// The token indicates punctuation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpunctuation?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPunctuation: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagwhitespace?language=objc)
+    /// Tokens made up of whitespace of all sorts.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagwhitespace?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagWhitespace: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagother?language=objc)
+    /// Other tokens, including non-linguistic items such as symbols.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagother?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOther: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagnoun?language=objc)
+    /// The token is a noun.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagnoun?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagNoun: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagverb?language=objc)
+    /// The token is a verb.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagverb?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagVerb: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagadjective?language=objc)
+    /// The token is an adjective.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagadjective?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagAdjective: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagadverb?language=objc)
+    /// The token is an adverb.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagadverb?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagAdverb: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpronoun?language=objc)
+    /// The token is a pronoun.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpronoun?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPronoun: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagdeterminer?language=objc)
+    /// The token is a determiner.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagdeterminer?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagDeterminer: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagparticle?language=objc)
+    /// The token is a particle.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagparticle?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagParticle: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpreposition?language=objc)
+    /// The token is a preposition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpreposition?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPreposition: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagnumber?language=objc)
+    /// The token is a number.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagnumber?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagNumber: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagconjunction?language=objc)
+    /// The token is a conjunction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagconjunction?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagConjunction: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaginterjection?language=objc)
+    /// The token is an interjection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaginterjection?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagInterjection: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagclassifier?language=objc)
+    /// The token is a classifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagclassifier?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagClassifier: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagidiom?language=objc)
+    /// The token is an idiom.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagidiom?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagIdiom: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherword?language=objc)
+    /// The token is a word that doesn't fall into any other category.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherword?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOtherWord: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagsentenceterminator?language=objc)
+    /// The token is a sentence terminator.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagsentenceterminator?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSentenceTerminator: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagopenquote?language=objc)
+    /// The token is an open quote.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagopenquote?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOpenQuote: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagclosequote?language=objc)
+    /// The token is a close quote.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagclosequote?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagCloseQuote: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagopenparenthesis?language=objc)
+    /// The token is an open parenthesis.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagopenparenthesis?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOpenParenthesis: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagcloseparenthesis?language=objc)
+    /// The token is a close parenthesis.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagcloseparenthesis?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagCloseParenthesis: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagwordjoiner?language=objc)
+    /// The token is a word joiner.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagwordjoiner?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagWordJoiner: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagdash?language=objc)
+    /// The token is a dash.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagdash?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagDash: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherpunctuation?language=objc)
+    /// The token is punctuation that doesn't fall into any other category.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherpunctuation?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOtherPunctuation: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagparagraphbreak?language=objc)
+    /// The token is a paragraph break.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagparagraphbreak?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagParagraphBreak: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherwhitespace?language=objc)
+    /// The token is whitespace that doesn't fall into any other category.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherwhitespace?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOtherWhitespace: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpersonalname?language=objc)
+    /// The token is a personal name.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpersonalname?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPersonalName: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagplacename?language=objc)
+    /// The token is a place name.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagplacename?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPlaceName: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagorganizationname?language=objc)
+    /// The token is an organization name.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagorganizationname?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOrganizationName: &'static NSLinguisticTag;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit?language=objc)
+/// Constants representing linguistic units.
+///
+/// You use these constants with the ``NSLinguisticTagger/availableTagSchemes(for:language:)`` method as well as the ``NSLinguisticTagger/tag(for:at:unit:scheme:orthography:tokenRange:)``,  ``NSLinguisticTagger/tags(in:unit:scheme:options:tokenRanges:)``, and ``NSLinguisticTagger/enumerateTags(in:unit:scheme:options:using:)`` methods.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLinguisticTaggerUnit(pub NSInteger);
 impl NSLinguisticTaggerUnit {
+    /// An individual word.
     #[doc(alias = "NSLinguisticTaggerUnitWord")]
     pub const Word: Self = Self(0);
+    /// A sentence.
     #[doc(alias = "NSLinguisticTaggerUnitSentence")]
     pub const Sentence: Self = Self(1);
+    /// A paragraph.
     #[doc(alias = "NSLinguisticTaggerUnitParagraph")]
     pub const Paragraph: Self = Self(2);
+    /// The document in its entirety.
     #[doc(alias = "NSLinguisticTaggerUnitDocument")]
     pub const Document: Self = Self(3);
 }
@@ -306,21 +427,28 @@ unsafe impl RefEncode for NSLinguisticTaggerUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggeroptions?language=objc)
+/// Options arguments of type `NSLinguisticTaggerOptions` may include the following flags, which allow clients interested only in certain general types of tokens to specify that tokens of other types should be omitted from the returned results.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggeroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLinguisticTaggerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLinguisticTaggerOptions: NSUInteger {
+/// Omit tokens of type `NSLinguisticTagWord` (items considered to be words).
         #[doc(alias = "NSLinguisticTaggerOmitWords")]
         const OmitWords = 1<<0;
+/// Omit tokens of type `NSLinguisticTagPunctuation` (all punctuation).
         #[doc(alias = "NSLinguisticTaggerOmitPunctuation")]
         const OmitPunctuation = 1<<1;
+/// Omit tokens of type `NSLinguisticTagWhitespace` (whitespace of all sorts).
         #[doc(alias = "NSLinguisticTaggerOmitWhitespace")]
         const OmitWhitespace = 1<<2;
+/// Omit tokens of type `NSLinguisticTagOther` (non-linguistic items, such as symbols).
         #[doc(alias = "NSLinguisticTaggerOmitOther")]
         const OmitOther = 1<<3;
+/// Typically, multiple-word names will be returned as multiple tokens, following the standard tokenization practice of the tagger. If this option is set, then multiple-word names will be joined together and returned as a single token.
         #[doc(alias = "NSLinguisticTaggerJoinNames")]
         const JoinNames = 1<<4;
         const _ = !0;
@@ -336,7 +464,18 @@ unsafe impl RefEncode for NSLinguisticTaggerOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger?language=objc)
+    /// Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script.
+    ///
+    ///
+    /// ``NSLinguisticTagger`` provides a uniform interface to a variety of natural language processing functionality with support for many different languages and scripts. You can use this class to segment natural language text into paragraphs, sentences, or words, and tag information about those segments, such as part of speech, lexical class, lemma, script, and language.
+    ///
+    /// When you create a linguistic tagger, you specify what kind of information you're interested in by passing one or more ``NSLinguisticTagScheme`` values. Set the ``string`` property to the natural language text you want to analyze, and the linguistic tagger processes it according to the specified tag schemes. You can then enumerate over the tags in a specified range, using the methods described in Enumerating Linguistic Tags, to get the information requested for a given scheme and unit.
+    ///
+    /// ### Thread Safety
+    ///
+    /// A single instance of ``NSLinguisticTagger`` should not be used simultaneously from multiple threads.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -350,6 +489,15 @@ extern_conformance!(
 impl NSLinguisticTagger {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Creates a linguistic tagger instance using the specified tag schemes and options.
+        ///
+        /// - Parameters:
+        /// - tagSchemes: An array of tag schemes to be used. See `NSLinguisticTagScheme` for the possible values.
+        /// - opts: Reserved for future use. Specify `0` for this parameter.
+        ///
+        /// Pass any tag schemes to `tagSchemes` that you intend to use with the methods described in Enumerating Linguistic Tags and Getting Linguistic Tags.
+        ///
+        /// > Tip: Avoid specifying tag schemes that you won't use to ensure optimal performance.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(initWithTagSchemes:options:))]
         #[unsafe(method_family = init)]
@@ -360,12 +508,14 @@ impl NSLinguisticTagger {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns the tag schemes configured for this linguistic tagger.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagSchemes))]
         #[unsafe(method_family = none)]
         pub fn tagSchemes(&self) -> Retained<NSArray<NSLinguisticTagScheme>>;
 
         #[cfg(feature = "NSString")]
+        /// The string being analyzed by the linguistic tagger.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
@@ -379,6 +529,12 @@ impl NSLinguisticTagger {
         pub fn setString(&self, string: Option<&NSString>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns the tag schemes available for a particular unit and language on the current device.
+        ///
+        /// - Parameters:
+        /// - unit: The linguistic unit. For possible values, see `NSLinguisticTaggerUnit`.
+        /// - language: A BCP-47 tag identifying the language. For example, "en" for English or "zh-Hans" for Chinese written using the Simplified Chinese script.
+        /// - Returns: The supported tag schemes. For possible values, see `NSLinguisticTagScheme`.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(availableTagSchemesForUnit:language:))]
         #[unsafe(method_family = none)]
@@ -388,6 +544,13 @@ impl NSLinguisticTagger {
         ) -> Retained<NSArray<NSLinguisticTagScheme>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns the tag schemes available for a particular language on the current device.
+        ///
+        /// - Parameters:
+        /// - language: A BCP-47 tag identifying the language. For example, "en" for English or "zh-Hans" for Chinese written using the Simplified Chinese script.
+        /// - Returns: The available tag schemes. For possible values, see `NSLinguisticTagScheme`.
+        ///
+        /// This is a convenience method for calling `availableTagSchemesForUnit:language:`, passing `NSLinguisticTaggerUnitWord` as the linguistic unit.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(availableTagSchemesForLanguage:))]
         #[unsafe(method_family = none)]
@@ -396,12 +559,26 @@ impl NSLinguisticTagger {
         ) -> Retained<NSArray<NSLinguisticTagScheme>>;
 
         #[cfg(all(feature = "NSOrthography", feature = "NSRange"))]
+        /// Sets the orthography for the specified range.
+        ///
+        /// - Parameters:
+        /// - orthography: The orthography.
+        /// - range: The range.
+        ///
+        /// If the orthography of the linguistic tagger is not set, it will determine it automatically from the contents of the text.  You should call this method only if you know the orthography of the text by some other means.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(setOrthography:range:))]
         #[unsafe(method_family = none)]
         pub fn setOrthography_range(&self, orthography: Option<&NSOrthography>, range: NSRange);
 
         #[cfg(all(feature = "NSOrthography", feature = "NSRange"))]
+        /// Returns the orthography at the index and also returns the effective range.
+        ///
+        /// - Parameters:
+        /// - charIndex: The character index to begin examination.
+        /// - effectiveRange: An NSRangePointer that, upon completion, contains the range of the orthography containing `charIndex`.
+        /// - Returns: The orthography for the location.
+        ///
         /// # Safety
         ///
         /// `effective_range` must be a valid pointer or null.
@@ -415,12 +592,23 @@ impl NSLinguisticTagger {
         ) -> Option<Retained<NSOrthography>>;
 
         #[cfg(feature = "NSRange")]
+        /// Notifies the linguistic tagger that the string (if mutable) has changed as specified by the parameters.
+        ///
+        /// - Parameters:
+        /// - newRange: The range in the final string that was edited.
+        /// - delta: The change in length.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(stringEditedInRange:changeInLength:))]
         #[unsafe(method_family = none)]
         pub fn stringEditedInRange_changeInLength(&self, new_range: NSRange, delta: NSInteger);
 
         #[cfg(feature = "NSRange")]
+        /// Returns the range of the linguistic unit containing the specified character index.
+        ///
+        /// - Parameters:
+        /// - charIndex: The character index to begin examination.
+        /// - unit: The linguistic unit. For possible values, see `NSLinguisticTaggerUnit`.
+        /// - Returns: The range of the substring for the linguistic unit.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tokenRangeAtIndex:unit:))]
         #[unsafe(method_family = none)]
@@ -431,12 +619,29 @@ impl NSLinguisticTagger {
         ) -> NSRange;
 
         #[cfg(feature = "NSRange")]
+        /// Returns a range covering all sentences intersecting the given range.
+        ///
+        /// - Parameters:
+        /// - range: The character range.
+        /// - Returns: Returns the range of the sentence.
+        ///
+        /// This is a convenience method for calling `tokenRangeAtIndex:unit:`, passing `NSLinguisticTaggerUnitSentence` as the unit and the first position of the provided range.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(sentenceRangeForRange:))]
         #[unsafe(method_family = none)]
         pub fn sentenceRangeForRange(&self, range: NSRange) -> NSRange;
 
         #[cfg(all(feature = "NSRange", feature = "NSString", feature = "block2"))]
+        /// Enumerates over a given range of the string for a particular unit and calls the specified block for each tag.
+        ///
+        /// - Parameters:
+        /// - range: The range to analyze.
+        /// - unit: The linguistic unit. For possible values, see `NSLinguisticTaggerUnit`.
+        /// - scheme: The tag scheme. For possible values, see `NSLinguisticTagScheme`.
+        /// - options: The linguistic tagger options to use.
+        /// - block: The block to apply to ranges of the string. The block takes a tag, a token range, and a stop pointer as arguments.
+        ///
+        /// This method's block is called for all tokens intersecting a given range, supplying tags and ranges.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(enumerateTagsInRange:unit:scheme:options:usingBlock:))]
         #[unsafe(method_family = none)]
@@ -450,6 +655,15 @@ impl NSLinguisticTagger {
         );
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Returns a tag for a single scheme, for a given linguistic unit, at the specified character position.
+        ///
+        /// - Parameters:
+        /// - charIndex: The position of the initial character.
+        /// - unit: The linguistic unit. See `NSLinguisticTaggerUnit` for possible values.
+        /// - scheme: The tag scheme. See `NSLinguisticTagScheme` for possible values.
+        /// - tokenRange: A pointer to the token range.
+        /// - Returns: Returns the tag for the requested tag scheme and linguistic unit, or `nil`. If a tag is returned, this function returns by reference the range of the token to `tokenRange`.
+        ///
         /// # Safety
         ///
         /// `token_range` must be a valid pointer or null.
@@ -470,6 +684,15 @@ impl NSLinguisticTagger {
             feature = "NSString",
             feature = "NSValue"
         ))]
+        /// Returns an array of linguistic tags and token ranges for a given string range and linguistic unit.
+        ///
+        /// - Parameters:
+        /// - range: The range from which to return tags.
+        /// - unit: The linguistic unit. See `NSLinguisticTaggerUnit` for possible values.
+        /// - scheme: The tag scheme. See `NSLinguisticTagScheme` for possible values.
+        /// - options: The linguistic tagger options to use.
+        /// - tokenRanges: Returns by reference an array of token ranges.
+        /// - Returns: An array of the tags in the requested range.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagsInRange:unit:scheme:options:tokenRanges:))]
         #[unsafe(method_family = none)]
@@ -483,6 +706,15 @@ impl NSLinguisticTagger {
         ) -> Retained<NSArray<NSLinguisticTag>>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString", feature = "block2"))]
+        /// Enumerates over a given range of the string and calls the specified block for each tag.
+        ///
+        /// - Parameters:
+        /// - range: The range to analyze.
+        /// - tagScheme: The tag scheme. For possible values, see `NSLinguisticTagScheme`.
+        /// - opts: The linguistic tagger options to use.
+        /// - block: The block to apply to ranges of the string. The block takes a tag, a token range, a sentence range, and a stop pointer as arguments.
+        ///
+        /// This is a convenience method for calling `enumerateTagsInRange:unit:scheme:options:usingBlock:`, passing `NSLinguisticTaggerUnitWord` as the linguistic unit.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(enumerateTagsInRange:scheme:options:usingBlock:))]
         #[unsafe(method_family = none)]
@@ -495,6 +727,17 @@ impl NSLinguisticTagger {
         );
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Returns a tag for a single scheme at the specified character position.
+        ///
+        /// - Parameters:
+        /// - charIndex: The position of the initial character.
+        /// - scheme: The tag scheme. See `NSLinguisticTagScheme` for the possible values.
+        /// - tokenRange: A pointer to the token range.
+        /// - sentenceRange: A pointer to the range of the sentence.
+        /// - Returns: Returns the tag for the requested tag scheme, or `nil`. If a tag is returned, this function returns by reference the range of the token to `tokenRange`, and the range of the enclosing sentence to `sentenceRange`, if applicable.
+        ///
+        /// This is a convenience method for calling `tagAtIndex:unit:scheme:tokenRange:` and passing `NSLinguisticTaggerUnitWord` as the linguistic unit.
+        ///
         /// # Safety
         ///
         /// - `token_range` must be a valid pointer or null.
@@ -516,6 +759,16 @@ impl NSLinguisticTagger {
             feature = "NSString",
             feature = "NSValue"
         ))]
+        /// Returns an array of linguistic tags and token ranges for a given string range.
+        ///
+        /// - Parameters:
+        /// - range: The range from which to return tags.
+        /// - tagScheme: The tag scheme. See `NSLinguisticTagScheme` for possible values.
+        /// - opts: The linguistic tagger options to use.
+        /// - tokenRanges: Returns by reference an array of token ranges.
+        /// - Returns: An array of the tags in the requested range.
+        ///
+        /// This is a convenience method for calling `tagsInRange:unit:scheme:options:tokenRanges:` and passing `NSLinguisticTaggerUnitWord` as the linguistic unit.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagsInRange:scheme:options:tokenRanges:))]
         #[unsafe(method_family = none)]
@@ -528,18 +781,41 @@ impl NSLinguisticTagger {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the dominant language of the string set for the linguistic tagger.
+        ///
+        /// Returns the BCP-47 tag identifying the dominant language of the string, or the tag "und" if a specific language cannot be determined.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(dominantLanguage))]
         #[unsafe(method_family = none)]
         pub fn dominantLanguage(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the dominant language for the specified string.
+        ///
+        /// - Parameters:
+        /// - string: The string for which the dominant language is determined.
+        /// - Returns: The BCP-47 tag identifying the dominant language of the string, or the tag "und" if a specific language cannot be determined.
+        ///
+        /// This is a convenience method for creating a new linguistic tagger, setting the `string` property, and getting the `dominantLanguage` property.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(dominantLanguageForString:))]
         #[unsafe(method_family = none)]
         pub fn dominantLanguageForString(string: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSOrthography", feature = "NSRange", feature = "NSString"))]
+        /// Returns a tag for a single scheme, for a given linguistic unit, at the specified character position in a string.
+        ///
+        /// - Parameters:
+        /// - string: The string to analyze.
+        /// - charIndex: The position of the initial character.
+        /// - unit: The linguistic unit. See `NSLinguisticTaggerUnit` for possible values.
+        /// - scheme: The tag scheme. See `NSLinguisticTagScheme` for possible values.
+        /// - orthography: The orthography of the string. If unspecified, the orthography is automatically detected.
+        /// - tokenRange: A pointer to the token range.
+        /// - Returns: Returns the tag for the requested tag scheme and linguistic unit, or `nil`.
+        ///
+        /// This is a convenience method for initializing a linguistic tagger, setting the `string` property, and calling `tagAtIndex:unit:scheme:tokenRange:`. If you analyze the same string more than once, you should create a linguistic tagger object instead of calling this method.
+        ///
         /// # Safety
         ///
         /// `token_range` must be a valid pointer or null.
@@ -562,6 +838,19 @@ impl NSLinguisticTagger {
             feature = "NSString",
             feature = "NSValue"
         ))]
+        /// Returns an array of linguistic tags and token ranges for a given string and linguistic unit.
+        ///
+        /// - Parameters:
+        /// - string: The string to analyze.
+        /// - range: The range from which to return tags.
+        /// - unit: The linguistic unit. See `NSLinguisticTaggerUnit` for possible values.
+        /// - scheme: The tag scheme. See `NSLinguisticTagScheme` for possible values.
+        /// - options: The linguistic tagger options to use.
+        /// - orthography: The orthography of the string. If unspecified, the orthography is automatically detected.
+        /// - tokenRanges: Returns by reference an array of token ranges.
+        /// - Returns: An array of the tags in the requested range.
+        ///
+        /// This is a convenience method for initializing a linguistic tagger, setting the `string` property, and calling `tagsInRange:unit:scheme:options:tokenRanges:`. If you analyze the same string more than once, you should create a linguistic tagger object instead of calling this method.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagsForString:range:unit:scheme:options:orthography:tokenRanges:))]
         #[unsafe(method_family = none)]
@@ -581,6 +870,18 @@ impl NSLinguisticTagger {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// Enumerates over a given string and calls the specified block for each tag.
+        ///
+        /// - Parameters:
+        /// - string: The string to enumerate over.
+        /// - range: The range to analyze.
+        /// - unit: The linguistic unit. For possible values, see `NSLinguisticTaggerUnit`.
+        /// - scheme: The tag scheme. For possible values, see `NSLinguisticTagScheme`.
+        /// - options: The linguistic tagger options to use.
+        /// - orthography: The orthography of the string. If unspecified, the orthography is automatically detected.
+        /// - block: The block to apply to ranges of the string. The block takes a tag, a token range, and a stop pointer as arguments.
+        ///
+        /// This is a convenience method for initializing a linguistic tagger, setting the `string` property, and calling `enumerateTagsInRange:unit:scheme:options:usingBlock:`. If you analyze the same string more than once, you should create a linguistic tagger object instead of calling this method.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:))]
         #[unsafe(method_family = none)]
@@ -600,6 +901,18 @@ impl NSLinguisticTagger {
             feature = "NSString",
             feature = "NSValue"
         ))]
+        /// Returns an array of possible tags for the given scheme at the specified range, supplying matching scores.
+        ///
+        /// - Parameters:
+        /// - charIndex: The position of the initial character.
+        /// - tagScheme: The tag scheme. See `NSLinguisticTagScheme` for possible values.
+        /// - tokenRange: The token range.
+        /// - sentenceRange: The range of the sentence.
+        /// - scores: Returns by reference an array of numeric scores indicating the likelihood that the range matches the tag scheme.
+        /// - Returns: Returns an array of possible tags for the tag scheme at the specified location, starting with the most likely tag scheme.
+        ///
+        /// Calling this method is not recommended; for most use cases, this information is not as useful as what is provided by the methods described in Enumerating Linguistic Tags and Getting Linguistic Tags.
+        ///
         /// # Safety
         ///
         /// - `token_range` must be a valid pointer or null.
@@ -648,6 +961,17 @@ impl NSString {
             feature = "NSRange",
             feature = "NSValue"
         ))]
+        /// Returns an array of linguistic tags for the specified range and requested tags within the receiving string.
+        ///
+        /// This is a convenience method. It is the equivalent of creating an instance of ``NSLinguisticTagger``, specifying the receiver as the string to be analyzed, and the orthography (or `nil`) and then invoking the ``NSLinguisticTagger`` method ``NSLinguisticTagger/tags(in:scheme:options:tokenRanges:)``.
+        ///
+        /// - Parameters:
+        /// - range: The range of the string to analyze.
+        /// - scheme: The tag scheme to use. See Linguistic Tag Schemes for supported values.
+        /// - options: The linguistic tagger options to use. See ``NSLinguisticTagger/Options`` for the constants. These constants can be combined using the C-Bitwise OR operator.
+        /// - orthography: The orthography of the string. If `nil`, the linguistic tagger will attempt to determine the orthography from the string content.
+        /// - tokenRanges: An array returned by-reference containing the token ranges of the linguistic tags wrapped in `NSValue` objects.
+        /// - Returns: An array containing the linguistic tags for the `tokenRanges` within the receiving string.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(linguisticTagsInRange:scheme:options:orthography:tokenRanges:))]
         #[unsafe(method_family = none)]
@@ -661,6 +985,16 @@ impl NSString {
         ) -> Retained<NSArray<NSLinguisticTag>>;
 
         #[cfg(all(feature = "NSOrthography", feature = "NSRange", feature = "block2"))]
+        /// Performs linguistic analysis on the specified string by enumerating the specific range of the string, providing the block with the located tags.
+        ///
+        /// This is a convenience method. It is the equivalent of creating an instance of ``NSLinguisticTagger``, specifying the receiver as the string to be analyzed, and the orthography (or `nil`) and then invoking ``NSLinguisticTagger/enumerateTags(in:scheme:options:using:)``.
+        ///
+        /// - Parameters:
+        /// - range: The range of the string to analyze.
+        /// - scheme: The tag scheme to use. See Linguistic Tag Schemes for supported values.
+        /// - options: The linguistic tagger options to use. See ``NSLinguisticTagger/Options`` for the constants. These constants can be combined using the C-Bitwise OR operator.
+        /// - orthography: The orthography of the string. If `nil`, the linguistic tagger will attempt to determine the orthography from the string content.
+        /// - block: The block to apply to the string. The block takes four arguments: the tag for the token, the token range, the sentence range, and a stop pointer.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:))]
         #[unsafe(method_family = none)]

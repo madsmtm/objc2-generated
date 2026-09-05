@@ -17,11 +17,13 @@ use crate::*;
 pub struct ARCollaborationDataPriority(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARCollaborationDataPriority {
-    /// The data is important for establishing or continuing a collaborative session. For best results, use network transmission mechanisms that ensure delivery, such as MCSessionSendDataModeReliable.
+    /// The data is important for establishing or continuing a collaborative session. For best results, use network transmission mechanisms that
+    /// ensure delivery, such as MCSessionSendDataModeReliable.
     #[doc(alias = "ARCollaborationDataPriorityCritical")]
     pub const Critical: Self = Self(0);
-    /// The data is time-sensitive but not important to collaborative session quality. Timely synchronization of this data between participants produces a smoother shared session, but the session can continue if the data is not received.
-    /// For best results, use network transmission mechanisms that prioritize speed over delivery guarantees, such as MCSessionSendDataModeUnreliable.
+    /// The data is time-sensitive but not important to collaborative session quality. Timely synchronization of this data between participants
+    /// produces a smoother shared session, but the session can continue if the data is not received. For best results, use network transmission
+    /// mechanisms that prioritize speed over delivery guarantees, such as MCSessionSendDataModeUnreliable.
     #[doc(alias = "ARCollaborationDataPriorityOptional")]
     pub const Optional: Self = Self(1);
 }
@@ -40,8 +42,7 @@ unsafe impl RefEncode for ARCollaborationDataPriority {
 extern_class!(
     /// Object representing data for collaborative session.
     ///
-    ///
-    /// This data needs to be sent to each participants in the collaborative session.
+    /// This data needs to be sent to each participant in the collaborative session.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcollaborationdata?language=objc)
     #[unsafe(super(NSObject))]

@@ -7,7 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortdescriptor?language=objc)
+    /// An immutable description of how to order a collection of objects according to a property common to all the objects.
+    ///
+    /// You construct instances of ``NSSortDescriptor`` by specifying the key path of the property to compare and the order of the sort (ascending or descending). Optionally, you can also specify a selector to use to perform the comparison, which allows you to specify other comparison selectors, such as ``NSString/localizedStandardCompare(_:)`` and ``NSString/localizedCaseInsensitiveCompare(_:)``. Sorting raises an exception if the objects don't respond to the sort descriptor's comparison selector.
+    ///
+    /// You can use sort descriptors for the following:
+    ///
+    /// - Sorting an array (an instance of ``NSArray`` or ``NSMutableArray`` — see ``NSArray/sortedArray(using:)-82wi1`` and ``NSMutableArray/sort(using:)-4eh07``)
+    /// - Comparing two objects directly (see ``compare(_:to:)``)
+    /// - Specifying the order of objects that return from a Core Data fetch request (see
+    /// <doc
+    /// ://com.apple.documentation/documentation/coredata/nsfetchrequest/sortdescriptors>)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSortDescriptor;
@@ -40,6 +52,12 @@ extern_conformance!(
 impl NSSortDescriptor {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Creates and returns a sort descriptor with the specified key path and ordering.
+        ///
+        /// - Parameters:
+        /// - key: The key path to use when performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order, otherwise `NO`.
+        /// - Returns: A sort descriptor initialized with the specified key path and sort order, and the default comparison selector (`compare:`).
         #[unsafe(method(sortDescriptorWithKey:ascending:))]
         #[unsafe(method_family = none)]
         pub fn sortDescriptorWithKey_ascending(
@@ -48,6 +66,14 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Creates a sort descriptor with the specified key path, ordering, and comparison selector.
+        ///
+        /// - Parameters:
+        /// - key: The key path for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - selector: The method to use when comparing the properties of objects. The selector must specify a method implemented by the value of the property identified by the key path. The selector used for the comparison is passed a single parameter, the object to compare against, and it returns the appropriate `NSComparisonResult` constant.
+        /// - Returns: A sort descriptor initialized with the specified key path, sort order, and comparison selector.
+        ///
         /// # Safety
         ///
         /// `selector` must be a valid selector.
@@ -60,6 +86,12 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Creates a sort descriptor with a specified string key path and sort order.
+        ///
+        /// - Parameters:
+        /// - key: The key path for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - Returns: A sort descriptor initialized with the specified key path and sort order, and the default comparison selector (`compare:`).
         #[unsafe(method(initWithKey:ascending:))]
         #[unsafe(method_family = init)]
         pub fn initWithKey_ascending(
@@ -69,6 +101,14 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
+        ///
+        /// - Parameters:
+        /// - key: The key path for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - selector: The method to use when comparing the properties of objects. The selector must specify a method implemented by the value of the property identified by the key path. The selector used for the comparison is passed a single parameter, the object to compare against, and it returns the appropriate `NSComparisonResult` constant.
+        /// - Returns: A sort descriptor initialized with the specified key path, sort order, and comparison selector.
+        ///
         /// # Safety
         ///
         /// `selector` must be a valid selector.
@@ -82,23 +122,40 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// The key that specifies the property to compare during sorting.
         #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub fn key(&self) -> Option<Retained<NSString>>;
 
+        /// A Boolean value that indicates whether the receiver specifies sorting in ascending order.
+        ///
+        /// `YES` if the receiver specifies sorting in ascending order, otherwise `NO`.
         #[unsafe(method(ascending))]
         #[unsafe(method_family = none)]
         pub fn ascending(&self) -> bool;
 
+        /// The selector for comparing objects.
         #[unsafe(method(selector))]
         #[unsafe(method_family = none)]
         pub fn selector(&self) -> Option<Sel>;
 
+        /// Forces a securely decoded sort descriptor to allow evaluation.
+        ///
+        /// When securely decoding `NSSortDescriptor` objects encoded using `NSSecureCoding`, evaluation is disabled because it is potentially unsafe to evaluate descriptors you get out of an archive.
+        ///
+        /// Before you enable evaluation, you should validate key paths, selectors, and related properties to ensure no erroneous or malicious code will be executed. Once you've preflighted the sort descriptor, you can enable it for evaluation by calling this method.
         #[unsafe(method(allowEvaluation))]
         #[unsafe(method_family = none)]
         pub fn allowEvaluation(&self);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "block2"))]
+        /// Creates and returns a sort descriptor initialized with the specified key path and ordering, and a comparator block.
+        ///
+        /// - Parameters:
+        /// - key: The property for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - cmptr: A comparator block.
+        /// - Returns: A sort descriptor initialized with the specified key, ordering, and comparator.
         #[unsafe(method(sortDescriptorWithKey:ascending:comparator:))]
         #[unsafe(method_family = none)]
         pub fn sortDescriptorWithKey_ascending_comparator(
@@ -108,6 +165,13 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "block2"))]
+        /// Creates a sort descriptor with a specified string key path and ordering, and a comparator block.
+        ///
+        /// - Parameters:
+        /// - key: The property key for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - cmptr: A comparator block.
+        /// - Returns: A sort descriptor initialized with the specified key, ordering, and comparator.
         #[unsafe(method(initWithKey:ascending:comparator:))]
         #[unsafe(method_family = init)]
         pub fn initWithKey_ascending_comparator(
@@ -118,6 +182,10 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// The comparator for the sort descriptor.
+        ///
+        /// Call this property only for sort descriptors initialized with `initWithKey:ascending:comparator:`.
+        ///
         /// # Safety
         ///
         /// - The returned block's argument 1 must be a valid pointer.
@@ -127,6 +195,15 @@ impl NSSortDescriptor {
         pub unsafe fn comparator(&self) -> NonNull<NSComparator>;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Returns a comparison result value that indicates the sort order of two objects.
+        ///
+        /// The ordering is determined by comparing the values specified by the sort descriptor's key of `object1` and `object2` using the selector specified by the sort descriptor's selector.
+        ///
+        /// - Parameters:
+        /// - object1: The object to compare with `object2`. This object must have a property accessible using the key-path specified by the sort descriptor's key.
+        /// - object2: The object to compare with `object1`. This object must have a property accessible using the key-path specified by the sort descriptor's key.
+        /// - Returns: `NSOrderedAscending` if `object1` is less than `object2`, `NSOrderedDescending` if `object1` is greater than `object2`, or `NSOrderedSame` if `object1` is equal to `object2`.
+        ///
         /// # Safety
         ///
         /// - `object1` should be of the correct type.
@@ -139,6 +216,7 @@ impl NSSortDescriptor {
             object2: &AnyObject,
         ) -> NSComparisonResult;
 
+        /// Returns a sort descriptor that reverses the sort order.
         #[unsafe(method(reversedSortDescriptor))]
         #[unsafe(method_family = none)]
         pub fn reversedSortDescriptor(&self) -> Retained<AnyObject>;
@@ -170,6 +248,7 @@ impl DefaultRetained for NSSortDescriptor {
 impl<ObjectType: Message> NSSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSArray")]
+        /// Returns an array that lists the receiving set's elements in ascending order, as determined by a given array of sort descriptors.
         #[unsafe(method(sortedArrayUsingDescriptors:))]
         #[unsafe(method_family = none)]
         pub fn sortedArrayUsingDescriptors(
@@ -183,6 +262,7 @@ impl<ObjectType: Message> NSSet<ObjectType> {
 #[cfg(feature = "NSArray")]
 impl<ObjectType: Message> NSArray<ObjectType> {
     extern_methods!(
+        /// Returns a copy of the receiving array sorted as specified by a given array of sort descriptors.
         #[unsafe(method(sortedArrayUsingDescriptors:))]
         #[unsafe(method_family = none)]
         pub fn sortedArrayUsingDescriptors(
@@ -196,6 +276,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
 #[cfg(feature = "NSArray")]
 impl<ObjectType: Message> NSMutableArray<ObjectType> {
     extern_methods!(
+        /// Sorts the receiving array using a given array of sort descriptors.
         #[unsafe(method(sortUsingDescriptors:))]
         #[unsafe(method_family = none)]
         pub fn sortUsingDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
@@ -207,6 +288,7 @@ impl<ObjectType: Message> NSMutableArray<ObjectType> {
 impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSArray")]
+        /// Returns an array that lists the receiving ordered set's elements in ascending order, as determined by a given array of sort descriptors.
         #[unsafe(method(sortedArrayUsingDescriptors:))]
         #[unsafe(method_family = none)]
         pub fn sortedArrayUsingDescriptors(
@@ -221,6 +303,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSArray")]
+        /// Sorts the receiving mutable ordered set using a given array of sort descriptors.
         #[unsafe(method(sortUsingDescriptors:))]
         #[unsafe(method_family = none)]
         pub fn sortUsingDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);

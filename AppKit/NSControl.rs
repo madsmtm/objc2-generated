@@ -705,3 +705,86 @@ unsafe impl Encode for NSControlBorderShape {
 unsafe impl RefEncode for NSControlBorderShape {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolevents?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NSControlEvents(pub NSUInteger);
+bitflags::bitflags! {
+    impl NSControlEvents: NSUInteger {
+        #[doc(alias = "NSControlEventTrackingBegan")]
+        const TrackingBegan = 1<<0;
+        #[doc(alias = "NSControlEventTrackingRepeated")]
+        const TrackingRepeated = 1<<1;
+        #[doc(alias = "NSControlEventTrackingInside")]
+        const TrackingInside = 1<<2;
+        #[doc(alias = "NSControlEventTrackingOutside")]
+        const TrackingOutside = 1<<3;
+        #[doc(alias = "NSControlEventTrackingEntered")]
+        const TrackingEntered = 1<<4;
+        #[doc(alias = "NSControlEventTrackingExited")]
+        const TrackingExited = 1<<5;
+        #[doc(alias = "NSControlEventTrackingEndedInside")]
+        const TrackingEndedInside = 1<<6;
+        #[doc(alias = "NSControlEventTrackingEndedOutside")]
+        const TrackingEndedOutside = 1<<7;
+        #[doc(alias = "NSControlEventTrackingCancelled")]
+        const TrackingCancelled = 1<<8;
+        #[doc(alias = "NSControlEventValueChanged")]
+        const ValueChanged = 1<<12;
+        #[doc(alias = "NSControlEventPrimaryActionTriggered")]
+        const PrimaryActionTriggered = 1<<13;
+        #[doc(alias = "NSControlEventMenuActionTriggered")]
+        const MenuActionTriggered = 1<<14;
+        #[doc(alias = "NSControlEventAllTrackingEvents")]
+        const AllTrackingEvents = 0x00000FFF;
+        #[doc(alias = "NSControlEventApplicationReserved")]
+        const ApplicationReserved = 0x0F000000;
+        #[doc(alias = "NSControlEventSystemReserved")]
+        const SystemReserved = 0xF0000000;
+        #[doc(alias = "NSControlEventAllEvents")]
+        const AllEvents = 0xFFFFFFFF;
+        const _ = !0;
+    }
+}
+
+unsafe impl Encode for NSControlEvents {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSControlEvents {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// NSControlEvents.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSControl {
+    extern_methods!(
+        /// # Safety
+        ///
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
+        #[unsafe(method(addTarget:action:forControlEvents:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addTarget_action_forControlEvents(
+            &self,
+            target: Option<&AnyObject>,
+            action: Sel,
+            control_events: NSControlEvents,
+        );
+
+        /// # Safety
+        ///
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
+        #[unsafe(method(removeTarget:action:forControlEvents:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn removeTarget_action_forControlEvents(
+            &self,
+            target: Option<&AnyObject>,
+            action: Option<Sel>,
+            control_events: NSControlEvents,
+        );
+    );
+}

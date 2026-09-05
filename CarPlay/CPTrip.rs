@@ -53,6 +53,46 @@ impl CPRouteChoice {
             selection_summary_variants: &NSArray<NSString>,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "CPTravelEstimates")]
+        /// Initialize a
+        /// `CPRouteChoice`with summary variants, additional information variants,
+        /// selection summary variants, and travel estimates.
+        ///
+        ///
+        /// This initializer enables you to provide comprehensive route information including
+        /// supplementary details through the travel estimates parameter. During route selection, users
+        /// can compare routes based on time, distance, and additional factors like toll costs or
+        /// energy consumption.
+        ///
+        ///
+        /// Parameter `summaryVariants`: An array of summary strings, from most to least preferred. The system
+        /// selects the first variant that fits available space. Example: "Via I-280 S"
+        ///
+        /// Parameter `additionalInformationVariants`: An array of additional information strings describing
+        /// route characteristics. Example: "Fastest Route", "Avoids Tolls"
+        ///
+        /// Parameter `selectionSummaryVariants`: An array of summary strings used when this route is selected
+        ///
+        /// Parameter `travelEstimates`: Optional travel estimates including distance, time, and additional
+        /// route information like tolls, fuel consumption, or battery usage. This information
+        /// helps users compare routes beyond just time and distance.
+        ///
+        /// Returns: A new
+        /// `CPRouteChoice`instance with travel estimates
+        ///
+        ///
+        /// Note: When travel estimates include additional route information, the system displays this
+        /// information prominently during route selection to facilitate informed decision-making.
+        #[unsafe(method(initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:travelEstimates:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithSummaryVariants_additionalInformationVariants_selectionSummaryVariants_travelEstimates(
+            this: Allocated<Self>,
+            summary_variants: &NSArray<NSString>,
+            additional_information_variants: &NSArray<NSString>,
+            selection_summary_variants: &NSArray<NSString>,
+            travel_estimates: Option<&CPTravelEstimates>,
+        ) -> Retained<Self>;
+
         // -init (unavailable)
 
         // +new (unavailable)
@@ -90,6 +130,25 @@ impl CPRouteChoice {
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&AnyObject>);
+
+        #[cfg(feature = "CPTravelEstimates")]
+        /// Trip preview information such as battery, fuel, or toll information to display for this route choice.
+        ///
+        ///
+        /// The travel estimates associated with this route choice provide comprehensive information
+        /// about the route, including traditional metrics (time and distance) and supplementary information
+        /// (tolls, energy consumption, etc.).
+        ///
+        /// During route selection, the system displays this information to help users make informed decisions.
+        /// For example, users can compare toll costs between different route options or evaluate whether
+        /// their vehicle's battery level will be sufficient for a particular route.
+        ///
+        ///
+        /// Note: This property is read-only and set during initialization. To update route information,
+        /// create a new CPRouteChoice instance with updated travel estimates.
+        #[unsafe(method(travelEstimates))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn travelEstimates(&self) -> Option<Retained<CPTravelEstimates>>;
     );
 }
 
@@ -195,6 +254,7 @@ impl CPTrip {
         /// `NSString`representing the name of the destination for
         /// this trip, arranged from most to least preferred. You must provide at least one variant.
         /// The variant strings should be provided as localized, displayable content.
+        #[deprecated]
         #[unsafe(method(destinationNameVariants))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationNameVariants(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -202,6 +262,7 @@ impl CPTrip {
         /// Setter for [`destinationNameVariants`][Self::destinationNameVariants].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated]
         #[unsafe(method(setDestinationNameVariants:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationNameVariants(

@@ -299,16 +299,24 @@ bitflags::bitflags! {
         const PhotoLive = 1<<3;
         #[doc(alias = "PHAssetMediaSubtypePhotoDepthEffect")]
         const PhotoDepthEffect = 1<<4;
+        #[doc(alias = "PHAssetMediaSubtypePhotoAnimation")]
+        const PhotoAnimation = 1<<6;
+/// The media subtype is a photo animation such as a GIF, animated PNGs, etc.
         #[doc(alias = "PHAssetMediaSubtypeSpatialMedia")]
         const SpatialMedia = 1<<10;
+/// The media subtype is a photo animation such as a GIF, animated PNGs, etc.
         #[doc(alias = "PHAssetMediaSubtypeVideoStreamed")]
         const VideoStreamed = 1<<16;
+/// The media subtype is a photo animation such as a GIF, animated PNGs, etc.
         #[doc(alias = "PHAssetMediaSubtypeVideoHighFrameRate")]
         const VideoHighFrameRate = 1<<17;
+/// The media subtype is a photo animation such as a GIF, animated PNGs, etc.
         #[doc(alias = "PHAssetMediaSubtypeVideoTimelapse")]
         const VideoTimelapse = 1<<18;
+/// The media subtype is a photo animation such as a GIF, animated PNGs, etc.
         #[doc(alias = "PHAssetMediaSubtypeVideoScreenRecording")]
         const VideoScreenRecording = 1<<19;
+/// The media subtype is a photo animation such as a GIF, animated PNGs, etc.
         #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
         const VideoCinematic = 1<<21;
         const _ = !0;
@@ -348,6 +356,26 @@ unsafe impl RefEncode for PHAssetBurstSelectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phoriginalresourcechoice?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct PHOriginalResourceChoice(pub NSInteger);
+impl PHOriginalResourceChoice {
+    #[doc(alias = "PHOriginalResourceChoiceCompressed")]
+    pub const Compressed: Self = Self(0);
+    #[doc(alias = "PHOriginalResourceChoiceRaw")]
+    pub const Raw: Self = Self(1);
+}
+
+unsafe impl Encode for PHOriginalResourceChoice {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PHOriginalResourceChoice {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -372,6 +400,28 @@ unsafe impl Encode for PHAssetSourceType {
 }
 
 unsafe impl RefEncode for PHAssetSourceType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetadjustmentsstate?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct PHAssetAdjustmentsState(pub NSInteger);
+impl PHAssetAdjustmentsState {
+    #[doc(alias = "PHAssetAdjustmentsStateNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "PHAssetAdjustmentsStateUserAdjusted")]
+    pub const UserAdjusted: Self = Self(2);
+    #[doc(alias = "PHAssetAdjustmentsStateCameraAutoAdjusted")]
+    pub const CameraAutoAdjusted: Self = Self(3);
+}
+
+unsafe impl Encode for PHAssetAdjustmentsState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PHAssetAdjustmentsState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -512,6 +562,36 @@ unsafe impl Encode for PHAssetResourceUploadJobAction {
 }
 
 unsafe impl RefEncode for PHAssetResourceUploadJobAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Describes a rating for an asset.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetrating?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct PHAssetRating(pub NSInteger);
+impl PHAssetRating {
+    #[doc(alias = "PHAssetRatingUnset")]
+    pub const Unset: Self = Self(0);
+    #[doc(alias = "PHAssetRatingOne")]
+    pub const One: Self = Self(1);
+    #[doc(alias = "PHAssetRatingTwo")]
+    pub const Two: Self = Self(2);
+    #[doc(alias = "PHAssetRatingThree")]
+    pub const Three: Self = Self(3);
+    #[doc(alias = "PHAssetRatingFour")]
+    pub const Four: Self = Self(4);
+    #[doc(alias = "PHAssetRatingFive")]
+    pub const Five: Self = Self(5);
+}
+
+unsafe impl Encode for PHAssetRating {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PHAssetRating {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 

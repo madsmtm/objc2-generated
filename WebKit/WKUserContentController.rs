@@ -204,6 +204,41 @@ impl WKUserContentController {
         #[unsafe(method(removeAllContentRuleLists))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllContentRuleLists(&self);
+
+        #[cfg(all(feature = "WKContentWorld", feature = "WKJSScriptingBuffer"))]
+        /// Adds a data buffer that will be available to JavaScript through the `window.webkit.buffers` object
+        ///
+        /// Parameter `buffer`: The buffer to add.
+        ///
+        /// Parameter `name`: The name of the buffer to be referenced from JavaScript.
+        /// e.g. with a `name` parameter of `
+        /// "
+        /// mybuffer"`, JavaScript can reference the buffer via `window.webkit.buffers.mybuffer`
+        ///
+        /// Parameter `contentWorld`: The WKContentWorld to add the buffer to.
+        /// The buffer will only be visible to JavaScript executing in that content world.
+        #[unsafe(method(addBuffer:name:contentWorld:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addBuffer_name_contentWorld(
+            &self,
+            buffer: &WKJSScriptingBuffer,
+            name: &NSString,
+            world: &WKContentWorld,
+        );
+
+        #[cfg(feature = "WKContentWorld")]
+        /// Removes a previously added data buffer from the given `WKContentWorld
+        ///
+        /// Parameter `name`: The name of the buffer to remove.
+        ///
+        /// Parameter `contentWorld`: The WKContentWorld from which to remove the buffer.
+        #[unsafe(method(removeBufferWithName:contentWorld:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn removeBufferWithName_contentWorld(
+            &self,
+            name: &NSString,
+            world: &WKContentWorld,
+        );
     );
 }
 

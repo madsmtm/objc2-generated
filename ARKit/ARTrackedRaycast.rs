@@ -34,12 +34,3 @@ impl ARTrackedRaycast {
         pub unsafe fn stopTracking(&self);
     );
 }
-
-/// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
-impl ARTrackedRaycast {
-    extern_methods!(
-        // +new (unavailable)
-
-    );
-}

@@ -64,7 +64,7 @@ extern_class!(
     /// }
     /// ```
     ///
-    /// The operation calls ``shareParticipantFetchedBlock`` once for each item you provide, and CloudKit returns the participant, or an error if it can't generate a particpant. CloudKit also batches per-participant errors. If the operation completes with errors, it returns a ``CKError/partialFailure`` error. The error stores the individual errors in its
+    /// The operation calls ``shareParticipantFetchedBlock`` once for each item you provide, and CloudKit returns the participant, or an error if it can't generate a participant. CloudKit also batches per-participant errors. If the operation completes with errors, it returns a ``CKError/partialFailure`` error. The error stores the individual errors in its
     /// <doc
     /// ://com.apple.documentation/documentation/foundation/nserror/userinfo> dictionary. Use the ``CKPartialErrorsByItemIDKey`` key to extract them.
     ///

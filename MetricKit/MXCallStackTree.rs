@@ -14,6 +14,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcallstacktree?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use CallStackTree instead."]
     pub struct MXCallStackTree;
 );
 
@@ -38,6 +39,7 @@ impl MXCallStackTree {
         /// MXCallStackTrees can be organized into a single callstack for the entire application, or broken up into callstacks associated with individual threads.
         ///
         /// Returns: An NSData object containing the JSON representation
+        #[deprecated = "Use CallStackTree instead."]
         #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;

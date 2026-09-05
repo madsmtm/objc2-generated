@@ -5,9 +5,60 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
+
+extern_class!(
+    /// Information about a B-spline control point converted from a Bézier path.
+    ///
+    /// Provided to the `pointProvider` closure of ``PKStrokePath-class/initWithBezierPath:creationDate:pointProvider:``
+    /// to initialize each ``PKStrokePoint-class`` of the resulting path.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkconvertedbezierpoint?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct PKConvertedBezierPoint;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PKConvertedBezierPoint {}
+);
+
+impl PKConvertedBezierPoint {
+    extern_methods!(
+        /// The index of the point along the path.
+        #[unsafe(method(index))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn index(&self) -> NSInteger;
+
+        /// The total number of B-Spline control points in the path.
+        #[unsafe(method(pointCount))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn pointCount(&self) -> NSInteger;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The location of the cubic uniform B-Spline control point.
+        #[unsafe(method(location))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn location(&self) -> CGPoint;
+
+        /// The index of the Bézier segment the point originates from, not including `move to` elements.
+        #[unsafe(method(bezierSegmentIndex))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bezierSegmentIndex(&self) -> NSInteger;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl PKConvertedBezierPoint {
+    extern_methods!(
+        // +new (unavailable)
+
+    );
+}
 
 extern_class!(
     /// A uniform cubic B-spline representing the point data of a `PKStroke`.
@@ -37,7 +88,7 @@ extern_conformance!(
 impl PKStrokePath {
     extern_methods!(
         #[cfg(feature = "PKStrokePoint")]
-        /// Create a stroke path value with the given cubic B-spline control points.
+        /// Creates a stroke path with the specified cubic B-spline control points.
         ///
         ///
         /// Parameter `controlPoints`: An array of control points for a cubic B-spline.
@@ -51,7 +102,81 @@ impl PKStrokePath {
             creation_date: &NSDate,
         ) -> Retained<Self>;
 
-        /// The number of control points in this stroke path.
+        #[cfg(feature = "PKStrokePoint")]
+        /// Creates a stroke path with the specified control points and a unique identifier.
+        ///
+        ///
+        /// Parameter `controlPoints`: An array of control points for a cubic B-spline.
+        ///
+        /// Parameter `creationDate`: The start time of this path.
+        ///
+        /// Parameter `strokePathID`: The unique identity of the stroke path.
+        ///
+        /// > Warning: Using multiple stroke paths with identical IDs but different control points
+        /// will result in undefined rendering behavior. Ensure each stroke path has a unique identifier.
+        #[unsafe(method(initWithControlPoints:creationDate:strokePathID:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithControlPoints_creationDate_strokePathID(
+            this: Allocated<Self>,
+            control_points: &NSArray<PKStrokePoint>,
+            creation_date: &NSDate,
+            stroke_path_id: &NSUUID,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "PKStrokePoint",
+            feature = "block2",
+            feature = "objc2-core-graphics"
+        ))]
+        /// Creates a stroke path recreating the specified Bézier path as a cubic uniform B-Spline.
+        ///
+        ///
+        /// Parameter `bezierPath`: The Bézier path to convert to a cubic uniform B-Spline.
+        ///
+        /// Parameter `creationDate`: The start time of this path.
+        ///
+        /// Parameter `pointProvider`: Block to initialize the `PKStrokePoint`s of the path. A single `PKConvertedBezierPoint` instance is shared across all converted points.
+        ///
+        /// The count of control points of the generated spline is not guaranteed to be a specific value
+        /// except when the provided path is the output of ``bezierRepresentation->CGPathRef``, where it will match the original curve.
+        ///
+        /// The output B-Spline will have continuous curvature and 0 curvature at the endpoints. In cases where the B-Spline
+        /// cannot fully recreate the Bézier path, it will be an approximation. For example, if the given Bézier path includes
+        /// `line to` elements, these will produce straight line segments in the resulting B-Spline, but if a `line to` element
+        /// is adjacent to a `curve to` element, the resulting curve may not match the original.
+        ///
+        /// > Warning: For a Bézier path with multiple subpaths, only the first will be converted.
+        ///
+        /// # Safety
+        ///
+        /// `point_provider` block's return must be a valid pointer.
+        #[unsafe(method(initWithBezierPath:creationDate:pointProvider:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithBezierPath_creationDate_pointProvider(
+            this: Allocated<Self>,
+            bezier_path: &CGPath,
+            creation_date: &NSDate,
+            point_provider: &block2::Block<
+                '_,
+                fn(NonNull<PKConvertedBezierPoint>) -> NonNull<PKStrokePoint>,
+            >,
+        ) -> Retained<Self>;
+
+        /// The unique identity of the stroke path.
+        ///
+        /// > Warning: Using multiple stroke paths with identical IDs but different control points
+        /// will result in undefined rendering behavior. Ensure each stroke path has a unique identifier.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(strokePathID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn strokePathID(&self) -> Retained<NSUUID>;
+
+        /// The number of control points in the stroke path.
         ///
         /// This property is not atomic.
         ///
@@ -62,8 +187,9 @@ impl PKStrokePath {
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
-        /// The time at which this stroke path was started.
-        /// The `timeOffset` of contained PKStrokePoints is relative to this date.
+        /// The time at which the stroke path started.
+        ///
+        /// The `timeOffset` of each contained `PKStrokePoint` is relative to this date.
         ///
         /// This property is not atomic.
         ///
@@ -74,29 +200,54 @@ impl PKStrokePath {
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Retained<NSDate>;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        /// A Bézier path representation of the path's curve, computed in linear time.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(bezierRepresentation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bezierRepresentation(&self) -> Retained<CGPath>;
+
+        #[cfg(feature = "PKFloatRange")]
+        /// Returns a copy of the path containing the control points in the specified parametric range.
+        ///
+        ///
+        /// Parameter `range`: The parametric range to copy. Values must be within [0, count-1].
+        ///
+        /// Returns: A new stroke path containing the portion within the specified parametric range.
+        #[unsafe(method(subpathWithRange:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn subpathWithRange(&self, range: &PKFloatRange) -> Retained<PKStrokePath>;
+
         #[cfg(feature = "PKStrokePoint")]
-        /// Returns B-spline control point at index `i`.
+        /// Returns the B-spline control point at the specified index.
         #[unsafe(method(pointAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointAtIndex(&self, i: NSUInteger) -> Retained<PKStrokePoint>;
 
         #[cfg(feature = "PKStrokePoint")]
-        /// Returns B-spline control point at index `i`.
+        /// Returns the B-spline control point at the specified index.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(&self, i: NSUInteger) -> Retained<PKStrokePoint>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// The on-curve location for the floating point [0, count-1] `parametricValue` parameter.
+        /// Returns the on-curve location for the specified parametric value.
+        ///
+        /// The floating-point `parametricValue` must be in the range [0, count-1].
         ///
         /// This has better performance than `[self interpolatedPointAt: parametricValue].location`
-        /// for when only the location is required.
+        /// when only the location is required.
         #[unsafe(method(interpolatedLocationAt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interpolatedLocationAt(&self, parametric_value: CGFloat) -> CGPoint;
 
         #[cfg(all(feature = "PKStrokePoint", feature = "objc2-core-foundation"))]
-        /// The on-curve point for the floating point [0, count-1] `parametricValue` parameter.
+        /// Returns the on-curve stroke point for the specified parametric value.
         #[unsafe(method(interpolatedPointAt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interpolatedPointAt(
@@ -110,16 +261,15 @@ impl PKStrokePath {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        /// Executes a given block using each point in a range with a distance step.
+        /// Executes a block for each interpolated point in the specified range, stepping by distance.
         ///
         ///
         /// Parameter `range`: The parametric range to enumerate points in.
         ///
         /// Parameter `distanceStep`: The distance to step between points.
         ///
-        /// Parameter `block`: The block to execute for each point. This block takes two parameters
-        /// point The interpolated point on the spline.
-        /// stop A reference to a Boolean value. Setting the value to YES within the block stops further enumeration of the array. If a block stops further enumeration, that block continues to run until it’s finished.
+        /// Parameter `block`: The block to execute for each point. The block receives the interpolated point
+        /// and a stop flag; set the flag to `YES` to stop enumeration.
         #[unsafe(method(enumerateInterpolatedPointsInRange:strideByDistance:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateInterpolatedPointsInRange_strideByDistance_usingBlock(
@@ -134,16 +284,15 @@ impl PKStrokePath {
             feature = "PKStrokePoint",
             feature = "block2"
         ))]
-        /// Executes a given block using each point in a range with a time step.
+        /// Executes a block for each interpolated point in the specified range, stepping by time interval.
         ///
         ///
         /// Parameter `range`: The parametric range to enumerate points in.
         ///
         /// Parameter `timeStep`: The time interval to step between points.
         ///
-        /// Parameter `block`: The block to execute for each point. This block takes two parameters
-        /// point The interpolated point on the spline.
-        /// stop A reference to a Boolean value. Setting the value to YES within the block stops further enumeration of the array. If a block stops further enumeration, that block continues to run until it’s finished.
+        /// Parameter `block`: The block to execute for each point. The block receives the interpolated point
+        /// and a stop flag; set the flag to `YES` to stop enumeration.
         #[unsafe(method(enumerateInterpolatedPointsInRange:strideByTime:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateInterpolatedPointsInRange_strideByTime_usingBlock(
@@ -159,16 +308,15 @@ impl PKStrokePath {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        /// Executes a given block using each point in a range with a parametric step.
+        /// Executes a block for each interpolated point in the specified range, stepping by a parametric step.
         ///
         ///
         /// Parameter `range`: The parametric range to enumerate points in.
         ///
         /// Parameter `parametricStep`: The parametric step between points.
         ///
-        /// Parameter `block`: The block to execute for each point. This block takes two parameters
-        /// point The interpolated point on the spline.
-        /// stop A reference to a Boolean value. Setting the value to YES within the block stops further enumeration of the array. If a block stops further enumeration, that block continues to run until it’s finished.
+        /// Parameter `block`: The block to execute for each point. The block receives the interpolated point
+        /// and a stop flag; set the flag to `YES` to stop enumeration.
         #[unsafe(method(enumerateInterpolatedPointsInRange:strideByParametricStep:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateInterpolatedPointsInRange_strideByParametricStep_usingBlock(
@@ -184,7 +332,7 @@ impl PKStrokePath {
         ///
         /// Parameter `parametricValue`: The floating point [0, count-1] parametric value.
         ///
-        /// Parameter `distanceStep`: The distance to offset `parametricValue`. `distanceStep` can be positive or negative.
+        /// Parameter `distanceStep`: The distance to offset `parametricValue`. Can be positive or negative.
         ///
         /// Returns: A parametric value offset by `distanceStep` from `parametricValue`.
         #[unsafe(method(parametricValue:offsetByDistance:))]
@@ -201,7 +349,7 @@ impl PKStrokePath {
         ///
         /// Parameter `parametricValue`: The floating point [0, count-1] parametric value.
         ///
-        /// Parameter `timeStep`: The time to offset `parametricValue`. `timeStep` can be positive or negative.
+        /// Parameter `timeStep`: The time to offset `parametricValue`. Can be positive or negative.
         ///
         /// Returns: A parametric value offset by `timeStep` from `parametricValue`.
         #[unsafe(method(parametricValue:offsetByTime:))]

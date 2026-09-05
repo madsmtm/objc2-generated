@@ -55,6 +55,7 @@ pub fn MTLCreateSystemDefaultDevice() -> Option<Retained<ProtocolObject<dyn MTLD
 /// Type for device notifications
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname?language=objc)
+#[deprecated = "Device notifications are not applicable on Apple Silicon"]
 // NS_TYPED_ENUM
 pub type MTLDeviceNotificationName = NSString;
 
@@ -62,6 +63,7 @@ extern "C" {
     /// This notification is posted when a new Metal device is added to the system
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasaddednotification?language=objc)
+    #[deprecated = "Device notifications are not applicable on Apple Silicon"]
     pub static MTLDeviceWasAddedNotification: &'static MTLDeviceNotificationName;
 }
 
@@ -72,6 +74,7 @@ extern "C" {
     /// created on the given device, as well as any references to the device itself.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldeviceremovalrequestednotification?language=objc)
+    #[deprecated = "Device notifications are not applicable on Apple Silicon"]
     pub static MTLDeviceRemovalRequestedNotification: &'static MTLDeviceNotificationName;
 }
 
@@ -80,12 +83,14 @@ extern "C" {
     /// or forced disconnect by the user.  Applications must expect that any attempt to use the device after this point will fail.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasremovednotification?language=objc)
+    #[deprecated = "Device notifications are not applicable on Apple Silicon"]
     pub static MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationName;
 }
 
 /// Block signature for device notifications
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationhandler?language=objc)
+#[deprecated = "Device notifications are not applicable on Apple Silicon"]
 #[cfg(feature = "block2")]
 pub type MTLDeviceNotificationHandler = block2::SendableBlock<
     'static,
@@ -98,6 +103,7 @@ pub type MTLDeviceNotificationHandler = block2::SendableBlock<
 ///
 /// Note: The observer out parameter is returned with a +1 retain count in addition to the retain mentioned above.
 #[cfg(feature = "block2")]
+#[deprecated = "Device notifications are not applicable on Apple Silicon"]
 #[inline]
 pub fn MTLCopyAllDevicesWithObserver(
     observer: &mut Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>,
@@ -123,6 +129,7 @@ pub fn MTLCopyAllDevicesWithObserver(
 /// # Safety
 ///
 /// `observer` should be of the correct type.
+#[deprecated = "Device notifications are not applicable on Apple Silicon"]
 #[inline]
 pub unsafe fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>) {
     extern "C-unwind" {
@@ -244,12 +251,16 @@ impl MTLGPUFamily {
     #[deprecated]
     pub const Mac1: Self = Self(2001);
     #[doc(alias = "MTLGPUFamilyMac2")]
+    #[deprecated]
     pub const Mac2: Self = Self(2002);
     #[doc(alias = "MTLGPUFamilyCommon1")]
+    #[deprecated]
     pub const Common1: Self = Self(3001);
     #[doc(alias = "MTLGPUFamilyCommon2")]
+    #[deprecated]
     pub const Common2: Self = Self(3002);
     #[doc(alias = "MTLGPUFamilyCommon3")]
+    #[deprecated]
     pub const Common3: Self = Self(3003);
     #[doc(alias = "MTLGPUFamilyMacCatalyst1")]
     #[deprecated]
@@ -275,17 +286,22 @@ unsafe impl RefEncode for MTLGPUFamily {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation?language=objc)
 // NS_ENUM
+#[deprecated = "Not applicable on Apple Silicon"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDeviceLocation(pub NSUInteger);
 impl MTLDeviceLocation {
     #[doc(alias = "MTLDeviceLocationBuiltIn")]
+    #[deprecated = "Not applicable on Apple Silicon"]
     pub const BuiltIn: Self = Self(0);
     #[doc(alias = "MTLDeviceLocationSlot")]
+    #[deprecated = "Not applicable on Apple Silicon"]
     pub const Slot: Self = Self(1);
     #[doc(alias = "MTLDeviceLocationExternal")]
+    #[deprecated = "Not applicable on Apple Silicon"]
     pub const External: Self = Self(2);
     #[doc(alias = "MTLDeviceLocationUnspecified")]
+    #[deprecated = "Not applicable on Apple Silicon"]
     pub const Unspecified: Self = Self(NSUIntegerMax as _);
 }
 
@@ -710,11 +726,13 @@ extern_protocol!(
         fn maxThreadsPerThreadgroup(&self) -> MTLSize;
 
         /// On systems that support automatic graphics switching, this will return YES for the the low power device.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(isLowPower))]
         #[unsafe(method_family = none)]
         fn isLowPower(&self) -> bool;
 
         /// On systems that include more that one GPU, this will return YES for any device that does not support any displays.  Only available on Mac OS X.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(isHeadless))]
         #[unsafe(method_family = none)]
         fn isHeadless(&self) -> bool;
@@ -723,6 +741,7 @@ extern_protocol!(
         ///
         /// If a GPU is is removed without warning, APIs may fail even with good input, even before a notification can get posted informing
         /// the application that the device has been removed.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(isRemovable))]
         #[unsafe(method_family = none)]
         fn isRemovable(&self) -> bool;
@@ -748,6 +767,7 @@ extern_protocol!(
         ///
         /// The returned value indicates if the GPU is built into the computer, inserted into
         /// a slot internal to the computer, or external to the computer. Otherwise it is Unspecified
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         fn location(&self) -> MTLDeviceLocation;
@@ -758,6 +778,7 @@ extern_protocol!(
         /// to. For Built-in GPUs, if LowPower this value is 0, otherwise it is 1.  It is possible for multiple GPUs to have
         /// the same location and locationNumber; e.g.: A PCI card with multiple GPUs, or an eGPU
         /// daisy-chained off of another eGPU attached to a host Thunderbolt port.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(locationNumber))]
         #[unsafe(method_family = none)]
         fn locationNumber(&self) -> NSUInteger;
@@ -769,11 +790,13 @@ extern_protocol!(
         /// The returned value indicates the theoretical maximum data rate in bytes/second
         /// from host memory to the GPU's VRAM. This is derived from the raw data clock rate and as
         /// such may not be reachable under real-world conditions. For Built-in GPUs this value is 0.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(maxTransferRate))]
         #[unsafe(method_family = none)]
         fn maxTransferRate(&self) -> u64;
 
         /// If YES, device supports MTLPixelFormatDepth24Unorm_Stencil8.
+        #[deprecated = "Never supported on Apple Silicon"]
         #[unsafe(method(isDepth24Stencil8PixelFormatSupported))]
         #[unsafe(method_family = none)]
         fn isDepth24Stencil8PixelFormatSupported(&self) -> bool;
@@ -1552,17 +1575,20 @@ extern_protocol!(
 
         /// If a device supports peer to peer transfers with another device (or devices), this property will return
         /// a unique 64-bit identifier associated with all devices in the same peer group.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(peerGroupID))]
         #[unsafe(method_family = none)]
         fn peerGroupID(&self) -> u64;
 
         /// All Metal devices that are part of the same peer group will have a unique index value within the group in
         /// the range from 0 to peerCount - 1.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(peerIndex))]
         #[unsafe(method_family = none)]
         fn peerIndex(&self) -> u32;
 
         /// For Metal devices that are part of a peer group, this property returns the total number of devices in that group.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(peerCount))]
         #[unsafe(method_family = none)]
         fn peerCount(&self) -> u32;
@@ -2002,17 +2028,46 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTensor"
         ))]
-        /// Creates a tensor by allocating new memory.
+        /// Creates a tensor with the specified descriptor.
+        ///
+        /// This method validates the constraints documented on ``MTLTensorDescriptor``.
         ///
         /// - Parameters:
-        /// - descriptor: A description of the properties for the new tensor.
-        /// - error: Metal populates this parameter with information in case an error occurs.
-        /// - Returns: A new tensor instance that Metal configures using `descriptor` or `nil` if an error occurred.
+        /// - descriptor: The tensor descriptor configuring the data plane and
+        /// auxiliary planes.
+        /// - error: On failure, an NSError instance that describes the validation failure.
+        /// - Returns: A tensor, or `nil` if validation fails.
         #[unsafe(method(newTensorWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
         fn newTensorWithDescriptor_error(
             &self,
             descriptor: &MTLTensorDescriptor,
+        ) -> Result<Retained<ProtocolObject<dyn MTLTensor>>, Retained<NSError>>;
+
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTensor"
+        ))]
+        /// Creates a tensor with the specified descriptor and per-plane buffer backing storage.
+        ///
+        /// This method validates the constraints documented on ``MTLTensorDescriptor``
+        /// and ``MTLTensorBufferAttachments``, and additionally requires that every
+        /// plane configured in `descriptor` (data plane and all auxiliary planes) has
+        /// a corresponding entry in `attachments`.
+        ///
+        /// - Parameters:
+        /// - descriptor: The tensor descriptor configuring the data plane and
+        /// auxiliary planes.
+        /// - attachments: The per-plane buffer backing storage. Must not be `nil`.
+        /// - error: On failure, an NSError instance that describes the validation failure.
+        /// - Returns: A tensor, or `nil` if validation fails.
+        #[unsafe(method(newTensorWithDescriptor:attachments:error:_))]
+        #[unsafe(method_family = new)]
+        fn newTensorWithDescriptor_attachments_error(
+            &self,
+            descriptor: &MTLTensorDescriptor,
+            attachments: &MTLTensorBufferAttachments,
         ) -> Result<Retained<ProtocolObject<dyn MTLTensor>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MTLFunctionHandle", feature = "MTLLibrary"))]

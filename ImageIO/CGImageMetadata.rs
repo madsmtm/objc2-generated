@@ -10,7 +10,9 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// an immutable container for CGImageMetadataTags
+/// An immutable object that contains the XMP metadata associated with an image.
+///
+/// A ``CGImageMetadata`` object stores the metadata associated with an image. Create this object from your image's associated XMP data, and use it to fetch individual metadata tags. You can search for specific tags, or enumerate all of the tags present for the image.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadata?language=objc)
 #[doc(alias = "CGImageMetadataRef")]
@@ -29,14 +31,9 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CGImageMetadata {
-    /// *!
+    /// Returns the type identifier for metadata objects.
     ///
-    /// Creating and identifying CGImageMetadata containers */
-    ///
-    ///
-    /// Gets the type identifier for the CGImageMetadata opaque type
-    ///
-    /// Returns: the type identifier for the CGImageMetadata opaque type
+    /// - Returns: The type identifier for ``CGImageMetadata`` and ``CGMutableImageMetadata`` objects.
     #[doc(alias = "CGImageMetadataGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -47,10 +44,11 @@ unsafe impl ConcreteType for CGImageMetadata {
     }
 }
 
-/// a mutable container for CGImageMetadataTags
+/// An opaque type for adding or modifying image metadata.
 ///
-/// A CGMutableImageMetadataRef can be used in any function that
-/// accepts a CGImageMetadataRef.
+/// Create a ``CGMutableImageMetadata`` opaque type when you want to modify the metadata in an image. You may pass this type  to any functions that take a ``CGImageMetadata`` type as a parameter. This object stores the tag information as XMP data, which  you can write back to the image.
+///
+/// When you access or modify EXIF or IPTC properties, the metadata functions automatically bridge those properties to appropriate XMP  properties. This bridging behavior fills in any fields that are present only in the XMP data. For example, it fills in the namespace, prefix,  and XMP type information in the corresponding ``CGImageMetadataTag`` object.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgmutableimagemetadata?language=objc)
 #[doc(alias = "CGMutableImageMetadataRef")]
@@ -69,7 +67,9 @@ cf_objc2_type!(
 );
 
 impl CGMutableImageMetadata {
-    /// Creates an empty CGMutableImageMetadataRef
+    /// Creates an empty, mutable image metdata opaque type.
+    ///
+    /// - Returns: A ``CGMutableImageMetadata`` object that contains no metadata information, or `NULL` if an error occurs. You are responsible for releasing the returned object.
     #[doc(alias = "CGImageMetadataCreateMutable")]
     #[inline]
     pub unsafe fn new() -> CFRetained<CGMutableImageMetadata> {
@@ -82,11 +82,14 @@ impl CGMutableImageMetadata {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// Creates a deep mutable copy of another CGImageMetadataRef
+    /// Creates a deep, mutable copy of the specified metadata information.
     ///
-    /// Before modifying an immutable CGImageMetadataRef (such as metadata
-    /// from CGImageSourceCopyMetadataAtIndex) you must first make a copy.
-    /// This function makes a deep copy of all CGImageMetadataTags and their values.
+    /// - Parameters:
+    /// - metadata: The metadata information to copy. This function makes a deep copy of all ``CGImageMetadataTag`` structures in this parameter, including the values for the tags.
+    ///
+    /// - Returns: A new ``CGMutableImageMetadata`` type that contains a deep copy of the tags in the metadata parameter.
+    ///
+    /// Typically, you call this function before modifying the metadata information for an image. Use it to create a copy of the image's existing metadata information, and then add or modify that metadata before saving it with the image.
     #[doc(alias = "CGImageMetadataCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -102,16 +105,11 @@ impl CGMutableImageMetadata {
     }
 }
 
-/// an individual metadata tag
+/// An immutable type that contains information about a single piece of image metadata.
 ///
-/// A CGImageMetadataTag encapsulates an EXIF, IPTC, or XMP property.
-/// All tags contain a namespace, prefix, name, type, and value. Please see
+/// Each ``CGImageMetadataTag`` opaque type contains a single EXIF, IPTC, or XMP property. The namespace, prefix, name, type, and value of the tag identify different portions of the tag's content. For example, the namespace specifies whether the tag is part of the EXIF metadata or a different set of metadata.
 ///
-/// ```text
-///  CGImageMetadataTagCreate
-/// ```
-///
-/// for more details.
+/// You retrieve existing metadata tags from an ``CGImageMetadata`` opaque type. You may also create new tags and add them to a ``CGMutableImageMetadata`` type, before you assign the updated metadata to an image.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatag?language=objc)
 #[doc(alias = "CGImageMetadataTagRef")]
@@ -130,14 +128,9 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CGImageMetadataTag {
-    /// *!
+    /// Returns the type identifier for the image metadata tag opaque type
     ///
-    /// Creating and identifying CGImageMetadataTags */
-    ///
-    ///
-    /// Gets the type identifier for the CGImageMetadataTag opaque type
-    ///
-    /// Returns: the type identifier for the CGImageMetadataTagGetTypeID opaque type
+    /// - Returns: The type identifier for the ``CGImageMetadataTag`` opaque type.
     #[doc(alias = "CGImageMetadataTagGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -149,27 +142,37 @@ unsafe impl ConcreteType for CGImageMetadataTag {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespaceexif?language=objc)
+    /// The namespace for the Exchangeable Image File (EXIF) format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespaceexif?language=objc)
     pub static kCGImageMetadataNamespaceExif: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespaceexifaux?language=objc)
+    /// The namespace for EXIF auxiliary keys.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespaceexifaux?language=objc)
     pub static kCGImageMetadataNamespaceExifAux: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespaceexifex?language=objc)
+    /// The namespace for the exifEX format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespaceexifex?language=objc)
     pub static kCGImageMetadataNamespaceExifEX: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacedublincore?language=objc)
+    /// The namespace for the Dublin Core Metadata Element Set.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacedublincore?language=objc)
     pub static kCGImageMetadataNamespaceDublinCore: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespaceiptccore?language=objc)
+    /// The namespace for the IPTC format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespaceiptccore?language=objc)
     pub static kCGImageMetadataNamespaceIPTCCore: &'static CFString;
 }
 
@@ -179,47 +182,65 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacephotoshop?language=objc)
+    /// The namespace for Photoshop image metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacephotoshop?language=objc)
     pub static kCGImageMetadataNamespacePhotoshop: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacetiff?language=objc)
+    /// The namespace for TIFF image metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacetiff?language=objc)
     pub static kCGImageMetadataNamespaceTIFF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacexmpbasic?language=objc)
+    /// The namespace for the Extensible Metadata Platform (XMP) format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacexmpbasic?language=objc)
     pub static kCGImageMetadataNamespaceXMPBasic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacexmprights?language=objc)
+    /// The namespace for XMP metadata that conveys legal restrictions associated with a resource.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatanamespacexmprights?language=objc)
     pub static kCGImageMetadataNamespaceXMPRights: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixexif?language=objc)
+    /// The prefix string for tags in the Exchangeable Image File (EXIF) metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixexif?language=objc)
     pub static kCGImageMetadataPrefixExif: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixexifaux?language=objc)
+    /// The prefix string for tags in the EXIF auxiliary metadata collection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixexifaux?language=objc)
     pub static kCGImageMetadataPrefixExifAux: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixexifex?language=objc)
+    /// The prefix string for tags in the exifEX metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixexifex?language=objc)
     pub static kCGImageMetadataPrefixExifEX: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixdublincore?language=objc)
+    /// The prefix string for tags in the Dublin Core Metadata Element Set.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixdublincore?language=objc)
     pub static kCGImageMetadataPrefixDublinCore: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixiptccore?language=objc)
+    /// The prefix string for tags in the IPTC metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixiptccore?language=objc)
     pub static kCGImageMetadataPrefixIPTCCore: &'static CFString;
 }
 
@@ -229,33 +250,36 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixphotoshop?language=objc)
+    /// The prefix string for tags in the Photoshop image metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixphotoshop?language=objc)
     pub static kCGImageMetadataPrefixPhotoshop: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixtiff?language=objc)
+    /// The prefix string for tags in the TIFF image metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixtiff?language=objc)
     pub static kCGImageMetadataPrefixTIFF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixxmpbasic?language=objc)
+    /// The prefix string for tags in the XMP metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixxmpbasic?language=objc)
     pub static kCGImageMetadataPrefixXMPBasic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixxmprights?language=objc)
+    /// The prefix string for tags in the XMP metadata that convey legal restrictions for the resource.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataprefixxmprights?language=objc)
     pub static kCGImageMetadataPrefixXMPRights: &'static CFString;
 }
 
-/// The XMP type for a CGImageMetadataTag
+/// Constants that indicate the XMP type for a metadata tag.
 ///
-/// CGImageMetadataType defines a list of constants used to indicate
-/// the type for a CGImageMetadataTag. If you are reading metadata, use the type
-/// to determine how to interpret the CGImageMetadataTag's value. If you are
-/// creating a CGImageMetadataTag, use the type to specify how the tag
-/// should be serialized in XMP. String types have CFStringRef values, array
-/// types have CFArray values, and structure types have CFDictionary values.
+/// Use these constants to identify the type of metadata in a ``CGImageMetadataTag`` opaque type. The type tells you how to interpret the value of the metadata tag. When creating a new ``CGImageMetadataTag``, specify a type so the system knows how to serialize the data to the XMP format.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype?language=objc)
 // NS_ENUM
@@ -263,45 +287,48 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageMetadataType(pub i32);
 impl CGImageMetadataType {
+    /// An invalid metadata type.
     #[doc(alias = "kCGImageMetadataTypeInvalid")]
     pub const Invalid: Self = Self(-1);
-    /// The type will be interpretted based on the
-    /// CFType of the tag's value. This is only used when creating a new
-    /// CGImageMetadataTag - no existing tags should have this value. CFString
-    /// defaults to kCGImageMetadataTypeString, CFArray defaults to
-    /// kCGImageMetadataTypeArrayOrdered, and CFDictionary defaults to
-    /// kCGImageMetadataTypeStructure.
+    /// The default type for new tags.
+    ///
+    /// When you create new tags, the system assigns this value initially. The system uses the Core Foundation type of the metadata tag's value to determine an appropriate type. During the serialization process, the system converts the type automatically to a nondefault value.
     #[doc(alias = "kCGImageMetadataTypeDefault")]
     pub const Default: Self = Self(0);
-    /// A string value. CFNumber and CFBoolean
-    /// values will be converted to a string.
+    /// A string value.
+    ///
+    /// The string type also represents number and Boolean values.
     #[doc(alias = "kCGImageMetadataTypeString")]
     pub const String: Self = Self(1);
-    /// An array where order does not matter.
-    /// Serialized in XMP as
+    /// An array that doesn't preserve the order of items.
+    ///
+    /// During serialization, this type becomes `
     /// <rdf
-    /// :Bag>.
+    /// :Bag>` in the XMP format.
     #[doc(alias = "kCGImageMetadataTypeArrayUnordered")]
     pub const ArrayUnordered: Self = Self(2);
-    /// An array where order is preserved.
-    /// Serialized in XMP as
+    /// An array that preserves the order of items.
+    ///
+    /// During serialization, this type becomes `
     /// <rdf
-    /// :Seq>.
+    /// :Seq>` in the XMP format.
     #[doc(alias = "kCGImageMetadataTypeArrayOrdered")]
     pub const ArrayOrdered: Self = Self(3);
-    /// An ordered array where all elements
-    /// are alternates for the same value. Serialized in XMP as
+    /// An ordered array, in which all elements are alternates for the same value.
+    ///
+    /// During serialization, this type becomes `
     /// <rdf
-    /// :Alt>.
+    /// :Alt>` in the XMP format.
     #[doc(alias = "kCGImageMetadataTypeAlternateArray")]
     pub const AlternateArray: Self = Self(4);
-    /// A special case of an alternate array
-    /// where all elements are different localized strings for the same value.
-    /// Serialized in XMP as an alternate array of strings with xml:lang qualifiers.
+    /// An alternate array, in which all elements are localized strings for the same value.
+    ///
+    /// During serialization, this type becomes an alternate array of strings with `xml:lang` qualifiers in the XMP format.
     #[doc(alias = "kCGImageMetadataTypeAlternateText")]
     pub const AlternateText: Self = Self(5);
-    /// A collection of keys and values. Unlike
-    /// array elements, fields of a structure may belong to different namespaces.
+    /// A collection of keys and values.
+    ///
+    /// Unlike array elements, fields of a structure may belong to different namespaces.
     #[doc(alias = "kCGImageMetadataTypeStructure")]
     pub const Structure: Self = Self(6);
 }
@@ -317,54 +344,32 @@ unsafe impl RefEncode for CGImageMetadataType {
 }
 
 impl CGImageMetadataTag {
-    /// Creates a new CGImageMetadataTag
+    /// Creates a new image metadata tag, and fills it with the specified information.
     ///
-    /// Parameter `xmlns`: The namespace for the tag. The value can be a common XMP namespace
-    /// defined above, such as kCGImageMetadataNamespaceExif, or a CFString with a
-    /// custom namespace URI. Custom namespaces must be a valid XML namespace. By
-    /// convention, namespaces should end with either '/' or '#'. For example, exif
-    /// uses the namespace "http://ns.adobe.com/exif/1.0/".
+    /// - Parameters:
+    /// - xmlns: The namespace for the tag. Specify a common XMP namespace, such as ``kCGImageMetadataNamespaceExif``, or a string with a custom namespace URI. A custom namespace must be a valid XML namespace. By convention, namespaces end with either the `/` or `#` character.
+    /// - prefix: An abbreviation for the XML namespace. You must specify a valid string for custom namespace. For standard namespaces such as ``kCGImageMetadataNamespaceExif``, you may specify `NULL`.
+    /// - name: The name of the metadata tag. This string must correspond to a valid XMP name.
+    /// - type: The type of data in the `value` parameter. For a list of possible values, see ``CGImageMetadataType``.
+    /// - value: The value of the tag. The value's type must match the information in the `type` parameter. Supported types for this parameter are
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring>,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfnumber>,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean>,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfarray>, and
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfdictionary>. The keys of a dictionary must be
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring> types with XMP names. The values of a dictionary must be either
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring> or ``CGImageMetadataTag`` types.
     ///
-    /// Parameter `prefix`: An abbreviation for the XML namespace. The value can be NULL if
-    /// the namespace is defined as a constant. Custom prefixes must be a valid XML
-    /// name. For example, the prefix used for "http://ns.adobe.com/exif/1.0/" is "exif".
-    /// The XMP serialization of the tag will use the prefix. Prefixes are also
-    /// important for path-based CGImageMetadata functions, such as
+    /// The newly created tag stores only a shallow copy of the original value. As a result, modifying the original value doesn't affect the value in the new ``CGImageMetadataTag``.
     ///
-    /// ```text
-    ///  CGImageMetadataCopyStringValueWithPath
-    /// ```
-    ///
-    /// or
-    ///
-    /// ```text
-    ///  CGImageMetadataSetValueWithPath
-    /// ```
-    ///
-    /// .
-    ///
-    /// Parameter `name`: The name of the tag. It must be a valid XMP name.
-    ///
-    /// Parameter `type`: The type of the tag's value. Must be a constant from
-    ///
-    /// ```text
-    ///  
-    ///  CGImageMetadataType
-    /// ```
-    ///
-    /// .
-    ///
-    /// Parameter `value`: The value of the tag. Allowable CFTypes include CFStringRef,
-    /// CFNumberRef, CFBooleanRef, CFArrayRef, and CFDictionaryRef. The CFType of 'value'
-    /// must correspond to the 'type'. The elements of a CFArray must be either a
-    /// CFStringRef or CGImageMetadataTagRef. The keys of a CFDictionary must be
-    /// CFStringRefs with valid XMP names. The values of a CFDictionary must be either
-    /// CFStringRefs or CGImageMetadataTagRefs. A shallow copy of the value is stored
-    /// in the tag. Therefore, modifying a mutable value after the tag is created
-    /// will not affect the tag's value.
-    ///
-    /// Returns: Returns a pointer to a new CGImageMetadataTag. Returns NULL if a tag
-    /// could not be created with the specified parameters.
+    /// - Returns: A new ``CGImageMetadataTag`` type, or `NULL` if an error occurred.
     ///
     /// # Safety
     ///
@@ -391,12 +396,16 @@ impl CGImageMetadataTag {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// *!
+    /// Returns an immutable copy of the tag's XMP namespace.
     ///
-    /// Getting attributes of a CGImageMetadataTag */
+    /// - Parameters:
+    /// - tag: The metadata tag from which to fetch the namespace information.
     ///
+    /// - Returns: An immutable string that contains the tag's namespace. For a list of public namespaces, see
+    /// <doc
+    /// :xmp-namespaces-and-prefixes>. You are responsible for releasing this string.
     ///
-    /// Returns a copy of the tag's namespace
+    /// By convention, namespaces end with either a `/` or `#` character. For example, EXIF metadata uses the namespace `http://ns.adobe.com/exif/1.0/`. Custom namespaces must be a valid XML namespace.
     #[doc(alias = "CGImageMetadataTagCopyNamespace")]
     #[inline]
     pub unsafe fn namespace(&self) -> Option<CFRetained<CFString>> {
@@ -409,7 +418,12 @@ impl CGImageMetadataTag {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Returns a copy of the tag's prefix
+    /// Returns an immutable copy of the tag's prefix.
+    ///
+    /// - Parameters:
+    /// - tag: The metadata tag from which to fetch the namespace information.
+    ///
+    /// - Returns: An immutable string that contains the tag's prefix. For example, EXIF metadata uses the prefix `exif`. You are responsible for releasing this string.
     #[doc(alias = "CGImageMetadataTagCopyPrefix")]
     #[inline]
     pub unsafe fn prefix(&self) -> Option<CFRetained<CFString>> {
@@ -420,7 +434,12 @@ impl CGImageMetadataTag {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Returns a copy of the tag's name
+    /// Returns an immutable copy of the tag's name.
+    ///
+    /// - Parameters:
+    /// - tag: The metadata tag from which to fetch the namespace information.
+    ///
+    /// - Returns: A string that contains the tag's name. You are responsible for releasing this string.
     #[doc(alias = "CGImageMetadataTagCopyName")]
     #[inline]
     pub unsafe fn name(&self) -> Option<CFRetained<CFString>> {
@@ -431,14 +450,24 @@ impl CGImageMetadataTag {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Returns a shallow copy of the tag's value
+    /// Returns a shallow copy of the tag's value, which is suitable only for reading.
     ///
-    /// This function should only be used to read the tag's value.
-    /// CGImageMetadataCopyTagWithPath returns a copy of the tag (including a copy of
-    /// the tag's value). Therefore mutating a tag's value returned from this function
-    /// may not actually mutate the value in the CGImageMetadata. It is recommended
-    /// to create a new tag followed by CGImageMetadataSetTagWithPath, or use
-    /// CGImageMetadataSetValueWithPath to mutate a metadata value.
+    /// - Parameters:
+    /// - tag: The metadata tag from which to fetch the namespace information.
+    ///
+    /// - Returns: A copy of the tag's value. Possible return types are
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring>,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfnumber>,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean>,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfarray>, and
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfdictionary>.
+    ///
+    /// Use this method to obtain the value when you want to use or display that value elsewhere. Any changes you make to the returned value don't change the contents of the metadata tag. To change the value, call ``CGImageMetadataSetValueWithPath(_:_:_:_:)`` or ``CGImageMetadataSetTagWithPath(_:_:_:_:)`` instead.
     #[doc(alias = "CGImageMetadataTagCopyValue")]
     #[inline]
     pub unsafe fn value(&self) -> Option<CFRetained<CFType>> {
@@ -449,10 +478,14 @@ impl CGImageMetadataTag {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Get the type of the CGImageMetadataTag
+    /// Returns the type of the metadata tag's value.
     ///
-    /// Returns: Returns a CGImageMetadataType constant for the CGImageMetadataTag.
-    /// This is primarily used to determine how to interpret the tag's value.
+    /// - Parameters:
+    /// - tag: The metadata tag from which to fetch the namespace information.
+    ///
+    /// - Returns: A constant that indicates the type of the value. For a list of possible return values, see ``CGImageMetadataType``.
+    ///
+    /// To get the value itself, call ``CGImageMetadataTagCopyValue(_:)``. Metadata tags store string, number, and Boolean values using the ``CGImageMetadataType/string`` type.
     #[doc(alias = "CGImageMetadataTagGetType")]
     #[inline]
     pub unsafe fn r#type(&self) -> CGImageMetadataType {
@@ -462,16 +495,14 @@ impl CGImageMetadataTag {
         unsafe { CGImageMetadataTagGetType(self) }
     }
 
-    /// Return a copy of the tag's qualifiers
+    /// Returns a shallow copy of the metadata tags that act as qualifiers for the current tag.
     ///
-    /// XMP allows properties to contain supplemental properties called
-    /// qualifiers. Qualifiers are themselves CGImageMetadataTags with their own
-    /// namespace, prefix, name, and value. A common use is the xml:lang qualifier
-    /// for elements of an alternate-text array.
+    /// - Parameters:
+    /// - tag: The metadata tag from which to fetch the namespace information.
     ///
-    /// Returns: Returns a copy of the array of qualifiers. Elements of the array are
-    /// CGImageMetadataTags. Returns NULL if the tag does not have any qualifiers.
-    /// The copy is shallow, the qualifiers are not deep copied.
+    /// - Returns: An array of ``CGImageMetadataTag`` types that represent the current tag's qualifiers, or `NULL` if the tag has no qualifiers.
+    ///
+    /// XMP allows a metadata tag to contain supplemental tags that act as qualifiers on the content. For example, the `xml:lang` qualifier provides alternate text entries for the current tag. Each qualifier is a ``CGImageMetadataTag`` with its own namespace, prefix, name, and value.
     #[doc(alias = "CGImageMetadataTagCopyQualifiers")]
     #[inline]
     pub unsafe fn qualifiers(&self) -> Option<CFRetained<CFArray<CGImageMetadataTag>>> {
@@ -486,15 +517,12 @@ impl CGImageMetadataTag {
 }
 
 impl CGImageMetadata {
-    /// *!
+    /// Returns an array of root-level metadata tags from the specified metadata object.
     ///
-    /// Retrieving CGImageMetadataTagRefs from a CGImageMetadataRef */
+    /// - Parameters:
+    /// - metadata: The metadata object that contains the tags.
     ///
-    ///
-    /// Obtain an array of tags from a CGImageMetadataRef
-    ///
-    /// Returns: Returns an array with a shallow copy of all top-level
-    /// CGImageMetadataTagRefs in a CGImageMetadataRef.
+    /// - Returns: An array that contains a shallow copy of all root-level ``CGImageMetadataTag`` objects. This array contains only the root-level tags. It doesn't contain any nested tags.
     #[doc(alias = "CGImageMetadataCopyTags")]
     #[inline]
     pub unsafe fn tags(&self) -> Option<CFRetained<CFArray<CGImageMetadataTag>>> {
@@ -507,93 +535,24 @@ impl CGImageMetadata {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Searches for a specific CGImageMetadataTag in a CGImageMetadataRef
+    /// Searches for a specific metadata tag within a metadata collection.
     ///
-    /// This is the primary function for clients to obtain specific
-    /// metadata properties from an image. The 'path' mechanism provides a way to
-    /// access both simple top-level properties, such as Date
-    /// &
-    /// Time, or complex
-    /// deeply-nested properties with ease.
+    /// - Parameters:
+    /// - metadata: The metadata object that contains the tags.
+    /// - parent: The parent tag, if any. Specify `NULL` to start the search in the top-level tags of the metadata object. If this parameter is `NULL`, you must include a valid prefix string in the `path` parameter.
+    /// - path: A string that represents the path to the tag. A path consists of the tag's name, plus optional prefix and parent information. Separate prefix information from other path information using a colon (`:`) character. Separate parent and child tags using the period (`.`) character. For example, the string `“exif:Flash.RedEyeMode”` represents the path to the `RedEyeMode` field of the `Flash` parent structure in the EXIF metadata.
     ///
-    /// Parameter `metadata`: A collection of metadata tags.
+    /// When a tag contains an ordered or unordered array, specify elements using a `0`-based index inside square brackets. For example, use the string `“dc.subject[2]”` to access the third element in the `subject` array.
     ///
-    /// Parameter `parent`: A parent tag. If NULL, the path is relative to the root of the
-    /// CGImageMetadataRef (i.e. it is not a child of another property). If the parent
-    /// is provided, the effective path will be the concatenation of the parent's path
-    /// and the 'path' parameter. This is useful for accessing array elements or
-    /// structure fields inside nested tags.
+    /// When the tag contains an alternate-text array, access elements using an RFC 3066 language code inside square brackets. For example, use the string `“dc.description[de]”` to access the German description information.
     ///
-    /// Parameter `path`: A string representing a path to the desired tag. Paths consist of
-    /// a tag prefix (i.e. "exif") joined with a tag name (i.e. "Flash") by a colon
-    /// (":"), such as CFSTR("exif:Flash").
-    /// Elements of ordered and unordered arrays are accessed via 0-based indices inside square [] brackets.
-    /// Elements of alternate-text arrays are accessed by an RFC 3066 language code inside square [] brackets.
-    /// Fields of a structure are delimited by a period, '.'.
-    /// Qualifiers are delimited by the '?' character. Only tags with string values (kCGImageMetadataTypeString)
-    /// are allowed to have qualifiers - arrays and structures may not contain qualifiers.
+    /// Use the ? character to delimit qualifiers for tags with string values. You may not use this character for arrays and structures.
     ///
-    /// If parent is NULL, a prefix must be specified for the first tag. Prefixes for
-    /// all subsequent tags are optional. If unspecified, the prefix is
-    /// inherented from the nearest parent tag with a prefix. Custom prefixes must be
-    /// registered using
+    /// - Returns: A copy of the ``CGImageMetadataTag`` object at the specified path, or `NULL` if the tag wasn't found.
     ///
-    /// ```text
-    ///  CGImageMetadataRegisterNamespaceForPrefix
-    /// ```
+    /// If you specify a valid tag in the `parent` parameter, you may omit the parent's path information from the `path` parameter. For example, to access the `RedEyeMode` field, specify the ``CGImageMetadataTag`` object for the `Flash` parent property, and specify `“RedEyeMode”` for the path string.
     ///
-    /// prior to use
-    /// in any path-based functions.
-    ///
-    /// Examples:
-    /// <ul>
-    /// <li>
-    /// 'path' = CFSTR("xmp:CreateDate")
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("exif:Flash.Fired")
-    /// </li>
-    /// <li>
-    /// 'parent' = tag at path CFSTR("exif:Flash"), path = CFSTR("exif:Fired") (equivilent to previous)
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("exif:Flash.RedEyeMode")
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc:title")
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc:subject")
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc:subject[2]")
-    /// </li>
-    /// <li>
-    /// 'parent' = tag at path CFSTR("dc:subject"), path = CFSTR("[2]") (equivilent to previous)
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc:description[x-default])"
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc.description[de])"
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc.description[fr])"
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("foo:product)"
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("foo:product?bar:manufacturer)"
-    /// </li>
-    /// </ul>
-    ///
-    /// Returns: Returns a copy of CGImageMetadataTag matching 'path', or NULL if no
-    /// match is found. The copy of the tag's value is shallow. Tags
-    /// copied from an immutable CGImageMetadataRef are also immutable. Because this
-    /// function returns a copy of the tag's value, any modification of the tag's
-    /// value must be followed by a CGImageMetadataSetTagWithPath to commit the
-    /// change to the metadata container.
+    /// If a tag contains a custom prefix that is not already present in the metadata object, call ``CGImageMetadataRegisterNamespaceForPrefix(_:_:_:_:)`` to register that prefix before you search for it with this function.
     #[doc(alias = "CGImageMetadataCopyTagWithPath")]
     #[inline]
     pub unsafe fn tag_with_path(
@@ -612,31 +571,22 @@ impl CGImageMetadata {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Searches for a specific tag in a CGImageMetadataRef and returns its
-    /// string value.
+    /// Searches the metadata for the specified tag, and returns its string value if it exists.
     ///
-    /// This is a convenience method for searching for a tag at path and
-    /// extracting the string value.
+    /// - Parameters:
+    /// - metadata: The metadata object to search.
+    /// - parent: The parent tag, if any. Specify `NULL` to start the search in the top-level tags of the metadata object. If this parameter is `NULL`, you must include a valid prefix string in the `path` parameter.
+    /// - path: A string that represents the path to the tag. A path consists of the tag's name, plus optional prefix and parent information. Separate prefix information from other path information using a colon (`:`) character. Separate parent and child tags using the period (`.`) character. For example, the string `“exif:Flash.RedEyeMode”` represents the path to the `RedEyeMode` field of the `Flash` parent structure in the EXIF metadata.
     ///
-    /// Parameter `metadata`: A collection of metadata tags.
+    /// When a tag contains an ordered or unordered array, specify elements using a `0`-based index inside square brackets. For example, use the string `“dc.subject[2]”` to access the third element in the `subject` array.
     ///
-    /// Parameter `parent`: A parent tag. If NULL, the path is relative to the root of the
-    /// CGImageMetadataRef (i.e. it is not a child of another property).
+    /// When the tag contains an alternate-text array, access elements using an RFC 3066 language code inside square brackets. For example, use the string `“dc.description[de]”` to access the German description information.
     ///
-    /// Parameter `path`: A string with the path to the desired tag. Please consult
-    /// the documentation of
+    /// Use the ? character to delimit qualifiers for tags with string values. You may not use this character for arrays and structures.
     ///
-    /// ```text
-    ///  CGImageMetadataCopyTagWithPath
-    /// ```
+    /// - Returns: The string value for the specified tag, or `NULL` if the tag wasn't found or doesn't contain a string value.
     ///
-    /// for
-    /// information about path syntax.
-    ///
-    /// Returns: Returns a string from a CGImageMetadataTag located at 'path'. The
-    /// tag must be of type kCGImageMetadataTypeString or kCGImageMetadataTypeAlternateText.
-    /// For AlternateText tags, the element with the "x-default" language qualifier
-    /// will be returned. For other types, NULL will be returned.
+    /// The XMP type of the property at the specified path must be ``CGImageMetadataType/string`` or ``CGImageMetadataType/alternateText``. If the property contains alternate text, this function returns the element with the `x-default` language qualifier.
     #[doc(alias = "CGImageMetadataCopyStringValueWithPath")]
     #[inline]
     pub unsafe fn string_value_with_path(
@@ -657,22 +607,21 @@ impl CGImageMetadata {
 }
 
 impl CGMutableImageMetadata {
-    /// *!
+    /// Registers the specified namespace and prefix with the metadata object.
     ///
-    /// Modifying a CGMutableImageMetadataRef */
+    /// - Parameters:
+    /// - metadata: The metadata object in which to register the namespace.
+    /// - xmlns: The namespace to register. Specify a string with a custom namespace URI. A custom namespace must be a valid XML namespace. By convention, namespaces end with either the `/` or `#` character.
+    /// - prefix: An abbreviation for the XML namespace. You must specify a valid string for custom namespace.
+    /// - err: A pointer to an error object. If an error occurs, this function assigns an error object to this parameter.
     ///
+    /// - Returns: `true` if registration of the namespace was successful, or `false` if it wasn't.
     ///
-    /// Associates an XMP namespace URI with a prefix string.
+    /// All tags you add to a ``CGMutableImageMetadata`` object must belong to known namespaces. When you encounter an unrecognized prefix in a metadata path, call this function to register the prefix before you add the corresponding tag.
     ///
-    /// This allows ImageIO to create custom metadata when it encounters
-    /// an unrecognized prefix in a path (see CGImageMetadataCopyTagWithPath for more
-    /// information about path syntax). A namespace must be registered before it can
-    /// be used to add custom metadata. All namespaces found in the image's metadata,
-    /// or defined as a constant above, will be pre-registered. Namespaces and
-    /// prefixes must be unique.
+    /// You don't need to register the standard metadata spaces, or any metadata spaces that are already present in the image's metadata. Register only the namespaces you need to support additional metadata tags.
     ///
-    /// Returns: Returns true if successful. Returns false and sets 'err' if an error
-    /// or conflict occurs.
+    /// If the namespace already exists and the `prefix` parameter conflicts with the already registered prefix, this function returns `false` and places an error object in the `err` parameter. However, if the prefix matches what's registered, this method returns `true`.
     #[doc(alias = "CGImageMetadataRegisterNamespaceForPrefix")]
     #[inline]
     pub unsafe fn register_namespace_for_prefix(
@@ -698,65 +647,23 @@ impl CGMutableImageMetadata {
         unsafe { CGImageMetadataRegisterNamespaceForPrefix(self, xmlns, prefix, err) }
     }
 
-    /// Sets the tag at a specific path in a CGMutableImageMetadata container or a parent tag
+    /// Sets the tag at the specified path in the metadata object.
     ///
-    /// This is the primary function for adding new metadata tags to a
-    /// metadata container, or updating existing tags. All tags required to reach
-    /// the final tag (at the end of the path) will be created, if needed. Tags will
-    /// created with default types (ordered arrays). Creating tags will fail if a
-    /// prefix is encountered that has not been registered. Use
+    /// - Parameters:
+    /// - metadata: The metadata object that contains the tag. If the tag doesn't exist in this metadata object, this function creates a new tag.
+    /// - parent: The parent tag, if any. Specify `NULL` to add or update a tag starting at the top-level of the metadata object. If this parameter is `NULL`, you must include a valid prefix string in the `path` parameter.
     ///
-    /// ```text
-    ///  CGImageMetadataRegisterNamespaceForPrefix
-    /// ```
+    /// If you specify a value for this parameter, this function modifies the children its children, which might create different references for those children. To fix the references, commit this object back to the metadata object using this function. Pass the parent's full path string; don't specify the parent using a parent object and relative path.
+    /// - path: A string that represents the path to the tag. A path consists of the tag's name, plus optional prefix and parent information. Separate prefix information from other path information using a colon (`:`) character. Separate parent and child tags using the period (`.`) character. For example, the string `“exif:Flash.RedEyeMode”` represents the path to the `RedEyeMode` field of the `Flash` parent structure in the EXIF metadata.
     ///
-    /// to associate a prefix
-    /// with a namespace prior to using a path-based CGImageMetadata function.
-    /// Note that if a parent tag is provided,
-    /// the children of that tag reference will be modified, which may be a different
-    /// reference from the tag stored in the metadata container. Since tags are normally
-    /// obtained as a copy, it is typically neccesary to use CGImageMetadataSetTagWithPath
-    /// to commit the changed parent object back to the metadata container (using
-    /// the parent's path and NULL for the parent).
+    /// When a tag contains an ordered or unordered array, specify elements using a `0`-based index inside square brackets. For example, use the string `“dc.subject[2]”` to access the third element in the `subject` array.
     ///
-    /// Parameter `metadata`: A mutable collection of metadata tags.
-    /// Use
+    /// When the tag contains an alternate-text array, access elements using an RFC 3066 language code inside square brackets. For example, use the string `“dc.description[de]”` to access the German description information.
     ///
-    /// ```text
-    ///  CGImageMetadataCreateMutableCopy
-    /// ```
+    /// Use the ? character to delimit qualifiers for tags with string values. You may not use this character for arrays and structures.
+    /// - tag: The tag object to add to the metadata. This function retains the tag object.
     ///
-    /// or
-    ///
-    /// ```text
-    ///  CGImageMetadataCreateMutable
-    /// ```
-    ///
-    /// to obtain a mutable metadata container.
-    ///
-    /// Parameter `parent`: A parent tag. If NULL, the path is relative to the root of the
-    /// CGImageMetadataRef (i.e. it is not a child of another property).
-    /// Note that if a parent tag is provided,
-    /// the children of that tag reference will be modified, which may be a different
-    /// reference from the tag stored in the metadata container. Since tags are normally
-    /// obtained as a copy, it is typically neccesary to use CGImageMetadataSetTagWithPath
-    /// to commit the changed parent object back to the metadata container (using
-    /// the parent's path and NULL for the parent).
-    ///
-    /// Parameter `path`: A string with the path to the desired tag. Please consult
-    /// the documentation of
-    ///
-    /// ```text
-    ///  CGImageMetadataCopyTagWithPath
-    /// ```
-    ///
-    /// for
-    /// information about path syntax.
-    ///
-    /// Parameter `tag`: The CGImageMetadataTag to be added to the metadata. The tag
-    /// will be retained.
-    ///
-    /// Returns: Returns true if successful, false otherwise.
+    /// - Returns: `true` if the function saved the tag successfully, or `false` if it encountered a problem.
     #[doc(alias = "CGImageMetadataSetTagWithPath")]
     #[inline]
     pub unsafe fn set_tag_with_path(
@@ -776,84 +683,25 @@ impl CGMutableImageMetadata {
         unsafe { CGImageMetadataSetTagWithPath(self, parent, path, tag) }
     }
 
-    /// Sets the value of the tag at a specific path in a CGMutableImageMetadataRef container or a parent tag
+    /// Update the value of an existing metadata tag, or create a new tag using the specified information.
     ///
-    /// This function is used to add new metadata values to a
-    /// metadata container, or update existing tag values. All tags required to reach
-    /// the final tag (at the end of the path) are created, if needed. Tags are
-    /// created with default types (i.e. arrays will be ordered). Creating tags will
-    /// fail if a prefix is encountered that has not been registered. Use
+    /// - Parameters:
+    /// - metadata: The metadata object that contains the tag. If the tag doesn't exist in this metadata object, this function creates a new tag.
+    /// - parent: The parent tag, if any. Specify `NULL` to add or update a tag starting at the top-level of the metadata object. If this parameter is `NULL`, you must include a valid prefix string in the `path` parameter.
+    /// - path: A string that represents the path to the tag. A path consists of the tag's name, plus optional prefix and parent information. Separate prefix information from other path information using a colon (`:`) character. Separate parent and child tags using the period (`.`) character. For example, the string `“exif:Flash.RedEyeMode”` represents the path to the `RedEyeMode` field of the `Flash` parent structure in the EXIF metadata.
     ///
-    /// ```text
-    ///  CGImageMetadataRegisterNamespaceForPrefix
-    /// ```
+    /// When a tag contains an ordered or unordered array, specify elements using a `0`-based index inside square brackets. For example, use the string `“dc.subject[2]”` to access the third element in the `subject` array.
     ///
-    /// to associate a prefix
-    /// with a namespace prior to using a path-based CGImageMetadata function.
+    /// When the tag contains an alternate-text array, access elements using an RFC 3066 language code inside square brackets. For example, use the string `“dc.description[de]”` to access the German description information.
     ///
-    /// Examples
-    /// <ul>
-    /// <li>
-    /// 'path' = CFSTR("xmp:CreateDate"), 'value' = CFSTR("2011-09-20T14:54:47-08:00")
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc:subject[0]"), 'value' = CFSTR("San Francisco")
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc:subject[1]"), 'value' = CFSTR("Golden Gate Bridge")
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc:description[en]") 'value' = CFSTR("my image description")
-    /// </li>
-    /// <li>
-    /// 'path' = CFSTR("dc:description[de]") 'value' = CFSTR("meine bildbeschreibung")
-    /// </li>
-    /// </ul>
-    /// Note that if a parent tag is provided,
-    /// the children of that tag reference will be modified, which may be a different
-    /// reference from the tag stored in the metadata container. Since tags are normally
-    /// obtained as a copy, it is typically neccesary to use CGImageMetadataSetTagWithPath
-    /// to commit the changed parent object back to the metadata container (using
-    /// the parent's path and NULL for the parent).
+    /// Use the ? character to delimit qualifiers for tags with string values. You may not use this character for arrays and structures.
+    /// - value: The new value for the property. The new value's type must match the expected XMP type of the property at the specified `path`.
     ///
-    /// Parameter `metadata`: A mutable collection of metadata tags.
-    /// Use
+    /// - Returns: `true` if this function set the tag successfully, or `false` if a problem occurred.
     ///
-    /// ```text
-    ///  CGImageMetadataCreateMutableCopy
-    /// ```
+    /// As needed, this function creates any intermediate tags that are required to create the tag at the specified path. This function creates each tag with default types. Tag creation fails if the path includes an unregistered prefix.
     ///
-    /// or
-    ///
-    /// ```text
-    ///  CGImageMetadataCreateMutable
-    /// ```
-    ///
-    /// to obtain a mutable metadata container.
-    ///
-    /// Parameter `parent`: A parent tag. If NULL, the path is relative to the root of the
-    /// CGImageMetadataRef (i.e. it is not a child of another property).
-    ///
-    /// Parameter `path`: A string with the path to the desired tag. Please consult
-    /// the documentation of
-    ///
-    /// ```text
-    ///  CGImageMetadataCopyTagWithPath
-    /// ```
-    ///
-    /// for
-    /// information about path syntax.
-    ///
-    /// Parameter `value`: The value to be added to the CGImageMetadataTag matching the path.
-    /// The tag will be retained. The restrictions for the value are the same as in
-    ///
-    /// ```text
-    ///  CGImageMetadataTagCreate
-    /// ```
-    ///
-    /// .
-    ///
-    /// Returns: Returns true if successful, false otherwise.
+    /// If you specify a tag object in the `parent` parameter, this function modifies the children of that tag, which might create different references for those children. To fix the references, commit the changed parent back to the metadata object using the ``CGImageMetadataSetTagWithPath(_:_:_:_:)`` function. Pass the parent's full path string when calling that function; don't specify the parent using a parent object and relative path.
     ///
     /// # Safety
     ///
@@ -877,28 +725,22 @@ impl CGMutableImageMetadata {
         unsafe { CGImageMetadataSetValueWithPath(self, parent, path, value) }
     }
 
-    /// Removes the tag at a specific path from a CGMutableImageMetadata container or from the parent tag
+    /// Removes the tag at the specified path from the metadata object.
     ///
-    /// Use this function to delete a metadata tag matching a specific
-    /// path from a mutable metadata container. Note that if a parent tag is provided,
-    /// the children of that tag reference will be modified, which may be a different
-    /// reference from the tag stored in the metadata container. Since tags are normally
-    /// obtained as a copy, it is typically neccesary to use CGImageMetadataSetTagWithPath
-    /// to commit the changed parent object back to the metadata container (using
-    /// the parent's path and NULL for the parent).
+    /// - Parameters:
+    /// - metadata: The metadata object that contains the tag. If the tag doesn't exist in this metadata object, this function creates a new tag.
+    /// - parent: The parent tag, if any. Specify `NULL` to add or update a tag starting at the top-level of the metadata object. If this parameter is `NULL`, you must include a valid prefix string in the `path` parameter.
     ///
-    /// Parameter `parent`: A parent tag. If NULL, the path is relative to the root of the
-    /// CGImageMetadataRef (i.e. it is not a child of another property).
+    /// If you specify a value for this parameter, this function modifies the children its children, which might create different references for those children. To fix the references, commit this object back to the metadata object using this function. Pass the parent's full path string; don't specify the parent using a parent object and relative path.
+    /// - path: A string that represents the path to the tag. A path consists of the tag's name, plus optional prefix and parent information. Separate prefix information from other path information using a colon (`:`) character. Separate parent and child tags using the period (`.`) character. For example, the string `“exif:Flash.RedEyeMode”` represents the path to the `RedEyeMode` field of the `Flash` parent structure in the EXIF metadata.
     ///
-    /// Parameter `path`: A string with the path to the desired tag. Please consult
-    /// the documentation of
+    /// When a tag contains an ordered or unordered array, specify elements using a `0`-based index inside square brackets. For example, use the string `“dc.subject[2]”` to access the third element in the `subject` array.
     ///
-    /// ```text
-    ///  CGImageMetadataCopyTagWithPath
-    /// ```
+    /// When the tag contains an alternate-text array, access elements using an RFC 3066 language code inside square brackets. For example, use the string `“dc.description[de]”` to access the German description information.
     ///
-    /// for
-    /// information about path syntax.
+    /// Use the ? character to delimit qualifiers for tags with string values. You may not use this character for arrays and structures.
+    ///
+    /// - Returns: true if this function removed the tag, or false if it encountered a problem.
     #[doc(alias = "CGImageMetadataRemoveTagWithPath")]
     #[inline]
     pub unsafe fn remove_tag_with_path(
@@ -917,13 +759,13 @@ impl CGMutableImageMetadata {
     }
 }
 
-/// The block type used by CGImageMetadataEnumerateTagsUsingBlock
+/// The block to execute when enumerating the tags of a metadata object.
 ///
-/// Parameter `path`: The full path to the tag in the metadata container.
+/// - Parameters:
+/// - path: The full path to the tag in the metadata container.
+/// - tag: The ``CGImageMetadataTag`` object that contains the tag information. Never modify this object from your block. If you want to change the tag, save a reference to it and make your changes later.
 ///
-/// Parameter `tag`: The CGImageMetadataTagRef corresponding to the path in metadata.
-///
-/// Returns: Return true to continue iterating through the tags, or return false to stop.
+/// - Returns: `true` to continue enumerating the tags, or `false` to stop.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagblock?language=objc)
 #[cfg(feature = "block2")]
@@ -931,26 +773,25 @@ pub type CGImageMetadataTagBlock =
     block2::Block<'static, fn(NonNull<CFString>, NonNull<CGImageMetadataTag>) -> bool>;
 
 impl CGImageMetadata {
-    /// Executes a given block using each tag in the metadata
+    /// Enumerates the tags of a metadata object and executes the specified block on each tag.
     ///
-    /// This function iterates over all of the tags in a
-    /// CGImageMetadataRef, executing the block for each tag. The default behavior
-    /// iterates over all top-level tags in the metadata. The path of the tag and
-    /// the tag itself is passed to the block. The metadata cannot be modified inside
-    /// the block - consider adding the tags of interest into another collection.
+    /// - Parameters:
+    /// - metadata: The metadata object that contains the tags to enumerate.
+    /// - rootPath: A string that contains the path to the root tag. Specify `NULL` to enumerate the top-level tags in the metadata object.
     ///
-    /// Parameter `metadata`: A collection of metadata tags.
+    /// A path consists of the tag's name, plus optional prefix and parent information. Separate prefix information from other path information using a colon (`:`) character. Separate parent and child tags using the period (`.`) character. For example, the string `“exif:Flash.RedEyeMode”` represents the path to the `RedEyeMode` field of the `Flash` parent structure in the EXIF metadata.
     ///
-    /// Parameter `rootPath`: Iteration will occur for all children of the tag matching
-    /// the root path. Please refer to CGImageMetadataCopyTagWithPath for information
-    /// about path syntax. If NULL or an empty string, the block will be executed
-    /// for all top-level tags in the metadata container.
+    /// When a tag contains an ordered or unordered array, specify elements using a `0`-based index inside square brackets. For example, use the string `“dc.subject[2]”` to access the third element in the `subject` array.
     ///
-    /// Parameter `options`: A dictionary of options for iterating through the tags.
-    /// Currently the only supported option is kCGImageMetadataEnumerateRecursively,
-    /// which should be set to a CFBoolean.
+    /// When the tag contains an alternate-text array, access elements using an RFC 3066 language code inside square brackets. For example, use the string `“dc.description[de]”` to access the German description information.
     ///
-    /// Parameter `block`: The block that is executed for each tag in metadata.
+    /// Use the ? character to delimit qualifiers for tags with string values. You may not use this character for arrays and structures.
+    /// - options: A dictionary of additional options. Currently, the only supported option is ``kCGImageMetadataEnumerateRecursively``.
+    /// - block: The block to execute for each tag. For more information, see ``CGImageMetadataTagBlock``.
+    ///
+    /// This function iterates over the tags in the specified metadata object. By default, it iterates over only the top-level tags. Include the ``kCGImageMetadataEnumerateRecursively`` constant in the `options` parameter to iterate over all tags recursively.
+    ///
+    /// You must not modify the tag information from your block. Instead, use your block only to read information from the tags. If you need to modify any tags, add those tags to a collection object and modify them after this function finishes its enumeration.
     ///
     /// # Safety
     ///
@@ -977,42 +818,35 @@ impl CGImageMetadata {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataenumeraterecursively?language=objc)
+    /// An option to enumerate recursively through a set of metadata tags.
+    ///
+    /// The value of this key is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean>. Set the value to
+    /// <doc
+    /// ://com.apple.documentation/documentation/driverkit/kosbooleantrue> to enumerate all tags recursively. Set the value to
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse> to enumerate only the direct children of the root path you specify.
+    ///
+    /// When you call ``CGImageMetadataEnumerateTagsUsingBlock(_:_:_:_:)``, include this option if you want the enumeration behavior to search recursively through the available tags. If you don't specify this key, the function behaves as if the value is false.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadataenumeraterecursively?language=objc)
     pub static kCGImageMetadataEnumerateRecursively: &'static CFString;
 }
 
 impl CGImageMetadata {
-    /// *!
+    /// Searches for the specified image property and, if found, returns the corresponding tag object.
     ///
-    /// Working with CGImageProperties */
+    /// - Parameters:
+    /// - metadata: The metadata object to search.
+    /// - dictionaryName: The metadata subdictionary to which the image property belongs. For example, specify ``kCGImagePropertyExifDictionary`` for image properties that are part of the image's EXIF metadata.
+    /// - propertyName: The name of the property. For example, specify ``kCGImagePropertyTIFFOrientation``, ``kCGImagePropertyExifDateTimeOriginal``, or ``kCGImagePropertyIPTCKeywords``. If the specified property is unsupported by the metadata object, this function logs a warning.
     ///
+    /// - Returns: The ``CGImageMetadataTag`` object that corresponds to the specified property, or `NULL` if the property wasn't found.
     ///
-    /// Searches for a specific CGImageMetadataTag matching a kCGImageProperty constant
+    /// Use this function to quickly search the different metadata dictionaries for a specific tag. The returned tag object contains appropriate values for all fields, including the namespace, prefix, and XMP type.
     ///
-    /// Provides a bridge for values from CGImageCopyPropertiesAtIndex, simplifying
-    /// access for properties defined in EXIF and IPTC standards, which have no notion of
-    /// namespaces, prefixes, or XMP property types.
-    /// Metadata Working Group guidance is factored into the mapping of CGImageProperties to
-    /// XMP compatible CGImageMetadataTags.
-    /// For example, kCGImagePropertyExifDateTimeOriginal will get the value of the
-    /// corresponding XMP tag, which is photoshop:DateCreated. Note that property values will
-    /// still be in their XMP forms, such as "YYYY-MM-DDThh:mm:ss" for DateTime, rather than
-    /// the EXIF or IPTC DateTime formats.
-    ///
-    /// Parameter `metadata`: A collection of metadata tags
-    ///
-    /// Parameter `dictionaryName`: the metadata subdictionary to which the image property belongs,
-    /// such as kCGImagePropertyExifDictionary or kCGImagePropertyIPTCDictionary. Not all
-    /// dictionaries and properties are supported at this time.
-    ///
-    /// Parameter `propertyName`: the name of the property. This must be a defined property constant
-    /// corresponding to the 'dictionaryName'. For example, kCGImagePropertyTIFFOrientation,
-    /// kCGImagePropertyExifDateTimeOriginal, or kCGImagePropertyIPTCKeywords. A warning
-    /// will be logged if the CGImageProperty is unsupported by CGImageMetadata.
-    ///
-    /// Returns: Returns a CGImageMetadataTagRef with the appropriate namespace, prefix,
-    /// tag name, and XMP value for the corresponding CGImageProperty. Returns NULL if the
-    /// property could not be found.
+    /// When you request an EXIF or IPTC property, this function fills in the namespace, prefix, and XMP type information by copying information from an appropriate XMP type. For example, when you request the ``kCGImagePropertyExifDateTimeOriginal`` property, the function fills in the information using the `photoshop:DateTime` XMP tag. When this bridging occurs, property fields retain their XMP format, rather than the EXIF or IPTC format.
     #[doc(alias = "CGImageMetadataCopyTagMatchingImageProperty")]
     #[inline]
     pub unsafe fn tag_matching_image_property(
@@ -1035,41 +869,19 @@ impl CGImageMetadata {
 }
 
 impl CGMutableImageMetadata {
-    /// Sets the value of the CGImageMetadataTag matching a kCGImageProperty constant
+    /// Updates the value of the metadata tag assigned to the specified image property.
     ///
-    /// Provides a bridge for values from CGImageCopyPropertiesAtIndex, simplifying
-    /// changing property values defined in EXIF and IPTC standards, which have no notion of
-    /// namespaces, prefixes, or XMP property types.
-    /// Metadata Working Group guidance is factored into the mapping of CGImageProperties to
-    /// XMP compatible CGImageMetadataTags.
-    /// For example, setting kCGImagePropertyExifDateTimeOriginal will set the value of the
-    /// corresponding XMP tag, which is photoshop:DateCreated. Note that property values should
-    /// still be in their XMP forms, such as "YYYY-MM-DDThh:mm:ss" for DateTime, rather than
-    /// the EXIF or IPTC DateTime formats. Although this function will allow the caller to set
-    /// custom values for these properties, you should consult the appropriate specifications
-    /// for details about property value formats for EXIF and IPTC tags in XMP.
+    /// - Parameters:
+    /// - metadata: The metadata object that contains the tag.
+    /// - dictionaryName: The metadata subdictionary to which the image property belongs. For example, specify ``kCGImagePropertyExifDictionary`` for image properties that are part of the image's EXIF metadata. This function doesn't support all dictionaries.
+    /// - propertyName: The name of the property. For example, specify ``kCGImagePropertyTIFFOrientation``, ``kCGImagePropertyExifDateTimeOriginal``, or ``kCGImagePropertyIPTCKeywords``. If the specified property is unsupported by the metadata object, this function logs a warning.
+    /// - value: The new value for the property. The new value's type must match the XMP type of the metadata tag.
     ///
-    /// Parameter `metadata`: A mutable collection of metadata tags
+    /// - Returns: `true` if this function set the tag successfully, or `false` if a problem occurred.
     ///
-    /// Parameter `dictionaryName`: the metadata subdictionary to which the image property belongs,
-    /// such as kCGImagePropertyExifDictionary or kCGImagePropertyIPTCDictionary. Not all
-    /// dictionaries and properties are supported at this time.
+    /// Use this function to update the value of a property in the specified metadata collection. If you try to set the value of an EXIF or IPTC property, this function matches it to an appropriate XMP tag. For example, when you set the value of the ``kCGImagePropertyExifDateTimeOriginal`` property, this function sets the value of the `photoshop:DateTime` XMP tag.
     ///
-    /// Parameter `propertyName`: the name of the property. This must be a defined property constant
-    /// corresponding to the 'dictionaryName'. For example, kCGImagePropertyTIFFOrientation,
-    /// kCGImagePropertyExifDateTimeOriginal, or kCGImagePropertyIPTCKeywords. A warning
-    /// will be logged if the CGImageProperty is unsupported by CGImageMetadata.
-    ///
-    /// Parameter `value`: A CFTypeRef with the value for the tag. The same value restrictions apply
-    /// as in
-    ///
-    /// ```text
-    ///  CGImageMetadataTagCreate
-    /// ```
-    ///
-    /// .
-    ///
-    /// Returns: Returns true if successful, false otherwise.
+    /// If the metdata object doesn't contain the tag, this function creates it and populates it with appropriate XMP information.
     ///
     /// # Safety
     ///
@@ -1102,20 +914,17 @@ impl CGMutableImageMetadata {
 }
 
 impl CGImageMetadata {
-    /// Serializes the CGImageMetadataRef to XMP data
+    /// Returns a data object that contains the metadata object's contents serialized into the XMP format.
     ///
-    /// This converts all of the metadata tags to a block of XMP data. Common uses
-    /// include creating sidecar files that contain metadata for image formats that do not
-    /// support embedded XMP, or cannot be edited due to other format restrictions (such as
-    /// proprietary RAW camera formats).
+    /// - Parameters:
+    /// - metadata: The metadata object to serialize. The function converts all tags in this object to XMP data.
+    /// - options: Additional options for the serialization process. Options aren't currently supported, so specify `NULL`.
     ///
-    /// Parameter `metadata`: A collection of metadata tags.
+    /// - Returns: A
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfdata> object with an XMP representation of the metadata, or `NULL` if an error occurs.
     ///
-    /// Parameter `options`: should be NULL. Options are currently not used, but may be used in
-    /// future release.
-    ///
-    /// Returns: Returns a CFData containing an XMP representation of the metadata. Returns
-    /// NULL if an error occurred.
+    /// Use this function to create sidecar files with metadata for image formats that don't support embedded XMP, or that you cannot edit due to other format restrictions. For example, use this function to create the data for proprietary RAW camera formats.
     ///
     /// # Safety
     ///
@@ -1136,17 +945,14 @@ impl CGImageMetadata {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Creates a collection of CGImageMetadataTags from a block of XMP data
+    /// Creates a collection of metadata tags from the specified XMP data.
     ///
-    /// Converts XMP data into a collection of metadata tags.
-    /// The data must be a complete XMP tree. XMP packet  headers (
-    /// <
-    /// ?xpacket .. ?>) are
-    /// supported.
+    /// - Parameters:
+    /// - data: An object containin XMP data. The contents of this object must represent a complete XMP tree. The XMP data may include packet headers.
     ///
-    /// Parameter `data`: The XMP data.
+    /// - Returns: A ``CGImageMetadata`` object that contains the parsed metadata information, or `NULL` if an error occurs. You are responsible for releasing the returned object.
     ///
-    /// Returns: Returns a collection of CGImageMetadata tags. Returns NULL if an error occurred.
+    /// Use this function to parse the raw XMP data from an image and build a parseable set of metadata tags. Use the returned object to enumerate the tags or search for individual tags within the collection.
     #[doc(alias = "CGImageMetadataCreateFromXMPData")]
     #[inline]
     pub unsafe fn from_xmp_data(data: &CFData) -> Option<CFRetained<CGImageMetadata>> {
@@ -1159,14 +965,13 @@ impl CGImageMetadata {
 }
 
 extern "C" {
-    /// Error domain for all errors originating in ImageIO for CGImageMetadata APIs.
-    /// Error codes may be interpreted using the list below.
+    /// The domain for metadata-related errors that originate in the Image I/O framework.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcferrordomaincgimagemetadata?language=objc)
     pub static kCFErrorDomainCGImageMetadata: &'static CFString;
 }
 
-/// the list of all error codes returned under the error domain kCFErrorDomainCGImageMetadata
+/// Constants for errors that occur when getting or setting metadata information.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataerrors?language=objc)
 // NS_ENUM
@@ -1174,14 +979,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageMetadataErrors(pub i32);
 impl CGImageMetadataErrors {
+    /// An error that indicates an unknown condition occurred.
     #[doc(alias = "kCGImageMetadataErrorUnknown")]
     pub const Unknown: Self = Self(0);
+    /// An error that indicates the metadata was in an unsupported format.
     #[doc(alias = "kCGImageMetadataErrorUnsupportedFormat")]
     pub const UnsupportedFormat: Self = Self(1);
+    /// An error that indicates a parameter was malformed or contained invalid data.
     #[doc(alias = "kCGImageMetadataErrorBadArgument")]
     pub const BadArgument: Self = Self(2);
+    /// An error that indicates an attempt to save conflicting metadata values.
     #[doc(alias = "kCGImageMetadataErrorConflictingArguments")]
     pub const ConflictingArguments: Self = Self(3);
+    /// An error that indicates an attempt to register a namespace with a prefix that is different than the namespace's existing prefix.
     #[doc(alias = "kCGImageMetadataErrorPrefixConflict")]
     pub const PrefixConflict: Self = Self(4);
 }

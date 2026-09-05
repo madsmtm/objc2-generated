@@ -7072,6 +7072,36 @@ impl NETunnelNetworkSettings {
     );
 }
 
+/// NEPacketTunnelNetworkSettings IP Family types
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettingsipfamily?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NEPacketTunnelNetworkSettingsIPFamily(pub NSInteger);
+impl NEPacketTunnelNetworkSettingsIPFamily {
+    /// NEPacketTunnelNetworkSettingsIPFamilyNone None
+    #[doc(alias = "NEPacketTunnelNetworkSettingsIPFamilyNone")]
+    pub const None: Self = Self(0);
+    /// NEPacketTunnelNetworkSettingsIPFamilyAny Any IP family, i.e. IPv4, IPv6
+    #[doc(alias = "NEPacketTunnelNetworkSettingsIPFamilyAny")]
+    pub const Any: Self = Self(1);
+    /// NEPacketTunnelNetworkSettingsIPFamilyIPv4 IPv4 only
+    #[doc(alias = "NEPacketTunnelNetworkSettingsIPFamilyIPv4")]
+    pub const IPv4: Self = Self(2);
+    /// NEPacketTunnelNetworkSettingsIPFamilyIPv6 IPv6 only.
+    #[doc(alias = "NEPacketTunnelNetworkSettingsIPFamilyIPv6")]
+    pub const IPv6: Self = Self(3);
+}
+
+unsafe impl Encode for NEPacketTunnelNetworkSettingsIPFamily {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NEPacketTunnelNetworkSettingsIPFamily {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// The NEPacketTunnelNetworkSettings class declares the programmatic interface for an object that contains IP network settings.
     ///
@@ -7154,6 +7184,96 @@ impl NEPacketTunnelNetworkSettings {
         #[unsafe(method(setMTU:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMTU(&self, mtu: Option<&NSNumber>);
+
+        /// If this property is set then all network traffic is routed through the tunnel, with some exclusions. Several of the exclusions
+        /// can be controlled with the excludeLocalNetworks, excludeCellularServices, excludeAPNs and excludeDeviceCommunication properties. See the documentation
+        /// for those properties. The set value of NEPacketTunnelNetworkSettingsIPFamily type indicates if includeAllNetworks should be applied to all traffic, IPv4 only
+        /// or IPv6 only.
+        /// The following traffic is always excluded from the tunnel:
+        /// - Traffic necessary for connecting and maintaining the device's network connection, such as DHCP.
+        /// - Traffic necessary for connecting to captive networks.
+        /// - Certain cellular services traffic that is not routable over the internet and is instead directly routed to the cellular network. See the
+        /// excludeCellularServices property for more details.
+        /// - Network communication with a companion device such as a watchOS device.
+        /// The default value of this property is NEPacketTunnelNetworkSettingsIPFamilyNone, disabling includeAllNetworks.
+        /// The includeAllNetworks property in NEVPNProtocol class takes precedence if set.
+        #[unsafe(method(includeAllNetworks))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn includeAllNetworks(&self) -> NEPacketTunnelNetworkSettingsIPFamily;
+
+        /// Setter for [`includeAllNetworks`][Self::includeAllNetworks].
+        #[unsafe(method(setIncludeAllNetworks:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIncludeAllNetworks(
+            &self,
+            include_all_networks: NEPacketTunnelNetworkSettingsIPFamily,
+        );
+
+        /// If this property is set, traffic destined for local networks will be excluded from the tunnel. The set value of
+        /// NEPacketTunnelNetworkSettingsIPFamily type indicates if excludeLocalNetworks should be applied to all traffic, IPv4 only
+        /// or IPv6 only. The default is NEPacketTunnelNetworkSettingsIPFamilyNone on macOS and NEPacketTunnelNetworkSettingsIPFamilyAny on iOS.
+        /// If either the includeAllNetworks or the enforceRoutes property in NEVPNProtocol class is set, then the excludeLocalNetworks property in NEVPNProtocol class takes precedence.
+        #[unsafe(method(excludeLocalNetworks))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn excludeLocalNetworks(&self) -> NEPacketTunnelNetworkSettingsIPFamily;
+
+        /// Setter for [`excludeLocalNetworks`][Self::excludeLocalNetworks].
+        #[unsafe(method(setExcludeLocalNetworks:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setExcludeLocalNetworks(
+            &self,
+            exclude_local_networks: NEPacketTunnelNetworkSettingsIPFamily,
+        );
+
+        /// If includeAllNetworks is set to YES and this property is set to YES, then internet-routable network traffic for cellular services
+        /// (VoLTE, Wi-Fi Calling, IMS, MMS, Visual Voicemail, etc.) is excluded from the tunnel. Note that some cellular carriers route cellular services traffic
+        /// directly to the carrier network, bypassing the internet. Such cellular services traffic is always excluded from the tunnel. The default value of this
+        /// property is YES.
+        /// If either the includeAllNetworks property in NEVPNProtocol class is set, then the excludeCellularServices property in NEVPNProtocol class takes precedence.
+        #[unsafe(method(excludeCellularServices))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn excludeCellularServices(&self) -> bool;
+
+        /// Setter for [`excludeCellularServices`][Self::excludeCellularServices].
+        #[unsafe(method(setExcludeCellularServices:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setExcludeCellularServices(&self, exclude_cellular_services: bool);
+
+        /// If includeAllNetworks is set to YES and this property is set to YES, then network traffic for the Apple Push Notification service (APNs)
+        /// is excluded from the tunnel. The default value of this property is YES.
+        /// If either the includeAllNetworks property in NEVPNProtocol class is set, then the excludeAPNs property in NEVPNProtocol class takes precedence.
+        #[unsafe(method(excludeAPNs))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn excludeAPNs(&self) -> bool;
+
+        /// Setter for [`excludeAPNs`][Self::excludeAPNs].
+        #[unsafe(method(setExcludeAPNs:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setExcludeAPNs(&self, exclude_ap_ns: bool);
+
+        /// If includeAllNetworks is set to YES and this property is set to YES, then network traffic used for communicating with devices connected via USB or Wi-Fi is excluded
+        /// from the tunnel. For example, Xcode uses a network tunnel to communicate with connected development devices like iPhone, iPad and TV. The default value of this
+        /// property is YES.
+        /// If either the includeAllNetworks property in NEVPNProtocol class is set, then the excludeDeviceCommunication property in NEVPNProtocol class takes precedence.
+        #[unsafe(method(excludeDeviceCommunication))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn excludeDeviceCommunication(&self) -> bool;
+
+        /// Setter for [`excludeDeviceCommunication`][Self::excludeDeviceCommunication].
+        #[unsafe(method(setExcludeDeviceCommunication:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setExcludeDeviceCommunication(&self, exclude_device_communication: bool);
+
+        /// If YES, route rules for this tunnel will take precendence over any locally-defined routes. The default is NO.
+        /// The enforceRoutes property in NEVPNProtocol class takes precedence if set.
+        #[unsafe(method(enforceRoutes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enforceRoutes(&self) -> bool;
+
+        /// Setter for [`enforceRoutes`][Self::enforceRoutes].
+        #[unsafe(method(setEnforceRoutes:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setEnforceRoutes(&self, enforce_routes: bool);
     );
 }
 
@@ -9556,12 +9676,15 @@ impl NEVPNIKEv2TLSVersion {
     /// NEVPNIKEv2TLSVersion1_0 TLS 1.0
     #[doc(alias = "NEVPNIKEv2TLSVersion1_0")]
     pub const Version1_0: Self = Self(1);
-    /// NEVPNIKEv2TLSVersion1_0 TLS 1.1
+    /// NEVPNIKEv2TLSVersion1_1 TLS 1.1
     #[doc(alias = "NEVPNIKEv2TLSVersion1_1")]
     pub const Version1_1: Self = Self(2);
-    /// NEVPNIKEv2TLSVersion1_0 TLS 1.2
+    /// NEVPNIKEv2TLSVersion1_2 TLS 1.2
     #[doc(alias = "NEVPNIKEv2TLSVersion1_2")]
     pub const Version1_2: Self = Self(3);
+    /// NEVPNIKEv2TLSVersion1_3 TLS 1.3
+    #[doc(alias = "NEVPNIKEv2TLSVersion1_3")]
+    pub const Version1_3: Self = Self(4);
 }
 
 unsafe impl Encode for NEVPNIKEv2TLSVersion {
@@ -10189,6 +10312,18 @@ impl NEAppPushManager {
         #[unsafe(method(setMatchEthernet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchEthernet(&self, match_ethernet: bool);
+
+        /// If set to YES NEAppPushProvider is started when iOS device is connected to a cellular plan that supports Mission Critical Services. To match the
+        /// Mission Critical Service the containing app must have the Mission Critical application category set for its 5G Network Slicing entitlement and the user's device must have a
+        /// cellular plan that supports Mission Critical Services.
+        #[unsafe(method(matchMissionCriticalService))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn matchMissionCriticalService(&self) -> bool;
+
+        /// Setter for [`matchMissionCriticalService`][Self::matchMissionCriticalService].
+        #[unsafe(method(setMatchMissionCriticalService:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMatchMissionCriticalService(&self, match_mission_critical_service: bool);
 
         /// A dictionary containing vendor-specific key-value pairs, where the data type of values must be one of the data types supported by property list. Values of user defined data
         /// type are not supported. This dictionary is passed as-is to NEAppPushProvider when is it is started or notified for other specified reasons.

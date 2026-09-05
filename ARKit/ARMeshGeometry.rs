@@ -214,9 +214,9 @@ impl ARGeometryElement {
 
         /// The number of indices for each primitive.
         ///
-        /// See: ARGeometryPrimitiveType
+        /// This is based on the primitiveType. For `ARGeometryPrimitiveTypeTriangle` the value is `3`.
         ///
-        /// This is based on the primitiveType. For ARGeometryPrimitiveTypeTriangle the value is 3.
+        /// - SeeAlso: ``ARGeometryPrimitiveType``
         ///
         /// This property is not atomic.
         ///

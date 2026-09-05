@@ -43,6 +43,7 @@ extern_protocol!(
         /// It is not valid to invoke this method on buffers of other storage modes.
         ///
         /// Parameter `range`: The range of bytes that have been modified.
+        #[deprecated = "Managed storage has no effect on Apple Silicon, use Shared storage instead"]
         #[unsafe(method(didModifyRange:))]
         #[unsafe(method_family = none)]
         fn didModifyRange(&self, range: NSRange);
@@ -59,21 +60,25 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "MTLTensor")]
-        /// Creates a tensor that shares storage with this buffer.
+        /// Creates a single-plane tensor with the specified descriptor that shares storage with this buffer.
         ///
-        /// `offset` must be 0 when ``MTLTensorDescriptor/usage`` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``.
+        /// This method validates the constraints documented on ``MTLTensorDescriptor``,
+        /// and additionally requires:
+        /// - `offset` is 0 when ``MTLTensorDescriptor/usage`` contains
+        /// ``MTLTensorUsage/MTLTensorUsageMachineLearning``.
+        /// - `offset` is aligned to 128 bytes if the data plane uses a format
+        /// ``MTLTensorDataType``.
+        /// - `offset` is aligned to the size of the data type in bytes otherwise.
         ///
-        /// When ``MTLTensorDescriptor/dataType`` is a sub-byte ``MTLTensorDataType``, `offset` must be aligned to 128 bytes.
-        /// Although only required for sub-byte types, applying 128-byte alignment for all ``MTLTensorDataType``
-        /// values improves performance.
-        ///
-        /// See ``MTLTensorDescriptor`` for more information.
+        /// This method doesn't create tensors that contain auxiliary planes. Use
+        /// ``MTLDevice/newTensorWithDescriptor:attachments:error:``
+        /// instead to create a multi-plane tensor with per-plane buffer backing storage.
         ///
         /// - Parameters:
-        /// - descriptor: A description of the properties for the new tensor.
-        /// - offset: Offset into the buffer at which the data of the tensor begins.
-        /// - error: If an error occurs during creation, Metal populates this parameter to provide you information about it.
-        /// - Returns: The created ``MTLTensor`` instance, or `nil` if the function failed.
+        /// - descriptor: The tensor descriptor configuring the data plane.
+        /// - offset: The byte offset into the buffer where tensor data begins.
+        /// - error: On failure, an NSError instance that describes the validation failure.
+        /// - Returns: A tensor, or `nil` if validation fails.
         ///
         /// # Safety
         ///
@@ -102,6 +107,7 @@ extern_protocol!(
         fn removeAllDebugMarkers(&self);
 
         /// For Metal buffer objects that are remote views, this returns the buffer associated with the storage on the originating device.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(remoteStorageBuffer))]
         #[unsafe(method_family = none)]
         fn remoteStorageBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -109,6 +115,7 @@ extern_protocol!(
         #[cfg(feature = "MTLDevice")]
         /// On Metal devices that support peer to peer transfers, this method is used to create a remote buffer view on another device
         /// within the peer group.  The receiver must use MTLStorageModePrivate or be backed by an IOSurface.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(newRemoteBufferViewForDevice:))]
         #[unsafe(method_family = new)]
         fn newRemoteBufferViewForDevice(

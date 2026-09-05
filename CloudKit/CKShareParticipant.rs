@@ -272,5 +272,71 @@ impl CKShareParticipant {
         #[unsafe(method(oneTimeURLParticipant))]
         #[unsafe(method_family = none)]
         pub unsafe fn oneTimeURLParticipant() -> Retained<Self>;
+
+        /// Compares two `CKShareParticipant` objects for person identity equality.
+        ///
+        /// This implementation differs from typical `NSObject` `isEqual:` behavior.
+        /// Standard `isEqual:` implementations compare all meaningful properties for structural
+        /// equality. This method specifically compares identity to answer "Are these the same person?"
+        /// rather than "Are these participant objects identical?"
+        ///
+        /// This method returns `YES` if both participants represent the same person, regardless
+        /// of differences in `role`, `acceptanceStatus`, `permission`, or other properties,
+        /// or if CloudKit determines these represent the same identity via other heuristics.
+        ///
+        /// The method returns `YES` if any of these identity conditions are met:
+        /// - `participantID` matches (direct participant identification)
+        /// - `userIdentity.userRecordID` matches (same CloudKit user)
+        /// - `userIdentity.lookupInfo` matches (same email, phone, or user record)
+        ///
+        /// Properties NOT compared (may differ between "equal" participants):
+        /// - `role` (owner, privateUser, publicUser)
+        /// - `acceptanceStatus` (invited, accepted, removed, etc.)
+        /// - `permission` (readOnly, readWrite, none)
+        /// - `dateAddedToShare`
+        /// - `isApprovedRequester`
+        ///
+        /// - Parameter object: The object to compare against
+        /// - Returns: `YES` if both participants represent the same person, `NO` otherwise
+        ///
+        /// - Warning: Do not assume that participants returning `YES` from `isEqual:` have
+        /// identical properties. Use explicit property comparisons when needed.
+        ///
+        /// **Common use cases:**
+        ///
+        /// Correct: Checking if person is already in share
+        /// ```objc
+        /// if ([existingParticipants containsObject:newParticipant]) {
+        /// // Person already exists in share (regardless of role/status)
+        /// }
+        /// ```
+        ///
+        /// Incorrect: Assuming structural equality
+        /// ```objc
+        /// if ([participant1 isEqual:participant2]) {
+        /// // DON'T assume participant1.role == participant2.role
+        /// // DON'T assume same acceptanceStatus or permissions
+        /// }
+        /// ```
+        ///
+        /// Correct: Explicit structural comparison when needed
+        /// ```objc
+        /// if ([participant1 isEqual:participant2]
+        /// &
+        /// &
+        /// participant1.role == participant2.role
+        /// &
+        /// &
+        /// participant1.acceptanceStatus == participant2.acceptanceStatus) {
+        /// // Now you have both identity AND structural equality
+        /// }
+        /// ```
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
+        #[unsafe(method(isEqual:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;
     );
 }

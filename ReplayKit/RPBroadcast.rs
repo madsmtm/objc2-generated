@@ -18,6 +18,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastactivitycontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported"]
     pub struct RPBroadcastActivityController;
 );
 
@@ -42,6 +43,7 @@ impl RPBroadcastActivityController {
         /// Parameter `preferredExtension`: The extension bundle identifier for the preferred broadcast extension service. nil specifies all extensions will be shown.
         ///
         /// The handler will be called after the user us finished with the picker and has finish setting up the broadcast extension, which will provide an instance of RPBroadcastAcvityController and an error if one occured.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(showBroadcastPickerAtPoint:fromWindow:preferredExtensionIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showBroadcastPickerAtPoint_fromWindow_preferredExtensionIdentifier_completionHandler(
@@ -55,6 +57,7 @@ impl RPBroadcastActivityController {
         );
 
         /// Delegate that is notified when the activity view controller is complete.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -64,6 +67,7 @@ impl RPBroadcastActivityController {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        #[deprecated = "No longer supported"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -90,7 +94,9 @@ extern_protocol!(
     /// RPBroadcastActivityControllerDelegate is used to notify the caller when the user has finshed with the RPBroadcastActivityController's picker.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastactivitycontrollerdelegate?language=objc)
+    #[deprecated = "No longer supported"]
     pub unsafe trait RPBroadcastActivityControllerDelegate: NSObjectProtocol {
+        #[deprecated = "No longer supported"]
         #[unsafe(method(broadcastActivityController:didFinishWithBroadcastController:error:))]
         #[unsafe(method_family = none)]
         unsafe fn broadcastActivityController_didFinishWithBroadcastController_error(
@@ -108,6 +114,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported"]
     pub struct RPBroadcastController;
 );
 
@@ -117,22 +124,27 @@ extern_conformance!(
 
 impl RPBroadcastController {
     extern_methods!(
+        #[deprecated = "No longer supported"]
         #[unsafe(method(isBroadcasting))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBroadcasting(&self) -> bool;
 
+        #[deprecated = "No longer supported"]
         #[unsafe(method(isPaused))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPaused(&self) -> bool;
 
+        #[deprecated = "No longer supported"]
         #[unsafe(method(broadcastURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn broadcastURL(&self) -> Retained<NSURL>;
 
+        #[deprecated = "No longer supported"]
         #[unsafe(method(serviceInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceInfo(&self) -> Option<Retained<NSDictionary<NSString, NSObject>>>;
 
+        #[deprecated = "No longer supported"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -142,6 +154,7 @@ impl RPBroadcastController {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        #[deprecated = "No longer supported"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -155,6 +168,7 @@ impl RPBroadcastController {
         pub unsafe fn broadcastExtensionBundleID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "block2")]
+        #[deprecated = "No longer supported"]
         #[unsafe(method(startBroadcastWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startBroadcastWithHandler(
@@ -162,15 +176,18 @@ impl RPBroadcastController {
             handler: &block2::Block<'static, fn(*mut NSError)>,
         );
 
+        #[deprecated = "No longer supported"]
         #[unsafe(method(pauseBroadcast))]
         #[unsafe(method_family = none)]
         pub unsafe fn pauseBroadcast(&self);
 
+        #[deprecated = "No longer supported"]
         #[unsafe(method(resumeBroadcast))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeBroadcast(&self);
 
         #[cfg(feature = "block2")]
+        #[deprecated = "No longer supported"]
         #[unsafe(method(finishBroadcastWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishBroadcastWithHandler(
@@ -195,7 +212,9 @@ impl RPBroadcastController {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastcontrollerdelegate?language=objc)
+    #[deprecated = "No longer supported"]
     pub unsafe trait RPBroadcastControllerDelegate: NSObjectProtocol {
+        #[deprecated = "No longer supported"]
         #[optional]
         #[unsafe(method(broadcastController:didFinishWithError:))]
         #[unsafe(method_family = none)]
@@ -208,6 +227,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// `service_info` generic must implement NSCoding.
+        #[deprecated = "No longer supported"]
         #[optional]
         #[unsafe(method(broadcastController:didUpdateServiceInfo:))]
         #[unsafe(method_family = none)]
@@ -217,6 +237,7 @@ extern_protocol!(
             service_info: &NSDictionary<NSString, NSObject>,
         );
 
+        #[deprecated = "No longer supported"]
         #[optional]
         #[unsafe(method(broadcastController:didUpdateBroadcastURL:))]
         #[unsafe(method_family = none)]

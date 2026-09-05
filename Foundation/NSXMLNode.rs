@@ -6,36 +6,52 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlnodekind?language=objc)
+/// `NSXMLNode` declares the following constants of type NSXMLNodeKind for specifying a node's kind in the initializer methods ``XMLNode/init(kind:)`` and ``XMLNode/init(kind:options:)``:
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlnodekind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLNodeKind(pub NSUInteger);
 impl NSXMLNodeKind {
+    /// Indicates a node object created without a valid kind being specified (as returned by the
+    /// `kind`property).
     #[doc(alias = "NSXMLInvalidKind")]
     pub const InvalidKind: Self = Self(0);
+    /// Specifies a document node.
     #[doc(alias = "NSXMLDocumentKind")]
     pub const DocumentKind: Self = Self(1);
+    /// Specifies an element node.
     #[doc(alias = "NSXMLElementKind")]
     pub const ElementKind: Self = Self(2);
+    /// Specifies an attribute node.
     #[doc(alias = "NSXMLAttributeKind")]
     pub const AttributeKind: Self = Self(3);
+    /// Specifies a namespace node.
     #[doc(alias = "NSXMLNamespaceKind")]
     pub const NamespaceKind: Self = Self(4);
+    /// Specifies a processing-instruction node.
     #[doc(alias = "NSXMLProcessingInstructionKind")]
     pub const ProcessingInstructionKind: Self = Self(5);
+    /// Specifies a comment node.
     #[doc(alias = "NSXMLCommentKind")]
     pub const CommentKind: Self = Self(6);
+    /// Specifies a text node.
     #[doc(alias = "NSXMLTextKind")]
     pub const TextKind: Self = Self(7);
+    /// Specifies a document-type declaration (DTD) node.
     #[doc(alias = "NSXMLDTDKind")]
     pub const DTDKind: Self = Self(8);
+    /// Specifies an entity-declaration node.
     #[doc(alias = "NSXMLEntityDeclarationKind")]
     pub const EntityDeclarationKind: Self = Self(9);
+    /// Specifies an attribute-list declaration node.
     #[doc(alias = "NSXMLAttributeDeclarationKind")]
     pub const AttributeDeclarationKind: Self = Self(10);
+    /// Specifies an element declaration node.
     #[doc(alias = "NSXMLElementDeclarationKind")]
     pub const ElementDeclarationKind: Self = Self(11);
+    /// Specifies a notation declaration node.
     #[doc(alias = "NSXMLNotationDeclarationKind")]
     pub const NotationDeclarationKind: Self = Self(12);
 }
@@ -49,7 +65,37 @@ unsafe impl RefEncode for NSXMLNodeKind {
 }
 
 extern_class!(
-    /// The basic unit of an XML document.
+    /// The nodes in the abstract, logical tree structure that represents an XML document.
+    ///
+    /// Node objects can be of different kinds, corresponding to the following markup constructs in an XML document: element, attribute, text, processing instruction, namespace, and comment. In addition, a document-node object (specifically, an instance of ``XMLDocument``) represents an XML document in its entirety. ``XMLNode`` objects can also represent document type declarations as well as declarations in Document Type Definitions (DTDs). Class factory methods of ``XMLNode`` enable you to create nodes of each kind. Only document, element, and DTD nodes may have child nodes.
+    ///
+    /// Among the XML family of classes (excluding ``XMLParser``) the ``XMLNode`` class is the base class. Inheriting from it are the classes ``XMLElement``, ``XMLDocument``, ``XMLDTD``, and ``XMLDTDNode``. ``XMLNode`` specifies the interface common to all XML node objects and defines common node behavior and attributes, for example hierarchy level, node name and value, tree traversal, and the ability to emit representative XML markup text.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You can subclass ``XMLNode`` if you want nodes of kinds different from the supported ones, You can also create a subclass with more specialized attributes or behavior than ``XMLNode``.
+    ///
+    /// #### Methods to Override
+    ///
+    /// To subclass ``XMLNode`` you need to override the primary initializer, ``init(kind:options:)``, and the methods listed below. In most cases, you need only invoke the superclass implementation, adding any subclass-specific code before or after the invocation, as necessary.
+    ///
+    /// | ``kind`` | ``parent`` |
+    /// |---|---|
+    /// | ``name`` | ``child(at:)`` |
+    /// | ``name`` | ``childCount`` |
+    /// | ``objectValue`` | ``children`` |
+    /// | ``objectValue`` | ``detach()`` |
+    /// | ``stringValue`` | ``localName`` |
+    /// | ``setStringValue(_:resolvingEntities:)`` | ``prefix`` |
+    /// | ``index`` | ``uri`` |
+    ///
+    /// By default ``XMLNode`` implements the `NSObject`
+    /// <doc
+    /// ://com.apple.documentation/documentation/objectivec/nsobjectprotocol/isequal(_:)> method to perform a deep comparison: two ``XMLNode`` objects are not considered equal unless they have the same name, same child nodes, same attributes, and so on. The comparison looks at the node and its children, but does not include the node's parent. If you want a different standard of comparison, override `isEqual:`.
+    ///
+    /// #### Special Considerations
+    ///
+    /// Because of the architecture and data model of NSXML, when it parses and processes a source of XML it cannot know about your subclass unless you override the ``XMLDocument`` class method ``XMLDocument/replacementClass(for:)`` to return your custom class in place of an NSXML class. If your custom class has no direct NSXML counterpart—for example, it is a subclass of ``XMLNode`` that represents CDATA sections—then you can walk the tree after it has been created and insert the new node where appropriate.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlnode?language=objc)
     #[unsafe(super(NSObject))]
@@ -77,19 +123,40 @@ impl NSXMLNode {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns an
+        /// `NSXMLNode`instance initialized with the constant indicating node kind.
+        ///
         /// Invokes
+        /// `initWithKind:options:`with options set to
+        /// `NSXMLNodeOptionsNone.`
+        /// Do not use this initializer for creating instances of
+        /// `NSXMLDTDNode`for attribute-list declarations. Instead, use the
+        /// `DTDNodeWithXMLString:`class method of this class or the
+        /// `initWithXMLString:`method of the
+        /// `NSXMLDTDNode`class.
         ///
-        /// ```text
-        ///  initWithKind:options:
-        /// ```
-        ///
-        /// with options set to NSXMLNodeOptionsNone
+        /// Parameter `kind`: An
+        /// `enum`constant of type
+        /// `NSXMLNodeKind`that indicates the type of node.
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
         pub fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
-        /// Inits a node with fidelity options as description NSXMLNodeOptions.h
+        /// Returns an
+        /// `NSXMLNode`instance initialized with the constant indicating node kind and one or more initialization options.
+        ///
+        /// Do not use this initializer for creating instances of
+        /// `NSXMLDTDNode`for attribute-list declarations. Instead, use the
+        /// `DTDNodeWithXMLString:`class method of this class or the
+        /// `initWithXMLString:`method of the
+        /// `NSXMLDTDNode`class.
+        ///
+        /// Parameter `kind`: An
+        /// `enum`constant of type
+        /// `NSXMLNodeKind`that indicates the type of node.
+        ///
+        /// Parameter `options`: One or more constants that specify initialization options; if there are multiple constants, bit-OR them together.
         #[unsafe(method(initWithKind:options:))]
         #[unsafe(method_family = init)]
         pub fn initWithKind_options(
@@ -98,47 +165,58 @@ impl NSXMLNode {
             options: NSXMLNodeOptions,
         ) -> Retained<Self>;
 
-        /// Returns an empty document.
+        /// Returns an empty document node.
+        ///
+        /// Returns an
+        /// `NSXMLDocument`instance without a root element or XML-declaration information (version, encoding, standalone flag). Returns
+        /// `nil`if the object couldn't be created.
         #[unsafe(method(document))]
         #[unsafe(method_family = none)]
         pub fn document() -> Retained<AnyObject>;
 
         #[cfg(feature = "NSXMLElement")]
-        /// Returns a document
+        /// Returns an
+        /// `NSXMLDocument`object initialized with a given root element.
         ///
-        /// Parameter `element`: The document's root node.
+        /// Parameter `element`: An
+        /// `NSXMLElement`object representing an element.
         #[unsafe(method(documentWithRootElement:))]
         #[unsafe(method_family = none)]
         pub fn documentWithRootElement(element: &NSXMLElement) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns an element
-        /// <tt>
-        /// <
-        /// name>
-        /// <
-        /// /name>
-        /// </tt>
-        /// .
+        /// Returns an
+        /// `NSXMLElement`object with a given tag identifier, or name.
+        ///
+        /// The equivalent XML markup is
+        /// `<name></name>`.
+        ///
+        /// Parameter `name`: A string that is the name (or tag identifier) of an element.
         #[unsafe(method(elementWithName:))]
         #[unsafe(method_family = none)]
         pub fn elementWithName(name: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns an element whose full QName is specified.
+        /// Returns an element whose fully qualified name is specified.
+        ///
+        /// Parameter `name`: A string that is the name (or tag identifier) of an element.
+        ///
+        /// Parameter `URI`: A URI (Universal Resource Identifier) that qualifies
+        /// `name.`
         #[unsafe(method(elementWithName:URI:))]
         #[unsafe(method_family = none)]
         pub fn elementWithName_URI(name: &NSString, uri: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns an element with a single text node child
-        /// <tt>
-        /// <
-        /// name>string
-        /// <
-        /// /name>
-        /// </tt>
-        /// .
+        /// Returns an
+        /// `NSXMLElement`object with a single text-node child containing the specified text.
+        ///
+        /// The equivalent XML markup is
+        /// `<name>string</name>`.
+        ///
+        /// Parameter `name`: A string that is the name (tag identifier) of the element.
+        ///
+        /// Parameter `string`: A string that is the content of the receiver's text node.
         #[unsafe(method(elementWithName:stringValue:))]
         #[unsafe(method_family = none)]
         pub fn elementWithName_stringValue(
@@ -147,16 +225,20 @@ impl NSXMLNode {
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        /// Returns an element children and attributes
-        /// <tt>
-        /// <
-        /// name attr1="foo" attr2="bar">
-        /// <
-        /// -- child1 -->child2
-        /// <
-        /// /name>
-        /// </tt>
-        /// .
+        /// Returns an
+        /// `NSXMLElement`object with the given tag (name), attributes, and children.
+        ///
+        /// Parameter `name`: A string that is the name (tag identifier) of the element.
+        ///
+        /// Parameter `children`: An array of
+        /// `NSXMLElement`objects or
+        /// `NSXMLNode`objects. Specify
+        /// `nil`if there are no children to add to this node object.
+        ///
+        /// Parameter `attributes`: An array of
+        /// `NSXMLNode`objects of kind
+        /// `NSXMLAttributeKind.`Specify
+        /// `nil`if there are no attributes to add to this node object.
         #[unsafe(method(elementWithName:children:attributes:))]
         #[unsafe(method_family = none)]
         pub fn elementWithName_children_attributes(
@@ -166,11 +248,14 @@ impl NSXMLNode {
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns an attribute
-        /// <tt>
-        /// name="stringValue"
-        /// </tt>
-        /// .
+        /// Returns an
+        /// `NSXMLNode`object representing an attribute node with a given name and string.
+        ///
+        /// For example, in the attribute "id='12345'", "id" is the attribute name and "12345" is the attribute value.
+        ///
+        /// Parameter `name`: A string that is the name of an attribute.
+        ///
+        /// Parameter `stringValue`: A string that is the value of an attribute.
         #[unsafe(method(attributeWithName:stringValue:))]
         #[unsafe(method_family = none)]
         pub fn attributeWithName_stringValue(
@@ -179,7 +264,16 @@ impl NSXMLNode {
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns an attribute whose full QName is specified.
+        /// Returns an
+        /// `NSXMLNode`object representing an attribute node with a given qualified name and string.
+        ///
+        /// For example, in the attribute "bst:id='12345'", "bst" is the name qualifier (derived from the URI), "id" is the attribute name, and "12345" is the attribute value.
+        ///
+        /// Parameter `name`: A string that is the name of an attribute.
+        ///
+        /// Parameter `URI`: A URI (Universal Resource Identifier) that qualifies
+        /// `name.`
+        /// Parameter `stringValue`: A string that is the value of the attribute.
         #[unsafe(method(attributeWithName:URI:stringValue:))]
         #[unsafe(method_family = none)]
         pub fn attributeWithName_URI_stringValue(
@@ -189,11 +283,16 @@ impl NSXMLNode {
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns a namespace
-        /// <tt>
-        /// xmlns:name="stringValue"
-        /// </tt>
-        /// .
+        /// Returns an
+        /// `NSXMLNode`object representing a namespace with a specified name and URI.
+        ///
+        /// The equivalent namespace declaration in XML markup is
+        /// `xmlns:name="value"`.
+        ///
+        /// Parameter `name`: A string that is the name of the namespace. Specify an empty string for
+        /// `name`to get the default namespace.
+        ///
+        /// Parameter `stringValue`: A string that identifies the URI associated with the namespace.
         #[unsafe(method(namespaceWithName:stringValue:))]
         #[unsafe(method_family = none)]
         pub fn namespaceWithName_stringValue(
@@ -202,12 +301,17 @@ impl NSXMLNode {
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns a processing instruction
-        /// <tt>
-        /// <
-        /// ?name stringValue>
-        /// </tt>
+        /// Returns an
+        /// `NSXMLNode`object representing a processing instruction with a specified name and value.
+        ///
+        /// The equivalent XML markup is
+        /// `<?name\`value?
+        /// >
         /// .
+        ///
+        /// Parameter `name`: A string that is the name of the processing instruction.
+        ///
+        /// Parameter `stringValue`: A string that is the value of the processing instruction.
         #[unsafe(method(processingInstructionWithName:stringValue:))]
         #[unsafe(method_family = none)]
         pub fn processingInstructionWithName_stringValue(
@@ -216,35 +320,51 @@ impl NSXMLNode {
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns a comment
-        /// <tt>
-        /// <
-        /// --stringValue-->
-        /// </tt>
-        /// .
+        /// Returns an
+        /// `NSXMLNode`object representing a comment node containing given text.
+        ///
+        /// Parameter `stringValue`: A string specifying the text of the comment. You may specify
+        /// `nil`or an empty string.
         #[unsafe(method(commentWithStringValue:))]
         #[unsafe(method_family = none)]
         pub fn commentWithStringValue(string_value: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns a text node.
+        /// Returns an
+        /// `NSXMLNode`object representing a text node with specified content.
+        ///
+        /// Parameter `stringValue`: A string that is the textual content of the node.
         #[unsafe(method(textWithStringValue:))]
         #[unsafe(method_family = none)]
         pub fn textWithStringValue(string_value: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
-        /// Returns an element, attribute, entity, or notation DTD node based on the full XML string.
+        /// Returns an
+        /// `NSXMLDTDNode`object representing the DTD declaration for an element, attribute, entity, or notation based on a given string.
+        ///
+        /// `NSXMLNode`is able to assign the created node object a kind by parsing the string. Note that if an attribute-list declaration (
+        /// `<!ATTLIST...>)`has multiple attributes,
+        /// `NSXMLNode`only creates an
+        /// `NSXMLDTDNode`object for the last attribute in the declaration.
+        ///
+        /// Parameter `string`: A string that is a DTD declaration. The receiver parses this string to determine the kind of DTD node to create.
         #[unsafe(method(DTDNodeWithXMLString:))]
         #[unsafe(method_family = none)]
         pub fn DTDNodeWithXMLString(string: &NSString) -> Option<Retained<AnyObject>>;
 
-        /// Returns an element, attribute, entity, or notation DTD node based on the full XML string.
+        /// Returns the kind of node the receiver is as a constant of type
+        /// `NSXMLNodeKind.`
+        /// `NSXMLNode`objects can represent documents, elements, attributes, namespaces, text, processing instructions, comments, document type declarations, and specific declarations within DTDs.
         #[unsafe(method(kind))]
         #[unsafe(method_family = none)]
         pub fn kind(&self) -> NSXMLNodeKind;
 
         #[cfg(feature = "NSString")]
-        /// Sets the nodes name. Applicable for element, attribute, namespace, processing-instruction, document type declaration, element declaration, attribute declaration, entity declaration, and notation declaration.
+        /// The name of the receiver.
+        ///
+        /// This property is applicable only to
+        /// `NSXMLNode`objects representing elements, attributes, namespaces, processing instructions, and DTD-declaration nodes. If the receiver is not an object of one of these kinds, this property returns
+        /// `nil.`If the name is associated with a namespace, the qualified name is returned.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
@@ -257,7 +377,10 @@ impl NSXMLNode {
         #[unsafe(method_family = none)]
         pub fn setName(&self, name: Option<&NSString>);
 
-        /// Sets the content of the node. Setting the objectValue removes all existing children including processing instructions and comments. Setting the object value on an element creates a single text node child.
+        /// The object value of the receiver.
+        ///
+        /// The object value may be the same as the value returned by
+        /// `stringValue.`For nodes without content (for example, document nodes), this property returns the string value, or an empty string if there is no string value.
         #[unsafe(method(objectValue))]
         #[unsafe(method_family = none)]
         pub fn objectValue(&self) -> Option<Retained<AnyObject>>;
@@ -272,7 +395,9 @@ impl NSXMLNode {
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[cfg(feature = "NSString")]
-        /// Sets the content of the node. Setting the stringValue removes all existing children including processing instructions and comments. Setting the string value on an element creates a single text node child. The getter returns the string value of the node, which may be either its content or child text nodes, depending on the type of node. Elements are recursed and text nodes concatenated in document order with no intervening spaces.
+        /// The content of the receiver as a string value.
+        ///
+        /// If the receiver is a node object of element kind, the content is that of any text-node children. This method recursively visits element nodes and concatenates their text nodes in document order with no intervening spaces.
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
         pub fn stringValue(&self) -> Option<Retained<NSString>>;
@@ -287,98 +412,156 @@ impl NSXMLNode {
 
         #[cfg(feature = "NSString")]
         /// Sets the content as with
+        /// `setStringValue:,`but when
+        /// `resolve`is
+        /// `YES,`character references, predefined entities and user entities available in the document's DTD are resolved. Entities not available in the DTD remain in their entity form.
         ///
-        /// ```text
-        ///  setStringValue:
-        /// ```
+        /// User-defined entities not declared in the DTD remain in their unresolved form. This method can only be invoked on
+        /// `NSXMLNode`objects that may have content. Setting the string value of a node object removes all existing children, including processing instructions and comments. Setting the string value of an element node object creates a text node as the sole child.
         ///
-        /// , but when "resolve" is true, character references, predefined entities and user entities available in the document's dtd are resolved. Entities not available in the dtd remain in their entity form.
+        /// Parameter `string`: A string to assign as the value of the receiver.
+        ///
+        /// Parameter `resolve`: `YES`to resolve character references, predefined entities, and user-defined entities as declared in the associated DTD;
+        /// `NO`otherwise.
         #[unsafe(method(setStringValue:resolvingEntities:))]
         #[unsafe(method_family = none)]
         pub fn setStringValue_resolvingEntities(&self, string: &NSString, resolve: bool);
 
-        /// A node's index amongst its siblings.
+        /// The index of the receiver identifying its position relative to its sibling nodes.
+        ///
+        /// The first child node of a parent has an index of zero.
         #[unsafe(method(index))]
         #[unsafe(method_family = none)]
         pub fn index(&self) -> NSUInteger;
 
-        /// The depth of the node within the tree. Documents and standalone nodes are level 0.
+        /// The nesting level of the receiver within the tree hierarchy.
+        ///
+        /// The root element of a document has a nesting level of one.
         #[unsafe(method(level))]
         #[unsafe(method_family = none)]
         pub fn level(&self) -> NSUInteger;
 
         #[cfg(feature = "NSXMLDocument")]
-        /// The encompassing document or nil.
+        /// The
+        /// `NSXMLDocument`object containing the root element and representing the XML document as a whole.
+        ///
+        /// If the receiver is a standalone node (that is, a node at the head of a detached branch of the tree), this property returns
+        /// `nil.`
         #[unsafe(method(rootDocument))]
         #[unsafe(method_family = none)]
         pub fn rootDocument(&self) -> Option<Retained<NSXMLDocument>>;
 
-        /// The parent of this node. Documents and standalone Nodes have a nil parent; there is not a 1-to-1 relationship between parent and children, eg a namespace cannot be a child but has a parent element.
+        /// The parent node of the receiver.
+        ///
+        /// Document nodes and standalone nodes (that is, the root of a detached branch of a tree) have no parent, and sending this message to them returns
+        /// `nil.`A one-to-one relationship does not always exist between a parent and its children; although a namespace or attribute node cannot be a child, it still has a parent element.
         #[unsafe(method(parent))]
         #[unsafe(method_family = none)]
         pub fn parent(&self) -> Option<Retained<NSXMLNode>>;
 
-        /// The amount of children, relevant for documents, elements, and document type declarations. Use this instead of [[self children] count].
+        /// The number of child nodes the receiver has.
+        ///
+        /// The receiver should be an
+        /// `NSXMLNode`object representing a document, element, or document type declaration. For performance reasons, use this property instead of getting the count from the array returned by
+        /// `children.`
         #[unsafe(method(childCount))]
         #[unsafe(method_family = none)]
         pub fn childCount(&self) -> NSUInteger;
 
         #[cfg(feature = "NSArray")]
-        /// An immutable array of child nodes. Relevant for documents, elements, and document type declarations.
+        /// An immutable array containing the child nodes of the receiver (as
+        /// `NSXMLNode`objects).
         #[unsafe(method(children))]
         #[unsafe(method_family = none)]
         pub fn children(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
-        /// Returns the child node at a particular index.
+        /// Returns the child node of the receiver at the specified location.
+        ///
+        /// The receiver should be an
+        /// `NSXMLNode`object representing a document, element, or document type declaration. The returned node object can represent an element, comment, text, or processing instruction.
+        ///
+        /// Parameter `index`: An integer specifying a node position in the receiver's array of children. If
+        /// `index`is out of bounds, an exception is raised.
         #[unsafe(method(childAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn childAtIndex(&self, index: NSUInteger) -> Option<Retained<NSXMLNode>>;
 
-        /// Returns the previous sibling, or nil if there isn't one.
+        /// The previous
+        /// `NSXMLNode`object that is a sibling node to the receiver.
+        ///
+        /// This object will have an index value that is one less than the receiver's. If there are no more previous siblings (that is, other child nodes of the receiver's parent) the property returns
+        /// `nil.`
         #[unsafe(method(previousSibling))]
         #[unsafe(method_family = none)]
         pub fn previousSibling(&self) -> Option<Retained<NSXMLNode>>;
 
-        /// Returns the next sibling, or nil if there isn't one.
+        /// The next
+        /// `NSXMLNode`object that is a sibling node to the receiver.
+        ///
+        /// This object will have an index value that is one more than the receiver's. If there are no more subsequent siblings (that is, other child nodes of the receiver's parent) the property returns
+        /// `nil.`
         #[unsafe(method(nextSibling))]
         #[unsafe(method_family = none)]
         pub fn nextSibling(&self) -> Option<Retained<NSXMLNode>>;
 
-        /// Returns the previous node in document order. This can be used to walk the tree backwards.
+        /// The previous
+        /// `NSXMLNode`object in document order.
+        ///
+        /// You use this property to "walk" backward through the tree structure representing an XML document or document section. Document order is the natural order that XML constructs appear in markup text. If you send this message to the first node in the tree (that is, the root element),
+        /// `nil`is returned.
+        /// `NSXMLNode`bypasses namespace and attribute nodes when it traverses a tree in document order.
         #[unsafe(method(previousNode))]
         #[unsafe(method_family = none)]
         pub fn previousNode(&self) -> Option<Retained<NSXMLNode>>;
 
-        /// Returns the next node in document order. This can be used to walk the tree forwards.
+        /// The next
+        /// `NSXMLNode`object in document order.
+        ///
+        /// You use this property to "walk" forward through the tree structure representing an XML document or document section. Document order is the natural order that XML constructs appear in markup text. If you send this message to the last node in the tree,
+        /// `nil`is returned.
+        /// `NSXMLNode`bypasses namespace and attribute nodes when it traverses a tree in document order.
         #[unsafe(method(nextNode))]
         #[unsafe(method_family = none)]
         pub fn nextNode(&self) -> Option<Retained<NSXMLNode>>;
 
-        /// Detaches this node from its parent.
+        /// Detaches the receiver from its parent node.
+        ///
+        /// This method is applicable to
+        /// `NSXMLNode`objects representing elements, text, comments, processing instructions, attributes, and namespaces. Once the node object is detached, you can add it as a child node of another parent.
         #[unsafe(method(detach))]
         #[unsafe(method_family = none)]
         pub fn detach(&self);
 
         #[cfg(feature = "NSString")]
-        /// Returns the XPath to this node, for example foo/bar[2]/baz.
+        /// The XPath expression identifying the receiver's location in the document tree.
+        ///
+        /// For example, this property might return a string such as "foo/bar[2]/baz". The result of this property can be used directly in the
+        /// `nodesForXPath:error:`and
+        /// `objectsForXQuery:constants:error:`methods.
         #[unsafe(method(XPath))]
         #[unsafe(method_family = none)]
         pub fn XPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the local name bar if this attribute or element's name is foo:bar
+        /// The local name of the receiver.
+        ///
+        /// The local name is the part of a node name that follows a namespace-qualifying colon or the full name if there is no colon. For example, "chapter" is the local name in the qualified name "acme:chapter".
         #[unsafe(method(localName))]
         #[unsafe(method_family = none)]
         pub fn localName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the prefix foo if this attribute or element's name if foo:bar
+        /// The prefix of the receiver's name.
+        ///
+        /// The prefix is the part of a namespace-qualified name that precedes the colon. For example, "acme" is the prefix in the qualified name "acme:chapter". Returns an empty string if the receiver's name is not qualified by a namespace.
         #[unsafe(method(prefix))]
         #[unsafe(method_family = none)]
         pub fn prefix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        /// Set the URI of this element, attribute, or document. For documents it is the URI of document origin. Getter returns the URI of this element, attribute, or document. For documents it is the URI of document origin and is automatically set when using initWithContentsOfURL.
+        /// The URI associated with the receiver.
+        ///
+        /// A node's URI is derived from its namespace or a document's URI; for documents, the URI comes either from the parsed XML or is explicitly set. You cannot change the URI for a particular node other than for a namespace or document node.
         #[unsafe(method(URI))]
         #[unsafe(method_family = none)]
         pub fn URI(&self) -> Option<Retained<NSString>>;
@@ -392,19 +575,31 @@ impl NSXMLNode {
         pub fn setURI(&self, uri: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        /// Returns the local name bar in foo:bar.
+        /// Returns the local name from the specified qualified name.
+        ///
+        /// For example, if the qualified name is "bst:title", this method returns "title".
+        ///
+        /// Parameter `name`: A string that is a qualified name.
         #[unsafe(method(localNameForName:))]
         #[unsafe(method_family = none)]
         pub fn localNameForName(name: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the prefix foo in the name foo:bar.
+        /// Returns the prefix from the specified qualified name.
+        ///
+        /// For example, if the qualified name is "bst:title", this method returns "bst".
+        ///
+        /// Parameter `name`: A string that is a qualified name.
         #[unsafe(method(prefixForName:))]
         #[unsafe(method_family = none)]
         pub fn prefixForName(name: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the namespace belonging to one of the predefined namespaces xml, xs, or xsi
+        /// Returns an
+        /// `NSXMLNode`object representing one of the predefined namespaces with the specified prefix.
+        ///
+        /// Parameter `name`: A string specifying a prefix for a predefined namespace, for example "xml", "xs", or "xsi". If something other than a predefined-namespace prefix is specified, the method returns
+        /// `nil.`
         #[unsafe(method(predefinedNamespaceForPrefix:))]
         #[unsafe(method_family = none)]
         pub fn predefinedNamespaceForPrefix(name: &NSString) -> Option<Retained<NSXMLNode>>;
@@ -416,27 +611,54 @@ impl NSXMLNode {
         pub fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        /// The representation of this node as it would appear in an XML document.
+        /// The string representation of the receiver as it would appear in an XML document.
+        ///
+        /// The returned string includes the string representations of all children. This property invokes
+        /// `XMLStringWithOptions:`with an
+        /// `options`argument of
+        /// `NSXMLNodeOptionsNone.`
         #[unsafe(method(XMLString))]
         #[unsafe(method_family = none)]
         pub fn XMLString(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLNodeOptions"))]
-        /// The representation of this node as it would appear in an XML document, with various output options available.
+        /// Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.
+        ///
+        /// The returned string includes the string representations of all children.
+        ///
+        /// Parameter `options`: One or more
+        /// `enum`constants identifying an output option; bit-OR multiple constants together.
         #[unsafe(method(XMLStringWithOptions:))]
         #[unsafe(method_family = none)]
         pub fn XMLStringWithOptions(&self, options: NSXMLNodeOptions) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        /// W3 canonical form (http://www.w3.org/TR/xml-c14n). The input option NSXMLNodePreserveWhitespace should be set for true canonical form.
+        /// Returns a string object encapsulating the receiver's XML in canonical form.
+        ///
+        /// Be sure to set the input option
+        /// `NSXMLNodePreserveWhitespace`for true canonical form. The canonical form of an XML document is defined by the World Wide Web Consortium at http://www.w3.org/TR/xml-c14n.
+        ///
+        /// Parameter `comments`: `YES`to preserve comments,
+        /// `NO`otherwise.
         #[unsafe(method(canonicalXMLStringPreservingComments:))]
         #[unsafe(method_family = none)]
         pub fn canonicalXMLStringPreservingComments(&self, comments: bool) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
-        /// Returns the nodes resulting from applying an XPath to this node using the node as the context item ("."). normalizeAdjacentTextNodesPreservingCDATA:NO should be called if there are adjacent text nodes since they are not allowed under the XPath/XQuery Data Model.
+        /// Returns the nodes resulting from executing an XPath query upon the receiver.
         ///
-        /// Returns: An array whose elements are a kind of NSXMLNode.
+        /// The receiver acts as the context item for the query ("."). If you have explicitly added adjacent text nodes as children of an element, you should invoke the
+        /// `NSXMLElement`method
+        /// `normalizeAdjacentTextNodesPreservingCDATA:`(with an argument of
+        /// `NO)`on the element before applying any XPath queries to it; this method coalesces these text nodes.
+        ///
+        /// Parameter `xpath`: A string that expresses an XPath query.
+        ///
+        /// Parameter `error`: If query errors occur, indirectly returns an
+        /// `NSError`object describing the errors.
+        ///
+        /// Returns: An array of
+        /// `NSXMLNode`objects that match the query, or an empty array if there are no matches.
         #[unsafe(method(nodesForXPath:error:_))]
         #[unsafe(method_family = none)]
         pub fn nodesForXPath_error(
@@ -450,9 +672,23 @@ impl NSXMLNode {
             feature = "NSError",
             feature = "NSString"
         ))]
-        /// Returns the objects resulting from applying an XQuery to this node using the node as the context item ("."). Constants are a name-value dictionary for constants declared "external" in the query. normalizeAdjacentTextNodesPreservingCDATA:NO should be called if there are adjacent text nodes since they are not allowed under the XPath/XQuery Data Model.
+        /// Returns the objects resulting from executing an XQuery query upon the receiver.
         ///
-        /// Returns: An array whose elements are kinds of NSArray, NSData, NSDate, NSNumber, NSString, NSURL, or NSXMLNode.
+        /// The receiver acts as the context item for the query ("."). If the receiver has been changed after parsing to have multiple adjacent text nodes, you should invoke the
+        /// `NSXMLElement`method
+        /// `normalizeAdjacentTextNodesPreservingCDATA:`(with an argument of
+        /// `NO)`to coalesce the text nodes before querying.
+        ///
+        /// Parameter `xquery`: A string that expresses an XQuery query.
+        ///
+        /// Parameter `constants`: A dictionary containing externally declared constants where the name of each constant variable is a key.
+        ///
+        /// Parameter `error`: If query errors occur, indirectly returns an
+        /// `NSError`object describing the errors.
+        ///
+        /// Returns: An array whose elements are kinds of
+        /// `NSArray,``NSData,``NSDate,``NSNumber,``NSString,``NSURL,`or
+        /// `NSXMLNode.`
         ///
         /// # Safety
         ///
@@ -468,6 +704,17 @@ impl NSXMLNode {
 
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
+        /// Returns the objects resulting from executing an XQuery query upon the receiver.
+        ///
+        /// This convenience method invokes
+        /// `objectsForXQuery:constants:error:`with
+        /// `nil`for the
+        /// `constants`dictionary.
+        ///
+        /// Parameter `xquery`: A string that expresses an XQuery query.
+        ///
+        /// Parameter `error`: If query errors occur, indirectly returns an
+        /// `NSError`object describing the errors.
         #[unsafe(method(objectsForXQuery:error:_))]
         #[unsafe(method_family = none)]
         pub fn objectsForXQuery_error(

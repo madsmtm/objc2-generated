@@ -31,6 +31,20 @@ extern_class!(
 );
 
 #[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitMIDIInstrument"
+))]
+unsafe impl Send for AVAudioUnitSampler {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitMIDIInstrument"
+))]
+unsafe impl Sync for AVAudioUnitSampler {}
+
+#[cfg(all(
     feature = "AVAudioMixing",
     feature = "AVAudioNode",
     feature = "AVAudioUnit",
@@ -140,11 +154,21 @@ impl AVAudioUnitSampler {
         /// adjusts the pan for all the notes played.
         /// Range:     -100 -> +100
         /// Default:   0
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stereoPan))]
         #[unsafe(method_family = none)]
         pub unsafe fn stereoPan(&self) -> c_float;
 
         /// Setter for [`stereoPan`][Self::stereoPan].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setStereoPan:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStereoPan(&self, stereo_pan: c_float);
@@ -152,11 +176,21 @@ impl AVAudioUnitSampler {
         /// adjusts the gain of all the notes played
         /// Range:     -90.0 -> +12 db
         /// Default: 0 db
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(overallGain))]
         #[unsafe(method_family = none)]
         pub unsafe fn overallGain(&self) -> c_float;
 
         /// Setter for [`overallGain`][Self::overallGain].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setOverallGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverallGain(&self, overall_gain: c_float);
@@ -164,12 +198,22 @@ impl AVAudioUnitSampler {
         /// adjusts the gain of all the notes played
         /// Range:     -90.0 -> +12 db
         /// Default: 0 db
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(masterGain))]
         #[unsafe(method_family = none)]
         pub unsafe fn masterGain(&self) -> c_float;
 
         /// Setter for [`masterGain`][Self::masterGain].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(setMasterGain:))]
         #[unsafe(method_family = none)]
@@ -178,11 +222,21 @@ impl AVAudioUnitSampler {
         /// adjusts the tuning of all the notes played.
         /// Range:     -2400 -> +2400 cents
         /// Default:   0
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(globalTuning))]
         #[unsafe(method_family = none)]
         pub unsafe fn globalTuning(&self) -> c_float;
 
         /// Setter for [`globalTuning`][Self::globalTuning].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setGlobalTuning:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlobalTuning(&self, global_tuning: c_float);

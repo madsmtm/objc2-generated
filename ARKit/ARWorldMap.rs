@@ -13,7 +13,7 @@ use crate::*;
 extern_class!(
     /// Object representing the mapping of a physical 3D space.
     ///
-    /// ARWorldMap supports archiving and unarchiving across devices
+    /// `ARWorldMap` supports archiving and unarchiving across devices
     /// and versions with NSDecodingFailurePolicySetErrorAndReturn, providing an error
     /// if the map format is not supported.
     ///

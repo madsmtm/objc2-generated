@@ -6,7 +6,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptclassdescription?language=objc)
+    /// A scriptable class that a macOS app supports.
+    ///
+    /// A scriptable application provides scriptability information that describes the commands and objects scripters can use in scripts that target the application. That includes information about the classes those scriptable objects are created from.
+    ///
+    /// An application's scriptability information is collected automatically by an instance of ``NSScriptSuiteRegistry``. The registry object creates an `NSScriptClassDescription` for each class it finds and caches these objects in memory. Cocoa scripting uses registry information in handling scripting requests that target the application.
+    ///
+    /// A class description instance stores the name, attributes, relationships, and supported commands for a class. For example, a scriptable `document` class for a drawing application might support attributes such as `file` and `file type`, relationships such as collections of `circles`, `rectangles`, and `lines`, and commands such as `align` and `rotate`.
+    ///
+    /// As with many of the classes in Cocoa's built-in scripting support, your application may never need to directly work with instances of `NSScriptClassDescription`. However, one case where you might need access to a class description is if you override `objectSpecifier` in a scriptable class. For information on how to do this, see [Object Specifiers](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_object_specifiers/SAppsObjectSpecifiers.html#//apple_ref/doc/uid/TP40002164-CH3) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    /// Another case where your application may need access to class description information is if you override `indicesOfObjectsByEvaluatingWithContainer:count:` in a specifier class.
+    ///
+    /// Although you can subclass `NSScriptClassDescription`, it is unlikely that you would need to do so, or even to create instances of it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptclassdescription?language=objc)
     #[unsafe(super(NSClassDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSClassDescription")]
@@ -21,6 +35,11 @@ extern_conformance!(
 #[cfg(feature = "NSClassDescription")]
 impl NSScriptClassDescription {
     extern_methods!(
+        /// Returns the class description for the specified class or, if it is not scriptable, for the first superclass that is.
+        ///
+        /// - Parameter aClass: The class whose description is needed.
+        /// - Returns: The class description for the class specified by `aClass` or, if that class isn't scriptable, the class description for the first superclass that is. Returns `nil` if it doesn't find a scriptable class.
+        ///
         /// # Safety
         ///
         /// `a_class` probably has further requirements.
@@ -31,6 +50,16 @@ impl NSScriptClassDescription {
         ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Initializes and returns a newly allocated instance of `NSScriptClassDescription`.
+        ///
+        /// This method registers `self` with the application's global instance of ``NSScriptSuiteRegistry``.
+        ///
+        /// - Parameters:
+        /// - suiteName: The name of the suite (in the application's scriptability information) that the class belongs to. For example, `"AppName Suite"`.
+        /// - className: The name of the class that this instance describes.
+        /// - classDeclaration: A class declaration dictionary of the sort that is valid in script suite property list files. This dictionary provides information about the class such as its attributes and relationships.
+        /// - Returns: The initialized instance. Returns `nil` if the event code value for the class description itself is missing or is not an `NSString`. Also returns `nil` if the superclass name or any of the subdictionaries of descriptions are not of the right type.
+        ///
         /// # Safety
         ///
         /// `class_declaration` generic should be of the correct type.
@@ -44,38 +73,67 @@ impl NSScriptClassDescription {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// The name of the receiver's suite.
+        ///
+        /// Within an application's scriptability information, named suites contain related sets of information.
         #[unsafe(method(suiteName))]
         #[unsafe(method_family = none)]
         pub fn suiteName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The name of the class the receiver describes, as provided at initialization time.
+        ///
+        /// This may be either the human-readable name for the class -- that is, the name that is used in a script -- or the name of the Objective-C class that is instantiated to implement the class. To reliably obtain the implementation name, use ``NSScriptClassDescription/implementationClassName``.
         #[unsafe(method(className))]
         #[unsafe(method_family = none)]
         pub fn className(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The name of the Objective-C class instantiated to implement the scripting class.
+        ///
+        /// The name returned by the ``NSScriptClassDescription/className`` property for an instance of `NSScriptClassDescription` resulting from an sdef class declaration is the human-readable name for the class. To obtain the name of the Objective-C class instantiated to implement the class, use this property.
         #[unsafe(method(implementationClassName))]
         #[unsafe(method_family = none)]
         pub fn implementationClassName(&self) -> Option<Retained<NSString>>;
 
+        /// The class description instance for the superclass of the receiver's class.
+        ///
+        /// The instance of `NSScriptClassDescription` that describes the superclass can be in the same suite as the receiver or in a different suite. Returns `nil` if the class has no superclass.
         #[unsafe(method(superclassDescription))]
         #[unsafe(method_family = none)]
         pub fn superclassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
 
+        /// The Apple event code associated with the receiver's class.
+        ///
+        /// This is the primary four-character code used to identify the described class in Apple events.
         #[unsafe(method(appleEventCode))]
         #[unsafe(method_family = none)]
         pub fn appleEventCode(&self) -> FourCharCode;
 
+        /// Returns a Boolean value indicating whether a primary or secondary Apple event code in the receiver matches the passed code.
+        ///
+        /// - Parameter appleEventCode: An Apple event code to compare against the receiver's primary or secondary codes.
+        /// - Returns: `true` if the receiver's primary four-character Apple event code or any of its secondary codes (its synonyms) matches `appleEventCode`; otherwise, `false`.
         #[unsafe(method(matchesAppleEventCode:))]
         #[unsafe(method_family = none)]
         pub fn matchesAppleEventCode(&self, apple_event_code: FourCharCode) -> bool;
 
         #[cfg(feature = "NSScriptCommandDescription")]
+        /// Returns a Boolean value indicating whether the receiver or any superclass supports the specified command.
+        ///
+        /// - Parameter commandDescription: A description for a script command, such as `duplicate`, `make`, or `move`. Encapsulates the scriptability information for that command, such as its Objective-C selector, its argument names and types, and its return type (if any).
+        /// - Returns: `true` if the receiver or the instance of `NSScriptClassDescription` of any superclass of the receiver's class lists the command described by `commandDescription` among its supported commands; otherwise, `false`.
         #[unsafe(method(supportsCommand:))]
         #[unsafe(method_family = none)]
         pub fn supportsCommand(&self, command_description: &NSScriptCommandDescription) -> bool;
 
         #[cfg(feature = "NSScriptCommandDescription")]
+        /// Returns the selector associated with the receiver for the specified command description.
+        ///
+        /// If the described class or one of its superclasses is explicitly declared to support the described command and the declaration includes a method name, returns the selector for the class' handler method for the command.
+        ///
+        /// - Parameter commandDescription: A description for a script command, such as `duplicate`, `make`, or `move`. Encapsulates the scriptability information for that command, such as its Objective-C selector, its argument names and types, and its return type (if any).
+        /// - Returns: The selector from the receiver for the command specified by `commandDescription`. Searches in the receiver first, then in any superclass. Returns `NULL` if no matching selector is found.
         #[unsafe(method(selectorForCommand:))]
         #[unsafe(method_family = none)]
         pub fn selectorForCommand(
@@ -84,11 +142,19 @@ impl NSScriptClassDescription {
         ) -> Option<Sel>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the name of the declared type of the attribute or relationship identified by the passed key.
+        ///
+        /// - Parameter key: The identifying key for an attribute, one-to-one relationship, or one-to-many relationship of the receiver.
+        /// - Returns: The name of the declared type of the attribute or relationship identified by `key`; for example, `"NSString"`. Searches in the receiver first, then in any superclass. Returns `nil` if no match is found.
         #[unsafe(method(typeForKey:))]
         #[unsafe(method_family = none)]
         pub fn typeForKey(&self, key: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the class description instance for the class type of the specified attribute or relationship.
+        ///
+        /// - Parameter key: The identifying key for an attribute or relationship of the receiver.
+        /// - Returns: The instance of `NSScriptClassDescription` for the type of the attribute or relationship specified by `key`. Returns `nil` if no scriptable property corresponds to `key`.
         #[unsafe(method(classDescriptionForKey:))]
         #[unsafe(method_family = none)]
         pub fn classDescriptionForKey(
@@ -97,11 +163,19 @@ impl NSScriptClassDescription {
         ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the Apple event code for the specified attribute or relationship in the receiver.
+        ///
+        /// - Parameter key: The identifying key for an attribute or relationship of the receiver.
+        /// - Returns: The four-character Apple event code associated with the attribute or relationship identified by `key` in the receiver or, if none exists, in the class description for the receiver's superclass. Returns `0` if no such attribute or relationship is found.
         #[unsafe(method(appleEventCodeForKey:))]
         #[unsafe(method_family = none)]
         pub fn appleEventCodeForKey(&self, key: &NSString) -> FourCharCode;
 
         #[cfg(feature = "NSString")]
+        /// Given an Apple event code that identifies a property or element class, returns the key for the corresponding attribute, one-to-one relationship, or one-to-many relationship.
+        ///
+        /// - Parameter appleEventCode: An Apple event code that identifies a property or element class.
+        /// - Returns: The key that corresponds to the property or element class identified by `appleEventCode` in the receiver or, if none exists, in a class description in the receiver's superclasses. Returns `nil` if it cannot find any such attribute or relationship.
         #[unsafe(method(keyWithAppleEventCode:))]
         #[unsafe(method_family = none)]
         pub fn keyWithAppleEventCode(
@@ -110,32 +184,59 @@ impl NSScriptClassDescription {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The value of the `DefaultSubcontainerAttribute` entry of the class declaration dictionary provided when the receiver was instantiated.
+        ///
+        /// Returns `nil` if there was no such entry.
         #[unsafe(method(defaultSubcontainerAttributeKey))]
         #[unsafe(method_family = none)]
         pub fn defaultSubcontainerAttributeKey(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value indicating whether an insertion location must be specified when creating a new object in the specified to-many relationship of the receiver.
+        ///
+        /// A script command object that creates a new object in a to-many relationship needs to know whether an explicitly specified insertion location is required. It can get this information from an instance of `NSScriptClassDescription`. For example, `NSMakeCommand` uses this method to determine whether or not a specific `make` AppleScript command must have an `at` parameter.
+        ///
+        /// - Parameter toManyRelationshipKey: The key for the to-many relationship that may require an insertion location.
+        /// - Returns: `true` if an insertion location must be specified; otherwise, `false`.
         #[unsafe(method(isLocationRequiredToCreateForKey:))]
         #[unsafe(method_family = none)]
         pub fn isLocationRequiredToCreateForKey(&self, to_many_relationship_key: &NSString)
             -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value indicating whether the described class has a property identified by the specified key.
+        ///
+        /// - Parameter key: The identifying key for a property of the receiver.
+        /// - Returns: `true` if the described class has a property identified by the specified key; otherwise, `false`.
         #[unsafe(method(hasPropertyForKey:))]
         #[unsafe(method_family = none)]
         pub fn hasPropertyForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value indicating whether the described class has an ordered to-many relationship identified by the specified key.
+        ///
+        /// - Parameter key: The identifying key for a property of the receiver.
+        /// - Returns: `true` if the described class has an ordered to-many relationship identified by the specified key; otherwise, `false`.
         #[unsafe(method(hasOrderedToManyRelationshipForKey:))]
         #[unsafe(method_family = none)]
         pub fn hasOrderedToManyRelationshipForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value indicating whether the described class has a readable property identified by the specified key.
+        ///
+        /// To determine if a property is read-only, invoke ``NSScriptClassDescription/hasWritableProperty(forKey:)``.
+        ///
+        /// - Parameter key: The identifying key for a property of the receiver.
+        /// - Returns: `true` if the described class has a readable property identified by the specified key; otherwise, `false`.
         #[unsafe(method(hasReadablePropertyForKey:))]
         #[unsafe(method_family = none)]
         pub fn hasReadablePropertyForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value indicating whether the described class has a writable property identified by the specified key.
+        ///
+        /// - Parameter key: The identifying key for a property of the receiver.
+        /// - Returns: `true` if the described class has a writable property identified by the specified key; otherwise, `false`.
         #[unsafe(method(hasWritablePropertyForKey:))]
         #[unsafe(method_family = none)]
         pub fn hasWritablePropertyForKey(&self, key: &NSString) -> bool;
@@ -169,6 +270,13 @@ impl DefaultRetained for NSScriptClassDescription {
 impl NSScriptClassDescription {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value indicating whether a specified property in the receiver is read-only.
+        ///
+        ///
+        /// This method could return `false` either because `key` is unrecognized or because writing to the property is not supported. Use ``NSScriptClassDescription/hasWritableProperty(forKey:)`` instead.
+        ///
+        /// - Parameter key: The identifying key for a property of the receiver.
+        /// - Returns: `true` if the property specified by `key` exists in the receiver or in the `NSScriptClassDescription` for any superclass, and is read only; otherwise, `false`.
         #[deprecated]
         #[unsafe(method(isReadOnlyKey:))]
         #[unsafe(method_family = none)]

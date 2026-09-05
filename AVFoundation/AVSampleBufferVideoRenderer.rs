@@ -27,6 +27,12 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorendererrequiresflushtoresumedecodingdidchangenotificationrequiresflushkey?language=objc)
+    pub static AVSampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotificationRequiresFlushKey:
+        &'static NSString;
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer?language=objc)
     #[unsafe(super(NSObject))]

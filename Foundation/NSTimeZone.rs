@@ -9,7 +9,32 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone?language=objc)
+    /// Information about standard time conventions associated with a specific geopolitical region.
+    ///
+    /// In Swift, this type bridges to ``TimeZone``; use ``NSTimeZone`` when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// Time zones represent the standard time policies for a geopolitical region. Time zones have identifiers like "America/Los\_Angeles" and can also be identified by abbreviations, such as PST for Pacific Standard Time. You can create time zone objects by ID with ``init(name:)`` and by abbreviation with ``init(abbreviation:)``.
+    ///
+    /// > Note:
+    /// > Time zone database entries such as "America/Los\_Angeles" are IDs, not names. An example of a time zone name is "Pacific Daylight Time". Although many ``NSTimeZone`` symbols include the word "name", they actually refer to IDs.
+    ///
+    /// Time zones can also represent a temporal offset—either plus or minus—from Greenwich Mean Time (GMT). For example, the temporal offset of Pacific Standard Time is 8 hours behind Greenwich Mean Time (GMT-8). You can create time zone objects with a temporal offset by using ``init(forSecondsFromGMT:)``.
+    ///
+    /// You typically work with system time zones rather than creating time zones by identifier or by offset. The ``system`` class property returns the time zone currently used by the system, if known. This value is cached once the property is accessed and doesn't reflect any system time zone changes until you call the ``resetSystemTimeZone()`` method. The ``local`` class property returns an autoupdating proxy object that always returns the current time zone used by the system. You can also set the ``default`` class property to make your app run as if it were in a different time zone than the system.
+    ///
+    /// > Tip:
+    /// > You can't use ``NSTimeZone`` APIs to change the time zone of the device or of other apps.
+    ///
+    /// ``NSTimeZone`` is _toll-free bridged_ with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cftimezone>. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``TimeZone`` structure, which bridges to the ``NSTimeZone`` class. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTimeZone;
@@ -62,36 +87,64 @@ extern_conformance!(
 impl NSTimeZone {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The geopolitical region ID that identifies the receiver.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSData")]
+        /// The data that stores the information used by the receiver.
+        ///
+        /// Treat this data as an opaque object.
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns the difference in seconds between the receiver and Greenwich Mean Time at a given date.
+        ///
+        /// - Parameter aDate: The date against which to test the receiver.
+        /// - Returns: The difference in seconds between the receiver and Greenwich Mean Time at `aDate`.
+        ///
+        /// The difference may be different from the current difference if the time zone changes its offset from GMT at different points in the year--for example, the U.S. time zones change with daylight saving time.
         #[unsafe(method(secondsFromGMTForDate:))]
         #[unsafe(method_family = none)]
         pub fn secondsFromGMTForDate(&self, a_date: &NSDate) -> NSInteger;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
+        /// Returns the abbreviation for the receiver at a given date.
+        ///
+        /// - Parameter aDate: The date for which to get the abbreviation for the receiver.
+        /// - Returns: The abbreviation for the receiver at `aDate`.
+        ///
+        /// Note that the abbreviation may be different at different dates. For example, during daylight saving time the US/Eastern time zone has an abbreviation of "EDT." At other times, its abbreviation is "EST."
         #[unsafe(method(abbreviationForDate:))]
         #[unsafe(method_family = none)]
         pub fn abbreviationForDate(&self, a_date: &NSDate) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSDate")]
+        /// Indicates whether the receiver uses daylight saving time on a given date.
+        ///
+        /// - Parameter aDate: The date against which to test the receiver.
+        /// - Returns: `YES` if the receiver uses daylight saving time at `aDate`, otherwise `NO`.
         #[unsafe(method(isDaylightSavingTimeForDate:))]
         #[unsafe(method_family = none)]
         pub fn isDaylightSavingTimeForDate(&self, a_date: &NSDate) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Returns the daylight saving time offset for a given date.
+        ///
+        /// - Parameter aDate: A date.
+        /// - Returns: The daylight saving time offset for `aDate`.
         #[unsafe(method(daylightSavingTimeOffsetForDate:))]
         #[unsafe(method_family = none)]
         pub fn daylightSavingTimeOffsetForDate(&self, a_date: &NSDate) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// Returns the next daylight saving time transition after a given date.
+        ///
+        /// - Parameter aDate: A date.
+        /// - Returns: The next daylight saving time transition after `aDate`. Depending on the time zone of the receiver, this method may return a change of the time zone's offset from GMT. Returns `nil` if the time zone of the receiver does not observe daylight savings time as of `aDate`.
         #[unsafe(method(nextDaylightSavingTimeTransitionAfterDate:))]
         #[unsafe(method_family = none)]
         pub fn nextDaylightSavingTimeTransitionAfterDate(
@@ -121,22 +174,30 @@ impl DefaultRetained for NSTimeZone {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezonenamestyle?language=objc)
+/// Constants you use to specify a style when presenting time zone names.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezonenamestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTimeZoneNameStyle(pub NSInteger);
 impl NSTimeZoneNameStyle {
+    /// Specifies a standard name style. For example, "Central Standard Time" for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleStandard")]
     pub const Standard: Self = Self(0);
+    /// Specifies a short name style. For example, "CST" for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleShortStandard")]
     pub const ShortStandard: Self = Self(1);
+    /// Specifies a daylight saving name style. For example, "Central Daylight Time" for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleDaylightSaving")]
     pub const DaylightSaving: Self = Self(2);
+    /// Specifies a short daylight saving name style. For example, "CDT" for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleShortDaylightSaving")]
     pub const ShortDaylightSaving: Self = Self(3);
+    /// Specifies a generic name style. For example, "Central Time" for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleGeneric")]
     pub const Generic: Self = Self(4);
+    /// Specifies a generic time zone name. For example, "CT" for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleShortGeneric")]
     pub const ShortGeneric: Self = Self(5);
 }
@@ -152,14 +213,27 @@ unsafe impl RefEncode for NSTimeZoneNameStyle {
 /// NSExtendedTimeZone.
 impl NSTimeZone {
     extern_methods!(
+        /// The time zone currently used by the system.
+        ///
+        /// If the current system time zone cannot be determined, the GMT time zone is used instead.
+        ///
+        /// If you access this class property, its value is cached by the app and doesn't update if the user subsequently changes the system time zone. In order for the property to reflect the new time zone, you must first call ``resetSystemTimeZone`` to clear the cached value.
         #[unsafe(method(systemTimeZone))]
         #[unsafe(method_family = none)]
         pub fn systemTimeZone() -> Retained<NSTimeZone>;
 
+        /// Clears any time zone value cached for the `systemTimeZone` property.
+        ///
+        /// If the app has cached the system time zone by accessing the `systemTimeZone` class property, this method clears that cached value. If you subsequently access `systemTimeZone`, a new time zone object is created and cached.
         #[unsafe(method(resetSystemTimeZone))]
         #[unsafe(method_family = none)]
         pub fn resetSystemTimeZone();
 
+        /// The default time zone for the current app.
+        ///
+        /// If no default time zone has been set, the current system time zone is used. If the current system time zone cannot be determined, the GMT time zone is used instead.
+        ///
+        /// The default time zone is used by the app for date and time operations. You can set it to cause the app to run as if it were in a different time zone. Setting this property clears any value that was previously set.
         #[unsafe(method(defaultTimeZone))]
         #[unsafe(method_family = none)]
         pub fn defaultTimeZone() -> Retained<NSTimeZone>;
@@ -171,16 +245,23 @@ impl NSTimeZone {
         #[unsafe(method_family = none)]
         pub fn setDefaultTimeZone(default_time_zone: &NSTimeZone);
 
+        /// An object that tracks the current system time zone.
+        ///
+        /// Use this property when you want an object that always reflects the current system time zone. Contrast this behavior with that of the `systemTimeZone` class property, which has its value cached until you manually clear it by calling ``resetSystemTimeZone``.
         #[unsafe(method(localTimeZone))]
         #[unsafe(method_family = none)]
         pub fn localTimeZone() -> Retained<NSTimeZone>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns an array of strings listing the IDs of all the time zones known to the system.
         #[unsafe(method(knownTimeZoneNames))]
         #[unsafe(method_family = none)]
         pub fn knownTimeZoneNames() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Returns a dictionary holding the mappings of time zone abbreviations to time zone names.
+        ///
+        /// Note that more than one time zone may have the same abbreviation--for example, US/Pacific and Canada/Pacific both use the abbreviation "PST." In these cases, this dictionary chooses a single name to map the abbreviation to.
         #[unsafe(method(abbreviationDictionary))]
         #[unsafe(method_family = none)]
         pub fn abbreviationDictionary() -> Retained<NSDictionary<NSString, NSString>>;
@@ -196,43 +277,65 @@ impl NSTimeZone {
         );
 
         #[cfg(feature = "NSString")]
+        /// Returns the time zone data version.
         #[unsafe(method(timeZoneDataVersion))]
         #[unsafe(method_family = none)]
         pub fn timeZoneDataVersion() -> Retained<NSString>;
 
+        /// The current difference in seconds between the receiver and Greenwich Mean Time.
         #[unsafe(method(secondsFromGMT))]
         #[unsafe(method_family = none)]
         pub fn secondsFromGMT(&self) -> NSInteger;
 
         #[cfg(feature = "NSString")]
+        /// The abbreviation for the receiver, such as "EDT" (Eastern Daylight Time).
+        ///
+        /// Invokes `abbreviationForDate:` with the current date as the argument.
         #[unsafe(method(abbreviation))]
         #[unsafe(method_family = none)]
         pub fn abbreviation(&self) -> Option<Retained<NSString>>;
 
+        /// A Boolean value that indicates whether the receiver is currently using daylight saving time.
+        ///
+        /// Invokes `isDaylightSavingTimeForDate:` with the current date as the argument.
         #[unsafe(method(isDaylightSavingTime))]
         #[unsafe(method_family = none)]
         pub fn isDaylightSavingTime(&self) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// The current daylight saving time offset of the receiver.
         #[unsafe(method(daylightSavingTimeOffset))]
         #[unsafe(method_family = none)]
         pub fn daylightSavingTimeOffset(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// The date of the next daylight saving time transition for the receiver.
+        ///
+        /// This property contains the date of the next (after the current instant) daylight saving time transition for the receiver. Depending on the time zone of the receiver, the value of this property may represent a change of the time zone's offset from GMT. Returns `nil` if the time zone of the receiver does not currently observe daylight saving time.
         #[unsafe(method(nextDaylightSavingTimeTransition))]
         #[unsafe(method_family = none)]
         pub fn nextDaylightSavingTimeTransition(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSString")]
+        /// A textual description of the time zone including the name, abbreviation, offset from GMT, and whether or not daylight saving time is currently in effect.
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
         pub fn description(&self) -> Retained<NSString>;
 
+        /// Indicates whether the receiver has the same name and data as the specified time zone.
+        ///
+        /// - Parameter aTimeZone: The time zone to compare with the receiver.
+        /// - Returns: `YES` if `aTimeZone` and the receiver have the same name and data, otherwise `NO`.
         #[unsafe(method(isEqualToTimeZone:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToTimeZone(&self, a_time_zone: &NSTimeZone) -> bool;
 
         #[cfg(all(feature = "NSLocale", feature = "NSString"))]
+        /// Returns the localized name of the time zone.
+        ///
+        /// - Parameter style: The format style for the returned string.
+        /// - Parameter locale: The locale for which to format the name.
+        /// - Returns: The name of the receiver localized for the given locale using the given style.
         #[unsafe(method(localizedName:locale:))]
         #[unsafe(method_family = none)]
         pub fn localizedName_locale(
@@ -247,11 +350,22 @@ impl NSTimeZone {
 impl NSTimeZone {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns the time zone object identified by a given identifier.
+        ///
+        /// - Parameter tzName: The ID for the time zone.
+        /// - Returns: The time zone in the information directory with a name matching `tzName`. Returns `nil` if there is no match for the name.
         #[unsafe(method(timeZoneWithName:))]
         #[unsafe(method_family = none)]
         pub fn timeZoneWithName(tz_name: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
+        /// Returns the time zone with a given identifier whose data has been initialized using given data.
+        ///
+        /// - Parameter tzName: The ID for the time zone.
+        /// - Parameter aData: This parameter is ignored.
+        /// - Returns: The time zone with the ID `tzName`.
+        ///
+        /// As of macOS 10.6, the underlying implementation of this method has been changed to ignore the specified `data` parameter. You should not use this method. Instead, use `timeZoneWithName:` to get the time zone object for a given name.
         #[unsafe(method(timeZoneWithName:data:))]
         #[unsafe(method_family = none)]
         pub fn timeZoneWithName_data(
@@ -260,11 +374,23 @@ impl NSTimeZone {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a time zone initialized with a given identifier.
+        ///
+        /// - Parameter tzName: The identifier for the time zone. Providing `nil` for this parameter raises an invalid argument exception.
+        /// - Returns: A time zone object initialized with the identifier `tzName`.
+        ///
+        /// If `tzName` is a known identifier, this method calls `initWithName:data:` with the appropriate data object.
         #[unsafe(method(initWithName:))]
         #[unsafe(method_family = init)]
         pub fn initWithName(this: Allocated<Self>, tz_name: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
+        /// Initializes a time zone with a given identifier and time zone data.
+        ///
+        /// - Parameter tzName: The identifier for the time zone. Providing `nil` for this parameter raises an invalid argument exception.
+        /// - Parameter aData: This parameter is ignored.
+        ///
+        /// As of macOS 10.6, the underlying implementation of this method has been changed to ignore the specified `data` parameter. You should not use this method. Instead, use `initWithName:` to initialize a time zone object with a given name.
         #[unsafe(method(initWithName:data:))]
         #[unsafe(method_family = init)]
         pub fn initWithName_data(
@@ -273,11 +399,23 @@ impl NSTimeZone {
             a_data: Option<&NSData>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns a time zone object offset from Greenwich Mean Time by a given number of seconds.
+        ///
+        /// - Parameter seconds: The number of seconds by which the new time zone is offset from GMT.
+        /// - Returns: A time zone object offset from Greenwich Mean Time by `seconds`.
+        ///
+        /// The name of the new time zone is GMT +/- the offset, in hours and minutes. Time zones created with this method never have daylight savings, and the offset is constant no matter the date.
         #[unsafe(method(timeZoneForSecondsFromGMT:))]
         #[unsafe(method_family = none)]
         pub fn timeZoneForSecondsFromGMT(seconds: NSInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the time zone object identified by a given abbreviation.
+        ///
+        /// - Parameter abbreviation: An abbreviation for a time zone.
+        /// - Returns: The time zone object identified by `abbreviation` determined by resolving the abbreviation to a name using the abbreviation dictionary and then returning the time zone for that name. Returns `nil` if there is no match for `abbreviation`.
+        ///
+        /// In general, you are discouraged from using abbreviations except for unique instances such as "GMT". Time Zone abbreviations are not standardized and so a given abbreviation may have multiple meanings--for example, "EST" refers to Eastern Time in both the United States and Australia.
         #[unsafe(method(timeZoneWithAbbreviation:))]
         #[unsafe(method_family = none)]
         pub fn timeZoneWithAbbreviation(abbreviation: &NSString) -> Option<Retained<Self>>;
@@ -285,7 +423,9 @@ impl NSTimeZone {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssystemtimezonedidchangenotification?language=objc)
+    /// A notification posted when the time zone changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssystemtimezonedidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSSystemTimeZoneDidChangeNotification: &'static NSNotificationName;
 }

@@ -62,6 +62,7 @@ pub type PGRaiseInterrupt = block2::Block<'static, fn(u32)>;
 /// affected by guest writes, then it may report a larger region.  Clients are also encouraged to coalesce writes over a period of time into a single notification of activity.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgtracerangehandler?language=objc)
+#[deprecated = "No longer supported"]
 #[cfg(feature = "block2")]
 pub type PGTraceRangeHandler = block2::Block<'static, fn(NonNull<PGPhysicalMemoryRange_t>)>;
 
@@ -263,6 +264,7 @@ extern_protocol!(
 /// Create a new PGDevice implementation object based on the provided descriptor.
 ///
 /// Parameter `descriptor`: The device descriptor for the new device.
+#[deprecated]
 #[inline]
 pub unsafe fn PGNewDeviceWithDescriptor(
     descriptor: &PGDeviceDescriptor,
@@ -351,6 +353,7 @@ unsafe impl RefEncode for PGResumeErrorCode {
 /// the device.
 ///
 /// Returns: The URL.
+#[deprecated = "Deprecated"]
 #[inline]
 pub unsafe fn PGCopyOptionROMURL() -> Retained<NSURL> {
     extern "C-unwind" {

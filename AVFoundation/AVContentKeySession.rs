@@ -169,9 +169,28 @@ impl AVContentKeySession {
         #[unsafe(method_family = none)]
         pub unsafe fn keySystem(&self) -> Retained<AVContentKeySystem>;
 
-        // -supportsAdvisoryKeys (unavailable)
+        /// Boolean indicating whether advisory keys are enabled on the client.
+        ///
+        /// Set to true to enable advisory key loading. False by default. Note that this is a one-way operation—once set to true, this property cannot be set back to false.
+        ///
+        /// Advisory key loading allows applications to make use of content keys provided speculatively
+        /// by the key server. When enabled, FairPlay may cache these keys and return them immediately
+        /// on subsequent requests without requiring a round-trip to the key server.
+        ///
+        /// The delegate must be prepared to handle advisory key requests by checking the `canBeFulfilledWithAdvisoryKey` property on
+        /// `AVContentKeyRequest` objects.
+        ///
+        /// When an advisory key is already cached by FairPlay, `makeStreamingContentKeyRequestData`
+        /// will return nil for the key request data, and `canBeFulfilledWithAdvisoryKey` will return true. In this case,
+        /// no request to the key server is necessary.
+        #[unsafe(method(supportsAdvisoryKeys))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportsAdvisoryKeys(&self) -> bool;
 
-        // -setSupportsAdvisoryKeys: (unavailable)
+        /// Setter for [`supportsAdvisoryKeys`][Self::supportsAdvisoryKeys].
+        #[unsafe(method(setSupportsAdvisoryKeys:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSupportsAdvisoryKeys(&self, supports_advisory_keys: bool);
 
         /// Tells the receiver to treat the session as having been intentionally and normally expired.
         ///
@@ -617,7 +636,23 @@ impl AVContentKeyRequest {
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVContentKeyRecipient>>>;
 
-        // -canBeFulfilledWithAdvisoryKey (unavailable)
+        /// Indicates whether this key request was initiated for an advisory key.
+        ///
+        /// This property is set to true when:
+        /// 1. Advisory key loading is enabled on the parent AVContentKeySession
+        /// 2. The key was previously loaded as an advisory key and cached by FairPlay
+        /// 3. A subsequent request for the same key is made
+        ///
+        /// When `canBeFulfilledWithAdvisoryKey` is true and `makeStreamingContentKeyRequestData` returns nil
+        /// for the key request data, this indicates FairPlay has already cached the key. No request to the
+        /// key server for a key response is necessary, and the application should simply return from the completion handler.
+        ///
+        /// This property should be checked in the completion handler of
+        /// `makeStreamingContentKeyRequestData(forApp:contentIdentifier:options:completionHandler:)`
+        /// whenever the key request data is nil to distinguish advisory keys from actual errors.
+        #[unsafe(method(canBeFulfilledWithAdvisoryKey))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn canBeFulfilledWithAdvisoryKey(&self) -> bool;
 
         #[cfg(feature = "block2")]
         /// Obtains a content key request data for a specific combination of application and content.
@@ -640,6 +675,38 @@ impl AVContentKeyRequest {
             content_identifier: Option<&NSData>,
             options: Option<&NSDictionary<NSString, AnyObject>>,
             handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Obtains an optional content key request data for a specific combination of application and content.
+        ///
+        /// This method generates key request data to be sent to a key server, with support for advisory key handling.
+        /// When advisory keys are enabled (supportsAdvisoryKeys = YES), this method may return nil data without
+        /// error if the requested key is already cached by the system, avoiding redundant server requests.
+        ///
+        /// IMPORTANT: When supportsAdvisoryKeys is set to YES, this method MUST be used for all content key requests.
+        /// The non-advisory variant is not compatible with advisory key handling and an exception will be thrown otherwise.
+        ///
+        /// When the completion handler is called with nil data and nil error, check the canBeFulfilledWithAdvisoryKey
+        /// property. A return value of YES indicates the key is already cached and no server communication is required.
+        ///
+        /// - Parameter appIdentifier: An opaque identifier for the application. The contents and format are determined by the content protection system in use. An exception will be thrown if appIdentifier is nil.
+        /// - Parameter contentIdentifier: An optional opaque identifier for the content. The contents and format are determined by the content protection system in use.
+        /// - Parameter options: A dictionary of additional parameters required to obtain the key, or nil if none are needed. See AVContentKeyRequest Key constants.
+        /// - Parameter completionHandler: A block invoked when the request completes. Called with key request data for server communication or nil data if already fulfilled by an
+        /// advisory key response; error, if creating the key request data failed. An exception will be thrown if completionHandler is nil.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
+        #[unsafe(method(makeOptionalStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn makeOptionalStreamingContentKeyRequestDataForApp_contentIdentifier_options_completionHandler(
+            &self,
+            app_identifier: &NSData,
+            content_identifier: Option<&NSData>,
+            options: Option<&NSDictionary<NSString, AnyObject>>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSData, *mut NSError)>,
         );
 
         /// Informs the receiver to process the specified content key response.

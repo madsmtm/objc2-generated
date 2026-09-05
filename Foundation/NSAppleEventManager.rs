@@ -24,27 +24,45 @@ unsafe impl RefEncode for __NSAppleEventManagerSuspension {
         Encoding::Pointer(&Encoding::Struct("__NSAppleEventManagerSuspension", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanagersuspensionid?language=objc)
+/// Identifies an Apple event whose handling has been suspended. Can be used to resume handling of the Apple event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanagersuspensionid?language=objc)
 pub type NSAppleEventManagerSuspensionID = *const __NSAppleEventManagerSuspension;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventtimeoutdefault?language=objc)
+    /// A timeout constant indicating that the default timeout should be used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventtimeoutdefault?language=objc)
     pub static NSAppleEventTimeOutDefault: c_double;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventtimeoutnone?language=objc)
+    /// A timeout constant indicating that there is no timeout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventtimeoutnone?language=objc)
     pub static NSAppleEventTimeOutNone: c_double;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanagerwillprocessfirsteventnotification?language=objc)
+    /// Posted by `NSAppleEventManager` before it first dispatches an Apple event.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanagerwillprocessfirsteventnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSAppleEventManagerWillProcessFirstEventNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanager?language=objc)
+    /// A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.
+    ///
+    /// Cocoa provides built-in scriptability support that uses scriptability information supplied by an application to automatically convert Apple events into script command objects that perform the desired operation. However, some applications may want to perform more basic Apple event handling, in which an application registers handlers for the Apple events it can process, then calls on the Apple Event Manager to dispatch received Apple events to the appropriate handler. `NSAppleEventManager` supports these mechanisms by providing methods to register and remove handlers and to dispatch Apple events to the appropriate handler, if one exists. For related information, see [How Cocoa Applications Handle Apple Events](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html#//apple_ref/doc/uid/20001239)
+    ///
+    /// Each application has at most one instance of `NSAppleEventManager`. To obtain a reference to it, you call the class method ``shared()``, which creates the instance if it doesn't already exist.
+    ///
+    /// For information about the Apple Event Manager, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/applicationservices/apple_event_manager> and Apple Events Programming Guide.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleEventManager;
@@ -56,12 +74,23 @@ extern_conformance!(
 
 impl NSAppleEventManager {
     extern_methods!(
+        /// Returns the single instance of `NSAppleEventManager`, creating it first if it doesn't exist.
         #[unsafe(method(sharedAppleEventManager))]
         #[unsafe(method_family = none)]
         pub fn sharedAppleEventManager() -> Retained<NSAppleEventManager>;
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
+        /// Registers the Apple event handler specified by `handler` for the event specified by `eventClass` and `eventID`.
+        ///
+        /// If an event handler is already registered for the specified event class and event ID, removes it. The signature for `handler` should match the following:
+        ///
+        /// ```objc
+        /// - (void)handleAppleEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent;
+        /// ```
+        ///
+        /// When it is invoked, the value of the first parameter will be the event to be handled. The value of the second parameter will be the reply event to fill in. A reply event object will always be passed in (replyEvent will never be nil), but it should not be touched if the event sender has not requested a reply, which is indicated by `[replyEvent descriptorType]==typeNull`.
+        ///
         /// # Safety
         ///
         /// - `handler` should be of the correct type.
@@ -78,6 +107,9 @@ impl NSAppleEventManager {
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
+        /// If an Apple event handler has been registered for the event specified by `eventClass` and `eventID`, removes it.
+        ///
+        /// Otherwise does nothing.
         #[unsafe(method(removeEventHandlerForEventClass:andEventID:))]
         #[unsafe(method_family = none)]
         pub fn removeEventHandlerForEventClass_andEventID(
@@ -88,6 +120,14 @@ impl NSAppleEventManager {
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
+        /// Causes the Apple event specified by `theAppleEvent` to be dispatched to the appropriate Apple event handler, if one has been registered by calling `-setEventHandler:andSelector:forEventClass:andEventID:`.
+        ///
+        /// The `theReply` parameter always specifies a reply Apple event, never `nil`. However, the handler should not fill out the reply if the descriptor type for the reply event is `typeNull`, indicating the sender does not want a reply.
+        ///
+        /// The `handlerRefcon` parameter provides 4 bytes of data to the handler; a common use for this parameter is to pass a pointer to additional data.
+        ///
+        /// This method is primarily intended for Cocoa's internal use. Note that _dispatching_ an event means routing an event to an appropriate handler in the current application. You cannot use this method to _send_ events to other applications.
+        ///
         /// # Safety
         ///
         /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
@@ -103,20 +143,33 @@ impl NSAppleEventManager {
         ) -> OSErr;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// Returns the descriptor for `currentAppleEvent` if an Apple event is being handled on the current thread.
+        ///
+        /// An Apple event is being handled on the current thread if a handler that was registered with `-setEventHandler:andSelector:forEventClass:andEventID:` is being messaged at this instant or `-setCurrentAppleEventAndReplyEventWithSuspensionID:` has just been invoked. Returns `nil` otherwise. The effects of mutating or retaining the returned descriptor are undefined, although it may be copied.
         #[unsafe(method(currentAppleEvent))]
         #[unsafe(method_family = none)]
         pub fn currentAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
+        ///
+        /// An Apple event is being handled on the current thread if `currentAppleEvent` does not return `nil`. Returns `nil` otherwise. This descriptor, including any mutations, will be returned to the sender of the current event when all handling of the event has been completed, if the sender has requested a reply. The effects of retaining the descriptor are undefined; it may be copied, but mutations of the copy are not returned to the sender of the current event.
         #[unsafe(method(currentReplyAppleEvent))]
         #[unsafe(method_family = none)]
         pub fn currentReplyAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
+        /// Suspends the handling of the current event and returns an ID that must be used to resume the handling of the event if an Apple event is being handled on the current thread.
+        ///
+        /// An Apple event is being handled on the current thread if `currentAppleEvent` does not return `nil`. Returns zero otherwise. The suspended event is no longer the current event after this method returns.
         #[unsafe(method(suspendCurrentAppleEvent))]
         #[unsafe(method_family = none)]
         pub fn suspendCurrentAppleEvent(&self) -> NSAppleEventManagerSuspensionID;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// Given a nonzero suspension ID returned by an invocation of `-suspendCurrentAppleEvent`, returns the descriptor for the event whose handling was suspended.
+        ///
+        /// The effects of mutating or retaining the returned descriptor are undefined, although it may be copied. This method may be invoked in any thread, not just the one in which the corresponding invocation of `-suspendCurrentAppleEvent` occurred.
+        ///
         /// # Safety
         ///
         /// `suspension_id` must be a valid pointer.
@@ -128,6 +181,10 @@ impl NSAppleEventManager {
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// Given a nonzero suspension ID returned by an invocation of `-suspendCurrentAppleEvent`, returns the corresponding reply event descriptor.
+        ///
+        /// This descriptor, including any mutations, will be returned to the sender of the suspended event when handling of the event is resumed, if the sender has requested a reply. The effects of retaining the descriptor are undefined; it may be copied, but mutations of the copy will not be returned to the sender of the suspended event. This method may be invoked in any thread, not just the one in which the corresponding invocation of `-suspendCurrentAppleEvent` occurred.
+        ///
         /// # Safety
         ///
         /// `suspension_id` must be a valid pointer.
@@ -138,6 +195,10 @@ impl NSAppleEventManager {
             suspension_id: NSAppleEventManagerSuspensionID,
         ) -> Retained<NSAppleEventDescriptor>;
 
+        /// Given a nonzero suspension ID returned by an invocation of `-suspendCurrentAppleEvent`, sets the values that will be returned by subsequent invocations of `currentAppleEvent` and `currentReplyAppleEvent` to be the event whose handling was suspended and its corresponding reply event, respectively.
+        ///
+        /// Redundant invocations of this method will be ignored.
+        ///
         /// # Safety
         ///
         /// `suspension_id` must be a valid pointer.
@@ -148,6 +209,10 @@ impl NSAppleEventManager {
             suspension_id: NSAppleEventManagerSuspensionID,
         );
 
+        /// Given a nonzero suspension ID returned by an invocation of `-suspendCurrentAppleEvent`, signal that handling of the suspended event may now continue.
+        ///
+        /// This may result in the immediate sending of the reply event to the sender of the suspended event, if the sender has requested a reply. If the suspension ID has been used in a previous invocation of `-setCurrentAppleEventAndReplyEventWithSuspensionID:` the effects of that invocation will be completely undone. Subsequent invocations of other `NSAppleEventManager` methods using the same suspension ID are invalid. This method may be invoked in any thread, not just the one in which the corresponding invocation of `-suspendCurrentAppleEvent` occurred.
+        ///
         /// # Safety
         ///
         /// `suspension_id` must be a valid pointer.

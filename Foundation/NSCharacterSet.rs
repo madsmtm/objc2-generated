@@ -12,7 +12,26 @@ use crate::*;
 pub const NSOpenStepUnicodeReservedBase: c_uint = 0xF400;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscharacterset?language=objc)
+    /// An object representing a fixed set of Unicode character values for use in search operations.
+    ///
+    /// In Swift, this bridges to a ``CharacterSet``; use ``NSCharacterSet`` when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// An `NSCharacterSet` object represents a set of Unicode-compliant characters. `NSString` and `NSScanner` objects use `NSCharacterSet` objects to group characters together for searching operations, so that they can find any of a particular set of characters during a search. The cluster's two public classes, `NSCharacterSet` and ``NSMutableCharacterSet``, declare the programmatic interface for static and dynamic character sets, respectively.
+    ///
+    /// The objects you create using these classes are referred to as character set objects (and when no confusion will result, merely as character sets). Because of the nature of class clusters, character set objects aren't actual instances of the `NSCharacterSet` or `NSMutableCharacterSet` classes but of one of their private subclasses. Although a character set object's class is private, its interface is public, as declared by these abstract superclasses, `NSCharacterSet` and `NSMutableCharacterSet`. The character set classes adopt the `NSCopying` and `NSMutableCopying` protocols, making it convenient to convert a character set of one type to the other.
+    ///
+    /// The `NSCharacterSet` class declares the programmatic interface for an object that manages a set of Unicode characters (see the ``NSString`` class cluster specification for information on Unicode). `NSCharacterSet`'s principal primitive method, ``characterIsMember(_:)``, provides the basis for all other instance methods in its interface. A subclass of `NSCharacterSet` needs only to implement this method, plus ``NSMutableCopying/mutableCopy(with:)``, for proper behavior. For optimal performance, a subclass should also override ``bitmapRepresentation``, which otherwise works by invoking ``characterIsMember(_:)`` for every possible Unicode value.
+    ///
+    /// `NSCharacterSet` is "toll-free bridged" with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfcharacterset>. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``CharacterSet`` structure, which bridges to the ``NSCharacterSet`` class and its mutable subclass, ``NSMutableCharacterSet``. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscharacterset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCharacterSet;
@@ -70,82 +89,183 @@ extern_conformance!(
 
 impl NSCharacterSet {
     extern_methods!(
+        /// A character set containing the characters in Unicode General Category Cc and Cf.
+        ///
+        /// These characters include, for example, the soft hyphen (`U+00AD`), control characters to support bi-directional text, and IETF language tag characters.
         #[unsafe(method(controlCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn controlCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in Unicode General Category Zs and `CHARACTER TABULATION` (`U+0009`).
+        ///
+        /// This set doesn't contain the newline or carriage return characters.
         #[unsafe(method(whitespaceCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn whitespaceCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing characters in Unicode General Category Z\*, `U+000A` ~ `U+000D`, and `U+0085`.
         #[unsafe(method(whitespaceAndNewlineCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn whitespaceAndNewlineCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in the category of Decimal Numbers.
+        ///
+        /// Informally, this set is the set of all characters used to represent the decimal values `0` through `9`. These characters include, for example, the decimal digits of the Indic scripts and Arabic.
         #[unsafe(method(decimalDigitCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn decimalDigitCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in Unicode General Category L\*
+        /// &
+        /// M\*.
+        ///
+        /// Informally, this set is the set of all characters used as letters of alphabets and ideographs.
         #[unsafe(method(letterCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn letterCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in Unicode General Category Ll.
+        ///
+        /// Informally, this set is the set of all characters used as lowercase letters in alphabets that make case distinctions.
         #[unsafe(method(lowercaseLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn lowercaseLetterCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in Unicode General Category Lu and Lt.
+        ///
+        /// Informally, this set is the set of all characters used as uppercase letters in alphabets that make case distinctions.
         #[unsafe(method(uppercaseLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn uppercaseLetterCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in Unicode General Category M\*.
+        ///
+        /// This set is also defined as all legal Unicode characters with a non-spacing priority greater than `0`. Informally, this set is the set of all characters used as modifiers of base characters.
         #[unsafe(method(nonBaseCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn nonBaseCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in Unicode General Categories L\*, M\*, and N\*.
+        ///
+        /// Informally, this set is the set of all characters used as basic units of alphabets, syllabaries, ideographs, and digits.
         #[unsafe(method(alphanumericCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn alphanumericCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing individual Unicode characters that can also be represented as composed character sequences (such as for letters with accents), by the definition of "standard decomposition" in version 3.2 of the Unicode character encoding standard.
+        ///
+        /// These characters include compatibility characters as well as pre-composed characters.
+        ///
+        /// > Note: This character set doesn't currently include the Hangul characters defined in version 2.0 of the Unicode standard.
         #[unsafe(method(decomposableCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn decomposableCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing values in the category of Non-Characters or that have not yet been defined in version 3.2 of the Unicode standard.
         #[unsafe(method(illegalCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn illegalCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in Unicode General Category P\*.
+        ///
+        /// Informally, this set is the set of all non-whitespace characters used to separate linguistic units in scripts, such as periods, dashes, parentheses, and so on.
         #[unsafe(method(punctuationCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn punctuationCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in Unicode General Category Lt.
         #[unsafe(method(capitalizedLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn capitalizedLetterCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the characters in Unicode General Category S\*.
+        ///
+        /// These characters include, for example, the dollar sign (`$`) and the plus (`+`) sign.
         #[unsafe(method(symbolCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn symbolCharacterSet() -> Retained<NSCharacterSet>;
 
+        /// A character set containing the newline characters (`U+000A` ~ `U+000D`, `U+0085`, `U+2028`, and `U+2029`).
         #[unsafe(method(newlineCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn newlineCharacterSet() -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSRange")]
+        /// Returns a character set containing characters with Unicode values in a given range.
+        ///
+        /// This code excerpt creates a character set object containing the lowercase English alphabetic characters:
+        ///
+        /// ```objc
+        /// NSRange lcEnglishRange;
+        /// NSCharacterSet *lcEnglishLetters;
+        ///
+        /// lcEnglishRange.location = (unsigned int)'a';
+        /// lcEnglishRange.length = 26;
+        /// lcEnglishLetters = [NSCharacterSet characterSetWithRange:lcEnglishRange];
+        /// ```
+        ///
+        /// - Parameter aRange: A range of Unicode values. `aRange.location` is the value of the first character to return; `aRange.location + aRange.length - 1` is the value of the last.
+        /// - Returns: A character set containing characters whose Unicode values are given by `aRange`. If `aRange.length` is `0`, returns an empty character set.
         #[unsafe(method(characterSetWithRange:))]
         #[unsafe(method_family = none)]
         pub fn characterSetWithRange(a_range: NSRange) -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a character set containing the characters in a given string.
+        ///
+        /// - Parameter aString: A string containing characters for the new character set.
+        /// - Returns: A character set containing the characters in `aString`. Returns an empty character set if `aString` is empty.
         #[unsafe(method(characterSetWithCharactersInString:))]
         #[unsafe(method_family = none)]
         pub fn characterSetWithCharactersInString(a_string: &NSString) -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSData")]
+        /// Returns a character set containing characters determined by a given bitmap representation.
+        ///
+        /// This method is useful for creating a character set object with data from a file or other external data source.
+        ///
+        /// A raw bitmap representation of a character set is a byte array with the first 2^16 bits (that is, 8192 bytes) representing the code point range of the Basic Multilingual Plane (BMP), such that the value of the bit at position n represents the presence in the character set of the character with decimal Unicode value n. A bitmap representation may contain zero to sixteen additional 8192 byte segments for each additional Unicode plane containing a character in a character set, with each 8192 byte segment prepended with a single plane index byte.
+        ///
+        /// To add a character in the Basic Multilingual Plane (BMP) with decimal Unicode value n to a raw bitmap representation, you might do the following:
+        ///
+        /// ```objc
+        /// unsigned char bitmapRep[8192];
+        /// bitmapRep[n >> 3] |= (((unsigned int)1)
+        /// <
+        /// <
+        /// (n
+        /// &
+        /// 7));
+        /// ```
+        ///
+        /// To remove that character:
+        ///
+        /// ```objc
+        /// bitmapRep[n >> 3]
+        /// &
+        /// = ~(((unsigned int)1)
+        /// <
+        /// <
+        /// (n
+        /// &
+        /// 7));
+        /// ```
+        ///
+        /// - Parameter data: A bitmap representation of a character set.
+        /// - Returns: A character set containing characters determined by `data`.
         #[unsafe(method(characterSetWithBitmapRepresentation:))]
         #[unsafe(method_family = none)]
         pub fn characterSetWithBitmapRepresentation(data: &NSData) -> Retained<NSCharacterSet>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a character set read from the bitmap representation stored in the file at a given path.
+        ///
+        /// This method doesn't use filenames to check for the uniqueness of the character sets it creates. To prevent duplication of character sets in memory, cache them and make them available through an API that checks whether the requested set has already been loaded.
+        ///
+        /// To read a bitmap representation from any file, use the `NSData` method `dataWithContentsOfFile:options:error:` and pass the result to ``characterSetWithBitmapRepresentation:``.
+        ///
+        /// - Parameter fName: A path to a file containing a bitmap representation of a character set. The path name must end with the extension `.bitmap`.
+        /// - Returns: A character set read from the bitmap representation stored in the file at `fName`.
         #[unsafe(method(characterSetWithContentsOfFile:))]
         #[unsafe(method_family = none)]
         pub fn characterSetWithContentsOfFile(
@@ -153,27 +273,73 @@ impl NSCharacterSet {
         ) -> Option<Retained<NSCharacterSet>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value that indicates whether a given character is in the receiver.
+        ///
+        /// - Parameter aCharacter: The character to test for membership of the receiver.
+        /// - Returns: `YES` if `aCharacter` is in the receiving character set, otherwise `NO`.
         #[unsafe(method(characterIsMember:))]
         #[unsafe(method_family = none)]
         pub fn characterIsMember(&self, a_character: unichar) -> bool;
 
         #[cfg(feature = "NSData")]
+        /// An `NSData` object encoding the receiver in binary format.
+        ///
+        /// This format is suitable for saving to a file or otherwise transmitting or archiving.
+        ///
+        /// A raw bitmap representation of a character set is a byte array with the first 2^16 bits (that is, 8192 bytes) representing the code point range of the Basic Multilingual Plane (BMP), such that the value of the bit at position n represents the presence in the character set of the character with decimal Unicode value n. A bitmap representation may contain zero to sixteen additional 8192 byte segments for each additional Unicode plane containing a character in a character set, with each 8192 byte segment prepended with a single plane index byte.
+        ///
+        /// For example, a character set containing only Basic Latin (ASCII) characters, which are contained by the Basic Multilingual Plane (BMP, plane 0), has a bitmap representation with a size of 8192 bytes, whereas a character set containing both Basic Latin (ASCII) characters and emoji characters, which are contained by the Supplementary Multilingual Plane (SMP, plane 1), has a bitmap representation with a size of 16385 bytes (8192 bytes for BMP, followed by the byte `0x01` for the plane index of SMP, followed by 8192 bytes for SMP).
+        ///
+        /// To test for the presence of a character in the Basic Multilingual Plane (BMP) with decimal Unicode value n in a raw bitmap representation, you might do the following:
+        ///
+        /// ```objc
+        /// unsigned char bitmapRep[8192];
+        /// if (bitmapRep[n >> 3]
+        /// &
+        /// (((unsigned int)1)
+        /// <
+        /// <
+        /// (n
+        /// &
+        /// 7))) {
+        /// /* Character is present. */
+        /// }
+        /// ```
         #[unsafe(method(bitmapRepresentation))]
         #[unsafe(method_family = none)]
         pub fn bitmapRepresentation(&self) -> Retained<NSData>;
 
+        /// A character set containing only characters that don't exist in the receiver.
+        ///
+        /// Using the inverse of an immutable character set is much more efficient than inverting a mutable character set.
         #[unsafe(method(invertedSet))]
         #[unsafe(method_family = none)]
         pub fn invertedSet(&self) -> Retained<NSCharacterSet>;
 
+        /// Returns a Boolean value that indicates whether a given long character is a member of the receiver.
+        ///
+        /// This method supports the specification of 32-bit characters.
+        ///
+        /// - Parameter theLongChar: A UTF32 character.
+        /// - Returns: `YES` if `theLongChar` is in the receiver, otherwise `NO`.
         #[unsafe(method(longCharacterIsMember:))]
         #[unsafe(method_family = none)]
         pub fn longCharacterIsMember(&self, the_long_char: UTF32Char) -> bool;
 
+        /// Returns a Boolean value that indicates whether the receiver is a superset of another given character set.
+        ///
+        /// - Parameter theOtherSet: A character set.
+        /// - Returns: `YES` if the receiver is a superset of `theOtherSet`, otherwise `NO`.
         #[unsafe(method(isSupersetOfSet:))]
         #[unsafe(method_family = none)]
         pub fn isSupersetOfSet(&self, the_other_set: &NSCharacterSet) -> bool;
 
+        /// Returns a Boolean value that indicates whether the receiver has at least one member in a given character plane.
+        ///
+        /// This method makes it easier to find the plane containing the members of the current character set. The Basic Multilingual Plane (BMP) is plane `0`.
+        ///
+        /// - Parameter thePlane: A character plane.
+        /// - Returns: `YES` if the receiver has at least one member in `thePlane`, otherwise `NO`.
         #[unsafe(method(hasMemberInPlane:))]
         #[unsafe(method_family = none)]
         pub fn hasMemberInPlane(&self, the_plane: u8) -> bool;
@@ -201,7 +367,26 @@ impl DefaultRetained for NSCharacterSet {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablecharacterset?language=objc)
+    /// An object representing a mutable set of Unicode character values for use in search operations.
+    ///
+    /// In Swift, this object bridges to ``CharacterSet``; use ``NSMutableCharacterSet`` when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// The `NSMutableCharacterSet` class declares the programmatic interface to objects that manage a modifiable set of Unicode characters. You can add or remove characters from a mutable character set as numeric values in `NSRange` structures or as character values in strings, combine character sets by union or intersection, and invert a character set.
+    ///
+    /// Mutable character sets are less efficient to use than immutable character sets. If you don't need to change a character set after creating it, create an immutable copy with `copy` and use that.
+    ///
+    /// `NSMutableCharacterSet` defines no primitive methods. Subclasses must implement all methods declared by this class in addition to the primitives of ``NSCharacterSet``. They must also implement ``NSMutableCopying/mutableCopy(with:)``.
+    ///
+    /// `NSMutableCharacterSet` is "toll-free bridged" with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset>. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``CharacterSet`` structure, which bridges to the ``NSMutableCharacterSet`` class and its immutable superclass, ``NSCharacterSet``.  For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablecharacterset?language=objc)
     #[unsafe(super(NSCharacterSet, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableCharacterSet;
@@ -260,103 +445,156 @@ extern_conformance!(
 impl NSMutableCharacterSet {
     extern_methods!(
         #[cfg(feature = "NSRange")]
+        /// Adds to the receiver the characters whose Unicode values are in a given range.
+        ///
+        /// This code excerpt adds to a character set the lowercase English alphabetic characters:
+        ///
+        /// ```objc
+        /// NSMutableCharacterSet *aCharacterSet = [[NSMutableCharacterSet alloc] init];
+        /// NSRange lcEnglishRange;
+        ///
+        /// lcEnglishRange.location = (unsigned int)'a';
+        /// lcEnglishRange.length = 26;
+        /// [aCharacterSet addCharactersInRange:lcEnglishRange];
+        /// ```
+        ///
+        /// - Parameter aRange: The range of characters to add. `aRange.location` is the value of the first character to add; `aRange.location + aRange.length - 1` is the value of the last. If `aRange.length` is `0`, this method has no effect.
         #[unsafe(method(addCharactersInRange:))]
         #[unsafe(method_family = none)]
         pub fn addCharactersInRange(&self, a_range: NSRange);
 
         #[cfg(feature = "NSRange")]
+        /// Removes from the receiver the characters whose Unicode values are in a given range.
+        ///
+        /// - Parameter aRange: The range of characters to remove. `aRange.location` is the value of the first character to remove; `aRange.location + aRange.length - 1` is the value of the last. If `aRange.length` is `0`, this method has no effect.
         #[unsafe(method(removeCharactersInRange:))]
         #[unsafe(method_family = none)]
         pub fn removeCharactersInRange(&self, a_range: NSRange);
 
         #[cfg(feature = "NSString")]
+        /// Adds to the receiver the characters in a given string.
+        ///
+        /// This method has no effect if `aString` is empty.
+        ///
+        /// - Parameter aString: The characters to add to the receiver.
         #[unsafe(method(addCharactersInString:))]
         #[unsafe(method_family = none)]
         pub fn addCharactersInString(&self, a_string: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Removes from the receiver the characters in a given string.
+        ///
+        /// This method has no effect if `aString` is empty.
+        ///
+        /// - Parameter aString: The characters to remove from the receiver.
         #[unsafe(method(removeCharactersInString:))]
         #[unsafe(method_family = none)]
         pub fn removeCharactersInString(&self, a_string: &NSString);
 
+        /// Modifies the receiver so it contains all characters that exist in either the receiver or another set.
         #[unsafe(method(formUnionWithCharacterSet:))]
         #[unsafe(method_family = none)]
         pub fn formUnionWithCharacterSet(&self, other_set: &NSCharacterSet);
 
+        /// Modifies the receiver so it contains only characters that exist in both the receiver and another set.
+        ///
+        /// - Parameter otherSet: The character set with which to perform the intersection.
         #[unsafe(method(formIntersectionWithCharacterSet:))]
         #[unsafe(method_family = none)]
         pub fn formIntersectionWithCharacterSet(&self, other_set: &NSCharacterSet);
 
+        /// Replaces all the characters in the receiver with all the characters it didn't previously contain.
+        ///
+        /// Inverting a mutable character set, whether by `invert` or by `invertedSet`, is much less efficient than inverting an immutable character set with `invertedSet`.
         #[unsafe(method(invert))]
         #[unsafe(method_family = none)]
         pub fn invert(&self);
 
+        /// Returns a mutable character set containing the characters in Unicode General Category Cc and Cf.
         #[unsafe(method(controlCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn controlCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in Unicode General Category Zs and `CHARACTER TABULATION` (`U+0009`).
         #[unsafe(method(whitespaceCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn whitespaceCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing characters in Unicode General Category Z\*, `U+000A` ~ `U+000D`, and `U+0085`.
         #[unsafe(method(whitespaceAndNewlineCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn whitespaceAndNewlineCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in the category of decimal numbers.
         #[unsafe(method(decimalDigitCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn decimalDigitCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in Unicode General Category L\*
+        /// &
+        /// M\*.
         #[unsafe(method(letterCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn letterCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in Unicode General Category Ll.
         #[unsafe(method(lowercaseLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn lowercaseLetterCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in Unicode General Category Lu and Lt.
         #[unsafe(method(uppercaseLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn uppercaseLetterCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in Unicode General Category M\*.
         #[unsafe(method(nonBaseCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn nonBaseCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in Unicode General Categories L\*, M\*, and N\*.
         #[unsafe(method(alphanumericCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn alphanumericCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing individual Unicode characters that can also be represented as composed character sequences (such as for letters with accents), by the definition of "standard decomposition" in version 3.2 of the Unicode character encoding standard.
         #[unsafe(method(decomposableCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn decomposableCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing values in the category of Non-Characters or that have not yet been defined in version 3.2 of the Unicode standard.
         #[unsafe(method(illegalCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn illegalCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in Unicode General Category P\*.
         #[unsafe(method(punctuationCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn punctuationCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in Unicode General Category Lt.
         #[unsafe(method(capitalizedLetterCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn capitalizedLetterCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the characters in Unicode General Category S\*.
         #[unsafe(method(symbolCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn symbolCharacterSet() -> Retained<NSMutableCharacterSet>;
 
+        /// Returns a mutable character set containing the newline characters (`U+000A` ~ `U+000D`, `U+0085`, `U+2028`, and `U+2029`).
         #[unsafe(method(newlineCharacterSet))]
         #[unsafe(method_family = none)]
         pub fn newlineCharacterSet() -> Retained<NSMutableCharacterSet>;
 
         #[cfg(feature = "NSRange")]
+        /// Returns a mutable character set containing characters with Unicode values in a given range.
         #[unsafe(method(characterSetWithRange:))]
         #[unsafe(method_family = none)]
         pub fn characterSetWithRange(a_range: NSRange) -> Retained<NSMutableCharacterSet>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a mutable character set containing the characters in a given string.
         #[unsafe(method(characterSetWithCharactersInString:))]
         #[unsafe(method_family = none)]
         pub fn characterSetWithCharactersInString(
@@ -364,6 +602,7 @@ impl NSMutableCharacterSet {
         ) -> Retained<NSMutableCharacterSet>;
 
         #[cfg(feature = "NSData")]
+        /// Returns a mutable character set containing characters determined by a given bitmap representation.
         #[unsafe(method(characterSetWithBitmapRepresentation:))]
         #[unsafe(method_family = none)]
         pub fn characterSetWithBitmapRepresentation(
@@ -371,6 +610,7 @@ impl NSMutableCharacterSet {
         ) -> Retained<NSMutableCharacterSet>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a mutable character set read from the bitmap representation stored in the file at a given path.
         #[unsafe(method(characterSetWithContentsOfFile:))]
         #[unsafe(method_family = none)]
         pub fn characterSetWithContentsOfFile(

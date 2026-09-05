@@ -252,6 +252,31 @@ unsafe impl RefEncode for HKCategoryValueLowCardioFitnessEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Set of values that may be used for HKCategorySamples with the HKCategoryTypeIdentifierMenopausalState
+/// type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenopausalstate?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct HKCategoryValueMenopausalState(pub NSInteger);
+impl HKCategoryValueMenopausalState {
+    #[doc(alias = "HKCategoryValueMenopausalStateMenopause")]
+    pub const Menopause: Self = Self(1);
+    #[doc(alias = "HKCategoryValueMenopausalStatePerimenopause")]
+    pub const Perimenopause: Self = Self(2);
+    #[doc(alias = "HKCategoryValueMenopausalStateNone")]
+    pub const None: Self = Self(3);
+}
+
+unsafe impl Encode for HKCategoryValueMenopausalState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for HKCategoryValueMenopausalState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// Set of values to indicate the type of menstrual flow.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenstrualflow?language=objc)

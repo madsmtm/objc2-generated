@@ -8,17 +8,27 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssocketnativehandle?language=objc)
+/// Type for the platform-specific native socket handle.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssocketnativehandle?language=objc)
 pub type NSSocketNativeHandle = c_int;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportdidbecomeinvalidnotification?language=objc)
+    /// Posted from the ``invalidate`` method, which is invoked when the ``NSPort`` is deallocated or when it notices that its communication channel has been damaged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportdidbecomeinvalidnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSPortDidBecomeInvalidNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsport?language=objc)
+    /// An abstract class that represents a communication channel.
+    ///
+    /// Communication occurs between ``NSPort`` objects, which typically reside in different threads or tasks. The distributed objects system uses ``NSPort`` objects to send ``NSPortMessage`` objects back and forth. Implement interapplication communication using distributed objects whenever possible and use ``NSPort`` objects only when necessary.
+    ///
+    /// To receive incoming messages, add ``NSPort`` objects to an instance of ``NSRunLoop`` as input sources. ``NSConnection`` objects automatically add their receive port when initialized.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPort;
@@ -45,27 +55,36 @@ extern_conformance!(
 
 impl NSPort {
     extern_methods!(
+        /// Creates and returns a new ``NSPort`` object capable of both sending and receiving messages.
         #[unsafe(method(port))]
         #[unsafe(method_family = none)]
         pub fn port() -> Retained<NSPort>;
 
+        /// Marks the receiver as invalid and posts an ``NSPortDidBecomeInvalidNotification`` to the default notification center.
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub fn invalidate(&self);
 
+        /// A Boolean value that indicates whether the receiver is valid.
         #[unsafe(method(isValid))]
         #[unsafe(method_family = none)]
         pub fn isValid(&self) -> bool;
 
+        /// Sets the receiver's delegate to a given object.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, an_object: Option<&ProtocolObject<dyn NSPortDelegate>>);
 
+        /// Returns the receiver's delegate.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSPortDelegate>>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// Schedules the receiver into a given run loop.
+        ///
+        /// You should not directly invoke this method. Instead, you should add the port to a run loop.
+        ///
         /// # Safety
         ///
         /// `run_loop` possibly has additional threading requirements.
@@ -74,6 +93,10 @@ impl NSPort {
         pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// Removes the receiver from the run loop mode of the given run loop.
+        ///
+        /// You should not directly invoke this method. Instead, you should remove the port from the run loop.
+        ///
         /// # Safety
         ///
         /// `run_loop` possibly has additional threading requirements.
@@ -81,11 +104,14 @@ impl NSPort {
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
+        /// The number of bytes of space reserved by the receiver for sending data.
         #[unsafe(method(reservedSpaceLength))]
         #[unsafe(method_family = none)]
         pub fn reservedSpaceLength(&self) -> NSUInteger;
 
         #[cfg(all(feature = "NSArray", feature = "NSDate"))]
+        /// Attempts to send the message before a given date, treating the receiver as the send port and the given port as the receive port.
+        ///
         /// # Safety
         ///
         /// `components` generic should be of the correct type.
@@ -100,6 +126,8 @@ impl NSPort {
         ) -> bool;
 
         #[cfg(all(feature = "NSArray", feature = "NSDate"))]
+        /// Attempts to send the message with a given identifier before a given date, treating the receiver as the send port and the given port as the receive port.
+        ///
         /// # Safety
         ///
         /// `components` generic should be of the correct type.
@@ -120,6 +148,8 @@ impl NSPort {
             feature = "NSRunLoop",
             feature = "NSString"
         ))]
+        /// Adds a given connection to the receiver in a given run loop mode.
+        ///
         /// # Safety
         ///
         /// `run_loop` possibly has additional threading requirements.
@@ -139,6 +169,8 @@ impl NSPort {
             feature = "NSRunLoop",
             feature = "NSString"
         ))]
+        /// Removes a given connection from the receiver in a given run loop mode.
+        ///
         /// # Safety
         ///
         /// `run_loop` possibly has additional threading requirements.
@@ -175,9 +207,12 @@ impl DefaultRetained for NSPort {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportdelegate?language=objc)
+    /// An interface for handling incoming messages.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportdelegate?language=objc)
     pub unsafe trait NSPortDelegate: NSObjectProtocol {
         #[cfg(feature = "NSPortMessage")]
+        /// Handles a given port message.
         #[optional]
         #[unsafe(method(handlePortMessage:))]
         #[unsafe(method_family = none)]
@@ -185,17 +220,22 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportoptions?language=objc)
+/// Used to remove access rights to a mach port when the `NSMachPort` object is invalidated or destroyed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMachPortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMachPortOptions: NSUInteger {
+/// Do not remove any send or receive rights.
         #[doc(alias = "NSMachPortDeallocateNone")]
         const DeallocateNone = 0;
+/// Deallocate the port's send right when the port is invalidated or destroyed.
         #[doc(alias = "NSMachPortDeallocateSendRight")]
         const DeallocateSendRight = 1<<0;
+/// Deallocate the port's receive right when the port is invalidated or destroyed.
         #[doc(alias = "NSMachPortDeallocateReceiveRight")]
         const DeallocateReceiveRight = 1<<1;
         const _ = !0;
@@ -211,7 +251,11 @@ unsafe impl RefEncode for NSMachPortOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachport?language=objc)
+    /// A port that can be used as an endpoint for distributed object connections (or raw messaging).
+    ///
+    /// ``NSMachPort`` is a subclass of ``NSPort`` that wraps a Mach port, the fundamental communication port in macOS. ``NSMachPort`` allows for local (on the same machine) communication only.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachport?language=objc)
     #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMachPort;
@@ -254,14 +298,17 @@ extern_conformance!(
 
 impl NSMachPort {
     extern_methods!(
+        /// Creates and returns a port object with a given Mach port.
         #[unsafe(method(portWithMachPort:))]
         #[unsafe(method_family = none)]
         pub fn portWithMachPort(mach_port: u32) -> Retained<NSPort>;
 
+        /// Initializes a newly allocated ``NSMachPort`` object with a given Mach port.
         #[unsafe(method(initWithMachPort:))]
         #[unsafe(method_family = init)]
         pub fn initWithMachPort(this: Allocated<Self>, mach_port: u32) -> Retained<Self>;
 
+        /// Sets the receiver's delegate to a given object.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -269,14 +316,17 @@ impl NSMachPort {
             an_object: Option<&ProtocolObject<dyn NSMachPortDelegate>>,
         );
 
+        /// Returns the receiver's delegate.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMachPortDelegate>>>;
 
+        /// Creates and returns a port object with a given Mach port and the specified options.
         #[unsafe(method(portWithMachPort:options:))]
         #[unsafe(method_family = none)]
         pub fn portWithMachPort_options(mach_port: u32, f: NSMachPortOptions) -> Retained<NSPort>;
 
+        /// Initializes a newly allocated ``NSMachPort`` object with a given Mach port and the specified options.
         #[unsafe(method(initWithMachPort:options:))]
         #[unsafe(method_family = init)]
         pub fn initWithMachPort_options(
@@ -285,11 +335,14 @@ impl NSMachPort {
             f: NSMachPortOptions,
         ) -> Retained<Self>;
 
+        /// The Mach port used by the receiver.
         #[unsafe(method(machPort))]
         #[unsafe(method_family = none)]
         pub fn machPort(&self) -> u32;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// Schedules the port on a given run loop.
+        ///
         /// # Safety
         ///
         /// `run_loop` possibly has additional threading requirements.
@@ -298,6 +351,8 @@ impl NSMachPort {
         pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// Removes the port from a given run loop.
+        ///
         /// # Safety
         ///
         /// `run_loop` possibly has additional threading requirements.
@@ -328,8 +383,14 @@ impl DefaultRetained for NSMachPort {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportdelegate?language=objc)
+    /// An interface for handling incoming Mach messages.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportdelegate?language=objc)
     pub unsafe trait NSMachPortDelegate: NSPortDelegate {
+        /// Handles an incoming Mach message.
+        ///
+        /// The argument is a raw Mach message beginning with a `msg_header_t` structure.
+        ///
         /// # Safety
         ///
         /// `msg` must be a valid pointer.
@@ -341,7 +402,26 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmessageport?language=objc)
+    /// A port that can be used as an endpoint for distributed object connections (or raw messaging).
+    ///
+    /// ``MessagePort`` is a subclass of ``Port`` that allows for local (on the same machine) communication only. A companion class, ``SocketPort``, allows for both local and remote communication, but may be more expensive than ``MessagePort`` for the local case.
+    ///
+    /// ``MessagePort`` defines no additional methods over those already defined by ``Port``.
+    ///
+    /// > Note:
+    /// > ``MessagePort`` conforms to the ``NSCoding`` protocol, but only supports coding by an ``NSPortCoder`` object. ``Port`` and its subclasses do not support archiving.
+    ///
+    /// > Important:
+    /// > Avoid ``MessagePort``. There's little reason to use ``MessagePort`` rather than ``NSMachPort`` or ``SocketPort``. There's no particular performance or functionality advantage. It is recommended avoiding its use.
+    /// >
+    /// > ``MessagePort`` may be deprecated in the macOS 10.6 or later.
+    ///
+    /// ## See Also
+    ///
+    /// - [Distributed Objects Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DistrObjects/DistrObjects.html#//apple_ref/doc/uid/10000102i)
+    /// A port that can be used for local message sending on all platforms.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmessageport?language=objc)
     #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMessagePort;
@@ -405,7 +485,11 @@ impl DefaultRetained for NSMessagePort {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssocketport?language=objc)
+    /// A port that represents a BSD socket.
+    ///
+    /// A ``NSSocketPort`` object can be used as an endpoint for distributed object connections. Companion classes, ``NSMachPort`` and ``NSMessagePort``, allow for local (on the same machine) communication only. The ``NSSocketPort`` class allows for both local and remote communication, but may be more expensive than the others for the local case.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssocketport?language=objc)
     #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSocketPort;
@@ -432,15 +516,18 @@ extern_conformance!(
 
 impl NSSocketPort {
     extern_methods!(
+        /// Initializes the receiver as a local TCP/IP socket of type `SOCK_STREAM`, on a system-selected port.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initializes the receiver as a local TCP/IP socket of type `SOCK_STREAM`, listening on a given port number.
         #[unsafe(method(initWithTCPPort:))]
         #[unsafe(method_family = init)]
         pub fn initWithTCPPort(this: Allocated<Self>, port: c_ushort) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
+        /// Initializes the receiver as a local socket with the provided arguments.
         #[unsafe(method(initWithProtocolFamily:socketType:protocol:address:))]
         #[unsafe(method_family = init)]
         pub fn initWithProtocolFamily_socketType_protocol_address(
@@ -451,6 +538,7 @@ impl NSSocketPort {
             address: &NSData,
         ) -> Option<Retained<Self>>;
 
+        /// Initializes the receiver with a previously created local socket.
         #[unsafe(method(initWithProtocolFamily:socketType:protocol:socket:))]
         #[unsafe(method_family = init)]
         pub fn initWithProtocolFamily_socketType_protocol_socket(
@@ -462,6 +550,7 @@ impl NSSocketPort {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes the receiver as a TCP/IP socket of type `SOCK_STREAM` that can connect to a remote host on a given port.
         #[unsafe(method(initRemoteWithTCPPort:host:))]
         #[unsafe(method_family = init)]
         pub fn initRemoteWithTCPPort_host(
@@ -471,6 +560,7 @@ impl NSSocketPort {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
+        /// Initializes the receiver as a remote socket with the provided arguments.
         #[unsafe(method(initRemoteWithProtocolFamily:socketType:protocol:address:))]
         #[unsafe(method_family = init)]
         pub fn initRemoteWithProtocolFamily_socketType_protocol_address(
@@ -481,23 +571,28 @@ impl NSSocketPort {
             address: &NSData,
         ) -> Retained<Self>;
 
+        /// The protocol family of the receiver's socket.
         #[unsafe(method(protocolFamily))]
         #[unsafe(method_family = none)]
         pub fn protocolFamily(&self) -> c_int;
 
+        /// The type of the receiver's socket.
         #[unsafe(method(socketType))]
         #[unsafe(method_family = none)]
         pub fn socketType(&self) -> c_int;
 
+        /// The protocol that the receiver's socket uses.
         #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
         pub fn protocol(&self) -> c_int;
 
         #[cfg(feature = "NSData")]
+        /// The receiver's socket address structure stored inside an ``NSData`` object.
         #[unsafe(method(address))]
         #[unsafe(method_family = none)]
         pub fn address(&self) -> Retained<NSData>;
 
+        /// The receiver's native socket identifier on the platform.
         #[unsafe(method(socket))]
         #[unsafe(method_family = none)]
         pub fn socket(&self) -> NSSocketNativeHandle;

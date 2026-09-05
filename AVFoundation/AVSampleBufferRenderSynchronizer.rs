@@ -30,6 +30,10 @@ extern_class!(
     pub struct AVSampleBufferRenderSynchronizer;
 );
 
+unsafe impl Send for AVSampleBufferRenderSynchronizer {}
+
+unsafe impl Sync for AVSampleBufferRenderSynchronizer {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVSampleBufferRenderSynchronizer {}
 );
@@ -51,11 +55,21 @@ impl AVSampleBufferRenderSynchronizer {
         /// Playback rate.
         ///
         /// Indicates the current rate of rendering. A value of 0.0 means "stopped"; a value of 1.0 means "play at the natural rate of the media". Must be greater than or equal to 0.0.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
@@ -124,11 +138,21 @@ impl AVSampleBufferRenderSynchronizer {
         /// Indicates whether the playback should be started immediately on rate change request.
         ///
         /// If set to YES, playback will be delayed if the value of hasSufficientMediaDataForReliablePlaybackStart of any added renderer is NO. If set to NO, playback will attempt to start immediately regardless of the value of hasSufficientMediaDataForReliablePlaybackStart of added renderers. Default is YES.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delaysRateChangeUntilHasSufficientMediaData))]
         #[unsafe(method_family = none)]
         pub unsafe fn delaysRateChangeUntilHasSufficientMediaData(&self) -> bool;
 
         /// Setter for [`delaysRateChangeUntilHasSufficientMediaData`][Self::delaysRateChangeUntilHasSufficientMediaData].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDelaysRateChangeUntilHasSufficientMediaData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelaysRateChangeUntilHasSufficientMediaData(

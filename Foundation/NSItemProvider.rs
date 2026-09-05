@@ -6,18 +6,24 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility?language=objc)
+/// Specifications that control which categories of processes can see an item.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSItemProviderRepresentationVisibility(pub NSInteger);
 impl NSItemProviderRepresentationVisibility {
+    /// All processes can see this representation.
     #[doc(alias = "NSItemProviderRepresentationVisibilityAll")]
     pub const All: Self = Self(0);
+    /// Only processes from the same dev team can see this representation.
     #[doc(alias = "NSItemProviderRepresentationVisibilityTeam")]
     pub const Team: Self = Self(1);
+    /// Only processes from the same group can see this representation.
     #[doc(alias = "NSItemProviderRepresentationVisibilityGroup")]
     pub const Group: Self = Self(2);
+    /// Only the originator's process can see this representation.
     #[doc(alias = "NSItemProviderRepresentationVisibilityOwnProcess")]
     pub const OwnProcess: Self = Self(3);
 }
@@ -30,13 +36,16 @@ unsafe impl RefEncode for NSItemProviderRepresentationVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderfileoptions?language=objc)
+/// Data-access specifications that declare how to handle items.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderfileoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSItemProviderFileOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSItemProviderFileOptions: NSInteger {
+/// Allow the file to be opened in place.
         #[doc(alias = "NSItemProviderFileOptionOpenInPlace")]
         const OpenInPlace = 1;
         const _ = !0;
@@ -52,20 +61,25 @@ unsafe impl RefEncode for NSItemProviderFileOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderwriting?language=objc)
+    /// A protocol that allows a class to export its data to a variety of binary representations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderwriting?language=objc)
     pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of type identifiers that the class can provide data for.
         #[unsafe(method(writableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
         fn writableTypeIdentifiersForItemProvider_class() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of type identifiers that this particular instance can provide data for.
         #[optional]
         #[unsafe(method(writableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
         fn writableTypeIdentifiersForItemProvider(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the visibility specification for the representation of the given type identifier.
         #[optional]
         #[unsafe(method(itemProviderVisibilityForRepresentationWithTypeIdentifier:))]
         #[unsafe(method_family = none)]
@@ -74,6 +88,7 @@ extern_protocol!(
         ) -> NSItemProviderRepresentationVisibility;
 
         #[cfg(feature = "NSString")]
+        /// Returns the visibility specification for the representation of the given type identifier for this instance.
         #[optional]
         #[unsafe(method(itemProviderVisibilityForRepresentationWithTypeIdentifier:))]
         #[unsafe(method_family = none)]
@@ -89,6 +104,7 @@ extern_protocol!(
             feature = "NSString",
             feature = "block2"
         ))]
+        /// Loads the data representation for the given type identifier.
         #[unsafe(method(loadDataWithTypeIdentifier:forItemProviderCompletionHandler:))]
         #[unsafe(method_family = none)]
         fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
@@ -100,14 +116,18 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderreading?language=objc)
+    /// A protocol that allows a class to be constructed from a variety of binary representations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderreading?language=objc)
     pub unsafe trait NSItemProviderReading: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of type identifiers that the class can read.
         #[unsafe(method(readableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
         fn readableTypeIdentifiersForItemProvider() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSString"))]
+        /// Creates a new instance of the class from the given data and type identifier.
         #[unsafe(method(objectWithItemProviderData:typeIdentifier:error:_))]
         #[unsafe(method_family = none)]
         fn objectWithItemProviderData_typeIdentifier_error(
@@ -117,12 +137,29 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidercompletionhandler?language=objc)
+/// A block that receives the item provider's data.
+///
+/// Use this block to receive data from a call to the `loadItemForTypeIdentifier:options:completionHandler:` method. This block takes the following parameters:
+///
+/// - `item`: The item to be loaded. When specifying your block, set the type of this parameter to the specific data type you want. For example, when requesting text data, you might set the type to `NSString` or `NSAttributedString`. The item provider attempts to coerce the data to the class you specify.
+/// - `error`: A pointer to an error object for receiving information about any problems that occurred when loading the data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidercompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
 pub type NSItemProviderCompletionHandler =
     block2::SendableBlock<'static, fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderloadhandler?language=objc)
+/// A block that loads the item provider's data and coerces it to the specified type.
+///
+/// Use this block when registering a type-specific coercion handler with the `registerItemForTypeIdentifier:loadHandler:` method. The parameters for this block are as follows:
+///
+/// - `completionHandler`: The completion handler to call with the resulting data. For information about this block, see `NSItemProviderCompletionHandler`.
+/// - `expectedValueClass`: The expected class of the item being loaded. Convert the item provider's data to this type and pass the resulting object as the first parameter of the `completionHandler` block.
+/// - `options`: A dictionary with options for how to provide the requested item. For example, the dictionary may contain the pixel dimensions of a requested image.
+///
+/// When a client calls the `loadItemForTypeIdentifier:options:completionHandler:` method and requests the appropriate type, the item provider executes your block. In your implementation, create an object of the expected type and execute the block in the `completionHandler` parameter, passing the newly created object as the first parameter of that block. If there is an error, pass `nil` for the object and provide an appropriate `NSError` object explaining what happened.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderloadhandler?language=objc)
 #[cfg(all(
     feature = "NSDictionary",
     feature = "NSError",
@@ -135,7 +172,29 @@ pub type NSItemProviderLoadHandler = block2::SendableBlock<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider?language=objc)
+    /// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
+    ///
+    /// Starting in iOS 11, item providers play a central role in drag and drop, and in copy and paste. They continue to play a role with app extensions.
+    ///
+    /// The system uses an internal queue when calling the completion blocks for the `NSItemProvider` class. When using an item provider with drag and drop, ensure that UI updates take place on the main queue as follows:
+    ///
+    /// ```swift
+    /// DispatchQueue.main.async {
+    /// // Work that impacts the user interface.
+    /// }
+    /// ```
+    ///
+    /// ### App extension support
+    ///
+    /// An app extension typically encounters item providers when examining the ``NSExtensionItem/attachments`` property of an ``NSExtensionItem`` object. During that examination, the extension can use the ``hasItemConformingToTypeIdentifier(_:)`` method to look for data that it recognizes. Item providers use
+    /// <doc
+    /// ://com.apple.documentation/documentation/uniformtypeidentifiers> values to identify the data they contain. After finding a type of data that your extension can use, it calls the ``loadItem(forTypeIdentifier:options:completionHandler:)`` method to load the actual data, which is delivered to the provided completion handler.
+    ///
+    /// You can create item providers to vend data to another process. An extension that modifies an original data item can create a new `NSItemProvider` object to send back to the host app. When creating data items, you specify your data object and the type of that object. You can optionally use the ``previewImageHandler`` property to generate a preview image for your data.
+    ///
+    /// A single item provider may use custom blocks to provide its data in many different formats. When configuring an item provider, use the ``registerItem(forTypeIdentifier:loadHandler:)`` method to register your blocks and the formats each one supports. When a client requests data in a particular format, the item provider executes the corresponding block, which is then responsible for coercing the data to the appropriate type and returning it to the client.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSItemProvider;
@@ -157,6 +216,7 @@ extern_conformance!(
 
 impl NSItemProvider {
     extern_methods!(
+        /// Creates an empty item provider to which you can later register a data or file representation.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -168,6 +228,11 @@ impl NSItemProvider {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// Registers a data-backed representation for an item, specifying item visibility and a load handler.
+        ///
+        /// Register higher-fidelity types first, followed by progressively lower-fidelity ones.
+        /// This ordering helps consumers get the best representation they can handle.
+        ///
         /// # Safety
         ///
         /// - `load_handler` block's return must be a valid pointer or null.
@@ -194,6 +259,20 @@ impl NSItemProvider {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler.
+        ///
+        /// If a destination app must access the represented file using a file coordinator, set the `coordinated` parameter
+        /// in the load handler block to `YES`.
+        ///
+        /// To offer a representation backed by a file provider, return an `NSURL` object that points to your app's file
+        /// provider's container. The file provider extension is then invoked to retrieve the file when requested.
+        ///
+        /// To offer a representation backed by a file to open in place, set the `fileOptions` parameter to
+        /// `NSItemProviderFileOptionOpenInPlace`; in addition, return an `NSURL` object that points to your app's
+        /// file provider's container. Open-in-place support requires that the file provider is visible in the Files app.
+        ///
+        /// If `NSItemProviderFileOptionOpenInPlace` is not provided, the file will be copied before the load handler returns.
+        ///
         /// # Safety
         ///
         /// - `load_handler` block's return must be a valid pointer or null.
@@ -215,11 +294,19 @@ impl NSItemProvider {
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The array of type identifiers for the item provider, in the same order they were registered.
         #[unsafe(method(registeredTypeIdentifiers))]
         #[unsafe(method_family = none)]
         pub fn registeredTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns an array with a subset of type identifiers for the item provider, according to the specified file options,
+        /// in the same order they were registered.
+        ///
+        /// To access the array of all registered UTIs, pass the value `0` in the `fileOptions` parameter.
+        ///
+        /// - Parameter fileOptions: The file options to filter by.
+        /// - Returns: An array of type identifier strings.
         #[unsafe(method(registeredTypeIdentifiersWithFileOptions:))]
         #[unsafe(method_family = none)]
         pub fn registeredTypeIdentifiersWithFileOptions(
@@ -228,11 +315,20 @@ impl NSItemProvider {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value indicating whether an item provider contains a data representation conforming to
+        /// a specified universal type identifier, with a file options value of zero.
+        ///
+        /// - Parameter typeIdentifier: A string that represents the desired UTI.
+        /// - Returns: `YES` if the item provider has at least one item that conforms to the supplied type identifier.
         #[unsafe(method(hasItemConformingToTypeIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn hasItemConformingToTypeIdentifier(&self, type_identifier: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value indicating whether an item provider contains a data representation conforming to
+        /// a specified universal type identifier and to specified open-in-place behavior.
+        ///
+        /// To check all registered UTIs for type conformance, pass the value `0` in the `fileOptions` parameter.
         #[unsafe(method(hasRepresentationConformingToTypeIdentifier:fileOptions:))]
         #[unsafe(method_family = none)]
         pub fn hasRepresentationConformingToTypeIdentifier_fileOptions(
@@ -248,6 +344,10 @@ impl NSItemProvider {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// Asynchronously copies the provided, typed data into an `NSData` object, returning a progress object.
+        ///
+        /// If the source app provides a folder URL, the `NSData` object contains a zip archive with the folder
+        /// as its top-level entry.
         #[unsafe(method(loadDataRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub fn loadDataRepresentationForTypeIdentifier_completionHandler(
@@ -263,6 +363,10 @@ impl NSItemProvider {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// Asynchronously writes a copy of the provided, typed data to a temporary file, returning a progress object.
+        ///
+        /// This method writes a copy of the file's data to a temporary file, which the system deletes when the
+        /// completion handler returns. Your program should copy or move the file within the completion handler.
         #[unsafe(method(loadFileRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub fn loadFileRepresentationForTypeIdentifier_completionHandler(
@@ -278,6 +382,13 @@ impl NSItemProvider {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// Asynchronously opens a file in place, if possible, returning a progress object.
+        ///
+        /// The system sets the `isInPlace` parameter to `YES` if the system successfully opened the file in place,
+        /// or `NO` if it made a local copy. In either case, you must access the returned URL using an `NSFileCoordinator`.
+        ///
+        /// If the system created a local copy of a file, it will be automatically deleted after your file coordinator
+        /// relinquishes its read access to the file.
         #[unsafe(method(loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub fn loadInPlaceFileRepresentationForTypeIdentifier_completionHandler(
@@ -287,6 +398,7 @@ impl NSItemProvider {
         ) -> Retained<NSProgress>;
 
         #[cfg(feature = "NSString")]
+        /// The suggested name for the item.
         #[unsafe(method(suggestedName))]
         #[unsafe(method_family = none)]
         pub fn suggestedName(&self) -> Option<Retained<NSString>>;
@@ -299,6 +411,10 @@ impl NSItemProvider {
         #[unsafe(method_family = none)]
         pub fn setSuggestedName(&self, suggested_name: Option<&NSString>);
 
+        /// Creates a new item provider, employing a specified object's type identifiers to specify the data representations eligible for the provider to load.
+        ///
+        /// - Parameters:
+        /// - object: An object containing the data you want to provide.
         #[unsafe(method(initWithObject:))]
         #[unsafe(method_family = init)]
         pub fn initWithObject(
@@ -306,6 +422,10 @@ impl NSItemProvider {
             object: &ProtocolObject<dyn NSItemProviderWriting>,
         ) -> Retained<Self>;
 
+        /// Adds representations of a specified object to an item provider, based on the object's implementation of
+        /// the `NSItemProviderWriting` protocol, adhering to a visibility specification.
+        ///
+        /// If a representation for a given UTI is already registered, it is preserved (duplicate representations are ignored).
         #[unsafe(method(registerObject:visibility:))]
         #[unsafe(method_family = none)]
         pub fn registerObject_visibility(
@@ -315,6 +435,9 @@ impl NSItemProvider {
         );
 
         #[cfg(all(feature = "NSError", feature = "NSProgress", feature = "block2"))]
+        /// Lazily adds representations of a specified object class to an item provider, based on the object's implementation
+        /// of the `NSItemProviderWriting` protocol, adhering to a visibility specification.
+        ///
         /// # Safety
         ///
         /// - `a_class` must implement NSItemProviderWriting.
@@ -340,6 +463,11 @@ impl NSItemProvider {
             >,
         );
 
+        /// Returns a Boolean value indicating whether an item provider can load objects of a specified class.
+        ///
+        /// - Parameter aClass: The object class for comparison.
+        /// - Returns: `YES` if the item provider can load objects of the class.
+        ///
         /// # Safety
         ///
         /// `a_class` must implement NSItemProviderReading.
@@ -348,6 +476,8 @@ impl NSItemProvider {
         pub unsafe fn canLoadObjectOfClass(&self, a_class: &AnyClass) -> bool;
 
         #[cfg(all(feature = "NSError", feature = "NSProgress", feature = "block2"))]
+        /// Asynchronously loads an object of a specified class to an item provider, returning a progress object.
+        ///
         /// # Safety
         ///
         /// `a_class` must implement NSItemProviderReading.
@@ -363,9 +493,20 @@ impl NSItemProvider {
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "NSObject", feature = "NSString"))]
+        /// Creates an item provider with an object, according to the item provider type coercion policy.
+        ///
+        /// Use this method to initialize an item provider for objects in your app. The item provider registers your object
+        /// with the specified type. Subsequent requests for that same type return the specified `item`.
+        ///
+        /// - Parameters:
+        /// - item: An object containing the data you want to provide. You may specify `nil` for this parameter and register items and types later.
+        /// - typeIdentifier: A string that represents the UTI of the item. If `item` is not `nil`, this parameter must not be `nil`.
+        /// - Returns: An item provider for the specified item.
+        ///
         /// # Safety
         ///
         /// `item` should be of the correct type.
+        #[deprecated = "Use initWithObject: instead."]
         #[unsafe(method(initWithItem:typeIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_typeIdentifier(
@@ -375,6 +516,16 @@ impl NSItemProvider {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
+        /// Provides data-backed content from an existing file.
+        ///
+        /// The system uses the URL's filename extension to select an appropriate universal type identifier. If the system can't
+        /// determine a specific universal type identifier based on the filename extension, it assigns the `public.data`
+        /// universal type identifier for the file.
+        ///
+        /// - Parameters:
+        /// - fileURL: The URL of the file to use for the item provider's data. The item provider uses the filename extension to determine the universal type identifier for the associated data.
+        /// - Returns: An item provider for the specified file, or `nil` if an error occurs.
+        ///
         /// # Safety
         ///
         /// `file_url` might not allow `None`.
@@ -392,10 +543,22 @@ impl NSItemProvider {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// Lazily registers an item, according to the item provider type coercion policy.
+        ///
+        /// Use this method to register blocks that can take the item provider's file or data object and convert it to
+        /// a specific data format. Your `loadHandler` block is executed when a client passes the same `typeIdentifier`
+        /// string to the `loadItemForTypeIdentifier:options:completionHandler:` method.
+        ///
+        ///
+        /// - Parameters:
+        /// - typeIdentifier: A string that represents the desired UTI.
+        /// - loadHandler: A block capable of returning the data item as the specified type.
+        ///
         /// # Safety
         ///
         /// - `load_handler` block's argument 1 block's argument 1 must be a valid pointer or null.
         /// - `load_handler` block's argument 1 block's argument 2 must be a valid pointer.
+        #[deprecated = "Use registerObjectOfClass:visibility:loadHandler: instead."]
         #[unsafe(method(registerItemForTypeIdentifier:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerItemForTypeIdentifier_loadHandler(
@@ -414,6 +577,7 @@ impl NSItemProvider {
         /// # Safety
         ///
         /// `options` generic should be of the correct type.
+        #[deprecated = "Use loadObjectOfClass:completionHandler: instead."]
         #[unsafe(method(loadItemForTypeIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadItemForTypeIdentifier_options_completionHandler(
@@ -442,7 +606,11 @@ impl DefaultRetained for NSItemProvider {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderpreferredimagesizekey?language=objc)
+    /// A key provided to the options dictionary to indicate a preferred image size.
+    ///
+    /// The value is an `NSValue` of `CGSize` or `NSSize`, specifying image size in pixels.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderpreferredimagesizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSItemProviderPreferredImageSizeKey: &'static NSString;
 }
@@ -456,6 +624,10 @@ impl NSItemProvider {
             feature = "NSObject",
             feature = "block2"
         ))]
+        /// The custom preview image handler block for the item provider.
+        ///
+        /// In your image handler block, return an ``NSURL`` object that specifies a file, or return an ``NSData`` object.
+        ///
         /// # Safety
         ///
         /// - The returned block's argument 1 must be a valid pointer.
@@ -492,6 +664,17 @@ impl NSItemProvider {
             feature = "NSObject",
             feature = "block2"
         ))]
+        /// Loads the preview image for the item that the item provider represents.
+        ///
+        /// To handle image preview yourself, provide a completion handler block that returns an `NSData` or `NSURL` object,
+        /// or an instance of a platform-specific image class (`UIImage` or `NSImage`).
+        ///
+        /// This method supports implicit type coercion for the item parameter of the completion block.
+        ///
+        /// - Parameters:
+        /// - options: A dictionary of keys and values that provide information about the item, such as the size of an image.
+        /// - completionHandler: A completion handler block to execute with the results.
+        ///
         /// # Safety
         ///
         /// - `options` generic should be of the correct type.
@@ -508,35 +691,47 @@ impl NSItemProvider {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptpreprocessingresultskey?language=objc)
+    /// A key whose value is an item of type `kUTTypePropertyList`. The item contains an `NSDictionary` that contains the object returned by the JavaScript code to its completion function.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptpreprocessingresultskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionJavaScriptPreprocessingResultsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptfinalizeargumentkey?language=objc)
+    /// A key whose value is an item of type `kUTTypePropertyList`. The item contains an `NSDictionary` that contains the arguments to be passed to a JavaScript finalize method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptfinalizeargumentkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionJavaScriptFinalizeArgumentKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidererrordomain?language=objc)
+    /// The error domain associated with the item provider.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidererrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSItemProviderErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidererrorcode?language=objc)
+/// The error codes that describe problems with consuming data from an item provider.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidererrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSItemProviderErrorCode(pub NSInteger);
 impl NSItemProviderErrorCode {
+    /// An unknown error occurred.
     #[doc(alias = "NSItemProviderUnknownError")]
     pub const UnknownError: Self = Self(-1);
+    /// The item is unavailable.
     #[doc(alias = "NSItemProviderItemUnavailableError")]
     pub const ItemUnavailableError: Self = Self(-1000);
+    /// The item had an unexpected value class.
     #[doc(alias = "NSItemProviderUnexpectedValueClassError")]
     pub const UnexpectedValueClassError: Self = Self(-1100);
+    /// The coercion of the item to the requested type was unavailable.
     #[doc(alias = "NSItemProviderUnavailableCoercionError")]
     pub const UnavailableCoercionError: Self = Self(-1200);
 }

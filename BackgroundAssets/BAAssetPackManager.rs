@@ -49,38 +49,35 @@ impl BAAssetPackManager {
             delegate: Option<&ProtocolObject<dyn BAManagedAssetPackDownloadDelegate>>,
         );
 
+        /// The language asset packs that are localized for which the system automatically makes available locally, represented as a BCP-47 identifier.
+        ///
+        /// The user’s preferred languages inform the choice of resolved language, respecting any language that your app sets manually. This property may be `nil` if no localized asset packs are available. You can manually set this property to `nil` to revert to the user’s system-wide language preference. If the user recently changed their preferred language, then this property’s value could be temporarily out of sync with the set of asset packs that are available locally. Setting the language doesn’t immediately download or remove any asset packs; call ``BAAssetPackManager/reconcilePreferredLanguagesWithCompletionHandler:`` to reconcile the set of downloaded asset packs with the new configuration.
+        #[unsafe(method(resolvedLanguage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resolvedLanguage(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`resolvedLanguage`][Self::resolvedLanguage].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setResolvedLanguage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setResolvedLanguage(&self, resolved_language: Option<&NSString>);
+
         // -init (unavailable)
 
         // +new (unavailable)
 
-        #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
-        /// Gets the asset packs that are available to download.
-        ///
-        /// This method might attempt to get the latest asset-pack information from the server.
-        /// - Parameter completionHandler: A block that receives the asset packs or an error if one occurs.
-        #[unsafe(method(getAllAssetPacksWithCompletionHandler:))]
+        #[cfg(all(feature = "BAAssetPackManifest", feature = "block2"))]
+        /// Gets the manifest of asset packs that are available to download.
+        /// - Parameter completionHandler: A block that receives the manifest or an error if one occurs.
+        #[unsafe(method(getManifestWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getAllAssetPacksWithCompletionHandler(
+        pub unsafe fn getManifestWithCompletionHandler(
             &self,
             completion_handler: &block2::SendableBlock<
                 'static,
-                fn(*mut NSSet<BAAssetPack>, *mut NSError),
+                fn(*mut BAAssetPackManifest, *mut NSError),
             >,
-        );
-
-        #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
-        /// Gets the asset pack with the given identifier.
-        ///
-        /// If no asset pack with the given identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound`` as its code for the `error` parameter. This method might attempt to get the latest asset-pack information from the server. To force the system to get the latest information from the server unconditionally, send ``checkForUpdatesWithCompletionHandler:`` to the shared asset-pack manager.
-        /// - Parameters:
-        /// - assetPackIdentifier: The asset pack’s identifier.
-        /// - completionHandler: A block that receives the asset pack or an error if one occurs.
-        #[unsafe(method(getAssetPackWithIdentifier:completionHandler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn getAssetPackWithIdentifier_completionHandler(
-            &self,
-            asset_pack_identifier: &NSString,
-            completion_handler: &block2::SendableBlock<'static, fn(*mut BAAssetPack, *mut NSError)>,
         );
 
         #[cfg(all(
@@ -88,12 +85,12 @@ impl BAAssetPackManager {
             feature = "BAAssetPackStatus",
             feature = "block2"
         ))]
-        /// Gets an asset pack’s status.
+        /// Gets the current status relative to a particular asset pack.
         ///
-        /// This method checks whether any version of the specified asset pack is currently downloaded. If one is, then it determines the version relationship between the downloaded asset pack and the specified asset pack. If they have different version numbers, then the status value that it passes to `completionHandler` will contain ``BAAssetPackStatus/BAAssetPackStatusOutOfDate``. The status value will contain ``BAAssetPackStatus/BAAssetPackStatusUpdateAvailable`` only if the relevant asset pack on the server hasn’t been further updated since the initialization of the provided ``BAAssetPack`` instance.
+        /// This method checks whether any version of the specified asset pack is currently downloaded. If one is, then it determines the version relationship between the downloaded asset pack and the specified asset pack. If they have different version numbers, then the status value that it passes to the completion handler will contain ``BAAssetPackStatus/BAAssetPackStatusOutOfDate``. The status value will contain ``BAAssetPackStatus/BAAssetPackStatusUpdateAvailable`` only if the relevant asset pack on the server hasn’t been further updated since the initialization of the provided ``BAAssetPack`` instance.
         ///
         /// For example, consider the following sequence of events, assuming that version 1 of the relevant asset pack is already available locally:
-        /// 1.    Your application calls ``getAssetPackWithIdentifier:completionHandler:`` to obtain a ``BAAssetPack`` instance.
+        /// 1.    Your application calls ``BAAssetPackManifest/assetPackWithIdentifier:`` on the ``BAAssetPackManifest`` object that ``BAAssetPackManager/getManifestWithCompletionHandler:`` passes to its completion handler to obtain a ``BAAssetPack`` instance.
         /// 2.    The asset pack is updated to version 2 on the server.
         /// 3.    Your application calls this method, passing the ``BAAssetPack`` instance from step 1.
         ///
@@ -102,7 +99,7 @@ impl BAAssetPackManager {
         /// This method doesn’t automatically trigger any downloads, updates, or removals.
         /// - Parameters:
         /// - assetPack: The asset pack.
-        /// - completionHandler: A block that receives the asset pack’s status or an error if one occurs.
+        /// - completionHandler: A block that receives the current status relative to the asset pack or an error if one occurs.
         #[unsafe(method(getStatusRelativeToAssetPack:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getStatusRelativeToAssetPack_completionHandler(
@@ -122,7 +119,7 @@ impl BAAssetPackManager {
         /// - ``BAAssetPackStatus/BAAssetPackStatusObsolete`` (in some situations)
         /// - ``BAAssetPackStatus/BAAssetPackStatusDownloaded``
         ///
-        /// Because this method doesn’t communicate with the server, it can’t determine whether a particular asset pack exists in the first place. Instead, it returns an empty status value when provided a nonexistent asset-pack ID, which is indistinguishable from the situation in which the asset pack does indeed exist but hasn’t yet been downloaded. Use ``getStatusOfAssetPackWithIdentifier:completionHandler:`` to get a full view of an asset pack’s status.
+        /// Because this method doesn’t communicate with the server, it can’t determine whether a particular asset pack exists in the first place. Instead, it returns an empty status value when provided a nonexistent asset-pack ID, which is indistinguishable from the situation in which the asset pack does indeed exist but hasn’t yet been downloaded. Use ``BAAssetPackManager/getStatusRelativeToAssetPack:completionHandler:`` to get a full view of the current status.
         /// - Parameters:
         /// - assetPackIdentifier: The asset pack’s identifier.
         /// - completionHandler: A block that receives the asset pack’s local status.
@@ -144,13 +141,36 @@ impl BAAssetPackManager {
             asset_pack_identifier: &NSString,
         ) -> bool;
 
+        #[cfg(feature = "block2")]
+        /// Gets the languages asset packs that are localized for which are available locally.
+        /// - Parameter completionHandler: A block that receives an array of BCP-47 language identifiers.
+        #[unsafe(method(getLocallyAvailableLanguagesWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getLocallyAvailableLanguagesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::SendableBlock<'static, fn(NonNull<NSArray<NSString>>)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Reconciles the set of locally available asset packs with the user’s preferred languages.
+        ///
+        /// This method downloads any missing localized asset packs, waits for those downloads to finish, and removes any unneeded ones. If you’ve overridden the preferred languages, then this method will respect that. Don’t use this method if your application offers split-language functionality; instead, you’ll need to handle the reconciliation manually.
+        /// - Parameter completionHandler: A block that’s called when the the system has successfully reconciled the set of locally available asset packs with the user’s preferred languages or that receives an error if one occurs.
+        #[unsafe(method(reconcilePreferredLanguagesWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn reconcilePreferredLanguagesWithCompletionHandler(
+            &self,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
         /// Ensures that the specified asset pack be available locally.
         ///
-        /// This method checks if the asset pack is currently downloaded. If it isn’t, then it schedules it to be downloaded and calls the block with `nil` for the block’s `error` parameter when the download completes. It’s guaranteed that the requested asset pack will be available locally once the block is called with `nil` for its `error` parameter. If a non-`nil` value is provided to the block’s `error` parameter, then the asset pack is **not** guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``delegate``.
+        /// This method checks whether the asset pack is currently downloaded. If it isn’t, then the system schedules it to be downloaded and calls the completion handler with `nil` for the the completion handler’s `error` parameter when the download finishes. It’s guaranteed that the requested asset pack will be available locally once the completion handler is called with `nil` for the `error` parameter. If a non-`nil` value is provided to the completion handler’s `error` parameter, then the asset pack is **not** guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
         /// - Parameters:
         /// - assetPack: The asset pack the local availability of which to ensure.
         /// - completionHandler: A block that’s called when the asset pack is available locally or that receives an error if one occurs.
+        /// - Note: This method doesn’t check for updates. It’s equivalent to calling ``BAAssetPackManager/ensureLocalAvailabilityOfAssetPack:requireLatestVersion:completionHandler:`` and passing `NO` to the `shouldUpdate` parameter.
         #[unsafe(method(ensureLocalAvailabilityOfAssetPack:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ensureLocalAvailabilityOfAssetPack_completionHandler(
@@ -162,7 +182,7 @@ impl BAAssetPackManager {
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
         /// Ensures that the specified asset pack be available locally.
         ///
-        /// This method checks if the asset pack is currently downloaded. If it isn’t, then it schedules it to be downloaded and calls the block with `nil` for the block’s `error` parameter when the download completes. It’s guaranteed that the requested asset pack will be available locally once the block is called with `nil` for its `error` parameter. If a non-`nil` value is provided to the block’s `error` parameter, then the asset pack is **not** guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``delegate``.
+        /// This method checks whether the asset pack is currently downloaded. If it isn’t, then the system schedules it to be downloaded and calls the completion handler with `nil` for the completion handler’s `error` parameter when the download finishes. It’s guaranteed that the requested asset pack will be available locally once the completion handler is called with `nil` for the `error` parameter. If a non-`nil` value is provided to the completion handler’s `error` parameter, then the asset pack is **not** guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
         /// - Parameters:
         /// - assetPack: The asset pack the local availability of which to ensure.
         /// - shouldUpdate: Whether to require that the latest version be available locally. When `YES` is passed to this parameter, the method will wait for the update (if there indeed is one available) to be downloaded before returning. When `NO` is passed, the method won’t check for updates and won’t attempt to download any.
@@ -172,6 +192,39 @@ impl BAAssetPackManager {
         pub unsafe fn ensureLocalAvailabilityOfAssetPack_requireLatestVersion_completionHandler(
             &self,
             asset_pack: &BAAssetPack,
+            should_update: bool,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
+        /// Ensures that the specified asset packs be available locally.
+        ///
+        /// This method checks whether the asset packs are currently downloaded. If any aren’t, then the system schedules them to be downloaded and calls the completion handler with `nil` for the completion handler’s `error` parameter when all of the downloads finish. It’s guaranteed that the requested asset packs will be available locally once the completion handler is called with `nil` for the `error` parameter. If a non-`nil` value is provided to the completion handler’s `error` parameter, then the asset packs are **not** all guaranteed to be available locally, though some might be; inspect the thrown error for more details. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
+        /// - Parameters:
+        /// - assetPacks: The asset packs the local availability of which to ensure.
+        /// - completionHandler: A block that’s called when the asset packs are all available locally or that receives an error if one occurs.
+        /// - Note: This method doesn’t check for updates. It’s equivalent to calling ``BAAssetPackManager/ensureLocalAvailabilityOfAssetPacks:requireLatestVersions:completionHandler:`` and passing `NO` to the `shouldUpdate` parameter.
+        #[unsafe(method(ensureLocalAvailabilityOfAssetPacks:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn ensureLocalAvailabilityOfAssetPacks_completionHandler(
+            &self,
+            asset_packs: &NSSet<BAAssetPack>,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
+        /// Ensures that the specified asset packs be available locally.
+        ///
+        /// This method checks whether the asset packs are currently downloaded. If any aren’t, then the system schedules them to be downloaded and calls the completion handler with `nil` for the completion handler’s `error` parameter when all of the downloads finish. It’s guaranteed that the requested asset packs will be available locally once the completion handler is called with `nil` for the `error` parameter. If a non-`nil` value is provided to the completion handler’s `error` parameter, then the asset packs are **not** all guaranteed to be available locally, though some might be; inspect the thrown error for more details. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
+        /// - Parameters:
+        /// - assetPacks: The asset packs the local availability of which to ensure.
+        /// - shouldUpdate: Whether to require that the respective latest versions be available locally. When `YES` is passed to this parameter, the method will wait for the updates (if there indeed are any available) to be downloaded before returning. When `NO` is passed, the method won’t check for updates and won’t attempt to download any.
+        /// - completionHandler: A block that’s called when the asset packs are all available locally or that receives an error if one occurs.
+        #[unsafe(method(ensureLocalAvailabilityOfAssetPacks:requireLatestVersions:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn ensureLocalAvailabilityOfAssetPacks_requireLatestVersions_completionHandler(
+            &self,
+            asset_packs: &NSSet<BAAssetPack>,
             should_update: bool,
             completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
@@ -197,9 +250,9 @@ impl BAAssetPackManager {
         /// - Parameters:
         /// - path: The relative file path.
         /// - assetPackIdentifier: The identifier of the asset pack in which you want to search for the file or `nil` if you want to search in all asset packs.
-        /// - options: Options for how to read the contents of the file into a data object.
+        /// - options: Options for how to read the file’s contents into a data object.
         /// - error: A pointer to an error that will be set if an error occurs. If no file is found at `path`, then `error` will point to an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeFileNotFound`` as its code.
-        /// - Returns: The file’s contents.
+        /// - Returns: The file’s contents or `nil` if an error occurred.
         #[unsafe(method(contentsAtPath:searchingInAssetPackWithIdentifier:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentsAtPath_searchingInAssetPackWithIdentifier_options_error(
@@ -209,20 +262,86 @@ impl BAAssetPackManager {
             options: NSDataReadingOptions,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
+        /// Returns the contents of a localized asset file at the specified relative path.
+        ///
+        /// All asset packs share the same namespace, so you can treat the overall collection of downloaded asset packs as if it were a single root directory that contains all of your subdirectories and asset files, regardless of the specific asset pack in which any particular file resides. This method searches in only the downloaded asset packs that are localized in the specified language. If there’s a file-path collision across multiple such asset packs, then it’s undefined from which asset pack the file will be read.
+        ///
+        /// This method is most useful if you intentionally induce a file-path collision across multiple differently localized asset packs. For example, you may include an English-localized version of `Videos/Introduction.m4v` in an `en` asset pack, a Hebrew-localized version of `Videos/Introduction.m4v` in a `he` asset pack, and an American Spanish–localized version of `Videos/Introduction.m4v` in an `es-US` asset pack. If you offer split-language functionality to users, then you may want to download two or more of those asset packs on the same device. In that scenario, the specific choice of file that ``BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:`` reads would be undefined unless you determine the appropriate asset pack’s identifier and pass it to that method’s `assetPackIdentifier` parameter. With this method, merely passing a language identifier to the `languageIdentifier` parameter is sufficient to resolve the ambiguity without requiring that you determine the asset pack’s identifier. ``BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:`` is more suitable in most other situations.
+        /// - Note: Language matching considers implicit script and region tags per Unicode’s Common Locale Data Repository. For example, `en` is equivalent to `en-US` and `en-Latn-US` but not `en-CA`.
+        /// - Parameters:
+        /// - path: The relative path.
+        /// - language: The language in asset packs that are localized for which to search, represented as a BCP-47 identifier.
+        /// - options: Options for how to read the file’s contents into a data object.
+        /// - error: A pointer to an error that will be set if an error occurs. If no file is found at `path`, then `error` will point to an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeFileNotFound`` as its code.
+        /// - Returns: The file’s contents or `nil` if an error occurred.
+        #[unsafe(method(contentsAtPath:asLocalizedForLanguage:options:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn contentsAtPath_asLocalizedForLanguage_options_error(
+            &self,
+            path: &NSString,
+            language_identifier: &NSString,
+            options: NSDataReadingOptions,
+        ) -> Result<Retained<NSData>, Retained<NSError>>;
+
+        /// Opens and returns a file descriptor for a localized asset file at the specified relative path.
+        /// - Important: It’s your responsibility to close the file descriptor when you’re done using it.
+        ///
+        /// All asset packs share the same namespace, so you can treat the overall collection of downloaded asset packs as if it were a single root directory that contains all of your subdirectories and asset files, regardless of the specific asset pack in which any particular file resides. This method searches in only the downloaded asset packs that are localized in the specified language. If there’s a file-path collision across multiple such asset packs, then it’s undefined from which asset pack the file will be read.
+        ///
+        /// This method is most useful if you intentionally induce a file-path collision across multiple differently localized asset packs. For example, you may include an English-localized version of `Videos/Introduction.m4v` in an `en` asset pack, a Hebrew-localized version of `Videos/Introduction.m4v` in a `he` asset pack, and an American Spanish–localized version of `Videos/Introduction.m4v` in an `es-US` asset pack. If you offer split-language functionality to users, then you may want to download two or more of those asset packs on the same device. In that scenario, the specific choice of file that ``BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:`` opens would be undefined unless you determine the appropriate asset pack’s identifier and pass it to that method’s `assetPackIdentifier` parameter. With this method, merely passing a language identifier to the `languageIdentifier` parameter is sufficient to resolve the ambiguity without requiring that you determine the asset pack’s identifier. ``BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:`` is more suitable in most other situations.
+        /// - Note: Language matching considers implicit script and region tags per Unicode’s Common Locale Data Repository. For example, `en` is equivalent to `en-US` and `en-Latn-US` but not `en-CA`.
+        /// - Parameters:
+        /// - path: The relative path
+        /// - languageIdentifier: The language in asset packs that are localized for which to search, represented as a BCP-47 identifier.
+        /// - error: A pointer to an error that will be set if an error occurs. If no file is found at `path`, then it will point to an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeFileNotFound`` as its code.
+        /// - Returns: A descriptor for the opened file. A return value of `-1` indicates that an error occurred.
+        /// - Remark: Use this method if you need low-level access to the file descriptor. If you don’t, then use ``BAAssetPackManager/contentsAtPath:asLocalizedForLanguage:options:error:`` instead.
+        #[unsafe(method(fileDescriptorForPath:asLocalizedForLanguage:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fileDescriptorForPath_asLocalizedForLanguage_error(
+            &self,
+            path: &NSString,
+            language_identifier: &NSString,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> c_int;
+
         /// Returns a URL for the specified relative path.
+        /// - Warning: Don’t persist the returned URL beyond the lifetime of the current process.
+        /// - Note: This method will return a well formed URL even if no item exists at the specified relative path in any asset pack, in which case any attempts to get its contents—whether it’s a file or a directory—will fail.
         ///
         /// All asset packs share the same namespace, so you can treat the overall collection of downloaded asset packs as if it were a single root directory that contains all of your subdirectories and asset files, regardless of the specific asset pack in which any particular file resides. Unlike ``BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:`` and ``BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:``, this method supports retrieving entire directories—including packages—in which case it merges the corresponding slices of the shared logical directory from all downloaded asset packs that contain such slices. If there’s a file-path collision across multiple asset packs, then it’s undefined from which asset pack an individual file will be resolved.
+        /// - Warning: This method is less efficient than are ``BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:`` and ``BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:``; use those methods instead if you can do so. In particular, this method shouldn’t be used to get the URL to the root of the shared asset-pack namespace. Don’t use this method to block the main thread.
         /// - Parameters:
         /// - path: The relative file path.
         /// - error: A pointer to an error that will be set if an error occurs.
-        /// - Warning: Don’t persist the returned URL beyond the lifetime of the current process.
-        /// - Warning: This method is less efficient than are ``BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:`` and ``BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:``; use those methods instead if you can do so. In particular, this method shouldn’t be used to get the URL to the root of the shared asset-pack namespace. Don’t use this method to block the main thread.
-        /// - Note: This method will return a well formed URL even if no item exists at the specified relative path in any asset pack, in which case any attempts to get its contents—whether it’s a file or a directory—will fail.
+        /// - Returns: The URL to the item or `nil` if an error occurred.
         #[unsafe(method(URLForPath:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLForPath_error(
             &self,
             path: &NSString,
+        ) -> Result<Retained<NSURL>, Retained<NSError>>;
+
+        /// Returns a URL for the specified relative path.
+        /// - Important: Don’t persist the returned URL beyond the lifetime of the current process.
+        /// - Note: This method will return a well formed URL even if no item exists at the specified relative path in any relevant asset pack, in which case any attempts to get its contents—whether it’s a file or a directory—will fail.
+        ///
+        /// All asset packs share the same namespace, so you can treat the overall collection of downloaded asset packs as if it were a single root directory that contains all of your subdirectories and asset files, regardless of the specific asset pack in which any particular file resides. Unlike ``BAAssetPackManager/contentsAtPath:asLocalizedForLanguage:options:error:`` and ``BAAssetPackManager/fileDescriptorForPath:asLocalizedForLanguage:error:``, this method supports retrieving entire directories—including packages—in which case it merges the corresponding slices of the shared logical directory from all downloaded asset packs that are localized in the specified language and that contain such slices. If there’s a path collision across multiple such asset packs, then it’s undefined from which asset pack an individual file will be resolved.
+        /// - Warning: This method is less efficient than are ``BAAssetPackManager/contentsAtPath:asLocalizedForLanguage:options:error:`` and ``BAAssetPackManager/fileDescriptorForPath:asLocalizedForLanguage:error:``; use those methods instead if you can do so. In particular, this method shouldn’t be used to get the URL to the root of the shared asset-pack namespace. Don’t use this method to block the main thread.
+        ///
+        /// This method is most useful if you intentionally induce a file-path collision across multiple differently localized asset packs. For example, you may include an English-localized version of `Videos/Introduction.m4v` in an `en` asset pack, a Hebrew-localized version of `Videos/Introduction.m4v` in a `he` asset pack, and an American Spanish–localized version of `Videos/Introduction.m4v` in an `es-US` asset pack. If you offer split-language functionality to users, then you may want to download two or more of those asset packs on the same device. In that scenario, the specific choice of item the URL to which ``BAAssetPackManager/URLForPath:error:`` returns would be undefined. With this method, merely passing a language identifier to the `languageIdentifier` parameter is sufficient to resolve the ambiguity. ``BAAssetPackManager/URLForPath:error:`` is more suitable in most other situations.
+        /// - Note: Language matching considers implicit script and region tags per Unicode’s Common Locale Data Repository. For example, `en` is equivalent to `en-US` and `en-Latn-US` but not `en-CA`.
+        /// - Parameters:
+        /// - path: The relative path.
+        /// - languageIdentifier: The language in asset packs that are localized for which to search, represented as a BCP-47 identifier.
+        /// - error: A pointer to an error that will be set if an error occurs.
+        /// - Returns: The URL to the item or `nil` if an error occurred.
+        #[unsafe(method(URLForPath:asLocalizedForLanguage:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn URLForPath_asLocalizedForLanguage_error(
+            &self,
+            path: &NSString,
+            language_identifier: &NSString,
         ) -> Result<Retained<NSURL>, Retained<NSError>>;
 
         #[cfg(feature = "block2")]
@@ -236,6 +355,38 @@ impl BAAssetPackManager {
             &self,
             asset_pack_identifier: &NSString,
             completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
+        );
+
+        #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
+        /// Gets the asset packs that are available to download.
+        ///
+        /// This method may attempt to get the latest asset-pack information from the server.
+        /// - Parameter completionHandler: A block that receives the asset packs or an error if one occurs.
+        #[deprecated = "Send -getManifestWithCompletionHandler: to obtain a manifest, and send -assetPacks to that manifest to obtain the set of asset packs."]
+        #[unsafe(method(getAllAssetPacksWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getAllAssetPacksWithCompletionHandler(
+            &self,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(*mut NSSet<BAAssetPack>, *mut NSError),
+            >,
+        );
+
+        #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
+        /// Gets the asset pack with the given identifier.
+        ///
+        /// If no asset pack with the given identifier is found, then the block will receive an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound`` as its code for the `error` parameter. This method may attempt to get the latest asset-pack information from the server. To force the system to get the latest information from the server unconditionally, send ``BAAssetPackManager/checkForUpdatesWithCompletionHandler:`` to the shared asset-pack manager.
+        /// - Parameters:
+        /// - assetPackIdentifier: The asset pack’s identifier.
+        /// - completionHandler: A block that receives the asset pack or an error if one occurs.
+        #[deprecated = "Send -getManifestWithCompletionHandler: to obtain a manifest, and send -assetPackWithIdentifier: to that manifest to obtain an asset pack."]
+        #[unsafe(method(getAssetPackWithIdentifier:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getAssetPackWithIdentifier_completionHandler(
+            &self,
+            asset_pack_identifier: &NSString,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut BAAssetPack, *mut NSError)>,
         );
 
         #[cfg(all(feature = "BAAssetPackStatus", feature = "block2"))]

@@ -143,6 +143,10 @@ impl CMDeviceMotion {
         #[unsafe(method_family = none)]
         pub unsafe fn heading(&self) -> c_double;
 
+        #[unsafe(method(headingAccuracy))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn headingAccuracy(&self) -> c_double;
+
         #[unsafe(method(sensorLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn sensorLocation(&self) -> CMDeviceMotionSensorLocation;

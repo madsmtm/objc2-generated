@@ -76,20 +76,3 @@ pub use self::__PGDisplay::PGDisplayMode;
 pub use self::__PGDisplay::PGDisplayModeChangeHandler;
 #[cfg(all(feature = "PGDisplay", feature = "block2"))]
 pub use self::__PGDisplay::PGDisplayNewFrameEventHandler;
-use core::ffi::*;
-
-use crate::*;
-
-extern "C" {
-    /// Project version number for ParavirtualizedGraphics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/paravirtualizedgraphicsversionnumber?language=objc)
-    pub static ParavirtualizedGraphicsVersionNumber: c_double;
-}
-
-extern "C" {
-    /// Project version string for ParavirtualizedGraphics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/paravirtualizedgraphicsversionstring?language=objc)
-    pub static ParavirtualizedGraphicsVersionString: [c_uchar; 0];
-}

@@ -48,6 +48,24 @@ mod __VZConsoleDeviceConfiguration;
 #[cfg(feature = "VZConsolePortConfiguration")]
 #[path = "VZConsolePortConfiguration.rs"]
 mod __VZConsolePortConfiguration;
+#[cfg(feature = "VZCustomVirtioDevice")]
+#[path = "VZCustomVirtioDevice.rs"]
+mod __VZCustomVirtioDevice;
+#[cfg(feature = "VZCustomVirtioDeviceConfiguration")]
+#[path = "VZCustomVirtioDeviceConfiguration.rs"]
+mod __VZCustomVirtioDeviceConfiguration;
+#[cfg(feature = "VZCustomVirtioDeviceConfigurationDelegate")]
+#[path = "VZCustomVirtioDeviceConfigurationDelegate.rs"]
+mod __VZCustomVirtioDeviceConfigurationDelegate;
+#[cfg(feature = "VZCustomVirtioDeviceDelegate")]
+#[path = "VZCustomVirtioDeviceDelegate.rs"]
+mod __VZCustomVirtioDeviceDelegate;
+#[cfg(feature = "VZCustomVirtioDeviceDelegateProvider")]
+#[path = "VZCustomVirtioDeviceDelegateProvider.rs"]
+mod __VZCustomVirtioDeviceDelegateProvider;
+#[cfg(feature = "VZCustomVirtioDeviceProvider")]
+#[path = "VZCustomVirtioDeviceProvider.rs"]
+mod __VZCustomVirtioDeviceProvider;
 #[cfg(feature = "VZDefines")]
 #[path = "VZDefines.rs"]
 mod __VZDefines;
@@ -72,6 +90,21 @@ mod __VZDiskSynchronizationMode;
 #[cfg(feature = "VZEFIBootLoader")]
 #[path = "VZEFIBootLoader.rs"]
 mod __VZEFIBootLoader;
+#[cfg(feature = "VZEFISignature")]
+#[path = "VZEFISignature.rs"]
+mod __VZEFISignature;
+#[cfg(feature = "VZEFISignatureDatabaseConfiguration")]
+#[path = "VZEFISignatureDatabaseConfiguration.rs"]
+mod __VZEFISignatureDatabaseConfiguration;
+#[cfg(feature = "VZEFISignatureList")]
+#[path = "VZEFISignatureList.rs"]
+mod __VZEFISignatureList;
+#[cfg(feature = "VZEFISignatureSHA256Hash")]
+#[path = "VZEFISignatureSHA256Hash.rs"]
+mod __VZEFISignatureSHA256Hash;
+#[cfg(feature = "VZEFISignatureX509Certificate")]
+#[path = "VZEFISignatureX509Certificate.rs"]
+mod __VZEFISignatureX509Certificate;
 #[cfg(feature = "VZEFIVariableStore")]
 #[path = "VZEFIVariableStore.rs"]
 mod __VZEFIVariableStore;
@@ -108,6 +141,12 @@ mod __VZGraphicsDisplay;
 #[cfg(feature = "VZGraphicsDisplayConfiguration")]
 #[path = "VZGraphicsDisplayConfiguration.rs"]
 mod __VZGraphicsDisplayConfiguration;
+#[cfg(feature = "VZGuestMemoryMapping")]
+#[path = "VZGuestMemoryMapping.rs"]
+mod __VZGuestMemoryMapping;
+#[cfg(feature = "VZGuestProvisioningOptions")]
+#[path = "VZGuestProvisioningOptions.rs"]
+mod __VZGuestProvisioningOptions;
 #[cfg(feature = "VZHostAudioInputStreamSource")]
 #[path = "VZHostAudioInputStreamSource.rs"]
 mod __VZHostAudioInputStreamSource;
@@ -150,6 +189,9 @@ mod __VZMacGraphicsDisplay;
 #[cfg(feature = "VZMacGraphicsDisplayConfiguration")]
 #[path = "VZMacGraphicsDisplayConfiguration.rs"]
 mod __VZMacGraphicsDisplayConfiguration;
+#[cfg(feature = "VZMacGuestProvisioningOptions")]
+#[path = "VZMacGuestProvisioningOptions.rs"]
+mod __VZMacGuestProvisioningOptions;
 #[cfg(feature = "VZMacHardwareModel")]
 #[path = "VZMacHardwareModel.rs"]
 mod __VZMacHardwareModel;
@@ -195,6 +237,9 @@ mod __VZNATNetworkDeviceAttachment;
 #[cfg(feature = "VZNVMExpressControllerDeviceConfiguration")]
 #[path = "VZNVMExpressControllerDeviceConfiguration.rs"]
 mod __VZNVMExpressControllerDeviceConfiguration;
+#[cfg(feature = "VZNegotiatedVirtioFeatureSet")]
+#[path = "VZNegotiatedVirtioFeatureSet.rs"]
+mod __VZNegotiatedVirtioFeatureSet;
 #[cfg(feature = "VZNetworkBlockDeviceStorageDeviceAttachment")]
 #[path = "VZNetworkBlockDeviceStorageDeviceAttachment.rs"]
 mod __VZNetworkBlockDeviceStorageDeviceAttachment;
@@ -264,6 +309,12 @@ mod __VZUSBMassStorageDevice;
 #[cfg(feature = "VZUSBMassStorageDeviceConfiguration")]
 #[path = "VZUSBMassStorageDeviceConfiguration.rs"]
 mod __VZUSBMassStorageDeviceConfiguration;
+#[cfg(feature = "VZUSBPassthroughDevice")]
+#[path = "VZUSBPassthroughDevice.rs"]
+mod __VZUSBPassthroughDevice;
+#[cfg(feature = "VZUSBPassthroughDeviceConfiguration")]
+#[path = "VZUSBPassthroughDeviceConfiguration.rs"]
+mod __VZUSBPassthroughDeviceConfiguration;
 #[cfg(feature = "VZUSBScreenCoordinatePointingDeviceConfiguration")]
 #[path = "VZUSBScreenCoordinatePointingDeviceConfiguration.rs"]
 mod __VZUSBScreenCoordinatePointingDeviceConfiguration;
@@ -291,9 +342,15 @@ mod __VZVirtioConsolePortConfiguration;
 #[cfg(feature = "VZVirtioConsolePortConfigurationArray")]
 #[path = "VZVirtioConsolePortConfigurationArray.rs"]
 mod __VZVirtioConsolePortConfigurationArray;
+#[cfg(feature = "VZVirtioDeviceSpecificConfiguration")]
+#[path = "VZVirtioDeviceSpecificConfiguration.rs"]
+mod __VZVirtioDeviceSpecificConfiguration;
 #[cfg(feature = "VZVirtioEntropyDeviceConfiguration")]
 #[path = "VZVirtioEntropyDeviceConfiguration.rs"]
 mod __VZVirtioEntropyDeviceConfiguration;
+#[cfg(feature = "VZVirtioFeatureSet")]
+#[path = "VZVirtioFeatureSet.rs"]
+mod __VZVirtioFeatureSet;
 #[cfg(feature = "VZVirtioFileSystemDevice")]
 #[path = "VZVirtioFileSystemDevice.rs"]
 mod __VZVirtioFileSystemDevice;
@@ -315,6 +372,18 @@ mod __VZVirtioGraphicsScanoutConfiguration;
 #[cfg(feature = "VZVirtioNetworkDeviceConfiguration")]
 #[path = "VZVirtioNetworkDeviceConfiguration.rs"]
 mod __VZVirtioNetworkDeviceConfiguration;
+#[cfg(feature = "VZVirtioQueue")]
+#[path = "VZVirtioQueue.rs"]
+mod __VZVirtioQueue;
+#[cfg(feature = "VZVirtioQueueElement")]
+#[path = "VZVirtioQueueElement.rs"]
+mod __VZVirtioQueueElement;
+#[cfg(feature = "VZVirtioSharedMemoryRegion")]
+#[path = "VZVirtioSharedMemoryRegion.rs"]
+mod __VZVirtioSharedMemoryRegion;
+#[cfg(feature = "VZVirtioSharedMemoryRegionConfiguration")]
+#[path = "VZVirtioSharedMemoryRegionConfiguration.rs"]
+mod __VZVirtioSharedMemoryRegionConfiguration;
 #[cfg(feature = "VZVirtioSocketConnection")]
 #[path = "VZVirtioSocketConnection.rs"]
 mod __VZVirtioSocketConnection;
@@ -391,6 +460,21 @@ pub use self::__VZConsoleDevice::VZConsoleDevice;
 pub use self::__VZConsoleDeviceConfiguration::VZConsoleDeviceConfiguration;
 #[cfg(feature = "VZConsolePortConfiguration")]
 pub use self::__VZConsolePortConfiguration::VZConsolePortConfiguration;
+#[cfg(feature = "VZCustomVirtioDevice")]
+pub use self::__VZCustomVirtioDevice::VZCustomVirtioDevice;
+#[cfg(feature = "VZCustomVirtioDeviceConfiguration")]
+pub use self::__VZCustomVirtioDeviceConfiguration::VZCustomVirtioDeviceConfiguration;
+#[cfg(feature = "VZCustomVirtioDeviceConfigurationDelegate")]
+pub use self::__VZCustomVirtioDeviceConfigurationDelegate::VZCustomVirtioDeviceConfigurationDelegate;
+#[cfg(feature = "VZCustomVirtioDeviceDelegate")]
+pub use self::__VZCustomVirtioDeviceDelegate::VZCustomVirtioDeviceDelegate;
+#[cfg(all(
+    feature = "VZCustomVirtioDeviceDelegateProvider",
+    feature = "VZCustomVirtioDeviceProvider"
+))]
+pub use self::__VZCustomVirtioDeviceDelegateProvider::VZCustomVirtioDeviceDelegateProvider;
+#[cfg(feature = "VZCustomVirtioDeviceProvider")]
+pub use self::__VZCustomVirtioDeviceProvider::VZCustomVirtioDeviceProvider;
 #[cfg(feature = "VZDirectoryShare")]
 pub use self::__VZDirectoryShare::VZDirectoryShare;
 #[cfg(feature = "VZDirectorySharingDevice")]
@@ -415,6 +499,16 @@ pub use self::__VZDiskImageStorageDeviceAttachment::VZDiskImageSynchronizationMo
 pub use self::__VZDiskSynchronizationMode::VZDiskSynchronizationMode;
 #[cfg(all(feature = "VZBootLoader", feature = "VZEFIBootLoader"))]
 pub use self::__VZEFIBootLoader::VZEFIBootLoader;
+#[cfg(feature = "VZEFISignature")]
+pub use self::__VZEFISignature::VZEFISignature;
+#[cfg(feature = "VZEFISignatureDatabaseConfiguration")]
+pub use self::__VZEFISignatureDatabaseConfiguration::VZEFISignatureDatabaseConfiguration;
+#[cfg(feature = "VZEFISignatureList")]
+pub use self::__VZEFISignatureList::VZEFISignatureList;
+#[cfg(all(feature = "VZEFISignature", feature = "VZEFISignatureSHA256Hash"))]
+pub use self::__VZEFISignatureSHA256Hash::VZEFISignatureSHA256Hash;
+#[cfg(all(feature = "VZEFISignature", feature = "VZEFISignatureX509Certificate"))]
+pub use self::__VZEFISignatureX509Certificate::VZEFISignatureX509Certificate;
 #[cfg(feature = "VZEFIVariableStore")]
 pub use self::__VZEFIVariableStore::VZEFIVariableStore;
 #[cfg(feature = "VZEFIVariableStore")]
@@ -457,6 +551,10 @@ pub use self::__VZGraphicsDisplay::VZGraphicsDisplay;
 pub use self::__VZGraphicsDisplay::VZGraphicsDisplayObserver;
 #[cfg(feature = "VZGraphicsDisplayConfiguration")]
 pub use self::__VZGraphicsDisplayConfiguration::VZGraphicsDisplayConfiguration;
+#[cfg(feature = "VZGuestMemoryMapping")]
+pub use self::__VZGuestMemoryMapping::VZGuestMemoryMapping;
+#[cfg(feature = "VZGuestProvisioningOptions")]
+pub use self::__VZGuestProvisioningOptions::VZGuestProvisioningOptions;
 #[cfg(all(
     feature = "VZAudioInputStreamSource",
     feature = "VZHostAudioInputStreamSource"
@@ -507,6 +605,11 @@ pub use self::__VZMacGraphicsDisplay::VZMacGraphicsDisplay;
     feature = "VZMacGraphicsDisplayConfiguration"
 ))]
 pub use self::__VZMacGraphicsDisplayConfiguration::VZMacGraphicsDisplayConfiguration;
+#[cfg(all(
+    feature = "VZGuestProvisioningOptions",
+    feature = "VZMacGuestProvisioningOptions"
+))]
+pub use self::__VZMacGuestProvisioningOptions::VZMacGuestProvisioningOptions;
 #[cfg(feature = "VZMacHardwareModel")]
 pub use self::__VZMacHardwareModel::VZMacHardwareModel;
 #[cfg(all(
@@ -555,6 +658,8 @@ pub use self::__VZNATNetworkDeviceAttachment::VZNATNetworkDeviceAttachment;
     feature = "VZStorageDeviceConfiguration"
 ))]
 pub use self::__VZNVMExpressControllerDeviceConfiguration::VZNVMExpressControllerDeviceConfiguration;
+#[cfg(feature = "VZNegotiatedVirtioFeatureSet")]
+pub use self::__VZNegotiatedVirtioFeatureSet::VZNegotiatedVirtioFeatureSet;
 #[cfg(all(
     feature = "VZNetworkBlockDeviceStorageDeviceAttachment",
     feature = "VZStorageDeviceAttachment"
@@ -597,6 +702,8 @@ pub use self::__VZStorageDeviceAttachment::VZStorageDeviceAttachment;
 pub use self::__VZStorageDeviceConfiguration::VZStorageDeviceConfiguration;
 #[cfg(feature = "VZUSBController")]
 pub use self::__VZUSBController::VZUSBController;
+#[cfg(feature = "VZUSBController")]
+pub use self::__VZUSBController::VZUSBControllerDelegate;
 #[cfg(feature = "VZUSBControllerConfiguration")]
 pub use self::__VZUSBControllerConfiguration::VZUSBControllerConfiguration;
 #[cfg(feature = "VZUSBDevice")]
@@ -615,6 +722,10 @@ pub use self::__VZUSBMassStorageDevice::VZUSBMassStorageDevice;
     feature = "VZUSBMassStorageDeviceConfiguration"
 ))]
 pub use self::__VZUSBMassStorageDeviceConfiguration::VZUSBMassStorageDeviceConfiguration;
+#[cfg(feature = "VZUSBPassthroughDevice")]
+pub use self::__VZUSBPassthroughDevice::VZUSBPassthroughDevice;
+#[cfg(feature = "VZUSBPassthroughDeviceConfiguration")]
+pub use self::__VZUSBPassthroughDeviceConfiguration::VZUSBPassthroughDeviceConfiguration;
 #[cfg(all(
     feature = "VZPointingDeviceConfiguration",
     feature = "VZUSBScreenCoordinatePointingDeviceConfiguration"
@@ -650,11 +761,15 @@ pub use self::__VZVirtioConsolePortArray::VZVirtioConsolePortArray;
 pub use self::__VZVirtioConsolePortConfiguration::VZVirtioConsolePortConfiguration;
 #[cfg(feature = "VZVirtioConsolePortConfigurationArray")]
 pub use self::__VZVirtioConsolePortConfigurationArray::VZVirtioConsolePortConfigurationArray;
+#[cfg(feature = "VZVirtioDeviceSpecificConfiguration")]
+pub use self::__VZVirtioDeviceSpecificConfiguration::VZVirtioDeviceSpecificConfiguration;
 #[cfg(all(
     feature = "VZEntropyDeviceConfiguration",
     feature = "VZVirtioEntropyDeviceConfiguration"
 ))]
 pub use self::__VZVirtioEntropyDeviceConfiguration::VZVirtioEntropyDeviceConfiguration;
+#[cfg(feature = "VZVirtioFeatureSet")]
+pub use self::__VZVirtioFeatureSet::VZVirtioFeatureSet;
 #[cfg(all(
     feature = "VZDirectorySharingDevice",
     feature = "VZVirtioFileSystemDevice"
@@ -684,6 +799,14 @@ pub use self::__VZVirtioGraphicsScanoutConfiguration::VZVirtioGraphicsScanoutCon
     feature = "VZVirtioNetworkDeviceConfiguration"
 ))]
 pub use self::__VZVirtioNetworkDeviceConfiguration::VZVirtioNetworkDeviceConfiguration;
+#[cfg(feature = "VZVirtioQueue")]
+pub use self::__VZVirtioQueue::VZVirtioQueue;
+#[cfg(feature = "VZVirtioQueueElement")]
+pub use self::__VZVirtioQueueElement::VZVirtioQueueElement;
+#[cfg(feature = "VZVirtioSharedMemoryRegion")]
+pub use self::__VZVirtioSharedMemoryRegion::VZVirtioSharedMemoryRegion;
+#[cfg(feature = "VZVirtioSharedMemoryRegionConfiguration")]
+pub use self::__VZVirtioSharedMemoryRegionConfiguration::VZVirtioSharedMemoryRegionConfiguration;
 #[cfg(feature = "VZVirtioSocketConnection")]
 pub use self::__VZVirtioSocketConnection::VZVirtioSocketConnection;
 #[cfg(all(feature = "VZSocketDevice", feature = "VZVirtioSocketDevice"))]

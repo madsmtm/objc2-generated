@@ -7,89 +7,39 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// An NSURLConnection object provides support to perform
-    /// asynchronous loads of a URL request, providing data to a
-    /// client supplied delegate.
+    /// An object that enables you to start and stop URL requests.
     ///
+    /// > Important:
+    /// > This API is considered legacy. Use ``URLSession`` instead.
     ///
-    /// The interface for NSURLConnection is very sparse, providing
-    /// only the controls to start and cancel asynchronous loads of a
-    /// URL request.
-    /// <p>
+    /// An `NSURLConnection` object lets you load the contents of a URL by providing a URL request object. The interface for `NSURLConnection` is sparse, providing only the controls to start and cancel asynchronous loads of a URL request. You perform most of your configuration on the URL request object itself.
     ///
-    /// An NSURLConnection may be used for loading of resource data
-    /// directly to memory, in which case an
-    /// NSURLConnectionDataDelegate should be supplied, or for
-    /// downloading of resource data directly to a file, in which case
-    /// an NSURLConnectionDownloadDelegate is used.  The delegate is
-    /// retained by the NSURLConnection until a terminal condition is
-    /// encountered.  These two delegates are logically subclasses of
-    /// the base protocol, NSURLConnectionDelegate.
-    /// <p>
+    /// > Note:
+    /// > Although instances of this class are commonly called "connections", there is not a 1:1 correlation between these objects and the underlying network connections.
     ///
-    /// A terminal condition produced by the loader will result in a
-    /// connection:didFailWithError: in the case of an error, or
-    /// connectionDidFinishLoading: or connectionDidFinishDownloading:
-    /// delegate message.
-    /// <p>
+    /// The `NSURLConnection` class provides convenience class methods to load URL requests both asynchronously using a callback block and synchronously.
     ///
-    /// The -cancel message hints to the loader that a resource load
-    /// should be abandoned but does not guarantee that more delegate
-    /// messages will not be delivered.  If -cancel does cause the
-    /// load to be abandoned, the delegate will be released without
-    /// further messages.  In general, a caller should be prepared for
-    /// -cancel to have no effect, and internally ignore any delegate
-    /// callbacks until the delegate is released.
+    /// For greater control, you can create a URL connection object with a delegate object that conforms to the ``NSURLConnectionDelegate`` and ``NSURLConnectionDataDelegate`` protocols. The connection calls methods on that delegate to provide you with progress and status as the URL request is loaded asynchronously. The connection also calls delegate methods to let you override the connection's default behavior (for example, specifying how a particular redirect should be handled). These delegate methods are called on the thread that initiated the asynchronous load operation.
     ///
-    /// Scheduling of an NSURLConnection specifies the context in
-    /// which delegate callbacks will be made, but the actual IO may
-    /// occur on a separate thread and should be considered an
-    /// implementation detail.
-    /// <p>
+    /// > Note:
+    /// > During a request, the connection maintains a strong reference to its delegate. It releases that strong reference when the connection finishes loading, fails, or is canceled.
     ///
-    /// When created, an NSURLConnection performs a deep-copy of the
-    /// NSURLRequest.  This copy is available through the
-    /// -originalRequest method.  As the connection performs the load,
-    /// this request may change as a result of protocol
-    /// canonicalization or due to following redirects.
-    /// -currentRequest can be used to retrieve this value.
-    /// <p>
+    /// For more information about errors, see the `NSURLError.h` header,
+    /// <doc
+    /// :foundation-constants>, and URL Loading System Error Codes in [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806).
     ///
-    /// An NSURLConnections created with the
-    /// +connectionWithRequest:delegate: or -initWithRequest:delegate:
-    /// methods are scheduled on the current runloop immediately, and
-    /// it is not necessary to send the -start message to begin the
-    /// resource load.
-    /// <p>
+    /// ### NSURLConnection Protocols
     ///
-    /// NSURLConnections created with
-    /// -initWithRequest:delegate:startImmediately: are not
-    /// automatically scheduled.  Use -scheduleWithRunLoop:forMode: or
-    /// -setDelegateQueue: to specify the context for delegate
-    /// callbacks, and -start to begin the load.  If you do not
-    /// explicitly schedule the connection before -start, it will be
-    /// scheduled on the current runloop and mode automatically.
-    /// <p>
+    /// The `NSURLConnection` class works in tandem with three formal protocols: ``NSURLConnectionDelegate``, ``NSURLConnectionDataDelegate``, and ``NSURLConnectionDownloadDelegate``. To use these protocols, you write a class that conforms to them and implement any methods that are appropriate, then provide an instance of that class as the delegate when you create a connection object.
     ///
-    /// The NSURLConnectionSynchronousLoading category adds
-    /// +sendSynchronousRequest:returningResponse:error, which blocks
-    /// the current thread until the resource data is available or an
-    /// error occurs.  It should be noted that using this method on an
-    /// applications main run loop may result in an unacceptably long
-    /// delay in a user interface and its use is strongly
-    /// discourage.
-    /// <p>
+    /// The ``NSURLConnectionDelegate`` protocol is primarily used for credential handling, but also handles connection completion. Because it handles connection failure during data transfers, all connection delegates must typically implement this protocol.
     ///
-    /// The NSURLConnectionQueuedLoading category implements
-    /// +sendAsynchronousRequest:queue:completionHandler, providing
-    /// similar simplicity but provides a mechanism where the current
-    /// runloop is not blocked.
-    /// <p>
+    /// In addition, unless you're using Newsstand Kit, your delegate must also conform to the ``NSURLConnectionDataDelegate`` protocol, because this protocol provides methods that the `NSURLConnection` class calls with progress information during an upload, with fragments of the response data during a download, and to provide a new upload body stream if the server's response necessitates a second connection attempt—for example, if `NSURLConnection` must retry the request with different credentials.
     ///
-    /// Both of the immediate loading categories do not provide for
-    /// customization of resource load, and do not allow the caller to
-    /// respond to, e.g., authentication challenges.
-    /// <p>
+    /// Finally, if you're using Newsstand Kit, your delegate can conform to the ``NSURLConnectionDownloadDelegate`` protocol. This protocol provides support for continuing interrupted file downloads and receiving a notification whenever a download finishes. This protocol is solely for use with `NSURLConnection` objects created using Newsstand Kit's `download(with:)` method.
+    ///
+    /// > Note:
+    /// > Some methods in these protocols were previously part of other formal protocols or were previously part of an informal protocol on `NSObject`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnection?language=objc)
     #[unsafe(super(NSObject))]
@@ -104,6 +54,8 @@ extern_conformance!(
 impl NSURLConnection {
     extern_methods!(
         #[cfg(feature = "NSURLRequest")]
+        /// The designated initializer.
+        ///
         /// # Safety
         ///
         /// `delegate` should be of the correct type.
@@ -118,6 +70,8 @@ impl NSURLConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURLRequest")]
+        /// Creates and returns a URL connection and begins loading the data for the URL request.
+        ///
         /// # Safety
         ///
         /// `delegate` should be of the correct type.
@@ -131,6 +85,8 @@ impl NSURLConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURLRequest")]
+        /// Returns a URL connection that loads the data for a URL request and begins loading the data, if specified.
+        ///
         /// # Safety
         ///
         /// `delegate` should be of the correct type.
@@ -143,24 +99,40 @@ impl NSURLConnection {
         ) -> Option<Retained<NSURLConnection>>;
 
         #[cfg(feature = "NSURLRequest")]
+        /// A deep copy of the original connection request.
+        ///
+        /// As the connection performs the load, the request may change as a result of protocol canonicalization or due to following redirects.
         #[unsafe(method(originalRequest))]
         #[unsafe(method_family = none)]
         pub fn originalRequest(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLRequest")]
+        /// The current connection request.
+        ///
+        /// As the connection performs the load, the request may change as a result of protocol canonicalization or due to following redirects. This property provides the current value of the request.
         #[unsafe(method(currentRequest))]
         #[unsafe(method_family = none)]
         pub fn currentRequest(&self) -> Retained<NSURLRequest>;
 
+        /// Causes the connection to begin loading data, if it has not already.
+        ///
+        /// Calling this method is necessary only if you create a connection with the `-initWithRequest:delegate:startImmediately:` method and provide `NO` for the `startImmediately` parameter. If you don't schedule the connection in a run loop or an operation queue before calling this method, the connection is scheduled in the current run loop in the default mode.
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub fn start(&self);
 
+        /// Cancels an asynchronous load of a request.
+        ///
+        /// After this method is called, the connection makes no further delegate method calls. If you want to reattempt the connection, you should create a new connection object.
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub fn cancel(&self);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// Determines the run loop and mode that the connection uses to call methods on its delegate.
+        ///
+        /// By default, a connection is scheduled on the current thread in the default mode when it is created. You cannot reschedule a connection after it has started.
+        ///
         /// # Safety
         ///
         /// `a_run_loop` possibly has additional threading requirements.
@@ -173,6 +145,8 @@ impl NSURLConnection {
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// Removes the connection from the specified run loop and mode.
+        ///
         /// # Safety
         ///
         /// `a_run_loop` possibly has additional threading requirements.
@@ -185,6 +159,10 @@ impl NSURLConnection {
         );
 
         #[cfg(feature = "NSOperation")]
+        /// Determines the operation queue that is used to call methods on the connection's delegate.
+        ///
+        /// By default, a connection is scheduled on the current thread in the default mode when it is created. You cannot reschedule a connection after it has started.
+        ///
         /// # Safety
         ///
         /// `queue` possibly has additional threading requirements.
@@ -193,27 +171,12 @@ impl NSURLConnection {
         pub unsafe fn setDelegateQueue(&self, queue: Option<&NSOperationQueue>);
 
         #[cfg(feature = "NSURLRequest")]
-        /// Performs a "preflight" operation that performs
-        /// some speculative checks to see if a connection can
-        /// be initialized, and the associated I/O that is
-        /// started in the initializer methods can begin.
+        /// Returns whether a request can be handled based on a preflight evaluation.
         ///
+        /// The result of this method is valid as long as no ``NSURLProtocol`` classes are registered or unregistered, and `request` remains unchanged. Applications should be prepared to handle failures even if they have performed request preflighting by calling this method.
         ///
-        /// The result of this method is valid only as long as
-        /// no protocols are registered or unregistered, and
-        /// as long as the request is not mutated (if the
-        /// request is mutable). Hence, clients should be
-        /// prepared to handle failures even if they have
-        /// performed request preflighting by calling this
-        /// method.
-        ///
-        ///
-        /// Parameter `request`: The request to preflight.
-        ///
-        ///
-        /// Returns: YES if it is likely that the given request can be used to
-        /// initialize a connection and the associated I/O can be
-        /// started, NO otherwise.
+        /// - Parameter request: The request to evaluate. The connection deep-copies the request on creation.
+        /// - Returns: `YES` if a preflight operation determines that a connection with `request` can be created and the associated I/O can be started, `NO` otherwise.
         #[unsafe(method(canHandleRequest:))]
         #[unsafe(method_family = none)]
         pub fn canHandleRequest(request: &NSURLRequest) -> bool;
@@ -241,60 +204,32 @@ impl DefaultRetained for NSURLConnection {
 }
 
 extern_protocol!(
-    /// Delegate methods that are common to all forms of
-    /// NSURLConnection.  These are all optional.  This
-    /// protocol should be considered a base class for the
-    /// NSURLConnectionDataDelegate and
-    /// NSURLConnectionDownloadDelegate protocols.
+    /// A protocol that most delegates of a URL connection implement to receive data associated with the connection.
     ///
+    /// The `NSURLConnectionDataDelegate` protocol describes methods that should be implemented by the delegate for an instance of the ``NSURLConnection`` class. Many methods in this protocol existed as part of an informal protocol in previous versions of macOS and iOS.
     ///
-    /// connection:didFailWithError: will be called at
-    /// most once, if an error occurs during a resource
-    /// load.  No other callbacks will be made after.
-    /// <p>
+    /// In addition to the methods described in this protocol, an `NSURLConnection` delegate should also implement the methods described in the ``NSURLConnectionDelegate`` protocol.
     ///
-    /// connectionShouldUseCredentialStorage: will be
-    /// called at most once, before a resource load begins
-    /// (which means it may be called during construction
-    /// of the connection.)  The delegate should return
-    /// TRUE if the connection should consult the shared
-    /// NSURLCredentialStorage in response to
-    /// authentication challenges.  Regardless of the
-    /// result, the authentication challenge methods may
-    /// still be called.
-    ///
-    /// connection:willSendRequestForAuthenticationChallenge:
-    /// is the preferred (Mac OS X 10.7 and iOS 5.0 or
-    /// later) mechanism for responding to authentication
-    /// challenges.  See
-    /// <Foundation
-    /// /NSURLAuthenticationChallenge.h> for
-    /// more information on dealing with the various types
-    /// of authentication challenges.
-    ///
-    /// connection:canAuthenticateAgainstProtectionSpace:
-    /// connection:didReceiveAuthenticationChallenge:
-    /// connection:didCancelAuthenticationChallenge: are
-    /// deprecated and new code should adopt
-    /// connection:willSendRequestForAuthenticationChallenge.
-    /// The older delegates will still be called for
-    /// compatibility, but incur more latency in dealing
-    /// with the authentication challenge.
+    /// > Note:
+    /// > If you are using `NSURLConnection` as part of Newsstand Kit on iOS, you should also implement the methods in the ``NSURLConnectionDownloadDelegate`` protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate?language=objc)
     pub unsafe trait NSURLConnectionDelegate: NSObjectProtocol {
         #[cfg(feature = "NSError")]
+        /// Sent when a connection fails to load its request successfully.
         #[optional]
         #[unsafe(method(connection:didFailWithError:))]
         #[unsafe(method_family = none)]
         fn connection_didFailWithError(&self, connection: &NSURLConnection, error: &NSError);
 
+        /// Sent to determine whether the URL loader should consult the credential storage to authenticate the connection.
         #[optional]
         #[unsafe(method(connectionShouldUseCredentialStorage:))]
         #[unsafe(method_family = none)]
         fn connectionShouldUseCredentialStorage(&self, connection: &NSURLConnection) -> bool;
 
         #[cfg(feature = "NSURLAuthenticationChallenge")]
+        /// Sent when a connection must authenticate a challenge in order to download its request.
         #[optional]
         #[unsafe(method(connection:willSendRequestForAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
@@ -305,6 +240,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSURLProtectionSpace")]
+        /// Sent to determine whether the delegate is able to respond to a protection space's form of authentication.
         #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[unsafe(method(connection:canAuthenticateAgainstProtectionSpace:))]
@@ -316,6 +252,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "NSURLAuthenticationChallenge")]
+        /// Sent when a connection receives an authentication challenge.
         #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[unsafe(method(connection:didReceiveAuthenticationChallenge:))]
@@ -327,6 +264,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSURLAuthenticationChallenge")]
+        /// Sent when a connection cancels an authentication challenge.
         #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[unsafe(method(connection:didCancelAuthenticationChallenge:))]
@@ -340,89 +278,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Delegate methods used for loading data to memory.
-    /// These delegate methods are all optional.
+    /// A protocol that most delegates of a URL connection implement to receive data associated with the connection.
     ///
+    /// The `NSURLConnectionDataDelegate` protocol describes methods that should be implemented by the delegate for an instance of the ``NSURLConnection`` class. Many methods in this protocol existed as part of an informal protocol in previous versions of macOS and iOS.
     ///
-    /// connection:willSendRequest:redirectResponse: is
-    /// called whenever an connection determines that it
-    /// must change URLs in order to continue loading a
-    /// request.  This gives the delegate an opportunity
-    /// inspect and if necessary modify a request.  A
-    /// delegate can cause the request to abort by either
-    /// calling the connections -cancel method, or by
-    /// returning nil from this callback.
-    /// <p>
+    /// In addition to the methods described in this protocol, an `NSURLConnection` delegate should also implement the methods described in the ``NSURLConnectionDelegate`` protocol.
     ///
-    /// There is one subtle difference which results from
-    /// this choice. If -cancel is called in the delegate
-    /// method, all processing for the connection stops,
-    /// and no further delegate callbacks will be sent. If
-    /// the delegate returns nil, the connection will
-    /// continue to process, and this has special
-    /// relevance in the case where the redirectResponse
-    /// argument is non-nil. In this case, any data that
-    /// is loaded for the connection will be sent to the
-    /// delegate, and the delegate will receive a finished
-    /// or failure delegate callback as appropriate.
-    /// <p>
-    ///
-    /// connection:didReceiveResponse: is called when
-    /// enough data has been read to construct an
-    /// NSURLResponse object. In the event of a protocol
-    /// which may return multiple responses (such as HTTP
-    /// multipart/x-mixed-replace) the delegate should be
-    /// prepared to inspect the new response and make
-    /// itself ready for data callbacks as appropriate.
-    /// <p>
-    ///
-    /// connection:didReceiveData: is called with a single
-    /// immutable NSData object to the delegate,
-    /// representing the next portion of the data loaded
-    /// from the connection.  This is the only guaranteed
-    /// for the delegate to receive the data from the
-    /// resource load.
-    /// <p>
-    ///
-    /// connection:needNewBodyStream: is called when the
-    /// loader must retransmit a requests payload, due to
-    /// connection errors or authentication challenges.
-    /// Delegates should construct a new unopened and
-    /// autoreleased NSInputStream.  If not implemented,
-    /// the loader will be required to spool the bytes to
-    /// be uploaded to disk, a potentially expensive
-    /// operation.  Returning nil will cancel the
-    /// connection.
-    ///
-    /// connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:
-    /// is called during an upload operation to provide
-    /// progress feedback.  Note that the values may
-    /// change in unexpected ways if the request needs to
-    /// be retransmitted.
-    /// <p>
-    ///
-    /// connection:willCacheResponse: gives the delegate
-    /// an opportunity to inspect and modify the
-    /// NSCachedURLResponse which will be cached by the
-    /// loader if caching is enabled for the original
-    /// NSURLRequest.  Returning nil from this delegate
-    /// will prevent the resource from being cached.  Note
-    /// that the -data method of the cached response may
-    /// return an autoreleased in-memory copy of the true
-    /// data, and should not be used as an alternative to
-    /// receiving and accumulating the data through
-    /// connection:didReceiveData:
-    /// <p>
-    ///
-    /// connectionDidFinishLoading: is called when all
-    /// connection processing has completed successfully,
-    /// before the delegate is released by the
-    /// connection.
-    /// <p>
+    /// > Note:
+    /// > If you are using `NSURLConnection` as part of Newsstand Kit on iOS, you should also implement the methods in the ``NSURLConnectionDownloadDelegate`` protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnectiondatadelegate?language=objc)
     pub unsafe trait NSURLConnectionDataDelegate: NSURLConnectionDelegate {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
+        /// Sent when the connection determines that it must change URLs in order to continue loading a request.
         #[optional]
         #[unsafe(method(connection:willSendRequest:redirectResponse:))]
         #[unsafe(method_family = none)]
@@ -434,6 +302,7 @@ extern_protocol!(
         ) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "NSURLResponse")]
+        /// Sent when the connection has received sufficient data to construct the URL response for its request.
         #[optional]
         #[unsafe(method(connection:didReceiveResponse:))]
         #[unsafe(method_family = none)]
@@ -444,12 +313,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSData")]
+        /// Sent as a connection loads data incrementally.
         #[optional]
         #[unsafe(method(connection:didReceiveData:))]
         #[unsafe(method_family = none)]
         fn connection_didReceiveData(&self, connection: &NSURLConnection, data: &NSData);
 
         #[cfg(all(feature = "NSStream", feature = "NSURLRequest"))]
+        /// Sent when the connection needs to retransmit a request body stream to the server.
         #[optional]
         #[unsafe(method(connection:needNewBodyStream:))]
         #[unsafe(method_family = none)]
@@ -459,6 +330,7 @@ extern_protocol!(
             request: &NSURLRequest,
         ) -> Option<Retained<NSInputStream>>;
 
+        /// Sent as the body of a message is sent to the server, providing progress information for uploads.
         #[optional]
         #[unsafe(method(connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:))]
         #[unsafe(method_family = none)]
@@ -471,6 +343,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSURLCache")]
+        /// Sent before the connection stores a cached response in the cache, to give the delegate an opportunity to alter it.
         #[optional]
         #[unsafe(method(connection:willCacheResponse:))]
         #[unsafe(method_family = none)]
@@ -480,6 +353,7 @@ extern_protocol!(
             cached_response: &NSCachedURLResponse,
         ) -> Option<Retained<NSCachedURLResponse>>;
 
+        /// Sent when a connection has finished loading successfully.
         #[optional]
         #[unsafe(method(connectionDidFinishLoading:))]
         #[unsafe(method_family = none)]
@@ -488,40 +362,18 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Delegate methods used to perform resource
-    /// downloads directly to a disk file.  All the
-    /// methods are optional with the exception of
-    /// connectionDidFinishDownloading:destinationURL:
-    /// which must be implemented in order to inform the
-    /// delegate of the location of the finished download.
-    /// This delegate and download implementation is
-    /// currently only available on iOS 5.0 or later.
+    /// A protocol that delegates of a URL connection created with Newsstand Kit implement to receive data associated with a download.
     ///
+    /// The `NSURLConnectionDownloadDelegate` protocol describes methods that should be implemented by the delegate of instances of `NSURLConnection` created using Newsstand Kit's `download(with:)` method. The methods in this protocol provide progress information about the download of a URL asset and, when downloading concludes, provide a file URL where the downloaded file can be accessed.
     ///
-    /// connection:didWriteData:totalBytesWritten:expectedTotalBytes:
-    /// provides progress information about the state of
-    /// the download, the number of bytes written since
-    /// the last delegate callback, the total number of
-    /// bytes written to disk and the total number of
-    /// bytes that are expected (or 0 if this is unknown.)
+    /// In addition to the methods described in this protocol, an `NSURLConnection` delegate should also implement the methods described in the ``NSURLConnectionDelegate`` protocol.
     ///
-    /// connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:
-    /// is called when the connection is able to resume an
-    /// in progress download.  This may happen due to a
-    /// connection or network failure.
-    ///
-    /// connectionDidFinishDownloading:destinationURL: is
-    /// a terminal event which indicates the completion of
-    /// a download and provides the location of the file.
-    /// The file will be located in the applications cache
-    /// directory and is guaranteed to exist for the
-    /// duration of the delegate callback.  The
-    /// implication is that the delegate should copy or
-    /// move the download to a more persistent location if
-    /// desired.
+    /// > Note:
+    /// > If you are using `NSURLConnection` directly, your delegate class should instead implement the methods defined in the ``NSURLConnectionDataDelegate`` protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnectiondownloaddelegate?language=objc)
     pub unsafe trait NSURLConnectionDownloadDelegate: NSURLConnectionDelegate {
+        /// Sent as the connection writes data to a disk file, providing progress information for downloads.
         #[optional]
         #[unsafe(method(connection:didWriteData:totalBytesWritten:expectedTotalBytes:))]
         #[unsafe(method_family = none)]
@@ -533,6 +385,7 @@ extern_protocol!(
             expected_total_bytes: c_longlong,
         );
 
+        /// Sent when a connection resumes an in-progress download.
         #[optional]
         #[unsafe(method(connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:))]
         #[unsafe(method_family = none)]
@@ -544,6 +397,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSURL")]
+        /// Sent when a download connection finishes loading and provides the location of the downloaded file.
         #[unsafe(method(connectionDidFinishDownloading:destinationURL:))]
         #[unsafe(method_family = none)]
         fn connectionDidFinishDownloading_destinationURL(
@@ -569,40 +423,19 @@ impl NSURLConnection {
             feature = "NSURLRequest",
             feature = "NSURLResponse"
         ))]
-        /// Performs a synchronous load of the given request,
-        /// returning an NSURLResponse in the given out
-        /// parameter.
+        /// Performs a synchronous load of the specified URL request.
         ///
+        /// A synchronous load is built on top of the asynchronous loading code made available by the class. The calling thread is blocked while the asynchronous loading system performs the URL load on a thread spawned specifically for this load request. No special threading or run loop configuration is necessary in the calling thread in order to perform a synchronous load.
         ///
-        /// A synchronous load for the given request is built on
-        /// top of the asynchronous loading code made available
-        /// by the class.  The calling thread is blocked while
-        /// the asynchronous loading system performs the URL load
-        /// on a thread spawned specifically for this load
-        /// request. No special threading or run loop
-        /// configuration is necessary in the calling thread in
-        /// order to perform a synchronous load. For instance,
-        /// the calling thread need not be running its run loop.
+        /// > Important: Because this call can potentially take several minutes to complete (particularly when using a cellular network in iOS), you should never call this function from the main thread of your application. The solution is to migrate to URL loading using ``NSURLSession``.
         ///
+        /// If authentication is required in order to download the request, the required credentials must be specified as part of the URL. If authentication fails, or credentials are missing, the connection will attempt to continue without credentials.
         ///
-        /// Parameter `request`: The request to load. Note that the request is
-        /// deep-copied as part of the initialization
-        /// process. Changes made to the request argument after
-        /// this method returns do not affect the request that is
-        /// used for the loading process.
-        ///
-        ///
-        /// Parameter `response`: An out parameter which is filled in with the
-        /// response generated by performing the load.
-        ///
-        ///
-        /// Parameter `error`: Out parameter (may be NULL) used if an error occurs
-        /// while processing the request. Will not be modified if the
-        /// load succeeds.
-        ///
-        ///
-        /// Returns: The content of the URL resulting from performing the load,
-        /// or nil if the load failed.
+        /// - Parameters:
+        /// - request: The URL request to load. The `request` object is deep-copied as part of the initialization process. Changes made to `request` after this method returns do not affect the request that is used for the loading process.
+        /// - response: Out parameter for the URL response returned by the server.
+        /// - error: Out parameter used if an error occurs while processing the request. May be `NULL`.
+        /// - Returns: The downloaded data for the URL request. Returns `nil` if a connection could not be created or if the download fails.
         #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
         #[unsafe(method(sendSynchronousRequest:returningResponse:error:_))]
         #[unsafe(method_family = none)]

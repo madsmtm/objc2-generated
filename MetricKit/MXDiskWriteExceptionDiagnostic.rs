@@ -15,6 +15,7 @@ extern_class!(
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
+    #[deprecated = "Use DiagnosticResult instead."]
     pub struct MXDiskWriteExceptionDiagnostic;
 );
 
@@ -38,6 +39,7 @@ impl MXDiskWriteExceptionDiagnostic {
     extern_methods!(
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the excessive disk writes.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(callStackTree))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
@@ -45,6 +47,7 @@ impl MXDiskWriteExceptionDiagnostic {
         /// Total disk writes caused in the scope of this disk write exception.
         ///
         /// Dimensioned as NSUnitInformationStorage.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(totalWritesCaused))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalWritesCaused(&self)

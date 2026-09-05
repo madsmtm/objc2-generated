@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// *************    Exceptions        **********
+    /// The name of an exception raised if there is an exactness error.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberexactnessexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
@@ -15,36 +15,61 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberoverflowexception?language=objc)
+    /// The name of an exception raised on overflow.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberoverflowexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberOverflowException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberunderflowexception?language=objc)
+    /// The name of an exception raised on underflow.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberunderflowexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberUnderflowException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberdividebyzeroexception?language=objc)
+    /// The name of an exception raised on divide by zero.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberdividebyzeroexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberDivideByZeroException: &'static NSExceptionName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors?language=objc)
+    /// A protocol that declares three methods that control the discretionary aspects of working with decimal numbers.
+    ///
+    /// The ``scale()`` and ``roundingMode()`` methods determine the precision of `NSDecimalNumber`'s return values and the way in which those values should be rounded to fit that precision. The ``exceptionDuringOperation(_:error:leftOperand:rightOperand:)`` method determines the way in which an `NSDecimalNumber` object should handle different calculation errors.
+    ///
+    /// For an example of a class that adopts the `NSDecimalBehaviors` protocol, see the specification for ``NSDecimalNumberHandler``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors?language=objc)
     pub unsafe trait NSDecimalNumberBehaviors {
         #[cfg(feature = "NSDecimal")]
+        /// Returns the way that `NSDecimalNumber`'s `decimalNumberBy...` methods round their return values.
         #[unsafe(method(roundingMode))]
         #[unsafe(method_family = none)]
         fn roundingMode(&self) -> NSRoundingMode;
 
+        /// Returns the number of digits allowed after the decimal separator.
         #[unsafe(method(scale))]
         #[unsafe(method_family = none)]
         fn scale(&self) -> c_short;
 
         #[cfg(all(feature = "NSDecimal", feature = "NSValue"))]
+        /// Specifies what an `NSDecimalNumber` object will do when it encounters an error.
+        ///
+        /// - Parameters:
+        /// - operation: The method that was being executed when the error occurred.
+        /// - error: The type of error that was generated.
+        /// - leftOperand: The left operand.
+        /// - rightOperand: The right operand, or `nil` for unary operations.
+        /// - Returns: An `NSDecimalNumber` object to use as the result, or `nil` to ignore the error.
+        ///
+        /// The receiver can raise an exception, return a new value, or return `nil` to ignore the exception.
+        ///
         /// # Safety
         ///
         /// `operation` must be a valid selector.
@@ -61,7 +86,16 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// *************    NSDecimalNumber: the class        **********
+    /// An object for representing and performing arithmetic on base-10 numbers.
+    ///
+    /// In Swift, this object bridges to ``Decimal``; use ``NSDecimalNumber`` when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// `NSDecimalNumber`, an immutable subclass of `NSNumber`, provides an object-oriented wrapper for doing base-10 arithmetic. An instance can represent any number that can be expressed as `mantissa x 10^exponent` where mantissa is a decimal integer up to 38 digits long, and exponent is an integer from –128 through 127.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``Decimal`` structure, which bridges to the ``NSDecimalNumber`` class. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber?language=objc)
     #[unsafe(super(NSNumber, NSValue, NSObject))]
@@ -104,6 +138,15 @@ extern_conformance!(
 #[cfg(feature = "NSValue")]
 impl NSDecimalNumber {
     extern_methods!(
+        /// Initializes a decimal number using the given mantissa, exponent, and sign.
+        ///
+        /// - Parameters:
+        /// - mantissa: The mantissa for the new decimal number object.
+        /// - exponent: The exponent for the new decimal number object.
+        /// - flag: A Boolean value that specifies whether the sign of the number is negative.
+        /// - Returns: An `NSDecimalNumber` object initialized using the given mantissa, exponent, and sign.
+        ///
+        /// The arguments express a number in scientific notation requiring mantissa to be an integer. For example, to create an `NSDecimalNumber` object equivalent to 1.23, use `initWithMantissa:exponent:isNegative:` as follows: `[NSDecimalNumber alloc] initWithMantissa:123 exponent:-2 isNegative:NO]`
         #[unsafe(method(initWithMantissa:exponent:isNegative:))]
         #[unsafe(method_family = init)]
         pub fn initWithMantissa_exponent_isNegative(
@@ -114,11 +157,23 @@ impl NSDecimalNumber {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSDecimal")]
+        /// Initializes a decimal number to represent a given decimal.
+        ///
+        /// - Parameter dcm: The value of the new object.
+        /// - Returns: An `NSDecimalNumber` object initialized to represent `dcm`.
+        ///
+        /// This method is the designated initializer for `NSDecimalNumber`.
         #[unsafe(method(initWithDecimal:))]
         #[unsafe(method_family = init)]
         pub fn initWithDecimal(this: Allocated<Self>, dcm: NSDecimal) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes a decimal number so that its value is equivalent to that in a given numeric string.
+        ///
+        /// - Parameter numberValue: A numeric string.
+        /// - Returns: An `NSDecimalNumber` object initialized with the value of `numberValue`.
+        ///
+        /// Don't use this initializer if `numberValue` has a fractional part, since the lack of a locale makes handling the decimal separator ambiguous. Use ``NSDecimalNumber/initWithString:locale:`` instead for fractional values.
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub fn initWithString(
@@ -127,6 +182,13 @@ impl NSDecimalNumber {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes a decimal number so that its value is equivalent to that in a given numeric string, interpreted using a given locale.
+        ///
+        /// - Parameters:
+        /// - numberValue: A numeric string.
+        /// - locale: A dictionary that defines the locale (specifically the `decimalSeparator`) to use to interpret the number in `numberValue`.
+        /// - Returns: An `NSDecimalNumber` object initialized with the value of `numberValue`, interpreted using `locale`.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -139,6 +201,11 @@ impl NSDecimalNumber {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a string that represents the contents of the decimal number for a given locale.
+        ///
+        /// - Parameter locale: An object containing locale information with which to format the description.
+        /// - Returns: A string that represents the contents of the decimal number formatted using the locale information in `locale`.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -150,10 +217,12 @@ impl NSDecimalNumber {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSDecimal")]
+        /// The decimal value of the number.
         #[unsafe(method(decimalValue))]
         #[unsafe(method_family = none)]
         pub fn decimalValue(&self) -> NSDecimal;
 
+        /// Creates and returns a decimal number using the given mantissa, exponent, and sign.
         #[unsafe(method(decimalNumberWithMantissa:exponent:isNegative:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberWithMantissa_exponent_isNegative(
@@ -163,11 +232,13 @@ impl NSDecimalNumber {
         ) -> Retained<NSDecimalNumber>;
 
         #[cfg(feature = "NSDecimal")]
+        /// Creates and returns a decimal number equivalent to the given decimal structure.
         #[unsafe(method(decimalNumberWithDecimal:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberWithDecimal(dcm: NSDecimal) -> Retained<NSDecimalNumber>;
 
         #[cfg(feature = "NSString")]
+        /// Creates and returns a decimal number equivalent to the given numeric string.
         #[unsafe(method(decimalNumberWithString:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberWithString(
@@ -175,6 +246,8 @@ impl NSDecimalNumber {
         ) -> Retained<NSDecimalNumber>;
 
         #[cfg(feature = "NSString")]
+        /// Creates and returns a decimal number equivalent to the given numeric string, interpreted using the given locale.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -185,26 +258,39 @@ impl NSDecimalNumber {
             locale: Option<&AnyObject>,
         ) -> Retained<NSDecimalNumber>;
 
+        /// A decimal number equivalent to the number 0.
         #[unsafe(method(zero))]
         #[unsafe(method_family = none)]
         pub fn zero() -> Retained<NSDecimalNumber>;
 
+        /// A decimal number equivalent to the number 1.
         #[unsafe(method(one))]
         #[unsafe(method_family = none)]
         pub fn one() -> Retained<NSDecimalNumber>;
 
+        /// The smallest possible value of a decimal number.
         #[unsafe(method(minimumDecimalNumber))]
         #[unsafe(method_family = none)]
         pub fn minimumDecimalNumber() -> Retained<NSDecimalNumber>;
 
+        /// The largest possible value of a decimal number.
         #[unsafe(method(maximumDecimalNumber))]
         #[unsafe(method_family = none)]
         pub fn maximumDecimalNumber() -> Retained<NSDecimalNumber>;
 
+        /// A decimal number that specifies no number.
+        ///
+        /// Any arithmetic method receiving `notANumber` as an argument returns `notANumber`.
         #[unsafe(method(notANumber))]
         #[unsafe(method_family = none)]
         pub fn notANumber() -> Retained<NSDecimalNumber>;
 
+        /// Adds this number to another given number.
+        ///
+        /// - Parameter decimalNumber: The number to add to the receiver.
+        /// - Returns: A new `NSDecimalNumber` object whose value is the sum of the receiver and `decimalNumber`.
+        ///
+        /// This method uses the default behavior when handling calculation errors and rounding.
         #[unsafe(method(decimalNumberByAdding:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByAdding(
@@ -212,6 +298,11 @@ impl NSDecimalNumber {
             decimal_number: &NSDecimalNumber,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Adds this number to another given number using the specified behavior.
+        ///
+        /// - Parameters:
+        /// - decimalNumber: The number to add to the receiver.
+        /// - behavior: The behavior for handling calculation errors and rounding.
         #[unsafe(method(decimalNumberByAdding:withBehavior:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByAdding_withBehavior(
@@ -220,6 +311,12 @@ impl NSDecimalNumber {
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Subtracts another given number from this one.
+        ///
+        /// - Parameter decimalNumber: The number to subtract from the receiver.
+        /// - Returns: A new `NSDecimalNumber` object whose value is the receiver minus `decimalNumber`.
+        ///
+        /// This method uses the default behavior when handling calculation errors and rounding.
         #[unsafe(method(decimalNumberBySubtracting:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberBySubtracting(
@@ -227,6 +324,11 @@ impl NSDecimalNumber {
             decimal_number: &NSDecimalNumber,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Subtracts another given number from this one using the specified behavior.
+        ///
+        /// - Parameters:
+        /// - decimalNumber: The number to subtract from the receiver.
+        /// - behavior: The behavior for handling calculation errors and rounding.
         #[unsafe(method(decimalNumberBySubtracting:withBehavior:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberBySubtracting_withBehavior(
@@ -235,6 +337,12 @@ impl NSDecimalNumber {
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Multiplies the number by another given number.
+        ///
+        /// - Parameter decimalNumber: The number by which to multiply the receiver.
+        /// - Returns: A new `NSDecimalNumber` object whose value is the receiver multiplied by `decimalNumber`.
+        ///
+        /// This method uses the default behavior when handling calculation errors and rounding.
         #[unsafe(method(decimalNumberByMultiplyingBy:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByMultiplyingBy(
@@ -242,6 +350,11 @@ impl NSDecimalNumber {
             decimal_number: &NSDecimalNumber,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Multiplies the number by another given number using the specified behavior.
+        ///
+        /// - Parameters:
+        /// - decimalNumber: The number by which to multiply the receiver.
+        /// - behavior: The behavior for handling calculation errors and rounding.
         #[unsafe(method(decimalNumberByMultiplyingBy:withBehavior:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByMultiplyingBy_withBehavior(
@@ -250,6 +363,12 @@ impl NSDecimalNumber {
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Divides the number by another given number.
+        ///
+        /// - Parameter decimalNumber: The number by which to divide the receiver.
+        /// - Returns: A new `NSDecimalNumber` object whose value is the value of the receiver divided by `decimalNumber`.
+        ///
+        /// This method uses the default behavior when handling calculation errors and rounding.
         #[unsafe(method(decimalNumberByDividingBy:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByDividingBy(
@@ -257,6 +376,11 @@ impl NSDecimalNumber {
             decimal_number: &NSDecimalNumber,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Divides the number by another given number using the specified behavior.
+        ///
+        /// - Parameters:
+        /// - decimalNumber: The number by which to divide the receiver.
+        /// - behavior: The behavior for handling calculation errors and rounding.
         #[unsafe(method(decimalNumberByDividingBy:withBehavior:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByDividingBy_withBehavior(
@@ -265,11 +389,22 @@ impl NSDecimalNumber {
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Raises the number to a given power.
+        ///
+        /// - Parameter power: The power to which to raise the receiver.
+        /// - Returns: A new `NSDecimalNumber` object whose value is the value of the receiver raised to the power `power`.
+        ///
+        /// This method uses the default behavior when handling calculation errors and rounding.
         #[unsafe(method(decimalNumberByRaisingToPower:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByRaisingToPower(&self, power: NSUInteger)
             -> Retained<NSDecimalNumber>;
 
+        /// Raises the number to a given power using the specified behavior.
+        ///
+        /// - Parameters:
+        /// - power: The power to which to raise the receiver.
+        /// - behavior: The behavior for handling calculation errors and rounding.
         #[unsafe(method(decimalNumberByRaisingToPower:withBehavior:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByRaisingToPower_withBehavior(
@@ -278,6 +413,9 @@ impl NSDecimalNumber {
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Multiplies the number by 10 raised to the given power.
+        ///
+        /// This method uses the default behavior when handling calculation errors and rounding.
         #[unsafe(method(decimalNumberByMultiplyingByPowerOf10:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByMultiplyingByPowerOf10(
@@ -285,6 +423,7 @@ impl NSDecimalNumber {
             power: c_short,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Multiplies the number by 10 raised to the given power using the specified behavior.
         #[unsafe(method(decimalNumberByMultiplyingByPowerOf10:withBehavior:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByMultiplyingByPowerOf10_withBehavior(
@@ -293,6 +432,9 @@ impl NSDecimalNumber {
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
         ) -> Retained<NSDecimalNumber>;
 
+        /// Returns a rounded version of the decimal number using the specified rounding behavior.
+        ///
+        /// - Parameter behavior: The rounding behavior to apply. The scale of the behavior determines the number of digits a rounded value is allowed to have after the decimal separator.
         #[unsafe(method(decimalNumberByRoundingAccordingToBehavior:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberByRoundingAccordingToBehavior(
@@ -301,10 +443,21 @@ impl NSDecimalNumber {
         ) -> Retained<NSDecimalNumber>;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Compares this decimal number to another number.
+        ///
+        /// - Parameter decimalNumber: The number to compare. This value must not be `nil`.
+        /// - Returns: `NSOrderedAscending` if the value of `decimalNumber` is greater than the receiver, `NSOrderedSame` if they're equal, and `NSOrderedDescending` if `decimalNumber` is less.
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         pub fn compare(&self, decimal_number: &NSNumber) -> NSComparisonResult;
 
+        /// The way arithmetic methods round off and handle error conditions.
+        ///
+        /// By default, the arithmetic methods use the ``NSDecimalNumberHandler/defaultDecimalNumberHandler`` behavior: `NSRoundPlain` rounding, assuming precision does not exceed 38 significant digits, and raising exceptions on overflow, underflow, and divide by zero.
+        ///
+        /// If this default behavior doesn't suit your application, you should use methods that let you specify the behavior, like ``adding(_:withBehavior:)``. If you find yourself using a particular behavior consistently, you can specify a different default behavior with `setDefaultBehavior(_:)`.
+        ///
+        /// The default behavior is maintained separately for each thread in your app.
         #[unsafe(method(defaultBehavior))]
         #[unsafe(method_family = none)]
         pub fn defaultBehavior() -> Retained<ProtocolObject<dyn NSDecimalNumberBehaviors>>;
@@ -314,10 +467,14 @@ impl NSDecimalNumber {
         #[unsafe(method_family = none)]
         pub fn setDefaultBehavior(default_behavior: &ProtocolObject<dyn NSDecimalNumberBehaviors>);
 
+        /// A C string containing the Objective-C type of the data contained in the decimal number object.
+        ///
+        /// Returns `"d"` (for `double`).
         #[unsafe(method(objCType))]
         #[unsafe(method_family = none)]
         pub fn objCType(&self) -> NonNull<c_char>;
 
+        /// An approximate `double` value for the decimal number.
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
         pub fn doubleValue(&self) -> c_double;
@@ -328,6 +485,16 @@ impl NSDecimalNumber {
 #[cfg(feature = "NSValue")]
 impl NSDecimalNumber {
     extern_methods!(
+        /// Initializes a value object to contain the specified value, interpreted with the specified Objective-C type.
+        ///
+        /// - Parameters:
+        /// - value: A pointer to data to be stored in the new value object.
+        /// - type: The Objective-C type of `value`, as provided by the `
+        /// ()` compiler directive. Do not hard-code this parameter as a C string.
+        /// - Returns: An initialized value object that contains `value`, interpreted as being of the Objective-C type `type`. The returned object might be different than the original receiver.
+        ///
+        /// This is the designated initializer for the ``NSValue`` class.
+        ///
         /// # Safety
         ///
         /// `value` must be a valid pointer.
@@ -364,7 +531,13 @@ impl DefaultRetained for NSDecimalNumber {
 }
 
 extern_class!(
-    /// *********    A class for defining common behaviors        ******
+    /// A class that adopts the decimal number behaviors protocol.
+    ///
+    /// This class allows you to set the way an ``NSDecimalNumber`` object rounds off and handles errors, without having to create a custom class.
+    ///
+    /// You can use an instance of this class as an argument to any of the ``NSDecimalNumber`` methods that end with `...Behavior:`. If you don't think you need special behavior, you probably don't need this class—it is likely that ``NSDecimalNumber``'s default behavior will suit your needs.
+    ///
+    /// For more information, see the ``NSDecimalNumberBehaviors`` protocol specification.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberhandler?language=objc)
     #[unsafe(super(NSObject))]
@@ -391,11 +564,24 @@ extern_conformance!(
 
 impl NSDecimalNumberHandler {
     extern_methods!(
+        /// Returns the default instance of `NSDecimalNumberHandler`.
+        ///
+        /// The default handler rounds to closest possible return value (``NSRoundPlain``), assumes precision up to 38 significant digits, and raises on overflow, underflow, and divide by zero.
         #[unsafe(method(defaultDecimalNumberHandler))]
         #[unsafe(method_family = none)]
         pub fn defaultDecimalNumberHandler() -> Retained<NSDecimalNumberHandler>;
 
         #[cfg(feature = "NSDecimal")]
+        /// Returns an `NSDecimalNumberHandler` object initialized so it behaves as specified by the method's arguments.
+        ///
+        /// - Parameters:
+        /// - roundingMode: The rounding mode to use. Four values are allowed: `NSRoundUp`, `NSRoundDown`, `NSRoundPlain`, and `NSRoundBankers`.
+        /// - scale: The number of digits a rounded value is allowed to have after its decimal point.
+        /// - exact: If `YES`, raises an ``NSDecimalNumberExactnessException`` if rounding causes loss of precision.
+        /// - overflow: If `YES`, raises an ``NSDecimalNumberOverflowException`` if a calculation exceeds the maximum value.
+        /// - underflow: If `YES`, raises an ``NSDecimalNumberUnderflowException`` if a calculation goes below the minimum value.
+        /// - divideByZero: If `YES`, raises an ``NSDecimalNumberDivideByZeroException`` if the receiver attempts to divide by zero.
+        /// - Returns: An initialized `NSDecimalNumberHandler` object with customized behavior.
         #[unsafe(method(initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:))]
         #[unsafe(method_family = init)]
         pub fn initWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
@@ -409,6 +595,16 @@ impl NSDecimalNumberHandler {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSDecimal")]
+        /// Returns an `NSDecimalNumberHandler` object with customized behavior.
+        ///
+        /// - Parameters:
+        /// - roundingMode: The rounding mode to use.
+        /// - scale: The number of digits a rounded value is allowed to have after its decimal point.
+        /// - exact: If `YES`, raises an exception on loss of precision.
+        /// - overflow: If `YES`, raises an exception on overflow.
+        /// - underflow: If `YES`, raises an exception on underflow.
+        /// - divideByZero: If `YES`, raises an exception on divide by zero.
+        /// - Returns: An `NSDecimalNumberHandler` object with customized behavior.
         #[unsafe(method(decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:))]
         #[unsafe(method_family = none)]
         pub fn decimalNumberHandlerWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
@@ -443,12 +639,13 @@ impl DefaultRetained for NSDecimalNumberHandler {
 }
 
 /// NSDecimalNumberExtensions.
-///
-/// *********    Extensions to other classes        ******
 #[cfg(feature = "NSValue")]
 impl NSNumber {
     extern_methods!(
         #[cfg(feature = "NSDecimal")]
+        /// The decimal structure representation of the number.
+        ///
+        /// The value returned isn't guaranteed to be exact for `float` and `double` values.
         #[unsafe(method(decimalValue))]
         #[unsafe(method_family = none)]
         pub fn decimalValue(&self) -> NSDecimal;
@@ -460,6 +657,13 @@ impl NSNumber {
 impl NSScanner {
     extern_methods!(
         #[cfg(feature = "NSDecimal")]
+        /// Scans for an `NSDecimal` value, returning a found value by reference.
+        ///
+        /// Invoke this method with `NULL` as `dcm` to simply scan past an `NSDecimal` representation.
+        ///
+        /// - Parameters:
+        /// - dcm: Upon return, contains the scanned value.
+        /// - Returns: `YES` if the receiver finds a valid `NSDecimal` representation, otherwise `NO`.
         #[unsafe(method(scanDecimal:))]
         #[unsafe(method_family = none)]
         pub fn scanDecimal(&self, dcm: Option<&mut NSDecimal>) -> bool;

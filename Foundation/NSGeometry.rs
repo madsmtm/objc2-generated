@@ -8,38 +8,60 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointpointer?language=objc)
+/// Type indicating a parameter is a pointer to an `NSPoint` structure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointpointer?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSPointPointer = *mut NSPoint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointarray?language=objc)
+/// Type indicating a parameter is array of `NSPoint` structures.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointarray?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSPointArray = *mut NSPoint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizepointer?language=objc)
+/// Type indicating parameter is a pointer to an `NSSize` structure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizepointer?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSSizePointer = *mut NSSize;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizearray?language=objc)
+/// Type indicating a parameter is an array of `NSSize` structures.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizearray?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSSizeArray = *mut NSSize;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectpointer?language=objc)
+/// Type indicating a parameter is a pointer to an `NSRect` structure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectpointer?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSRectPointer = *mut NSRect;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectarray?language=objc)
+/// Type indicating a parameter is array of `NSRect` structures.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectarray?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSRectArray = *mut NSRect;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsets?language=objc)
+/// A description of the distance between the edges of two rectangles.
+///
+/// Edge insets describe the distance between the edges of one rectangle to a related rectangle that can be described by measuring a constant but edge-specific distance from each edge.
+///
+/// A common use for this structure is to describe the relationship between a view's frame and its alignment rectangle.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsets?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSEdgeInsets {
+    /// The top edge inset value.
     pub top: CGFloat,
+    /// The left edge inset value.
     pub left: CGFloat,
+    /// The bottom edge inset value.
     pub bottom: CGFloat,
+    /// The right edge inset value.
     pub right: CGFloat,
 }
 
@@ -67,55 +89,81 @@ unsafe impl Send for NSEdgeInsets {}
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Sync for NSEdgeInsets {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsalignmentoptions?language=objc)
+/// Values representing alignment operations.
+///
+/// These constants are used by ``NSIntegralRectWithOptions(_:_:)`` and other related methods.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsalignmentoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAlignmentOptions(pub c_ulonglong);
 bitflags::bitflags! {
     impl NSAlignmentOptions: c_ulonglong {
+/// Specifies that alignment of the minimum X coordinate should be to the nearest inward integral value.
         #[doc(alias = "NSAlignMinXInward")]
         const AlignMinXInward = 1<<0;
+/// Specifies that alignment of the minimum Y coordinate should be to the nearest inward integral value.
         #[doc(alias = "NSAlignMinYInward")]
         const AlignMinYInward = 1<<1;
+/// Specifies that alignment of the maximum X coordinate should be to the nearest inward integral value.
         #[doc(alias = "NSAlignMaxXInward")]
         const AlignMaxXInward = 1<<2;
+/// Specifies that alignment of the maximum Y coordinate should be to the nearest inward integral value.
         #[doc(alias = "NSAlignMaxYInward")]
         const AlignMaxYInward = 1<<3;
+/// Specifies that alignment of the width should be to the nearest inward integral value.
         #[doc(alias = "NSAlignWidthInward")]
         const AlignWidthInward = 1<<4;
+/// Specifies that alignment of the height should be to the nearest inward integral value.
         #[doc(alias = "NSAlignHeightInward")]
         const AlignHeightInward = 1<<5;
+/// Specifies that alignment of the minimum X coordinate should be to the nearest outward integral value.
         #[doc(alias = "NSAlignMinXOutward")]
         const AlignMinXOutward = 1<<8;
+/// Specifies that alignment of the minimum Y coordinate should be to the nearest outward integral value.
         #[doc(alias = "NSAlignMinYOutward")]
         const AlignMinYOutward = 1<<9;
+/// Specifies that alignment of the maximum X coordinate should be to the nearest outward integral value.
         #[doc(alias = "NSAlignMaxXOutward")]
         const AlignMaxXOutward = 1<<10;
+/// Specifies that alignment of the maximum Y coordinate should be to the nearest outward integral value.
         #[doc(alias = "NSAlignMaxYOutward")]
         const AlignMaxYOutward = 1<<11;
+/// Specifies that alignment of the width should be to the nearest outward integral value.
         #[doc(alias = "NSAlignWidthOutward")]
         const AlignWidthOutward = 1<<12;
+/// Specifies that alignment of the height should be to the nearest outward integral value.
         #[doc(alias = "NSAlignHeightOutward")]
         const AlignHeightOutward = 1<<13;
+/// Specifies that alignment of the minimum X coordinate should be to the nearest integral value.
         #[doc(alias = "NSAlignMinXNearest")]
         const AlignMinXNearest = 1<<16;
+/// Specifies that alignment of the minimum Y coordinate should be to the nearest integral value.
         #[doc(alias = "NSAlignMinYNearest")]
         const AlignMinYNearest = 1<<17;
+/// Specifies that alignment of the maximum X coordinate should be to the nearest integral value.
         #[doc(alias = "NSAlignMaxXNearest")]
         const AlignMaxXNearest = 1<<18;
+/// Specifies that alignment of the maximum Y coordinate should be to the nearest integral value.
         #[doc(alias = "NSAlignMaxYNearest")]
         const AlignMaxYNearest = 1<<19;
+/// Specifies that alignment of the width should be to the nearest integral value.
         #[doc(alias = "NSAlignWidthNearest")]
         const AlignWidthNearest = 1<<20;
+/// Specifies that alignment of the height should be to the nearest integral value.
         #[doc(alias = "NSAlignHeightNearest")]
         const AlignHeightNearest = 1<<21;
+/// This option should be included if the rectangle is in a flipped coordinate system. This allows 0.5 to be treated in a visually consistent way.
         #[doc(alias = "NSAlignRectFlipped")]
         const AlignRectFlipped = 1<<63;
+/// Aligns all edges inward. This is the same as `NSAlignMinXInward|NSAlignMaxXInward|NSAlignMinYInward|NSAlignMaxYInward`.
         #[doc(alias = "NSAlignAllEdgesInward")]
         const AlignAllEdgesInward = NSAlignmentOptions::AlignMinXInward.0|NSAlignmentOptions::AlignMaxXInward.0|NSAlignmentOptions::AlignMinYInward.0|NSAlignmentOptions::AlignMaxYInward.0;
+/// Aligns all edges outward. This is the same as `NSAlignMinXOutward|NSAlignMaxXOutward|NSAlignMinYOutward|NSAlignMaxYOutward`.
         #[doc(alias = "NSAlignAllEdgesOutward")]
         const AlignAllEdgesOutward = NSAlignmentOptions::AlignMinXOutward.0|NSAlignmentOptions::AlignMaxXOutward.0|NSAlignmentOptions::AlignMinYOutward.0|NSAlignmentOptions::AlignMaxYOutward.0;
+/// Aligns all edges to the nearest integral value. This is the same as `NSAlignMinXNearest|NSAlignMaxXNearest|NSAlignMinYNearest|NSAlignMaxYNearest`.
         #[doc(alias = "NSAlignAllEdgesNearest")]
         const AlignAllEdgesNearest = NSAlignmentOptions::AlignMinXNearest.0|NSAlignmentOptions::AlignMaxXNearest.0|NSAlignmentOptions::AlignMinYNearest.0|NSAlignmentOptions::AlignMaxYNearest.0;
         const _ = !0;
@@ -131,25 +179,33 @@ unsafe impl RefEncode for NSAlignmentOptions {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszeropoint?language=objc)
+    /// A point with both coordinates set to `0`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nszeropoint?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSZeroPoint: NSPoint;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszerosize?language=objc)
+    /// A size with both dimensions set to `0`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nszerosize?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSZeroSize: NSSize;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszerorect?language=objc)
+    /// A rectangle with origin and size set to `0`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nszerorect?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSZeroRect: NSRect;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsetszero?language=objc)
+    /// Edge insets with all values set to `0`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsetszero?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSEdgeInsetsZero: NSEdgeInsets;
 }
@@ -193,6 +249,9 @@ impl NSEdgeInsets {
     // TODO: pub fn NSEdgeInsetsMake(top: CGFloat,left: CGFloat,bottom: CGFloat,right: CGFloat,) -> NSEdgeInsets;
 }
 
+/// Returns a Boolean value that indicates whether two points are equal.
+///
+/// - Returns: `true` if the two points `aPoint` and `bPoint` are identical, otherwise `false`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> bool {
@@ -202,6 +261,9 @@ pub fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> bool {
     unsafe { NSEqualPoints(a_point, b_point) }.as_bool()
 }
 
+/// Returns a Boolean value that indicates whether two size values are equal.
+///
+/// - Returns: `true` if `aSize` and `bSize` are identical, otherwise `false`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> bool {
@@ -211,6 +273,9 @@ pub fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> bool {
     unsafe { NSEqualSizes(a_size, b_size) }.as_bool()
 }
 
+/// Returns a Boolean value that indicates whether the two rectangles are equal.
+///
+/// - Returns: `true` if `aRect` and `bRect` are identical, otherwise `false`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> bool {
@@ -220,6 +285,9 @@ pub fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> bool {
     unsafe { NSEqualRects(a_rect, b_rect) }.as_bool()
 }
 
+/// Returns a Boolean value that indicates whether a given rectangle is empty.
+///
+/// - Returns: `true` if `aRect` encloses no area at all -- that is, if its width or height is 0 or negative, otherwise `false`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSIsEmptyRect(a_rect: NSRect) -> bool {
@@ -231,6 +299,7 @@ pub fn NSIsEmptyRect(a_rect: NSRect) -> bool {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl NSEdgeInsets {
+    /// Returns a Boolean value that indicates whether two edge insets structures are equal.
     #[doc(alias = "NSEdgeInsetsEqual")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -242,6 +311,9 @@ impl NSEdgeInsets {
     }
 }
 
+/// Insets a rectangle by a specified amount.
+///
+/// - Returns: A copy of `aRect`, altered by moving the two sides that are parallel to the y axis inward by `dX`, and the two sides parallel to the x axis inwards by `dY`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSInsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect {
@@ -251,6 +323,9 @@ pub fn NSInsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect {
     unsafe { NSInsetRect(a_rect, d_x, d_y) }
 }
 
+/// Adjusts the sides of a rectangle to integer values.
+///
+/// - Returns: A copy of `aRect`, expanded outward just enough to ensure that none of its four defining values (x, y, width, and height) have fractional parts. If the width or height of `aRect` is `0` or negative, this function returns a rectangle with origin at (0.0, 0.0) and with zero width and height.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSIntegralRect(a_rect: NSRect) -> NSRect {
@@ -260,6 +335,9 @@ pub fn NSIntegralRect(a_rect: NSRect) -> NSRect {
     unsafe { NSIntegralRect(a_rect) }
 }
 
+/// Adjusts the sides of a rectangle to integral values using the specified options.
+///
+/// - Returns: A copy of `aRect`, modified based on the options. The options are defined in `NSAlignmentOptions`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSIntegralRectWithOptions(a_rect: NSRect, opts: NSAlignmentOptions) -> NSRect {
@@ -269,6 +347,9 @@ pub fn NSIntegralRectWithOptions(a_rect: NSRect, opts: NSAlignmentOptions) -> NS
     unsafe { NSIntegralRectWithOptions(a_rect, opts) }
 }
 
+/// Calculates the union of two rectangles.
+///
+/// Returns the smallest rectangle that completely encloses both `aRect` and `bRect`. If one of the rectangles has 0 (or negative) width or height, a copy of the other rectangle is returned; but if both have 0 (or negative) width or height, the returned rectangle has its origin at (0.0, 0.0) and has 0 width and height.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSUnionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
@@ -278,6 +359,9 @@ pub fn NSUnionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
     unsafe { NSUnionRect(a_rect, b_rect) }
 }
 
+/// Calculates the intersection of two rectangles.
+///
+/// - Returns: The graphic intersection of `aRect` and `bRect`. If the two rectangles don't overlap, the returned rectangle has its origin at (0.0, 0.0) and zero width and height (including situations where the intersection is a point or a line segment).
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSIntersectionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
@@ -287,6 +371,9 @@ pub fn NSIntersectionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
     unsafe { NSIntersectionRect(a_rect, b_rect) }
 }
 
+/// Offsets the rectangle by the specified amount.
+///
+/// - Returns: A copy of `aRect`, with its location shifted by `dX` along the x axis and by `dY` along the y axis.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSOffsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect {
@@ -296,6 +383,11 @@ pub fn NSOffsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect {
     unsafe { NSOffsetRect(a_rect, d_x, d_y) }
 }
 
+/// Divides a rectangle into two new rectangles.
+///
+/// Creates two rectangles -- `slice` and `rem` -- from `inRect`, by dividing `inRect` with a line that's parallel to the side of `inRect` specified by `edge`. The size of `slice` is determined by `amount`, which specifies the distance from `edge`.
+///
+/// `slice` and `rem` must not be `NULL`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSDivideRect(
@@ -317,6 +409,15 @@ pub fn NSDivideRect(
     unsafe { NSDivideRect(in_rect, slice, rem, amount, edge) }
 }
 
+/// Returns a Boolean value that indicates whether a given point is in a given rectangle.
+///
+/// Point-in-rectangle functions generally assume that the "upper" and "left" edges of a rectangle are inside the rectangle boundaries, while the "lower" and "right" edges are outside the boundaries. This method treats the "upper" and "left" edges of the rectangle as the ones containing the origin of the rectangle.
+///
+/// > The meanings of "upper" and "lower" (and "left" and "right") are relative to the current coordinate system and the location of the rectangle. For a rectangle of positive height located in positive x and y coordinates:
+/// > - In the default macOS desktop coordinate system -- where the origin is at the bottom left -- the rectangle edge closest to the bottom of the screen is the "upper" edge (and is considered inside the rectangle).
+/// > - On iOS and in a flipped coordinate system in macOS desktop -- where the origin is at the top left -- the rectangle edge closest to the bottom of the screen is the "lower" edge (and is considered outside the rectangle).
+///
+/// - Returns: `true` if `aPoint` is located within the rectangle represented by `aRect`, otherwise `false`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> bool {
@@ -326,6 +427,13 @@ pub fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> bool {
     unsafe { NSPointInRect(a_point, a_rect) }.as_bool()
 }
 
+/// Returns a Boolean value that indicates whether the point is in the specified rectangle.
+///
+/// This method assumes an unscaled and unrotated coordinate system. Specify `true` for `flipped` if the underlying view uses a flipped coordinate system.
+///
+/// Point-in-rectangle functions generally assume that the bottom edge of a rectangle is outside of the rectangle boundaries, while the upper edge is inside the boundaries. This method views `aRect` from the point of view of the user -- that is, this method always treats the bottom edge of the rectangle as the one closest to the bottom edge of the user's screen. By making this adjustment, this function ensures consistent mouse-detection behavior from the user's perspective.
+///
+/// - Returns: `true` if the hot spot of the cursor lies inside a given rectangle, otherwise `false`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: bool) -> bool {
@@ -336,6 +444,9 @@ pub fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: bool) -> bool {
     unsafe { NSMouseInRect(a_point, a_rect, flipped) }.as_bool()
 }
 
+/// Returns a Boolean value that indicates whether one rectangle completely encloses another.
+///
+/// - Returns: `true` if `aRect` completely encloses `bRect`. For this condition to be true, `bRect` cannot be empty, and must not extend beyond `aRect` in any direction.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
@@ -345,6 +456,9 @@ pub fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
     unsafe { NSContainsRect(a_rect, b_rect) }.as_bool()
 }
 
+/// Returns a Boolean value that indicates whether two rectangles intersect.
+///
+/// - Returns: `true` if `aRect` intersects `bRect`, otherwise `false`. Returns `false` if either `aRect` or `bRect` has a width or height that is 0.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
@@ -356,6 +470,11 @@ pub fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// Returns a string representation of a point.
+    ///
+    /// - Parameters:
+    /// - aPoint: A point structure.
+    /// - Returns: A string of the form "\{a, b\}", where a and b are the x and y coordinates of `aPoint`.
     #[doc(alias = "NSStringFromPoint")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
@@ -368,6 +487,9 @@ impl NSString {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// Returns a string representation of a size.
+    ///
+    /// - Returns: A string of the form "\{a, b\}", where a and b are the width and height, respectively, of `aSize`.
     #[doc(alias = "NSStringFromSize")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
@@ -380,6 +502,9 @@ impl NSString {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// Returns a string representation of a rectangle.
+    ///
+    /// Returns a string of the form "\{\{a, b\}, \{c, d\}\}", where a, b, c, and d are the x and y coordinates and the width and height, respectively, of `aRect`.
     #[doc(alias = "NSStringFromRect")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
@@ -393,6 +518,13 @@ impl NSString {
     }
 }
 
+/// Returns a point from a text-based representation.
+///
+/// - Parameters:
+/// - aString: A string of the form "\{x, y\}".
+/// - Returns: If `aString` is of the form "\{x, y\}" an `NSPoint` structure that uses x and y as the x and y coordinates, in that order.
+///
+/// If `aString` only contains a single number, it is used as the x coordinate. If `aString` does not contain any numbers, returns an `NSPoint` object whose x and y coordinates are both 0.
 #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
 #[inline]
 pub fn NSPointFromString(a_string: &NSString) -> NSPoint {
@@ -402,6 +534,10 @@ pub fn NSPointFromString(a_string: &NSString) -> NSPoint {
     unsafe { NSPointFromString(a_string) }
 }
 
+/// Returns a size from a text-based representation.
+///
+/// Scans `aString` for two numbers which are used as the width and height, in that order, to create an `NSSize` struct. If `aString` only contains a single number, it is used as the width. The `aString` argument should be formatted like the output of ``NSStringFromSize``, for example, `@"\
+/// {10,20\}"`. If `aString` does not contain any numbers, this function returns an `NSSize` struct whose width and height are both `0`.
 #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
 #[inline]
 pub fn NSSizeFromString(a_string: &NSString) -> NSSize {
@@ -411,6 +547,9 @@ pub fn NSSizeFromString(a_string: &NSString) -> NSSize {
     unsafe { NSSizeFromString(a_string) }
 }
 
+/// Returns a rectangle from a text-based representation.
+///
+/// Scans `aString` for four numbers which are used as the x and y coordinates and the width and height, in that order, to create an `NSRect` object. If `aString` does not contain four numbers, those numbers that were scanned are used, and 0 is used for the remaining values. If `aString` does not contain any numbers, this function returns an `NSRect` object with a rectangle whose origin is (0, 0) and width and height are both 0.
 #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
 #[inline]
 pub fn NSRectFromString(a_string: &NSString) -> NSRect {
@@ -425,41 +564,61 @@ pub fn NSRectFromString(a_string: &NSString) -> NSRect {
 impl NSValue {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a new value object containing the specified Foundation point structure.
+        ///
+        /// - Parameters:
+        /// - point: The value for the new object.
+        /// - Returns: A new value object that contains the point information.
         #[unsafe(method(valueWithPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithPoint(point: NSPoint) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a new value object containing the specified Foundation size structure.
+        ///
+        /// - Parameters:
+        /// - size: The value for the new object.
+        /// - Returns: A new value object that contains the size information.
         #[unsafe(method(valueWithSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithSize(size: NSSize) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a new value object containing the specified Foundation rectangle structure.
+        ///
+        /// - Parameters:
+        /// - rect: The value for the new object.
+        /// - Returns: A new value object that contains the data in the `rect` structure.
         #[unsafe(method(valueWithRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithRect(rect: NSRect) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a new value object containing the specified edge insets structure.
         #[unsafe(method(valueWithEdgeInsets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithEdgeInsets(insets: NSEdgeInsets) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The Foundation point structure representation of the value.
         #[unsafe(method(pointValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointValue(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The Foundation size structure representation of the value.
         #[unsafe(method(sizeValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn sizeValue(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The Foundation rectangle structure representation of the value.
         #[unsafe(method(rectValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn rectValue(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The edge insets structure representation of the value.
         #[unsafe(method(edgeInsetsValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeInsetsValue(&self) -> NSEdgeInsets;
@@ -471,31 +630,46 @@ impl NSValue {
 impl NSCoder {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// Encodes a point.
+        ///
+        /// `NSCoder`'s implementation invokes ``encodeValue(ofObjCType:at:)`` to encode `point`.
+        /// This method must be matched by a subsequent ``decodePoint`` message.
         #[unsafe(method(encodePoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodePoint(&self, point: NSPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Decodes and returns an `NSPoint` structure that was previously encoded with ``encodePoint:``.
         #[unsafe(method(decodePoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodePoint(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Encodes a size structure.
+        ///
+        /// `NSCoder`'s implementation invokes ``encodeValue(ofObjCType:at:)`` to encode `size`.
+        /// This method must be matched by a subsequent ``decodeSize`` message.
         #[unsafe(method(encodeSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeSize(&self, size: NSSize);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Decodes and returns an `NSSize` structure that was previously encoded with ``encodeSize:``.
         #[unsafe(method(decodeSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Encodes a rectangle structure.
+        ///
+        /// `NSCoder`'s implementation invokes ``encodeValue(ofObjCType:at:)`` to encode `rect`.
+        /// This method must be matched by a subsequent ``decodeRect`` message.
         #[unsafe(method(encodeRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRect(&self, rect: NSRect);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Decodes and returns an `NSRect` structure that was previously encoded with ``encodeRect:``.
         #[unsafe(method(decodeRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRect(&self) -> NSRect;
@@ -507,31 +681,37 @@ impl NSCoder {
 impl NSCoder {
     extern_methods!(
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+        /// Encodes a point and associates it with the string key.
         #[unsafe(method(encodePoint:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodePoint_forKey(&self, point: NSPoint, key: &NSString);
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+        /// Encodes a size structure and associates it with the given string key.
         #[unsafe(method(encodeSize:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeSize_forKey(&self, size: NSSize, key: &NSString);
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+        /// Encodes a rectangle structure and associates it with the string key.
         #[unsafe(method(encodeRect:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRect_forKey(&self, rect: NSRect, key: &NSString);
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+        /// Decodes and returns an `NSPoint` structure that was previously encoded with ``encodePoint:forKey:``.
         #[unsafe(method(decodePointForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodePointForKey(&self, key: &NSString) -> NSPoint;
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+        /// Decodes and returns an `NSSize` structure that was previously encoded with ``encodeSize:forKey:``.
         #[unsafe(method(decodeSizeForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeSizeForKey(&self, key: &NSString) -> NSSize;
 
         #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+        /// Decodes and returns an `NSRect` structure that was previously encoded with ``encodeRect:forKey:``.
         #[unsafe(method(decodeRectForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRectForKey(&self, key: &NSString) -> NSRect;

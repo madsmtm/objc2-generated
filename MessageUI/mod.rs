@@ -21,12 +21,18 @@
 #[link(name = "MessageUI", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "MFComposeAssistantViewController")]
+#[path = "MFComposeAssistantViewController.rs"]
+mod __MFComposeAssistantViewController;
 #[cfg(feature = "MFMailComposeControllerDeferredAction")]
 #[path = "MFMailComposeControllerDeferredAction.rs"]
 mod __MFMailComposeControllerDeferredAction;
 #[cfg(feature = "MFMailComposeViewController")]
 #[path = "MFMailComposeViewController.rs"]
 mod __MFMailComposeViewController;
+#[cfg(feature = "MFMailDraft")]
+#[path = "MFMailDraft.rs"]
+mod __MFMailDraft;
 #[cfg(feature = "MFMessageComposeViewController")]
 #[path = "MFMessageComposeViewController.rs"]
 mod __MFMessageComposeViewController;
@@ -34,6 +40,10 @@ mod __MFMessageComposeViewController;
 #[path = "UPI.rs"]
 mod __UPI;
 
+#[cfg(all(feature = "MFComposeAssistantViewController", feature = "objc2-ui-kit"))]
+pub use self::__MFComposeAssistantViewController::MFComposeAssistantViewController;
+#[cfg(feature = "MFComposeAssistantViewController")]
+pub use self::__MFComposeAssistantViewController::MFComposeAssistantViewControllerDelegate;
 #[cfg(feature = "MFMailComposeControllerDeferredAction")]
 pub use self::__MFMailComposeControllerDeferredAction::MFMailComposeControllerDeferredAction;
 #[cfg(feature = "MFMailComposeViewController")]
@@ -46,6 +56,8 @@ pub use self::__MFMailComposeViewController::MFMailComposeResult;
 pub use self::__MFMailComposeViewController::MFMailComposeViewController;
 #[cfg(feature = "MFMailComposeViewController")]
 pub use self::__MFMailComposeViewController::MFMailComposeViewControllerDelegate;
+#[cfg(feature = "MFMailDraft")]
+pub use self::__MFMailDraft::MFMailDraft;
 #[cfg(all(feature = "MFMessageComposeViewController", feature = "objc2-ui-kit"))]
 pub use self::__MFMessageComposeViewController::MFMessageComposeViewController;
 #[cfg(feature = "MFMessageComposeViewController")]

@@ -114,6 +114,15 @@ impl NFCReaderError {
     /// NDEF tag does not contain any NDEF message.
     #[doc(alias = "NFCNdefReaderSessionErrorZeroLengthMessage")]
     pub const NdefReaderSessionErrorZeroLengthMessage: Self = Self(403);
+    /// Location service is denied by user.
+    #[doc(alias = "NFCPaymentTagReaderSessionErrorLocationAuthorizationDenied")]
+    pub const PaymentTagReaderSessionErrorLocationAuthorizationDenied: Self = Self(500);
+    /// Application is not authorized to use location service due to active restriction.
+    #[doc(alias = "NFCPaymentTagReaderSessionErrorLocationServiceRestricted")]
+    pub const PaymentTagReaderSessionErrorLocationServiceRestricted: Self = Self(501);
+    /// Location is not produced by on-device hardware (produced by accessory or simulated by software).
+    #[doc(alias = "NFCPaymentTagReaderSessionErrorOnDeviceLocationUnavailable")]
+    pub const PaymentTagReaderSessionErrorOnDeviceLocationUnavailable: Self = Self(502);
 }
 
 unsafe impl Encode for NFCReaderError {

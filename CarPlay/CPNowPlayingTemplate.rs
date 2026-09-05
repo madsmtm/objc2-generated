@@ -120,6 +120,22 @@ impl CPNowPlayingTemplate {
         #[unsafe(method_family = none)]
         pub unsafe fn setUpNextButtonEnabled(&self, up_next_button_enabled: bool);
 
+        /// A Boolean value indicating whether the mini player is allowed to appear.
+        ///
+        ///
+        /// Set the value of this property to
+        /// `NO`to hide the mini player.
+        ///
+        /// Defaults to YES.
+        #[unsafe(method(allowsMiniPlayer))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsMiniPlayer(&self) -> bool;
+
+        /// Setter for [`allowsMiniPlayer`][Self::allowsMiniPlayer].
+        #[unsafe(method(setAllowsMiniPlayer:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsMiniPlayer(&self, allows_mini_player: bool);
+
         /// If your template elects to display the "Up Next" button, you may optionally specify a string
         /// indicating the title for the up next button. If no title is specified, a default system title
         /// will be used.

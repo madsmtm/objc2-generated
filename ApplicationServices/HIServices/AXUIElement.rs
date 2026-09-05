@@ -611,7 +611,7 @@ impl AXUIElement {
     ///
     /// You can send and receive many different CFTypeRefs using the accessibility API.
     /// These include all CFPropertyListRef types, AXUIElementRef, AXValueRef, AXTextMarkerRef, AXTextMarkerRangeRef,
-    /// CFNullRef, CFAttributedStringRef, and CRURLRef.
+    /// CFNullRef, CFAttributedStringRef, and CFURLRef.
     ///
     /// Parameter `element`: The AXUIElementRef representing the accessibility object.
     ///
@@ -1653,7 +1653,7 @@ impl AXTextMarker {
     #[inline]
     pub unsafe fn byte_ptr(&self) -> NonNull<u8> {
         extern "C-unwind" {
-            fn AXTextMarkerGetBytePtr(the_text_marker: &AXTextMarker) -> Option<NonNull<u8>>;
+            fn AXTextMarkerGetBytePtr(marker: &AXTextMarker) -> Option<NonNull<u8>>;
         }
         let ret = unsafe { AXTextMarkerGetBytePtr(self) };
         ret.expect("function was marked as returning non-null, but actually returned NULL")
@@ -1742,7 +1742,7 @@ impl AXTextMarkerRange {
     ///
     /// Parameter `startMarkerLength`: The length of the start marker data
     ///
-    /// Parameter `endMarkeBytes`: The data used to identify the end marker location in text
+    /// Parameter `endMarkerBytes`: The data used to identify the end marker location in text
     ///
     /// Parameter `endMarkerLength`: The length of the end marker data
     ///

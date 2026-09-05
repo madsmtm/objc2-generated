@@ -60,6 +60,9 @@ mod __MSStickerBrowserViewDataSource;
 #[cfg(feature = "MSStickerView")]
 #[path = "MSStickerView.rs"]
 mod __MSStickerView;
+#[cfg(feature = "MSUPIRequest")]
+#[path = "MSUPIRequest.rs"]
+mod __MSUPIRequest;
 #[cfg(feature = "MessagesDefines")]
 #[path = "MessagesDefines.rs"]
 mod __MessagesDefines;
@@ -102,3 +105,5 @@ pub use self::__MSStickerBrowserViewController::MSStickerBrowserViewController;
 pub use self::__MSStickerBrowserViewDataSource::MSStickerBrowserViewDataSource;
 #[cfg(all(feature = "MSStickerView", feature = "objc2-ui-kit"))]
 pub use self::__MSStickerView::MSStickerView;
+#[cfg(feature = "MSUPIRequest")]
+pub use self::__MSUPIRequest::MSUPIRequest;

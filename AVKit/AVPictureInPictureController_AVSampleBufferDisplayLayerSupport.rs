@@ -156,6 +156,7 @@ impl AVPictureInPictureControllerContentSource {
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBufferDisplayLayer(
             &self,
+            mtm: MainThreadMarker,
         ) -> Option<Retained<AVSampleBufferDisplayLayer>>;
 
         /// The receiver's sample buffer playback delegate.

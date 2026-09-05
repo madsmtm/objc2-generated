@@ -6,7 +6,11 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Values for the different cookie accept policies
+/// Cookie acceptance policies implemented by the `NSHTTPCookieStorage` class.
+///
+/// - `NSHTTPCookieAcceptPolicyAlways`: Accept all cookies.
+/// - `NSHTTPCookieAcceptPolicyNever`: Reject all cookies.
+/// - `NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain`: Accept cookies only from the main document domain.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieacceptpolicy?language=objc)
 // NS_ENUM
@@ -14,14 +18,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHTTPCookieAcceptPolicy(pub NSUInteger);
 impl NSHTTPCookieAcceptPolicy {
-    /// Accept all cookies
+    /// Accept all cookies. This is the default cookie accept policy.
     #[doc(alias = "NSHTTPCookieAcceptPolicyAlways")]
     pub const Always: Self = Self(0);
-    /// Reject all cookies
+    /// Reject all cookies.
     #[doc(alias = "NSHTTPCookieAcceptPolicyNever")]
     pub const Never: Self = Self(1);
-    /// Accept cookies
-    /// only from the main document domain
+    /// Accept cookies only from the main document domain.
     #[doc(alias = "NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain")]
     pub const OnlyFromMainDocumentDomain: Self = Self(2);
 }
@@ -35,11 +38,41 @@ unsafe impl RefEncode for NSHTTPCookieAcceptPolicy {
 }
 
 extern_class!(
-    /// NSHTTPCookieStorage implements a singleton object (shared
-    /// instance) which manages the shared cookie store.  It has methods
-    /// to allow clients to set and remove cookies, and get the current
-    /// set of cookies.  It also has convenience methods to parse and
-    /// generate cookie-related HTTP header fields.
+    /// A container that manages the storage of cookies.
+    ///
+    /// Each stored cookie is represented by an instance of the ``HTTPCookie`` class.
+    ///
+    /// ### Sharing cookie storage
+    ///
+    /// The persistent cookie storage returned by ``shared`` may be available to app extensions or other apps, subject to the following guidelines:
+    ///
+    /// - iOS — Each app and app extension has a unique data container, meaning  they have separate cookie stores. You can obtain a common cookie storage by using the ``sharedCookieStorage(forGroupContainerIdentifier:)`` method.
+    /// - macOS (non-sandboxed) — As of macOS 10.11, each app has its own cookie storage. Prior to macOS 10.11, a common cookie store is shared among the user's apps.
+    /// - macOS (sandboxed) — Same as iOS.
+    /// -
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uiwebview> — `UIWebView` instances within an app inherit the parent app's shared cookie storage.
+    /// -
+    /// <doc
+    /// ://com.apple.documentation/documentation/webkit/wkwebview> — Each `WKWebView` instance has its own cookie storage. See the
+    /// <doc
+    /// ://com.apple.documentation/documentation/webkit/wkhttpcookiestore> class for more information.
+    ///
+    /// Session cookies (where the cookie object's ``HTTPCookie/isSessionOnly`` property is
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true>) are local to a single process and are not shared.
+    ///
+    /// > Note:
+    /// > In cases where a cookie storage is shared between processes, changes made to the cookie accept policy affect all currently running apps using the cookie storage.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// The ``HTTPCookieStorage`` class is usable as-is, but you can subclass it. For example, you can override the storage methods like ``storeCookies(_:for:)``, ``getCookiesFor(_:completionHandler:)`` to screen which cookies are stored, or reimplement the storage mechanism for security or other reasons.
+    ///
+    /// When overriding methods of this class, be aware that methods that take a `task` parameter are preferred by the system to equivalent methods that do not. Therefore, you should override the task-based methods when subclassing, as follows:
+    ///
+    /// - Retrieving cookies — Override ``getCookiesFor(_:completionHandler:)``, instead of or in addition to ``cookies(for:)``.
+    /// - Adding cookies — Override ``storeCookies(_:for:)``, instead of or in addition to ``setCookies(_:for:mainDocumentURL:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiestorage?language=objc)
     #[unsafe(super(NSObject))]
@@ -57,28 +90,25 @@ extern_conformance!(
 
 impl NSHTTPCookieStorage {
     extern_methods!(
-        /// Get the shared cookie storage in the default location.
+        /// The shared cookie storage instance.
         ///
-        /// Returns: The shared cookie storage
-        ///
-        /// Starting in OS X 10.11, each app has its own sharedHTTPCookieStorage singleton,
+        /// Starting in OS X 10.11, each app has its own `sharedHTTPCookieStorage` singleton,
         /// which will not be shared with other applications.
         #[unsafe(method(sharedHTTPCookieStorage))]
         #[unsafe(method_family = none)]
         pub fn sharedHTTPCookieStorage() -> Retained<NSHTTPCookieStorage>;
 
         #[cfg(feature = "NSString")]
-        /// Get the cookie storage for the container associated with the specified application group identifier
+        /// Returns the cookie storage instance for the container associated with the specified app group identifier.
         ///
-        /// Parameter `identifier`: The application group identifier
+        /// - Parameter identifier: The application group identifier.
+        /// - Returns: A cookie storage with a persistent store in the application group container.
         ///
-        /// Returns: A cookie storage with a persistent store in the application group container
-        ///
-        /// By default, applications and associated app extensions have different data containers, which means
-        /// that the sharedHTTPCookieStorage singleton will refer to different persistent cookie stores in an application and
-        /// any app extensions that it contains. This method allows clients to create a persistent cookie storage that can be
-        /// shared among all applications and extensions with access to the same application group. Subsequent calls to this
-        /// method with the same identifier will return the same cookie storage instance.
+        /// By default, apps and associated app extensions will have different data containers. As a result, the
+        /// `sharedHTTPCookieStorage` singleton will refer to different persistent cookie stores when called by the app and by
+        /// its extensions. You can use this method to create a persistent cookie storage available to all apps and extensions
+        /// with access to the same app group. Subsequent calls to this method with the same identifier will return the same
+        /// cookie storage instance.
         #[unsafe(method(sharedCookieStorageForGroupContainerIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn sharedCookieStorageForGroupContainerIdentifier(
@@ -86,75 +116,57 @@ impl NSHTTPCookieStorage {
         ) -> Retained<NSHTTPCookieStorage>;
 
         #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie"))]
-        /// Get all the cookies
+        /// The cookie storage's cookies.
         ///
-        /// Returns: An NSArray of NSHTTPCookies
+        /// If you want to sort the cookie storage's cookies, you should use the `sortedCookiesUsingDescriptors:` method instead
+        /// of sorting the result of this property.
         #[unsafe(method(cookies))]
         #[unsafe(method_family = none)]
         pub fn cookies(&self) -> Option<Retained<NSArray<NSHTTPCookie>>>;
 
         #[cfg(feature = "NSHTTPCookie")]
-        /// Set a cookie
+        /// Stores a specified cookie in the cookie storage if the cookie accept policy permits.
         ///
-        /// The cookie will override an existing cookie with the
-        /// same name, domain and path, if any.
+        /// The cookie replaces an existing cookie with the same name, domain, and path, if one exists.
         #[unsafe(method(setCookie:))]
         #[unsafe(method_family = none)]
         pub fn setCookie(&self, cookie: &NSHTTPCookie);
 
         #[cfg(feature = "NSHTTPCookie")]
-        /// Delete the specified cookie
+        /// Deletes the specified cookie from the cookie storage.
         #[unsafe(method(deleteCookie:))]
         #[unsafe(method_family = none)]
         pub fn deleteCookie(&self, cookie: &NSHTTPCookie);
 
         #[cfg(feature = "NSDate")]
-        /// Delete all cookies from the cookie storage since the provided date.
+        /// Removes cookies that were stored after a given date.
         #[unsafe(method(removeCookiesSinceDate:))]
         #[unsafe(method_family = none)]
         pub fn removeCookiesSinceDate(&self, date: &NSDate);
 
         #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie", feature = "NSURL"))]
-        /// Returns an array of cookies to send to the given URL.
+        /// Returns all the cookie storage's cookies that are sent to a specified URL.
         ///
-        /// Parameter `URL`: The URL for which to get cookies.
+        /// - Parameter URL: The URL to filter on.
+        /// - Returns: An array of cookies whose URL matches the provided URL.
         ///
-        /// Returns: an NSArray of NSHTTPCookie objects.
-        ///
-        /// The cookie manager examines the cookies it stores and
-        /// includes those which should be sent to the given URL. You can use
-        /// <tt>
-        /// +[NSCookie requestHeaderFieldsWithCookies:]
-        /// </tt>
-        /// to turn this array
-        /// into a set of header fields to add to a request.
+        /// You can use `+[NSHTTPCookie requestHeaderFieldsWithCookies:]` to turn this array into a set of header fields
+        /// to add to a request.
         #[unsafe(method(cookiesForURL:))]
         #[unsafe(method_family = none)]
         pub fn cookiesForURL(&self, url: &NSURL) -> Option<Retained<NSArray<NSHTTPCookie>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie", feature = "NSURL"))]
-        /// Adds an array cookies to the cookie store, following the
-        /// cookie accept policy.
+        /// Adds an array of cookies to the cookie store, following the cookie accept policy.
         ///
-        /// Parameter `cookies`: The cookies to set.
+        /// - Parameter cookies: The cookies to set.
+        /// - Parameter URL: The URL from which the cookies were sent.
+        /// - Parameter mainDocumentURL: The main document URL to be used as a base for the "same domain as main document" policy.
         ///
-        /// Parameter `URL`: The URL from which the cookies were sent.
-        ///
-        /// Parameter `mainDocumentURL`: The main document URL to be used as a base for the "same
-        /// domain as main document" policy.
-        ///
-        /// For mainDocumentURL, the caller should pass the URL for
-        /// an appropriate main document, if known. For example, when loading
-        /// a web page, the URL of the main html document for the top-level
-        /// frame should be passed. To save cookies based on a set of response
-        /// headers, you can use
-        /// <tt>
-        /// +[NSCookie
-        /// cookiesWithResponseHeaderFields:forURL:]
-        /// </tt>
-        /// on a header field
-        /// dictionary and then use this method to store the resulting cookies
-        /// in accordance with policy settings.
+        /// For `mainDocumentURL`, the caller should pass the URL for an appropriate main document, if known. For example, when loading
+        /// a web page, the URL of the main html document for the top-level frame should be passed. To save cookies based on a set of
+        /// response headers, you can use `+[NSHTTPCookie cookiesWithResponseHeaderFields:forURL:]` on a header field dictionary and then
+        /// use this method to store the resulting cookies in accordance with policy settings.
         #[unsafe(method(setCookies:forURL:mainDocumentURL:))]
         #[unsafe(method_family = none)]
         pub fn setCookies_forURL_mainDocumentURL(
@@ -164,8 +176,9 @@ impl NSHTTPCookieStorage {
             main_document_url: Option<&NSURL>,
         );
 
-        /// The cookie accept policy preference of the
-        /// receiver.
+        /// The cookie accept policy preference of the receiver.
+        ///
+        /// The default cookie accept policy is `NSHTTPCookieAcceptPolicyAlways`.
         #[unsafe(method(cookieAcceptPolicy))]
         #[unsafe(method_family = none)]
         pub fn cookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
@@ -180,11 +193,13 @@ impl NSHTTPCookieStorage {
             feature = "NSHTTPCookie",
             feature = "NSSortDescriptor"
         ))]
-        /// Returns an array of all cookies in the store, sorted according to the key value and sorting direction of the NSSortDescriptors specified in the parameter.
+        /// Returns all of the cookie storage's cookies, sorted according to a given set of sort descriptors.
         ///
-        /// Parameter `sortOrder`: an array of NSSortDescriptors which represent the preferred sort order of the resulting array.
+        /// - Parameter sortOrder: An array of `NSSortDescriptor` objects which represent the preferred sort order of the resulting array.
+        /// - Returns: The sorted array of cookies.
         ///
-        /// proper sorting of cookies may require extensive string conversion, which can be avoided by allowing the system to perform the sorting.  This API is to be preferred over the more generic -[NSHTTPCookieStorage cookies] API, if sorting is going to be performed.
+        /// Proper sorting of cookies may require extensive string conversion, which can be avoided by allowing the system to
+        /// perform the sorting. This API is to be preferred over the more generic `cookies` property, if sorting is going to be performed.
         #[unsafe(method(sortedCookiesUsingDescriptors:))]
         #[unsafe(method_family = none)]
         pub fn sortedCookiesUsingDescriptors(
@@ -222,6 +237,7 @@ impl NSHTTPCookieStorage {
             feature = "NSHTTPCookie",
             feature = "NSURLSession"
         ))]
+        /// Stores an array of cookies in the cookie storage, on behalf of the provided task, if the cookie accept policy permits.
         #[unsafe(method(storeCookies:forTask:))]
         #[unsafe(method_family = none)]
         pub fn storeCookies_forTask(
@@ -236,6 +252,7 @@ impl NSHTTPCookieStorage {
             feature = "NSURLSession",
             feature = "block2"
         ))]
+        /// Fetches cookies relevant to the specified task and passes them to the completion handler.
         #[unsafe(method(getCookiesForTask:completionHandler:))]
         #[unsafe(method_family = none)]
         pub fn getCookiesForTask_completionHandler(
@@ -247,9 +264,7 @@ impl NSHTTPCookieStorage {
 }
 
 extern "C" {
-    /// Name of notification that should be posted to the
-    /// distributed notification center whenever the accept cookies
-    /// preference is changed
+    /// Name of notification that should be posted to the distributed notification center whenever the accept cookies preference is changed.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiemanageracceptpolicychangednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
@@ -258,7 +273,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// Notification sent when the set of cookies changes
+    /// Notification sent when the set of cookies changes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiemanagercookieschangednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]

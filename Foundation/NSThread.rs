@@ -7,7 +7,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthread?language=objc)
+    /// A thread of execution.
+    ///
+    /// Use this class when you want to have an Objective-C method run in its own thread of execution. Threads are especially useful when you need to perform a lengthy task, but don't want it to block the execution of the rest of the application. In particular, you can use threads to avoid blocking the main thread of the application, which handles user interface and event-related actions. Threads can also be used to divide a large job into several smaller jobs, which can lead to performance increases on multi-core computers.
+    ///
+    /// The ``Thread`` class supports semantics similar to those of ``Operation`` for monitoring the runtime condition of a thread. You can use these semantics to cancel the execution of a thread or determine if the thread is still executing or has finished its task. Canceling a thread requires support from your thread code; see the description for ``cancel()`` for more information.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You can subclass ``Thread`` and override the ``main()`` method to implement your thread's main entry point. If you override ``main()``, you do not need to invoke the inherited behavior by calling `super`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthread?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSThread;
@@ -19,6 +29,7 @@ extern_conformance!(
 
 impl NSThread {
     extern_methods!(
+        /// Returns the thread object representing the current thread of execution.
         #[unsafe(method(currentThread))]
         #[unsafe(method_family = none)]
         pub fn currentThread() -> Retained<NSThread>;
@@ -28,6 +39,17 @@ impl NSThread {
         #[unsafe(method_family = none)]
         pub fn detachNewThreadWithBlock(block: &block2::SendableBlock<'static, fn()>);
 
+        /// Detaches a new thread and uses the specified selector as the thread entry point.
+        ///
+        /// The objects `aTarget` and `anArgument` are retained during the execution of the detached thread, then released. The detached thread is exited (using the `exit` class method) as soon as `aTarget` has completed executing the `aSelector` method.
+        ///
+        /// If this thread is the first thread detached in the application, this method posts the `NSWillBecomeMultiThreaded` notification with object `nil` to the default notification center.
+        ///
+        /// - Parameters:
+        /// - selector: The selector for the message to send to the target. This selector must take only one argument and must not have a return value.
+        /// - target: The object that will receive the message `aSelector` on the new thread.
+        /// - argument: The single argument passed to the target. May be `nil`.
+        ///
         /// # Safety
         ///
         /// - `selector` must be a valid selector.
@@ -41,11 +63,20 @@ impl NSThread {
             argument: Option<&AnyObject>,
         );
 
+        /// Returns whether the application is multithreaded.
+        ///
+        /// An application is considered multithreaded if a thread was ever detached from the main thread using either `detachNewThreadSelector:toTarget:withObject:` or `start`. If you detached a thread in your application using a non-Cocoa API, such as the POSIX or Multiprocessing Services APIs, this method could still return `NO`. The detached thread does not have to be currently running for the application to be considered multithreaded -- this method only indicates whether a single thread has been spawned.
+        ///
+        /// - Returns: `YES` if the application is multithreaded, otherwise `NO`.
         #[unsafe(method(isMultiThreaded))]
         #[unsafe(method_family = none)]
         pub fn isMultiThreaded() -> bool;
 
         #[cfg(feature = "NSDictionary")]
+        /// The thread object's dictionary.
+        ///
+        /// You can use the returned dictionary to store thread-specific data. The thread dictionary is not used during any manipulations of the `NSThread` object -- it is simply a place where you can store any interesting data. For example, Foundation uses it to store the thread's default `NSConnection` and `NSAssertionHandler` instances. You may define your own keys for the dictionary.
+        ///
         /// # Safety
         ///
         /// The returned generic should be of the correct type.
@@ -54,27 +85,56 @@ impl NSThread {
         pub unsafe fn threadDictionary(&self) -> Retained<NSMutableDictionary>;
 
         #[cfg(feature = "NSDate")]
+        /// Blocks the current thread until the time specified.
+        ///
+        /// No run loop processing occurs while the thread is blocked.
+        ///
+        /// - Parameter date: The time at which to resume processing.
         #[unsafe(method(sleepUntilDate:))]
         #[unsafe(method_family = none)]
         pub fn sleepUntilDate(date: &NSDate);
 
         #[cfg(feature = "NSDate")]
+        /// Sleeps the thread for a given time interval.
+        ///
+        /// No run loop processing occurs while the thread is blocked.
+        ///
+        /// - Parameter ti: The duration of the sleep.
         #[unsafe(method(sleepForTimeInterval:))]
         #[unsafe(method_family = none)]
         pub fn sleepForTimeInterval(ti: NSTimeInterval);
 
+        /// Terminates the current thread.
+        ///
+        /// This method uses the `currentThread` class method to access the current thread. Before exiting the thread, this method posts the `NSThreadWillExit` notification with the thread being exited to the default notification center. Because notifications are delivered synchronously, all observers of `NSThreadWillExit` are guaranteed to receive the notification before the thread exits.
+        ///
+        /// Invoking this method should be avoided as it does not give your thread a chance to clean up any resources it allocated during its execution.
         #[unsafe(method(exit))]
         #[unsafe(method_family = none)]
         pub fn exit();
 
+        /// Returns the current thread's priority.
+        ///
+        /// The priorities in this range are mapped to the operating system's priority values. A "typical" thread priority might be 0.5, but because the priority is determined by the kernel, there is no guarantee what this value actually will be.
+        ///
+        /// - Returns: The current thread's priority, which is specified by a floating point number from 0.0 to 1.0, where 1.0 is highest priority.
         #[unsafe(method(threadPriority))]
         #[unsafe(method_family = none)]
         pub fn threadPriority_class() -> c_double;
 
+        /// Sets the current thread's priority.
+        ///
+        /// The priorities in this range are mapped to the operating system's priority values.
+        ///
+        /// - Parameter p: The new priority, specified with a floating point number from 0.0 to 1.0, where 1.0 is highest priority.
+        /// - Returns: `YES` if the priority assignment succeeded, `NO` otherwise.
         #[unsafe(method(setThreadPriority:))]
         #[unsafe(method_family = none)]
         pub fn setThreadPriority_class(p: c_double) -> bool;
 
+        /// The receiver's priority.
+        ///
+        /// The thread's priority, which is specified by a floating point number from 0.0 to 1.0, where 1.0 is highest priority. The priorities in this range are mapped to the operating system's priority values. A "typical" thread priority might be 0.5, but because the priority is determined by the kernel, there is no guarantee what this value actually will be.
         #[unsafe(method(threadPriority))]
         #[unsafe(method_family = none)]
         pub fn threadPriority(&self) -> c_double;
@@ -96,16 +156,25 @@ impl NSThread {
         pub fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
+        /// Returns an array containing the call stack return addresses.
+        ///
+        /// Each element is an `NSNumber` object containing an `NSUInteger` value.
         #[unsafe(method(callStackReturnAddresses))]
         #[unsafe(method_family = none)]
         pub fn callStackReturnAddresses() -> Retained<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns an array containing the call stack symbols.
+        ///
+        /// Each element is an `NSString` object with a value in a format determined by the `backtrace_symbols()` function.
+        ///
+        /// The return value describes the call stack backtrace of the current thread at the moment this method was called.
         #[unsafe(method(callStackSymbols))]
         #[unsafe(method_family = none)]
         pub fn callStackSymbols() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The name of the receiver.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
@@ -118,6 +187,11 @@ impl NSThread {
         #[unsafe(method_family = none)]
         pub fn setName(&self, name: Option<&NSString>);
 
+        /// The stack size of the receiver, in bytes.
+        ///
+        /// This value must be in bytes and a multiple of 4KB.
+        ///
+        /// To change the stack size, you must set this property before starting your thread. Setting the stack size after the thread has started changes the attribute size (which is reflected by the `stackSize` method), but it does not affect the actual number of pages set aside for the thread.
         #[unsafe(method(stackSize))]
         #[unsafe(method_family = none)]
         pub fn stackSize(&self) -> NSUInteger;
@@ -127,22 +201,37 @@ impl NSThread {
         #[unsafe(method_family = none)]
         pub fn setStackSize(&self, stack_size: NSUInteger);
 
+        /// A Boolean value that indicates whether the receiver is the main thread.
         #[unsafe(method(isMainThread))]
         #[unsafe(method_family = none)]
         pub fn isMainThread(&self) -> bool;
 
+        /// Returns a Boolean value that indicates whether the current thread is the main thread.
         #[unsafe(method(isMainThread))]
         #[unsafe(method_family = none)]
         pub fn isMainThread_class() -> bool;
 
+        /// Returns the `NSThread` object representing the main thread.
         #[unsafe(method(mainThread))]
         #[unsafe(method_family = none)]
         pub fn mainThread() -> Retained<NSThread>;
 
+        /// Returns an initialized `NSThread` object.
+        ///
+        /// This is the designated initializer for `NSThread`.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns an `NSThread` object initialized with the given arguments.
+        ///
+        /// The objects `target` and `argument` are retained during the execution of the detached thread. They are released when the thread finally exits.
+        ///
+        /// - Parameters:
+        /// - target: The object to which the message specified by `selector` is sent.
+        /// - selector: The selector for the message to send to `target`. This selector must take only one argument and must not have a return value.
+        /// - argument: The single argument passed to the target. May be `nil`.
+        ///
         /// # Safety
         ///
         /// - `target` should be of the correct type.
@@ -165,26 +254,46 @@ impl NSThread {
             block: &block2::SendableBlock<'static, fn()>,
         ) -> Retained<Self>;
 
+        /// A Boolean value that indicates whether the receiver is executing.
         #[unsafe(method(isExecuting))]
         #[unsafe(method_family = none)]
         pub fn isExecuting(&self) -> bool;
 
+        /// A Boolean value that indicates whether the receiver has finished execution.
         #[unsafe(method(isFinished))]
         #[unsafe(method_family = none)]
         pub fn isFinished(&self) -> bool;
 
+        /// A Boolean value that indicates whether the receiver is cancelled.
+        ///
+        /// If your thread supports cancellation, it should check this property periodically and exit if it ever returns `YES`.
         #[unsafe(method(isCancelled))]
         #[unsafe(method_family = none)]
         pub fn isCancelled(&self) -> bool;
 
+        /// Changes the cancelled state of the receiver to indicate that it should exit.
+        ///
+        /// The semantics of this method are the same as those used for `NSOperation`. This method sets state information in the receiver that is then reflected by the `isCancelled` property. Threads that support cancellation should periodically call the `isCancelled` method to determine if the thread has in fact been cancelled, and exit if it has been.
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub fn cancel(&self);
 
+        /// Starts the receiver.
+        ///
+        /// This method asynchronously spawns the new thread and invokes the receiver's `main` method on the new thread. The `isExecuting` property returns `YES` once the thread starts executing, which may occur after the `start` method returns.
+        ///
+        /// If you initialized the receiver with a target and selector, the default `main` method invokes that selector automatically.
+        ///
+        /// If this thread is the first thread detached in the application, this method posts the `NSWillBecomeMultiThreaded` notification with object `nil` to the default notification center.
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub fn start(&self);
 
+        /// The main entry point routine for the thread.
+        ///
+        /// The default implementation of this method takes the target and selector used to initialize the receiver and invokes the selector on the specified target. If you subclass `NSThread`, you can override this method and use it to implement the main body of your thread instead. If you do so, you do not need to invoke `super`.
+        ///
+        /// You should never invoke this method directly. You should always start your thread by invoking the `start` method.
         #[unsafe(method(main))]
         #[unsafe(method_family = none)]
         pub unsafe fn main(&self);
@@ -208,21 +317,31 @@ impl DefaultRetained for NSThread {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswillbecomemultithreadednotification?language=objc)
+    /// Posted when the first thread is detached from the current thread.
+    ///
+    /// The `NSThread` class posts this notification at most once --- the first time a thread is detached using `detachNewThreadSelector(_:toTarget:with:)` or the `start()` method. Subsequent invocations of those methods do not post this notification. Observers of this notification have their notification method invoked in the main thread, not the new thread. The observer notification methods always execute before the new thread begins executing. This notification does not contain a notification object or a `userInfo` dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswillbecomemultithreadednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "This notification does not protect against data races"]
     pub static NSWillBecomeMultiThreadedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdidbecomesinglethreadednotification?language=objc)
+    /// Not implemented.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdidbecomesinglethreadednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Programs no longer transition to single-threaded mode from threaded environments"]
     pub static NSDidBecomeSingleThreadedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthreadwillexitnotification?language=objc)
+    /// Posted when a thread receives the `exit()` message, before the thread exits.
+    ///
+    /// The notification object is the exiting `NSThread` object. This notification does not contain a `userInfo` dictionary. Observer methods invoked to receive this notification execute in the exiting thread, before it exits.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthreadwillexitnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "This notification does not protect against data races"]
     pub static NSThreadWillExitNotification: &'static NSNotificationName;

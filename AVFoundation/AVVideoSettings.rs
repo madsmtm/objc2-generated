@@ -317,6 +317,21 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideologtransferfunctionkey?language=objc)
+    pub static AVVideoLogTransferFunctionKey: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideologtransferfunction_applelog?language=objc)
+    pub static AVVideoLogTransferFunction_AppleLog: &'static NSString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideologtransferfunction_applelog2?language=objc)
+    pub static AVVideoLogTransferFunction_AppleLog2: &'static NSString;
+}
+
+extern "C" {
     /// Indicates whether the client can process wide color
     ///
     /// Clients who wish to process wide color content should set the value of this key to

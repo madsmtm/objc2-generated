@@ -20,6 +20,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiagnosticpayload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use DiagnosticReport instead."]
     pub struct MXDiagnosticPayload;
 );
 
@@ -39,6 +40,7 @@ impl MXDiagnosticPayload {
     extern_methods!(
         #[cfg(all(feature = "MXCPUExceptionDiagnostic", feature = "MXDiagnostic"))]
         /// An array containing CPU exception diagnostics for this application.
+        #[deprecated = "Use DiagnosticReport instead."]
         #[unsafe(method(cpuExceptionDiagnostics))]
         #[unsafe(method_family = none)]
         pub unsafe fn cpuExceptionDiagnostics(
@@ -47,6 +49,7 @@ impl MXDiagnosticPayload {
 
         #[cfg(all(feature = "MXDiagnostic", feature = "MXDiskWriteExceptionDiagnostic"))]
         /// An array containing disk write exception diagnostics for this application.
+        #[deprecated = "Use DiagnosticReport instead."]
         #[unsafe(method(diskWriteExceptionDiagnostics))]
         #[unsafe(method_family = none)]
         pub unsafe fn diskWriteExceptionDiagnostics(
@@ -55,6 +58,7 @@ impl MXDiagnosticPayload {
 
         #[cfg(all(feature = "MXDiagnostic", feature = "MXHangDiagnostic"))]
         /// An array containing hang diagnostics for this application.
+        #[deprecated = "Use DiagnosticReport instead."]
         #[unsafe(method(hangDiagnostics))]
         #[unsafe(method_family = none)]
         pub unsafe fn hangDiagnostics(&self) -> Option<Retained<NSArray<MXHangDiagnostic>>>;
@@ -69,16 +73,19 @@ impl MXDiagnosticPayload {
 
         #[cfg(all(feature = "MXCrashDiagnostic", feature = "MXDiagnostic"))]
         /// An array containing crash diagnostics for this application.
+        #[deprecated = "Use DiagnosticReport instead."]
         #[unsafe(method(crashDiagnostics))]
         #[unsafe(method_family = none)]
         pub unsafe fn crashDiagnostics(&self) -> Option<Retained<NSArray<MXCrashDiagnostic>>>;
 
         /// An NSDate object that indicates the start time for which the payload was generated.
+        #[deprecated = "Use DiagnosticReport instead."]
         #[unsafe(method(timeStampBegin))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStampBegin(&self) -> Retained<NSDate>;
 
         /// An NSDate object that indicates the end time for which the payload was generated.
+        #[deprecated = "Use DiagnosticReport instead."]
         #[unsafe(method(timeStampEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStampEnd(&self) -> Retained<NSDate>;
@@ -86,6 +93,7 @@ impl MXDiagnosticPayload {
         /// Convenience method to return a JSON representation of this diagnostic payload.
         ///
         /// Returns: An NSData object containing the JSON representation
+        #[deprecated = "Use DiagnosticReport instead."]
         #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
@@ -93,6 +101,7 @@ impl MXDiagnosticPayload {
         /// Convenience method to return a NSDictionary representation of this diagnostic payload.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
+        #[deprecated = "Use DiagnosticReport instead."]
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;

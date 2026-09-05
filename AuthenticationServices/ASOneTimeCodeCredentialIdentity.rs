@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An ASOneTimeCodeCredentialIdentity is used to describe an identity that can use a service upon successful one time code based authentication.
+    /// An ASOneTimeCodeCredentialIdentity is used to describe an identity that can use a service upon successful one-time code based authentication.
     /// Use this class to save entries into ASCredentialIdentityStore.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asonetimecodecredentialidentity?language=objc)
@@ -54,7 +54,7 @@ impl ASOneTimeCodeCredentialIdentity {
         ///
         /// Parameter `serviceIdentifier`: The service identifier for which this credential identity is valid.
         ///
-        /// Parameter `label`: A user-provided label to identify the one time code.
+        /// Parameter `label`: A user-provided label to identify the one-time code.
         ///
         /// Parameter `recordIdentifier`: An optional string to uniquely identify this record in your local database.
         #[unsafe(method(initWithServiceIdentifier:label:recordIdentifier:))]
@@ -66,8 +66,8 @@ impl ASOneTimeCodeCredentialIdentity {
             record_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        /// A label to identify the one time code, typically supplied by the user.
-        /// This string will be shown in the AutoFill suggestion for this one time code credential.
+        /// A label to identify the one-time code, typically supplied by the user.
+        /// This string will be shown in the AutoFill suggestion for this one-time code credential.
         ///
         /// This property is not atomic.
         ///

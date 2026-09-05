@@ -325,6 +325,40 @@ impl THClient {
             &self,
             completion: &block2::SendableBlock<'static, fn(Bool)>,
         );
+
+        #[cfg(feature = "block2")]
+        /// Triggers Credential Share mode on a nearby eligible Apple Border Router (tvOS(27.0)).
+        ///
+        /// This method scans for Thread credential sharing capable Apple Border Routers, selects an eligible device, and requests to generate an ephemeral 9-digit code and start credential sharing mode.
+        ///
+        /// When you call this method, an alert appears asking for user permission to
+        /// access credentials.
+        ///
+        /// - Parameters:
+        /// - completion: The completion handler the framework calls when the
+        /// one-time admin code becomes available.
+        ///
+        /// > Concurrency Note: You can call this method from synchronous code using a completion handler,
+        /// > as shown on this page, or you can call it as an asynchronous method that has the
+        /// > following declarations:
+        /// >
+        /// > ```swift
+        /// > // Completion handler form:
+        /// > func enableCredentialSharingMode(completionHandler:
+        /// @escaping (String?, Error?) -> Void)
+        /// >
+        /// > // Async form:
+        /// > func enableCredentialSharingMode() async throws -> String
+        /// > ```
+        /// > For information about concurrency and asynchronous code in Swift, see
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
+        #[unsafe(method(enableCredentialSharingMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enableCredentialSharingMode(
+            &self,
+            completion: &block2::SendableBlock<'static, fn(*mut NSString, *mut NSError)>,
+        );
     );
 }
 

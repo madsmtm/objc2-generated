@@ -5,218 +5,290 @@ use core::ptr::NonNull;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemfsnamekey?language=objc)
+    /// The file system name of the metadata item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemfsnamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemFSNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemdisplaynamekey?language=objc)
+    /// The display name of the metadata item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemdisplaynamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemDisplayNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemurlkey?language=objc)
+    /// The URL of the metadata item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemurlkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemURLKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitempathkey?language=objc)
+    /// The file system path of the metadata item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitempathkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemPathKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemfssizekey?language=objc)
+    /// The file system size, in bytes, of the metadata item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemfssizekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemFSSizeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemfscreationdatekey?language=objc)
+    /// The date the metadata item was created.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemfscreationdatekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemFSCreationDateKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemfscontentchangedatekey?language=objc)
+    /// The date the metadata item's contents last changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemfscontentchangedatekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemFSContentChangeDateKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemcontenttypekey?language=objc)
+    /// The content type (UTI) of the metadata item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemcontenttypekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemContentTypeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemcontenttypetreekey?language=objc)
+    /// The content type tree of the metadata item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemcontenttypetreekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemContentTypeTreeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemisubiquitouskey?language=objc)
+    /// A Boolean value indicating whether the metadata item is ubiquitous.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitemisubiquitouskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataItemIsUbiquitousKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemhasunresolvedconflictskey?language=objc)
+    /// A Boolean value indicating whether the ubiquitous item has unresolved conflicts.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemhasunresolvedconflictskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemHasUnresolvedConflictsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisdownloadedkey?language=objc)
+    /// A Boolean value indicating whether the ubiquitous item has been downloaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisdownloadedkey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSMetadataUbiquitousItemDownloadingStatusKey instead"]
     pub static NSMetadataUbiquitousItemIsDownloadedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatuskey?language=objc)
+    /// The download status of the ubiquitous item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatuskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemDownloadingStatusKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatusnotdownloaded?language=objc)
+    /// The item has not been downloaded yet. Use `startDownloadingUbiquitousItem(at:)` to download it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatusnotdownloaded?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemDownloadingStatusNotDownloaded: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatusdownloaded?language=objc)
+    /// There is a local version of this item available. The most current version will get downloaded as soon as possible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatusdownloaded?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemDownloadingStatusDownloaded: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatuscurrent?language=objc)
+    /// There is a local version of this item and it is the most up-to-date version known to this device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatuscurrent?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemDownloadingStatusCurrent: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisdownloadingkey?language=objc)
+    /// A Boolean value indicating whether the ubiquitous item is currently being downloaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisdownloadingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemIsDownloadingKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisuploadedkey?language=objc)
+    /// A Boolean value indicating whether the ubiquitous item has been uploaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisuploadedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemIsUploadedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisuploadingkey?language=objc)
+    /// A Boolean value indicating whether the ubiquitous item is currently being uploaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisuploadingkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemIsUploadingKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentdownloadedkey?language=objc)
+    /// The percentage of the ubiquitous item that has been downloaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentdownloadedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemPercentDownloadedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentuploadedkey?language=objc)
+    /// The percentage of the ubiquitous item that has been uploaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentuploadedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemPercentUploadedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingerrorkey?language=objc)
+    /// The error when downloading the ubiquitous item from iCloud failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemDownloadingErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemuploadingerrorkey?language=objc)
+    /// The error when uploading the ubiquitous item to iCloud failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemuploadingerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemUploadingErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadrequestedkey?language=objc)
+    /// A Boolean value indicating whether a download has been requested for the ubiquitous item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadrequestedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemDownloadRequestedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisexternaldocumentkey?language=objc)
+    /// A Boolean value indicating whether the ubiquitous item is from an external document.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisexternaldocumentkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemIsExternalDocumentKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemcontainerdisplaynamekey?language=objc)
+    /// The display name of the container that stores the ubiquitous item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemcontainerdisplaynamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemContainerDisplayNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemurlinlocalcontainerkey?language=objc)
+    /// The URL for the ubiquitous item in the local container.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemurlinlocalcontainerkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemURLInLocalContainerKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemissharedkey?language=objc)
+    /// A Boolean value indicating whether the ubiquitous item is shared.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemissharedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousItemIsSharedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemcurrentuserrolekey?language=objc)
+    /// The current user's role for the shared item, or `nil` if not shared.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemcurrentuserrolekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousSharedItemCurrentUserRoleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemcurrentuserpermissionskey?language=objc)
+    /// The permissions for the current user, or `nil` if not shared.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemcurrentuserpermissionskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemownernamecomponentskey?language=objc)
+    /// The name components of the shared item's owner, or `nil` if the current user is the owner.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemownernamecomponentskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousSharedItemOwnerNameComponentsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemmostrecenteditornamecomponentskey?language=objc)
+    /// The name components of the most recent editor of the shared document, or `nil` if it is the current user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemmostrecenteditornamecomponentskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemroleowner?language=objc)
+    /// The current user is the owner of the shared item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemroleowner?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousSharedItemRoleOwner: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemroleparticipant?language=objc)
+    /// The current user is a participant of the shared item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemroleparticipant?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousSharedItemRoleParticipant: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditempermissionsreadonly?language=objc)
+    /// The current user is only allowed to read this item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditempermissionsreadonly?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousSharedItemPermissionsReadOnly: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditempermissionsreadwrite?language=objc)
+    /// The current user is allowed to both read and write this item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditempermissionsreadwrite?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataUbiquitousSharedItemPermissionsReadWrite: &'static NSString;
 }

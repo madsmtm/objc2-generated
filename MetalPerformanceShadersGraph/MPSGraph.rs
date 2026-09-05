@@ -250,9 +250,15 @@ impl MPSGraphCompilationDescriptor {
         pub unsafe fn disableTypeInference(&self);
 
         /// Turns on Automatic Layout Conversion (for conv like operations) for GPU.
+        /// DEPRECATED: Layout conversion is now default, so this function is a no-op.
         #[unsafe(method(convertLayoutToNHWC))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertLayoutToNHWC(&self);
+
+        /// Turns off Automatic Layout Conversion (for conv like operations) for GPU.
+        #[unsafe(method(disableAutoLayoutConversion))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn disableAutoLayoutConversion(&self);
 
         /// The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
         #[unsafe(method(optimizationLevel))]
@@ -741,6 +747,59 @@ impl MPSGraph {
         pub unsafe fn runAsyncWithMTLCommandQueue_feeds_targetOperations_resultsDictionary_executionDescriptor(
             &self,
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
+            feeds: &MPSGraphTensorDataDictionary,
+            target_operations: Option<&NSArray<MPSGraphOperation>>,
+            results_dictionary: &MPSGraphTensorDataDictionary,
+            execution_descriptor: Option<&MPSGraphExecutionDescriptor>,
+        );
+
+        #[cfg(all(
+            feature = "MPSGraphOperation",
+            feature = "MPSGraphTensor",
+            feature = "MPSGraphTensorData"
+        ))]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        ///
+        /// This call is asynchronous and will return immediately if a completionHandler is set.
+        ///
+        /// - Parameters:
+        /// - commandQueue: MTL4CommandQueue passed to exectute the graph on.
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetTensors: Tensors for which the caller wishes MPSGraphTensorData to be returned.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
+        /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
+        #[unsafe(method(runAsyncWithMTL4CommandQueue:feeds:targetTensors:targetOperations:executionDescriptor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn runAsyncWithMTL4CommandQueue_feeds_targetTensors_targetOperations_executionDescriptor(
+            &self,
+            command_queue: &ProtocolObject<dyn MTL4CommandQueue>,
+            feeds: &MPSGraphTensorDataDictionary,
+            target_tensors: &NSArray<MPSGraphTensor>,
+            target_operations: Option<&NSArray<MPSGraphOperation>>,
+            execution_descriptor: Option<&MPSGraphExecutionDescriptor>,
+        ) -> Retained<MPSGraphTensorDataDictionary>;
+
+        #[cfg(all(
+            feature = "MPSGraphOperation",
+            feature = "MPSGraphTensor",
+            feature = "MPSGraphTensorData"
+        ))]
+        /// Encodes the graph for the given feeds to returns the target tensor values in the results dictionary provided by the user.
+        ///
+        /// It ensures all target operations also executed. This call is asynchronous and will return immediately if a completionHandler is set.
+        ///
+        /// - Parameters:
+        /// - commandQueue: MTL4CommandQueue passed to exectute the graph on.
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - resultsDictionary: MPSGraphTensors dictionary passed by user, these will be filled with graph output data.
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
+        #[unsafe(method(runAsyncWithMTL4CommandQueue:feeds:targetOperations:resultsDictionary:executionDescriptor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn runAsyncWithMTL4CommandQueue_feeds_targetOperations_resultsDictionary_executionDescriptor(
+            &self,
+            command_queue: &ProtocolObject<dyn MTL4CommandQueue>,
             feeds: &MPSGraphTensorDataDictionary,
             target_operations: Option<&NSArray<MPSGraphOperation>>,
             results_dictionary: &MPSGraphTensorDataDictionary,

@@ -196,6 +196,14 @@ extern "C" {
     pub static kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: &'static CFString;
 }
 
+extern "C" {
+    /// SMPTE ST2094-50 HDR metadata. (it35 keyspace)
+    /// Expected data type is kCMMetadataDataType_QuickTimeMetadataSMPTE2094_50.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_itut_t35metadatasmpte2094_50?language=objc)
+    pub static kCMMetadataIdentifier_ITUT_T35MetadataSMPTE2094_50: &'static CFString;
+}
+
 /// Creates a URL-like string identifier that represents a key/keyspace tuple.
 ///
 /// Metadata entities are identified by a key whose interpretation
@@ -358,6 +366,10 @@ extern "C" {
     ///
     /// UTF-16 string.
     ///
+    /// A string with MacRoman encoding (kCFStringEncodingMacRoman).
+    ///
+    /// A string with ISO 8859-1 encoding (kCFStringEncodingISOLatin1).
+    ///
     /// GIF image.
     ///
     /// JPEG image.
@@ -421,6 +433,16 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_utf16?language=objc)
     pub static kCMMetadataBaseDataType_UTF16: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_macroman?language=objc)
+    pub static kCMMetadataBaseDataType_MacRoman: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_isolatin1?language=objc)
+    pub static kCMMetadataBaseDataType_ISOLatin1: &'static CFString;
 }
 
 extern "C" {
@@ -573,6 +595,14 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatamillilux?language=objc)
     pub static kCMMetadataDataType_QuickTimeMetadataMilliLux: &'static CFString;
+}
+
+extern "C" {
+    /// SMPTE ST2094-50 HDR metadata.  Conforms to
+    /// kCMMetadataBaseDataType_RawData.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatasmpte2094_50?language=objc)
+    pub static kCMMetadataDataType_QuickTimeMetadataSMPTE2094_50: &'static CFString;
 }
 
 /// Register a data type with the data type registry.

@@ -100,5 +100,53 @@ impl VZUSBController {
         #[unsafe(method(usbDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn usbDevices(&self) -> Retained<NSArray<ProtocolObject<dyn VZUSBDevice>>>;
+
+        /// The controller's delegate.
+        #[unsafe(method(delegate))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn delegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn VZUSBControllerDelegate>>>;
+
+        /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
+        #[unsafe(method(setDelegate:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn VZUSBControllerDelegate>>,
+        );
     );
 }
+
+extern_protocol!(
+    /// Delegate object for a VZUSBController.
+    ///
+    /// A class conforming to the VZUSBControllerDelegate protocol can provide methods that
+    /// get invoked when the USB controller's state changes.
+    ///
+    /// See: VZUSBController
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbcontrollerdelegate?language=objc)
+    pub unsafe trait VZUSBControllerDelegate: NSObjectProtocol {
+        #[cfg(feature = "VZUSBPassthroughDevice")]
+        /// Invoked when a USB device's IOService is terminated.
+        ///
+        /// When invoked, the framework has detached the corresponding
+        /// VZUSBPassthroughDevice from its VZUSBController and removed
+        /// the device from the VZUSBController.usbDevices array.
+        ///
+        /// Parameter `usbController`: The VZUSBController invoking the delegate method.
+        ///
+        /// Parameter `device`: The VZUSBPassthroughDevice that disconnected.
+        #[optional]
+        #[unsafe(method(usbController:usbPassthroughDeviceDidDisconnect:))]
+        #[unsafe(method_family = none)]
+        unsafe fn usbController_usbPassthroughDeviceDidDisconnect(
+            &self,
+            usb_controller: &VZUSBController,
+            device: &VZUSBPassthroughDevice,
+        );
+    }
+);

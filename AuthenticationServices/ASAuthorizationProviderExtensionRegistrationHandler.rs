@@ -21,6 +21,8 @@ impl ASAuthorizationProviderExtensionAuthenticationMethod {
     pub const UserSecureEnclaveKey: Self = Self(2);
     #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodSmartCard")]
     pub const SmartCard: Self = Self(3);
+    #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodOpenID")]
+    pub const OpenID: Self = Self(5);
 }
 
 unsafe impl Encode for ASAuthorizationProviderExtensionAuthenticationMethod {
@@ -107,6 +109,8 @@ bitflags::bitflags! {
         const SAML1_1 = 1<<2;
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0")]
         const SAML2_0 = 1<<3;
+        #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesTokenExchange")]
+        const TokenExchange = 1<<4;
         const _ = !0;
     }
 }

@@ -21,6 +21,9 @@ impl BAContentRequest {
     /// Content is being requested because the system is asking for updated content for your application.
     #[doc(alias = "BAContentRequestPeriodic")]
     pub const Periodic: Self = Self(3);
+    /// Content is being requested because the user changed their preferred language for your application.
+    #[doc(alias = "BAContentRequestLanguageChange")]
+    pub const LanguageChange: Self = Self(4);
 }
 
 unsafe impl Encode for BAContentRequest {

@@ -6,31 +6,65 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnoscripterror?language=objc)
+/// No error encountered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnoscripterror?language=objc)
 pub const NSNoScriptError: NSInteger = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreceiverevaluationscripterror?language=objc)
+/// A problem occurred evaluating the receiver specifier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreceiverevaluationscripterror?language=objc)
 pub const NSReceiverEvaluationScriptError: NSInteger = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyspecifierevaluationscripterror?language=objc)
+/// The object or objects specified by a key could not be found.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyspecifierevaluationscripterror?language=objc)
 pub const NSKeySpecifierEvaluationScriptError: NSInteger = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentevaluationscripterror?language=objc)
+/// A problem occurred evaluating an argument specifier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentevaluationscripterror?language=objc)
 pub const NSArgumentEvaluationScriptError: NSInteger = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreceiverscanthandlecommandscripterror?language=objc)
+/// The receivers don't support the command.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreceiverscanthandlecommandscripterror?language=objc)
 pub const NSReceiversCantHandleCommandScriptError: NSInteger = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrequiredargumentsmissingscripterror?language=objc)
+/// One or more required arguments are missing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrequiredargumentsmissingscripterror?language=objc)
 pub const NSRequiredArgumentsMissingScriptError: NSInteger = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentswrongscripterror?language=objc)
+/// One or more arguments are of the wrong type or are otherwise invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentswrongscripterror?language=objc)
 pub const NSArgumentsWrongScriptError: NSInteger = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunknownkeyscripterror?language=objc)
+/// The key is not recognized.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunknownkeyscripterror?language=objc)
 pub const NSUnknownKeyScriptError: NSInteger = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalscripterror?language=objc)
+/// Other miscellaneous internal error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalscripterror?language=objc)
 pub const NSInternalScriptError: NSInteger = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationnotsupportedforkeyscripterror?language=objc)
+/// The implementation of a scripting command signaled an error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationnotsupportedforkeyscripterror?language=objc)
 pub const NSOperationNotSupportedForKeyScriptError: NSInteger = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscannotcreatescriptcommanderror?language=objc)
+/// The script command could not be created.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscannotcreatescriptcommanderror?language=objc)
 pub const NSCannotCreateScriptCommandError: NSInteger = 10;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptcommand?language=objc)
+    /// A self-contained scripting statement.
+    ///
+    /// An instance of ``NSScriptCommand`` represents a scripting statement, such as `set word 5 of the front document to word 1 of the second document`, and contains the information needed to perform the operation specified by the statement.
+    ///
+    /// When an Apple event reaches a Cocoa application, Cocoa's built-in scripting support transforms it into a script command (that is, an instance of `NSScriptCommand` or one of the subclasses provided by Cocoa scripting or by your application) and executes the command in the context of the application. Executing a command means either invoking the selector associated with the command on the object or objects designated to receive the command, or having the command perform its default implementation method (``performDefaultImplementation()``).
+    ///
+    /// Your application most likely calls methods of `NSScriptCommand` to extract the command arguments. You do this either in the `performDefaultImplementation` method of a command subclass you have created, or in an object method designated as the selector to handle a particular command.
+    ///
+    /// As part of Cocoa's standard scripting implementation, `NSScriptCommand` and its subclasses can handle the default command set for AppleScript's Standard suite for most applications without any subclassing. The Standard suite includes commands such as `copy`, `count`, `create`, `delete`, `exists`, and `move`, as well as common object classes such as `application`, `document`, and `window`.
+    ///
+    /// For more information on working with script commands, see [Script Commands](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_script_cmds/SAppsScriptCmds.html#//apple_ref/doc/uid/20001242) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptcommand?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptCommand;
@@ -48,6 +82,7 @@ extern_conformance!(
 impl NSScriptCommand {
     extern_methods!(
         #[cfg(feature = "NSScriptCommandDescription")]
+        /// Initializes a script command from a command description.
         #[unsafe(method(initWithCommandDescription:))]
         #[unsafe(method_family = init)]
         pub fn initWithCommandDescription(
@@ -56,10 +91,12 @@ impl NSScriptCommand {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSScriptCommandDescription")]
+        /// The description of this script command.
         #[unsafe(method(commandDescription))]
         #[unsafe(method_family = none)]
         pub fn commandDescription(&self) -> Retained<NSScriptCommandDescription>;
 
+        /// The object that corresponds to the direct parameter of the Apple event from which this command derives.
         #[unsafe(method(directParameter))]
         #[unsafe(method_family = none)]
         pub fn directParameter(&self) -> Option<Retained<AnyObject>>;
@@ -74,6 +111,9 @@ impl NSScriptCommand {
         pub unsafe fn setDirectParameter(&self, direct_parameter: Option<&AnyObject>);
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
+        /// The object specifier for the object or objects that will be given a chance to handle the command.
+        ///
+        /// If the direct parameter of the original event was an object specifier, `setDirectParameter:` sends a `setReceiversSpecifier:` message.
         #[unsafe(method(receiversSpecifier))]
         #[unsafe(method_family = none)]
         pub fn receiversSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
@@ -84,11 +124,15 @@ impl NSScriptCommand {
         #[unsafe(method_family = none)]
         pub fn setReceiversSpecifier(&self, receivers_specifier: Option<&NSScriptObjectSpecifier>);
 
+        /// If the direct parameter of the original event was an object specifier, returns the specified object or objects.
+        ///
+        /// Returns `nil` if the direct parameter was not an object specifier or could not be evaluated.
         #[unsafe(method(evaluatedReceivers))]
         #[unsafe(method_family = none)]
         pub fn evaluatedReceivers(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The arguments of the command.
         #[unsafe(method(arguments))]
         #[unsafe(method_family = none)]
         pub fn arguments(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -106,22 +150,31 @@ impl NSScriptCommand {
         pub unsafe fn setArguments(&self, arguments: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The arguments of the command, with any object specifiers already evaluated.
         #[unsafe(method(evaluatedArguments))]
         #[unsafe(method_family = none)]
         pub fn evaluatedArguments(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// A Boolean value that indicates whether the command is well-formed according to its command description.
         #[unsafe(method(isWellFormed))]
         #[unsafe(method_family = none)]
         pub fn isWellFormed(&self) -> bool;
 
+        /// Overridden by subclasses to perform the default action for a command when no receivers explicitly handle it.
+        ///
+        /// If `suspend` is invoked during the invocation of this method, its return value is ignored by Cocoa Scripting's built-in Apple event handling.
         #[unsafe(method(performDefaultImplementation))]
         #[unsafe(method_family = none)]
         pub fn performDefaultImplementation(&self) -> Option<Retained<AnyObject>>;
 
+        /// Evaluates the receiver specifier and arguments, validates the command, and executes it.
+        ///
+        /// If the command is valid and there are receivers, the command handler method for the receivers' class is invoked. If the command is valid but there are no receivers, `performDefaultImplementation` is invoked.
         #[unsafe(method(executeCommand))]
         #[unsafe(method_family = none)]
         pub fn executeCommand(&self) -> Option<Retained<AnyObject>>;
 
+        /// The error number associated with this command, if any.
         #[unsafe(method(scriptErrorNumber))]
         #[unsafe(method_family = none)]
         pub fn scriptErrorNumber(&self) -> NSInteger;
@@ -132,6 +185,7 @@ impl NSScriptCommand {
         pub fn setScriptErrorNumber(&self, script_error_number: NSInteger);
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// An `NSAppleEventDescriptor` that identifies the offending object when an error occurs.
         #[unsafe(method(scriptErrorOffendingObjectDescriptor))]
         #[unsafe(method_family = none)]
         pub fn scriptErrorOffendingObjectDescriptor(
@@ -148,6 +202,7 @@ impl NSScriptCommand {
         );
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// An `NSAppleEventDescriptor` that identifies the expected type when a type mismatch error occurs.
         #[unsafe(method(scriptErrorExpectedTypeDescriptor))]
         #[unsafe(method_family = none)]
         pub fn scriptErrorExpectedTypeDescriptor(&self)
@@ -163,6 +218,7 @@ impl NSScriptCommand {
         );
 
         #[cfg(feature = "NSString")]
+        /// The error string associated with this command, if any.
         #[unsafe(method(scriptErrorString))]
         #[unsafe(method_family = none)]
         pub fn scriptErrorString(&self) -> Option<Retained<NSString>>;
@@ -175,19 +231,32 @@ impl NSScriptCommand {
         #[unsafe(method_family = none)]
         pub fn setScriptErrorString(&self, script_error_string: Option<&NSString>);
 
+        /// Returns the currently executing script command, if any.
+        ///
+        /// If a command is being executed in the current thread by Cocoa Scripting's built-in Apple event handling, return the command. Return `nil` otherwise.
         #[unsafe(method(currentCommand))]
         #[unsafe(method_family = none)]
         pub fn currentCommand() -> Option<Retained<NSScriptCommand>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// The Apple event descriptor from which this command was constructed.
+        ///
+        /// Only available if the receiver was constructed by Cocoa Scripting's built-in Apple event handling.
         #[unsafe(method(appleEvent))]
         #[unsafe(method_family = none)]
         pub fn appleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
+        /// Suspends execution of this command.
+        ///
+        /// If the receiver is being executed in the current thread by Cocoa Scripting's built-in Apple event handling, suspend the execution of the command. A matching invocation of `resumeExecutionWithResult:` must be made.
         #[unsafe(method(suspendExecution))]
         #[unsafe(method_family = none)]
         pub fn suspendExecution(&self);
 
+        /// Resumes execution of a previously suspended command with a result.
+        ///
+        /// This method may be invoked in any thread, not just the one in which the corresponding invocation of `suspendExecution` occurred.
+        ///
         /// # Safety
         ///
         /// `result` should be of the correct type.

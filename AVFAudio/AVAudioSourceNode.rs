@@ -46,11 +46,30 @@ pub type AVAudioSourceNodeRenderBlock = block2::Block<
     ) -> OSStatus,
 >;
 
+/// Identical to AVAudioSourceNodeRenderBlock, with the addition of a realtime-safety
+/// guarantee.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosourcenoderenderblockrealtimesafe?language=objc)
+#[cfg(all(
+    feature = "AVAudioTypes",
+    feature = "block2",
+    feature = "objc2-core-audio-types"
+))]
+pub type AVAudioSourceNodeRenderBlockRealtimeSafe = block2::Block<
+    'static,
+    fn(
+        NonNull<Bool>,
+        NonNull<AudioTimeStamp>,
+        AVAudioFrameCount,
+        NonNull<AudioBufferList>,
+    ) -> OSStatus,
+>;
+
 extern_class!(
     /// AVAudioSourceNode wraps a client provided block to supply audio.
     ///
     /// With AVAudioSourceNode the client can supply audio data for rendering through an
-    /// AVAudioSourceNodeRenderBlock block.
+    /// AVAudioSourceNodeRenderBlock or AVAudioSourceNodeRenderBlockRealtimeSafe block.
     /// This is similar to setting the input callback on an Audio Unit with the
     /// kAudioUnitProperty_SetRenderCallback property.
     ///
@@ -60,6 +79,12 @@ extern_class!(
     #[cfg(feature = "AVAudioNode")]
     pub struct AVAudioSourceNode;
 );
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Send for AVAudioSourceNode {}
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Sync for AVAudioSourceNode {}
 
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
 extern_conformance!(
@@ -97,6 +122,8 @@ impl AVAudioSourceNode {
         ///
         /// The block can be called on realtime or non-realtime threads depending on the engine’s
         /// operating mode and it is the client's responsibility to handle it in a thread-safe manner.
+        /// When the the engine is configured for realtime use (rendering to a device, or using
+        /// `AVAudioEngineManualRenderingModeRealtime`) initWithRealtimeSafeRenderBlock: is preferred.
         ///
         /// The audio format for the output bus will be set from the connection format when connecting
         /// to another node.
@@ -108,6 +135,21 @@ impl AVAudioSourceNode {
         pub unsafe fn initWithRenderBlock(
             this: Allocated<Self>,
             block: &AVAudioSourceNodeRenderBlock,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "AVAudioTypes",
+            feature = "block2",
+            feature = "objc2-core-audio-types"
+        ))]
+        /// Identical to initWithRenderBlock:, but requires a realtime-safe block.
+        /// When the the engine is configured for realtime use (rendering to a device, or using
+        /// `AVAudioEngineManualRenderingModeRealtime`) this initializer is preferred.
+        #[unsafe(method(initWithRealtimeSafeRenderBlock:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithRealtimeSafeRenderBlock(
+            this: Allocated<Self>,
+            block: &AVAudioSourceNodeRenderBlockRealtimeSafe,
         ) -> Retained<Self>;
 
         #[cfg(all(
@@ -124,6 +166,8 @@ impl AVAudioSourceNode {
         ///
         /// The block can be called on realtime or non-realtime threads depending on the engine’s
         /// operating mode and it is the client's responsibility to handle it in a thread-safe manner.
+        /// When the the engine is configured for realtime use (rendering to a device, or using
+        /// `AVAudioEngineManualRenderingModeRealtime`) initWithFormat:realtimeSafeRenderBlock: is preferred.
         ///
         /// The audio format for the output bus will be set from the connection format when connecting
         /// to another node.
@@ -136,6 +180,23 @@ impl AVAudioSourceNode {
             this: Allocated<Self>,
             format: &AVAudioFormat,
             block: &AVAudioSourceNodeRenderBlock,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "AVAudioFormat",
+            feature = "AVAudioTypes",
+            feature = "block2",
+            feature = "objc2-core-audio-types"
+        ))]
+        /// Identical to initWithFormat:renderBlock:, but requires a realtime-safe block.
+        /// When the the engine is configured for realtime use (rendering to a device, or using
+        /// `AVAudioEngineManualRenderingModeRealtime`) this initializer is preferred.
+        #[unsafe(method(initWithFormat:realtimeSafeRenderBlock:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithFormat_realtimeSafeRenderBlock(
+            this: Allocated<Self>,
+            format: &AVAudioFormat,
+            block: &AVAudioSourceNodeRenderBlockRealtimeSafe,
         ) -> Retained<Self>;
     );
 }

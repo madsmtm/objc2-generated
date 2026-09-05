@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmethodsignature?language=objc)
+    /// A record of the type information for the return value and parameters of a method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmethodsignature?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMethodSignature;
@@ -19,30 +21,37 @@ extern_conformance!(
 
 impl NSMethodSignature {
     extern_methods!(
+        /// Returns an ``NSMethodSignature`` object for the given Objective-C method type string.
         #[unsafe(method(signatureWithObjCTypes:))]
         #[unsafe(method_family = none)]
         pub fn signatureWithObjCTypes(types: &CStr) -> Option<Retained<NSMethodSignature>>;
 
+        /// The number of arguments recorded in the receiver.
         #[unsafe(method(numberOfArguments))]
         #[unsafe(method_family = none)]
         pub fn numberOfArguments(&self) -> NSUInteger;
 
+        /// Returns the type encoding for the argument at a given index.
         #[unsafe(method(getArgumentTypeAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn getArgumentTypeAtIndex(&self, idx: NSUInteger) -> NonNull<c_char>;
 
+        /// The number of bytes required by the receiver to store its arguments on the stack frame.
         #[unsafe(method(frameLength))]
         #[unsafe(method_family = none)]
         pub fn frameLength(&self) -> NSUInteger;
 
+        /// Returns a Boolean value that indicates whether the receiver is asynchronous (the `oneway` qualifier).
         #[unsafe(method(isOneway))]
         #[unsafe(method_family = none)]
         pub fn isOneway(&self) -> bool;
 
+        /// A C string encoding the return type of the method.
         #[unsafe(method(methodReturnType))]
         #[unsafe(method_family = none)]
         pub fn methodReturnType(&self) -> NonNull<c_char>;
 
+        /// The number of bytes required for the return value.
         #[unsafe(method(methodReturnLength))]
         #[unsafe(method_family = none)]
         pub fn methodReturnLength(&self) -> NSUInteger;

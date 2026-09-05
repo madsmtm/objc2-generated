@@ -110,6 +110,13 @@ impl AVAsset {
         #[unsafe(method(minimumTimeOffsetFromLive))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumTimeOffsetFromLive(&self) -> CMTime;
+
+        /// The list of file URLs that collectively represent the media asset.
+        ///
+        /// The list of file URLs that constitute the asset are returned only for QuickTime reference movies, or if the MediaExtension format reader implements this property [MEFileInfo setConstituentFileNames:].
+        #[unsafe(method(constituentFileURLs))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn constituentFileURLs(&self) -> Retained<NSArray<NSURL>>;
     );
 }
 

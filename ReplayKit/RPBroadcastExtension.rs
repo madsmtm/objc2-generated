@@ -3,59 +3,11 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-app-kit")]
-#[cfg(target_os = "macos")]
-use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
 use objc2_foundation::*;
 
 use crate::*;
-
-mod private_NSExtensionContextRPBroadcastExtension {
-    pub trait Sealed {}
-}
-
-/// Category "RPBroadcastExtension" on [`NSExtensionContext`].
-///
-/// NSExtensionContext (RPBroadcastExtension)
-///
-/// Category which defines the method to call from on an extension context object when user interaction is complete during the broadcast setup flow.
-#[doc(alias = "RPBroadcastExtension")]
-pub unsafe trait NSExtensionContextRPBroadcastExtension:
-    ClassType + Sized + private_NSExtensionContextRPBroadcastExtension::Sealed
-{
-    extern_methods!(
-        #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
-        #[cfg(target_os = "macos")]
-        /// Load information about the broadcasting app.
-        ///
-        /// Parameter `handler`: block which will be supplied a bundleID, displayName and an optional appIcon.
-        #[unsafe(method(loadBroadcastingApplicationInfoWithCompletion:))]
-        #[unsafe(method_family = none)]
-        unsafe fn loadBroadcastingApplicationInfoWithCompletion(
-            &self,
-            handler: &block2::SendableBlock<
-                'static,
-                fn(NonNull<NSString>, NonNull<NSString>, *mut NSImage),
-            >,
-        );
-
-        /// # Safety
-        ///
-        /// `setup_info` generic must implement NSCoding.
-        #[unsafe(method(completeRequestWithBroadcastURL:setupInfo:))]
-        #[unsafe(method_family = none)]
-        unsafe fn completeRequestWithBroadcastURL_setupInfo(
-            &self,
-            broadcast_url: &NSURL,
-            setup_info: Option<&NSDictionary<NSString, NSObject>>,
-        );
-    );
-}
-
-impl private_NSExtensionContextRPBroadcastExtension::Sealed for NSExtensionContext {}
-unsafe impl NSExtensionContextRPBroadcastExtension for NSExtensionContext {}
 
 extern_class!(
     /// Base class for extensions that are responsible for handling video and audio data.
@@ -63,6 +15,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcasthandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported"]
     pub struct RPBroadcastHandler;
 );
 
@@ -83,6 +36,7 @@ impl RPBroadcastHandler {
         /// # Safety
         ///
         /// `service_info` generic must implement NSCoding.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(updateServiceInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateServiceInfo(&self, service_info: &NSDictionary<NSString, NSObject>);
@@ -135,6 +89,7 @@ extern "C" {
     /// Use this key in conjunction with CMGetAttachment on CMSampleBufferRef to get the orientation for the sample. The orientation will follow the enum CGImagePropertyOrientation
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpvideosampleorientationkey?language=objc)
+    #[deprecated = "No longer supported"]
     pub static RPVideoSampleOrientationKey: &'static NSString;
 }
 
@@ -142,6 +97,7 @@ extern "C" {
     /// Use this key to retrieve bundle identifier from dictionary provided by broadcastAnnotatedWithApplicationInfo
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpapplicationinfobundleidentifierkey?language=objc)
+    #[deprecated = "No longer supported"]
     pub static RPApplicationInfoBundleIdentifierKey: &'static NSString;
 }
 
@@ -151,6 +107,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastsamplehandler?language=objc)
     #[unsafe(super(RPBroadcastHandler, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported"]
     pub struct RPBroadcastSampleHandler;
 );
 
@@ -171,6 +128,7 @@ impl RPBroadcastSampleHandler {
         /// # Safety
         ///
         /// `setup_info` generic should be of the correct type.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(broadcastStartedWithSetupInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn broadcastStartedWithSetupInfo(
@@ -179,16 +137,19 @@ impl RPBroadcastSampleHandler {
         );
 
         /// Method is called when the RPBroadcastController pauseBroadcast method is called from the broadcasting application.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(broadcastPaused))]
         #[unsafe(method_family = none)]
         pub unsafe fn broadcastPaused(&self);
 
         /// Method is called when the RPBroadcastController resumeBroadcast method is called from the broadcasting application.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(broadcastResumed))]
         #[unsafe(method_family = none)]
         pub unsafe fn broadcastResumed(&self);
 
         /// Method is called when the RPBroadcastController finishBroadcast method is called from the broadcasting application.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(broadcastFinished))]
         #[unsafe(method_family = none)]
         pub unsafe fn broadcastFinished(&self);
@@ -210,6 +171,7 @@ impl RPBroadcastSampleHandler {
         /// Parameter `sampleBuffer`: CMSampleBuffer object which contains either video or audio data.
         ///
         /// Parameter `sampleBufferType`: Determine's the type of the sample buffer defined by the RPSampleBufferType enum.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(processSampleBuffer:withType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processSampleBuffer_withType(
@@ -221,6 +183,7 @@ impl RPBroadcastSampleHandler {
         /// Method that should be called when broadcasting can not proceed due to an error. Calling this method will stop the broadcast and deliver the error back to the broadcasting app through RPBroadcastController's delegate.
         ///
         /// Parameter `error`: NSError object that will be passed back to the broadcasting app through RPBroadcastControllerDelegate's broadcastController:didFinishWithError: method.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(finishBroadcastWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishBroadcastWithError(&self, error: &NSError);

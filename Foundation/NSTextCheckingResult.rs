@@ -5,37 +5,54 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingtype?language=objc)
+/// These constants specify the type of checking the methods should do.
+///
+/// They are returned by ``NSTextCheckingResult/resultType``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextCheckingType(pub u64);
 bitflags::bitflags! {
     impl NSTextCheckingType: u64 {
+/// Language identification.
         #[doc(alias = "NSTextCheckingTypeOrthography")]
         const Orthography = 1<<0;
+/// Spell checking.
         #[doc(alias = "NSTextCheckingTypeSpelling")]
         const Spelling = 1<<1;
+/// Grammar checking.
         #[doc(alias = "NSTextCheckingTypeGrammar")]
         const Grammar = 1<<2;
+/// Date and time detection.
         #[doc(alias = "NSTextCheckingTypeDate")]
         const Date = 1<<3;
+/// Address detection.
         #[doc(alias = "NSTextCheckingTypeAddress")]
         const Address = 1<<4;
+/// Link detection.
         #[doc(alias = "NSTextCheckingTypeLink")]
         const Link = 1<<5;
+/// Smart quotes.
         #[doc(alias = "NSTextCheckingTypeQuote")]
         const Quote = 1<<6;
+/// Smart dashes.
         #[doc(alias = "NSTextCheckingTypeDash")]
         const Dash = 1<<7;
+/// Fixed replacements, such as copyright symbol for (c).
         #[doc(alias = "NSTextCheckingTypeReplacement")]
         const Replacement = 1<<8;
+/// Autocorrection.
         #[doc(alias = "NSTextCheckingTypeCorrection")]
         const Correction = 1<<9;
+/// Regular expression matches.
         #[doc(alias = "NSTextCheckingTypeRegularExpression")]
         const RegularExpression = 1<<10;
+/// Phone number detection.
         #[doc(alias = "NSTextCheckingTypePhoneNumber")]
         const PhoneNumber = 1<<11;
+/// Transit (e.g. flight) info detection.
         #[doc(alias = "NSTextCheckingTypeTransitInformation")]
         const TransitInformation = 1<<12;
         const _ = !0;
@@ -53,11 +70,17 @@ unsafe impl RefEncode for NSTextCheckingType {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingtypes?language=objc)
 pub type NSTextCheckingTypes = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingallsystemtypes?language=objc)
+/// All system checking types; the first 32 types are reserved.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingallsystemtypes?language=objc)
 pub const NSTextCheckingAllSystemTypes: NSTextCheckingTypes = 0xffffffff;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingallcustomtypes?language=objc)
+/// All custom checking types; clients may use the remainder for their own purposes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingallcustomtypes?language=objc)
 pub const NSTextCheckingAllCustomTypes: NSTextCheckingTypes = 0xffffffff << 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingalltypes?language=objc)
+/// All possible checking types, both system- and user-supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingalltypes?language=objc)
 pub const NSTextCheckingAllTypes: NSTextCheckingTypes =
     NSTextCheckingAllSystemTypes | NSTextCheckingAllCustomTypes;
 
@@ -67,7 +90,13 @@ pub const NSTextCheckingAllTypes: NSTextCheckingTypes =
 pub type NSTextCheckingKey = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult?language=objc)
+    /// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
+    ///
+    /// On both iOS and macOS, instances of ``NSTextCheckingResult`` are returned by the ``NSRegularExpression`` class and the ``NSDataDetector`` class to indicate the discovery of content. In those cases, what is found may be a match for a regular expression or a date, address, phone number, and so on. In macOS, instances of `NSTextCheckingResult` are returned by the
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nsspellchecker> object to describe the results of spelling, grammar, or text-substitution actions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextCheckingResult;
@@ -99,11 +128,13 @@ extern_conformance!(
 
 impl NSTextCheckingResult {
     extern_methods!(
+        /// Returns the text checking result type that the receiver represents.
         #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
         pub fn resultType(&self) -> NSTextCheckingType;
 
         #[cfg(feature = "NSRange")]
+        /// Returns the range of the result that the receiver represents.
         #[unsafe(method(range))]
         #[unsafe(method_family = none)]
         pub fn range(&self) -> NSRange;
@@ -134,11 +165,13 @@ impl DefaultRetained for NSTextCheckingResult {
 impl NSTextCheckingResult {
     extern_methods!(
         #[cfg(feature = "NSOrthography")]
+        /// The detected orthography of a type checking result.
         #[unsafe(method(orthography))]
         #[unsafe(method_family = none)]
         pub fn orthography(&self) -> Option<Retained<NSOrthography>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
+        /// The details of a grammar checking result.
         #[unsafe(method(grammarDetails))]
         #[unsafe(method_family = none)]
         pub fn grammarDetails(
@@ -146,31 +179,37 @@ impl NSTextCheckingResult {
         ) -> Option<Retained<NSArray<NSDictionary<NSString, AnyObject>>>>;
 
         #[cfg(feature = "NSDate")]
+        /// The date component of a type checking result.
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub fn date(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSTimeZone")]
+        /// The time zone component of a type checking result.
         #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
         pub fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         #[cfg(feature = "NSDate")]
+        /// The duration component of a type checking result.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub fn duration(&self) -> NSTimeInterval;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The components of a type checking result.
         #[unsafe(method(components))]
         #[unsafe(method_family = none)]
         pub fn components(&self) -> Option<Retained<NSDictionary<NSTextCheckingKey, NSString>>>;
 
         #[cfg(feature = "NSURL")]
+        /// The URL component of a type checking result.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
+        /// The replacement string of a type checking result.
         #[unsafe(method(replacementString))]
         #[unsafe(method_family = none)]
         pub fn replacementString(&self) -> Option<Retained<NSString>>;
@@ -181,20 +220,28 @@ impl NSTextCheckingResult {
         pub fn alternativeStrings(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSRegularExpression")]
+        /// The regular expression of a type checking result.
         #[unsafe(method(regularExpression))]
         #[unsafe(method_family = none)]
         pub fn regularExpression(&self) -> Option<Retained<NSRegularExpression>>;
 
         #[cfg(feature = "NSString")]
+        /// The phone number of a type checking result.
         #[unsafe(method(phoneNumber))]
         #[unsafe(method_family = none)]
         pub fn phoneNumber(&self) -> Option<Retained<NSString>>;
 
+        /// Returns the number of ranges.
+        ///
+        /// A result must have at least one range, but may optionally have more (for example, to represent regular expression capture groups).
         #[unsafe(method(numberOfRanges))]
         #[unsafe(method_family = none)]
         pub fn numberOfRanges(&self) -> NSUInteger;
 
         #[cfg(feature = "NSRange")]
+        /// Returns the range at the specified index.
+        ///
+        /// Passing a value of `0` always returns the value of the `range` property. Additional ranges, if any, will have indexes from `1` to `numberOfRanges-1`.
         #[unsafe(method(rangeAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn rangeAtIndex(&self, idx: NSUInteger) -> NSRange;
@@ -204,6 +251,7 @@ impl NSTextCheckingResult {
         #[unsafe(method_family = none)]
         pub fn rangeWithName(&self, name: &NSString) -> NSRange;
 
+        /// Returns a new text checking result after adjusting the ranges as specified by the offset.
         #[unsafe(method(resultByAdjustingRangesWithOffset:))]
         #[unsafe(method_family = none)]
         pub fn resultByAdjustingRangesWithOffset(
@@ -212,6 +260,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The address dictionary of a type checking result.
         #[unsafe(method(addressComponents))]
         #[unsafe(method_family = none)]
         pub fn addressComponents(
@@ -221,67 +270,89 @@ impl NSTextCheckingResult {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingnamekey?language=objc)
+    /// A key for the name component of a text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingnamekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingNameKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingjobtitlekey?language=objc)
+    /// A key for the job title component of a text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingjobtitlekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingJobTitleKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingorganizationkey?language=objc)
+    /// A key for the organization component of a text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingorganizationkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingOrganizationKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingstreetkey?language=objc)
+    /// A key for the street component of a text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingstreetkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingStreetKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingcitykey?language=objc)
+    /// A key for the city component of a text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingcitykey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingCityKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingstatekey?language=objc)
+    /// A key for the state component of a text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingstatekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingStateKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingzipkey?language=objc)
+    /// A key for the ZIP code component of a text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingzipkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingZIPKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingcountrykey?language=objc)
+    /// A key for the country component of a text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingcountrykey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingCountryKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingphonekey?language=objc)
+    /// A key for the phone number component of a text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingphonekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingPhoneKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingairlinekey?language=objc)
+    /// A key for the airline component of a transit information text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingairlinekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingAirlineKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingflightkey?language=objc)
+    /// A key for the flight number component of a transit information text checking result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingflightkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingFlightKey: &'static NSTextCheckingKey;
 }
@@ -290,6 +361,7 @@ extern "C" {
 impl NSTextCheckingResult {
     extern_methods!(
         #[cfg(all(feature = "NSOrthography", feature = "NSRange"))]
+        /// Creates and returns a text checking result with the specified orthography.
         #[unsafe(method(orthographyCheckingResultWithRange:orthography:))]
         #[unsafe(method_family = none)]
         pub fn orthographyCheckingResultWithRange_orthography(
@@ -298,6 +370,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(feature = "NSRange")]
+        /// Creates and returns a text checking result with the range of a misspelled word.
         #[unsafe(method(spellCheckingResultWithRange:))]
         #[unsafe(method_family = none)]
         pub fn spellCheckingResultWithRange(range: NSRange) -> Retained<NSTextCheckingResult>;
@@ -308,6 +381,8 @@ impl NSTextCheckingResult {
             feature = "NSRange",
             feature = "NSString"
         ))]
+        /// Creates and returns a text checking result with the specified grammar details.
+        ///
         /// # Safety
         ///
         /// `details` generic generic should be of the correct type.
@@ -319,6 +394,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSDate", feature = "NSRange"))]
+        /// Creates and returns a text checking result with the specified date.
         #[unsafe(method(dateCheckingResultWithRange:date:))]
         #[unsafe(method_family = none)]
         pub fn dateCheckingResultWithRange_date(
@@ -327,6 +403,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSDate", feature = "NSRange", feature = "NSTimeZone"))]
+        /// Creates and returns a text checking result with the specified date, time zone, and duration.
         #[unsafe(method(dateCheckingResultWithRange:date:timeZone:duration:))]
         #[unsafe(method_family = none)]
         pub fn dateCheckingResultWithRange_date_timeZone_duration(
@@ -337,6 +414,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// Creates and returns a text checking result with the specified address components.
         #[unsafe(method(addressCheckingResultWithRange:components:))]
         #[unsafe(method_family = none)]
         pub fn addressCheckingResultWithRange_components(
@@ -345,6 +423,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSRange", feature = "NSURL"))]
+        /// Creates and returns a text checking result with the specified URL.
         #[unsafe(method(linkCheckingResultWithRange:URL:))]
         #[unsafe(method_family = none)]
         pub fn linkCheckingResultWithRange_URL(
@@ -353,6 +432,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Creates and returns a text checking result with the specified quote replacement string.
         #[unsafe(method(quoteCheckingResultWithRange:replacementString:))]
         #[unsafe(method_family = none)]
         pub fn quoteCheckingResultWithRange_replacementString(
@@ -361,6 +441,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Creates and returns a text checking result with the specified dash replacement string.
         #[unsafe(method(dashCheckingResultWithRange:replacementString:))]
         #[unsafe(method_family = none)]
         pub fn dashCheckingResultWithRange_replacementString(
@@ -369,6 +450,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Creates and returns a text checking result with the specified replacement string.
         #[unsafe(method(replacementCheckingResultWithRange:replacementString:))]
         #[unsafe(method_family = none)]
         pub fn replacementCheckingResultWithRange_replacementString(
@@ -377,6 +459,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Creates and returns a text checking result with the specified correction replacement string.
         #[unsafe(method(correctionCheckingResultWithRange:replacementString:))]
         #[unsafe(method_family = none)]
         pub fn correctionCheckingResultWithRange_replacementString(
@@ -394,6 +477,8 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSRange", feature = "NSRegularExpression"))]
+        /// Creates and returns a text checking result with the specified regular expression data.
+        ///
         /// # Safety
         ///
         /// `ranges` must be a valid pointer.
@@ -406,6 +491,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Creates and returns a text checking result with the specified phone number.
         #[unsafe(method(phoneNumberCheckingResultWithRange:phoneNumber:))]
         #[unsafe(method_family = none)]
         pub fn phoneNumberCheckingResultWithRange_phoneNumber(
@@ -414,6 +500,7 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// Creates and returns a text checking result with the specified transit information.
         #[unsafe(method(transitInformationCheckingResultWithRange:components:))]
         #[unsafe(method_family = none)]
         pub fn transitInformationCheckingResultWithRange_components(

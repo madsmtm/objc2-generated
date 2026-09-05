@@ -3,6 +3,7 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
 
@@ -177,6 +178,12 @@ extern_class!(
     #[cfg(feature = "AVAudioNode")]
     pub struct AVAudioPlayerNode;
 );
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Send for AVAudioPlayerNode {}
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Sync for AVAudioPlayerNode {}
 
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
 extern_conformance!(
@@ -434,9 +441,22 @@ impl AVAudioPlayerNode {
         /// Start or resume playback immediately.
         ///
         /// equivalent to playAtTime:nil
+        #[deprecated]
         #[unsafe(method(play))]
         #[unsafe(method_family = none)]
         pub unsafe fn play(&self);
+
+        /// Start or resume playback immediately.
+        ///
+        /// Parameter `outError`: on exit, if an error occurs, a description of the error.
+        ///
+        /// Returns: YES for success
+        ///
+        /// equivalent to playAtTime:nil error:
+        /// &error
+        #[unsafe(method(playAndReturnError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn playAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioTime")]
         /// Start or resume playback at a specific time.
@@ -465,9 +485,48 @@ impl AVAudioPlayerNode {
         /// [_player playAtTime:startTime];
         /// }
         /// </pre>
+        #[deprecated]
         #[unsafe(method(playAtTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn playAtTime(&self, when: Option<&AVAudioTime>);
+
+        #[cfg(feature = "AVAudioTime")]
+        /// Start or resume playback at a specific time.
+        ///
+        /// Parameter `when`: the node time at which to start or resume playback. nil signifies "now".
+        ///
+        /// Parameter `outError`: on exit, if an error occurs, a description of the error.
+        ///
+        /// Returns: YES for success
+        ///
+        /// This node is initially paused. Requests to play buffers or file segments are enqueued, and
+        /// any necessary decoding begins immediately. Playback does not begin, however, until the player
+        /// has started playing, via this method.
+        ///
+        /// Note that providing an AVAudioTime which is past (before lastRenderTime) will cause the
+        /// player to begin playback immediately.
+        ///
+        /// E.g. To start a player X seconds in future:
+        /// <pre>
+        /// // start engine and player
+        /// NSError *nsErr = nil;
+        /// [_engine startAndReturnError:
+        /// &nsErr
+        /// ];
+        /// if (!nsErr) {
+        /// const float kStartDelayTime = 0.5; // sec
+        /// AVAudioFormat *outputFormat = [_player outputFormatForBus:0];
+        /// AVAudioFramePosition startSampleTime = _player.lastRenderTime.sampleTime + kStartDelayTime * outputFormat.sampleRate;
+        /// AVAudioTime *startTime = [AVAudioTime timeWithSampleTime:startSampleTime atRate:outputFormat.sampleRate];
+        /// [_player playAtTime:startTime];
+        /// }
+        /// </pre>
+        #[unsafe(method(playAtTime:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn playAtTime_error(
+            &self,
+            when: Option<&AVAudioTime>,
+        ) -> Result<(), Retained<NSError>>;
 
         /// Pause playback.
         ///
@@ -517,6 +576,12 @@ impl AVAudioPlayerNode {
         ) -> Option<Retained<AVAudioTime>>;
 
         /// Indicates whether or not the player is playing.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isPlaying))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlaying(&self) -> bool;

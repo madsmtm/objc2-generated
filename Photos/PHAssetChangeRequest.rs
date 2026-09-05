@@ -51,6 +51,17 @@ impl PHAssetChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedAsset(&self) -> Option<Retained<PHObjectPlaceholder>>;
 
+        #[cfg(feature = "PhotosTypes")]
+        #[unsafe(method(rating))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn rating(&self) -> PHAssetRating;
+
+        #[cfg(feature = "PhotosTypes")]
+        /// Setter for [`rating`][Self::rating].
+        #[unsafe(method(setRating:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRating(&self, rating: PHAssetRating);
+
         /// # Safety
         ///
         /// `assets` should be of the correct type.
@@ -101,6 +112,13 @@ impl PHAssetChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
+        /// Disable or enable the video part of a Live Photo so it just appears as a still image (disabled) or a Live Photo (enabled)
+        ///
+        /// Applies to Live Photos only.
+        #[unsafe(method(setLivePhotoVideoPlaybackEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLivePhotoVideoPlaybackEnabled(&self, enabled: bool);
+
         #[cfg(feature = "PHContentEditingOutput")]
         #[unsafe(method(contentEditingOutput))]
         #[unsafe(method_family = none)]
@@ -118,6 +136,14 @@ impl PHAssetChangeRequest {
         #[unsafe(method(revertAssetContentToOriginal))]
         #[unsafe(method_family = none)]
         pub unsafe fn revertAssetContentToOriginal(&self);
+
+        #[cfg(feature = "PhotosTypes")]
+        #[unsafe(method(revertAssetContentToOriginalResourceChoice:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn revertAssetContentToOriginalResourceChoice(
+            &self,
+            choice: PHOriginalResourceChoice,
+        );
     );
 }
 
@@ -203,6 +229,30 @@ impl PHContentEditingInputRequestOptions {
         pub unsafe fn setProgressHandler(
             &self,
             progress_handler: Option<&block2::Block<'static, fn(c_double, NonNull<Bool>)>>,
+        );
+
+        /// Set this value to `true` if you don't want a `displaySizeImage` on the `PHContentEditingInput`. This can give performance wins when the image will not be used.
+        #[unsafe(method(skipsDisplaySizeImage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn skipsDisplaySizeImage(&self) -> bool;
+
+        /// Setter for [`skipsDisplaySizeImage`][Self::skipsDisplaySizeImage].
+        #[unsafe(method(setSkipsDisplaySizeImage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSkipsDisplaySizeImage(&self, skips_display_size_image: bool);
+
+        #[cfg(feature = "PhotosTypes")]
+        #[unsafe(method(originalResourceChoice))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn originalResourceChoice(&self) -> PHOriginalResourceChoice;
+
+        #[cfg(feature = "PhotosTypes")]
+        /// Setter for [`originalResourceChoice`][Self::originalResourceChoice].
+        #[unsafe(method(setOriginalResourceChoice:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setOriginalResourceChoice(
+            &self,
+            original_resource_choice: PHOriginalResourceChoice,
         );
     );
 }

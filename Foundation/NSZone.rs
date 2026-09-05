@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Returns the default zone.
 #[inline]
 pub fn NSDefaultMallocZone() -> NonNull<NSZone> {
     extern "C-unwind" {
@@ -15,6 +16,7 @@ pub fn NSDefaultMallocZone() -> NonNull<NSZone> {
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Creates a new zone.
 #[inline]
 pub fn NSCreateZone(
     start_size: NSUInteger,
@@ -33,6 +35,8 @@ pub fn NSCreateZone(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Frees a zone after first deallocating all of its memory.
+///
 /// # Safety
 ///
 /// `zone` must be a valid pointer.
@@ -44,6 +48,8 @@ pub unsafe fn NSRecycleZone(zone: NonNull<NSZone>) {
     unsafe { NSRecycleZone(zone) }
 }
 
+/// Sets the name of a zone.
+///
 /// # Safety
 ///
 /// `zone` must be a valid pointer or null.
@@ -56,6 +62,8 @@ pub unsafe fn NSSetZoneName(zone: *mut NSZone, name: &NSString) {
     unsafe { NSSetZoneName(zone, name) }
 }
 
+/// Returns the name of a zone.
+///
 /// # Safety
 ///
 /// `zone` must be a valid pointer or null.
@@ -70,6 +78,8 @@ pub unsafe fn NSZoneName(zone: *mut NSZone) -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns the zone for a given pointer.
+///
 /// # Safety
 ///
 /// `ptr` must be a valid pointer.
@@ -81,6 +91,8 @@ pub unsafe fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone {
     unsafe { NSZoneFromPointer(ptr) }
 }
 
+/// Allocates memory in a zone.
+///
 /// # Safety
 ///
 /// `zone` must be a valid pointer or null.
@@ -93,6 +105,8 @@ pub unsafe fn NSZoneMalloc(zone: *mut NSZone, size: NSUInteger) -> NonNull<c_voi
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Allocates zeroed memory in a zone.
+///
 /// # Safety
 ///
 /// `zone` must be a valid pointer or null.
@@ -113,6 +127,8 @@ pub unsafe fn NSZoneCalloc(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Resizes memory in a zone.
+///
 /// # Safety
 ///
 /// - `zone` must be a valid pointer or null.
@@ -134,6 +150,8 @@ pub unsafe fn NSZoneRealloc(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Frees memory in a zone.
+///
 /// # Safety
 ///
 /// - `zone` must be a valid pointer or null.
@@ -146,11 +164,22 @@ pub unsafe fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>) {
     unsafe { NSZoneFree(zone, ptr) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscannedoption?language=objc)
+/// Constants used to control behavior when allocating or reallocating collectible memory.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscannedoption?language=objc)
 pub const NSScannedOption: NSUInteger = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectordisabledoption?language=objc)
+/// Constants used to control behavior when allocating or reallocating collectible memory.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectordisabledoption?language=objc)
 pub const NSCollectorDisabledOption: NSUInteger = 1 << 1;
 
+/// Allocates collectable memory.
+///
+///
+/// - Parameters:
+/// - size: The number of bytes of memory to allocate.
+/// - options: `0` or `NSScannedOption`: A value of `0` allocates non-scanned memory; a value of `NSScannedOption` allocates scanned memory.
+/// - Returns: A pointer to the allocated memory, or `NULL` if the function is unable to allocate the requested memory.
 #[inline]
 pub fn NSAllocateCollectable(size: NSUInteger, options: NSUInteger) -> NonNull<c_void> {
     extern "C-unwind" {
@@ -160,6 +189,17 @@ pub fn NSAllocateCollectable(size: NSUInteger, options: NSUInteger) -> NonNull<c
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Reallocates collectable memory.
+///
+///
+/// Changes the size of the block of memory pointed to by `ptr` to `size` bytes. It may allocate new memory to replace the old, in which case it moves the contents of the old memory block to the new block, up to a maximum of `size` bytes.
+///
+/// - Parameters:
+/// - ptr: A pointer to the previously allocated memory block.
+/// - size: The new number of bytes of memory to allocate.
+/// - options: `0` or `NSScannedOption`: A value of `0` allocates non-scanned memory; a value of `NSScannedOption` allocates scanned memory.
+/// - Returns: A pointer to the reallocated memory, or `NULL` if the function is unable to allocate the requested memory.
+///
 /// # Safety
 ///
 /// `ptr` must be a valid pointer or null.
@@ -180,6 +220,7 @@ pub unsafe fn NSReallocateCollectable(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns the page size.
 #[inline]
 pub fn NSPageSize() -> NSUInteger {
     extern "C-unwind" {
@@ -188,6 +229,7 @@ pub fn NSPageSize() -> NSUInteger {
     unsafe { NSPageSize() }
 }
 
+/// Returns the binary log of the page size.
 #[inline]
 pub fn NSLogPageSize() -> NSUInteger {
     extern "C-unwind" {
@@ -196,6 +238,7 @@ pub fn NSLogPageSize() -> NSUInteger {
     unsafe { NSLogPageSize() }
 }
 
+/// Rounds up a value to the nearest multiple of the page size.
 #[inline]
 pub fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
     extern "C-unwind" {
@@ -204,6 +247,7 @@ pub fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
     unsafe { NSRoundUpToMultipleOfPageSize(bytes) }
 }
 
+/// Rounds down a value to the nearest multiple of the page size.
 #[inline]
 pub fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
     extern "C-unwind" {
@@ -212,6 +256,7 @@ pub fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
     unsafe { NSRoundDownToMultipleOfPageSize(bytes) }
 }
 
+/// Allocates a given number of bytes of virtual memory.
 #[inline]
 pub fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void> {
     extern "C-unwind" {
@@ -221,6 +266,8 @@ pub fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void> {
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Deallocates the memory occupied by a given number of bytes.
+///
 /// # Safety
 ///
 /// `ptr` must be a valid pointer.
@@ -232,6 +279,8 @@ pub unsafe fn NSDeallocateMemoryPages(ptr: NonNull<c_void>, bytes: NSUInteger) {
     unsafe { NSDeallocateMemoryPages(ptr, bytes) }
 }
 
+/// Copies a given number of bytes from one memory location to another.
+///
 /// # Safety
 ///
 /// - `source` must be a valid pointer.

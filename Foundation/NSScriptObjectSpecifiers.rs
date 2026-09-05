@@ -6,35 +6,56 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnospecifiererror?language=objc)
+/// No error encountered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnospecifiererror?language=objc)
 pub const NSNoSpecifierError: NSInteger = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotoplevelcontainersspecifiererror?language=objc)
+/// Someone called evaluate with `nil`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotoplevelcontainersspecifiererror?language=objc)
 pub const NSNoTopLevelContainersSpecifierError: NSInteger = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscontainerspecifiererror?language=objc)
+/// An error occurred evaluating the container specifier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscontainerspecifiererror?language=objc)
 pub const NSContainerSpecifierError: NSInteger = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunknownkeyspecifiererror?language=objc)
+/// Receivers do not understand the key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunknownkeyspecifiererror?language=objc)
 pub const NSUnknownKeySpecifierError: NSInteger = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidindexspecifiererror?language=objc)
+/// Index out of bounds.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidindexspecifiererror?language=objc)
 pub const NSInvalidIndexSpecifierError: NSInteger = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalspecifiererror?language=objc)
+/// Other internal error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalspecifiererror?language=objc)
 pub const NSInternalSpecifierError: NSInteger = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationnotsupportedforkeyspecifiererror?language=objc)
+/// An attempt was made to perform an unsupported operation on some key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationnotsupportedforkeyspecifiererror?language=objc)
 pub const NSOperationNotSupportedForKeySpecifierError: NSInteger = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinsertionposition?language=objc)
+/// Constants that represent positions for inserting objects relative to a specified object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinsertionposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSInsertionPosition(pub NSUInteger);
 impl NSInsertionPosition {
+    /// After the specified object.
     #[doc(alias = "NSPositionAfter")]
     pub const After: Self = Self(0);
+    /// Before the specified object.
     #[doc(alias = "NSPositionBefore")]
     pub const Before: Self = Self(1);
+    /// At the beginning of the container.
     #[doc(alias = "NSPositionBeginning")]
     pub const Beginning: Self = Self(2);
+    /// At the end of the container.
     #[doc(alias = "NSPositionEnd")]
     pub const End: Self = Self(3);
+    /// Replacing the specified object.
     #[doc(alias = "NSPositionReplace")]
     pub const Replace: Self = Self(4);
 }
@@ -47,14 +68,18 @@ unsafe impl RefEncode for NSInsertionPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativeposition?language=objc)
+/// Constants that represent a relative position.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativeposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativePosition(pub NSUInteger);
 impl NSRelativePosition {
+    /// After the base object.
     #[doc(alias = "NSRelativeAfter")]
     pub const After: Self = Self(0);
+    /// Before the base object.
     #[doc(alias = "NSRelativeBefore")]
     pub const Before: Self = Self(1);
 }
@@ -67,20 +92,27 @@ unsafe impl RefEncode for NSRelativePosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosesubelementidentifier?language=objc)
+/// Constants that identify how to select subelements within a range.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosesubelementidentifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWhoseSubelementIdentifier(pub NSUInteger);
 impl NSWhoseSubelementIdentifier {
+    /// Select the subelement at a specific index.
     #[doc(alias = "NSIndexSubelement")]
     pub const IndexSubelement: Self = Self(0);
+    /// Select every subelement.
     #[doc(alias = "NSEverySubelement")]
     pub const EverySubelement: Self = Self(1);
+    /// Select the middle subelement.
     #[doc(alias = "NSMiddleSubelement")]
     pub const MiddleSubelement: Self = Self(2);
+    /// Select a random subelement.
     #[doc(alias = "NSRandomSubelement")]
     pub const RandomSubelement: Self = Self(3);
+    /// No subelement, only valid for the end subelement.
     #[doc(alias = "NSNoSubelement")]
     pub const NoSubelement: Self = Self(4);
 }
@@ -94,7 +126,25 @@ unsafe impl RefEncode for NSWhoseSubelementIdentifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier?language=objc)
+    /// An abstract class used to represent natural language expressions.
+    ///
+    /// `NSScriptObjectSpecifier` is the abstract superclass for classes that instantiate objects called "object specifiers." An object specifier represents an AppleScript reference form, which is a natural-language expression such as `words 10 through 20` or `front document` or `words whose color is red`.
+    ///
+    /// The scripting system maps these words or phrases to attributes and relationships of scriptable objects. A reference form rarely occurs in isolation; usually a script statement consists of a series of reference forms preceded by a command and typically connected to each other by `of`, such as:
+    ///
+    /// ```objc
+    /// get words whose color is blue of paragraph 10 of front document
+    /// ```
+    ///
+    /// The expression `words whose color is blue of paragraph 10 of front document` specifies a location in the application's AppleScript object model—the objects the application makes available to scripters. The classes of objects in the object model often closely match the classes of actual objects in the application, but they are not required to. An object specifier locates objects in the running application that correspond to the specified object model objects.
+    ///
+    /// Your application typically creates object specifiers when it implements the `objectSpecifier` method for its scriptable classes. That method is defined by the NSScriptObjectSpecifiers protocol.
+    ///
+    /// It is unlikely that you would ever need to create your own subclass of `NSScriptObjectSpecifier`; the set of valid AppleScript reference forms is determined by Apple Computer and object specifier classes are already implemented for this set. If for some reason you do need to create a subclass, you must override the primitive method ``indicesOfObjectsByEvaluating(withContainer:count:)`` to return indices to the elements within the container whose values are matched with the child specifier's key. In addition, you probably need to declare any special instance variables and implement an initializer that invokes super's designated initializer, ``init(containerClassDescription:containerSpecifier:key:)``, and initializes these variables.
+    ///
+    /// For a comprehensive treatment of object specifiers, including sample code, see [Object Specifiers](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_object_specifiers/SAppsObjectSpecifiers.html#//apple_ref/doc/uid/TP40002164-CH3) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptObjectSpecifier;
@@ -112,6 +162,9 @@ extern_conformance!(
 impl NSScriptObjectSpecifier {
     extern_methods!(
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// Given a `typeObjectSpecifier` Apple event descriptor, creates and returns an object specifier.
+        ///
+        /// Returns `nil` on failure. If this is invoked and fails during the execution of a script command, information about the error that caused the failure is recorded in `[NSScriptCommand currentCommand]`.
         #[unsafe(method(objectSpecifierWithDescriptor:))]
         #[unsafe(method_family = none)]
         pub fn objectSpecifierWithDescriptor(
@@ -119,6 +172,7 @@ impl NSScriptObjectSpecifier {
         ) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -132,6 +186,7 @@ impl NSScriptObjectSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(
@@ -141,6 +196,8 @@ impl NSScriptObjectSpecifier {
             property: &NSString,
         ) -> Retained<Self>;
 
+        /// The child specifier of this specifier.
+        ///
         /// # Safety
         ///
         /// This is not retained internally, you must ensure the object is still alive.
@@ -157,6 +214,7 @@ impl NSScriptObjectSpecifier {
         #[unsafe(method_family = none)]
         pub unsafe fn setChildSpecifier(&self, child_specifier: Option<&NSScriptObjectSpecifier>);
 
+        /// The container specifier of this specifier.
         #[unsafe(method(containerSpecifier))]
         #[unsafe(method_family = none)]
         pub fn containerSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
@@ -166,6 +224,7 @@ impl NSScriptObjectSpecifier {
         #[unsafe(method_family = none)]
         pub fn setContainerSpecifier(&self, container_specifier: Option<&NSScriptObjectSpecifier>);
 
+        /// A Boolean value that indicates whether the container is the object currently being tested by an `NSWhoseSpecifier`.
         #[unsafe(method(containerIsObjectBeingTested))]
         #[unsafe(method_family = none)]
         pub fn containerIsObjectBeingTested(&self) -> bool;
@@ -175,6 +234,7 @@ impl NSScriptObjectSpecifier {
         #[unsafe(method_family = none)]
         pub fn setContainerIsObjectBeingTested(&self, container_is_object_being_tested: bool);
 
+        /// A Boolean value that indicates whether the container is the container for the current range specifier being evaluated.
         #[unsafe(method(containerIsRangeContainerObject))]
         #[unsafe(method_family = none)]
         pub fn containerIsRangeContainerObject(&self) -> bool;
@@ -185,6 +245,7 @@ impl NSScriptObjectSpecifier {
         pub fn setContainerIsRangeContainerObject(&self, container_is_range_container_object: bool);
 
         #[cfg(feature = "NSString")]
+        /// The name of the key in the container object to be accessed by this specifier.
         #[unsafe(method(key))]
         #[unsafe(method_family = none)]
         pub fn key(&self) -> Retained<NSString>;
@@ -198,6 +259,7 @@ impl NSScriptObjectSpecifier {
         pub fn setKey(&self, key: &NSString);
 
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
+        /// The class description for the container.
         #[unsafe(method(containerClassDescription))]
         #[unsafe(method_family = none)]
         pub fn containerClassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
@@ -212,10 +274,13 @@ impl NSScriptObjectSpecifier {
         );
 
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
+        /// The class description for the keyed objects.
         #[unsafe(method(keyClassDescription))]
         #[unsafe(method_family = none)]
         pub fn keyClassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
 
+        /// Returns the indices of the specified objects in the container.
+        ///
         /// # Safety
         ///
         /// `container` should be of the correct type.
@@ -227,6 +292,8 @@ impl NSScriptObjectSpecifier {
             count: &mut NSInteger,
         ) -> *mut NSInteger;
 
+        /// Returns the specified objects from the given containers.
+        ///
         /// # Safety
         ///
         /// `containers` should be of the correct type.
@@ -237,10 +304,12 @@ impl NSScriptObjectSpecifier {
             containers: &AnyObject,
         ) -> Option<Retained<AnyObject>>;
 
+        /// The actual objects represented by this specifier.
         #[unsafe(method(objectsByEvaluatingSpecifier))]
         #[unsafe(method_family = none)]
         pub fn objectsByEvaluatingSpecifier(&self) -> Option<Retained<AnyObject>>;
 
+        /// The error number from the most recent evaluation.
         #[unsafe(method(evaluationErrorNumber))]
         #[unsafe(method_family = none)]
         pub fn evaluationErrorNumber(&self) -> NSInteger;
@@ -250,11 +319,13 @@ impl NSScriptObjectSpecifier {
         #[unsafe(method_family = none)]
         pub fn setEvaluationErrorNumber(&self, evaluation_error_number: NSInteger);
 
+        /// The specifier in which an evaluation error occurred.
         #[unsafe(method(evaluationErrorSpecifier))]
         #[unsafe(method_family = none)]
         pub fn evaluationErrorSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// An Apple event descriptor that represents this specifier.
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub fn descriptor(&self) -> Option<Retained<NSAppleEventDescriptor>>;
@@ -309,7 +380,13 @@ impl private_NSObjectNSScriptObjectSpecifiers::Sealed for NSObject {}
 unsafe impl NSObjectNSScriptObjectSpecifiers for NSObject {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindexspecifier?language=objc)
+    /// A specifier representing an object in a collection (or container) with an index number.
+    ///
+    /// The script terms `first` and `front` specify the object with index `0`, while `last` specifies the object with index of `count-1`. A negative index indicates a location by counting backward from the last object in the collection.
+    ///
+    /// You don't normally subclass `NSIndexSpecifier`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindexspecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIndexSpecifier;
@@ -331,6 +408,7 @@ impl NSIndexSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// Initializes a specifier with a container description, container specifier, key, and index.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:index:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key_index(
@@ -341,6 +419,7 @@ impl NSIndexSpecifier {
             index: NSInteger,
         ) -> Retained<Self>;
 
+        /// The index position of the object to be retrieved.
         #[unsafe(method(index))]
         #[unsafe(method_family = none)]
         pub fn index(&self) -> NSInteger;
@@ -356,6 +435,7 @@ impl NSIndexSpecifier {
 impl NSIndexSpecifier {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -369,6 +449,7 @@ impl NSIndexSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(
@@ -401,7 +482,15 @@ impl DefaultRetained for NSIndexSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmiddlespecifier?language=objc)
+    /// A specifier indicating the middle object in a collection or, if not a one-to-many relationship, the sole object.
+    ///
+    /// You don't typically subclass `NSMiddleSpecifier`.
+    ///
+    /// ## See Also
+    ///
+    /// - [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmiddlespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMiddleSpecifier;
@@ -422,6 +511,7 @@ impl NSMiddleSpecifier {}
 impl NSMiddleSpecifier {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -435,6 +525,7 @@ impl NSMiddleSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(
@@ -467,7 +558,27 @@ impl DefaultRetained for NSMiddleSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnamespecifier?language=objc)
+    /// A specifier for an object in a collection (or container) by name.
+    ///
+    /// As an example, the following script specifies both an application and a window by name. In this script, the named window's implicitly specified container is the Finder application's list of open windows.
+    ///
+    /// ```objc
+    /// tell application "Finder" -- specifies an application  by name
+    /// close window "Reports" -- specifies a window by name
+    /// end tell
+    /// ```
+    ///
+    /// This specifier works only for objects that have a name property. You don't normally subclass `NSNameSpecifier`.
+    ///
+    /// The evaluation of an instance of `NSNameSpecifier` follows these steps until the specified object is found:
+    ///
+    /// 1. If the container implements a method whose selector matches the relevant `valueIn
+    /// <Key
+    /// >WithName:` pattern established by scripting key-value coding, the method is invoked. This method can potentially be very fast, and it may be relatively easy to implement.
+    /// 2. As is the case when evaluating any script object specifier, the container of the specified object is given a chance to evaluate the object specifier. If the container class implements the `indicesOfObjectsByEvaluatingObjectSpecifier` method, the method is invoked. This method can potentially be very fast, but it is relatively difficult to implement.
+    /// 3. An instance of  `NSWhoseSpecifier` that specifies the first object whose relevant `'pnam'` attribute matches the name is synthesized and evaluated. The instance of `NSWhoseSpecifier` must search through all of the keyed elements in the container, looking for a match. The search is potentially very slow.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnamespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNameSpecifier;
@@ -489,6 +600,7 @@ impl NSNameSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// Initializes a name specifier with a container description, container specifier, key, and name.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:name:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key_name(
@@ -500,6 +612,7 @@ impl NSNameSpecifier {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// The name of the object to be retrieved.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Retained<NSString>;
@@ -518,6 +631,7 @@ impl NSNameSpecifier {
 impl NSNameSpecifier {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -531,6 +645,7 @@ impl NSNameSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(
@@ -563,7 +678,15 @@ impl DefaultRetained for NSNameSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier?language=objc)
+    /// A specifier for an insertion point in a container relative to another object in the container.
+    ///
+    /// Instances of `NSPositionalSpecifier` specify an insertion point in a container relative to another object in the container, for example, `before first word` or `after paragraph 4`. The container is specified by an instance of `NSScriptObjectSpecifier`. `NSPositionalSpecifier` objects commonly encapsulate object specifiers used as arguments to the `make` (`create`) and `move` commands and indicate where the created or moved object is to be inserted relative to the object represented by an object specifier.
+    ///
+    /// Invoking an accessor method to obtain information about an instance of `NSPositionalSpecifier`  causes the object to be evaluated if it hasn't been already.
+    ///
+    /// You don't normally subclass `NSPositionalSpecifier`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPositionalSpecifier;
@@ -575,6 +698,7 @@ extern_conformance!(
 
 impl NSPositionalSpecifier {
     extern_methods!(
+        /// Initializes a positional specifier with an insertion position and an object specifier.
         #[unsafe(method(initWithPosition:objectSpecifier:))]
         #[unsafe(method_family = init)]
         pub fn initWithPosition_objectSpecifier(
@@ -583,36 +707,44 @@ impl NSPositionalSpecifier {
             specifier: &NSScriptObjectSpecifier,
         ) -> Retained<Self>;
 
+        /// The insertion position.
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub fn position(&self) -> NSInsertionPosition;
 
+        /// The object specifier that identifies the reference object.
         #[unsafe(method(objectSpecifier))]
         #[unsafe(method_family = none)]
         pub fn objectSpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
 
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
+        /// Sets the class description for the object or objects to be inserted.
         #[unsafe(method(setInsertionClassDescription:))]
         #[unsafe(method_family = none)]
         pub fn setInsertionClassDescription(&self, class_description: &NSScriptClassDescription);
 
+        /// Evaluates this positional specifier.
         #[unsafe(method(evaluate))]
         #[unsafe(method_family = none)]
         pub fn evaluate(&self);
 
+        /// The container into which insertion should be done, if evaluation has been successful.
         #[unsafe(method(insertionContainer))]
         #[unsafe(method_family = none)]
         pub fn insertionContainer(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// The key for the to-many relationship for which insertion should be done, if evaluation has been successful.
         #[unsafe(method(insertionKey))]
         #[unsafe(method_family = none)]
         pub fn insertionKey(&self) -> Option<Retained<NSString>>;
 
+        /// The index at which insertion should be done, if evaluation has been successful.
         #[unsafe(method(insertionIndex))]
         #[unsafe(method_family = none)]
         pub fn insertionIndex(&self) -> NSInteger;
 
+        /// A Boolean value that indicates whether the object to be inserted should replace the keyed, indexed object.
         #[unsafe(method(insertionReplaces))]
         #[unsafe(method_family = none)]
         pub fn insertionReplaces(&self) -> bool;
@@ -640,7 +772,15 @@ impl DefaultRetained for NSPositionalSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertyspecifier?language=objc)
+    /// A specifier for a simple attribute value, a one-to-one relationship, or all elements of a to-many relationship.
+    ///
+    /// You don't typically subclass ``NSPropertySpecifier``.
+    ///
+    /// ## See Also
+    ///
+    /// - [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertyspecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPropertySpecifier;
@@ -661,6 +801,7 @@ impl NSPropertySpecifier {}
 impl NSPropertySpecifier {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -674,6 +815,7 @@ impl NSPropertySpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(
@@ -706,7 +848,13 @@ impl DefaultRetained for NSPropertySpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrandomspecifier?language=objc)
+    /// A specifier for an arbitrary object in a collection or, if not a one-to-many relationship, the sole object.
+    ///
+    /// ## See Also
+    ///
+    /// - [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrandomspecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRandomSpecifier;
@@ -727,6 +875,7 @@ impl NSRandomSpecifier {}
 impl NSRandomSpecifier {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -740,6 +889,7 @@ impl NSRandomSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(
@@ -772,7 +922,13 @@ impl DefaultRetained for NSRandomSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangespecifier?language=objc)
+    /// A specifier for a range of objects in a container.
+    ///
+    /// An `NSRangeSpecifier` object specifies a range (that is, an uninterrupted series) of objects in a container through two delimiting objects. The range is represented by two object specifiers, a start specifier and an end specifier, which can be of any specifier type (such as ``NSIndexSpecifier`` or ``NSWhoseSpecifier`` object). These specifiers are evaluated in the context of the same container object as the range specifier itself.
+    ///
+    /// You don't normally subclass `NSRangeSpecifier`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRangeSpecifier;
@@ -794,6 +950,7 @@ impl NSRangeSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// Initializes a range specifier with start and end specifiers.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:startSpecifier:endSpecifier:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key_startSpecifier_endSpecifier(
@@ -805,6 +962,7 @@ impl NSRangeSpecifier {
             end_spec: Option<&NSScriptObjectSpecifier>,
         ) -> Retained<Self>;
 
+        /// The specifier for the beginning of the range.
         #[unsafe(method(startSpecifier))]
         #[unsafe(method_family = none)]
         pub fn startSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
@@ -814,6 +972,7 @@ impl NSRangeSpecifier {
         #[unsafe(method_family = none)]
         pub fn setStartSpecifier(&self, start_specifier: Option<&NSScriptObjectSpecifier>);
 
+        /// The specifier for the end of the range.
         #[unsafe(method(endSpecifier))]
         #[unsafe(method_family = none)]
         pub fn endSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
@@ -829,6 +988,7 @@ impl NSRangeSpecifier {
 impl NSRangeSpecifier {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -842,6 +1002,7 @@ impl NSRangeSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(
@@ -874,7 +1035,11 @@ impl DefaultRetained for NSRangeSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativespecifier?language=objc)
+    /// A specifier that indicates an object in a collection by its position relative to another object.
+    ///
+    /// You don't normally subclass `NSRelativeSpecifier`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRelativeSpecifier;
@@ -896,6 +1061,7 @@ impl NSRelativeSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// Initializes a relative specifier with a position and base specifier.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:relativePosition:baseSpecifier:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key_relativePosition_baseSpecifier(
@@ -907,6 +1073,7 @@ impl NSRelativeSpecifier {
             base_specifier: Option<&NSScriptObjectSpecifier>,
         ) -> Retained<Self>;
 
+        /// The relative position (before or after) of the object to be located.
         #[unsafe(method(relativePosition))]
         #[unsafe(method_family = none)]
         pub fn relativePosition(&self) -> NSRelativePosition;
@@ -916,6 +1083,7 @@ impl NSRelativeSpecifier {
         #[unsafe(method_family = none)]
         pub fn setRelativePosition(&self, relative_position: NSRelativePosition);
 
+        /// The specifier for the base object relative to which the target is located.
         #[unsafe(method(baseSpecifier))]
         #[unsafe(method_family = none)]
         pub fn baseSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
@@ -931,6 +1099,7 @@ impl NSRelativeSpecifier {
 impl NSRelativeSpecifier {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -944,6 +1113,7 @@ impl NSRelativeSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(
@@ -976,7 +1146,25 @@ impl DefaultRetained for NSRelativeSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuniqueidspecifier?language=objc)
+    /// A specifier for an object in a collection (or container) by unique ID.
+    ///
+    /// This specifier works only for objects that have an ID property. The unique ID object passed to an instance of  `NSUniqueIDSpecifier` must be either an `NSNumber` object or an `NSString` object. The exact type should match the scripting dictionary declaration of the ID attribute for the relevant scripting class.
+    ///
+    /// You can expect that the ID property will be _read only_ for any object that supports it. Therefore a scripter can obtain the unique ID for an object and refer to the object by the ID, but cannot set the unique ID.
+    ///
+    /// You don't normally subclass `NSUniqueIDSpecifier`.
+    ///
+    /// The evaluation of `NSUniqueIDSpecifier` objects follows these steps until the specified object is found:
+    ///
+    /// 1. If the container implements a method whose selector matches the relevant `valueIn
+    /// <Key
+    /// >WithUniqueID:` pattern established by scripting key-value coding, the method is invoked. This method can potentially be very fast, and it may be relatively easy to implement.
+    /// 2. As is the case when evaluating any script object specifier, the container of the specified object is given a chance to evaluate the object specifier. If the container class implements the
+    /// <doc
+    /// ://com.apple.documentation/documentation/objectivec/nsobject-swift.class/indicesofobjects(byevaluatingobjectspecifier:)> method, the method is invoked. This method can potentially be very fast, but it is relatively difficult to implement.
+    /// 3. An ``NSWhoseSpecifier`` object that specifies the first object whose relevant `'ID  '` attribute matches the ID is synthesized and evaluated. The `NSWhoseSpecifier` object must search through all of the keyed elements in the container, looking for a match. The search is potentially very slow.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuniqueidspecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUniqueIDSpecifier;
@@ -998,6 +1186,8 @@ impl NSUniqueIDSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// Initializes a unique ID specifier with the specified unique ID.
+        ///
         /// # Safety
         ///
         /// `unique_id` should be of the correct type.
@@ -1011,6 +1201,7 @@ impl NSUniqueIDSpecifier {
             unique_id: &AnyObject,
         ) -> Retained<Self>;
 
+        /// The unique ID of the object to be located.
         #[unsafe(method(uniqueID))]
         #[unsafe(method_family = none)]
         pub fn uniqueID(&self) -> Retained<AnyObject>;
@@ -1032,6 +1223,7 @@ impl NSUniqueIDSpecifier {
 impl NSUniqueIDSpecifier {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -1045,6 +1237,7 @@ impl NSUniqueIDSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(
@@ -1077,7 +1270,15 @@ impl DefaultRetained for NSUniqueIDSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier?language=objc)
+    /// A specifier that indicates every object in a collection matching a condition.
+    ///
+    /// `NSWhoseSpecifier` specifies every object in a collection (or every element in a container) that matches the condition defined by a single Boolean expression or multiple Boolean expressions connected by logical operators. `NSWhoseSpecifier` is unique among object specifiers in that its top-level container is typically not the application object but an evaluated object specifier involved in the tested-for condition. An `NSWhoseSpecifier` object encapsulates a "test" object for defining this condition. A test object is instantiated from a subclass of the abstract ``NSScriptWhoseTest`` class, whose one declared method is ``NSScriptWhoseTest/isTrue()``. See "Boolean Expressions and Logical Operations" in ``NSScriptObjectSpecifier`` and the descriptions in NSComparisonMethods and NSScriptingComparisonMethods for more information.
+    ///
+    /// The set of elements specified by an `NSWhoseSpecifier` object can be a subset of those that pass the `NSWhoseSpecifier` object's test. This subset is specified by the various sub-element properties of the `NSWhoseSpecifier` object . Consider as an example the specifier `paragraphs where color of third word is blue`. This would be represented by an `NSWhoseSpecifier` object  that uses a test specifier and another object specifier to identify a subset of the objects with the specified property. That is, the specifier's property is `paragraphs`; the test specifier is an index specifier with property `words` and `index 3`; and the qualifier is a key value qualifier for key `color` and value `[NSColor blueColor]`. The test object specifier (`word at index 3`) is evaluated for each object (paragraph) using that object as the container; the resulting objects (if any) are tested with the qualifier (`color blue`).
+    ///
+    /// `NSWhoseSpecifier` is part of Cocoa's built-in script handling. You don't normally subclass it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier?language=objc)
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWhoseSpecifier;
@@ -1100,6 +1301,7 @@ impl NSWhoseSpecifier {
             feature = "NSScriptWhoseTests",
             feature = "NSString"
         ))]
+        /// Initializes a whose specifier with a test.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:test:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key_test(
@@ -1111,6 +1313,7 @@ impl NSWhoseSpecifier {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSScriptWhoseTests")]
+        /// The test used to qualify the objects.
         #[unsafe(method(test))]
         #[unsafe(method_family = none)]
         pub fn test(&self) -> Retained<NSScriptWhoseTest>;
@@ -1121,6 +1324,7 @@ impl NSWhoseSpecifier {
         #[unsafe(method_family = none)]
         pub fn setTest(&self, test: &NSScriptWhoseTest);
 
+        /// The identifier for the start subelement.
         #[unsafe(method(startSubelementIdentifier))]
         #[unsafe(method_family = none)]
         pub fn startSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
@@ -1133,6 +1337,7 @@ impl NSWhoseSpecifier {
             start_subelement_identifier: NSWhoseSubelementIdentifier,
         );
 
+        /// The index of the start subelement. Only used if `startSubelementIdentifier` is `NSIndexSubelement`.
         #[unsafe(method(startSubelementIndex))]
         #[unsafe(method_family = none)]
         pub fn startSubelementIndex(&self) -> NSInteger;
@@ -1142,6 +1347,7 @@ impl NSWhoseSpecifier {
         #[unsafe(method_family = none)]
         pub fn setStartSubelementIndex(&self, start_subelement_index: NSInteger);
 
+        /// The identifier for the end subelement.
         #[unsafe(method(endSubelementIdentifier))]
         #[unsafe(method_family = none)]
         pub fn endSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
@@ -1154,6 +1360,7 @@ impl NSWhoseSpecifier {
             end_subelement_identifier: NSWhoseSubelementIdentifier,
         );
 
+        /// The index of the end subelement. Only used if `endSubelementIdentifier` is `NSIndexSubelement`.
         #[unsafe(method(endSubelementIndex))]
         #[unsafe(method_family = none)]
         pub fn endSubelementIndex(&self) -> NSInteger;
@@ -1169,6 +1376,7 @@ impl NSWhoseSpecifier {
 impl NSWhoseSpecifier {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a specifier with a container specifier and key.
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSpecifier_key(
@@ -1182,6 +1390,7 @@ impl NSWhoseSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// The designated initializer.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerClassDescription_containerSpecifier_key(

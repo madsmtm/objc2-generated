@@ -5,6 +5,11 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-location")]
+use objc2_core_location::*;
+#[cfg(feature = "objc2-core-motion")]
+#[cfg(not(target_os = "tvos"))]
+use objc2_core_motion::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
@@ -1932,3 +1937,20 @@ impl UIView {
         pub fn effectiveRadiusForCorner(&self, corner: UIRectCorner) -> CGFloat;
     );
 }
+
+#[cfg(feature = "UIResponder")]
+impl UIView {}
+
+#[cfg(all(feature = "UIResponder", feature = "objc2-core-location"))]
+extern_conformance!(
+    unsafe impl CLBodyIdentifiable for UIView {}
+);
+
+#[cfg(feature = "UIResponder")]
+impl UIView {}
+
+#[cfg(all(feature = "UIResponder", feature = "objc2-core-motion"))]
+#[cfg(not(target_os = "tvos"))]
+extern_conformance!(
+    unsafe impl CMBodyIdentifiable for UIView {}
+);

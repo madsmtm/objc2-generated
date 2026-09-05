@@ -36,7 +36,9 @@ extern_protocol!(
     /// 3D mixing settings and then move from one environment to another.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiomixing?language=objc)
-    pub unsafe trait AVAudioMixing: AVAudioStereoMixing + AVAudio3DMixing {
+    pub unsafe trait AVAudioMixing:
+        AVAudioStereoMixing + AVAudio3DMixing + Send + Sync
+    {
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioTypes"))]
         /// Returns the AVAudioMixingDestination object corresponding to specified mixer node and
         /// its input bus
@@ -73,11 +75,21 @@ extern_protocol!(
         /// Range:      0.0 -> 1.0
         /// Default:    1.0
         /// Mixers:     AVAudioMixerNode, AVAudioEnvironmentNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         unsafe fn volume(&self) -> c_float;
 
         /// Setter for [`volume`][Self::volume].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setVolume:))]
         #[unsafe(method_family = none)]
         unsafe fn setVolume(&self, volume: c_float);
@@ -88,17 +100,27 @@ extern_protocol!(
     /// Protocol that defines stereo mixing properties
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiostereomixing?language=objc)
-    pub unsafe trait AVAudioStereoMixing: NSObjectProtocol {
+    pub unsafe trait AVAudioStereoMixing: NSObjectProtocol + Send + Sync {
         /// Set a bus's stereo pan
         ///
         /// Range:      -1.0 -> 1.0
         /// Default:    0.0
         /// Mixer:      AVAudioMixerNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(pan))]
         #[unsafe(method_family = none)]
         unsafe fn pan(&self) -> c_float;
 
         /// Setter for [`pan`][Self::pan].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPan:))]
         #[unsafe(method_family = none)]
         unsafe fn setPan(&self, pan: c_float);
@@ -277,7 +299,7 @@ extern_protocol!(
     /// Protocol that defines 3D mixing properties
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixing?language=objc)
-    pub unsafe trait AVAudio3DMixing: NSObjectProtocol {
+    pub unsafe trait AVAudio3DMixing: NSObjectProtocol + Send + Sync {
         /// Type of rendering algorithm used
         ///
         /// Depending on the current output format of the AVAudioEnvironmentNode, only a subset of the
@@ -286,11 +308,21 @@ extern_protocol!(
         ///
         /// Default:    AVAudio3DMixingRenderingAlgorithmEqualPowerPanning
         /// Mixer:      AVAudioEnvironmentNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(renderingAlgorithm))]
         #[unsafe(method_family = none)]
         unsafe fn renderingAlgorithm(&self) -> AVAudio3DMixingRenderingAlgorithm;
 
         /// Setter for [`renderingAlgorithm`][Self::renderingAlgorithm].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRenderingAlgorithm:))]
         #[unsafe(method_family = none)]
         unsafe fn setRenderingAlgorithm(
@@ -302,11 +334,21 @@ extern_protocol!(
         ///
         /// Default:    AVAudio3DMixingSourceModeSpatializeIfMono
         /// Mixer:      AVAudioEnvironmentNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sourceMode))]
         #[unsafe(method_family = none)]
         unsafe fn sourceMode(&self) -> AVAudio3DMixingSourceMode;
 
         /// Setter for [`sourceMode`][Self::sourceMode].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSourceMode:))]
         #[unsafe(method_family = none)]
         unsafe fn setSourceMode(&self, source_mode: AVAudio3DMixingSourceMode);
@@ -315,11 +357,21 @@ extern_protocol!(
         ///
         /// Default:    AVAudio3DMixingPointSourceInHeadModeMono
         /// Mixer:      AVAudioEnvironmentNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(pointSourceInHeadMode))]
         #[unsafe(method_family = none)]
         unsafe fn pointSourceInHeadMode(&self) -> AVAudio3DMixingPointSourceInHeadMode;
 
         /// Setter for [`pointSourceInHeadMode`][Self::pointSourceInHeadMode].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPointSourceInHeadMode:))]
         #[unsafe(method_family = none)]
         unsafe fn setPointSourceInHeadMode(
@@ -335,11 +387,21 @@ extern_protocol!(
         /// Range:      0.5 -> 2.0
         /// Default:    1.0
         /// Mixer:      AVAudioEnvironmentNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRate:))]
         #[unsafe(method_family = none)]
         unsafe fn setRate(&self, rate: c_float);
@@ -353,11 +415,21 @@ extern_protocol!(
         /// Range:      0.0 (completely dry) -> 1.0 (completely wet)
         /// Default:    0.0
         /// Mixer:      AVAudioEnvironmentNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(reverbBlend))]
         #[unsafe(method_family = none)]
         unsafe fn reverbBlend(&self) -> c_float;
 
         /// Setter for [`reverbBlend`][Self::reverbBlend].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setReverbBlend:))]
         #[unsafe(method_family = none)]
         unsafe fn setReverbBlend(&self, reverb_blend: c_float);
@@ -369,11 +441,21 @@ extern_protocol!(
         /// Range:      -100.0 -> 0.0 dB
         /// Default:    0.0
         /// Mixer:      AVAudioEnvironmentNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(obstruction))]
         #[unsafe(method_family = none)]
         unsafe fn obstruction(&self) -> c_float;
 
         /// Setter for [`obstruction`][Self::obstruction].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setObstruction:))]
         #[unsafe(method_family = none)]
         unsafe fn setObstruction(&self, obstruction: c_float);
@@ -385,11 +467,21 @@ extern_protocol!(
         /// Range:      -100.0 -> 0.0 dB
         /// Default:    0.0
         /// Mixer:      AVAudioEnvironmentNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(occlusion))]
         #[unsafe(method_family = none)]
         unsafe fn occlusion(&self) -> c_float;
 
         /// Setter for [`occlusion`][Self::occlusion].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setOcclusion:))]
         #[unsafe(method_family = none)]
         unsafe fn setOcclusion(&self, occlusion: c_float);
@@ -400,12 +492,22 @@ extern_protocol!(
         /// The coordinates are specified in meters.
         ///
         /// Mixer:      AVAudioEnvironmentNode
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         unsafe fn position(&self) -> AVAudio3DPoint;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`position`][Self::position].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         unsafe fn setPosition(&self, position: AVAudio3DPoint);
@@ -425,6 +527,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioMixingDestination;
 );
+
+unsafe impl Send for AVAudioMixingDestination {}
+
+unsafe impl Sync for AVAudioMixingDestination {}
 
 extern_conformance!(
     unsafe impl AVAudio3DMixing for AVAudioMixingDestination {}
@@ -448,6 +554,12 @@ impl AVAudioMixingDestination {
 
         #[cfg(feature = "AVAudioConnectionPoint")]
         /// Returns the underlying mixer connection point
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(connectionPoint))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionPoint(&self) -> Retained<AVAudioConnectionPoint>;

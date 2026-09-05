@@ -23,9 +23,9 @@ extern_class!(
     ///
     /// If multiple virtual machines are created from the same configuration, each should have a unique  `auxiliaryStorage` and `machineIdentifier`.
     ///
-    /// See also: VZMacOSRestoreImage
+    /// See: VZMacOSRestoreImage
     ///
-    /// See also: VZMacOSConfigurationRequirements
+    /// See: VZMacOSConfigurationRequirements
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration?language=objc)
     #[unsafe(super(VZPlatformConfiguration, NSObject))]

@@ -11,6 +11,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcadvertiserassistant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Network Framework instead"]
     pub struct MCAdvertiserAssistant;
 );
 
@@ -21,6 +22,7 @@ extern_conformance!(
 impl MCAdvertiserAssistant {
     extern_methods!(
         #[cfg(feature = "MCSession")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(initWithServiceType:discoveryInfo:session:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServiceType_discoveryInfo_session(
@@ -30,14 +32,17 @@ impl MCAdvertiserAssistant {
             session: &MCSession,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -47,6 +52,7 @@ impl MCAdvertiserAssistant {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -55,14 +61,17 @@ impl MCAdvertiserAssistant {
         );
 
         #[cfg(feature = "MCSession")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(session))]
         #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Retained<MCSession>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(discoveryInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoveryInfo(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(serviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
@@ -84,7 +93,9 @@ impl MCAdvertiserAssistant {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcadvertiserassistantdelegate?language=objc)
+    #[deprecated = "Use Network Framework instead"]
     pub unsafe trait MCAdvertiserAssistantDelegate: NSObjectProtocol {
+        #[deprecated = "Use Network Framework instead"]
         #[optional]
         #[unsafe(method(advertiserAssistantWillPresentInvitation:))]
         #[unsafe(method_family = none)]
@@ -93,6 +104,7 @@ extern_protocol!(
             advertiser_assistant: &MCAdvertiserAssistant,
         );
 
+        #[deprecated = "Use Network Framework instead"]
         #[optional]
         #[unsafe(method(advertiserAssistantDidDismissInvitation:))]
         #[unsafe(method_family = none)]

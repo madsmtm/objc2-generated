@@ -11,7 +11,62 @@ use crate::*;
 pub type NSUserActivityPersistentIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivity?language=objc)
+    /// A representation of the state of your app at a moment in time.
+    ///
+    /// An ``NSUserActivity`` object provides a lightweight way to capture the state of your app and put it to use later. Create this object to capture information about what a person was doing, such as viewing app content, editing a document, viewing a web page, or watching a video. When the system launches your app and an activity object is available, your app can use the information in that object to restore itself to an appropriate state. Spotlight also uses these objects to improve search results for people. To allow people to continue an activity on another device, see
+    /// <doc
+    /// :implementing-handoff-in-your-app>.
+    ///
+    /// ### Siri
+    ///
+    /// If SiriKit needs to launch your app for any reason, it creates a user activity object and assigns an appropriate
+    /// <doc
+    /// ://com.apple.documentation/documentation/intents/ininteraction> object to its ``interaction`` property. Your app can use the interaction information to configure itself and display information related to the interaction started by SiriKit. You can also provide SiriKit with a custom user activity object containing additional data that you want passed to your app.
+    ///
+    /// In iOS 15 and later, a person can share content they're viewing by asking Siri to "share this". Apps built with Mac Catalyst provide the same capability with an
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nssharingservicepickertoolbaritem> in the toolbar. You can use
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uiactivityitemsconfigurationproviding/activityitemsconfiguration> or
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uiwindowscene/activityitemsconfigurationsource> to provide shareable content. In iOS, if both of those properties are
+    /// <doc
+    /// ://com.apple.documentation/documentation/objectivec/nil-227m0>, Siri uses the ``webpageURL`` property of your app's current user activity as a fallback value.
+    ///
+    /// ### Quick Note
+    ///
+    /// Quick Note on macOS and iOS can link to any app content represented as an ``NSUserActivity``. To appear as a link, the content must be the app's current activity, and provide at least one of the following identifiers:
+    ///
+    /// - term ``webpageURL``: An `https:` URL, ideally in a canonical form that's consistent every time a person visits the same content.
+    /// - term ``persistentIdentifier``: A string that uniquely identifies the content in this domain. The identifier should identify the same content across devices.
+    /// - term ``targetContentIdentifier``: A string that uniquely identifies the content in this domain, but also allows disambiguating between multiple scenes of an app. The identifier should identify the same content across devices.
+    ///
+    /// To work well with Quick Note, content must adhere to the following guidelines:
+    ///
+    /// - The activity ``title`` should be clear and concise. This text describes the content of the link, like "Photo taken on July 27, 2020" or "Conversation with Maria". Use nouns for activity titles.
+    /// - Keep the app's current activity up to date, using ``becomeCurrent()`` and ``resignCurrent()``.
+    /// - Linkable identifiers (listed above) must be stable and consistent for the same content. When you link from a note to a document in an app, and later revisit that document, the system shows an indicator linking back to the note. The system compares identifiers to check that the document is the same as the original source of the link.
+    /// - Maintain support for activities provided by your app, and support navigating to linked content indefinitely. Links added to notes are important to people, who may feel that a broken link indicates data loss.
+    /// - Gracefully handle attempts to navigate to an activity that points to content that doesn't exist. For example, you can redirect to the new location of moved content, or show an error message. This situation may happen with shared notes, when a person links to content that exists only on another person's device.
+    ///
+    /// ### Search results
+    ///
+    /// If your ``NSUserActivity`` objects contain information that a person might want to search for later, set the ``isEligibleForSearch`` property to
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true>. When you enable search, Spotlight indexes your user activity objects and considers them during subsequent on-device searches. For example, if a person viewed information about a particular restaurant in your app, you'd enable search for the corresponding user activity object. Subsequent searches for restaurants using Spotlight could then include the results obtained from your user activity object.
+    ///
+    /// In addition to on-device searches, you can contribute URLs accessed by your app with the global Spotlight search engine. Sharing a URL helps Spotlight improve its own search results for other people. To contribute a URL, put the URL in the ``webpageURL`` property of your activity object and set the ``isEligibleForPublicIndexing`` property to
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true>.
+    ///
+    /// > Important:
+    /// > Your app must maintain a strong reference to any activity objects that you use for search results.
+    ///
+    /// Employ user activity objects to record user-initiated activities, not as a general-purpose indexing mechanism of your app's data. To index all of your app's content, and not just the content touched by people, use the APIs of the
+    /// <doc
+    /// ://com.apple.documentation/documentation/corespotlight> framework.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserActivity;
@@ -24,6 +79,14 @@ extern_conformance!(
 impl NSUserActivity {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes and returns a newly created NSUserActivity with the given activity type.
+        ///
+        /// A user activity may be continued only in an application that (1) has the same developer Team ID as the activity’s
+        /// source application and (2) supports the activity’s type. Supported activity types are specified in the application’s
+        /// `Info.plist`under the
+        /// `NSUserActivityTypes`key.
+        ///
+        /// Parameter `activityType`: A string that identifies the type of the activity.
         #[unsafe(method(initWithActivityType:))]
         #[unsafe(method_family = init)]
         pub fn initWithActivityType(
@@ -31,17 +94,22 @@ impl NSUserActivity {
             activity_type: &NSString,
         ) -> Retained<Self>;
 
+        /// Initializes and returns a newly created NSUserActivity with the first activity type from the
+        /// `NSUserActivityTypes`key in the application’s
+        /// `Info.plist.`
         #[deprecated = "Use initWithActivityType: with a specific activity type string"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// The activity type the user activity was created with.
         #[unsafe(method(activityType))]
         #[unsafe(method_family = none)]
         pub fn activityType(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// An optional, user-visible title for this activity, such as a document name or web page title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub fn title(&self) -> Option<Retained<NSString>>;
@@ -55,6 +123,11 @@ impl NSUserActivity {
         pub fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "NSDictionary")]
+        /// The user info dictionary contains application-specific state needed to continue an activity on another device.
+        ///
+        /// Each key and value must be of the following types:
+        /// `NSArray,``NSData,``NSDate,``NSDictionary,``NSNull,``NSNumber,``NSSet,``NSString,``NSURL,`or
+        /// `NSUUID.`
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub fn userInfo(&self) -> Option<Retained<NSDictionary>>;
@@ -72,6 +145,10 @@ impl NSUserActivity {
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(feature = "NSDictionary")]
+        /// Adds to the user info dictionary the entries from
+        /// `otherDictionary.`
+        /// The keys and values must be of the types allowed in the user info dictionary.
+        ///
         /// # Safety
         ///
         /// `other_dictionary` generic should be of the correct type.
@@ -80,6 +157,10 @@ impl NSUserActivity {
         pub unsafe fn addUserInfoEntriesFromDictionary(&self, other_dictionary: &NSDictionary);
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// The keys from the user info property which represent the minimal information about this user activity that should be stored for later restoration.
+        ///
+        /// A
+        /// `nil`value means all keys in the user info are required.
         #[unsafe(method(requiredUserInfoKeys))]
         #[unsafe(method_family = none)]
         pub fn requiredUserInfoKeys(&self) -> Option<Retained<NSSet<NSString>>>;
@@ -92,6 +173,9 @@ impl NSUserActivity {
         #[unsafe(method_family = none)]
         pub fn setRequiredUserInfoKeys(&self, required_user_info_keys: Option<&NSSet<NSString>>);
 
+        /// If set to
+        /// `YES,`then the delegate for this user activity will receive a
+        /// `userActivityWillSave:`callback before being sent for continuation on another device.
         #[unsafe(method(needsSave))]
         #[unsafe(method_family = none)]
         pub fn needsSave(&self) -> bool;
@@ -102,6 +186,7 @@ impl NSUserActivity {
         pub fn setNeedsSave(&self, needs_save: bool);
 
         #[cfg(feature = "NSURL")]
+        /// When no suitable application is installed on a resuming device and this is set, the user activity will instead be continued in a web browser by loading this resource.
         #[unsafe(method(webpageURL))]
         #[unsafe(method_family = none)]
         pub fn webpageURL(&self) -> Option<Retained<NSURL>>;
@@ -115,6 +200,8 @@ impl NSUserActivity {
         pub fn setWebpageURL(&self, webpage_url: Option<&NSURL>);
 
         #[cfg(feature = "NSURL")]
+        /// The URL of the webpage that referred (linked to)
+        /// `webpageURL.`
         #[unsafe(method(referrerURL))]
         #[unsafe(method_family = none)]
         pub fn referrerURL(&self) -> Option<Retained<NSURL>>;
@@ -128,6 +215,7 @@ impl NSUserActivity {
         pub fn setReferrerURL(&self, referrer_url: Option<&NSURL>);
 
         #[cfg(feature = "NSDate")]
+        /// If non-nil, an absolute date after which this activity is no longer eligible to be indexed or handed off.
         #[unsafe(method(expirationDate))]
         #[unsafe(method_family = none)]
         pub fn expirationDate(&self) -> Option<Retained<NSDate>>;
@@ -141,6 +229,7 @@ impl NSUserActivity {
         pub fn setExpirationDate(&self, expiration_date: Option<&NSDate>);
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// A set of keywords, representing words or phrases in the current user’s language that might help the user to find this activity in the application history.
         #[unsafe(method(keywords))]
         #[unsafe(method_family = none)]
         pub fn keywords(&self) -> Retained<NSSet<NSString>>;
@@ -153,6 +242,11 @@ impl NSUserActivity {
         #[unsafe(method_family = none)]
         pub fn setKeywords(&self, keywords: &NSSet<NSString>);
 
+        /// When used for continuation, the user activity can allow the continuing side to connect back for more information using streams.
+        ///
+        /// This value is set to
+        /// `NO`by default. It can be dynamically set to
+        /// `YES`to selectively support continuation streams.
         #[unsafe(method(supportsContinuationStreams))]
         #[unsafe(method_family = none)]
         pub fn supportsContinuationStreams(&self) -> bool;
@@ -162,6 +256,7 @@ impl NSUserActivity {
         #[unsafe(method_family = none)]
         pub fn setSupportsContinuationStreams(&self, supports_continuation_streams: bool);
 
+        /// The user activity delegate is informed when the activity is being saved or continued.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSUserActivityDelegate>>>;
@@ -174,6 +269,11 @@ impl NSUserActivity {
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSUserActivityDelegate>>);
 
         #[cfg(feature = "NSString")]
+        /// A string that identifies the content of this NSUserActivity, for matching against existing documents when re-opening to see if they are the same.
+        ///
+        /// Setting this property is optional and does not automatically set
+        /// `needsSave`to
+        /// `YES.`
         #[unsafe(method(targetContentIdentifier))]
         #[unsafe(method_family = none)]
         pub fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
@@ -186,19 +286,30 @@ impl NSUserActivity {
         #[unsafe(method_family = none)]
         pub fn setTargetContentIdentifier(&self, target_content_identifier: Option<&NSString>);
 
+        /// Marks the receiver as the activity currently in use by the user.
+        ///
+        /// For example, the activity associated with the active window. A newly created activity is eligible for continuation on another device after the first time it becomes current.
         #[unsafe(method(becomeCurrent))]
         #[unsafe(method_family = none)]
         pub fn becomeCurrent(&self);
 
+        /// If this activity is the current activity, it should stop being so and set the current activity to nothing.
         #[unsafe(method(resignCurrent))]
         #[unsafe(method_family = none)]
         pub fn resignCurrent(&self);
 
+        /// Invalidate an activity when it’s no longer eligible for continuation.
+        ///
+        /// For example, when the window associated with an activity is closed. An invalid activity cannot become current.
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub fn invalidate(&self);
 
         #[cfg(all(feature = "NSError", feature = "NSStream", feature = "block2"))]
+        /// When an app is launched for a continuation event it can request streams back to the originating side.
+        ///
+        /// Streams can only be successfully retrieved from the NSUserActivity in the NS/UIApplication delegate that is called for a continuation event.
+        /// The streams returned in the completion handler will be in an unopened state. The streams should be opened immediately to start requesting information from the other side.
         #[unsafe(method(getContinuationStreamsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub fn getContinuationStreamsWithCompletionHandler(
@@ -209,6 +320,8 @@ impl NSUserActivity {
             >,
         );
 
+        /// Set to
+        /// `YES`if this user activity should be eligible to be handed off to another device.
         #[unsafe(method(isEligibleForHandoff))]
         #[unsafe(method_family = none)]
         pub fn isEligibleForHandoff(&self) -> bool;
@@ -218,6 +331,8 @@ impl NSUserActivity {
         #[unsafe(method_family = none)]
         pub fn setEligibleForHandoff(&self, eligible_for_handoff: bool);
 
+        /// Set to
+        /// `YES`if this user activity should be indexed by App History.
         #[unsafe(method(isEligibleForSearch))]
         #[unsafe(method_family = none)]
         pub fn isEligibleForSearch(&self) -> bool;
@@ -227,6 +342,14 @@ impl NSUserActivity {
         #[unsafe(method_family = none)]
         pub fn setEligibleForSearch(&self, eligible_for_search: bool);
 
+        /// Set to
+        /// `YES`if this user activity should be eligible for indexing for any user of this application, on any device.
+        ///
+        /// Set to
+        /// `NO`if the activity contains private or sensitive information or which would not be useful to other users if indexed.
+        /// The activity must also have
+        /// `requiredUserActivityKeys`or a
+        /// `webpageURL.`
         #[unsafe(method(isEligibleForPublicIndexing))]
         #[unsafe(method_family = none)]
         pub fn isEligibleForPublicIndexing(&self) -> bool;
@@ -236,6 +359,8 @@ impl NSUserActivity {
         #[unsafe(method_family = none)]
         pub fn setEligibleForPublicIndexing(&self, eligible_for_public_indexing: bool);
 
+        /// Set to
+        /// `YES`if this user activity should be eligible for prediction.
         #[unsafe(method(isEligibleForPrediction))]
         #[unsafe(method_family = none)]
         pub fn isEligibleForPrediction(&self) -> bool;
@@ -246,6 +371,7 @@ impl NSUserActivity {
         pub fn setEligibleForPrediction(&self, eligible_for_prediction: bool);
 
         #[cfg(feature = "NSString")]
+        /// A persistent identifier for this user activity.
         #[unsafe(method(persistentIdentifier))]
         #[unsafe(method_family = none)]
         pub fn persistentIdentifier(&self) -> Option<Retained<NSUserActivityPersistentIdentifier>>;
@@ -262,6 +388,12 @@ impl NSUserActivity {
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "block2"))]
+        /// Deletes user activities that have the specified persistent identifiers.
+        ///
+        ///
+        /// Parameter `persistentIdentifiers`: An array of persistent identifiers for the user activities to delete.
+        ///
+        /// Parameter `handler`: A completion handler that is called when the deletion is complete.
         #[unsafe(method(deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
@@ -270,6 +402,10 @@ impl NSUserActivity {
         );
 
         #[cfg(feature = "block2")]
+        /// Deletes all saved user activities for this application.
+        ///
+        ///
+        /// Parameter `handler`: A completion handler that is called when the deletion is complete.
         #[unsafe(method(deleteAllSavedUserActivitiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub fn deleteAllSavedUserActivitiesWithCompletionHandler(
@@ -295,25 +431,43 @@ impl DefaultRetained for NSUserActivity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb?language=objc)
+    /// An activity that continues from Handoff or a universal link.
+    ///
+    /// Only activities of this type can be continued from a web browser to a native app.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUserActivityTypeBrowsingWeb: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitydelegate?language=objc)
+    /// The interface through which a user activity instance notifies its delegate of updates.
+    ///
+    /// An object conforming to the ``NSUserActivityDelegate`` protocol works with an ``NSUserActivity`` object, which encapsulates the state of a user activity in an application on a particular device and enables the same activity to be continued on another device. For example, a user browsing an article in Safari on a Mac can move to an iOS device where the same webpage automatically opens in Safari with the same scroll position.
+    ///
+    /// The user activity delegate is responsible for updating the state of an activity and is also notified when an activity has been continued on another device. The user activity delegate is typically a top-level object in the app—such as a window, view controller, or the app delegate—that manages the activity's interaction with the app.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitydelegate?language=objc)
     pub unsafe trait NSUserActivityDelegate: NSObjectProtocol {
+        /// The user activity will be saved (to be continued or persisted). The receiver should update the activity with current activity state.
         #[optional]
         #[unsafe(method(userActivityWillSave:))]
         #[unsafe(method_family = none)]
         fn userActivityWillSave(&self, user_activity: &NSUserActivity);
 
+        /// The user activity was continued on another device.
         #[optional]
         #[unsafe(method(userActivityWasContinued:))]
         #[unsafe(method_family = none)]
         fn userActivityWasContinued(&self, user_activity: &NSUserActivity);
 
         #[cfg(feature = "NSStream")]
+        /// If
+        /// `supportsContinuationStreams`is set to
+        /// `YES`the continuing side can request streams back to this user activity.
+        ///
+        /// This delegate callback will be received with the incoming streams from the other side. The streams will be in an unopened state.
+        /// The streams should be opened immediately to start receiving requests from the continuing side.
         #[optional]
         #[unsafe(method(userActivity:didReceiveInputStream:outputStream:))]
         #[unsafe(method_family = none)]

@@ -248,7 +248,7 @@ extern_class!(
     /// This event happens occasionally when the sync engine modifies the state internally during normal sync operation.
     /// This event also happens when you change the state yourself.
     ///
-    /// The sync engine does not persist this state to disk, so you need to persist it in alongside your own local data.
+    /// The sync engine does not persist this state to disk, so you need to persist it alongside your own local data.
     /// The next time your process launches, use this latest state serialization in ``CKSyncEngineConfiguration/stateSerialization`` to initialize your sync engine.
     ///
     /// This state is directly tied to the changes you fetch and send with the sync engine.
@@ -1131,7 +1131,7 @@ impl CKSyncEngineFailedRecordSave {
         #[unsafe(method_family = none)]
         pub unsafe fn record(&self) -> Retained<CKRecord>;
 
-        /// A error that describes the reason for the unsuccessful attempt to modify the associated record.
+        /// An error that describes the reason for the unsuccessful attempt to modify the associated record.
         ///
         /// This property is not atomic.
         ///
@@ -1179,7 +1179,7 @@ impl CKSyncEngineFailedZoneSave {
         #[unsafe(method_family = none)]
         pub unsafe fn recordZone(&self) -> Retained<CKRecordZone>;
 
-        /// A error that describes the reason for the unsuccessful attempt to modify the associated record zone.
+        /// An error that describes the reason for the unsuccessful attempt to modify the associated record zone.
         ///
         /// This property is not atomic.
         ///

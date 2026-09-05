@@ -30,6 +30,9 @@ mod __PHAsset;
 #[cfg(feature = "PHAssetChangeRequest")]
 #[path = "PHAssetChangeRequest.rs"]
 mod __PHAssetChangeRequest;
+#[cfg(feature = "PHAssetCollection")]
+#[path = "PHAssetCollection.rs"]
+mod __PHAssetCollection;
 #[cfg(feature = "PHAssetCollectionChangeRequest")]
 #[path = "PHAssetCollectionChangeRequest.rs"]
 mod __PHAssetCollectionChangeRequest;
@@ -60,6 +63,9 @@ mod __PHCloudIdentifier;
 #[cfg(feature = "PHCollection")]
 #[path = "PHCollection.rs"]
 mod __PHCollection;
+#[cfg(feature = "PHCollectionList")]
+#[path = "PHCollectionList.rs"]
+mod __PHCollectionList;
 #[cfg(feature = "PHCollectionListChangeRequest")]
 #[path = "PHCollectionListChangeRequest.rs"]
 mod __PHCollectionListChangeRequest;
@@ -132,6 +138,12 @@ pub use self::__PHAssetChangeRequest::PHContentEditingInputRequestOptions;
 #[cfg(feature = "PHAssetChangeRequest")]
 pub use self::__PHAssetChangeRequest::PHContentEditingInputResultIsInCloudKey;
 #[cfg(all(
+    feature = "PHAssetCollection",
+    feature = "PHCollection",
+    feature = "PHObject"
+))]
+pub use self::__PHAssetCollection::PHAssetCollection;
+#[cfg(all(
     feature = "PHAssetCollectionChangeRequest",
     feature = "PHChangeRequest"
 ))]
@@ -180,11 +192,13 @@ pub use self::__PHCloudIdentifier::PHLocalIdentifierMapping;
 #[cfg(feature = "PHCloudIdentifier")]
 pub use self::__PHCloudIdentifier::PHLocalIdentifierNotFound;
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-pub use self::__PHCollection::PHAssetCollection;
-#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 pub use self::__PHCollection::PHCollection;
-#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-pub use self::__PHCollection::PHCollectionList;
+#[cfg(all(
+    feature = "PHCollection",
+    feature = "PHCollectionList",
+    feature = "PHObject"
+))]
+pub use self::__PHCollectionList::PHCollectionList;
 #[cfg(all(feature = "PHChangeRequest", feature = "PHCollectionListChangeRequest"))]
 pub use self::__PHCollectionListChangeRequest::PHCollectionListChangeRequest;
 #[cfg(feature = "PHContentEditingInput")]
@@ -295,10 +309,19 @@ pub use self::__PHPhotoLibrary::PHPhotoLibrary;
 pub use self::__PHPhotoLibrary::PHPhotoLibraryAvailabilityObserver;
 #[cfg(feature = "PHPhotoLibrary")]
 pub use self::__PHPhotoLibrary::PHPhotoLibraryChangeObserver;
-#[cfg(all(feature = "PHCollection", feature = "PHObject", feature = "PHProject"))]
+#[cfg(feature = "PHPhotoLibrary")]
+pub use self::__PHPhotoLibrary::PHPhotoLibraryPersistentChangesObserver;
+#[cfg(all(
+    feature = "PHAssetCollection",
+    feature = "PHCollection",
+    feature = "PHObject",
+    feature = "PHProject"
+))]
 pub use self::__PHProject::PHProject;
 #[cfg(all(feature = "PHChangeRequest", feature = "PHProjectChangeRequest"))]
 pub use self::__PHProjectChangeRequest::PHProjectChangeRequest;
+#[cfg(feature = "PhotosTypes")]
+pub use self::__PhotosTypes::PHAssetAdjustmentsState;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetBurstSelectionType;
 #[cfg(feature = "PhotosTypes")]
@@ -313,6 +336,8 @@ pub use self::__PhotosTypes::PHAssetMediaSubtype;
 pub use self::__PhotosTypes::PHAssetMediaType;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetPlaybackStyle;
+#[cfg(feature = "PhotosTypes")]
+pub use self::__PhotosTypes::PHAssetRating;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetResourceType;
 #[cfg(feature = "PhotosTypes")]
@@ -333,3 +358,5 @@ pub use self::__PhotosTypes::PHCollectionListType;
 pub use self::__PhotosTypes::PHImageContentMode;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHObjectType;
+#[cfg(feature = "PhotosTypes")]
+pub use self::__PhotosTypes::PHOriginalResourceChoice;

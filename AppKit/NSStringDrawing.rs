@@ -159,18 +159,18 @@ bitflags::bitflags! {
         const UsesDeviceMetrics = 1<<3;
         #[doc(alias = "NSStringDrawingTruncatesLastVisibleLine")]
         const TruncatesLastVisibleLine = 1<<5;
-/// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+/// Specifies the behavior for resolving ``NSTextAlignment/natural`` to the visual alignment.
 ///
 /// When set, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
         #[doc(alias = "NSStringDrawingOptionsResolvesNaturalAlignmentWithBaseWritingDirection")]
         const OptionsResolvesNaturalAlignmentWithBaseWritingDirection = 1<<9;
-/// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+/// Specifies the behavior for resolving ``NSTextAlignment/natural`` to the visual alignment.
 ///
 /// When set, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
         #[doc(alias = "NSStringDrawingDisableScreenFontSubstitution")]
 #[deprecated]
         const DisableScreenFontSubstitution = 1<<2;
-/// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+/// Specifies the behavior for resolving ``NSTextAlignment/natural`` to the visual alignment.
 ///
 /// When set, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
         #[doc(alias = "NSStringDrawingOneShot")]
@@ -265,46 +265,6 @@ pub unsafe trait NSAttributedStringNSExtendedStringDrawing:
 
 impl private_NSAttributedStringNSExtendedStringDrawing::Sealed for NSAttributedString {}
 unsafe impl NSAttributedStringNSExtendedStringDrawing for NSAttributedString {}
-
-mod private_NSStringDrawingDeprecated {
-    pub trait Sealed {}
-}
-
-/// Category on [`NSString`].
-///
-/// ********************** Deprecated ***********************
-pub unsafe trait NSStringDrawingDeprecated:
-    ClassType + Sized + private_NSStringDrawingDeprecated::Sealed
-{
-    extern_methods!(
-        /// # Safety
-        ///
-        /// `attributes` generic should be of the correct type.
-        #[unsafe(method(drawWithRect:options:attributes:))]
-        #[unsafe(method_family = none)]
-        unsafe fn drawWithRect_options_attributes(
-            &self,
-            rect: NSRect,
-            options: NSStringDrawingOptions,
-            attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
-        );
-
-        /// # Safety
-        ///
-        /// `attributes` generic should be of the correct type.
-        #[unsafe(method(boundingRectWithSize:options:attributes:))]
-        #[unsafe(method_family = none)]
-        unsafe fn boundingRectWithSize_options_attributes(
-            &self,
-            size: NSSize,
-            options: NSStringDrawingOptions,
-            attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
-        ) -> NSRect;
-    );
-}
-
-impl private_NSStringDrawingDeprecated::Sealed for NSString {}
-unsafe impl NSStringDrawingDeprecated for NSString {}
 
 mod private_NSAttributedStringNSStringDrawingDeprecated {
     pub trait Sealed {}

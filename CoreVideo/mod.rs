@@ -236,6 +236,8 @@ pub use self::__CVImageBuffer::kCVImageBufferFieldDetailTemporalTopFirst;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferGammaLevelKey;
 #[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferHorizontalDisparityAdjustmentKey;
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferICCProfileKey;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferLogTransferFunctionKey;

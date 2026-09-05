@@ -780,6 +780,28 @@ impl UIViewController {
             &self,
             override_user_interface_style: UIUserInterfaceStyle,
         );
+
+        #[cfg(all(feature = "UISceneAccessory", feature = "UISceneAccessoryRegistration"))]
+        /// Registers a new scene accessory configuration associated with this view controller.
+        ///
+        /// The delegate type that the configuration defines will be called for all lifecycle events associated with the scene accessory.
+        ///
+        /// - Parameter accessory: A configuration which defines system functionality necessary to present the scene accessory.
+        /// - Returns: A registration object which can be used to monitor changes for the scene accessory or unregister it.
+        #[unsafe(method(registerSceneAccessory:))]
+        #[unsafe(method_family = none)]
+        pub fn registerSceneAccessory(
+            &self,
+            accessory: &UISceneAccessory,
+        ) -> Retained<UISceneAccessoryRegistration>;
+
+        #[cfg(feature = "UISceneAccessoryRegistration")]
+        /// Unregisters a scene accessory with the specified registration.
+        ///
+        /// If the scene accessory associated to this registration is currently being presented, it will be dismissed.
+        #[unsafe(method(unregisterSceneAccessory:))]
+        #[unsafe(method_family = none)]
+        pub fn unregisterSceneAccessory(&self, registration: &UISceneAccessoryRegistration);
     );
 }
 

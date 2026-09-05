@@ -153,7 +153,7 @@ impl BGTaskScheduler {
         #[cfg(feature = "BGTaskRequest")]
         /// Submit a previously registered background task for execution.
         ///
-        /// Submitting a task request for an unexecuted task that’s already in the queue replaces the previous task request.
+        /// Submitting a task request for an unexecuted task that's already in the queue replaces the previous task request.
         ///
         /// There can be a total of 1 refresh task and 10 processing tasks scheduled at any time. Trying to schedule more tasks
         /// returns ``BGTaskSchedulerErrorCode/BGTaskSchedulerErrorCodeTooManyPendingTaskRequests``.
@@ -162,12 +162,50 @@ impl BGTaskScheduler {
         /// - taskRequest: The task request object representing the parameters of the background task to be scheduled.
         /// - error: If an error occurs, upon return contains an error object that indicates why the request was rejected
         /// - Returns: `YES` if the request was successfully submitted; `NO` if there was an error
+        #[deprecated = "Use submitTaskRequest:completionHandler: instead to capture all error conditions"]
         #[unsafe(method(submitTaskRequest:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn submitTaskRequest_error(
             &self,
             task_request: &BGTaskRequest,
         ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(feature = "BGTaskRequest", feature = "block2"))]
+        /// Submits a background task request to be scheduled with a completion handler.
+        ///
+        /// This method asynchronously submits the task request and invokes the completion
+        /// handler with any errors that occur during submission.
+        ///
+        /// Submitting a task request for an unexecuted task that's already in the queue replaces the previous task request.
+        ///
+        /// There can be a total of 1 refresh task and 10 processing tasks scheduled at any time. Trying to schedule more tasks
+        /// will result in an error with code ``BGTaskSchedulerErrorCode/BGTaskSchedulerErrorCodeTooManyPendingTaskRequests``.
+        ///
+        /// - Parameters:
+        /// - taskRequest: The task request object representing the parameters of the background task to be scheduled.
+        /// - completionHandler: A block that is called when submission completes. The block receives an optional error parameter:
+        /// - `nil` if the task was submitted successfully
+        /// - An `NSError` if submission failed
+        ///
+        /// Common errors include:
+        /// - ``BGTaskSchedulerErrorCode/BGTaskSchedulerErrorCodeNotPermitted``: Task identifier not permitted or unsupported resources requested
+        /// - ``BGTaskSchedulerErrorCode/BGTaskSchedulerErrorCodeTooManyPendingTaskRequests``: Too many pending tasks of this type
+        /// - ``BGTaskSchedulerErrorCode/BGTaskSchedulerErrorCodeUnavailable``: Background refresh disabled or app not permitted
+        /// - ``BGTaskSchedulerErrorCode/BGTaskSchedulerErrorCodeImmediateRunIneligible``: Immediate run not eligible due to system conditions
+        ///
+        /// The completion handler is called on an arbitrary queue.
+        ///
+        /// - Note: The completion handler may be invoked on a arbitrary queue after an arbitrary amount of delay.
+        /// Do not call this method from the main thread or performance-critical contexts.
+        ///
+        /// This method replaces the deprecated ``submitTaskRequest:error:`` method
+        #[unsafe(method(submitTaskRequest:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn submitTaskRequest_completionHandler(
+            &self,
+            task_request: &BGTaskRequest,
+            completion_handler: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
 
         /// Cancel a previously scheduled task request.
         ///

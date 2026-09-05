@@ -145,6 +145,76 @@ unsafe impl RefEncode for PHPickerCapabilities {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that specify metadata options for
+/// `PHPickerViewController.`
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermetadataoptions?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct PHPickerMetadataOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl PHPickerMetadataOptions: NSUInteger {
+/// No metadata options.
+        #[doc(alias = "PHPickerMetadataOptionsNone")]
+        const None = 0;
+/// Remove location metadata.
+        #[doc(alias = "PHPickerMetadataOptionsRemoveLocation")]
+        const RemoveLocation = 1<<0;
+/// Remove captions metadata.
+        #[doc(alias = "PHPickerMetadataOptionsRemoveCaptions")]
+        const RemoveCaptions = 1<<1;
+        const _ = !0;
+    }
+}
+
+unsafe impl Encode for PHPickerMetadataOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PHPickerMetadataOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// A search text for
+    /// `PHPickerViewController.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickersearchtext?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct PHPickerSearchText;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for PHPickerSearchText {}
+);
+
+unsafe impl CopyingHelper for PHPickerSearchText {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for PHPickerSearchText {}
+);
+
+impl PHPickerSearchText {
+    extern_methods!(
+        /// Creates a search text from a string.
+        #[unsafe(method(initWithString:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl PHPickerSearchText {
+    extern_methods!(
+        // +new (unavailable)
+
+    );
+}
+
 extern_class!(
     /// A filter that restricts which types of assets
     /// `PHPickerViewController`can show.
@@ -259,6 +329,14 @@ impl PHPickerFilter {
     );
 }
 
+/// Methods declared on superclass `NSObject`.
+impl PHPickerFilter {
+    extern_methods!(
+        // +new (unavailable)
+
+    );
+}
+
 extern_class!(
     /// An update configuration for
     /// `PHPickerViewController.`
@@ -309,6 +387,18 @@ impl PHPickerUpdateConfiguration {
             &self,
             edges_without_content_margins: NSDirectionalRectEdge,
         );
+
+        /// The search text for the picker.
+        #[unsafe(method(searchText))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn searchText(&self) -> Option<Retained<PHPickerSearchText>>;
+
+        /// Setter for [`searchText`][Self::searchText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setSearchText:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSearchText(&self, search_text: Option<&PHPickerSearchText>);
     );
 }
 
@@ -467,6 +557,30 @@ impl PHPickerConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setDisabledCapabilities(&self, disabled_capabilities: PHPickerCapabilities);
 
+        /// Metadata options for the picker. Default is
+        /// `PHPickerMetadataOptionsNone.`
+        #[unsafe(method(metadataOptions))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn metadataOptions(&self) -> PHPickerMetadataOptions;
+
+        /// Setter for [`metadataOptions`][Self::metadataOptions].
+        #[unsafe(method(setMetadataOptions:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMetadataOptions(&self, metadata_options: PHPickerMetadataOptions);
+
+        /// The search text for the picker. Default is
+        /// `nil.`
+        #[unsafe(method(searchText))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn searchText(&self) -> Option<Retained<PHPickerSearchText>>;
+
+        /// Setter for [`searchText`][Self::searchText].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setSearchText:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSearchText(&self, search_text: Option<&PHPickerSearchText>);
+
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
         /// Initializes a new configuration with the
@@ -519,6 +633,14 @@ impl PHPickerResult {
         #[unsafe(method(assetIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetIdentifier(&self) -> Option<Retained<NSString>>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl PHPickerResult {
+    extern_methods!(
+        // +new (unavailable)
+
     );
 }
 
@@ -663,5 +785,15 @@ impl PHPickerViewController {
         #[unsafe(method(zoomOut))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomOut(&self);
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "objc2-app-kit")]
+#[cfg(target_os = "macos")]
+impl PHPickerViewController {
+    extern_methods!(
+        // +new (unavailable)
+
     );
 }

@@ -116,6 +116,16 @@ impl UIContextMenuConfiguration {
             preferred_menu_element_order: UIContextMenuConfigurationElementOrder,
         );
 
+        /// Determines if the context menu should enable type-select. This is disabled for certain menus to avoid conflicting with typing. Default is YES.
+        #[unsafe(method(allowsTypeSelect))]
+        #[unsafe(method_family = none)]
+        pub fn allowsTypeSelect(&self) -> bool;
+
+        /// Setter for [`allowsTypeSelect`][Self::allowsTypeSelect].
+        #[unsafe(method(setAllowsTypeSelect:))]
+        #[unsafe(method_family = none)]
+        pub fn setAllowsTypeSelect(&self, allows_type_select: bool);
+
         #[cfg(all(
             feature = "UIMenu",
             feature = "UIMenuElement",

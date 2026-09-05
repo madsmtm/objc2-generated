@@ -22,6 +22,18 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn setTitle(&self, title: &NSString);
 
+        /// The element's subtitle.
+        #[unsafe(method(subtitle))]
+        #[unsafe(method_family = none)]
+        fn subtitle(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setSubtitle:))]
+        #[unsafe(method_family = none)]
+        fn setSubtitle(&self, subtitle: Option<&NSString>);
+
         #[cfg(feature = "UIImage")]
         /// Image that can appear next to this element.
         #[unsafe(method(image))]
@@ -49,6 +61,21 @@ extern_protocol!(
         #[unsafe(method(setSelectedImage:))]
         #[unsafe(method_family = none)]
         fn setSelectedImage(&self, selected_image: Option<&UIImage>);
+
+        #[cfg(feature = "UIMenuElement")]
+        /// The preferred visibility of the element’s image.
+        #[unsafe(method(preferredImageVisibility))]
+        #[unsafe(method_family = none)]
+        fn preferredImageVisibility(&self) -> UIMenuElementImageVisibility;
+
+        #[cfg(feature = "UIMenuElement")]
+        /// Setter for [`preferredImageVisibility`][Self::preferredImageVisibility].
+        #[unsafe(method(setPreferredImageVisibility:))]
+        #[unsafe(method_family = none)]
+        fn setPreferredImageVisibility(
+            &self,
+            preferred_image_visibility: UIMenuElementImageVisibility,
+        );
 
         /// Elaborated title used in keyboard shortcut overlay.
         #[unsafe(method(discoverabilityTitle))]

@@ -510,6 +510,55 @@ impl NSScrollView {
         #[unsafe(method(setScrollerInsets:))]
         #[unsafe(method_family = none)]
         pub fn setScrollerInsets(&self, scroller_insets: NSEdgeInsets);
+
+        /// Enable touch scrolling
+        ///
+        /// Defaults to `true`.
+        #[unsafe(method(isTouchScrollingEnabled))]
+        #[unsafe(method_family = none)]
+        pub fn isTouchScrollingEnabled(&self) -> bool;
+
+        /// Setter for [`isTouchScrollingEnabled`][Self::isTouchScrollingEnabled].
+        #[unsafe(method(setTouchScrollingEnabled:))]
+        #[unsafe(method_family = none)]
+        pub fn setTouchScrollingEnabled(&self, touch_scrolling_enabled: bool);
+
+        /// The minimum number of touches needed for scrolling
+        ///
+        /// Defaults to 1.
+        #[unsafe(method(minimumNumberOfTouchesForScrolling))]
+        #[unsafe(method_family = none)]
+        pub fn minimumNumberOfTouchesForScrolling(&self) -> NSInteger;
+
+        /// Setter for [`minimumNumberOfTouchesForScrolling`][Self::minimumNumberOfTouchesForScrolling].
+        #[unsafe(method(setMinimumNumberOfTouchesForScrolling:))]
+        #[unsafe(method_family = none)]
+        pub fn setMinimumNumberOfTouchesForScrolling(
+            &self,
+            minimum_number_of_touches_for_scrolling: NSInteger,
+        );
+
+        /// The maximum number of touches needed for scrolling
+        ///
+        /// Set this property to 0 to require exactly `minimumNumberOfTouchesForScrolling` touches to recognize the gesture.
+        /// Defaults to `NSIntegerMax`.
+        #[unsafe(method(maximumNumberOfTouchesForScrolling))]
+        #[unsafe(method_family = none)]
+        pub fn maximumNumberOfTouchesForScrolling(&self) -> NSInteger;
+
+        /// Setter for [`maximumNumberOfTouchesForScrolling`][Self::maximumNumberOfTouchesForScrolling].
+        #[unsafe(method(setMaximumNumberOfTouchesForScrolling:))]
+        #[unsafe(method_family = none)]
+        pub fn setMaximumNumberOfTouchesForScrolling(
+            &self,
+            maximum_number_of_touches_for_scrolling: NSInteger,
+        );
+
+        #[cfg(feature = "NSGestureRecognizer")]
+        /// A gesture recognizer for setting up failure or exclusion relationships against scrolling gestures
+        #[unsafe(method(scrollGestureForRelationships))]
+        #[unsafe(method_family = none)]
+        pub fn scrollGestureForRelationships(&self) -> Retained<NSGestureRecognizer>;
     );
 }
 
@@ -556,6 +605,27 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewdidendlivescrollnotification?language=objc)
     pub static NSScrollViewDidEndLiveScrollNotification: &'static NSNotificationName;
+}
+
+/// NSRefreshControllerSupport.
+#[cfg(all(feature = "NSResponder", feature = "NSView"))]
+impl NSScrollView {
+    extern_methods!(
+        #[cfg(feature = "NSRefreshController")]
+        /// The refresh controller associated with this scroll view.
+        ///
+        /// Setting this property adds the refresh controller to the scroll view,
+        /// enabling pull-to-refresh functionality. Set to nil to remove it.
+        #[unsafe(method(refreshController))]
+        #[unsafe(method_family = none)]
+        pub fn refreshController(&self) -> Option<Retained<NSRefreshController>>;
+
+        #[cfg(feature = "NSRefreshController")]
+        /// Setter for [`refreshController`][Self::refreshController].
+        #[unsafe(method(setRefreshController:))]
+        #[unsafe(method_family = none)]
+        pub fn setRefreshController(&self, refresh_controller: Option<&NSRefreshController>);
+    );
 }
 
 /// NSRulerSupport.

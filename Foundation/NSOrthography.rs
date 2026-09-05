@@ -6,7 +6,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorthography?language=objc)
+    /// A description of the linguistic content of natural language text, typically used for spelling and grammar checking.
+    ///
+    /// Use ``NSOrthography`` objects to describe the linguistic content of a piece of text, including which scripts the text contains, a dominant language (and possibly other languages) for each script, and a dominant script and language for the text as a whole.
+    ///
+    /// Scripts are uniformly described by four-letter ISO 15924 script codes, such as `"Latn"`, `"Grek"`, and `"Cyrl"`. The supertags `"Jpan"` and `"Kore"` are typically used for Japanese and Korean text, and `"Hans"` and `"Hant"` are typically used for Chinese text. The tag `"Zyyy"` is used if a specific script cannot be identified. See [Internationalization and Localization Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i) for more information.
+    ///
+    /// Languages are uniformly described by BCP-47 tags (preferably in canonical form). The tag `"und"` is used if a specific language cannot be determined.
+    ///
+    /// You typically work with orthography objects returned from methods and properties for classes like ``NSLinguisticTagger`` and
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nsspellchecker>.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Subclasses must override the ``dominantScript`` and ``languageMap`` properties. These properties are set using ``init(dominantScript:languageMap:)`` or ``orthographyWithDominantScript:languageMap:`` in Objective-C.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorthography?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrthography;
@@ -39,16 +55,28 @@ extern_conformance!(
 impl NSOrthography {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The dominant script for the text.
+        ///
+        /// The value of this property is an ISO 15924 script code, such as `"Latn"` or `"Cyrl"`, that identifies the dominant script.
         #[unsafe(method(dominantScript))]
         #[unsafe(method_family = none)]
         pub fn dominantScript(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
+        /// A dictionary that maps script tags to arrays of language tags.
+        ///
+        /// The dictionary's keys are ISO 15924 script codes (such as `"Latn"` or `"Cyrl"`) and its values are arrays of BCP-47 language tags (such as `"en"`, `"fr"`, or `"de"`).
         #[unsafe(method(languageMap))]
         #[unsafe(method_family = none)]
         pub fn languageMap(&self) -> Retained<NSDictionary<NSString, NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
+        /// Creates an orthography object with the specified dominant script and language map.
+        ///
+        /// You typically use the `defaultOrthographyForLanguage:` method to create orthography objects with automatic language mapping. Use this initializer only if you need to override the script associated with one or more languages.
+        ///
+        /// - Parameter script: The dominant script.
+        /// - Parameter map: A dictionary mapping ISO 15924 script codes to arrays of BCP-47 language tags.
         #[unsafe(method(initWithDominantScript:languageMap:))]
         #[unsafe(method_family = init)]
         pub fn initWithDominantScript_languageMap(
@@ -83,31 +111,45 @@ impl DefaultRetained for NSOrthography {
 impl NSOrthography {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns the list of languages for the specified script.
+        ///
+        /// - Parameter script: The specified script.
         #[unsafe(method(languagesForScript:))]
         #[unsafe(method_family = none)]
         pub fn languagesForScript(&self, script: &NSString) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the dominant language for the specified script.
+        ///
+        /// - Parameter script: The specified script.
         #[unsafe(method(dominantLanguageForScript:))]
         #[unsafe(method_family = none)]
         pub fn dominantLanguageForScript(&self, script: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The first language in the list of languages for the dominant script.
         #[unsafe(method(dominantLanguage))]
         #[unsafe(method_family = none)]
         pub fn dominantLanguage(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The scripts appearing as keys in the language map.
         #[unsafe(method(allScripts))]
         #[unsafe(method_family = none)]
         pub fn allScripts(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The languages appearing in values of the language map.
         #[unsafe(method(allLanguages))]
         #[unsafe(method_family = none)]
         pub fn allLanguages(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Creates and returns an orthography object with the default language map for the specified language.
+        ///
+        /// This method automatically determines the script for the specified language.
+        ///
+        /// - Parameter language: A BCP-47 tag identifying the language.
         #[unsafe(method(defaultOrthographyForLanguage:))]
         #[unsafe(method_family = none)]
         pub fn defaultOrthographyForLanguage(language: &NSString) -> Retained<Self>;
@@ -118,6 +160,10 @@ impl NSOrthography {
 impl NSOrthography {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
+        /// Creates and returns an orthography object with the specified dominant script and language map.
+        ///
+        /// - Parameter script: The dominant script.
+        /// - Parameter map: A dictionary mapping ISO 15924 script codes to arrays of BCP-47 language tags.
         #[unsafe(method(orthographyWithDominantScript:languageMap:))]
         #[unsafe(method_family = none)]
         pub fn orthographyWithDominantScript_languageMap(

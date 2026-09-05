@@ -60,6 +60,10 @@ impl CBError {
     pub const LeGattExceededBackgroundNotificationLimit: Self = Self(17);
     #[doc(alias = "CBErrorLeGattNearBackgroundNotificationLimit")]
     pub const LeGattNearBackgroundNotificationLimit: Self = Self(18);
+    #[doc(alias = "CBErrorChannelSoundingConfigurationFailed")]
+    pub const ChannelSoundingConfigurationFailed: Self = Self(19);
+    #[doc(alias = "CBErrorChannelSoundingProcedureFailed")]
+    pub const ChannelSoundingProcedureFailed: Self = Self(20);
 }
 
 unsafe impl Encode for CBError {

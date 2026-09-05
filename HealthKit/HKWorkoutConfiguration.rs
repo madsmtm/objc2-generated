@@ -64,13 +64,13 @@ extern_conformance!(
 
 impl HKWorkoutConfiguration {
     extern_methods!(
-        #[cfg(feature = "HKWorkout")]
+        #[cfg(feature = "HKWorkoutActivityType")]
         /// Indicates the type of workout for the configuration.
         #[unsafe(method(activityType))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityType(&self) -> HKWorkoutActivityType;
 
-        #[cfg(feature = "HKWorkout")]
+        #[cfg(feature = "HKWorkoutActivityType")]
         /// Setter for [`activityType`][Self::activityType].
         #[unsafe(method(setActivityType:))]
         #[unsafe(method_family = none)]

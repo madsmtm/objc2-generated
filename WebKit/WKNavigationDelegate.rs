@@ -425,5 +425,22 @@ extern_protocol!(
             will_use_instant_back: bool,
             completion_handler: &block2::Block<'static, fn(Bool)>,
         );
+
+        #[cfg(all(
+            feature = "WKFormInfo",
+            feature = "WKWebView",
+            feature = "block2",
+            feature = "objc2-app-kit"
+        ))]
+        #[cfg(target_os = "macos")]
+        #[optional]
+        #[unsafe(method(webView:willSubmitForm:submissionHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn webView_willSubmitForm_submissionHandler(
+            &self,
+            web_view: &WKWebView,
+            form_info: &WKFormInfo,
+            submission_handler: &block2::Block<'static, fn()>,
+        );
     }
 );

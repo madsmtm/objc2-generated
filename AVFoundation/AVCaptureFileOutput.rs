@@ -692,6 +692,32 @@ impl AVCaptureMovieFileOutput {
     );
 }
 
+/// ProVideoStorage.
+#[cfg(feature = "AVCaptureOutputBase")]
+impl AVCaptureMovieFileOutput {
+    extern_methods!(
+        /// Whether this movie file output supports writing to Pro Video Storage in its current configuration.
+        ///
+        /// A value of `YES` indicates that Pro Video Storage support is enabled for this output while `NO` indicates it is not.
+        /// Check this value prior to setting property usesProVideoStorage to avoid exceptions when Pro Video Storage support is not enabled.
+        #[unsafe(method(isProVideoStorageSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isProVideoStorageSupported(&self) -> bool;
+
+        /// Whether this movie file output is configured to write to Pro Video Storage.
+        ///
+        /// Default is `NO`. Raises an exception if set to `YES` while proVideoStorageSupported is `NO`.
+        #[unsafe(method(usesProVideoStorage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn usesProVideoStorage(&self) -> bool;
+
+        /// Setter for [`usesProVideoStorage`][Self::usesProVideoStorage].
+        #[unsafe(method(setUsesProVideoStorage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUsesProVideoStorage(&self, uses_pro_video_storage: bool);
+    );
+}
+
 extern_class!(
     /// AVCaptureAudioFileOutput is a concrete subclass of AVCaptureFileOutput that writes captured audio to any audio file type supported by CoreAudio.
     ///

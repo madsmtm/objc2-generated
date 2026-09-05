@@ -11,8 +11,7 @@ use crate::*;
 extern_class!(
     /// This anchor represents the physical position and orientation of another participant in the collaborative session.
     ///
-    ///
-    /// The participant anchors are automatically added to the ARSession and are updated with each frame.
+    /// The participant anchors are automatically added to the `ARSession` and are updated with each frame.
     /// The participant can be identified by `sessionIdentifier` property of the anchor.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arparticipantanchor?language=objc)

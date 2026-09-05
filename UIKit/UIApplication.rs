@@ -334,6 +334,7 @@ impl UIApplication {
         pub fn setNetworkActivityIndicatorVisible(&self, network_activity_indicator_visible: bool);
 
         #[cfg(all(feature = "UIOrientation", feature = "UIView", feature = "UIWindow"))]
+        #[deprecated = "Use UIWindowSceneDelegate.supportedInterfaceOrientations(for:) instead"]
         #[unsafe(method(supportedInterfaceOrientationsForWindow:))]
         #[unsafe(method_family = none)]
         pub fn supportedInterfaceOrientationsForWindow(
@@ -1225,6 +1226,7 @@ extern_protocol!(
             feature = "UIView",
             feature = "UIWindow"
         ))]
+        #[deprecated = "Use UIWindowSceneDelegate.supportedInterfaceOrientations(for:) instead"]
         #[optional]
         #[unsafe(method(application:supportedInterfaceOrientationsForWindow:))]
         #[unsafe(method_family = none)]

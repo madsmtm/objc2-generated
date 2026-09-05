@@ -6,51 +6,67 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformername?language=objc)
+/// Named value transformers defined by `NSValueTransformer`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformername?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSValueTransformerName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnegatebooleantransformername?language=objc)
+    /// The name of the transformer that negates a Boolean value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnegatebooleantransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNegateBooleanTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisniltransformername?language=objc)
+    /// The name of the transformer that returns `true` if the value is `nil`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisniltransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIsNilTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisnotniltransformername?language=objc)
+    /// The name of the transformer that returns `true` if the value is non-`nil`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisnotniltransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIsNotNilTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunarchivefromdatatransformername?language=objc)
+    /// The name of the transformer that uses ``NSUnarchiver`` to unarchive data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchivefromdatatransformername?language=objc)
+    /// The name of the transformer that uses ``NSKeyedUnarchiver`` to unarchive data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSKeyedUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecureunarchivefromdatatransformername?language=objc)
+    /// The name of the transformer that uses ``NSKeyedUnarchiver`` with secure coding to unarchive data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecureunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformer?language=objc)
+    /// An abstract class used to transform values from one representation to another.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSValueTransformer;
@@ -63,6 +79,7 @@ extern_conformance!(
 impl NSValueTransformer {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Registers the provided value transformer with a given identifier.
         #[unsafe(method(setValueTransformer:forName:))]
         #[unsafe(method_family = none)]
         pub fn setValueTransformer_forName(
@@ -71,6 +88,7 @@ impl NSValueTransformer {
         );
 
         #[cfg(feature = "NSString")]
+        /// Returns the value transformer identified by a given identifier.
         #[unsafe(method(valueTransformerForName:))]
         #[unsafe(method_family = none)]
         pub fn valueTransformerForName(
@@ -78,18 +96,23 @@ impl NSValueTransformer {
         ) -> Option<Retained<NSValueTransformer>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns an array of all the registered value transformer names.
         #[unsafe(method(valueTransformerNames))]
         #[unsafe(method_family = none)]
         pub fn valueTransformerNames() -> Retained<NSArray<NSValueTransformerName>>;
 
+        /// Returns the class of objects returned when applying the value transformer.
         #[unsafe(method(transformedValueClass))]
         #[unsafe(method_family = none)]
         pub fn transformedValueClass() -> &'static AnyClass;
 
+        /// Returns a Boolean value that indicates whether the receiver can reverse a transformation.
         #[unsafe(method(allowsReverseTransformation))]
         #[unsafe(method_family = none)]
         pub fn allowsReverseTransformation() -> bool;
 
+        /// Returns the result of transforming a given value.
+        ///
         /// # Safety
         ///
         /// `value` should be of the correct type.
@@ -100,6 +123,8 @@ impl NSValueTransformer {
             value: Option<&AnyObject>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// Returns the result of the reverse transformation of a given value.
+        ///
         /// # Safety
         ///
         /// `value` should be of the correct type.
@@ -133,8 +158,23 @@ impl DefaultRetained for NSValueTransformer {
 }
 
 extern_class!(
-    /// A value transformer which transforms values to and from
-    /// `NSData`by archiving and unarchiving using secure coding.
+    /// A value transformer that converts data to and from classes that support secure coding.
+    ///
+    /// This class provides a default ``ValueTransformer`` implementation for secure decoding. This class attempts to decode data into the classes listed within ``allowedTopLevelClasses``, which includes ``NSArray``, ``NSDictionary``, ``NSSet``, ``NSString``, ``NSNumber``, ``NSDate``, ``NSData``, ``NSURL``, ``NSUUID``, and ``NSNull``.
+    ///
+    /// To archive or unarchive other classes that support ``NSSecureCoding``, create a subclass and override ``allowedTopLevelClasses`` to list the classes to transform.
+    ///
+    /// To use ``NSSecureUnarchiveFromDataTransformer`` with
+    /// <doc
+    /// ://com.apple.documentation/documentation/coredata>, use the name of this class, or the name of a subclass you implement, as the name of the transformer for an entity's attribute within a Core Data Model. If you use your own transformer subclass, register it with your app before intializing your persistent container with Core Data.
+    ///
+    /// For an example of subclassing ``NSSecureUnarchiveFromDataTransformer``, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/coredata/handling-different-data-types-in-core-data>, which has a `ColorToDataTransformer` class that transforms
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uicolor> to ``NSData`` and the reverse, to support archiving instances of
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uicolor>.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecureunarchivefromdatatransformer?language=objc)
     #[unsafe(super(NSValueTransformer, NSObject))]

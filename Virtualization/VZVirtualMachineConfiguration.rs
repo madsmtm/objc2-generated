@@ -176,6 +176,30 @@ impl VZVirtualMachineConfiguration {
             console_devices: &NSArray<VZConsoleDeviceConfiguration>,
         );
 
+        #[cfg(feature = "VZCustomVirtioDeviceConfiguration")]
+        /// A list of custom Virtio devices.
+        ///
+        /// The list is empty by default.
+        ///
+        /// ## See Also
+        /// - ``VZCustomVirtioDeviceConfiguration``
+        #[unsafe(method(customVirtioDevices))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn customVirtioDevices(
+            &self,
+        ) -> Retained<NSArray<VZCustomVirtioDeviceConfiguration>>;
+
+        #[cfg(feature = "VZCustomVirtioDeviceConfiguration")]
+        /// Setter for [`customVirtioDevices`][Self::customVirtioDevices].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setCustomVirtioDevices:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCustomVirtioDevices(
+            &self,
+            custom_virtio_devices: &NSArray<VZCustomVirtioDeviceConfiguration>,
+        );
+
         #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
         /// List of directory sharing devices. Empty by default.
         ///
@@ -393,6 +417,21 @@ impl VZVirtualMachineConfiguration {
             &self,
             usb_controllers: &NSArray<VZUSBControllerConfiguration>,
         );
+
+        /// An optional label for the virtual machine.
+        ///
+        /// The framework uses this string as part of the name of the virtual machine in some system services.
+        /// The label must be non-empty, less than or equal to 64 characters in length, and contain at least one non-whitespace character.
+        #[unsafe(method(label))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`label`][Self::label].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setLabel:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLabel(&self, label: Option<&NSString>);
     );
 }
 

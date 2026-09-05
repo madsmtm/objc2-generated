@@ -196,17 +196,17 @@ extern_conformance!(
 impl AVCaptureDeviceInput {
     extern_methods!(
         #[cfg(feature = "AVCaptureDevice")]
-        /// Returns an AVCaptureDeviceInput instance that provides media data from the given device.
+        /// Returns a capture device input that provides media data from the given device.
         ///
+        /// This method returns an instance of `AVCaptureDeviceInput` that can be used to capture data from an `AVCaptureDevice` in an `AVCaptureSession`. This method attempts to open the device for capture, taking exclusive control of it if necessary. If the device cannot be opened because it is no longer available or because it is in use, for example, this method returns `nil`, and the optional outError parameter points to an `NSError` describing the problem.
         ///
-        /// Parameter `device`: An AVCaptureDevice instance to be used for capture.
+        /// When initializing an `AVCaptureDeviceInput` while the `AVAuthorizationStatus` for the device's media type is `AVAuthorizationStatusNotDetermined`, the system will prompt for access effectively calling `+[AVCaptureDevice requestAccessForMediaType:completionHandler:]` on your behalf.
         ///
-        /// Parameter `outError`: On return, if the given device cannot be used for capture, points to an NSError describing the problem.
+        /// - Parameter device: An `AVCaptureDevice` instance to be used for capture.
         ///
-        /// Returns: An AVCaptureDeviceInput instance that provides data from the given device, or nil, if the device could not be used for capture.
+        /// - Parameter outError: On return, if the given device cannot be used for capture, points to an `NSError` describing the problem.
         ///
-        ///
-        /// This method returns an instance of AVCaptureDeviceInput that can be used to capture data from an AVCaptureDevice in an AVCaptureSession. This method attempts to open the device for capture, taking exclusive control of it if necessary. If the device cannot be opened because it is no longer available or because it is in use, for example, this method returns nil, and the optional outError parameter points to an NSError describing the problem.
+        /// - Returns: An `AVCaptureDeviceInput` instance that provides data from the given device, or `nil`, if the device could not be used for capture.
         #[unsafe(method(deviceInputWithDevice:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceInputWithDevice_error(
@@ -214,17 +214,17 @@ impl AVCaptureDeviceInput {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "AVCaptureDevice")]
-        /// Creates an AVCaptureDeviceInput instance that provides media data from the given device.
+        /// Creates a capture device input that provides media data from the given device.
         ///
+        /// This method creates an instance of `AVCaptureDeviceInput` that can be used to capture data from an `AVCaptureDevice` in an `AVCaptureSession`. This method attempts to open the device for capture, taking exclusive control of it if necessary. If the device cannot be opened because it is no longer available or because it is in use, for example, this method returns `nil`, and the optional outError parameter points to an `NSError` describing the problem.
         ///
-        /// Parameter `device`: An AVCaptureDevice instance to be used for capture.
+        /// When initializing an `AVCaptureDeviceInput` while the `AVAuthorizationStatus` for the device's media type is `AVAuthorizationStatusNotDetermined`, the system will prompt for access effectively calling `+[AVCaptureDevice requestAccessForMediaType:completionHandler:]` on your behalf.
         ///
-        /// Parameter `outError`: On return, if the given device cannot be used for capture, points to an NSError describing the problem.
+        /// - Parameter device: An `AVCaptureDevice` instance to be used for capture.
         ///
-        /// Returns: An AVCaptureDeviceInput instance that provides data from the given device, or nil, if the device could not be used for capture.
+        /// - Parameter outError: On return, if the given device cannot be used for capture, points to an `NSError` describing the problem.
         ///
-        ///
-        /// This method creates an instance of AVCaptureDeviceInput that can be used to capture data from an AVCaptureDevice in an AVCaptureSession. This method attempts to open the device for capture, taking exclusive control of it if necessary. If the device cannot be opened because it is no longer available or because it is in use, for example, this method returns nil, and the optional outError parameter points to an NSError describing the problem.
+        /// - Returns: An `AVCaptureDeviceInput` instance that provides data from the given device, or `nil`, if the device could not be used for capture.
         #[unsafe(method(initWithDevice:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_error(

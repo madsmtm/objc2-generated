@@ -24,10 +24,6 @@ extern_class!(
     pub struct AVAudioFile;
 );
 
-unsafe impl Send for AVAudioFile {}
-
-unsafe impl Sync for AVAudioFile {}
-
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioFile {}
 );
@@ -175,6 +171,10 @@ impl AVAudioFile {
         /// Returns: YES for success.
         ///
         /// Like `readIntoBuffer:error:`, but can be used to read fewer frames than buffer.frameCapacity.
+        ///
+        /// Starting in macOS 27.0, iOS 27.0, watchOS 27.0, and tvOS 27.0, attempting to read beyond the
+        /// end of the file will return NO and set outError to an NSError with domain NSOSStatusErrorDomain
+        /// and code kAudioFileEndOfFileError.
         #[unsafe(method(readIntoBuffer:frameCount:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn readIntoBuffer_frameCount_error(
@@ -202,47 +202,23 @@ impl AVAudioFile {
         ) -> Result<(), Retained<NSError>>;
 
         /// Whether the file is open or not.
-        ///
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
         #[unsafe(method(isOpen))]
         #[unsafe(method_family = none)]
         pub unsafe fn isOpen(&self) -> bool;
 
         /// The URL the file is reading or writing.
-        ///
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
         #[unsafe(method(url))]
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "AVAudioFormat")]
         /// The on-disk format of the file.
-        ///
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
         #[unsafe(method(fileFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioFormat")]
         /// The processing format of the file.
-        ///
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
         #[unsafe(method(processingFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn processingFormat(&self) -> Retained<AVAudioFormat>;
@@ -251,12 +227,6 @@ impl AVAudioFile {
         /// The number of sample frames in the file.
         ///
         /// Note: this can be expensive to compute for the first time.
-        ///
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> AVAudioFramePosition;
@@ -265,22 +235,12 @@ impl AVAudioFile {
         /// The position in the file at which the next read or write will occur.
         ///
         /// Set framePosition to perform a seek before a read or write. A read or write operation advances the frame position by the number of frames read or written.
-        ///
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
         #[unsafe(method(framePosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn framePosition(&self) -> AVAudioFramePosition;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`framePosition`][Self::framePosition].
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
         #[unsafe(method(setFramePosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFramePosition(&self, frame_position: AVAudioFramePosition);

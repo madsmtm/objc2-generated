@@ -7,14 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// DEPRECATION NOTICE
+    /// A representation of an individual host on the network.
     ///
-    /// If you’re using `NSHost` to resolve DNS names so that you can connect to a
-    /// service, switch to a connect-by-name API, for example, `nw_connection`.
+    /// The ``NSHost`` class provides methods to access the network name and address information for a host. Instances of the ``NSHost`` class represent individual _hosts_ on a network. Use ``NSHost`` objects to get the current host's names and addresses and to look up other hosts by name or by address.
     ///
-    /// If you have other DNS resolution needs, switch to
-    /// <dns
-    /// _sd.h>.
+    /// To create an ``NSHost`` object, use the ``current()``, ``init(address:)``, or ``init(name:)`` class methods (don't use `alloc` and `init`). These methods use available network administration services to discover all names and addresses for the host requested. They don't attempt to contact the host itself, however. This approach avoids untimely delays due to a host being unavailable, but it may result in incomplete information about the host.
+    ///
+    /// An ``NSHost`` object contains all of the network addresses and names discovered for a given host by the network administration services. Each ``NSHost`` object may contain several addresses and have more than one name. If an ``NSHost`` object has more than one name, the additional names are variations on the same name, typically the basic host name plus the fully qualified domain name. For example, with a host name `"sales"` in the domain `"anycorp.com"`, an ``NSHost`` object can hold both the names `"sales"` and `"sales.anycorp.com"`.
+    ///
+    /// ``NSHost`` methods are thread-safe.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshost?language=objc)
     #[unsafe(super(NSObject))]
@@ -29,67 +30,103 @@ extern_conformance!(
 
 impl NSHost {
     extern_methods!(
+        /// Returns an ``NSHost`` object representing the host the process is running on.
+        ///
+        /// This method executes synchronously. The execution time of this method can be highly variable, depending on the local network configuration, and may block for several seconds if the network is unreachable. To avoid blocking execution on the main thread, you should call this method in an ``Operation`` or _Grand Central Dispatch_ block that executes asynchronously in the background.
+        ///
+        /// - Returns: `NSHost` object for the process's host.
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(currentHost))]
         #[unsafe(method_family = none)]
         pub fn currentHost() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a host with a specific name.
+        ///
+        /// - Parameters:
+        /// - name: Name of the host to look up. Can be either a simple hostname, such as `"sales"`, or a fully qualified domain name, such as `"sales.anycorp.com"`.
+        /// - Returns: The host named `name`.
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(hostWithName:))]
         #[unsafe(method_family = none)]
         pub fn hostWithName(name: Option<&NSString>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the `NSHost` with the Internet address `address`.
+        ///
+        /// - Parameters:
+        /// - address: Network address to look up. For example, `"127.0.0.1"` or `"fe80::1"`.
+        /// - Returns: The host for `address`.
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(hostWithAddress:))]
         #[unsafe(method_family = none)]
         pub fn hostWithAddress(address: &NSString) -> Retained<Self>;
 
+        /// Indicates whether the receiver represents the same host as another `NSHost` object.
+        ///
+        /// - Parameters:
+        /// - aHost: Host to compare the receiver to.
+        /// - Returns: `YES` when the receiver and `aHost` share at least one network address; `NO` otherwise.
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(isEqualToHost:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToHost(&self, a_host: &NSHost) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// One of the hostnames associated with the receiver.
+        ///
+        /// Can be either a simple hostname, such as `"sales"`, or a fully qualified domain name, such as `"sales.anycorp.com"`.
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// All of the hostnames associated with the receiver.
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(names))]
         #[unsafe(method_family = none)]
         pub fn names(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// One of the addresses associated with the receiver, such as `"192.42.172.1"` or `"fe80::1"`.
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(address))]
         #[unsafe(method_family = none)]
         pub fn address(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// All of the addresses associated with the receiver, including IPv6 and IPv4 addresses.
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(addresses))]
         #[unsafe(method_family = none)]
         pub fn addresses(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The localized name for the host.
+        ///
+        /// This is the name displayed in the Finder sidebar and the Sharing preference panel.
+        ///
+        /// This property only returns a value when sent to the ``currentHost`` instance; all other instances currently return `nil`.
+        ///
+        /// This property is key-value observable.
         #[unsafe(method(localizedName))]
         #[unsafe(method_family = none)]
         pub fn localizedName(&self) -> Option<Retained<NSString>>;
 
+        /// Sets whether the host cache is enabled.
         #[deprecated = "Caching no longer supported"]
         #[unsafe(method(setHostCacheEnabled:))]
         #[unsafe(method_family = none)]
         pub fn setHostCacheEnabled(flag: bool);
 
+        /// Returns whether the host cache is enabled.
         #[deprecated = "Caching no longer supported"]
         #[unsafe(method(isHostCacheEnabled))]
         #[unsafe(method_family = none)]
         pub fn isHostCacheEnabled() -> bool;
 
+        /// Clears the host cache.
         #[deprecated = "Caching no longer supported"]
         #[unsafe(method(flushHostCache))]
         #[unsafe(method_family = none)]

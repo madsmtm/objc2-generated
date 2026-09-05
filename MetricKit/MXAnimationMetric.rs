@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXAnimationMetric;
 );
 
@@ -41,6 +42,7 @@ impl MXAnimationMetric {
         /// This metric only applies to UIScrollViews.
         ///
         /// Dimensionless.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(scrollHitchTimeRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollHitchTimeRatio(&self) -> Retained<NSMeasurement<NSUnit>>;

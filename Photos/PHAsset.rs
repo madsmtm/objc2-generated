@@ -172,6 +172,18 @@ impl PHAsset {
         #[unsafe(method_family = none)]
         pub unsafe fn isFavorite(&self) -> bool;
 
+        #[cfg(feature = "PhotosTypes")]
+        /// The rating of this PHAsset.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(rating))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn rating(&self) -> PHAssetRating;
+
         /// This property is not atomic.
         ///
         /// # Safety
@@ -239,11 +251,46 @@ impl PHAsset {
         pub unsafe fn adjustmentFormatIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(originalResourceChoice))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn originalResourceChoice(&self) -> PHOriginalResourceChoice;
+
+        #[cfg(feature = "PhotosTypes")]
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(adjustmentsState))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn adjustmentsState(&self) -> PHAssetAdjustmentsState;
+
+        /// The date when the asset was last edited.
+        ///
+        /// If the asset has never been edited, then this property is nil.
+        /// If the asset was edited and later reverted, such that hasAdjustments is false, then `adjustmentTimestamp` is the timestamp of the revert operation.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(adjustmentTimestamp))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn adjustmentTimestamp(&self) -> Option<Retained<NSDate>>;
+
+        #[cfg(feature = "PhotosTypes")]
         #[unsafe(method(canPerformEditOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPerformEditOperation(&self, edit_operation: PHAssetEditOperation) -> bool;
 
         #[cfg(all(
+            feature = "PHAssetCollection",
             feature = "PHCollection",
             feature = "PHFetchOptions",
             feature = "PHFetchResult"
@@ -264,6 +311,7 @@ impl PHAsset {
         ) -> Retained<PHFetchResult<PHAsset>>;
 
         #[cfg(all(
+            feature = "PHAssetCollection",
             feature = "PHCollection",
             feature = "PHFetchOptions",
             feature = "PHFetchResult"

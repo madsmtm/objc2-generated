@@ -8,7 +8,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerrordomain?language=objc)
-    pub static SCStreamErrorDomain: &'static NSString;
+    pub static SCStreamErrorDomain: &'static NSErrorDomain;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerrorcode?language=objc)
@@ -59,6 +59,12 @@ impl SCStreamErrorCode {
     pub const FailedToStartMicrophoneCapture: Self = Self(-3820);
     #[doc(alias = "SCStreamErrorSystemStoppedStream")]
     pub const SystemStoppedStream: Self = Self(-3821);
+    #[doc(alias = "SCStreamErrorInsufficientStorage")]
+    pub const InsufficientStorage: Self = Self(-3822);
+    #[doc(alias = "SCStreamErrorNotSupported")]
+    pub const NotSupported: Self = Self(-3823);
+    #[doc(alias = "SCStreamErrorMissingBackgroundMode")]
+    pub const MissingBackgroundMode: Self = Self(-3824);
 }
 
 unsafe impl Encode for SCStreamErrorCode {

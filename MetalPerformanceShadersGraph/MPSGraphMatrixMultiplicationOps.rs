@@ -9,6 +9,100 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
+extern_class!(
+    /// A descriptor that configures a scaled dot product attention (SDPA) operation.
+    ///
+    /// Use this descriptor with
+    /// ``MPSGraph/scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:descriptor:name:``
+    /// to specify optional features such as an attention mask, causal masking, and attention sinks.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsdpadescriptor?language=objc)
+    #[unsafe(super(MPSGraphObject, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "MPSGraphCore")]
+    pub struct MPSGraphSDPADescriptor;
+);
+
+#[cfg(feature = "MPSGraphCore")]
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MPSGraphSDPADescriptor {}
+);
+
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphSDPADescriptor {
+    extern_methods!(
+        /// The scale applied to the result of the query–key matrix multiply before softmax.
+        /// Typically set to ``1/sqrt(headDimension)``.
+        #[unsafe(method(scale))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn scale(&self) -> c_float;
+
+        /// Setter for [`scale`][Self::scale].
+        #[unsafe(method(setScale:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setScale(&self, scale: c_float);
+
+        #[cfg(feature = "MPSGraphTensor")]
+        /// An optional additive mask tensor applied to the scaled QK^T scores before softmax.
+        /// Must be broadcast-compatible with shape ``[batch, heads, T_q, T_kv]``.
+        /// Mutually exclusive with ``isCausal``.
+        #[unsafe(method(maskTensor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maskTensor(&self) -> Option<Retained<MPSGraphTensor>>;
+
+        #[cfg(feature = "MPSGraphTensor")]
+        /// Setter for [`maskTensor`][Self::maskTensor].
+        #[unsafe(method(setMaskTensor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMaskTensor(&self, mask_tensor: Option<&MPSGraphTensor>);
+
+        /// When YES, a causal (lower-triangular) mask is applied so that each query position
+        /// attends only to key positions at or before it. Mutually exclusive with ``maskTensor``.
+        #[unsafe(method(isCausal))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isCausal(&self) -> bool;
+
+        /// Setter for [`isCausal`][Self::isCausal].
+        #[unsafe(method(setIsCausal:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setIsCausal(&self, is_causal: bool);
+
+        #[cfg(feature = "MPSGraphTensor")]
+        /// An optional attention-sinks tensor of shape ``[nHeads]``. Each element seeds the
+        /// online-softmax accumulator for the corresponding query head with a virtual token logit,
+        /// causing real-token attention weights to sum to less than one.
+        #[unsafe(method(sinksTensor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sinksTensor(&self) -> Option<Retained<MPSGraphTensor>>;
+
+        #[cfg(feature = "MPSGraphTensor")]
+        /// Setter for [`sinksTensor`][Self::sinksTensor].
+        #[unsafe(method(setSinksTensor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSinksTensor(&self, sinks_tensor: Option<&MPSGraphTensor>);
+
+        /// Creates a descriptor with the given scale and all other properties set to their defaults
+        /// (no mask, isCausal = NO, no sinks).
+        #[unsafe(method(descriptorWithScale:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn descriptorWithScale(scale: c_float) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+#[cfg(feature = "MPSGraphCore")]
+impl MPSGraphSDPADescriptor {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
 /// MPSGraphMatrixMultiplicationOps.
 #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
 impl MPSGraph {
@@ -103,6 +197,30 @@ impl MPSGraph {
             key_tensor: &MPSGraphTensor,
             value_tensor: &MPSGraphTensor,
             scale: c_float,
+            name: Option<&NSString>,
+        ) -> Retained<MPSGraphTensor>;
+
+        #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a scaled dot product attention (SDPA) operation using a descriptor and returns the result tensor.
+        ///
+        /// The descriptor allows configuring an optional attention mask, causal masking, and attention sinks
+        /// without requiring a separate API method for each combination of features.
+        ///
+        /// - Parameters:
+        /// - queryTensor: A tensor that represents the query projection.
+        /// - keyTensor: A tensor that represents the key projection.
+        /// - valueTensor: A tensor that represents the value projection.
+        /// - descriptor: A descriptor specifying scale and optional features (mask, isCausal, sinks).
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
+        #[unsafe(method(scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:descriptor:name:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn scaledDotProductAttentionWithQueryTensor_keyTensor_valueTensor_descriptor_name(
+            &self,
+            query_tensor: &MPSGraphTensor,
+            key_tensor: &MPSGraphTensor,
+            value_tensor: &MPSGraphTensor,
+            descriptor: &MPSGraphSDPADescriptor,
             name: Option<&NSString>,
         ) -> Retained<MPSGraphTensor>;
     );

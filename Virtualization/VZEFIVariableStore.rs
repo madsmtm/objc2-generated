@@ -3,10 +3,12 @@
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
 
 use crate::*;
 
-/// Options when creating a new EFI variable store.
+/// Options for creating a new Extensible Firmware Interface (EFI) variable store.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestoreinitializationoptions?language=objc)
 // NS_OPTIONS
@@ -30,11 +32,15 @@ unsafe impl RefEncode for VZEFIVariableStoreInitializationOptions {
 }
 
 extern_class!(
-    /// EFI variable store
+    /// The Extensible Firmware Interface (EFI) variable store.
     ///
     /// The EFI variable store contains NVRAM variables exposed by the EFI ROM.
     ///
-    /// See also: VZEFIBootLoader
+    /// ## Topics
+    ///
+    /// ## See Also
+    ///
+    /// - ``VZEFIBootLoader``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestore?language=objc)
     #[unsafe(super(NSObject))]
@@ -52,26 +58,23 @@ impl VZEFIVariableStore {
 
         // -init (unavailable)
 
-        /// Initialize the variable store from the URL of an existing file.
+        /// Initializes the variable store from the URL of an existing file.
         ///
-        /// Parameter `URL`: The URL of the variable store on the local file system.
+        /// - Parameter URL: The URL of the variable store on the local file system.
         ///
-        /// To create a new variable store, use -[VZEFIVariableStore initCreatingVariableStoreAtURL:options:error].
+        /// To create a new variable store, use ``VZEFIVariableStore/initCreatingVariableStoreAtURL:options:error:``.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
-        /// Write an initialized VZEFIVariableStore to a URL on a file system.
+        /// Writes an initialized Extensible Firmware Interface (EFI) variable to a URL on a file system.
         ///
-        /// Parameter `URL`: The URL to write the variable store to on the local file system.
+        /// - Parameters:
+        /// - URL: The ``URL`` to write the variable store to on the local file system.
+        /// - options: The initialization options.
+        /// - error: If not `nil`, the framework assigns the error value if the creation fails.
         ///
-        /// Parameter `options`: Initialization options.
-        ///
-        /// Parameter `error`: If not nil, used to report errors if creation fails.
-        ///
-        /// Returns: A newly initialized VZEFIVariableStore on success. If an error was encountered returns
-        /// `nil,`and
-        /// `error`contains the error.
+        /// - Returns: A newly initialized ``VZEFIVariableStore`` on success. If the framework encounters an error, this method returns `nil`, and `error` contains the error.
         #[unsafe(method(initCreatingVariableStoreAtURL:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initCreatingVariableStoreAtURL_options_error(
@@ -84,5 +87,153 @@ impl VZEFIVariableStore {
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
+
+        /// Enables Secure Boot with an Apple-managed Platform Key.
+        ///
+        /// - Parameter error: If not nil, assigned with the error if the operation fails.
+        /// - Returns: `YES` if the framework enables Secure Boot successfully, `NO` otherwise.
+        ///
+        /// This operation overwrites the Platform Key (PK) global variable with an Apple-managed Platform Key,
+        /// sets the "SetupMode" global variable to `0`, and enables Secure Boot.
+        #[unsafe(method(enableSecureBootUsingDefaultPlatformKeyWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enableSecureBootUsingDefaultPlatformKeyWithError(
+            &self,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "objc2-security")]
+        /// Enables Secure Boot with a custom Platform Key.
+        ///
+        /// - Parameters:
+        /// - platformKey: A custom Platform Key as an X.509 certificate.
+        /// - error: If not `nil`, assigned with the error if the operation fails.
+        ///
+        /// - Returns: `YES` if the framework enabled Secure Boot successfully, `NO` otherwise.
+        ///
+        /// This operation overwrites the Platform Key (PK) global variable with the given Platform Key, sets the
+        /// "SetupMode" global variable to `0`, and enables Secure Boot.
+        #[unsafe(method(enableSecureBootWithPlatformKey:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enableSecureBootWithPlatformKey_error(
+            &self,
+            platform_key: &SecCertificate,
+        ) -> Result<(), Retained<NSError>>;
+
+        /// Disables Secure Boot while preserving the existing configuration.
+        ///
+        /// - Parameter error: If not nil, assigned with the error if the operation fails.
+        /// - Returns:`YES` if the framework disabled Secure Boot successfully, `NO` otherwise.
+        ///
+        /// This operation disables Secure Boot in the variable store without modifying the applied configuration, as shown in the following example.
+        ///
+        ///
+        /// @TabNavigator(){
+        ///
+        /// @Tab("Swift"){
+        /// ```swift
+        /// do {
+        /// try variableStore.disableSecureBoot()
+        /// } catch {
+        /// // Handle error.
+        /// }
+        /// ```
+        /// }
+        ///
+        ///
+        /// @Tab("Objective-C"){
+        /// ```objc
+        /// NSError *error;
+        /// if (![variableStore disableSecureBootWithError:
+        /// &error
+        /// ]) {
+        /// // Handle error.
+        /// }
+        /// ```
+        /// }
+        /// }
+        #[unsafe(method(disableSecureBootWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn disableSecureBootWithError(&self) -> Result<(), Retained<NSError>>;
+
+        /// Clears any previously applied Secure Boot configuration and disables Secure Boot.
+        ///
+        /// - Parameter error: If not `nil`, assigned with the error if the operation fails.
+        /// - Returns: `YES`  if the existing configuration was cleared successfully, NO otherwise.
+        ///
+        /// This operation clears any previously applied Secure Boot configuration, sets the "SetupMode"
+        /// global variable to `1`, and disables Secure Boot in the variable store.
+        #[unsafe(method(resetSecureBootWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resetSecureBootWithError(&self) -> Result<(), Retained<NSError>>;
+
+        /// Returns a Boolean value that indicates whether Secure Boot is in an enabled state in the variable store.
+        ///
+        /// - Parameters:
+        /// - enabled: On success, set to YES if Secure Boot is enabled, NO otherwise.
+        /// - error: Assigned with the error if the operation fails, or `nil` upon success.
+        /// - Returns: `YES` if the operation succeeded, `NO` if an error occurred.
+        ///
+        /// # Safety
+        ///
+        /// `enabled` must be a valid pointer.
+        #[unsafe(method(getSecureBootEnabled:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getSecureBootEnabled_error(
+            &self,
+            enabled: NonNull<Bool>,
+        ) -> Result<(), Retained<NSError>>;
+
+        /// Enrolls the default signatures to Secure Boot databases.
+        ///
+        /// - Parameter error: If not `nil`, assigned with the error if the operation fails.
+        /// - Returns: `YES` if the framework completed the operation successfully, `NO` otherwise.
+        ///
+        /// This operation adds Microsoft Key Exchange Keys, UEFI CA signatures, and the latest UEFI revocation list
+        /// to the Key Exchange Key (KEK) database, allowed signature database (db), and forbidden signature database
+        /// (dbx) respectively. You can add these signatures before or after enrolling a Platform Key. The framework preserves
+        /// the Platform Key, if present.
+        ///
+        /// This allows Microsoft-signed Linux distributions to boot with Secure Boot enabled.
+        ///
+        /// For more information about these signature files, see the [Microsoft Secure Boot Objects repository](https://github.com/microsoft/secureboot_objects).
+        #[unsafe(method(enrollDefaultSecureBootSignaturesWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enrollDefaultSecureBootSignaturesWithError(
+            &self,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "VZEFISignatureDatabaseConfiguration")]
+        /// Enrolls the given signatures to Secure Boot databases.
+        ///
+        /// - Parameters:
+        /// - signatures: Signatures to enroll in the KEK, db, and dbx signature databases.
+        /// - error: If not `nil`, assigned with the error if the operation fails.
+        /// - Returns: `YES` if the operation completed successfully, `NO` otherwise.
+        ///
+        /// > Warning: Make sure that the given Secure Boot signatures are valid before enabling Secure Boot, otherwise it may
+        /// render the guest unbootable.
+        ///
+        /// This operation appends the given signatures to the Key Exchange Key (KEK) database, allowed signature
+        /// database (db), and forbidden signature database (dbx). The method ignores a signature that already exists in the database.
+        /// You can add these signatures before or after enrolling a Platform Key. The framework preserves the Platform Key, if present.
+        ///
+        /// Call this method multiple times to incrementally add signatures without replacing existing ones.
+        #[unsafe(method(enrollSecureBootSignatures:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enrollSecureBootSignatures_error(
+            &self,
+            signatures: &VZEFISignatureDatabaseConfiguration,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "VZEFISignatureDatabaseConfiguration")]
+        /// Returns the currently enrolled Secure Boot signatures in the Key Exchange Key (KEK), allowed signature (db), and forbidden signature (dbx) databases.
+        ///
+        /// - Parameter error: If not `nil`, assigned with the error if the operation fails.
+        /// - Returns: A `VZEFISignatureDatabaseConfiguration` object containing the enrolled signatures, or `nil` if an error occurred.
+        #[unsafe(method(getEnrolledSecureBootSignaturesWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getEnrolledSecureBootSignaturesWithError(
+            &self,
+        ) -> Result<Retained<VZEFISignatureDatabaseConfiguration>, Retained<NSError>>;
     );
 }

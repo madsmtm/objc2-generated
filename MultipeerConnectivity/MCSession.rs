@@ -9,13 +9,16 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionsenddatamode?language=objc)
 // NS_ENUM
+#[deprecated = "Use Network Framework instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCSessionSendDataMode(pub NSInteger);
 impl MCSessionSendDataMode {
     #[doc(alias = "MCSessionSendDataReliable")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Reliable: Self = Self(0);
     #[doc(alias = "MCSessionSendDataUnreliable")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Unreliable: Self = Self(1);
 }
 
@@ -29,15 +32,19 @@ unsafe impl RefEncode for MCSessionSendDataMode {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate?language=objc)
 // NS_ENUM
+#[deprecated = "Use Network Framework instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCSessionState(pub NSInteger);
 impl MCSessionState {
     #[doc(alias = "MCSessionStateNotConnected")]
+    #[deprecated = "Use Network Framework instead"]
     pub const NotConnected: Self = Self(0);
     #[doc(alias = "MCSessionStateConnecting")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Connecting: Self = Self(1);
     #[doc(alias = "MCSessionStateConnected")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Connected: Self = Self(2);
 }
 
@@ -51,15 +58,19 @@ unsafe impl RefEncode for MCSessionState {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference?language=objc)
 // NS_ENUM
+#[deprecated = "Use Network Framework instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCEncryptionPreference(pub NSInteger);
 impl MCEncryptionPreference {
     #[doc(alias = "MCEncryptionOptional")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Optional: Self = Self(0);
     #[doc(alias = "MCEncryptionRequired")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Required: Self = Self(1);
     #[doc(alias = "MCEncryptionNone")]
+    #[deprecated = "Use Network Framework instead"]
     pub const None: Self = Self(2);
 }
 
@@ -73,11 +84,13 @@ unsafe impl RefEncode for MCEncryptionPreference {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/kmcsessionminimumnumberofpeers?language=objc)
+    #[deprecated = "Use Network Framework instead"]
     pub static kMCSessionMinimumNumberOfPeers: NSUInteger;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/kmcsessionmaximumnumberofpeers?language=objc)
+    #[deprecated = "Use Network Framework instead"]
     pub static kMCSessionMaximumNumberOfPeers: NSUInteger;
 }
 
@@ -85,6 +98,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Network Framework instead"]
     pub struct MCSession;
 );
 
@@ -95,6 +109,7 @@ extern_conformance!(
 impl MCSession {
     extern_methods!(
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(initWithPeer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPeer(this: Allocated<Self>, my_peer_id: &MCPeerID) -> Retained<Self>;
@@ -103,6 +118,7 @@ impl MCSession {
         /// # Safety
         ///
         /// `identity` generic should be of the correct type.
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(initWithPeer:securityIdentity:encryptionPreference:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPeer_securityIdentity_encryptionPreference(
@@ -113,6 +129,7 @@ impl MCSession {
         ) -> Retained<Self>;
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(sendData:toPeers:withMode:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendData_toPeers_withMode_error(
@@ -122,11 +139,13 @@ impl MCSession {
             mode: MCSessionSendDataMode,
         ) -> Result<(), Retained<NSError>>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(disconnect))]
         #[unsafe(method_family = none)]
         pub unsafe fn disconnect(&self);
 
         #[cfg(all(feature = "MCPeerID", feature = "block2"))]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(sendResourceAtURL:withName:toPeer:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendResourceAtURL_withName_toPeer_withCompletionHandler(
@@ -138,6 +157,7 @@ impl MCSession {
         ) -> Option<Retained<NSProgress>>;
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(startStreamWithName:toPeer:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startStreamWithName_toPeer_error(
@@ -146,6 +166,7 @@ impl MCSession {
             peer_id: &MCPeerID,
         ) -> Result<Retained<NSOutputStream>, Retained<NSError>>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn MCSessionDelegate>>>;
@@ -153,24 +174,29 @@ impl MCSession {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MCSessionDelegate>>);
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(myPeerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(securityIdentity))]
         #[unsafe(method_family = none)]
         pub unsafe fn securityIdentity(&self) -> Option<Retained<NSArray>>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(encryptionPreference))]
         #[unsafe(method_family = none)]
         pub unsafe fn encryptionPreference(&self) -> MCEncryptionPreference;
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(connectedPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedPeers(&self) -> Retained<NSArray<MCPeerID>>;
@@ -192,8 +218,10 @@ impl MCSession {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessiondelegate?language=objc)
+    #[deprecated = "Use Network Framework instead"]
     pub unsafe trait MCSessionDelegate: NSObjectProtocol {
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(session:peer:didChangeState:))]
         #[unsafe(method_family = none)]
         unsafe fn session_peer_didChangeState(
@@ -204,6 +232,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(session:didReceiveData:fromPeer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didReceiveData_fromPeer(
@@ -214,6 +243,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(session:didReceiveStream:withName:fromPeer:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didReceiveStream_withName_fromPeer(
@@ -225,6 +255,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(session:didStartReceivingResourceWithName:fromPeer:withProgress:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didStartReceivingResourceWithName_fromPeer_withProgress(
@@ -236,6 +267,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(session:didFinishReceivingResourceWithName:fromPeer:atURL:withError:))]
         #[unsafe(method_family = none)]
         unsafe fn session_didFinishReceivingResourceWithName_fromPeer_atURL_withError(
@@ -251,6 +283,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// `certificate` generic should be of the correct type.
+        #[deprecated = "Use Network Framework instead"]
         #[optional]
         #[unsafe(method(session:didReceiveCertificate:fromPeer:certificateHandler:))]
         #[unsafe(method_family = none)]
@@ -265,9 +298,11 @@ extern_protocol!(
 );
 
 /// MCSessionCustomDiscovery.
+#[deprecated = "Use Network Framework instead"]
 impl MCSession {
     extern_methods!(
         #[cfg(all(feature = "MCPeerID", feature = "block2"))]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(nearbyConnectionDataForPeer:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nearbyConnectionDataForPeer_withCompletionHandler(
@@ -277,6 +312,7 @@ impl MCSession {
         );
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(connectPeer:withNearbyConnectionData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectPeer_withNearbyConnectionData(
@@ -286,6 +322,7 @@ impl MCSession {
         );
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(cancelConnectPeer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelConnectPeer(&self, peer_id: &MCPeerID);

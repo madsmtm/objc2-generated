@@ -100,7 +100,14 @@ extern "C" {
 extern "C" {
     /// The font variation dictionary.
     ///
-    /// This key is used to obtain the font variation instance as a CFDictionaryRef. If specified in a font descriptor, fonts with the specified axes will be primary match candidates, if no such fonts exist, this attribute will be ignored.
+    /// This key is used to obtain the font variation instance as a CFDictionaryRef with each key/value pair corresponding to an axis identifier and value, which is the same structure as the return value of CTFontCopyVariation().
+    ///
+    ///
+    /// See also: CTFontCopyVariation
+    ///
+    /// See also: CTFontDescriptorCreateCopyWithAttributes
+    ///
+    /// See also: CTFontDescriptorCreateCopyWithVariation
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvariationattribute?language=objc)
     pub static kCTFontVariationAttribute: &'static CFString;
@@ -208,6 +215,9 @@ extern "C" {
     /// Starting with OS X 10.10 and iOS 8.0, settings are also accepted (but not returned) in the following simplified forms:
     /// An OpenType setting can be either an array pair of tag string and value number, or a tag string on its own. For example:@[ @"c2sc", @1 ] or simply @"c2sc". An unspecified value enables the feature and a value of zero disables it.
     /// An AAT setting can be specified as an array pair of type and selector numbers. For example:@[ @(kUpperCaseType), @(kUpperCaseSmallCapsSelector) ].
+    ///
+    ///
+    /// See also: CTFontDescriptorCreateCopyWithAttributes
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturesettingsattribute?language=objc)
     pub static kCTFontFeatureSettingsAttribute: &'static CFString;
@@ -466,7 +476,7 @@ impl CTFontDescriptor {
     /// Parameter `attributes`: A CFDictionaryRef of arbitrary attributes.
     ///
     ///
-    /// Returns: This function creates a new copy of the original font descriptor with attributes augmented by those specified. If there are conflicts between attributes, the new attributes will replace existing ones, except for kCTFontVariationAttribute and kCTFontFeatureSettingsAttribute which will be merged.
+    /// Returns: This function creates a new copy of the original font descriptor with attributes augmented by those specified. If there are conflicts between attributes, the new attributes will replace existing ones, except for kCTFontFeatureSettingsAttribute and kCTFontVariationAttribute which will be merged.
     /// Starting with macOS 10.12 and iOS 10.0, setting the value of kCTFontFeatureSettingsAttribute to kCFNull will clear the feature settings of the original font descriptor. Setting the value of any individual feature settings pair in the kCTFontFeatureSettingsAttribute value array to kCFNull will clear that feature setting alone. For example, an element like
     /// @
     /// { (id)kCTFontFeatureTypeIdentifierKey:
@@ -476,9 +486,12 @@ impl CTFontDescriptor {
     /// [
     /// "
     /// liga", (id)kCFNull ] will have the same effect.
+    /// Starting with macOS 13.0 and iOS 16.0, setting the value of any individual axis in the kCTFontVariationAttribute value dictionary to kCFNull will reset that axis to its default value.
     ///
     ///
     /// See also: kCTFontFeatureSettingsAttribute
+    ///
+    /// See also: kCTFontVariationAttribute
     ///
     /// # Safety
     ///
@@ -561,6 +574,9 @@ impl CTFontDescriptor {
     /// Creates a copy of the original font descriptor with a new variation instance.
     ///
     ///
+    /// This is a convenience method for easily creating new variation font instances and is equivalent to creating a copy of descriptor with kCTFontVariationAttribute and the specified identifier/value pair.
+    ///
+    ///
     /// Parameter `original`: The original font descriptor reference.
     ///
     ///
@@ -570,7 +586,10 @@ impl CTFontDescriptor {
     /// Parameter `variationValue`: The value corresponding with the variation instance.
     ///
     ///
-    /// Returns: This function returns a copy of the original font descriptor with a new variation instance. This is a convenience method for easily creating new variation font instances.
+    /// Returns: This function returns a copy of the original font descriptor with a new variation instance.
+    ///
+    ///
+    /// See also: kCTFontVariationAttribute
     #[doc(alias = "CTFontDescriptorCreateCopyWithVariation")]
     #[inline]
     pub fn copy_with_variation(

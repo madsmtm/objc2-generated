@@ -31,6 +31,15 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutorientationprovider?language=objc)
+    pub unsafe trait NSTextLayoutOrientationProvider {
+        #[unsafe(method(layoutOrientation))]
+        #[unsafe(method_family = none)]
+        fn layoutOrientation(&self) -> NSTextLayoutOrientation;
+    }
+);
+
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsglyphproperty?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -88,15 +97,6 @@ unsafe impl Encode for NSControlCharacterAction {
 unsafe impl RefEncode for NSControlCharacterAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
-
-extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutorientationprovider?language=objc)
-    pub unsafe trait NSTextLayoutOrientationProvider {
-        #[unsafe(method(layoutOrientation))]
-        #[unsafe(method_family = none)]
-        fn layoutOrientation(&self) -> NSTextLayoutOrientation;
-    }
-);
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager?language=objc)

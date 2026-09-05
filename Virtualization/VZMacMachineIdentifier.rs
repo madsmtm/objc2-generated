@@ -18,7 +18,7 @@ extern_class!(
     ///
     /// The contents of two identifiers can be compared with -[VZMacMachineIdentifier isEqual:].
     ///
-    /// See also: VZMacPlatformConfiguration
+    /// See: VZMacPlatformConfiguration
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacmachineidentifier?language=objc)
     #[unsafe(super(NSObject))]

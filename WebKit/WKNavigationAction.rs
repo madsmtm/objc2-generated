@@ -95,6 +95,14 @@ impl WKNavigationAction {
         #[unsafe(method_family = none)]
         pub unsafe fn isContentRuleListRedirect(&self) -> bool;
 
+        #[cfg(feature = "WKNavigation")]
+        /// The most recent main frame navigation that took place that encompasses this navigation action.
+        ///
+        /// If this WKNavigationAction represents a request to open a new WKWebView or it represents a frame load that is not in the main frame of an existing WKWebView, then mainFrameNavigation will be nil.
+        #[unsafe(method(mainFrameNavigation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mainFrameNavigation(&self) -> Option<Retained<WKNavigation>>;
+
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// The modifier keys that were in effect when the navigation was requested.

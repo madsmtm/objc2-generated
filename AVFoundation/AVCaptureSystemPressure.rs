@@ -74,6 +74,9 @@ bitflags::bitflags! {
 /// Indicates that the camera module is operating at an elevated temperature.
         #[doc(alias = "AVCaptureSystemPressureFactorCameraTemperature")]
         const CameraTemperature = 1<<3;
+/// Indicates that the system is 30 seconds away from unexpected power off.
+        #[doc(alias = "AVCaptureSystemPressureFactorSystemStress")]
+        const SystemStress = 1<<4;
         const _ = !0;
     }
 }

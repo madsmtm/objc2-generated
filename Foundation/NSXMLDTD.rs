@@ -7,7 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// Defines the order, repetition, and allowable values for a document
+    /// A representation of a Document Type Definition.
+    ///
+    /// An instance of the ``XMLDTD`` class is held as a property of an ``XMLDocument`` instance, accessed through the ``XMLDocument`` property ``XMLDocument/dtd``.
+    ///
+    /// In the data model, an ``XMLDTD`` object is conceptually similar to namespace and attribute nodes: it is not considered to be a child of the ``XMLDocument`` object although it is closely associated with it. It is at the "root" of a shallow tree consisting primarily of nodes representing DTD declarations. Acceptable child nodes are instances of the ``XMLDTDNode`` class as well as ``XMLNode`` objects representing comment nodes and processing-instruction nodes.
+    ///
+    /// You create an `NSXMLDTD` object in one of three ways:
+    ///
+    /// - By processing an XML document with its own internal (in-line) DTD
+    /// - By process a standalone (external) DTD
+    /// - Programmatically
+    ///
+    /// Once an ``XMLDTD`` instance is in place, you can add, remove, and change the ``XMLDTDNode`` objects representing various DTD declarations. When you write the document out as XML, the new or modified internal DTD is included (assuming you set the DTD in the ``XMLDocument`` instance). You may also programmatically create an external DTD and write that out to its own file.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtd?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
@@ -48,6 +60,15 @@ impl NSXMLDTD {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "NSXMLNodeOptions"))]
+        /// Initializes and returns an `NSXMLDTD` object created from the DTD declarations in a URL-referenced source.
+        ///
+        /// - Parameters:
+        /// - url: An `NSURL` object identifying a URL source.
+        /// - mask: A bit mask specifying input options; bit-OR multiple options. The current valid options are `NSXMLNodePreserveWhitespace` and `NSXMLNodePreserveEntities`; these constants are described in the "Constants" section of the ``XMLNode`` reference.
+        /// - error: On return, this parameter holds an `NSError` object describing any errors and warnings related to parsing and remote connection.
+        /// - Returns: An initialized `NSXMLDTD` object or `nil` if initialization fails because of parsing errors or other reasons.
+        ///
+        /// You use this method to create a stand-alone DTD which you can thereafter query and use for validation. You can associate the DTD created through this message with a document by setting the ``XMLDocument/dtd`` property on an ``XMLDocument`` object.
         #[unsafe(method(initWithContentsOfURL:options:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfURL_options_error(
@@ -57,6 +78,15 @@ impl NSXMLDTD {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSXMLNodeOptions"))]
+        /// Initializes and returns an `NSXMLDTD` object created from the DTD declarations encapsulated in an `NSData` object.
+        ///
+        /// - Parameters:
+        /// - data: A data object containing DTD declarations.
+        /// - mask: A bit mask specifying input options; bit-OR multiple options. The current valid options are `NSXMLNodePreserveWhitespace` and `NSXMLNodePreserveEntities`; these constants are described in the "Constants" section of the ``XMLNode`` reference.
+        /// - error: On return, this parameter holds an `NSError` object describing any errors and warnings related to parsing and remote connection.
+        /// - Returns: An initialized `NSXMLDTD` object or `nil` if initialization fails because of parsing errors or other reasons.
+        ///
+        /// This method is the designated initializer for the `NSXMLDTD` class. You use this method to create a stand-alone DTD which you can thereafter query and use for validation. You can associate the DTD created through this message with a document by setting the ``XMLDocument/dtd`` property on an ``XMLDocument`` object.
         #[unsafe(method(initWithData:options:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithData_options_error(
@@ -66,7 +96,9 @@ impl NSXMLDTD {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSString")]
-        /// Sets the public id. This identifier should be in the default catalog in /etc/xml/catalog or in a path specified by the environment variable XML_CATALOG_FILES. When the public id is set the system id must also be set.
+        /// Returns the receiver's public identifier.
+        ///
+        /// This identifier should be in the default catalog in `/etc/xml/catalog` or in a path specified by the environment variable `XML_CATALOG_FILES`. When the public id is set the system id must also be set.
         #[unsafe(method(publicID))]
         #[unsafe(method_family = none)]
         pub fn publicID(&self) -> Option<Retained<NSString>>;
@@ -80,7 +112,9 @@ impl NSXMLDTD {
         pub fn setPublicID(&self, public_id: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        /// Sets the system id. This should be a URL that points to a valid DTD.
+        /// Returns the receiver's system identifier.
+        ///
+        /// This should be a URL that points to a valid DTD.
         #[unsafe(method(systemID))]
         #[unsafe(method_family = none)]
         pub fn systemID(&self) -> Option<Retained<NSString>>;
@@ -93,59 +127,101 @@ impl NSXMLDTD {
         #[unsafe(method_family = none)]
         pub fn setSystemID(&self, system_id: Option<&NSString>);
 
-        /// Inserts a child at a particular index.
+        /// Inserts a child node in the receiver's list of children at a specific location in the list.
+        ///
+        /// - Parameters:
+        /// - child: An XML-node object that represents the child to insert.
+        /// - index: An integer identifying the location in the receiver's list of children to insert `child`. The indices of subsequent children in the list are incremented by one.
         #[unsafe(method(insertChild:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
-        /// Insert several children at a particular index.
+        /// Inserts an array of child nodes at a specified location in the receiver's list of children.
+        ///
+        /// - Parameters:
+        /// - children: An array of ``XMLNode`` objects to insert as children of the receiver.
+        /// - index: An integer identifying the location in the list of current children to make the insertion. The indices of subsequent children in the list are incremented by the number of inserted children.
         #[unsafe(method(insertChildren:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertChildren_atIndex(&self, children: &NSArray<NSXMLNode>, index: NSUInteger);
 
-        /// Removes a child at a particular index.
+        /// Removes the child node at a particular location in the receiver's list of children.
+        ///
+        /// - Parameter index: An integer identifying the child node to remove. The indices of subsequent children in the list are decremented by one.
+        ///
+        /// The removed child node is released.
         #[unsafe(method(removeChildAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn removeChildAtIndex(&self, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
-        /// Removes all existing children and replaces them with the new children. Set children to nil to simply remove all children.
+        /// Removes all existing children of the receiver and replaces them with an array of new child nodes.
+        ///
+        /// - Parameter children: An array of ``XMLNode`` objects. To remove all existing children, pass in `nil`.
+        ///
+        /// Replaced or removed child nodes are released.
         #[unsafe(method(setChildren:))]
         #[unsafe(method_family = none)]
         pub fn setChildren(&self, children: Option<&NSArray<NSXMLNode>>);
 
-        /// Adds a child to the end of the existing children.
+        /// Adds a child node to the end of the list of existing children.
+        ///
+        /// - Parameter child: The node object to add to the existing children.
         #[unsafe(method(addChild:))]
         #[unsafe(method_family = none)]
         pub fn addChild(&self, child: &NSXMLNode);
 
         /// Replaces a child at a particular index with another child.
+        ///
+        /// - Parameters:
+        /// - index: An integer identifying the position of a node in the receiver's list of child nodes.
+        /// - node: An ``XMLNode`` object to replace the object at `index`.
+        ///
+        /// The replaced child node is released.
         #[unsafe(method(replaceChildAtIndex:withNode:))]
         #[unsafe(method_family = none)]
         pub fn replaceChildAtIndex_withNode(&self, index: NSUInteger, node: &NSXMLNode);
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
-        /// Returns the entity declaration matching this name.
+        /// Returns the DTD node representing the entity declaration matching this name.
+        ///
+        /// - Parameter name: A string that is the name of an entity.
+        /// - Returns: An autoreleased ``XMLDTDNode`` object, or `nil` if there is no match.
         #[unsafe(method(entityDeclarationForName:))]
         #[unsafe(method_family = none)]
         pub fn entityDeclarationForName(&self, name: &NSString) -> Option<Retained<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
-        /// Returns the notation declaration matching this name.
+        /// Returns the DTD node representing the notation declaration identified by the specified notation name.
+        ///
+        /// - Parameter name: A string that is the name of a notation.
+        /// - Returns: An autoreleased ``XMLDTDNode`` object, or `nil` if there is no match.
         #[unsafe(method(notationDeclarationForName:))]
         #[unsafe(method_family = none)]
         pub fn notationDeclarationForName(&self, name: &NSString)
             -> Option<Retained<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
-        /// Returns the element declaration matching this name.
+        /// Returns the DTD node representing an element declaration for a specified element.
+        ///
+        /// - Parameter name: A string that is the name of an element.
+        /// - Returns: An autoreleased ``XMLDTDNode`` object, or `nil` if there is no match.
         #[unsafe(method(elementDeclarationForName:))]
         #[unsafe(method_family = none)]
         pub fn elementDeclarationForName(&self, name: &NSString) -> Option<Retained<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
-        /// Returns the attribute declaration matching this name.
+        /// Returns the DTD node representing an attribute-list declaration for a given attribute and its element.
+        ///
+        /// - Parameters:
+        /// - name: A string object identifying the name of an attribute.
+        /// - elementName: A string object identifying the name of an element.
+        /// - Returns: An autoreleased ``XMLDTDNode`` object, or `nil` if there is no matching attribute-list declaration.
+        ///
+        /// For example, in the attribute-list declaration `
+        /// <
+        /// !ATTLIST person idnum CDATA "0000">`, "idnum" would correspond to `attrName` and "person" would correspond to `elementName`.
         #[unsafe(method(attributeDeclarationForName:elementName:))]
         #[unsafe(method_family = none)]
         pub fn attributeDeclarationForName_elementName(
@@ -155,36 +231,20 @@ impl NSXMLDTD {
         ) -> Option<Retained<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
-        /// Returns the predefined entity declaration matching this name.
+        /// Returns a DTD node representing the predefined entity declaration with the specified name.
         ///
-        /// The five predefined entities are
-        /// <ul>
-        /// <li>
-        /// &
-        /// lt; -
+        /// - Parameter name: A string identifying a predefined entity declaration.
+        /// - Returns: An autoreleased ``XMLDTDNode`` object, or `nil` if there is no match for `name`.
+        ///
+        /// The five predefined entity references (or character references) are `
         /// <
-        /// </li>
-        /// <li>
-        /// &
-        /// gt; -
+        /// ` (less-than sign), `
         /// >
-        /// </li>
-        /// <li>
+        /// ` (greater-than sign), `
         /// &
-        /// amp; -
-        /// &
-        /// </li>
-        /// <li>
-        /// &
-        /// quot; -
-        /// "
-        /// </li>
-        /// <li>
-        /// &
-        /// apos; -
-        /// &
-        /// </li>
-        /// </ul>
+        /// ` (ampersand), `@"` (quotation mark), and `
+        /// '
+        /// ` (apostrophe).
         #[unsafe(method(predefinedEntityDeclarationForName:))]
         #[unsafe(method_family = none)]
         pub fn predefinedEntityDeclarationForName(
@@ -197,13 +257,21 @@ impl NSXMLDTD {
 #[cfg(feature = "NSXMLNode")]
 impl NSXMLDTD {
     extern_methods!(
+        /// Returns an
+        /// `NSXMLNode`instance initialized with the constant indicating node kind.
+        ///
         /// Invokes
+        /// `initWithKind:options:`with options set to
+        /// `NSXMLNodeOptionsNone.`
+        /// Do not use this initializer for creating instances of
+        /// `NSXMLDTDNode`for attribute-list declarations. Instead, use the
+        /// `DTDNodeWithXMLString:`class method of this class or the
+        /// `initWithXMLString:`method of the
+        /// `NSXMLDTDNode`class.
         ///
-        /// ```text
-        ///  initWithKind:options:
-        /// ```
-        ///
-        /// with options set to NSXMLNodeOptionsNone
+        /// Parameter `kind`: An
+        /// `enum`constant of type
+        /// `NSXMLNodeKind`that indicates the type of node.
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
         pub fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;

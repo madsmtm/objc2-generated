@@ -346,6 +346,30 @@ impl MEFileInfo {
         #[unsafe(method(setSidecarFileName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSidecarFileName(&self, sidecar_file_name: Option<&NSString>);
+
+        /// List of media files that collectively represent the media asset.
+        ///
+        /// Represents a list of media files that constitute the media asset. All files must be located in the same directory. The returned filenames should include just the file name and file extension, omitting any file path or directory slashes. The file extensions should all be explicitly supported by the format reader as declared in the EXAppExtensionAttributes and UTExportedTypeDeclarations dictionaries in the MediaExtension format reader Info.plist.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(constituentFileNames))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn constituentFileNames(&self) -> Retained<NSArray<NSString>>;
+
+        /// Setter for [`constituentFileNames`][Self::constituentFileNames].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(setConstituentFileNames:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setConstituentFileNames(&self, constituent_file_names: &NSArray<NSString>);
     );
 }
 
@@ -1834,7 +1858,7 @@ impl MEByteSource {
         ///
         /// Parameter `error`: Reports any errors. Returns MEErrorEndOfStream if no more bytes can be read.
         ///
-        /// Returns: Returns YES if successful, NO if an error occured.
+        /// Returns: Returns YES if successful, NO if an error occurred.
         ///
         /// # Safety
         ///
@@ -1869,7 +1893,7 @@ impl MEByteSource {
         ///
         /// Parameter `errorOut`: Reports any errors. Returns MEErrorPermissionDenied if the file cannot be accessed or is prohibited.
         ///
-        /// Returns: Returns nil if fileName refers to a file that cannot be accessed or is prohibited, or if an error occured. The returned MEByteSource is autoreleased.
+        /// Returns: Returns nil if fileName refers to a file that cannot be accessed or is prohibited, or if an error occurred. The returned MEByteSource is autoreleased.
         #[unsafe(method(byteSourceForRelatedFileName:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn byteSourceForRelatedFileName_error(

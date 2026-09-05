@@ -6,12 +6,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// The NSURLRequestCachePolicy enum defines constants that
-/// can be used to specify the type of interactions that take place with
-/// the caching system when the URL loading system processes a request.
-/// Specifically, these constants cover interactions that have to do
-/// with whether already-existing cache data is returned to satisfy a
-/// URL load request.
+/// Constants that specify the caching strategy for a URL load request.
+///
+/// Specifically, these constants cover interactions that have to do with whether already-existing cache data
+/// is returned to satisfy a URL load request.
+///
+/// - `NSURLRequestUseProtocolCachePolicy`: The caching logic defined in the protocol implementation, if any, is used for a particular URL load request. This is the default policy.
+/// - `NSURLRequestReloadIgnoringLocalCacheData`: The data for the URL load should be loaded from the origin source. No existing local cache data should be used.
+/// - `NSURLRequestReloadIgnoringLocalAndRemoteCacheData`: Not only should local cache data be ignored, but proxies and other intermediates should be instructed to disregard their caches as far as the protocol allows.
+/// - `NSURLRequestReloadIgnoringCacheData`: Older name for `NSURLRequestReloadIgnoringLocalCacheData`.
+/// - `NSURLRequestReturnCacheDataElseLoad`: Existing cache data should be used, regardless of its age or expiration date. If no data exists in the cache, the URL is loaded from the origin source.
+/// - `NSURLRequestReturnCacheDataDontLoad`: Existing cache data should be used, regardless of its age or expiration date. If no data exists in the cache, no attempt is made to load the URL. This constant specifies a behavior similar to an "offline" mode.
+/// - `NSURLRequestReloadRevalidatingCacheData`: Existing cache data may be used provided the origin source confirms its validity, otherwise the URL is loaded from the origin source.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestcachepolicy?language=objc)
 // NS_ENUM
@@ -19,49 +25,32 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestCachePolicy(pub NSUInteger);
 impl NSURLRequestCachePolicy {
-    /// Specifies that the
-    /// caching logic defined in the protocol implementation, if any, is
-    /// used for a particular URL load request. This is the default policy
-    /// for URL load requests.
+    /// Use the caching logic defined in the protocol implementation, if any, for a particular URL load request.
+    ///
+    /// This is the default policy for URL load requests.
     #[doc(alias = "NSURLRequestUseProtocolCachePolicy")]
     pub const UseProtocolCachePolicy: Self = Self(0);
-    /// Specifies that the
-    /// data for the URL load should be loaded from the origin source. No
-    /// existing local cache data, regardless of its freshness or validity,
-    /// should be used to satisfy a URL load request.
+    /// The URL load should be loaded only from the originating source.
+    ///
+    /// No existing cache data should be used to satisfy a URL load request.
     #[doc(alias = "NSURLRequestReloadIgnoringLocalCacheData")]
     pub const ReloadIgnoringLocalCacheData: Self = Self(1);
-    /// Specifies that
-    /// not only should the local cache data be ignored, but that proxies and
-    /// other intermediates should be instructed to disregard their caches
-    /// so far as the protocol allows.
+    /// Ignore local cache data, and instruct proxies and other intermediates to disregard their caches so far as the protocol allows.
     #[doc(alias = "NSURLRequestReloadIgnoringLocalAndRemoteCacheData")]
     pub const ReloadIgnoringLocalAndRemoteCacheData: Self = Self(4);
-    /// Older name for
-    /// NSURLRequestReloadIgnoringLocalCacheData.
+    /// Replaced by `NSURLRequestReloadIgnoringLocalCacheData`.
     #[doc(alias = "NSURLRequestReloadIgnoringCacheData")]
     pub const ReloadIgnoringCacheData: Self =
         Self(NSURLRequestCachePolicy::ReloadIgnoringLocalCacheData.0);
-    /// Specifies that the
-    /// existing cache data should be used to satisfy a URL load request,
-    /// regardless of its age or expiration date. However, if there is no
-    /// existing data in the cache corresponding to a URL load request,
-    /// the URL is loaded from the origin source.
+    /// Use existing cache data, regardless of age or expiration date, loading from originating source only if there is no cached data.
     #[doc(alias = "NSURLRequestReturnCacheDataElseLoad")]
     pub const ReturnCacheDataElseLoad: Self = Self(2);
-    /// Specifies that the
-    /// existing cache data should be used to satisfy a URL load request,
-    /// regardless of its age or expiration date. However, if there is no
-    /// existing data in the cache corresponding to a URL load request, no
-    /// attempt is made to load the URL from the origin source, and the
-    /// load is considered to have failed. This constant specifies a
-    /// behavior that is similar to an "offline" mode.
+    /// Use existing cache data, regardless of age or expiration date, and fail if no cached data is available.
+    ///
+    /// If there is no existing data in the cache corresponding to a URL load request, no attempt is made to load the data from the originating source, and the load is considered to have failed. This constant specifies a behavior that is similar to an "offline" mode.
     #[doc(alias = "NSURLRequestReturnCacheDataDontLoad")]
     pub const ReturnCacheDataDontLoad: Self = Self(3);
-    /// Specifies that
-    /// the existing cache data may be used provided the origin source
-    /// confirms its validity, otherwise the URL is loaded from the
-    /// origin source.
+    /// Use cache data if the origin source can validate it; otherwise, load from the origin.
     #[doc(alias = "NSURLRequestReloadRevalidatingCacheData")]
     pub const ReloadRevalidatingCacheData: Self = Self(5);
 }
@@ -74,10 +63,9 @@ unsafe impl RefEncode for NSURLRequestCachePolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// The NSURLRequestNetworkServiceType enum defines constants that
-/// can be used to specify the service type to associate with this request.  The
-/// service type is used to provide the networking layers a hint of the purpose
-/// of the request.
+/// Constants that specify the network service type of a request.
+///
+/// The service type is used to provide the networking layers a hint of the purpose of the request.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestnetworkservicetype?language=objc)
 // NS_ENUM
@@ -85,36 +73,32 @@ unsafe impl RefEncode for NSURLRequestCachePolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestNetworkServiceType(pub NSUInteger);
 impl NSURLRequestNetworkServiceType {
-    /// Is the default value for an NSURLRequest
-    /// when created.  This value should be left unchanged for the vast majority of requests.
+    /// A service type for standard network traffic.
     #[doc(alias = "NSURLNetworkServiceTypeDefault")]
     pub const NetworkServiceTypeDefault: Self = Self(0);
-    /// Specifies that the request is for voice over IP
-    /// control traffic.
+    /// A service type for VoIP traffic.
     #[doc(alias = "NSURLNetworkServiceTypeVoIP")]
     #[deprecated = "Use PushKit for VoIP control purposes"]
     pub const NetworkServiceTypeVoIP: Self = Self(1);
-    /// Specifies that the request is for video
-    /// traffic.
+    /// A service type for low-delay tolerant, very low-loss tolerant, inelastic flow, and constant packet rate connections.
     #[doc(alias = "NSURLNetworkServiceTypeVideo")]
     pub const NetworkServiceTypeVideo: Self = Self(2);
-    /// Specifies that the request is for background
-    /// traffic (such as a file download).
+    /// A service type for high-delay tolerant, high-loss tolerant, elastic flow, and variable size connections.
     #[doc(alias = "NSURLNetworkServiceTypeBackground")]
     pub const NetworkServiceTypeBackground: Self = Self(3);
-    /// Specifies that the request is for voice data.
+    /// A service type for low-delay tolerant, very low-loss tolerant, inelastic flow, and constant packet rate connections.
     #[doc(alias = "NSURLNetworkServiceTypeVoice")]
     pub const NetworkServiceTypeVoice: Self = Self(4);
-    /// Specifies that the request is for responsive (time sensitive) data.
+    /// A service type for medium-delay tolerant, elastic and inelastic flow, bursty, and long-lived connections.
     #[doc(alias = "NSURLNetworkServiceTypeResponsiveData")]
     pub const NetworkServiceTypeResponsiveData: Self = Self(6);
-    /// Specifies that the request is streaming audio/video data.
+    /// A service type for medium-delay tolerant, low-medium-loss tolerant, elastic flow, constant packet interval, and variable rate and size connections.
     #[doc(alias = "NSURLNetworkServiceTypeAVStreaming")]
     pub const NetworkServiceTypeAVStreaming: Self = Self(8);
-    /// Specifies that the request is for responsive (time sensitive) audio/video data.
+    /// A service type for low-delay tolerant, low-to-medium-loss tolerant, elastic flow, variable packet interval, rate, size responsive and time-sensitive connections.
     #[doc(alias = "NSURLNetworkServiceTypeResponsiveAV")]
     pub const NetworkServiceTypeResponsiveAV: Self = Self(9);
-    /// Specifies that the request is for call signaling.
+    /// A service for low-loss tolerant, inelastic flow, jitter tolerant, short but bursty rate, and variable size connections.
     #[doc(alias = "NSURLNetworkServiceTypeCallSignaling")]
     pub const NetworkServiceTypeCallSignaling: Self = Self(11);
 }
@@ -127,8 +111,10 @@ unsafe impl RefEncode for NSURLRequestNetworkServiceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// The NSURLRequestAttribution enum is used to indicate whether the
-/// user or developer specified the URL.
+/// Constants that indicate whether the user or developer specified the URL.
+///
+/// - `NSURLRequestAttributionDeveloper`: The URL was specified by the developer. This is the default value.
+/// - `NSURLRequestAttributionUser`: The URL was specified by the user.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestattribution?language=objc)
 // NS_ENUM
@@ -136,12 +122,14 @@ unsafe impl RefEncode for NSURLRequestNetworkServiceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestAttribution(pub NSUInteger);
 impl NSURLRequestAttribution {
-    /// Indicates that the URL was specified
-    /// by the developer. This is the default value for an NSURLRequest when created.
+    /// A developer-initiated network request.
+    ///
+    /// This is the default value. Use this for any purpose other than when the user explicitly accesses a link.
     #[doc(alias = "NSURLRequestAttributionDeveloper")]
     pub const Developer: Self = Self(0);
-    /// Indicates that the URL was specified by
-    /// the user.
+    /// The user explicitly directs the app to make a network request.
+    ///
+    /// Use this for URL requests that satisfy a user request to access an explicit, unmodified URL.
     #[doc(alias = "NSURLRequestAttributionUser")]
     pub const User: Self = Self(1);
 }
@@ -155,38 +143,49 @@ unsafe impl RefEncode for NSURLRequestAttribution {
 }
 
 extern_class!(
-    /// An NSURLRequest object represents a URL load request in a
-    /// manner independent of protocol and URL scheme.
+    /// A URL load request that is independent of protocol or URL scheme.
     ///
+    /// Use this type in Swift when you need reference semantics or other Foundation-specific behavior.
     ///
-    /// NSURLRequest encapsulates two basic data elements about
-    /// a URL load request:
-    /// <ul>
-    /// <li>
-    /// The URL to load.
-    /// <li>
-    /// The policy to use when consulting the URL content cache made
-    /// available by the implementation.
-    /// </ul>
-    /// In addition, NSURLRequest is designed to be extended to support
-    /// protocol-specific data by adding categories to access a property
-    /// object provided in an interface targeted at protocol implementors.
-    /// <ul>
-    /// <li>
-    /// Protocol implementors should direct their attention to the
-    /// NSURLRequestExtensibility category on NSURLRequest for more
-    /// information on how to provide extensions on NSURLRequest to
-    /// support protocol-specific request information.
-    /// <li>
-    /// Clients of this API who wish to create NSURLRequest objects to
-    /// load URL content should consult the protocol-specific NSURLRequest
-    /// categories that are available. The NSHTTPURLRequest category on
-    /// NSURLRequest is an example.
-    /// </ul>
-    /// <p>
-    /// Objects of this class are used to create NSURLConnection instances,
-    /// which can are used to perform the load of a URL, or as input to the
-    /// NSURLConnection class method which performs synchronous loads.
+    /// ``NSURLRequest`` encapsulates two essential properties of a load request: the URL to load and the policies used to load it. In addition, for HTTP and HTTPS requests, ``URLRequest`` includes the HTTP method (`GET`, `POST`, and so on) and the HTTP headers. Finally, custom protocols can support custom properties as explained in
+    /// <doc
+    /// :#Custom-protocol-properties>.
+    ///
+    /// ``NSURLRequest`` only represents information about the request. Use other classes, such as ``URLSession``, to send the request to a server. See
+    /// <doc
+    /// :fetching-website-data-into-memory> and
+    /// <doc
+    /// :uploading-data-to-a-website> for an introduction to these techniques.
+    ///
+    /// The mutable subclass of ``NSURLRequest`` is ``NSMutableURLRequest``.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``URLRequest`` structure, which bridges to the ``NSURLRequest`` class and its mutable subclass, ``NSMutableURLRequest``. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
+    ///
+    /// ### Reserved HTTP headers
+    ///
+    /// The URL Loading System handles various aspects of the HTTP protocol for you (HTTP 1.1 persistent connections, proxies, authentication, and so on). As part of this support, the URL Loading System takes responsibility for certain HTTP headers:
+    ///
+    /// - `Content-Length`
+    /// - `Authorization`
+    /// - `Connection`
+    /// - `Host`
+    /// - `Proxy-Authenticate`
+    /// - `Proxy-Authorization`
+    /// - `WWW-Authenticate`
+    ///
+    /// If you set a value for one of these reserved headers, the system may ignore the value you set, or overwrite it with its own value, or simply not send it. Moreover, the exact behavior may change over time. To avoid confusing problems like this, do not set these headers directly.
+    ///
+    /// The URL Loading System sets the `Content-Length` header based on whether the request body has a known length:
+    ///
+    /// - If so, it uses the identity transfer encoding and sets the `Content-Length` header to that known length. You see this when you set the request body to a data object.
+    /// - If not, it uses the chunked transfer encoding and omits the `Content-Length` header. You see this when you set the request body to a stream.
+    ///
+    /// ### Custom protocol properties
+    ///
+    /// If you implement a custom URL protocol by subclassing ``URLProtocol``, and it needs protocol-specific properties, extend ``NSURLRequest`` with accessor methods for those custom properties. In your accessor methods, call ``URLProtocol/property(forKey:in:)`` and ``URLProtocol/setProperty(_:forKey:in:)`` to associate property values with the request.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest?language=objc)
     #[unsafe(super(NSObject))]
@@ -231,44 +230,29 @@ extern_conformance!(
 impl NSURLRequest {
     extern_methods!(
         #[cfg(feature = "NSURL")]
-        /// Allocates and initializes an NSURLRequest with the given
-        /// URL.
+        /// Allocates and initializes an `NSURLRequest` with the given URL.
         ///
-        /// Default values are used for cache policy
-        /// (NSURLRequestUseProtocolCachePolicy) and timeout interval (60
-        /// seconds).
+        /// Default values are used for cache policy (`NSURLRequestUseProtocolCachePolicy`) and timeout interval (60 seconds).
         ///
-        /// Parameter `URL`: The URL for the request.
-        ///
-        /// Returns: A newly-created and autoreleased NSURLRequest instance.
+        /// - Parameter URL: The URL for the request.
+        /// - Returns: A newly-created and autoreleased `NSURLRequest` instance.
         #[unsafe(method(requestWithURL:))]
         #[unsafe(method_family = none)]
         pub fn requestWithURL(url: &NSURL) -> Retained<Self>;
 
-        /// Indicates that NSURLRequest implements the NSSecureCoding protocol.
-        ///
-        /// Returns: A BOOL value set to YES.
+        /// Indicates that `NSURLRequest` implements the `NSSecureCoding` protocol.
         #[unsafe(method(supportsSecureCoding))]
         #[unsafe(method_family = none)]
         pub fn supportsSecureCoding() -> bool;
 
         #[cfg(all(feature = "NSDate", feature = "NSURL"))]
-        /// Allocates and initializes a NSURLRequest with the given
-        /// URL and cache policy.
+        /// Allocates and initializes an `NSURLRequest` with the given URL and cache policy.
         ///
-        /// Parameter `URL`: The URL for the request.
-        ///
-        /// Parameter `cachePolicy`: The cache policy for the request.
-        ///
-        /// Parameter `timeoutInterval`: The timeout interval for the request. See the
-        /// commentary for the
-        /// <tt>
-        /// timeoutInterval
-        /// </tt>
-        /// for more information on
-        /// timeout intervals.
-        ///
-        /// Returns: A newly-created and autoreleased NSURLRequest instance.
+        /// - Parameters:
+        /// - URL: The URL for the request.
+        /// - cachePolicy: The cache policy for the request.
+        /// - timeoutInterval: The timeout interval for the request, in seconds.
+        /// - Returns: A newly-created and autoreleased `NSURLRequest` instance.
         #[unsafe(method(requestWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = none)]
         pub fn requestWithURL_cachePolicy_timeoutInterval(
@@ -278,39 +262,26 @@ impl NSURLRequest {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        /// Initializes an NSURLRequest with the given URL.
+        /// Initializes an `NSURLRequest` with the given URL.
         ///
-        /// Default values are used for cache policy
-        /// (NSURLRequestUseProtocolCachePolicy) and timeout interval (60
-        /// seconds).
+        /// Default values are used for cache policy (`NSURLRequestUseProtocolCachePolicy`) and timeout interval (60 seconds).
         ///
-        /// Parameter `URL`: The URL for the request.
-        ///
-        /// Returns: An initialized NSURLRequest.
+        /// - Parameter URL: The URL for the request.
+        /// - Returns: An initialized `NSURLRequest`.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSURL"))]
-        /// Initializes an NSURLRequest with the given URL and
-        /// cache policy.
+        /// Initializes an `NSURLRequest` with the given URL, cache policy, and timeout interval.
         ///
-        /// This is the designated initializer for the
-        /// NSURLRequest class.
+        /// This is the designated initializer for the `NSURLRequest` class.
         ///
-        /// Parameter `URL`: The URL for the request.
-        ///
-        /// Parameter `cachePolicy`: The cache policy for the request.
-        ///
-        /// Parameter `timeoutInterval`: The timeout interval for the request. See the
-        /// commentary for the
-        /// <tt>
-        /// timeoutInterval
-        /// </tt>
-        /// for more information on
-        /// timeout intervals.
-        ///
-        /// Returns: An initialized NSURLRequest.
+        /// - Parameters:
+        /// - URL: The URL for the request.
+        /// - cachePolicy: The cache policy for the request.
+        /// - timeoutInterval: The timeout interval for the request, in seconds.
+        /// - Returns: An initialized `NSURLRequest`.
         #[unsafe(method(initWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL_cachePolicy_timeoutInterval(
@@ -321,35 +292,25 @@ impl NSURLRequest {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        /// Returns the URL of the receiver.
-        ///
-        /// Returns: The URL of the receiver.
+        /// The URL of the receiver.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub fn URL(&self) -> Option<Retained<NSURL>>;
 
-        /// Returns the cache policy of the receiver.
-        ///
-        /// Returns: The cache policy of the receiver.
+        /// The cache policy of the receiver.
         #[unsafe(method(cachePolicy))]
         #[unsafe(method_family = none)]
         pub fn cachePolicy(&self) -> NSURLRequestCachePolicy;
 
         #[cfg(feature = "NSDate")]
-        /// Returns the timeout interval of the receiver.
+        /// The timeout interval of the receiver, measured in seconds.
         ///
-        /// The timeout interval specifies the limit on the idle
-        /// interval allotted to a request in the process of loading. The "idle
-        /// interval" is defined as the period of time that has passed since the
-        /// last instance of load activity occurred for a request that is in the
-        /// process of loading. Hence, when an instance of load activity occurs
-        /// (e.g. bytes are received from the network for a request), the idle
-        /// interval for a request is reset to 0. If the idle interval ever
-        /// becomes greater than or equal to the timeout interval, the request
-        /// is considered to have timed out. This timeout interval is measured
-        /// in seconds.
-        ///
-        /// Returns: The timeout interval of the receiver.
+        /// The timeout interval specifies the limit on the idle interval allotted to a request in the process of loading.
+        /// The "idle interval" is defined as the period of time that has passed since the last instance of load activity
+        /// occurred for a request that is in the process of loading. Hence, when an instance of load activity occurs
+        /// (e.g. bytes are received from the network for a request), the idle interval for a request is reset to 0. If
+        /// the idle interval ever becomes greater than or equal to the timeout interval, the request is considered to
+        /// have timed out.
         #[unsafe(method(timeoutInterval))]
         #[unsafe(method_family = none)]
         pub fn timeoutInterval(&self) -> NSTimeInterval;
@@ -357,95 +318,63 @@ impl NSURLRequest {
         #[cfg(feature = "NSURL")]
         /// The main document URL associated with this load.
         ///
-        /// This URL is used for the cookie "same domain as main
-        /// document" policy, and attributing the request as a sub-resource
-        /// of a user-specified URL. There may also be other future uses.
-        /// See setMainDocumentURL:
-        ///
-        /// Returns: The main document URL.
+        /// This URL is used for the cookie "same domain as main document" policy, and attributing the request as a
+        /// sub-resource of a user-specified URL. There may also be other future uses.
         #[unsafe(method(mainDocumentURL))]
         #[unsafe(method_family = none)]
         pub fn mainDocumentURL(&self) -> Option<Retained<NSURL>>;
 
-        /// Returns the NSURLRequestNetworkServiceType associated with this request.
+        /// The `NSURLRequestNetworkServiceType` associated with this request.
         ///
-        /// This will return NSURLNetworkServiceTypeDefault for requests that have
-        /// not explicitly set a networkServiceType (using the setNetworkServiceType method).
-        ///
-        /// Returns: The NSURLRequestNetworkServiceType associated with this request.
+        /// Returns `NSURLNetworkServiceTypeDefault` for requests that have not explicitly set a network service type.
         #[unsafe(method(networkServiceType))]
         #[unsafe(method_family = none)]
         pub fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
 
-        /// returns whether a connection created with this request is allowed to use
-        /// the built in cellular radios (if present).
-        ///
-        /// Returns: YES if the receiver is allowed to use the built in cellular radios to
-        /// satisfy the request, NO otherwise.
+        /// A Boolean value that indicates whether a connection created with this request is allowed to use the built-in cellular radios (if present).
         #[unsafe(method(allowsCellularAccess))]
         #[unsafe(method_family = none)]
         pub fn allowsCellularAccess(&self) -> bool;
 
-        /// returns whether a connection created with this request is allowed to use
-        /// network interfaces which have been marked as expensive.
-        ///
-        /// Returns: YES if the receiver is allowed to use an interface marked as expensive to
-        /// satisfy the request, NO otherwise.
+        /// A Boolean value that indicates whether a connection created with this request is allowed to use network interfaces which have been marked as expensive.
         #[unsafe(method(allowsExpensiveNetworkAccess))]
         #[unsafe(method_family = none)]
         pub fn allowsExpensiveNetworkAccess(&self) -> bool;
 
-        /// returns whether a connection created with this request is allowed to use
-        /// network interfaces which have been marked as constrained.
-        ///
-        /// Returns: YES if the receiver is allowed to use an interface marked as constrained to
-        /// satisfy the request, NO otherwise.
+        /// A Boolean value that indicates whether a connection created with this request is allowed to use network interfaces which have been marked as constrained.
         #[unsafe(method(allowsConstrainedNetworkAccess))]
         #[unsafe(method_family = none)]
         pub fn allowsConstrainedNetworkAccess(&self) -> bool;
 
-        /// returns whether a connection created with this request is allowed to use
-        /// network interfaces which have been marked as ultra constrained.
-        ///
-        /// Returns: YES if the receiver is allowed to use an interface marked as ultra constrained to
-        /// satisfy the request, NO otherwise.
+        /// A Boolean value that indicates whether a connection created with this request is allowed to use network interfaces which have been marked as ultra constrained.
         #[unsafe(method(allowsUltraConstrainedNetworkAccess))]
         #[unsafe(method_family = none)]
         pub fn allowsUltraConstrainedNetworkAccess(&self) -> bool;
 
-        /// returns whether we assume that server supports HTTP/3. Enables QUIC
-        /// racing without HTTP/3 service discovery.
+        /// A Boolean value that indicates whether the server is assumed to support HTTP/3.
         ///
-        /// Returns: YES if server endpoint is known to support HTTP/3. Defaults to NO.
-        /// The default may be YES in a future OS update.
+        /// When `YES`, enables QUIC racing without HTTP/3 service discovery. Defaults to `NO`. The default may be `YES` in a future OS update.
         #[unsafe(method(assumesHTTP3Capable))]
         #[unsafe(method_family = none)]
         pub fn assumesHTTP3Capable(&self) -> bool;
 
-        /// Returns the NSURLRequestAttribution associated with this request.
+        /// The `NSURLRequestAttribution` associated with this request.
         ///
-        /// This will return NSURLRequestAttributionDeveloper for requests that
-        /// have not explicitly set an attribution.
-        ///
-        /// Returns: The NSURLRequestAttribution associated with this request.
+        /// Returns `NSURLRequestAttributionDeveloper` for requests that have not explicitly set an attribution.
         #[unsafe(method(attribution))]
         #[unsafe(method_family = none)]
         pub fn attribution(&self) -> NSURLRequestAttribution;
 
-        /// sets whether a request is required to do DNSSEC validation during DNS lookup.
+        /// A Boolean value that indicates whether a request requires DNSSEC validation during DNS lookup.
         ///
-        /// YES, if the DNS lookup for this request should require DNSSEC validation,
-        /// No otherwise. Defaults to NO.
+        /// `YES` if the DNS lookup for this request should require DNSSEC validation. Defaults to `NO`.
         #[unsafe(method(requiresDNSSECValidation))]
         #[unsafe(method_family = none)]
         pub fn requiresDNSSECValidation(&self) -> bool;
 
-        /// Allows storing and usage of DNS answers, potentially beyond TTL expiry,
-        /// in a persistent per-process cache. This should only be set for hostnames whose resolutions
-        /// are not expected to change across networks.
+        /// A Boolean value that indicates whether storing and usage of DNS answers in a persistent per-process cache is allowed.
         ///
-        /// YES, if the DNS lookup for this request is allowed to use a persistent per-process cache,
-        /// NO otherwise. Defaults to NO.
+        /// This should only be set for hostnames whose resolutions are not expected to change across networks. Defaults to `NO`.
         #[unsafe(method(allowsPersistentDNS))]
         #[unsafe(method_family = none)]
         pub fn allowsPersistentDNS(&self) -> bool;
@@ -478,35 +407,24 @@ impl DefaultRetained for NSURLRequest {
 }
 
 extern_class!(
-    /// An NSMutableURLRequest object represents a mutable URL load
-    /// request in a manner independent of protocol and URL scheme.
+    /// A mutable URL load request that is independent of protocol or URL scheme.
     ///
+    /// In Swift, this object bridges to ``NSURLRequest`` and you use when you need reference semantics or other Foundation-specific behavior.
     ///
-    /// This specialization of NSURLRequest is provided to aid
-    /// developers who may find it more convenient to mutate a single request
-    /// object for a series of URL loads instead of creating an immutable
-    /// NSURLRequest for each load. This programming model is supported by
-    /// the following contract stipulation between NSMutableURLRequest and
-    /// NSURLConnection: NSURLConnection makes a deep copy of each
-    /// NSMutableURLRequest object passed to one of its initializers.
-    /// <p>
-    /// NSMutableURLRequest is designed to be extended to support
-    /// protocol-specific data by adding categories to access a property
-    /// object provided in an interface targeted at protocol implementors.
-    /// <ul>
-    /// <li>
-    /// Protocol implementors should direct their attention to the
-    /// NSMutableURLRequestExtensibility category on
-    /// NSMutableURLRequest for more information on how to provide
-    /// extensions on NSMutableURLRequest to support protocol-specific
-    /// request information.
-    /// <li>
-    /// Clients of this API who wish to create NSMutableURLRequest
-    /// objects to load URL content should consult the protocol-specific
-    /// NSMutableURLRequest categories that are available. The
-    /// NSMutableHTTPURLRequest category on NSMutableURLRequest is an
-    /// example.
-    /// </ul>
+    /// ``NSMutableURLRequest`` is a subclass of ``NSURLRequest`` that allows you to change the request's properties.
+    ///
+    /// ``NSMutableURLRequest`` only represents information about the request. Use other classes, such as ``URLSession``, to send the request to a server. See
+    /// <doc
+    /// :fetching-website-data-into-memory> and
+    /// <doc
+    /// :uploading-data-to-a-website> for an introduction to these techniques.
+    ///
+    /// Classes that create a network operation based on a request make a deep copy of that request. Thus, changing the request after creating a network operation has no effect on the ongoing operation. For example, if you use ``URLSession/dataTask(with:completionHandler:)-e6xv`` to create a data task from a request, and then later change the request, the data task continues using the original request.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``URLRequest`` structure, which bridges to the ``NSMutableURLRequest`` class and its immutable superclass, ``NSURLRequest``. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableurlrequest?language=objc)
     #[unsafe(super(NSURLRequest, NSObject))]
@@ -575,18 +493,14 @@ impl NSMutableURLRequest {
         pub fn setCachePolicy(&self, cache_policy: NSURLRequestCachePolicy);
 
         #[cfg(feature = "NSDate")]
-        /// Sets the timeout interval of the receiver.
+        /// The timeout interval of the receiver, measured in seconds.
         ///
-        /// The timeout interval specifies the limit on the idle
-        /// interval allotted to a request in the process of loading. The "idle
-        /// interval" is defined as the period of time that has passed since the
-        /// last instance of load activity occurred for a request that is in the
-        /// process of loading. Hence, when an instance of load activity occurs
-        /// (e.g. bytes are received from the network for a request), the idle
-        /// interval for a request is reset to 0. If the idle interval ever
-        /// becomes greater than or equal to the timeout interval, the request
-        /// is considered to have timed out. This timeout interval is measured
-        /// in seconds.
+        /// The timeout interval specifies the limit on the idle interval allotted to a request in the process of loading.
+        /// The "idle interval" is defined as the period of time that has passed since the last instance of load activity
+        /// occurred for a request that is in the process of loading. Hence, when an instance of load activity occurs
+        /// (e.g. bytes are received from the network for a request), the idle interval for a request is reset to 0. If
+        /// the idle interval ever becomes greater than or equal to the timeout interval, the request is considered to
+        /// have timed out.
         #[unsafe(method(timeoutInterval))]
         #[unsafe(method_family = none)]
         pub fn timeoutInterval(&self) -> NSTimeInterval;
@@ -598,15 +512,12 @@ impl NSMutableURLRequest {
         pub fn setTimeoutInterval(&self, timeout_interval: NSTimeInterval);
 
         #[cfg(feature = "NSURL")]
-        /// Sets the main document URL
+        /// The main document URL.
         ///
-        /// The caller should pass the URL for an appropriate main
-        /// document, if known. For example, when loading a web page, the URL
-        /// of the main html document for the top-level frame should be
-        /// passed.  This main document is used to implement the cookie "only
-        /// from same domain as main document" policy, attributing this request
-        /// as a sub-resource of a user-specified URL, and possibly other things
-        /// in the future.
+        /// The caller should pass the URL for an appropriate main document, if known. For example, when loading a web page,
+        /// the URL of the main html document for the top-level frame should be passed. This main document is used to
+        /// implement the cookie "only from same domain as main document" policy, attributing this request as a sub-resource
+        /// of a user-specified URL, and possibly other things in the future.
         #[unsafe(method(mainDocumentURL))]
         #[unsafe(method_family = none)]
         pub fn mainDocumentURL(&self) -> Option<Retained<NSURL>>;
@@ -619,10 +530,9 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setMainDocumentURL(&self, main_document_url: Option<&NSURL>);
 
-        /// Sets the NSURLRequestNetworkServiceType to associate with this request
+        /// The `NSURLRequestNetworkServiceType` to associate with this request.
         ///
-        /// This method is used to provide the network layers with a hint as to the purpose
-        /// of the request.  Most clients should not need to use this method.
+        /// This is used to provide the network layers with a hint as to the purpose of the request. Most clients should not need to set this.
         #[unsafe(method(networkServiceType))]
         #[unsafe(method_family = none)]
         pub fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
@@ -632,11 +542,9 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setNetworkServiceType(&self, network_service_type: NSURLRequestNetworkServiceType);
 
-        /// sets whether a connection created with this request is allowed to use
-        /// the built in cellular radios (if present).
+        /// A Boolean value that indicates whether a connection created with this request is allowed to use the built-in cellular radios (if present).
         ///
-        /// NO if the receiver should not be allowed to use the built in
-        /// cellular radios to satisfy the request, YES otherwise.  The default is YES.
+        /// The default is `YES`.
         #[unsafe(method(allowsCellularAccess))]
         #[unsafe(method_family = none)]
         pub fn allowsCellularAccess(&self) -> bool;
@@ -646,11 +554,7 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
-        /// sets whether a connection created with this request is allowed to use
-        /// network interfaces which have been marked as expensive.
-        ///
-        /// NO if the receiver should not be allowed to use an interface marked as expensive to
-        /// satisfy the request, YES otherwise.
+        /// A Boolean value that indicates whether a connection created with this request is allowed to use network interfaces which have been marked as expensive.
         #[unsafe(method(allowsExpensiveNetworkAccess))]
         #[unsafe(method_family = none)]
         pub fn allowsExpensiveNetworkAccess(&self) -> bool;
@@ -660,11 +564,7 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setAllowsExpensiveNetworkAccess(&self, allows_expensive_network_access: bool);
 
-        /// sets whether a connection created with this request is allowed to use
-        /// network interfaces which have been marked as constrained.
-        ///
-        /// NO if the receiver should not be allowed to use an interface marked as constrained to
-        /// satisfy the request, YES otherwise.
+        /// A Boolean value that indicates whether a connection created with this request is allowed to use network interfaces which have been marked as constrained.
         #[unsafe(method(allowsConstrainedNetworkAccess))]
         #[unsafe(method_family = none)]
         pub fn allowsConstrainedNetworkAccess(&self) -> bool;
@@ -674,11 +574,7 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setAllowsConstrainedNetworkAccess(&self, allows_constrained_network_access: bool);
 
-        /// sets whether a connection created with this request is allowed to use
-        /// network interfaces which have been marked as ultra constrained.
-        ///
-        /// NO if the receiver should not be allowed to use an interface marked as ultra constrained to
-        /// satisfy the request, YES otherwise.
+        /// A Boolean value that indicates whether a connection created with this request is allowed to use network interfaces which have been marked as ultra constrained.
         #[unsafe(method(allowsUltraConstrainedNetworkAccess))]
         #[unsafe(method_family = none)]
         pub fn allowsUltraConstrainedNetworkAccess(&self) -> bool;
@@ -691,11 +587,9 @@ impl NSMutableURLRequest {
             allows_ultra_constrained_network_access: bool,
         );
 
-        /// returns whether we assume that server supports HTTP/3. Enables QUIC
-        /// racing without HTTP/3 service discovery.
+        /// A Boolean value that indicates whether the server is assumed to support HTTP/3.
         ///
-        /// Returns: YES if server endpoint is known to support HTTP/3. Defaults to NO.
-        /// The default may be YES in a future OS update.
+        /// When `YES`, enables QUIC racing without HTTP/3 service discovery. Defaults to `NO`. The default may be `YES` in a future OS update.
         #[unsafe(method(assumesHTTP3Capable))]
         #[unsafe(method_family = none)]
         pub fn assumesHTTP3Capable(&self) -> bool;
@@ -705,10 +599,9 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setAssumesHTTP3Capable(&self, assumes_http3_capable: bool);
 
-        /// Sets the NSURLRequestAttribution to associate with this request.
+        /// The `NSURLRequestAttribution` to associate with this request.
         ///
-        /// Set to NSURLRequestAttributionUser if the URL was specified by the
-        /// user. Defaults to NSURLRequestAttributionDeveloper.
+        /// Set to `NSURLRequestAttributionUser` if the URL was specified by the user. Defaults to `NSURLRequestAttributionDeveloper`.
         #[unsafe(method(attribution))]
         #[unsafe(method_family = none)]
         pub fn attribution(&self) -> NSURLRequestAttribution;
@@ -718,10 +611,9 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setAttribution(&self, attribution: NSURLRequestAttribution);
 
-        /// sets whether a request is required to do DNSSEC validation during DNS lookup.
+        /// A Boolean value that indicates whether a request requires DNSSEC validation during DNS lookup.
         ///
-        /// YES, if the DNS lookup for this request should require DNSSEC validation,
-        /// No otherwise. Defaults to NO.
+        /// `YES` if the DNS lookup for this request should require DNSSEC validation. Defaults to `NO`.
         #[unsafe(method(requiresDNSSECValidation))]
         #[unsafe(method_family = none)]
         pub fn requiresDNSSECValidation(&self) -> bool;
@@ -731,12 +623,9 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setRequiresDNSSECValidation(&self, requires_dnssec_validation: bool);
 
-        /// Allows storing and usage of DNS answers, potentially beyond TTL expiry,
-        /// in a persistent per-process cache. This should only be set for hostnames whose resolutions
-        /// are not expected to change across networks.
+        /// A Boolean value that indicates whether storing and usage of DNS answers in a persistent per-process cache is allowed.
         ///
-        /// YES, if the DNS lookup for this request is allowed to use a persistent per-process cache,
-        /// NO otherwise. Defaults to NO.
+        /// This should only be set for hostnames whose resolutions are not expected to change across networks. Defaults to `NO`.
         #[unsafe(method(allowsPersistentDNS))]
         #[unsafe(method_family = none)]
         pub fn allowsPersistentDNS(&self) -> bool;
@@ -765,37 +654,24 @@ impl NSMutableURLRequest {
 impl NSMutableURLRequest {
     extern_methods!(
         #[cfg(feature = "NSURL")]
-        /// Allocates and initializes an NSURLRequest with the given
-        /// URL.
+        /// Allocates and initializes an `NSURLRequest` with the given URL.
         ///
-        /// Default values are used for cache policy
-        /// (NSURLRequestUseProtocolCachePolicy) and timeout interval (60
-        /// seconds).
+        /// Default values are used for cache policy (`NSURLRequestUseProtocolCachePolicy`) and timeout interval (60 seconds).
         ///
-        /// Parameter `URL`: The URL for the request.
-        ///
-        /// Returns: A newly-created and autoreleased NSURLRequest instance.
+        /// - Parameter URL: The URL for the request.
+        /// - Returns: A newly-created and autoreleased `NSURLRequest` instance.
         #[unsafe(method(requestWithURL:))]
         #[unsafe(method_family = none)]
         pub fn requestWithURL(url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSURL"))]
-        /// Allocates and initializes a NSURLRequest with the given
-        /// URL and cache policy.
+        /// Allocates and initializes an `NSURLRequest` with the given URL and cache policy.
         ///
-        /// Parameter `URL`: The URL for the request.
-        ///
-        /// Parameter `cachePolicy`: The cache policy for the request.
-        ///
-        /// Parameter `timeoutInterval`: The timeout interval for the request. See the
-        /// commentary for the
-        /// <tt>
-        /// timeoutInterval
-        /// </tt>
-        /// for more information on
-        /// timeout intervals.
-        ///
-        /// Returns: A newly-created and autoreleased NSURLRequest instance.
+        /// - Parameters:
+        /// - URL: The URL for the request.
+        /// - cachePolicy: The cache policy for the request.
+        /// - timeoutInterval: The timeout interval for the request, in seconds.
+        /// - Returns: A newly-created and autoreleased `NSURLRequest` instance.
         #[unsafe(method(requestWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = none)]
         pub fn requestWithURL_cachePolicy_timeoutInterval(
@@ -805,39 +681,26 @@ impl NSMutableURLRequest {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        /// Initializes an NSURLRequest with the given URL.
+        /// Initializes an `NSURLRequest` with the given URL.
         ///
-        /// Default values are used for cache policy
-        /// (NSURLRequestUseProtocolCachePolicy) and timeout interval (60
-        /// seconds).
+        /// Default values are used for cache policy (`NSURLRequestUseProtocolCachePolicy`) and timeout interval (60 seconds).
         ///
-        /// Parameter `URL`: The URL for the request.
-        ///
-        /// Returns: An initialized NSURLRequest.
+        /// - Parameter URL: The URL for the request.
+        /// - Returns: An initialized `NSURLRequest`.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSURL"))]
-        /// Initializes an NSURLRequest with the given URL and
-        /// cache policy.
+        /// Initializes an `NSURLRequest` with the given URL, cache policy, and timeout interval.
         ///
-        /// This is the designated initializer for the
-        /// NSURLRequest class.
+        /// This is the designated initializer for the `NSURLRequest` class.
         ///
-        /// Parameter `URL`: The URL for the request.
-        ///
-        /// Parameter `cachePolicy`: The cache policy for the request.
-        ///
-        /// Parameter `timeoutInterval`: The timeout interval for the request. See the
-        /// commentary for the
-        /// <tt>
-        /// timeoutInterval
-        /// </tt>
-        /// for more information on
-        /// timeout intervals.
-        ///
-        /// Returns: An initialized NSURLRequest.
+        /// - Parameters:
+        /// - URL: The URL for the request.
+        /// - cachePolicy: The cache policy for the request.
+        /// - timeoutInterval: The timeout interval for the request, in seconds.
+        /// - Returns: An initialized `NSURLRequest`.
         #[unsafe(method(initWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL_cachePolicy_timeoutInterval(
@@ -871,87 +734,56 @@ impl DefaultRetained for NSMutableURLRequest {
 
 /// NSHTTPURLRequest.
 ///
-/// NSURLRequest(NSHTTPURLRequest)
-/// The NSHTTPURLRequest on NSURLRequest provides methods for accessing
-/// information specific to HTTP protocol requests.
+/// The `NSHTTPURLRequest` category on `NSURLRequest` provides methods for accessing information specific to HTTP protocol requests.
 impl NSURLRequest {
     extern_methods!(
         #[cfg(feature = "NSString")]
-        /// Returns the HTTP request method of the receiver.
-        ///
-        /// Returns: the HTTP request method of the receiver.
+        /// The HTTP request method of the receiver.
         #[unsafe(method(HTTPMethod))]
         #[unsafe(method_family = none)]
         pub fn HTTPMethod(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        /// Returns a dictionary containing all the HTTP header fields
-        /// of the receiver.
-        ///
-        /// Returns: a dictionary containing all the HTTP header fields of the
-        /// receiver.
+        /// A dictionary containing all the HTTP header fields of the receiver.
         #[unsafe(method(allHTTPHeaderFields))]
         #[unsafe(method_family = none)]
         pub fn allHTTPHeaderFields(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the value which corresponds to the given header
-        /// field. Note that, in keeping with the HTTP RFC, HTTP header field
-        /// names are case-insensitive.
+        /// Returns the value which corresponds to the given header field.
         ///
-        /// Parameter `field`: the header field name to use for the lookup
-        /// (case-insensitive).
+        /// In keeping with the HTTP RFC, HTTP header field names are case-insensitive.
         ///
-        /// Returns: the value associated with the given header field, or nil if
-        /// there is no value associated with the given header field.
+        /// - Parameter field: The header field name to use for the lookup (case-insensitive).
+        /// - Returns: The value associated with the given header field, or `nil` if there is no value associated with the given header field.
         #[unsafe(method(valueForHTTPHeaderField:))]
         #[unsafe(method_family = none)]
         pub fn valueForHTTPHeaderField(&self, field: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSData")]
-        /// Returns the request body data of the receiver.
+        /// The request body data of the receiver.
         ///
-        /// This data is sent as the message body of the request, as
-        /// in done in an HTTP POST request.
-        ///
-        /// Returns: The request body data of the receiver.
+        /// This data is sent as the message body of the request, as in done in an HTTP POST request.
         #[unsafe(method(HTTPBody))]
         #[unsafe(method_family = none)]
         pub fn HTTPBody(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSStream")]
-        /// Returns the request body stream of the receiver
-        /// if any has been set
+        /// The request body stream of the receiver, if any.
         ///
-        /// The stream is returned for examination only; it is
-        /// not safe for the caller to manipulate the stream in any way.  Also
-        /// note that the HTTPBodyStream and HTTPBody are mutually exclusive - only
-        /// one can be set on a given request.  Also note that the body stream is
-        /// preserved across copies, but is LOST when the request is coded via the
-        /// NSCoding protocol
-        ///
-        /// Returns: The request body stream of the receiver.
+        /// The stream is returned for examination only; it is not safe for the caller to manipulate the stream in any way.
+        /// Note that the `HTTPBodyStream` and `HTTPBody` are mutually exclusive - only one can be set on a given request.
+        /// Also note that the body stream is preserved across copies, but is lost when the request is coded via the `NSCoding` protocol.
         #[unsafe(method(HTTPBodyStream))]
         #[unsafe(method_family = none)]
         pub fn HTTPBodyStream(&self) -> Option<Retained<NSInputStream>>;
 
-        /// Determine whether default cookie handling will happen for
-        /// this request.
-        ///
-        /// NOTE: This value is not used prior to 10.3
-        ///
-        /// Returns: YES if cookies will be sent with and set for this request;
-        /// otherwise NO.
+        /// A Boolean value that indicates whether the default cookie handling will happen for this request.
         #[unsafe(method(HTTPShouldHandleCookies))]
         #[unsafe(method_family = none)]
         pub fn HTTPShouldHandleCookies(&self) -> bool;
 
-        /// Reports whether the receiver is not expected to wait for the
-        /// previous response before transmitting.
-        ///
-        /// Returns: YES if the receiver should transmit before the previous response
-        /// is received.  NO if the receiver should wait for the previous response
-        /// before transmitting.
+        /// A Boolean value that indicates whether the request should not wait for the previous response before transmitting.
         #[deprecated = "Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead"]
         #[unsafe(method(HTTPShouldUsePipelining))]
         #[unsafe(method_family = none)]
@@ -961,13 +793,11 @@ impl NSURLRequest {
 
 /// NSMutableHTTPURLRequest.
 ///
-/// NSMutableURLRequest(NSMutableHTTPURLRequest)
-/// The NSMutableHTTPURLRequest on NSMutableURLRequest provides methods
-/// for configuring information specific to HTTP protocol requests.
+/// The `NSMutableHTTPURLRequest` category on `NSMutableURLRequest` provides methods for configuring information specific to HTTP protocol requests.
 impl NSMutableURLRequest {
     extern_methods!(
         #[cfg(feature = "NSString")]
-        /// Sets the HTTP request method of the receiver.
+        /// The HTTP request method of the receiver.
         #[unsafe(method(HTTPMethod))]
         #[unsafe(method_family = none)]
         pub fn HTTPMethod(&self) -> Retained<NSString>;
@@ -981,21 +811,10 @@ impl NSMutableURLRequest {
         pub fn setHTTPMethod(&self, http_method: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        /// Sets the HTTP header fields of the receiver to the given
-        /// dictionary.
+        /// The HTTP header fields of the receiver.
         ///
-        /// This method replaces all header fields that may have
-        /// existed before this method call.
-        /// <p>
-        /// Since HTTP header fields must be string values, each object and
-        /// key in the dictionary passed to this method must answer YES when
-        /// sent an
-        /// <tt>
-        /// -isKindOfClass:[NSString class]
-        /// </tt>
-        /// message. If either
-        /// the key or value for a key-value pair answers NO when sent this
-        /// message, the key-value pair is skipped.
+        /// Setting this property replaces all header fields that may have existed before this method call.
+        /// Since HTTP header fields must be string values, each object and key in the dictionary must be an `NSString`.
         #[unsafe(method(allHTTPHeaderFields))]
         #[unsafe(method_family = none)]
         pub fn allHTTPHeaderFields(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
@@ -1014,42 +833,34 @@ impl NSMutableURLRequest {
         #[cfg(feature = "NSString")]
         /// Sets the value of the given HTTP header field.
         ///
-        /// If a value was previously set for the given header
-        /// field, that value is replaced with the given value. Note that, in
-        /// keeping with the HTTP RFC, HTTP header field names are
-        /// case-insensitive.
+        /// If a value was previously set for the given header field, that value is replaced with the given value.
+        /// In keeping with the HTTP RFC, HTTP header field names are case-insensitive.
         ///
-        /// Parameter `value`: the header field value.
-        ///
-        /// Parameter `field`: the header field name (case-insensitive).
+        /// - Parameters:
+        /// - value: The header field value.
+        /// - field: The header field name (case-insensitive).
         #[unsafe(method(setValue:forHTTPHeaderField:))]
         #[unsafe(method_family = none)]
         pub fn setValue_forHTTPHeaderField(&self, value: Option<&NSString>, field: &NSString);
 
         #[cfg(feature = "NSString")]
-        /// Adds an HTTP header field in the current header
-        /// dictionary.
+        /// Adds an HTTP header field value to the current header dictionary.
         ///
-        /// This method provides a way to add values to header
-        /// fields incrementally. If a value was previously set for the given
-        /// header field, the given value is appended to the previously-existing
-        /// value. The appropriate field delimiter, a comma in the case of HTTP,
-        /// is added by the implementation, and should not be added to the given
-        /// value by the caller. Note that, in keeping with the HTTP RFC, HTTP
-        /// header field names are case-insensitive.
+        /// If a value was previously set for the given header field, the given value is appended to the
+        /// previously-existing value. The appropriate field delimiter, a comma in the case of HTTP, is added
+        /// by the implementation. In keeping with the HTTP RFC, HTTP header field names are case-insensitive.
         ///
-        /// Parameter `value`: the header field value.
-        ///
-        /// Parameter `field`: the header field name (case-insensitive).
+        /// - Parameters:
+        /// - value: The header field value.
+        /// - field: The header field name (case-insensitive).
         #[unsafe(method(addValue:forHTTPHeaderField:))]
         #[unsafe(method_family = none)]
         pub fn addValue_forHTTPHeaderField(&self, value: &NSString, field: &NSString);
 
         #[cfg(feature = "NSData")]
-        /// Sets the request body data of the receiver.
+        /// The request body data of the receiver.
         ///
-        /// This data is sent as the message body of the request, as
-        /// in done in an HTTP POST request.
+        /// This data is sent as the message body of the request, as in done in an HTTP POST request.
         #[unsafe(method(HTTPBody))]
         #[unsafe(method_family = none)]
         pub fn HTTPBody(&self) -> Option<Retained<NSData>>;
@@ -1063,13 +874,11 @@ impl NSMutableURLRequest {
         pub fn setHTTPBody(&self, http_body: Option<&NSData>);
 
         #[cfg(feature = "NSStream")]
-        /// Sets the request body to be the contents of the given stream.
+        /// The request body stream of the receiver.
         ///
-        /// The provided stream should be unopened; the request will take
-        /// over the stream's delegate.  The entire stream's contents will be
-        /// transmitted as the HTTP body of the request.  Note that the body stream
-        /// and the body data (set by setHTTPBody:, above) are mutually exclusive
-        /// - setting one will clear the other.
+        /// The provided stream should be unopened; the request will take over the stream's delegate. The entire
+        /// stream's contents will be transmitted as the HTTP body of the request. Note that the body stream and the
+        /// body data (set by `setHTTPBody:`) are mutually exclusive - setting one will clear the other.
         #[unsafe(method(HTTPBodyStream))]
         #[unsafe(method_family = none)]
         pub fn HTTPBodyStream(&self) -> Option<Retained<NSInputStream>>;
@@ -1080,13 +889,9 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setHTTPBodyStream(&self, http_body_stream: Option<&NSInputStream>);
 
-        /// Decide whether default cookie handling will happen for
-        /// this request (YES if cookies should be sent with and set for this request;
-        /// otherwise NO).
+        /// A Boolean value that indicates whether default cookie handling will happen for this request.
         ///
-        /// The default is YES - in other words, cookies are sent from and
-        /// stored to the cookie manager by default.
-        /// NOTE: In releases prior to 10.3, this value is ignored
+        /// The default is `YES` - in other words, cookies are sent from and stored to the cookie manager by default.
         #[unsafe(method(HTTPShouldHandleCookies))]
         #[unsafe(method_family = none)]
         pub fn HTTPShouldHandleCookies(&self) -> bool;
@@ -1096,21 +901,11 @@ impl NSMutableURLRequest {
         #[unsafe(method_family = none)]
         pub fn setHTTPShouldHandleCookies(&self, http_should_handle_cookies: bool);
 
-        /// Sets whether the request should not wait for the previous response
-        /// before transmitting (YES if the receiver should transmit before the previous response is
-        /// received.  NO to wait for the previous response before transmitting)
+        /// A Boolean value that indicates whether the request should not wait for the previous response before transmitting.
         ///
-        /// Calling this method with a YES value does not guarantee HTTP
-        /// pipelining behavior.  This method may have no effect if an HTTP proxy is
-        /// configured, or if the HTTP request uses an unsafe request method (e.g., POST
-        /// requests will not pipeline).  Pipelining behavior also may not begin until
-        /// the second request on a given TCP connection.  There may be other situations
-        /// where pipelining does not occur even though YES was set.
-        /// HTTP 1.1 allows the client to send multiple requests to the server without
-        /// waiting for a response.  Though HTTP 1.1 requires support for pipelining,
-        /// some servers report themselves as being HTTP 1.1 but do not support
-        /// pipelining (disconnecting, sending resources misordered, omitting part of
-        /// a resource, etc.).
+        /// Calling this method with a `YES` value does not guarantee HTTP pipelining behavior. This method may have
+        /// no effect if an HTTP proxy is configured, or if the HTTP request uses an unsafe request method (e.g., POST
+        /// requests will not pipeline).
         #[deprecated = "Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead"]
         #[unsafe(method(HTTPShouldUsePipelining))]
         #[unsafe(method_family = none)]

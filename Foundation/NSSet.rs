@@ -9,7 +9,35 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// **************    Immutable Set    ***************
+    /// A static, unordered collection of unique objects.
+    ///
+    /// The `NSSet`, `NSMutableSet`, and `NSCountedSet` classes declare the programmatic interface to an unordered collection of objects.
+    ///
+    /// `NSSet` declares the programmatic interface for static sets of distinct objects. You establish a static set's entries when it's created, and can't modify the entries after that. `NSMutableSet`, on the other hand, declares a programmatic interface for dynamic sets of distinct objects. A dynamic — or mutable — set allows the addition and deletion of entries at any time, automatically allocating memory as needed.
+    ///
+    /// Use sets as an alternative to arrays when the order of elements isn't important and you need to consider performance in testing whether the set contains an object. With an array, testing for membership is slower than with sets.
+    ///
+    /// `NSSet` is "toll-free bridged" with its Core Foundation counterpart, `CFSet`. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// In Swift, use this class instead of a `Set` constant in cases where you require reference semantics.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// There should be little need of subclassing. If you need to customize behavior, it's often better to consider composition instead of subclassing.
+    ///
+    /// #### Methods to Override
+    ///
+    /// In a subclass, you must override all of its primitive methods:
+    ///
+    /// - `count`
+    /// - `member:`
+    /// - `objectEnumerator`
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// Before making a custom class of `NSSet`, investigate `NSHashTable` and the corresponding Core Foundation type, `CFSet`. Because `NSSet` and `CFSet` are "toll-free bridged," you can substitute a `CFSet` object for a `NSSet` object in your code (with appropriate casting). Although they're corresponding types, `CFSet` and `NSSet` don't have identical interfaces or implementations, and you can sometimes do things with `CFSet` that you can't easily do with `NSSet`.
+    ///
+    /// If the behavior you want to add supplements that of the existing class, you could write a category on `NSSet`. Keep in mind, however, that this category affects all instances of `NSSet` that you use, and this might have unintended consequences. Alternatively, you could use composition to achieve the desired behavior.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsset?language=objc)
     #[unsafe(super(NSObject))]
@@ -86,15 +114,43 @@ extern_conformance!(
 
 impl<ObjectType: Message> NSSet<ObjectType> {
     extern_methods!(
+        /// The number of members in the set.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub fn count(&self) -> NSUInteger;
 
+        /// Determines whether a given object is present in the set, and returns that object if it is.
+        ///
+        /// Each element of the set is checked for equality with `object` until a match is found or the end of the set is reached.  Objects are considered equal if `isEqual:` returns `YES`.
+        ///
+        /// - Parameter object: An object to look for in the set.
+        /// - Returns: Returns an object equal to `object` if it's present in the set, otherwise `nil`.
         #[unsafe(method(member:))]
         #[unsafe(method_family = none)]
         pub fn member(&self, object: &ObjectType) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// Returns an enumerator object that lets you access each object in the set.
+        ///
+        /// The following code fragment illustrates how you can use this method.
+        ///
+        /// ```objc
+        /// NSEnumerator *enumerator = [mySet objectEnumerator];
+        /// id value;
+        ///
+        /// while ((value = [enumerator nextObject])) {
+        /// /* code that acts on the set's values */
+        /// }
+        /// ```
+        ///
+        /// When this method is used with mutable subclasses of `NSSet`, your code shouldn't modify the set during enumeration. If you intend to modify the set, use the `allObjects` method to create a "snapshot" of the set's members. Enumerate the snapshot, but make your modifications to the original set.
+        ///
+        /// ### Special Considerations
+        ///
+        /// It is more efficient to use the fast enumeration protocol (see `NSFastEnumeration`). Fast enumeration is available in macOS 10.5 and later and iOS 2.0 and later.
+        ///
+        /// - Returns: An enumerator object that lets you access each object in the set.
+        ///
         /// # Safety
         ///
         /// The returned enumerator's underlying collection should not be mutated while in use.
@@ -102,10 +158,24 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
+        /// Initializes a newly allocated set.
+        ///
+        /// This method is a designated initializer of `NSSet`.
+        ///
+        /// - Returns: A set.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initializes a newly allocated set with a specified number of objects from a given C array of objects.
+        ///
+        /// This method is a designated initializer for `NSSet`.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects to add to the new set. If the same object appears more than once in `objects`, it is added only once to the returned set. Each object receives a `retain` message as it is added to the set.
+        /// - cnt: The number of objects from `objects` to add to the new set.
+        /// - Returns: An initialized set containing `cnt` objects from the list of objects specified by `objects`. The returned set might be different than the original receiver.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer or null.
@@ -139,24 +209,44 @@ impl<ObjectType: Message> DefaultRetained for NSSet<ObjectType> {
 impl<ObjectType: Message> NSSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSArray")]
+        /// An array containing the set's members, or an empty array if the set has no members.
+        ///
+        /// The order of the objects in the array is undefined.
         #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
         pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
 
+        /// Returns one of the objects in the set, or `nil` if the set contains no objects.
+        ///
+        /// - Returns: One of the objects in the set, or `nil` if the set contains no objects. The object returned is chosen at the set's convenience—the selection is not guaranteed to be random.
         #[unsafe(method(anyObject))]
         #[unsafe(method_family = none)]
         pub fn anyObject(&self) -> Option<Retained<ObjectType>>;
 
+        /// Returns a Boolean value that indicates whether a given object is present in the set.
+        ///
+        /// Each element of the set is checked for equality with `anObject` until a match is found or the end of the set is reached.  Objects are considered equal if `isEqual:` returns `YES`.
+        ///
+        /// - Parameter anObject: An object to look for in the set.
+        /// - Returns: `YES` if `anObject` is present in the set, otherwise `NO`.
         #[unsafe(method(containsObject:))]
         #[unsafe(method_family = none)]
         pub fn containsObject(&self, an_object: &ObjectType) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// A string that represents the contents of the set, formatted as a property list.
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
         pub fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a string that represents the contents of the set, formatted as a property list.
+        ///
+        /// This method sends each of the set's members  `descriptionWithLocale:` with `locale` passed as the sole parameter. If the set's members do not respond to `descriptionWithLocale:`, this method sends `description` instead.
+        ///
+        /// - Parameter locale: On iOS and macOS 10.5 and later, either an instance of `NSDictionary` or an `NSLocale` object may be used for `locale`.In OS X v10.4 and earlier it must be an instance of `NSDictionary`.
+        /// - Returns: A string that represents the contents of the set, formatted as a property list.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -167,18 +257,42 @@ impl<ObjectType: Message> NSSet<ObjectType> {
             locale: Option<&AnyObject>,
         ) -> Retained<NSString>;
 
+        /// Returns a Boolean value that indicates whether at least one object in the receiving set is also present in another given set.
+        ///
+        /// Object equality is tested using isEqual:.
+        ///
+        /// - Parameter otherSet: The set with which to compare the receiving set.
+        /// - Returns: `YES` if at least one object in the receiving set is also present in `otherSet`, otherwise `NO`.
         #[unsafe(method(intersectsSet:))]
         #[unsafe(method_family = none)]
         pub fn intersectsSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
+        /// Compares the receiving set to another set.
+        ///
+        /// Two sets have equal contents if they each have the same number of members and if each member of one set is present in the other. Object equality is tested using isEqual:.
+        ///
+        /// - Parameter otherSet: The set with which to compare the receiving set.
+        /// - Returns: `YES` if the contents of `otherSet` are equal to the contents of the receiving set, otherwise `NO`.
         #[unsafe(method(isEqualToSet:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
+        /// Returns a Boolean value that indicates whether every object in the receiving set is also present in another given set.
+        ///
+        /// Object equality is tested using isEqual:.
+        ///
+        /// - Parameter otherSet: The set with which to compare the receiving set.
+        /// - Returns: `YES` if every object in the receiving set is also present in `otherSet`, otherwise `NO`.
         #[unsafe(method(isSubsetOfSet:))]
         #[unsafe(method_family = none)]
         pub fn isSubsetOfSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
+        /// Sends a message specified by a given selector to each object in the set.
+        ///
+        /// The message specified by `aSelector` is sent once to each member of the set. This method raises an `NSInvalidArgumentException` if `aSelector` is `NULL`.
+        ///
+        /// - Parameter aSelector: A selector that specifies the message to send to the members of the set. The method must not take any arguments. It should not have the side effect of modifying the set. This value must not be `NULL`.
+        ///
         /// # Safety
         ///
         /// `a_selector` must be a valid selector.
@@ -186,6 +300,14 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn makeObjectsPerformSelector(&self, a_selector: Sel);
 
+        /// Sends a message specified by a given selector to each object in the set.
+        ///
+        /// The message specified by `aSelector` is sent, with `argument` as the argument, once to each member of the set. This method raises an `NSInvalidArgumentException` if `aSelector` is `NULL`.
+        ///
+        /// - Parameters:
+        /// - aSelector: A selector that specifies the message to send to the set's members. The method must take a single argument of type `id`. The method should not, as a side effect, modify the set. The value must not be `NULL`.
+        /// - argument: The object to pass as an argument to the method specified by `aSelector`.
+        ///
         /// # Safety
         ///
         /// - `a_selector` must be a valid selector.
@@ -198,10 +320,18 @@ impl<ObjectType: Message> NSSet<ObjectType> {
             argument: Option<&AnyObject>,
         );
 
+        /// Returns a new set formed by adding a given object to the receiving set.
+        ///
+        /// - Parameter anObject: The object to add to the set.
+        /// - Returns: A new set formed by adding `anObject` to the receiving set.
         #[unsafe(method(setByAddingObject:))]
         #[unsafe(method_family = none)]
         pub fn setByAddingObject(&self, an_object: &ObjectType) -> Retained<NSSet<ObjectType>>;
 
+        /// Returns a new set formed by adding the objects in a given set to the receiving set.
+        ///
+        /// - Parameter other: The set of objects to add to the receiving set.
+        /// - Returns: A new set formed by adding the objects in `other` to the receiving set.
         #[unsafe(method(setByAddingObjectsFromSet:))]
         #[unsafe(method_family = none)]
         pub fn setByAddingObjectsFromSet(
@@ -210,6 +340,10 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         ) -> Retained<NSSet<ObjectType>>;
 
         #[cfg(feature = "NSArray")]
+        /// Returns a new set formed by adding the objects in a given array to the receiving set.
+        ///
+        /// - Parameter other: The array of objects to add to the set.
+        /// - Returns: A new set formed by adding the objects in `other` to the receiving set.
         #[unsafe(method(setByAddingObjectsFromArray:))]
         #[unsafe(method_family = none)]
         pub fn setByAddingObjectsFromArray(
@@ -218,6 +352,14 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         ) -> Retained<NSSet<ObjectType>>;
 
         #[cfg(feature = "block2")]
+        /// Executes a given block using each object in the set.
+        ///
+        /// - Parameter block: The block to apply to elements in the set.
+        ///
+        /// The block takes two arguments:
+        ///
+        /// - `obj`: The element in the set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this Boolean to `YES` within the block.
         #[unsafe(method(enumerateObjectsUsingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateObjectsUsingBlock(
@@ -226,6 +368,16 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// Executes a given block using each object in the set, using the specified enumeration options.
+        ///
+        /// - Parameters:
+        /// - opts: A bitmask that specifies the options for the enumeration.
+        /// - block: The block to apply to elements in the set.
+        ///
+        /// The block takes two arguments:
+        ///
+        /// - `obj`: The element in the set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this Boolean to `YES` within the block.
         #[unsafe(method(enumerateObjectsWithOptions:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateObjectsWithOptions_usingBlock(
@@ -235,6 +387,18 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         );
 
         #[cfg(feature = "block2")]
+        /// Returns a set of objects that pass a test in a given block.
+        ///
+        /// - Parameter predicate: The block to apply to elements in the array.
+        ///
+        /// The block takes two arguments:
+        ///
+        /// - `obj`: The element in the set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this Boolean to `YES` within the block.
+        ///
+        /// The block returns a Boolean value that indicates whether `obj` passed the test.
+        ///
+        /// - Returns: An `NSSet` containing objects that pass the test.
         #[unsafe(method(objectsPassingTest:))]
         #[unsafe(method_family = none)]
         pub fn objectsPassingTest(
@@ -243,6 +407,20 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         ) -> Retained<NSSet<ObjectType>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// Returns a set of objects that pass a test in a given block, using the specified enumeration options.
+        ///
+        /// - Parameters:
+        /// - opts: A bitmask that specifies the options for the enumeration.
+        /// - predicate: The block to apply to elements in the set.
+        ///
+        /// The block takes two arguments:
+        ///
+        /// - `obj`: The element in the set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this Boolean to `YES` within the block.
+        ///
+        /// The block returns a Boolean value that indicates whether `obj` passed the test.
+        ///
+        /// - Returns: An `NSSet` containing objects that pass the test.
         #[unsafe(method(objectsWithOptions:passingTest:))]
         #[unsafe(method_family = none)]
         pub fn objectsWithOptions_passingTest(
@@ -256,14 +434,30 @@ impl<ObjectType: Message> NSSet<ObjectType> {
 /// NSSetCreation.
 impl<ObjectType: Message> NSSet<ObjectType> {
     extern_methods!(
+        /// Creates and returns an empty set.
+        ///
+        /// This method is declared primarily for the use of mutable subclasses of `NSSet`.
+        ///
+        /// - Returns: A new empty set.
         #[unsafe(method(set))]
         #[unsafe(method_family = none)]
         pub fn set() -> Retained<Self>;
 
+        /// Creates and returns a set that contains a single given object.
+        ///
+        /// - Parameter object: The object to add to the new set. `object` receives a `retain` message after being added to the set.
+        /// - Returns: A new set that contains a single member, `object`.
         #[unsafe(method(setWithObject:))]
         #[unsafe(method_family = none)]
         pub fn setWithObject(object: &ObjectType) -> Retained<Self>;
 
+        /// Creates and returns a set containing a specified number of objects from a given C array of objects.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects to add to the new set. If the same object appears more than once in `objects`, it is added only once to the returned set. Each object receives a `retain` message as it is added to the set.
+        /// - cnt: The number of objects from `objects` to add to the new set.
+        /// - Returns: A new set containing `cnt` objects from the list of objects specified by `objects`.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer.
@@ -274,19 +468,43 @@ impl<ObjectType: Message> NSSet<ObjectType> {
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Creates and returns a set containing the objects from another set.
+        ///
+        /// - Parameter set: A set containing the objects to add to the new set. Each object receives a `retain` message as it is added to the new set.
+        /// - Returns: A new set containing the objects from `set`.
         #[unsafe(method(setWithSet:))]
         #[unsafe(method_family = none)]
         pub fn setWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Creates and returns a set containing a uniqued collection of the objects contained in a given array.
+        ///
+        /// - Parameter array: An array containing the objects to add to the new set. If the same object appears more than once in `array`, it is added only once to the returned set. Each object receives a `retain` message as it is added to the set.
+        /// - Returns: A new set containing a uniqued collection of the objects contained in `array`.
         #[unsafe(method(setWithArray:))]
         #[unsafe(method_family = none)]
         pub fn setWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
+        /// Initializes a newly allocated set and adds to it objects from another given set.
+        ///
+        /// - Parameter set: A set containing objects to add to the receiving set. Each object is retained as it is added.
+        /// - Returns: An initialized objects set containing the objects from `set`. The returned set might be different than the original receiver.
         #[unsafe(method(initWithSet:))]
         #[unsafe(method_family = init)]
         pub fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>) -> Retained<Self>;
 
+        /// Initializes a newly allocated set and adds to it members of another given set.
+        ///
+        /// After an immutable set has been initialized in this way, it cannot be modified.
+        ///
+        /// The `copyWithZone:` method performs a shallow copy. If you have a collection of arbitrary depth, passing `YES` for the `flag` parameter will perform an immutable copy of the first level below the surface. If you pass `NO` the mutability of the first level is unaffected. In either case, the mutability of all deeper levels is unaffected.
+        ///
+        /// - Parameters:
+        /// - set: A set containing objects to add to the new set.
+        /// - flag: If `YES`, each object in `set` receives a `copyWithZone:` message to create a copy of the object—objects must conform to the `NSCopying` protocol. In a managed memory environment, this is instead of the `retain` message the object would otherwise receive. The object copy is then added to the returned set.
+        ///
+        /// If `NO`, then in a managed memory environment each object in `set` simply receives a `retain` message when it is added to the returned set.
+        /// - Returns: An initialized set that contains the members of `set`. The returned set might be different than the original receiver.
         #[unsafe(method(initWithSet:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSet_copyItems(
@@ -296,6 +514,10 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Initializes a newly allocated set with the objects that are contained in a given array.
+        ///
+        /// - Parameter array: An array of objects to add to the new set. If the same object appears more than once in `array`, it is represented only once in the returned set. Each object receives a `retain` message as it is added to the set.
+        /// - Returns: An initialized set with the contents of `array`. The returned set might be different than the original receiver.
         #[unsafe(method(initWithArray:))]
         #[unsafe(method_family = init)]
         pub fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>) -> Retained<Self>;
@@ -307,14 +529,30 @@ impl<ObjectType: Message> NSSet<ObjectType> {
 /// NSSetCreation.
 impl<ObjectType: Message> NSMutableSet<ObjectType> {
     extern_methods!(
+        /// Creates and returns an empty set.
+        ///
+        /// This method is declared primarily for the use of mutable subclasses of `NSSet`.
+        ///
+        /// - Returns: A new empty set.
         #[unsafe(method(set))]
         #[unsafe(method_family = none)]
         pub fn set() -> Retained<Self>;
 
+        /// Creates and returns a set that contains a single given object.
+        ///
+        /// - Parameter object: The object to add to the new set. `object` receives a `retain` message after being added to the set.
+        /// - Returns: A new set that contains a single member, `object`.
         #[unsafe(method(setWithObject:))]
         #[unsafe(method_family = none)]
         pub fn setWithObject(object: &ObjectType) -> Retained<Self>;
 
+        /// Creates and returns a set containing a specified number of objects from a given C array of objects.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects to add to the new set. If the same object appears more than once in `objects`, it is added only once to the returned set. Each object receives a `retain` message as it is added to the set.
+        /// - cnt: The number of objects from `objects` to add to the new set.
+        /// - Returns: A new set containing `cnt` objects from the list of objects specified by `objects`.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer.
@@ -325,19 +563,43 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Creates and returns a set containing the objects from another set.
+        ///
+        /// - Parameter set: A set containing the objects to add to the new set. Each object receives a `retain` message as it is added to the new set.
+        /// - Returns: A new set containing the objects from `set`.
         #[unsafe(method(setWithSet:))]
         #[unsafe(method_family = none)]
         pub fn setWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Creates and returns a set containing a uniqued collection of the objects contained in a given array.
+        ///
+        /// - Parameter array: An array containing the objects to add to the new set. If the same object appears more than once in `array`, it is added only once to the returned set. Each object receives a `retain` message as it is added to the set.
+        /// - Returns: A new set containing a uniqued collection of the objects contained in `array`.
         #[unsafe(method(setWithArray:))]
         #[unsafe(method_family = none)]
         pub fn setWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
+        /// Initializes a newly allocated set and adds to it objects from another given set.
+        ///
+        /// - Parameter set: A set containing objects to add to the receiving set. Each object is retained as it is added.
+        /// - Returns: An initialized objects set containing the objects from `set`. The returned set might be different than the original receiver.
         #[unsafe(method(initWithSet:))]
         #[unsafe(method_family = init)]
         pub fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>) -> Retained<Self>;
 
+        /// Initializes a newly allocated set and adds to it members of another given set.
+        ///
+        /// After an immutable set has been initialized in this way, it cannot be modified.
+        ///
+        /// The `copyWithZone:` method performs a shallow copy. If you have a collection of arbitrary depth, passing `YES` for the `flag` parameter will perform an immutable copy of the first level below the surface. If you pass `NO` the mutability of the first level is unaffected. In either case, the mutability of all deeper levels is unaffected.
+        ///
+        /// - Parameters:
+        /// - set: A set containing objects to add to the new set.
+        /// - flag: If `YES`, each object in `set` receives a `copyWithZone:` message to create a copy of the object—objects must conform to the `NSCopying` protocol. In a managed memory environment, this is instead of the `retain` message the object would otherwise receive. The object copy is then added to the returned set.
+        ///
+        /// If `NO`, then in a managed memory environment each object in `set` simply receives a `retain` message when it is added to the returned set.
+        /// - Returns: An initialized set that contains the members of `set`. The returned set might be different than the original receiver.
         #[unsafe(method(initWithSet:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSet_copyItems(
@@ -347,6 +609,10 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Initializes a newly allocated set with the objects that are contained in a given array.
+        ///
+        /// - Parameter array: An array of objects to add to the new set. If the same object appears more than once in `array`, it is represented only once in the returned set. Each object receives a `retain` message as it is added to the set.
+        /// - Returns: An initialized set with the contents of `array`. The returned set might be different than the original receiver.
         #[unsafe(method(initWithArray:))]
         #[unsafe(method_family = init)]
         pub fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>) -> Retained<Self>;
@@ -354,7 +620,28 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
 }
 
 extern_class!(
-    /// **************    Mutable Set    ***************
+    /// A dynamic unordered collection of unique objects.
+    ///
+    /// You can use this type in Swift instead of a `Set` in cases that require reference semantics.
+    ///
+    /// The `NSMutableSet` class declares the programmatic interface to a mutable, unordered collection of distinct objects.
+    ///
+    /// The `NSCountedSet` class, which is a concrete subclass of `NSMutableSet`, supports mutable sets that can contain multiple instances of the same element. The `NSSet` class supports creating and managing immutable sets.
+    ///
+    /// NSMutableSet is "toll-free bridged" with its Core Foundation counterpart, `CFMutableSet`. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// There should be little need of subclassing. If you need to customize behavior, it is often better to consider composition instead of subclassing.
+    ///
+    /// #### Methods to Override
+    ///
+    /// In a subclass, you must override both of its primitive methods:
+    ///
+    /// - `addObject:`
+    /// - `removeObject:`
+    ///
+    /// You must also override the primitive methods of the `NSSet` class.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableset?language=objc)
     #[unsafe(super(NSSet<ObjectType>, NSObject))]
@@ -433,18 +720,37 @@ extern_conformance!(
 
 impl<ObjectType: Message> NSMutableSet<ObjectType> {
     extern_methods!(
+        /// Adds a given object to the set, if it is not already a member.
+        ///
+        /// - Parameter object: The object to add to the set.
         #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub fn addObject(&self, object: &ObjectType);
 
+        /// Removes a given object from the set.
+        ///
+        /// - Parameter object: The object to remove from the set.
         #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
         pub fn removeObject(&self, object: &ObjectType);
 
+        /// Initializes a newly allocated set.
+        ///
+        /// This method is a designated initializer of `NSMutableSet`.
+        ///
+        /// - Returns: A set.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns an initialized mutable set with a given initial capacity.
+        ///
+        /// Mutable sets allocate additional memory as needed, so `numItems` simply establishes the object's initial capacity.
+        ///
+        /// This method is a designated initializer for `NSMutableSet`.
+        ///
+        /// - Parameter numItems: The initial capacity of the set.
+        /// - Returns: An initialized mutable set with initial capacity to hold `numItems` members. The returned set might be different than the original receiver.
         #[unsafe(method(initWithCapacity:))]
         #[unsafe(method_family = init)]
         pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
@@ -454,6 +760,15 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
 /// Methods declared on superclass `NSSet`.
 impl<ObjectType: Message> NSMutableSet<ObjectType> {
     extern_methods!(
+        /// Initializes a newly allocated set with a specified number of objects from a given C array of objects.
+        ///
+        /// This method is a designated initializer for `NSSet`.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects to add to the new set. If the same object appears more than once in `objects`, it is added only once to the returned set. Each object receives a `retain` message as it is added to the set.
+        /// - cnt: The number of objects from `objects` to add to the new set.
+        /// - Returns: An initialized set containing `cnt` objects from the list of objects specified by `objects`. The returned set might be different than the original receiver.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer or null.
@@ -487,26 +802,42 @@ impl<ObjectType: Message> DefaultRetained for NSMutableSet<ObjectType> {
 impl<ObjectType: Message> NSMutableSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSArray")]
+        /// Adds to the set each object contained in a given array that is not already a member.
+        ///
+        /// - Parameter array: An array of objects to add to the set.
         #[unsafe(method(addObjectsFromArray:))]
         #[unsafe(method_family = none)]
         pub fn addObjectsFromArray(&self, array: &NSArray<ObjectType>);
 
+        /// Removes from the receiving set each object that isn't a member of another given set.
+        ///
+        /// - Parameter otherSet: The set with which to perform the intersection.
         #[unsafe(method(intersectSet:))]
         #[unsafe(method_family = none)]
         pub fn intersectSet(&self, other_set: &NSSet<ObjectType>);
 
+        /// Removes each object in another given set from the receiving set, if present.
+        ///
+        /// - Parameter otherSet: The set of objects to remove from the receiving set.
         #[unsafe(method(minusSet:))]
         #[unsafe(method_family = none)]
         pub fn minusSet(&self, other_set: &NSSet<ObjectType>);
 
+        /// Empties the set of all of its members.
         #[unsafe(method(removeAllObjects))]
         #[unsafe(method_family = none)]
         pub fn removeAllObjects(&self);
 
+        /// Adds each object in another given set to the receiving set, if not present.
+        ///
+        /// - Parameter otherSet: The set of objects to add to the receiving set.
         #[unsafe(method(unionSet:))]
         #[unsafe(method_family = none)]
         pub fn unionSet(&self, other_set: &NSSet<ObjectType>);
 
+        /// Empties the receiving set, then adds each object contained in another given set.
+        ///
+        /// - Parameter otherSet: The set whose members replace the receiving set's content.
         #[unsafe(method(setSet:))]
         #[unsafe(method_family = none)]
         pub fn setSet(&self, other_set: &NSSet<ObjectType>);
@@ -516,6 +847,12 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
 /// NSMutableSetCreation.
 impl<ObjectType: Message> NSMutableSet<ObjectType> {
     extern_methods!(
+        /// Creates and returns a mutable set with a given initial capacity.
+        ///
+        /// Mutable sets allocate additional memory as needed, so `numItems` simply establishes the object's initial capacity.
+        ///
+        /// - Parameter numItems: The initial capacity of the new set.
+        /// - Returns: A mutable set with initial capacity to hold `numItems` members.
         #[unsafe(method(setWithCapacity:))]
         #[unsafe(method_family = none)]
         pub fn setWithCapacity(num_items: NSUInteger) -> Retained<Self>;
@@ -523,7 +860,28 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
 }
 
 extern_class!(
-    /// **************    Counted Set    ***************
+    /// A mutable, unordered collection of distinct objects that may appear more than once in the collection.
+    ///
+    /// Each distinct object inserted into an `NSCountedSet` object has a counter associated with it. `NSCountedSet` keeps track of the number of times objects are inserted and requires that objects be removed the same number of times. Thus, there is only one instance of an object in an `NSSet` object even if the object has been added to the set multiple times. The `count` method defined by the superclass `NSSet` has special significance; it returns the number of distinct objects, not the total number of times objects are represented in the set. The `NSSet` and `NSMutableSet` classes are provided for static and dynamic sets, respectively, whose elements are distinct.
+    ///
+    /// While `NSCountedSet` and `CFBag` are not toll-free bridged, they provide similar functionality. For more information about `CFBag`, see the `CFBag`.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Because `NSCountedSet` is not a class cluster, it does not have primitive methods that provide the basis for its implementation. In general, there should be little need for subclassing.
+    ///
+    /// #### Methods to Override
+    ///
+    /// If you subclass `NSCountedSet`, you must override any method of which you want to change the behavior.
+    ///
+    /// If you change the primitive behavior of an `NSCountedSet`, for instance if you change how objects are stored, you must override all of the affected methods. These include:
+    ///
+    /// - `addObject:`
+    /// - `removeObject:`
+    /// - `objectEnumerator`
+    /// - `countForObject:`
+    ///
+    /// If you change the primitive behavior, you must also override the primitive methods of `NSSet` and `NSMutableSet`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountedset?language=objc)
     #[unsafe(super(NSMutableSet<ObjectType>, NSSet<ObjectType>, NSObject))]
@@ -566,24 +924,52 @@ extern_conformance!(
 
 impl<ObjectType: Message> NSCountedSet<ObjectType> {
     extern_methods!(
+        /// Returns a counted set object initialized with enough memory to hold a given number of objects.
+        ///
+        /// The method is the designated initializer for `NSCountedSet`.
+        ///
+        /// Note that the capacity is simply a hint to help initial memory allocation--the initial count of the object is `0`, and the set still grows and shrinks as you add and remove objects. The hint is typically useful if the set will become large.
+        ///
+        /// - Parameter numItems: The initial capacity of the new counted set.
+        /// - Returns: A counted set object initialized with enough memory to hold `numItems` objects
         #[unsafe(method(initWithCapacity:))]
         #[unsafe(method_family = init)]
         pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Returns a counted set object initialized with the contents of a given array.
+        ///
+        /// - Parameter array: An array of objects to add to the new set.
+        /// - Returns: An initialized counted set object with the contents of `array`. The returned object might be different than the original receiver.
         #[unsafe(method(initWithArray:))]
         #[unsafe(method_family = init)]
         pub fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>) -> Retained<Self>;
 
+        /// Returns a counted set object initialized with the contents of a given set.
+        ///
+        /// - Parameter set: An set of objects to add to the new set.
+        /// - Returns: An initialized counted set object with the contents of `set`. The returned object might be different than the original receiver.
         #[unsafe(method(initWithSet:))]
         #[unsafe(method_family = init)]
         pub fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>) -> Retained<Self>;
 
+        /// Returns the count associated with a given object in the set.
+        ///
+        /// - Parameter object: The object for which to return the count.
+        /// - Returns: The count associated with `object` in the set, which can be thought of as the number of occurrences of `object` present in the set.
         #[unsafe(method(countForObject:))]
         #[unsafe(method_family = none)]
         pub fn countForObject(&self, object: &ObjectType) -> NSUInteger;
 
         #[cfg(feature = "NSEnumerator")]
+        /// Returns an enumerator object that lets you access each object in the set once, independent of its count.
+        ///
+        /// If you add a given object to the counted set multiple times, an enumeration of the set will produce that object only once.
+        ///
+        /// You shouldn't modify the set during enumeration. If you intend to modify the set, use the `allObjects` method to create a "snapshot," then enumerate the snapshot and modify the original set.
+        ///
+        /// - Returns: An enumerator object that lets you access each object in the set once, independent of its count.
+        ///
         /// # Safety
         ///
         /// The returned enumerator's underlying collection should not be mutated while in use.
@@ -591,10 +977,20 @@ impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
+        /// Adds a given object to the set.
+        ///
+        /// If `object` is already a member, `addObject:` increments the count associated with the object. If `object` is not already a member, it is sent a `retain` message.
+        ///
+        /// - Parameter object: The object to add to the set.
         #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub fn addObject(&self, object: &ObjectType);
 
+        /// Removes a given object from the set.
+        ///
+        /// If `object` is present in the set, decrements the count associated with it. If the count is decremented to `0`, `object` is removed from the set. `removeObject:` does nothing if `object` is not present in the set.
+        ///
+        /// - Parameter object: The object to remove from the set.
         #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
         pub fn removeObject(&self, object: &ObjectType);
@@ -604,6 +1000,11 @@ impl<ObjectType: Message> NSCountedSet<ObjectType> {
 /// Methods declared on superclass `NSMutableSet`.
 impl<ObjectType: Message> NSCountedSet<ObjectType> {
     extern_methods!(
+        /// Initializes a newly allocated set.
+        ///
+        /// This method is a designated initializer of `NSMutableSet`.
+        ///
+        /// - Returns: A set.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -613,6 +1014,15 @@ impl<ObjectType: Message> NSCountedSet<ObjectType> {
 /// Methods declared on superclass `NSSet`.
 impl<ObjectType: Message> NSCountedSet<ObjectType> {
     extern_methods!(
+        /// Initializes a newly allocated set with a specified number of objects from a given C array of objects.
+        ///
+        /// This method is a designated initializer for `NSSet`.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects to add to the new set. If the same object appears more than once in `objects`, it is added only once to the returned set. Each object receives a `retain` message as it is added to the set.
+        /// - cnt: The number of objects from `objects` to add to the new set.
+        /// - Returns: An initialized set containing `cnt` objects from the list of objects specified by `objects`. The returned set might be different than the original receiver.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer or null.

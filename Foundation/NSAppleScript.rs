@@ -6,37 +6,64 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrormessage?language=objc)
+    /// An `NSString` that supplies a detailed description of the error condition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrormessage?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorMessage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrornumber?language=objc)
+    /// An `NSNumber` that specifies the error number.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrornumber?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorappname?language=objc)
+    /// An `NSString` that specifies the name of the application that generated the error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorappname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorAppName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorbriefmessage?language=objc)
+    /// An `NSString` that provides a brief description of the error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorbriefmessage?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorBriefMessage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorrange?language=objc)
+    /// An `NSValue` that specifies a range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorrange?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorRange: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript?language=objc)
+    /// An object that provides the ability to load, compile, and execute scripts.
+    ///
+    /// This class provides applications with the ability to
+    ///
+    /// - load a script from a URL or from a text string
+    /// - compile or execute a script or an individual Apple event
+    /// - obtain an `NSAppleEventDescriptor` containing the reply from an executed script or event
+    /// - obtain an attributed string for a compiled script, suitable for display in a script editor
+    /// - obtain various kinds of information about any errors that may occur
+    ///
+    /// > Important:
+    /// > `NSAppleScript` provides the ``executeAppleEvent(_:error:)`` method so that you can send an Apple event to invoke a handler in a script. (In an AppleScript script, a handler is the equivalent of a function.) However, you cannot use this method to send Apple events to other applications.
+    ///
+    /// When you create an instance of `NSAppleScript` object, you can use a URL to specify a script that can be in either text or compiled form, or you can supply the script as a string. Should an error occur when compiling or executing the script, several of the methods return a dictionary containing error information. The keys for obtaining error information, such as ``errorMessage``, are described in the Constants section.
+    ///
+    /// See also NSAppleScript Additions Reference in the Application Kit framework, which defines a method that returns the syntax-highlighted source code for a script.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleScript;
@@ -59,6 +86,15 @@ extern_conformance!(
 impl NSAppleScript {
     extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSURL"))]
+        /// Initializes a newly allocated script instance from the source identified by the passed URL.
+        ///
+        /// - Parameters:
+        /// - url: A URL that locates a script, in either text or compiled form.
+        /// - errorInfo: On return, if an error occurs, a pointer to an error information dictionary.
+        /// - Returns: The initialized script object, `nil` if an error occurs.
+        ///
+        /// This method is a designated initializer for `NSAppleScript`.
+        ///
         /// # Safety
         ///
         /// `error_info` generic should be of the correct type.
@@ -71,20 +107,35 @@ impl NSAppleScript {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes a newly allocated script instance from the passed source.
+        ///
+        /// - Parameter source: A string containing the source code of a script.
+        /// - Returns: The initialized script object, `nil` if an error occurs.
+        ///
+        /// This method is a designated initializer for `NSAppleScript`.
         #[unsafe(method(initWithSource:))]
         #[unsafe(method_family = init)]
         pub fn initWithSource(this: Allocated<Self>, source: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// The script source for the receiver.
+        ///
+        /// It is possible for an `NSAppleScript` that has been instantiated with `-initWithContentsOfURL:error:` to be a script for which the source code is not available but is nonetheless executable.
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
         pub fn source(&self) -> Option<Retained<NSString>>;
 
+        /// A Boolean value that indicates whether the receiver's script has been compiled.
         #[unsafe(method(isCompiled))]
         #[unsafe(method_family = none)]
         pub fn isCompiled(&self) -> bool;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Compiles the receiver, if it is not already compiled.
+        ///
+        /// - Parameter errorInfo: On return, if an error occurs, a pointer to an error information dictionary.
+        /// - Returns: `YES` for success or if the script was already compiled, `NO` otherwise.
+        ///
         /// # Safety
         ///
         /// `error_info` generic should be of the correct type.
@@ -100,6 +151,13 @@ impl NSAppleScript {
             feature = "NSDictionary",
             feature = "NSString"
         ))]
+        /// Executes the receiver, compiling it first if it is not already compiled.
+        ///
+        /// - Parameter errorInfo: On return, if an error occurs, a pointer to an error information dictionary.
+        /// - Returns: The result of executing the event, or `nil` if an error occurs.
+        ///
+        /// Any changes to property values caused by executing the script do not persist.
+        ///
         /// # Safety
         ///
         /// `error_info` generic should be of the correct type.
@@ -115,6 +173,17 @@ impl NSAppleScript {
             feature = "NSDictionary",
             feature = "NSString"
         ))]
+        /// Executes an Apple event in the context of the receiver, as a means of allowing the application to invoke a handler in the script.
+        ///
+        /// - Parameters:
+        /// - event: The Apple event to execute.
+        /// - errorInfo: On return, if an error occurs, a pointer to an error information dictionary.
+        /// - Returns: The result of executing the event, or `nil` if an error occurs.
+        ///
+        /// Compiles the receiver before executing it if it is not already compiled.
+        ///
+        /// > Important: You cannot use this method to send Apple events to other applications.
+        ///
         /// # Safety
         ///
         /// `error_info` generic should be of the correct type.

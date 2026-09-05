@@ -38,7 +38,7 @@ impl VZVirtualMachineState {
     /// The virtual machine is being resumed. This is the intermediate state between VZVirtualMachineStatePaused and VZVirtualMachineStateRunning.
     #[doc(alias = "VZVirtualMachineStateResuming")]
     pub const Resuming: Self = Self(6);
-    /// The virtual machine is being stopped. This is the intermediate state between VZVirtualMachineStateRunning and VZVirtualMachineStateStop.
+    /// The virtual machine is being stopped. This is the intermediate state between VZVirtualMachineStateRunning and VZVirtualMachineStateStopped.
     #[doc(alias = "VZVirtualMachineStateStopping")]
     pub const Stopping: Self = Self(7);
     /// The virtual machine is being saved. This is the intermediate state between VZVirtualMachineStatePaused and VZVirtualMachineStatePaused.
@@ -72,9 +72,9 @@ extern_class!(
     ///
     /// Creating a virtual machine using the Virtualization framework requires the app to have the "com.apple.security.virtualization" entitlement.
     ///
-    /// See also: VZVirtualMachineConfiguration
+    /// See: VZVirtualMachineConfiguration
     ///
-    /// See also: VZMacOSInstaller
+    /// See: VZMacOSInstaller
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine?language=objc)
     #[unsafe(super(NSObject))]
@@ -316,7 +316,7 @@ impl VZVirtualMachine {
         /// Parameter `completionHandler`: Block called after the virtual machine has been successfully started or on error.
         /// The error parameter passed to the block is nil if the start was successful.
         ///
-        /// See also: VZMacOSVirtualMachineStartOptions
+        /// See: VZMacOSVirtualMachineStartOptions
         #[unsafe(method(startWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithOptions_completionHandler(
@@ -330,12 +330,23 @@ impl VZVirtualMachine {
         ///
         /// Stop a virtual machine that is in either Running or Paused state.
         ///
+        /// The guest's state changes concurrently with the stopping mechanism.
+        /// If a state from a virtual machine conflicts with the "stop" action, the `completionHandler` is called with an error
+        /// indicating the invalid transition. For example, if the guest stopped the virtual machine by the time it starts stopping,
+        /// the `stopWithCompletionHandler` action fails with an error.
+        ///
+        /// Another possible error is the virtual machine terminated due to an internal error.
+        /// The state transitions to `VZVirtualMachineStateError` in that case.
+        ///
+        /// For error cases, use the `state` property and information passed through the `VZVirtualMachineDelegate`
+        /// to inspect the virtual machine's current state.
+        ///
         /// Parameter `completionHandler`: Block called after the virtual machine has been successfully stopped or on error.
         /// The error parameter passed to the block is nil if the stop was successful.
         ///
         /// This is a destructive operation. It stops the virtual machine without giving the guest a chance to stop cleanly.
         ///
-        /// See also: -[VZVirtualMachine requestStopWithError:]
+        /// See: -[VZVirtualMachine requestStopWithError:]
         #[unsafe(method(stopWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithCompletionHandler(
@@ -347,6 +358,17 @@ impl VZVirtualMachine {
         /// Pause a virtual machine.
         ///
         /// Pause a virtual machine that is in Running state.
+        ///
+        /// The guest's state changes concurrently with the pausing mechanism.
+        /// If a state from a virtual machine conflicts with the "pause" action, the `completionHandler` is called with an error
+        /// indicating the invalid transition. For example, if the guest stopped the virtual machine by the time it starts pausing,
+        /// the `pauseWithCompletionHandler` action fails with an error.
+        ///
+        /// Another possible error is the virtual machine terminated due to an internal error.
+        /// The state transitions to `VZVirtualMachineStateError` in that case.
+        ///
+        /// For error cases, use the `state` property and information passed through the `VZVirtualMachineDelegate`
+        /// to inspect the virtual machine's current state.
         ///
         /// Parameter `completionHandler`: Block called after the virtual machine has been successfully paused or on error.
         /// The error parameter passed to the block is nil if the pause was successful.
@@ -443,7 +465,7 @@ impl VZVirtualMachine {
         ///
         /// The -[VZVirtualMachineDelegate guestDidStopVirtualMachine:] delegate method is invoked when the guest has turned itself off.
         ///
-        /// See also: -[VZVirtualMachineDelegate guestDidStopVirtualMachine:].
+        /// See: -[VZVirtualMachineDelegate guestDidStopVirtualMachine:].
         #[unsafe(method(requestStopWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestStopWithError(&self) -> Result<(), Retained<NSError>>;

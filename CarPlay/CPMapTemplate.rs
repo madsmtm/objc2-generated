@@ -367,6 +367,60 @@ impl CPMapTemplate {
             animated: bool,
             completion: &block2::Block<'static, fn(Bool)>,
         );
+
+        #[cfg(all(feature = "CPMapPanel", feature = "CPPanel", feature = "block2"))]
+        /// Shows an overlay with the specified panel.
+        ///
+        ///
+        /// Parameter `panel`: The panel to display.
+        ///
+        /// Parameter `completion`: An optional block called when the overlay has been shown.
+        #[unsafe(method(showPanel:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn showPanel_completion(
+            &self,
+            panel: &CPMapPanel,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+        );
+
+        #[cfg(all(feature = "CPMapPanel", feature = "CPPanel", feature = "block2"))]
+        /// Pushes a new panel.
+        ///
+        ///
+        /// Parameter `panel`: The panel to push.
+        ///
+        /// Parameter `completion`: An optional block called when the panel has been pushed.
+        #[unsafe(method(pushPanel:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn pushPanel_completion(
+            &self,
+            panel: &CPMapPanel,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Pops the top panel from the overlay's panel stack.
+        ///
+        ///
+        /// Parameter `completion`: An optional block called when the panel has been popped.
+        #[unsafe(method(popPanelWithCompletion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn popPanelWithCompletion(
+            &self,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Hides the overlay.
+        ///
+        ///
+        /// Parameter `completion`: An optional block called when the overlay has been hidden.
+        #[unsafe(method(hidePanelWithCompletion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hidePanelWithCompletion(
+            &self,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+        );
     );
 }
 
@@ -465,6 +519,55 @@ extern_protocol!(
             &self,
             map_template: &CPMapTemplate,
             waypoint: &CPNavigationWaypoint,
+        );
+
+        #[cfg(feature = "CPTemplate")]
+        /// Determines if the template should provide UI for multi-stop routing while actively navigating, including the ability to add and remove stops.
+        ///
+        /// Returns: YES if the template should provide multi-stop routing functionalities, otherwise NO
+        #[optional]
+        #[unsafe(method(mapTemplateShouldProvideMultiStopRouting:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplateShouldProvideMultiStopRouting(
+            &self,
+            map_template: &CPMapTemplate,
+        ) -> bool;
+
+        #[cfg(all(feature = "CPNavigationWaypoint", feature = "CPTemplate"))]
+        /// Called when the user removes a waypoint. Perform a reroute to update the route accordingly.
+        #[optional]
+        #[unsafe(method(mapTemplate:didRequestToRemoveWaypoint:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didRequestToRemoveWaypoint(
+            &self,
+            map_template: &CPMapTemplate,
+            waypoint: &CPNavigationWaypoint,
+        );
+
+        #[cfg(all(feature = "CPNavigationWaypoint", feature = "CPTemplate"))]
+        /// Called when the user removes the waypoint corresponding to the trip's destination. Perform a reroute to update both the trip and route accordingly.
+        #[optional]
+        #[unsafe(method(mapTemplate:didRequestToRemoveDestination:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didRequestToRemoveDestination(
+            &self,
+            map_template: &CPMapTemplate,
+            waypoint: &CPNavigationWaypoint,
+        );
+
+        #[cfg(all(
+            feature = "CPMultiStopCardConfiguration",
+            feature = "CPTemplate",
+            feature = "block2"
+        ))]
+        /// Called when the user requests multi-stop card to be displayed via tapping ETA tray.
+        #[optional]
+        #[unsafe(method(mapTemplate:didRequestMultiStopCardConfigurationWithCompletion:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mapTemplate_didRequestMultiStopCardConfigurationWithCompletion(
+            &self,
+            map_template: &CPMapTemplate,
+            completion: &block2::Block<'static, fn(NonNull<CPMultiStopCardConfiguration>)>,
         );
 
         #[cfg(all(feature = "CPManeuver", feature = "CPTemplate"))]

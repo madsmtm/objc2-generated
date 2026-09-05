@@ -21,7 +21,7 @@ impl ASCredentialRequestType {
     /// Passkey registration credential type.
     #[doc(alias = "ASCredentialRequestTypePasskeyRegistration")]
     pub const PasskeyRegistration: Self = Self(2);
-    /// One Time Code credential type.
+    /// One-Time Code credential type.
     #[doc(alias = "ASCredentialRequestTypeOneTimeCode")]
     pub const OneTimeCode: Self = Self(3);
 }

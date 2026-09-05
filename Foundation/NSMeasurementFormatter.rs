@@ -6,17 +6,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmeasurementformatterunitoptions?language=objc)
+/// Options for configuring how the measurement formatter formats measurements.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmeasurementformatterunitoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMeasurementFormatterUnitOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMeasurementFormatterUnitOptions: NSUInteger {
+/// Ensures the formatter uses the provided unit even if it is not the preferred unit of the set locale.
         #[doc(alias = "NSMeasurementFormatterUnitOptionsProvidedUnit")]
         const ProvidedUnit = 1<<0;
+/// Makes the formatter show a natural scale (e.g. "12 kilometers" instead of "12000 meters"). Note that setting this option results in scaling within the unit system of the preferred unit of the locale. To scale within the unit system of the provided unit, combine with `NSMeasurementFormatterUnitOptionsProvidedUnit`.
         #[doc(alias = "NSMeasurementFormatterUnitOptionsNaturalScale")]
         const NaturalScale = 1<<1;
+/// Displays the temperature value without a unit (e.g. "90\u00B0" rather than "90\u00B0F" or "90\u00B0C").
         #[doc(alias = "NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit")]
         const TemperatureWithoutUnit = 1<<2;
         const _ = !0;
@@ -32,7 +37,14 @@ unsafe impl RefEncode for NSMeasurementFormatterUnitOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmeasurementformatter?language=objc)
+    /// A formatter that provides localized representations of units and measurements.
+    ///
+    /// You use the ``string(from:)-wt9y`` method to create a localized representation of an ``NSMeasurement`` object, and you use the ``string(from:)-4hwjz`` method to create a localized representation of an ``Unit`` object. The formatter takes into account the specified ``locale``, ``unitStyle``, and ``unitOptions`` when producing string representations of units and measurements.
+    ///
+    /// > Tip:
+    /// > In Swift, you can use ``Measurement/FormatStyle`` rather than ``MeasurementFormatter``. The ``FormatStyle`` API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical ``FormatStyle`` instances, so you don't need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmeasurementformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -67,6 +79,16 @@ extern_conformance!(
 #[cfg(feature = "NSFormatter")]
 impl NSMeasurementFormatter {
     extern_methods!(
+        /// The options for how the unit is formatted.
+        ///
+        /// This property can be set to ensure that the formatter behaves in a way the developer expects,
+        /// even if it is not standard according to the preferences of the user's locale.
+        /// If not specified, `unitOptions` defaults to localizing according to the preferences of the locale.
+        ///
+        /// Note that `NSMeasurementFormatter` will handle converting measurement objects to the preferred units
+        /// in a particular locale. For instance, if provided a measurement object in kilometers and the set locale
+        /// is en_US, the formatter will implicitly convert the measurement object to miles and return the formatted
+        /// string as the equivalent measurement in miles.
         #[unsafe(method(unitOptions))]
         #[unsafe(method_family = none)]
         pub fn unitOptions(&self) -> NSMeasurementFormatterUnitOptions;
@@ -76,6 +98,9 @@ impl NSMeasurementFormatter {
         #[unsafe(method_family = none)]
         pub fn setUnitOptions(&self, unit_options: NSMeasurementFormatterUnitOptions);
 
+        /// The unit style used when creating string representations of measurements.
+        ///
+        /// If not specified, `unitStyle` is set to `NSFormattingUnitStyleMedium`.
         #[unsafe(method(unitStyle))]
         #[unsafe(method_family = none)]
         pub fn unitStyle(&self) -> NSFormattingUnitStyle;
@@ -86,6 +111,9 @@ impl NSMeasurementFormatter {
         pub fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[cfg(feature = "NSLocale")]
+        /// The locale used when formatting measurements.
+        ///
+        /// If not specified, the locale is set to the user's current locale.
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub fn locale(&self) -> Retained<NSLocale>;
@@ -99,6 +127,9 @@ impl NSMeasurementFormatter {
         pub fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "NSNumberFormatter")]
+        /// The number formatter used to format the numeric value of a measurement.
+        ///
+        /// If not specified, the number formatter is set up with `NSNumberFormatterDecimalStyle`.
         #[unsafe(method(numberFormatter))]
         #[unsafe(method_family = none)]
         pub fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
@@ -112,6 +143,12 @@ impl NSMeasurementFormatter {
         pub fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
+        /// Creates and returns a localized string representation of the provided measurement.
+        ///
+        /// - Parameters:
+        /// - measurement: The measurement to be represented.
+        /// - Returns: A user-readable string that represents the measurement.
+        ///
         /// # Safety
         ///
         /// `measurement` generic should be bound by `AsRef<NSUnit>`.
@@ -123,6 +160,13 @@ impl NSMeasurementFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSString", feature = "NSUnit"))]
+        /// Creates and returns a localized string representation of the provided unit of measure.
+        ///
+        /// If the unit cannot be localized, the unit's `symbol` value is used.
+        ///
+        /// - Parameters:
+        /// - unit: The unit of measure to be represented.
+        /// - Returns: A user-readable string that represents the unit of measure.
         #[unsafe(method(stringFromUnit:))]
         #[unsafe(method_family = none)]
         pub fn stringFromUnit(&self, unit: &NSUnit) -> Retained<NSString>;

@@ -3,11 +3,12 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
 
 extern_class!(
-    /// Options controlling startup behavior of a virtual machine using VZMacOSBootLoader.
+    /// Options that control startup behavior of a virtual machine using the macOS boot loader.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosvirtualmachinestartoptions?language=objc)
     #[unsafe(super(VZVirtualMachineStartOptions, NSObject))]
@@ -24,7 +25,7 @@ extern_conformance!(
 #[cfg(feature = "VZVirtualMachineStartOptions")]
 impl VZMacOSVirtualMachineStartOptions {
     extern_methods!(
-        /// Whether to start up from macOS Recovery.
+        /// A Boolean value that indicates whether to start up from macOS Recovery.
         #[unsafe(method(startUpFromMacOSRecovery))]
         #[unsafe(method_family = none)]
         pub unsafe fn startUpFromMacOSRecovery(&self) -> bool;
@@ -33,6 +34,42 @@ impl VZMacOSVirtualMachineStartOptions {
         #[unsafe(method(setStartUpFromMacOSRecovery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartUpFromMacOSRecovery(&self, start_up_from_mac_os_recovery: bool);
+
+        #[cfg(all(
+            feature = "VZGuestProvisioningOptions",
+            feature = "VZMacGuestProvisioningOptions"
+        ))]
+        /// A value that controls provisioning a macOS guest.
+        ///
+        /// This property allows someone to provision a macOS guest by setting ``VZMacGuestProvisioningOptions``.
+        #[unsafe(method(guestProvisioningOptions))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn guestProvisioningOptions(
+            &self,
+        ) -> Option<Retained<VZMacGuestProvisioningOptions>>;
+
+        #[cfg(all(
+            feature = "VZGuestProvisioningOptions",
+            feature = "VZMacGuestProvisioningOptions"
+        ))]
+        /// Sets guest provisioning options with validation.
+        ///
+        /// This method validates the provisioning options before setting them. If validation fails, the current options remain unchanged.
+        ///
+        /// - Parameters:
+        /// - guestProvisioningOptions: The guest provisioning options to set, or `nil` to remove.
+        /// - error: On input, a pointer to an error object. If an error occurs, the framework sets this pointer to an actual error object containing the error.
+        /// - Returns: `YES` if the options were set successfully (or `nil` was passed), `NO` if validation failed.
+        ///
+        /// ## See Also
+        ///
+        /// - ``VZMacGuestProvisioningOptions``
+        #[unsafe(method(setGuestProvisioningOptions:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setGuestProvisioningOptions_error(
+            &self,
+            guest_provisioning_options: Option<&VZMacGuestProvisioningOptions>,
+        ) -> Result<(), Retained<NSError>>;
     );
 }
 

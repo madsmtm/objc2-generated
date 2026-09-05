@@ -6,34 +6,55 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowsntoperatingsystem?language=objc)
+/// Indicates the Windows NT operating system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowsntoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSWindowsNTOperatingSystem: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindows95operatingsystem?language=objc)
+/// Indicates the Windows 95 operating system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindows95operatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSWindows95OperatingSystem: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssolarisoperatingsystem?language=objc)
+/// Indicates the Solaris operating system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssolarisoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSSolarisOperatingSystem: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshpuxoperatingsystem?language=objc)
+/// Indicates the HP-UX operating system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshpuxoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSHPUXOperatingSystem: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachoperatingsystem?language=objc)
+/// Indicates the macOS operating system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSMACHOperatingSystem: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssunosoperatingsystem?language=objc)
+/// Indicates the SunOS operating system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssunosoperatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSSunOSOperatingSystem: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsosf1operatingsystem?language=objc)
+/// Indicates the OSF/1 operating system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsosf1operatingsystem?language=objc)
 #[deprecated = "Not supported"]
 pub const NSOSF1OperatingSystem: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperatingsystemversion?language=objc)
+/// A structure that contains version information about the currently executing operating system, including major, minor, and patch version numbers.
+///
+/// Use the ``ProcessInfo`` property ``ProcessInfo/operatingSystemVersion`` to fetch an instance of this type. You can also pass this type to ``ProcessInfo/isOperatingSystemAtLeast(_:)`` to determine whether the current operating system version is the same or later than the given value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperatingsystemversion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSOperatingSystemVersion {
+    /// The major release number, such as 10 in version 10.9.3.
     pub majorVersion: NSInteger,
+    /// The minor release number, such as 9 in version 10.9.3.
     pub minorVersion: NSInteger,
+    /// The update release number, such as 3 in version 10.9.3.
     pub patchVersion: NSInteger,
 }
 
@@ -57,7 +78,153 @@ unsafe impl Send for NSOperatingSystemVersion {}
 unsafe impl Sync for NSOperatingSystemVersion {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfo?language=objc)
+    /// A collection of information about the current process.
+    ///
+    /// Each process has a single, shared ``ProcessInfo`` object known as a _process information agent_ that can return information such as arguments, environment variables, host name, and process name. The ``processInfo`` class method returns the shared agent for the current process. For example, the following line returns the ``ProcessInfo`` object, which then provides the name of the current process:
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let processName = ProcessInfo.processInfo.processName
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSString *processName = [[NSProcessInfo processInfo] processName];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// > Note:
+    /// > ``ProcessInfo`` is thread-safe in macOS 10.7 and later.
+    ///
+    /// The ``ProcessInfo`` class also includes the ``operatingSystemVersion`` property, which returns an ``OperatingSystemVersion`` structure identifying the operating system version on which the process is executing.
+    ///
+    /// ``ProcessInfo`` objects attempt to interpret environment variables and command-line arguments in the user's default C string encoding if they can't convert to Unicode as UTF-8 strings. If neither the Unicode nor C string conversion works, the ``ProcessInfo`` object ignores these values.
+    ///
+    /// ### Manage Activities
+    ///
+    /// The system has heuristics to improve battery life, performance, and responsiveness of applications for the benefit of the user. You can use the following methods to manage _activities_ that give hints to the system that your application has special requirements:
+    ///
+    /// - ``beginActivity(options:reason:)``
+    /// - ``endActivity(_:)``
+    /// - ``performActivity(options:reason:using:)``
+    ///
+    /// In response to creating an activity, the system disables some or all of the heuristics so your application can finish quickly while still providing responsive behavior if the user needs it.
+    ///
+    /// You use activities when your application performs a long-running operation. If the activity can take different amounts of time (for example, calculating the next move in a chess game), it should use this API to ensure correct behavior when the amount of data or the capabilities of the user's computer varies. Activities fall into two major categories:
+    ///
+    /// - _User-initiated_ activities are explicitly started by the user. Examples include exporting or downloading a user-specified file.
+    /// - _Background_ activities perform the normal operations of your application and aren't explicitly started by the user. Examples include autosaving, indexing, and automatic downloading of files.
+    ///
+    /// In addition, if your application requires high priority input/output (I/O), you can include the ``ActivityOptions/latencyCritical`` flag (using a bitwise `OR`). You should only use this flag for activities like audio or video recording that require high priority I/O.
+    ///
+    /// If your activity takes place synchronously inside an event callback on the main thread, you don't need to use this API.
+    ///
+    /// Be aware that failing to end these activities for an extended period of time can have significant negative impacts on the performance of your user's computer, so be sure to use only the minimum amount of time required. User preferences may override your application's request.
+    ///
+    /// You can also use this API to control automatic termination or sudden termination (see
+    /// <doc
+    /// :#Support-Sudden-Termination>). For example, the following code brackets the work to protect it from sudden termination:
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let activity = ProcessInfo.processInfo.beginActivity(
+    /// options: .automaticTerminationDisabled,
+    /// reason: "Good Reason")
+    /// // Perform some work.
+    /// ProcessInfo.processInfo.endActivity(activity)
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// id activity = [[NSProcessInfo processInfo] beginActivityWithOptions:NSActivityAutomaticTerminationDisabled reason:
+    /// "
+    /// Good Reason"];
+    /// // Perform some work.
+    /// [[NSProcessInfo processInfo] endActivity:activity];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// The above example is equivalent to the following code, which uses the ``disableAutomaticTermination(_:)`` method:
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// ProcessInfo.processInfo.disableAutomaticTermination("Good Reason")
+    /// // Perform some work.
+    /// ProcessInfo.processInfo.enableAutomaticTermination("Good Reason")
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// [[NSProcessInfo processInfo] disableAutomaticTermination:
+    /// "
+    /// Good Reason"];
+    /// // Perform some work.
+    /// [[NSProcessInfo processInfo] enableAutomaticTermination:
+    /// "
+    /// Good Reason"];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// Because this API returns an object, it may be easier to pair begins and ends than when using the automatic termination API. If your app deallocates the object before the ``endActivity(_:)`` call, the activity ends automatically.
+    ///
+    /// This API also provides a mechanism to disable system-wide idle sleep and display idle sleep. These can have a large impact on the user experience, so be careful to end activities that disable sleep (including ``ActivityOptions/userInitiated``).
+    ///
+    /// ### Support Sudden Termination
+    ///
+    /// macOS 10.6 and later includes a mechanism that allows the system to log out or shut down more quickly by, whenever possible, killing applications instead of requesting that they quit themselves.
+    ///
+    /// Your application can enable this capability on a global basis and then manually override its availability during actions that could cause data corruption or a poor user experience by allowing sudden termination.
+    ///
+    /// Alternatively, your application can manually enable and disable this functionality. Creating a process assigns a counter that indicates if the process is safe to terminate. You decrement and increment the counter using the methods ``enableSuddenTermination()`` and ``disableSuddenTermination()``. A value of `0` enables the system to terminate the process without first sending a notification or event.
+    ///
+    /// Your application can support sudden termination upon launch by adding a key to the application's `Info.plist` file. If the
+    /// <doc
+    /// ://com.apple.documentation/documentation/bundleresources/information-property-list/nssupportssuddentermination> key exists in the `Info.plist` file and has a value of
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true>, it's the equivalent of calling ``enableSuddenTermination()`` during your application launch. This allows the system to terminate the process immediately. You can still override this behavior by invoking ``disableSuddenTermination()``.
+    ///
+    /// Typically, you disable sudden termination whenever your app defers work that the app must complete before it terminates. If, for example, your app defers writing data to disk and enables sudden termination, you should bracket the sensitive operations with a call to ``disableSuddenTermination()``, perform the necessary operations, and then send a balancing ``enableSuddenTermination()`` message.
+    ///
+    /// In agents or daemon executables that don't depend on AppKit, you can manually invoke ``enableSuddenTermination()`` right away. You can then use the enable and disable methods whenever the process has work it must do before it terminates.
+    ///
+    /// Some AppKit functionality automatically disables sudden termination on a temporary basis to ensure data integrity.
+    ///
+    /// - ``UserDefaults`` temporarily disables sudden termination to prevent the process from terminating between the time at which it sets the default and the time at which it writes the preferences file — including that default — to disk.
+    /// -
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nsdocument> temporarily disables sudden termination to prevent the process from terminating between the time at which the user has made a change to a document and the time at which
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nsdocument> writes the user's change to disk.
+    ///
+    /// > Tip:
+    /// > You can determine the value of the sudden termination using the following LLDB command.
+    /// >
+    /// > ```objc
+    /// > print (long)[[NSClassFromString(@"NSProcessInfo") processInfo] _suddenTerminationDisablingCount]
+    /// > ```
+    /// >
+    /// > Don't attempt to invoke or override `suddenTerminationDisablingCount` (a private method) in your application. It's there for this debugging purpose and may disappear at any time.
+    ///
+    /// ### Monitor Thermal State to Adjust App Performance
+    ///
+    /// _Thermal state_ indicates the level of heat generated by logic components as they run apps. As the thermal state increases, the system decreases heat by reducing the speed of the processors. Optimize your app's performance by monitoring the thermal state and reducing system usage as the thermal state increases. Query the current state with ``thermalState`` to determine if your app needs to reduce system usage. You can register the ``thermalStateDidChangeNotification`` for notifications of a change in thermal state. For recommended actions, see ``ThermalState``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSProcessInfo;
@@ -73,26 +240,40 @@ extern_conformance!(
 
 impl NSProcessInfo {
     extern_methods!(
+        /// Returns the process information agent for the process.
+        ///
+        /// An `NSProcessInfo` object is created the first time this property is accessed, and that same object is returned on each subsequent access.
         #[unsafe(method(processInfo))]
         #[unsafe(method_family = none)]
         pub fn processInfo() -> Retained<NSProcessInfo>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The variable names (keys) and their values in the environment from which the process was launched.
         #[unsafe(method(environment))]
         #[unsafe(method_family = none)]
         pub fn environment(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Array of strings with the command-line arguments for the process.
+        ///
+        /// This array contains all the information passed in the `argv` array, including the executable name in the first element.
         #[unsafe(method(arguments))]
         #[unsafe(method_family = none)]
         pub fn arguments(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The name of the host computer on which the process is executing.
         #[unsafe(method(hostName))]
         #[unsafe(method_family = none)]
         pub fn hostName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The name of the process.
+        ///
+        /// The process name is used to register application defaults and is used in error messages. It does not uniquely identify the process.
+        ///
+        /// > Warning:
+        /// > User defaults and other aspects of the environment might depend on the process name, so be very careful if you change it. Setting the process name in this manner is not thread safe.
         #[unsafe(method(processName))]
         #[unsafe(method_family = none)]
         pub fn processName(&self) -> Retained<NSString>;
@@ -105,74 +286,143 @@ impl NSProcessInfo {
         #[unsafe(method_family = none)]
         pub fn setProcessName(&self, process_name: &NSString);
 
+        /// The identifier of the process (often called process ID).
         #[unsafe(method(processIdentifier))]
         #[unsafe(method_family = none)]
         pub fn processIdentifier(&self) -> c_int;
 
         #[cfg(feature = "NSString")]
+        /// Global unique identifier for the process.
+        ///
+        /// The global ID for the process includes the host name, process ID, and a time stamp, which ensures that the ID is unique for the network. This property generates a new string each time its getter is invoked, and it uses a counter to guarantee that strings created from the same process are unique.
         #[unsafe(method(globallyUniqueString))]
         #[unsafe(method_family = none)]
         pub fn globallyUniqueString(&self) -> Retained<NSString>;
 
+        /// Returns a constant to indicate the operating system on which the process is executing.
+        ///
+        ///
+        /// - Returns: Operating system identifier. In macOS, it's `NSMACHOperatingSystem`.
         #[deprecated = "-operatingSystem always returns NSMACHOperatingSystem, use -operatingSystemVersion or -isOperatingSystemAtLeastVersion: instead"]
         #[unsafe(method(operatingSystem))]
         #[unsafe(method_family = none)]
         pub fn operatingSystem(&self) -> NSUInteger;
 
         #[cfg(feature = "NSString")]
+        /// Returns a string containing the name of the operating system on which the process is executing.
+        ///
+        ///
+        /// - Returns: Operating system name. In macOS, it's `@"NSMACHOperatingSystem"`.
         #[deprecated = "-operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead"]
         #[unsafe(method(operatingSystemName))]
         #[unsafe(method_family = none)]
         pub fn operatingSystemName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// A string containing the version of the operating system on which the process is executing.
+        ///
+        /// The operating system version string is human readable, localized, and is appropriate for displaying to the user. This string is _not_ appropriate for parsing.
         #[unsafe(method(operatingSystemVersionString))]
         #[unsafe(method_family = none)]
         pub fn operatingSystemVersionString(&self) -> Retained<NSString>;
 
+        /// The version of the operating system on which the process is executing.
         #[unsafe(method(operatingSystemVersion))]
         #[unsafe(method_family = none)]
         pub fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
 
+        /// The number of processing cores available on the computer.
+        ///
+        /// This property value is equal to the result of entering the command `sysctl -n hw.ncpu` on the current system.
         #[unsafe(method(processorCount))]
         #[unsafe(method_family = none)]
         pub fn processorCount(&self) -> NSUInteger;
 
+        /// The number of active processing cores available on the computer.
+        ///
+        /// Whereas the ``processorCount`` property reports the number of advertised processing cores, the ``activeProcessorCount`` property reflects the actual number of active processing cores on the system. There are a number of different factors that may cause a core to not be active, including boot arguments, thermal throttling, or a manufacturing defect.
+        ///
+        /// This property value is equal to the result of entering the command `sysctl -n hw.logicalcpu` on the current system.
         #[unsafe(method(activeProcessorCount))]
         #[unsafe(method_family = none)]
         pub fn activeProcessorCount(&self) -> NSUInteger;
 
+        /// The amount of physical memory on the computer in bytes.
         #[unsafe(method(physicalMemory))]
         #[unsafe(method_family = none)]
         pub fn physicalMemory(&self) -> c_ulonglong;
 
+        /// Returns a Boolean value indicating whether the version of the operating system on which the process is executing is the same or later than the given version.
+        ///
+        /// This method accounts for major, minor, and update versions of the operating system.
+        ///
+        /// - Parameters:
+        /// - version: The operating system version to test against.
+        /// - Returns: `true` if the operating system on which the process is executing is the same or later than the given version; otherwise `false`.
         #[unsafe(method(isOperatingSystemAtLeastVersion:))]
         #[unsafe(method_family = none)]
         pub fn isOperatingSystemAtLeastVersion(&self, version: NSOperatingSystemVersion) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// The amount of time the system has been awake since the last time it was restarted.
+        ///
+        /// > Important:
+        /// > This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK's `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
         #[unsafe(method(systemUptime))]
         #[unsafe(method_family = none)]
         pub fn systemUptime(&self) -> NSTimeInterval;
 
+        /// Disables the application for quick killing using sudden termination.
+        ///
+        /// This method increments the sudden termination counter. When the termination counter reaches `0` the application allows sudden termination.
+        ///
+        /// By default the sudden termination counter is set to 1. This can be overridden in your application Info.plist. See
+        /// <doc
+        /// :ProcessInfo#Support-Sudden-Termination> for more information and debugging suggestions.
         #[unsafe(method(disableSuddenTermination))]
         #[unsafe(method_family = none)]
         pub fn disableSuddenTermination(&self);
 
+        /// Enables the application for quick killing using sudden termination.
+        ///
+        /// This method decrements the sudden termination counter. When the termination counter reaches `0` the application allows sudden termination.
+        ///
+        /// By default the sudden termination counter is set to 1. This can be overridden in your application Info.plist. See
+        /// <doc
+        /// :ProcessInfo#Support-Sudden-Termination> for more information and debugging suggestions.
         #[unsafe(method(enableSuddenTermination))]
         #[unsafe(method_family = none)]
         pub fn enableSuddenTermination(&self);
 
         #[cfg(feature = "NSString")]
+        /// Disables automatic termination for the application.
+        ///
+        /// This method increments the automatic termination counter. When the counter is greater than `0`, the application is considered active and ineligible for automatic termination. For example, you could disable automatic termination when the user of an instant messaging application signs on, because the application requires a background connection to be maintained even if the application is otherwise inactive.
+        ///
+        /// The reason parameter is used to track why an application is or is not automatically terminable and can be inspected by debugging tools. A given reason can be used more than once at the same time.
+        ///
+        /// - Parameters:
+        /// - reason: The reason why automatic termination is being disabled.
         #[unsafe(method(disableAutomaticTermination:))]
         #[unsafe(method_family = none)]
         pub fn disableAutomaticTermination(&self, reason: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Enables automatic termination for the application.
+        ///
+        /// This method decrements the automatic termination counter. When the counter is `0`, the application is eligible for automatic termination.
+        ///
+        /// The reason parameter is used to track why an application is or is not automatically terminable and can be inspected by debugging tools. A given reason can be used more than once at the same time.
+        ///
+        /// - Parameters:
+        /// - reason: The reason why automatic termination is being enabled.
         #[unsafe(method(enableAutomaticTermination:))]
         #[unsafe(method_family = none)]
         pub fn enableAutomaticTermination(&self, reason: &NSString);
 
+        /// A Boolean value indicating whether the app supports automatic termination.
+        ///
+        /// Without setting this property or setting the equivalent `Info.plist` key (`NSSupportsAutomaticTermination`), the methods ``disableAutomaticTermination:`` and ``enableAutomaticTermination:`` have no effect, although the counter tracking automatic termination opt-outs is still kept up to date to ensure correctness if this is called later. Currently, setting this property to `NO` has no effect. This property should be set during `-applicationDidFinishLaunching:` or earlier.
         #[unsafe(method(automaticTerminationSupportEnabled))]
         #[unsafe(method_family = none)]
         pub fn automaticTerminationSupportEnabled(&self) -> bool;
@@ -207,33 +457,62 @@ impl DefaultRetained for NSProcessInfo {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsactivityoptions?language=objc)
+/// Option flags used with ``ProcessInfo/beginActivity(options:reason:)`` and ``ProcessInfo/performActivity(options:reason:using:)``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsactivityoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSActivityOptions(pub u64);
 bitflags::bitflags! {
     impl NSActivityOptions: u64 {
+/// A flag to require the screen to stay powered on.
         #[doc(alias = "NSActivityIdleDisplaySleepDisabled")]
         const IdleDisplaySleepDisabled = 1<<40;
+/// A flag to prevent idle sleep.
+///
+/// This is negated by `NSActivityUserInitiatedAllowingIdleSystemSleep`.
         #[doc(alias = "NSActivityIdleSystemSleepDisabled")]
         const IdleSystemSleepDisabled = 1<<20;
+/// A flag to prevent sudden termination.
+///
+/// This is included by `NSActivityUserInitiatedAllowingIdleSystemSleep`.
         #[doc(alias = "NSActivitySuddenTerminationDisabled")]
         const SuddenTerminationDisabled = 1<<14;
+/// A flag to prevent automatic termination.
+///
+/// This is included by `NSActivityUserInitiatedAllowingIdleSystemSleep`.
         #[doc(alias = "NSActivityAutomaticTerminationDisabled")]
         const AutomaticTerminationDisabled = 1<<15;
+/// A flag to track the activity with an animation signpost interval.
+///
+/// Use this to track the timing of a user interaction by annotating the beginning and end of an activity using an animation signpost interval. This differs from `NSActivityTrackingEnabled` in the type of interval signposts the logging system emits. Use this when the interaction involves an animation.
         #[doc(alias = "NSActivityAnimationTrackingEnabled")]
         const AnimationTrackingEnabled = 1<<45;
+/// A flag to track the activity with a signpost interval.
+///
+/// Use this to track the timing of a user interaction by annotating the beginning and end of an activity using a signpost interval. This differs from `NSActivityAnimationTrackingEnabled` in the type of interval signposts the logging system emits. Use `NSActivityAnimationTrackingEnabled` when the interaction involves an animation.
         #[doc(alias = "NSActivityTrackingEnabled")]
         const TrackingEnabled = 1<<46;
+/// A flag to indicate the app is performing a user-requested action.
+///
+/// Examples of user initiated actions are exporting or downloading a user-specified file or dismissing a form sheet.
         #[doc(alias = "NSActivityUserInitiated")]
         const UserInitiated = 0x00FFFFFF|NSActivityOptions::IdleSystemSleepDisabled.0;
+/// A flag to indicate the app is performing a user-requested action, but that the system can sleep on idle.
         #[doc(alias = "NSActivityUserInitiatedAllowingIdleSystemSleep")]
         const UserInitiatedAllowingIdleSystemSleep = NSActivityOptions::UserInitiated.0&!NSActivityOptions::IdleSystemSleepDisabled.0;
+/// A flag to indicate the app has initiated some kind of work, but not as the direct result of user request.
         #[doc(alias = "NSActivityBackground")]
         const Background = 0x000000FF;
+/// A flag to indicate the activity requires the highest amount of timer and I/O precision available.
+///
+/// Very few applications should need to use this constant.
         #[doc(alias = "NSActivityLatencyCritical")]
         const LatencyCritical = 0xFF00000000;
+/// A flag to indicate the app is responding to user interaction.
+///
+/// Examples of user-interactive actions include scrolling and interactively dismissing from a navigation controller.
         #[doc(alias = "NSActivityUserInteractive")]
         const UserInteractive = NSActivityOptions::UserInitiated.0|NSActivityOptions::LatencyCritical.0;
         const _ = !0;
@@ -252,6 +531,14 @@ unsafe impl RefEncode for NSActivityOptions {
 impl NSProcessInfo {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Begins an activity using the given options and reason.
+        ///
+        /// Indicate completion of the activity by calling ``endActivity(_:)`` passing the returned object as the argument.
+        ///
+        /// - Parameters:
+        /// - options: Options for the activity. See ``ProcessInfo/ActivityOptions`` for possible values.
+        /// - reason: A string used in debugging to indicate the reason the activity began.
+        /// - Returns: An object token representing the activity.
         #[unsafe(method(beginActivityWithOptions:reason:))]
         #[unsafe(method_family = none)]
         pub fn beginActivityWithOptions_reason(
@@ -260,6 +547,11 @@ impl NSProcessInfo {
             reason: &NSString,
         ) -> Retained<ProtocolObject<dyn NSObjectProtocol>>;
 
+        /// Ends the given activity.
+        ///
+        /// - Parameters:
+        /// - activity: An activity object returned by ``beginActivity(options:reason:)``.
+        ///
         /// # Safety
         ///
         /// `activity` should be of the correct type.
@@ -268,6 +560,14 @@ impl NSProcessInfo {
         pub unsafe fn endActivity(&self, activity: &ProtocolObject<dyn NSObjectProtocol>);
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
+        /// Synchronously performs an activity defined by a given block using the given options.
+        ///
+        /// The activity will be automatically ended after `block` returns.
+        ///
+        /// - Parameters:
+        /// - options: Options for the activity. See ``ProcessInfo/ActivityOptions`` for possible values.
+        /// - reason: A string used in debugging to indicate the reason the activity began.
+        /// - block: A block containing the work to be performed by the activity.
         #[unsafe(method(performActivityWithOptions:reason:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn performActivityWithOptions_reason_usingBlock(
@@ -278,6 +578,15 @@ impl NSProcessInfo {
         );
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
+        /// Performs the specified block asynchronously and notifies you if the process is about to be suspended.
+        ///
+        /// Use this method to perform tasks when your process is executing in the background. This method queues `block` for asynchronous execution on a concurrent queue. When your process is in the background, the method tries to take a task assertion to ensure that your block has time to execute. If it is unable to take a task assertion, or if the time allotted for the task assertion expires, the system executes your block with the parameter set to `YES`. If it is able to take the task assertion, it executes the block and passes `NO` for the expired parameter.
+        ///
+        /// If your block is still executing and the system needs to suspend the process, the system executes your block a second time with the `expired` parameter set to `YES`. Your block must be prepared to handle this case. When the expired parameter is `YES`, stop any in-progress tasks as quickly as possible.
+        ///
+        /// - Parameters:
+        /// - reason: A string used in debugging to indicate the reason the activity began. This parameter must not be `nil` or an empty string.
+        /// - block: A block containing the work to be performed by the activity. The block takes a Boolean parameter indicating whether the process is about to be suspended.
         #[unsafe(method(performExpiringActivityWithReason:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn performExpiringActivityWithReason_usingBlock(
@@ -292,29 +601,47 @@ impl NSProcessInfo {
 impl NSProcessInfo {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns the account name of the current user.
         #[unsafe(method(userName))]
         #[unsafe(method_family = none)]
         pub fn userName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the full name of the current user.
         #[unsafe(method(fullUserName))]
         #[unsafe(method_family = none)]
         pub fn fullUserName(&self) -> Retained<NSString>;
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstate?language=objc)
+/// Values used to indicate the system's thermal state.
+///
+/// These values are used by the ``ProcessInfo`` class as return values for ``ProcessInfo/thermalState``.
+///
+/// For information about testing your app under different thermal states, see [Test under adverse device conditions](https://help.apple.com/xcode/mac/current/#/dev308429d42).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSProcessInfoThermalState(pub NSInteger);
 impl NSProcessInfoThermalState {
+    /// The thermal state is within normal limits.
     #[doc(alias = "NSProcessInfoThermalStateNominal")]
     pub const Nominal: Self = Self(0);
+    /// The thermal state is slightly elevated.
+    ///
+    /// Reduce or defer background work, like prefetching content over the network or updating database indexes.
     #[doc(alias = "NSProcessInfoThermalStateFair")]
     pub const Fair: Self = Self(1);
+    /// The thermal state is high.
+    ///
+    /// Reduce usage of resources that generate heat and consume battery. Reduce CPU and GPU usage, reduce the target framerate, and reduce the level of detail in rendered content.
     #[doc(alias = "NSProcessInfoThermalStateSerious")]
     pub const Serious: Self = Self(2);
+    /// The thermal state is significantly impacting the performance of the system and the device needs to cool down.
+    ///
+    /// Reduce usage of the CPU, GPU, and I/O to the minimum level required for user interaction. If possible, stop using peripherals such as the camera, flash, microphone, and speaker.
     #[doc(alias = "NSProcessInfoThermalStateCritical")]
     pub const Critical: Self = Self(3);
 }
@@ -330,6 +657,9 @@ unsafe impl RefEncode for NSProcessInfoThermalState {
 /// NSProcessInfoThermalState.
 impl NSProcessInfo {
     extern_methods!(
+        /// The current thermal state of the system.
+        ///
+        /// At higher thermal states your app should reduce usage of system resources. For more information, see ``NSProcessInfoThermalState``.
         #[unsafe(method(thermalState))]
         #[unsafe(method_family = none)]
         pub fn thermalState(&self) -> NSProcessInfoThermalState;
@@ -339,6 +669,15 @@ impl NSProcessInfo {
 /// NSProcessInfoPowerState.
 impl NSProcessInfo {
     extern_methods!(
+        /// A Boolean value that indicates the current state of Low Power Mode.
+        ///
+        /// Users who wish to prolong their device's battery life can enable Low Power Mode under Settings > Battery. In Low Power Mode, the system conserves battery life by enacting certain energy-saving measures, such as:
+        ///
+        /// - Reducing CPU and GPU performance.
+        /// - Reducing screen brightness.
+        /// - Pausing discretionary and background activities.
+        ///
+        /// Your app can query the `isLowPowerModeEnabled` property at any time to determine whether Low Power Mode is active. Your app can also register to receive notifications when the Low Power Mode state of a device changes by observing ``NSProcessInfoPowerStateDidChangeNotification``.
         #[unsafe(method(isLowPowerModeEnabled))]
         #[unsafe(method_family = none)]
         pub fn isLowPowerModeEnabled(&self) -> bool;
@@ -346,13 +685,27 @@ impl NSProcessInfo {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstatedidchangenotification?language=objc)
+    /// Posts when the thermal state of the system changes.
+    ///
+    /// The notification object is an `NSProcessInfo` instance.
+    ///
+    /// To receive this notification, you must access the `thermalState` property prior to registering for the notification.
+    ///
+    /// You can use this opportunity to take corrective action in your application to help cool the system down. Work that could be done in the background or at opportunistic times should be using the Quality of Service levels in `NSOperation` or the `NSBackgroundActivityScheduler` API.
+    ///
+    /// This notification is posted on the global dispatch queue. Register for it using the default notification center.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstatedidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoThermalStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfopowerstatedidchangenotification?language=objc)
+    /// Posts when the power state of a device changes.
+    ///
+    /// After your observer receives this notification, query the `isLowPowerModeEnabled` property to determine the current power state of the device. If Low Power Mode is active, take appropriate steps to reduce activity in your app. Otherwise, your app can resume normal operations. This notification is posted on the global dispatch queue. Register for it using the default notification center. The object associated with the notification is `NSProcessInfo.processInfo`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfopowerstatedidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoPowerStateDidChangeNotification: &'static NSNotificationName;
 }
@@ -360,14 +713,26 @@ extern "C" {
 /// NSProcessInfoPlatform.
 impl NSProcessInfo {
     extern_methods!(
+        /// A Boolean value that indicates whether the process originated as an iOS app and runs on macOS.
+        ///
+        /// The value of this property is `YES` when the process is a Mac app built with Mac Catalyst, or an iOS app running on Apple silicon, and is running on a Mac. Frameworks that support iOS and macOS use this property to determine if the process is a Mac app built with Mac Catalyst.
+        ///
+        /// > Note:
+        /// > To distinguish between an iOS app running on Apple silicon and a Mac app built with Mac Catalyst, use the ``isiOSAppOnMac`` property.
         #[unsafe(method(isMacCatalystApp))]
         #[unsafe(method_family = none)]
         pub fn isMacCatalystApp(&self) -> bool;
 
+        /// A Boolean value that indicates whether the process is an iPhone or iPad app running on a Mac.
+        ///
+        /// The value of this property is `YES` only when the process is an iOS app running on a Mac. The value is `NO` for all other apps on the Mac, including Mac apps built using Mac Catalyst. The property is also `NO` for processes running on platforms other than macOS.
         #[unsafe(method(isiOSAppOnMac))]
         #[unsafe(method_family = none)]
         pub fn isiOSAppOnMac(&self) -> bool;
 
+        /// A Boolean value that indicates whether the process is an iPhone or iPad app running on visionOS.
+        ///
+        /// The value of this property is `YES` only when the process is an iOS app running on a visionOS device. The value is `NO` for all other apps on visionOS. The property is also `NO` for processes running on platforms other than visionOS.
         #[unsafe(method(isiOSAppOnVision))]
         #[unsafe(method_family = none)]
         pub fn isiOSAppOnVision(&self) -> bool;

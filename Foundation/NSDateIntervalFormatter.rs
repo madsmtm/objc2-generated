@@ -6,20 +6,27 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateintervalformatterstyle?language=objc)
+/// Formatting styles for individual date and time values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateintervalformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateIntervalFormatterStyle(pub NSUInteger);
 impl NSDateIntervalFormatterStyle {
+    /// No style.
     #[doc(alias = "NSDateIntervalFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
+    /// A short style.
     #[doc(alias = "NSDateIntervalFormatterShortStyle")]
     pub const ShortStyle: Self = Self(1);
+    /// A medium style.
     #[doc(alias = "NSDateIntervalFormatterMediumStyle")]
     pub const MediumStyle: Self = Self(2);
+    /// A long style.
     #[doc(alias = "NSDateIntervalFormatterLongStyle")]
     pub const LongStyle: Self = Self(3);
+    /// A full style.
     #[doc(alias = "NSDateIntervalFormatterFullStyle")]
     pub const FullStyle: Self = Self(4);
 }
@@ -33,7 +40,73 @@ unsafe impl RefEncode for NSDateIntervalFormatterStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateintervalformatter?language=objc)
+    /// A formatter that creates string representations of time intervals.
+    ///
+    /// A ``DateIntervalFormatter`` object creates user-readable strings from pairs of dates. Use a date interval formatter to create user-readable strings of the form _
+    /// <
+    /// start
+    /// >
+    /// _ `-` _
+    /// <
+    /// end
+    /// >
+    /// _ for your app's interface, where _
+    /// <
+    /// start
+    /// >
+    /// _ and _
+    /// <
+    /// end
+    /// >
+    /// _ are date values that you supply. The formatter uses locale and language information, along with custom formatting options, to define the content of the resulting string. You can specify different styles for the date and time information in each date value.
+    ///
+    /// To use this class, create an instance, configure its properties, and call the ``string(from:to:)`` method to generate a string. The properties of this class let you configure the calendar and specify the style to apply to date and time values. Given a current date of January 16, 2015, Configuring the Formatter Options shows how to configure a formatter object and generate the string "1/16/15 - 1/17/15".
+    ///
+    /// Configuring a formatter object
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let formatter = DateIntervalFormatter()
+    /// formatter.dateStyle = .short
+    /// formatter.timeStyle = .none
+    ///
+    /// // Create two dates that are exactly 1 day apart.
+    /// let startDate = Date()
+    /// let endDate = Date(timeInterval: 86400, since: startDate)
+    ///
+    /// // Use the configured formatter to generate the string.
+    /// let outputString = formatter.string(from: startDate, to: endDate)
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSDateIntervalFormatter* formatter = [[NSDateIntervalFormatter alloc] init];
+    /// formatter.dateStyle = NSDateIntervalFormatterShortStyle;
+    /// formatter.timeStyle = NSDateIntervalFormatterNoStyle;
+    ///
+    /// // Create two dates that are exactly 1 day apart.
+    /// NSDate* startDate = [NSDate date];
+    /// NSDate* endDate = [NSDate dateWithTimeInterval:86400 sinceDate:startDate];
+    ///
+    /// // Use the configured formatter to generate the string.
+    /// NSString* outputString = [formatter stringFromDate:startDate toDate:endDate];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// > Note:
+    /// > Always set to the ``dateStyle`` and ``timeStyle`` properties to appropriate values before generating any strings.
+    ///
+    /// The ``string(from:to:)`` method may be called safely from any thread of your app. It is also safe to share a single instance of this class from multiple threads, with the caveat that you should not change the configuration of the object while another thread is using it to generate a string.
+    ///
+    /// > Tip:
+    /// > In Swift, you can use ``Date/IntervalFormatStyle`` rather than ``DateIntervalFormatter``. The ``FormatStyle`` API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical ``FormatStyle`` instances, so you don't need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateintervalformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -70,6 +143,7 @@ extern_conformance!(
 impl NSDateIntervalFormatter {
     extern_methods!(
         #[cfg(feature = "NSLocale")]
+        /// The locale for the formatter. Default is `[NSLocale currentLocale]`.
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub fn locale(&self) -> Retained<NSLocale>;
@@ -83,6 +157,7 @@ impl NSDateIntervalFormatter {
         pub fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "NSCalendar")]
+        /// The calendar for the formatter. Default is the calendar of the locale.
         #[unsafe(method(calendar))]
         #[unsafe(method_family = none)]
         pub fn calendar(&self) -> Retained<NSCalendar>;
@@ -96,6 +171,7 @@ impl NSDateIntervalFormatter {
         pub fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSTimeZone")]
+        /// The time zone for the formatter. Default is `[NSTimeZone defaultTimeZone]`.
         #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
         pub fn timeZone(&self) -> Retained<NSTimeZone>;
@@ -109,6 +185,7 @@ impl NSDateIntervalFormatter {
         pub fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "NSString")]
+        /// The date template for the formatter. Default is an empty string.
         #[unsafe(method(dateTemplate))]
         #[unsafe(method_family = none)]
         pub fn dateTemplate(&self) -> Retained<NSString>;
@@ -121,6 +198,7 @@ impl NSDateIntervalFormatter {
         #[unsafe(method_family = none)]
         pub fn setDateTemplate(&self, date_template: Option<&NSString>);
 
+        /// The date style for the formatter. Default is `NSDateIntervalFormatterNoStyle`.
         #[unsafe(method(dateStyle))]
         #[unsafe(method_family = none)]
         pub fn dateStyle(&self) -> NSDateIntervalFormatterStyle;
@@ -130,6 +208,7 @@ impl NSDateIntervalFormatter {
         #[unsafe(method_family = none)]
         pub fn setDateStyle(&self, date_style: NSDateIntervalFormatterStyle);
 
+        /// The time style for the formatter. Default is `NSDateIntervalFormatterNoStyle`.
         #[unsafe(method(timeStyle))]
         #[unsafe(method_family = none)]
         pub fn timeStyle(&self) -> NSDateIntervalFormatterStyle;
@@ -140,6 +219,25 @@ impl NSDateIntervalFormatter {
         pub fn setTimeStyle(&self, time_style: NSDateIntervalFormatterStyle);
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
+        /// Returns a formatted date interval from the specified start date to end date.
+        ///
+        /// If the range is smaller than the resolution specified by the `dateTemplate`, a single date format will be produced.
+        /// If the range is larger than the format specified by the `dateTemplate`, a locale-specific fallback will be used to format the items missing from the pattern.
+        ///
+        /// For example, if the range is 2010-03-04 07:56 - 2010-03-04 19:56 (12 hours)
+        /// - The pattern `jm` will produce
+        /// for `en_US`, "7:56 AM - 7:56 PM"
+        /// for `en_GB`, "7:56 - 19:56"
+        /// - The pattern `MMMd` will produce
+        /// for `en_US`, "Mar 4"
+        /// for `en_GB`, "4 Mar"
+        /// If the range is 2010-03-04 07:56 - 2010-03-08 16:11 (4 days, 8 hours, 15 minutes)
+        /// - The pattern `jm` will produce
+        /// for `en_US`, "3/4/2010 7:56 AM - 3/8/2010 4:11 PM"
+        /// for `en_GB`, "4/3/2010 7:56 - 8/3/2010 16:11"
+        /// - The pattern `MMMd` will produce
+        /// for `en_US`, "Mar 4-8"
+        /// for `en_GB`, "4-8 Mar"
         #[unsafe(method(stringFromDate:toDate:))]
         #[unsafe(method_family = none)]
         pub fn stringFromDate_toDate(
@@ -149,6 +247,7 @@ impl NSDateIntervalFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDateInterval", feature = "NSString"))]
+        /// Returns a formatted string for the given date interval.
         #[unsafe(method(stringFromDateInterval:))]
         #[unsafe(method_family = none)]
         pub fn stringFromDateInterval(

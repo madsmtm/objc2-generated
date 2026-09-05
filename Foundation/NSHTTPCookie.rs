@@ -5,18 +5,26 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiepropertykey?language=objc)
+/// Constants that define the supported keys in a cookie attributes dictionary.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiepropertykey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSHTTPCookiePropertyKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiestringpolicy?language=objc)
+/// Values that indicate whether to restrict the cookie to requests sent back to the same site that created it.
+///
+/// ## Discussion
+///
+/// [RFC 6265](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00) defines "same site" as the registerable domain of a URI.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiestringpolicy?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSHTTPCookieStringPolicy = NSString;
 
 extern "C" {
-    /// Key for cookie name
+    /// An `NSString` object containing the name of the cookie (required).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiename?language=objc)
     #[cfg(feature = "NSString")]
@@ -24,7 +32,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie value
+    /// An `NSString` object containing the value of the cookie.
+    ///
+    /// This cookie attribute is required.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookievalue?language=objc)
     #[cfg(feature = "NSString")]
@@ -32,7 +42,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie origin URL
+    /// An NSURL or `NSString` object containing the URL that set this cookie.
+    ///
+    /// If you do not provide a value for `NSHTTPCookieOriginURL`, you must provide a value for `NSHTTPCookieDomain`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieoriginurl?language=objc)
     #[cfg(feature = "NSString")]
@@ -40,7 +52,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie version
+    /// An `NSString` object that specifies the version of the cookie.
+    ///
+    /// Must be either `"0"` or `"1"`. The default is `"0"`. This cookie attribute is optional.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieversion?language=objc)
     #[cfg(feature = "NSString")]
@@ -48,7 +62,10 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie domain
+    /// An `NSString` object containing the domain for the cookie.
+    ///
+    /// If this cookie attribute is missing, the domain is inferred from the value for `NSHTTPCookieOriginURL`. If you do not
+    /// specify a value for `NSHTTPCookieOriginURL`, you _must_ specify a value for `NSHTTPCookieDomain`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiedomain?language=objc)
     #[cfg(feature = "NSString")]
@@ -56,7 +73,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie path
+    /// An `NSString` object containing the path for the cookie.
+    ///
+    /// This cookie attribute is required.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiepath?language=objc)
     #[cfg(feature = "NSString")]
@@ -64,7 +83,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie secure flag
+    /// An `NSString` object indicating that the cookie should be transmitted only over secure channels.
+    ///
+    /// Providing any value for this key indicates that the cookie should remain secure.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesecure?language=objc)
     #[cfg(feature = "NSString")]
@@ -72,7 +93,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie expiration date
+    /// An `NSDate` object or `NSString` object specifying the expiration date for the cookie.
+    ///
+    /// This cookie attribute is only used for Version 0 cookies. This cookie attribute is optional.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieexpires?language=objc)
     #[cfg(feature = "NSString")]
@@ -80,7 +103,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie comment text
+    /// An `NSString` object containing the comment for the cookie.
+    ///
+    /// Only valid for Version 1 cookies and later. This cookie attribute is optional.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiecomment?language=objc)
     #[cfg(feature = "NSString")]
@@ -88,7 +113,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie comment URL
+    /// An `NSURL` object or `NSString` object containing the comment URL for the cookie.
+    ///
+    /// Only valid for Version 1 cookies or later. This cookie attribute is optional.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiecommenturl?language=objc)
     #[cfg(feature = "NSString")]
@@ -96,7 +123,10 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie discard (session-only) flag
+    /// An `NSString` object stating whether the cookie should be discarded at the end of the session.
+    ///
+    /// String value must be either `"TRUE"` or `"FALSE"`. This cookie attribute is optional. The default is `"FALSE"`, unless this
+    /// cookie is version 1 or greater and a value for `NSHTTPCookieMaximumAge` is not specified, in which case it is assumed to be `"TRUE"`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiediscard?language=objc)
     #[cfg(feature = "NSString")]
@@ -104,7 +134,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie maximum age (an alternate way of specifying the expiration)
+    /// An `NSString` object containing an integer value stating how long in seconds the cookie should be kept, at most.
+    ///
+    /// Only valid for Version 1 cookies and later. Default is `"0"`. This cookie attribute is optional.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiemaximumage?language=objc)
     #[cfg(feature = "NSString")]
@@ -112,7 +144,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie ports
+    /// An `NSString` object containing comma-separated integer values specifying the ports for the cookie.
+    ///
+    /// Only valid for Version 1 cookies or later. The default value is an empty string (`""`). This cookie attribute is optional.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieport?language=objc)
     #[cfg(feature = "NSString")]
@@ -128,7 +162,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// Key for cookie same site
+    /// A string indicating the same-site policy for the cookie.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitepolicy?language=objc)
     #[cfg(feature = "NSString")]
@@ -136,7 +170,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// String constant "lax" to be used as a value for the property key NSHTTPCookieSameSite
+    /// A policy that allows certain cross-site requests to include the cookie.
+    ///
+    /// When a cookie has this policy, a request includes the cookie if the request is "top-level," meaning one that changes the URL in the address bar.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitelax?language=objc)
     #[cfg(feature = "NSString")]
@@ -144,7 +180,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// String constant "strict" to be used as a value for the property key NSHTTPCookieSameSite
+    /// A policy that prohibits a cross-site request from including the cookie.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitestrict?language=objc)
     #[cfg(feature = "NSString")]
@@ -152,12 +188,12 @@ extern "C" {
 }
 
 extern_class!(
-    /// NSHTTPCookie represents an http cookie.
+    /// A representation of an HTTP cookie.
     ///
-    /// A NSHTTPCookie instance represents a single http cookie. It is
-    /// an immutable object initialized from a dictionary that contains
-    /// the various cookie attributes. It has accessors to get the various
-    /// attributes of a cookie.
+    /// An ``HTTPCookie`` object is immutable, initialized from a dictionary that contains the attributes of the cookie. This class supports two different cookie versions:
+    ///
+    /// - Version 0: The original cookie format defined by Netscape. Most cookies are in this format.
+    /// - Version 1: The cookie format defined in [RFC 6265](https://tools.ietf.org/html/rfc6265), HTTP State Management Mechanism.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookie?language=objc)
     #[unsafe(super(NSObject))]
@@ -176,257 +212,14 @@ extern_conformance!(
 impl NSHTTPCookie {
     extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        /// Initialize a NSHTTPCookie object with a dictionary of
-        /// parameters
+        /// Initializes an HTTP cookie object with the given cookie properties.
         ///
-        /// Parameter `properties`: The dictionary of properties to be used to
-        /// initialize this cookie.
+        /// - Parameter properties: The properties for the new cookie object, expressed as key-value pairs.
+        /// - Returns: An initialized `NSHTTPCookie`, or `nil` if the provided properties are invalid. To successfully create a cookie, you
+        /// must provide values for (at least) the path, name, and value keys, and either the origin URL key or the domain key.
         ///
-        /// Supported dictionary keys and value types for the
-        /// given dictionary are as follows.
-        ///
-        /// All properties can handle an NSString value, but some can also
-        /// handle other types.
-        ///
-        /// <table border="1" cellspacing="2" cellpadding="4">
-        /// <tr>
-        /// <th>
-        /// Property key constant
-        /// </th>
-        /// <th>
-        /// Type of value
-        /// </th>
-        /// <th>
-        /// Required
-        /// </th>
-        /// <th>
-        /// Description
-        /// </th>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieComment
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// Comment for the cookie. Only valid for version 1 cookies and
-        /// later. Default is nil.
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieCommentURL
-        /// </td>
-        /// <td>
-        /// NSURL or NSString
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// Comment URL for the cookie. Only valid for version 1 cookies
-        /// and later. Default is nil.
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieDomain
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// Special, a value for either NSHTTPCookieOriginURL or
-        /// NSHTTPCookieDomain must be specified.
-        /// </td>
-        /// <td>
-        /// Domain for the cookie. Inferred from the value for
-        /// NSHTTPCookieOriginURL if not provided.
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieDiscard
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// A string stating whether the cookie should be discarded at
-        /// the end of the session. String value must be either "TRUE" or
-        /// "FALSE". Default is "FALSE", unless this is cookie is version
-        /// 1 or greater and a value for NSHTTPCookieMaximumAge is not
-        /// specified, in which case it is assumed "TRUE".
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieExpires
-        /// </td>
-        /// <td>
-        /// NSDate or NSString
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// Expiration date for the cookie. Used only for version 0
-        /// cookies. Ignored for version 1 or greater.
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieMaximumAge
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// A string containing an integer value stating how long in
-        /// seconds the cookie should be kept, at most. Only valid for
-        /// version 1 cookies and later. Default is "0".
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieName
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// YES
-        /// </td>
-        /// <td>
-        /// Name of the cookie
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieOriginURL
-        /// </td>
-        /// <td>
-        /// NSURL or NSString
-        /// </td>
-        /// <td>
-        /// Special, a value for either NSHTTPCookieOriginURL or
-        /// NSHTTPCookieDomain must be specified.
-        /// </td>
-        /// <td>
-        /// URL that set this cookie. Used as default for other fields
-        /// as noted.
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookiePath
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// Path for the cookie. Inferred from the value for
-        /// NSHTTPCookieOriginURL if not provided. Default is "/".
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookiePort
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// comma-separated integer values specifying the ports for the
-        /// cookie. Only valid for version 1 cookies and later. Default is
-        /// empty string ("").
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieSecure
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// A string stating whether the cookie should be transmitted
-        /// only over secure channels. String value must be either "TRUE"
-        /// or "FALSE". Default is "FALSE".
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieValue
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// YES
-        /// </td>
-        /// <td>
-        /// Value of the cookie
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieVersion
-        /// </td>
-        /// <td>
-        /// NSString
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// Specifies the version of the cookie. Must be either "0" or
-        /// "1". Default is "0".
-        /// </td>
-        /// </tr>
-        /// <tr>
-        /// <td>
-        /// NSHTTPCookieSetByJavaScript
-        /// </td>
-        /// <td>
-        /// NSNumber
-        /// </td>
-        /// <td>
-        /// NO
-        /// </td>
-        /// <td>
-        /// `true`if the cookie is set via JavaScript.
-        /// `false`if the cookie
-        /// is not set via JavaScript
-        /// </td>
-        /// </tr>
-        /// </table>
-        /// <p>
-        /// All other keys are ignored.
-        ///
-        /// Returns: An initialized NSHTTPCookie, or nil if the set of
-        /// dictionary keys is invalid, for example because a required key is
-        /// missing, or a recognized key maps to an illegal value.
+        /// See the `NSHTTPCookie` `-initWithProperties:` method for more information on the constraints
+        /// imposed on the dictionary, and for descriptions of the supported keys and values.
         ///
         /// # Safety
         ///
@@ -439,22 +232,14 @@ impl NSHTTPCookie {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        /// Allocates and initializes an NSHTTPCookie with the given
-        /// dictionary.
+        /// Allocates and initializes an `NSHTTPCookie` with the given dictionary.
         ///
-        /// See the NSHTTPCookie
-        /// <tt>
-        /// -initWithProperties:
-        /// </tt>
-        /// method for more information on the constraints imposed on the
-        /// dictionary, and for descriptions of the supported keys and values.
+        /// - Parameter properties: The dictionary to use to initialize this cookie.
+        /// - Returns: A newly-created and autoreleased `NSHTTPCookie` instance, or `nil` if the set of
+        /// dictionary keys is invalid, for example because a required key is missing, or a recognized key maps to an illegal value.
         ///
-        /// Parameter `properties`: The dictionary to use to initialize this cookie.
-        ///
-        /// Returns: A newly-created and autoreleased NSHTTPCookie instance, or
-        /// nil if the set of dictionary keys is invalid, for example because
-        /// a required key is missing, or a recognized key maps to an illegal
-        /// value.
+        /// See the `NSHTTPCookie` `-initWithProperties:` method for more information on the constraints
+        /// imposed on the dictionary, and for descriptions of the supported keys and values.
         ///
         /// # Safety
         ///
@@ -466,13 +251,10 @@ impl NSHTTPCookie {
         ) -> Option<Retained<NSHTTPCookie>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
-        /// Return a dictionary of header fields that can be used to add the
-        /// specified cookies to the request.
+        /// Converts an array of cookies to a dictionary of header fields.
         ///
-        /// Parameter `cookies`: The cookies to turn into request headers.
-        ///
-        /// Returns: An NSDictionary where the keys are header field names, and the values
-        /// are the corresponding header field values.
+        /// - Parameter cookies: The cookies from which the header fields are created.
+        /// - Returns: An `NSDictionary` where the keys are header field names, and the values are the corresponding header field values.
         #[unsafe(method(requestHeaderFieldsWithCookies:))]
         #[unsafe(method_family = none)]
         pub fn requestHeaderFieldsWithCookies(
@@ -485,16 +267,13 @@ impl NSHTTPCookie {
             feature = "NSString",
             feature = "NSURL"
         ))]
-        /// Return an array of cookies parsed from the specified response header fields and URL.
+        /// Creates an array of HTTP cookies that corresponds to the provided response header fields for the provided URL.
         ///
-        /// Parameter `headerFields`: The response header fields to check for cookies.
+        /// - Parameter headerFields: The response header fields to check for cookies.
+        /// - Parameter URL: The URL that the cookies came from, relevant to how the cookies are interpreted.
+        /// - Returns: An `NSArray` of `NSHTTPCookie` objects.
         ///
-        /// Parameter `URL`: The URL that the cookies came from - relevant to how the cookies are interpreted.
-        ///
-        /// Returns: An NSArray of NSHTTPCookie objects
-        ///
-        /// This method will ignore irrelevant header fields so
-        /// you can pass a dictionary containing data other than cookie data.
+        /// This method ignores irrelevant header fields in `headerFields`, allowing dictionaries to contain additional data.
         #[unsafe(method(cookiesWithResponseHeaderFields:forURL:))]
         #[unsafe(method_family = none)]
         pub fn cookiesWithResponseHeaderFields_forURL(
@@ -503,189 +282,122 @@ impl NSHTTPCookie {
         ) -> Retained<NSArray<NSHTTPCookie>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        /// Returns a dictionary representation of the receiver.
+        /// The cookie's properties.
         ///
-        /// This method returns a dictionary representation of the
-        /// NSHTTPCookie which can be saved and passed to
-        /// <tt>
-        /// -initWithProperties:
-        /// </tt>
-        /// or
-        /// <tt>
-        /// +cookieWithProperties:
-        /// </tt>
-        /// later to reconstitute an equivalent cookie.
-        /// <p>
-        /// See the NSHTTPCookie
-        /// <tt>
-        /// -initWithProperties:
-        /// </tt>
-        /// method for
-        /// more information on the constraints imposed on the dictionary, and
-        /// for descriptions of the supported keys and values.
-        ///
-        /// Returns: The dictionary representation of the receiver.
+        /// This dictionary can be used with `-initWithProperties:` or `+cookieWithProperties:` to create an equivalent `NSHTTPCookie` object.
         #[unsafe(method(properties))]
         #[unsafe(method_family = none)]
         pub fn properties(
             &self,
         ) -> Option<Retained<NSDictionary<NSHTTPCookiePropertyKey, AnyObject>>>;
 
-        /// Returns the version of the receiver.
+        /// The cookie's version.
         ///
-        /// Version 0 maps to "old-style" Netscape cookies.
-        /// Version 1 maps to RFC2965 cookies. There may be future versions.
-        ///
-        /// Returns: the version of the receiver.
+        /// Version 0 maps to "old-style" Netscape cookies. Version 1 maps to RFC 2965 cookies. There may be future versions.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub fn version(&self) -> NSUInteger;
 
         #[cfg(feature = "NSString")]
-        /// Returns the name of the receiver.
-        ///
-        /// Returns: the name of the receiver.
+        /// The cookie's name.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the value of the receiver.
-        ///
-        /// Returns: the value of the receiver.
+        /// The cookie's string value.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub fn value(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSDate")]
-        /// Returns the expires date of the receiver.
+        /// The cookie's expiration date.
         ///
-        /// Returns: the expires date of the receiver.
-        ///
-        /// The expires date is the date when the cookie should be
-        /// deleted. The result will be nil if there is no specific expires
-        /// date. This will be the case only for "session-only" cookies.
-        ///
-        /// Returns: The expires date of the receiver.
+        /// This value is `nil` if there is no specific expiration date, as with session-only cookies.
+        /// The expiration date is the date when the cookie should be deleted.
         #[unsafe(method(expiresDate))]
         #[unsafe(method_family = none)]
         pub fn expiresDate(&self) -> Option<Retained<NSDate>>;
 
-        /// Returns whether the receiver is session-only.
-        ///
-        /// Returns: YES if this receiver should be discarded at the end of the
-        /// session (regardless of expiration date), NO if receiver need not
-        /// be discarded at the end of the session.
+        /// A Boolean value that indicates whether the cookie should be discarded at the end of the session (regardless of expiration date).
         #[unsafe(method(isSessionOnly))]
         #[unsafe(method_family = none)]
         pub fn isSessionOnly(&self) -> bool;
 
         #[cfg(feature = "NSString")]
-        /// Returns the domain of the receiver.
+        /// The domain of the cookie.
         ///
-        /// This value specifies URL domain to which the cookie
-        /// should be sent. A domain with a leading dot means the cookie
-        /// should be sent to subdomains as well, assuming certain other
-        /// restrictions are valid. See RFC 2965 for more detail.
-        ///
-        /// Returns: The domain of the receiver.
+        /// If the domain does not start with a dot, then the cookie is only sent to the exact host specified by the domain. If the domain
+        /// does start with a dot, then the cookie is sent to other hosts in that domain as well, subject to certain restrictions.
+        /// See RFC 6265 for more detail.
         #[unsafe(method(domain))]
         #[unsafe(method_family = none)]
         pub fn domain(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the path of the receiver.
+        /// The cookie's path.
         ///
-        /// This value specifies the URL path under the cookie's
-        /// domain for which this cookie should be sent. The cookie will also
-        /// be sent for children of that path, so "/" is the most general.
-        ///
-        /// Returns: The path of the receiver.
+        /// The cookie will be sent with requests for this path in the cookie's domain, and all paths that have this prefix.
+        /// A path of `"/"` means the cookie will be sent for all URLs in the domain.
         #[unsafe(method(path))]
         #[unsafe(method_family = none)]
         pub fn path(&self) -> Retained<NSString>;
 
-        /// Returns whether the receiver should be sent only over
-        /// secure channels
+        /// A Boolean value that indicates whether the cookie may only be sent over secure channels.
         ///
-        /// Cookies may be marked secure by a server (or by a javascript).
-        /// Cookies marked as such must only be sent via an encrypted connection to
-        /// trusted servers (i.e. via SSL or TLS), and should not be delivered to any
-        /// javascript applications to prevent cross-site scripting vulnerabilities.
-        ///
-        /// Returns: YES if this cookie should be sent only over secure channels,
-        /// NO otherwise.
+        /// Cookies may be marked secure by a server (or by a javascript). Cookies marked as such must only be sent via an
+        /// encrypted connection to trusted servers (i.e. via SSL or TLS), and should not be delivered to any javascript
+        /// applications to prevent cross-site scripting vulnerabilities.
         #[unsafe(method(isSecure))]
         #[unsafe(method_family = none)]
         pub fn isSecure(&self) -> bool;
 
-        /// Returns whether the receiver should only be sent to HTTP servers
-        /// per RFC 2965
+        /// A Boolean value that indicates whether the cookie should only be sent to HTTP servers.
         ///
-        /// Cookies may be marked as HTTPOnly by a server (or by a javascript).
-        /// Cookies marked as such must only be sent via HTTP Headers in HTTP Requests
-        /// for URL's that match both the path and domain of the respective Cookies.
-        /// Specifically these cookies should not be delivered to any javascript
-        /// applications to prevent cross-site scripting vulnerabilities.
+        /// Cookies can be marked as HTTP-only by a server (or by JavaScript code). Cookies marked as such must only be sent
+        /// via HTTP Headers in HTTP requests for URLs that match both the path and domain of the respective cookies.
         ///
-        /// Returns: YES if this cookie should only be sent via HTTP headers,
-        /// NO otherwise.
+        /// > Important: To prevent cross-site scripting vulnerabilities, don't deliver cookies marked as HTTP-only to JavaScript code.
         #[unsafe(method(isHTTPOnly))]
         #[unsafe(method_family = none)]
         pub fn isHTTPOnly(&self) -> bool;
 
         #[cfg(feature = "NSString")]
-        /// Returns the comment of the receiver.
+        /// The cookie's comment string.
         ///
-        /// This value specifies a string which is suitable for
-        /// presentation to the user explaining the contents and purpose of this
-        /// cookie. It may be nil.
-        ///
-        /// Returns: The comment of the receiver, or nil if the receiver has no
-        /// comment.
+        /// This value is `nil` if the cookie has no comment. You can present this string to the user,
+        /// explaining the contents and purpose of this cookie.
         #[unsafe(method(comment))]
         #[unsafe(method_family = none)]
         pub fn comment(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSURL")]
-        /// Returns the comment URL of the receiver.
+        /// The cookie's comment URL.
         ///
-        /// This value specifies a URL which is suitable for
-        /// presentation to the user as a link for further information about
-        /// this cookie. It may be nil.
-        ///
-        /// Returns: The comment URL of the receiver, or nil if the receiver
-        /// has no comment URL.
+        /// This value is `nil` if the cookie has no comment URL. This value specifies a URL that can be presented to the
+        /// user as a link for further information about this cookie.
         #[unsafe(method(commentURL))]
         #[unsafe(method_family = none)]
         pub fn commentURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
-        /// Returns the list ports to which the receiver should be
-        /// sent.
+        /// The cookie's port list.
         ///
-        /// This value specifies an NSArray of NSNumbers
-        /// (containing integers) which specify the only ports to which this
-        /// cookie should be sent.
-        ///
-        /// Returns: The list ports to which the receiver should be sent. The
-        /// array may be nil, in which case this cookie can be sent to any
-        /// port.
+        /// The list of ports for the cookie, returned as an array of `NSNumber` objects containing integers.
+        /// If the cookie has no port list, the value of this property is `nil` and the cookie will be sent to any port.
+        /// Otherwise, the cookie is only sent to ports specified in the port list.
         #[unsafe(method(portList))]
         #[unsafe(method_family = none)]
         pub fn portList(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the value of the same site attribute on the cookie.
+        /// A Boolean value that indicates whether to restrict the cookie to requests sent back to the same site that created it.
         ///
         /// Cookies can be marked with an attribute Strict or Lax.
-        /// Cookies marked with "strict" (NSHTTPCookieSameSiteStrict) are not sent along with cross-site requests.
-        /// Cookies marked with "lax" (NSHTTPCookieSameSiteLax) sent along cross-site requests provided the
-        /// cross-site requests are top-level-requests (one that changes the url in the address bar).
-        /// The attribute value is canonicalized and stored. Any value other than the default (strict and lax) will be ignored.
-        ///
-        /// Returns: strict or lax. The result could also be nil, in which case the
-        /// cookie will be sent along with all cross-site requests.
+        /// Cookies marked with "strict" (`NSHTTPCookieSameSiteStrict`) are not sent along with cross-site requests.
+        /// Cookies marked with "lax" (`NSHTTPCookieSameSiteLax`) are sent along cross-site requests provided the
+        /// cross-site requests are top-level requests (one that changes the URL in the address bar).
+        /// The result could also be `nil`, in which case the cookie will be sent along with all cross-site requests.
         #[unsafe(method(sameSitePolicy))]
         #[unsafe(method_family = none)]
         pub fn sameSitePolicy(&self) -> Option<Retained<NSHTTPCookieStringPolicy>>;

@@ -100,6 +100,18 @@ impl UITab {
         #[unsafe(method_family = none)]
         pub fn setImage(&self, image: Option<&UIImage>);
 
+        #[cfg(feature = "UIImage")]
+        /// An alternate image to display when the tab is selected. Default is nil.
+        #[unsafe(method(selectedImage))]
+        #[unsafe(method_family = none)]
+        pub fn selectedImage(&self) -> Option<Retained<UIImage>>;
+
+        #[cfg(feature = "UIImage")]
+        /// Setter for [`selectedImage`][Self::selectedImage].
+        #[unsafe(method(setSelectedImage:))]
+        #[unsafe(method_family = none)]
+        pub fn setSelectedImage(&self, selected_image: Option<&UIImage>);
+
         /// The subtitle of the tab. This is displayed only in certain contexts, like the sidebar. Default is nil.
         #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]

@@ -337,7 +337,7 @@ impl HMEventTrigger {
         /// The valid values are: HMSignificantEventSunrise and HMSignificantEventSunset.
         ///
         ///
-        /// Parameter `offset`: An offset from the time of the signficant event. To specify an offset before the significant event, the
+        /// Parameter `offset`: An offset from the time of the significant event. To specify an offset before the significant event, the
         /// properties of the NSDateComponents must be negative value. e.g. To specify 30 mins before sunset, the
         /// 'minute' property must be set to -30.
         ///
@@ -376,7 +376,7 @@ impl HMEventTrigger {
         /// The valid values are: HMSignificantEventSunrise and HMSignificantEventSunset.
         ///
         ///
-        /// Parameter `offset`: An offset from the time of the signficant event. To specify an offset after the significant event, the
+        /// Parameter `offset`: An offset from the time of the significant event. To specify an offset after the significant event, the
         /// properties of the NSDateComponents must be positive value. e.g. To specify 30 mins after sunset, the
         /// 'minute' property must be set to 30.
         ///

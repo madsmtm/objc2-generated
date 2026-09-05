@@ -115,6 +115,20 @@ impl PHAssetCreationRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAsset() -> Retained<Self>;
 
+        #[cfg(feature = "PhotosTypes")]
+        #[unsafe(method(originalResourceChoice))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn originalResourceChoice(&self) -> PHOriginalResourceChoice;
+
+        #[cfg(feature = "PhotosTypes")]
+        /// Setter for [`originalResourceChoice`][Self::originalResourceChoice].
+        #[unsafe(method(setOriginalResourceChoice:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setOriginalResourceChoice(
+            &self,
+            original_resource_choice: PHOriginalResourceChoice,
+        );
+
         #[unsafe(method(supportsAssetResourceTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAssetResourceTypes(types: &NSArray<NSNumber>) -> bool;

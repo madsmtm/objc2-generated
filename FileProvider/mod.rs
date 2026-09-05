@@ -149,6 +149,8 @@ pub use self::__NSFileProviderItem::NSFileProviderItemProtocol;
 #[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderItemVersion;
 #[cfg(feature = "NSFileProviderItem")]
+pub use self::__NSFileProviderItem::NSFileProviderNamespacePolicy;
+#[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderRootContainerItemIdentifier;
 #[cfg(feature = "NSFileProviderItem")]
 pub use self::__NSFileProviderItem::NSFileProviderTrashContainerItemIdentifier;

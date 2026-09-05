@@ -117,7 +117,7 @@ impl UIBarButtonItemBadge {
 #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
 impl UIBarButtonItem {
     extern_methods!(
-        /// Sets a badge on the bar button item. Currently only supported in navigation bars.
+        /// Sets a badge on the bar button item. Supported in navigation bars and toolbars.
         #[unsafe(method(badge))]
         #[unsafe(method_family = none)]
         pub fn badge(&self) -> Option<Retained<UIBarButtonItemBadge>>;

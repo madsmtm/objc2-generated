@@ -86,6 +86,35 @@ unsafe impl RefEncode for UIMenuElementRepeatBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Visibility options for a menu element's image.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementimagevisibility?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UIMenuElementImageVisibility(pub NSInteger);
+impl UIMenuElementImageVisibility {
+    /// The element's image visibility is determined by the platform and context.
+    #[doc(alias = "UIMenuElementImageVisibilityAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// The element prefers its image to be visible, even in contexts where
+    /// images are not shown by default.
+    #[doc(alias = "UIMenuElementImageVisibilityVisible")]
+    pub const Visible: Self = Self(1);
+    /// The element prefers its image to be hidden, even in contexts where
+    /// images are shown by default.
+    #[doc(alias = "UIMenuElementImageVisibilityHidden")]
+    pub const Hidden: Self = Self(2);
+}
+
+unsafe impl Encode for UIMenuElementImageVisibility {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIMenuElementImageVisibility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement?language=objc)
     #[unsafe(super(NSObject))]
@@ -138,5 +167,47 @@ impl UIMenuElement {
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub fn image(&self) -> Option<Retained<UIImage>>;
+
+        /// The preferred visibility of the element's image.
+        #[unsafe(method(preferredImageVisibility))]
+        #[unsafe(method_family = none)]
+        pub fn preferredImageVisibility(&self) -> UIMenuElementImageVisibility;
+
+        /// Setter for [`preferredImageVisibility`][Self::preferredImageVisibility].
+        #[unsafe(method(setPreferredImageVisibility:))]
+        #[unsafe(method_family = none)]
+        pub fn setPreferredImageVisibility(
+            &self,
+            preferred_image_visibility: UIMenuElementImageVisibility,
+        );
+
+        #[cfg(feature = "block2")]
+        /// This block gets called when the element is being highlighted or unhighlighted in a menu.
+        ///
+        /// Parameter `element`: The element being highlighted or unhighlighted.
+        ///
+        /// Parameter `isHighlighted`: YES when the element is highlighted, NO when unhighlighted.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
+        #[unsafe(method(highlightStateUpdateHandler))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn highlightStateUpdateHandler(
+            &self,
+        ) -> *mut block2::Block<'static, fn(NonNull<UIMenuElement>, Bool)>;
+
+        #[cfg(feature = "block2")]
+        /// Setter for [`highlightStateUpdateHandler`][Self::highlightStateUpdateHandler].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setHighlightStateUpdateHandler:))]
+        #[unsafe(method_family = none)]
+        pub fn setHighlightStateUpdateHandler(
+            &self,
+            highlight_state_update_handler: Option<
+                &block2::Block<'static, fn(NonNull<UIMenuElement>, Bool)>,
+            >,
+        );
     );
 }

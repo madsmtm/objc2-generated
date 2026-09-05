@@ -6,24 +6,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationactivationtype?language=objc)
+/// These constants describe how the user notification was activated.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationactivationtype?language=objc)
 // NS_ENUM
 #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserNotificationActivationType(pub NSInteger);
 impl NSUserNotificationActivationType {
+    /// The user did not interact with the notification.
     #[doc(alias = "NSUserNotificationActivationTypeNone")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const None: Self = Self(0);
+    /// The user clicked on the body of the notification.
     #[doc(alias = "NSUserNotificationActivationTypeContentsClicked")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const ContentsClicked: Self = Self(1);
+    /// The user clicked the action button of the notification.
     #[doc(alias = "NSUserNotificationActivationTypeActionButtonClicked")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const ActionButtonClicked: Self = Self(2);
+    /// The user replied to the notification.
     #[doc(alias = "NSUserNotificationActivationTypeReplied")]
     pub const Replied: Self = Self(3);
+    /// The user clicked an additional action of the notification.
     #[doc(alias = "NSUserNotificationActivationTypeAdditionalActionClicked")]
     pub const AdditionalActionClicked: Self = Self(4);
 }
@@ -37,7 +44,16 @@ unsafe impl RefEncode for NSUserNotificationActivationType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification?language=objc)
+    /// A notification that can be scheduled for display in the notification center.
+    ///
+    ///
+    /// When the system delivers a notification, information about when the notification was actually presented to the user (if at all) and other details are provided in the notification object. User applications can create ``NSUserNotification`` objects and register them with the ``NSUserNotificationCenter`` object to notify the user when an application requires attention.
+    ///
+    /// ### Threading Information
+    ///
+    /// The ``NSUserNotificationCenter`` class and the `NSUserNotification` class are both thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -66,6 +82,9 @@ impl NSUserNotification {
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Specifies the title of the notification.
+        ///
+        /// This value should be localized because it is presented to the user. The string is truncated to a length appropriate for display and the property is modified to reflect the truncation.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -81,6 +100,9 @@ impl NSUserNotification {
         pub fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// Specifies the subtitle of the notification.
+        ///
+        /// This value should be localized as it is presented to the user. The string is truncated to a length appropriate for display and the property is modified to reflect the truncation.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]
@@ -96,6 +118,9 @@ impl NSUserNotification {
         pub fn setSubtitle(&self, subtitle: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The body text of the notification.
+        ///
+        /// This value should be localized as it is presented to the user. The string is truncated to a length appropriate for display and the property is modified to reflect the truncation.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(informativeText))]
         #[unsafe(method_family = none)]
@@ -111,6 +136,9 @@ impl NSUserNotification {
         pub fn setInformativeText(&self, informative_text: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// Specifies the title of the action button displayed in the notification.
+        ///
+        /// This value should be localized as it is presented to the user. The string is truncated to a length appropriate for display and the property is modified to reflect the truncation.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(actionButtonTitle))]
         #[unsafe(method_family = none)]
@@ -126,6 +154,11 @@ impl NSUserNotification {
         pub fn setActionButtonTitle(&self, action_button_title: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Application-specific user info that can be attached to the notification.
+        ///
+        /// All items must be property list types or an exception is thrown.
+        ///
+        /// The `userInfo` content must be of reasonable serialized size (less than 1KB) or an exception is thrown.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
@@ -145,6 +178,11 @@ impl NSUserNotification {
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[cfg(feature = "NSDate")]
+        /// Specifies when the notification should be delivered.
+        ///
+        /// The delivery date is specified in an absolute time.
+        ///
+        /// After a notification is delivered, it may be presented to the user.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(deliveryDate))]
         #[unsafe(method_family = none)]
@@ -160,6 +198,11 @@ impl NSUserNotification {
         pub fn setDeliveryDate(&self, delivery_date: Option<&NSDate>);
 
         #[cfg(feature = "NSTimeZone")]
+        /// Specify the time zone to interpret the delivery date in.
+        ///
+        /// If this value is `nil` and the user switches time zones, the notification center will adjust the time of presentation to account for the time zone change.
+        ///
+        /// If a notification should be delivered at a time in a specific time zone (regardless of whether the user switches time zones), set this value to the specific time zone, for example the current time zone.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(deliveryTimeZone))]
         #[unsafe(method_family = none)]
@@ -175,6 +218,15 @@ impl NSUserNotification {
         pub fn setDeliveryTimeZone(&self, delivery_time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "NSCalendar")]
+        /// Specifies the date components that control how often a user notification is repeated.
+        ///
+        /// This value may be `nil` if the notification should not repeat.
+        ///
+        /// The date component values are relative to the date the notification was delivered.
+        ///
+        /// If the calendar value of the `deliveryRepeatInterval` is `nil`, the current calendar is used to calculate the repeat interval. For example, if a notification should repeat every hour, set the `hour` property of the `deliveryRepeatInterval` to `1`.
+        ///
+        /// This value is ignored unless the user notification is scheduled with the `NSUserNotificationCenter` object.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(deliveryRepeatInterval))]
         #[unsafe(method_family = none)]
@@ -193,22 +245,40 @@ impl NSUserNotification {
         );
 
         #[cfg(feature = "NSDate")]
+        /// The date this notification was actually delivered.
+        ///
+        /// The notification center will set this value if a notification is put in the scheduled list and the delivery time arrives.
+        ///
+        /// If the notification is delivered directly using the `deliverNotification:` method of the `NSUserNotificationCenter` class, this value is set to the `deliveryDate` value. If the `deliveryDate` value is `nil`, this value is set to the current date.
+        ///
+        /// This value is used to sort the list of notifications in the user interface.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(actualDeliveryDate))]
         #[unsafe(method_family = none)]
         pub fn actualDeliveryDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Specifies whether the user notification has been presented.
+        ///
+        /// In some cases, for example when your application is frontmost, the notification center may decide not to actually present a delivered notification. In that case, the value of this property is `NO`. It is set to `YES` if the notification was presented according to user preferences.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(isPresented))]
         #[unsafe(method_family = none)]
         pub fn isPresented(&self) -> bool;
 
+        /// Specifies whether the notification was generated by a push notification.
+        ///
+        /// If this property is `YES` then the user notification was generated by a push notification (that is, remotely); if `NO` it was generated locally.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(isRemote))]
         #[unsafe(method_family = none)]
         pub fn isRemote(&self) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Specifies the name of the sound to play when the notification is delivered.
+        ///
+        /// Passing the `NSUserNotificationDefaultSoundName` constant causes the default notification center sound to be played.
+        ///
+        /// A value of `nil` means no sound is played.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(soundName))]
         #[unsafe(method_family = none)]
@@ -223,6 +293,9 @@ impl NSUserNotification {
         #[unsafe(method_family = none)]
         pub fn setSoundName(&self, sound_name: Option<&NSString>);
 
+        /// A Boolean value that specifies whether the notification displays an action button.
+        ///
+        /// Set to `NO` if the notification has no action button. This is the case for notifications that are purely for information and have no user action. The default value is `YES`.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(hasActionButton))]
         #[unsafe(method_family = none)]
@@ -234,12 +307,20 @@ impl NSUserNotification {
         #[unsafe(method_family = none)]
         pub fn setHasActionButton(&self, has_action_button: bool);
 
+        /// Specifies what caused a user notification to occur.
+        ///
+        /// This property specifies why the user notification was sent to the `NSUserNotificationCenterDelegate` method `userNotificationCenter:didActivateNotification:`. The supported values are described in `NSUserNotificationActivationType`.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(activationType))]
         #[unsafe(method_family = none)]
         pub fn activationType(&self) -> NSUserNotificationActivationType;
 
         #[cfg(feature = "NSString")]
+        /// Specifies a custom title for the close button in an alert-style notification.
+        ///
+        /// This value should be localized as it is presented to the user. The string is truncated to a length appropriate for display and the property is modified to reflect the truncation.
+        ///
+        /// An empty string will cause the default localized text to be used. A `nil` value is invalid.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(otherButtonTitle))]
         #[unsafe(method_family = none)]
@@ -255,6 +336,9 @@ impl NSUserNotification {
         pub fn setOtherButtonTitle(&self, other_button_title: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// A string that uniquely identifies a notification.
+        ///
+        /// The identifier is unique to a notification. A notification delivered with the same identifier as an existing notification replaces the existing notification rather than causing the display of a new notification.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub fn identifier(&self) -> Option<Retained<NSString>>;
@@ -267,6 +351,9 @@ impl NSUserNotification {
         #[unsafe(method_family = none)]
         pub fn setIdentifier(&self, identifier: Option<&NSString>);
 
+        /// A Boolean value that specifies whether the notification displays a reply button.
+        ///
+        /// Set to `YES` if the notification has a reply button. The default value is `NO`. If this property and `hasActionButton` are both `YES`, the reply button is shown.
         #[unsafe(method(hasReplyButton))]
         #[unsafe(method_family = none)]
         pub fn hasReplyButton(&self) -> bool;
@@ -277,6 +364,7 @@ impl NSUserNotification {
         pub fn setHasReplyButton(&self, has_reply_button: bool);
 
         #[cfg(feature = "NSString")]
+        /// Optional placeholder string for inline reply field.
         #[unsafe(method(responsePlaceholder))]
         #[unsafe(method_family = none)]
         pub fn responsePlaceholder(&self) -> Option<Retained<NSString>>;
@@ -290,11 +378,17 @@ impl NSUserNotification {
         pub fn setResponsePlaceholder(&self, response_placeholder: Option<&NSString>);
 
         #[cfg(feature = "NSAttributedString")]
+        /// The response with which the user responded to a notification.
+        ///
+        /// When the user responds to a notification, the `NSUserNotificationCenterDelegate` method `userNotificationCenter:didActivateNotification:` is called with the notification, the `activationType` property set to `NSUserNotificationActivationTypeReplied`, and this property is set with the user's response.
         #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub fn response(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSArray")]
+        /// The actions that can be taken on a notification in addition to the default action.
+        ///
+        /// This array contains `NSUserNotificationAction` objects that describe the different actions for a notification in addition to the default action described by `actionButtonTitle`.
         #[unsafe(method(additionalActions))]
         #[unsafe(method_family = none)]
         pub fn additionalActions(&self) -> Option<Retained<NSArray<NSUserNotificationAction>>>;
@@ -310,6 +404,9 @@ impl NSUserNotification {
             additional_actions: Option<&NSArray<NSUserNotificationAction>>,
         );
 
+        /// An additional action selected by the user.
+        ///
+        /// This property specifies an additional action selected by the user when the user notification is sent to the `NSUserNotificationCenterDelegate` method `userNotificationCenter:didActivateNotification:`.
         #[unsafe(method(additionalActivationAction))]
         #[unsafe(method_family = none)]
         pub fn additionalActivationAction(&self) -> Option<Retained<NSUserNotificationAction>>;
@@ -333,7 +430,12 @@ impl DefaultRetained for NSUserNotification {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationaction?language=objc)
+    /// An action that the user can take in response to receiving a notification.
+    ///
+    ///
+    /// User notifications can specify one or more actions to show to the user by using the ``NSUserNotification/additionalActivationAction`` or ``NSUserNotification/additionalActions`` properties. ``NSUserNotificationAction`` objects contain the localized title shown to the user and an identifier used to differentiate between presented actions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -357,6 +459,11 @@ extern_conformance!(
 impl NSUserNotificationAction {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Creates a user notification action with a specified identifier and title.
+        ///
+        /// - Parameters:
+        /// - identifier: The identifier for the action.
+        /// - title: A localized string suitable for display to the user.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(actionWithIdentifier:title:))]
         #[unsafe(method_family = none)]
@@ -366,12 +473,14 @@ impl NSUserNotificationAction {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// The identifier for the user notification action.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The localized title shown to the user.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -400,14 +509,39 @@ impl DefaultRetained for NSUserNotificationAction {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationdefaultsoundname?language=objc)
+    /// The default notification sound.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationdefaultsoundname?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub static NSUserNotificationDefaultSoundName: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationcenter?language=objc)
+    /// An object that delivers notifications from apps to the user.
+    ///
+    ///
+    /// When a user notification's delivery date has been reached, or it's manually delivered, the notification center may display the notification to the user. The user notification center reserves the right to decide if a delivered user notification is presented to the user. For example, it may suppress the notification if the application is already frontmost (the delegate can override this action). The application can check the result of this decision by examining the ``NSUserNotification/isPresented`` property of a delivered user notification.
+    ///
+    /// ``NSUserNotification`` instances the `NSUserNotificationCenter` are tracking will be in one of two states: scheduled or delivered. A scheduled user notification has a ``NSUserNotification/deliveryDate``. On that delivery date, the notification will move from being scheduled to being delivered. Note that the user notification may be displayed later than the delivery date depending on many factors.
+    ///
+    /// A delivered user notification has an ``NSUserNotification/actualDeliveryDate``. That's the date when it moved from being scheduled to delivered, or when it was manually delivered using the ``deliver(_:)`` method.
+    ///
+    /// The application and the user notification center are both ultimately subject to the user's preferences. If the user decides to hide all alerts from your application, the `presented` property will still behave as above, but the user won't see any animation or hear any sound.
+    ///
+    /// The ``NSUserNotificationCenterDelegate`` provides more information about the delivered user notification and allows forcing the display of a user notification even if the application is frontmost.
+    ///
+    /// > Note:
+    /// > It the user wakes more than 15 minutes after a scheduled notification is scheduled to fire, it's discarded. If the notification repeats with an interval less than 15 minutes, then it expires in 1 minute. Expired notifications are just discarded, unless they repeat, in which case, they stay in the scheduled list and just fire again later.
+    ///
+    /// > Important:
+    /// > Many of the NSUserNotificationCenter class's methods involve talking to a server process, so calling them repeatedly can have a negative effect on performance.
+    ///
+    /// ### Threading Information
+    ///
+    /// The `NSUserNotificationCenter` class and the ``NSUserNotification`` class are both thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationcenter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -420,11 +554,16 @@ extern_conformance!(
 
 impl NSUserNotificationCenter {
     extern_methods!(
+        /// Returns the default user notification center.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(defaultUserNotificationCenter))]
         #[unsafe(method_family = none)]
         pub fn defaultUserNotificationCenter() -> Retained<NSUserNotificationCenter>;
 
+        /// Specifies the notification center delegate.
+        ///
+        /// The delegate must conform to the `NSUserNotificationCenterDelegate` protocol.
+        ///
         /// # Safety
         ///
         /// This is not retained internally, you must ensure the object is still alive.
@@ -449,6 +588,9 @@ impl NSUserNotificationCenter {
         );
 
         #[cfg(feature = "NSArray")]
+        /// Specifies an array of scheduled user notifications that have not yet been delivered.
+        ///
+        /// Newly scheduled notifications are added to the end of the array. You may also bulk-schedule notifications by setting this array. Bulk setting new scheduled notifications unschedules existing notifications.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(scheduledNotifications))]
         #[unsafe(method_family = none)]
@@ -466,32 +608,64 @@ impl NSUserNotificationCenter {
             scheduled_notifications: &NSArray<NSUserNotification>,
         );
 
+        /// Schedules the specified user notification.
+        ///
+        /// - Parameters:
+        /// - notification: The user notification.
+        ///
+        /// Scheduled notifications are added to the end of the notification queue.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(scheduleNotification:))]
         #[unsafe(method_family = none)]
         pub fn scheduleNotification(&self, notification: &NSUserNotification);
 
+        /// Removes the specified user notification from the scheduled notifications.
+        ///
+        /// - Parameters:
+        /// - notification: The user notification.
+        ///
+        /// If the user notification's `deliveryDate` occurs before the cancellation finishes, the notification may still be delivered.
+        ///
+        /// If the notification is not in the scheduled list, nothing happens.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(removeScheduledNotification:))]
         #[unsafe(method_family = none)]
         pub fn removeScheduledNotification(&self, notification: &NSUserNotification);
 
         #[cfg(feature = "NSArray")]
+        /// An array of all user notifications delivered to the notification center.
+        ///
+        /// The number of notifications the user actually sees in the user interface may be less than the size of this array.
+        ///
+        /// Note that these may or may not have been actually presented to the user. See the `presented` property in the `NSUserNotification` class.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(deliveredNotifications))]
         #[unsafe(method_family = none)]
         pub fn deliveredNotifications(&self) -> Retained<NSArray<NSUserNotification>>;
 
+        /// Deliver the specified user notification.
+        ///
+        /// - Parameters:
+        /// - notification: The user notification.
+        ///
+        /// The notification will be presented to the user (subject to the user's preferences). The `presented` property of the `NSUserNotification` object will always be set to `YES` if a notification is delivered using this method.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(deliverNotification:))]
         #[unsafe(method_family = none)]
         pub fn deliverNotification(&self, notification: &NSUserNotification);
 
+        /// Remove a delivered user notification from the user notification center.
+        ///
+        /// - Parameters:
+        /// - notification: The user notification.
+        ///
+        /// If the user notification is not in the delivered notifications list, nothing happens.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(removeDeliveredNotification:))]
         #[unsafe(method_family = none)]
         pub fn removeDeliveredNotification(&self, notification: &NSUserNotification);
 
+        /// Remove all delivered user notifications from the user notification center.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(removeAllDeliveredNotifications))]
         #[unsafe(method_family = none)]
@@ -520,8 +694,19 @@ impl DefaultRetained for NSUserNotificationCenter {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationcenterdelegate?language=objc)
+    /// An interface that enables customizing the behavior of the default notification center.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationcenterdelegate?language=objc)
     pub unsafe trait NSUserNotificationCenterDelegate: NSObjectProtocol {
+        /// Sent to the delegate when a notification delivery date has arrived.
+        ///
+        /// - Parameters:
+        /// - center: The user notification center.
+        /// - notification: The user notification object.
+        ///
+        /// This method is always called, regardless of your application state and even if you deliver the user notification yourself using `deliverNotification:`.
+        ///
+        /// This delegate method is invoked before the `userNotificationCenter:shouldPresentNotification:` delegate method.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]
         #[unsafe(method(userNotificationCenter:didDeliverNotification:))]
@@ -532,6 +717,15 @@ extern_protocol!(
             notification: &NSUserNotification,
         );
 
+        /// Sent to the delegate when a user clicks on a user notification presented by the user notification center.
+        ///
+        /// - Parameters:
+        /// - center: The user notification center.
+        /// - notification: The user notification object.
+        ///
+        /// This would be a good time to take action in response to user interacting with a specific notification.
+        ///
+        /// To take an action when your application is launched as a result of a user clicking on a notification, be sure to implement the `applicationDidFinishLaunching:` method in the application class that implements the `NSApplicationDelegate` protocol. The notification parameter to that method has a `userInfo` dictionary, and if that dictionary has the `NSApplicationLaunchUserNotificationKey` key, the value of that key is the `NSUserNotification` object that caused the application to launch.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]
         #[unsafe(method(userNotificationCenter:didActivateNotification:))]
@@ -542,6 +736,12 @@ extern_protocol!(
             notification: &NSUserNotification,
         );
 
+        /// Sent to the delegate when the user notification center has decided not to present your notification.
+        ///
+        /// - Parameters:
+        /// - center: The user notification center.
+        /// - notification: The user notification object.
+        /// - Returns: `YES` if the user notification should be displayed regardless; `NO` otherwise.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]
         #[unsafe(method(userNotificationCenter:shouldPresentNotification:))]

@@ -16,11 +16,11 @@ extern_class!(
     ///
     /// Loading a restore image requires the app to have the "com.apple.security.virtualization" entitlement.
     ///
-    /// See also: VZMacHardwareModel
+    /// See: VZMacHardwareModel
     ///
-    /// See also: VZMacOSInstaller
+    /// See: VZMacOSInstaller
     ///
-    /// See also: VZMacOSConfigurationRequirements
+    /// See: VZMacOSConfigurationRequirements
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage?language=objc)
     #[unsafe(super(NSObject))]

@@ -19,6 +19,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXDiskSpaceUsageMetric;
 );
 
@@ -43,6 +44,7 @@ impl MXDiskSpaceUsageMetric {
         /// Total fixed size used by the app.
         ///
         /// Dimensioned as NSUnitInformationStorage, base unit is bytes.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(totalBinaryFileSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalBinaryFileSize(
@@ -50,6 +52,7 @@ impl MXDiskSpaceUsageMetric {
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
         /// Total count of fixed files owned by the app.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(totalBinaryFileCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalBinaryFileCount(&self) -> NSInteger;
@@ -57,12 +60,14 @@ impl MXDiskSpaceUsageMetric {
         /// Total data file size used by the app.
         ///
         /// Dimensioned as NSUnitInformationStorage, base unit is bytes.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(totalDataFileSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalDataFileSize(&self)
             -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
         /// Total count of data files owned by the app.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(totalDataFileCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalDataFileCount(&self) -> NSInteger;
@@ -70,6 +75,7 @@ impl MXDiskSpaceUsageMetric {
         /// Total file size contained within the apps cache folder.
         ///
         /// Dimensioned as NSUnitInformationStorage, base unit is bytes.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(totalCacheFolderSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCacheFolderSize(
@@ -79,6 +85,7 @@ impl MXDiskSpaceUsageMetric {
         /// Total clone size used by the app.
         ///
         /// Dimensioned as NSUnitInformationStorage, base unit is bytes.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(totalCloneSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCloneSize(&self) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -86,6 +93,7 @@ impl MXDiskSpaceUsageMetric {
         /// Total disk space used by the app.
         ///
         /// Dimensioned as NSUnitInformationStorage, base unit is bytes.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(totalDiskSpaceUsedSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalDiskSpaceUsedSize(
@@ -95,6 +103,7 @@ impl MXDiskSpaceUsageMetric {
         /// Total disk space capacity of the device
         ///
         /// Dimensioned as NSUnitInformationStorage, base unit is bytes.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(totalDiskSpaceCapacity))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalDiskSpaceCapacity(

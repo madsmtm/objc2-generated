@@ -6,20 +6,27 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmassformatterunit?language=objc)
+/// The units supported by the `NSMassFormatter` class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmassformatterunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMassFormatterUnit(pub NSInteger);
 impl NSMassFormatterUnit {
+    /// The gram unit.
     #[doc(alias = "NSMassFormatterUnitGram")]
     pub const Gram: Self = Self(11);
+    /// The kilogram unit.
     #[doc(alias = "NSMassFormatterUnitKilogram")]
     pub const Kilogram: Self = Self(14);
+    /// The ounce unit.
     #[doc(alias = "NSMassFormatterUnitOunce")]
     pub const Ounce: Self = Self((6 << 8) + 1);
+    /// The pound unit.
     #[doc(alias = "NSMassFormatterUnitPound")]
     pub const Pound: Self = Self((6 << 8) + 2);
+    /// The stone unit.
     #[doc(alias = "NSMassFormatterUnitStone")]
     pub const Stone: Self = Self((6 << 8) + 3);
 }
@@ -33,7 +40,12 @@ unsafe impl RefEncode for NSMassFormatterUnit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmassformatter?language=objc)
+    /// A formatter that provides localized descriptions of mass and weight values.
+    ///
+    /// > Note:
+    /// > As of iOS 10, macOS 10.12, tvOS 10, and watchOS 3, Foundation provides the ``MeasurementFormatter`` class, which can be used to represent quantities of ``UnitMass`` to provide equivalent functionality to ``MassFormatter``. You are encouraged to transition to these new Foundation Units and Measurements APIs whenever possible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmassformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -64,6 +76,9 @@ extern_conformance!(
 impl NSMassFormatter {
     extern_methods!(
         #[cfg(feature = "NSNumberFormatter")]
+        /// The number formatter used to format the numbers in a mass string.
+        ///
+        /// The default value is an `NSNumberFormatter` with `NSNumberFormatterDecimalStyle`.
         #[unsafe(method(numberFormatter))]
         #[unsafe(method_family = none)]
         pub fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
@@ -76,6 +91,9 @@ impl NSMassFormatter {
         #[unsafe(method_family = none)]
         pub fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
+        /// The unit style used when creating string representations of mass values.
+        ///
+        /// The default value is `NSFormattingUnitStyleMedium`.
         #[unsafe(method(unitStyle))]
         #[unsafe(method_family = none)]
         pub fn unitStyle(&self) -> NSFormattingUnitStyle;
@@ -85,6 +103,9 @@ impl NSMassFormatter {
         #[unsafe(method_family = none)]
         pub fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
+        /// A Boolean value that indicates whether the resulting string represents a person's mass.
+        ///
+        /// The default value is `NO`. If set to `YES`, the number argument for `stringFromKilograms:` and `unitStringFromKilograms:usedUnit:` is considered as a person's mass.
         #[unsafe(method(isForPersonMassUse))]
         #[unsafe(method_family = none)]
         pub fn isForPersonMassUse(&self) -> bool;
@@ -95,6 +116,7 @@ impl NSMassFormatter {
         pub fn setForPersonMassUse(&self, for_person_mass_use: bool);
 
         #[cfg(feature = "NSString")]
+        /// Returns a mass string for the provided value and unit.
         #[unsafe(method(stringFromValue:unit:))]
         #[unsafe(method_family = none)]
         pub fn stringFromValue_unit(
@@ -104,11 +126,17 @@ impl NSMassFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a mass string for the provided value in kilograms.
+        ///
+        /// Formats a number in kilograms to a localized string with the locale-appropriate unit and an appropriate scale (e.g. 1.2kg = 2.64lb in the US locale).
         #[unsafe(method(stringFromKilograms:))]
         #[unsafe(method_family = none)]
         pub fn stringFromKilograms(&self, number_in_kilograms: c_double) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a unit string for the provided value and unit.
+        ///
+        /// Returns a localized string of the given unit, and if the unit is singular or plural is based on the given number.
         #[unsafe(method(unitStringFromValue:unit:))]
         #[unsafe(method_family = none)]
         pub fn unitStringFromValue_unit(
@@ -118,6 +146,9 @@ impl NSMassFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a unit string based on the provided value in kilograms.
+        ///
+        /// Returns the locale-appropriate unit, the same unit used by `stringFromKilograms:`.
         #[unsafe(method(unitStringFromKilograms:usedUnit:))]
         #[unsafe(method_family = none)]
         pub fn unitStringFromKilograms_usedUnit(
@@ -127,6 +158,8 @@ impl NSMassFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// No parsing is supported. This method will return `NO`.
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.

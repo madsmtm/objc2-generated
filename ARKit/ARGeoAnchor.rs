@@ -71,8 +71,7 @@ impl ARGeoAnchor {
         #[cfg(feature = "objc2-core-location")]
         /// The coordinate where this anchor will be placed.
         ///
-        ///
-        /// The anchor's transform will be automatically updated by the session when ARGeoTrackingConfiguration is set.
+        /// The anchor's transform will be automatically updated by the session when `ARGeoTrackingConfiguration` is set.
         ///
         /// This property is not atomic.
         ///
@@ -86,8 +85,7 @@ impl ARGeoAnchor {
         #[cfg(feature = "objc2-core-location")]
         /// The distance to mean sea level, in meters (negative values indicate it's below sea level).
         ///
-        ///
-        /// Only valid when altitudeSource is not ARAltitudeSourceUnknown.
+        /// Only valid when `altitudeSource` is not `ARAltitudeSourceUnknown`.
         ///
         /// This property is not atomic.
         ///
@@ -114,10 +112,11 @@ impl ARGeoAnchor {
         #[cfg(feature = "objc2-core-location")]
         /// Initializes a new ARGeoAnchor with the given coordinates.
         ///
-        ///
         /// ARKit will query the ground level altitude during runtime, and populate the altitude as soon as that information becomes available.
         ///
-        /// Parameter `coordinate`: Coordinates.
+        /// - Parameter coordinate: The coordinates.
+        ///
+        /// - Returns: An initialized geo anchor.
         #[unsafe(method(initWithCoordinate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate(
@@ -128,10 +127,11 @@ impl ARGeoAnchor {
         #[cfg(feature = "objc2-core-location")]
         /// Initializes a new ARGeoAnchor with the given coordinates and altitude.
         ///
+        /// - Parameters:
+        /// - coordinate: The coordinates.
+        /// - altitude: Altitude in meters.
         ///
-        /// Parameter `coordinate`: Coordinates.
-        ///
-        /// Parameter `altitude`: Altitude in meters.
+        /// - Returns: An initialized geo anchor.
         #[unsafe(method(initWithCoordinate:altitude:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_altitude(
@@ -143,12 +143,13 @@ impl ARGeoAnchor {
         #[cfg(all(feature = "objc2-core-location", feature = "objc2-foundation"))]
         /// Initializes a new named ARGeoAnchor with the given coordinates.
         ///
-        ///
         /// ARKit will query the ground level altitude during runtime, and populate the altitude as soon as that information becomes available.
         ///
-        /// Parameter `name`: Name of the anchor.
+        /// - Parameters:
+        /// - name: Name of the anchor.
+        /// - coordinate: The coordinates.
         ///
-        /// Parameter `coordinate`: Coordinates.
+        /// - Returns: An initialized geo anchor.
         #[unsafe(method(initWithName:coordinate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_coordinate(
@@ -160,12 +161,12 @@ impl ARGeoAnchor {
         #[cfg(all(feature = "objc2-core-location", feature = "objc2-foundation"))]
         /// Initializes a new named ARGeoAnchor with the given coordinates and altitude.
         ///
+        /// - Parameters:
+        /// - name: Name of the anchor.
+        /// - coordinate: The coordinates.
+        /// - altitude: Altitude in meters.
         ///
-        /// Parameter `name`: Name of the anchor.
-        ///
-        /// Parameter `coordinate`: Coordinates.
-        ///
-        /// Parameter `altitude`: Altitude in meters.
+        /// - Returns: An initialized geo anchor.
         #[unsafe(method(initWithName:coordinate:altitude:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_coordinate_altitude(

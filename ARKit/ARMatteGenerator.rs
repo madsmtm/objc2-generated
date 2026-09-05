@@ -10,7 +10,8 @@ use crate::*;
 
 /// The resolution at which the matte is to be generated.
 ///
-/// The matte generated per frame can be full resolution of the captured camera image or half resolution. The caller chooses one of the options from ARMatteResolution during initialization.
+/// The matte generated per frame can be full resolution of the captured camera image or half resolution. The caller chooses one of the
+/// options from ARMatteResolution during initialization.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/armatteresolution?language=objc)
 // NS_ENUM
@@ -40,7 +41,8 @@ unsafe impl RefEncode for ARMatteResolution {
 extern_class!(
     /// An object designed to generate either full resolution or half resolution matte given the ARFrame.
     ///
-    /// The caller initializes the object once and calls the alpha matte generation API for every ARFrame with the captured image and segmentation stencil.
+    /// The caller initializes the object once and calls the alpha matte generation API for every `ARFrame` with the captured image and
+    /// segmentation stencil.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/armattegenerator?language=objc)
     #[unsafe(super(NSObject))]
@@ -60,20 +62,18 @@ impl ARMatteGenerator {
         #[cfg(feature = "objc2-metal")]
         /// Initializes an instance of ARMatteGenerator.
         ///
+        /// For efficient creation of alpha mattes in real time it is recommended to instantiate this object only once and to generate an alpha matte
+        /// for every incoming frame.
         ///
-        /// For efficient creation of alpha mattes in real time it is recommended to instantiate this object only once and to generate an alpha matte for every incoming frame.
+        /// - Parameters:
+        /// - device: The device the filter will run on.
+        /// - matteResolution: The resolution at which the matte is to be generated. Set using one of the values from 'ARMatteResolution'.
         ///
-        /// See: ARFrame
+        /// - Returns: Instance of `ARMatteGenerator`.
         ///
-        /// See: -[ARMatteGenerator generateMatteFromFrame:commandBuffer:]
-        ///
-        /// Parameter `device`: The device the filter will run on.
-        ///
-        /// Parameter `matteResolution`: The resolution at which the matte is to be generated. Set using one of the values from 'ARMatteResolution'.
-        ///
-        /// See: ARMatteResolution
-        ///
-        /// Returns: Instance of ARMatteGenerator.
+        /// - SeeAlso: ``ARFrame``
+        /// - SeeAlso: ``ARMatteGenerator/generateMatteFromFrame:commandBuffer:``
+        /// - SeeAlso: ``ARMatteResolution``
         #[unsafe(method(initWithDevice:matteResolution:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_matteResolution(
@@ -85,12 +85,11 @@ impl ARMatteGenerator {
         #[cfg(all(feature = "ARFrame", feature = "objc2-metal"))]
         /// Generates alpha matte at either full resolution or half the resolution of the captured image.
         ///
+        /// - Parameters:
+        /// - frame: Current `ARFrame` containing camera image and segmentation stencil. The caller is to ensure that a valid segmentation buffer is present.
+        /// - commandBuffer: Metal command buffer for encoding matting related operations. The command buffer is committed by the caller externally.
         ///
-        /// Parameter `frame`: Current ARFrame containing camera image and segmentation stencil. The caller is to ensure that a valid segmentation buffer is present.
-        ///
-        /// Parameter `commandBuffer`: Metal command buffer for encoding matting related operations. The command buffer is committed by the caller externally.
-        ///
-        /// Returns: Alpha matte MTLTexture for the given ARFrame at full resolution or half resolution as chosen by the  caller during initialization.
+        /// - Returns: Alpha matte `MTLTexture` for the given `ARFrame` at full resolution or half resolution as chosen by the  caller during initialization.
         #[unsafe(method(generateMatteFromFrame:commandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateMatteFromFrame_commandBuffer(
@@ -102,13 +101,15 @@ impl ARMatteGenerator {
         #[cfg(all(feature = "ARFrame", feature = "objc2-metal"))]
         /// Generates dilated depth at the resolution of the segmentation stencil.
         ///
-        /// The caller can use depth information when compositing a virtual object with the captured scene. This API returns the dilated linear depth to the caller. The reprojection of this depth to the caller's scene space is carried out externally.
+        /// The caller can use depth information when compositing a virtual object with the captured scene. This API returns the dilated linear depth
+        /// to the caller. The reprojection of this depth to the caller's scene space is carried out externally.
         ///
-        /// Parameter `frame`: Current ARFrame containing camera image and estimated depth buffer. The caller is to ensure that a valid depth buffer is present.
+        /// - Parameters:
+        /// - frame: Current `ARFrame` containing camera image and estimated depth buffer. The caller is to ensure that a valid depth buffer is present.
+        /// - commandBuffer: Metal command buffer for encoding depth dilation operations. The command buffer is committed by the caller externally.
         ///
-        /// Parameter `commandBuffer`: Metal command buffer for encoding depth dilation operations. The command buffer is committed by the caller externally.
-        ///
-        /// Returns: Dilated depth MTLTexture for the given ARFrame at the segmentation stencil resolution. The texture consists of a single channel and is of type float16.
+        /// - Returns: Dilated depth `MTLTexture` for the given `ARFrame` at the segmentation stencil resolution. The texture consists of a single channel and is
+        /// of type `float16`.
         #[unsafe(method(generateDilatedDepthFromFrame:commandBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateDilatedDepthFromFrame_commandBuffer(

@@ -3,6 +3,9 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-text")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_text::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -54,6 +57,34 @@ unsafe impl Encode for NSTextAlignment {
 
 unsafe impl RefEncode for NSTextAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+impl NSTextAlignment {
+    #[doc(alias = "NSTextAlignmentToCTTextAlignment")]
+    #[cfg(feature = "objc2-core-text")]
+    #[cfg(target_vendor = "apple")]
+    #[inline]
+    pub fn to_ct_text_alignment(self) -> CTTextAlignment {
+        extern "C-unwind" {
+            fn NSTextAlignmentToCTTextAlignment(
+                ns_text_alignment: NSTextAlignment,
+            ) -> CTTextAlignment;
+        }
+        unsafe { NSTextAlignmentToCTTextAlignment(self) }
+    }
+
+    #[doc(alias = "NSTextAlignmentFromCTTextAlignment")]
+    #[cfg(feature = "objc2-core-text")]
+    #[cfg(target_vendor = "apple")]
+    #[inline]
+    pub fn from_ct_text_alignment(ct_text_alignment: CTTextAlignment) -> NSTextAlignment {
+        extern "C-unwind" {
+            fn NSTextAlignmentFromCTTextAlignment(
+                ct_text_alignment: CTTextAlignment,
+            ) -> NSTextAlignment;
+        }
+        unsafe { NSTextAlignmentFromCTTextAlignment(ct_text_alignment) }
+    }
 }
 
 extern_class!(

@@ -68,10 +68,10 @@ impl CHHapticEngineStoppedReason {
     /// The AVAudioSession bound to this engine has been interrupted.
     #[doc(alias = "CHHapticEngineStoppedReasonAudioSessionInterrupt")]
     pub const AudioSessionInterrupt: Self = Self(1);
-    /// The application owning this engine has been suspended (i.e., put into the background).
+    /// The application owning this engine has been suspended (e.g., upon being put into the background).
     #[doc(alias = "CHHapticEngineStoppedReasonApplicationSuspended")]
     pub const ApplicationSuspended: Self = Self(2);
-    /// The engine has stopped due to an idle timeout when the engine's `autoShutdownEnabled` property was set to YES.
+    /// The engine has stopped due to an idle timeout, for instance under `autoShutdownEnabled` policy or background inactivity.
     #[doc(alias = "CHHapticEngineStoppedReasonIdleTimeout")]
     pub const IdleTimeout: Self = Self(3);
     /// The engine has stopped due to a call to a `CHHapticEngineFinishedHandler` returning `CHHapticEngineFinishedActionStopEngine`.

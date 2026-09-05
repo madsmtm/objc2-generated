@@ -222,6 +222,7 @@ impl UIScreen {
         ///
         /// - `target` should be of the correct type.
         /// - `sel` must be a valid selector.
+        #[deprecated = "Use the equivalent display link API on UIWindowScene"]
         #[unsafe(method(displayLinkWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(

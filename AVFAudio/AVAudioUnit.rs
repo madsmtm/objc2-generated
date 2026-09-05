@@ -24,6 +24,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AVAudioNode")]
+unsafe impl Send for AVAudioUnit {}
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Sync for AVAudioUnit {}
+
+#[cfg(feature = "AVAudioNode")]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioUnit {}
 );
@@ -74,6 +80,12 @@ impl AVAudioUnit {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// AudioComponentDescription of the underlying audio unit.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(audioComponentDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioComponentDescription(&self) -> AudioComponentDescription;
@@ -88,6 +100,12 @@ impl AVAudioUnit {
         /// No operations that may conflict with state maintained by the engine should be performed
         /// directly on the audio unit. These include changing initialization state, stream formats,
         /// channel layouts or connections to other audio units.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(audioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioUnit(&self) -> AudioUnit;
@@ -103,21 +121,45 @@ impl AVAudioUnit {
         /// As with the audioUnit property, no operations that may conflict with state maintained by the
         /// engine should be performed directly on the audio unit. These include changing initialization
         /// state, stream formats, channel layouts or connections to other audio units.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(AUAudioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn AUAudioUnit(&self) -> Retained<AUAudioUnit>;
 
         /// Name of the audio unit.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Manufacturer name of the audio unit.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(manufacturerName))]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturerName(&self) -> Retained<NSString>;
 
         /// Version number of the audio unit.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> NSUInteger;

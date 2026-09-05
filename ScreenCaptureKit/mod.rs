@@ -21,12 +21,18 @@
 #[link(name = "ScreenCaptureKit", kind = "framework")]
 extern "C" {}
 
+#[cfg(feature = "SCClipBufferingOutput")]
+#[path = "SCClipBufferingOutput.rs"]
+mod __SCClipBufferingOutput;
 #[cfg(feature = "SCContentSharingPicker")]
 #[path = "SCContentSharingPicker.rs"]
 mod __SCContentSharingPicker;
 #[cfg(feature = "SCError")]
 #[path = "SCError.rs"]
 mod __SCError;
+#[cfg(feature = "SCRecordingEditor")]
+#[path = "SCRecordingEditor.rs"]
+mod __SCRecordingEditor;
 #[cfg(feature = "SCRecordingOutput")]
 #[path = "SCRecordingOutput.rs"]
 mod __SCRecordingOutput;
@@ -39,7 +45,14 @@ mod __SCShareableContent;
 #[cfg(feature = "SCStream")]
 #[path = "SCStream.rs"]
 mod __SCStream;
+#[cfg(feature = "SCVideoEffectOutput")]
+#[path = "SCVideoEffectOutput.rs"]
+mod __SCVideoEffectOutput;
 
+#[cfg(feature = "SCClipBufferingOutput")]
+pub use self::__SCClipBufferingOutput::SCClipBufferingOutput;
+#[cfg(feature = "SCClipBufferingOutput")]
+pub use self::__SCClipBufferingOutput::SCClipBufferingOutputDelegate;
 #[cfg(feature = "SCContentSharingPicker")]
 pub use self::__SCContentSharingPicker::SCContentSharingPicker;
 #[cfg(feature = "SCContentSharingPicker")]
@@ -52,6 +65,12 @@ pub use self::__SCContentSharingPicker::SCContentSharingPickerObserver;
 pub use self::__SCError::SCStreamErrorCode;
 #[cfg(feature = "SCError")]
 pub use self::__SCError::SCStreamErrorDomain;
+#[cfg(feature = "SCRecordingEditor")]
+pub use self::__SCRecordingEditor::SCRecordingEditor;
+#[cfg(feature = "SCRecordingEditor")]
+pub use self::__SCRecordingEditor::SCRecordingEditorDelegate;
+#[cfg(feature = "SCRecordingEditor")]
+pub use self::__SCRecordingEditor::SCRecordingEditorMode;
 #[cfg(feature = "SCRecordingOutput")]
 pub use self::__SCRecordingOutput::SCRecordingOutput;
 #[cfg(feature = "SCRecordingOutput")]
@@ -119,8 +138,12 @@ pub use self::__SCStream::SCStreamFrameInfoScreenRect;
 #[cfg(feature = "SCStream")]
 pub use self::__SCStream::SCStreamFrameInfoStatus;
 #[cfg(feature = "SCStream")]
+pub use self::__SCStream::SCStreamFrameInfoVideoOrientation;
+#[cfg(feature = "SCStream")]
 pub use self::__SCStream::SCStreamOutput;
 #[cfg(feature = "SCStream")]
 pub use self::__SCStream::SCStreamOutputType;
 #[cfg(feature = "SCStream")]
 pub use self::__SCStream::SCStreamType;
+#[cfg(feature = "SCVideoEffectOutput")]
+pub use self::__SCVideoEffectOutput::SCVideoEffectOutput;

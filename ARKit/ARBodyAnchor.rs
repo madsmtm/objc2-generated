@@ -67,8 +67,7 @@ impl ARBodyAnchor {
     extern_methods!(
         #[cfg(feature = "ARSkeleton")]
         /// The tracked skeleton in 3D.
-        ///
-        /// Note: The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be 1.71 meters.
+        /// - Note: The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be 1.71 meters.
         ///
         /// This property is not atomic.
         ///
@@ -82,11 +81,10 @@ impl ARBodyAnchor {
         #[cfg(feature = "objc2-core-foundation")]
         /// The factor between estimated physical size and default size of the skeleton.
         ///
-        /// See: -[ARSkeletonDefinition neutralBodySkeleton3D]
+        /// This value will be estimated if `automaticSkeletonScaleEstimationEnabled` is set to `true` on the `ARBodyTrackingConfiguration`.
+        /// It is used to correct the transform's translation. Default value is `1.0`.
         ///
-        ///
-        /// This value will be estimated if automaticSkeletonScaleEstimationEnabled is set to true on the ARBodyTrackingConfiguration.
-        /// It is used to correct the transform's translation. Default value is 1.0.
+        /// - SeeAlso: ``ARSkeletonDefinition/neutralBodySkeleton3D``
         ///
         /// This property is not atomic.
         ///

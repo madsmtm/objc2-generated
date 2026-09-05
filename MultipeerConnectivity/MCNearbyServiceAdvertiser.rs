@@ -11,6 +11,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Network Framework instead"]
     pub struct MCNearbyServiceAdvertiser;
 );
 
@@ -21,6 +22,7 @@ extern_conformance!(
 impl MCNearbyServiceAdvertiser {
     extern_methods!(
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(initWithPeer:discoveryInfo:serviceType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPeer_discoveryInfo_serviceType(
@@ -30,14 +32,17 @@ impl MCNearbyServiceAdvertiser {
             service_type: &NSString,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(startAdvertisingPeer))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAdvertisingPeer(&self);
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(stopAdvertisingPeer))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopAdvertisingPeer(&self);
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -47,6 +52,7 @@ impl MCNearbyServiceAdvertiser {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -55,14 +61,17 @@ impl MCNearbyServiceAdvertiser {
         );
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(myPeerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(discoveryInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoveryInfo(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(serviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
@@ -84,8 +93,10 @@ impl MCNearbyServiceAdvertiser {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiserdelegate?language=objc)
+    #[deprecated = "Use Network Framework instead"]
     pub unsafe trait MCNearbyServiceAdvertiserDelegate: NSObjectProtocol {
         #[cfg(all(feature = "MCPeerID", feature = "MCSession", feature = "block2"))]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(advertiser:didReceiveInvitationFromPeer:withContext:invitationHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn advertiser_didReceiveInvitationFromPeer_withContext_invitationHandler(
@@ -96,6 +107,7 @@ extern_protocol!(
             invitation_handler: &block2::Block<'static, fn(Bool, *mut MCSession)>,
         );
 
+        #[deprecated = "Use Network Framework instead"]
         #[optional]
         #[unsafe(method(advertiser:didNotStartAdvertisingPeer:))]
         #[unsafe(method_family = none)]

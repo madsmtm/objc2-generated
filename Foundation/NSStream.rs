@@ -8,31 +8,43 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreampropertykey?language=objc)
+/// `NSStream` defines these string constants as keys for accessing stream properties using ``Stream/property(forKey:)`` and setting properties with ``Stream/setProperty(_:forKey:)``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreampropertykey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamPropertyKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamstatus?language=objc)
+/// The type declared for the constants that indicate the current status of a stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStreamStatus(pub NSUInteger);
 impl NSStreamStatus {
+    /// The stream is not open for reading or writing. This status is returned before the underlying call to open a stream but after it's been created.
     #[doc(alias = "NSStreamStatusNotOpen")]
     pub const NotOpen: Self = Self(0);
+    /// The stream is in the process of being opened for reading or for writing. For network streams, this status might include the time after the stream was opened, but while network DNS resolution is happening.
     #[doc(alias = "NSStreamStatusOpening")]
     pub const Opening: Self = Self(1);
+    /// The stream is open, but no reading or writing is occurring.
     #[doc(alias = "NSStreamStatusOpen")]
     pub const Open: Self = Self(2);
+    /// Data is being read from the stream.
     #[doc(alias = "NSStreamStatusReading")]
     pub const Reading: Self = Self(3);
+    /// Data is being written to the stream.
     #[doc(alias = "NSStreamStatusWriting")]
     pub const Writing: Self = Self(4);
+    /// There is no more data to read, or no more data can be written to the stream.
     #[doc(alias = "NSStreamStatusAtEnd")]
     pub const AtEnd: Self = Self(5);
+    /// The stream is closed.
     #[doc(alias = "NSStreamStatusClosed")]
     pub const Closed: Self = Self(6);
+    /// The remote end of the connection can't be contacted, or the connection has been severed for some other reason.
     #[doc(alias = "NSStreamStatusError")]
     pub const Error: Self = Self(7);
 }
@@ -45,23 +57,31 @@ unsafe impl RefEncode for NSStreamStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamevent?language=objc)
+/// Describes the constants that may be sent to the delegate as a bit field to specify the kind of stream event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamevent?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStreamEvent(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStreamEvent: NSUInteger {
+/// No event has occurred.
         #[doc(alias = "NSStreamEventNone")]
         const None = 0;
+/// The open has completed successfully.
         #[doc(alias = "NSStreamEventOpenCompleted")]
         const OpenCompleted = 1<<0;
+/// The stream has bytes to be read.
         #[doc(alias = "NSStreamEventHasBytesAvailable")]
         const HasBytesAvailable = 1<<1;
+/// The stream can accept bytes for writing.
         #[doc(alias = "NSStreamEventHasSpaceAvailable")]
         const HasSpaceAvailable = 1<<2;
+/// An error has occurred on the stream.
         #[doc(alias = "NSStreamEventErrorOccurred")]
         const ErrorOccurred = 1<<3;
+/// The end of the stream has been reached.
         #[doc(alias = "NSStreamEventEndEncountered")]
         const EndEncountered = 1<<4;
         const _ = !0;
@@ -77,7 +97,41 @@ unsafe impl RefEncode for NSStreamEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstream?language=objc)
+    /// An abstract class representing a stream.
+    ///
+    /// This class's interface is common to all Cocoa stream classes, including its concrete subclasses ``InputStream`` and ``OutputStream``.
+    ///
+    /// ``Stream`` objects provide an easy way to read and write data to and from a variety of media in a device-independent way. You can create stream objects for data located in memory, in a file, or on a network (using sockets), and you can use stream objects without loading all of the data into memory at once.
+    ///
+    /// By default, ``Stream`` instances that aren't file-based are non-seekable, one-way streams (although custom seekable subclasses are possible). After you provide or consume data, you can't retrieve the data from the stream.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// ``Stream`` is an abstract class, incapable of instantiation and intended for you to subclass it. It publishes a programmatic interface that all subclasses must adopt and provide implementations for. The two Apple-provided concrete subclasses of ``Stream``, ``InputStream`` and ``OutputStream``, are suitable for most purposes. However, there might be situations when you want a peer subclass to ``InputStream`` and ``OutputStream``. For example, you might want a class that implements a full-duplex (two-way) stream, or a class whose instances are capable of seeking through a stream.
+    ///
+    /// #### Methods to Override
+    ///
+    /// All subclasses must fully implement the following methods:
+    ///
+    /// - ``open()`` and ``close()``
+    ///
+    /// Implement ``open()`` to open the stream for reading or writing and make the stream available to the client directly or, if the stream object is scheduled on a run loop, to the delegate. Implement ``close()`` to close the stream and remove the stream object from the run loop, if necessary. A closed stream should still be able to accept new properties and report its current properties. Once you close a stream, you can't reopen it.
+    /// - ``delegate``
+    ///
+    /// Return and set the delegate. By a default, a stream object must be its own delegate; so a ``delegate`` message with an argument of `nil` should restore this delegate. Don't retain the delegate to prevent retain cycles.
+    ///
+    /// To learn about delegates and delegation, read "Delegation" in Cocoa Fundamentals Guide.
+    /// - ``schedule(in:forMode:)`` and ``remove(from:forMode:)``
+    ///
+    /// Implement ``schedule(in:forMode:)`` to schedule the stream object on the specified run loop for the specified mode. Implement ``remove(from:forMode:)`` to remove the object from the run loop. See the documentation of the ``RunLoop`` class for details. Once the stream object for an open stream is scheduled on a run loop, it is the responsibility of the subclass as it processes stream data to send ``StreamDelegate/stream(_:handle:)`` messages to its delegate.
+    /// - ``property(forKey:)`` and ``setProperty(_:forKey:)``
+    ///
+    /// Implement these methods to return and set, respectively, the property value for the specified key. You may add custom properties, but be sure to handle all properties defined by ``Stream`` as well.
+    /// - ``streamStatus`` and ``streamError``
+    ///
+    /// Implement ``streamStatus`` to return the current status of the stream as a ``Status`` constant; you may define new ``Status`` constants, but be sure to handle the system defined constants properly. Implement ``streamError`` to return an ``NSError`` object representing the current error. You might decide to return a custom ``NSError`` object that can provide complete and localized information about the error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstream?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStream;
@@ -89,14 +143,24 @@ extern_conformance!(
 
 impl NSStream {
     extern_methods!(
+        /// Opens the receiving stream.
+        ///
+        /// A stream must be created before it can be opened. Once opened, a stream cannot be closed and reopened.
         #[unsafe(method(open))]
         #[unsafe(method_family = none)]
         pub fn open(&self);
 
+        /// Closes the receiver.
+        ///
+        /// Closing the stream terminates the flow of bytes and releases system resources that were reserved for the stream when it was opened. If the stream has been scheduled on a run loop, closing the stream implicitly removes the stream from the run loop. A stream that is closed can still be queried for its properties.
         #[unsafe(method(close))]
         #[unsafe(method_family = none)]
         pub fn close(&self);
 
+        /// The receiver's delegate.
+        ///
+        /// By default, a stream is its own delegate, and subclasses of `NSInputStream` and `NSOutputStream` must maintain this contract. If you override this method in a subclass, passing `nil` must restore the receiver as its own delegate. Delegates are not retained.
+        ///
         /// # Safety
         ///
         /// This is not retained internally, you must ensure the object is still alive.
@@ -114,11 +178,20 @@ impl NSStream {
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSStreamDelegate>>);
 
         #[cfg(feature = "NSString")]
+        /// Returns the receiver's property for a given key.
+        /// - Parameter key: The key for one of the receiver's properties.
+        /// - Returns: The receiver's property for the key `key`.
         #[unsafe(method(propertyForKey:))]
         #[unsafe(method_family = none)]
         pub fn propertyForKey(&self, key: &NSStreamPropertyKey) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// Attempts to set the value of a given property of the receiver and returns a Boolean value that indicates whether the value is accepted by the receiver.
+        /// - Parameters:
+        /// - property: The value for `key`.
+        /// - key: The key for one of the receiver's properties.
+        /// - Returns: `YES` if the value is accepted by the receiver, otherwise `NO`.
+        ///
         /// # Safety
         ///
         /// `property` should be of the correct type.
@@ -131,6 +204,13 @@ impl NSStream {
         ) -> bool;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// Schedules the receiver on a given run loop in a given mode.
+        ///
+        /// Unless the client is polling the stream, it is responsible for ensuring that the stream is scheduled on at least one run loop and that at least one of the run loops on which the stream is scheduled is being run.
+        /// - Parameters:
+        /// - aRunLoop: The run loop on which to schedule the receiver.
+        /// - mode: The mode for the run loop.
+        ///
         /// # Safety
         ///
         /// `a_run_loop` possibly has additional threading requirements.
@@ -143,6 +223,11 @@ impl NSStream {
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// Removes the receiver from a given run loop running in a given mode.
+        /// - Parameters:
+        /// - aRunLoop: The run loop on which the receiver was scheduled.
+        /// - mode: The mode for the run loop.
+        ///
         /// # Safety
         ///
         /// `a_run_loop` possibly has additional threading requirements.
@@ -154,11 +239,13 @@ impl NSStream {
             mode: &NSRunLoopMode,
         );
 
+        /// The receiver's status.
         #[unsafe(method(streamStatus))]
         #[unsafe(method_family = none)]
         pub fn streamStatus(&self) -> NSStreamStatus;
 
         #[cfg(feature = "NSError")]
+        /// An `NSError` object representing the stream error, or `nil` if no error has been encountered.
         #[unsafe(method(streamError))]
         #[unsafe(method_family = none)]
         pub fn streamError(&self) -> Option<Retained<NSError>>;
@@ -186,7 +273,43 @@ impl DefaultRetained for NSStream {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinputstream?language=objc)
+    /// A stream that provides read-only stream functionality.
+    ///
+    /// ``InputStream`` is "toll-free bridged" with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfreadstream>. For more information on toll-free bridging, see [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSInputStream` is an abstract superclass of a _class cluster_ consisting of concrete subclasses of `NSStream` that provide standard read-only access to stream data. Although `NSInputStream` is probably sufficient for most situations requiring access to stream data, you can create a subclass of `NSInputStream` if you want more specialized behavior (for example, you want to record statistics on the data in a stream).
+    ///
+    /// #### Methods to Override
+    ///
+    /// To create a subclass of `NSInputStream` you may have to implement initializers for the type of stream data supported and suitably re-implement existing initializers. You must also provide complete implementations of the following methods:
+    ///
+    /// - ``read(_:maxLength:)``
+    ///
+    /// From the current read index, take up to the number of bytes specified in the second parameter from the stream and place them in the client-supplied buffer (first parameter). The buffer must be of the size specified by the second parameter. Return the actual number of bytes placed in the buffer; if there is nothing left in the stream, return `0`. Reset the index into the stream for the next read operation.
+    /// - ``getBuffer(_:length:)``
+    ///
+    /// Return in 0(1) a pointer to the subclass-allocated buffer (first parameter). Return by reference in the second parameter the number of bytes actually put into the buffer. The buffer's contents are valid only until the next stream operation. Return
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> if you cannot access data in the buffer; otherwise, return
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true>. If this method is not appropriate for your type of stream, you may return
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false>.
+    /// - ``hasBytesAvailable``
+    ///
+    /// Return
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> if there is more data to read in the stream,
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> if there is not. If you want to be semantically compatible with `NSInputStream`, return
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> if a read must be attempted to determine if bytes are available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinputstream?language=objc)
     #[unsafe(super(NSStream, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInputStream;
@@ -214,6 +337,12 @@ extern_conformance!(
 
 impl NSInputStream {
     extern_methods!(
+        /// Reads up to a given number of bytes into a given buffer.
+        /// - Parameters:
+        /// - buffer: A data buffer. The buffer must be large enough to contain the number of bytes specified by `len`.
+        /// - len: The maximum number of bytes to read.
+        /// - Returns: A positive number indicates the number of bytes read; `0` indicates that the end of the buffer was reached; `-1` means that the operation failed (more information about the error can be obtained with `streamError`).
+        ///
         /// # Safety
         ///
         /// `buffer` must be a valid pointer.
@@ -221,6 +350,14 @@ impl NSInputStream {
         #[unsafe(method_family = none)]
         pub unsafe fn read_maxLength(&self, buffer: NonNull<u8>, len: NSUInteger) -> NSInteger;
 
+        /// Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is available.
+        ///
+        /// This buffer is only valid until the next stream operation. Subclassers may return `NO` for this if it is not appropriate for the stream type. This may return `NO` if the buffer is not available.
+        /// - Parameters:
+        /// - buffer: Upon return, contains a pointer to a read buffer.
+        /// - len: Upon return, contains the number of bytes available.
+        /// - Returns: `YES` if the buffer is available, otherwise `NO`.
+        ///
         /// # Safety
         ///
         /// `buffer` must be a valid pointer.
@@ -232,16 +369,27 @@ impl NSInputStream {
             len: &mut NSUInteger,
         ) -> bool;
 
+        /// A Boolean value that indicates whether the receiver has bytes available to read.
+        ///
+        /// `YES` if the stream has bytes available or if it is impossible to tell without actually doing the read.
         #[unsafe(method(hasBytesAvailable))]
         #[unsafe(method_family = none)]
         pub fn hasBytesAvailable(&self) -> bool;
 
         #[cfg(feature = "NSData")]
+        /// Initializes and returns an `NSInputStream` object for reading from a given `NSData` object.
+        ///
+        /// The stream must be opened before it can be used.
+        /// - Parameter data: The data object from which to read. The contents of `data` are copied.
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
+        /// Initializes and returns an `NSInputStream` object that reads data from the file at a given URL.
+        ///
+        /// The stream must be opened before it can be used.
+        /// - Parameter url: The URL to the file.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
@@ -269,7 +417,38 @@ impl DefaultRetained for NSInputStream {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoutputstream?language=objc)
+    /// A stream that provides write-only stream functionality.
+    ///
+    /// ``OutputStream`` is "toll-free bridged" with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfwritestream>. For more information on toll-free bridging, see [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSOutputStream` is a concrete subclass of `NSStream` that lets you write data to a stream. Although `NSOutputStream` is probably sufficient for most situations requiring this capability, you can create a subclass of `NSOutputStream` if you want more specialized behavior (for example, you want to record statistics on the data in a stream).
+    ///
+    /// #### Methods to Override
+    ///
+    /// To create a subclass of `NSOutputStream` you may have to implement initializers for the type of stream data supported and suitably reimplement existing initializers. You must also provide complete implementations of the following methods:
+    ///
+    /// - ``write(_:maxLength:)``
+    ///
+    /// From the current write pointer, take up to the number of bytes specified in the `maxLength:` parameter from the client-supplied buffer (first parameter) and put them onto the stream. The buffer must be of the size specified by the second parameter. To prepare for the next operation, offset the write pointer by the number of bytes written. Return a signed integer based on the outcome of the current operation:
+    ///
+    /// - If the write operation is successful, return the actual number of bytes put onto the stream.
+    /// - If the stream is of a fixed length and has reached its capacity, return `0`.
+    /// - If there was an error writing to the stream, return `-1`.
+    /// - ``hasSpaceAvailable``
+    ///
+    /// Return
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> if the stream can currently accept more data,
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> if it cannot. If you want to be semantically compatible with `NSOutputStream`, return
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> if a write must be attempted to determine if space is available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoutputstream?language=objc)
     #[unsafe(super(NSStream, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOutputStream;
@@ -297,6 +476,12 @@ extern_conformance!(
 
 impl NSOutputStream {
     extern_methods!(
+        /// Writes the contents of a provided data buffer to the receiver.
+        /// - Parameters:
+        /// - buffer: The data to write.
+        /// - len: The length of the data buffer, in bytes. The behavior of this method is undefined if you pass a negative or zero number.
+        /// - Returns: A positive number indicates the number of bytes written; `0` indicates that a fixed-length stream has reached its capacity; `-1` means that the operation failed (more information about the error can be obtained with `streamError`).
+        ///
         /// # Safety
         ///
         /// `buffer` must be a valid pointer.
@@ -304,14 +489,27 @@ impl NSOutputStream {
         #[unsafe(method_family = none)]
         pub unsafe fn write_maxLength(&self, buffer: NonNull<u8>, len: NSUInteger) -> NSInteger;
 
+        /// A Boolean value that indicates whether the receiver can be written to.
+        ///
+        /// `YES` if the stream can be written to or if a write must be attempted in order to determine if space is available, `NO` otherwise.
         #[unsafe(method(hasSpaceAvailable))]
         #[unsafe(method_family = none)]
         pub fn hasSpaceAvailable(&self) -> bool;
 
+        /// Returns an initialized output stream that will write to memory.
+        ///
+        /// The stream must be opened before it can be used. The contents of the memory stream are retrieved by passing `NSStreamDataWrittenToMemoryStreamKey` to `propertyForKey:`.
         #[unsafe(method(initToMemory))]
         #[unsafe(method_family = init)]
         pub fn initToMemory(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns an initialized output stream that can write to a provided buffer.
+        ///
+        /// The stream must be opened before it can be used. When the number of bytes written to `buffer` has reached `capacity`, the stream's `streamStatus` will return `NSStreamStatusAtEnd`.
+        /// - Parameters:
+        /// - buffer: The buffer the output stream will write to.
+        /// - capacity: The size of the buffer in bytes.
+        ///
         /// # Safety
         ///
         /// `buffer` must be a valid pointer.
@@ -324,6 +522,12 @@ impl NSOutputStream {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
+        /// Returns an initialized output stream for writing to a specified URL.
+        ///
+        /// The stream must be opened before it can be used.
+        /// - Parameters:
+        /// - url: The URL to the file the output stream will write to.
+        /// - shouldAppend: `YES` if newly written data should be appended to any existing file contents, otherwise `NO`.
         #[unsafe(method(initWithURL:append:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL_append(
@@ -358,6 +562,12 @@ impl DefaultRetained for NSOutputStream {
 impl NSStream {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Creates and returns by reference an `NSInputStream` object and `NSOutputStream` object for a socket connection with a given host on a given port.
+        /// - Parameters:
+        /// - hostname: The host to which to connect.
+        /// - port: The port to connect to on `host`.
+        /// - inputStream: Upon return, contains the input stream. If `nil` is passed, the stream object is not created.
+        /// - outputStream: Upon return, contains the output stream. If `nil` is passed, the stream object is not created.
         #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[unsafe(method(getStreamsToHostWithName:port:inputStream:outputStream:))]
         #[unsafe(method_family = none)]
@@ -369,6 +579,15 @@ impl NSStream {
         );
 
         #[cfg(feature = "NSHost")]
+        /// Creates and returns by reference an `NSInputStream` object and `NSOutputStream` object for a socket connection with a given host on a given port.
+        ///
+        /// If neither `port` nor `host` is properly specified, no socket connection is made.
+        ///
+        /// - Parameters:
+        /// - host: The host to which to connect.
+        /// - port: The port to connect to on `host`.
+        /// - inputStream: Upon return, contains the input stream. If `nil` is passed, the stream object is not created.
+        /// - outputStream: Upon return, contains the output stream. If `nil` is passed, the stream object is not created.
         #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[unsafe(method(getStreamsToHost:port:inputStream:outputStream:))]
         #[unsafe(method_family = none)]
@@ -384,6 +603,13 @@ impl NSStream {
 /// NSStreamBoundPairCreationExtensions.
 impl NSStream {
     extern_methods!(
+        /// Creates and returns by reference a bound pair of input and output streams.
+        ///
+        /// The created streams are bound to one another, such that any data written to `outputStream` is received by `inputStream`.
+        /// - Parameters:
+        /// - bufferSize: The size of the buffer, in bytes, used to transfer data from `inputStream` to `outputStream`.
+        /// - inputStream: On return, contains an input stream.
+        /// - outputStream: On return, contains an output stream.
         #[unsafe(method(getBoundStreamsWithBufferSize:inputStream:outputStream:))]
         #[unsafe(method_family = none)]
         pub fn getBoundStreamsWithBufferSize_inputStream_outputStream(
@@ -398,22 +624,42 @@ impl NSStream {
 impl NSInputStream {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes and returns an `NSInputStream` object that reads data from the file at a given path.
+        ///
+        /// The stream must be opened before it can be used.
+        /// - Parameter path: The path to the file.
         #[unsafe(method(initWithFileAtPath:))]
         #[unsafe(method_family = init)]
         pub fn initWithFileAtPath(this: Allocated<Self>, path: &NSString)
             -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
+        /// Creates and returns an initialized `NSInputStream` object for reading from a given `NSData` object.
+        ///
+        /// The stream must be opened before it can be used.
+        ///
+        /// - Parameter data: The data object from which to read. The contents of `data` are copied.
+        /// - Returns: An initialized `NSInputStream` object for reading from `data`. If `data` is not an `NSData` object, this method returns `nil`.
         #[unsafe(method(inputStreamWithData:))]
         #[unsafe(method_family = none)]
         pub fn inputStreamWithData(data: &NSData) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Creates and returns an initialized `NSInputStream` object that reads data from the file at a given path.
+        ///
+        /// The stream must be opened before it can be used.
+        ///
+        /// - Parameter path: The path to the file.
+        /// - Returns: An initialized `NSInputStream` object that reads data from the file at `path`.
         #[unsafe(method(inputStreamWithFileAtPath:))]
         #[unsafe(method_family = none)]
         pub fn inputStreamWithFileAtPath(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
+        /// Creates and returns an initialized `NSInputStream` object that reads data from the file at a given URL.
+        ///
+        /// The stream must be opened before it can be used.
+        /// - Parameter url: The URL to the file.
         #[unsafe(method(inputStreamWithURL:))]
         #[unsafe(method_family = none)]
         pub fn inputStreamWithURL(url: &NSURL) -> Option<Retained<Self>>;
@@ -424,6 +670,12 @@ impl NSInputStream {
 impl NSOutputStream {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns an initialized output stream for writing to a specified file.
+        ///
+        /// The stream must be opened before it can be used.
+        /// - Parameters:
+        /// - path: The path to the file the output stream will write to.
+        /// - shouldAppend: `YES` if newly written data should be appended to any existing file contents, otherwise `NO`.
         #[unsafe(method(initToFileAtPath:append:))]
         #[unsafe(method_family = init)]
         pub fn initToFileAtPath_append(
@@ -432,10 +684,22 @@ impl NSOutputStream {
             should_append: bool,
         ) -> Option<Retained<Self>>;
 
+        /// Creates and returns an initialized output stream that will write stream data to memory.
+        ///
+        /// The stream must be opened before it can be used. You retrieve the contents of the memory stream by sending the message `propertyForKey:` to the receiver with an argument of `NSStreamDataWrittenToMemoryStreamKey`.
         #[unsafe(method(outputStreamToMemory))]
         #[unsafe(method_family = none)]
         pub fn outputStreamToMemory() -> Retained<Self>;
 
+        /// Creates and returns an initialized output stream that can write to a provided buffer.
+        ///
+        /// The stream must be opened before it can be used. When the number of bytes written to `buffer` has reached `capacity`, the stream's `streamStatus` will return `NSStreamStatusAtEnd`.
+        ///
+        /// - Parameters:
+        /// - buffer: The buffer the output stream will write to.
+        /// - capacity: The size of the buffer in bytes.
+        /// - Returns: An initialized output stream that can write to `buffer`.
+        ///
         /// # Safety
         ///
         /// `buffer` must be a valid pointer.
@@ -447,6 +711,14 @@ impl NSOutputStream {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Creates and returns an initialized output stream for writing to a specified file.
+        ///
+        /// The stream must be opened before it can be used.
+        ///
+        /// - Parameters:
+        /// - path: The path to the file the output stream will write to.
+        /// - shouldAppend: `YES` if newly written data should be appended to any existing file contents, otherwise `NO`.
+        /// - Returns: An initialized output stream that can write to `path`.
         #[unsafe(method(outputStreamToFileAtPath:append:))]
         #[unsafe(method_family = none)]
         pub fn outputStreamToFileAtPath_append(
@@ -455,6 +727,12 @@ impl NSOutputStream {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
+        /// Creates and returns an initialized output stream for writing to a specified URL.
+        ///
+        /// The stream must be opened before it can be used.
+        /// - Parameters:
+        /// - url: The URL to the file the output stream will write to.
+        /// - shouldAppend: `YES` if newly written data should be appended to any existing file contents, otherwise `NO`.
         #[unsafe(method(outputStreamWithURL:append:))]
         #[unsafe(method_family = none)]
         pub fn outputStreamWithURL_append(
@@ -465,8 +743,11 @@ impl NSOutputStream {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamdelegate?language=objc)
+    /// An interface that delegates of a stream instance use to handle events on the stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamdelegate?language=objc)
     pub unsafe trait NSStreamDelegate: NSObjectProtocol {
+        /// The delegate receives this message when a given event has occurred on a given stream.
         #[optional]
         #[unsafe(method(stream:handleEvent:))]
         #[unsafe(method_family = none)]
@@ -475,48 +756,68 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelkey?language=objc)
+    /// The security level of the target stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevel?language=objc)
+/// `NSStream` defines these string constants for specifying the secure-socket layer (SSL) security level.
+///
+/// ## Discussion
+///
+/// You access and set these values using the `NSStreamSocketSecurityLevelKey` property key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevel?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamSocketSecurityLevel = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelnone?language=objc)
+    /// No security on the socket stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelnone?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelNone: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelsslv2?language=objc)
+    /// Specifies that the SSL version 2 security protocol should be set as the security protocol for a socket stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelsslv2?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelSSLv2: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelsslv3?language=objc)
+    /// Specifies that the SSL version 3 security protocol should be set as the security protocol for a socket stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelsslv3?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelSSLv3: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecurityleveltlsv1?language=objc)
+    /// Specifies that the TLS version 1 security protocol should be set as the security protocol for a socket stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecurityleveltlsv1?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelTLSv1: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelnegotiatedssl?language=objc)
+    /// Specifies that the highest level security protocol that can be negotiated be set as the security protocol for a socket stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsecuritylevelnegotiatedssl?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelNegotiatedSSL: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyconfigurationkey?language=objc)
+    /// Value is an `NSDictionary` object containing SOCKS proxy configuration information. The dictionary returned from the System Configuration framework for SOCKS proxies usually suffices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyconfigurationkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyConfigurationKey: &'static NSStreamPropertyKey;
 }
@@ -527,31 +828,41 @@ extern "C" {
 pub type NSStreamSOCKSProxyConfiguration = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyhostkey?language=objc)
+    /// The SOCKS proxy host key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyhostkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyHostKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyportkey?language=objc)
+    /// The SOCKS proxy port key. Value is an `NSNumber`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyportkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyPortKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversionkey?language=objc)
+    /// The SOCKS proxy version key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersionKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyuserkey?language=objc)
+    /// The SOCKS proxy user key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyuserkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyUserKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxypasswordkey?language=objc)
+    /// The SOCKS proxy password key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxypasswordkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyPasswordKey: &'static NSStreamSOCKSProxyConfiguration;
 }
@@ -562,72 +873,96 @@ extern "C" {
 pub type NSStreamSOCKSProxyVersion = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversion4?language=objc)
+    /// SOCKS proxy version 4.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversion4?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersion4: &'static NSStreamSOCKSProxyVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversion5?language=objc)
+    /// SOCKS proxy version 5.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocksproxyversion5?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersion5: &'static NSStreamSOCKSProxyVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamdatawrittentomemorystreamkey?language=objc)
+    /// Value is an `NSData` instance containing the data written to a memory stream. Use this property when you have an output-stream object instantiated to collect written data in memory. The value of this property is read-only.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamdatawrittentomemorystreamkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamDataWrittenToMemoryStreamKey: &'static NSStreamPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamfilecurrentoffsetkey?language=objc)
+    /// Value is an `NSNumber` object containing the current absolute offset of the stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamfilecurrentoffsetkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamFileCurrentOffsetKey: &'static NSStreamPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain?language=objc)
+    /// The error domain used by `NSError` when reporting SSL errors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain?language=objc)
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSStreamSocketSSLErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain?language=objc)
+    /// The error domain used by `NSError` when reporting SOCKS errors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain?language=objc)
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSStreamSOCKSErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetype?language=objc)
+    /// The type of service for the stream. Providing the service type allows the system to properly handle certain attributes of the stream, including routing and suspension behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetype?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceType: &'static NSStreamPropertyKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevalue?language=objc)
+/// `NSStream` defines these string constants for specifying the service type of a stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevalue?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamNetworkServiceTypeValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevoip?language=objc)
+    /// The VoIP network service type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevoip?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVoIP: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevideo?language=objc)
+    /// The video network service type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevideo?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVideo: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypebackground?language=objc)
+    /// The background network service type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypebackground?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeBackground: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevoice?language=objc)
+    /// The voice network service type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamnetworkservicetypevoice?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVoice: &'static NSStreamNetworkServiceTypeValue;
 }

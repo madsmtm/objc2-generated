@@ -429,6 +429,9 @@ mod __WKContentRuleListStore;
 #[cfg(feature = "WKContentWorld")]
 #[path = "WKContentWorld.rs"]
 mod __WKContentWorld;
+#[cfg(feature = "WKContentWorldConfiguration")]
+#[path = "WKContentWorldConfiguration.rs"]
+mod __WKContentWorldConfiguration;
 #[cfg(feature = "WKContextMenuElementInfo")]
 #[path = "WKContextMenuElementInfo.rs"]
 mod __WKContextMenuElementInfo;
@@ -450,6 +453,9 @@ mod __WKFindConfiguration;
 #[cfg(feature = "WKFindResult")]
 #[path = "WKFindResult.rs"]
 mod __WKFindResult;
+#[cfg(feature = "WKFormInfo")]
+#[path = "WKFormInfo.rs"]
+mod __WKFormInfo;
 #[cfg(feature = "WKFoundation")]
 #[path = "WKFoundation.rs"]
 mod __WKFoundation;
@@ -459,6 +465,21 @@ mod __WKFrameInfo;
 #[cfg(feature = "WKHTTPCookieStore")]
 #[path = "WKHTTPCookieStore.rs"]
 mod __WKHTTPCookieStore;
+#[cfg(feature = "WKImmersiveEnvironment")]
+#[path = "WKImmersiveEnvironment.rs"]
+mod __WKImmersiveEnvironment;
+#[cfg(feature = "WKImmersiveEnvironmentDelegate")]
+#[path = "WKImmersiveEnvironmentDelegate.rs"]
+mod __WKImmersiveEnvironmentDelegate;
+#[cfg(feature = "WKJSHandle")]
+#[path = "WKJSHandle.rs"]
+mod __WKJSHandle;
+#[cfg(feature = "WKJSScriptingBuffer")]
+#[path = "WKJSScriptingBuffer.rs"]
+mod __WKJSScriptingBuffer;
+#[cfg(feature = "WKJSSerializedNode")]
+#[path = "WKJSSerializedNode.rs"]
+mod __WKJSSerializedNode;
 #[cfg(feature = "WKNavigation")]
 #[path = "WKNavigation.rs"]
 mod __WKNavigation;
@@ -1812,6 +1833,8 @@ pub use self::__WKContentRuleList::WKContentRuleList;
 pub use self::__WKContentRuleListStore::WKContentRuleListStore;
 #[cfg(feature = "WKContentWorld")]
 pub use self::__WKContentWorld::WKContentWorld;
+#[cfg(feature = "WKContentWorldConfiguration")]
+pub use self::__WKContentWorldConfiguration::WKContentWorldConfiguration;
 #[cfg(feature = "WKDownload")]
 pub use self::__WKDownload::WKDownload;
 #[cfg(feature = "WKDownloadDelegate")]
@@ -1828,6 +1851,8 @@ pub use self::__WKError::WKErrorDomain;
 pub use self::__WKFindConfiguration::WKFindConfiguration;
 #[cfg(feature = "WKFindResult")]
 pub use self::__WKFindResult::WKFindResult;
+#[cfg(feature = "WKFormInfo")]
+pub use self::__WKFormInfo::WKFormInfo;
 #[cfg(feature = "WKFrameInfo")]
 pub use self::__WKFrameInfo::WKFrameInfo;
 #[cfg(feature = "WKHTTPCookieStore")]
@@ -1836,6 +1861,16 @@ pub use self::__WKHTTPCookieStore::WKCookiePolicy;
 pub use self::__WKHTTPCookieStore::WKHTTPCookieStore;
 #[cfg(feature = "WKHTTPCookieStore")]
 pub use self::__WKHTTPCookieStore::WKHTTPCookieStoreObserver;
+#[cfg(feature = "WKImmersiveEnvironment")]
+pub use self::__WKImmersiveEnvironment::WKImmersiveEnvironment;
+#[cfg(feature = "WKImmersiveEnvironmentDelegate")]
+pub use self::__WKImmersiveEnvironmentDelegate::WKImmersiveEnvironmentDelegate;
+#[cfg(feature = "WKJSHandle")]
+pub use self::__WKJSHandle::WKJSHandle;
+#[cfg(feature = "WKJSScriptingBuffer")]
+pub use self::__WKJSScriptingBuffer::WKJSScriptingBuffer;
+#[cfg(feature = "WKJSSerializedNode")]
+pub use self::__WKJSSerializedNode::WKJSSerializedNode;
 #[cfg(feature = "WKNavigation")]
 pub use self::__WKNavigation::WKNavigation;
 #[cfg(feature = "WKNavigationAction")]

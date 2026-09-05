@@ -92,6 +92,10 @@ extern_conformance!(
 );
 
 extern_conformance!(
+    unsafe impl NSTextViewportLayoutControllerDelegate for OSAScriptView {}
+);
+
+extern_conformance!(
     unsafe impl NSUserInterfaceItemIdentification for OSAScriptView {}
 );
 

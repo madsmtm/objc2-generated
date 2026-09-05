@@ -6,36 +6,51 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpressiontype?language=objc)
+/// Defines the possible types of an expression.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpressiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSExpressionType(pub NSUInteger);
 impl NSExpressionType {
+    /// An expression that always returns the same value.
     #[doc(alias = "NSConstantValueExpressionType")]
     pub const ConstantValueExpressionType: Self = Self(0);
+    /// An expression that always returns the parameter object itself.
     #[doc(alias = "NSEvaluatedObjectExpressionType")]
     pub const EvaluatedObjectExpressionType: Self = Self(1);
+    /// An expression that always returns whatever is stored at 'variable' in the bindings dictionary.
     #[doc(alias = "NSVariableExpressionType")]
     pub const VariableExpressionType: Self = Self(2);
+    /// An expression that returns something that can be used as a key path.
     #[doc(alias = "NSKeyPathExpressionType")]
     pub const KeyPathExpressionType: Self = Self(3);
+    /// An expression that returns the result of evaluating a symbol.
     #[doc(alias = "NSFunctionExpressionType")]
     pub const FunctionExpressionType: Self = Self(4);
+    /// An expression that returns the result of doing a unionSet: on two expressions that evaluate to flat collections (arrays or sets).
     #[doc(alias = "NSUnionSetExpressionType")]
     pub const UnionSetExpressionType: Self = Self(5);
+    /// An expression that returns the result of doing an intersectSet: on two expressions that evaluate to flat collections (arrays or sets).
     #[doc(alias = "NSIntersectSetExpressionType")]
     pub const IntersectSetExpressionType: Self = Self(6);
+    /// An expression that returns the result of doing a minusSet: on two expressions that evaluate to flat collections (arrays or sets).
     #[doc(alias = "NSMinusSetExpressionType")]
     pub const MinusSetExpressionType: Self = Self(7);
+    /// A subquery expression.
     #[doc(alias = "NSSubqueryExpressionType")]
     pub const SubqueryExpressionType: Self = Self(13);
+    /// An aggregate expression.
     #[doc(alias = "NSAggregateExpressionType")]
     pub const AggregateExpressionType: Self = Self(14);
+    /// An expression that represents any key for a Spotlight query.
     #[doc(alias = "NSAnyKeyExpressionType")]
     pub const AnyKeyExpressionType: Self = Self(15);
+    /// A block expression.
     #[doc(alias = "NSBlockExpressionType")]
     pub const BlockExpressionType: Self = Self(19);
+    /// A conditional expression that evaluates a predicate to determine which expression to return.
     #[doc(alias = "NSConditionalExpressionType")]
     pub const ConditionalExpressionType: Self = Self(20);
 }
@@ -49,7 +64,51 @@ unsafe impl RefEncode for NSExpressionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression?language=objc)
+    /// An expression for use in a comparison predicate.
+    ///
+    /// Comparison operations in an ``NSPredicate`` derive from two expressions as instances of the ``NSExpression`` class. You create expressions for constant values, key paths, and so on.
+    ///
+    /// Generally, anywhere in the ``NSExpression`` class hierarchy where there's a composite API and subtypes that may only reasonably respond to a subset of that API, invoking a method that doesn't make sense for that subtype throws an exception.
+    ///
+    /// ### Aggregate Expressions
+    ///
+    /// ``ExpressionType/aggregate`` allows you to create predicates containing expressions that evaluate to collections that contain further expressions. The collection may be an ``NSArray``, ``NSSet``, or ``NSDictionary`` object.
+    ///
+    /// Core Data doesn't support aggregate expressions.
+    ///
+    /// ### Subquery Expressions
+    ///
+    /// The ``ExpressionType/subquery`` creates a subexpression that returns a subset of a collection of objects. This allows you to create sophisticated queries across relationships, such as a search for multiple correlated values on the destination object of a relationship.
+    ///
+    /// ### Set Expressions
+    ///
+    /// The set expressions (``ExpressionType/unionSet``, ``ExpressionType/intersectSet``, and ``ExpressionType/minusSet``) combine results in a manner similar to the ``NSSet`` methods.
+    ///
+    /// Both sides of these expressions must evaluate to a collection; the left side must evaluate to an `NSSet` object, and the right side can be any other collection type.
+    ///
+    /// ```objc
+    /// (expression UNION expression)
+    /// (expression INTERSECT expression)
+    /// (expression MINUS expression)
+    /// ```
+    ///
+    /// Core Data doesn't support set expressions.
+    ///
+    /// ### Function Expressions
+    ///
+    /// In macOS 10.4, ``NSExpression`` only supports a predefined set of functions: `sum`, `count`, `min`, `max`, and `average`. You access these predefined functions in the predicate syntax using custom keywords (for example, `MAX(1, 5, 10)`).
+    ///
+    /// In macOS 10.5 and later, function expressions also support arbitrary method invocations. To implement this extended functionality, use the syntax `FUNCTION(receiver, selectorName, arguments, ...),` as in the following example:
+    ///
+    /// ```objc
+    /// FUNCTION(@"/Developer/Tools/otest", @"lastPathComponent") => @"otest"
+    /// ```
+    ///
+    /// All methods must take one or more `id` arguments and return an `id` value, although you can use the `CAST` expression to convert datatypes with lossy string representations (for example, `CAST(####, "NSDate")`). macOS 10.5 extends the `CAST` expression to provide support for casting to classes for use in creating receivers for function expressions.
+    ///
+    /// Although Core Data supports evaluation of the predefined functions, it doesn't support the evaluation of custom predicate functions in the persistent stores (during a fetch).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExpression;
@@ -82,6 +141,8 @@ extern_conformance!(
 impl NSExpression {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Creates the expression with the specified expression arguments.
+        ///
         /// # Safety
         ///
         /// `arguments` generic should be of the correct type.
@@ -92,6 +153,8 @@ impl NSExpression {
             arguments: &NSArray,
         ) -> Retained<NSExpression>;
 
+        /// Creates an expression that returns a constant value.
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.
@@ -100,21 +163,30 @@ impl NSExpression {
         pub unsafe fn expressionForConstantValue(obj: Option<&AnyObject>)
             -> Retained<NSExpression>;
 
+        /// Creates an expression that represents the object you're evaluating.
         #[unsafe(method(expressionForEvaluatedObject))]
         #[unsafe(method_family = none)]
         pub fn expressionForEvaluatedObject() -> Retained<NSExpression>;
 
         #[cfg(feature = "NSString")]
+        /// Creates an expression that pulls a value from the variable bindings dictionary.
         #[unsafe(method(expressionForVariable:))]
         #[unsafe(method_family = none)]
         pub fn expressionForVariable(string: &NSString) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSString")]
+        /// Creates an expression that invokes the value function with a specified key path.
+        ///
+        /// - Parameters:
+        /// - keyPath: The key path that the new expression should evaluate.
+        /// - Returns: A new expression that invokes `value(forKeyPath:)` with `keyPath`.
         #[unsafe(method(expressionForKeyPath:))]
         #[unsafe(method_family = none)]
         pub fn expressionForKeyPath(key_path: &NSString) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Creates an expression that invokes one of the predefined functions.
+        ///
         /// # Safety
         ///
         /// `parameters` generic should be of the correct type.
@@ -126,12 +198,14 @@ impl NSExpression {
         ) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSArray")]
+        /// Creates an expression that returns a collection containing the results of other expressions.
         #[unsafe(method(expressionForAggregate:))]
         #[unsafe(method_family = none)]
         pub fn expressionForAggregate(
             subexpressions: &NSArray<NSExpression>,
         ) -> Retained<NSExpression>;
 
+        /// Returns an expression that will return the union of the collections expressed by left and right.
         #[unsafe(method(expressionForUnionSet:with:))]
         #[unsafe(method_family = none)]
         pub fn expressionForUnionSet_with(
@@ -139,6 +213,7 @@ impl NSExpression {
             right: &NSExpression,
         ) -> Retained<NSExpression>;
 
+        /// Returns an expression that will return the intersection of the collections expressed by left and right.
         #[unsafe(method(expressionForIntersectSet:with:))]
         #[unsafe(method_family = none)]
         pub fn expressionForIntersectSet_with(
@@ -146,6 +221,7 @@ impl NSExpression {
             right: &NSExpression,
         ) -> Retained<NSExpression>;
 
+        /// Returns an expression that will return the disjunction of the collections expressed by left and right.
         #[unsafe(method(expressionForMinusSet:with:))]
         #[unsafe(method_family = none)]
         pub fn expressionForMinusSet_with(
@@ -154,6 +230,7 @@ impl NSExpression {
         ) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSPredicate", feature = "NSString"))]
+        /// Creates an expression that filters a collection using a subquery.
         #[unsafe(method(expressionForSubquery:usingIteratorVariable:predicate:))]
         #[unsafe(method_family = none)]
         pub fn expressionForSubquery_usingIteratorVariable_predicate(
@@ -163,6 +240,8 @@ impl NSExpression {
         ) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Creates an expression that invokes a selector on a target with parameters.
+        ///
         /// # Safety
         ///
         /// `parameters` generic should be of the correct type.
@@ -174,11 +253,14 @@ impl NSExpression {
             parameters: Option<&NSArray>,
         ) -> Retained<NSExpression>;
 
+        /// Creates an expression that represents any key for a Spotlight query.
         #[unsafe(method(expressionForAnyKey))]
         #[unsafe(method_family = none)]
         pub fn expressionForAnyKey() -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
+        /// Creates an expression that invokes a block with the parameters.
+        ///
         /// # Safety
         ///
         /// - `block` block's return must be a valid pointer.
@@ -198,6 +280,7 @@ impl NSExpression {
         ) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSPredicate")]
+        /// Creates an expression that will return the result of trueExpression or falseExpression depending on the value of predicate.
         #[unsafe(method(expressionForConditional:trueExpression:falseExpression:))]
         #[unsafe(method_family = none)]
         pub fn expressionForConditional_trueExpression_falseExpression(
@@ -206,6 +289,7 @@ impl NSExpression {
             false_expression: &NSExpression,
         ) -> Retained<NSExpression>;
 
+        /// Creates the expression with the specified expression type.
         #[unsafe(method(initWithExpressionType:))]
         #[unsafe(method_family = init)]
         pub fn initWithExpressionType(
@@ -213,64 +297,85 @@ impl NSExpression {
             r#type: NSExpressionType,
         ) -> Retained<Self>;
 
+        /// The expression type for the expression.
+        ///
+        /// Accessing this property raises an exception if it is not applicable to the expression.
         #[unsafe(method(expressionType))]
         #[unsafe(method_family = none)]
         pub fn expressionType(&self) -> NSExpressionType;
 
+        /// The constant value of the expression.
         #[unsafe(method(constantValue))]
         #[unsafe(method_family = none)]
         pub fn constantValue(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// The key path for the expression.
         #[unsafe(method(keyPath))]
         #[unsafe(method_family = none)]
         pub fn keyPath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The function for the expression.
         #[unsafe(method(function))]
         #[unsafe(method_family = none)]
         pub fn function(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The variable for the expression.
         #[unsafe(method(variable))]
         #[unsafe(method_family = none)]
         pub fn variable(&self) -> Retained<NSString>;
 
+        /// The operand for the expression.
+        ///
+        /// The operand is the object on which the expression's selector or block will be invoked. The object is the result of evaluating a key path or one of the defined functions.
         #[unsafe(method(operand))]
         #[unsafe(method_family = none)]
         pub fn operand(&self) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSArray")]
+        /// The arguments for the expression.
+        ///
+        /// The array of expressions which will be passed as parameters during invocation of the selector on the operand of a function expression.
         #[unsafe(method(arguments))]
         #[unsafe(method_family = none)]
         pub fn arguments(&self) -> Option<Retained<NSArray<NSExpression>>>;
 
+        /// The collection of expressions in an aggregate expression, or the collection element of a subquery expression.
         #[unsafe(method(collection))]
         #[unsafe(method_family = none)]
         pub fn collection(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSPredicate")]
+        /// The predicate of a subquery expression.
         #[unsafe(method(predicate))]
         #[unsafe(method_family = none)]
         pub fn predicate(&self) -> Retained<NSPredicate>;
 
+        /// The left expression of an aggregate expression.
         #[unsafe(method(leftExpression))]
         #[unsafe(method_family = none)]
         pub fn leftExpression(&self) -> Retained<NSExpression>;
 
+        /// The right expression of an aggregate expression.
         #[unsafe(method(rightExpression))]
         #[unsafe(method_family = none)]
         pub fn rightExpression(&self) -> Retained<NSExpression>;
 
+        /// An expression to evaluate if a conditional expression's predicate evaluates to true.
         #[unsafe(method(trueExpression))]
         #[unsafe(method_family = none)]
         pub fn trueExpression(&self) -> Retained<NSExpression>;
 
+        /// An expression to evaluate if a conditional expression's predicate evaluates to false.
         #[unsafe(method(falseExpression))]
         #[unsafe(method_family = none)]
         pub fn falseExpression(&self) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
+        /// The block that executes to evaluate the expression.
+        ///
         /// # Safety
         ///
         /// - The returned block's argument 1 must be a valid pointer or null.
@@ -292,6 +397,8 @@ impl NSExpression {
         >;
 
         #[cfg(feature = "NSDictionary")]
+        /// Evaluates an expression using a specified object and context.
+        ///
         /// # Safety
         ///
         /// - `object` should be of the correct type.
@@ -304,6 +411,11 @@ impl NSExpression {
             context: Option<&NSMutableDictionary>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// Forces a securely decoded expression to allow evaluation.
+        ///
+        /// When securely decoding an `NSExpression` object encoded using `NSSecureCoding`, evaluation is disabled because it is potentially unsafe to evaluate expressions you get out of an archive.
+        ///
+        /// Before you enable evaluation, you should validate key paths, selectors, etc to ensure no erroneous or malicious code will be executed. Once you've preflighted the expression, you can enable the expression for evaluation by calling `allowEvaluation`.
         #[unsafe(method(allowEvaluation))]
         #[unsafe(method_family = none)]
         pub fn allowEvaluation(&self);

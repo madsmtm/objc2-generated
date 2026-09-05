@@ -56,6 +56,19 @@ impl UIDocumentViewControllerLaunchOptions {
         #[unsafe(method_family = none)]
         pub fn setTitle(&self, title: &NSString);
 
+        /// The subtitle of the view. Default is `nil`.
+        /// If `nil`, no subtitle will be displayed.
+        #[unsafe(method(subtitle))]
+        #[unsafe(method_family = none)]
+        pub fn subtitle(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`subtitle`][Self::subtitle].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setSubtitle:))]
+        #[unsafe(method_family = none)]
+        pub fn setSubtitle(&self, subtitle: Option<&NSString>);
+
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The primary action.
         #[unsafe(method(primaryAction))]

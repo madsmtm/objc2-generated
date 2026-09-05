@@ -3,6 +3,7 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
 
@@ -16,7 +17,15 @@ extern_class!(
 );
 
 extern_conformance!(
+    unsafe impl NSCoding for CPMapTemplateWaypoint {}
+);
+
+extern_conformance!(
     unsafe impl NSObjectProtocol for CPMapTemplateWaypoint {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for CPMapTemplateWaypoint {}
 );
 
 impl CPMapTemplateWaypoint {

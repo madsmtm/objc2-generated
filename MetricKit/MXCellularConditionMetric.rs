@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXCellularConditionMetric;
 );
 
@@ -42,6 +43,7 @@ impl MXCellularConditionMetric {
         /// In the event that no data for any buckets is available, the histogram data will be empty.
         ///
         /// Dimensioned as MXUnitSignalBars.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(histogrammedCellularConditionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn histogrammedCellularConditionTime(

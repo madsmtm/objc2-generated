@@ -6,7 +6,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprotocolchecker?language=objc)
+    /// An object that restricts the messages that can be sent to another object (referred to as the checker's delegate).
+    ///
+    /// A ``NSProtocolChecker`` object can be particularly useful when an object with many methods, only a few of which ought to be remotely accessible, is made available using the distributed objects system.
+    ///
+    /// A protocol checker acts as a kind of proxy; when it receives a message that is in its designated protocol, it forwards the message to its target and consequently appears to be the target object itself. However, when it receives a message not in its protocol, it raises an ``NSExceptionName/invalidArgumentException`` to indicate that the message isn't allowed, whether or not the target object implements the method.
+    ///
+    /// Typically, an object that is to be distributed (yet must restrict messages) creates an ``NSProtocolChecker`` for itself and returns the checker rather than returning itself in response to any messages. The object might also register the checker as the root object of an NSConnection.
+    ///
+    /// The object should be careful about vending references to `self`—the protocol checker will convert a return value of `self` to indicate the checker rather than the object for any messages forwarded by the checker, but direct references to the object (bypassing the checker) could be passed around by other objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprotocolchecker?language=objc)
     #[unsafe(super(NSProxy))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSProxy")]
@@ -21,10 +31,12 @@ extern_conformance!(
 #[cfg(feature = "NSProxy")]
 impl NSProtocolChecker {
     extern_methods!(
+        /// The protocol object the receiver uses to verify whether a given message should be forwarded to its target.
         #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
         pub fn protocol(&self) -> Retained<AnyProtocol>;
 
+        /// The target of the receiver.
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub fn target(&self) -> Option<Retained<NSObject>>;
@@ -35,6 +47,8 @@ impl NSProtocolChecker {
 #[cfg(feature = "NSProxy")]
 impl NSProtocolChecker {
     extern_methods!(
+        /// Returns an `NSProtocolChecker` instance that will forward any messages in the given protocol to the given target.
+        ///
         /// # Safety
         ///
         /// - `an_object` should be of the correct type.
@@ -46,6 +60,14 @@ impl NSProtocolChecker {
             a_protocol: &AnyProtocol,
         ) -> Retained<Self>;
 
+        /// Initializes a newly allocated `NSProtocolChecker` instance that will forward any messages in `aProtocol` to `anObject`, the protocol checker's target.
+        ///
+        /// The checker can be vended in lieu of `anObject` to restrict the messages that can be sent to `anObject`. If `anObject` is allowed to be freed or dereferenced by clients, the `free` method should be included in `aProtocol`.
+        ///
+        /// - Parameters:
+        /// - anObject: The target object.
+        /// - aProtocol: The protocol to restrict messages to.
+        ///
         /// # Safety
         ///
         /// - `an_object` should be of the correct type.

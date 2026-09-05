@@ -72,18 +72,6 @@ impl LPMetadataProvider {
         /// necessary UI updates back to the main queue. When the completion handler
         /// returns, it deletes any file URLs returned in the resulting
         /// ``LPLinkMetadata``.
-        ///
-        /// > Concurrency Note: You can call this method from synchronous code using a completion handler,
-        /// > as shown on this page, or you can call it as an asynchronous method that has the
-        /// > following declaration:
-        /// >
-        /// > ```swift
-        /// >  func startFetchingMetadata(for url: URL) async throws -> LPLinkMetadata
-        /// > ```
-        /// >
-        /// > For information about concurrency and asynchronous code in Swift, see
-        /// <doc
-        /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
         #[unsafe(method(startFetchingMetadataForURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startFetchingMetadataForURL_completionHandler(
@@ -106,18 +94,6 @@ impl LPMetadataProvider {
         /// necessary UI updates back to the main queue. When the completion handler
         /// returns, it deletes any file URLs returned in the resulting
         /// ``LPLinkMetadata``.
-        ///
-        /// > Concurrency Note: You can call this method from synchronous code using a completion handler,
-        /// > as shown on this page, or you can call it as an asynchronous method that has the
-        /// > following declaration:
-        /// >
-        /// > ```swift
-        /// >  func startFetchingMetadata(for request: URLRequest) async throws -> LPLinkMetadata
-        /// > ```
-        /// >
-        /// > For information about concurrency and asynchronous code in Swift, see
-        /// <doc
-        /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
         #[unsafe(method(startFetchingMetadataForRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startFetchingMetadataForRequest_completionHandler(

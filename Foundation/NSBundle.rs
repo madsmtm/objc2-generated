@@ -6,19 +6,124 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturei386?language=objc)
+/// The 32-bit Intel architecture.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturei386?language=objc)
 pub const NSBundleExecutableArchitectureI386: c_uint = 0x00000007;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitectureppc?language=objc)
+/// The 32-bit PowerPC architecture.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitectureppc?language=objc)
 pub const NSBundleExecutableArchitecturePPC: c_uint = 0x00000012;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturex86_64?language=objc)
+/// The 64-bit Intel architecture.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturex86_64?language=objc)
 pub const NSBundleExecutableArchitectureX86_64: c_uint = 0x01000007;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitectureppc64?language=objc)
+/// The 64-bit PowerPC architecture.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitectureppc64?language=objc)
 pub const NSBundleExecutableArchitecturePPC64: c_uint = 0x01000012;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturearm64?language=objc)
+/// The 64-bit ARM architecture.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturearm64?language=objc)
 pub const NSBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundle?language=objc)
+    /// A representation of the code and resources stored in a bundle directory on disk.
+    ///
+    /// Apple uses bundles to represent apps, frameworks, plug-ins, and many other specific types of content. Bundles organize their contained resources into well-defined subdirectories, and bundle structures vary depending on the platform and the type of the bundle. By using a bundle object, you can access a bundle's resources without knowing the structure of the bundle. The bundle object provides a single interface for locating items, taking into account the bundle structure, user preferences, available localizations, and other relevant factors.
+    ///
+    /// Any executable can use a bundle object to locate resources, either inside an app's bundle or in a known bundle located elsewhere. You don't use a bundle object to locate files in a container directory or in other parts of the file system.
+    ///
+    /// The general pattern for using a bundle object is as follows:
+    ///
+    /// 1. Create a bundle object for the intended bundle directory.
+    /// 2. Use the methods of the bundle object to locate or load the needed resource.
+    /// 3. Use other system APIs to interact with the resource.
+    ///
+    /// Some types of frequently used resources can be located and opened without a bundle. For example, when loading images, you store images in asset catalogs and load them using the
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uiimage/init(named:)> methods of
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uiimage> or
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nsimage>. Similarly, for string resources, you use ``NSLocalizedString`` to load individual strings instead of loading the entire `.strings` file yourself.
+    ///
+    /// > Note: Unlike some other Foundation classes with corresponding Core Foundation names (such as ``NSString`` and
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring>), ``Bundle`` objects cannot be cast to
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfbundle> references. If you need functionality provided by
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfbundle>, you can still create a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfbundle> and use the
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfbundle> API. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// ### Finding and Opening a Bundle
+    ///
+    /// Before you can locate a resource, you must first specify which bundle contains it. The ``Bundle`` class has many constructors, but the one you use most often is ``main``. The main bundle represents the bundle directory that contains the currently executing code. So for an app, the main bundle object gives you access to the resources that shipped with your app.
+    ///
+    /// If your app interacts directly with plug-ins, frameworks, or other bundled content, you can use other methods of this class to create appropriate bundle objects. You can always create bundle objects from a known URL or path, but other methods make it easier to access bundles your app is already using. For example, if you link to a framework, you can use the ``init(for:)`` method to locate the framework bundle based on a class defined in that framework.
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// // Get the app's main bundle
+    /// let mainBundle = Bundle.main
+    ///
+    /// // Get the bundle containing the specified private class.
+    /// let myBundle = Bundle(for: NSClassFromString("MyPrivateClass")!)
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// // Get the app's main bundle
+    /// NSBundle *main = [NSBundle mainBundle];
+    ///
+    /// // Get the bundle containing the specified private class.
+    /// NSBundle *myBundle = [NSBundle bundleForClass:[MyPrivateClass class]];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// In Swift, use the ``bundle()`` macro to insert a bundle instance appropriate to the current execution context, whether an app, app extension, framework, or Swift package.
+    ///
+    /// ### Locating Resources in a Bundle
+    ///
+    /// You use ``Bundle`` objects to obtain the location of specific resources inside the bundle. When looking for resources, you provide the name of the resource and its type at a minimum. For resources in a specific subdirectory, you can also specify that directory. After locating the resource, the bundle routines return a path string or URL that you can use to open the file.
+    ///
+    /// Locating a single resource in a bundle
+    ///
+    /// ```objc
+    /// NSBundle *main = [NSBundle mainBundle];
+    /// NSString *resourcePath = [main pathForResource:@"Seagull" ofType:@"jpg"];
+    /// ```
+    ///
+    /// Bundle objects follow a specific search pattern when looking for resources on disk. Global resources—that is, resources not in a language-specific `.lproj` directory—are returned first, followed by region- and language-specific resources. This search pattern means that the bundle looks for resources in the following order:
+    ///
+    /// 1. Global (nonlocalized) resources
+    /// 2. Region-specific localized resources (based on the user's region preferences)
+    /// 3. Language-specific localized resources (based on the user's language preferences)
+    /// 4. Development language resources (as specified by the [CFBundleDevelopmentRegion](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-130430) key in the bundle's Info.plist file)
+    ///
+    /// Because global resources take precedence over language-specific resources, you should never include both a global and localized version of a given resource in your app. When a global version of a resource exists, language-specific versions are never returned. The reason for this precedence is performance. If localized resources were searched first, the bundle object might waste time searching for a nonexistent localized resource before returning the global resource.
+    ///
+    /// > Important:
+    /// > Bundle objects always consider case when searching for resource files, even on file systems that support case-insensitive filenames. Always make sure that you specify filenames with case sensitivity in mind.
+    ///
+    /// When locating resource files, the bundle object automatically considers many standard filename modifiers when determining which file to return. Resources may be tagged for a specific device (`~iphone`, `~ipad`) or for a specific screen resolution (`@2x`, `@3x`). Do not include these modifiers when specifying the name of the resource you want. The bundle object selects the file that is most appropriate for the underlying device. For more information, see [App Icons on iPhone, iPad and Apple Watch](https://developer.apple.com/library/archive/qa/qa1686/_index.html#//apple_ref/doc/uid/DTS40009882).
+    ///
+    /// ### Understanding Bundle Structures
+    ///
+    /// Bundle structures vary depending on the target platform and the type of bundle you are building. The ``Bundle`` class hides this underlying structure in most (but not all) cases. Many of the methods you use to load resources from a bundle automatically locate the appropriate starting directory and look for resources in known places. You can also use the methods and properties of this class to get the location of known bundle directories and to retrieve resources specifically from those directories.
+    ///
+    /// For information about the bundle structure of iOS and macOS apps, see [Bundle Programming Guide](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i). For information about the structure of framework bundles, see [Framework Programming Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183i). For information about the structure of macOS plug-ins, see [Code Loading Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/LoadingCode/LoadingCode.html#//apple_ref/doc/uid/10000052i).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBundle;
@@ -34,30 +139,89 @@ extern_conformance!(
 
 impl NSBundle {
     extern_methods!(
+        /// Returns the bundle object that contains the current executable.
+        ///
+        /// The main bundle lets you access the resources in the same directory as the currently running executable. For a running app or code running in a framework, the main bundle offers access to the app's bundle directory.
+        ///
+        /// This method may return a valid bundle object even for unbundled apps. It may also return `nil` if the bundle object could not be created, so always check the return value.
         #[unsafe(method(mainBundle))]
         #[unsafe(method_family = none)]
         pub fn mainBundle() -> Retained<NSBundle>;
 
         #[cfg(feature = "NSString")]
+        /// Creates and returns an `NSBundle` object that corresponds to the specified directory.
+        ///
+        ///
+        /// Parameter `path`: The path to a directory. This must be a full pathname for a directory; if it contains any symbolic links, they must be resolvable.
+        ///
+        /// Returns: An `NSBundle` object that corresponds to
+        /// `path.`Returns
+        /// `nil`if
+        /// `path`does not exist or the user doesn't have access to it.
         #[unsafe(method(bundleWithPath:))]
         #[unsafe(method_family = none)]
         pub fn bundleWithPath(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns an `NSBundle` object initialized to correspond to the specified directory.
+        ///
+        /// This method initializes and returns a new instance only if there is no existing bundle associated with
+        /// `fullPath,`otherwise it deallocates
+        /// `self`and returns the existing object.
+        ///
+        ///
+        /// Parameter `path`: The path to a directory. This must be a full pathname for a directory; if it contains any symbolic links, they must be resolvable.
+        ///
+        /// Returns: An `NSBundle` object initialized to correspond to
+        /// `fullPath,`or
+        /// `nil`if
+        /// `fullPath`doesn't exist or the user doesn't have access to it.
         #[unsafe(method(initWithPath:))]
         #[unsafe(method_family = init)]
         pub fn initWithPath(this: Allocated<Self>, path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
+        /// Creates and returns an `NSBundle` object that corresponds to the specified file URL.
+        ///
+        ///
+        /// Parameter `url`: The file URL to a directory. This must be a full URL for a directory; if it contains any symbolic links, they must be resolvable.
+        ///
+        /// Returns: An `NSBundle` object that corresponds to
+        /// `url.`Returns
+        /// `nil`if
+        /// `url`does not exist or the user doesn't have access to it.
         #[unsafe(method(bundleWithURL:))]
         #[unsafe(method_family = none)]
         pub fn bundleWithURL(url: &NSURL) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
+        /// Returns an `NSBundle` object initialized to correspond to the specified file URL.
+        ///
+        /// This method initializes and returns a new instance only if there is no existing bundle associated with
+        /// `url,`otherwise it deallocates
+        /// `self`and returns the existing object.
+        ///
+        ///
+        /// Parameter `url`: The file URL to a directory. This must be a full URL for a directory; if it contains any symbolic links, they must be resolvable.
+        ///
+        /// Returns: An `NSBundle` object initialized to correspond to
+        /// `url,`or
+        /// `nil`if
+        /// `url`doesn't exist or the user doesn't have access to it.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
 
+        /// Returns the `NSBundle` object with which the specified class is associated.
+        ///
+        ///
+        /// Parameter `aClass`: A class.
+        ///
+        /// Returns: The `NSBundle` object that dynamically loaded
+        /// `aClass`(a loadable bundle), the `NSBundle` object for the framework in which
+        /// `aClass`is defined, or the main bundle object if
+        /// `aClass`was not dynamically loaded or is not defined in a framework.
+        ///
         /// # Safety
         ///
         /// `a_class` probably has further requirements.
@@ -66,58 +230,130 @@ impl NSBundle {
         pub unsafe fn bundleForClass(a_class: &AnyClass) -> Retained<NSBundle>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the `NSBundle` instance that has the specified bundle identifier.
+        ///
+        /// This method is typically used by frameworks and plug-ins to locate their own bundle at runtime. It may be somewhat more
+        /// efficient than trying to locate the bundle using
+        /// `bundleForClass:.`However, if the initial lookup fails, this method
+        /// uses potentially time-consuming heuristics to attempt to locate the bundle.
+        ///
+        ///
+        /// Parameter `identifier`: The identifier for an existing `NSBundle` instance.
+        ///
+        /// Returns: The previously allocated `NSBundle` object with the bundle identifier
+        /// `identifier,`or
+        /// `nil`if the requested bundle is not found.
         #[unsafe(method(bundleWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn bundleWithIdentifier(identifier: &NSString) -> Option<Retained<NSBundle>>;
 
         #[cfg(feature = "NSArray")]
+        /// An array of all the application's non-framework bundles.
+        ///
+        /// The returned array includes the main bundle and all bundles that have been dynamically created but doesn't contain any bundles that represent frameworks.
         #[unsafe(method(allBundles))]
         #[unsafe(method_family = none)]
         pub unsafe fn allBundles() -> Retained<NSArray<NSBundle>>;
 
         #[cfg(feature = "NSArray")]
+        /// An array of all of the application's bundles that represent frameworks.
+        ///
+        /// The returned array includes frameworks that are linked into an application when the application is built and bundles for frameworks that have been dynamically created. Only frameworks with one or more Objective-C classes in them are included.
         #[unsafe(method(allFrameworks))]
         #[unsafe(method_family = none)]
         pub unsafe fn allFrameworks() -> Retained<NSArray<NSBundle>>;
 
+        /// Dynamically loads the bundle's executable code into a running program, if the code has not already been loaded.
+        ///
+        /// You can use this method to load the code associated with a dynamically loaded bundle, such as a plug-in or framework.
+        /// You don't need to load a bundle's executable code to search the bundle's resources.
+        ///
+        /// Returns: `YES`if the method successfully loads the bundle's code or if the code has already been loaded, otherwise
+        /// `NO.`
         #[unsafe(method(load))]
         #[unsafe(method_family = none)]
         pub unsafe fn load(&self) -> bool;
 
+        /// The load status of a bundle.
+        ///
+        /// `YES`if the bundle's code is currently loaded, otherwise
+        /// `NO.`
         #[unsafe(method(isLoaded))]
         #[unsafe(method_family = none)]
         pub fn isLoaded(&self) -> bool;
 
+        /// Unloads the code associated with the receiver.
+        ///
+        /// This method attempts to unload a bundle's executable code using the underlying dynamic loader (typically
+        /// `dyld).`You may use this method to unload plug-in and framework bundles when you no longer need the code they contain.
+        /// It is the responsibility of the caller to ensure that no in-memory objects or data structures refer to the code being unloaded.
+        ///
+        /// Returns: `YES`if the bundle was successfully unloaded or was not already loaded; otherwise,
+        /// `NO`if the bundle could not be unloaded.
         #[unsafe(method(unload))]
         #[unsafe(method_family = none)]
         pub unsafe fn unload(&self) -> bool;
 
         #[cfg(feature = "NSError")]
+        /// Returns a Boolean value indicating whether the bundle's executable code could be loaded successfully.
+        ///
+        /// This method does not actually load the bundle's executable code. Instead, it performs several checks to see if the code
+        /// could be loaded and with one exception returns the same errors that would occur during an actual load operation.
+        ///
+        /// Parameter `error`: On output, this variable may contain an error object indicating why the bundle's executable could not be loaded.
+        ///
+        /// Returns: `YES`if the bundle's executable code could be loaded successfully or is already loaded; otherwise,
+        /// `NO.`
         #[unsafe(method(preflightAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub fn preflightAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Loads the bundle's executable code and returns any errors.
+        ///
+        /// If this method returns
+        /// `NO`and you pass a value for the
+        /// `error`parameter, a suitable error object is returned.
+        /// Potential errors include
+        /// `NSFileNoSuchFileError,``NSExecutableNotLoadableError,``NSExecutableArchitectureMismatchError,``NSExecutableRuntimeMismatchError,``NSExecutableLoadError,`and
+        /// `NSExecutableLinkError.`
+        /// Parameter `error`: On output, this variable may contain an error object indicating why the bundle's executable could not be loaded.
+        ///
+        /// Returns: `YES`if the bundle's executable code was loaded successfully or was already loaded; otherwise,
+        /// `NO.`
         #[unsafe(method(loadAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSURL")]
+        /// The full URL of the receiver's bundle directory.
         #[unsafe(method(bundleURL))]
         #[unsafe(method_family = none)]
         pub fn bundleURL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "NSURL")]
+        /// The file URL of the bundle's subdirectory containing resource files.
+        ///
+        /// This property contains the appropriate path for modern application and framework bundles. This property may not contain a path for non-standard bundle formats or for some older bundle formats.
         #[unsafe(method(resourceURL))]
         #[unsafe(method_family = none)]
         pub fn resourceURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// The file URL of the receiver's executable file.
         #[unsafe(method(executableURL))]
         #[unsafe(method_family = none)]
         pub fn executableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
+        /// Returns the file URL of the executable with the specified name in the receiver's bundle.
+        ///
+        /// This method returns the appropriate path for modern application and framework bundles.
+        /// This method may not return a URL for non-standard bundle formats or for some older bundle formats.
+        ///
+        /// Parameter `executableName`: The name of an executable file.
+        ///
+        /// Returns: The file URL of the executable in the receiver's bundle.
         #[unsafe(method(URLForAuxiliaryExecutable:))]
         #[unsafe(method_family = none)]
         pub fn URLForAuxiliaryExecutable(
@@ -126,46 +362,76 @@ impl NSBundle {
         ) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// The file URL of the bundle's subdirectory containing private frameworks.
+        ///
+        /// This property contains the appropriate path for modern application and framework bundles. This property may not be a URL for non-standard bundle formats or for some older bundle formats.
         #[unsafe(method(privateFrameworksURL))]
         #[unsafe(method_family = none)]
         pub fn privateFrameworksURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// The file URL of the receiver's subdirectory containing shared frameworks.
+        ///
+        /// This property contains the appropriate path for modern application and framework bundles. This property may not contain a URL for non-standard bundle formats or for some older bundle formats.
         #[unsafe(method(sharedFrameworksURL))]
         #[unsafe(method_family = none)]
         pub fn sharedFrameworksURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// The file URL of the bundle's subdirectory containing shared support files.
+        ///
+        /// This property contains the appropriate path for modern application and framework bundles. This property may not contain a path for non-standard bundle formats or for some older bundle formats.
         #[unsafe(method(sharedSupportURL))]
         #[unsafe(method_family = none)]
         pub fn sharedSupportURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// The file URL of the receiver's subdirectory containing plug-ins.
+        ///
+        /// This is the appropriate path for modern application and framework bundles. This may not be a URL for non-standard bundle formats or for some older bundle formats.
         #[unsafe(method(builtInPlugInsURL))]
         #[unsafe(method_family = none)]
         pub fn builtInPlugInsURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// The file URL for the bundle's App Store receipt.
+        ///
+        /// Use this app bundle property to locate the app receipt if it's present; this property is
+        /// `nil`if the receipt isn't present.
+        /// In the rare case a receipt is invalid or missing in an app that a user downloads from the App Store,
+        /// use
+        /// `SKReceiptRefreshRequest`to request a new receipt.
         #[unsafe(method(appStoreReceiptURL))]
         #[unsafe(method_family = none)]
         pub fn appStoreReceiptURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
+        /// The full pathname of the receiver's bundle directory.
         #[unsafe(method(bundlePath))]
         #[unsafe(method_family = none)]
         pub fn bundlePath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The full pathname of the bundle's subdirectory containing resources.
         #[unsafe(method(resourcePath))]
         #[unsafe(method_family = none)]
         pub fn resourcePath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The full pathname of the receiver's executable file.
         #[unsafe(method(executablePath))]
         #[unsafe(method_family = none)]
         pub fn executablePath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the full pathname of the executable with the specified name in the receiver's bundle.
+        ///
+        /// This method returns the appropriate path for modern application and framework bundles.
+        /// This method may not return a path for non-standard bundle formats or for some older bundle formats.
+        ///
+        /// Parameter `executableName`: The name of an executable file.
+        ///
+        /// Returns: The full pathname of the executable in the receiver's bundle.
         #[unsafe(method(pathForAuxiliaryExecutable:))]
         #[unsafe(method_family = none)]
         pub fn pathForAuxiliaryExecutable(
@@ -174,26 +440,53 @@ impl NSBundle {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The full pathname of the bundle's subdirectory containing private frameworks.
+        ///
+        /// This property contains the appropriate path for modern application and framework bundles. This property may not contain a path for non-standard bundle formats or for some older bundle formats.
         #[unsafe(method(privateFrameworksPath))]
         #[unsafe(method_family = none)]
         pub fn privateFrameworksPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The full pathname of the bundle's subdirectory containing shared frameworks.
+        ///
+        /// This property contains the appropriate path for modern application and framework bundles. This property may not contain a path for non-standard bundle formats or for some older bundle formats.
         #[unsafe(method(sharedFrameworksPath))]
         #[unsafe(method_family = none)]
         pub fn sharedFrameworksPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The full pathname of the bundle's subdirectory containing shared support files.
+        ///
+        /// This property contains the appropriate path for modern application and framework bundles. This property may not contain a path for non-standard bundle formats or for some older bundle formats.
         #[unsafe(method(sharedSupportPath))]
         #[unsafe(method_family = none)]
         pub fn sharedSupportPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The full pathname of the receiver's subdirectory containing plug-ins.
+        ///
+        /// This is the appropriate path for modern application and framework bundles. This may not be a path for non-standard bundle formats or for some older bundle formats.
         #[unsafe(method(builtInPlugInsPath))]
         #[unsafe(method_family = none)]
         pub fn builtInPlugInsPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
+        /// Creates and returns a file URL for the resource with the specified name and extension in the specified bundle.
+        ///
+        ///
+        /// Parameter `name`: The name of the resource file. If
+        /// `nil,`the method returns the first resource file it finds that matches the remaining criteria.
+        ///
+        /// Parameter `ext`: The filename extension of the file to locate. If an empty string or
+        /// `nil,`the extension is assumed not to exist.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory to search.
+        ///
+        /// Parameter `bundleURL`: The file URL of the bundle to search.
+        ///
+        /// Returns: The file URL for the resource file or
+        /// `nil`if the file could not be located.
         #[unsafe(method(URLForResource:withExtension:subdirectory:inBundleWithURL:))]
         #[unsafe(method_family = none)]
         pub fn URLForResource_withExtension_subdirectory_inBundleWithURL(
@@ -204,6 +497,18 @@ impl NSBundle {
         ) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "NSURL"))]
+        /// Returns an array containing the file URLs for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, within the specified bundle.
+        ///
+        ///
+        /// Parameter `ext`: The filename extension of the files to locate. If an empty string or
+        /// `nil,`all files in
+        /// `subpath`are returned.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory to search.
+        ///
+        /// Parameter `bundleURL`: The file URL of the bundle to search.
+        ///
+        /// Returns: An array of file URLs for the resource files matching the criteria or an empty array if no files could be located.
         #[unsafe(method(URLsForResourcesWithExtension:subdirectory:inBundleWithURL:))]
         #[unsafe(method_family = none)]
         pub fn URLsForResourcesWithExtension_subdirectory_inBundleWithURL(
@@ -213,6 +518,17 @@ impl NSBundle {
         ) -> Option<Retained<NSArray<NSURL>>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
+        /// Returns the file URL for the resource identified by the specified name and file extension.
+        ///
+        ///
+        /// Parameter `name`: The name of the resource file. If
+        /// `nil,`the method returns the first resource file it finds with the specified extension.
+        ///
+        /// Parameter `ext`: The extension of the resource file. If an empty string or
+        /// `nil,`the extension is assumed not to exist.
+        ///
+        /// Returns: The file URL for the resource file or
+        /// `nil`if the file could not be located.
         #[unsafe(method(URLForResource:withExtension:))]
         #[unsafe(method_family = none)]
         pub fn URLForResource_withExtension(
@@ -222,6 +538,19 @@ impl NSBundle {
         ) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
+        /// Returns the file URL for the resource file identified by the specified name and extension and residing in a given bundle directory.
+        ///
+        ///
+        /// Parameter `name`: The name of a resource file. If
+        /// `nil,`the method returns the first resource file it finds with the specified extension.
+        ///
+        /// Parameter `ext`: The filename extension of the file to locate. If an empty string or
+        /// `nil,`the extension is assumed not to exist.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory to search.
+        ///
+        /// Returns: The file URL for the resource file or
+        /// `nil`if the file could not be located.
         #[unsafe(method(URLForResource:withExtension:subdirectory:))]
         #[unsafe(method_family = none)]
         pub fn URLForResource_withExtension_subdirectory(
@@ -232,6 +561,22 @@ impl NSBundle {
         ) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
+        /// Returns the file URL for the resource identified by the specified name and file extension, located in the specified bundle subdirectory, and limited to global resources and those associated with the specified localization.
+        ///
+        ///
+        /// Parameter `name`: The name of the resource file. If
+        /// `nil,`the method returns the first resource file it finds that matches the remaining criteria.
+        ///
+        /// Parameter `ext`: The filename extension of the file to locate. If an empty string or
+        /// `nil,`the extension is assumed not to exist.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory to search.
+        ///
+        /// Parameter `localizationName`: The language ID for the localization. This parameter should correspond to the name of one of the bundle's language-specific resource directories without the
+        /// `.lproj`extension.
+        ///
+        /// Returns: The file URL for the resource file or
+        /// `nil`if the file could not be located.
         #[unsafe(method(URLForResource:withExtension:subdirectory:localization:))]
         #[unsafe(method_family = none)]
         pub fn URLForResource_withExtension_subdirectory_localization(
@@ -243,6 +588,17 @@ impl NSBundle {
         ) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "NSURL"))]
+        /// Returns an array of file URLs for all resources identified by the specified file extension and located in the specified bundle subdirectory.
+        ///
+        ///
+        /// Parameter `ext`: The filename extension of the files to locate. If an empty string or
+        /// `nil,`all files in
+        /// `subpath`are returned.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory.
+        ///
+        /// Returns: An array of file URLs for the resource files or
+        /// `nil`if no files could be located.
         #[unsafe(method(URLsForResourcesWithExtension:subdirectory:))]
         #[unsafe(method_family = none)]
         pub fn URLsForResourcesWithExtension_subdirectory(
@@ -252,6 +608,19 @@ impl NSBundle {
         ) -> Option<Retained<NSArray<NSURL>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "NSURL"))]
+        /// Returns an array containing the file URLs for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, and limited to global resources and those associated with the specified localization.
+        ///
+        ///
+        /// Parameter `ext`: The filename extension of the files to locate. If an empty string or
+        /// `nil,`all files in
+        /// `subpath`are returned.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory to search.
+        ///
+        /// Parameter `localizationName`: The language ID for the localization. This parameter should correspond to the name of one of the bundle's language-specific resource directories without the
+        /// `.lproj`extension.
+        ///
+        /// Returns: An array containing the file URLs for all bundle resources matching the specified criteria. Returns an empty array if no matching resource files are found.
         #[unsafe(method(URLsForResourcesWithExtension:subdirectory:localization:))]
         #[unsafe(method_family = none)]
         pub fn URLsForResourcesWithExtension_subdirectory_localization(
@@ -262,6 +631,20 @@ impl NSBundle {
         ) -> Option<Retained<NSArray<NSURL>>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the full pathname for the resource file identified by the specified name and extension and residing in a given bundle directory.
+        ///
+        ///
+        /// Parameter `name`: The name of a resource file contained in the directory specified by
+        /// `bundlePath.`If
+        /// `nil,`the method returns the first resource file it finds with the specified extension.
+        ///
+        /// Parameter `ext`: The filename extension of the file to locate. If an empty string or
+        /// `nil,`the extension is assumed not to exist.
+        ///
+        /// Parameter `bundlePath`: The path of a top-level bundle directory. This must be a valid path.
+        ///
+        /// Returns: The full pathname for the resource file or
+        /// `nil`if the file could not be located.
         #[unsafe(method(pathForResource:ofType:inDirectory:))]
         #[unsafe(method_family = none)]
         pub fn pathForResource_ofType_inDirectory_class(
@@ -271,6 +654,16 @@ impl NSBundle {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns an array containing the pathnames for all bundle resources having the specified extension and residing in the bundle directory at the specified path.
+        ///
+        ///
+        /// Parameter `ext`: The filename extension of the files to locate. If an empty string or
+        /// `nil,`all files in
+        /// `bundlePath`are returned.
+        ///
+        /// Parameter `bundlePath`: The top-level directory of a bundle. This must represent a valid path.
+        ///
+        /// Returns: An array containing the full pathnames for all bundle resources with the specified extension. Returns an empty array if no matching resource files are found.
         #[unsafe(method(pathsForResourcesOfType:inDirectory:))]
         #[unsafe(method_family = none)]
         pub fn pathsForResourcesOfType_inDirectory_class(
@@ -279,6 +672,20 @@ impl NSBundle {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the full pathname for the resource identified by the specified name and file extension.
+        ///
+        /// The method first looks for a matching resource file in the non-localized resource directory of the specified bundle.
+        /// If a matching resource file is not found, it then looks in the top level of an available language-specific
+        /// `.lproj`folder.
+        ///
+        /// Parameter `name`: The name of the resource file. If
+        /// `nil,`the method returns the first resource file it finds with the specified extension.
+        ///
+        /// Parameter `ext`: The filename extension of the file to locate. If an empty string or
+        /// `nil,`the extension is assumed not to exist.
+        ///
+        /// Returns: The full pathname for the resource file, or
+        /// `nil`if the file could not be located.
         #[unsafe(method(pathForResource:ofType:))]
         #[unsafe(method_family = none)]
         pub fn pathForResource_ofType(
@@ -288,6 +695,20 @@ impl NSBundle {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the full pathname for the resource identified by the specified name and file extension and located in the specified bundle subdirectory.
+        ///
+        ///
+        /// Parameter `name`: The name of the resource file. If
+        /// `nil,`the method returns the first resource file it finds that matches the remaining criteria.
+        ///
+        /// Parameter `ext`: The filename extension of the files to locate. If an empty string or
+        /// `nil,`all files in
+        /// `subpath`and its subdirectories are returned.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory.
+        ///
+        /// Returns: The full pathname for the resource file, or
+        /// `nil`if the file could not be located.
         #[unsafe(method(pathForResource:ofType:inDirectory:))]
         #[unsafe(method_family = none)]
         pub fn pathForResource_ofType_inDirectory(
@@ -298,6 +719,22 @@ impl NSBundle {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the full pathname for the resource identified by the specified name and file extension, located in the specified bundle subdirectory, and limited to global resources and those associated with the specified localization.
+        ///
+        ///
+        /// Parameter `name`: The name of the resource file. If
+        /// `nil,`the method returns the first resource file it finds that matches the remaining criteria.
+        ///
+        /// Parameter `ext`: The filename extension of the files to locate. If an empty string or
+        /// `nil,`the extension is assumed not to exist.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory to search.
+        ///
+        /// Parameter `localizationName`: The language ID for the localization. This parameter should correspond to the name of one of the bundle's language-specific resource directories without the
+        /// `.lproj`extension.
+        ///
+        /// Returns: The full pathname for the resource file or
+        /// `nil`if the file could not be located.
         #[unsafe(method(pathForResource:ofType:inDirectory:forLocalization:))]
         #[unsafe(method_family = none)]
         pub fn pathForResource_ofType_inDirectory_forLocalization(
@@ -309,6 +746,16 @@ impl NSBundle {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns an array containing the pathnames for all bundle resources having the specified filename extension and residing in the resource subdirectory.
+        ///
+        ///
+        /// Parameter `ext`: The filename extension of the files to locate. If an empty string or
+        /// `nil,`all files in
+        /// `subpath`are returned.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory to search.
+        ///
+        /// Returns: An array containing the full pathnames for all bundle resources matching the specified criteria. Returns an empty array if no matching resource files are found.
         #[unsafe(method(pathsForResourcesOfType:inDirectory:))]
         #[unsafe(method_family = none)]
         pub fn pathsForResourcesOfType_inDirectory(
@@ -318,6 +765,19 @@ impl NSBundle {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns an array containing the file for all bundle resources having the specified filename extension, residing in the specified resource subdirectory, and limited to global resources and those associated with the specified localization.
+        ///
+        ///
+        /// Parameter `ext`: The filename extension of the files to locate. If an empty string or
+        /// `nil,`all files in
+        /// `subpath`are returned.
+        ///
+        /// Parameter `subpath`: The name of the bundle subdirectory to search.
+        ///
+        /// Parameter `localizationName`: The language ID for the localization. This parameter should correspond to the name of one of the bundle's language-specific resource directories without the
+        /// `.lproj`extension.
+        ///
+        /// Returns: An array containing the full pathnames for all bundle resources matching the specified criteria. Returns an empty array if no matching resource files are found.
         #[unsafe(method(pathsForResourcesOfType:inDirectory:forLocalization:))]
         #[unsafe(method_family = none)]
         pub fn pathsForResourcesOfType_inDirectory_forLocalization(
@@ -328,6 +788,22 @@ impl NSBundle {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a localized version of the string designated by the specified key and residing in the specified table.
+        ///
+        ///
+        /// Parameter `key`: The key for a string in the table identified by
+        /// `tableName.`
+        /// Parameter `value`: The value to return if
+        /// `key`is
+        /// `nil`or if a localized string for
+        /// `key`can't be found in the table.
+        ///
+        /// Parameter `tableName`: The receiver's string table to search. If
+        /// `nil`or an empty string, the method attempts to use the table in
+        /// `Localizable.strings.`
+        /// Returns: A localized version of the string designated by
+        /// `key`in table
+        /// `tableName.`
         #[unsafe(method(localizedStringForKey:value:table:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForKey_value_table(
@@ -366,11 +842,24 @@ impl NSBundle {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The receiver's bundle identifier.
+        ///
+        /// The bundle identifier is defined by the
+        /// `CFBundleIdentifier`key in the bundle's information property list.
         #[unsafe(method(bundleIdentifier))]
         #[unsafe(method_family = none)]
         pub fn bundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// A dictionary, constructed from the bundle's
+        /// `Info.plist`file, that contains information about the receiver.
+        ///
+        /// If the bundle does not contain an
+        /// `Info.plist`file, this dictionary contains only private keys that are used internally by the
+        /// `NSBundle`class.
+        /// Common keys for accessing the values of the dictionary are
+        /// `CFBundleIdentifier,``NSMainNibFile,`and
+        /// `NSPrincipalClass.`
         #[unsafe(method(infoDictionary))]
         #[unsafe(method_family = none)]
         pub fn infoDictionary(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -378,6 +867,10 @@ impl NSBundle {
 
     extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// A dictionary with the keys from the bundle's localized property list.
+        ///
+        /// This property uses the preferred localization for the current user when determining which resources to include.
+        /// If the preferred localization is not available, this property chooses the most appropriate localization found in the bundle.
         #[unsafe(method(localizedInfoDictionary))]
         #[unsafe(method_family = none)]
         pub fn localizedInfoDictionary(
@@ -385,35 +878,90 @@ impl NSBundle {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the value associated with the specified key in the receiver's information property list.
+        ///
+        /// Use of this method is preferred over other access methods because it returns the localized value of a key when one is available.
+        ///
+        /// Parameter `key`: A key in the receiver's property list.
+        ///
+        /// Returns: The value associated with
+        /// `key`in the receiver's property list (
+        /// `Info.plist).`The localized value of a key is returned when one is available.
         #[unsafe(method(objectForInfoDictionaryKey:))]
         #[unsafe(method_family = none)]
         pub fn objectForInfoDictionaryKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the
+        /// `Class`object for the specified name.
+        ///
+        /// If the bundle's executable code is not yet loaded, this method dynamically loads it into memory.
+        ///
+        /// Parameter `className`: The name of a class.
+        ///
+        /// Returns: The
+        /// `Class`object for
+        /// `className.`Returns
+        /// `nil`if
+        /// `className`is not one of the classes associated with the receiver or if there is an error loading the executable code.
         #[unsafe(method(classNamed:))]
         #[unsafe(method_family = none)]
         pub fn classNamed(&self, class_name: &NSString) -> Option<&'static AnyClass>;
 
+        /// The bundle's principal class.
+        ///
+        /// This property is set after ensuring that the code containing the definition of the class is dynamically loaded.
+        /// If the bundle encounters errors in loading or if it can't find the executable code file in the bundle directory, this property is
+        /// `nil.`The bundle obtains the principal class from the information dictionary using the key
+        /// `NSPrincipalClass.`For non-loadable bundles
+        /// (applications and frameworks), if the principal class is not specified in the property list, this property is
+        /// `nil.`
         #[unsafe(method(principalClass))]
         #[unsafe(method_family = none)]
         pub fn principalClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An ordered list of preferred localizations contained in the bundle.
+        ///
+        /// An array of
+        /// `NSString`objects containing language IDs for localizations in the bundle.
+        /// The strings are ordered according to the user's language preferences and available localizations.
         #[unsafe(method(preferredLocalizations))]
         #[unsafe(method_family = none)]
         pub fn preferredLocalizations(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// A list of all the localizations contained in the bundle.
+        ///
+        /// An array of
+        /// `NSString`objects containing language IDs for all the localizations contained in the bundle.
         #[unsafe(method(localizations))]
         #[unsafe(method_family = none)]
         pub fn localizations(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The localization for the development language.
+        ///
+        /// This property corresponds to the value in the
+        /// `CFBundleDevelopmentRegion`key of the bundle's property list (
+        /// `Info.plist).`
         #[unsafe(method(developmentLocalization))]
         #[unsafe(method_family = none)]
         pub fn developmentLocalization(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns one or more localizations from the specified list that a bundle object would use to locate resources for the current user.
+        ///
+        /// This method does not return all localizations in preference order but only those from which
+        /// `NSBundle`would get
+        /// localized content, typically either a single non-region-specific localization or a region-specific localization
+        /// followed by a corresponding non-region-specific localization as a fallback.
+        ///
+        /// Parameter `localizationsArray`: An array of
+        /// `NSString`objects, each of which specifies the language ID for a localization that the bundle supports.
+        ///
+        /// Returns: An array of
+        /// `NSString`objects containing the preferred localizations, ordered according to the user's language preferences.
         #[unsafe(method(preferredLocalizationsFromArray:))]
         #[unsafe(method_family = none)]
         pub fn preferredLocalizationsFromArray(
@@ -421,6 +969,16 @@ impl NSBundle {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Returns locale identifiers for which a bundle would provide localized content, given a specified list of candidates for a user's language preferences.
+        ///
+        ///
+        /// Parameter `localizationsArray`: An array of identifiers, each corresponding to a localization that a bundle can support.
+        ///
+        /// Parameter `preferencesArray`: An array of BCP 47 language codes corresponding to a user's preferred languages. If
+        /// `nil,`the method uses the current user's language preferences.
+        ///
+        /// Returns: An array of locale identifiers, ordered according to user preference. If none of the user-preferred localizations are available, this method returns one of the values in
+        /// `localizationsArray.`
         #[unsafe(method(preferredLocalizationsFromArray:forPreferences:))]
         #[unsafe(method_family = none)]
         pub fn preferredLocalizationsFromArray_forPreferences(
@@ -429,6 +987,12 @@ impl NSBundle {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
+        /// An array of numbers indicating the architecture types supported by the bundle's executable.
+        ///
+        /// An array of
+        /// `NSNumber`objects, each of which contains an integer value corresponding to a supported processor
+        /// architecture. If the bundle does not contain a Mach-O executable, this is
+        /// `nil.`
         #[unsafe(method(executableArchitectures))]
         #[unsafe(method_family = none)]
         pub fn executableArchitectures(&self) -> Option<Retained<NSArray<NSNumber>>>;
@@ -459,6 +1023,23 @@ impl DefaultRetained for NSBundle {
 #[cfg(feature = "NSString")]
 impl NSString {
     extern_methods!(
+        /// Returns a string variation suitable for the specified presentation width.
+        ///
+        /// You can use this method to provide adaptive strings for the user's device -- that is, text that avoids truncation and maximizes available space. For example, an app running on an iPad Pro in Landscape orientation might welcome a user with the message "Greetings and Salutations!", whereas the same app running on an iPhone SE in Portrait orientation might instead show an abbreviated welcome message, like "Hello!".
+        ///
+        /// > Note: Don't call this method when setting user-visible text for standard UIKit controls, such as `UILabel`. UIKit provides built-in support for adaptive strings, and automatically selects the string width variant appropriate for the current screen size.
+        ///
+        /// Call this method on a string with one or more width variations. You define width variations for a localized string in a Stringsdict file using the `NSStringVariableWidthRuleType` key, and then retrieve a string with variations using `NSLocalizedString`.
+        ///
+        /// This method selects a variation for a specified width according to the following behavior:
+        ///
+        /// - If no variations exist for the string, the original string is returned.
+        /// - If a variation exists for the specified width, that string is returned.
+        /// - If no variation is found with a width less than the specified value, the variation with the smallest width is returned.
+        /// - Otherwise, the variation with the next smallest width value is returned.
+        ///
+        /// - Parameter width: The desired width of the string variation.
+        /// - Returns: A string variation, or the original string if no variations exist for the specified width.
         #[unsafe(method(variantFittingPresentationWidth:))]
         #[unsafe(method_family = none)]
         pub fn variantFittingPresentationWidth(&self, width: NSInteger) -> Retained<NSString>;
@@ -466,21 +1047,47 @@ impl NSString {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundledidloadnotification?language=objc)
+    /// A notification that lets observers know when classes are dynamically loaded.
+    ///
+    /// The notification object is the
+    /// `NSBundle`instance that dynamically loads classes. The
+    /// `userInfo`dictionary contains an
+    /// `NSLoadedClasses`key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundledidloadnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSBundleDidLoadNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsloadedclasses?language=objc)
+    /// Generates a log of the class names loaded by the runtime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsloadedclasses?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLoadedClasses: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest?language=objc)
+    /// A resource manager you use to download content hosted on the App Store at the time your app needs it.
+    ///
+    /// You identify on-demand resources during development by creating string identifiers known as tags and assigning one or more tags to each resource. An ``NSBundleResourceRequest`` object manages the resources marked by one or more tags.
+    ///
+    /// You use the resource request to inform the system when the managed tags are needed and when you have finished accessing them. The resource request manages the downloading of any resources marked with the managed tags that are not already on the device and informs your app when the resources are ready for use.
+    ///
+    /// > Note:
+    /// > This class ignores calls from Mac apps built with Mac Catalyst.
+    ///
+    /// The system will not attempt to purge the resources marked with a tag from on-device storage as long as at least one ``NSBundleResourceRequest`` object is managing the tag. Apps can access resources after the completion handler of either ``beginAccessingResources(completionHandler:)`` or ``conditionallyBeginAccessingResources(completionHandler:)`` is called successfully. Management ends after a call to ``endAccessingResources()`` or after the resource request object is deallocated.
+    ///
+    /// Other properties and methods let you track the progress of a download, change the priority of a download, and check whether the resources marked by a set of tags are already on the device. Methods in ``Bundle`` indicate to the system the relative importance of preserving a tag in memory after it is no longer in use. For more information, see ``Bundle/setPreservationPriority(_:forTags:)`` and ``Bundle/preservationPriority(forTag:)``.
+    ///
+    /// > Important:
+    /// > An ``NSBundleResourceRequest`` object can only be used for one successful resource request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Background Assets instead."]
     pub struct NSBundleResourceRequest;
 );
 
@@ -498,11 +1105,17 @@ impl NSBundleResourceRequest {
         // -init (unavailable)
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// Creates a resource request with the specified tags.
+        ///
+        /// Resources are looked up in the main bundle.
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(initWithTags:))]
         #[unsafe(method_family = init)]
         pub fn initWithTags(this: Allocated<Self>, tags: &NSSet<NSString>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// Creates a resource request with the specified tags and bundle.
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(initWithTags:bundle:))]
         #[unsafe(method_family = init)]
         pub fn initWithTags_bundle(
@@ -511,25 +1124,38 @@ impl NSBundleResourceRequest {
             bundle: &NSBundle,
         ) -> Retained<Self>;
 
+        /// A hint to the system about the relative priority of the resource request.
+        ///
+        /// Values are limited to between `0` and `1`, with `1` being the highest priority. The default priority is `0.5`.
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(loadingPriority))]
         #[unsafe(method_family = none)]
         pub fn loadingPriority(&self) -> c_double;
 
         /// Setter for [`loadingPriority`][Self::loadingPriority].
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(setLoadingPriority:))]
         #[unsafe(method_family = none)]
         pub fn setLoadingPriority(&self, loading_priority: c_double);
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// The tags managed by this request.
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(tags))]
         #[unsafe(method_family = none)]
         pub fn tags(&self) -> Retained<NSSet<NSString>>;
 
+        /// The bundle object that will hold the requested resources.
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(bundle))]
         #[unsafe(method_family = none)]
         pub fn bundle(&self) -> Retained<NSBundle>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
+        /// Requests access to the resources and initiates download of content if necessary.
+        ///
+        /// Resources will not be purged while in use. When you are finished with the resources, invoke `-endAccessingResources`. The completion block will be invoked on a non-main serial queue when the resources are available or an error has occurred.
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(beginAccessingResourcesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub fn beginAccessingResourcesWithCompletionHandler(
@@ -538,6 +1164,10 @@ impl NSBundleResourceRequest {
         );
 
         #[cfg(feature = "block2")]
+        /// Checks whether the resources are already available on disk without initiating a download.
+        ///
+        /// The completion handler will be invoked with `YES` if the resources are available. If so, you must invoke `-endAccessingResources` when done. Otherwise, use `-beginAccessingResourcesWithCompletionHandler:` to initiate a download.
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(conditionallyBeginAccessingResourcesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub fn conditionallyBeginAccessingResourcesWithCompletionHandler(
@@ -545,11 +1175,17 @@ impl NSBundleResourceRequest {
             completion_handler: &block2::SendableBlock<'static, fn(Bool)>,
         );
 
+        /// Informs the system that you are finished with the resources that were part of the tag set in this request.
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(endAccessingResources))]
         #[unsafe(method_family = none)]
         pub fn endAccessingResources(&self);
 
         #[cfg(feature = "NSProgress")]
+        /// Progress for the request.
+        ///
+        /// The progress object will be valid at initialization and begin updating after `-beginAccessingResourcesWithCompletionHandler:` is called.
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
         pub fn progress(&self) -> Retained<NSProgress>;
@@ -568,11 +1204,31 @@ impl NSBundleResourceRequest {
 impl NSBundle {
     extern_methods!(
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// A hint to the system of the relative order for purging tagged sets of resources in the bundle.
+        ///
+        ///
+        /// Parameter `priority`: A number specifying the relative priority of preserving the resources. Possible values are between
+        /// `0.0`and
+        /// `1.0.`The default is
+        /// `0.0.`
+        /// Parameter `tags`: A set of tag names specifying resources stored in the bundle. Must not be
+        /// `nil.`
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(setPreservationPriority:forTags:))]
         #[unsafe(method_family = none)]
         pub fn setPreservationPriority_forTags(&self, priority: c_double, tags: &NSSet<NSString>);
 
         #[cfg(feature = "NSString")]
+        /// Returns the current preservation priority for the specified tag.
+        ///
+        ///
+        /// Parameter `tag`: A string specifying the identifier for a group of related resources.
+        ///
+        /// Returns: The preservation priority for the specified
+        /// `tag.`Possible values are between
+        /// `0.0`and
+        /// `1.0.`
+        #[deprecated = "Use Background Assets instead."]
         #[unsafe(method(preservationPriorityForTag:))]
         #[unsafe(method_family = none)]
         pub fn preservationPriorityForTag(&self, tag: &NSString) -> c_double;
@@ -580,12 +1236,22 @@ impl NSBundle {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequestlowdiskspacenotification?language=objc)
+    /// Posted after the system detects that the amount of available disk space is getting low. The notification is posted to the default notification center.
+    ///
+    /// After receiving this notification, the app should release any on-demand resources that are not required. Call `endAccessingResources()` to release the managed resources. If the app is in the background and the app does not free up enough space, it may be terminated.
+    ///
+    /// > Note: This notification may not be the same as low disk space on the system, as applications can have a smaller quota.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequestlowdiskspacenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
+    #[deprecated = "Use Background Assets instead."]
     pub static NSBundleResourceRequestLowDiskSpaceNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent?language=objc)
+    /// A priority that causes a resource request to load as soon as possible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent?language=objc)
+    #[deprecated = "Use Background Assets instead."]
     pub static NSBundleResourceRequestLoadingPriorityUrgent: c_double;
 }

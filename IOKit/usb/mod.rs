@@ -547,6 +547,8 @@ pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyEnumerationSta
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyFailedRequestedPower;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
+pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyFunction;
+#[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyIdlePolicy;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub use self::__IOUSBHostFamilyDefinitions::kUSBHostDevicePropertyManufacturerStringIndex;

@@ -30,12 +30,12 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkbancomat?language=objc)
+    #[deprecated = "Use PKPaymentNetworkPagoBancomat instead."]
     pub static PKPaymentNetworkBancomat: &'static PKPaymentNetwork;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkpagobancomat?language=objc)
-    #[deprecated = "Use PKPaymentNetworkBancomat instead."]
     pub static PKPaymentNetworkPagoBancomat: &'static PKPaymentNetwork;
 }
 
@@ -248,6 +248,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfieldphoneticname?language=objc)
     pub static PKContactFieldPhoneticName: &'static PKContactField;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkttrcomponentidcarkeys?language=objc)
+    pub static PKTTRComponentIDCarKeys: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus?language=objc)

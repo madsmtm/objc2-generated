@@ -3091,6 +3091,8 @@ unsafe impl RefEncode for AUSpatialMixerSourceMode {
 /// Used to specify room type (as identified by a factory preset number) on Apple audio
 /// units that use internal reverb.
 ///
+/// Note: kReverbRoomType_OutdoorGeneral is available with specific AudioUnits and AudioEngines only. Refer to corresponding AudioUnit/AudioEngines documentations to verify the support criteria.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -3123,6 +3125,8 @@ impl AUReverbRoomType {
     pub const ReverbRoomType_MediumHall3: Self = Self(11);
     #[doc(alias = "kReverbRoomType_LargeHall2")]
     pub const ReverbRoomType_LargeHall2: Self = Self(12);
+    #[doc(alias = "kReverbRoomType_OutdoorGeneral")]
+    pub const ReverbRoomType_OutdoorGeneral: Self = Self(24);
 }
 
 #[cfg(feature = "objc2")]

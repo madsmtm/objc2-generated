@@ -82,9 +82,9 @@ extern "C" {
     /// The supported values for the working pixel format are:
     /// ``CIFormat``        | Notes
     /// ------------------- | --------------
-    /// ``kCIFormatRGBA8``  | Uses less memory but has less precision an range
-    /// ``kCIFormatRGBAh``  | Uses 8 bytes per pixel, supports HDR
-    /// ``kCIFormatRGBAf``  | Only on macOS
+    /// ``kCIFormatRGBA8``  | Uses 4 bytes per pixel. Only supporrts SDR and has less precision.
+    /// ``kCIFormatRGBAh``  | Uses 8 bytes per pixel. Supports HDR.
+    /// ``kCIFormatRGBAf``  | Uses 16 bytes per pixel. Only available on macOS
     ///
     /// If this option is not specified, then the default is ``kCIFormatRGBAh``.
     ///
@@ -203,6 +203,15 @@ extern "C" {
 }
 
 extern "C" {
+    /// A number value to control the maximum memory in megabytes that the context allocates for render tasks.
+    ///
+    /// Larger values could increase memory  footprint while smaller values could reduce performance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextmemorylimit?language=objc)
+    pub static kCIContextMemoryLimit: &'static CIContextOption;
+}
+
+extern "C" {
     /// A Core Video Metal texture cache object to improve the performance of Core Image context
     /// renders that use Core Video pixel buffers.
     ///
@@ -215,15 +224,6 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextcvmetaltexturecache?language=objc)
     pub static kCIContextCVMetalTextureCache: &'static CIContextOption;
-}
-
-extern "C" {
-    /// A number value to control the maximum memory in megabytes that the context allocates for render tasks.
-    ///
-    /// Larger values could increase memory  footprint while smaller values could reduce performance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextmemorylimit?language=objc)
-    pub static kCIContextMemoryLimit: &'static CIContextOption;
 }
 
 extern_class!(
@@ -726,7 +726,7 @@ impl CIContext {
         #[cfg(feature = "objc2-core-video")]
         /// Given a CVPixelBuffer, use the receiving Core Image context to calculate its
         /// HDR statistics (content headroom and content average light level)
-        /// and then update the buffers's attachments to store the values.
+        /// and then update the buffer's attachments to store the values.
         ///
         /// If the `CVPixelBuffer` has a Clean Aperture rectangle then only pixels within
         /// that rectangle are considered.

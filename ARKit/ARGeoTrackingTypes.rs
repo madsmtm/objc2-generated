@@ -20,7 +20,8 @@ impl ARAltitudeSource {
     /// Altitude could not be determined (yet).
     #[doc(alias = "ARAltitudeSourceUnknown")]
     pub const Unknown: Self = Self(0);
-    /// ARKit determined altitude based on a coarse digital elevation model. The provided value is too imprecise to be used at close range, but is sufficient to anchor far away content.
+    /// ARKit determined altitude based on a coarse digital elevation model. The provided value is too imprecise to be used at close range, but is
+    /// sufficient to anchor far away content.
     #[doc(alias = "ARAltitudeSourceCoarse")]
     pub const Coarse: Self = Self(1);
     /// ARKit determined altitude based on a high resolution digital elevation model.

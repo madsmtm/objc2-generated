@@ -15,6 +15,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcrashdiagnosticobjectivecexceptionreason?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use CrashDiagnostic.ObjectiveCExceptionReason instead."]
     pub struct MXCrashDiagnosticObjectiveCExceptionReason;
 );
 
@@ -33,26 +34,31 @@ extern_conformance!(
 impl MXCrashDiagnosticObjectiveCExceptionReason {
     extern_methods!(
         /// A human-readable message string summarizing the reason for the exception.
+        #[deprecated = "Use CrashDiagnostic.ObjectiveCExceptionReason instead."]
         #[unsafe(method(composedMessage))]
         #[unsafe(method_family = none)]
         pub unsafe fn composedMessage(&self) -> Retained<NSString>;
 
         /// A string representing the exception message before arguments are substituted into the message
+        #[deprecated = "Use CrashDiagnostic.ObjectiveCExceptionReason instead."]
         #[unsafe(method(formatString))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatString(&self) -> Retained<NSString>;
 
         /// An NSArray of strings representing arguments passed to the formatString.
+        #[deprecated = "Use CrashDiagnostic.ObjectiveCExceptionReason instead."]
         #[unsafe(method(arguments))]
         #[unsafe(method_family = none)]
         pub unsafe fn arguments(&self) -> Retained<NSArray<NSString>>;
 
         /// A human-readable string denoting type of the exception
+        #[deprecated = "Use CrashDiagnostic.ObjectiveCExceptionReason instead."]
         #[unsafe(method(exceptionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionType(&self) -> Retained<NSString>;
 
         /// A string representing the class name of the exception, for example NSException.
+        #[deprecated = "Use CrashDiagnostic.ObjectiveCExceptionReason instead."]
         #[unsafe(method(className))]
         #[unsafe(method_family = none)]
         pub unsafe fn className(&self) -> Retained<NSString>;
@@ -60,6 +66,7 @@ impl MXCrashDiagnosticObjectiveCExceptionReason {
         /// A string representing name of the exception
         ///
         /// This will align with the "name" field of the NSException
+        #[deprecated = "Use CrashDiagnostic.ObjectiveCExceptionReason instead."]
         #[unsafe(method(exceptionName))]
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionName(&self) -> Retained<NSString>;
@@ -67,6 +74,7 @@ impl MXCrashDiagnosticObjectiveCExceptionReason {
         /// Convenience method to return a JSON representation of this MXCrashDiagnosticObjectiveCExceptionReason object.
         ///
         /// Returns: An NSData object containing the JSON representation
+        #[deprecated = "Use CrashDiagnostic.ObjectiveCExceptionReason instead."]
         #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
@@ -74,6 +82,7 @@ impl MXCrashDiagnosticObjectiveCExceptionReason {
         /// Convenience method to return a NSDictionary representation of this MXCrashDiagnosticObjectiveCExceptionReason object.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
+        #[deprecated = "Use CrashDiagnostic.ObjectiveCExceptionReason instead."]
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;

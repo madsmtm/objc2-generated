@@ -51,22 +51,6 @@ extern_conformance!(
 
 impl NSTextStorage {
     extern_methods!(
-        #[cfg(feature = "NSLayoutManager")]
-        /// ************************** Layout manager ***************************
-        #[unsafe(method(layoutManagers))]
-        #[unsafe(method_family = none)]
-        pub fn layoutManagers(&self) -> Retained<NSArray<NSLayoutManager>>;
-
-        #[cfg(feature = "NSLayoutManager")]
-        #[unsafe(method(addLayoutManager:))]
-        #[unsafe(method_family = none)]
-        pub fn addLayoutManager(&self, a_layout_manager: &NSLayoutManager);
-
-        #[cfg(feature = "NSLayoutManager")]
-        #[unsafe(method(removeLayoutManager:))]
-        #[unsafe(method_family = none)]
-        pub fn removeLayoutManager(&self, a_layout_manager: &NSLayoutManager);
-
         /// ************************** Pending edit info ***************************
         #[unsafe(method(editedMask))]
         #[unsafe(method_family = none)]
@@ -232,3 +216,25 @@ extern_protocol!(
         );
     }
 );
+
+/// NSTextStorage_NSLayoutManagerInterface.
+///
+/// ************************** Layout Manager  ***************************
+impl NSTextStorage {
+    extern_methods!(
+        #[cfg(feature = "NSLayoutManager")]
+        #[unsafe(method(layoutManagers))]
+        #[unsafe(method_family = none)]
+        pub fn layoutManagers(&self) -> Retained<NSArray<NSLayoutManager>>;
+
+        #[cfg(feature = "NSLayoutManager")]
+        #[unsafe(method(addLayoutManager:))]
+        #[unsafe(method_family = none)]
+        pub fn addLayoutManager(&self, a_layout_manager: &NSLayoutManager);
+
+        #[cfg(feature = "NSLayoutManager")]
+        #[unsafe(method(removeLayoutManager:))]
+        #[unsafe(method_family = none)]
+        pub fn removeLayoutManager(&self, a_layout_manager: &NSLayoutManager);
+    );
+}

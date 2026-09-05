@@ -90,6 +90,10 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueVTMotionEstimationSession"> for VTMotionEstimationSession {}
 );
 
+unsafe impl Send for VTMotionEstimationSession {}
+
+unsafe impl Sync for VTMotionEstimationSession {}
+
 unsafe impl ConcreteType for VTMotionEstimationSession {
     /// Get the CoreFoundation type identifier for motion-estimation session type.
     #[doc(alias = "VTMotionEstimationSessionGetTypeID")]

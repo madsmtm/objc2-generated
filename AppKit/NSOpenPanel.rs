@@ -142,15 +142,6 @@ impl NSOpenPanel {
         #[unsafe(method_family = none)]
         pub fn setResolvesAliases(&self, resolves_aliases: bool);
 
-        #[unsafe(method(canChooseDirectories))]
-        #[unsafe(method_family = none)]
-        pub fn canChooseDirectories(&self) -> bool;
-
-        /// Setter for [`canChooseDirectories`][Self::canChooseDirectories].
-        #[unsafe(method(setCanChooseDirectories:))]
-        #[unsafe(method_family = none)]
-        pub fn setCanChooseDirectories(&self, can_choose_directories: bool);
-
         #[unsafe(method(allowsMultipleSelection))]
         #[unsafe(method_family = none)]
         pub fn allowsMultipleSelection(&self) -> bool;
@@ -160,6 +151,11 @@ impl NSOpenPanel {
         #[unsafe(method_family = none)]
         pub fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
+        /// Whether or not the user can choose files in the open panel.
+        ///
+        /// In macOS 27 and later, `canChooseFiles` is updated when you set `allowedContentTypes` or set `treatsFilePackagesAsDirectories`. If `allowedContentTypes` contains a type that does not conform to `UTTypeDirectory` then `canChooseFiles` is set to `YES`. If `allowedContentTypes` contains a type that conforms to `UTTypePackage` and `treatsFilePackagesAsDirectories` is `NO`, then `canChooseFiles` is set to `YES.
+        /// By default `canChooseFiles` is `YES`.
+        /// In general you will only need to set `canChooseFiles` to `NO` when `allowedContentTypes` is `[]` (the empty array).  If you set `canChooseFiles` to `NO` then set `allowedContentTypes` to `[]`, `canChooseFiles` will still be `NO`. However, if you reset `allowedContentTypes` from non-empty to empty, then that will also reset `canChooseFiles` to `YES`, the default value. In short, setting `allowedContentTypes` to `[]` keeps your setting or overrides the automatic system setting. If unsure, you can always set `canChooseFiles` after setting `allowedContentTypes`.
         #[unsafe(method(canChooseFiles))]
         #[unsafe(method_family = none)]
         pub fn canChooseFiles(&self) -> bool;
@@ -168,6 +164,20 @@ impl NSOpenPanel {
         #[unsafe(method(setCanChooseFiles:))]
         #[unsafe(method_family = none)]
         pub fn setCanChooseFiles(&self, can_choose_files: bool);
+
+        /// Whether or not the user can choose directories in open the panel.
+        ///
+        /// In macOS 27 and later, `canChooseDirectories` is updated when you set `allowedContentTypes` or set `treatsFilePackagesAsDirectories`. If `allowedContentTypes` contains a type that conforms to `UTTypeDirectory` then `canChooseDirectories` is set to `YES`. If `allowedContentTypes` contains a type that conforms to `UTTypePackage` and `treatsFilePackagesAsDirectories` is `YES`, then `canChooseDirectories` is set to `YES`.
+        /// By default `canChooseDirectories` is `NO`.
+        /// In general you will only need to set `canChooseDirectories` to `YES` when `allowedContentTypes` is `[]` (the empty array). If you set `canChooseDirectories` to `YES` then set `allowedContentTypes` to `[]`, `canChooseDirectories` will still be `YES`. However, if you reset `allowedContentTypes` from non-empty to empty, then that will also reset `canChooseDirectories` to `NO`, the default value. In short, setting `allowedContentTypes` to `[]` keeps your setting or overrides the automatic system setting. If unsure, you can always set `canChooseDirectories` after setting `allowedContentTypes`.
+        #[unsafe(method(canChooseDirectories))]
+        #[unsafe(method_family = none)]
+        pub fn canChooseDirectories(&self) -> bool;
+
+        /// Setter for [`canChooseDirectories`][Self::canChooseDirectories].
+        #[unsafe(method(setCanChooseDirectories:))]
+        #[unsafe(method_family = none)]
+        pub fn setCanChooseDirectories(&self, can_choose_directories: bool);
 
         #[unsafe(method(canResolveUbiquitousConflicts))]
         #[unsafe(method_family = none)]

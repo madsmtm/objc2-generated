@@ -7,7 +7,20 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmeasurement?language=objc)
+    /// A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.
+    ///
+    /// An ``NSMeasurement`` object represents a quantity and unit of measure. The ``NSMeasurement`` class provides a programmatic interface to converting measurements into different units, as well as calculating the sum or difference between two measurements.
+    ///
+    /// ``NSMeasurement`` objects are initialized with an ``Unit`` object and `double` value. ``NSMeasurement`` objects are immutable, and cannot be changed after being created.
+    ///
+    /// You can use the ``MeasurementFormatter`` class to create localized string representations of ``NSMeasurement`` objects.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``Measurement`` structure, which bridges to the ``NSMeasurement`` class. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmeasurement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSUnit")]
@@ -60,16 +73,19 @@ extern_conformance!(
 #[cfg(feature = "NSUnit")]
 impl<UnitType: Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
     extern_methods!(
+        /// The unit component of the measurement.
         #[unsafe(method(unit))]
         #[unsafe(method_family = none)]
         pub fn unit(&self) -> Retained<UnitType>;
 
+        /// The value component of the measurement.
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
         pub fn doubleValue(&self) -> c_double;
 
         // -init (unavailable)
 
+        /// Initializes an `NSMeasurement` with the given `double` value and unit.
         #[unsafe(method(initWithDoubleValue:unit:))]
         #[unsafe(method_family = init)]
         pub fn initWithDoubleValue_unit(
@@ -78,14 +94,23 @@ impl<UnitType: Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
             unit: &UnitType,
         ) -> Retained<Self>;
 
+        /// Returns a Boolean value that indicates whether this measurement can be converted to the given unit.
         #[unsafe(method(canBeConvertedToUnit:))]
         #[unsafe(method_family = none)]
         pub fn canBeConvertedToUnit(&self, unit: &NSUnit) -> bool;
 
+        /// Returns a measurement created by converting the receiver to the specified unit.
+        ///
+        /// - Parameter unit: The unit to convert to. Must be of the same dimensionality as the receiver's unit.
+        /// - Returns: A new `NSMeasurement` object with the given unit and converted value.
         #[unsafe(method(measurementByConvertingToUnit:))]
         #[unsafe(method_family = none)]
         pub fn measurementByConvertingToUnit(&self, unit: &NSUnit) -> Retained<NSMeasurement>;
 
+        /// Returns a new measurement by adding the receiver to the given measurement.
+        ///
+        /// - Parameter measurement: The measurement to add. Must be of the same dimensionality as the receiver.
+        /// - Returns: A new `NSMeasurement` with the adjusted value and the same unit as the receiver.
         #[unsafe(method(measurementByAddingMeasurement:))]
         #[unsafe(method_family = none)]
         pub fn measurementByAddingMeasurement(
@@ -93,6 +118,10 @@ impl<UnitType: Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
             measurement: &NSMeasurement<UnitType>,
         ) -> Retained<NSMeasurement<UnitType>>;
 
+        /// Returns a new measurement by subtracting the given measurement from the receiver.
+        ///
+        /// - Parameter measurement: The measurement to subtract. Must be of the same dimensionality as the receiver.
+        /// - Returns: A new `NSMeasurement` with the adjusted value and the same unit as the receiver.
         #[unsafe(method(measurementBySubtractingMeasurement:))]
         #[unsafe(method_family = none)]
         pub fn measurementBySubtractingMeasurement(

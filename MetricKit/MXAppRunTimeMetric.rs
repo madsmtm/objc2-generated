@@ -15,6 +15,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXAppRunTimeMetric;
 );
 
@@ -41,6 +42,7 @@ impl MXAppRunTimeMetric {
         /// Time spent on screen and visible to the user.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeForegroundTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeForegroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -50,6 +52,7 @@ impl MXAppRunTimeMetric {
         /// Time spent off screen and in the background, invisible to the user.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeBackgroundTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -57,6 +60,7 @@ impl MXAppRunTimeMetric {
         /// Cumulative time the application spent running in the background to play audio
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeBackgroundAudioTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundAudioTime(
@@ -66,6 +70,7 @@ impl MXAppRunTimeMetric {
         /// Cumulative time the application spent running in the background to acquire or process location.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeBackgroundLocationTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundLocationTime(

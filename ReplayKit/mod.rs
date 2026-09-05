@@ -49,8 +49,6 @@ pub use self::__RPBroadcast::RPBroadcastController;
 #[cfg(feature = "RPBroadcast")]
 pub use self::__RPBroadcast::RPBroadcastControllerDelegate;
 #[cfg(feature = "RPBroadcastExtension")]
-pub use self::__RPBroadcastExtension::NSExtensionContextRPBroadcastExtension;
-#[cfg(feature = "RPBroadcastExtension")]
 pub use self::__RPBroadcastExtension::RPApplicationInfoBundleIdentifierKey;
 #[cfg(feature = "RPBroadcastExtension")]
 pub use self::__RPBroadcastExtension::RPBroadcastHandler;

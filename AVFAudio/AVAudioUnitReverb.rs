@@ -41,6 +41,8 @@ impl AVAudioUnitReverbPreset {
     pub const MediumHall3: Self = Self(11);
     #[doc(alias = "AVAudioUnitReverbPresetLargeHall2")]
     pub const LargeHall2: Self = Self(12);
+    #[doc(alias = "AVAudioUnitReverbPresetOutdoorGeneral")]
+    pub const OutdoorGeneral: Self = Self(24);
 }
 
 unsafe impl Encode for AVAudioUnitReverbPreset {
@@ -74,6 +76,20 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitEffect"
 ))]
+unsafe impl Send for AVAudioUnitReverb {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+unsafe impl Sync for AVAudioUnitReverb {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioUnitReverb {}
 );
@@ -94,11 +110,21 @@ impl AVAudioUnitReverb {
         /// Blend of the wet and dry signals
         /// Range:      0 (all dry) -> 100 (all wet)
         /// Unit:       Percent
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(wetDryMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn wetDryMix(&self) -> c_float;
 
         /// Setter for [`wetDryMix`][Self::wetDryMix].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setWetDryMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);

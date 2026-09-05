@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext?language=objc)
+    /// The context in which the current script command is executed.
+    ///
+    /// An `NSScriptExecutionContext` object is a shared instance (there is only one instance of the class) that represents the context in which the current script command is executed. `NSScriptExecutionContext` tracks global state relating to the command being executed, especially the top-level container object (that is, the container implied by a specifier object that specifies no container) used in an evaluation of an ``NSScriptObjectSpecifier`` object.
+    ///
+    /// In most cases, the top-level container for a complete series of nested object specifiers is automatically set to the application object (`NSApp`), and you can get this object with the ``topLevelObject`` method. But you can also set this top-level container to something else (using ``topLevelObject``) if the situation warrants it.
+    ///
+    /// It is unlikely that you will need to subclass `NSScriptExecutionContext`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptExecutionContext;
@@ -19,10 +27,12 @@ extern_conformance!(
 
 impl NSScriptExecutionContext {
     extern_methods!(
+        /// Returns the shared script execution context.
         #[unsafe(method(sharedScriptExecutionContext))]
         #[unsafe(method_family = none)]
         pub fn sharedScriptExecutionContext() -> Retained<NSScriptExecutionContext>;
 
+        /// The top-level object in the current scripting context.
         #[unsafe(method(topLevelObject))]
         #[unsafe(method_family = none)]
         pub fn topLevelObject(&self) -> Option<Retained<AnyObject>>;
@@ -36,6 +46,7 @@ impl NSScriptExecutionContext {
         #[unsafe(method_family = none)]
         pub unsafe fn setTopLevelObject(&self, top_level_object: Option<&AnyObject>);
 
+        /// The object currently being tested by an `NSWhoseSpecifier`.
         #[unsafe(method(objectBeingTested))]
         #[unsafe(method_family = none)]
         pub fn objectBeingTested(&self) -> Option<Retained<AnyObject>>;
@@ -49,6 +60,7 @@ impl NSScriptExecutionContext {
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectBeingTested(&self, object_being_tested: Option<&AnyObject>);
 
+        /// The container object for the current range specifier being evaluated.
         #[unsafe(method(rangeContainerObject))]
         #[unsafe(method_family = none)]
         pub fn rangeContainerObject(&self) -> Option<Retained<AnyObject>>;

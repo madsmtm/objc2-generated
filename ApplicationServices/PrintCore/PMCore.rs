@@ -2106,6 +2106,7 @@ pub unsafe fn PMPrinterPrintWithFile(
 /// - `settings` must be a valid pointer.
 /// - `format` must be a valid pointer or null.
 #[cfg(feature = "PMDefinitions")]
+#[deprecated]
 #[inline]
 pub unsafe fn PMPrinterWritePostScriptToURL(
     printer: PMPrinter,
@@ -2278,6 +2279,7 @@ pub unsafe fn PMCopyPPDData(ppd: &CFURL, data: &mut Option<CFRetained<CFData>>) 
 }
 
 #[cfg(feature = "objc2-core-graphics")]
+#[deprecated]
 #[inline]
 pub unsafe fn PMCGImageCreateWithEPSDataProvider(
     eps_data_provider: Option<&CGDataProvider>,

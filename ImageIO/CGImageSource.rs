@@ -12,7 +12,21 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesource?language=objc)
+/// An opaque type that you use to read image data from a URL, data object, or data consumer.
+///
+/// Use a ``CGImageSource`` type to read data efficiently for most image file formats. The image source object manages the data buffers needed to load the image data and performs any operations on that data to turn it into a usable image. For example, it decompresses data stored in a compressed format. You can also use an image source to fetch or create thumbnail images and access metadata stored with the image.
+///
+/// Create an image source object from a
+/// <doc
+/// ://com.apple.documentation/documentation/corefoundation/cfurl>,
+/// <doc
+/// ://com.apple.documentation/documentation/corefoundation/cfdata>, or
+/// <doc
+/// ://com.apple.documentation/documentation/coregraphics/cgdataprovider> data type. The image source object reads data from the specified type and extracts the image information for you.
+///
+/// For more information, see [Image I/O Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/ImageIOGuide/imageio_intro/ikpg_intro.html#//apple_ref/doc/uid/TP40005462).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesource?language=objc)
 #[doc(alias = "CGImageSourceRef")]
 #[repr(C)]
 pub struct CGImageSource {
@@ -28,22 +42,32 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGImageSource"> for CGImageSource {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus?language=objc)
+/// The set of status values for images and image sources.
+///
+/// The ``CGImageSourceGetStatus(_:)`` and ``CGImageSourceGetStatusAtIndex(_:_:)`` functions return these values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageSourceStatus(pub i32);
 impl CGImageSourceStatus {
+    /// The end of the file occurred unexpectedly.
     #[doc(alias = "kCGImageStatusUnexpectedEOF")]
     pub const UnexpectedEOF: Self = Self(-5);
+    /// The data is not valid.
     #[doc(alias = "kCGImageStatusInvalidData")]
     pub const InvalidData: Self = Self(-4);
+    /// The image is an unknown type.
     #[doc(alias = "kCGImageStatusUnknownType")]
     pub const UnknownType: Self = Self(-3);
+    /// The image source is reading the header.
     #[doc(alias = "kCGImageStatusReadingHeader")]
     pub const ReadingHeader: Self = Self(-2);
+    /// The operation is not complete
     #[doc(alias = "kCGImageStatusIncomplete")]
     pub const Incomplete: Self = Self(-1);
+    /// The operation is complete.
     #[doc(alias = "kCGImageStatusComplete")]
     pub const Complete: Self = Self(0);
 }
@@ -59,56 +83,196 @@ unsafe impl RefEncode for CGImageSourceStatus {
 }
 
 extern "C" {
-    /// Keys for the options dictionary when creating a CGImageSourceRef. *
+    /// The uniform type identifier that represents your best guess for the image's type.
+    ///
+    /// The value of this key is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring> object. Add this key to the options dictionary when you create a ``CGImageSource`` object.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcetypeidentifierhint?language=objc)
     pub static kCGImageSourceTypeIdentifierHint: &'static CFString;
 }
 
 extern "C" {
-    /// Keys for the options dictionary of "CGImageSourceCopyPropertiesAtIndex"
-    /// * and "CGImageSourceCreateImageAtIndex". *
+    /// Option key for restricting which image formats can be decoded.
+    ///
+    /// The value is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfarray> containing
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring> Uniform Type Identifiers (UTIs)
+    /// of allowed image formats. When specified, ImageIO will only decode images
+    /// whose format matches one of the entries in the allow list. If no matching reader
+    /// is found, decoding fails.
+    ///
+    /// Unknown format identifiers are ignored.
+    /// If not specified, all supported ImageIO formats are allowed (default behavior).
+    /// If process-wide format restrictions were set via ``CGImageSourceSetAllowableTypes``,
+    /// only formats allowed by both mechanisms are permitted.
+    ///
+    /// See also
+    /// <doc
+    /// ://com.apple.documentation/documentation/uniformtypeidentifiers/system-declared-uniform-type-identifiers>.
+    ///
+    /// ## Example
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let allowedTypes = ["public.jpeg" as CFString, "public.png" as CFString]
+    /// let options = [
+    /// kCGImageSourceAllowableTypes: allowedTypes
+    /// ] as CFDictionary
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSArray *allowedTypes =
+    /// @
+    /// [
+    /// "
+    /// public.jpeg", @"public.png"];
+    /// NSDictionary *options =
+    /// @
+    /// {
+    /// (id)kCGImageSourceAllowableTypes: allowedTypes
+    /// };
+    /// ```
+    /// }
+    /// }
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourceallowabletypes?language=objc)
+    pub static kCGImageSourceAllowableTypes: &'static CFString;
+}
+
+extern "C" {
+    /// A Boolean value that indicates whether to cache the decoded image.
+    ///
+    /// The value of this key is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean>. The default value is
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleantrue> for 64-bit architectures, and
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse> for 32-bit architectures.
+    ///
+    /// Include this key in the options dictionary you pass to the functions ``CGImageSourceCopyPropertiesAtIndex(_:_:_:)`` and ``CGImageSourceCreateImageAtIndex(_:_:_:)``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourceshouldcache?language=objc)
     pub static kCGImageSourceShouldCache: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourceshouldcacheimmediately?language=objc)
+    /// A Boolean value that indicates whether image decoding and caching happens at image creation time.
+    ///
+    /// The value of this key is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean>. The default value is
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse>, which causes decoding and caching to happen only when you render the image.
+    ///
+    /// Include this key in the options dictionary you pass to the functions ``CGImageSourceCopyPropertiesAtIndex(_:_:_:)`` and ``CGImageSourceCreateImageAtIndex(_:_:_:)``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourceshouldcacheimmediately?language=objc)
     pub static kCGImageSourceShouldCacheImmediately: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourceshouldallowfloat?language=objc)
+    /// A Boolean that indicates whether to use floating-point values in returned images.
+    ///
+    /// The value of this key is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean>. The default value is
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse>, which tells the image source not to use floating-point values.
+    ///
+    /// If the image format supports floating-point values, this key tells the image source to format
+    /// <doc
+    /// ://com.apple.documentation/documentation/coregraphics/cgimage> types using those values. The use of extended-range floating-point values may require additional processing to render in a pleasing manner.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourceshouldallowfloat?language=objc)
     pub static kCGImageSourceShouldAllowFloat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcecreatethumbnailfromimageifabsent?language=objc)
+    /// A Boolean value that indicates whether to create a thumbnail image automatically if the data source doesn't contain one.
+    ///
+    /// The value of this key is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean>. The default value is
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse>.
+    ///
+    /// If you set the value of this key to
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleantrue>, the image source creates the thumbnail from the full image, subject to the limit specified by ``kCGImageSourceThumbnailMaxPixelSize``. If you don't specify a maximum pixel size, the image soucre creates the thumbnail using the image's full size, which in most cases is not desirable.
+    ///
+    /// Include this key in the options dictionary you pass to the function ``CGImageSourceCreateThumbnailAtIndex(_:_:_:)``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcecreatethumbnailfromimageifabsent?language=objc)
     pub static kCGImageSourceCreateThumbnailFromImageIfAbsent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcecreatethumbnailfromimagealways?language=objc)
+    /// A Boolean value that indicates whether to always create a thumbnail image.
+    ///
+    /// The value of this key is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean>. The default value is
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse>.
+    ///
+    /// If you set the value of this key to
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleantrue>, the image source creates the thumbnail from the full image, subject to the limit specified by ``kCGImageSourceThumbnailMaxPixelSize``. If you don't specify a maximum pixel size, the image source creates the thumbnail using the image's full size, which in most cases is not desirable.
+    ///
+    /// Include this key in the options dictionary you pass to the function ``CGImageSourceCreateThumbnailAtIndex(_:_:_:)``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcecreatethumbnailfromimagealways?language=objc)
     pub static kCGImageSourceCreateThumbnailFromImageAlways: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcethumbnailmaxpixelsize?language=objc)
+    /// The maximum width and height of a thumbnail image, specified in pixels.
+    ///
+    /// If this key is not specified, the width and height of a thumbnail is not limited and thumbnails may be as big as the image itself. If present, this key must be a CFNumber value. This key can be provided in the options dictionary that you pass to the function ``CGImageSourceCreateThumbnailAtIndex(_:_:_:)``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcethumbnailmaxpixelsize?language=objc)
     pub static kCGImageSourceThumbnailMaxPixelSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcecreatethumbnailwithtransform?language=objc)
+    /// A Boolean value that indicates whether to rotate and scale the thumbnail image to match the image's orientation and aspect ratio.
+    ///
+    /// The value of this key must be a CFBoolean value. The default value is
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfbooleanfalse>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcecreatethumbnailwithtransform?language=objc)
     pub static kCGImageSourceCreateThumbnailWithTransform: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcesubsamplefactor?language=objc)
+    /// The factor by which to scale down any returned images.
+    ///
+    /// When you specify this key, the image source scales down the image data by the specified numerical factor. The value of this key must be a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfnumber> containing the integer value 2, 4, or 8. If the image doesn't support the specified scale factor, the image source provides a larger or full-size normal image.
+    ///
+    /// Image sources support this option only for JPEG, HEIF, TIFF, and PNG images.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcesubsamplefactor?language=objc)
     pub static kCGImageSourceSubsampleFactor: &'static CFString;
 }
 
 unsafe impl ConcreteType for CGImageSource {
+    /// Returns the unique type identifier of an image source opaque type.
+    ///
+    /// - Returns: Returns the Core Foundation type ID for an image source.
+    ///
+    /// A type identifier is an integer that identifies the opaque type to which a Core Foundation object belongs. You use type IDs in various contexts, such as when you are operating on heterogeneous collections. Note that a Core Foundation type ID is different from a uniform type identifier.
     #[doc(alias = "CGImageSourceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -120,6 +284,13 @@ unsafe impl ConcreteType for CGImageSource {
 }
 
 impl CGImageSource {
+    /// Returns an array of uniform type identifiers that are supported for image sources.
+    ///
+    /// - Returns: Returns an array of the uniform type identifiers that are supported for image sources.
+    ///
+    /// For a list of system-declared and third-party identifiers, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/uniformtypeidentifiers>.
     #[doc(alias = "CGImageSourceCopyTypeIdentifiers")]
     #[inline]
     pub unsafe fn type_identifiers() -> CFRetained<CFArray<CFString>> {
@@ -132,6 +303,20 @@ impl CGImageSource {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates an image source that reads data from the specified data provider.
+    ///
+    /// - Parameters:
+    /// - provider: The data provider to read from. For more information on data providers, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/coregraphics/cgdataprovider> and [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066).
+    /// - options: A dictionary that specifies additional creation options. For a list of possible values, see
+    /// <doc
+    /// :CGImageSource#Specifying-the-Read-Options>.
+    ///
+    /// - Returns: An image source. You're responsible for releasing this type using
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfrelease>.
+    ///
     /// # Safety
     ///
     /// `options` generic should be of the correct type.
@@ -152,6 +337,22 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an image source that reads from a Core Foundation data object.
+    ///
+    /// - Parameters:
+    ///
+    /// - data: The data object from which to read. For more information on data objects, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfdata> and [Data Objects](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBinaryData/DataObjects.html#//apple_ref/doc/uid/20000171).
+    ///
+    /// - options: A dictionary that specifies additional creation options. For a list of possible values, see
+    /// <doc
+    /// :CGImageSource#Specifying-the-Read-Options>.
+    ///
+    /// - Returns: An image source. You're responsible for releasing this type using
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfrelease>.
+    ///
     /// # Safety
     ///
     /// `options` generic should be of the correct type.
@@ -171,6 +372,18 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an image source that reads from a location specified by a URL.
+    ///
+    /// - Parameters:
+    /// - url: The URL of the image.
+    /// - options: A dictionary that specifies additional creation options. For a list of possible values, see
+    /// <doc
+    /// :CGImageSource#Specifying-the-Read-Options>.
+    ///
+    /// - Returns: An image source. You're responsible for releasing this type using
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfrelease>.
+    ///
     /// # Safety
     ///
     /// `options` generic should be of the correct type.
@@ -190,6 +403,18 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the uniform type identifier of the source container.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    ///
+    /// - Returns: The uniform type identifier of the image source container.
+    ///
+    /// The uniform type identifier of the source container can be different from the type of the images in the container. For example, the `.icns` format supports embedded `JPEG2000`. The type of the source container is `"com.apple.icns"`, but type of the images is `JPEG2000`.
+    ///
+    /// For a list of system-declared and third-party identifiers, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/uniformtypeidentifiers>.
     #[doc(alias = "CGImageSourceGetType")]
     #[inline]
     pub unsafe fn r#type(&self) -> Option<CFRetained<CFString>> {
@@ -200,6 +425,14 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the number of images (not including thumbnails) in the image source.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    ///
+    /// - Returns: The number of images. If the image source is a multilayered Photoshop (PSD) file, the function returns `1`.
+    ///
+    /// This function does not extract the layers of a PSD file.
     #[doc(alias = "CGImageSourceGetCount")]
     #[inline]
     pub unsafe fn count(&self) -> usize {
@@ -209,6 +442,18 @@ impl CGImageSource {
         unsafe { CGImageSourceGetCount(self) }
     }
 
+    /// Returns the properties of the image source.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    /// - options: A dictionary you can use to request additional options. For a list of possible values, see
+    /// <doc
+    /// :CGImageSource#Specifying-the-Read-Options>.
+    ///
+    /// - Returns: A dictionary that contains the properties associated with the image source container. See `CGImageProperties` for a list of properties that can be in the dictionary.
+    ///
+    /// These properties apply to the container in general but not necessarily to any individual image contained in the image source.
+    ///
     /// # Safety
     ///
     /// `options` generic should be of the correct type.
@@ -228,6 +473,17 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the properties of the image at a specified location in an image source.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    /// - index: The zero-based index into the images of the image source. If the index is invalid, this method returns `NULL`.
+    /// - options: A dictionary you can use to request additional options. For a list of possible values, see
+    /// <doc
+    /// :CGImageSource#Specifying-the-Read-Options>.
+    ///
+    /// - Returns: A dictionary that contains the properties associated with the image. See `CGImageProperties` for a list of properties that allowed in the dictionary.
+    ///
     /// # Safety
     ///
     /// `options` generic should be of the correct type.
@@ -271,6 +527,19 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an image object from the data at the specified index in an image source.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    /// - index: The zero-based index of the image you want. If the index is invalid, this method returns `NULL`.
+    /// - options: A dictionary that specifies additional creation options. For a list of possible values, see
+    /// <doc
+    /// :CGImageSource#Specifying-the-Read-Options>.
+    ///
+    /// - Returns: The image at the specified index, or `NULL` if an error occurs. You're responsible for releasing the returned object using
+    /// <doc
+    /// ://com.apple.documentation/documentation/coregraphics/cgimagerelease>.
+    ///
     /// # Safety
     ///
     /// `options` generic should be of the correct type.
@@ -302,6 +571,21 @@ impl CGImageSource {
         unsafe { CGImageSourceRemoveCacheAtIndex(self, index) }
     }
 
+    /// Creates a thumbnail version of the image at the specified index in an image source.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    /// - index: The zero-based index of the image you want. If the index is invalid, this method returns `NULL`.
+    /// - options: A dictionary that specifies additional creation options. For a list of possible values, see
+    /// <doc
+    /// :CGImageSource#Specifying-the-Read-Options>.
+    ///
+    /// - Returns: The image at the specified index, or `NULL` if an error occurs. You are responsible for releasing the returned object using
+    /// <doc
+    /// ://com.apple.documentation/documentation/coregraphics/cgimagerelease>.
+    ///
+    /// If the image source is a PDF, this function creates a 72 dpi image of the PDF page specified by the index that you pass. You must, however, pass an options dictionary that contains either the ``kCGImageSourceCreateThumbnailFromImageIfAbsent`` or ``kCGImageSourceCreateThumbnailFromImageAlways`` keys, with the value of the key set to `true`.
+    ///
     /// # Safety
     ///
     /// `options` generic should be of the correct type.
@@ -324,6 +608,19 @@ impl CGImageSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an empty image source that you can use to accumulate incremental image data.
+    ///
+    /// - Parameters:
+    /// - options: A dictionary that specifies additional creation options. For a list of possible values, see
+    /// <doc
+    /// :CGImageSource#Specifying-the-Read-Options>.
+    ///
+    /// - Returns: An empty image source object. You're responsible for releasing this type using
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfrelease>.
+    ///
+    /// This function creates an empty image source container, which you use to accumulate data downloaded in chunks from the network. To add new chunks of data to the image source, call the ``CGImageSourceUpdateDataProvider(_:_:_:)`` or ``CGImageSourceUpdateData(_:_:_:)`` functions.
+    ///
     /// # Safety
     ///
     /// `options` generic should be of the correct type.
@@ -343,6 +640,14 @@ impl CGImageSource {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Updates the data in an incremental image source.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source to modify.
+    /// - data: The updated data for the image source. Each time you call this function, specify all of the accumulated image data so far.
+    /// - final: A Boolean value that indicates whether the `data` parameter represents the complete data set. Specify `true` if the data is complete or `false` if it isn't.
+    ///
+    /// This method updates the state of the image source and its contained images. Call this method one or more times to update the contents of an incremental data source. Each time you call the method, you must specify all of the accumulated image data, not just the new data you received.
     #[doc(alias = "CGImageSourceUpdateData")]
     #[inline]
     pub unsafe fn update_data(&self, data: &CFData, r#final: bool) {
@@ -352,6 +657,12 @@ impl CGImageSource {
         unsafe { CGImageSourceUpdateData(self, data, r#final) }
     }
 
+    /// Updates an incremental image source with a new data provider.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source to modify.
+    /// - provider: The new data provider. The new data provider must provide all the previous data supplied to the image source and any additional new data.
+    /// - final: A Boolean value that indicates whether the `provider` parameter provides the complete data set. Specify `true` if the data is complete or `false` if it isn't.
     #[doc(alias = "CGImageSourceUpdateDataProvider")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -366,6 +677,14 @@ impl CGImageSource {
         unsafe { CGImageSourceUpdateDataProvider(self, provider, r#final) }
     }
 
+    /// Return the status of an image source.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    ///
+    /// - Returns: Returns the current status of the image source. See ``CGImageSourceStatus`` for a list of possible values.
+    ///
+    /// Status information is particularly informative for incremental image sources, but it may also be useful on image sources that contain non-incremental data.
     #[doc(alias = "CGImageSourceGetStatus")]
     #[inline]
     pub unsafe fn status(&self) -> CGImageSourceStatus {
@@ -375,6 +694,15 @@ impl CGImageSource {
         unsafe { CGImageSourceGetStatus(self) }
     }
 
+    /// Returns the current status of an image at the specified location in the image source.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    /// - index: The zero-based index into the images of the image source. If the index is invalid, this method returns `NULL`.
+    ///
+    /// - Returns: Returns the current status of the image. See ``CGImageSourceStatus`` for a list of possible values.
+    ///
+    /// Status information is particularly informative for incremental image sources, but you may also use it on image sources that contain non-incremental data.
     #[doc(alias = "CGImageSourceGetStatusAtIndex")]
     #[inline]
     pub unsafe fn status_at_index(&self, index: usize) -> CGImageSourceStatus {
@@ -387,6 +715,12 @@ impl CGImageSource {
         unsafe { CGImageSourceGetStatusAtIndex(self, index) }
     }
 
+    /// Returns the index of the primary image for an High Efficiency Image File Format (HEIF) image.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    ///
+    /// - Returns: The index of the primary image, or `0` for image formats other than the HEIF format.
     #[doc(alias = "CGImageSourceGetPrimaryImageIndex")]
     #[inline]
     pub unsafe fn primary_image_index(&self) -> usize {
@@ -396,6 +730,18 @@ impl CGImageSource {
         unsafe { CGImageSourceGetPrimaryImageIndex(self) }
     }
 
+    /// Returns auxiliary data, such as mattes and depth information, that accompany the image.
+    ///
+    /// - Parameters:
+    /// - isrc: The image source that contains the image data.
+    /// - index: The zero-based index into the images of the image source. If the index is invalid, this method returns `NULL`.
+    /// - auxiliaryImageDataType: The auxiliary data to retrieve. For a list of possible values, see
+    /// <doc
+    /// :individual-image-properties#Auxiliary-Image-Data> and
+    /// <doc
+    /// :individual-image-properties#Auxiliary-Data-Types>.
+    ///
+    /// - Returns: A dictionary that contains the auxiliary data, or `NULL` if an error occurs.
     #[doc(alias = "CGImageSourceCopyAuxiliaryDataInfoAtIndex")]
     #[inline]
     pub unsafe fn auxiliary_data_info_at_index(
@@ -418,7 +764,11 @@ impl CGImageSource {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcedecoderequest?language=objc)
+    /// ## Overview
+    ///
+    /// For more information, see [Image I/O Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/ImageIOGuide/imageio_intro/ikpg_intro.html#//apple_ref/doc/uid/TP40005462).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagesourcedecoderequest?language=objc)
     pub static kCGImageSourceDecodeRequest: &'static CFString;
 }
 
@@ -448,6 +798,26 @@ extern "C" {
 }
 
 impl CGImageSource {
+    /// Restricts which image formats can be decoded in the current process.
+    ///
+    /// When this method has been called, ImageIO will only decode images whose format matches one of the entries in the allow list for the remaining lifetime of the process.
+    ///
+    /// If per-asset format restrictions are set via ``kCGImageSourceAllowableTypes``,
+    /// only formats allowed by both mechanisms are permitted.
+    /// If `allowableTypes` is empty, all image parsing is disabled.
+    /// Unknown format identifiers are ignored.
+    /// Can only be called once per process; subsequent calls are ignored.
+    ///
+    /// See also
+    /// <doc
+    /// ://com.apple.documentation/documentation/uniformtypeidentifiers/system-declared-uniform-type-identifiers>.
+    ///
+    /// - Parameters:
+    /// - allowableTypes: A
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfarray> containing
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring> Uniform Type Identifiers (UTIs) of allowed image formats.
     #[doc(alias = "CGImageSourceSetAllowableTypes")]
     #[inline]
     pub unsafe fn set_allowable_types(allowable_types: &CFArray<CFString>) -> OSStatus {

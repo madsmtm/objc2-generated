@@ -218,6 +218,8 @@ impl _XCTestCaseInterruptionException {}
 /// Methods declared on superclass `NSException`.
 impl _XCTestCaseInterruptionException {
     extern_methods!(
+        /// Initializes and returns a newly allocated exception object.
+        ///
         /// # Safety
         ///
         /// `a_user_info` generic should be of the correct type.
@@ -1615,6 +1617,8 @@ impl _XCTSkipFailureException {}
 /// Methods declared on superclass `NSException`.
 impl _XCTSkipFailureException {
     extern_methods!(
+        /// Initializes and returns a newly allocated exception object.
+        ///
         /// # Safety
         ///
         /// `a_user_info` generic should be of the correct type.

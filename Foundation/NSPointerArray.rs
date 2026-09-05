@@ -7,7 +7,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerarray?language=objc)
+    /// A collection similar to an array, but with a broader range of available memory semantics.
+    ///
+    /// The pointer array class is modeled after ``NSArray``, but can also hold `nil` values. You can insert or remove `nil` values which contribute to the array's ``count``.
+    ///
+    /// A pointer array can be initialized to maintain strong or weak references to objects, or according to any of the memory or personality options defined by ``NSPointerFunctions/Options``.
+    ///
+    /// The ``NSCopying`` and ``NSCoding`` protocols are applicable only when a pointer array is initialized to maintain strong or weak references to objects.
+    ///
+    /// When enumerating a pointer array with ``NSFastEnumeration`` using `for...in`, the loop will yield any `nil` values present in the array. See [Fast Enumeration Makes It Easy to Enumerate a Collection](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/FoundationTypesandCollections/FoundationTypesandCollections.html#//apple_ref/doc/uid/TP40011210-CH7-SW30) in [Programming with Objective-C](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210) for more information.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSPointerArray` is not suitable for subclassing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPointerArray;
@@ -45,6 +59,9 @@ extern_conformance!(
 impl NSPointerArray {
     extern_methods!(
         #[cfg(feature = "NSPointerFunctions")]
+        /// Initializes the receiver to use the given options.
+        ///
+        /// - Parameter options: The pointer functions options for the new instance.
         #[unsafe(method(initWithOptions:))]
         #[unsafe(method_family = init)]
         pub fn initWithOptions(
@@ -53,6 +70,9 @@ impl NSPointerArray {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// Initializes the receiver to use the given functions.
+        ///
+        /// - Parameter functions: The pointer functions for the new instance.
         #[unsafe(method(initWithPointerFunctions:))]
         #[unsafe(method_family = init)]
         pub fn initWithPointerFunctions(
@@ -61,6 +81,10 @@ impl NSPointerArray {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// Returns a new pointer array initialized to use the given options.
+        ///
+        /// - Parameter options: The pointer functions options for the new instance.
+        /// - Returns: A new pointer array initialized to use the given options.
         #[unsafe(method(pointerArrayWithOptions:))]
         #[unsafe(method_family = none)]
         pub fn pointerArrayWithOptions(
@@ -68,6 +92,10 @@ impl NSPointerArray {
         ) -> Retained<NSPointerArray>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// A new pointer array initialized to use the given functions.
+        ///
+        /// - Parameter functions: The pointer functions for the new instance.
+        /// - Returns: A new pointer array initialized to use the given pointer functions.
         #[unsafe(method(pointerArrayWithPointerFunctions:))]
         #[unsafe(method_family = none)]
         pub fn pointerArrayWithPointerFunctions(
@@ -75,14 +103,29 @@ impl NSPointerArray {
         ) -> Retained<NSPointerArray>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// The functions in use by the receiver.
+        ///
+        /// The returned object is a new `NSPointerFunctions` object that you can modify and/or use directly to create other pointer collections.
         #[unsafe(method(pointerFunctions))]
         #[unsafe(method_family = none)]
         pub fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
+        /// Returns the pointer at a given index.
+        ///
+        /// The returned value may be `NULL`.
+        ///
+        /// - Parameter index: The index of an element in the receiver. This value must be less than the count of the receiver.
+        /// - Returns: The pointer at `index`.
         #[unsafe(method(pointerAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn pointerAtIndex(&self, index: NSUInteger) -> *mut c_void;
 
+        /// Adds a given pointer to the receiver.
+        ///
+        /// `pointer` is added at index `count`.
+        ///
+        /// - Parameter pointer: The pointer to add. This value may be `NULL`.
+        ///
         /// # Safety
         ///
         /// `pointer` must be a valid pointer or null.
@@ -90,10 +133,22 @@ impl NSPointerArray {
         #[unsafe(method_family = none)]
         pub unsafe fn addPointer(&self, pointer: *mut c_void);
 
+        /// Removes the pointer at a given index.
+        ///
+        /// Elements above `index`, including `NULL` values, slide lower.
+        ///
+        /// - Parameter index: The index of an element in the receiver. This value must be less than the count of the receiver.
         #[unsafe(method(removePointerAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn removePointerAtIndex(&self, index: NSUInteger);
 
+        /// Inserts a pointer at a given index.
+        ///
+        /// Elements at and above `index`, including `NULL` values, slide higher.
+        ///
+        /// - Parameter item: The pointer to add.
+        /// - Parameter index: The index of an element in the receiver. This value must be less than the count of the receiver.
+        ///
         /// # Safety
         ///
         /// `item` must be a valid pointer or null.
@@ -101,6 +156,11 @@ impl NSPointerArray {
         #[unsafe(method_family = none)]
         pub unsafe fn insertPointer_atIndex(&self, item: *mut c_void, index: NSUInteger);
 
+        /// Replaces the pointer at a given index.
+        ///
+        /// - Parameter index: The index of an element in the receiver. This value must be less than the count of the receiver.
+        /// - Parameter item: The item with which to replace the element at `index`. This value may be `NULL`.
+        ///
         /// # Safety
         ///
         /// `item` must be a valid pointer or null.
@@ -112,10 +172,14 @@ impl NSPointerArray {
             item: *mut c_void,
         );
 
+        /// Removes `NULL` values from the receiver.
         #[unsafe(method(compact))]
         #[unsafe(method_family = none)]
         pub fn compact(&self);
 
+        /// The number of elements in the receiver.
+        ///
+        /// If you increase the `count`, `NULL` values are added. If you decrease the `count`, elements at indexes `count` and greater are removed.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub fn count(&self) -> NSUInteger;
@@ -150,25 +214,30 @@ impl DefaultRetained for NSPointerArray {
 /// NSPointerArrayConveniences.
 impl NSPointerArray {
     extern_methods!(
+        /// Returns a new pointer array that maintains strong references to its elements.
         #[deprecated = "GC no longer supported"]
         #[unsafe(method(pointerArrayWithStrongObjects))]
         #[unsafe(method_family = none)]
         pub fn pointerArrayWithStrongObjects() -> Retained<AnyObject>;
 
+        /// Returns a new pointer array that maintains weak references to its elements.
         #[deprecated = "GC no longer supported"]
         #[unsafe(method(pointerArrayWithWeakObjects))]
         #[unsafe(method_family = none)]
         pub fn pointerArrayWithWeakObjects() -> Retained<AnyObject>;
 
+        /// Returns a new pointer array that maintains strong references to its elements.
         #[unsafe(method(strongObjectsPointerArray))]
         #[unsafe(method_family = none)]
         pub fn strongObjectsPointerArray() -> Retained<NSPointerArray>;
 
+        /// Returns a new pointer array that maintains weak references to its elements.
         #[unsafe(method(weakObjectsPointerArray))]
         #[unsafe(method_family = none)]
         pub fn weakObjectsPointerArray() -> Retained<NSPointerArray>;
 
         #[cfg(feature = "NSArray")]
+        /// All the objects in the receiver.
         #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
         pub fn allObjects(&self) -> Retained<NSArray>;

@@ -93,6 +93,8 @@ pub const kVTCouldNotFindExtensionErr: OSStatus = -19510;
 pub const kVTExtensionConflictErr: OSStatus = -19511;
 /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderautowhitebalancenotlockederr?language=objc)
 pub const kVTVideoEncoderAutoWhiteBalanceNotLockedErr: OSStatus = -19512;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtlogtransferfunctionmismatcherr?language=objc)
+pub const kVTLogTransferFunctionMismatchErr: OSStatus = -19513;
 
 /// Directives for the decompression session and the video decoder, passed into
 /// decodeFlags parameter of VTDecompressionSessionDecodeFrame.

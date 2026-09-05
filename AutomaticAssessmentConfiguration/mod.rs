@@ -83,6 +83,144 @@ impl AEAssessmentApplication {
     );
 }
 
+/// Identifies an item in the Apple menu.
+///
+/// Use these constants with ``AEAssessmentConfiguration/allowedAppleMenuItems``
+/// to control which Apple menu items are visible during an assessment session.
+///
+/// - Note: ``AEAppleMenuItemAboutThisMac`` is always visible during assessment
+/// sessions regardless of configuration.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitem?language=objc)
+// NS_TYPED_ENUM
+pub type AEAppleMenuItem = NSString;
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemaboutthismac?language=objc)
+    pub static AEAppleMenuItemAboutThisMac: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemappstore?language=objc)
+    pub static AEAppleMenuItemAppStore: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemforcequit?language=objc)
+    pub static AEAppleMenuItemForceQuit: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemlocation?language=objc)
+    pub static AEAppleMenuItemLocation: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemlockscreen?language=objc)
+    pub static AEAppleMenuItemLockScreen: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemlogout?language=objc)
+    pub static AEAppleMenuItemLogout: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemrecent?language=objc)
+    pub static AEAppleMenuItemRecent: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemrestart?language=objc)
+    pub static AEAppleMenuItemRestart: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemshutdown?language=objc)
+    pub static AEAppleMenuItemShutDown: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsleep?language=objc)
+    pub static AEAppleMenuItemSleep: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsysteminformation?language=objc)
+    pub static AEAppleMenuItemSystemInformation: &'static AEAppleMenuItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeapplemenuitemsystemsettings?language=objc)
+    pub static AEAppleMenuItemSystemSettings: &'static AEAppleMenuItem;
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritem?language=objc)
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type AEMenuBarItem = NSString;
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritembattery?language=objc)
+    pub static AEMenuBarItemBattery: &'static AEMenuBarItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritembluetooth?language=objc)
+    pub static AEMenuBarItemBluetooth: &'static AEMenuBarItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemclock?language=objc)
+    pub static AEMenuBarItemClock: &'static AEMenuBarItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemdisplays?language=objc)
+    pub static AEMenuBarItemDisplays: &'static AEMenuBarItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemkeyboard?language=objc)
+    pub static AEMenuBarItemKeyboard: &'static AEMenuBarItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemvolume?language=objc)
+    pub static AEMenuBarItemVolume: &'static AEMenuBarItem;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aemenubaritemwifi?language=objc)
+    pub static AEMenuBarItemWifi: &'static AEMenuBarItem;
+}
+
+/// Specifies the type of account required for an assessment session.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeuseraccounttype?language=objc)
+// NS_CLOSED_ENUM
+#[repr(isize)] // NSInteger
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub enum AEUserAccountType {
+    /// No specific account type is required.
+    #[doc(alias = "AEUserAccountTypeAny")]
+    #[default]
+    Any = 0,
+    /// Requires a standard user account.
+    #[doc(alias = "AEUserAccountTypeStandard")]
+    Standard = 1,
+    /// Requires a guest user account.
+    #[doc(alias = "AEUserAccountTypeGuest")]
+    Guest = 2,
+}
+
+unsafe impl Encode for AEUserAccountType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AEUserAccountType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// The set of autocorrect features that you can enable during an assessment.
 ///
 /// Use one or more of the autocorrect modes to set the ``AEAssessmentConfiguration/autocorrectMode-swift.property`` property of an ``AEAssessmentConfiguration`` instance. For example, you can enable both spelling and punctuation corrections by combining ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling`` and ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation``:
@@ -167,11 +305,20 @@ extern_class!(
     ///
     /// ### Allowing accessibility
     ///
+    /// - ``allowsAccessibilityAlternativeInputMethods``
+    /// - ``allowsAccessibilityBackgroundSounds``
+    /// - ``allowsAccessibilityHoverText``
     /// - ``allowsAccessibilityKeyboard``
     /// - ``allowsAccessibilityLiveCaptions``
+    /// - ``allowsAccessibilityLiveSpeech``
     /// - ``allowsAccessibilityReader``
     /// - ``allowsAccessibilitySpeech``
+    /// - ``allowsAccessibilitySwitchControl``
     /// - ``allowsAccessibilityTypingFeedback``
+    /// - ``allowsAccessibilityVoiceControl``
+    /// - ``allowsAccessibilityVoiceOver``
+    /// - ``allowsAccessibilityZoom``
+    /// - ``allowsAccessibilitySpokenContent``
     /// - ``allowsDictation``
     ///
     /// ### Allowing typing assistance
@@ -289,9 +436,57 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsDictation(&self, allows_dictation: bool);
 
-        /// A Boolean value that indicates whether to allow alternative input methods in the Accessibility Keyboard during an assessment.
+        /// A Boolean value that indicates whether to allow alternative input methods for accessibility features during an assessment.
         ///
-        /// Users can enable the Accessibility Keyboard in the Settings app (Accessibility > Keyboard > Accessibility Keyboard) to access an on-screen keyboard with alternative input methods. An assessment session disables alternative input methods in the Accessibility Keyboard by default, but you can allow them by setting ``AEAssessmentConfiguration/allowsAccessibilityKeyboard`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        /// When the Accessibility Keyboard or Switch Control is enabled, alternative input methods such as Dwell Control may be available. An assessment session disables these alternative input methods by default, but you can allow them by setting ``AEAssessmentConfiguration/allowsAccessibilityAlternativeInputMethods`` to `YES` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        ///
+        /// - Note: This property only takes effect when ``AEAssessmentConfiguration/allowsAccessibilityKeyboard`` or ``AEAssessmentConfiguration/allowsAccessibilitySwitchControl`` is `YES`.
+        #[unsafe(method(allowsAccessibilityAlternativeInputMethods))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityAlternativeInputMethods(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityAlternativeInputMethods`][Self::allowsAccessibilityAlternativeInputMethods].
+        #[unsafe(method(setAllowsAccessibilityAlternativeInputMethods:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityAlternativeInputMethods(
+            &self,
+            allows_accessibility_alternative_input_methods: bool,
+        );
+
+        /// A Boolean value that indicates whether to allow Background Sounds during an assessment.
+        ///
+        /// Users can enable Background Sounds in the Settings app (Accessibility > Audio
+        /// &
+        /// Visual > Background Sounds) to play ambient sounds that can mask unwanted environmental noise. An assessment session disables Background Sounds by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsAccessibilityBackgroundSounds`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityBackgroundSounds))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityBackgroundSounds(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityBackgroundSounds`][Self::allowsAccessibilityBackgroundSounds].
+        #[unsafe(method(setAllowsAccessibilityBackgroundSounds:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityBackgroundSounds(
+            &self,
+            allows_accessibility_background_sounds: bool,
+        );
+
+        /// A Boolean value that indicates whether to allow Hover Text during an assessment.
+        ///
+        /// Users can enable Hover Text in the Settings app (Accessibility > Zoom > Hover Text) to magnify text under the pointer. An assessment session **does not** disable Hover Text by default, but you can disable it by setting ``AEAssessmentConfiguration/allowsAccessibilityHoverText`` to `NO` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityHoverText))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityHoverText(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityHoverText`][Self::allowsAccessibilityHoverText].
+        #[unsafe(method(setAllowsAccessibilityHoverText:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityHoverText(&self, allows_accessibility_hover_text: bool);
+
+        /// A Boolean value that indicates whether to allow the Accessibility Keyboard during an assessment.
+        ///
+        /// Users can enable the Accessibility Keyboard in the Settings app (Accessibility > Keyboard > Accessibility Keyboard) to access an on-screen keyboard. An assessment session **does not** disable the Accessibility Keyboard by default, but you can disable it by setting ``AEAssessmentConfiguration/allowsAccessibilityKeyboard`` to `NO` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        ///
+        /// - Note: To allow the full Accessibility Keyboard with alternative input methods (such as Dwell Control), you must also set ``AEAssessmentConfiguration/allowsAccessibilityAlternativeInputMethods`` to `YES`.
         #[unsafe(method(allowsAccessibilityKeyboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAccessibilityKeyboard(&self) -> bool;
@@ -314,6 +509,21 @@ impl AEAssessmentConfiguration {
         pub unsafe fn setAllowsAccessibilityLiveCaptions(
             &self,
             allows_accessibility_live_captions: bool,
+        );
+
+        /// A Boolean value that indicates whether to allow Live Speech during an assessment.
+        ///
+        /// Users can enable Live Speech in the Settings app (Accessibility > Speech > Live Speech) to type what they want to say and have it spoken aloud. An assessment session disables Live Speech by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsAccessibilityLiveSpeech`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityLiveSpeech))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityLiveSpeech(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityLiveSpeech`][Self::allowsAccessibilityLiveSpeech].
+        #[unsafe(method(setAllowsAccessibilityLiveSpeech:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityLiveSpeech(
+            &self,
+            allows_accessibility_live_speech: bool,
         );
 
         /// A Boolean value that indicates whether to allow the Accessibility Reader during an assessment.
@@ -347,6 +557,38 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsAccessibilitySpeech(&self, allows_accessibility_speech: bool);
 
+        /// A Boolean value that indicates whether to allow Spoken Content during an assessment.
+        ///
+        /// Users can enable Spoken Content in the Settings app (Accessibility > Spoken Content) to have text read aloud. This includes Speak Selection, Speak Screen, and related features. An assessment session disables Spoken Content by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsAccessibilitySpokenContent`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilitySpokenContent))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilitySpokenContent(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilitySpokenContent`][Self::allowsAccessibilitySpokenContent].
+        #[unsafe(method(setAllowsAccessibilitySpokenContent:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilitySpokenContent(
+            &self,
+            allows_accessibility_spoken_content: bool,
+        );
+
+        /// A Boolean value that indicates whether to allow Switch Control during an assessment.
+        ///
+        /// Users can enable Switch Control in the Settings app (Accessibility > Switch Control) to control their device using adaptive switches. An assessment session **does not** disable Switch Control by default, but you can disable it by setting ``AEAssessmentConfiguration/allowsAccessibilitySwitchControl`` to `NO` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        ///
+        /// - Note: To allow Switch Control with alternative input methods (such as Dwell Control), you must also set ``AEAssessmentConfiguration/allowsAccessibilityAlternativeInputMethods`` to `YES`.
+        #[unsafe(method(allowsAccessibilitySwitchControl))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilitySwitchControl(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilitySwitchControl`][Self::allowsAccessibilitySwitchControl].
+        #[unsafe(method(setAllowsAccessibilitySwitchControl:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilitySwitchControl(
+            &self,
+            allows_accessibility_switch_control: bool,
+        );
+
         /// A Boolean value that indicates whether to allow accessibility typing feedback during an assessment.
         ///
         /// Users can enable typing feedback features in the Settings app (Accessibility > Keyboards
@@ -363,6 +605,45 @@ impl AEAssessmentConfiguration {
             &self,
             allows_accessibility_typing_feedback: bool,
         );
+
+        /// A Boolean value that indicates whether to allow Voice Control during an assessment.
+        ///
+        /// Users can enable Voice Control in the Settings app (Accessibility > Voice Control) to control their device using voice commands. An assessment session **does not** disable Voice Control by default, but you can disable it by setting ``AEAssessmentConfiguration/allowsAccessibilityVoiceControl`` to `NO` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityVoiceControl))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityVoiceControl(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityVoiceControl`][Self::allowsAccessibilityVoiceControl].
+        #[unsafe(method(setAllowsAccessibilityVoiceControl:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityVoiceControl(
+            &self,
+            allows_accessibility_voice_control: bool,
+        );
+
+        /// A Boolean value that indicates whether to allow VoiceOver during an assessment.
+        ///
+        /// Users can enable VoiceOver in the Settings app (Accessibility > VoiceOver) to receive spoken descriptions of on-screen elements and gestures for navigating the interface. An assessment session **does not** disable VoiceOver by default, but you can disable it by setting ``AEAssessmentConfiguration/allowsAccessibilityVoiceOver`` to `NO` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityVoiceOver))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityVoiceOver(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityVoiceOver`][Self::allowsAccessibilityVoiceOver].
+        #[unsafe(method(setAllowsAccessibilityVoiceOver:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityVoiceOver(&self, allows_accessibility_voice_over: bool);
+
+        /// A Boolean value that indicates whether to allow Zoom during an assessment.
+        ///
+        /// Users can enable Zoom in the Settings app (Accessibility > Zoom) to magnify the screen. An assessment session **does not** disable Zoom by default, but you can disable it by setting ``AEAssessmentConfiguration/allowsAccessibilityZoom`` to `NO` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityZoom))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityZoom(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityZoom`][Self::allowsAccessibilityZoom].
+        #[unsafe(method(setAllowsAccessibilityZoom:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityZoom(&self, allows_accessibility_zoom: bool);
 
         /// A Boolean value that indicates whether to allow password autofill during an assessment.
         ///
@@ -404,7 +685,7 @@ impl AEAssessmentConfiguration {
 
         /// A Boolean value that indicates whether to allow the emoji keyboard during an assessment.
         ///
-        /// Users can access the emoji keyboard by tapping the emoji button on the keyboard. An assessment session disables access to the emoji keyboard by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsEmojiKeyboard`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        /// Users can access the emoji keyboard by tapping the emoji button on the keyboard (iOS) or through the Edit menu and keyboard shortcuts (macOS). An assessment session disables access to the emoji keyboard by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsEmojiKeyboard`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsEmojiKeyboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsEmojiKeyboard(&self) -> bool;
@@ -413,6 +694,213 @@ impl AEAssessmentConfiguration {
         #[unsafe(method(setAllowsEmojiKeyboard:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsEmojiKeyboard(&self, allows_emoji_keyboard: bool);
+
+        /// A Boolean value that indicates whether to allow user script execution during an assessment.
+        ///
+        /// User scripts, such as AppleScripts or Automator workflows, can automate tasks on the system. An assessment session disables user script execution by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsUserScriptExecution`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsUserScriptExecution))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsUserScriptExecution(&self) -> bool;
+
+        /// Setter for [`allowsUserScriptExecution`][Self::allowsUserScriptExecution].
+        #[unsafe(method(setAllowsUserScriptExecution:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsUserScriptExecution(&self, allows_user_script_execution: bool);
+    );
+
+    extern_methods!(
+        /// A Boolean value that indicates whether to allow autofill during an assessment.
+        ///
+        /// Users can enable autofill in System Settings (Passwords > Password Options > AutoFill Passwords and Passkeys). An assessment session disables autofill by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsAutoFill`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAutoFill))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAutoFill(&self) -> bool;
+
+        /// Setter for [`allowsAutoFill`][Self::allowsAutoFill].
+        #[unsafe(method(setAllowsAutoFill:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAutoFill(&self, allows_auto_fill: bool);
+
+        /// A Boolean value that indicates whether to allow Chinese and Japanese structural input during an assessment.
+        ///
+        /// Chinese and Japanese structural input methods allow users to enter characters using component-based input. An assessment session disables structural input by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsStructuralInput`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsStructuralInput))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsStructuralInput(&self) -> bool;
+
+        /// Setter for [`allowsStructuralInput`][Self::allowsStructuralInput].
+        #[unsafe(method(setAllowsStructuralInput:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsStructuralInput(&self, allows_structural_input: bool);
+
+        /// The set of allowed directories and files that participants can access during an assessment.
+        ///
+        /// By default, participants have restricted file system access. Use this property to specify file URLs to directories and files that should be accessible during the assessment session.
+        ///
+        /// The default value is `nil`, which preserves the default unrestricted access behavior.
+        #[unsafe(method(allowedDirectoriesAndFiles))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowedDirectoriesAndFiles(&self) -> Option<Retained<NSSet<NSURL>>>;
+
+        /// Setter for [`allowedDirectoriesAndFiles`][Self::allowedDirectoriesAndFiles].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setAllowedDirectoriesAndFiles:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowedDirectoriesAndFiles(
+            &self,
+            allowed_directories_and_files: Option<&NSSet<NSURL>>,
+        );
+
+        /// A Boolean value that indicates whether to allow the Dock during an assessment.
+        ///
+        /// An assessment session hides the Dock by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsDock`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsDock))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsDock(&self) -> bool;
+
+        /// Setter for [`allowsDock`][Self::allowsDock].
+        #[unsafe(method(setAllowsDock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsDock(&self, allows_dock: bool);
+
+        /// A Boolean value that indicates whether to allow the menu bar during an assessment.
+        ///
+        /// An assessment session hides the menu bar by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsMenuBar`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsMenuBar))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsMenuBar(&self) -> bool;
+
+        /// Setter for [`allowsMenuBar`][Self::allowsMenuBar].
+        #[unsafe(method(setAllowsMenuBar:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsMenuBar(&self, allows_menu_bar: bool);
+
+        /// The set of allowed Apple menu items during an assessment.
+        ///
+        /// By default, all Apple menu items are restricted during an assessment. Use this property
+        /// to specify which menu items should be accessible.
+        ///
+        /// - Note: ``AEAppleMenuItemAboutThisMac`` is always visible during assessment sessions regardless of configuration.
+        #[unsafe(method(allowedAppleMenuItems))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowedAppleMenuItems(&self) -> Option<Retained<NSSet<AEAppleMenuItem>>>;
+
+        /// Setter for [`allowedAppleMenuItems`][Self::allowedAppleMenuItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setAllowedAppleMenuItems:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowedAppleMenuItems(
+            &self,
+            allowed_apple_menu_items: Option<&NSSet<AEAppleMenuItem>>,
+        );
+
+        /// The set of menu bar items that should remain visible during an assessment.
+        ///
+        /// When `allowsMenuBar` is `true`, the menu bar is restricted to only the items
+        /// specified in this set. If this property is `nil`, all menu bar items are allowed
+        /// (unrestricted menu bar).
+        ///
+        /// - Note: This property only takes effect when `allowsMenuBar` is `true`.
+        #[unsafe(method(allowedMenuBarItems))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowedMenuBarItems(&self) -> Option<Retained<NSSet<AEMenuBarItem>>>;
+
+        /// Setter for [`allowedMenuBarItems`][Self::allowedMenuBarItems].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setAllowedMenuBarItems:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowedMenuBarItems(
+            &self,
+            allowed_menu_bar_items: Option<&NSSet<AEMenuBarItem>>,
+        );
+
+        /// A Boolean value that indicates whether only participant applications are allowed to run during an assessment.
+        #[unsafe(method(allowOnlyParticipantsToRun))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowOnlyParticipantsToRun(&self) -> bool;
+
+        /// Setter for [`allowOnlyParticipantsToRun`][Self::allowOnlyParticipantsToRun].
+        #[unsafe(method(setAllowOnlyParticipantsToRun:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowOnlyParticipantsToRun(&self, allow_only_participants_to_run: bool);
+
+        /// A Boolean value that indicates whether the assessment allows Lockdown Mode to be active.
+        ///
+        /// When set to `false`, the assessment session will only start if Lockdown Mode is not enabled on the device. This requirement is not enforced by default.
+        #[unsafe(method(allowLockdownMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowLockdownMode(&self) -> bool;
+
+        /// Setter for [`allowLockdownMode`][Self::allowLockdownMode].
+        #[unsafe(method(setAllowLockdownMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowLockdownMode(&self, allow_lockdown_mode: bool);
+
+        /// A Boolean value that indicates whether the assessment allows iCloud Private Relay to be active.
+        ///
+        /// When set to `false`, the assessment session will only start if iCloud Private Relay is not enabled. This requirement is not enforced by default.
+        #[unsafe(method(allowPrivateRelay))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowPrivateRelay(&self) -> bool;
+
+        /// Setter for [`allowPrivateRelay`][Self::allowPrivateRelay].
+        #[unsafe(method(setAllowPrivateRelay:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowPrivateRelay(&self, allow_private_relay: bool);
+
+        /// A Boolean value that indicates whether the device must be managed to start an assessment.
+        ///
+        /// When set to `true`, the assessment session will only start if the device is enrolled in a Mobile Device Management (MDM) solution. This requirement is disabled by default.
+        #[unsafe(method(requiresManagedDevice))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiresManagedDevice(&self) -> bool;
+
+        /// Setter for [`requiresManagedDevice`][Self::requiresManagedDevice].
+        #[unsafe(method(setRequiresManagedDevice:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiresManagedDevice(&self, requires_managed_device: bool);
+
+        /// A Boolean value that indicates whether System Integrity Protection (SIP) must be enabled to start an assessment.
+        ///
+        /// When set to `true`, the assessment session will only start if System Integrity Protection is enabled on the device. This requirement is disabled by default.
+        #[unsafe(method(requiresSIP))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiresSIP(&self) -> bool;
+
+        /// Setter for [`requiresSIP`][Self::requiresSIP].
+        #[unsafe(method(setRequiresSIP:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiresSIP(&self, requires_sip: bool);
+
+        /// A Boolean value that indicates whether only a single user account must be logged in to start an assessment.
+        ///
+        /// When set to `true`, the assessment session will only start if there is exactly one user account logged in on the device. This requirement is disabled by default.
+        #[unsafe(method(requiresSingleUser))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiresSingleUser(&self) -> bool;
+
+        /// Setter for [`requiresSingleUser`][Self::requiresSingleUser].
+        #[unsafe(method(setRequiresSingleUser:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiresSingleUser(&self, requires_single_user: bool);
+
+        /// Specifies the type of user account required to start an assessment.
+        ///
+        /// This property defines the account requirement for starting an assessment session. Set it to `.standard` to require a non-administrator account, `.guest` to require a guest account, or `.any` (the default) to allow any account type.
+        #[unsafe(method(requiresUserAccountType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiresUserAccountType(&self) -> AEUserAccountType;
+
+        /// Setter for [`requiresUserAccountType`][Self::requiresUserAccountType].
+        #[unsafe(method(setRequiresUserAccountType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiresUserAccountType(
+            &self,
+            requires_user_account_type: AEUserAccountType,
+        );
 
         /// The app-specific configuration for the app that invokes the assessment.
         ///
@@ -514,6 +1002,64 @@ extern_conformance!(
 
 impl AEAssessmentParticipantConfiguration {
     extern_methods!(
+        /// Returns the set of allowed menu item titles for the given language
+        /// identifier, or
+        /// `nil`if no items have been configured for that
+        /// identifier.
+        ///
+        /// Menu item titles are matched against the participant application's
+        /// localized menu items at the time the assessment session begins.
+        /// The system resolves each language identifier to the best-matching
+        /// localization the application bundle provides, so an exact locale
+        /// match is not required.
+        ///
+        ///
+        /// Parameter `languageIdentifier`: A BCP 47 language identifier
+        /// (for example,
+        /// `en`or
+        /// `zh-Hans`).
+        #[unsafe(method(allowedMenuItemsForLanguageIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowedMenuItemsForLanguageIdentifier(
+            &self,
+            language_identifier: &NSString,
+        ) -> Option<Retained<NSSet<NSString>>>;
+
+        /// Sets the allowed menu item titles for the given language identifier.
+        ///
+        /// Titles must match the participant application's localized menu item
+        /// strings for the corresponding language.
+        ///
+        /// If multiple language identifiers resolve to the same application
+        /// localization, the system combines their sets of allowed menu items.
+        ///
+        ///
+        /// Parameter `menuItems`: The set of menu item titles to allow, or
+        /// `nil`to
+        /// remove the entry for
+        /// `languageIdentifier.`
+        /// Parameter `languageIdentifier`: A BCP 47 language identifier
+        /// (for example,
+        /// `en`or
+        /// `zh-Hans`).
+        #[unsafe(method(setAllowedMenuItems:forLanguageIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowedMenuItems_forLanguageIdentifier(
+            &self,
+            menu_items: Option<&NSSet<NSString>>,
+            language_identifier: &NSString,
+        );
+
+        /// The set of language identifiers for which allowed menu items have
+        /// been configured.
+        ///
+        /// Contains only identifiers explicitly added via
+        /// `setAllowedMenuItems:forLanguageIdentifier:`. Does not include
+        /// identifiers inferred through localization resolution.
+        #[unsafe(method(allowedMenuItemLanguageIdentifiers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowedMenuItemLanguageIdentifiers(&self) -> Retained<NSSet<NSString>>;
+
         #[unsafe(method(allowsNetworkAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsNetworkAccess(&self) -> bool;

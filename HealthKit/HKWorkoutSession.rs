@@ -88,7 +88,7 @@ extern_conformance!(
 
 impl HKWorkoutSession {
     extern_methods!(
-        #[cfg(feature = "HKWorkout")]
+        #[cfg(feature = "HKWorkoutActivityType")]
         /// Indicates the type of workout that will be performed during the session.
         #[deprecated]
         #[unsafe(method(activityType))]
@@ -175,7 +175,7 @@ impl HKWorkoutSession {
         #[unsafe(method_family = none)]
         pub unsafe fn currentActivity(&self) -> Retained<HKWorkoutActivity>;
 
-        #[cfg(all(feature = "HKWorkout", feature = "HKWorkoutConfiguration"))]
+        #[cfg(all(feature = "HKWorkoutActivityType", feature = "HKWorkoutConfiguration"))]
         /// Parameter `activityType`: The activity type of the workout session.
         ///
         /// Parameter `locationType`: The type of location where the workout will be performed.

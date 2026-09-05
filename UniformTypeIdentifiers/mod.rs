@@ -201,6 +201,8 @@ pub use self::__UTCoreTypes::UTTypeMPEG4Movie;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeMakefile;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
+pub use self::__UTCoreTypes::UTTypeMarkdown;
+#[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeMessage;
 #[cfg(all(feature = "UTCoreTypes", feature = "UTType"))]
 pub use self::__UTCoreTypes::UTTypeMountPoint;

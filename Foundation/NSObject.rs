@@ -7,9 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoding?language=objc)
+    /// A protocol that enables an object to be encoded and decoded for archiving and distribution.
+    ///
+    /// The `NSCoding` protocol declares the two methods that a class must implement so that instances of that class can be encoded and decoded. This capability provides the basis for archiving (where objects and other structures are stored on disk) and distribution (where objects are copied to different address spaces).
+    ///
+    /// In keeping with object-oriented design principles, an object being encoded or decoded is responsible for encoding and decoding its instance variables. A coder instructs the object to do so by invoking ``encode(with:)`` or ``init(coder:)``. ``encode(with:)`` instructs the object to encode its instance variables to the coder provided; an object can receive this method any number of times. ``init(coder:)`` instructs the object to initialize itself from data in the coder provided; as such, it replaces any other initialization method and is sent only once per object. Any object class that should be codeable must adopt the `NSCoding` protocol and implement its methods.
+    ///
+    /// It is important to consider the possible types of archiving that a coder supports. In macOS 10.2 and later, keyed archiving is preferred. You may, however, need to support classic archiving. For details, see [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoding?language=objc)
     pub unsafe trait NSCoding {
         #[cfg(feature = "NSCoder")]
+        /// Encodes the receiver using a given archiver.
+        ///
         /// # Safety
         ///
         /// `coder` possibly has further requirements.
@@ -18,6 +28,8 @@ extern_protocol!(
         unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         #[cfg(feature = "NSCoder")]
+        /// Initializes the receiver from data in a given unarchiver.
+        ///
         /// # Safety
         ///
         /// `coder` possibly has further requirements.
@@ -28,8 +40,17 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecurecoding?language=objc)
+    /// A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.
+    ///
+    /// Objects which are safe to be encoded and decoded across privilege boundaries should adopt `NSSecureCoding` instead of `NSCoding`. Secure coders (those that respond `YES` to `requiresSecureCoding`) will only encode objects that adopt the `NSSecureCoding` protocol.
+    ///
+    /// `NSSecureCoding` guarantees only that an archive contains the classes it claims. It makes no guarantees about the suitability for consumption by the receiver of the decoded content of the archive.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecurecoding?language=objc)
     pub unsafe trait NSSecureCoding: NSCoding {
+        /// A Boolean value that indicates whether this class supports secure coding.
+        ///
+        /// This property must return `YES` on all classes that allow secure coding. Subclasses of classes that adopt `NSSecureCoding` and override `initWithCoder:` must also override this property and return `YES`.
         #[unsafe(method(supportsSecureCoding))]
         #[unsafe(method_family = none)]
         fn supportsSecureCoding() -> bool;
@@ -41,8 +62,6 @@ mod private_NSObjectNSCoderMethods {
 }
 
 /// Category "NSCoderMethods" on [`NSObject`].
-///
-/// *********    Base class        **********
 #[doc(alias = "NSCoderMethods")]
 pub unsafe trait NSObjectNSCoderMethods:
     ClassType + Sized + private_NSObjectNSCoderMethods::Sealed
@@ -74,22 +93,34 @@ impl private_NSObjectNSCoderMethods::Sealed for NSObject {}
 unsafe impl NSObjectNSCoderMethods for NSObject {}
 
 extern_protocol!(
-    /// *********    Discardable Content        **********
+    /// You implement this protocol when a class's objects have subcomponents that can be discarded when not being used, thereby giving an application a smaller memory footprint.
+    ///
+    /// An `NSDiscardableContent` object's life cycle is dependent upon a "counter" variable. An `NSDiscardableContent` object is a purgeable block of memory that keeps track of whether or not it is currently being used by some other object. When this memory is being read, or is still needed, its counter variable will be greater than or equal to 1. When it is not being used, and can be discarded, the counter variable will be equal to 0.
+    ///
+    /// When the counter is equal to 0, the block of memory may be discarded if memory is tight at that point in time. In order to discard the content, call ``discardContentIfPossible()`` on the object, which will free the associated memory if the counter variable equals 0.
+    ///
+    /// By default, `NSDiscardableContent` objects are initialized with their counter equal to 1 to ensure that they are not immediately discarded by the memory-management system. From this point, you must keep track of the counter variable's state. Calling the ``beginContentAccess()`` method increments the counter variable by 1, thus ensuring that the object will not be discarded. When you no longer need the object, decrement its counter by calling ``endContentAccess()``.
+    ///
+    /// The Foundation framework includes the ``NSPurgeableData`` class, which provides a default implementation of this protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdiscardablecontent?language=objc)
     pub unsafe trait NSDiscardableContent {
+        /// Called to access the content, incrementing the access counter.
         #[unsafe(method(beginContentAccess))]
         #[unsafe(method_family = none)]
         fn beginContentAccess(&self) -> bool;
 
+        /// Called when the content is no longer being accessed, decrementing the access counter.
         #[unsafe(method(endContentAccess))]
         #[unsafe(method_family = none)]
         fn endContentAccess(&self);
 
+        /// Called to discard the content if the access counter is zero.
         #[unsafe(method(discardContentIfPossible))]
         #[unsafe(method_family = none)]
         fn discardContentIfPossible(&self);
 
+        /// Returns a Boolean value indicating whether the content has been discarded.
         #[unsafe(method(isContentDiscarded))]
         #[unsafe(method_family = none)]
         fn isContentDiscarded(&self) -> bool;
@@ -115,7 +146,7 @@ pub unsafe trait NSObjectNSDiscardableContentProxy:
 impl private_NSObjectNSDiscardableContentProxy::Sealed for NSObject {}
 unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 
-/// *********    Object Allocation / Deallocation        ******
+/// Creates and returns a new instance of a given class.
 ///
 /// # Safety
 ///
@@ -140,6 +171,8 @@ pub unsafe fn NSAllocateObject(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Creates an exact copy of an object.
+///
 /// # Safety
 ///
 /// - `object` should be of the correct type.
@@ -164,6 +197,8 @@ pub unsafe fn NSCopyObject(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Indicates whether an object should be retained.
+///
 /// # Safety
 ///
 /// - `an_object` should be of the correct type.

@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundoclosegroupingrunloopordering?language=objc)
 pub static NSUndoCloseGroupingRunLoopOrdering: NSUInteger = 350000;
 
-/// A key used to set and get user info for undo and redo actions
+/// An extensible namespace for undo and redo user info keys.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanageruserinfokey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
@@ -17,13 +17,33 @@ pub static NSUndoCloseGroupingRunLoopOrdering: NSUInteger = 350000;
 pub type NSUndoManagerUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagergroupisdiscardablekey?language=objc)
+    /// This key is set on the user info dictionary of the NSUndoManagerDidCloseUndoGroupNotification, with a NSNumber boolean value of YES, if the undo group as a whole is discardable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagergroupisdiscardablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUndoManagerGroupIsDiscardableKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanager?language=objc)
+    /// A general-purpose recorder of operations that enables undo and redo.
+    ///
+    /// You register an undo operation by calling one of the methods described in Registering undo operations. You specify the name of the object that's changing (or the owner of that object) and provide a closure, method, or invocation to revert its state.
+    ///
+    /// After you register an undo operation, you can call ``undo()`` on the undo manager to revert to the state of the last undo operation. When undoing an action, ``UndoManager`` saves the operations you revert to so that you can call ``redo()`` automatically.
+    ///
+    /// Typically, apps with UI interactions work with ``UndoManager``. For example, UIKit implements undo and redo in its text view object, making it easy for you to undo and redo actions in objects along the responder chain. ``UndoManager`` also serves as a general-purpose state manager, which you can use to undo and redo many kinds of actions. For example, an interactive command-line utility can use this class to undo the last command run, or a networking library can undo a request by sending another request that invalidates the previous one.
+    ///
+    /// > Important: `UndoManager` is
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/MainActor>-isolated in Swift, making it safe to use in UI frameworks like
+    /// <doc
+    /// ://com.apple.documentation/documentation/AppKit> and
+    /// <doc
+    /// ://com.apple.documentation/documentation/UIKit> that expect to execute code on the main thread, queue, or actor. When registering an undoable action with ``registerUndo(withTarget:handler:)``, the `handler` closure is also
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/MainActor>-isolated to ensure safety and simplify ergonomics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanager?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -54,14 +74,14 @@ impl NSUndoManager {
         #[unsafe(method_family = none)]
         pub fn endUndoGrouping(&self);
 
-        /// The number of nested undo groups (or redo groups, if Redo was invoked last) in the current event loop.
+        /// The number of nested undo groups (or redo groups, if redo is the most recent operation) in the current event loop.
         ///
         /// An integer indicating the number of nested groups. If `0` is returned, there is no open undo or redo group.
         #[unsafe(method(groupingLevel))]
         #[unsafe(method_family = none)]
         pub fn groupingLevel(&self) -> NSInteger;
 
-        /// Disables the recording of undo operations, whether by ``registerUndoWithTarget:selector:object:`` or by invocation-based undo.
+        /// Disables the recording of undo operations.
         ///
         /// This method can be invoked multiple times by multiple clients. The ``enableUndoRegistration`` method must be invoked an equal number of times to re-enable undo registration.
         #[unsafe(method(disableUndoRegistration))]
@@ -76,12 +96,12 @@ impl NSUndoManager {
         #[unsafe(method_family = none)]
         pub fn enableUndoRegistration(&self);
 
-        /// Whether the recording of undo operations is enabled.
+        /// A Boolean value that indicates whether the recording of undo operations is enabled.
         #[unsafe(method(isUndoRegistrationEnabled))]
         #[unsafe(method_family = none)]
         pub fn isUndoRegistrationEnabled(&self) -> bool;
 
-        /// A Boolean value that indicates whether the receiver automatically creates undo groups around each pass of the run loop.
+        /// A Boolean value that indicates whether the manager automatically creates undo groups around each pass of the run loop.
         ///
         /// If `true`, the receiver automatically creates undo groups around each pass of the run loop.
         /// The default is `true`. If you turn automatic grouping off, you must close groups explicitly before invoking either ``undo`` or ``undoNestedGroup``.
@@ -125,7 +145,7 @@ impl NSUndoManager {
         #[unsafe(method_family = none)]
         pub fn setRunLoopModes(&self, run_loop_modes: &NSArray<NSRunLoopMode>);
 
-        /// Closes the top-level undo group if necessary and invokes ``undoNestedGroup``.
+        /// Closes the top-level undo group if necessary, and then performs undo operations on the group.
         ///
         /// This method also invokes ``endUndoGrouping`` if the nesting level is 1. Raises an ``NSInternalInconsistencyException`` if more than one undo group is open (that is, if the last group isn’t at the top level).
         /// This method posts an ``NSUndoManagerCheckpointNotification``.
@@ -149,43 +169,43 @@ impl NSUndoManager {
         #[unsafe(method_family = none)]
         pub fn undoNestedGroup(&self);
 
-        /// Whether the receiver has any actions to undo.
+        /// A Boolean value that indicates whether the manager has any actions to undo.
         ///
         /// The return value does not mean you can safely invoke ``undo`` or ``undoNestedGroup`` — you may have to close open undo groups first.
         #[unsafe(method(canUndo))]
         #[unsafe(method_family = none)]
         pub fn canUndo(&self) -> bool;
 
-        /// Whether the receiver has any actions to redo.
+        /// A Boolean value that indicates whether the manager has any actions to redo.
         ///
         /// Because any undo operation registered clears the redo stack, this method posts an NSUndoManagerCheckpointNotification to allow clients to apply their pending operations before testing the redo stack.
         #[unsafe(method(canRedo))]
         #[unsafe(method_family = none)]
         pub fn canRedo(&self) -> bool;
 
-        /// How many times `undo` can be invoked before there are no more actions left to
-        /// be undone
+        /// The number of times you can invoke undo before there are no actions left to undo.
+        ///
+        /// A nonzero value doesn't imply you can safely invoke ``undo`` immediately, because you may have to close open undo groups first.
         #[unsafe(method(undoCount))]
         #[unsafe(method_family = none)]
         pub fn undoCount(&self) -> NSUInteger;
 
-        /// How many times `redo` can be invoked before there are no more actions left to
-        /// be redone
+        /// The number of times you can invoke redo before there are no actions left to redo.
         #[unsafe(method(redoCount))]
         #[unsafe(method_family = none)]
         pub fn redoCount(&self) -> NSUInteger;
 
-        /// Whether the receiver is in the process of performing its ``undo`` or ``undoNestedGroup`` method.
+        /// Returns a Boolean value that indicates whether the manager is in the process of performing an undo action.
         #[unsafe(method(isUndoing))]
         #[unsafe(method_family = none)]
         pub fn isUndoing(&self) -> bool;
 
-        /// Whether the receiver is in the process of performing its ``redo`` method.
+        /// Returns a Boolean value that indicates whether the manager is in the process of performing a redo action.
         #[unsafe(method(isRedoing))]
         #[unsafe(method_family = none)]
         pub fn isRedoing(&self) -> bool;
 
-        /// Clears the undo and redo stacks and re-enables the receiver.
+        /// Clears the undo and redo stacks and reenables the manager.
         #[unsafe(method(removeAllActions))]
         #[unsafe(method_family = none)]
         pub fn removeAllActions(&self);
@@ -245,7 +265,7 @@ impl NSUndoManager {
             -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
-        /// Records a single undo operation for a given target so that when an undo is performed, it executes the specified block.
+        /// Registers the specified closure to implement a single undo operation that the target receives.
         ///
         /// As with other undo operations, this does not strongly retain target. Care should be taken to avoid introducing retain cycles by other references captured by the block.
         ///
@@ -319,7 +339,7 @@ impl NSUndoManager {
         pub fn setActionName(&self, action_name: &NSString);
 
         #[cfg(feature = "NSString")]
-        /// Get a value from the undo action's user info
+        /// Retrieves the undo action's user info value for the given key.
         ///
         /// - Parameter key: Which value should be retrieved
         #[unsafe(method(undoActionUserInfoValueForKey:))]
@@ -330,7 +350,7 @@ impl NSUndoManager {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        /// Get a value from the redo action's user info
+        /// Retrieves the redo action's user info value for the given key.
         ///
         /// - Parameter key: Which value should be retrieved
         #[unsafe(method(redoActionUserInfoValueForKey:))]
@@ -341,7 +361,7 @@ impl NSUndoManager {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        /// Set user info for the Undo or Redo command.
+        /// Sets a user info value for an undo or redo action.
         /// - Parameter info: Value to be saved in the user info
         /// - Parameter key: Key at which the object should be saved
         ///
@@ -357,7 +377,7 @@ impl NSUndoManager {
         );
 
         #[cfg(feature = "NSString")]
-        /// The complete title of the Undo menu command, for example, “Undo Paste.”
+        /// The title of the Undo menu command, such as Undo Paste.
         ///
         /// Returns “Undo” if no action name has been assigned or nil if there is nothing to undo.
         #[unsafe(method(undoMenuItemTitle))]
@@ -365,7 +385,7 @@ impl NSUndoManager {
         pub fn undoMenuItemTitle(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        /// The complete title of the Redo menu command, for example, “Redo Paste.”
+        /// The title of the Redo menu command, such as Redo Paste.
         ///
         /// Returns “Redo” if no action name has been assigned or nil if there is nothing to redo.
         #[unsafe(method(redoMenuItemTitle))]
@@ -373,7 +393,7 @@ impl NSUndoManager {
         pub fn redoMenuItemTitle(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the complete, localized title of the Undo menu command for the action identified by the given name.
+        /// Returns the localized title of the Undo menu command for the identified action.
         ///
         /// Override this method if you want to customize the localization behaviour. This method is invoked by ``undoMenuItemTitle``.
         ///
@@ -384,7 +404,7 @@ impl NSUndoManager {
         pub fn undoMenuTitleForUndoActionName(&self, action_name: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the complete, localized title of the Redo menu command for the action identified by the given name.
+        /// Returns the localized title of the Redo menu command for the identified action.
         ///
         /// Override this method if you want to customize the localization behaviour. This method is invoked by ``redoMenuItemTitle``.
         ///
@@ -410,49 +430,77 @@ impl NSUndoManager {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagercheckpointnotification?language=objc)
+    /// Posted whenever an undo manager opens or closes an undo group (except when it opens a top-level group) and when checking the redo stack.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagercheckpointnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerCheckpointNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerwillundochangenotification?language=objc)
+    /// Posted just before an undo manager performs an undo operation.
+    ///
+    /// If you invoke `undo` or `undoNestedGroup`, this notification is posted. The notification object is the `NSUndoManager` object. This notification doesn't contain a `userInfo` dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerwillundochangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillUndoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerwillredochangenotification?language=objc)
+    /// Posted just before an undo manager performs a redo operation.
+    ///
+    /// The notification object is the `NSUndoManager` object. This notification doesn't contain a `userInfo` dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerwillredochangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillRedoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidundochangenotification?language=objc)
+    /// Posted just after an undo manager performs an undo operation.
+    ///
+    /// If you invoke `undo` or `undoNestedGroup`, this notification is posted. The notification object is the `NSUndoManager` object. This notification doesn't contain a `userInfo` dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidundochangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidUndoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidredochangenotification?language=objc)
+    /// Posted just after an undo manager performs a redo operation.
+    ///
+    /// The notification object is the `NSUndoManager` object. This notification doesn't contain a `userInfo` dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidredochangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidRedoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidopenundogroupnotification?language=objc)
+    /// Posted whenever an undo manager opens an undo group.
+    ///
+    /// This notification originates in the implementation of `beginUndoGrouping`. The notification object is the `NSUndoManager` object. This notification doesn't contain a `userInfo` dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidopenundogroupnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidOpenUndoGroupNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerwillcloseundogroupnotification?language=objc)
+    /// Posted before an undo manager closes an undo group.
+    ///
+    /// This notification originates in the implementation of `endUndoGrouping`. The notification object is the `NSUndoManager` object. The `userInfo` dictionary may contain `NSUndoManagerGroupIsDiscardableKey` with a Boolean value of YES if the undo group as a whole is discardable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerwillcloseundogroupnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillCloseUndoGroupNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidcloseundogroupnotification?language=objc)
+    /// Posted after an undo group closes. It should be safe to undo at this time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidcloseundogroupnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidCloseUndoGroupNotification: &'static NSNotificationName;
 }

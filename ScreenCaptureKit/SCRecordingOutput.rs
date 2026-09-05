@@ -80,6 +80,16 @@ impl SCRecordingOutputConfiguration {
         #[unsafe(method(availableOutputFileTypes))]
         #[unsafe(method_family = none)]
         pub fn availableOutputFileTypes(&self) -> Retained<NSArray<AVFileType>>;
+
+        /// if the stream being recorded captures both system audio and microphone audio, setting mixesAudioWithMicrophone to NO will keep two audio tracks for each audio stream in the recording output. Default value is YES, which will mix system and microphone audio, result one audio track in recording output.
+        #[unsafe(method(mixesAudioWithMicrophone))]
+        #[unsafe(method_family = none)]
+        pub fn mixesAudioWithMicrophone(&self) -> bool;
+
+        /// Setter for [`mixesAudioWithMicrophone`][Self::mixesAudioWithMicrophone].
+        #[unsafe(method(setMixesAudioWithMicrophone:))]
+        #[unsafe(method_family = none)]
+        pub fn setMixesAudioWithMicrophone(&self, mixes_audio_with_microphone: bool);
     );
 }
 

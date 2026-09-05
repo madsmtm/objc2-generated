@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXNetworkTransferMetric;
 );
 
@@ -37,6 +38,7 @@ impl MXNetworkTransferMetric {
         /// Cumulative amount of data uploaded over WiFi.
         ///
         /// Dimensioned as NSUnitInformationStorage.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeWifiUpload))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeWifiUpload(
@@ -46,6 +48,7 @@ impl MXNetworkTransferMetric {
         /// Cumulative amount of data downloaded over WiFi.
         ///
         /// Dimensioned as NSUnitInformationStorage.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeWifiDownload))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeWifiDownload(
@@ -57,6 +60,7 @@ impl MXNetworkTransferMetric {
         /// This data is radio access technology agnostic.
         ///
         /// Dimensioned as NSUnitInformationStorage.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeCellularUpload))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCellularUpload(
@@ -68,6 +72,7 @@ impl MXNetworkTransferMetric {
         /// This data is radio access technology agnostic.
         ///
         /// Dimensioned as NSUnitInformationStorage.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeCellularDownload))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCellularDownload(

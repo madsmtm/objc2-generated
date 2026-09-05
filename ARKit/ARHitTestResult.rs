@@ -71,14 +71,12 @@ extern_conformance!(
 impl ARHitTestResult {
     extern_methods!(
         /// The type of the hit-test result.
-        #[deprecated = "Use raycasting"]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> ARHitTestResultType;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The distance from the camera to the intersection in meters.
-        #[deprecated = "Use raycasting"]
         #[unsafe(method(distance))]
         #[unsafe(method_family = none)]
         pub unsafe fn distance(&self) -> CGFloat;
@@ -86,9 +84,7 @@ impl ARHitTestResult {
         #[cfg(feature = "ARAnchor")]
         /// The anchor that the hit-test intersected.
         ///
-        ///
         /// An anchor will only be provided for existing plane result types.
-        #[deprecated = "Use raycasting"]
         #[unsafe(method(anchor))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchor(&self) -> Option<Retained<ARAnchor>>;

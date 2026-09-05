@@ -10,32 +10,60 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phproject?language=objc)
     #[unsafe(super(PHAssetCollection, PHCollection, PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+    #[cfg(all(
+        feature = "PHAssetCollection",
+        feature = "PHCollection",
+        feature = "PHObject"
+    ))]
     pub struct PHProject;
 );
 
-#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+#[cfg(all(
+    feature = "PHAssetCollection",
+    feature = "PHCollection",
+    feature = "PHObject"
+))]
 unsafe impl Send for PHProject {}
 
-#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+#[cfg(all(
+    feature = "PHAssetCollection",
+    feature = "PHCollection",
+    feature = "PHObject"
+))]
 unsafe impl Sync for PHProject {}
 
-#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+#[cfg(all(
+    feature = "PHAssetCollection",
+    feature = "PHCollection",
+    feature = "PHObject"
+))]
 extern_conformance!(
     unsafe impl NSCopying for PHProject {}
 );
 
-#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+#[cfg(all(
+    feature = "PHAssetCollection",
+    feature = "PHCollection",
+    feature = "PHObject"
+))]
 unsafe impl CopyingHelper for PHProject {
     type Result = Self;
 }
 
-#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+#[cfg(all(
+    feature = "PHAssetCollection",
+    feature = "PHCollection",
+    feature = "PHObject"
+))]
 extern_conformance!(
     unsafe impl NSObjectProtocol for PHProject {}
 );
 
-#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+#[cfg(all(
+    feature = "PHAssetCollection",
+    feature = "PHCollection",
+    feature = "PHObject"
+))]
 impl PHProject {
     extern_methods!(
         /// This property is not atomic.
@@ -62,7 +90,11 @@ impl PHProject {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+#[cfg(all(
+    feature = "PHAssetCollection",
+    feature = "PHCollection",
+    feature = "PHObject"
+))]
 impl PHProject {
     extern_methods!(
         #[unsafe(method(init))]

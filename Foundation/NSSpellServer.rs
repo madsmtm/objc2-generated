@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserver?language=objc)
+    /// A server that your app uses to provide a spell checker service to other apps running in the system.
+    ///
+    /// A **service provider** is an application that declares its availability in a standard way, so that any other applications that wish to use it can do so. If you build a spelling checker that makes use of the ``NSSpellServer`` class and list it as an available service, then users of any application that makes use of
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nsspellchecker> or includes a Services menu will see your spelling checker as one of the available dictionaries.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpellServer;
@@ -19,6 +25,8 @@ extern_conformance!(
 
 impl NSSpellServer {
     extern_methods!(
+        /// The receiver's delegate.
+        ///
         /// # Safety
         ///
         /// This is not retained internally, you must ensure the object is still alive.
@@ -41,6 +49,7 @@ impl NSSpellServer {
         );
 
         #[cfg(feature = "NSString")]
+        /// Registers the given language for the receiver with the given vendor name.
         #[unsafe(method(registerLanguage:byVendor:))]
         #[unsafe(method_family = none)]
         pub fn registerLanguage_byVendor(
@@ -50,10 +59,12 @@ impl NSSpellServer {
         ) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Indicates whether a given word is in the user's list of learned words, regardless of the language.
         #[unsafe(method(isWordInUserDictionaries:caseSensitive:))]
         #[unsafe(method_family = none)]
         pub fn isWordInUserDictionaries_caseSensitive(&self, word: &NSString, flag: bool) -> bool;
 
+        /// Causes the receiver to start listening for spell-checking requests.
         #[unsafe(method(run))]
         #[unsafe(method_family = none)]
         pub fn run(&self);
@@ -81,27 +92,36 @@ impl DefaultRetained for NSSpellServer {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammarrange?language=objc)
+    /// The value for this key should be an `NSValue` containing an `NSRange`, a subrange of the sentence range used as the return value, whose location should be an offset from the beginning of the sentence. If the `NSGrammarRange` key is not present in the dictionary it is assumed to be equal to the overall sentence range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammarrange?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGrammarRange: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaruserdescription?language=objc)
+    /// The value for this key should be an `NSString` containing descriptive text about that range, to be presented directly to the user; it is intended that the user description should provide enough information to allow the user to correct the problem.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaruserdescription?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGrammarUserDescription: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammarcorrections?language=objc)
+    /// The value for this key should be an `NSArray` of `NSString` objects representing potential substitutions to correct the problem, but it is expected that this may not be available in all cases.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammarcorrections?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGrammarCorrections: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserverdelegate?language=objc)
+    /// The optional methods implemented by the delegate of a spell server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserverdelegate?language=objc)
     pub unsafe trait NSSpellServerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Finds a misspelled word in a given string, starting the search at a given offset within the string.
         #[optional]
         #[unsafe(method(spellServer:findMisspelledWordInString:language:wordCount:countOnly:))]
         #[unsafe(method_family = none)]
@@ -115,6 +135,7 @@ extern_protocol!(
         ) -> NSRange;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Gives the delegate the opportunity to suggest guesses to the sender for the correct spelling of the given misspelled word in the specified language.
         #[optional]
         #[unsafe(method(spellServer:suggestGuessesForWord:inLanguage:))]
         #[unsafe(method_family = none)]
@@ -126,6 +147,7 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSString")]
+        /// Notifies the delegate that the sender has added a word to the user's list of acceptable words in the specified language.
         #[optional]
         #[unsafe(method(spellServer:didLearnWord:inLanguage:))]
         #[unsafe(method_family = none)]
@@ -137,6 +159,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Notifies the delegate that the sender has removed a word from the user's list of acceptable words in the specified language.
         #[optional]
         #[unsafe(method(spellServer:didForgetWord:inLanguage:))]
         #[unsafe(method_family = none)]
@@ -148,6 +171,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSRange", feature = "NSString"))]
+        /// Gives the delegate the opportunity to suggest completions for a partially typed word at a given range in a given string.
         #[optional]
         #[unsafe(method(spellServer:suggestCompletionsForPartialWordRange:inString:language:))]
         #[unsafe(method_family = none)]
@@ -165,6 +189,8 @@ extern_protocol!(
             feature = "NSRange",
             feature = "NSString"
         ))]
+        /// Gives the delegate the opportunity to customize the grammar checking for a given string.
+        ///
         /// # Safety
         ///
         /// `details` generic generic should be of the correct type.
@@ -186,6 +212,8 @@ extern_protocol!(
             feature = "NSString",
             feature = "NSTextCheckingResult"
         ))]
+        /// Performs unified text checking of the given string, returning an array of `NSTextCheckingResult` objects.
+        ///
         /// # Safety
         ///
         /// `options` generic should be of the correct type.
@@ -204,6 +232,7 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<NSTextCheckingResult>>>;
 
         #[cfg(feature = "NSString")]
+        /// Notifies the delegate that the user has responded to a correction.
         #[optional]
         #[unsafe(method(spellServer:recordResponse:toCorrection:forWord:language:))]
         #[unsafe(method_family = none)]

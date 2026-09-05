@@ -17,6 +17,7 @@ extern_class!(
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
+    #[deprecated = "Use DiagnosticResult instead."]
     pub struct MXCPUExceptionDiagnostic;
 );
 
@@ -40,6 +41,7 @@ impl MXCPUExceptionDiagnostic {
     extern_methods!(
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the excessive CPU consumption.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(callStackTree))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
@@ -47,6 +49,7 @@ impl MXCPUExceptionDiagnostic {
         /// Total CPU time consumed in the scope of this CPU exception.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(totalCPUTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -54,6 +57,7 @@ impl MXCPUExceptionDiagnostic {
         /// Total time that the application was sampled for during the CPU exception.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(totalSampledTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalSampledTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;

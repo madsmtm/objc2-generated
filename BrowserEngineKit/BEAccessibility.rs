@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-video")]
+use objc2_core_video::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -73,6 +75,28 @@ unsafe impl Encode for BEAccessibilityContainerType {
 }
 
 unsafe impl RefEncode for BEAccessibilityContainerType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilityorientation?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct BEAccessibilityOrientation(pub NSInteger);
+impl BEAccessibilityOrientation {
+    #[doc(alias = "BEAccessibilityOrientationUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "BEAccessibilityOrientationVertical")]
+    pub const Vertical: Self = Self(1);
+    #[doc(alias = "BEAccessibilityOrientationHorizontal")]
+    pub const Horizontal: Self = Self(2);
+}
+
+unsafe impl Encode for BEAccessibilityOrientation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for BEAccessibilityOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -242,6 +266,87 @@ pub unsafe trait NSObjectBEAccessibility:
         #[unsafe(method(accessibilityLineRangeForPosition:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLineRangeForPosition(&self, position: NSInteger) -> NSRange;
+
+        /// Represents the value of aria-keyshortcuts.
+        /// default: nil
+        #[unsafe(method(browserAccessibilityKeyboardShortcuts))]
+        #[unsafe(method_family = none)]
+        unsafe fn browserAccessibilityKeyboardShortcuts(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`browserAccessibilityKeyboardShortcuts`][Self::browserAccessibilityKeyboardShortcuts].
+        #[unsafe(method(setBrowserAccessibilityKeyboardShortcuts:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setBrowserAccessibilityKeyboardShortcuts(
+            &self,
+            browser_accessibility_keyboard_shortcuts: Option<&NSString>,
+        );
+
+        /// Represents the value of aria-details. Returns an array of objects.
+        /// default: []
+        #[unsafe(method(browserAccessibilityDetailsElements))]
+        #[unsafe(method_family = none)]
+        unsafe fn browserAccessibilityDetailsElements(&self) -> Retained<NSArray<NSObject>>;
+
+        /// Setter for [`browserAccessibilityDetailsElements`][Self::browserAccessibilityDetailsElements].
+        ///
+        /// # Safety
+        ///
+        /// `browser_accessibility_details_elements` generic should be of the correct type.
+        #[unsafe(method(setBrowserAccessibilityDetailsElements:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setBrowserAccessibilityDetailsElements(
+            &self,
+            browser_accessibility_details_elements: &NSArray<NSObject>,
+        );
+
+        /// Represents the value of aria-orientation.
+        /// default: BEAccessibilityOrientationUnknown
+        #[unsafe(method(browserAccessibilityOrientation))]
+        #[unsafe(method_family = none)]
+        unsafe fn browserAccessibilityOrientation(&self) -> BEAccessibilityOrientation;
+
+        /// Setter for [`browserAccessibilityOrientation`][Self::browserAccessibilityOrientation].
+        #[unsafe(method(setBrowserAccessibilityOrientation:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setBrowserAccessibilityOrientation(
+            &self,
+            browser_accessibility_orientation: BEAccessibilityOrientation,
+        );
+
+        /// Returns the native pixel dimensions of the image represented by this element.
+        ///
+        /// Returns: An NSValue wrapping a CGSize, or nil if this element does not represent an image.
+        #[unsafe(method(browserAccessibilityImageDataSize))]
+        #[unsafe(method_family = none)]
+        unsafe fn browserAccessibilityImageDataSize(&self) -> Option<Retained<NSValue>>;
+
+        #[cfg(feature = "objc2-core-video")]
+        /// Returns image pixel data for this element as a CVPixelBuffer.
+        ///
+        ///
+        /// Parameter `attributes`: A dictionary of CVPixelBuffer attributes specifying the desired format and size.
+        ///
+        /// Supported keys:
+        /// kCVPixelBufferPixelFormatTypeKey (NSNumber / OSType) — The desired pixel format,
+        /// e.g. kCVPixelFormatType_32RGBA. Required.
+        /// kCVPixelBufferWidthKey  (NSNumber) — Target image width in pixels. Absent means native width.
+        /// kCVPixelBufferHeightKey (NSNumber) — Target image height in pixels. Absent means native height.
+        ///
+        ///
+        /// Returns: A CVPixelBuffer containing the image pixel data, or NULL if this element does not
+        /// represent an image or the requested pixel format is unsupported. The caller is responsible
+        /// for releasing the returned pixel buffer.
+        ///
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
+        #[unsafe(method(browserAccessibilityImageData:))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        unsafe fn browserAccessibilityImageData(
+            &self,
+            attributes: &NSDictionary,
+        ) -> Option<Retained<CVPixelBuffer>>;
     );
 }
 

@@ -737,3 +737,13 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rightedgepointskey?language=objc)
     pub static kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey: &'static CFString;
 }
+
+extern "C" {
+    /// Indicates a relative shift of the left and right images, which changes the zero parallax plane.
+    ///
+    /// The value encoded in normalized image space is a CFNumber holding a signed 32-bit integer measured over the range of -10000 to 10000 mapping to the uniform range [-1.0...1.0]. The interval of 0.0 to 1.0 or 0 to 10000 maps onto the stereo eye view image width. The negative interval 0.0 to -1.0 or 0 to -10000 similarly map onto the stereo eye view image width.
+    /// The default value of 0 is inferred if this property is not set.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferhorizontaldisparityadjustmentkey?language=objc)
+    pub static kCVImageBufferHorizontalDisparityAdjustmentKey: &'static CFString;
+}

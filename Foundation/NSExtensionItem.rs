@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitem?language=objc)
+    /// An immutable collection of values representing different aspects of an item for an extension to act upon.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExtensionItem;
@@ -40,6 +42,7 @@ extern_conformance!(
 impl NSExtensionItem {
     extern_methods!(
         #[cfg(feature = "NSAttributedString")]
+        /// An optional title for the item.
         #[unsafe(method(attributedTitle))]
         #[unsafe(method_family = none)]
         pub fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
@@ -53,6 +56,7 @@ impl NSExtensionItem {
         pub fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "NSAttributedString")]
+        /// Optional content text.
         #[unsafe(method(attributedContentText))]
         #[unsafe(method_family = none)]
         pub fn attributedContentText(&self) -> Option<Retained<NSAttributedString>>;
@@ -69,6 +73,10 @@ impl NSExtensionItem {
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
+        /// Optional array of media data associated with the extension item, including images, videos, and URLs.
+        ///
+        /// This is not meant to be an array of alternate data formats/types, but instead a collection
+        /// to include in a social media post for example.
         #[unsafe(method(attachments))]
         #[unsafe(method_family = none)]
         pub fn attachments(&self) -> Option<Retained<NSArray<NSItemProvider>>>;
@@ -82,6 +90,11 @@ impl NSExtensionItem {
         pub fn setAttachments(&self, attachments: Option<&NSArray<NSItemProvider>>);
 
         #[cfg(feature = "NSDictionary")]
+        /// Optional dictionary of key-value data.
+        ///
+        /// The key/value pairs accepted by the service are expected to be specified in the extension's
+        /// `Info.plist.`The values of
+        /// `NSExtensionItem's`properties will be reflected into the dictionary.
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub fn userInfo(&self) -> Option<Retained<NSDictionary>>;
@@ -121,19 +134,25 @@ impl DefaultRetained for NSExtensionItem {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedtitlekey?language=objc)
+    /// Keys corresponding to properties exposed on the NSExtensionItem interface.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedtitlekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttributedTitleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedcontenttextkey?language=objc)
+    /// The key for the attributed content text property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedcontenttextkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttributedContentTextKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattachmentskey?language=objc)
+    /// The key for the attachments property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattachmentskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttachmentsKey: &'static NSString;
 }

@@ -299,14 +299,32 @@ impl CLLocationManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setHeadingFilter(&self, heading_filter: CLLocationDegrees);
 
+        #[deprecated]
         #[unsafe(method(headingOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn headingOrientation(&self) -> CLDeviceOrientation;
 
         /// Setter for [`headingOrientation`][Self::headingOrientation].
+        #[deprecated]
         #[unsafe(method(setHeadingOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeadingOrientation(&self, heading_orientation: CLDeviceOrientation);
+
+        #[cfg(feature = "CLBody")]
+        #[unsafe(method(headingBody))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn headingBody(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn CLBodyIdentifiable>>>;
+
+        #[cfg(feature = "CLBody")]
+        /// Setter for [`headingBody`][Self::headingBody].
+        #[unsafe(method(setHeadingBody:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setHeadingBody(
+            &self,
+            heading_body: Option<&ProtocolObject<dyn CLBodyIdentifiable>>,
+        );
 
         #[cfg(feature = "CLHeading")]
         #[unsafe(method(heading))]
@@ -382,7 +400,9 @@ impl CLLocationManager {
         #[unsafe(method(stopUpdatingHeading))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopUpdatingHeading(&self);
+    );
 
+    extern_methods!(
         #[unsafe(method(dismissHeadingCalibrationDisplay))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissHeadingCalibrationDisplay(&self);
@@ -390,9 +410,7 @@ impl CLLocationManager {
         #[unsafe(method(startMonitoringSignificantLocationChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringSignificantLocationChanges(&self);
-    );
 
-    extern_methods!(
         #[unsafe(method(stopMonitoringSignificantLocationChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringSignificantLocationChanges(&self);

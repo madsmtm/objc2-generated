@@ -48,6 +48,9 @@ mod __CMAvailability;
 #[cfg(feature = "CMBatchedSensorManager")]
 #[path = "CMBatchedSensorManager.rs"]
 mod __CMBatchedSensorManager;
+#[cfg(feature = "CMBody")]
+#[path = "CMBody.rs"]
+mod __CMBody;
 #[cfg(feature = "CMDeviceMotion")]
 #[path = "CMDeviceMotion.rs"]
 mod __CMDeviceMotion;
@@ -105,6 +108,9 @@ mod __CMPedometer;
 #[cfg(feature = "CMRecordedAccelerometerData")]
 #[path = "CMRecordedAccelerometerData.rs"]
 mod __CMRecordedAccelerometerData;
+#[cfg(feature = "CMRecordedDeviceMotion")]
+#[path = "CMRecordedDeviceMotion.rs"]
+mod __CMRecordedDeviceMotion;
 #[cfg(feature = "CMRecordedPressureData")]
 #[path = "CMRecordedPressureData.rs"]
 mod __CMRecordedPressureData;
@@ -162,6 +168,8 @@ pub use self::__CMAttitude::CMRotationMatrix;
 pub use self::__CMAuthorization::CMAuthorizationStatus;
 #[cfg(feature = "CMBatchedSensorManager")]
 pub use self::__CMBatchedSensorManager::CMBatchedSensorManager;
+#[cfg(feature = "CMBody")]
+pub use self::__CMBody::CMBodyIdentifiable;
 #[cfg(all(feature = "CMDeviceMotion", feature = "CMMagnetometer"))]
 pub use self::__CMDeviceMotion::CMCalibratedMagneticField;
 #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem"))]
@@ -302,6 +310,12 @@ pub use self::__CMPedometer::CMPedometerHandler;
     feature = "CMRecordedAccelerometerData"
 ))]
 pub use self::__CMRecordedAccelerometerData::CMRecordedAccelerometerData;
+#[cfg(all(
+    feature = "CMDeviceMotion",
+    feature = "CMLogItem",
+    feature = "CMRecordedDeviceMotion"
+))]
+pub use self::__CMRecordedDeviceMotion::CMRecordedDeviceMotion;
 #[cfg(all(
     feature = "CMAmbientPressure",
     feature = "CMLogItem",

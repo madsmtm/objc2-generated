@@ -681,7 +681,7 @@ extern "C" {
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_UInt8 indicating whether this movie is intended to be played back at the full frame rate (1), or at a slow motion rate (0).
     ///
-    /// Historically, some apps have played movies recorded at frame rates of 120fps or higher in slow motion by default. With the introduction of this metadata, apps that record high-frame-rate movies may add this movie-level metadata to indicate whether the movie is intended to be played at the full frame rate (1) or at a slow motion rate (0). Apps that play movies may use this metadata, when present, to guide their behavior.
+    /// Historically, some apps have played movies recorded at high frame rates in slow motion by default. For example, QuickTime Player and Photos will by default play video with frame rates of 85 fps or higher in slow motion. With the introduction of this metadata, apps that record high-frame-rate movies may add this movie-level metadata to indicate whether the movie is intended to be played at the full frame rate (1) or at a slow motion rate (0). If this metadata is present, apps that play movies (e.g. QuickTime Player and Photos) may use it to guide their behavior.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatafullframerateplaybackintent?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataFullFrameRatePlaybackIntent:

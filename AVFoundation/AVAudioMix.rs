@@ -125,6 +125,31 @@ impl AVMutableAudioMix {
     );
 }
 
+/// Special value for the trackID property of AVAudioMixInputParameters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameterstrackid?language=objc)
+// NS_ENUM
+#[cfg(feature = "objc2-core-media")]
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct AVAudioMixInputParametersTrackID(pub CMPersistentTrackID);
+#[cfg(feature = "objc2-core-media")]
+impl AVAudioMixInputParametersTrackID {
+    /// Indicates that the specified input parameters should be applied to the mix of all audio tracks rather than to a single specific audio track. This is particularly useful for setting up volume ramps or an audio tap for streaming playback.
+    #[doc(alias = "AVAudioMixInputParametersTrackMixID")]
+    pub const MixID: Self = Self(0);
+}
+
+#[cfg(feature = "objc2-core-media")]
+unsafe impl Encode for AVAudioMixInputParametersTrackID {
+    const ENCODING: Encoding = CMPersistentTrackID::ENCODING;
+}
+
+#[cfg(feature = "objc2-core-media")]
+unsafe impl RefEncode for AVAudioMixInputParametersTrackID {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters?language=objc)
     #[unsafe(super(NSObject))]
@@ -172,7 +197,9 @@ impl AVAudioMixInputParameters {
 
         #[cfg(feature = "objc2-media-toolbox")]
         #[cfg(not(target_os = "watchos"))]
-        /// Indicates the audio processing tap that will be used for the audio track.
+        /// Indicates the audio processing tap that will be used for the audio track or tracks.
+        ///
+        /// If you wish to tap the mix of audio tracks (i.e. if trackID is equal to AVAudioMixInputParametersTrackMixID), use the function MTAudioProcessingTapCreateWithPreferredFormat to create the instance of MTAudioProcessingTap to set as the value of audioTapProcessor. Created otherwise, the processing format of a tap of a track mix is undefined (but may be observed via the use of your MTAudioProcessingTapPrepareCallback).
         #[unsafe(method(audioTapProcessor))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTapProcessor(&self) -> Option<Retained<MTAudioProcessingTap>>;
@@ -245,6 +272,8 @@ impl AVMutableAudioMixInputParameters {
 
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the trackID of the audio track to which the parameters should be applied.
+        ///
+        /// To apply your input parameters to a mix of all audio tracks rather than to a single specific track, set trackID to AVAudioMixInputParametersTrackMixID.
         #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
@@ -278,7 +307,9 @@ impl AVMutableAudioMixInputParameters {
 
         #[cfg(feature = "objc2-media-toolbox")]
         #[cfg(not(target_os = "watchos"))]
-        /// Indicates the audio processing tap that will be used for the audio track.
+        /// Indicates the audio processing tap that will be used for the audio track or tracks.
+        ///
+        /// If you wish to tap the mix of audio tracks (i.e. if trackID is equal to AVAudioMixInputParametersTrackMixID), use the function MTAudioProcessingTapCreateWithPreferredFormat to create the instance of MTAudioProcessingTap to set as the value of audioTapProcessor. Created otherwise, the processing format of a tap of a track mix is undefined (but may be observed via the use of your MTAudioProcessingTapPrepareCallback).
         #[unsafe(method(audioTapProcessor))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTapProcessor(&self) -> Option<Retained<MTAudioProcessingTap>>;

@@ -36,6 +36,9 @@ mod __AUComponent;
 #[cfg(feature = "AUGraph")]
 #[path = "AUGraph.rs"]
 mod __AUGraph;
+#[cfg(feature = "AUHeadTrackingBinauralRenderer")]
+#[path = "AUHeadTrackingBinauralRenderer.rs"]
+mod __AUHeadTrackingBinauralRenderer;
 #[cfg(feature = "AUParameters")]
 #[path = "AUParameters.rs"]
 mod __AUParameters;
@@ -481,6 +484,8 @@ pub use self::__AUComponent::kAudioUnitType_FormatConverter;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioUnitType_Generator;
 #[cfg(feature = "AUComponent")]
+pub use self::__AUComponent::kAudioUnitType_HeadTrackingBinauralRenderer;
+#[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioUnitType_MIDIProcessor;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::kAudioUnitType_Mixer;
@@ -788,6 +793,12 @@ pub use self::__AUGraph::DisposeAUGraph;
 pub use self::__AUGraph::NewAUGraph;
 #[cfg(feature = "AUGraph")]
 pub use self::__AUGraph::OpaqueAUGraph;
+#[cfg(all(
+    feature = "AUAudioUnit",
+    feature = "AUHeadTrackingBinauralRenderer",
+    feature = "objc2"
+))]
+pub use self::__AUHeadTrackingBinauralRenderer::AUHeadTrackingBinauralRenderer;
 #[cfg(all(feature = "AUParameters", feature = "objc2"))]
 pub use self::__AUParameters::AUParameter;
 #[cfg(feature = "AUParameters")]

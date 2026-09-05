@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclassdescription?language=objc)
+    /// An abstract class that provides the interface for querying the relationships and properties of a class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclassdescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSClassDescription;
@@ -19,6 +21,8 @@ extern_conformance!(
 
 impl NSClassDescription {
     extern_methods!(
+        /// Registers an ``NSClassDescription`` object for a given class in the ``NSClassDescription`` cache.
+        ///
         /// # Safety
         ///
         /// `a_class` probably has further requirements.
@@ -29,10 +33,13 @@ impl NSClassDescription {
             a_class: &AnyClass,
         );
 
+        /// Removes all ``NSClassDescription`` objects from the cache.
         #[unsafe(method(invalidateClassDescriptionCache))]
         #[unsafe(method_family = none)]
         pub fn invalidateClassDescriptionCache();
 
+        /// Returns the class description for a given class.
+        ///
         /// # Safety
         ///
         /// `a_class` probably has further requirements.
@@ -43,21 +50,25 @@ impl NSClassDescription {
         ) -> Option<Retained<NSClassDescription>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of ``NSString`` objects representing the receiver's attribute keys.
         #[unsafe(method(attributeKeys))]
         #[unsafe(method_family = none)]
         pub fn attributeKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of ``NSString`` objects representing the keys for the receiver's to-one relationships.
         #[unsafe(method(toOneRelationshipKeys))]
         #[unsafe(method_family = none)]
         pub fn toOneRelationshipKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of ``NSString`` objects representing the keys for the receiver's to-many relationships.
         #[unsafe(method(toManyRelationshipKeys))]
         #[unsafe(method_family = none)]
         pub fn toManyRelationshipKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the name of the inverse relationship from a relationship specified by a given key.
         #[unsafe(method(inverseForRelationshipKey:))]
         #[unsafe(method_family = none)]
         pub fn inverseForRelationshipKey(
@@ -130,7 +141,9 @@ impl private_NSObjectNSClassDescriptionPrimitives::Sealed for NSObject {}
 unsafe impl NSObjectNSClassDescriptionPrimitives for NSObject {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclassdescriptionneededforclassnotification?language=objc)
+    /// Posted when an ``NSClassDescription`` is needed for a class but one has not yet been registered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclassdescriptionneededforclassnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSClassDescriptionNeededForClassNotification: &'static NSNotificationName;
 }

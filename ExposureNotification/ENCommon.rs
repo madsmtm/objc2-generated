@@ -11,6 +11,7 @@ extern "C" {
     /// NSError domain for Exposure Notification errors.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerrordomain?language=objc)
+    #[deprecated = "No longer supported."]
     pub static ENErrorDomain: &'static NSErrorDomain;
 }
 
@@ -18,59 +19,77 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerrorcode?language=objc)
 // NS_ERROR_ENUM
+#[deprecated = "No longer supported."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ENErrorCode(pub NSInteger);
 impl ENErrorCode {
     #[doc(alias = "ENErrorCodeUnknown")]
+    #[deprecated = "No longer supported."]
     pub const Unknown: Self = Self(1);
     /// Underlying failure with an unknown cause.
     #[doc(alias = "ENErrorCodeBadParameter")]
+    #[deprecated = "No longer supported."]
     pub const BadParameter: Self = Self(2);
     /// Missing or incorrect parameter.
     #[doc(alias = "ENErrorCodeNotEntitled")]
+    #[deprecated = "No longer supported."]
     pub const NotEntitled: Self = Self(3);
     /// Calling process doesn't have the correct entitlement.
     #[doc(alias = "ENErrorCodeNotAuthorized")]
+    #[deprecated = "No longer supported."]
     pub const NotAuthorized: Self = Self(4);
     /// User denied this process access to Exposure Notification functionality.
     #[doc(alias = "ENErrorCodeUnsupported")]
+    #[deprecated = "No longer supported."]
     pub const Unsupported: Self = Self(5);
     /// Operation is not supported.
     #[doc(alias = "ENErrorCodeInvalidated")]
+    #[deprecated = "No longer supported."]
     pub const Invalidated: Self = Self(6);
     /// Invalidate was called before the operation completed normally.
     #[doc(alias = "ENErrorCodeBluetoothOff")]
+    #[deprecated = "No longer supported."]
     pub const BluetoothOff: Self = Self(7);
     /// Bluetooth was turned off the by user.
     #[doc(alias = "ENErrorCodeInsufficientStorage")]
+    #[deprecated = "No longer supported."]
     pub const InsufficientStorage: Self = Self(8);
     /// Insufficient storage space to enable Exposure Notification.
     #[doc(alias = "ENErrorCodeNotEnabled")]
+    #[deprecated = "No longer supported."]
     pub const NotEnabled: Self = Self(9);
     /// Exposure Notification has not been enabled.
     #[doc(alias = "ENErrorCodeAPIMisuse")]
+    #[deprecated = "No longer supported."]
     pub const APIMisuse: Self = Self(10);
     /// The API was used incorrectly.
     #[doc(alias = "ENErrorCodeInternal")]
+    #[deprecated = "No longer supported."]
     pub const Internal: Self = Self(11);
     /// Internal error. This indicates a bug in this framework.
     #[doc(alias = "ENErrorCodeInsufficientMemory")]
+    #[deprecated = "No longer supported."]
     pub const InsufficientMemory: Self = Self(12);
     /// Not enough memory to perform an operation.
     #[doc(alias = "ENErrorCodeRateLimited")]
+    #[deprecated = "No longer supported."]
     pub const RateLimited: Self = Self(13);
     /// API called too frequently. See API for acceptable frequency.
     #[doc(alias = "ENErrorCodeRestricted")]
+    #[deprecated = "No longer supported."]
     pub const Restricted: Self = Self(14);
     /// Exposure Notification is disabled due to system policies.
     #[doc(alias = "ENErrorCodeBadFormat")]
+    #[deprecated = "No longer supported."]
     pub const BadFormat: Self = Self(15);
     /// File or data format problem.
     #[doc(alias = "ENErrorCodeDataInaccessible")]
+    #[deprecated = "No longer supported."]
     pub const DataInaccessible: Self = Self(16);
     /// The device must be unlocked before data is accessible.
     #[doc(alias = "ENErrorCodeTravelStatusNotAvailable")]
+    #[deprecated = "No longer supported."]
     pub const TravelStatusNotAvailable: Self = Self(17);
 }
 
@@ -85,6 +104,7 @@ unsafe impl RefEncode for ENErrorCode {
 /// Type for returning NSError's from functions. Avoids long and repetitious method signatures.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerrorouttype?language=objc)
+#[deprecated = "No longer supported."]
 pub type ENErrorOutType = *mut *mut NSError;
 
 /// Attenuation of a radio signal. This is the Advertised Transmit Power - Measured RSSI.
@@ -94,17 +114,21 @@ pub type ENErrorOutType = *mut *mut NSError;
 /// may report higher attenuation (i.e. weaker received signal) even though the individuals are very close together.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enattenuation?language=objc)
+#[deprecated = "No longer supported."]
 pub type ENAttenuation = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enattenuationmin?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENAttenuationMin: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enattenuationmax?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENAttenuationMax: c_uint = 0xFF;
 
 /// Indicates the status of authorization for the app.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus?language=objc)
 // NS_ENUM
+#[deprecated = "No longer supported."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENAuthorizationStatus(pub NSInteger);
@@ -112,16 +136,20 @@ impl ENAuthorizationStatus {
     /// Authorization status has not yet been determined.
     /// This status means the user has not been prompted yet. Using the API in this state may prompt the user.
     #[doc(alias = "ENAuthorizationStatusUnknown")]
+    #[deprecated = "No longer supported."]
     pub const Unknown: Self = Self(0);
     /// This app is not authorized to use Exposure Notification. The user cannot change this app's authorization status.
     /// This status may be due to active restrictions, such as parental controls being in place.
     #[doc(alias = "ENAuthorizationStatusRestricted")]
+    #[deprecated = "No longer supported."]
     pub const Restricted: Self = Self(1);
     /// The user denied authorization for this app.
     #[doc(alias = "ENAuthorizationStatusNotAuthorized")]
+    #[deprecated = "No longer supported."]
     pub const NotAuthorized: Self = Self(2);
     /// The user has authorized this app to use Exposure Notification.
     #[doc(alias = "ENAuthorizationStatusAuthorized")]
+    #[deprecated = "No longer supported."]
     pub const Authorized: Self = Self(3);
 }
 
@@ -137,25 +165,30 @@ unsafe impl RefEncode for ENAuthorizationStatus {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence?language=objc)
 // NS_ENUM
+#[deprecated = "No longer supported."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENCalibrationConfidence(pub u8);
 impl ENCalibrationConfidence {
     /// No calibration data.
     #[doc(alias = "ENCalibrationConfidenceLowest")]
+    #[deprecated = "No longer supported."]
     pub const Lowest: Self = Self(0);
     /// Using average calibration over phones of this manufacturer or Android beacons from EN API version
     /// <
     /// 1.5.
     #[doc(alias = "ENCalibrationConfidenceLow")]
+    #[deprecated = "No longer supported."]
     pub const Low: Self = Self(1);
     /// Using single-antenna orientation for a similar phone model or iPhone beacons from EN API version
     /// <
     /// 1.5.
     #[doc(alias = "ENCalibrationConfidenceMedium")]
+    #[deprecated = "No longer supported."]
     pub const Medium: Self = Self(2);
     /// Determined using significant calibration data for this model.
     #[doc(alias = "ENCalibrationConfidenceHigh")]
+    #[deprecated = "No longer supported."]
     pub const High: Self = Self(3);
 }
 
@@ -177,28 +210,35 @@ pub static ENDaysSinceOnsetOfSymptomsUnknown: NSInteger = NSIntegerMax as _;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype?language=objc)
 // NS_ENUM
+#[deprecated = "No longer supported."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENDiagnosisReportType(pub u32);
 impl ENDiagnosisReportType {
     /// Diagnosis type unknown or not available.
     #[doc(alias = "ENDiagnosisReportTypeUnknown")]
+    #[deprecated = "No longer supported."]
     pub const Unknown: Self = Self(0);
     /// Confirmed test.
     #[doc(alias = "ENDiagnosisReportTypeConfirmedTest")]
+    #[deprecated = "No longer supported."]
     pub const ConfirmedTest: Self = Self(1);
     /// Confirmed clinical diagnosis.
     #[doc(alias = "ENDiagnosisReportTypeConfirmedClinicalDiagnosis")]
+    #[deprecated = "No longer supported."]
     pub const ConfirmedClinicalDiagnosis: Self = Self(2);
     /// User reported positive diagnosis without health authority involvement.
     #[doc(alias = "ENDiagnosisReportTypeSelfReported")]
+    #[deprecated = "No longer supported."]
     pub const SelfReported: Self = Self(3);
     /// Person determined to be positive based on exposure to another person confirmed to be positive. This report type
     /// is reserved for future use and keys with this report type are not matched by iOS.
     #[doc(alias = "ENDiagnosisReportTypeRecursive")]
+    #[deprecated = "No longer supported."]
     pub const Recursive: Self = Self(4);
     /// Negative test. This is mainly to negate a previous self report or clinical diagnosis that may have been in error.
     #[doc(alias = "ENDiagnosisReportTypeRevoked")]
+    #[deprecated = "No longer supported."]
     pub const Revoked: Self = Self(5);
 }
 
@@ -214,17 +254,21 @@ unsafe impl RefEncode for ENDiagnosisReportType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/eninfectiousness?language=objc)
 // NS_ENUM
+#[deprecated = "No longer supported."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENInfectiousness(pub u32);
 impl ENInfectiousness {
     #[doc(alias = "ENInfectiousnessNone")]
+    #[deprecated = "No longer supported."]
     pub const None: Self = Self(0);
     /// Never returned through the API, but used for configuration.
     #[doc(alias = "ENInfectiousnessStandard")]
+    #[deprecated = "No longer supported."]
     pub const Standard: Self = Self(1);
     /// Never returned through the API, but used for configuration.
     #[doc(alias = "ENInfectiousnessHigh")]
+    #[deprecated = "No longer supported."]
     pub const High: Self = Self(2);
 }
 
@@ -238,19 +282,25 @@ unsafe impl RefEncode for ENInfectiousness {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype?language=objc)
 // NS_ENUM
+#[deprecated = "No longer supported."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENVariantOfConcernType(pub u32);
 impl ENVariantOfConcernType {
     #[doc(alias = "ENVariantOfConcernTypeUnknown")]
+    #[deprecated = "No longer supported."]
     pub const TypeUnknown: Self = Self(0);
     #[doc(alias = "ENVariantOfConcernType1")]
+    #[deprecated = "No longer supported."]
     pub const Type1: Self = Self(1);
     #[doc(alias = "ENVariantOfConcernType2")]
+    #[deprecated = "No longer supported."]
     pub const Type2: Self = Self(2);
     #[doc(alias = "ENVariantOfConcernType3")]
+    #[deprecated = "No longer supported."]
     pub const Type3: Self = Self(3);
     #[doc(alias = "ENVariantOfConcernType4")]
+    #[deprecated = "No longer supported."]
     pub const Type4: Self = Self(4);
 }
 
@@ -274,52 +324,68 @@ unsafe impl RefEncode for ENVariantOfConcernType {
 /// It's encoded as an unsigned 32-bit (uint32_t), little endian value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enintervalnumber?language=objc)
+#[deprecated = "No longer supported."]
 pub type ENIntervalNumber = u32;
 
 /// Represents a risk level, ranging from 0-7.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevel?language=objc)
+#[deprecated = "No longer supported."]
 pub type ENRiskLevel = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelmin?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskLevelMin: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelmax?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskLevelMax: c_uint = 7;
 
 /// The value, ranging from 0 to 8, that the app assigns to each Risk Level in each of the Risk Level Parameters.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelvalue?language=objc)
+#[deprecated = "No longer supported."]
 pub type ENRiskLevelValue = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelvaluemin?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskLevelValueMin: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelvaluemax?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskLevelValueMax: c_uint = 8;
 
 /// Represents estimated risk calculated by a scoring algorithm. Range is 0-255. 255 is the highest risk.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskscore?language=objc)
+#[deprecated = "No longer supported."]
 pub type ENRiskScore = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskscoremin?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskScoreMin: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskscoremax?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskScoreMax: c_uint = 255;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightdefault?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskWeightDefault: c_uint = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightdefaultv2?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskWeightDefaultV2: c_uint = 100;
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightmin?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskWeightMin: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightmax?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskWeightMax: c_uint = 100;
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightmaxv2?language=objc)
+#[deprecated = "No longer supported."]
 pub const ENRiskWeightMaxV2: c_uint = 250;
 
 /// Invoked when an operation completes. Error is nil for success or non-nil if an error occurred.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerrorhandler?language=objc)
+#[deprecated = "No longer supported."]
 #[cfg(feature = "block2")]
 pub type ENErrorHandler = block2::SendableBlock<'static, fn(*mut NSError)>;
 
@@ -339,6 +405,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposureconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported."]
     pub struct ENExposureConfiguration;
 );
 
@@ -349,38 +416,46 @@ extern_conformance!(
 impl ENExposureConfiguration {
     extern_methods!(
         /// Weights to apply to durations at each proximity level based on attenuation. Range is 0-250%.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(immediateDurationWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn immediateDurationWeight(&self) -> c_double;
 
         /// Setter for [`immediateDurationWeight`][Self::immediateDurationWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setImmediateDurationWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImmediateDurationWeight(&self, immediate_duration_weight: c_double);
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(nearDurationWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn nearDurationWeight(&self) -> c_double;
 
         /// Setter for [`nearDurationWeight`][Self::nearDurationWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setNearDurationWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNearDurationWeight(&self, near_duration_weight: c_double);
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(mediumDurationWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediumDurationWeight(&self) -> c_double;
 
         /// Setter for [`mediumDurationWeight`][Self::mediumDurationWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setMediumDurationWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediumDurationWeight(&self, medium_duration_weight: c_double);
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(otherDurationWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn otherDurationWeight(&self) -> c_double;
 
         /// Setter for [`otherDurationWeight`][Self::otherDurationWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setOtherDurationWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOtherDurationWeight(&self, other_duration_weight: c_double);
@@ -389,6 +464,7 @@ impl ENExposureConfiguration {
         /// Key is a daysSinceOnsetOfSymptoms: -14 to 14. Value is an ENInfectiousness.
         /// Defaults to ENInfectiousnessNone for days not specified.
         /// If a value is set to ENInfectiousnessNone, diagnosis keys for it should be ignored.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(infectiousnessForDaysSinceOnsetOfSymptoms))]
         #[unsafe(method_family = none)]
         pub unsafe fn infectiousnessForDaysSinceOnsetOfSymptoms(
@@ -398,6 +474,7 @@ impl ENExposureConfiguration {
         /// Setter for [`infectiousnessForDaysSinceOnsetOfSymptoms`][Self::infectiousnessForDaysSinceOnsetOfSymptoms].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setInfectiousnessForDaysSinceOnsetOfSymptoms:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInfectiousnessForDaysSinceOnsetOfSymptoms(
@@ -408,11 +485,13 @@ impl ENExposureConfiguration {
         );
 
         /// Weights to apply for infectiousness. Range is 0-250%.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(infectiousnessStandardWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn infectiousnessStandardWeight(&self) -> c_double;
 
         /// Setter for [`infectiousnessStandardWeight`][Self::infectiousnessStandardWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setInfectiousnessStandardWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInfectiousnessStandardWeight(
@@ -420,21 +499,25 @@ impl ENExposureConfiguration {
             infectiousness_standard_weight: c_double,
         );
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(infectiousnessHighWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn infectiousnessHighWeight(&self) -> c_double;
 
         /// Setter for [`infectiousnessHighWeight`][Self::infectiousnessHighWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setInfectiousnessHighWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInfectiousnessHighWeight(&self, infectiousness_high_weight: c_double);
 
         /// Weights to apply for each report type. Range is 0-250%.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(reportTypeConfirmedTestWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportTypeConfirmedTestWeight(&self) -> c_double;
 
         /// Setter for [`reportTypeConfirmedTestWeight`][Self::reportTypeConfirmedTestWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setReportTypeConfirmedTestWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReportTypeConfirmedTestWeight(
@@ -442,11 +525,13 @@ impl ENExposureConfiguration {
             report_type_confirmed_test_weight: c_double,
         );
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(reportTypeConfirmedClinicalDiagnosisWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportTypeConfirmedClinicalDiagnosisWeight(&self) -> c_double;
 
         /// Setter for [`reportTypeConfirmedClinicalDiagnosisWeight`][Self::reportTypeConfirmedClinicalDiagnosisWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setReportTypeConfirmedClinicalDiagnosisWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReportTypeConfirmedClinicalDiagnosisWeight(
@@ -454,11 +539,13 @@ impl ENExposureConfiguration {
             report_type_confirmed_clinical_diagnosis_weight: c_double,
         );
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(reportTypeSelfReportedWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportTypeSelfReportedWeight(&self) -> c_double;
 
         /// Setter for [`reportTypeSelfReportedWeight`][Self::reportTypeSelfReportedWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setReportTypeSelfReportedWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReportTypeSelfReportedWeight(
@@ -466,22 +553,26 @@ impl ENExposureConfiguration {
             report_type_self_reported_weight: c_double,
         );
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(reportTypeRecursiveWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportTypeRecursiveWeight(&self) -> c_double;
 
         /// Setter for [`reportTypeRecursiveWeight`][Self::reportTypeRecursiveWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setReportTypeRecursiveWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReportTypeRecursiveWeight(&self, report_type_recursive_weight: c_double);
 
         /// Maps scenarios when Report Type is not present into one of the available report types.
         /// If this is set to ENDiagnosisReportTypeUnknown, the key will be ignored if it does not contain a report type.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(reportTypeNoneMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportTypeNoneMap(&self) -> ENDiagnosisReportType;
 
         /// Setter for [`reportTypeNoneMap`][Self::reportTypeNoneMap].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setReportTypeNoneMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReportTypeNoneMap(&self, report_type_none_map: ENDiagnosisReportType);
@@ -490,6 +581,7 @@ impl ENExposureConfiguration {
         ///
         /// Index        |0    |1    |2
         /// Variable    |X    |Y    |Z
+        #[deprecated = "No longer supported."]
         #[unsafe(method(attenuationDurationThresholds))]
         #[unsafe(method_family = none)]
         pub unsafe fn attenuationDurationThresholds(&self) -> Retained<NSArray<NSNumber>>;
@@ -497,6 +589,7 @@ impl ENExposureConfiguration {
         /// Setter for [`attenuationDurationThresholds`][Self::attenuationDurationThresholds].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setAttenuationDurationThresholds:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttenuationDurationThresholds(
@@ -505,11 +598,13 @@ impl ENExposureConfiguration {
         );
 
         /// Exclude exposures with daysSinceLastExposure > this value. Defaults to 0 (don't filter).
+        #[deprecated = "No longer supported."]
         #[unsafe(method(daysSinceLastExposureThreshold))]
         #[unsafe(method_family = none)]
         pub unsafe fn daysSinceLastExposureThreshold(&self) -> NSInteger;
 
         /// Setter for [`daysSinceLastExposureThreshold`][Self::daysSinceLastExposureThreshold].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDaysSinceLastExposureThreshold:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDaysSinceLastExposureThreshold(
@@ -518,15 +613,18 @@ impl ENExposureConfiguration {
         );
 
         /// Minimum risk score. Excludes exposure incidents with scores lower than this. Full range and not capped to ENRiskScore.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(minimumRiskScoreFullRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumRiskScoreFullRange(&self) -> c_double;
 
         /// Setter for [`minimumRiskScoreFullRange`][Self::minimumRiskScoreFullRange].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setMinimumRiskScoreFullRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumRiskScoreFullRange(&self, minimum_risk_score_full_range: c_double);
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(attenuationLevelValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn attenuationLevelValues(&self) -> Retained<NSArray<NSNumber>>;
@@ -534,6 +632,7 @@ impl ENExposureConfiguration {
         /// Setter for [`attenuationLevelValues`][Self::attenuationLevelValues].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setAttenuationLevelValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttenuationLevelValues(
@@ -541,15 +640,18 @@ impl ENExposureConfiguration {
             attenuation_level_values: &NSArray<NSNumber>,
         );
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(attenuationWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn attenuationWeight(&self) -> c_double;
 
         /// Setter for [`attenuationWeight`][Self::attenuationWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setAttenuationWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttenuationWeight(&self, attenuation_weight: c_double);
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(daysSinceLastExposureLevelValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn daysSinceLastExposureLevelValues(&self) -> Retained<NSArray<NSNumber>>;
@@ -557,6 +659,7 @@ impl ENExposureConfiguration {
         /// Setter for [`daysSinceLastExposureLevelValues`][Self::daysSinceLastExposureLevelValues].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDaysSinceLastExposureLevelValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDaysSinceLastExposureLevelValues(
@@ -564,11 +667,13 @@ impl ENExposureConfiguration {
             days_since_last_exposure_level_values: &NSArray<NSNumber>,
         );
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(daysSinceLastExposureWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn daysSinceLastExposureWeight(&self) -> c_double;
 
         /// Setter for [`daysSinceLastExposureWeight`][Self::daysSinceLastExposureWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDaysSinceLastExposureWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDaysSinceLastExposureWeight(
@@ -576,6 +681,7 @@ impl ENExposureConfiguration {
             days_since_last_exposure_weight: c_double,
         );
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(durationLevelValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn durationLevelValues(&self) -> Retained<NSArray<NSNumber>>;
@@ -583,19 +689,23 @@ impl ENExposureConfiguration {
         /// Setter for [`durationLevelValues`][Self::durationLevelValues].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDurationLevelValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDurationLevelValues(&self, duration_level_values: &NSArray<NSNumber>);
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(durationWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn durationWeight(&self) -> c_double;
 
         /// Setter for [`durationWeight`][Self::durationWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDurationWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDurationWeight(&self, duration_weight: c_double);
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary>>;
@@ -607,19 +717,23 @@ impl ENExposureConfiguration {
         /// # Safety
         ///
         /// `metadata` generic should be of the correct type.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: Option<&NSDictionary>);
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(minimumRiskScore))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumRiskScore(&self) -> ENRiskScore;
 
         /// Setter for [`minimumRiskScore`][Self::minimumRiskScore].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setMinimumRiskScore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumRiskScore(&self, minimum_risk_score: ENRiskScore);
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(transmissionRiskLevelValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn transmissionRiskLevelValues(&self) -> Retained<NSArray<NSNumber>>;
@@ -627,6 +741,7 @@ impl ENExposureConfiguration {
         /// Setter for [`transmissionRiskLevelValues`][Self::transmissionRiskLevelValues].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setTransmissionRiskLevelValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransmissionRiskLevelValues(
@@ -634,11 +749,13 @@ impl ENExposureConfiguration {
             transmission_risk_level_values: &NSArray<NSNumber>,
         );
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(transmissionRiskWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn transmissionRiskWeight(&self) -> c_double;
 
         /// Setter for [`transmissionRiskWeight`][Self::transmissionRiskWeight].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setTransmissionRiskWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransmissionRiskWeight(&self, transmission_risk_weight: c_double);
@@ -664,6 +781,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposuredaysummary?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported."]
     pub struct ENExposureDaySummary;
 );
 
@@ -674,30 +792,36 @@ extern_conformance!(
 impl ENExposureDaySummary {
     extern_methods!(
         /// Day the exposure occurred.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         /// Summary of all exposures on this day of a specific diagnosis report type.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(confirmedTestSummary))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmedTestSummary(&self) -> Option<Retained<ENExposureSummaryItem>>;
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(confirmedClinicalDiagnosisSummary))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmedClinicalDiagnosisSummary(
             &self,
         ) -> Option<Retained<ENExposureSummaryItem>>;
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(recursiveSummary))]
         #[unsafe(method_family = none)]
         pub unsafe fn recursiveSummary(&self) -> Option<Retained<ENExposureSummaryItem>>;
 
+        #[deprecated = "No longer supported."]
         #[unsafe(method(selfReportedSummary))]
         #[unsafe(method_family = none)]
         pub unsafe fn selfReportedSummary(&self) -> Option<Retained<ENExposureSummaryItem>>;
 
         /// Summary of all exposures on this day.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(daySummary))]
         #[unsafe(method_family = none)]
         pub unsafe fn daySummary(&self) -> Retained<ENExposureSummaryItem>;
@@ -723,6 +847,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposuredetectionsummary?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported."]
     pub struct ENExposureDetectionSummary;
 );
 
@@ -744,41 +869,49 @@ impl ENExposureDetectionSummary {
         /// = Z
         /// Array index 3: Sum of durations for all exposures when attenuation >  Z
         /// X, Y, Z come from the attenuationDurationThresholds on the configuration object.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(attenuationDurations))]
         #[unsafe(method_family = none)]
         pub unsafe fn attenuationDurations(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Number of days since the most recent exposure. 0 = today, 1 = yesterday, etc. Only valid if matchedKeyCount > 0.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(daysSinceLastExposure))]
         #[unsafe(method_family = none)]
         pub unsafe fn daysSinceLastExposure(&self) -> NSInteger;
 
         /// Number of diagnosis keys that matched.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(matchedKeyCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchedKeyCount(&self) -> u64;
 
         /// Highest risk score of all exposure incidents.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(maximumRiskScore))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumRiskScore(&self) -> ENRiskScore;
 
         /// Highest risk score of all exposure incidents.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(maximumRiskScoreFullRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumRiskScoreFullRange(&self) -> c_double;
 
         /// Metadata associated with the summary.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary>>;
 
         /// Sum of risk scores for all exposures. Summed using the full range risk scores before capping to ENRiskScore.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(riskScoreSumFullRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn riskScoreSumFullRange(&self) -> c_double;
 
         /// Summary of each day containing an exposure.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(daySummaries))]
         #[unsafe(method_family = none)]
         pub unsafe fn daySummaries(&self) -> Retained<NSArray<ENExposureDaySummary>>;
@@ -804,6 +937,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposureinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported."]
     pub struct ENExposureInfo;
 );
 
@@ -825,51 +959,61 @@ impl ENExposureInfo {
         /// = Z
         /// Array index 3: Sum of durations for this exposure when attenuation >  Z
         /// X, Y, Z come from the attenuationDurationThresholds on the configuration object.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(attenuationDurations))]
         #[unsafe(method_family = none)]
         pub unsafe fn attenuationDurations(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Duration-weighted average of the attenuations associated with this exposure.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(attenuationValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn attenuationValue(&self) -> ENAttenuation;
 
         /// Date when the exposure occurred. This may have reduced precision, such as within 1 day of the actual time.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         /// Number of days since the onset of symptoms. Defaults to ENDaysSinceOnsetOfSymptomsUnknown.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(daysSinceOnsetOfSymptoms))]
         #[unsafe(method_family = none)]
         pub unsafe fn daysSinceOnsetOfSymptoms(&self) -> NSInteger;
 
         /// How positive diagnosis was reported.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(diagnosisReportType))]
         #[unsafe(method_family = none)]
         pub unsafe fn diagnosisReportType(&self) -> ENDiagnosisReportType;
 
         /// Length of exposure in 5 minute increments with a 30 minute maximum.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         /// Metadata associated with the exposure.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary>>;
 
         /// Indicates the total risk calculated for this exposure incident. Capped to ENRiskScore range.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(totalRiskScore))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalRiskScore(&self) -> ENRiskScore;
 
         /// Indicates the total risk calculated for this exposure incident. Full range and not capped to ENRiskScore.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(totalRiskScoreFullRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalRiskScoreFullRange(&self) -> c_double;
 
         /// Indicates the transmission risk associated with the diagnosis key.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(transmissionRiskLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn transmissionRiskLevel(&self) -> ENRiskLevel;
@@ -895,6 +1039,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposuresummaryitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported."]
     pub struct ENExposureSummaryItem;
 );
 
@@ -905,11 +1050,13 @@ extern_conformance!(
 impl ENExposureSummaryItem {
     extern_methods!(
         /// Highest score of all exposures for this item.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(maximumScore))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumScore(&self) -> c_double;
 
         /// Sum of scores for all exposure for this item.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(scoreSum))]
         #[unsafe(method_family = none)]
         pub unsafe fn scoreSum(&self) -> c_double;
@@ -920,6 +1067,7 @@ impl ENExposureSummaryItem {
         /// ( nearDuration      * nearDurationWeight ) +
         /// ( mediumDuration    * mediumDurationWeight ) +
         /// ( otherDuration     * otherDurationWeight ).
+        #[deprecated = "No longer supported."]
         #[unsafe(method(weightedDurationSum))]
         #[unsafe(method_family = none)]
         pub unsafe fn weightedDurationSum(&self) -> NSTimeInterval;
@@ -945,6 +1093,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposurewindow?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported."]
     pub struct ENExposureWindow;
 );
 
@@ -955,31 +1104,37 @@ extern_conformance!(
 impl ENExposureWindow {
     extern_methods!(
         /// Transmitting device's calibration confidence.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(calibrationConfidence))]
         #[unsafe(method_family = none)]
         pub unsafe fn calibrationConfidence(&self) -> ENCalibrationConfidence;
 
         /// Day the exposure occurred.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         /// How positive diagnosis was reported for this the TEK observed for this window.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(diagnosisReportType))]
         #[unsafe(method_family = none)]
         pub unsafe fn diagnosisReportType(&self) -> ENDiagnosisReportType;
 
         /// How infectious based on days since onset of symptoms.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(infectiousness))]
         #[unsafe(method_family = none)]
         pub unsafe fn infectiousness(&self) -> ENInfectiousness;
 
         /// Each scan instance corresponds to a scan (of a few seconds) when a beacon with a TEK causing this exposure was observed.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(scanInstances))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanInstances(&self) -> Retained<NSArray<ENScanInstance>>;
 
         /// Type of variant of concern
+        #[deprecated = "No longer supported."]
         #[unsafe(method(variantOfConcernType))]
         #[unsafe(method_family = none)]
         pub unsafe fn variantOfConcernType(&self) -> ENVariantOfConcernType;
@@ -1005,6 +1160,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enscaninstance?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported."]
     pub struct ENScanInstance;
 );
 
@@ -1015,16 +1171,19 @@ extern_conformance!(
 impl ENScanInstance {
     extern_methods!(
         /// Minimum attenuation of all of this TEK's beacons received during the scan.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(minimumAttenuation))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumAttenuation(&self) -> ENAttenuation;
 
         /// Aggregation of the attenuations of all of this TEK's beacons received during the scan.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(typicalAttenuation))]
         #[unsafe(method_family = none)]
         pub unsafe fn typicalAttenuation(&self) -> ENAttenuation;
 
         /// Seconds elapsed since the the previous scan.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(secondsSinceLastScan))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondsSinceLastScan(&self) -> NSInteger;
@@ -1050,6 +1209,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/entemporaryexposurekey?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported."]
     pub struct ENTemporaryExposureKey;
 );
 
@@ -1060,6 +1220,7 @@ extern_conformance!(
 impl ENTemporaryExposureKey {
     extern_methods!(
         /// Key material used to generate Rolling Proximity Identifiers.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(keyData))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyData(&self) -> Retained<NSData>;
@@ -1067,36 +1228,43 @@ impl ENTemporaryExposureKey {
         /// Setter for [`keyData`][Self::keyData].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setKeyData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyData(&self, key_data: &NSData);
 
         /// Duration this key is valid. It's the number of 10-minute windows between key rolling.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(rollingPeriod))]
         #[unsafe(method_family = none)]
         pub unsafe fn rollingPeriod(&self) -> ENIntervalNumber;
 
         /// Setter for [`rollingPeriod`][Self::rollingPeriod].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setRollingPeriod:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRollingPeriod(&self, rolling_period: ENIntervalNumber);
 
         /// Interval number when the key's EKRollingPeriod started.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(rollingStartNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn rollingStartNumber(&self) -> ENIntervalNumber;
 
         /// Setter for [`rollingStartNumber`][Self::rollingStartNumber].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setRollingStartNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRollingStartNumber(&self, rolling_start_number: ENIntervalNumber);
 
         /// Risk of transmission associated with the person this key came from.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(transmissionRiskLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn transmissionRiskLevel(&self) -> ENRiskLevel;
 
         /// Setter for [`transmissionRiskLevel`][Self::transmissionRiskLevel].
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setTransmissionRiskLevel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransmissionRiskLevel(&self, transmission_risk_level: ENRiskLevel);

@@ -290,6 +290,7 @@ impl CFPlugInInstance {
     ///
     /// `ftbl` must be a valid pointer.
     #[doc(alias = "CFPlugInInstanceGetInterfaceFunctionTable")]
+    #[deprecated = "Use UUID-based plugins instead"]
     #[inline]
     pub unsafe fn interface_function_table(
         &self,
@@ -308,6 +309,7 @@ impl CFPlugInInstance {
     }
 
     #[doc(alias = "CFPlugInInstanceGetFactoryName")]
+    #[deprecated = "Use UUID-based plugins instead"]
     #[inline]
     pub fn factory_name(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
@@ -320,6 +322,7 @@ impl CFPlugInInstance {
     }
 
     #[doc(alias = "CFPlugInInstanceGetInstanceData")]
+    #[deprecated = "Use UUID-based plugins instead"]
     #[inline]
     pub fn instance_data(&self) -> *mut c_void {
         extern "C-unwind" {
@@ -348,6 +351,7 @@ impl CFPlugInInstance {
     /// - `get_interface_function` must be implemented correctly.
     /// - `get_interface_function` might not allow `None`.
     #[doc(alias = "CFPlugInInstanceCreateWithInstanceDataSize")]
+    #[deprecated = "Use UUID-based plugins instead"]
     #[inline]
     pub unsafe fn with_instance_data_size(
         allocator: Option<&CFAllocator>,

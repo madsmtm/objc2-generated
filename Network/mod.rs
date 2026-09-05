@@ -4461,7 +4461,7 @@ impl NWPath {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_link_quality_t?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct nw_link_quality_t(pub c_uint);
+pub struct nw_link_quality_t(pub u8);
 impl nw_link_quality_t {
     /// nw_link_quality_unknown No link quality measurement is available
     #[doc(alias = "nw_link_quality_unknown")]
@@ -4479,7 +4479,7 @@ impl nw_link_quality_t {
 
 #[cfg(feature = "objc2")]
 unsafe impl Encode for nw_link_quality_t {
-    const ENCODING: Encoding = c_uint::ENCODING;
+    const ENCODING: Encoding = u8::ENCODING;
 }
 
 #[cfg(feature = "objc2")]
@@ -11474,6 +11474,30 @@ impl NWProtocolMetadata {
         }
         unsafe { nw_tcp_get_available_send_buffer(self) }
     }
+}
+
+/// Set the maximum pacing rate for TCP transmission in bytes per second.
+/// TCP pacing spreads out packet transmission to avoid bursts and reduce
+/// network congestion. The actual pacing rate used will be the minimum
+/// of this value and the rate computed from cwnd/RTT.
+///
+/// A value of 0 or UINT64_MAX means unlimited (disables pacing).
+///
+///
+/// Parameter `metadata`: A TCP protocol metadata object from an established connection.
+///
+///
+/// Parameter `max_pacing_rate`: Maximum pacing rate in bytes per second.
+///
+///
+/// Returns: Returns 0 on success, or an error code on failure.
+#[inline]
+pub fn nw_tcp_set_max_pacing_rate(metadata: &NWProtocolMetadata, max_pacing_rate: u64) -> c_int {
+    extern "C-unwind" {
+        fn nw_tcp_set_max_pacing_rate(metadata: &NWProtocolMetadata, max_pacing_rate: u64)
+            -> c_int;
+    }
+    unsafe { nw_tcp_set_max_pacing_rate(metadata, max_pacing_rate) }
 }
 
 impl NWProtocolDefinition {

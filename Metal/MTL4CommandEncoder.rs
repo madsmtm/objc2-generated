@@ -125,7 +125,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLCommandEncoder")]
-        /// Encodes an intra-pass barrier.
+        /// Encodes an intra-pass barrier that instructs the GPU to pause before running stages of subsequent commands until
+        /// stages of previous commands complete.
         ///
         /// Encode a barrier that guarantees that any subsequent work you encode in the *current command encoder*,
         /// corresponding to `beforeEncoderStages`, doesn't begin until all prior commands in this command encoder,
@@ -137,11 +138,10 @@ extern_protocol!(
         /// ``MTLStages/MTLStageBlit`` and ``MTLStages/MTLStageAccelerationStructure``.
         ///
         /// - Parameters:
-        /// - afterEncoderStages:  ``MTLStages`` mask that represents the stages of work to wait for.
-        /// This argument only applies to subsequent work you encode in the current command encoder.
-        /// - beforeEncoderStages: ``MTLStages`` mask that represents the stages of work that wait.
-        /// This argument only applies to work you encode in the current command encoder prior to
-        /// this barrier.
+        /// - afterEncoderStages: ``MTLStages`` the stages of the previous commands of this pass that need to complete before
+        /// the stages in `beforeEncoderStages` start for subsequent commands you encode in this pass.
+        /// - beforeEncoderStages: ``MTLStages`` the stages of the subsequent commands you encode in this pass that wait for
+        /// the stages in `afterEncoderStages`, within this pass, to complete.
         /// - visibilityOptions: ``MTL4VisibilityOptions`` of the barrier, controlling cache flush behavior.
         #[unsafe(method(barrierAfterEncoderStages:beforeEncoderStages:visibilityOptions:))]
         #[unsafe(method_family = none)]

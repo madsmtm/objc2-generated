@@ -97,6 +97,26 @@ impl SCContentSharingPickerConfiguration {
         #[unsafe(method(setAllowsChangingSelectedContent:))]
         #[unsafe(method_family = none)]
         pub fn setAllowsChangingSelectedContent(&self, allows_changing_selected_content: bool);
+
+        /// showsMicrophoneControl Indicates whether the system picker view will show microphone control for user. Default is YES.
+        #[unsafe(method(showsMicrophoneControl))]
+        #[unsafe(method_family = none)]
+        pub fn showsMicrophoneControl(&self) -> bool;
+
+        /// Setter for [`showsMicrophoneControl`][Self::showsMicrophoneControl].
+        #[unsafe(method(setShowsMicrophoneControl:))]
+        #[unsafe(method_family = none)]
+        pub fn setShowsMicrophoneControl(&self, shows_microphone_control: bool);
+
+        /// showsCameraControl Indicates whether the system picker will show camera control for user. Default is NO. Only applies when presenting the picker for the current application
+        #[unsafe(method(showsCameraControl))]
+        #[unsafe(method_family = none)]
+        pub fn showsCameraControl(&self) -> bool;
+
+        /// Setter for [`showsCameraControl`][Self::showsCameraControl].
+        #[unsafe(method(setShowsCameraControl:))]
+        #[unsafe(method_family = none)]
+        pub fn setShowsCameraControl(&self, shows_camera_control: bool);
     );
 }
 
@@ -171,7 +191,7 @@ impl SCContentSharingPicker {
         #[unsafe(method_family = none)]
         pub fn setMaximumStreamCount(&self, maximum_stream_count: Option<&NSNumber>);
 
-        /// active A picker needs to be marked as active for its UI to appear. If `startPickingContent` is called and the picker is not marked as active, the picker will not appear.
+        /// active A picker needs to be marked as active to enable user interaction with system UI (displayed picker, video menu bar, directly from a window). If the picker is not marked as active, when present is called, the displayed picker UI will not appear, and user will not be able to share content from system UI to your application.
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub fn isActive(&self) -> bool;
@@ -180,6 +200,13 @@ impl SCContentSharingPicker {
         #[unsafe(method(setActive:))]
         #[unsafe(method_family = none)]
         pub fn setActive(&self, active: bool);
+
+        /// available Indicates whether screen recording is available on this device.
+        ///
+        /// Returns YES if screen recording is supported and allowed on this device.
+        #[unsafe(method(isAvailable))]
+        #[unsafe(method_family = none)]
+        pub fn isAvailable(&self) -> bool;
 
         /// addObserver:
         ///
@@ -257,6 +284,13 @@ impl SCContentSharingPicker {
             stream: &SCStream,
             content_style: SCShareableContentStyle,
         );
+
+        /// presentPickerForCurrentApplication
+        ///
+        /// Shows the content sharing picker for capturing the current application only.
+        #[unsafe(method(presentPickerForCurrentApplication))]
+        #[unsafe(method_family = none)]
+        pub fn presentPickerForCurrentApplication(&self);
     );
 }
 

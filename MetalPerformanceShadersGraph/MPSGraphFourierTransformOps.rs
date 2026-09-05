@@ -232,11 +232,11 @@ impl MPSGraph {
         /// the result tensor back with the inverse of the input transpose.
         ///
         /// - Parameters:
-        /// - tensor: A Real-valued input tensor. Must have datatype `MPSDataTypeFloat32` or `MPSDatatypeFloat16`.
+        /// - tensor: A Real-valued input tensor. Must have datatype `MPSDataTypeFloat32`, `MPSDatatypeFloat16` or `MPSDatatypeBFloat16`.
         /// - axes: An array of numbers that specifies over which axes MPSGraph performs the Fourier transform - all axes must be contained within last four dimensions of the input tensor.
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
-        /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeComplexFloat32` or `MPSDataTypeComplexFloat16` with reduced size (see Discussion).
+        /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeComplexFloat32`, `MPSDataTypeComplexFloat16` or `MPSDataTypeComplexBFloat16` with reduced size (see Discussion).
         #[unsafe(method(realToHermiteanFFTWithTensor:axes:descriptor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn realToHermiteanFFTWithTensor_axes_descriptor_name(
@@ -271,11 +271,11 @@ impl MPSGraph {
         /// the result tensor back with the inverse of the input transpose.
         ///
         /// - Parameters:
-        /// - tensor: A real-valued input tensor. Must have datatype `MPSDataTypeFloat32` or `MPSDatatypeFloat16`.
+        /// - tensor: A real-valued input tensor. Must have datatype `MPSDataTypeFloat32` , `MPSDatatypeFloat16`, or `MPSDatatypeBFloat16`.
         /// - axesTensor: A tensor of rank one containing the axes over which MPSGraph performs the transformation. See ``MPSGraph/fastFourierTransformWithTensor:axes:descriptor:name:``.
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
-        /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeComplexFloat32` or `MPSDataTypeComplexFloat16`  with reduced size (see Discussion).
+        /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeComplexFloat32`, `MPSDataTypeComplexFloat16` or `MPSDataTypeComplexBFloat16` with reduced size (see Discussion).
         #[unsafe(method(realToHermiteanFFTWithTensor:axesTensor:descriptor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn realToHermiteanFFTWithTensor_axesTensor_descriptor_name(
@@ -313,11 +313,11 @@ impl MPSGraph {
         /// the result tensor back with the inverse of the input transpose.
         ///
         /// - Parameters:
-        /// - tensor: A complex-valued input tensor with reduced size (see Discussion). Must have datatype `MPSDataTypeComplexFloat32` or `MPSDataTypeComplexFloat16`.
+        /// - tensor: A complex-valued input tensor with reduced size (see Discussion). Must have datatype `MPSDataTypeComplexFloat32`, `MPSDataTypeComplexFloat16` or `MPSDataTypeComplexBFloat16`.
         /// - axes: An array of numbers that specifies over which axes MPSGraph performs the Fourier transform - all axes must be contained within last four dimensions of the input tensor.
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
-        /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeFloat32` or `MPSDataTypeFloat16` (full size).
+        /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeFloat32`, `MPSDataTypeFloat16` or `MPSDataTypeBFloat16` (full size).
         #[unsafe(method(HermiteanToRealFFTWithTensor:axes:descriptor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn HermiteanToRealFFTWithTensor_axes_descriptor_name(
@@ -355,11 +355,11 @@ impl MPSGraph {
         /// the result tensor back with the inverse of the input transpose.
         ///
         /// - Parameters:
-        /// - tensor: A complex-valued input tensor with reduced size (see Discussion). Must have datatype `MPSDataTypeComplexFloat32` or `MPSDataTypeComplexFloat16`.
+        /// - tensor: A complex-valued input tensor with reduced size (see Discussion). Must have datatype `MPSDataTypeComplexFloat32`, `MPSDataTypeComplexFloat16` or `MPSDataTypeComplexBFloat16`.
         /// - axesTensor: A tensor of rank one containing the axes over which MPSGraph performs the transformation. See ``MPSGraph/fastFourierTransformWithTensor:axes:descriptor:name:``.
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
-        /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeFloat32` or `MPSDataTypeFloat16` (full size).
+        /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeFloat32`, `MPSDataTypeFloat16` or `MPSDataTypeBFloat16` (full size).
         #[unsafe(method(HermiteanToRealFFTWithTensor:axesTensor:descriptor:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn HermiteanToRealFFTWithTensor_axesTensor_descriptor_name(

@@ -75,6 +75,9 @@ mod __AVAssetWriter;
 #[cfg(feature = "AVAssetWriterInput")]
 #[path = "AVAssetWriterInput.rs"]
 mod __AVAssetWriterInput;
+#[cfg(feature = "AVAssetWritingPlanner")]
+#[path = "AVAssetWritingPlanner.rs"]
+mod __AVAssetWritingPlanner;
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
 #[path = "AVAsynchronousKeyValueLoading.rs"]
 mod __AVAsynchronousKeyValueLoading;
@@ -228,6 +231,9 @@ mod __AVCaptureAudioDataOutput;
 #[cfg(feature = "AVCaptureAudioPreviewOutput")]
 #[path = "AVCaptureAudioPreviewOutput.rs"]
 mod __AVCaptureAudioPreviewOutput;
+#[cfg(feature = "AVCaptureBroadcastVideoOutput")]
+#[path = "AVCaptureBroadcastVideoOutput.rs"]
+mod __AVCaptureBroadcastVideoOutput;
 #[cfg(feature = "AVCaptureControl")]
 #[path = "AVCaptureControl.rs"]
 mod __AVCaptureControl;
@@ -405,6 +411,9 @@ mod __AVPlayerItemOutput;
 #[cfg(feature = "AVPlayerItemProtectedContentAdditions")]
 #[path = "AVPlayerItemProtectedContentAdditions.rs"]
 mod __AVPlayerItemProtectedContentAdditions;
+#[cfg(feature = "AVPlayerItemSampleBufferOutput")]
+#[path = "AVPlayerItemSampleBufferOutput.rs"]
+mod __AVPlayerItemSampleBufferOutput;
 #[cfg(feature = "AVPlayerItemTrack")]
 #[path = "AVPlayerItemTrack.rs"]
 mod __AVPlayerItemTrack;
@@ -423,6 +432,9 @@ mod __AVPlayerOutput;
 #[cfg(feature = "AVPortraitEffectsMatte")]
 #[path = "AVPortraitEffectsMatte.rs"]
 mod __AVPortraitEffectsMatte;
+#[cfg(feature = "AVProVideoStorage")]
+#[path = "AVProVideoStorage.rs"]
+mod __AVProVideoStorage;
 #[cfg(feature = "AVQueuedSampleBufferRendering")]
 #[path = "AVQueuedSampleBufferRendering.rs"]
 mod __AVQueuedSampleBufferRendering;
@@ -645,6 +657,20 @@ pub use self::__AVAssetExportSession::AVAssetExportPresetPassthrough;
 #[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportSession;
 #[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReason;
+#[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReasonIncompatiblePreset;
+#[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReasonIncompatibleSessionSettings;
+#[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReasonIncompatibleTemporaryDirectoryContents;
+#[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReasonTemporaryDirectoryDoesNotExist;
+#[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionFailureReasonUnsupportedForPresetOnPlatform;
+#[cfg(feature = "AVAssetExportSession")]
+pub use self::__AVAssetExportSession::AVAssetExportSessionResumptionState;
+#[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetExportSessionStatus;
 #[cfg(feature = "AVAssetExportSession")]
 pub use self::__AVAssetExportSession::AVAssetTrackGroupOutputHandling;
@@ -801,6 +827,24 @@ pub use self::__AVAssetWriterInput::AVAssetWriterInputPassDescription;
 pub use self::__AVAssetWriterInput::AVAssetWriterInputPixelBufferAdaptor;
 #[cfg(feature = "AVAssetWriterInput")]
 pub use self::__AVAssetWriterInput::AVAssetWriterInputTaggedPixelBufferGroupAdaptor;
+#[cfg(feature = "AVAssetWritingPlanner")]
+pub use self::__AVAssetWritingPlanner::AVAssetTrackPlan;
+#[cfg(feature = "AVAssetWritingPlanner")]
+pub use self::__AVAssetWritingPlanner::AVAssetVideoTrackPlan;
+#[cfg(feature = "AVAssetWritingPlanner")]
+pub use self::__AVAssetWritingPlanner::AVAssetWritingPlanner;
+#[cfg(feature = "AVAssetWritingPlanner")]
+pub use self::__AVAssetWritingPlanner::AVAssetWritingPlannerProgress;
+#[cfg(feature = "AVAssetWritingPlanner")]
+pub use self::__AVAssetWritingPlanner::AVPlannedSegmentConfiguration;
+#[cfg(feature = "AVAssetWritingPlanner")]
+pub use self::__AVAssetWritingPlanner::AVPlannedSegmentWritingRequest;
+#[cfg(all(feature = "AVAssetWritingPlanner", feature = "objc2-core-media"))]
+pub use self::__AVAssetWritingPlanner::AVPlannedVideoSegmentBoundaryGuidelines;
+#[cfg(feature = "AVAssetWritingPlanner")]
+pub use self::__AVAssetWritingPlanner::AVPlannedVideoSegmentConfiguration;
+#[cfg(feature = "AVAssetWritingPlanner")]
+pub use self::__AVAssetWritingPlanner::AVPlannedVideoSegmentWritingRequest;
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
 pub use self::__AVAsynchronousKeyValueLoading::AVAsynchronousKeyValueLoading;
 #[cfg(feature = "AVAsynchronousKeyValueLoading")]
@@ -809,6 +853,8 @@ pub use self::__AVAsynchronousKeyValueLoading::AVKeyValueStatus;
 pub use self::__AVAudioMix::AVAudioMix;
 #[cfg(feature = "AVAudioMix")]
 pub use self::__AVAudioMix::AVAudioMixInputParameters;
+#[cfg(all(feature = "AVAudioMix", feature = "objc2-core-media"))]
+pub use self::__AVAudioMix::AVAudioMixInputParametersTrackID;
 #[cfg(feature = "AVAudioMix")]
 pub use self::__AVAudioMix::AVMutableAudioMix;
 #[cfg(feature = "AVAudioMix")]
@@ -914,6 +960,15 @@ pub use self::__AVCaptureAudioDataOutput::AVCaptureAudioDataOutputSampleBufferDe
     feature = "AVCaptureOutputBase"
 ))]
 pub use self::__AVCaptureAudioPreviewOutput::AVCaptureAudioPreviewOutput;
+#[cfg(all(
+    feature = "AVCaptureBroadcastVideoOutput",
+    feature = "AVCaptureOutputBase"
+))]
+pub use self::__AVCaptureBroadcastVideoOutput::AVCaptureBroadcastVideoOutput;
+#[cfg(feature = "AVCaptureBroadcastVideoOutput")]
+pub use self::__AVCaptureBroadcastVideoOutput::AVCaptureBroadcastVideoOutputDelegate;
+#[cfg(feature = "AVCaptureBroadcastVideoOutput")]
+pub use self::__AVCaptureBroadcastVideoOutput::AVCaptureBroadcastVideoOutputDroppedFrameReplacementPolicy;
 #[cfg(feature = "AVCaptureControl")]
 pub use self::__AVCaptureControl::AVCaptureControl;
 #[cfg(feature = "AVCaptureDataOutputSynchronizer")]
@@ -1392,6 +1447,16 @@ pub use self::__AVError::AVFoundationErrorDomain;
 pub use self::__AVExternalStorageDevice::AVExternalStorageDevice;
 #[cfg(feature = "AVExternalStorageDevice")]
 pub use self::__AVExternalStorageDevice::AVExternalStorageDeviceDiscoverySession;
+#[cfg(feature = "AVExternalStorageDevice")]
+pub use self::__AVExternalStorageDevice::AVExternalStorageDeviceReasonNotRecommendedForCaptureUse;
+#[cfg(feature = "AVExternalStorageDevice")]
+pub use self::__AVExternalStorageDevice::AVExternalStorageDeviceReasonNotRecommendedForCaptureUseEncrypted;
+#[cfg(feature = "AVExternalStorageDevice")]
+pub use self::__AVExternalStorageDevice::AVExternalStorageDeviceReasonNotRecommendedForCaptureUseSlowWritingSpeed;
+#[cfg(feature = "AVExternalStorageDevice")]
+pub use self::__AVExternalStorageDevice::AVExternalStorageDeviceReasonNotRecommendedForCaptureUseUnknownWritingSpeed;
+#[cfg(feature = "AVExternalStorageDevice")]
+pub use self::__AVExternalStorageDevice::AVExternalStorageDeviceReasonNotRecommendedForCaptureUseUnsupportedFileSystem;
 #[cfg(feature = "AVExternalSyncDevice")]
 pub use self::__AVExternalSyncDevice::AVExternalSyncDevice;
 #[cfg(feature = "AVExternalSyncDevice")]
@@ -2871,6 +2936,10 @@ pub use self::__AVMetrics::AVMetricMediaRendition;
 #[cfg(feature = "AVMetrics")]
 pub use self::__AVMetrics::AVMetricMediaResourceRequestEvent;
 #[cfg(feature = "AVMetrics")]
+pub use self::__AVMetrics::AVMetricPlaybackMode;
+#[cfg(feature = "AVMetrics")]
+pub use self::__AVMetrics::AVMetricPlaybackModeSwitchEvent;
+#[cfg(feature = "AVMetrics")]
 pub use self::__AVMetrics::AVMetricPlayerItemInitialLikelyToKeepUpEvent;
 #[cfg(feature = "AVMetrics")]
 pub use self::__AVMetrics::AVMetricPlayerItemLikelyToKeepUpEvent;
@@ -3214,6 +3283,17 @@ pub use self::__AVPlayerItemOutput::AVPlayerItemRenderedLegibleOutputPushDelegat
 pub use self::__AVPlayerItemOutput::AVPlayerItemVideoOutput;
 #[cfg(feature = "AVPlayerItemProtectedContentAdditions")]
 pub use self::__AVPlayerItemProtectedContentAdditions::AVContentAuthorizationStatus;
+#[cfg(all(
+    feature = "AVPlayerItemOutput",
+    feature = "AVPlayerItemSampleBufferOutput"
+))]
+pub use self::__AVPlayerItemSampleBufferOutput::AVPlayerItemSampleBufferOutput;
+#[cfg(feature = "AVPlayerItemSampleBufferOutput")]
+pub use self::__AVPlayerItemSampleBufferOutput::AVPlayerItemSampleBufferOutputAudioConfiguration;
+#[cfg(feature = "AVPlayerItemSampleBufferOutput")]
+pub use self::__AVPlayerItemSampleBufferOutput::AVPlayerItemSampleBufferOutputConfiguration;
+#[cfg(feature = "AVPlayerItemSampleBufferOutput")]
+pub use self::__AVPlayerItemSampleBufferOutput::AVPlayerItemSampleBufferOutputDelegate;
 #[cfg(feature = "AVPlayerItemTrack")]
 pub use self::__AVPlayerItemTrack::AVPlayerItemTrack;
 #[cfg(feature = "AVPlayerItemTrack")]
@@ -3245,6 +3325,8 @@ pub use self::__AVPlayerOutput::CMTagCollectionCreateWithVideoOutputPreset;
 pub use self::__AVPlayerOutput::CMTagCollectionVideoOutputPreset;
 #[cfg(feature = "AVPortraitEffectsMatte")]
 pub use self::__AVPortraitEffectsMatte::AVPortraitEffectsMatte;
+#[cfg(feature = "AVProVideoStorage")]
+pub use self::__AVProVideoStorage::AVProVideoStorage;
 #[cfg(feature = "AVQueuedSampleBufferRendering")]
 pub use self::__AVQueuedSampleBufferRendering::AVQueuedSampleBufferRendering;
 #[cfg(feature = "AVQueuedSampleBufferRendering")]
@@ -3298,6 +3380,8 @@ pub use self::__AVSampleBufferVideoRenderer::AVSampleBufferVideoRendererDidFailT
 pub use self::__AVSampleBufferVideoRenderer::AVSampleBufferVideoRendererDidFailToDecodeNotificationErrorKey;
 #[cfg(feature = "AVSampleBufferVideoRenderer")]
 pub use self::__AVSampleBufferVideoRenderer::AVSampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotification;
+#[cfg(feature = "AVSampleBufferVideoRenderer")]
+pub use self::__AVSampleBufferVideoRenderer::AVSampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotificationRequiresFlushKey;
 #[cfg(feature = "AVSampleCursor")]
 pub use self::__AVSampleCursor::AVSampleCursor;
 #[cfg(feature = "AVSampleCursor")]
@@ -3481,6 +3565,12 @@ pub use self::__AVVideoSettings::AVVideoH264EntropyModeCAVLC;
 pub use self::__AVVideoSettings::AVVideoH264EntropyModeKey;
 #[cfg(feature = "AVVideoSettings")]
 pub use self::__AVVideoSettings::AVVideoHeightKey;
+#[cfg(feature = "AVVideoSettings")]
+pub use self::__AVVideoSettings::AVVideoLogTransferFunctionKey;
+#[cfg(feature = "AVVideoSettings")]
+pub use self::__AVVideoSettings::AVVideoLogTransferFunction_AppleLog;
+#[cfg(feature = "AVVideoSettings")]
+pub use self::__AVVideoSettings::AVVideoLogTransferFunction_AppleLog2;
 #[cfg(feature = "AVVideoSettings")]
 pub use self::__AVVideoSettings::AVVideoMaxKeyFrameIntervalDurationKey;
 #[cfg(feature = "AVVideoSettings")]

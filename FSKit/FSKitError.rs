@@ -62,3 +62,42 @@ unsafe impl Encode for FSErrorCode {
 unsafe impl RefEncode for FSErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+/// Error codes specific to data cache operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdatacacheerrorcode?language=objc)
+// NS_ERROR_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct FSDataCacheErrorCode(pub NSInteger);
+impl FSDataCacheErrorCode {
+    /// The requested cache mode and coherency type combination is invalid.
+    #[doc(alias = "FSErrorInvalidCacheModeCoherency")]
+    pub const ErrorInvalidCacheModeCoherency: Self = Self(4510);
+    /// The cache transition is not allowed.
+    ///
+    /// This error occurs when attempting an invalid transition, such as using an upgrade
+    /// method for a downgrade operation, or vice versa.
+    #[doc(alias = "FSErrorInvalidCacheTransition")]
+    pub const ErrorInvalidCacheTransition: Self = Self(4511);
+    /// Failed to flush dirty cached data to storage.
+    #[doc(alias = "FSErrorCacheFlushFailed")]
+    pub const ErrorCacheFlushFailed: Self = Self(4512);
+    /// Failed to invalidate (clear) cached data.
+    #[doc(alias = "FSErrorCacheInvalidationFailed")]
+    pub const ErrorCacheInvalidationFailed: Self = Self(4513);
+    /// A conflicting cache operation is in progress.
+    ///
+    /// This error occurs when multiple cache operations on the same item conflict,
+    /// such as attempting to change cache mode while I/O is active.
+    #[doc(alias = "FSErrorCacheOperationConflict")]
+    pub const ErrorCacheOperationConflict: Self = Self(4514);
+}
+
+unsafe impl Encode for FSDataCacheErrorCode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for FSDataCacheErrorCode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

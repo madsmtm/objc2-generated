@@ -183,11 +183,13 @@ impl NSResponder {
         pub fn swipeWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
+        #[deprecated = "Begin/end gesture events are no longer delivered. Use the phase property on NSEvent or NSGestureRecognizer instead."]
         #[unsafe(method(beginGestureWithEvent:))]
         #[unsafe(method_family = none)]
         pub fn beginGestureWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
+        #[deprecated = "Begin/end gesture events are no longer delivered. Use the phase property on NSEvent or NSGestureRecognizer instead."]
         #[unsafe(method(endGestureWithEvent:))]
         #[unsafe(method_family = none)]
         pub fn endGestureWithEvent(&self, event: &NSEvent);

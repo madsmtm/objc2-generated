@@ -124,6 +124,25 @@ unsafe impl RefEncode for UIBarButtonSystemItem {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitemvisibilitypriority?language=objc)
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type UIBarButtonItemVisibilityPriority = NSInteger;
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitemvisibilityprioritystandard?language=objc)
+    pub static UIBarButtonItemVisibilityPriorityStandard: UIBarButtonItemVisibilityPriority;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitemvisibilityprioritylow?language=objc)
+    pub static UIBarButtonItemVisibilityPriorityLow: UIBarButtonItemVisibilityPriority;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitemvisibilitypriorityhigh?language=objc)
+    pub static UIBarButtonItemVisibilityPriorityHigh: UIBarButtonItemVisibilityPriority;
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem?language=objc)
     #[unsafe(super(UIBarItem, NSObject))]
@@ -493,6 +512,32 @@ impl UIBarButtonItem {
         #[unsafe(method_family = none)]
         pub fn setSymbolAnimationEnabled(&self, symbol_animation_enabled: bool);
 
+        /// Visibility priority for this item when placed in a button bar.
+        ///
+        /// Items with higher priority values are preserved longer when space is constrained.
+        /// When an item is placed in an implicit group, the group inherits this priority.
+        ///
+        /// The default value is `UIBarButtonItemVisibilityPriorityStandard`.
+        #[unsafe(method(visibilityPriority))]
+        #[unsafe(method_family = none)]
+        pub fn visibilityPriority(&self) -> UIBarButtonItemVisibilityPriority;
+
+        /// Setter for [`visibilityPriority`][Self::visibilityPriority].
+        #[unsafe(method(setVisibilityPriority:))]
+        #[unsafe(method_family = none)]
+        pub fn setVisibilityPriority(&self, visibility_priority: UIBarButtonItemVisibilityPriority);
+
+        /// Whether the standard padding around the item should be removed.
+        /// Default: NO
+        #[unsafe(method(isPaddingRemoved))]
+        #[unsafe(method_family = none)]
+        pub fn isPaddingRemoved(&self) -> bool;
+
+        /// Setter for [`isPaddingRemoved`][Self::isPaddingRemoved].
+        #[unsafe(method(setPaddingRemoved:))]
+        #[unsafe(method_family = none)]
+        pub fn setPaddingRemoved(&self, padding_removed: bool);
+
         #[cfg(feature = "UIMenuElement")]
         /// A UIMenuElement that should substitute for the UIBarButtonItem when displayed in a menu.
         #[unsafe(method(menuRepresentation))]
@@ -520,7 +565,9 @@ impl UIBarButtonItem {
         #[unsafe(method(hidesSharedBackground))]
         #[unsafe(method_family = none)]
         pub fn hidesSharedBackground(&self) -> bool;
+    );
 
+    extern_methods!(
         /// Setter for [`hidesSharedBackground`][Self::hidesSharedBackground].
         #[unsafe(method(setHidesSharedBackground:))]
         #[unsafe(method_family = none)]
@@ -557,9 +604,7 @@ impl UIBarButtonItem {
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub fn identifier(&self) -> Option<Retained<NSString>>;
-    );
 
-    extern_methods!(
         /// Setter for [`identifier`][Self::identifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.

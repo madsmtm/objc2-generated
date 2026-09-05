@@ -30,6 +30,9 @@ mod __ODAttributeMap;
 #[cfg(feature = "ODConfiguration")]
 #[path = "ODConfiguration.rs"]
 mod __ODConfiguration;
+#[cfg(feature = "ODContext")]
+#[path = "ODContext.rs"]
+mod __ODContext;
 #[cfg(feature = "ODMappings")]
 #[path = "ODMappings.rs"]
 mod __ODMappings;
@@ -78,6 +81,8 @@ pub use self::__ODConfiguration::ODTrustTypeAnonymous;
 pub use self::__ODConfiguration::ODTrustTypeJoined;
 #[cfg(feature = "ODConfiguration")]
 pub use self::__ODConfiguration::ODTrustTypeUsingCredentials;
+#[cfg(feature = "ODContext")]
+pub use self::__ODContext::ODContext;
 #[cfg(feature = "ODMappings")]
 pub use self::__ODMappings::ODMappings;
 #[cfg(feature = "ODModuleEntry")]

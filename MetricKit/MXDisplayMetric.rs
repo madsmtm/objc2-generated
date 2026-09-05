@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXDisplayMetric;
 );
 
@@ -42,6 +43,7 @@ impl MXDisplayMetric {
         /// This value is null when the device does not support APL.
         ///
         /// Dimensioned as MXUnitAveragePixelLuminance.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(averagePixelLuminance))]
         #[unsafe(method_family = none)]
         pub unsafe fn averagePixelLuminance(

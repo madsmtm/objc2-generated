@@ -6,16 +6,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterbehavior?language=objc)
+/// These constants specify the behavior of a number formatter. These constants are returned by the
+/// `defaultFormatterBehavior`class method and the
+/// `formatterBehavior`property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterBehavior(pub NSUInteger);
 impl NSNumberFormatterBehavior {
+    /// The number-formatter behavior set as the default for new instances. You can set the default
+    /// formatter behavior with the class method
+    /// `setDefaultFormatterBehavior:`.
     #[doc(alias = "NSNumberFormatterBehaviorDefault")]
     pub const BehaviorDefault: Self = Self(0);
+    /// The number-formatter behavior as it existed prior to macOS 10.4.
     #[doc(alias = "NSNumberFormatterBehavior10_0")]
     pub const Behavior10_0: Self = Self(1000);
+    /// The number-formatter behavior since macOS 10.4.
     #[doc(alias = "NSNumberFormatterBehavior10_4")]
     pub const Behavior10_4: Self = Self(1040);
 }
@@ -28,30 +37,78 @@ unsafe impl RefEncode for NSNumberFormatterBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterstyle?language=objc)
+/// The predefined number format styles used by the
+/// `numberStyle`property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterStyle(pub NSUInteger);
 impl NSNumberFormatterStyle {
+    /// An integer representation.
+    ///
+    /// For example, the number 1234.5678 is represented as 1235.
     #[doc(alias = "NSNumberFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
+    /// A decimal style format.
+    ///
+    /// For example, in the en_US locale, the number 1234.5678 is represented as 1,234.568.
     #[doc(alias = "NSNumberFormatterDecimalStyle")]
     pub const DecimalStyle: Self = Self(1);
+    /// A currency style format that uses the currency symbol defined by the number formatter locale.
+    ///
+    /// For example, in the en_US locale, the number 1234.5678 is represented as $1,234.57; in the fr_FR
+    /// locale, the number 1234.5678 is represented as 1 234,57 EUR.
     #[doc(alias = "NSNumberFormatterCurrencyStyle")]
     pub const CurrencyStyle: Self = Self(2);
+    /// A percent style format.
+    ///
+    /// For example, in the en_US locale, the number 0.123 is represented as 12%.
     #[doc(alias = "NSNumberFormatterPercentStyle")]
     pub const PercentStyle: Self = Self(3);
+    /// A scientific style format.
+    ///
+    /// For example, in the en_US locale, the number 1234.5678 is represented as 1.2345678E3.
     #[doc(alias = "NSNumberFormatterScientificStyle")]
     pub const ScientificStyle: Self = Self(4);
+    /// A style format in which numbers are spelled out in the language defined by the number formatter locale.
+    ///
+    /// For example, in the en_US locale, the number 1234.5678 is represented as one thousand two hundred
+    /// thirty-four point five six seven eight; in the fr_FR locale, the number 1234.5678 is represented as
+    /// mille deux cent trente-quatre virgule cinq six sept huit.
+    ///
+    /// This style is supported for most user locales. If this style doesn't support the number formatter
+    /// locale, the en_US locale is used as a fallback.
     #[doc(alias = "NSNumberFormatterSpellOutStyle")]
     pub const SpellOutStyle: Self = Self(5);
+    /// An ordinal style format.
+    ///
+    /// For example, in the en_US locale, the number 3 is represented as 3rd; in the fr_FR locale, the number
+    /// 3 is represented as 3e.
     #[doc(alias = "NSNumberFormatterOrdinalStyle")]
     pub const OrdinalStyle: Self = Self(6);
+    /// A currency style format that uses the ISO 4217 currency code defined by the number formatter locale.
+    ///
+    /// This style behaves like the currency style, except that the currency symbol is replaced by the
+    /// corresponding ISO 4217 currency code. For example, in the en_US locale, the number 1234.5678 is
+    /// represented as USD1,234.57; in the fr_FR locale, the number 1234.5678 is represented as 1 234,57 EUR.
     #[doc(alias = "NSNumberFormatterCurrencyISOCodeStyle")]
     pub const CurrencyISOCodeStyle: Self = Self(8);
+    /// A currency style format that uses the pluralized denomination defined by the number formatter locale.
+    ///
+    /// This style behaves like the currency style, except that the currency symbol is replaced by the
+    /// corresponding pluralized denomination. For example, in the en_US locale, the number 1234.5678 is
+    /// represented as 1,234.57 US dollars; in the fr_FR locale, the number 1234.5678 is represented as
+    /// 1 234,57 euros.
     #[doc(alias = "NSNumberFormatterCurrencyPluralStyle")]
     pub const CurrencyPluralStyle: Self = Self(9);
+    /// An accounting currency style format that uses the currency symbol defined by the number formatter locale.
+    ///
+    /// This style behaves like the currency style, except that negative numbers representations are surrounded
+    /// by parentheses rather than preceded by a negative symbol. For example, in the en_US locale, the number
+    /// -1234.5678 is represented as ($1,234.57); in the fr_FR locale, the number -1234.5678 is represented as
+    /// (1 234,57 EUR).
     #[doc(alias = "NSNumberFormatterCurrencyAccountingStyle")]
     pub const CurrencyAccountingStyle: Self = Self(10);
 }
@@ -64,18 +121,25 @@ unsafe impl RefEncode for NSNumberFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterpadposition?language=objc)
+/// These constants are used to specify how numbers should be padded. These constants are used by the
+/// `paddingPosition`property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterpadposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterPadPosition(pub NSUInteger);
 impl NSNumberFormatterPadPosition {
+    /// Specifies that the padding should occur before the prefix.
     #[doc(alias = "NSNumberFormatterPadBeforePrefix")]
     pub const BeforePrefix: Self = Self(0);
+    /// Specifies that the padding should occur after the prefix.
     #[doc(alias = "NSNumberFormatterPadAfterPrefix")]
     pub const AfterPrefix: Self = Self(1);
+    /// Specifies that the padding should occur before the suffix.
     #[doc(alias = "NSNumberFormatterPadBeforeSuffix")]
     pub const BeforeSuffix: Self = Self(2);
+    /// Specifies that the padding should occur after the suffix.
     #[doc(alias = "NSNumberFormatterPadAfterSuffix")]
     pub const AfterSuffix: Self = Self(3);
 }
@@ -88,24 +152,34 @@ unsafe impl RefEncode for NSNumberFormatterPadPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterroundingmode?language=objc)
+/// These constants are used to specify how numbers should be rounded. These constants are used by the
+/// `roundingMode`property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterroundingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterRoundingMode(pub NSUInteger);
 impl NSNumberFormatterRoundingMode {
+    /// Round towards positive infinity.
     #[doc(alias = "NSNumberFormatterRoundCeiling")]
     pub const RoundCeiling: Self = Self(0);
+    /// Round towards negative infinity.
     #[doc(alias = "NSNumberFormatterRoundFloor")]
     pub const RoundFloor: Self = Self(1);
+    /// Round towards zero.
     #[doc(alias = "NSNumberFormatterRoundDown")]
     pub const RoundDown: Self = Self(2);
+    /// Round away from zero.
     #[doc(alias = "NSNumberFormatterRoundUp")]
     pub const RoundUp: Self = Self(3);
+    /// Round towards the nearest integer, or towards an even number if equidistant.
     #[doc(alias = "NSNumberFormatterRoundHalfEven")]
     pub const RoundHalfEven: Self = Self(4);
+    /// Round towards the nearest integer, or towards zero if equidistant.
     #[doc(alias = "NSNumberFormatterRoundHalfDown")]
     pub const RoundHalfDown: Self = Self(5);
+    /// Round towards the nearest integer, or away from zero if equidistant.
     #[doc(alias = "NSNumberFormatterRoundHalfUp")]
     pub const RoundHalfUp: Self = Self(6);
 }
@@ -119,7 +193,34 @@ unsafe impl RefEncode for NSNumberFormatterRoundingMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatter?language=objc)
+    /// A formatter that converts between numeric values and their textual representations.
+    ///
+    /// Instances of ``NumberFormatter`` format the textual representation of cells that contain ``NSNumber`` objects and convert textual representations of numeric values into ``NSNumber`` objects. The representation encompasses integers, floats, and doubles; floats and doubles can be formatted to a specified decimal position. ``NumberFormatter`` objects can also impose ranges on the numeric values cells can accept.
+    ///
+    /// > Tip:
+    /// > In Swift, you can use ``IntegerFormatStyle``, ``FloatingPointFormatStyle``, or ``Decimal/FormatStyle`` rather than ``NumberFormatter``. The ``FormatStyle`` API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical ``FormatStyle`` instances, so you don't need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    /// ### Significant Digits and Fraction Digits
+    ///
+    /// The ``NumberFormatter`` class provides flexible options for displaying non-zero fractional parts of numbers.
+    ///
+    /// If you set the ``usesSignificantDigits`` property to
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true>, you can configure ``NumberFormatter`` to display significant digits using the ``minimumSignificantDigits`` and ``maximumSignificantDigits`` properties. If ``usesSignificantDigits`` is
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false>, these properties are ignored. See Configuring Significant Digits.
+    ///
+    /// Otherwise, you can configure the minimum and maximum number of integer and fraction digits, or the numbers before and after the decimal separator, respectively, using the ``minimumIntegerDigits``, ``maximumIntegerDigits``, ``minimumFractionDigits``, and ``maximumFractionDigits`` properties. See Configuring Integer and Fraction Digits.
+    ///
+    /// ### Thread Safety
+    ///
+    /// On iOS 7 and later ``NumberFormatter`` is thread-safe.
+    ///
+    /// In macOS 10.9 and later ``NumberFormatter`` is thread-safe so long as you are using the modern behavior in a 64-bit app.
+    ///
+    /// On earlier versions of the operating system, or when using the legacy formatter behavior or running in 32-bit in macOS, ``NumberFormatter`` is not thread-safe, and you therefore must not mutate a number formatter simultaneously from multiple threads.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -155,6 +256,10 @@ extern_conformance!(
 #[cfg(feature = "NSFormatter")]
 impl NSNumberFormatter {
     extern_methods!(
+        /// The capitalization formatting context used when formatting a number.
+        ///
+        /// Defaults to
+        /// `NSFormattingContextUnknown.`
         #[unsafe(method(formattingContext))]
         #[unsafe(method_family = none)]
         pub fn formattingContext(&self) -> NSFormattingContext;
@@ -165,6 +270,37 @@ impl NSNumberFormatter {
         pub fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(all(feature = "NSError", feature = "NSRange", feature = "NSString"))]
+        /// Returns by reference a cell-content object after creating it from a range of characters in a given string.
+        ///
+        /// If a string contains any characters other than numerical digits or locale-appropriate group or decimal
+        /// separators, parsing will fail.
+        ///
+        /// Any leading or trailing space separator characters in a string are ignored. For example, the strings
+        /// " 5", "5 ", and "5" all produce the number
+        /// `5.`
+        /// If there is an error, this method calls
+        /// `control:didFailToFormatString:errorDescription:`on the delegate.
+        ///
+        /// Parameter `obj`: On return, contains an instance of
+        /// `NSDecimalNumber`or
+        /// `NSNumber`based on the current value
+        /// of the
+        /// `generatesDecimalNumbers`property. Returns
+        /// `nil`by reference if conversion failed.
+        ///
+        /// Parameter `string`: A string object with the range of characters specified in
+        /// `rangep`that is used to create
+        /// `anObject.`
+        /// Parameter `rangep`: A range of characters in
+        /// `aString.`On return, contains the actual range of characters used to
+        /// create the object.
+        ///
+        /// Parameter `error`: If an error occurs, upon return contains an
+        /// `NSError`object that explains why the conversion failed.
+        ///
+        /// Returns: `YES`if the conversion from string to cell-content object was successful, otherwise
+        /// `NO.`
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.
@@ -178,16 +314,48 @@ impl NSNumberFormatter {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
+        /// Returns a string containing the formatted value of the provided number object.
+        ///
+        /// Parameter `number`: An
+        /// `NSNumber`object that is parsed to create the returned string object.
+        ///
+        /// Returns: A string containing the formatted value of
+        /// `number`using the receiver's current settings.
         #[unsafe(method(stringFromNumber:))]
         #[unsafe(method_family = none)]
         pub fn stringFromNumber(&self, number: &NSNumber) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
+        /// Returns an
+        /// `NSNumber`object created by parsing a given string.
+        ///
+        /// If a string contains any characters other than numerical digits or locale-appropriate group or decimal
+        /// separators, parsing will fail.
+        ///
+        /// Any leading or trailing space separator characters in a string are ignored. For example, the strings
+        /// " 5", "5 ", and "5" all produce the number
+        /// `5.`
+        /// Parameter `string`: An
+        /// `NSString`object that is parsed to generate the returned number object.
+        ///
+        /// Returns: An
+        /// `NSNumber`object created by parsing
+        /// `string`using the receiver's format, or
+        /// `nil`if no single
+        /// number could be parsed.
         #[unsafe(method(numberFromString:))]
         #[unsafe(method_family = none)]
         pub fn numberFromString(&self, string: &NSString) -> Option<Retained<NSNumber>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
+        /// Returns a localized number string with the specified style.
+        ///
+        /// Parameter `num`: The number to localize.
+        ///
+        /// Parameter `nstyle`: The localization style to use.
+        ///
+        /// Returns: An appropriately formatted
+        /// `NSString.`
         #[unsafe(method(localizedStringFromNumber:numberStyle:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringFromNumber_numberStyle(
@@ -195,14 +363,26 @@ impl NSNumberFormatter {
             nstyle: NSNumberFormatterStyle,
         ) -> Retained<NSString>;
 
+        /// Returns an
+        /// `NSNumberFormatterBehavior`constant that indicates default formatter behavior for new
+        /// instances of
+        /// `NSNumberFormatter.`
         #[unsafe(method(defaultFormatterBehavior))]
         #[unsafe(method_family = none)]
         pub fn defaultFormatterBehavior() -> NSNumberFormatterBehavior;
 
+        /// Sets the default formatter behavior for new instances of
+        /// `NSNumberFormatter.`
+        /// Parameter `behavior`: An
+        /// `NSNumberFormatterBehavior`constant that indicates the revision of the class
+        /// providing the default behavior.
         #[unsafe(method(setDefaultFormatterBehavior:))]
         #[unsafe(method_family = none)]
         pub fn setDefaultFormatterBehavior(behavior: NSNumberFormatterBehavior);
 
+        /// See
+        /// `kCFNumberFormatterMinGroupingDigits`in
+        /// `CFNumberFormatter`for an explanation on how minimum grouping digits is used.
         #[unsafe(method(minimumGroupingDigits))]
         #[unsafe(method_family = none)]
         pub fn minimumGroupingDigits(&self) -> NSInteger;
@@ -212,6 +392,10 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setMinimumGroupingDigits(&self, minimum_grouping_digits: NSInteger);
 
+        /// The number style used by the receiver.
+        ///
+        /// Styles are essentially predetermined sets of values for certain properties. Examples of number-formatter
+        /// styles are those used for decimal values, percentage values, and currency.
         #[unsafe(method(numberStyle))]
         #[unsafe(method_family = none)]
         pub fn numberStyle(&self) -> NSNumberFormatterStyle;
@@ -222,6 +406,10 @@ impl NSNumberFormatter {
         pub fn setNumberStyle(&self, number_style: NSNumberFormatterStyle);
 
         #[cfg(feature = "NSLocale")]
+        /// The locale of the receiver.
+        ///
+        /// The locale determines the default values for many formatter attributes, such as ISO region and language
+        /// codes, currency code, calendar, system of measurement, and decimal separator.
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub fn locale(&self) -> Retained<NSLocale>;
@@ -234,6 +422,9 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setLocale(&self, locale: Option<&NSLocale>);
 
+        /// Determines whether the receiver creates instances of
+        /// `NSDecimalNumber`when it converts strings to
+        /// number objects.
         #[unsafe(method(generatesDecimalNumbers))]
         #[unsafe(method_family = none)]
         pub fn generatesDecimalNumbers(&self) -> bool;
@@ -243,6 +434,7 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setGeneratesDecimalNumbers(&self, generates_decimal_numbers: bool);
 
+        /// The formatter behavior of the receiver.
         #[unsafe(method(formatterBehavior))]
         #[unsafe(method_family = none)]
         pub fn formatterBehavior(&self) -> NSNumberFormatterBehavior;
@@ -253,6 +445,7 @@ impl NSNumberFormatter {
         pub fn setFormatterBehavior(&self, formatter_behavior: NSNumberFormatterBehavior);
 
         #[cfg(feature = "NSString")]
+        /// The format the receiver uses to display negative values.
         #[unsafe(method(negativeFormat))]
         #[unsafe(method_family = none)]
         pub fn negativeFormat(&self) -> Retained<NSString>;
@@ -266,6 +459,9 @@ impl NSNumberFormatter {
         pub fn setNegativeFormat(&self, negative_format: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The text attributes to be used in displaying negative values.
+        ///
+        /// This property is a dictionary that contains the attributes used to display negative values.
         #[unsafe(method(textAttributesForNegativeValues))]
         #[unsafe(method_family = none)]
         pub fn textAttributesForNegativeValues(
@@ -288,6 +484,7 @@ impl NSNumberFormatter {
         );
 
         #[cfg(feature = "NSString")]
+        /// The format the receiver uses to display positive values.
         #[unsafe(method(positiveFormat))]
         #[unsafe(method_family = none)]
         pub fn positiveFormat(&self) -> Retained<NSString>;
@@ -301,6 +498,9 @@ impl NSNumberFormatter {
         pub fn setPositiveFormat(&self, positive_format: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The text attributes to be used in displaying positive values.
+        ///
+        /// This property is a dictionary that contains the attributes used to display positive values.
         #[unsafe(method(textAttributesForPositiveValues))]
         #[unsafe(method_family = none)]
         pub fn textAttributesForPositiveValues(
@@ -322,6 +522,10 @@ impl NSNumberFormatter {
             text_attributes_for_positive_values: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
+        /// Determines whether the receiver allows as input floating-point values (that is, values that include the
+        /// period character (
+        /// `.)).`
+        /// By default, floating point values are allowed.
         #[unsafe(method(allowsFloats))]
         #[unsafe(method_family = none)]
         pub fn allowsFloats(&self) -> bool;
@@ -332,6 +536,7 @@ impl NSNumberFormatter {
         pub fn setAllowsFloats(&self, allows_floats: bool);
 
         #[cfg(feature = "NSString")]
+        /// The character the receiver uses as a decimal separator.
         #[unsafe(method(decimalSeparator))]
         #[unsafe(method_family = none)]
         pub fn decimalSeparator(&self) -> Retained<NSString>;
@@ -344,6 +549,7 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setDecimalSeparator(&self, decimal_separator: Option<&NSString>);
 
+        /// Determines whether the receiver always shows the decimal separator, even for integer numbers.
         #[unsafe(method(alwaysShowsDecimalSeparator))]
         #[unsafe(method_family = none)]
         pub fn alwaysShowsDecimalSeparator(&self) -> bool;
@@ -354,6 +560,7 @@ impl NSNumberFormatter {
         pub fn setAlwaysShowsDecimalSeparator(&self, always_shows_decimal_separator: bool);
 
         #[cfg(feature = "NSString")]
+        /// The string used by the receiver as a currency decimal separator.
         #[unsafe(method(currencyDecimalSeparator))]
         #[unsafe(method_family = none)]
         pub fn currencyDecimalSeparator(&self) -> Retained<NSString>;
@@ -366,6 +573,7 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setCurrencyDecimalSeparator(&self, currency_decimal_separator: Option<&NSString>);
 
+        /// Determines whether the receiver displays the group separator.
         #[unsafe(method(usesGroupingSeparator))]
         #[unsafe(method_family = none)]
         pub fn usesGroupingSeparator(&self) -> bool;
@@ -376,6 +584,10 @@ impl NSNumberFormatter {
         pub fn setUsesGroupingSeparator(&self, uses_grouping_separator: bool);
 
         #[cfg(feature = "NSString")]
+        /// The string used by the receiver for a grouping separator.
+        ///
+        /// For example, the grouping separator used in the United States is the comma ("10,000") whereas in France
+        /// it is the space ("10 000").
         #[unsafe(method(groupingSeparator))]
         #[unsafe(method_family = none)]
         pub fn groupingSeparator(&self) -> Retained<NSString>;
@@ -389,6 +601,12 @@ impl NSNumberFormatter {
         pub fn setGroupingSeparator(&self, grouping_separator: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The string used to represent a zero value.
+        ///
+        /// If not specified, zero values are formatted normally.
+        ///
+        /// You might, for example, set this property to
+        /// `"-"`in a spreadsheet used for accounting.
         #[unsafe(method(zeroSymbol))]
         #[unsafe(method_family = none)]
         pub fn zeroSymbol(&self) -> Option<Retained<NSString>>;
@@ -402,6 +620,9 @@ impl NSNumberFormatter {
         pub fn setZeroSymbol(&self, zero_symbol: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The text attributes used to display a zero value.
+        ///
+        /// This property is a dictionary that contains the text attributes used to display zero values.
         #[unsafe(method(textAttributesForZero))]
         #[unsafe(method_family = none)]
         pub fn textAttributesForZero(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -422,6 +643,10 @@ impl NSNumberFormatter {
         );
 
         #[cfg(feature = "NSString")]
+        /// The string used to represent a
+        /// `nil`value.
+        ///
+        /// By default, this property is set to an empty string ("").
         #[unsafe(method(nilSymbol))]
         #[unsafe(method_family = none)]
         pub fn nilSymbol(&self) -> Retained<NSString>;
@@ -435,6 +660,8 @@ impl NSNumberFormatter {
         pub fn setNilSymbol(&self, nil_symbol: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The text attributes used to display the
+        /// `nil`symbol.
         #[unsafe(method(textAttributesForNil))]
         #[unsafe(method_family = none)]
         pub fn textAttributesForNil(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -455,6 +682,9 @@ impl NSNumberFormatter {
         );
 
         #[cfg(feature = "NSString")]
+        /// The string used to represent a NaN ("not a number") value.
+        ///
+        /// By default, this property is set to the string "NaN".
         #[unsafe(method(notANumberSymbol))]
         #[unsafe(method_family = none)]
         pub fn notANumberSymbol(&self) -> Retained<NSString>;
@@ -468,6 +698,7 @@ impl NSNumberFormatter {
         pub fn setNotANumberSymbol(&self, not_a_number_symbol: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The text attributes used to display the NaN ("not a number") string.
         #[unsafe(method(textAttributesForNotANumber))]
         #[unsafe(method_family = none)]
         pub fn textAttributesForNotANumber(
@@ -492,6 +723,9 @@ impl NSNumberFormatter {
 
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The string used to represent a positive infinity symbol.
+        ///
+        /// By default, this property is set to the string "+\u221e".
         #[unsafe(method(positiveInfinitySymbol))]
         #[unsafe(method_family = none)]
         pub fn positiveInfinitySymbol(&self) -> Retained<NSString>;
@@ -505,6 +739,9 @@ impl NSNumberFormatter {
         pub fn setPositiveInfinitySymbol(&self, positive_infinity_symbol: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The text attributes used to display the positive infinity symbol.
+        ///
+        /// This property is a dictionary that contains the text attributes used to display the positive infinity string.
         #[unsafe(method(textAttributesForPositiveInfinity))]
         #[unsafe(method_family = none)]
         pub fn textAttributesForPositiveInfinity(
@@ -527,6 +764,9 @@ impl NSNumberFormatter {
         );
 
         #[cfg(feature = "NSString")]
+        /// The string used to represent a negative infinity symbol.
+        ///
+        /// By default, this property is set to the string "-\u221e".
         #[unsafe(method(negativeInfinitySymbol))]
         #[unsafe(method_family = none)]
         pub fn negativeInfinitySymbol(&self) -> Retained<NSString>;
@@ -540,6 +780,9 @@ impl NSNumberFormatter {
         pub fn setNegativeInfinitySymbol(&self, negative_infinity_symbol: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The text attributes used to display the negative infinity symbol.
+        ///
+        /// This property is a dictionary that contains the text attributes used to display the negative infinity string.
         #[unsafe(method(textAttributesForNegativeInfinity))]
         #[unsafe(method_family = none)]
         pub fn textAttributesForNegativeInfinity(
@@ -562,6 +805,7 @@ impl NSNumberFormatter {
         );
 
         #[cfg(feature = "NSString")]
+        /// The string the receiver uses as the prefix for positive values.
         #[unsafe(method(positivePrefix))]
         #[unsafe(method_family = none)]
         pub fn positivePrefix(&self) -> Retained<NSString>;
@@ -575,6 +819,7 @@ impl NSNumberFormatter {
         pub fn setPositivePrefix(&self, positive_prefix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The string the receiver uses as the suffix for positive values.
         #[unsafe(method(positiveSuffix))]
         #[unsafe(method_family = none)]
         pub fn positiveSuffix(&self) -> Retained<NSString>;
@@ -588,6 +833,7 @@ impl NSNumberFormatter {
         pub fn setPositiveSuffix(&self, positive_suffix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The string the receiver uses as a prefix for negative values.
         #[unsafe(method(negativePrefix))]
         #[unsafe(method_family = none)]
         pub fn negativePrefix(&self) -> Retained<NSString>;
@@ -601,6 +847,7 @@ impl NSNumberFormatter {
         pub fn setNegativePrefix(&self, negative_prefix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The string the receiver uses as a suffix for negative values.
         #[unsafe(method(negativeSuffix))]
         #[unsafe(method_family = none)]
         pub fn negativeSuffix(&self) -> Retained<NSString>;
@@ -614,6 +861,11 @@ impl NSNumberFormatter {
         pub fn setNegativeSuffix(&self, negative_suffix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The receiver's currency code.
+        ///
+        /// A currency code is a three-letter code that is, in most cases, composed of a region's two-character
+        /// Internet region code plus an extra character to denote the currency unit. For example, the currency code
+        /// for the Australian dollar is "AUD". Currency codes are based on the ISO 4217 standard.
         #[unsafe(method(currencyCode))]
         #[unsafe(method_family = none)]
         pub fn currencyCode(&self) -> Retained<NSString>;
@@ -627,6 +879,11 @@ impl NSNumberFormatter {
         pub fn setCurrencyCode(&self, currency_code: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The string used by the receiver as a local currency symbol.
+        ///
+        /// A region typically has a local currency symbol and an international currency symbol. The local symbol is
+        /// used within the region, while the international currency symbol is used in international contexts to specify
+        /// that region's currency unambiguously. The local currency symbol is often represented by a Unicode code point.
         #[unsafe(method(currencySymbol))]
         #[unsafe(method_family = none)]
         pub fn currencySymbol(&self) -> Retained<NSString>;
@@ -640,6 +897,12 @@ impl NSNumberFormatter {
         pub fn setCurrencySymbol(&self, currency_symbol: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The international currency symbol used by the receiver.
+        ///
+        /// A region typically has a local currency symbol and an international currency symbol. The local symbol is
+        /// used within the region, while the international currency symbol is used in international contexts to specify
+        /// that region's currency unambiguously. The international currency symbol is often represented by a Unicode
+        /// code point.
         #[unsafe(method(internationalCurrencySymbol))]
         #[unsafe(method_family = none)]
         pub fn internationalCurrencySymbol(&self) -> Retained<NSString>;
@@ -656,6 +919,9 @@ impl NSNumberFormatter {
         );
 
         #[cfg(feature = "NSString")]
+        /// The string used to represent a percent symbol.
+        ///
+        /// By default, this property is set to the percent sign (%).
         #[unsafe(method(percentSymbol))]
         #[unsafe(method_family = none)]
         pub fn percentSymbol(&self) -> Retained<NSString>;
@@ -669,6 +935,10 @@ impl NSNumberFormatter {
         pub fn setPercentSymbol(&self, percent_symbol: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The string used to represent a per-mill (per-thousand) symbol.
+        ///
+        /// By default, this property is set to the per mille sign (
+        /// ).
         #[unsafe(method(perMillSymbol))]
         #[unsafe(method_family = none)]
         pub fn perMillSymbol(&self) -> Retained<NSString>;
@@ -682,6 +952,9 @@ impl NSNumberFormatter {
         pub fn setPerMillSymbol(&self, per_mill_symbol: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The string used to represent a minus sign.
+        ///
+        /// By default, this property is set to the minus sign (-).
         #[unsafe(method(minusSign))]
         #[unsafe(method_family = none)]
         pub fn minusSign(&self) -> Retained<NSString>;
@@ -695,6 +968,9 @@ impl NSNumberFormatter {
         pub fn setMinusSign(&self, minus_sign: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The string used to represent a plus sign.
+        ///
+        /// By default, this property is set to the plus sign (+).
         #[unsafe(method(plusSign))]
         #[unsafe(method_family = none)]
         pub fn plusSign(&self) -> Retained<NSString>;
@@ -708,6 +984,11 @@ impl NSNumberFormatter {
         pub fn setPlusSign(&self, plus_sign: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// The string used to represent an exponent symbol.
+        ///
+        /// By default, this property is set to the latin capital letter E.
+        ///
+        /// The exponent symbol is the "E" or "e" in the scientific notation of numbers, as in "1.0E+42".
         #[unsafe(method(exponentSymbol))]
         #[unsafe(method_family = none)]
         pub fn exponentSymbol(&self) -> Retained<NSString>;
@@ -720,6 +1001,7 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setExponentSymbol(&self, exponent_symbol: Option<&NSString>);
 
+        /// The grouping size of the receiver.
         #[unsafe(method(groupingSize))]
         #[unsafe(method_family = none)]
         pub fn groupingSize(&self) -> NSUInteger;
@@ -729,6 +1011,11 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setGroupingSize(&self, grouping_size: NSUInteger);
 
+        /// The secondary grouping size of the receiver.
+        ///
+        /// Some locales allow the specification of another grouping size for larger numbers. For example, some locales
+        /// may represent a number such as 61, 242, 378.46 (as in the United States) as 6,12,42,378.46. In this case,
+        /// the secondary grouping size (covering the groups of digits furthest from the decimal point) is 2.
         #[unsafe(method(secondaryGroupingSize))]
         #[unsafe(method_family = none)]
         pub fn secondaryGroupingSize(&self) -> NSUInteger;
@@ -739,6 +1026,12 @@ impl NSNumberFormatter {
         pub fn setSecondaryGroupingSize(&self, secondary_grouping_size: NSUInteger);
 
         #[cfg(feature = "NSValue")]
+        /// The multiplier of the receiver.
+        ///
+        /// A multiplier is a factor used in conversions between numbers and strings (that is, numbers as stored and
+        /// numbers as displayed). When the input value is a string, the multiplier is used to divide, and when the
+        /// input value is a number, the multiplier is used to multiply. These operations allow the formatted values
+        /// to be different from the values that a program manipulates internally.
         #[unsafe(method(multiplier))]
         #[unsafe(method_family = none)]
         pub fn multiplier(&self) -> Option<Retained<NSNumber>>;
@@ -751,6 +1044,11 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setMultiplier(&self, multiplier: Option<&NSNumber>);
 
+        /// The format width used by the receiver.
+        ///
+        /// The format width is the number of characters of a formatted number within a string that is either left
+        /// justified or right justified based on the value contained in
+        /// `paddingPosition.`
         #[unsafe(method(formatWidth))]
         #[unsafe(method_family = none)]
         pub fn formatWidth(&self) -> NSUInteger;
@@ -761,6 +1059,7 @@ impl NSNumberFormatter {
         pub fn setFormatWidth(&self, format_width: NSUInteger);
 
         #[cfg(feature = "NSString")]
+        /// The string that the receiver uses to pad numbers in the formatted string representation.
         #[unsafe(method(paddingCharacter))]
         #[unsafe(method_family = none)]
         pub fn paddingCharacter(&self) -> Retained<NSString>;
@@ -773,6 +1072,7 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setPaddingCharacter(&self, padding_character: Option<&NSString>);
 
+        /// The padding position used by the receiver.
         #[unsafe(method(paddingPosition))]
         #[unsafe(method_family = none)]
         pub fn paddingPosition(&self) -> NSNumberFormatterPadPosition;
@@ -782,6 +1082,7 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setPaddingPosition(&self, padding_position: NSNumberFormatterPadPosition);
 
+        /// The rounding mode used by the receiver.
         #[unsafe(method(roundingMode))]
         #[unsafe(method_family = none)]
         pub fn roundingMode(&self) -> NSNumberFormatterRoundingMode;
@@ -792,6 +1093,7 @@ impl NSNumberFormatter {
         pub fn setRoundingMode(&self, rounding_mode: NSNumberFormatterRoundingMode);
 
         #[cfg(feature = "NSValue")]
+        /// The rounding increment used by the receiver.
         #[unsafe(method(roundingIncrement))]
         #[unsafe(method_family = none)]
         pub fn roundingIncrement(&self) -> Retained<NSNumber>;
@@ -804,6 +1106,10 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setRoundingIncrement(&self, rounding_increment: Option<&NSNumber>);
 
+        /// The minimum number of digits before the decimal separator.
+        ///
+        /// By default, this property is set to
+        /// `0.`
         #[unsafe(method(minimumIntegerDigits))]
         #[unsafe(method_family = none)]
         pub fn minimumIntegerDigits(&self) -> NSUInteger;
@@ -815,6 +1121,10 @@ impl NSNumberFormatter {
     );
 
     extern_methods!(
+        /// The maximum number of digits before the decimal separator.
+        ///
+        /// By default, this property is set to
+        /// `42.`
         #[unsafe(method(maximumIntegerDigits))]
         #[unsafe(method_family = none)]
         pub fn maximumIntegerDigits(&self) -> NSUInteger;
@@ -824,6 +1134,10 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setMaximumIntegerDigits(&self, maximum_integer_digits: NSUInteger);
 
+        /// The minimum number of digits after the decimal separator.
+        ///
+        /// By default, this property is set to
+        /// `0.`
         #[unsafe(method(minimumFractionDigits))]
         #[unsafe(method_family = none)]
         pub fn minimumFractionDigits(&self) -> NSUInteger;
@@ -833,6 +1147,10 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setMinimumFractionDigits(&self, minimum_fraction_digits: NSUInteger);
 
+        /// The maximum number of digits after the decimal separator.
+        ///
+        /// By default, this property is set to
+        /// `0.`
         #[unsafe(method(maximumFractionDigits))]
         #[unsafe(method_family = none)]
         pub fn maximumFractionDigits(&self) -> NSUInteger;
@@ -843,6 +1161,7 @@ impl NSNumberFormatter {
         pub fn setMaximumFractionDigits(&self, maximum_fraction_digits: NSUInteger);
 
         #[cfg(feature = "NSValue")]
+        /// The lowest number allowed as input by the receiver.
         #[unsafe(method(minimum))]
         #[unsafe(method_family = none)]
         pub fn minimum(&self) -> Option<Retained<NSNumber>>;
@@ -856,6 +1175,7 @@ impl NSNumberFormatter {
         pub fn setMinimum(&self, minimum: Option<&NSNumber>);
 
         #[cfg(feature = "NSValue")]
+        /// The highest number allowed as input by the receiver.
         #[unsafe(method(maximum))]
         #[unsafe(method_family = none)]
         pub fn maximum(&self) -> Option<Retained<NSNumber>>;
@@ -869,6 +1189,7 @@ impl NSNumberFormatter {
         pub fn setMaximum(&self, maximum: Option<&NSNumber>);
 
         #[cfg(feature = "NSString")]
+        /// The currency grouping separator for the receiver.
         #[unsafe(method(currencyGroupingSeparator))]
         #[unsafe(method_family = none)]
         pub fn currencyGroupingSeparator(&self) -> Retained<NSString>;
@@ -881,6 +1202,10 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setCurrencyGroupingSeparator(&self, currency_grouping_separator: Option<&NSString>);
 
+        /// Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
+        ///
+        /// If the formatter is set to be lenient, as with any guessing it may get the result number wrong (that is,
+        /// a number other than that which was intended).
         #[unsafe(method(isLenient))]
         #[unsafe(method_family = none)]
         pub fn isLenient(&self) -> bool;
@@ -890,6 +1215,27 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setLenient(&self, lenient: bool);
 
+        /// A Boolean value indicating whether the formatter uses minimum and maximum significant digits when
+        /// formatting numbers.
+        ///
+        /// The
+        /// `NSNumberFormatter`class has two ways of determining how many digits to represent: using integer and
+        /// fraction digits and using significant digits.
+        ///
+        /// When this property is set to
+        /// `NO,`numbers are formatted according to whether you want them formatted as
+        /// fractions or as integers. This property is
+        /// `NO`by default.
+        ///
+        /// Set this property to
+        /// `YES`to format numbers according to the significant digits configuration specified
+        /// by the
+        /// `minimumSignificantDigits`and
+        /// `maximumSignificantDigits`properties. By default, the minimum
+        /// number of significant digits is 1, and the maximum number of significant digits is 6.
+        ///
+        /// When a number formatter is configured to use significant digits, it ignores any minimum or maximum values
+        /// used to set integer or fraction digits.
         #[unsafe(method(usesSignificantDigits))]
         #[unsafe(method_family = none)]
         pub fn usesSignificantDigits(&self) -> bool;
@@ -899,6 +1245,12 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setUsesSignificantDigits(&self, uses_significant_digits: bool);
 
+        /// The minimum number of significant digits for the number formatter.
+        ///
+        /// You must set the
+        /// `usesSignificantDigits`property to
+        /// `YES`in order for this property to affect
+        /// formatting behavior. By default, the minimum number of significant digits is 1.
         #[unsafe(method(minimumSignificantDigits))]
         #[unsafe(method_family = none)]
         pub fn minimumSignificantDigits(&self) -> NSUInteger;
@@ -908,6 +1260,13 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setMinimumSignificantDigits(&self, minimum_significant_digits: NSUInteger);
 
+        /// The maximum number of significant digits for the number formatter.
+        ///
+        /// You must set the
+        /// `usesSignificantDigits`property to
+        /// `YES`in order for this property to affect
+        /// formatting behavior. By default, the maximum number of significant digits is 6. Values less than 1
+        /// are ignored.
         #[unsafe(method(maximumSignificantDigits))]
         #[unsafe(method_family = none)]
         pub fn maximumSignificantDigits(&self) -> NSUInteger;
@@ -917,6 +1276,7 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setMaximumSignificantDigits(&self, maximum_significant_digits: NSUInteger);
 
+        /// Determines whether partial string validation is enabled for the receiver.
         #[unsafe(method(isPartialStringValidationEnabled))]
         #[unsafe(method_family = none)]
         pub fn isPartialStringValidationEnabled(&self) -> bool;
@@ -954,6 +1314,7 @@ impl DefaultRetained for NSNumberFormatter {
 #[cfg(feature = "NSFormatter")]
 impl NSNumberFormatter {
     extern_methods!(
+        /// Determines whether the receiver uses thousand separators.
         #[unsafe(method(hasThousandSeparators))]
         #[unsafe(method_family = none)]
         pub fn hasThousandSeparators(&self) -> bool;
@@ -964,6 +1325,14 @@ impl NSNumberFormatter {
         pub fn setHasThousandSeparators(&self, has_thousand_separators: bool);
 
         #[cfg(feature = "NSString")]
+        /// The character the receiver uses as a thousand separator.
+        ///
+        /// If you don't have thousand separators enabled through any other means (such as
+        /// `format),`using this
+        /// method enables them.
+        ///
+        /// This method is for use with formatters using
+        /// `NSNumberFormatterBehavior10_0`behavior.
         #[unsafe(method(thousandSeparator))]
         #[unsafe(method_family = none)]
         pub fn thousandSeparator(&self) -> Retained<NSString>;
@@ -976,6 +1345,21 @@ impl NSNumberFormatter {
         #[unsafe(method_family = none)]
         pub fn setThousandSeparator(&self, thousand_separator: Option<&NSString>);
 
+        /// Determines whether the dollar sign character (
+        /// `$),`decimal separator character (
+        /// `.),`and thousand
+        /// separator character (
+        /// `,)`are converted to appropriately localized characters as specified by the user's
+        /// localization preference.
+        ///
+        /// While the currency-symbol part of this feature may be useful in certain types of applications, it's
+        /// probably more likely that you would tie a particular application to a particular currency (that is, that
+        /// you would "hard-code" the currency symbol and separators instead of having them dynamically change based
+        /// on the user's configuration). The reason for this, of course, is that
+        /// `NSNumberFormatter`doesn't perform
+        /// currency conversions, it just formats numeric data. You wouldn't want one user interpreting the value
+        /// "56324" as US currency and another user who's accessing the same data interpreting it as Japanese currency,
+        /// simply based on each user's localization preferences.
         #[unsafe(method(localizesFormat))]
         #[unsafe(method_family = none)]
         pub fn localizesFormat(&self) -> bool;
@@ -986,6 +1370,10 @@ impl NSNumberFormatter {
         pub fn setLocalizesFormat(&self, localizes_format: bool);
 
         #[cfg(feature = "NSString")]
+        /// The receiver's format.
+        ///
+        /// The format string uses the format patterns from the Unicode Technical Standard #35. For more information,
+        /// see the Data Formatting Guide.
         #[unsafe(method(format))]
         #[unsafe(method_family = none)]
         pub fn format(&self) -> Retained<NSString>;
@@ -999,6 +1387,12 @@ impl NSNumberFormatter {
         pub fn setFormat(&self, format: &NSString);
 
         #[cfg(feature = "NSAttributedString")]
+        /// The attributed string that the receiver uses to display zero values.
+        ///
+        /// By default zero values are displayed according to the format specified for positive values.
+        ///
+        /// This method is for use with formatters using
+        /// `NSNumberFormatterBehavior10_0`behavior.
         #[unsafe(method(attributedStringForZero))]
         #[unsafe(method_family = none)]
         pub fn attributedStringForZero(&self) -> Retained<NSAttributedString>;
@@ -1012,6 +1406,14 @@ impl NSNumberFormatter {
         pub fn setAttributedStringForZero(&self, attributed_string_for_zero: &NSAttributedString);
 
         #[cfg(feature = "NSAttributedString")]
+        /// The attributed string the receiver uses to display
+        /// `nil`values.
+        ///
+        /// By default
+        /// `nil`values are displayed as an empty string.
+        ///
+        /// This method is for use with formatters using
+        /// `NSNumberFormatterBehavior10_0`behavior.
         #[unsafe(method(attributedStringForNil))]
         #[unsafe(method_family = none)]
         pub fn attributedStringForNil(&self) -> Retained<NSAttributedString>;
@@ -1025,6 +1427,12 @@ impl NSNumberFormatter {
         pub fn setAttributedStringForNil(&self, attributed_string_for_nil: &NSAttributedString);
 
         #[cfg(feature = "NSAttributedString")]
+        /// The attributed string the receiver uses to display "not a number" values.
+        ///
+        /// By default "not a number" values are displayed as the string "NaN".
+        ///
+        /// This method is for use with formatters using
+        /// `NSNumberFormatterBehavior10_0`behavior.
         #[unsafe(method(attributedStringForNotANumber))]
         #[unsafe(method_family = none)]
         pub fn attributedStringForNotANumber(&self) -> Retained<NSAttributedString>;
@@ -1041,6 +1449,7 @@ impl NSNumberFormatter {
         );
 
         #[cfg(feature = "NSDecimalNumber")]
+        /// The rounding behavior used by the receiver.
         #[unsafe(method(roundingBehavior))]
         #[unsafe(method_family = none)]
         pub fn roundingBehavior(&self) -> Retained<NSDecimalNumberHandler>;

@@ -56,6 +56,12 @@ impl MPMediaLibrary {
         #[unsafe(method_family = none)]
         pub unsafe fn defaultMediaLibrary() -> Retained<MPMediaLibrary>;
 
+        /// Returns the date at which the media library database was last written to disk.
+        ///
+        ///
+        /// This property reflects database persistence, not library content changes.
+        /// On macOS, it requires Music.app to have been opened at least once to initialize the
+        /// library; before that, it returns the current date as a fallback.
         #[unsafe(method(lastModifiedDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastModifiedDate(&self) -> Retained<NSDate>;

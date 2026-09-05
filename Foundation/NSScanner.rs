@@ -7,7 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscanner?language=objc)
+    /// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
+    ///
+    /// A ``Scanner`` object interprets and converts the characters of a
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/string> into number and string values. You assign the scanner's string when you create the scanner, and the scanner progresses through the characters of that string from beginning to end as you request items.
+    ///
+    /// Because of the nature of class clusters, a scanner object isn't an actual instance of the ``Scanner`` class, but is one of its private subclasses. Although a scanner object's class is private, its interface is public, as declared by this abstract superclass, ``Scanner``. The objects you create using this class are referred to as scanner objects (and when no confusion will result, merely as scanners).
+    ///
+    /// To set a ``Scanner`` object to ignore a set of characters as it scans the string, use the ``charactersToBeSkipped`` property. Characters in the skip set are skipped over before the target is scanned. The default set of characters to skip is the whitespace and newline character set.
+    ///
+    /// To retrieve the unscanned remainder of the string, use `scanner.string.substring(from: scanner.scanLocation)`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscanner?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScanner;
@@ -30,10 +42,16 @@ extern_conformance!(
 impl NSScanner {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The string the scanner will scan.
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub fn string(&self) -> Retained<NSString>;
 
+        /// The character position at which the receiver will begin its next scanning operation.
+        ///
+        /// Raises an `NSRangeException` if `index` is beyond the end of the string being scanned.
+        ///
+        /// This property is useful for backing up to rescan after an error. Rather than setting the scan location directly to skip known sequences of characters, use -scanString:intoString: or -scanCharactersFromSet:intoString:, which allow you to verify that the expected substring (or set of characters) is in fact present.
         #[unsafe(method(scanLocation))]
         #[unsafe(method_family = none)]
         pub fn scanLocation(&self) -> NSUInteger;
@@ -44,6 +62,13 @@ impl NSScanner {
         pub fn setScanLocation(&self, scan_location: NSUInteger);
 
         #[cfg(feature = "NSCharacterSet")]
+        /// Character set containing the characters the scanner ignores when looking for a scannable element.
+        ///
+        /// Characters to be skipped are skipped prior to the scanner examining the target. For example, if a scanner ignores spaces and you send it a -scanInt: message, it skips spaces until it finds a decimal digit or other character. While an element is being scanned, no characters are skipped. If you scan for something made of characters in the set to be skipped (for example, using -scanInt: when the set of characters to be skipped is the decimal digits), the result is undefined.
+        ///
+        /// The characters to be skipped are treated as single values. A scanner doesn't apply its case sensitivity setting to these characters and doesn't attempt to match composed character sequences with anything in the set of characters to be skipped (though it does match pre-composed characters individually). If you want to skip all vowels while scanning a string, for example, you can set the characters to be skipped to those in the string "AEIOUaeiou" (plus any accented variants with pre-composed characters).
+        ///
+        /// The default set to skip is the whitespace and newline character set.
         #[unsafe(method(charactersToBeSkipped))]
         #[unsafe(method_family = none)]
         pub fn charactersToBeSkipped(&self) -> Option<Retained<NSCharacterSet>>;
@@ -56,6 +81,9 @@ impl NSScanner {
         #[unsafe(method_family = none)]
         pub fn setCharactersToBeSkipped(&self, characters_to_be_skipped: Option<&NSCharacterSet>);
 
+        /// Flag that indicates whether the receiver distinguishes case in the characters it scans.
+        ///
+        /// `YES` if the receiver distinguishes case in the characters it scans, otherwise `NO`. The default value is `NO`. Note that case sensitivity doesn't apply to the characters to be skipped.
         #[unsafe(method(caseSensitive))]
         #[unsafe(method_family = none)]
         pub fn caseSensitive(&self) -> bool;
@@ -65,6 +93,9 @@ impl NSScanner {
         #[unsafe(method_family = none)]
         pub fn setCaseSensitive(&self, case_sensitive: bool);
 
+        /// The locale to use when scanning.
+        ///
+        /// A scanner's locale affects the way it interprets numeric values from the string. In particular, a scanner uses the locale's decimal separator to distinguish the integer and fractional parts of floating-point representations. A scanner with no locale set uses non-localized values. New scanners have no locale by default.
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub fn locale(&self) -> Option<Retained<AnyObject>>;
@@ -79,6 +110,10 @@ impl NSScanner {
         pub unsafe fn setLocale(&self, locale: Option<&AnyObject>);
 
         #[cfg(feature = "NSString")]
+        /// Returns an `NSScanner` object initialized to scan a given string.
+        ///
+        /// - Parameter string: The string to scan.
+        /// - Returns: An `NSScanner` object initialized to scan `aString` from the beginning.
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
@@ -108,47 +143,141 @@ impl DefaultRetained for NSScanner {
 /// NSExtendedScanner.
 impl NSScanner {
     extern_methods!(
+        /// Scans for an int value from a decimal representation, returning a found value by reference.
+        ///
+        /// Skips past excess digits in the case of overflow, so the receiver's position is past the entire decimal representation.
+        ///
+        /// Invoke this method with `NULL` as `intValue` to simply scan past a decimal integer representation.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `INT_MAX` or `INT_MIN` on overflow.
+        /// - Returns: `YES` if the receiver finds a valid decimal integer representation, otherwise `NO`. Overflow is considered a valid integer representation.
         #[unsafe(method(scanInt:))]
         #[unsafe(method_family = none)]
         pub fn scanInt(&self, result: Option<&mut c_int>) -> bool;
 
+        /// Scans for an NSInteger value from a decimal representation, returning a found value by reference.
+        ///
+        /// Skips past excess digits in the case of overflow, so the receiver's position is past the entire integer representation.
+        ///
+        /// Invoke this method with `NULL` as `value` to simply scan past a decimal integer representation.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `INT_MAX` or `INT_MIN` on overflow.
+        /// - Returns: `YES` if the receiver finds a valid integer representation, otherwise `NO`. Overflow is considered a valid integer representation.
         #[unsafe(method(scanInteger:))]
         #[unsafe(method_family = none)]
         pub fn scanInteger(&self, result: Option<&mut NSInteger>) -> bool;
 
+        /// Scans for a long long value from a decimal representation, returning a found value by reference.
+        ///
+        /// All overflow digits are skipped. Skips past excess digits in the case of overflow, so the receiver's position is past the entire decimal representation.
+        ///
+        /// Invoke this method with `NULL` as `longLongValue` to simply scan past a long decimal integer representation.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `LLONG_MAX` or `LLONG_MIN` on overflow.
+        /// - Returns: `YES` if the receiver finds a valid decimal integer representation, otherwise `NO`. Overflow is considered a valid decimal integer representation.
         #[unsafe(method(scanLongLong:))]
         #[unsafe(method_family = none)]
         pub fn scanLongLong(&self, result: Option<&mut c_longlong>) -> bool;
 
+        /// Scans for an unsigned long long value from a decimal representation, returning a found value by reference.
+        ///
+        /// All overflow digits are skipped. Skips past excess digits in the case of overflow, so the receiver's position is past the entire decimal representation.
+        ///
+        /// Invoke this method with `NULL` as `unsignedLongLongValue` to simply scan past an unsigned long decimal integer representation.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `ULLONG_MAX` on overflow.
+        /// - Returns: `YES` if the receiver finds a valid decimal integer representation, otherwise `NO`. Overflow is considered a valid decimal integer representation.
         #[unsafe(method(scanUnsignedLongLong:))]
         #[unsafe(method_family = none)]
         pub fn scanUnsignedLongLong(&self, result: Option<&mut c_ulonglong>) -> bool;
 
+        /// Scans for a float value, returning a found value by reference.
+        ///
+        /// Skips past excess digits in the case of overflow, so the scanner's position is past the entire floating-point representation.
+        ///
+        /// Invoke this method with `NULL` as `floatValue` to simply scan past a float value representation. Floating-point representations are assumed to be IEEE compliant.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `HUGE_VAL` or `-HUGE_VAL` on overflow, or `0.0` on underflow.
+        /// - Returns: `YES` if the receiver finds a valid floating-point representation, otherwise `NO`. Overflow or underflow are both considered valid floating-point representations.
         #[unsafe(method(scanFloat:))]
         #[unsafe(method_family = none)]
         pub fn scanFloat(&self, result: Option<&mut c_float>) -> bool;
 
+        /// Scans for a double value, returning a found value by reference.
+        ///
+        /// Skips past excess digits in the case of overflow, so the scanner's position is past the entire floating-point representation.
+        ///
+        /// Invoke this method with `NULL` as `doubleValue` to simply scan past a double value representation. Floating-point representations are assumed to be IEEE compliant.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `HUGE_VAL` or `-HUGE_VAL` on overflow, or `0.0` on underflow.
+        /// - Returns: `YES` if the receiver finds a valid floating-point representation, otherwise `NO`. Overflow or underflow are both considered valid floating-point representations.
         #[unsafe(method(scanDouble:))]
         #[unsafe(method_family = none)]
         pub fn scanDouble(&self, result: Option<&mut c_double>) -> bool;
 
+        /// Scans for an unsigned value from a hexadecimal representation, returning a found value by reference.
+        ///
+        /// The hexadecimal integer representation may optionally be preceded by `0x` or `0X`. Skips past excess digits in the case of overflow, so the receiver's position is past the entire hexadecimal representation.
+        ///
+        /// Invoke this method with `NULL` as `intValue` to simply scan past a hexadecimal integer representation.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `UINT_MAX` on overflow.
+        /// - Returns: `YES` if the receiver finds a valid hexadecimal integer representation, otherwise `NO`. Overflow is considered a valid hexadecimal integer representation.
         #[unsafe(method(scanHexInt:))]
         #[unsafe(method_family = none)]
         pub fn scanHexInt(&self, result: Option<&mut c_uint>) -> bool;
 
+        /// Scans for a long long value from a hexadecimal representation, returning a found value by reference.
+        ///
+        /// The hexadecimal integer representation may optionally be preceded by `0x` or `0X`. Skips past excess digits in the case of overflow, so the receiver's position is past the entire hexadecimal representation.
+        ///
+        /// Invoke this method with `NULL` as `result` to simply scan past a hexadecimal long long representation.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `HUGE_VAL` or `-HUGE_VAL` on overflow.
+        /// - Returns: `YES` if the receiver finds a valid hexadecimal long long representation, otherwise `NO`. Overflow is considered a valid hexadecimal long long representation.
         #[unsafe(method(scanHexLongLong:))]
         #[unsafe(method_family = none)]
         pub fn scanHexLongLong(&self, result: Option<&mut c_ulonglong>) -> bool;
 
+        /// Scans for a double value from a hexadecimal representation, returning a found value by reference.
+        ///
+        /// This corresponds to `%a` or `%A` formatting. The hexadecimal float representation must be preceded by `0x` or `0X`.
+        ///
+        /// Skips past excess digits in the case of overflow, so the scanner's position is past the entire floating-point representation.
+        ///
+        /// Invoke this method with `NULL` as `result` to simply scan past a hexadecimal float representation.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `HUGE_VAL` or `-HUGE_VAL` on overflow, or `0.0` on underflow.
+        /// - Returns: `YES` if the receiver finds a valid float-point representation, otherwise `NO`. Overflow or underflow are both considered valid floating-point representations.
         #[unsafe(method(scanHexFloat:))]
         #[unsafe(method_family = none)]
         pub fn scanHexFloat(&self, result: Option<&mut c_float>) -> bool;
 
+        /// Scans for a double value from a hexadecimal representation, returning a found value by reference.
+        ///
+        /// This corresponds to `%a` or `%A` formatting. The hexadecimal double representation must be preceded by `0x` or `0X`.
+        ///
+        /// Skips past excess digits in the case of overflow, so the scanner's position is past the entire floating-point representation.
+        ///
+        /// Invoke this method with `NULL` as `result` to simply scan past a hexadecimal double representation.
+        ///
+        /// - Parameter result: Upon return, contains the scanned value. Contains `HUGE_VAL` or `-HUGE_VAL` on overflow, or `0.0` on underflow.
+        /// - Returns: `YES` if the receiver finds a valid double-point representation, otherwise `NO`. Overflow or underflow are both considered valid floating-point representations.
         #[unsafe(method(scanHexDouble:))]
         #[unsafe(method_family = none)]
         pub fn scanHexDouble(&self, result: Option<&mut c_double>) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Scans a given string, returning an equivalent string object by reference if a match is found.
+        ///
+        /// If `string` is present at the current scan location, then the current scan location is advanced to after the string; otherwise the scan location does not change.
+        ///
+        /// Invoke this method with `NULL` as `stringValue` to simply scan past a given string.
+        ///
+        /// - Parameters:
+        /// - string: The string for which to scan at the current scan location.
+        /// - result: Upon return, if the receiver contains a string equivalent to `string` at the current scan location, contains a string equivalent to `string`.
+        /// - Returns: `YES` if `string` matches the characters at the scan location, otherwise `NO`.
         #[unsafe(method(scanString:intoString:))]
         #[unsafe(method_family = none)]
         pub fn scanString_intoString(
@@ -158,6 +287,14 @@ impl NSScanner {
         ) -> bool;
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSString"))]
+        /// Scans the string as long as characters from a given character set are encountered, accumulating characters into a string that's returned by reference.
+        ///
+        /// Invoke this method with `NULL` as `stringValue` to simply scan past a given set of characters.
+        ///
+        /// - Parameters:
+        /// - set: The set of characters to scan.
+        /// - result: Upon return, contains the characters scanned.
+        /// - Returns: `YES` if the receiver scanned any characters, otherwise `NO`.
         #[unsafe(method(scanCharactersFromSet:intoString:))]
         #[unsafe(method_family = none)]
         pub fn scanCharactersFromSet_intoString(
@@ -167,6 +304,18 @@ impl NSScanner {
         ) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Scans the string until a given string is encountered, accumulating characters into a string that's returned by reference.
+        ///
+        /// If `stopString` is present in the receiver, then on return the scan location is set to the beginning of that string. If `stopString` is the first string in the receiver, then the method returns `NO` and `stringValue` is not changed.
+        ///
+        /// If the search string (`stopString`) isn't present in the scanner's source string, the remainder of the source string is put into `stringValue`, the receiver's `scanLocation` is advanced to the end of the source string, and the method returns `YES`.
+        ///
+        /// Invoke this method with `NULL` as `stringValue` to simply scan up to a given string.
+        ///
+        /// - Parameters:
+        /// - string: The string to scan up to.
+        /// - result: Upon return, contains any characters that were scanned.
+        /// - Returns: `YES` if the receiver scans any characters, otherwise `NO`. If the only scanned characters are in the `charactersToBeSkipped` character set (which by default is the whitespace and newline character set), then this method returns `NO`.
         #[unsafe(method(scanUpToString:intoString:))]
         #[unsafe(method_family = none)]
         pub fn scanUpToString_intoString(
@@ -176,6 +325,16 @@ impl NSScanner {
         ) -> bool;
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSString"))]
+        /// Scans the string until a character from a given character set is encountered, accumulating characters into a string that's returned by reference.
+        ///
+        /// Invoke this method with `NULL` as `stringValue` to simply scan up to a given set of characters.
+        ///
+        /// If no characters in `stopSet` are present in the scanner's source string, the remainder of the source string is put into `stringValue`, the receiver's `scanLocation` is advanced to the end of the source string, and the method returns `YES`.
+        ///
+        /// - Parameters:
+        /// - set: The set of characters up to which to scan.
+        /// - result: Upon return, contains the characters scanned.
+        /// - Returns: `YES` if the receiver scanned any characters, otherwise `NO`. If the only scanned characters are in the `charactersToBeSkipped` character set (which is the whitespace and newline character set by default), then returns `NO`.
         #[unsafe(method(scanUpToCharactersFromSet:intoString:))]
         #[unsafe(method_family = none)]
         pub fn scanUpToCharactersFromSet_intoString(
@@ -184,16 +343,26 @@ impl NSScanner {
             result: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
 
+        /// Flag that indicates whether the receiver has exhausted all significant characters.
+        ///
+        /// `YES` if the receiver has exhausted all significant characters in its string, otherwise `NO`. If only characters from the set to be skipped remain, returns `YES`.
         #[unsafe(method(isAtEnd))]
         #[unsafe(method_family = none)]
         pub fn isAtEnd(&self) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Returns an `NSScanner` object that scans a given string.
         #[unsafe(method(scannerWithString:))]
         #[unsafe(method_family = none)]
         pub fn scannerWithString(string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Returns an `NSScanner` object that scans a given string according to the user's default locale.
+        ///
+        /// Sets the string to scan by invoking -initWithString: with `aString`. The locale is set with the user's default locale.
+        ///
+        /// - Parameter string: The string to scan.
+        /// - Returns: An `NSScanner` object that scans `aString` according to the user's default locale.
         #[unsafe(method(localizedScannerWithString:))]
         #[unsafe(method_family = none)]
         pub fn localizedScannerWithString(string: &NSString) -> Retained<AnyObject>;

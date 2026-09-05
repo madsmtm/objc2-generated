@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistributedlock?language=objc)
+    /// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistributedlock?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDistributedLock;
@@ -24,6 +26,7 @@ extern_conformance!(
 impl NSDistributedLock {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns an ``NSDistributedLock`` object initialized with the specified path.
         #[unsafe(method(lockWithPath:))]
         #[unsafe(method_family = none)]
         pub fn lockWithPath(path: &NSString) -> Option<Retained<NSDistributedLock>>;
@@ -31,23 +34,28 @@ impl NSDistributedLock {
         // -init (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes an ``NSDistributedLock`` object to use the specified path for its lock.
         #[unsafe(method(initWithPath:))]
         #[unsafe(method_family = init)]
         pub fn initWithPath(this: Allocated<Self>, path: &NSString) -> Option<Retained<Self>>;
 
+        /// Attempts to acquire the lock and immediately returns a Boolean value that indicates whether the attempt was successful.
         #[unsafe(method(tryLock))]
         #[unsafe(method_family = none)]
         pub fn tryLock(&self) -> bool;
 
+        /// Relinquishes the receiver.
         #[unsafe(method(unlock))]
         #[unsafe(method_family = none)]
         pub fn unlock(&self);
 
+        /// Forces the lock to be relinquished.
         #[unsafe(method(breakLock))]
         #[unsafe(method_family = none)]
         pub fn breakLock(&self);
 
         #[cfg(feature = "NSDate")]
+        /// The time the lock was acquired.
         #[unsafe(method(lockDate))]
         #[unsafe(method_family = none)]
         pub fn lockDate(&self) -> Retained<NSDate>;

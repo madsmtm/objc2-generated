@@ -77,6 +77,7 @@ impl RPScreenRecorder {
         /// Starts app recording with a completion handler. Note that before recording actually starts, the user may be prompted with UI to confirm recording.
         ///
         /// handler Called after user interactions are complete. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue starting the recording.
+        #[deprecated = "Use ScreenCaptureKit SCStream with SCRecordingOutput instead"]
         #[unsafe(method(startRecordingWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startRecordingWithHandler(
@@ -93,6 +94,7 @@ impl RPScreenRecorder {
         /// Stops app recording with a completion handler.
         ///
         /// handler Called when the movie is ready. Will return an instance of RPPreviewViewController on success which should be presented using [UIViewController presentViewController:animated:completion:]. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue stopping the recording.
+        #[deprecated = "Use ScreenCaptureKit SCStream with SCRecordingOutput instead"]
         #[unsafe(method(stopRecordingWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopRecordingWithHandler(
@@ -108,6 +110,7 @@ impl RPScreenRecorder {
         /// Parameter `url`: Output URL for app recording movie.
         ///
         /// handler Called when  movie is written to specified output URL. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue stopping the recording and writing the output URL.
+        #[deprecated = "Use ScreenCaptureKit SCStream with SCRecordingOutput instead"]
         #[unsafe(method(stopRecordingWithOutputURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopRecordingWithOutputURL_completionHandler(
@@ -118,6 +121,7 @@ impl RPScreenRecorder {
 
         #[cfg(feature = "block2")]
         /// Discards the current recording. This can only be called after the handler block in stopRecordingWithHandler: is executed.
+        #[deprecated = "Use ScreenCaptureKit SCStream with SCRecordingOutput instead"]
         #[unsafe(method(discardRecordingWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn discardRecordingWithHandler(&self, handler: &block2::Block<'static, fn()>);
@@ -130,6 +134,7 @@ impl RPScreenRecorder {
         /// Starts screen and audio capture and continually calls the supplied handler with the current sampleBuffer and bufferType and passed it back to the application. Note that before recording actually starts, the user may be prompted with UI to confirm recording.
         ///
         /// handler Called continually with sampleBuffers and the bufferType. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue starting the capture.
+        #[deprecated = "Use ScreenCaptureKit SCStream with SCStreamOutput instead"]
         #[unsafe(method(startCaptureWithHandler:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startCaptureWithHandler_completionHandler(
@@ -147,6 +152,7 @@ impl RPScreenRecorder {
         /// Stops screen capture with a completion handler
         ///
         /// handler Called after the screen capture has stopped. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue stopping the capture
+        #[deprecated = "Use ScreenCaptureKit SCStream stopCaptureWithCompletionHandler: instead"]
         #[unsafe(method(stopCaptureWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopCaptureWithHandler(
@@ -158,6 +164,7 @@ impl RPScreenRecorder {
         /// Start clip recording buffering with a completion handler. Note that before recording actually starts, the user may be prompted with UI to confirm recording.
         ///
         /// handler Called after clip recording is started. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue starting clip record buffering.
+        #[deprecated = "Use ScreenCaptureKit SCStream with SCClipBufferingOutput instead"]
         #[unsafe(method(startClipBufferingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startClipBufferingWithCompletionHandler(
@@ -169,6 +176,7 @@ impl RPScreenRecorder {
         /// Stop clip recording buffering with a completion handler.
         ///
         /// handler Called after clip recording session is stopped. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue stopping clip record buffering.
+        #[deprecated = "Use ScreenCaptureKit SCStream with SCClipBufferingOutput instead"]
         #[unsafe(method(stopClipBufferingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopClipBufferingWithCompletionHandler(
@@ -184,6 +192,7 @@ impl RPScreenRecorder {
         /// Parameter `duration`: Length of time in seconds for clip recording, capped at either the elapsed time, or a maximum of 15 seconds, depending on which is the shorter amount of time
         ///
         /// Must be called after startClipBufferingWithCompletionHandler:, otherwise this will return an error. Exports clip recording from newest samples in buffer for duration. handler Will be called after asset is finished writing to output path. Will be passed an optional NSError in the RPRecordingErrorDomain domain if there was an issue generating the clip recording.
+        #[deprecated = "Use ScreenCaptureKit SCStream with SCClipBufferingOutput instead"]
         #[unsafe(method(exportClipToURL:duration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportClipToURL_duration_completionHandler(
@@ -193,6 +202,7 @@ impl RPScreenRecorder {
             completion_handler: Option<&block2::SendableBlock<'static, fn(*mut NSError)>>,
         );
 
+        #[deprecated = "Use ScreenCaptureKit instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -202,6 +212,7 @@ impl RPScreenRecorder {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        #[deprecated = "Use ScreenCaptureKit instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -209,43 +220,52 @@ impl RPScreenRecorder {
             delegate: Option<&ProtocolObject<dyn RPScreenRecorderDelegate>>,
         );
 
+        #[deprecated = "Use SCContentSharingPicker isAvailable instead"]
         #[unsafe(method(isAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAvailable(&self) -> bool;
 
+        #[deprecated = "Use SCStream isCapturing instead"]
         #[unsafe(method(isRecording))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRecording(&self) -> bool;
 
+        #[deprecated = "Use SCContentSharingPickerConfiguration showsMicrophoneControl instead"]
         #[unsafe(method(isMicrophoneEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMicrophoneEnabled(&self) -> bool;
 
         /// Setter for [`isMicrophoneEnabled`][Self::isMicrophoneEnabled].
+        #[deprecated = "Use SCContentSharingPickerConfiguration showsMicrophoneControl instead"]
         #[unsafe(method(setMicrophoneEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMicrophoneEnabled(&self, microphone_enabled: bool);
 
+        #[deprecated = "Use SCContentSharingPickerConfiguration showsCameraControl instead"]
         #[unsafe(method(isCameraEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCameraEnabled(&self) -> bool;
 
         /// Setter for [`isCameraEnabled`][Self::isCameraEnabled].
+        #[deprecated = "Use SCContentSharingPickerConfiguration showsCameraControl instead"]
         #[unsafe(method(setCameraEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraEnabled(&self, camera_enabled: bool);
 
+        #[deprecated = "Use SCVideoEffectOutput cameraDevice instead"]
         #[unsafe(method(cameraPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraPosition(&self) -> RPCameraPosition;
 
         /// Setter for [`cameraPosition`][Self::cameraPosition].
+        #[deprecated = "Use SCVideoEffectOutput cameraDevice instead"]
         #[unsafe(method(setCameraPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraPosition(&self, camera_position: RPCameraPosition);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        #[deprecated = "Use ScreenCaptureKit instead"]
         #[unsafe(method(cameraPreviewView))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraPreviewView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
@@ -263,6 +283,7 @@ impl RPScreenRecorder {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpscreenrecorderdelegate?language=objc)
+    #[deprecated = "Use ScreenCaptureKit instead"]
     pub unsafe trait RPScreenRecorderDelegate: NSObjectProtocol {
         #[cfg(all(feature = "RPPreviewViewController", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
@@ -286,6 +307,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "RPPreviewViewController", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        #[deprecated = "Use ScreenCaptureKit SCStream with SCRecordingOutput instead"]
         #[optional]
         #[unsafe(method(screenRecorder:didStopRecordingWithPreviewViewController:error:))]
         #[unsafe(method_family = none)]
@@ -299,6 +321,7 @@ extern_protocol!(
         /// Called when the recorder becomes available or stops being available. Check the screen recorder's availability property to check the current availability state. Possible reasons for the recorder to be unavailable include an in-progress Airplay/TVOut session or unsupported hardware.
         ///
         /// Parameter `screenRecorder`: The instance of the screen recorder.
+        #[deprecated = "Use ScreenCaptureKit instead"]
         #[optional]
         #[unsafe(method(screenRecorderDidChangeAvailability:))]
         #[unsafe(method_family = none)]

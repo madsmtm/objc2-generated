@@ -293,6 +293,8 @@ pub use self::__AudioHardware::kAudioDevicePropertySubVolumeScalar;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDevicePropertySubVolumeScalarToDecibels;
 #[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioDevicePropertySuggestedReferenceDevice;
+#[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDevicePropertyTalkback;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDevicePropertyTransportType;
@@ -335,8 +337,6 @@ pub use self::__AudioHardware::kAudioDeviceTransportTypeBluetoothLE;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDeviceTransportTypeBuiltIn;
 #[cfg(feature = "AudioHardware")]
-pub use self::__AudioHardware::kAudioDeviceTransportTypeContinuityCapture;
-#[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDeviceTransportTypeContinuityCaptureWired;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDeviceTransportTypeContinuityCaptureWireless;
@@ -348,6 +348,10 @@ pub use self::__AudioHardware::kAudioDeviceTransportTypeFireWire;
 pub use self::__AudioHardware::kAudioDeviceTransportTypeHDMI;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDeviceTransportTypePCI;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioDeviceTransportTypeRemoteScreen;
+#[cfg(feature = "AudioHardware")]
+pub use self::__AudioHardware::kAudioDeviceTransportTypeRemoteStreaming;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioDeviceTransportTypeThunderbolt;
 #[cfg(feature = "AudioHardware")]
@@ -368,8 +372,6 @@ pub use self::__AudioHardware::kAudioEndPointDeviceEndPointListKey;
 pub use self::__AudioHardware::kAudioEndPointDeviceIsPrivateKey;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioEndPointDeviceMainEndPointKey;
-#[cfg(feature = "AudioHardware")]
-pub use self::__AudioHardware::kAudioEndPointDeviceMasterEndPointKey;
 #[cfg(feature = "AudioHardware")]
 pub use self::__AudioHardware::kAudioEndPointDeviceNameKey;
 #[cfg(feature = "AudioHardware")]
@@ -901,8 +903,12 @@ pub use self::__AudioHardwareDeprecated::kAudioDevicePropertySupportsMixing;
 pub use self::__AudioHardwareDeprecated::kAudioDevicePropertyVolumeDecibelsToScalarTransferFunction;
 #[cfg(feature = "AudioHardwareDeprecated")]
 pub use self::__AudioHardwareDeprecated::kAudioDeviceTransportTypeAutoAggregate;
+#[cfg(feature = "AudioHardwareDeprecated")]
+pub use self::__AudioHardwareDeprecated::kAudioDeviceTransportTypeContinuityCapture;
 #[cfg(all(feature = "AudioHardware", feature = "AudioHardwareDeprecated"))]
 pub use self::__AudioHardwareDeprecated::kAudioDeviceUnknown;
+#[cfg(feature = "AudioHardwareDeprecated")]
+pub use self::__AudioHardwareDeprecated::kAudioEndPointDeviceMasterEndPointKey;
 #[cfg(all(feature = "AudioHardware", feature = "AudioHardwareDeprecated"))]
 pub use self::__AudioHardwareDeprecated::kAudioHardwarePropertyBootChimeVolumeDecibels;
 #[cfg(all(feature = "AudioHardware", feature = "AudioHardwareDeprecated"))]

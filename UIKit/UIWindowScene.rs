@@ -6,6 +6,9 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-cloud-kit")]
 use objc2_cloud_kit::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-quartz-core")]
+#[cfg(not(target_os = "watchos"))]
+use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -116,9 +119,51 @@ impl UIWindowScene {
         #[unsafe(method_family = none)]
         pub fn windowingBehaviors(&self) -> Option<Retained<UISceneWindowingBehaviors>>;
 
+        #[cfg(feature = "objc2-quartz-core")]
+        #[cfg(not(target_os = "watchos"))]
+        /// Creates a display link targeting the display associated with this scene.
+        ///
+        /// The returned display link is automatically retargeted when the scene moves
+        /// between displays.
+        ///
+        /// - Parameters:
+        /// - target: An object that is the target of the display link callback.
+        /// - sel: A selector on `target` to call when the display link fires.
+        /// - Returns: A new display link, or `nil` only in exceptional cases where the
+        /// system cannot construct a display link.
+        ///
+        /// # Safety
+        ///
+        /// - `target` should be of the correct type.
+        /// - `sel` must be a valid selector.
+        #[unsafe(method(displayLinkWithTarget:selector:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn displayLinkWithTarget_selector(
+            &self,
+            target: &AnyObject,
+            sel: Sel,
+        ) -> Option<Retained<CADisplayLink>>;
+
         #[unsafe(method(isFullScreen))]
         #[unsafe(method_family = none)]
         pub fn isFullScreen(&self) -> bool;
+
+        #[cfg(feature = "UISceneClosureConfirmation")]
+        /// A configuration describing a confirmation dialog to be shown when a user action will result in destruction of the scene session and disconnection of the scene.
+        #[unsafe(method(closureConfirmation))]
+        #[unsafe(method_family = none)]
+        pub fn closureConfirmation(&self) -> Option<Retained<UISceneClosureConfirmation>>;
+
+        #[cfg(feature = "UISceneClosureConfirmation")]
+        /// Setter for [`closureConfirmation`][Self::closureConfirmation].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setClosureConfirmation:))]
+        #[unsafe(method_family = none)]
+        pub fn setClosureConfirmation(
+            &self,
+            closure_confirmation: Option<&UISceneClosureConfirmation>,
+        );
     );
 }
 
@@ -219,6 +264,18 @@ extern_protocol!(
             window_scene: &UIWindowScene,
             previous_effective_geometry: &UIWindowSceneGeometry,
         );
+
+        #[cfg(all(feature = "UIOrientation", feature = "UIResponder"))]
+        /// Returns the interface orientations supported by the window scene.
+        /// The returned value replaces the app's UISupportedInterfaceOrientations Info.plist value
+        /// for this scene. If not implemented, the Info.plist value is used.
+        #[optional]
+        #[unsafe(method(supportedInterfaceOrientationsForWindowScene:))]
+        #[unsafe(method_family = none)]
+        fn supportedInterfaceOrientationsForWindowScene(
+            &self,
+            window_scene: &UIWindowScene,
+        ) -> UIInterfaceOrientationMask;
 
         #[cfg(all(
             feature = "UIApplicationShortcutItem",

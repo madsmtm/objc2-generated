@@ -335,5 +335,31 @@ extern_protocol!(
             frame: &WKFrameInfo,
             completion_handler: &block2::Block<'static, fn(*mut NSArray<NSURL>)>,
         );
+
+        #[cfg(all(
+            feature = "WKFrameInfo",
+            feature = "WKSecurityOrigin",
+            feature = "WKWebView",
+            feature = "block2",
+            feature = "objc2-app-kit"
+        ))]
+        #[cfg(target_os = "macos")]
+        /// Allows your app to determine whether or not the given security origin should have access to geolocation APIs.
+        ///
+        /// Parameter `securityOrigin`: The security origin which requested access to the device's geolocation data.
+        ///
+        /// Parameter `frame`: The frame that initiated the request.
+        ///
+        /// Parameter `decisionHandler`: The decision handler to call once the app has made its decision.
+        #[optional]
+        #[unsafe(method(webView:requestGeolocationPermissionForOrigin:initiatedByFrame:decisionHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn webView_requestGeolocationPermissionForOrigin_initiatedByFrame_decisionHandler(
+            &self,
+            web_view: &WKWebView,
+            origin: &WKSecurityOrigin,
+            frame: &WKFrameInfo,
+            decision_handler: &block2::Block<'static, fn(WKPermissionDecision)>,
+        );
     }
 );

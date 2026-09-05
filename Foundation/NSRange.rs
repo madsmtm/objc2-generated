@@ -16,6 +16,7 @@ pub type NSRangePointer = *mut NSRange;
 
 // TODO: pub fn NSEqualRanges(range1: NSRange,range2: NSRange,) -> Bool;
 
+/// Returns the union of the specified ranges.
 #[inline]
 pub fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange {
     extern "C-unwind" {
@@ -24,6 +25,7 @@ pub fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange {
     unsafe { NSUnionRange(range1, range2) }
 }
 
+/// Returns the intersection of the specified ranges.
 #[inline]
 pub fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange {
     extern "C-unwind" {
@@ -34,6 +36,7 @@ pub fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// Returns a string representation of a range.
     #[doc(alias = "NSStringFromRange")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -47,6 +50,7 @@ impl NSString {
     }
 }
 
+/// Returns a range from a textual representation.
 #[cfg(feature = "NSString")]
 #[inline]
 pub fn NSRangeFromString(a_string: &NSString) -> NSRange {
@@ -60,10 +64,16 @@ pub fn NSRangeFromString(a_string: &NSString) -> NSRange {
 #[cfg(feature = "NSValue")]
 impl NSValue {
     extern_methods!(
+        /// Creates a new value object containing the specified Foundation range structure.
+        ///
+        /// - Parameters:
+        /// - range: The value for the new object.
+        /// - Returns: A new value object that contains the range information.
         #[unsafe(method(valueWithRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithRange(range: NSRange) -> Retained<NSValue>;
 
+        /// The Foundation range structure representation of the value.
         #[unsafe(method(rangeValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn rangeValue(&self) -> NSRange;

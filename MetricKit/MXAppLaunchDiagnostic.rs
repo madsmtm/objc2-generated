@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
+    #[deprecated = "Use DiagnosticResult instead."]
     pub struct MXAppLaunchDiagnostic;
 );
 
@@ -36,6 +37,7 @@ impl MXAppLaunchDiagnostic {
     extern_methods!(
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the app launch.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(callStackTree))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
@@ -43,6 +45,7 @@ impl MXAppLaunchDiagnostic {
         /// Total app launch duration.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(launchDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn launchDuration(&self) -> Retained<NSMeasurement<NSUnitDuration>>;

@@ -6,19 +6,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions?language=objc)
+/// The values that can be returned in a change dictionary.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSKeyValueObservingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSKeyValueObservingOptions: NSUInteger {
+/// Indicates that the change dictionary should contain the new attribute value.
         #[doc(alias = "NSKeyValueObservingOptionNew")]
         const New = 0x01;
+/// Indicates that the change dictionary should contain the old attribute value.
         #[doc(alias = "NSKeyValueObservingOptionOld")]
         const Old = 0x02;
+/// If specified, a notification should be sent to the observer immediately, before the observer registration method even returns.
         #[doc(alias = "NSKeyValueObservingOptionInitial")]
         const Initial = 0x04;
+/// Whether separate notifications should be sent to the observer before and after each change, instead of a single notification after the change.
         #[doc(alias = "NSKeyValueObservingOptionPrior")]
         const Prior = 0x08;
         const _ = !0;
@@ -33,18 +39,24 @@ unsafe impl RefEncode for NSKeyValueObservingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange?language=objc)
+/// The kinds of changes that can be observed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSKeyValueChange(pub NSUInteger);
 impl NSKeyValueChange {
+    /// Indicates that the value of the observed key path was set to a new value.
     #[doc(alias = "NSKeyValueChangeSetting")]
     pub const Setting: Self = Self(1);
+    /// Indicates that an object has been inserted into the to-many relationship that is being observed.
     #[doc(alias = "NSKeyValueChangeInsertion")]
     pub const Insertion: Self = Self(2);
+    /// Indicates that an object has been removed from the to-many relationship that is being observed.
     #[doc(alias = "NSKeyValueChangeRemoval")]
     pub const Removal: Self = Self(3);
+    /// Indicates that an object has been replaced in the to-many relationship that is being observed.
     #[doc(alias = "NSKeyValueChangeReplacement")]
     pub const Replacement: Self = Self(4);
 }
@@ -81,37 +93,49 @@ unsafe impl RefEncode for NSKeyValueSetMutationKind {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey?language=objc)
+/// The keys that can appear in the change dictionary.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSKeyValueChangeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekindkey?language=objc)
+    /// A key for the type of change, as an ``NSNumber`` wrapping an ``NSKeyValueChange``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekindkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeKindKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangenewkey?language=objc)
+    /// A key for the new value of the property after the change.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangenewkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeNewKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangeoldkey?language=objc)
+    /// A key for the old value of the property before the change.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangeoldkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeOldKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangeindexeskey?language=objc)
+    /// A key for an ``NSIndexSet`` specifying the indexes of objects being inserted, removed, or replaced.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangeindexeskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeIndexesKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangenotificationispriorkey?language=objc)
+    /// A key indicating whether this notification is sent prior to the change.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangenotificationispriorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeNotificationIsPriorKey: &'static NSKeyValueChangeKey;
 }
@@ -204,6 +228,17 @@ unsafe impl NSObjectNSKeyValueObserverRegistration for NSObject {}
 impl<ObjectType: Message> NSArray<ObjectType> {
     extern_methods!(
         #[cfg(all(feature = "NSIndexSet", feature = "NSString"))]
+        /// Registers an observer to receive key value observer notifications for the specified key-path relative to the objects at the indexes.
+        ///
+        /// The `options` determine what is included in the notifications, and the `context` is passed in the notifications. This is not merely a convenience method; invoking this method is potentially much faster than repeatedly invoking `addObserver(_:forKeyPath:options:context:)` on `NSObject`.
+        ///
+        /// - Parameters:
+        /// - observer: The observer.
+        /// - indexes: The index set.
+        /// - keyPath: The key path, relative to the array, to be observed.
+        /// - options: The options to be included in the notification.
+        /// - context: The context passed to the notifications.
+        ///
         /// # Safety
         ///
         /// - `observer` should be of the correct type.
@@ -220,6 +255,14 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         );
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSString"))]
+        /// Removes `observer` from all key value observer notifications associated with the specified `keyPath` relative to the array's objects at `indexes`.
+        ///
+        /// - Parameters:
+        /// - observer: The object to remove as an observer.
+        /// - indexes: The index set.
+        /// - keyPath: A key-path, relative to the array, for which `observer` is registered to receive KVO change notifications. This value must not be `nil`.
+        /// - context: The context passed to the notifications.
+        ///
         /// # Safety
         ///
         /// - `observer` should be of the correct type.
@@ -235,6 +278,15 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         );
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSString"))]
+        /// Removes `observer` from all key value observer notifications associated with the specified `keyPath` relative to the array's objects at `indexes`.
+        ///
+        /// This is not merely a convenience method; invoking this method is potentially much faster than repeatedly invoking `removeObserver(_:forKeyPath:)` on `NSObject`.
+        ///
+        /// - Parameters:
+        /// - observer: The observer.
+        /// - indexes: The index set.
+        /// - keyPath: The key path, relative to the array, to be observed.
+        ///
         /// # Safety
         ///
         /// `observer` should be of the correct type.
@@ -248,6 +300,16 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         );
 
         #[cfg(feature = "NSString")]
+        /// Raises an exception.
+        ///
+        /// `NSArray` objects are not observable, so this method raises an exception when invoked on an `NSArray` object. Instead of observing an array, observe the ordered to-many relationship for which the array is the collection of related objects.
+        ///
+        /// - Parameters:
+        /// - observer: The object to register for KVO notifications. The observer must implement the key-value observing method `observeValue(forKeyPath:of:change:context:)`.
+        /// - keyPath: The key path, relative to the array, of the property to observe. This value must not be `nil`.
+        /// - options: A combination of ``NSKeyValueObservingOptions`` values that specifies what is included in observation notifications.
+        /// - context: Arbitrary data that is passed to `observer` in `observeValue(forKeyPath:of:change:context:)`.
+        ///
         /// # Safety
         ///
         /// - `observer` should be of the correct type.
@@ -263,6 +325,15 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         );
 
         #[cfg(feature = "NSString")]
+        /// Raises an exception.
+        ///
+        /// `NSArray` objects are not observable, so this method raises an exception when invoked on an `NSArray` object. Instead of observing an array, observe the ordered to-many relationship for which the array is the collection of related objects.
+        ///
+        /// - Parameters:
+        /// - observer: The object to remove as an observer.
+        /// - keyPath: A key-path, relative to the set, for which `observer` is registered to receive KVO change notifications. This value must not be `nil`.
+        /// - context: The context passed to the notifications.
+        ///
         /// # Safety
         ///
         /// - `observer` should be of the correct type.
@@ -277,6 +348,14 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         );
 
         #[cfg(feature = "NSString")]
+        /// Raises an exception.
+        ///
+        /// `NSArray` objects are not observable, so this method raises an exception when invoked on an `NSArray` object. Instead of observing an array, observe the to-many relationship for which the array is the collection of related objects.
+        ///
+        /// - Parameters:
+        /// - observer: The object to remove as an observer.
+        /// - keyPath: A key-path, relative to the array, for which `observer` is registered to receive KVO change notifications. This value must not be `nil`.
+        ///
         /// # Safety
         ///
         /// `observer` should be of the correct type.
@@ -291,6 +370,10 @@ impl<ObjectType: Message> NSArray<ObjectType> {
 impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// NSOrderedSets are not observable, so this method raises an exception when invoked on NSOrderedSets.
+        ///
+        /// Instead of observing an ordered set, observe the ordered to-many relationship for which the ordered set is the collection of related objects.
+        ///
         /// # Safety
         ///
         /// - `observer` should be of the correct type.
@@ -306,6 +389,8 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         );
 
         #[cfg(feature = "NSString")]
+        /// NSOrderedSets are not observable, so this method raises an exception when invoked on NSOrderedSets.
+        ///
         /// # Safety
         ///
         /// - `observer` should be of the correct type.
@@ -320,6 +405,8 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         );
 
         #[cfg(feature = "NSString")]
+        /// NSOrderedSets are not observable, so this method raises an exception when invoked on NSOrderedSets.
+        ///
         /// # Safety
         ///
         /// `observer` should be of the correct type.
@@ -334,6 +421,10 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 impl<ObjectType: Message> NSSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// NSSets are not observable, so this method raises an exception when invoked on NSSets.
+        ///
+        /// Instead of observing a set, observe the unordered to-many relationship for which the set is the collection of related objects.
+        ///
         /// # Safety
         ///
         /// - `observer` should be of the correct type.
@@ -349,6 +440,8 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         );
 
         #[cfg(feature = "NSString")]
+        /// NSSets are not observable, so this method raises an exception when invoked on NSSets.
+        ///
         /// # Safety
         ///
         /// - `observer` should be of the correct type.
@@ -363,6 +456,8 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         );
 
         #[cfg(feature = "NSString")]
+        /// NSSets are not observable, so this method raises an exception when invoked on NSSets.
+        ///
         /// # Safety
         ///
         /// `observer` should be of the correct type.

@@ -32,6 +32,12 @@ mod __SCSensitivityAnalyzer;
 mod __SCVideoStreamAnalyzer;
 
 #[cfg(feature = "SCSensitivityAnalysis")]
+pub use self::__SCSensitivityAnalysis::SCSensitiveContentType;
+#[cfg(feature = "SCSensitivityAnalysis")]
+pub use self::__SCSensitivityAnalysis::SCSensitiveContentTypeGoreOrViolence;
+#[cfg(feature = "SCSensitivityAnalysis")]
+pub use self::__SCSensitivityAnalysis::SCSensitiveContentTypeSexuallyExplicit;
+#[cfg(feature = "SCSensitivityAnalysis")]
 pub use self::__SCSensitivityAnalysis::SCSensitivityAnalysis;
 #[cfg(feature = "SCSensitivityAnalyzer")]
 pub use self::__SCSensitivityAnalyzer::SCSensitivityAnalysisPolicy;

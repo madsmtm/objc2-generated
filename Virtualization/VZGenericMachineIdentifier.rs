@@ -16,7 +16,7 @@ extern_class!(
     ///
     /// The contents of two identifiers can be compared with -[VZGenericMachineIdentifier isEqual:].
     ///
-    /// See also: VZGenericPlatformConfiguration
+    /// See: VZGenericPlatformConfiguration
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgenericmachineidentifier?language=objc)
     #[unsafe(super(NSObject))]

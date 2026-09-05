@@ -159,6 +159,13 @@ extern "C" {
     pub static AVAudioSessionPortThunderbolt: &'static AVAudioSessionPort;
 }
 
+extern "C" {
+    /// Output to a media device vended through a system-wide extension that the user has installed
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportmediadeviceextension?language=objc)
+    pub static AVAudioSessionPortMediaDeviceExtension: &'static AVAudioSessionPort;
+}
+
 /// A category defines a broad set of behaviors for a session.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategory?language=objc)
@@ -341,19 +348,18 @@ extern "C" {
 }
 
 extern "C" {
-    /// Appropriate for applications that require simultaneous use of built-in microphone/speaker
-    /// with a secondary audio device that supports both input and output capabilities.
+    /// A mode that provides simultaneous use of the built-in microphone/speaker and a secondary audio device that supports input and output.
     ///
-    /// Only valid with ``AVAudioSessionCategoryMultiRoute``.
+    /// This mode can only be used with the ``AVAudioSessionCategoryMultiRoute`` category. It additionally requires you to set the ``AVAudioSesssion/CategoryOptions/allowBluetoothHFP`` option.
     ///
-    /// This mode requires ``AVAudioSessionCategoryOptionAllowBluetoothHFP`` to be set
+    /// Enabling this mode results in the following behavior:
+    /// - The primary audio route is always the built-in microphone/speaker.
+    /// - The supported secondary route types are ``AVAudioSessionPortHeadsetMic``, ``AVAudioSessionPortHeadphones``, ``AVAudioSessionPortBluetoothLE``, and ``AVAudioSessionPortBluetoothHFP``.
+    /// - Only audio routes that support input and output are available for use.
+    /// - The hardware volume controls adjusts the volume for both primary and secondary routes.
+    /// - The system may engage appropriate signal processing for output routes.
     ///
-    /// When this mode is set:
-    /// - The audio route will always include built-in mic/speaker as the primary route
-    /// - Supported secondary route types: ``AVAudioSessionPortHeadsetMic``, ``AVAudioSessionPortHeadphones``, ``AVAudioSessionPortBluetoothLE``, ``AVAudioSessionPortBluetoothHFP``
-    /// - Only routes with both input/output capabilities will be supported
-    /// - Hardware volume controls will adjust volume for both primary and secondary routes
-    /// - System may engage appropriate signal processing for output routes
+    /// > Important: This API may not be used to enable recordings of others without their awareness.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodedualroute?language=objc)
     pub static AVAudioSessionModeDualRoute: &'static AVAudioSessionMode;
@@ -370,6 +376,7 @@ extern "C" {
     /// within the info dictionary under the key AVAudioSessionInterruptionReasonKey.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionnotification?language=objc)
+    #[deprecated = "Use AVAudioSessionDidBecomeInactiveNotification and AVAudioSessionResumptionRecommendationNotification instead"]
     pub static AVAudioSessionInterruptionNotification: &'static NSNotificationName;
 }
 
@@ -487,6 +494,33 @@ extern "C" {
 }
 
 extern "C" {
+    /// Notification sent when the audio session becomes active.
+    ///
+    /// This notification has no userInfo payload.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessiondidbecomeactivenotification?language=objc)
+    pub static AVAudioSessionDidBecomeActiveNotification: &'static NSNotificationName;
+}
+
+extern "C" {
+    /// Notification sent when the audio session becomes inactive.
+    ///
+    /// The userInfo dictionary contains an ``AVAudioSessionDeactivationContext`` object accessible via ``AVAudioSessionDeactivationContextKey``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessiondidbecomeinactivenotification?language=objc)
+    pub static AVAudioSessionDidBecomeInactiveNotification: &'static NSNotificationName;
+}
+
+extern "C" {
+    /// Notification sent when the system provides a resumption recommendation.
+    ///
+    /// The userInfo dictionary contains an ``AVAudioSessionResumptionContext`` object accessible via ``AVAudioSessionResumptionContextKey``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionresumptionrecommendationnotification?language=objc)
+    pub static AVAudioSessionResumptionRecommendationNotification: &'static NSNotificationName;
+}
+
+extern "C" {
     /// keys for AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification
     /// value is an NSNumber whose boolean value indicates if spatial audio enabled.
     ///
@@ -499,6 +533,7 @@ extern "C" {
     /// Value is an NSNumber representing an AVAudioSessionInterruptionType
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptiontypekey?language=objc)
+    #[deprecated = "Use AVAudioSessionDidBecomeInactiveNotification and AVAudioSessionResumptionRecommendationNotification instead"]
     pub static AVAudioSessionInterruptionTypeKey: &'static NSString;
 }
 
@@ -506,6 +541,7 @@ extern "C" {
     /// Only present for end interruption events.  Value is of type AVAudioSessionInterruptionOptions.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionoptionkey?language=objc)
+    #[deprecated = "Use AVAudioSessionDidBecomeInactiveNotification and AVAudioSessionResumptionRecommendationNotification instead"]
     pub static AVAudioSessionInterruptionOptionKey: &'static NSString;
 }
 
@@ -513,6 +549,7 @@ extern "C" {
     /// Only present in begin interruption events. Value is of type AVAudioSessionInterruptionReason.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionreasonkey?language=objc)
+    #[deprecated = "Use AVAudioSessionDeactivationContext.interruptionDetails.reason instead"]
     pub static AVAudioSessionInterruptionReasonKey: &'static NSString;
 }
 
@@ -576,6 +613,22 @@ extern "C" {
 }
 
 extern "C" {
+    /// Keys for ``AVAudioSessionDidBecomeInactiveNotification``
+    /// Value is an ``AVAudioSessionDeactivationContext`` object describing the deactivation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessiondeactivationcontextkey?language=objc)
+    pub static AVAudioSessionDeactivationContextKey: &'static NSString;
+}
+
+extern "C" {
+    /// Keys for ``AVAudioSessionResumptionRecommendationNotification``
+    /// Value is an ``AVAudioSessionResumptionContext`` describing the resumption recommendation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionresumptioncontextkey?language=objc)
+    pub static AVAudioSessionResumptionContextKey: &'static NSString;
+}
+
+extern "C" {
     /// Notification sent to registered listeners when there are changes in ``availableInputs``.
     ///
     /// There is no payload (userInfo dictionary) associated with the ``AVAudioSessionAvailableInputsChangeNotification`` notification.
@@ -585,8 +638,6 @@ extern "C" {
 }
 
 /// For use with activateWithOptions:completionHandler:
-///
-/// Reserved for future use. Added in watchOS 5.0.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionactivationoptions?language=objc)
 // NS_OPTIONS
@@ -606,6 +657,32 @@ unsafe impl Encode for AVAudioSessionActivationOptions {
 }
 
 unsafe impl RefEncode for AVAudioSessionActivationOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Options for deactivating an AVAudioSession
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessiondeactivationoptions?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct AVAudioSessionDeactivationOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl AVAudioSessionDeactivationOptions: NSUInteger {
+        #[doc(alias = "AVAudioSessionDeactivationOptionNone")]
+        const None = 0;
+/// Notify an interrupted app that the interruption has ended and it may resume playback.
+        #[doc(alias = "AVAudioSessionDeactivationOptionNotifyOthersOnDeactivation")]
+        const NotifyOthersOnDeactivation = 1<<0;
+        const _ = !0;
+    }
+}
+
+unsafe impl Encode for AVAudioSessionDeactivationOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVAudioSessionDeactivationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -837,7 +914,7 @@ bitflags::bitflags! {
         const OverrideMutedMicrophoneInterruption = 0x80;
 /// This option should be used if a session prefers to use FarFieldInput when available.
 /// This option is only valid with categories that support input -
-/// ``AVAudioSessionCategoryPlayAndRecord`` and ``AVAudioSessionCategoryRecord``.
+/// ``AVAudioSessionCategoryPlayAndRecord``, ``AVAudioSessionCategoryRecord``, and ``AVAudioSessionMultiRoute`` with ``AVAudioSessionModeDualRoute``.
 ///
 /// - This option requires ``AVAudioSessionCategoryOptionAllowBluetoothHFP`` to be set.
 /// Otherwise error will be returned.
@@ -891,15 +968,18 @@ unsafe impl RefEncode for AVAudioSessionCategoryOptions {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptiontype?language=objc)
 // NS_ENUM
+#[deprecated = "Use AVAudioSessionDidBecomeInactiveNotification and AVAudioSessionResumptionRecommendationNotification instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionInterruptionType(pub NSUInteger);
 impl AVAudioSessionInterruptionType {
     /// the system has interrupted your audio session
     #[doc(alias = "AVAudioSessionInterruptionTypeBegan")]
+    #[deprecated = "Use AVAudioSessionDidBecomeInactiveNotification and AVAudioSessionResumptionRecommendationNotification instead"]
     pub const Began: Self = Self(1);
     /// the interruption has ended
     #[doc(alias = "AVAudioSessionInterruptionTypeEnded")]
+    #[deprecated = "Use AVAudioSessionDidBecomeInactiveNotification and AVAudioSessionResumptionRecommendationNotification instead"]
     pub const Ended: Self = Self(0);
 }
 
@@ -916,6 +996,7 @@ unsafe impl RefEncode for AVAudioSessionInterruptionType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionoptions?language=objc)
 // NS_OPTIONS
+#[deprecated = "Use AVAudioSessionResumptionRecommendationNotification instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionInterruptionOptions(pub NSUInteger);
@@ -923,6 +1004,7 @@ bitflags::bitflags! {
     impl AVAudioSessionInterruptionOptions: NSUInteger {
 /// Indicates that you should resume playback now that the interruption has ended.
         #[doc(alias = "AVAudioSessionInterruptionOptionShouldResume")]
+#[deprecated = "Use AVAudioSessionResumptionRecommendationNotification instead"]
         const ShouldResume = 1;
         const _ = !0;
     }
@@ -970,6 +1052,50 @@ unsafe impl Encode for AVAudioSessionInterruptionReason {
 }
 
 unsafe impl RefEncode for AVAudioSessionInterruptionReason {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// The source of the audio session deactivation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessiondeactivationsource?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct AVAudioSessionDeactivationSource(pub NSInteger);
+impl AVAudioSessionDeactivationSource {
+    #[doc(alias = "AVAudioSessionDeactivationSourceApp")]
+    pub const App: Self = Self(1);
+    #[doc(alias = "AVAudioSessionDeactivationSourceSystem")]
+    pub const System: Self = Self(2);
+}
+
+unsafe impl Encode for AVAudioSessionDeactivationSource {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVAudioSessionDeactivationSource {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// The system's recommendation on whether to resume playback.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionresumptionrecommendation?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct AVAudioSessionResumptionRecommendation(pub NSInteger);
+impl AVAudioSessionResumptionRecommendation {
+    #[doc(alias = "AVAudioSessionResumptionRecommendationShouldNotResume")]
+    pub const ShouldNotResume: Self = Self(0);
+    #[doc(alias = "AVAudioSessionResumptionRecommendationShouldResume")]
+    pub const ShouldResume: Self = Self(1);
+}
+
+unsafe impl Encode for AVAudioSessionResumptionRecommendation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVAudioSessionResumptionRecommendation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 

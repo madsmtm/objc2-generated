@@ -27,6 +27,9 @@ mod __PHContentEditingController;
 #[cfg(feature = "PHLivePhotoView")]
 #[path = "PHLivePhotoView.rs"]
 mod __PHLivePhotoView;
+#[cfg(feature = "PHPhotoLibrary_PhotosUISupport")]
+#[path = "PHPhotoLibrary_PhotosUISupport.rs"]
+mod __PHPhotoLibrary_PhotosUISupport;
 #[cfg(feature = "PHPicker")]
 #[path = "PHPicker.rs"]
 mod __PHPicker;
@@ -45,6 +48,15 @@ mod __PHProjectTypeDescription;
 #[cfg(feature = "PHProjectTypeDescriptionDataSource")]
 #[path = "PHProjectTypeDescriptionDataSource.rs"]
 mod __PHProjectTypeDescriptionDataSource;
+#[cfg(feature = "PHSharedAlbumCreationViewController")]
+#[path = "PHSharedAlbumCreationViewController.rs"]
+mod __PHSharedAlbumCreationViewController;
+#[cfg(feature = "PHSharedAlbumCustomizationViewController")]
+#[path = "PHSharedAlbumCustomizationViewController.rs"]
+mod __PHSharedAlbumCustomizationViewController;
+#[cfg(feature = "PHSharedAlbumPostingViewController")]
+#[path = "PHSharedAlbumPostingViewController.rs"]
+mod __PHSharedAlbumPostingViewController;
 #[cfg(feature = "PhotosUITypes")]
 #[path = "PhotosUITypes.rs"]
 mod __PhotosUITypes;
@@ -71,9 +83,13 @@ pub use self::__PHPicker::PHPickerConfigurationSelection;
 #[cfg(feature = "PHPicker")]
 pub use self::__PHPicker::PHPickerFilter;
 #[cfg(feature = "PHPicker")]
+pub use self::__PHPicker::PHPickerMetadataOptions;
+#[cfg(feature = "PHPicker")]
 pub use self::__PHPicker::PHPickerMode;
 #[cfg(feature = "PHPicker")]
 pub use self::__PHPicker::PHPickerResult;
+#[cfg(feature = "PHPicker")]
+pub use self::__PHPicker::PHPickerSearchText;
 #[cfg(feature = "PHPicker")]
 pub use self::__PHPicker::PHPickerUpdateConfiguration;
 #[cfg(all(feature = "PHPicker", feature = "objc2-app-kit"))]
@@ -117,6 +133,36 @@ pub use self::__PHProjectTypeDescription::PHProjectTypeDescription;
 pub use self::__PHProjectTypeDescriptionDataSource::PHProjectTypeDescriptionDataSource;
 #[cfg(feature = "PHProjectTypeDescriptionDataSource")]
 pub use self::__PHProjectTypeDescriptionDataSource::PHProjectTypeDescriptionInvalidator;
+#[cfg(feature = "PHSharedAlbumCreationViewController")]
+pub use self::__PHSharedAlbumCreationViewController::PHSharedAlbumCreationConfiguration;
+#[cfg(feature = "PHSharedAlbumCreationViewController")]
+pub use self::__PHSharedAlbumCreationViewController::PHSharedAlbumCreationResult;
+#[cfg(feature = "PHSharedAlbumCreationViewController")]
+pub use self::__PHSharedAlbumCreationViewController::PHSharedAlbumCreationSharingPolicy;
+#[cfg(all(
+    feature = "PHSharedAlbumCreationViewController",
+    feature = "objc2-app-kit"
+))]
+#[cfg(target_os = "macos")]
+pub use self::__PHSharedAlbumCreationViewController::PHSharedAlbumCreationViewController;
+#[cfg(feature = "PHSharedAlbumCreationViewController")]
+pub use self::__PHSharedAlbumCreationViewController::PHSharedAlbumCreationViewControllerDelegate;
+#[cfg(all(
+    feature = "PHSharedAlbumCustomizationViewController",
+    feature = "objc2-app-kit"
+))]
+#[cfg(target_os = "macos")]
+pub use self::__PHSharedAlbumCustomizationViewController::PHSharedAlbumCustomizationViewController;
+#[cfg(feature = "PHSharedAlbumCustomizationViewController")]
+pub use self::__PHSharedAlbumCustomizationViewController::PHSharedAlbumCustomizationViewControllerDelegate;
+#[cfg(all(
+    feature = "PHSharedAlbumPostingViewController",
+    feature = "objc2-app-kit"
+))]
+#[cfg(target_os = "macos")]
+pub use self::__PHSharedAlbumPostingViewController::PHSharedAlbumPostingViewController;
+#[cfg(feature = "PHSharedAlbumPostingViewController")]
+pub use self::__PHSharedAlbumPostingViewController::PHSharedAlbumPostingViewControllerDelegate;
 #[cfg(feature = "PhotosUITypes")]
 pub use self::__PhotosUITypes::PHProjectCategory;
 #[cfg(feature = "PhotosUITypes")]

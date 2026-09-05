@@ -26,7 +26,12 @@ extern_conformance!(
 #[cfg(feature = "PHChangeRequest")]
 impl PHProjectChangeRequest {
     extern_methods!(
-        #[cfg(all(feature = "PHCollection", feature = "PHObject", feature = "PHProject"))]
+        #[cfg(all(
+            feature = "PHAssetCollection",
+            feature = "PHCollection",
+            feature = "PHObject",
+            feature = "PHProject"
+        ))]
         #[unsafe(method(initWithProject:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProject(this: Allocated<Self>, project: &PHProject)

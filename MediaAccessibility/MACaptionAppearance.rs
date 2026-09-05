@@ -33,6 +33,8 @@ impl MACaptionAppearanceDomain {
     /// The user-defined preferences. This domain should be passed to retrieve settings that should be used to render captions.
     #[doc(alias = "kMACaptionAppearanceDomainUser")]
     pub const User: Self = Self(1);
+    #[doc(alias = "kMACaptionAppearanceDomainVideoConferencing")]
+    pub const VideoConferencing: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]

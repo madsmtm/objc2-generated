@@ -221,6 +221,9 @@ pub const kUSBHostDevicePropertyEnumerationState: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostdevicepropertysignature?language=objc)
 pub const kUSBHostDevicePropertySignature: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbDeviceSignature\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostdevicepropertyfunction?language=objc)
+pub const kUSBHostDevicePropertyFunction: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbDeviceFunction\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostdevicepropertytunnel?language=objc)
 pub const kUSBHostDevicePropertyTunnel: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbTunnel\0") };

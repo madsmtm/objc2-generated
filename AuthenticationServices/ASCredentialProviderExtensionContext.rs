@@ -75,7 +75,7 @@ impl ASCredentialProviderExtensionContext {
         );
 
         #[cfg(all(feature = "ASOneTimeCodeCredential", feature = "block2"))]
-        /// Complete the request by providing the user selected one time code credential.
+        /// Complete the request by providing the user selected one-time code credential.
         ///
         /// Parameter `credential`: the credential that the user has selected.
         ///

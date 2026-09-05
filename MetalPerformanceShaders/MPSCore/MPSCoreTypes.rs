@@ -208,6 +208,14 @@ impl MPSDataType {
     pub const Float32: Self = Self(MPSDataType::FloatBit.0 | 32);
     #[doc(alias = "MPSDataTypeFloat16")]
     pub const Float16: Self = Self(MPSDataType::FloatBit.0 | 16);
+    #[doc(alias = "MPSDataTypeFloat4e2m1")]
+    pub const Float4e2m1: Self = Self(MPSDataType::FloatBit.0 | 0x210000 | 4);
+    #[doc(alias = "MPSDataTypeFloat8e4m3")]
+    pub const Float8e4m3: Self = Self(MPSDataType::FloatBit.0 | 0x430000 | 8);
+    #[doc(alias = "MPSDataTypeFloat8e5m2")]
+    pub const Float8e5m2: Self = Self(MPSDataType::FloatBit.0 | 0x520000 | 8);
+    #[doc(alias = "MPSDataTypeFloat8e8m0")]
+    pub const Float8e8m0: Self = Self(MPSDataType::FloatBit.0 | 0x800000 | 8);
     #[doc(alias = "MPSDataTypeComplexBit")]
     pub const ComplexBit: Self = Self(0x01000000);
     #[doc(alias = "MPSDataTypeComplexFloat32")]

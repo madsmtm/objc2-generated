@@ -44,6 +44,13 @@ impl BAAssetPack {
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> NSInteger;
 
+        /// The language, represented as a BCP-47 identifier, for which this asset pack is localized.
+        ///
+        /// This property is `nil` if the asset pack isn’t localized and therefore isn’t language-specific.
+        #[unsafe(method(language))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn language(&self) -> Option<Retained<NSString>>;
+
         /// JSON-encoded custom information that’s associated with the asset pack.
         ///
         /// This property is `nil` for Apple-hosted asset packs.

@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Options supported by methods that produce difference objects.
+/// Constants that specify the options to use when creating an ordered collection difference.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions?language=objc)
 // NS_OPTIONS
@@ -37,7 +37,24 @@ unsafe impl RefEncode for NSOrderedCollectionDifferenceCalculationOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference?language=objc)
+    /// An object representing the difference between two ordered collections.
+    ///
+    /// Use ``NSArray/differenceFromArray:`` or one of its variations to get an instance of ``NSOrderedCollectionDifference``, which represents the difference between two ordered collections.
+    ///
+    /// For example, the following sample compares two arrays of strings to create a difference that represents the changes:
+    ///
+    /// ```objc
+    /// NSArray *original =@[@"Red", @"Green", @"Blue"];
+    /// NSArray *modified =@[@"Red", @"Blue", @"Green"];
+    ///
+    /// NSOrderedCollectionDifference *diff = [original differenceFromArray:modified];
+    ///
+    /// // diff.hasChanges == TRUE
+    /// // diff.insertions.count == 1
+    /// // diff.removals.count == 1
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrderedCollectionDifference<ObjectType: ?Sized = AnyObject>;
@@ -93,6 +110,13 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
             feature = "NSIndexSet",
             feature = "NSOrderedCollectionChange"
         ))]
+        /// Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices, in addition to an array of ordered collection changes.
+        ///
+        /// - Parameter inserts: An index set that represents the index values to associate with the objects in the provided array of inserted objects.
+        /// - Parameter insertedObjects: An array of objects the ordered collection difference will insert.
+        /// - Parameter removes: An index set that represents the index values to associate with the objects in the provided array of removed objects.
+        /// - Parameter removedObjects: An array of objects the ordered collection difference will remove.
+        /// - Parameter changes: An array of ordered collection changes.
         #[unsafe(method(initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:))]
         #[unsafe(method_family = init)]
         pub fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges(
@@ -105,6 +129,12 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
+        /// Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices.
+        ///
+        /// - Parameter inserts: An index set that represents the index values to associate with the objects in the provided array of inserted objects.
+        /// - Parameter insertedObjects: An array of objects the ordered collection difference will insert.
+        /// - Parameter removes: An index set that represents the index values to associate with the objects in the provided array of removed objects.
+        /// - Parameter removedObjects: An array of objects the ordered collection difference will remove.
         #[unsafe(method(initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:))]
         #[unsafe(method_family = init)]
         pub fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects(
@@ -116,20 +146,28 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
+        /// A collection of insertion change objects.
         #[unsafe(method(insertions))]
         #[unsafe(method_family = none)]
         pub fn insertions(&self) -> Retained<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
+        /// A collection of removal change objects.
         #[unsafe(method(removals))]
         #[unsafe(method_family = none)]
         pub fn removals(&self) -> Retained<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
+        /// A Boolean value that indicates if the difference has changes.
         #[unsafe(method(hasChanges))]
         #[unsafe(method_family = none)]
         pub fn hasChanges(&self) -> bool;
 
         #[cfg(all(feature = "NSOrderedCollectionChange", feature = "block2"))]
+        /// Create a new ordered collection difference by mapping over this difference's members, processing the change objects with the block provided.
+        ///
+        /// - Parameter block: A block that receives an ordered collection change and returns an updated change.
+        /// - Returns: A new ordered collection difference.
+        ///
         /// # Safety
         ///
         /// `block` block's return must be a valid pointer.
@@ -145,6 +183,11 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
             >,
         ) -> Retained<NSOrderedCollectionDifference<AnyObject>>;
 
+        /// Returns a difference that is the inverse of the receiver.
+        ///
+        /// Applying a difference to an ordered collection and then applying the inverse
+        /// difference results in the original ordered collection. To revert a
+        /// chronological sequence of diffs, apply their inverses in reverse order.
         #[unsafe(method(inverseDifference))]
         #[unsafe(method_family = none)]
         pub fn inverseDifference(&self) -> Retained<Self>;

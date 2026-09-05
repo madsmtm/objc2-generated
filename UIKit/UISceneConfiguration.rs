@@ -55,6 +55,22 @@ impl UISceneConfiguration {
             session_role: &UISceneSessionRole,
         ) -> Retained<Self>;
 
+        /// Creates a scene-configuration object.
+        ///
+        /// Scene sessions created from this configuration will have their role
+        /// automatically set by the system.
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        /// Creates a scene-configuration object with the specified name.
+        ///
+        /// Scene sessions created from this configuration will have their role
+        /// automatically set by the system.
+        #[unsafe(method(initWithName:))]
+        #[unsafe(method_family = init)]
+        pub fn initWithName(this: Allocated<Self>, name: Option<&NSString>) -> Retained<Self>;
+
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
@@ -106,10 +122,6 @@ impl UISceneConfiguration {
 /// Methods declared on superclass `NSObject`.
 impl UISceneConfiguration {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
-
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;

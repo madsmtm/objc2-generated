@@ -6,195 +6,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Represents a particular type of workout or exercise
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype?language=objc)
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct HKWorkoutActivityType(pub NSUInteger);
-impl HKWorkoutActivityType {
-    #[doc(alias = "HKWorkoutActivityTypeAmericanFootball")]
-    pub const AmericanFootball: Self = Self(1);
-    #[doc(alias = "HKWorkoutActivityTypeArchery")]
-    pub const Archery: Self = Self(2);
-    #[doc(alias = "HKWorkoutActivityTypeAustralianFootball")]
-    pub const AustralianFootball: Self = Self(3);
-    #[doc(alias = "HKWorkoutActivityTypeBadminton")]
-    pub const Badminton: Self = Self(4);
-    #[doc(alias = "HKWorkoutActivityTypeBaseball")]
-    pub const Baseball: Self = Self(5);
-    #[doc(alias = "HKWorkoutActivityTypeBasketball")]
-    pub const Basketball: Self = Self(6);
-    #[doc(alias = "HKWorkoutActivityTypeBowling")]
-    pub const Bowling: Self = Self(7);
-    #[doc(alias = "HKWorkoutActivityTypeBoxing")]
-    pub const Boxing: Self = Self(8);
-    #[doc(alias = "HKWorkoutActivityTypeClimbing")]
-    pub const Climbing: Self = Self(9);
-    #[doc(alias = "HKWorkoutActivityTypeCricket")]
-    pub const Cricket: Self = Self(10);
-    #[doc(alias = "HKWorkoutActivityTypeCrossTraining")]
-    pub const CrossTraining: Self = Self(11);
-    #[doc(alias = "HKWorkoutActivityTypeCurling")]
-    pub const Curling: Self = Self(12);
-    #[doc(alias = "HKWorkoutActivityTypeCycling")]
-    pub const Cycling: Self = Self(13);
-    #[doc(alias = "HKWorkoutActivityTypeDance")]
-    #[deprecated = "Use HKWorkoutActivityTypeSocialDance or HKWorkoutActivityTypeCardioDance"]
-    pub const Dance: Self = Self(14);
-    #[doc(alias = "HKWorkoutActivityTypeDanceInspiredTraining")]
-    #[deprecated = "Use HKWorkoutActivityTypeSocialDance, HKWorkoutActivityTypeCardioDance, HKWorkoutActivityTypeBarre or HKWorkoutActivityTypePilates"]
-    pub const DanceInspiredTraining: Self = Self(15);
-    #[doc(alias = "HKWorkoutActivityTypeElliptical")]
-    pub const Elliptical: Self = Self(16);
-    #[doc(alias = "HKWorkoutActivityTypeEquestrianSports")]
-    pub const EquestrianSports: Self = Self(17);
-    #[doc(alias = "HKWorkoutActivityTypeFencing")]
-    pub const Fencing: Self = Self(18);
-    #[doc(alias = "HKWorkoutActivityTypeFishing")]
-    pub const Fishing: Self = Self(19);
-    #[doc(alias = "HKWorkoutActivityTypeFunctionalStrengthTraining")]
-    pub const FunctionalStrengthTraining: Self = Self(20);
-    #[doc(alias = "HKWorkoutActivityTypeGolf")]
-    pub const Golf: Self = Self(21);
-    #[doc(alias = "HKWorkoutActivityTypeGymnastics")]
-    pub const Gymnastics: Self = Self(22);
-    #[doc(alias = "HKWorkoutActivityTypeHandball")]
-    pub const Handball: Self = Self(23);
-    #[doc(alias = "HKWorkoutActivityTypeHiking")]
-    pub const Hiking: Self = Self(24);
-    #[doc(alias = "HKWorkoutActivityTypeHockey")]
-    pub const Hockey: Self = Self(25);
-    #[doc(alias = "HKWorkoutActivityTypeHunting")]
-    pub const Hunting: Self = Self(26);
-    #[doc(alias = "HKWorkoutActivityTypeLacrosse")]
-    pub const Lacrosse: Self = Self(27);
-    #[doc(alias = "HKWorkoutActivityTypeMartialArts")]
-    pub const MartialArts: Self = Self(28);
-    #[doc(alias = "HKWorkoutActivityTypeMindAndBody")]
-    pub const MindAndBody: Self = Self(29);
-    #[doc(alias = "HKWorkoutActivityTypeMixedMetabolicCardioTraining")]
-    #[deprecated = "Use HKWorkoutActivityTypeMixedCardio or HKWorkoutActivityTypeHighIntensityIntervalTraining"]
-    pub const MixedMetabolicCardioTraining: Self = Self(30);
-    #[doc(alias = "HKWorkoutActivityTypePaddleSports")]
-    pub const PaddleSports: Self = Self(31);
-    #[doc(alias = "HKWorkoutActivityTypePlay")]
-    pub const Play: Self = Self(32);
-    #[doc(alias = "HKWorkoutActivityTypePreparationAndRecovery")]
-    pub const PreparationAndRecovery: Self = Self(33);
-    #[doc(alias = "HKWorkoutActivityTypeRacquetball")]
-    pub const Racquetball: Self = Self(34);
-    #[doc(alias = "HKWorkoutActivityTypeRowing")]
-    pub const Rowing: Self = Self(35);
-    #[doc(alias = "HKWorkoutActivityTypeRugby")]
-    pub const Rugby: Self = Self(36);
-    #[doc(alias = "HKWorkoutActivityTypeRunning")]
-    pub const Running: Self = Self(37);
-    #[doc(alias = "HKWorkoutActivityTypeSailing")]
-    pub const Sailing: Self = Self(38);
-    #[doc(alias = "HKWorkoutActivityTypeSkatingSports")]
-    pub const SkatingSports: Self = Self(39);
-    #[doc(alias = "HKWorkoutActivityTypeSnowSports")]
-    pub const SnowSports: Self = Self(40);
-    #[doc(alias = "HKWorkoutActivityTypeSoccer")]
-    pub const Soccer: Self = Self(41);
-    #[doc(alias = "HKWorkoutActivityTypeSoftball")]
-    pub const Softball: Self = Self(42);
-    #[doc(alias = "HKWorkoutActivityTypeSquash")]
-    pub const Squash: Self = Self(43);
-    #[doc(alias = "HKWorkoutActivityTypeStairClimbing")]
-    pub const StairClimbing: Self = Self(44);
-    #[doc(alias = "HKWorkoutActivityTypeSurfingSports")]
-    pub const SurfingSports: Self = Self(45);
-    #[doc(alias = "HKWorkoutActivityTypeSwimming")]
-    pub const Swimming: Self = Self(46);
-    #[doc(alias = "HKWorkoutActivityTypeTableTennis")]
-    pub const TableTennis: Self = Self(47);
-    #[doc(alias = "HKWorkoutActivityTypeTennis")]
-    pub const Tennis: Self = Self(48);
-    #[doc(alias = "HKWorkoutActivityTypeTrackAndField")]
-    pub const TrackAndField: Self = Self(49);
-    #[doc(alias = "HKWorkoutActivityTypeTraditionalStrengthTraining")]
-    pub const TraditionalStrengthTraining: Self = Self(50);
-    #[doc(alias = "HKWorkoutActivityTypeVolleyball")]
-    pub const Volleyball: Self = Self(51);
-    #[doc(alias = "HKWorkoutActivityTypeWalking")]
-    pub const Walking: Self = Self(52);
-    #[doc(alias = "HKWorkoutActivityTypeWaterFitness")]
-    pub const WaterFitness: Self = Self(53);
-    #[doc(alias = "HKWorkoutActivityTypeWaterPolo")]
-    pub const WaterPolo: Self = Self(54);
-    #[doc(alias = "HKWorkoutActivityTypeWaterSports")]
-    pub const WaterSports: Self = Self(55);
-    #[doc(alias = "HKWorkoutActivityTypeWrestling")]
-    pub const Wrestling: Self = Self(56);
-    #[doc(alias = "HKWorkoutActivityTypeYoga")]
-    pub const Yoga: Self = Self(57);
-    #[doc(alias = "HKWorkoutActivityTypeBarre")]
-    pub const Barre: Self = Self(58);
-    #[doc(alias = "HKWorkoutActivityTypeCoreTraining")]
-    pub const CoreTraining: Self = Self(59);
-    #[doc(alias = "HKWorkoutActivityTypeCrossCountrySkiing")]
-    pub const CrossCountrySkiing: Self = Self(60);
-    #[doc(alias = "HKWorkoutActivityTypeDownhillSkiing")]
-    pub const DownhillSkiing: Self = Self(61);
-    #[doc(alias = "HKWorkoutActivityTypeFlexibility")]
-    pub const Flexibility: Self = Self(62);
-    #[doc(alias = "HKWorkoutActivityTypeHighIntensityIntervalTraining")]
-    pub const HighIntensityIntervalTraining: Self = Self(63);
-    #[doc(alias = "HKWorkoutActivityTypeJumpRope")]
-    pub const JumpRope: Self = Self(64);
-    #[doc(alias = "HKWorkoutActivityTypeKickboxing")]
-    pub const Kickboxing: Self = Self(65);
-    #[doc(alias = "HKWorkoutActivityTypePilates")]
-    pub const Pilates: Self = Self(66);
-    #[doc(alias = "HKWorkoutActivityTypeSnowboarding")]
-    pub const Snowboarding: Self = Self(67);
-    #[doc(alias = "HKWorkoutActivityTypeStairs")]
-    pub const Stairs: Self = Self(68);
-    #[doc(alias = "HKWorkoutActivityTypeStepTraining")]
-    pub const StepTraining: Self = Self(69);
-    #[doc(alias = "HKWorkoutActivityTypeWheelchairWalkPace")]
-    pub const WheelchairWalkPace: Self = Self(70);
-    #[doc(alias = "HKWorkoutActivityTypeWheelchairRunPace")]
-    pub const WheelchairRunPace: Self = Self(71);
-    #[doc(alias = "HKWorkoutActivityTypeTaiChi")]
-    pub const TaiChi: Self = Self(72);
-    #[doc(alias = "HKWorkoutActivityTypeMixedCardio")]
-    pub const MixedCardio: Self = Self(73);
-    #[doc(alias = "HKWorkoutActivityTypeHandCycling")]
-    pub const HandCycling: Self = Self(74);
-    #[doc(alias = "HKWorkoutActivityTypeDiscSports")]
-    pub const DiscSports: Self = Self(75);
-    #[doc(alias = "HKWorkoutActivityTypeFitnessGaming")]
-    pub const FitnessGaming: Self = Self(76);
-    #[doc(alias = "HKWorkoutActivityTypeCardioDance")]
-    pub const CardioDance: Self = Self(77);
-    #[doc(alias = "HKWorkoutActivityTypeSocialDance")]
-    pub const SocialDance: Self = Self(78);
-    #[doc(alias = "HKWorkoutActivityTypePickleball")]
-    pub const Pickleball: Self = Self(79);
-    #[doc(alias = "HKWorkoutActivityTypeCooldown")]
-    pub const Cooldown: Self = Self(80);
-    #[doc(alias = "HKWorkoutActivityTypeSwimBikeRun")]
-    pub const SwimBikeRun: Self = Self(82);
-    #[doc(alias = "HKWorkoutActivityTypeTransition")]
-    pub const Transition: Self = Self(83);
-    #[doc(alias = "HKWorkoutActivityTypeUnderwaterDiving")]
-    pub const UnderwaterDiving: Self = Self(84);
-    #[doc(alias = "HKWorkoutActivityTypeOther")]
-    pub const Other: Self = Self(3000);
-}
-
-unsafe impl Encode for HKWorkoutActivityType {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
-}
-
-unsafe impl RefEncode for HKWorkoutActivityType {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -371,6 +182,7 @@ extern_conformance!(
 #[cfg(all(feature = "HKObject", feature = "HKSample"))]
 impl HKWorkout {
     extern_methods!(
+        #[cfg(feature = "HKWorkoutActivityType")]
         /// Represents the activity that the user was performing during a workout
         #[unsafe(method(workoutActivityType))]
         #[unsafe(method_family = none)]
@@ -464,6 +276,7 @@ impl HKWorkout {
             quantity_type: &HKQuantityType,
         ) -> Option<Retained<HKStatistics>>;
 
+        #[cfg(feature = "HKWorkoutActivityType")]
         /// Parameter `workoutActivityType`: The activity type of the workout
         ///
         /// Parameter `startDate`: The point in time that the workout was started
@@ -478,7 +291,7 @@ impl HKWorkout {
             end_date: &NSDate,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "HKQuantity")]
+        #[cfg(all(feature = "HKQuantity", feature = "HKWorkoutActivityType"))]
         /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
         /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
         ///
@@ -513,7 +326,11 @@ impl HKWorkout {
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
+        #[cfg(all(
+            feature = "HKDevice",
+            feature = "HKQuantity",
+            feature = "HKWorkoutActivityType"
+        ))]
         /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
         /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
         ///
@@ -551,7 +368,7 @@ impl HKWorkout {
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "HKQuantity")]
+        #[cfg(all(feature = "HKQuantity", feature = "HKWorkoutActivityType"))]
         /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
         /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
         ///
@@ -586,7 +403,11 @@ impl HKWorkout {
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
+        #[cfg(all(
+            feature = "HKDevice",
+            feature = "HKQuantity",
+            feature = "HKWorkoutActivityType"
+        ))]
         /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
         /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
         ///
@@ -624,7 +445,11 @@ impl HKWorkout {
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
+        #[cfg(all(
+            feature = "HKDevice",
+            feature = "HKQuantity",
+            feature = "HKWorkoutActivityType"
+        ))]
         /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
         /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
         ///
@@ -665,7 +490,11 @@ impl HKWorkout {
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
+        #[cfg(all(
+            feature = "HKDevice",
+            feature = "HKQuantity",
+            feature = "HKWorkoutActivityType"
+        ))]
         /// If the optional total parameters are specified, matching samples that add up to the calculated total
         /// quantities should be associated with this workout using addSamples:toWorkout:completion: in
         /// HKHealthStore.

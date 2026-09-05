@@ -5,14 +5,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectionchangetype?language=objc)
+/// The type of change represented in computing the difference of an ordered collection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectionchangetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionChangeType(pub NSInteger);
 impl NSCollectionChangeType {
+    /// An insertion change.
     #[doc(alias = "NSCollectionChangeInsert")]
     pub const Insert: Self = Self(0);
+    /// A removal change.
     #[doc(alias = "NSCollectionChangeRemove")]
     pub const Remove: Self = Self(1);
 }
@@ -26,7 +30,11 @@ unsafe impl RefEncode for NSCollectionChangeType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectionchange?language=objc)
+    /// An object that represents an indexed change within an ordered collection.
+    ///
+    /// An ordered collection change represents changes by adding, removing, or moving objects within an ordered collection. Changes with an associated index indicate a move within the collection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectionchange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrderedCollectionChange<ObjectType: ?Sized = AnyObject>;
@@ -52,6 +60,11 @@ extern_conformance!(
 
 impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
     extern_methods!(
+        /// Creates a change object that represents inserting or removing an object from an ordered collection at a specific index.
+        ///
+        /// - Parameter anObject: An object to be removed or inserted by the change.
+        /// - Parameter type: The type of change.
+        /// - Parameter index: The index location within an ordered collection where the change applies.
         #[unsafe(method(changeWithObject:type:index:))]
         #[unsafe(method_family = none)]
         pub fn changeWithObject_type_index(
@@ -60,6 +73,12 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
             index: NSUInteger,
         ) -> Retained<NSOrderedCollectionChange<ObjectType>>;
 
+        /// Creates a change object that represents inserting or removing an object from an ordered collection at a specific index, matched with an associated location that infers a move within the collection.
+        ///
+        /// - Parameter anObject: An object to be removed or inserted by the change.
+        /// - Parameter type: The type of change.
+        /// - Parameter index: The index location within an ordered collection where the change applies.
+        /// - Parameter associatedIndex: The index of the change's counterpart of the opposite type in the diff.
         #[unsafe(method(changeWithObject:type:index:associatedIndex:))]
         #[unsafe(method_family = none)]
         pub fn changeWithObject_type_index_associatedIndex(
@@ -69,24 +88,42 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
             associated_index: NSUInteger,
         ) -> Retained<NSOrderedCollectionChange<ObjectType>>;
 
+        /// An object the change inserts or removes.
         #[unsafe(method(object))]
         #[unsafe(method_family = none)]
         pub fn object(&self) -> Option<Retained<ObjectType>>;
 
+        /// The type of change.
         #[unsafe(method(changeType))]
         #[unsafe(method_family = none)]
         pub fn changeType(&self) -> NSCollectionChangeType;
 
+        /// The index location of the change.
+        ///
+        /// For removals, the index of the object in the original state. For insertions, the index of the object in the final state.
         #[unsafe(method(index))]
         #[unsafe(method_family = none)]
         pub fn index(&self) -> NSUInteger;
 
+        /// When this property is set to a value other than `NSNotFound`, the receiver is one half of a move, and this value is the index of the change's counterpart of the opposite type in the diff.
+        ///
+        /// Pairs of changes with opposite types that refer to each other represent the index location of their counterpart with the `associatedIndex` property.
+        ///
+        /// A move pair can have a different `object` in its removal and insertion changes, which can imply that the change represents moving and changing or replacing an element.
+        ///
+        /// > Note:
+        /// > Don't ignore a move when the indexes of its changes are the same. The calculated difference may legitimately produce a diff where a change removes the object at one index and the object at another index moves to the same index. Ignoring the move produces an incorrect result.
         #[unsafe(method(associatedIndex))]
         #[unsafe(method_family = none)]
         pub fn associatedIndex(&self) -> NSUInteger;
 
         // -init (unavailable)
 
+        /// Creates a change object that represents inserting or removing an object from an ordered collection at a specific index.
+        ///
+        /// - Parameter anObject: An optional object the change will remove or insert.
+        /// - Parameter type: The type of change.
+        /// - Parameter index: The index location within an ordered collection where the change applies.
         #[unsafe(method(initWithObject:type:index:))]
         #[unsafe(method_family = init)]
         pub fn initWithObject_type_index(
@@ -96,6 +133,12 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
             index: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Creates a change object that represents inserting, removing, or moving an object from an ordered collection at a specific index.
+        ///
+        /// - Parameter anObject: An optional object the change will remove or insert.
+        /// - Parameter type: The type of change.
+        /// - Parameter index: The index location within an ordered collection where the change applies.
+        /// - Parameter associatedIndex: The index of the change's counterpart of the opposite type in the diff.
         #[unsafe(method(initWithObject:type:index:associatedIndex:))]
         #[unsafe(method_family = init)]
         pub fn initWithObject_type_index_associatedIndex(

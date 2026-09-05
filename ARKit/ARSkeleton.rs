@@ -14,7 +14,7 @@ extern_class!(
     ///
     /// A skeleton's structure is defined by a skeleton definition.
     ///
-    /// See: ARSkeletonDefinition
+    /// - SeeAlso: ``ARSkeletonDefinition``
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton?language=objc)
     #[unsafe(super(NSObject))]
@@ -62,10 +62,9 @@ impl ARSkeleton {
 
         /// Tracking state for a given joint.
         ///
+        /// - Parameter jointIndex: The index of the joint.
         ///
-        /// Parameter `jointIndex`: The index of the joint.
-        ///
-        /// Returns: YES if the joint is tracked. NO otherwise.
+        /// - Returns: `YES` if the joint is tracked. `NO` otherwise.
         #[unsafe(method(isJointTracked:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isJointTracked(&self, joint_index: NSInteger) -> bool;
@@ -140,14 +139,14 @@ impl ARSkeleton2D {
 impl ARSkeleton {
     /// Returns the landmark joint name that corresponds to a key point defined in Vision framework.
     ///
-    /// See: VNRecognizedPointKey, VNDetectHumanBodyPoseRequest
+    /// If an invalid key point is passed the returned point will be `nil`.
     ///
-    /// If an invalid key point is passed the returned point will be nil.
+    /// - Parameter recognizedPointKey: Recognized key point.
     ///
+    /// - Returns: Joint name that could be mapped to a `ARSkeleton2D`. `nil` if no mapping exists.
     ///
-    /// Parameter `recognizedPointKey`: Recognized key point.
-    ///
-    /// Returns: Joint name that could be mapped to a ARSkeleton2D. Nil if no mapping exists.
+    /// - SeeAlso: `VNRecognizedPointKey`
+    /// - SeeAlso: `VNDetectHumanBodyPoseRequest`
     #[doc(alias = "ARSkeletonJointNameForRecognizedPointKey")]
     #[cfg(all(
         feature = "ARSkeletonDefinition",

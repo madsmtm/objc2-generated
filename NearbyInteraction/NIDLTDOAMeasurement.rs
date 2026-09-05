@@ -53,6 +53,65 @@ unsafe impl RefEncode for NIDLTDOAMeasurementType {
 }
 
 extern_class!(
+    /// Represents floor elevation info of a DL-TDOA anchor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurementfloorelevation?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct NIDLTDOAMeasurementFloorElevation;
+);
+
+unsafe impl Send for NIDLTDOAMeasurementFloorElevation {}
+
+unsafe impl Sync for NIDLTDOAMeasurementFloorElevation {}
+
+extern_conformance!(
+    unsafe impl NSCoding for NIDLTDOAMeasurementFloorElevation {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for NIDLTDOAMeasurementFloorElevation {}
+);
+
+unsafe impl CopyingHelper for NIDLTDOAMeasurementFloorElevation {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for NIDLTDOAMeasurementFloorElevation {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for NIDLTDOAMeasurementFloorElevation {}
+);
+
+impl NIDLTDOAMeasurementFloorElevation {
+    extern_methods!(
+        /// Indicates the floor number relative to ground level.  Negative values indicate floors below ground level; positive values indicate floors above.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(floorNumber))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn floorNumber(&self) -> NSInteger;
+
+        /// Indicates the anchor's height above the floor in meters.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(height))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn height(&self) -> c_double;
+    );
+}
+
+extern_class!(
     /// Represents a single measurement relative to a DL-TDOA anchor.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement?language=objc)
@@ -97,6 +156,17 @@ impl NIDLTDOAMeasurement {
         #[unsafe(method(address))]
         #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> NSUInteger;
+
+        /// Indicates the address of initator anchor from the same cluster.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(clusterInitiatorAddress))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn clusterInitiatorAddress(&self) -> NSUInteger;
 
         /// Indicates the type of this measurement.
         ///
@@ -153,6 +223,19 @@ impl NIDLTDOAMeasurement {
         #[unsafe(method_family = none)]
         pub unsafe fn carrierFrequencyOffset(&self) -> c_double;
 
+        /// Indicates the clock frequency offset (CFO) fraction of the responder anchor relative to the initiator anchor (dimensionless).
+        /// For example, a positive value means for every 1 clock cycle, the responder runs fewer cycles than initiator.
+        /// Returns nil when measurementType is not NIDLTDOAMeasurementTypeResponse, or when the value is not available.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(responderClockFrequencyOffset))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn responderClockFrequencyOffset(&self) -> Option<Retained<NSNumber>>;
+
         /// Inidicates the type of coordinates of this anchor.
         ///
         /// This property is not atomic.
@@ -163,5 +246,20 @@ impl NIDLTDOAMeasurement {
         #[unsafe(method(coordinatesType))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinatesType(&self) -> NIDLTDOACoordinatesType;
+
+        /// The floor elevation of the anchor, if available.
+        ///
+        /// When non-nil, this value overrides the altitude component of `coordinates` for `NIDLTDOACoordinatesTypeGeodetic`, and the z component for `NIDLTDOACoordinatesTypeRelative`.
+        ///
+        /// A nil value indicates that no floor elevation information is available for this anchor.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(floorElevation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn floorElevation(&self) -> Option<Retained<NIDLTDOAMeasurementFloorElevation>>;
     );
 }

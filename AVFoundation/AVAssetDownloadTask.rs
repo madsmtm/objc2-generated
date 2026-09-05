@@ -76,9 +76,45 @@ extern "C" {
 }
 
 extern_class!(
-    /// A NSURLSessionTask that accepts remote AVURLAssets to download locally.
+    /// An NSURLSessionTask that downloads a remote AVURLAsset to the device for offline playback.
     ///
-    /// Should be created with -[AVAssetDownloadURLSession assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:]. To utilize local data for playback for downloads that are in-progress, re-use the URLAsset supplied in initialization. An AVAssetDownloadTask may be instantiated with a destinationURL pointing to an existing asset on disk, for the purpose of completing or augmenting a downloaded asset.
+    /// To play an asset while its download is in progress, re-use the AVURLAsset supplied to the
+    /// download configuration. The asset may read locally cached segments as they become available
+    /// during concurrent playback (segments are used when the streaming variant matches the
+    /// downloading variant).
+    ///
+    /// Adopt the AVAssetDownloadDelegate protocol to receive progress and completion callbacks. Use
+    /// NSURLSessionTask.progress for numeric download progress updates. The delegate method
+    /// URLSession:assetDownloadTask:willDownloadToURL: provides the local file URL at which the asset
+    /// will be stored; save this URL to instantiate an offline AVURLAsset later.
+    ///
+    /// A download task initialized with an AVURLAsset whose URL references an existing downloaded asset
+    /// on disk may augment that asset's download — for example, by adding media selections that were
+    /// not part of the original download.
+    ///
+    /// ## Live Activity
+    ///
+    /// On available platforms, non-discretionary asset downloads display a Live Activity on the Lock
+    /// Screen and in the Dynamic Island, providing real-time download progress to the user.
+    ///
+    /// Discretionary downloads — those created with a discretionary `NSURLSessionConfiguration` — do
+    /// not display a Live Activity.
+    ///
+    /// When multiple downloads are active from the same application, they are aggregated
+    /// into a single Live Activity that shows combined progress across all downloads.
+    /// For a single active download, the activity title displays the asset title.
+    ///
+    /// If any downloads in the group fail, the Live Activity transitions to a failure state once all
+    /// downloads have finished. The user may also cancel all active and queued downloads for the
+    /// application directly from the Live Activity. When the user cancels downloads from the Live
+    /// Activity, the tasks fail with an error in the `NSCocoaErrorDomain` domain with code
+    /// `NSUserCancelledError`.
+    ///
+    /// Download tasks are not reflected in the Live Activity until they are resumed. Tasks that are
+    /// resumed while the application is running in the background may be demoted to discretionary.
+    /// The system will queue downloads in the order they are resumed.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtask?language=objc)
     #[unsafe(super(NSURLSessionTask, NSObject))]
@@ -574,7 +610,32 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A subclass of NSURLSession to support AVAssetDownloadTask.
+    /// A subclass of NSURLSession specialized for creating and managing AVAssetDownloadTasks.
+    ///
+    /// AVAssetDownloadURLSession must be configured with a background NSURLSessionConfiguration to
+    /// support reliable downloading while the app is suspended. Use
+    /// sessionWithConfiguration:assetDownloadDelegate:delegateQueue: to create a session; standard
+    /// NSURLSession initializers and task-creation methods are not available on this class.
+    ///
+    /// Background sessions persist across app launches. Downloads are managed out-of-process by the
+    /// system, allowing them to continue while the app is suspended. If the system terminates the app
+    /// while downloads are in progress, it will relaunch the app and call
+    /// -[UIApplicationDelegate application:handleEventsForBackgroundURLSession:completionHandler:]
+    /// with the session identifier. Recreate the AVAssetDownloadURLSession using the same background
+    /// configuration identifier to reconnect to the running session and receive pending delegate
+    /// callbacks. Call the provided completion handler once all callbacks have been delivered.
+    /// If the user force-quits the application, all active downloads are cancelled and the system
+    /// will not relaunch the app.
+    ///
+    /// The background session configuration can be marked as discretionary, allowing the system to
+    /// schedule downloads at an optimal time based on network conditions and battery level.
+    /// Non-discretionary download tasks can only be initiated while the application is running in the
+    /// foreground. Reserve non-discretionary sessions for downloads that are explicitly initiated by
+    /// the user; any opportunistic downloading that occurs without the user's direct awareness should
+    /// use a discretionary session.
+    ///
+    /// Assign an AVAssetDownloadDelegate to the session to receive download progress, media selection
+    /// resolution, and completion callbacks across all tasks created by the session.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadurlsession?language=objc)
     #[unsafe(super(NSURLSession, NSObject))]

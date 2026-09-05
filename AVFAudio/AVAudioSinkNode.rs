@@ -34,6 +34,20 @@ pub type AVAudioSinkNodeReceiverBlock = block2::Block<
     fn(NonNull<AudioTimeStamp>, AVAudioFrameCount, NonNull<AudioBufferList>) -> OSStatus,
 >;
 
+/// Identical to AVAudioSinkNodeReceiverBlock, with the addition of a realtime-safety
+/// guarantee.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosinknodereceiverblockrealtimesafe?language=objc)
+#[cfg(all(
+    feature = "AVAudioTypes",
+    feature = "block2",
+    feature = "objc2-core-audio-types"
+))]
+pub type AVAudioSinkNodeReceiverBlockRealtimeSafe = block2::Block<
+    'static,
+    fn(NonNull<AudioTimeStamp>, AVAudioFrameCount, NonNull<AudioBufferList>) -> OSStatus,
+>;
+
 extern_class!(
     /// AVAudioSinkNode wraps a client provided block to receive input audio on the audio IO thread.
     ///
@@ -59,6 +73,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AVAudioNode")]
+unsafe impl Send for AVAudioSinkNode {}
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Sync for AVAudioSinkNode {}
+
+#[cfg(feature = "AVAudioNode")]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioSinkNode {}
 );
@@ -77,6 +97,8 @@ impl AVAudioSinkNode {
         ///
         /// Parameter `block`: The block that receives audio data from the input.
         ///
+        /// The preferred initializer is initWithRealtimeSafeReceiverBlock: and should be used instead.
+        ///
         /// The receiver block is called when the input data is available.
         ///
         /// The block will be called on the realtime thread and it is the client's responsibility to
@@ -91,6 +113,19 @@ impl AVAudioSinkNode {
         pub unsafe fn initWithReceiverBlock(
             this: Allocated<Self>,
             block: &AVAudioSinkNodeReceiverBlock,
+        ) -> Retained<Self>;
+
+        #[cfg(all(
+            feature = "AVAudioTypes",
+            feature = "block2",
+            feature = "objc2-core-audio-types"
+        ))]
+        /// Identical to initWithReceiverBlock:, but requires a realtime-safe block and is the preferred initializer.
+        #[unsafe(method(initWithRealtimeSafeReceiverBlock:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithRealtimeSafeReceiverBlock(
+            this: Allocated<Self>,
+            block: &AVAudioSinkNodeReceiverBlockRealtimeSafe,
         ) -> Retained<Self>;
     );
 }

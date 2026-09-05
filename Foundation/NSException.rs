@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// *************    Generic Exception names        **************
+    /// Name of a generic exception for general purpose use.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgenericexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
@@ -15,91 +15,121 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangeexception?language=objc)
+    /// Name of an exception that occurs when you access outside the bounds of some data, such as beyond the end of a string or array.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangeexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSRangeException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidargumentexception?language=objc)
+    /// Name of an exception that occurs when you pass an invalid argument to a method, such as a `nil` pointer where a non-`nil` object is required.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidargumentexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidArgumentException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalinconsistencyexception?language=objc)
+    /// Name of an exception that occurs when an internal assertion fails and implies an unexpected condition within the called code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalinconsistencyexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInternalInconsistencyException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmallocexception?language=objc)
+    /// Name of an exception that occurs when the system fails to allocate required memory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmallocexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSMallocException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectinaccessibleexception?language=objc)
+    /// Name of an exception that occurs when a remote object is accessed from a thread that should not access it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectinaccessibleexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSObjectInaccessibleException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectnotavailableexception?language=objc)
+    /// Name of an exception that occurs when the remote side of the object is no longer available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectnotavailableexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSObjectNotAvailableException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdestinationinvalidexception?language=objc)
+    /// Name of an exception that occurs when an internal assertion fails for a destination.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdestinationinvalidexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDestinationInvalidException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsporttimeoutexception?language=objc)
+    /// Name of an exception that occurs when a port operation times out.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsporttimeoutexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSPortTimeoutException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidsendportexception?language=objc)
+    /// Name of an exception that occurs when the send port of a connection has become invalid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidsendportexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidSendPortException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidreceiveportexception?language=objc)
+    /// Name of an exception that occurs when the receive port of a connection has become invalid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidreceiveportexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidReceivePortException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportsendexception?language=objc)
+    /// Name of an exception that occurs when an error occurs while sending a message through a port.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportsendexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSPortSendException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportreceiveexception?language=objc)
+    /// Name of an exception that occurs when an error occurs while receiving a message through a port.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportreceiveexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSPortReceiveException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoldstyleexception?language=objc)
+    /// Name of an obsolete exception.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoldstyleexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSOldStyleException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinconsistentarchiveexception?language=objc)
+    /// Name of an exception that occurs when there is an inconsistency in an archive.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinconsistentarchiveexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInconsistentArchiveException: &'static NSExceptionName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexception?language=objc)
+    /// An object that represents a special condition that interrupts the normal flow of program execution.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexception?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSException;
@@ -136,6 +166,8 @@ impl NSException {
             feature = "NSObjCRuntime",
             feature = "NSString"
         ))]
+        /// Creates and returns an exception object with the specified name, reason, and user info dictionary.
+        ///
         /// # Safety
         ///
         /// `user_info` generic should be of the correct type.
@@ -152,6 +184,8 @@ impl NSException {
             feature = "NSObjCRuntime",
             feature = "NSString"
         ))]
+        /// Initializes and returns a newly allocated exception object.
+        ///
         /// # Safety
         ///
         /// `a_user_info` generic should be of the correct type.
@@ -165,30 +199,36 @@ impl NSException {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
+        /// A string used to uniquely identify the receiver.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Retained<NSExceptionName>;
 
         #[cfg(feature = "NSString")]
+        /// A human-readable message string summarizing the reason for the exception.
         #[unsafe(method(reason))]
         #[unsafe(method_family = none)]
         pub fn reason(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSDictionary")]
+        /// A dictionary containing application-specific data pertaining to the receiver.
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
+        /// An array of return addresses from the call stack when the exception was first raised.
         #[unsafe(method(callStackReturnAddresses))]
         #[unsafe(method_family = none)]
         pub fn callStackReturnAddresses(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of strings describing the call stack backtrace at the point the exception was first raised.
         #[unsafe(method(callStackSymbols))]
         #[unsafe(method_family = none)]
         pub fn callStackSymbols(&self) -> Retained<NSArray<NSString>>;
 
+        /// Raises the receiver, causing program flow to jump to the local exception handler.
         #[unsafe(method(raise))]
         #[unsafe(method_family = none)]
         pub fn __raise(&self);
@@ -207,9 +247,12 @@ impl NSException {
 /// NSExceptionRaisingConveniences.
 impl NSException {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuncaughtexceptionhandler?language=objc)
+/// The type for uncaught exception handler functions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuncaughtexceptionhandler?language=objc)
 pub type NSUncaughtExceptionHandler = core::ffi::c_void;
 
+/// Returns the top-level error handler.
 #[inline]
 pub fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler {
     extern "C-unwind" {
@@ -218,6 +261,8 @@ pub fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler {
     unsafe { NSGetUncaughtExceptionHandler() }
 }
 
+/// Changes the top-level error handler.
+///
 /// # Safety
 ///
 /// `_` must be a valid pointer or null.
@@ -236,7 +281,15 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsassertionhandler?language=objc)
+    /// An object that logs an assertion to the console.
+    ///
+    /// `NSAssertionHandler` objects are automatically created to handle false assertions. Assertion macros, such as `NSAssert` and `NSCAssert`, are used to evaluate a condition, and if the condition evaluates to false, the macros pass a string to an `NSAssertionHandler` object describing the failure. Each thread has its own `NSAssertionHandler` object. When invoked, an assertion handler prints an error message that includes the method and class (or function) containing the assertion and raises an `NSInternalInconsistencyException`.
+    ///
+    /// You create assertions only using the assertion macros—you rarely need to invoke `NSAssertionHandler` methods directly. The macros for use inside methods and functions send ``handleFailureInMethod:object:file:lineNumber:description:`` and ``handleFailureInFunction:file:lineNumber:description:`` messages respectively to the current assertion handler. The assertion handler for the current thread is obtained using the ``current`` class method. See
+    /// <doc
+    /// :nsassertionhandlerkey> if you need to customize the behavior of ``NSAssertionHandler``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsassertionhandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAssertionHandler;
@@ -248,6 +301,9 @@ extern_conformance!(
 
 impl NSAssertionHandler {
     extern_methods!(
+        /// Returns the `NSAssertionHandler` object associated with the current thread.
+        ///
+        /// If no assertion handler is associated with the current thread, this method creates one and assigns it to the thread.
         #[unsafe(method(currentHandler))]
         #[unsafe(method_family = none)]
         pub fn currentHandler() -> Retained<NSAssertionHandler>;

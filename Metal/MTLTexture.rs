@@ -896,6 +896,7 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// For Metal texture objects that are remote views, this returns the texture associated with the storage on the originating device.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(remoteStorageTexture))]
         #[unsafe(method_family = none)]
         fn remoteStorageTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -903,6 +904,7 @@ extern_protocol!(
         #[cfg(feature = "MTLDevice")]
         /// On Metal devices that support peer to peer transfers, this method is used to create a remote texture view on another device
         /// within the peer group.  The receiver must use MTLStorageModePrivate or be backed by an IOSurface.
+        #[deprecated = "Not applicable on Apple Silicon"]
         #[unsafe(method(newRemoteTextureViewForDevice:))]
         #[unsafe(method_family = new)]
         fn newRemoteTextureViewForDevice(

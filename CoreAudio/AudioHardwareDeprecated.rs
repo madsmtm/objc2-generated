@@ -16,6 +16,9 @@ pub const kAudioHardwareRunLoopMode: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicemastersubdevicekey?language=objc)
 pub const kAudioAggregateDeviceMasterSubDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicemasterendpointkey?language=objc)
+pub const kAudioEndPointDeviceMasterEndPointKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
 /// The AudioObjectPropertyScope for properties that apply to the input side of
 /// an object.
 ///
@@ -502,6 +505,15 @@ pub const kAudioDeviceUnknown: AudioObjectID = kAudioObjectUnknown;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeautoaggregate?language=objc)
 pub const kAudioDeviceTransportTypeAutoAggregate: u32 = 0x66677270;
+/// The transport type ID for AudioDevices connected via the Continuity Capture
+/// feature. This constant is deprecated. Please use
+/// kAudioDeviceTransportTypeContinuityCaptureWired and
+/// kAudioDeviceTransportTypeContinuityCaptureWireless to describe Continuity
+/// Capture devices.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapture?language=objc)
+#[deprecated = "Please use kAudioDeviceTransportTypeContinuityCaptureWired and kAudioDeviceTransportTypeContinuityCaptureWireless to describe Continuity Capture devices."]
+pub const kAudioDeviceTransportTypeContinuityCapture: u32 = 0x63636170;
 
 /// A UInt32 whose value indicates the transfer function the HAL uses to convert
 /// between decibel values and scalar values. This property is implemented by an

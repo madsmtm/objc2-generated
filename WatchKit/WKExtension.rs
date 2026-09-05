@@ -64,6 +64,7 @@ extern_class!(
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated]
     pub struct WKExtension;
 );
 
@@ -73,6 +74,7 @@ extern_conformance!(
 
 impl WKExtension {
     extern_methods!(
+        #[deprecated]
         #[unsafe(method(sharedExtension))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedExtension(mtm: MainThreadMarker) -> Retained<WKExtension>;
@@ -81,15 +83,18 @@ impl WKExtension {
 
         // -new (unavailable)
 
+        #[deprecated]
         #[unsafe(method(openSystemURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openSystemURL(&self, url: &NSURL);
 
+        #[deprecated]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WKExtensionDelegate>>>;
 
         #[cfg(feature = "WKInterfaceController")]
+        #[deprecated]
         #[unsafe(method(rootInterfaceController))]
         #[unsafe(method_family = none)]
         pub unsafe fn rootInterfaceController(&self) -> Option<Retained<WKInterfaceController>>;
@@ -149,6 +154,7 @@ impl WKExtension {
         pub unsafe fn isRegisteredForRemoteNotifications(&self) -> bool;
 
         #[cfg(feature = "objc2-ui-kit")]
+        #[deprecated]
         #[unsafe(method(globalTintColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn globalTintColor(&self) -> Retained<UIColor>;
@@ -190,27 +196,33 @@ extern "C" {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextensiondelegate?language=objc)
+    #[deprecated]
     pub unsafe trait WKExtensionDelegate: NSObjectProtocol + MainThreadOnly {
+        #[deprecated]
         #[optional]
         #[unsafe(method(applicationDidFinishLaunching))]
         #[unsafe(method_family = none)]
         unsafe fn applicationDidFinishLaunching(&self);
 
+        #[deprecated]
         #[optional]
         #[unsafe(method(applicationDidBecomeActive))]
         #[unsafe(method_family = none)]
         unsafe fn applicationDidBecomeActive(&self);
 
+        #[deprecated]
         #[optional]
         #[unsafe(method(applicationWillResignActive))]
         #[unsafe(method_family = none)]
         unsafe fn applicationWillResignActive(&self);
 
+        #[deprecated]
         #[optional]
         #[unsafe(method(applicationWillEnterForeground))]
         #[unsafe(method_family = none)]
         unsafe fn applicationWillEnterForeground(&self);
 
+        #[deprecated]
         #[optional]
         #[unsafe(method(applicationDidEnterBackground))]
         #[unsafe(method_family = none)]
@@ -244,6 +256,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// `user_info` generic should be of the correct type.
+        #[deprecated]
         #[optional]
         #[unsafe(method(handleUserActivity:))]
         #[unsafe(method_family = none)]

@@ -45,6 +45,10 @@ extern_class!(
     pub struct AVAudioNode;
 );
 
+unsafe impl Send for AVAudioNode {}
+
+unsafe impl Sync for AVAudioNode {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioNode {}
 );
@@ -121,6 +125,7 @@ impl AVAudioNode {
         /// ....
         /// // start engine
         /// </pre>
+        #[deprecated]
         #[unsafe(method(installTapOnBus:bufferSize:format:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn installTapOnBus_bufferSize_format_block(
@@ -130,6 +135,65 @@ impl AVAudioNode {
             format: Option<&AVAudioFormat>,
             tap_block: &AVAudioNodeTapBlock,
         );
+
+        #[cfg(all(
+            feature = "AVAudioBuffer",
+            feature = "AVAudioFormat",
+            feature = "AVAudioTime",
+            feature = "AVAudioTypes",
+            feature = "block2"
+        ))]
+        /// Create a "tap" to record/monitor/observe the output of the node.
+        ///
+        /// Parameter `bus`: the node output bus to which to attach the tap
+        ///
+        /// Parameter `bufferSize`: the requested size of the incoming buffers in sample frames. Supported range is [100, 400] ms.
+        ///
+        /// Parameter `format`: If non-nil, attempts to apply this as the format of the specified output bus. This should
+        /// only be done when attaching to an output bus which is not connected to another node; an
+        /// error will result otherwise.
+        /// The tap and connection formats (if non-nil) on the specified bus should be identical.
+        /// Otherwise, the latter operation will override any previously set format.
+        ///
+        /// Parameter `outError`: on exit, if an error occurs, a description of the error.
+        ///
+        /// Parameter `tapBlock`: a block to be called with audio buffers.
+        ///
+        /// Returns: YES for success.
+        ///
+        ///
+        /// Only one tap may be installed on any bus. Taps may be safely installed and removed while
+        /// the engine is running.
+        ///
+        /// Note that if you have a tap installed on AVAudioOutputNode, there could be a mismatch
+        /// between the tap buffer format and AVAudioOutputNode's output format, depending on the
+        /// underlying physical device. Hence, instead of tapping the AVAudioOutputNode, it is
+        /// advised to tap the node connected to it.
+        ///
+        /// E.g. to capture audio from input node:
+        /// <pre>
+        /// AVAudioEngine *engine = [[AVAudioEngine alloc] init];
+        /// AVAudioInputNode *input = [engine inputNode];
+        /// AVAudioFormat *format = [input outputFormatForBus: 0];
+        /// NSError *error = nil;
+        /// BOOL success = [input installTapOnBus: 0 bufferSize: 8192 format: format error:
+        /// &error
+        /// block: ^(AVAudioPCMBuffer *buf, AVAudioTime *when) {
+        /// // ‘buf' contains audio captured from input node at time 'when'
+        /// }];
+        /// ....
+        /// // start engine
+        /// </pre>
+        #[unsafe(method(installTapOnBus:bufferSize:format:error:block:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn installTapOnBus_bufferSize_format_error_block(
+            &self,
+            bus: AVAudioNodeBus,
+            buffer_size: AVAudioFrameCount,
+            format: Option<&AVAudioFormat>,
+            out_error: Option<&mut Option<Retained<NSError>>>,
+            tap_block: &AVAudioNodeTapBlock,
+        ) -> bool;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Destroy a tap.
@@ -141,16 +205,34 @@ impl AVAudioNode {
 
         #[cfg(feature = "AVAudioEngine")]
         /// The engine to which the node is attached (or nil).
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(engine))]
         #[unsafe(method_family = none)]
         pub unsafe fn engine(&self) -> Option<Retained<AVAudioEngine>>;
 
         /// The node's number of input busses.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfInputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfInputs(&self) -> NSUInteger;
 
         /// The node's number of output busses.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfOutputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfOutputs(&self) -> NSUInteger;
@@ -160,6 +242,12 @@ impl AVAudioNode {
         ///
         /// Will return nil if the engine is not running or if the node is not connected to an input or
         /// output node.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(lastRenderTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastRenderTime(&self) -> Option<Retained<AVAudioTime>>;
@@ -175,6 +263,12 @@ impl AVAudioNode {
         /// No operations that may conflict with state maintained by the engine should be performed
         /// directly on the audio unit. These include changing initialization state, stream formats,
         /// channel layouts or connections to other audio units.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(AUAudioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn AUAudioUnit(&self) -> Retained<AUAudioUnit>;
@@ -185,6 +279,12 @@ impl AVAudioNode {
         /// input vs. output of the node. This should reflect the delay due to signal processing
         /// (e.g. filters, FFT's, etc.), not delay or reverberation which is being applied as an effect.
         /// A value of zero indicates either no latency or an unknown latency.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(latency))]
         #[unsafe(method_family = none)]
         pub unsafe fn latency(&self) -> NSTimeInterval;
@@ -209,6 +309,12 @@ impl AVAudioNode {
         /// Note that this latency value can change as the engine is reconfigured (started/stopped,
         /// connections made/altered downstream of this node etc.). So it is recommended not to cache
         /// this value and fetch it whenever it's needed.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(outputPresentationLatency))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputPresentationLatency(&self) -> NSTimeInterval;

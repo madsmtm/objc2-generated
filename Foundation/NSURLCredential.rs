@@ -5,7 +5,14 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Constants defining how long a credential will be kept around
+/// Constants defining how long a credential will be kept around.
+///
+/// - `NSURLCredentialPersistenceNone`: This credential won't be saved.
+/// - `NSURLCredentialPersistenceForSession`: This credential will only be stored for this session.
+/// - `NSURLCredentialPersistencePermanent`: This credential will be stored permanently. Note: Whereas in Mac OS X any application
+/// can access any credential provided the user gives permission, in iPhone OS an application can access only its own credentials.
+/// - `NSURLCredentialPersistenceSynchronizable`: This credential will be stored permanently. Additionally, this credential will be
+/// distributed to other devices based on the owning AppleID.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialpersistence?language=objc)
 // NS_ENUM
@@ -13,18 +20,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLCredentialPersistence(pub NSUInteger);
 impl NSURLCredentialPersistence {
-    /// This credential won't be saved.
+    /// The credential should not be stored.
     #[doc(alias = "NSURLCredentialPersistenceNone")]
     pub const None: Self = Self(0);
-    /// This credential will only be stored for this session.
+    /// The credential should be stored only for this session.
     #[doc(alias = "NSURLCredentialPersistenceForSession")]
     pub const ForSession: Self = Self(1);
-    /// This credential will be stored permanently. Note: Whereas in Mac OS X any application can access any credential provided the user gives permission, in iPhone OS an application can access only its own credentials.
+    /// The credential should be stored in the keychain.
     #[doc(alias = "NSURLCredentialPersistencePermanent")]
     pub const Permanent: Self = Self(2);
-    /// This credential will be stored permanently. Additionally, this credential will be distributed to other devices based on the owning AppleID.
-    /// Note: Whereas in Mac OS X any application can access any credential provided the user gives permission, on iOS an application can
-    /// access only its own credentials.
+    /// The credential should be stored permanently in the keychain, and in addition should be distributed to other devices based on the owning Apple ID.
     #[doc(alias = "NSURLCredentialPersistenceSynchronizable")]
     pub const Synchronizable: Self = Self(3);
 }
@@ -38,7 +43,14 @@ unsafe impl RefEncode for NSURLCredentialPersistence {
 }
 
 extern_class!(
-    /// This class is an immutable object representing an authentication credential.  The actual type of the credential is determined by the constructor called in the categories declared below.
+    /// An authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.
+    ///
+    /// The URL Loading System supports password-based user credentials, certificate-based user credentials, and certificate-based server credentials.
+    ///
+    /// When you create a credential, you can specify it for a single request, persist it temporarily (until your app quits), or persist it permanently. Permanent persistence can be local persistence in the keychain, or synchronized persistence across the user's devices, based on their Apple ID.
+    ///
+    /// > Note:
+    /// > Permanent storage of credentials is only available for password-based credentials. TLS credentials are never stored permanently by ``URLCredentialStorage``. In general, use for-session persistence for TLS credentials.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredential?language=objc)
     #[unsafe(super(NSObject))]
@@ -76,9 +88,7 @@ extern_conformance!(
 
 impl NSURLCredential {
     extern_methods!(
-        /// Determine whether this credential is or should be stored persistently
-        ///
-        /// Returns: A value indicating whether this credential is stored permanently, per session or not at all.
+        /// The credential's persistence setting.
         #[unsafe(method(persistence))]
         #[unsafe(method_family = none)]
         pub fn persistence(&self) -> NSURLCredentialPersistence;
@@ -107,19 +117,17 @@ impl DefaultRetained for NSURLCredential {
 
 /// NSInternetPassword.
 ///
-/// This category defines the methods available to an NSURLCredential created to represent an internet password credential.  These are most commonly used for resources that require a username and password combination.
+/// This category defines the methods available to an `NSURLCredential` created to represent an internet password credential.
+///
+/// These are most commonly used for resources that require a username and password combination.
 impl NSURLCredential {
     extern_methods!(
         #[cfg(feature = "NSString")]
-        /// Initialize a NSURLCredential with a user and password
+        /// Creates a URL credential instance initialized with a given user name and password, using a given persistence setting.
         ///
-        /// Parameter `user`: the username
-        ///
-        /// Parameter `password`: the password
-        ///
-        /// Parameter `persistence`: enum that says to store per session, permanently or not at all
-        ///
-        /// Returns: The initialized NSURLCredential
+        /// - Parameter user: The user for the credential.
+        /// - Parameter password: The password for `user`.
+        /// - Parameter persistence: A value indicating whether the credential should be stored permanently, for the duration of the current session, or not at all.
         #[unsafe(method(initWithUser:password:persistence:))]
         #[unsafe(method_family = init)]
         pub fn initWithUser_password_persistence(
@@ -130,15 +138,12 @@ impl NSURLCredential {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        /// Create a new NSURLCredential with a user and password
+        /// Creates a new `NSURLCredential` with a user and password.
         ///
-        /// Parameter `user`: the username
-        ///
-        /// Parameter `password`: the password
-        ///
-        /// Parameter `persistence`: enum that says to store per session, permanently or not at all
-        ///
-        /// Returns: The new autoreleased NSURLCredential
+        /// - Parameter user: The user for the credential.
+        /// - Parameter password: The password for `user`.
+        /// - Parameter persistence: A value indicating whether the credential should be stored permanently, for the duration of the current session, or not at all.
+        /// - Returns: The new autoreleased `NSURLCredential`.
         #[unsafe(method(credentialWithUser:password:persistence:))]
         #[unsafe(method_family = none)]
         pub fn credentialWithUser_password_persistence(
@@ -148,33 +153,25 @@ impl NSURLCredential {
         ) -> Retained<NSURLCredential>;
 
         #[cfg(feature = "NSString")]
-        /// Get the username
-        ///
-        /// Returns: The user string
+        /// The credential's user name.
         #[unsafe(method(user))]
         #[unsafe(method_family = none)]
         pub fn user(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        /// Get the password
+        /// The credential's password.
         ///
-        /// Returns: The password string
-        ///
-        /// This method might actually attempt to retrieve the
-        /// password from an external store, possible resulting in prompting,
-        /// so do not call it unless needed.
+        /// You should only access this property if you need the actual password value. If you only need to know if there is
+        /// a password, use `hasPassword`. Accessing this property may result in prompting the user for access.
         #[unsafe(method(password))]
         #[unsafe(method_family = none)]
         pub fn password(&self) -> Option<Retained<NSString>>;
 
-        /// Find out if this credential has a password, without trying to get it
+        /// A Boolean value that indicates whether the credential has a password.
         ///
-        /// Returns: YES if this credential has a password, otherwise NO
-        ///
-        /// If this credential's password is actually kept in an
-        /// external store, the password method may return nil even if this
-        /// method returns YES, since getting the password may fail, or the
-        /// user may refuse access.
+        /// This method does not attempt to retrieve the password. If this credential's password is stored in the user's
+        /// keychain, the `password` property may return `nil` even if this method returns `YES` -- getting the password may
+        /// fail, or the user may refuse access.
         #[unsafe(method(hasPassword))]
         #[unsafe(method_family = none)]
         pub fn hasPassword(&self) -> bool;
@@ -183,13 +180,15 @@ impl NSURLCredential {
 
 /// NSClientCertificate.
 ///
-/// This category defines the methods available to an NSURLCredential created to represent a client certificate credential.  Client certificates are commonly stored on the users computer in the keychain and must be presented to the server during a handshake.
+/// This category defines the methods available to an `NSURLCredential` created to represent a client certificate credential.
+///
+/// Client certificates are commonly stored on the user's computer in the keychain and must be presented to the server during a handshake.
 impl NSURLCredential {
     extern_methods!(
         #[cfg(feature = "NSArray")]
-        /// Returns an NSArray of SecCertificateRef objects representing the client certificate for this credential, if this credential was created with an identity and certificate.
+        /// The intermediate certificates of the credential, if it is a client certificate credential.
         ///
-        /// Returns: an NSArray of SecCertificateRef or NULL if this is a username/password credential
+        /// The certificates are `SecCertificateRef` objects. This value is `nil` if this is not a client certificate credential.
         #[unsafe(method(certificates))]
         #[unsafe(method_family = none)]
         pub fn certificates(&self) -> Retained<NSArray>;

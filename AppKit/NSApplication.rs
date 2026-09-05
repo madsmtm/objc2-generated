@@ -330,6 +330,11 @@ bitflags::bitflags! {
 /// "Shake mouse pointer to locate" is disabled for this application.
         #[doc(alias = "NSApplicationPresentationDisableCursorLocationAssistance")]
         const DisableCursorLocationAssistance = 1<<12;
+/// Disable screen corner interactions when the application is frontmost.
+///
+/// `.autoHideDock` or `.hideDock` must also be set for this option to take effect.
+        #[doc(alias = "NSApplicationPresentationDisableScreenCornerInteractions")]
+        const DisableScreenCornerInteractions = 1<<15;
         const _ = !0;
     }
 }

@@ -74,9 +74,9 @@ impl AVAssetWriter {
         /// Returns an instance of AVAssetWriter configured to write to a file in a specified container format.
         ///
         ///
-        /// Parameter `URL`: The location of the file to be written. The URL must be a file URL.
+        /// Parameter `outputURL`: The location of the file to be written. The URL must be a file URL.
         ///
-        /// Parameter `fileType`: A UTI indicating the format of the file to be written.
+        /// Parameter `outputFileType`: A UTI indicating the format of the file to be written.
         ///
         /// Parameter `outError`: On return, if initialization of the AVAssetWriter fails, points to an NSError describing the nature of the failure.
         ///
@@ -97,9 +97,9 @@ impl AVAssetWriter {
         /// Creates an instance of AVAssetWriter configured to write to a file in a specified container format.
         ///
         ///
-        /// Parameter `URL`: The location of the file to be written. The URL must be a file URL.
+        /// Parameter `outputURL`: The location of the file to be written. The URL must be a file URL.
         ///
-        /// Parameter `fileType`: A UTI indicating the format of the file to be written.
+        /// Parameter `outputFileType`: A UTI indicating the format of the file to be written.
         ///
         /// Parameter `outError`: On return, if initialization of the AVAssetWriter fails, points to an NSError describing the nature of the failure.
         ///
@@ -807,3 +807,31 @@ extern_protocol!(
         );
     }
 );
+
+/// AVAssetWriterProVideoStorage.
+impl AVAssetWriter {
+    extern_methods!(
+        /// Indicates whether the receiver supports writing to pre-allocated storage on this device for high data rate video capture formats such as ProRes.
+        ///
+        /// Check this value prior to setting the `usesProVideoStorage` property to avoid exceptions when pre-allocated storage is not supported.
+        #[unsafe(method(isProVideoStorageSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isProVideoStorageSupported(&self) -> bool;
+
+        /// Indicates whether to use pre-allocated storage.
+        ///
+        /// The default value is `NO`. See more detailed description of ProVideoStorage in `AVProVideoStorage.h`.
+        ///
+        /// An exception will be thrown if clients try to set `YES` if the value of the `proVideoStorageSupported` property is `NO`.
+        ///
+        /// An exception will be thrown if clients try to set this property after `-startWriting` has been called on the receiver.
+        #[unsafe(method(usesProVideoStorage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn usesProVideoStorage(&self) -> bool;
+
+        /// Setter for [`usesProVideoStorage`][Self::usesProVideoStorage].
+        #[unsafe(method(setUsesProVideoStorage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUsesProVideoStorage(&self, uses_pro_video_storage: bool);
+    );
+}

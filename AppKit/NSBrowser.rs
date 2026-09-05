@@ -989,6 +989,59 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
+        #[unsafe(method(browser:pasteboardWriterForRow:column:))]
+        #[unsafe(method_family = none)]
+        fn browser_pasteboardWriterForRow_column(
+            &self,
+            browser: &NSBrowser,
+            row: NSInteger,
+            column: NSInteger,
+        ) -> Option<Retained<ProtocolObject<dyn NSPasteboardWriting>>>;
+
+        #[cfg(all(
+            feature = "NSControl",
+            feature = "NSDraggingSession",
+            feature = "NSResponder",
+            feature = "NSView"
+        ))]
+        #[optional]
+        #[unsafe(method(browser:draggingSession:willBeginAtPoint:forRowsWithIndexes:column:))]
+        #[unsafe(method_family = none)]
+        fn browser_draggingSession_willBeginAtPoint_forRowsWithIndexes_column(
+            &self,
+            browser: &NSBrowser,
+            session: &NSDraggingSession,
+            screen_point: NSPoint,
+            row_indexes: &NSIndexSet,
+            column: NSInteger,
+        );
+
+        #[cfg(all(
+            feature = "NSControl",
+            feature = "NSDragging",
+            feature = "NSDraggingSession",
+            feature = "NSResponder",
+            feature = "NSView"
+        ))]
+        #[optional]
+        #[unsafe(method(browser:draggingSession:endedAtPoint:operation:))]
+        #[unsafe(method_family = none)]
+        fn browser_draggingSession_endedAtPoint_operation(
+            &self,
+            browser: &NSBrowser,
+            session: &NSDraggingSession,
+            screen_point: NSPoint,
+            operation: NSDragOperation,
+        );
+
+        #[cfg(all(
+            feature = "NSControl",
+            feature = "NSPasteboard",
+            feature = "NSResponder",
+            feature = "NSView"
+        ))]
+        #[deprecated = "Use browser:pasteboardWriterForRow:column: instead"]
+        #[optional]
         #[unsafe(method(browser:writeRowsWithIndexes:inColumn:toPasteboard:))]
         #[unsafe(method_family = none)]
         fn browser_writeRowsWithIndexes_inColumn_toPasteboard(

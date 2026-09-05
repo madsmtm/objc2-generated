@@ -401,6 +401,46 @@ impl MPSGraphExecutable {
             execution_descriptor: Option<&MPSGraphExecutableExecutionDescriptor>,
         ) -> Retained<NSArray<MPSGraphTensorData>>;
 
+        #[cfg(feature = "MPSGraphTensorData")]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        ///
+        /// This call is synchronous and will return on completion of execution.
+        ///
+        /// - Parameters:
+        /// - commandQueue: MTL4CommandQueue passed to exectute the graph on.
+        /// - inputsArray: Feeds tensorData for the placeholder tensors, same order as arguments of main function.
+        /// - resultsArray: Results tensorData for which the caller wishes MPSGraphTensorData to be returned.
+        /// - Returns: A valid MPSGraphTensorData array with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
+        #[unsafe(method(runWithMTL4CommandQueue:inputsArray:resultsArray:executionDescriptor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn runWithMTL4CommandQueue_inputsArray_resultsArray_executionDescriptor(
+            &self,
+            command_queue: &ProtocolObject<dyn MTL4CommandQueue>,
+            inputs_array: &NSArray<MPSGraphTensorData>,
+            results_array: Option<&NSArray<MPSGraphTensorData>>,
+            execution_descriptor: Option<&MPSGraphExecutableExecutionDescriptor>,
+        ) -> Retained<NSArray<MPSGraphTensorData>>;
+
+        #[cfg(feature = "MPSGraphTensorData")]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        /// This call is asynchronous and will return immediately.
+        ///
+        /// - Parameters:
+        /// - commandQueue: MTL4CommandQueue passed to exectute the graph on.
+        /// - inputsArray: Feeds tensorData for the placeholder tensors, same order as arguments of main function.
+        /// - resultsArray: Tensors for which the caller wishes MPSGraphTensorData to be returned.
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
+        /// - Returns: A valid MPSGraphTensorData array with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
+        #[unsafe(method(runAsyncWithMTL4CommandQueue:inputsArray:resultsArray:executionDescriptor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn runAsyncWithMTL4CommandQueue_inputsArray_resultsArray_executionDescriptor(
+            &self,
+            command_queue: &ProtocolObject<dyn MTL4CommandQueue>,
+            inputs_array: &NSArray<MPSGraphTensorData>,
+            results_array: Option<&NSArray<MPSGraphTensorData>>,
+            execution_descriptor: Option<&MPSGraphExecutableExecutionDescriptor>,
+        ) -> Retained<NSArray<MPSGraphTensorData>>;
+
         #[cfg(all(
             feature = "MPSGraphTensorData",
             feature = "objc2-metal-performance-shaders"

@@ -84,6 +84,11 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSTextLayoutFragment {}
 );
 
+#[cfg(feature = "NSTextViewportRenderingSurface")]
+extern_conformance!(
+    unsafe impl NSTextViewportRenderingSurfaceKey for NSTextLayoutFragment {}
+);
+
 impl NSTextLayoutFragment {
     extern_methods!(
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]

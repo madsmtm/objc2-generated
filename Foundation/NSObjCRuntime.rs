@@ -171,7 +171,9 @@ pub const NSFoundationVersionNumber10_11_4: c_uint = 1258;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_max?language=objc)
 pub const NSFoundationVersionNumber10_11_Max: c_uint = 1299;
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber?language=objc)
+    /// The version of the Foundation framework in the current environment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber?language=objc)
     pub static NSFoundationVersionNumber: c_double;
 }
 
@@ -180,13 +182,20 @@ extern "C" {
 #[cfg(feature = "NSString")]
 pub type NSExceptionName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrunloopmode?language=objc)
+/// Modes that a run loop operates in.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrunloopmode?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSRunLoopMode = NSString;
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// Returns a string representation of a given selector.
+    ///
+    /// - Parameter aSelector: A selector.
+    /// - Returns: A string representation of `aSelector`.
+    ///
     /// # Safety
     ///
     /// `a_selector` must be a valid selector.
@@ -203,6 +212,10 @@ impl NSString {
     }
 }
 
+/// Returns the selector with a given name.
+///
+/// - Parameter aSelectorName: A string of any length, with any characters, that represents the name of a selector.
+/// - Returns: The selector named by `aSelectorName`. If `aSelectorName` is not a valid selector name, returns `0`.
 #[cfg(feature = "NSString")]
 #[inline]
 pub fn NSSelectorFromString(a_selector_name: &NSString) -> Sel {
@@ -214,6 +227,10 @@ pub fn NSSelectorFromString(a_selector_name: &NSString) -> Sel {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// Returns a string containing the name of a class.
+    ///
+    /// - Parameter aClass: A class.
+    /// - Returns: A string containing the name of `aClass`.
     #[doc(alias = "NSStringFromClass")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -227,6 +244,10 @@ impl NSString {
     }
 }
 
+/// Obtains a class by name.
+///
+/// - Parameter aClassName: The name of a class.
+/// - Returns: The class object named by `aClassName`, or `nil` if no class by that name is currently loaded. If `aClassName` is `nil`, returns `nil`.
 #[cfg(feature = "NSString")]
 #[inline]
 pub fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass> {
@@ -238,6 +259,11 @@ pub fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass> {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// Returns a string containing the name of a protocol.
+    ///
+    /// - Parameter proto: A protocol.
+    /// - Returns: A string containing the name of `proto`.
+    ///
     /// # Safety
     ///
     /// `proto` possibly has further requirements.
@@ -254,6 +280,10 @@ impl NSString {
     }
 }
 
+/// Returns a protocol with a given name.
+///
+/// - Parameter namestr: The name of a protocol.
+/// - Returns: The protocol named by `namestr`, or `nil` if no protocol by that name is currently loaded.
 #[cfg(feature = "NSString")]
 #[inline]
 pub fn NSProtocolFromString(namestr: &NSString) -> Option<Retained<AnyProtocol>> {
@@ -264,6 +294,13 @@ pub fn NSProtocolFromString(namestr: &NSString) -> Option<Retained<AnyProtocol>>
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// Obtains the actual size and the aligned size of an encoded type.
+///
+/// - Parameters:
+/// - typePtr: A pointer to an Objective-C type encoding.
+/// - sizep: Upon return, contains the actual size of the type. Pass `NULL` if you don't want this information.
+/// - alignp: Upon return, contains the aligned size of the type. Pass `NULL` if you don't want this information.
+/// - Returns: A pointer to the first character of the type code that's next in the type encoding string, or the empty string if there is no next type code.
 #[inline]
 pub fn NSGetSizeAndAlignment(
     type_ptr: &CStr,
@@ -282,20 +319,46 @@ pub fn NSGetSizeAndAlignment(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparator?language=objc)
+/// Defines the signature for a block object used for comparison operations.
+///
+/// The arguments to the block are two objects to compare. The block returns an `NSComparisonResult` value to denote the ordering of the two objects.
+///
+/// You use `NSComparator` blocks in comparison operations such as `NSArray`'s `sortedArrayUsingComparator:`, for example:
+///
+/// ```objc
+/// NSArray *sortedArray = [array sortedArrayUsingComparator: ^(id obj1, id obj2) {
+///
+/// if ([obj1 integerValue] > [obj2 integerValue]) {
+/// return (NSComparisonResult)NSOrderedDescending;
+/// }
+///
+/// if ([obj1 integerValue]
+/// <
+/// [obj2 integerValue]) {
+/// return (NSComparisonResult)NSOrderedAscending;
+/// }
+/// return (NSComparisonResult)NSOrderedSame;
+/// }];
+/// ```
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparator?language=objc)
 #[cfg(feature = "block2")]
 pub type NSComparator =
     block2::Block<'static, fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions?language=objc)
+/// Options for block enumeration operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEnumerationOptions: NSUInteger {
+/// Specifies that the block enumeration should be concurrent.
         #[doc(alias = "NSEnumerationConcurrent")]
         const Concurrent = 1<<0;
+/// Specifies that the enumeration should be performed in reverse.
         #[doc(alias = "NSEnumerationReverse")]
         const Reverse = 1<<1;
         const _ = !0;
@@ -310,15 +373,19 @@ unsafe impl RefEncode for NSEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortoptions?language=objc)
+/// Options for block sorting operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSortOptions: NSUInteger {
+/// Specifies that the sorting should be concurrent.
         #[doc(alias = "NSSortConcurrent")]
         const Concurrent = 1<<0;
+/// Specifies that the sorting is stable, maintaining the relative order of equal elements.
         #[doc(alias = "NSSortStable")]
         const Stable = 1<<4;
         const _ = !0;
@@ -333,20 +400,29 @@ unsafe impl RefEncode for NSSortOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsqualityofservice?language=objc)
+/// Constants that indicate the nature and importance of work to the system.
+///
+/// Work with higher quality of service classes receive more resources than work with lower quality of service classes whenever there's resource contention.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsqualityofservice?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSQualityOfService(pub NSInteger);
 impl NSQualityOfService {
+    /// The quality-of-service class for user-interactive tasks, such as animations, event handling, or updating your app's user interface.
     #[doc(alias = "NSQualityOfServiceUserInteractive")]
     pub const UserInteractive: Self = Self(0x21);
+    /// The quality-of-service class for tasks that prevent the user from actively using your app.
     #[doc(alias = "NSQualityOfServiceUserInitiated")]
     pub const UserInitiated: Self = Self(0x19);
+    /// The quality-of-service class for tasks that the user does not track actively.
     #[doc(alias = "NSQualityOfServiceUtility")]
     pub const Utility: Self = Self(0x11);
+    /// The quality-of-service class for maintenance or cleanup tasks that you create.
     #[doc(alias = "NSQualityOfServiceBackground")]
     pub const Background: Self = Self(0x09);
+    /// The default quality-of-service class.
     #[doc(alias = "NSQualityOfServiceDefault")]
     pub const Default: Self = Self(-1);
 }
@@ -359,5 +435,11 @@ unsafe impl RefEncode for NSQualityOfService {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotfound?language=objc)
+/// A value indicating that a requested item couldn't be found or doesn't exist.
+///
+/// `NSNotFound` is typically used by various methods and functions that search for items in serial data and return indices, such as characters in a string object or `id` objects in an `NSArray` object.
+///
+/// > Important: Prior to OS X v10.5, `NSNotFound` was defined as `0x7fffffff`. For 32-bit systems, this was effectively the same as `NSIntegerMax`. To support 64-bit environments, `NSNotFound` is now formally defined as `NSIntegerMax`. This means, however, that the value is different in 32-bit and 64-bit environments. You should therefore not save the value directly in files or archives. Moreover, sending the value between 32-bit and 64-bit processes via Distributed Objects will not get you `NSNotFound` on the other side. This applies to any Cocoa methods invoked over Distributed Objects and which might return `NSNotFound`, such as the `indexOfObject:` method of `NSArray` (if sent to a proxy for an array).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotfound?language=objc)
 pub static NSNotFound: NSInteger = NSIntegerMax as _;

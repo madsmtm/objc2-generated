@@ -60,6 +60,13 @@ impl UISceneConnectionOptions {
         #[unsafe(method(cloudKitShareMetadata))]
         #[unsafe(method_family = none)]
         pub fn cloudKitShareMetadata(&self) -> Option<Retained<CKShareMetadata>>;
+
+        /// An optional user info object, provided when creating the `UISceneAccessory` for this scene accessory.
+        ///
+        /// This object can be used to associate data to the scene accessory configuration to be passed to the scene delegate when the scene connects.
+        #[unsafe(method(sceneAccessoryUserInfo))]
+        #[unsafe(method_family = none)]
+        pub fn sceneAccessoryUserInfo(&self) -> Option<Retained<AnyObject>>;
     );
 }
 

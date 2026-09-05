@@ -460,6 +460,8 @@ pub use self::__CSCommon::errSecCSDSStoreSymlink;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSDbCorrupt;
 #[cfg(feature = "CSCommon")]
+pub use self::__CSCommon::errSecCSDetachedCertificates;
+#[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSFileHardQuarantined;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSGuestInvalid;
@@ -508,6 +510,8 @@ pub use self::__CSCommon::errSecCSInvalidTeamIdentifier;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSMultipleGuests;
 #[cfg(feature = "CSCommon")]
+pub use self::__CSCommon::errSecCSMultipleSelfSigning;
+#[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSNoMainExecutable;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSNoMatches;
@@ -527,6 +531,10 @@ pub use self::__CSCommon::errSecCSOutdated;
 pub use self::__CSCommon::errSecCSRegularFile;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSRemoteSignerFailed;
+#[cfg(feature = "CSCommon")]
+pub use self::__CSCommon::errSecCSRemoteSignerFirstSlotFull;
+#[cfg(feature = "CSCommon")]
+pub use self::__CSCommon::errSecCSRemoteSignerSecondSlotFull;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSReqFailed;
 #[cfg(feature = "CSCommon")]
@@ -578,6 +586,8 @@ pub use self::__CSCommon::errSecCSUnsigned;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSUnsignedNestedCode;
 #[cfg(feature = "CSCommon")]
+pub use self::__CSCommon::errSecCSUnsupportedAlgorithm;
+#[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSUnsupportedDigestAlgorithm;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::errSecCSUnsupportedGuestAttributes;
@@ -591,6 +601,8 @@ pub use self::__CSCommon::errSecCSWeakResourceRules;
 pub use self::__CSCommon::errSecMultipleExecSegments;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::kSecCFErrorArchitecture;
+#[cfg(feature = "CSCommon")]
+pub use self::__CSCommon::kSecCFErrorDetachedCertificates;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::kSecCFErrorGuestAttributes;
 #[cfg(feature = "CSCommon")]
@@ -613,6 +625,8 @@ pub use self::__CSCommon::kSecCFErrorResourceRecursive;
 pub use self::__CSCommon::kSecCFErrorResourceSeal;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::kSecCFErrorResourceSideband;
+#[cfg(feature = "CSCommon")]
+pub use self::__CSCommon::kSecCS_MAX_SIGNATURES;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::kSecNoGuest;
 #[cfg(feature = "CSCommon")]
@@ -2470,6 +2484,8 @@ pub use self::__SecCode::kSecCodeInfoCertificates;
 #[cfg(feature = "SecCode")]
 pub use self::__SecCode::kSecCodeInfoChangedFiles;
 #[cfg(feature = "SecCode")]
+pub use self::__SecCode::kSecCodeInfoChosenSignature;
+#[cfg(feature = "SecCode")]
 pub use self::__SecCode::kSecCodeInfoDefaultDesignatedLightweightCodeRequirement;
 #[cfg(feature = "SecCode")]
 pub use self::__SecCode::kSecCodeInfoDesignatedRequirement;
@@ -2502,6 +2518,8 @@ pub use self::__SecCode::kSecCodeInfoRequirements;
 #[cfg(feature = "SecCode")]
 pub use self::__SecCode::kSecCodeInfoRuntimeVersion;
 #[cfg(feature = "SecCode")]
+pub use self::__SecCode::kSecCodeInfoSignerInfoSKID;
+#[cfg(feature = "SecCode")]
 pub use self::__SecCode::kSecCodeInfoSource;
 #[cfg(feature = "SecCode")]
 pub use self::__SecCode::kSecCodeInfoStapledNotarizationTicket;
@@ -2513,6 +2531,8 @@ pub use self::__SecCode::kSecCodeInfoTeamIdentifier;
 pub use self::__SecCode::kSecCodeInfoTime;
 #[cfg(feature = "SecCode")]
 pub use self::__SecCode::kSecCodeInfoTimestamp;
+#[cfg(feature = "SecCode")]
+pub use self::__SecCode::kSecCodeInfoTotalSignatures;
 #[cfg(feature = "SecCode")]
 pub use self::__SecCode::kSecCodeInfoTrust;
 #[cfg(feature = "SecCode")]
@@ -9582,6 +9602,10 @@ pub use self::__oidsalg::CSSMOID_ECDSA_WithSHA384;
 pub use self::__oidsalg::CSSMOID_ECDSA_WithSHA512;
 #[cfg(all(feature = "SecAsn1Types", feature = "oidsalg"))]
 pub use self::__oidsalg::CSSMOID_ECDSA_WithSpecified;
+#[cfg(all(feature = "SecAsn1Types", feature = "oidsalg"))]
+pub use self::__oidsalg::CSSMOID_HYBRID_COMPOSITE_MLDSA87_RSA3072_WithSHA512;
+#[cfg(all(feature = "SecAsn1Types", feature = "oidsalg"))]
+pub use self::__oidsalg::CSSMOID_HYBRID_COMPOSITE_MLDSA87_RSA3072_WithSHA512_draft_13;
 #[cfg(all(feature = "SecAsn1Types", feature = "oidsalg"))]
 pub use self::__oidsalg::CSSMOID_MD2WithRSA;
 #[cfg(all(feature = "SecAsn1Types", feature = "oidsalg"))]

@@ -20,6 +20,22 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn elements(&self) -> Retained<NSArray<PKIdentityElement>>;
 
+        /// A list of X.509 authority key identifiers which are accepted by the relying party.
+        ///
+        /// An empty list means any document signer certificate is acceptable.
+        ///
+        /// - Warning: The number of issuer identifiers must not exceed 1,000 and the size of each identifier must not exceed 64 bytes. Your app will terminate if these conditions are not met.
+        #[unsafe(method(issuerIdentifiers))]
+        #[unsafe(method_family = none)]
+        unsafe fn issuerIdentifiers(&self) -> Retained<NSArray<NSData>>;
+
+        /// Setter for [`issuerIdentifiers`][Self::issuerIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setIssuerIdentifiers:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setIssuerIdentifiers(&self, issuer_identifiers: &NSArray<NSData>);
+
         #[cfg(all(feature = "PKIdentityElement", feature = "PKIdentityIntentToStore"))]
         /// Intent to store for the given element, or nil if the element has not been added to this descriptor.
         #[unsafe(method(intentToStoreForElement:))]

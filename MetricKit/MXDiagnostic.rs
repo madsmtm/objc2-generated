@@ -14,6 +14,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiagnostic?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use DiagnosticResult instead."]
     pub struct MXDiagnostic;
 );
 
@@ -32,11 +33,13 @@ extern_conformance!(
 impl MXDiagnostic {
     extern_methods!(
         #[cfg(feature = "MXMetaData")]
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(metaData))]
         #[unsafe(method_family = none)]
         pub unsafe fn metaData(&self) -> Retained<MXMetaData>;
 
         /// An NSString representation of the application version from which this diagnostic was generated.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(applicationVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationVersion(&self) -> Retained<NSString>;
@@ -50,6 +53,7 @@ impl MXDiagnostic {
         /// Convenience method to return a JSON representation of this diagnostic.
         ///
         /// Returns: An NSData object containing the JSON representation
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
@@ -57,6 +61,7 @@ impl MXDiagnostic {
         /// Convenience method to return a NSDictionary representation of this diagnostic.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;

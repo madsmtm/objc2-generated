@@ -124,6 +124,59 @@ unsafe impl RefEncode for UINavigationItemStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarminimizebehavior?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UIBarMinimizeBehavior(pub NSInteger);
+impl UIBarMinimizeBehavior {
+    /// The system determines the minimize behavior.
+    #[doc(alias = "UIBarMinimizeBehaviorAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// Bar minimization is disabled.
+    #[doc(alias = "UIBarMinimizeBehaviorNever")]
+    pub const Never: Self = Self(1);
+    /// Minimize when the user scrolls down.
+    #[doc(alias = "UIBarMinimizeBehaviorOnScrollDown")]
+    pub const OnScrollDown: Self = Self(2);
+    /// Minimize when the user scrolls up.
+    #[doc(alias = "UIBarMinimizeBehaviorOnScrollUp")]
+    pub const OnScrollUp: Self = Self(3);
+}
+
+unsafe impl Encode for UIBarMinimizeBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIBarMinimizeBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarminimizationsafeareaadjustment?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UIBarMinimizationSafeAreaAdjustment(pub NSInteger);
+impl UIBarMinimizationSafeAreaAdjustment {
+    /// The system determines the safe area adjustment.
+    #[doc(alias = "UIBarMinimizationSafeAreaAdjustmentAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// The safe area adjusts as bars minimize, allowing content to reflow.
+    #[doc(alias = "UIBarMinimizationSafeAreaAdjustmentEnabled")]
+    pub const Enabled: Self = Self(1);
+    /// The safe area remains unchanged as bars minimize.
+    #[doc(alias = "UIBarMinimizationSafeAreaAdjustmentDisabled")]
+    pub const Disabled: Self = Self(2);
+}
+
+unsafe impl Encode for UIBarMinimizationSafeAreaAdjustment {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIBarMinimizationSafeAreaAdjustment {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemrenamedelegate?language=objc)
     pub unsafe trait UINavigationItemRenameDelegate:
@@ -744,11 +797,10 @@ impl UINavigationItem {
         pub fn searchBarPlacement(&self) -> UINavigationItemSearchBarPlacement;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-        /// When `searchBarPlacement` is `.integrated` or `.integratedButton` and a search controller is present, use this bar button item in the view controller's `toolbarItems` to control the placement of the search bar among them when the search bar is appearing in the UIToolbar on iPhone.
-        /// Without this bar button item, the positioning for the search bar defaults to trailingmost for the UIToolbar case.
-        /// This bar button item will be ignored during toolbar layout if `searchController` is `nil`.
-        /// UIBarButtonItemGroup will throw an NSInvalidArgumentException when this bar button item is included in its initialization.
-        /// UINavigationItem will throw an NSInvalidArgumentException when this bar button item is included in leftBarButtonItems or rightBarButtonItems.
+        /// When `searchBarPlacement` is `.integrated` or `.integratedButton` and a search controller is present, use this bar button item in `leadingItemGroups`, `centerItemGroups`, `trailingItemGroups`, `leftBarButtonItems`, `rightBarButtonItems`, or the view controller's `toolbarItems` to control the placement of the search bar among other items.
+        /// Without this bar button item, the positioning for the search bar defaults to trailingmost for the UIToolbar case, or automatic for the navigation bar case.
+        /// This bar button item will be ignored during layout if `searchController` is `nil`.
+        /// When placed in a navigation bar item group, all other navigation bar content will be hidden during active search.
         #[unsafe(method(searchBarPlacementBarButtonItem))]
         #[unsafe(method_family = none)]
         pub fn searchBarPlacementBarButtonItem(&self) -> Retained<UIBarButtonItem>;
@@ -849,6 +901,41 @@ impl UINavigationItem {
         pub fn setCompactScrollEdgeAppearance(
             &self,
             compact_scroll_edge_appearance: Option<&UINavigationBarAppearance>,
+        );
+
+        /// The minimize behavior for the navigation bar.
+        ///
+        /// The default value is ``UIBarMinimizeBehavior/automatic``.
+        /// When the navigation bar minimizes, an integrated top tab bar
+        /// will also minimize.
+        ///
+        /// By default, the safe area adjusts as the navigation bar minimizes.
+        /// Use ``barMinimizationSafeAreaAdjustment`` to customize this.
+        #[unsafe(method(barMinimizeBehavior))]
+        #[unsafe(method_family = none)]
+        pub fn barMinimizeBehavior(&self) -> UIBarMinimizeBehavior;
+
+        /// Setter for [`barMinimizeBehavior`][Self::barMinimizeBehavior].
+        #[unsafe(method(setBarMinimizeBehavior:))]
+        #[unsafe(method_family = none)]
+        pub fn setBarMinimizeBehavior(&self, bar_minimize_behavior: UIBarMinimizeBehavior);
+
+        /// The safe area adjustment during navigation bar minimization.
+        ///
+        /// Currently, only the navigation bar supports customizing the safe
+        /// area adjustment.
+        ///
+        /// The default value is ``UIBarMinimizationSafeAreaAdjustment/automatic``.
+        #[unsafe(method(barMinimizationSafeAreaAdjustment))]
+        #[unsafe(method_family = none)]
+        pub fn barMinimizationSafeAreaAdjustment(&self) -> UIBarMinimizationSafeAreaAdjustment;
+
+        /// Setter for [`barMinimizationSafeAreaAdjustment`][Self::barMinimizationSafeAreaAdjustment].
+        #[unsafe(method(setBarMinimizationSafeAreaAdjustment:))]
+        #[unsafe(method_family = none)]
+        pub fn setBarMinimizationSafeAreaAdjustment(
+            &self,
+            bar_minimization_safe_area_adjustment: UIBarMinimizationSafeAreaAdjustment,
         );
     );
 }

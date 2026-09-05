@@ -7,94 +7,126 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertystatuscodekey?language=objc)
+    /// The HTTP status code for the response.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertystatuscodekey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyStatusCodeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertystatusreasonkey?language=objc)
+    /// The HTTP status reason phrase for the response.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertystatusreasonkey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyStatusReasonKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyserverhttpversionkey?language=objc)
+    /// The HTTP version of the server's response.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyserverhttpversionkey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyServerHTTPVersionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyredirectionheaderskey?language=objc)
+    /// The headers from an HTTP redirection response.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyredirectionheaderskey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyRedirectionHeadersKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyerrorpagedatakey?language=objc)
+    /// The body data from an HTTP error response page.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyerrorpagedatakey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyErrorPageDataKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyhttpproxy?language=objc)
+    /// An `NSDictionary` containing proxy information to use in place of proxy identified in SystemConfiguration.framework.
+    ///
+    /// To avoid any proxy use, pass an empty dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyhttpproxy?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyHTTPProxy: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyuserloginkey?language=objc)
+    /// The FTP user login name. Default is `"anonymous"`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyuserloginkey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyUserLoginKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyuserpasswordkey?language=objc)
+    /// The FTP user password. Default is `"NSURLHandle@apple.com"`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyuserpasswordkey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyUserPasswordKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyactivetransfermodekey?language=objc)
+    /// An `NSNumber` boolean indicating whether to use active transfer mode. Default is `NO` (passive mode).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyactivetransfermodekey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyActiveTransferModeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyfileoffsetkey?language=objc)
+    /// An `NSNumber` indicating the file offset for FTP transfers. Default is `0`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyfileoffsetkey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyFileOffsetKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyftpproxy?language=objc)
+    /// An `NSDictionary` containing proxy information to use in place of proxy identified in SystemConfiguration.framework.
+    ///
+    /// To avoid any proxy use, pass an empty dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyftpproxy?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyFTPProxy: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandlestatus?language=objc)
+/// Constants returned by ``NSURLHandle/status`` that indicate the status of an URL handle.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandlestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLHandleStatus(pub NSUInteger);
 impl NSURLHandleStatus {
+    /// The resource data has not been loaded.
     #[doc(alias = "NSURLHandleNotLoaded")]
     pub const NotLoaded: Self = Self(0);
+    /// The resource data was successfully loaded.
     #[doc(alias = "NSURLHandleLoadSucceeded")]
     pub const LoadSucceeded: Self = Self(1);
+    /// The resource data is in the process of loading.
     #[doc(alias = "NSURLHandleLoadInProgress")]
     pub const LoadInProgress: Self = Self(2);
+    /// The resource data failed to load.
     #[doc(alias = "NSURLHandleLoadFailed")]
     pub const LoadFailed: Self = Self(3);
 }
@@ -108,10 +140,18 @@ unsafe impl RefEncode for NSURLHandleStatus {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandleclient?language=objc)
+    /// The interface implemented by URL handle clients.
+    ///
+    /// ``NSURLHandleClient`` is deprecated in macOS 10.4 and later. Applications that are intended for deployment in macOS 10.3 or later should use ``NSURLConnection`` or ``NSURLDownload`` instead; see
+    /// <doc
+    /// :url-loading-system>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandleclient?language=objc)
     #[deprecated]
     pub unsafe trait NSURLHandleClient {
         #[cfg(feature = "NSData")]
+        /// Sent when new resource data becomes available.
+        ///
         /// # Safety
         ///
         /// - `sender` might not allow `None`.
@@ -125,6 +165,8 @@ extern_protocol!(
             new_bytes: Option<&NSData>,
         );
 
+        /// Sent when a resource begins loading.
+        ///
         /// # Safety
         ///
         /// `sender` might not allow `None`.
@@ -133,6 +175,8 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn URLHandleResourceDidBeginLoading(&self, sender: Option<&NSURLHandle>);
 
+        /// Sent when a resource finishes loading.
+        ///
         /// # Safety
         ///
         /// `sender` might not allow `None`.
@@ -141,6 +185,8 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn URLHandleResourceDidFinishLoading(&self, sender: Option<&NSURLHandle>);
 
+        /// Sent when a resource loading is canceled.
+        ///
         /// # Safety
         ///
         /// `sender` might not allow `None`.
@@ -150,6 +196,8 @@ extern_protocol!(
         unsafe fn URLHandleResourceDidCancelLoading(&self, sender: Option<&NSURLHandle>);
 
         #[cfg(feature = "NSString")]
+        /// Sent when a resource fails to load.
+        ///
         /// # Safety
         ///
         /// - `sender` might not allow `None`.
@@ -166,7 +214,16 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle?language=objc)
+    /// An object that accesses and manages resource data indicated by a URL.
+    ///
+    /// > Important:
+    /// > ``NSURLHandle`` is deprecated in macOS 10.4 and later. Use ``URLSession`` instead.
+    ///
+    /// A single ``NSURLHandle`` can service multiple equivalent ``NSURL`` objects, but only if these URLs map to the same resource.
+    ///
+    /// Cocoa provides private concrete subclasses to handle HTTP and file URL schemes. If you want to implement support for additional URL schemes, you would do so by creating a subclass of `NSURLHandle`. You can use `NSURL` and `NSURLHandle` to download from FTP sites without subclassing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLHandle;
@@ -178,6 +235,11 @@ extern_conformance!(
 
 impl NSURLHandle {
     extern_methods!(
+        /// Registers a subclass of `NSURLHandle` as an available subclass for handling URLs.
+        ///
+        /// - Parameters:
+        /// - anURLHandleSubclass: The new subclass to register as an available subclass.
+        ///
         /// # Safety
         ///
         /// - `an_url_handle_subclass` probably has further requirements.
@@ -188,6 +250,14 @@ impl NSURLHandle {
         pub unsafe fn registerURLHandleClass(an_url_handle_subclass: Option<&AnyClass>);
 
         #[cfg(feature = "NSURL")]
+        /// Returns the class of the URL handle that will be used for a specified URL.
+        ///
+        /// - Parameters:
+        /// - anURL: The URL in question.
+        /// - Returns: The class of the URL handle that will be used for `anURL`.
+        ///
+        /// Subclasses of `NSURLHandle` must be registered via `+registerURLHandleClass:`. The subclass is determined by asking the list of registered subclasses if it `+canInitWithURL:`; the first class to respond `YES` is selected.
+        ///
         /// # Safety
         ///
         /// `an_url` might not allow `None`.
@@ -196,17 +266,28 @@ impl NSURLHandle {
         #[unsafe(method_family = none)]
         pub unsafe fn URLHandleClassForURL(an_url: Option<&NSURL>) -> Option<&'static AnyClass>;
 
+        /// Returns the status of the receiver.
+        ///
+        /// - Returns: The status of the receiver, as an `NSURLHandleStatus` value.
         #[deprecated]
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
         pub fn status(&self) -> NSURLHandleStatus;
 
         #[cfg(feature = "NSString")]
+        /// Returns a string describing the reason a load failed.
+        ///
+        /// - Returns: A string describing the reason a load failed. If the load has not failed, returns `nil`.
         #[deprecated]
         #[unsafe(method(failureReason))]
         #[unsafe(method_family = none)]
         pub fn failureReason(&self) -> Option<Retained<NSString>>;
 
+        /// Adds a client of the URL handle.
+        ///
+        /// - Parameters:
+        /// - client: An object conforming to the `NSURLHandleClient` protocol.
+        ///
         /// # Safety
         ///
         /// `client` might not allow `None`.
@@ -215,6 +296,11 @@ impl NSURLHandle {
         #[unsafe(method_family = none)]
         pub unsafe fn addClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
 
+        /// Removes `client` as an `NSURLHandleClient` of the receiver.
+        ///
+        /// - Parameters:
+        /// - client: An object conforming to the `NSURLHandleClient` protocol.
+        ///
         /// # Safety
         ///
         /// `client` might not allow `None`.
@@ -223,39 +309,66 @@ impl NSURLHandle {
         #[unsafe(method_family = none)]
         pub unsafe fn removeClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
 
+        /// Loads the receiver's data in the background.
+        ///
+        /// Each subclass determines its own loading policy. Clients should not assume that multiple background loads can proceed simultaneously.
         #[deprecated]
         #[unsafe(method(loadInBackground))]
         #[unsafe(method_family = none)]
         pub fn loadInBackground(&self);
 
+        /// Called to cancel a load currently in progress.
+        ///
+        /// This method is provided mainly for subclasses that wish to take some action before a background load is canceled. This method should invoke `super`'s implementation before returning.
         #[deprecated]
         #[unsafe(method(cancelLoadInBackground))]
         #[unsafe(method_family = none)]
         pub fn cancelLoadInBackground(&self);
 
         #[cfg(feature = "NSData")]
+        /// Returns the resource data managed by the receiver, loading it if necessary.
+        ///
+        /// - Returns: The resource data managed by the receiver.
+        ///
+        /// Blocks until all data is available.
         #[deprecated]
         #[unsafe(method(resourceData))]
         #[unsafe(method_family = none)]
         pub fn resourceData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
+        /// Immediately returns the currently available resource data managed by the URL handle.
+        ///
+        /// - Returns: The currently available resource data managed by the URL handle. Returns `nil` if a previous attempt to load the data failed.
         #[deprecated]
         #[unsafe(method(availableResourceData))]
         #[unsafe(method_family = none)]
         pub fn availableResourceData(&self) -> Option<Retained<NSData>>;
 
+        /// Returns the expected length of the resource data if it is provided by the server.
+        ///
+        /// - Returns: The expected size of the resource data, in bytes. A negative value if the length is unknown.
+        ///
+        /// This information can be queried before all the data has arrived.
         #[deprecated]
         #[unsafe(method(expectedResourceDataSize))]
         #[unsafe(method_family = none)]
         pub fn expectedResourceDataSize(&self) -> c_longlong;
 
+        /// Flushes any cached data for the URL served by this URL handle.
         #[deprecated]
         #[unsafe(method(flushCachedData))]
         #[unsafe(method_family = none)]
         pub fn flushCachedData(&self);
 
         #[cfg(feature = "NSString")]
+        /// Called when a background load fails. Sends the failure message to clients.
+        ///
+        /// - Parameters:
+        /// - reason: The status message indicating why the background load failed.
+        ///
+        /// This method is provided mainly for subclasses that wish to take some action before passing along the failure notification to the URL client. This method should invoke `super`'s implementation before returning.
+        ///
         /// # Safety
         ///
         /// `reason` might not allow `None`.
@@ -265,6 +378,14 @@ impl NSURLHandle {
         pub unsafe fn backgroundLoadDidFailWithReason(&self, reason: Option<&NSString>);
 
         #[cfg(feature = "NSData")]
+        /// Appends new data to the receiver's resource data.
+        ///
+        /// - Parameters:
+        /// - newBytes: The newly loaded bytes.
+        /// - yorn: `YES` if `newBytes` contains the last piece of data for the URL, `NO` otherwise.
+        ///
+        /// You should call this method when loading the resource data in the background.
+        ///
         /// # Safety
         ///
         /// `new_bytes` might not allow `None`.
@@ -274,6 +395,14 @@ impl NSURLHandle {
         pub unsafe fn didLoadBytes_loadComplete(&self, new_bytes: Option<&NSData>, yorn: bool);
 
         #[cfg(feature = "NSURL")]
+        /// Returns whether a URL handle can be initialized with a given URL.
+        ///
+        /// - Parameters:
+        /// - anURL: The URL in question.
+        /// - Returns: `YES` if a URL handle can be initialized with `anURL`, `NO` otherwise.
+        ///
+        /// Subclasses of `NSURLHandle` must override this method to identify which URLs they can service.
+        ///
         /// # Safety
         ///
         /// `an_url` might not allow `None`.
@@ -283,6 +412,14 @@ impl NSURLHandle {
         pub unsafe fn canInitWithURL(an_url: Option<&NSURL>) -> bool;
 
         #[cfg(feature = "NSURL")]
+        /// Returns the URL handle from the cache that has serviced the specified URL or another identical URL.
+        ///
+        /// - Parameters:
+        /// - anURL: The URL whose cached URL handle is desired.
+        /// - Returns: The URL handle from the cache that has serviced `anURL` or another identical URL. Returns `nil` if there is no such handle.
+        ///
+        /// Subclasses of `NSURLHandle` must override this method.
+        ///
         /// # Safety
         ///
         /// `an_url` might not allow `None`.
@@ -292,6 +429,14 @@ impl NSURLHandle {
         pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>) -> Option<Retained<NSURLHandle>>;
 
         #[cfg(feature = "NSURL")]
+        /// Initializes a newly created URL handle with the specified URL.
+        ///
+        /// - Parameters:
+        /// - anURL: The URL for the new handle.
+        /// - willCache: `YES` if the URL handle should cache its data and respond to requests from equivalent URLs for the cached data, `NO` otherwise.
+        ///
+        /// Subclasses of `NSURLHandle` must override this method.
+        ///
         /// # Safety
         ///
         /// `an_url` might not allow `None`.
@@ -305,6 +450,14 @@ impl NSURLHandle {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the property for the specified key.
+        ///
+        /// - Parameters:
+        /// - propertyKey: The key of the desired property.
+        /// - Returns: The value associated with `propertyKey`. Returns `nil` if there is no such key.
+        ///
+        /// Subclasses of `NSURLHandle` must override this method.
+        ///
         /// # Safety
         ///
         /// `property_key` might not allow `None`.
@@ -317,6 +470,12 @@ impl NSURLHandle {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the property for the specified key only if the value is already available; that is, the client doesn't need to do any work.
+        ///
+        /// - Parameters:
+        /// - propertyKey: The key of the desired property.
+        /// - Returns: The value associated with `propertyKey`. Returns `nil` if there is no such key or if the client would have to do work to fetch the property.
+        ///
         /// # Safety
         ///
         /// `property_key` might not allow `None`.
@@ -329,6 +488,15 @@ impl NSURLHandle {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// Sets the property of the receiver's resource for a specified key to the specified value.
+        ///
+        /// - Parameters:
+        /// - propertyValue: The new value for the property.
+        /// - propertyKey: The key of the desired property.
+        /// - Returns: `YES` if the modification was successful, `NO` otherwise.
+        ///
+        /// Must be overridden by subclasses.
+        ///
         /// # Safety
         ///
         /// - `property_value` should be of the correct type.
@@ -344,6 +512,14 @@ impl NSURLHandle {
         ) -> bool;
 
         #[cfg(feature = "NSData")]
+        /// Attempts to write a specified set of data to the location specified by the receiver's URL.
+        ///
+        /// - Parameters:
+        /// - data: The data to write.
+        /// - Returns: `YES` if successful, `NO` otherwise.
+        ///
+        /// Must be overridden by subclasses.
+        ///
         /// # Safety
         ///
         /// `data` might not allow `None`.
@@ -353,16 +529,27 @@ impl NSURLHandle {
         pub unsafe fn writeData(&self, data: Option<&NSData>) -> bool;
 
         #[cfg(feature = "NSData")]
+        /// Loads the receiver's data synchronously.
+        ///
+        /// - Returns: The loaded data.
+        ///
+        /// Called by `-resourceData`. Subclasses of `NSURLHandle` must override this method.
         #[deprecated]
         #[unsafe(method(loadInForeground))]
         #[unsafe(method_family = none)]
         pub fn loadInForeground(&self) -> Option<Retained<NSData>>;
 
+        /// Called when a background load begins.
+        ///
+        /// This method is provided mainly for subclasses that wish to take advantage of the superclass failure-reporting mechanism.
         #[deprecated]
         #[unsafe(method(beginLoadInBackground))]
         #[unsafe(method_family = none)]
         pub fn beginLoadInBackground(&self);
 
+        /// Halts any background loading.
+        ///
+        /// This method is called by `-cancelLoadInBackground`.
         #[deprecated]
         #[unsafe(method(endLoadInBackground))]
         #[unsafe(method_family = none)]

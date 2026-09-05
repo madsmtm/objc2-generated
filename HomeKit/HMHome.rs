@@ -377,8 +377,7 @@ impl HMHome {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The HMUser object provides a reference to the user that was added to the home.
         /// The NSError provides more information on the status of the request, error
-        /// will be nil on success. The userInfo dictionary will contain the HMUserFailedAccessoriesKey which provides
-        /// more details on the accessories that failed to add the user.
+        /// will be nil on success.
         #[deprecated]
         #[unsafe(method(addUserWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -396,8 +395,7 @@ impl HMHome {
         ///
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
-        /// will be nil on success. The userInfo dictionary will contain the HMUserFailedAccessoriesKey which provides
-        /// more details on the accessories that failed to remove the user.
+        /// will be nil on success.
         #[deprecated]
         #[unsafe(method(removeUser:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -1264,5 +1262,6 @@ extern "C" {
     /// underlying error for that accessory.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmuserfailedaccessorieskey?language=objc)
+    #[deprecated = "No longer supported"]
     pub static HMUserFailedAccessoriesKey: &'static NSString;
 }

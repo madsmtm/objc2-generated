@@ -8,31 +8,53 @@ use crate::*;
 
 /// The subkind of a DTD node kind.
 ///
+/// Constants that specify the kind and subkind of DTD declaration represented by an `NSXMLDTDNode` object.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtdnodekind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSXMLDTDNodeKind(pub NSUInteger);
 impl NSXMLDTDNodeKind {
+    /// Identifies a general entity declaration.
     pub const NSXMLEntityGeneralKind: Self = Self(1);
+    /// Identifies a parsed entity declaration.
     pub const NSXMLEntityParsedKind: Self = Self(2);
+    /// Identifies an unparsed entity declaration.
     pub const NSXMLEntityUnparsedKind: Self = Self(3);
+    /// Identifies a parameter entity declaration.
     pub const NSXMLEntityParameterKind: Self = Self(4);
+    /// Identifies a predefined entity declaration.
     pub const NSXMLEntityPredefined: Self = Self(5);
+    /// Identifies an attribute-list declaration with a `CDATA` (character data) value type.
     pub const NSXMLAttributeCDATAKind: Self = Self(6);
+    /// Identifies an attribute-list declaration with an `ID` value type (per-document unique element name).
     pub const NSXMLAttributeIDKind: Self = Self(7);
+    /// Identifies an attribute-list declaration with an `IDREF` value type (refers to element `ID` type).
     pub const NSXMLAttributeIDRefKind: Self = Self(8);
+    /// Identifies an attribute-list declaration with an `IDREFS` value type (refers to multiple elements of `ID` type).
     pub const NSXMLAttributeIDRefsKind: Self = Self(9);
+    /// Identifies an attribute-list declaration with an `ENTITY` value type (refers to unparsed entity declared in document).
     pub const NSXMLAttributeEntityKind: Self = Self(10);
+    /// Identifies an attribute-list declaration with an `ENTITIES` value type (refers to multiple unparsed entities declared elsewhere in document).
     pub const NSXMLAttributeEntitiesKind: Self = Self(11);
+    /// Identifies an attribute-list declaration with a `NMTOKEN` value type (name token).
     pub const NSXMLAttributeNMTokenKind: Self = Self(12);
+    /// Identifies an attribute-list declaration with a `NMTOKENS` value type (multiple name tokens).
     pub const NSXMLAttributeNMTokensKind: Self = Self(13);
+    /// Identifies an attribute-list declaration with an enumeration value type (list of all possible values).
     pub const NSXMLAttributeEnumerationKind: Self = Self(14);
+    /// Identifies an attribute-list declaration with a `NOTATION` value type (name of declared notation).
     pub const NSXMLAttributeNotationKind: Self = Self(15);
+    /// Identifies an undefined element declaration.
     pub const NSXMLElementDeclarationUndefinedKind: Self = Self(16);
+    /// Identifies a declaration (`EMPTY`) of an empty element.
     pub const NSXMLElementDeclarationEmptyKind: Self = Self(17);
+    /// Identifies an `ANY` element declaration.
     pub const NSXMLElementDeclarationAnyKind: Self = Self(18);
+    /// Identifies a declaration of an element with mixed content (`(#PCDATA | child)`).
     pub const NSXMLElementDeclarationMixedKind: Self = Self(19);
+    /// Identifies a declaration of an element with child elements.
     pub const NSXMLElementDeclarationElementKind: Self = Self(20);
 }
 
@@ -45,35 +67,15 @@ unsafe impl RefEncode for NSXMLDTDNodeKind {
 }
 
 extern_class!(
-    /// The nodes that are exclusive to a DTD
+    /// The nodes that are exclusive to a DTD.
     ///
     /// Every DTD node has a name. Object value is defined as follows:
-    /// <ul>
-    /// <li>
-    /// <b>
-    /// Entity declaration
-    /// </b>
-    /// - the string that that entity resolves to eg "&lt;"
-    /// </li>
-    /// <li>
-    /// <b>
-    /// Attribute declaration
-    /// </b>
-    /// - the default value, if any
-    /// </li>
-    /// <li>
-    /// <b>
-    /// Element declaration
-    /// </b>
-    /// - the validation string
-    /// </li>
-    /// <li>
-    /// <b>
-    /// Notation declaration
-    /// </b>
-    /// - no objectValue
-    /// </li>
-    /// </ul>
+    /// - **Entity declaration** - the string that that entity resolves to eg `
+    /// <
+    /// `
+    /// - **Attribute declaration** - the default value, if any
+    /// - **Element declaration** - the validation string
+    /// - **Notation declaration** - no objectValue
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtdnode?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
@@ -102,6 +104,13 @@ impl NSXMLDTDNode {
     extern_methods!(
         #[cfg(feature = "NSString")]
         /// Returns an element, attribute, entity, or notation DTD node based on the full XML string.
+        ///
+        /// - Parameter string: The DTD declaration.
+        /// - Returns: An `NSXMLDTDNode` object initialized with the DTD declaration in `string`. Returns `nil` if initialization did not succeed, as might occur if the passed-in declaration is malformed.
+        ///
+        /// The node kind (NSXMLNode) assigned to the returned object -- element, attribute, entity, or notation declaration -- is based on the full XML string that is parsed. To assign a subkind, set the ``dtdKind`` property.
+        ///
+        /// You may also use the ``XMLNode/dtdNode(withXMLString:)`` or ``XMLNode/init(kind:)`` methods to create `NSXMLDTDNode` instances. However, you cannot use the latter method to create `NSXMLDTDNode` instances for attribute-list declarations.
         #[unsafe(method(initWithXMLString:))]
         #[unsafe(method_family = init)]
         pub fn initWithXMLString(
@@ -122,7 +131,9 @@ impl NSXMLDTDNode {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// Sets the DTD sub kind.
+        /// Returns the receiver's DTD kind.
+        ///
+        /// The DTD kind is distinct from a `NSXMLDTDNode` object's node kind (returned by the `NSXMLNode` ``XMLNode/kind`` method).
         #[unsafe(method(DTDKind))]
         #[unsafe(method_family = none)]
         pub fn DTDKind(&self) -> NSXMLDTDNodeKind;
@@ -138,7 +149,9 @@ impl NSXMLDTDNode {
         pub fn isExternal(&self) -> bool;
 
         #[cfg(feature = "NSString")]
-        /// Sets the public id. This identifier should be in the default catalog in /etc/xml/catalog or in a path specified by the environment variable XML_CATALOG_FILES. When the public id is set the system id must also be set. Valid for entities and notations.
+        /// Returns the public identifier associated with the receiver.
+        ///
+        /// The public ID is applicable to entities and notations. This identifier should be in the default catalog in `/etc/xml/catalog` or in a path specified by the environment variable `XML_CATALOG_FILES`. When the public id is set the system id must also be set.
         #[unsafe(method(publicID))]
         #[unsafe(method_family = none)]
         pub fn publicID(&self) -> Option<Retained<NSString>>;
@@ -152,7 +165,9 @@ impl NSXMLDTDNode {
         pub fn setPublicID(&self, public_id: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        /// Sets the system id. This should be a URL that points to a valid DTD. Valid for entities and notations.
+        /// Returns the system identifier associated with the receiver.
+        ///
+        /// This should be a URL that points to a valid DTD. Valid for entities and notations.
         #[unsafe(method(systemID))]
         #[unsafe(method_family = none)]
         pub fn systemID(&self) -> Option<Retained<NSString>>;
@@ -166,7 +181,9 @@ impl NSXMLDTDNode {
         pub fn setSystemID(&self, system_id: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        /// Set the notation name. Valid for entities only.
+        /// Returns the name of the notation associated with the receiver.
+        ///
+        /// Notations are applicable to unparsed external entities, processing instructions, and some attribute values.
         #[unsafe(method(notationName))]
         #[unsafe(method_family = none)]
         pub fn notationName(&self) -> Option<Retained<NSString>>;
@@ -185,13 +202,21 @@ impl NSXMLDTDNode {
 #[cfg(feature = "NSXMLNode")]
 impl NSXMLDTDNode {
     extern_methods!(
+        /// Returns an
+        /// `NSXMLNode`instance initialized with the constant indicating node kind.
+        ///
         /// Invokes
+        /// `initWithKind:options:`with options set to
+        /// `NSXMLNodeOptionsNone.`
+        /// Do not use this initializer for creating instances of
+        /// `NSXMLDTDNode`for attribute-list declarations. Instead, use the
+        /// `DTDNodeWithXMLString:`class method of this class or the
+        /// `initWithXMLString:`method of the
+        /// `NSXMLDTDNode`class.
         ///
-        /// ```text
-        ///  initWithKind:options:
-        /// ```
-        ///
-        /// with options set to NSXMLNodeOptionsNone
+        /// Parameter `kind`: An
+        /// `enum`constant of type
+        /// `NSXMLNodeKind`that indicates the type of node.
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
         pub fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;

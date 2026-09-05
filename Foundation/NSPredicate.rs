@@ -7,7 +7,25 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspredicate?language=objc)
+    /// A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.
+    ///
+    /// Predicates represent logical conditions, which you can use to filter collections of objects. Although it's common to create predicates directly from instances of ``NSComparisonPredicate``, ``NSCompoundPredicate``, and ``NSExpression``, you often create predicates from a format string that the class methods parse on ``NSPredicate``. Examples of predicate format strings include:
+    ///
+    /// - Simple comparisons, such as `grade == "7"` or `firstName like "Juan"`
+    /// - Case- and diacritic-insensitive lookups, such as `name contains[cd] "stein"`
+    /// - Logical operations, such as `(firstName like "Mei") OR (lastName like "Chen")`
+    /// - Temporal range constraints, such as `date between {$YESTERDAY, $TOMORROW}`
+    /// - Relational conditions, such as `group.name like "work*"`
+    /// - Aggregate operations, such as `
+    /// .items.price
+    /// <
+    /// 1000`
+    ///
+    /// For a complete syntax reference, refer to the [Predicate Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789).
+    ///
+    /// You can also create predicates that include variables using the ``evaluate(with:substitutionVariables:)`` method so that you can predefine the predicate before substituting concrete values at runtime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspredicate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPredicate;
@@ -40,6 +58,8 @@ extern_conformance!(
 impl NSPredicate {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Parse predicateFormat and return an appropriate predicate
+        ///
         /// # Safety
         ///
         /// `arguments` generic should be of the correct type.
@@ -51,17 +71,22 @@ impl NSPredicate {
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "NSString")]
+        /// Creates a predicate with a metadata query string.
         #[unsafe(method(predicateFromMetadataQueryString:))]
         #[unsafe(method_family = none)]
         pub fn predicateFromMetadataQueryString(
             query_string: &NSString,
         ) -> Option<Retained<NSPredicate>>;
 
+        /// Creates and returns a predicate that always evaluates to a specified Boolean value.
         #[unsafe(method(predicateWithValue:))]
         #[unsafe(method_family = none)]
         pub fn predicateWithValue(value: bool) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "block2"))]
+        /// Creates a predicate that evaluates using a specified block object and bindings dictionary.
+        ///
+        /// In macOS 10.6 and later, Core Data supports block-based predicates in the in-memory and atomic stores, but not in the SQLite-based store.
         #[unsafe(method(predicateWithBlock:))]
         #[unsafe(method_family = none)]
         pub fn predicateWithBlock(
@@ -72,11 +97,18 @@ impl NSPredicate {
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "NSString")]
+        /// The predicate's format string.
+        ///
+        /// The return value of this property is not guaranteed to be the same as the string used to create the predicate using `predicateWithFormat:` or similar methods.
         #[unsafe(method(predicateFormat))]
         #[unsafe(method_family = none)]
         pub fn predicateFormat(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Returns a copy of the predicate and substitutes the predicates variables with specified values from a specified substitution variables dictionary.
+        ///
+        /// The predicate itself is not modified by this method, so you can reuse it for any number of substitutions.
+        ///
         /// # Safety
         ///
         /// `variables` generic should be of the correct type.
@@ -87,6 +119,8 @@ impl NSPredicate {
             variables: &NSDictionary<NSString, AnyObject>,
         ) -> Retained<Self>;
 
+        /// Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies.
+        ///
         /// # Safety
         ///
         /// `object` should be of the correct type.
@@ -95,6 +129,10 @@ impl NSPredicate {
         pub unsafe fn evaluateWithObject(&self, object: Option<&AnyObject>) -> bool;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies after substituting in the values from a specified variables dictionary.
+        ///
+        /// This method returns the same result as the two step process of first invoking `predicateWithSubstitutionVariables:` on the predicate and then invoking `evaluateWithObject:` on the returned value. This method is optimized for situations which require repeatedly evaluating a predicate with substitution variables with different variable substitutions.
+        ///
         /// # Safety
         ///
         /// - `object` should be of the correct type.
@@ -107,6 +145,11 @@ impl NSPredicate {
             bindings: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> bool;
 
+        /// Forces a securely decoded predicate to allow evaluation.
+        ///
+        /// When securely decoding `NSPredicate` objects encoded using `NSSecureCoding`, evaluation is disabled because it is potentially unsafe to evaluate predicates you get out of an archive.
+        ///
+        /// Before you enable evaluation, you should validate key paths, selectors, and other details to ensure no erroneous or malicious code will be executed. Once you've verified the predicate, you can enable the receiver for evaluation by calling `allowEvaluation`.
         #[unsafe(method(allowEvaluation))]
         #[unsafe(method_family = none)]
         pub fn allowEvaluation(&self);
@@ -145,6 +188,7 @@ impl DefaultRetained for NSPredicate {
 #[cfg(feature = "NSArray")]
 impl<ObjectType: Message> NSArray<ObjectType> {
     extern_methods!(
+        /// Evaluates a given predicate against each object in the receiving array and returns a new array containing the objects for which the predicate returns true.
         #[unsafe(method(filteredArrayUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub fn filteredArrayUsingPredicate(
@@ -158,6 +202,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
 #[cfg(feature = "NSArray")]
 impl<ObjectType: Message> NSMutableArray<ObjectType> {
     extern_methods!(
+        /// Evaluates a given predicate against the array's content and leaves only objects that match.
         #[unsafe(method(filterUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub fn filterUsingPredicate(&self, predicate: &NSPredicate);
@@ -168,6 +213,7 @@ impl<ObjectType: Message> NSMutableArray<ObjectType> {
 #[cfg(feature = "NSSet")]
 impl<ObjectType: Message> NSSet<ObjectType> {
     extern_methods!(
+        /// Evaluates a given predicate against each object in the receiving set and returns a new set containing the objects for which the predicate returns true.
         #[unsafe(method(filteredSetUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub fn filteredSetUsingPredicate(
@@ -181,6 +227,7 @@ impl<ObjectType: Message> NSSet<ObjectType> {
 #[cfg(feature = "NSSet")]
 impl<ObjectType: Message> NSMutableSet<ObjectType> {
     extern_methods!(
+        /// Evaluates a given predicate against the set's content and removes objects that don't match.
         #[unsafe(method(filterUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub fn filterUsingPredicate(&self, predicate: &NSPredicate);
@@ -191,6 +238,7 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
 #[cfg(feature = "NSOrderedSet")]
 impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
+        /// Evaluates a given predicate against each object in the receiving ordered set and returns a new ordered set containing the objects for which the predicate returns true.
         #[unsafe(method(filteredOrderedSetUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub fn filteredOrderedSetUsingPredicate(
@@ -204,6 +252,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 #[cfg(feature = "NSOrderedSet")]
 impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
+        /// Evaluates a given predicate against the ordered set's content and removes objects that don't match.
         #[unsafe(method(filterUsingPredicate:))]
         #[unsafe(method_family = none)]
         pub fn filterUsingPredicate(&self, p: &NSPredicate);

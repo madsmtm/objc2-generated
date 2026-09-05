@@ -6,18 +6,24 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparserexternalentityresolvingpolicy?language=objc)
+/// Defines the external entity resolving policy used by an `NSXMLParser` instance.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparserexternalentityresolvingpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLParserExternalEntityResolvingPolicy(pub NSUInteger);
 impl NSXMLParserExternalEntityResolvingPolicy {
+    /// The parser should never resolve external entities.
     #[doc(alias = "NSXMLParserResolveExternalEntitiesNever")]
     pub const ResolveExternalEntitiesNever: Self = Self(0);
+    /// The parser resolves external entities but does not load them over the network.
     #[doc(alias = "NSXMLParserResolveExternalEntitiesNoNetwork")]
     pub const ResolveExternalEntitiesNoNetwork: Self = Self(1);
+    /// The parser resolves external entities only from the same origin as the original URL. Only applies to `NSXMLParser` instances initialized with `-initWithContentsOfURL:`.
     #[doc(alias = "NSXMLParserResolveExternalEntitiesSameOriginOnly")]
     pub const ResolveExternalEntitiesSameOriginOnly: Self = Self(2);
+    /// The parser always resolves external entities.
     #[doc(alias = "NSXMLParserResolveExternalEntitiesAlways")]
     pub const ResolveExternalEntitiesAlways: Self = Self(3);
 }
@@ -31,7 +37,14 @@ unsafe impl RefEncode for NSXMLParserExternalEntityResolvingPolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparser?language=objc)
+    /// An event driven parser of XML documents (including DTD declarations).
+    ///
+    /// An ``XMLParser`` notifies its delegate about the items (elements, attributes, CDATA blocks, comments, and so on) that it encounters as it processes an XML document. It does not itself do anything with those parsed items except report them. It also reports parsing errors. For convenience, an ``XMLParser`` object in the following descriptions is sometimes referred to as a parser object. Unless used in a callback, the ``XMLParser`` is a thread-safe class as long as any given instance is only used in one thread.
+    ///
+    /// > Note:
+    /// > Namespace support was implemented in ``XMLParser`` starting in macOS 10.4. Namespace-related methods of ``XMLParser`` prior to this version have no effect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLParser;
@@ -44,20 +57,38 @@ extern_conformance!(
 impl NSXMLParser {
     extern_methods!(
         #[cfg(feature = "NSURL")]
+        /// Initializes a parser with the XML content referenced by the given URL.
+        ///
+        /// - Parameter url: An `NSURL` object specifying a URL. The URL must be fully qualified and refer to a scheme that is supported by the `NSURL` class.
+        /// - Returns: An initialized `NSXMLParser` object or `nil` if an error occurs.
         #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
+        /// Initializes a parser with the XML contents encapsulated in a given data object.
+        ///
+        /// This method is the designated initializer.
+        ///
+        /// - Parameter data: An `NSData` object containing XML markup.
+        /// - Returns: An initialized `NSXMLParser` object or `nil` if an error occurs.
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "NSStream")]
+        /// Initializes a parser with the XML contents from the specified stream and parses it.
+        ///
+        /// - Parameter stream: The input stream. The content is incrementally loaded from the specified stream and parsed. The `NSXMLParser` will open the stream, and synchronously read from it without scheduling it.
+        /// - Returns: An initialized `NSXMLParser` object or `nil` if an error occurs.
         #[unsafe(method(initWithStream:))]
         #[unsafe(method_family = init)]
         pub fn initWithStream(this: Allocated<Self>, stream: &NSInputStream) -> Retained<Self>;
 
+        /// A delegate object that receives messages about the parsing process.
+        ///
+        /// For methods to be implemented by the delegate, see `NSXMLParserDelegate`.
+        ///
         /// # Safety
         ///
         /// This is not retained internally, you must ensure the object is still alive.
@@ -77,6 +108,11 @@ impl NSXMLParser {
             delegate: Option<&ProtocolObject<dyn NSXMLParserDelegate>>,
         );
 
+        /// A Boolean value that determines whether the parser reports the namespaces and qualified names of elements.
+        ///
+        /// `YES` if the parser reports namespace and qualified name, `NO` otherwise.
+        ///
+        /// The parser reports element names with the delegate methods `-parser:didStartElement:namespaceURI:qualifiedName:attributes:` and `-parser:didEndElement:namespaceURI:qualifiedName:`.
         #[unsafe(method(shouldProcessNamespaces))]
         #[unsafe(method_family = none)]
         pub fn shouldProcessNamespaces(&self) -> bool;
@@ -86,6 +122,11 @@ impl NSXMLParser {
         #[unsafe(method_family = none)]
         pub fn setShouldProcessNamespaces(&self, should_process_namespaces: bool);
 
+        /// A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
+        ///
+        /// `YES` if the parser reports the scope of namespace declarations, `NO` otherwise. The default value is `NO`.
+        ///
+        /// The parser reports prefixes with the delegate methods `-parser:didStartMappingPrefix:toURI:` and `-parser:didEndMappingPrefix:`.
         #[unsafe(method(shouldReportNamespacePrefixes))]
         #[unsafe(method_family = none)]
         pub fn shouldReportNamespacePrefixes(&self) -> bool;
@@ -95,6 +136,9 @@ impl NSXMLParser {
         #[unsafe(method_family = none)]
         pub fn setShouldReportNamespacePrefixes(&self, should_report_namespace_prefixes: bool);
 
+        /// The external entity resolving policy for the parser.
+        ///
+        /// Defaults to `NSXMLParserResolveExternalEntitiesNever`.
         #[unsafe(method(externalEntityResolvingPolicy))]
         #[unsafe(method_family = none)]
         pub fn externalEntityResolvingPolicy(&self) -> NSXMLParserExternalEntityResolvingPolicy;
@@ -108,6 +152,7 @@ impl NSXMLParser {
         );
 
         #[cfg(all(feature = "NSSet", feature = "NSURL"))]
+        /// The set of external entity URLs that the parser is allowed to load.
         #[unsafe(method(allowedExternalEntityURLs))]
         #[unsafe(method_family = none)]
         pub fn allowedExternalEntityURLs(&self) -> Option<Retained<NSSet<NSURL>>>;
@@ -123,19 +168,34 @@ impl NSXMLParser {
             allowed_external_entity_ur_ls: Option<&NSSet<NSURL>>,
         );
 
+        /// Starts the event-driven parsing operation.
+        ///
+        /// - Returns: `YES` if the parsing operation succeeds; `NO` if an error occurs or if the parsing operation aborts.
         #[unsafe(method(parse))]
         #[unsafe(method_family = none)]
         pub fn parse(&self) -> bool;
 
+        /// Stops the parser object.
+        ///
+        /// If you invoke this method, the delegate, if it implements `-parser:parseErrorOccurred:`, is informed of the cancelled parsing operation.
         #[unsafe(method(abortParsing))]
         #[unsafe(method_family = none)]
         pub fn abortParsing(&self);
 
         #[cfg(feature = "NSError")]
+        /// An `NSError` object from which you can obtain information about a parsing error.
+        ///
+        /// You may access this property after a parsing operation abnormally terminates to determine the cause of error.
         #[unsafe(method(parserError))]
         #[unsafe(method_family = none)]
         pub fn parserError(&self) -> Option<Retained<NSError>>;
 
+        /// A Boolean value that determines whether the parser reports declarations of external entities.
+        ///
+        /// `YES` if the parser reports declarations of external entities, `NO` otherwise. The default value is `NO`. If you set this property to `YES`, you may cause other I/O operations, either network-based or disk-based, to load the external DTD.
+        ///
+        /// Toggles between disabling external entities entirely, and the current setting of the `externalEntityResolvingPolicy`.
+        /// The `externalEntityResolvingPolicy` property should be used instead of this, unless targeting 10.9/7.0 or earlier.
         #[unsafe(method(shouldResolveExternalEntities))]
         #[unsafe(method_family = none)]
         pub fn shouldResolveExternalEntities(&self) -> bool;
@@ -171,19 +231,31 @@ impl DefaultRetained for NSXMLParser {
 impl NSXMLParser {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The public identifier of the external entity referenced in the XML document.
+        ///
+        /// You may access this property once a parsing operation has begun or after an error occurs.
         #[unsafe(method(publicID))]
         #[unsafe(method_family = none)]
         pub fn publicID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The system identifier of the external entity referenced in the XML document.
+        ///
+        /// You may access this property once a parsing operation has begun or after an error occurs.
         #[unsafe(method(systemID))]
         #[unsafe(method_family = none)]
         pub fn systemID(&self) -> Option<Retained<NSString>>;
 
+        /// The line number of the XML document being processed by the parser.
+        ///
+        /// You may access this property once a parsing operation has begun or after an error occurs.
         #[unsafe(method(lineNumber))]
         #[unsafe(method_family = none)]
         pub fn lineNumber(&self) -> NSInteger;
 
+        /// The column number of the XML document being processed by the parser.
+        ///
+        /// The column refers to the nesting level of the XML elements in the document. You may access this property once a parsing operation has begun or after an error occurs.
         #[unsafe(method(columnNumber))]
         #[unsafe(method_family = none)]
         pub fn columnNumber(&self) -> NSInteger;
@@ -191,19 +263,34 @@ impl NSXMLParser {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparserdelegate?language=objc)
+    /// The interface an XML parser uses to inform its delegate about the content of the parsed document.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparserdelegate?language=objc)
     pub unsafe trait NSXMLParserDelegate: NSObjectProtocol {
+        /// Sent by the parser object to the delegate when it begins parsing a document.
+        ///
+        /// - Parameter parser: A parser object.
         #[optional]
         #[unsafe(method(parserDidStartDocument:))]
         #[unsafe(method_family = none)]
         fn parserDidStartDocument(&self, parser: &NSXMLParser);
 
+        /// Sent by the parser object to the delegate when it has successfully completed parsing.
+        ///
+        /// - Parameter parser: A parser object.
         #[optional]
         #[unsafe(method(parserDidEndDocument:))]
         #[unsafe(method_family = none)]
         fn parserDidEndDocument(&self, parser: &NSXMLParser);
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate when it encounters a notation declaration.
+        ///
+        /// - Parameters:
+        /// - parser: An `NSXMLParser` object parsing XML.
+        /// - name: A string that is the name of the notation.
+        /// - publicID: A string specifying the public ID associated with the notation `name`.
+        /// - systemID: A string specifying the system ID associated with the notation `name`.
         #[optional]
         #[unsafe(method(parser:foundNotationDeclarationWithName:publicID:systemID:))]
         #[unsafe(method_family = none)]
@@ -216,6 +303,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate when it encounters an unparsed entity declaration.
+        ///
+        /// - Parameters:
+        /// - parser: An `NSXMLParser` object parsing XML.
+        /// - name: A string that is the name of the unparsed entity in the declaration.
+        /// - publicID: A string specifying the public ID associated with the entity `name`.
+        /// - systemID: A string specifying the system ID associated with the entity `name`.
+        /// - notationName: A string specifying a notation of the declaration of entity `name`.
         #[optional]
         #[unsafe(method(parser:foundUnparsedEntityDeclarationWithName:publicID:systemID:notationName:))]
         #[unsafe(method_family = none)]
@@ -229,6 +324,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate when it encounters a declaration of an attribute that is associated with a specific element.
+        ///
+        /// - Parameters:
+        /// - parser: An `NSXMLParser` object parsing XML.
+        /// - attributeName: A string that is the name of an attribute.
+        /// - elementName: A string that is the name of an element that has the attribute `attributeName`.
+        /// - type: A string, such as "ENTITY", "NOTATION", or "ID", that indicates the type of the attribute.
+        /// - defaultValue: A string that specifies the default value of the attribute.
         #[optional]
         #[unsafe(method(parser:foundAttributeDeclarationWithName:forElement:type:defaultValue:))]
         #[unsafe(method_family = none)]
@@ -242,6 +345,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate when it encounters a declaration of an element with a given model.
+        ///
+        /// - Parameters:
+        /// - parser: An `NSXMLParser` object parsing XML.
+        /// - elementName: A string that is the name of an element.
+        /// - model: A string that specifies a model for `elementName`.
         #[optional]
         #[unsafe(method(parser:foundElementDeclarationWithName:model:))]
         #[unsafe(method_family = none)]
@@ -253,6 +362,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to the delegate when it encounters an internal entity declaration.
+        ///
+        /// - Parameters:
+        /// - parser: An `NSXMLParser` object parsing XML.
+        /// - name: A string that is the declared name of an internal entity.
+        /// - value: A string that is the value of entity `name`.
         #[optional]
         #[unsafe(method(parser:foundInternalEntityDeclarationWithName:value:))]
         #[unsafe(method_family = none)]
@@ -264,6 +379,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate when it encounters an external entity declaration.
+        ///
+        /// - Parameters:
+        /// - parser: An `NSXMLParser` object parsing XML.
+        /// - name: A string that is the name of an entity.
+        /// - publicID: A string that specifies the public ID associated with `entityName`.
+        /// - systemID: A string that specifies the system ID associated with `entityName`.
         #[optional]
         #[unsafe(method(parser:foundExternalEntityDeclarationWithName:publicID:systemID:))]
         #[unsafe(method_family = none)]
@@ -276,6 +398,14 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Sent by a parser object to its delegate when it encounters a start tag for a given element.
+        ///
+        /// - Parameters:
+        /// - parser: A parser object.
+        /// - elementName: A string that is the name of an element (in its start tag).
+        /// - namespaceURI: If namespace processing is turned on, contains the URI for the current namespace as a string object.
+        /// - qName: If namespace processing is turned on, contains the qualified name for the current namespace as a string object.
+        /// - attributeDict: A dictionary that contains any attributes associated with the element. Keys are the names of attributes, and values are attribute values.
         #[optional]
         #[unsafe(method(parser:didStartElement:namespaceURI:qualifiedName:attributes:))]
         #[unsafe(method_family = none)]
@@ -289,6 +419,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate when it encounters an end tag for a specific element.
+        ///
+        /// - Parameters:
+        /// - parser: A parser object.
+        /// - elementName: A string that is the name of an element (in its end tag).
+        /// - namespaceURI: If namespace processing is turned on, contains the URI for the current namespace as a string object.
+        /// - qName: If namespace processing is turned on, contains the qualified name for the current namespace as a string object.
         #[optional]
         #[unsafe(method(parser:didEndElement:namespaceURI:qualifiedName:))]
         #[unsafe(method_family = none)]
@@ -301,6 +438,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate the first time it encounters a given namespace prefix, which is mapped to a URI.
+        ///
+        /// The parser object sends this message only when namespace-prefix reporting is turned on through the `shouldReportNamespacePrefixes` property.
+        ///
+        /// - Parameters:
+        /// - parser: A parser object.
+        /// - prefix: A string that is a namespace prefix.
+        /// - namespaceURI: A string that specifies a namespace URI.
         #[optional]
         #[unsafe(method(parser:didStartMappingPrefix:toURI:))]
         #[unsafe(method_family = none)]
@@ -312,18 +457,38 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate when a given namespace prefix goes out of scope.
+        ///
+        /// The parser sends this message only when namespace-prefix reporting is turned on through the `shouldReportNamespacePrefixes` property.
+        ///
+        /// - Parameter parser: A parser object.
+        /// - Parameter prefix: A string that is a namespace prefix.
         #[optional]
         #[unsafe(method(parser:didEndMappingPrefix:))]
         #[unsafe(method_family = none)]
         fn parser_didEndMappingPrefix(&self, parser: &NSXMLParser, prefix: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to provide its delegate with a string representing all or part of the characters of the current element.
+        ///
+        /// The parser object may send the delegate several `-parser:foundCharacters:` messages to report the characters of an element. Because `string` may be only part of the total character content for the current element, you should append it to the current accumulation of characters until the element changes.
+        ///
+        /// - Parameters:
+        /// - parser: A parser object.
+        /// - string: A string representing the complete or partial textual content of the current element.
         #[optional]
         #[unsafe(method(parser:foundCharacters:))]
         #[unsafe(method_family = none)]
         fn parser_foundCharacters(&self, parser: &NSXMLParser, string: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Reported by a parser object to provide its delegate with a string representing all or part of the ignorable whitespace characters of the current element.
+        ///
+        /// All the whitespace characters of the element (including carriage returns, tabs, and new-line characters) may not be provided through an individual invocation of this method. The parser may send the delegate several `-parser:foundIgnorableWhitespace:` messages to report the whitespace characters of an element. You should append the characters in each invocation to the current accumulation of characters.
+        ///
+        /// - Parameters:
+        /// - parser: A parser object.
+        /// - whitespaceString: A string representing all or part of the ignorable whitespace characters of the current element.
         #[optional]
         #[unsafe(method(parser:foundIgnorableWhitespace:))]
         #[unsafe(method_family = none)]
@@ -334,6 +499,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate when it encounters a processing instruction.
+        ///
+        /// - Parameters:
+        /// - parser: A parser object.
+        /// - target: A string representing the target of a processing instruction.
+        /// - data: A string representing the data for a processing instruction.
         #[optional]
         #[unsafe(method(parser:foundProcessingInstructionWithTarget:data:))]
         #[unsafe(method_family = none)]
@@ -345,18 +516,39 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Sent by a parser object to its delegate when it encounters a comment in the XML.
+        ///
+        /// - Parameters:
+        /// - parser: An `NSXMLParser` object parsing XML.
+        /// - comment: A string that is the content of a comment in the XML.
         #[optional]
         #[unsafe(method(parser:foundComment:))]
         #[unsafe(method_family = none)]
         fn parser_foundComment(&self, parser: &NSXMLParser, comment: &NSString);
 
         #[cfg(feature = "NSData")]
+        /// Sent by a parser object to its delegate when it encounters a CDATA block.
+        ///
+        /// Through this method the parser object passes the contents of the block to its delegate in an `NSData` object. The CDATA block is character data that is ignored by the parser. The encoding of the character data is UTF-8. To convert the data object to a string object, use the `NSString` method `-initWithData:encoding:`.
+        ///
+        /// - Parameters:
+        /// - parser: An `NSXMLParser` object parsing XML.
+        /// - CDATABlock: A data object containing a block of CDATA.
         #[optional]
         #[unsafe(method(parser:foundCDATA:))]
         #[unsafe(method_family = none)]
         fn parser_foundCDATA(&self, parser: &NSXMLParser, cdata_block: &NSData);
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
+        /// Sent by a parser object to its delegate when it encounters a given external entity with a specific system ID.
+        ///
+        /// The delegate can resolve the external entity (for example, locating and reading an externally declared DTD) and provide the result to the parser object as an `NSData` object.
+        ///
+        /// - Parameters:
+        /// - parser: A parser object.
+        /// - name: A string that specifies the external name of an entity.
+        /// - systemID: A string that specifies the system ID for the external entity.
+        /// - Returns: An `NSData` object that contains the resolution of the given external entity.
         #[optional]
         #[unsafe(method(parser:resolveExternalEntityName:systemID:))]
         #[unsafe(method_family = none)]
@@ -368,12 +560,24 @@ extern_protocol!(
         ) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSError")]
+        /// Sent by a parser object to its delegate when it encounters a fatal error.
+        ///
+        /// When this method is invoked, parsing is stopped. For further information about the error, you can query `parseError` or you can send the `parser` a `parserError` message. You can also send the parser `lineNumber` and `columnNumber` messages to further isolate where the error occurred. Typically you implement this method to display information about the error to the user.
+        ///
+        /// - Parameters:
+        /// - parser: A parser object.
+        /// - parseError: An `NSError` object describing the parsing error that occurred.
         #[optional]
         #[unsafe(method(parser:parseErrorOccurred:))]
         #[unsafe(method_family = none)]
         fn parser_parseErrorOccurred(&self, parser: &NSXMLParser, parse_error: &NSError);
 
         #[cfg(feature = "NSError")]
+        /// Sent by a parser object to its delegate when it encounters a fatal validation error. `NSXMLParser` currently does not invoke this method and does not perform validation.
+        ///
+        /// - Parameters:
+        /// - parser: A parser object.
+        /// - validationError: An `NSError` object describing the validation error that occurred.
         #[optional]
         #[unsafe(method(parser:validationErrorOccurred:))]
         #[unsafe(method_family = none)]
@@ -382,201 +586,302 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparsererrordomain?language=objc)
+    /// Indicates an error in XML parsing.
+    ///
+    /// Used by `NSError`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparsererrordomain?language=objc)
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSXMLParserErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparsererror?language=objc)
+/// The following error codes are defined by `NSXMLParser`. For error codes not listed here, see the `
+/// <libxml
+/// /xmlerror.h>` header file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparsererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSXMLParserError(pub NSInteger);
 impl NSXMLParserError {
+    /// The parser object encountered an internal error.
     #[doc(alias = "NSXMLParserInternalError")]
     pub const InternalError: Self = Self(1);
+    /// The parser object ran out of memory.
     #[doc(alias = "NSXMLParserOutOfMemoryError")]
     pub const OutOfMemoryError: Self = Self(2);
+    /// The parser object is unable to start parsing.
     #[doc(alias = "NSXMLParserDocumentStartError")]
     pub const DocumentStartError: Self = Self(3);
+    /// The document is empty.
     #[doc(alias = "NSXMLParserEmptyDocumentError")]
     pub const EmptyDocumentError: Self = Self(4);
+    /// The document ended unexpectedly.
     #[doc(alias = "NSXMLParserPrematureDocumentEndError")]
     pub const PrematureDocumentEndError: Self = Self(5);
+    /// Invalid hexadecimal character reference encountered.
     #[doc(alias = "NSXMLParserInvalidHexCharacterRefError")]
     pub const InvalidHexCharacterRefError: Self = Self(6);
+    /// Invalid decimal character reference encountered.
     #[doc(alias = "NSXMLParserInvalidDecimalCharacterRefError")]
     pub const InvalidDecimalCharacterRefError: Self = Self(7);
+    /// Invalid character reference encountered.
     #[doc(alias = "NSXMLParserInvalidCharacterRefError")]
     pub const InvalidCharacterRefError: Self = Self(8);
+    /// Invalid character encountered.
     #[doc(alias = "NSXMLParserInvalidCharacterError")]
     pub const InvalidCharacterError: Self = Self(9);
+    /// Target of character reference cannot be found.
     #[doc(alias = "NSXMLParserCharacterRefAtEOFError")]
     pub const CharacterRefAtEOFError: Self = Self(10);
+    /// Invalid character found in the prolog.
     #[doc(alias = "NSXMLParserCharacterRefInPrologError")]
     pub const CharacterRefInPrologError: Self = Self(11);
+    /// Invalid character found in the epilog.
     #[doc(alias = "NSXMLParserCharacterRefInEpilogError")]
     pub const CharacterRefInEpilogError: Self = Self(12);
+    /// Invalid character encountered in the DTD.
     #[doc(alias = "NSXMLParserCharacterRefInDTDError")]
     pub const CharacterRefInDTDError: Self = Self(13);
+    /// Target of entity reference is not found.
     #[doc(alias = "NSXMLParserEntityRefAtEOFError")]
     pub const EntityRefAtEOFError: Self = Self(14);
+    /// Invalid entity reference found in the prolog.
     #[doc(alias = "NSXMLParserEntityRefInPrologError")]
     pub const EntityRefInPrologError: Self = Self(15);
+    /// Invalid entity reference found in the epilog.
     #[doc(alias = "NSXMLParserEntityRefInEpilogError")]
     pub const EntityRefInEpilogError: Self = Self(16);
+    /// Invalid entity reference found in the DTD.
     #[doc(alias = "NSXMLParserEntityRefInDTDError")]
     pub const EntityRefInDTDError: Self = Self(17);
+    /// Target of parsed entity reference is not found.
     #[doc(alias = "NSXMLParserParsedEntityRefAtEOFError")]
     pub const ParsedEntityRefAtEOFError: Self = Self(18);
+    /// Target of parsed entity reference is not found in prolog.
     #[doc(alias = "NSXMLParserParsedEntityRefInPrologError")]
     pub const ParsedEntityRefInPrologError: Self = Self(19);
+    /// Target of parsed entity reference is not found in epilog.
     #[doc(alias = "NSXMLParserParsedEntityRefInEpilogError")]
     pub const ParsedEntityRefInEpilogError: Self = Self(20);
+    /// Target of parsed entity reference is not found in internal subset.
     #[doc(alias = "NSXMLParserParsedEntityRefInInternalSubsetError")]
     pub const ParsedEntityRefInInternalSubsetError: Self = Self(21);
+    /// Entity reference is without name.
     #[doc(alias = "NSXMLParserEntityReferenceWithoutNameError")]
     pub const EntityReferenceWithoutNameError: Self = Self(22);
+    /// Entity reference is missing semicolon.
     #[doc(alias = "NSXMLParserEntityReferenceMissingSemiError")]
     pub const EntityReferenceMissingSemiError: Self = Self(23);
+    /// Parsed entity reference is without an entity name.
     #[doc(alias = "NSXMLParserParsedEntityRefNoNameError")]
     pub const ParsedEntityRefNoNameError: Self = Self(24);
+    /// Parsed entity reference is missing semicolon.
     #[doc(alias = "NSXMLParserParsedEntityRefMissingSemiError")]
     pub const ParsedEntityRefMissingSemiError: Self = Self(25);
+    /// Entity is not declared.
     #[doc(alias = "NSXMLParserUndeclaredEntityError")]
     pub const UndeclaredEntityError: Self = Self(26);
+    /// Cannot parse entity.
     #[doc(alias = "NSXMLParserUnparsedEntityError")]
     pub const UnparsedEntityError: Self = Self(28);
+    /// Cannot parse external entity.
     #[doc(alias = "NSXMLParserEntityIsExternalError")]
     pub const EntityIsExternalError: Self = Self(29);
+    /// Entity is a parameter.
     #[doc(alias = "NSXMLParserEntityIsParameterError")]
     pub const EntityIsParameterError: Self = Self(30);
+    /// Document encoding is unknown.
     #[doc(alias = "NSXMLParserUnknownEncodingError")]
     pub const UnknownEncodingError: Self = Self(31);
+    /// Document encoding is not supported.
     #[doc(alias = "NSXMLParserEncodingNotSupportedError")]
     pub const EncodingNotSupportedError: Self = Self(32);
+    /// String is not started.
     #[doc(alias = "NSXMLParserStringNotStartedError")]
     pub const StringNotStartedError: Self = Self(33);
+    /// String is not closed.
     #[doc(alias = "NSXMLParserStringNotClosedError")]
     pub const StringNotClosedError: Self = Self(34);
+    /// Invalid namespace declaration encountered.
     #[doc(alias = "NSXMLParserNamespaceDeclarationError")]
     pub const NamespaceDeclarationError: Self = Self(35);
+    /// Entity is not started.
     #[doc(alias = "NSXMLParserEntityNotStartedError")]
     pub const EntityNotStartedError: Self = Self(36);
+    /// Entity is not finished.
     #[doc(alias = "NSXMLParserEntityNotFinishedError")]
     pub const EntityNotFinishedError: Self = Self(37);
+    /// Angle bracket is used in attribute.
     #[doc(alias = "NSXMLParserLessThanSymbolInAttributeError")]
     pub const LessThanSymbolInAttributeError: Self = Self(38);
+    /// Attribute is not started.
     #[doc(alias = "NSXMLParserAttributeNotStartedError")]
     pub const AttributeNotStartedError: Self = Self(39);
+    /// Attribute is not finished.
     #[doc(alias = "NSXMLParserAttributeNotFinishedError")]
     pub const AttributeNotFinishedError: Self = Self(40);
+    /// Attribute doesn't contain a value.
     #[doc(alias = "NSXMLParserAttributeHasNoValueError")]
     pub const AttributeHasNoValueError: Self = Self(41);
+    /// Attribute is redefined.
     #[doc(alias = "NSXMLParserAttributeRedefinedError")]
     pub const AttributeRedefinedError: Self = Self(42);
+    /// Literal is not started.
     #[doc(alias = "NSXMLParserLiteralNotStartedError")]
     pub const LiteralNotStartedError: Self = Self(43);
+    /// Literal is not finished.
     #[doc(alias = "NSXMLParserLiteralNotFinishedError")]
     pub const LiteralNotFinishedError: Self = Self(44);
+    /// Comment is not finished.
     #[doc(alias = "NSXMLParserCommentNotFinishedError")]
     pub const CommentNotFinishedError: Self = Self(45);
+    /// Processing instruction is not started.
     #[doc(alias = "NSXMLParserProcessingInstructionNotStartedError")]
     pub const ProcessingInstructionNotStartedError: Self = Self(46);
+    /// Processing instruction is not finished.
     #[doc(alias = "NSXMLParserProcessingInstructionNotFinishedError")]
     pub const ProcessingInstructionNotFinishedError: Self = Self(47);
+    /// Notation is not started.
     #[doc(alias = "NSXMLParserNotationNotStartedError")]
     pub const NotationNotStartedError: Self = Self(48);
+    /// Notation is not finished.
     #[doc(alias = "NSXMLParserNotationNotFinishedError")]
     pub const NotationNotFinishedError: Self = Self(49);
+    /// Attribute list is not started.
     #[doc(alias = "NSXMLParserAttributeListNotStartedError")]
     pub const AttributeListNotStartedError: Self = Self(50);
+    /// Attribute list is not finished.
     #[doc(alias = "NSXMLParserAttributeListNotFinishedError")]
     pub const AttributeListNotFinishedError: Self = Self(51);
+    /// Mixed content declaration is not started.
     #[doc(alias = "NSXMLParserMixedContentDeclNotStartedError")]
     pub const MixedContentDeclNotStartedError: Self = Self(52);
+    /// Mixed content declaration is not finished.
     #[doc(alias = "NSXMLParserMixedContentDeclNotFinishedError")]
     pub const MixedContentDeclNotFinishedError: Self = Self(53);
+    /// Element content declaration is not started.
     #[doc(alias = "NSXMLParserElementContentDeclNotStartedError")]
     pub const ElementContentDeclNotStartedError: Self = Self(54);
+    /// Element content declaration is not finished.
     #[doc(alias = "NSXMLParserElementContentDeclNotFinishedError")]
     pub const ElementContentDeclNotFinishedError: Self = Self(55);
+    /// XML declaration is not started.
     #[doc(alias = "NSXMLParserXMLDeclNotStartedError")]
     pub const XMLDeclNotStartedError: Self = Self(56);
+    /// XML declaration is not finished.
     #[doc(alias = "NSXMLParserXMLDeclNotFinishedError")]
     pub const XMLDeclNotFinishedError: Self = Self(57);
+    /// Conditional section is not started.
     #[doc(alias = "NSXMLParserConditionalSectionNotStartedError")]
     pub const ConditionalSectionNotStartedError: Self = Self(58);
+    /// Conditional section is not finished.
     #[doc(alias = "NSXMLParserConditionalSectionNotFinishedError")]
     pub const ConditionalSectionNotFinishedError: Self = Self(59);
+    /// External subset is not finished.
     #[doc(alias = "NSXMLParserExternalSubsetNotFinishedError")]
     pub const ExternalSubsetNotFinishedError: Self = Self(60);
+    /// Document type declaration is not finished.
     #[doc(alias = "NSXMLParserDOCTYPEDeclNotFinishedError")]
     pub const DOCTYPEDeclNotFinishedError: Self = Self(61);
+    /// Misplaced CDATA end string.
     #[doc(alias = "NSXMLParserMisplacedCDATAEndStringError")]
     pub const MisplacedCDATAEndStringError: Self = Self(62);
+    /// CDATA block is not finished.
     #[doc(alias = "NSXMLParserCDATANotFinishedError")]
     pub const CDATANotFinishedError: Self = Self(63);
+    /// Misplaced XML declaration.
     #[doc(alias = "NSXMLParserMisplacedXMLDeclarationError")]
     pub const MisplacedXMLDeclarationError: Self = Self(64);
+    /// Space is required.
     #[doc(alias = "NSXMLParserSpaceRequiredError")]
     pub const SpaceRequiredError: Self = Self(65);
+    /// Separator is required.
     #[doc(alias = "NSXMLParserSeparatorRequiredError")]
     pub const SeparatorRequiredError: Self = Self(66);
+    /// Name token is required.
     #[doc(alias = "NSXMLParserNMTOKENRequiredError")]
     pub const NMTOKENRequiredError: Self = Self(67);
+    /// Name is required.
     #[doc(alias = "NSXMLParserNAMERequiredError")]
     pub const NAMERequiredError: Self = Self(68);
+    /// CDATA is required.
     #[doc(alias = "NSXMLParserPCDATARequiredError")]
     pub const PCDATARequiredError: Self = Self(69);
+    /// URI is required.
     #[doc(alias = "NSXMLParserURIRequiredError")]
     pub const URIRequiredError: Self = Self(70);
+    /// Public identifier is required.
     #[doc(alias = "NSXMLParserPublicIdentifierRequiredError")]
     pub const PublicIdentifierRequiredError: Self = Self(71);
+    /// Left angle bracket is required.
     #[doc(alias = "NSXMLParserLTRequiredError")]
     pub const LTRequiredError: Self = Self(72);
+    /// Right angle bracket is required.
     #[doc(alias = "NSXMLParserGTRequiredError")]
     pub const GTRequiredError: Self = Self(73);
+    /// Left angle bracket slash is required.
     #[doc(alias = "NSXMLParserLTSlashRequiredError")]
     pub const LTSlashRequiredError: Self = Self(74);
+    /// Equal sign expected.
     #[doc(alias = "NSXMLParserEqualExpectedError")]
     pub const EqualExpectedError: Self = Self(75);
+    /// Tag name mismatch.
     #[doc(alias = "NSXMLParserTagNameMismatchError")]
     pub const TagNameMismatchError: Self = Self(76);
+    /// Unfinished tag found.
     #[doc(alias = "NSXMLParserUnfinishedTagError")]
     pub const UnfinishedTagError: Self = Self(77);
+    /// Standalone value found.
     #[doc(alias = "NSXMLParserStandaloneValueError")]
     pub const StandaloneValueError: Self = Self(78);
+    /// Invalid encoding name found.
     #[doc(alias = "NSXMLParserInvalidEncodingNameError")]
     pub const InvalidEncodingNameError: Self = Self(79);
+    /// Comment contains double hyphen.
     #[doc(alias = "NSXMLParserCommentContainsDoubleHyphenError")]
     pub const CommentContainsDoubleHyphenError: Self = Self(80);
+    /// Invalid encoding.
     #[doc(alias = "NSXMLParserInvalidEncodingError")]
     pub const InvalidEncodingError: Self = Self(81);
+    /// External standalone entity.
     #[doc(alias = "NSXMLParserExternalStandaloneEntityError")]
     pub const ExternalStandaloneEntityError: Self = Self(82);
+    /// Invalid conditional section.
     #[doc(alias = "NSXMLParserInvalidConditionalSectionError")]
     pub const InvalidConditionalSectionError: Self = Self(83);
+    /// Entity value is required.
     #[doc(alias = "NSXMLParserEntityValueRequiredError")]
     pub const EntityValueRequiredError: Self = Self(84);
+    /// Document is not well balanced.
     #[doc(alias = "NSXMLParserNotWellBalancedError")]
     pub const NotWellBalancedError: Self = Self(85);
+    /// Error in content found.
     #[doc(alias = "NSXMLParserExtraContentError")]
     pub const ExtraContentError: Self = Self(86);
+    /// Invalid character in entity found.
     #[doc(alias = "NSXMLParserInvalidCharacterInEntityError")]
     pub const InvalidCharacterInEntityError: Self = Self(87);
+    /// Internal error in parsed entity reference found.
     #[doc(alias = "NSXMLParserParsedEntityRefInInternalError")]
     pub const ParsedEntityRefInInternalError: Self = Self(88);
+    /// Entity reference loop encountered.
     #[doc(alias = "NSXMLParserEntityRefLoopError")]
     pub const EntityRefLoopError: Self = Self(89);
+    /// Entity boundary error.
     #[doc(alias = "NSXMLParserEntityBoundaryError")]
     pub const EntityBoundaryError: Self = Self(90);
+    /// Invalid URI specified.
     #[doc(alias = "NSXMLParserInvalidURIError")]
     pub const InvalidURIError: Self = Self(91);
+    /// URI fragment.
     #[doc(alias = "NSXMLParserURIFragmentError")]
     pub const URIFragmentError: Self = Self(92);
+    /// Missing DTD.
     #[doc(alias = "NSXMLParserNoDTDError")]
     pub const NoDTDError: Self = Self(94);
+    /// Delegate aborted parse.
     #[doc(alias = "NSXMLParserDelegateAbortedParseError")]
     pub const DelegateAbortedParseError: Self = Self(512);
 }

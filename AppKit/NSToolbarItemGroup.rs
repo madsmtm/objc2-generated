@@ -56,6 +56,28 @@ unsafe impl RefEncode for NSToolbarItemGroupControlRepresentation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgrouprole?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NSToolbarItemGroupRole(pub NSInteger);
+impl NSToolbarItemGroupRole {
+    #[doc(alias = "NSToolbarItemGroupRoleAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSToolbarItemGroupRoleTabs")]
+    pub const Tabs: Self = Self(1);
+    #[doc(alias = "NSToolbarItemGroupRoleValueSelection")]
+    pub const ValueSelection: Self = Self(2);
+}
+
+unsafe impl Encode for NSToolbarItemGroupRole {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSToolbarItemGroupRole {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup?language=objc)
     #[unsafe(super(NSToolbarItem, NSObject))]
@@ -160,6 +182,17 @@ impl NSToolbarItemGroup {
         #[unsafe(method(setSelectionMode:))]
         #[unsafe(method_family = none)]
         pub fn setSelectionMode(&self, selection_mode: NSToolbarItemGroupSelectionMode);
+
+        /// The semantic role of the item.
+        /// Defaults to `NSToolbarItemGroupRoleAutomatic`.
+        #[unsafe(method(role))]
+        #[unsafe(method_family = none)]
+        pub fn role(&self) -> NSToolbarItemGroupRole;
+
+        /// Setter for [`role`][Self::role].
+        #[unsafe(method(setRole:))]
+        #[unsafe(method_family = none)]
+        pub fn setRole(&self, role: NSToolbarItemGroupRole);
 
         /// The most recently selected item of the group, or -1 if nothing is selected.
         #[unsafe(method(selectedIndex))]

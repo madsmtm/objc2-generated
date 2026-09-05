@@ -7,78 +7,108 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundefinedkeyexception?language=objc)
+    /// Raised when a key value coding operation fails.
+    ///
+    /// The exception's user info dictionary will contain at least two entries:
+    /// - `NSTargetObjectUserInfoKey`: the receiver of the failed KVC message.
+    /// - `NSUnknownUserInfoKey`: the key that was used in the failed KVC message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundefinedkeyexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSUndefinedKeyException: &'static NSExceptionName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator?language=objc)
+/// These constants define the available collection operators.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSKeyValueOperator = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsaveragekeyvalueoperator?language=objc)
+    /// An operator that returns the average of a collection's values for the specified key path.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsaveragekeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAverageKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountkeyvalueoperator?language=objc)
+    /// An operator that returns the number of objects in a collection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountkeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCountKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistinctunionofarrayskeyvalueoperator?language=objc)
+    /// An operator that returns an array of the distinct values found in the sub-arrays of all arrays in the collection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistinctunionofarrayskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDistinctUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistinctunionofobjectskeyvalueoperator?language=objc)
+    /// An operator that returns an array of the distinct values of a collection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistinctunionofobjectskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDistinctUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistinctunionofsetskeyvalueoperator?language=objc)
+    /// An operator that returns an array of the distinct values found in the sub-sets of all sets in the collection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistinctunionofsetskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDistinctUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaximumkeyvalueoperator?language=objc)
+    /// An operator that returns the maximum value of a collection's values for the specified key path.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaximumkeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMaximumKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsminimumkeyvalueoperator?language=objc)
+    /// An operator that returns the minimum value of a collection's values for the specified key path.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsminimumkeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMinimumKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssumkeyvalueoperator?language=objc)
+    /// An operator that returns the sum of a collection's values for the specified key path.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssumkeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSSumKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionofarrayskeyvalueoperator?language=objc)
+    /// An operator that returns all of the objects in the sub-arrays of all arrays in the collection, without removing duplicates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionofarrayskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionofobjectskeyvalueoperator?language=objc)
+    /// An operator that returns all of a collection's values for the specified key path, without removing duplicates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionofobjectskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionofsetskeyvalueoperator?language=objc)
+    /// An operator that returns all of the objects in the sub-sets of all sets in the collection, without removing duplicates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionofsetskeyvalueoperator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator;
 }
@@ -251,11 +281,23 @@ unsafe impl NSObjectNSKeyValueCoding for NSObject {}
 impl<ObjectType: Message> NSArray<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns an array containing the results of invoking `valueForKey:` on each of the receiver's elements.
+        ///
+        /// The returned array contains `NSNull` elements for each object that returns `nil`.
+        ///
+        /// - Parameter key: The key to retrieve.
+        /// - Returns: An array containing the results of invoking `valueForKey:` using `key` on each of the array's objects.
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
         pub fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
+        /// Invokes `setValue:forKey:` on each of the array's items using the specified `value` and `key`.
+        ///
+        /// - Parameters:
+        /// - value: The object value.
+        /// - key: The key to store the value.
+        ///
         /// # Safety
         ///
         /// `value` should be of the correct type.
@@ -270,6 +312,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
 impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns the value associated with a given key, equivalent to ``NSDictionary/objectForKey:``.
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
         pub fn valueForKey(&self, key: &NSString) -> Option<Retained<ObjectType>>;
@@ -281,6 +324,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
 impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Adds a given key-value pair to the dictionary, or removes the key if `value` is `nil`.
+        ///
+        /// If `value` is non-`nil`, sends ``NSMutableDictionary/setObject:forKey:`` to the receiver. If `value` is `nil`, sends ``NSMutableDictionary/removeObjectForKey:``.
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&ObjectType>, key: &NSString);
@@ -292,11 +338,16 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
 impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns an ordered set containing the results of invoking ``NSObject/value(forKey:)`` on each of the receiver's members.
+        ///
+        /// The returned ordered set might not have the same number of members as the receiver. The returned ordered set will not contain any elements corresponding to instances of `valueForKey:` returning `nil`, nor will it contain duplicates.
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
         pub fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
+        /// Invokes ``NSObject/setValue(_:forKey:)`` on each of the receiver's members.
+        ///
         /// # Safety
         ///
         /// `value` should be of the correct type.
@@ -311,11 +362,16 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 impl<ObjectType: Message> NSSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns a set containing the results of invoking ``NSObject/value(forKey:)`` on each of the receiver's members.
+        ///
+        /// The returned set might not have the same number of members as the receiver. The returned set will not contain any elements corresponding to instances of `valueForKey:` returning `nil`.
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
         pub fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
+        /// Invokes ``NSObject/setValue(_:forKey:)`` on each of the receiver's members.
+        ///
         /// # Safety
         ///
         /// `value` should be of the correct type.

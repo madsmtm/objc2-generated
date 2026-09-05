@@ -7,7 +7,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgarbagecollector?language=objc)
+    /// A convenient interface to the garbage collection system.
+    ///
+    /// > Important: Garbage collection is deprecated in OS X 10.8. Use ARC instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgarbagecollector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Building Garbage Collected apps is no longer supported."]
@@ -20,41 +24,50 @@ extern_conformance!(
 
 impl NSGarbageCollector {
     extern_methods!(
+        /// Returns the default garbage collector.
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[unsafe(method(defaultCollector))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultCollector() -> Retained<AnyObject>;
 
+        /// Returns a Boolean value that indicates whether a collection is currently in progress.
         #[deprecated]
         #[unsafe(method(isCollecting))]
         #[unsafe(method_family = none)]
         pub unsafe fn isCollecting(&self) -> bool;
 
+        /// Temporarily disables collections.
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[unsafe(method(disable))]
         #[unsafe(method_family = none)]
         pub unsafe fn disable(&self);
 
+        /// Enables collections after a prior disabling.
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[unsafe(method(enable))]
         #[unsafe(method_family = none)]
         pub unsafe fn enable(&self);
 
+        /// Returns a Boolean value that indicates whether garbage collection is currently enabled.
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Tells the receiver to collect if memory consumption thresholds have been exceeded.
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[unsafe(method(collectIfNeeded))]
         #[unsafe(method_family = none)]
         pub unsafe fn collectIfNeeded(&self);
 
+        /// Tells the receiver to perform a full collection.
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[unsafe(method(collectExhaustively))]
         #[unsafe(method_family = none)]
         pub unsafe fn collectExhaustively(&self);
 
+        /// Specifies that a given pointer will not be collected.
+        ///
         /// # Safety
         ///
         /// `ptr` must be a valid pointer.
@@ -63,6 +76,8 @@ impl NSGarbageCollector {
         #[unsafe(method_family = none)]
         pub unsafe fn disableCollectorForPointer(&self, ptr: NonNull<c_void>);
 
+        /// Specifies that a given pointer may be collected.
+        ///
         /// # Safety
         ///
         /// `ptr` must be a valid pointer.
@@ -72,6 +87,7 @@ impl NSGarbageCollector {
         pub unsafe fn enableCollectorForPointer(&self, ptr: NonNull<c_void>);
 
         #[cfg(feature = "NSZone")]
+        /// Returns a memory zone that is not scanned by the garbage collector.
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
         #[unsafe(method(zone))]
         #[unsafe(method_family = none)]

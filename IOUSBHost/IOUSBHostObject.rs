@@ -679,6 +679,31 @@ impl IOUSBHostObject {
             &self,
             capacity: NSUInteger,
         ) -> Result<Retained<NSMutableData>, Retained<NSError>>;
+
+        #[cfg(feature = "IOUSBHostDefinitions")]
+        /// Allocate a buffer to be used for I/O or an isochronous frame list.
+        ///
+        /// This method will allocate and map an IOBufferMemoryDescriptor optimized for use
+        /// by the underlying controller hardware. A buffer allocated by this method will not
+        /// be bounced to perform DMA operations.
+        /// Because the NSMutableData is backed by kernel memory, the length and capacity are
+        /// not mutable. Any changes to the length or capacity will cause an exception to be
+        /// thrown.
+        ///
+        /// Parameter `capacity`: Size of the buffer to allocate
+        ///
+        /// Parameter `options`: IOUSBHostObjectDataOptions. Default value is IOUSBHostObjectDataOptionsNone.
+        ///
+        /// Returns: NSMutableData of memory mapped to user space of an IOBufferMemoryDescriptor if successful,
+        /// otherwise nil. An IOReturn error code will be reported on failure. The result is
+        /// to be released by the caller
+        #[unsafe(method(dataWithCapacity:options:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dataWithCapacity_options_error(
+            &self,
+            capacity: NSUInteger,
+            options: IOUSBHostObjectDataOptions,
+        ) -> Result<Retained<NSMutableData>, Retained<NSError>>;
     );
 }
 

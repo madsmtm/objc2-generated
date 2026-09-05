@@ -30,6 +30,8 @@ impl UNErrorCode {
     pub const AttachmentMoveIntoDataStoreFailed: Self = Self(104);
     #[doc(alias = "UNErrorCodeAttachmentCorrupt")]
     pub const AttachmentCorrupt: Self = Self(105);
+    #[doc(alias = "UNErrorCodeAttachmentUnsupportedType")]
+    pub const AttachmentUnsupportedType: Self = Self(106);
     #[doc(alias = "UNErrorCodeNotificationInvalidNoDate")]
     pub const NotificationInvalidNoDate: Self = Self(1400);
     #[doc(alias = "UNErrorCodeNotificationInvalidNoContent")]

@@ -31,6 +31,7 @@ impl MTL4CommandQueueError {
     pub const OutOfMemory: Self = Self(3);
     /// Indicates the physical removal of the GPU before the command buffer completed.
     #[doc(alias = "MTL4CommandQueueErrorDeviceRemoved")]
+    #[deprecated = "MTL4CommandQueueErrorDeviceRemoved cannot occur on Apple Silicon"]
     pub const DeviceRemoved: Self = Self(4);
     /// Indicates that the system revokes GPU access because it’s responsible for too many timeouts or hangs.
     #[doc(alias = "MTL4CommandQueueErrorAccessRevoked")]

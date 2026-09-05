@@ -137,10 +137,10 @@ impl NSTextLayoutManager {
         #[unsafe(method_family = none)]
         pub fn setUsesHyphenation(&self, uses_hyphenation: bool);
 
-        /// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+        /// Specifies the behavior for resolving ``NSTextAlignment/natural`` to the visual alignment.
         ///
-        /// When set to ``true``, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
-        /// The default value is ``true``.
+        /// When set to `true`, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
+        /// The default value is `true`.
         #[unsafe(method(resolvesNaturalAlignmentWithBaseWritingDirection))]
         #[unsafe(method_family = none)]
         pub fn resolvesNaturalAlignmentWithBaseWritingDirection(&self) -> bool;
@@ -468,5 +468,39 @@ extern_protocol!(
             location: &ProtocolObject<dyn NSTextLocation>,
             rendering_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
+
+        #[cfg(all(
+            feature = "NSTextContainer",
+            feature = "NSTextViewportLayoutController"
+        ))]
+        #[optional]
+        #[unsafe(method(textLayoutManager:textViewportLayoutControllerForTextContainer:))]
+        #[unsafe(method_family = none)]
+        fn textLayoutManager_textViewportLayoutControllerForTextContainer(
+            &self,
+            text_layout_manager: &NSTextLayoutManager,
+            text_container: &NSTextContainer,
+        ) -> Option<Retained<NSTextViewportLayoutController>>;
+
+        #[cfg(feature = "NSTextAttachment")]
+        #[optional]
+        #[unsafe(method(textLayoutManager:cacheTextAttachmentViewProvider:forTextAttachment:))]
+        #[unsafe(method_family = none)]
+        fn textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment(
+            &self,
+            text_layout_manager: &NSTextLayoutManager,
+            view_provider: &NSTextAttachmentViewProvider,
+            text_attachment: &NSTextAttachment,
+        );
+
+        #[cfg(feature = "NSTextAttachment")]
+        #[optional]
+        #[unsafe(method(textLayoutManager:retrieveCachedTextAttachmentViewProviderForTextAttachment:))]
+        #[unsafe(method_family = none)]
+        fn textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment(
+            &self,
+            text_layout_manager: &NSTextLayoutManager,
+            attachment: &NSTextAttachment,
+        ) -> Option<Retained<NSTextAttachmentViewProvider>>;
     }
 );

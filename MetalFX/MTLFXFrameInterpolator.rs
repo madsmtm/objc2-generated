@@ -145,6 +145,47 @@ impl MTLFXFrameInterpolatorDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputHeight(&self, output_height: NSUInteger);
 
+        /// A Boolean value that indicates whether the frame interpolator supports barrel distortion correction.
+        ///
+        /// Set this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> to create a frame interpolator
+        /// that can apply barrel distortion correction using a distortion field texture.
+        ///
+        /// When you enable this property, you can assign a distortion texture to the interpolator's
+        /// ``MTLFXFrameInterpolatorBase/distortionTexture`` property to correct lens distortion artifacts
+        /// during frame interpolation.
+        ///
+        /// This property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>.
+        #[unsafe(method(isDistortionTextureEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isDistortionTextureEnabled(&self) -> bool;
+
+        /// Setter for [`isDistortionTextureEnabled`][Self::isDistortionTextureEnabled].
+        #[unsafe(method(setDistortionTextureEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDistortionTextureEnabled(&self, distortion_texture_enabled: bool);
+
+        /// A Boolean value that indicates whether the frame interpolator requires the client to provide a previous color texture.
+        ///
+        /// When this property is YES (the default), you must assign a valid texture to the interpolator's
+        /// ``prevColorTexture`` property before encoding. When NO, the frame interpolator internally manages
+        /// the previous color data and ``prevColorTexture`` may be nil.
+        ///
+        /// This property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        #[unsafe(method(requiresPrevColorTexture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiresPrevColorTexture(&self) -> bool;
+
+        /// Setter for [`requiresPrevColorTexture`][Self::requiresPrevColorTexture].
+        #[unsafe(method(setRequiresPrevColorTexture:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRequiresPrevColorTexture(&self, requires_prev_color_texture: bool);
+
         /// Creates a frame interpolator instance for a Metal device.
         ///
         /// - Parameters:
@@ -266,12 +307,12 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
-        /// The width, in pixels, of the input color texture for the frame interpolator.
+        /// The width, in pixels, of the input depth and motion texture for the frame interpolator.
         #[unsafe(method(inputWidth))]
         #[unsafe(method_family = none)]
         unsafe fn inputWidth(&self) -> NSUInteger;
 
-        /// The height, in pixels, of the input color texture for the frame interpolator.
+        /// The height, in pixels, of the input depth and motion texture for the frame interpolator.
         #[unsafe(method(inputHeight))]
         #[unsafe(method_family = none)]
         unsafe fn inputHeight(&self) -> NSUInteger;
@@ -290,6 +331,136 @@ extern_protocol!(
         #[unsafe(method(uiTextureFormat))]
         #[unsafe(method_family = none)]
         unsafe fn uiTextureFormat(&self) -> MTLPixelFormat;
+
+        /// The width, in pixels, of the content region within the input textures to process.
+        ///
+        /// Use this property together with ``contentHeight`` to specify a subrectangle of the input
+        /// textures for the frame interpolator to process.
+        #[unsafe(method(contentWidth))]
+        #[unsafe(method_family = none)]
+        unsafe fn contentWidth(&self) -> NSUInteger;
+
+        /// Setter for [`contentWidth`][Self::contentWidth].
+        #[unsafe(method(setContentWidth:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setContentWidth(&self, content_width: NSUInteger);
+
+        /// The height, in pixels, of the content region within the input textures to process.
+        ///
+        /// Use this property together with ``contentWidth`` to specify a subrectangle of the input
+        /// textures for the frame interpolator to process.
+        #[unsafe(method(contentHeight))]
+        #[unsafe(method_family = none)]
+        unsafe fn contentHeight(&self) -> NSUInteger;
+
+        /// Setter for [`contentHeight`][Self::contentHeight].
+        #[unsafe(method(setContentHeight:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setContentHeight(&self, content_height: NSUInteger);
+
+        /// The horizontal offset, in pixels, of the region within the depth texture to use as input.
+        #[unsafe(method(depthContentOffsetX))]
+        #[unsafe(method_family = none)]
+        unsafe fn depthContentOffsetX(&self) -> NSUInteger;
+
+        /// Setter for [`depthContentOffsetX`][Self::depthContentOffsetX].
+        #[unsafe(method(setDepthContentOffsetX:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthContentOffsetX(&self, depth_content_offset_x: NSUInteger);
+
+        /// The vertical offset, in pixels, of the region within the depth texture to use as input.
+        #[unsafe(method(depthContentOffsetY))]
+        #[unsafe(method_family = none)]
+        unsafe fn depthContentOffsetY(&self) -> NSUInteger;
+
+        /// Setter for [`depthContentOffsetY`][Self::depthContentOffsetY].
+        #[unsafe(method(setDepthContentOffsetY:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthContentOffsetY(&self, depth_content_offset_y: NSUInteger);
+
+        /// The horizontal offset, in pixels, of the region within the motion texture to use as input.
+        #[unsafe(method(motionContentOffsetX))]
+        #[unsafe(method_family = none)]
+        unsafe fn motionContentOffsetX(&self) -> NSUInteger;
+
+        /// Setter for [`motionContentOffsetX`][Self::motionContentOffsetX].
+        #[unsafe(method(setMotionContentOffsetX:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setMotionContentOffsetX(&self, motion_content_offset_x: NSUInteger);
+
+        /// The vertical offset, in pixels, of the region within the motion texture to use as input.
+        #[unsafe(method(motionContentOffsetY))]
+        #[unsafe(method_family = none)]
+        unsafe fn motionContentOffsetY(&self) -> NSUInteger;
+
+        /// Setter for [`motionContentOffsetY`][Self::motionContentOffsetY].
+        #[unsafe(method(setMotionContentOffsetY:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setMotionContentOffsetY(&self, motion_content_offset_y: NSUInteger);
+
+        /// The horizontal offset, in pixels, of the region within the output texture to write results.
+        #[unsafe(method(outputOffsetX))]
+        #[unsafe(method_family = none)]
+        unsafe fn outputOffsetX(&self) -> NSUInteger;
+
+        /// Setter for [`outputOffsetX`][Self::outputOffsetX].
+        #[unsafe(method(setOutputOffsetX:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setOutputOffsetX(&self, output_offset_x: NSUInteger);
+
+        /// The vertical offset, in pixels, of the region within the output texture to write results.
+        #[unsafe(method(outputOffsetY))]
+        #[unsafe(method_family = none)]
+        unsafe fn outputOffsetY(&self) -> NSUInteger;
+
+        /// Setter for [`outputOffsetY`][Self::outputOffsetY].
+        #[unsafe(method(setOutputOffsetY:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setOutputOffsetY(&self, output_offset_y: NSUInteger);
+
+        /// The horizontal offset, in pixels, of the region within the distortion texture to use as input.
+        #[unsafe(method(distortionOffsetX))]
+        #[unsafe(method_family = none)]
+        unsafe fn distortionOffsetX(&self) -> NSUInteger;
+
+        /// Setter for [`distortionOffsetX`][Self::distortionOffsetX].
+        #[unsafe(method(setDistortionOffsetX:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDistortionOffsetX(&self, distortion_offset_x: NSUInteger);
+
+        /// The vertical offset, in pixels, of the region within the distortion texture to use as input.
+        #[unsafe(method(distortionOffsetY))]
+        #[unsafe(method_family = none)]
+        unsafe fn distortionOffsetY(&self) -> NSUInteger;
+
+        /// Setter for [`distortionOffsetY`][Self::distortionOffsetY].
+        #[unsafe(method(setDistortionOffsetY:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDistortionOffsetY(&self, distortion_offset_y: NSUInteger);
+
+        /// The width, in pixels, of the content region within the distortion texture to use as input.
+        ///
+        /// When set to zero (the default), the frame interpolator uses ``contentWidth`` instead.
+        #[unsafe(method(distortionWidth))]
+        #[unsafe(method_family = none)]
+        unsafe fn distortionWidth(&self) -> NSUInteger;
+
+        /// Setter for [`distortionWidth`][Self::distortionWidth].
+        #[unsafe(method(setDistortionWidth:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDistortionWidth(&self, distortion_width: NSUInteger);
+
+        /// The height, in pixels, of the content region within the distortion texture to use as input.
+        ///
+        /// When set to zero (the default), the frame interpolator uses ``contentHeight`` instead.
+        #[unsafe(method(distortionHeight))]
+        #[unsafe(method_family = none)]
+        unsafe fn distortionHeight(&self) -> NSUInteger;
+
+        /// Setter for [`distortionHeight`][Self::distortionHeight].
+        #[unsafe(method(setDistortionHeight:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDistortionHeight(&self, distortion_height: NSUInteger);
 
         /// The color texture that this frame interpolator evaluates.
         ///
@@ -566,6 +737,30 @@ extern_protocol!(
         #[unsafe(method(setOutputTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
+
+        /// A distortion field texture that the frame interpolator uses to correct barrel distortion.
+        ///
+        /// Assign a texture containing a distortion field to this property to enable barrel distortion
+        /// correction during frame interpolation. The distortion field describes how to remap pixels
+        /// to correct lens distortion artifacts common in VR or wide-angle camera applications.
+        ///
+        /// You are responsible for providing a texture that matches the output dimensions of the frame interpolator.
+        #[unsafe(method(distortionTexture))]
+        #[unsafe(method_family = none)]
+        unsafe fn distortionTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
+
+        /// Setter for [`distortionTexture`][Self::distortionTexture].
+        ///
+        /// # Safety
+        ///
+        /// - `distortion_texture` may need to be synchronized.
+        /// - `distortion_texture` may be unretained, you must ensure it is kept alive while in use.
+        #[unsafe(method(setDistortionTexture:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDistortionTexture(
+            &self,
+            distortion_texture: Option<&ProtocolObject<dyn MTLTexture>>,
+        );
 
         /// An optional fence that this frame interpolator waits for and updates.
         ///

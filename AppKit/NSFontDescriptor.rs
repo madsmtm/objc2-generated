@@ -581,6 +581,27 @@ extern "C" {
     pub static NSFontTextStyleCaption2: &'static NSFontTextStyle;
 }
 
+/// NSFontDescriptor_TextStyles.
+impl NSFontDescriptor {
+    extern_methods!(
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
+        #[unsafe(method(preferredFontDescriptorForTextStyle:options:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferredFontDescriptorForTextStyle_options(
+            style: &NSFontTextStyle,
+            options: &NSDictionary<NSFontTextStyleOptionKey, AnyObject>,
+        ) -> Retained<NSFontDescriptor>;
+    );
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcolorattribute?language=objc)
+    #[deprecated]
+    pub static NSFontColorAttribute: &'static NSString;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfamilyclass?language=objc)
 pub type NSFontFamilyClass = u32;
 
@@ -624,24 +645,3 @@ pub const NSFontMonoSpaceTrait: c_uint = 1 << 10;
 pub const NSFontVerticalTrait: c_uint = 1 << 11;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontuioptimizedtrait?language=objc)
 pub const NSFontUIOptimizedTrait: c_uint = 1 << 12;
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcolorattribute?language=objc)
-    #[deprecated]
-    pub static NSFontColorAttribute: &'static NSString;
-}
-
-/// NSFontDescriptor_TextStyles.
-impl NSFontDescriptor {
-    extern_methods!(
-        /// # Safety
-        ///
-        /// `options` generic should be of the correct type.
-        #[unsafe(method(preferredFontDescriptorForTextStyle:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn preferredFontDescriptorForTextStyle_options(
-            style: &NSFontTextStyle,
-            options: &NSDictionary<NSFontTextStyleOptionKey, AnyObject>,
-        ) -> Retained<NSFontDescriptor>;
-    );
-}

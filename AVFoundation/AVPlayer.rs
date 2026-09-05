@@ -204,13 +204,17 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonplayheadreachedliveedge?language=objc)
+    /// Indicates that the player automatically switched the playback rate from > 1.0 back to 1.0 when the playhead reached the live edge during live streaming.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonplayheadreachedliveedge?language=objc)
     pub static AVPlayerRateDidChangeReasonPlayheadReachedLiveEdge:
         &'static AVPlayerRateDidChangeReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonreverseplaybackreachedstartofseekablerange?language=objc)
+    /// Indicates that the player automatically switched rate to 1.0 when the reverse playback reached start of seekable range. only for live.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonreverseplaybackreachedstartofseekablerange?language=objc)
     pub static AVPlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange:
         &'static AVPlayerRateDidChangeReason;
 }
@@ -758,6 +762,52 @@ impl AVPlayer {
         #[unsafe(method(setMuted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMuted(&self, muted: bool);
+    );
+}
+
+/// AVPlayerAudioSessionParticipation.
+impl AVPlayer {
+    extern_methods!(
+        /// Indicates whether the player is disconnected from system audio.
+        ///
+        /// When NO (the default), the player is connected to system audio and coordinates with the application's shared `AVAudioSession`.
+        /// This implies that the player will activate the audio session when playback starts, render audio, and automatically reconfigure itself after events like route changes.
+        ///
+        /// When YES, the player is disconnected from system audio and will not interact with the audio session. It will not activate the audio session when starting and it does not reconfigure after route changes.
+        /// Specifically, this implies that such a player will not play audio until the property changes back to NO.
+        ///
+        /// The value of this property can be changed dynamically during playback using
+        /// setDisconnectedFromSystemAudio:completionHandler:.
+        #[unsafe(method(disconnectedFromSystemAudio))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn disconnectedFromSystemAudio(&self) -> bool;
+
+        #[cfg(feature = "block2")]
+        /// Changes whether the player is disconnected from system audio.
+        ///
+        /// This method allows you to dynamically change the player's system audio connection.
+        /// The operation is asynchronous. Each call to this method will invoke its own completion handler when the operation completes.
+        /// When changing from NO to YES, you should typically call this method first, then deactivate
+        /// the AVAudioSession in the completion handler to allow other audio to resume.
+        ///
+        /// ## Using the completion handler
+        /// In a scenario where changing the value from NO to YES should also allow other system audio to resume, you should only deactivate the audio session once the player has disconnected from system audio.
+        /// ```objective-c
+        /// // Disconnect from system audio and let other audio resume
+        /// [player setDisconnectedFromSystemAudio:YES completionHandler:^{
+        /// [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+        /// }];
+        /// ```
+        ///
+        /// - Parameter disconnected: YES to disconnect from system audio, NO to connect to it.
+        /// - Parameter completionHandler: A block that is called when the connection state change is complete. This block is called on an arbitrary queue. The completion handler may be nil.
+        #[unsafe(method(setDisconnectedFromSystemAudio:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDisconnectedFromSystemAudio_completionHandler(
+            &self,
+            disconnected: bool,
+            completion_handler: Option<&block2::SendableBlock<'static, fn()>>,
+        );
     );
 }
 

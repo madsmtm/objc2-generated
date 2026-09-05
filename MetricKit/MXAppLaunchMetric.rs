@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXAppLaunchMetric;
 );
 
@@ -40,6 +41,7 @@ impl MXAppLaunchMetric {
         /// Dimensioned as NSUnitDuration.
         ///
         /// This represents the time when the first CA commit is finished.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(histogrammedTimeToFirstDraw))]
         #[unsafe(method_family = none)]
         pub unsafe fn histogrammedTimeToFirstDraw(&self) -> Retained<MXHistogram<NSUnitDuration>>;
@@ -48,6 +50,7 @@ impl MXAppLaunchMetric {
         /// Histogrammed application resume time data.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(histogrammedApplicationResumeTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn histogrammedApplicationResumeTime(

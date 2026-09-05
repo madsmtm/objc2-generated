@@ -12,6 +12,17 @@ extern_protocol!(
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         fn compare(&self, location: &ProtocolObject<dyn NSTextLocation>) -> NSComparisonResult;
+
+        /// # Safety
+        ///
+        /// `location` should be of the correct type.
+        #[unsafe(method(isEqual:))]
+        #[unsafe(method_family = none)]
+        unsafe fn isEqual(&self, location: Option<&AnyObject>) -> bool;
+
+        #[unsafe(method(hash))]
+        #[unsafe(method_family = none)]
+        fn hash(&self) -> NSUInteger;
     }
 );
 

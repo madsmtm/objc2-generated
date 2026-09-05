@@ -178,6 +178,44 @@ impl CPInterfaceController {
             completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
         );
 
+        #[cfg(all(feature = "CPTemplate", feature = "block2"))]
+        /// Show a template as an overlay over the current template hierarchy. Only one overlay template may be shown at a time.
+        ///
+        ///
+        /// Note: Supported template types:
+        /// `CPVoiceControlTemplate`
+        /// The completion block will be called after the template has been shown. If the template was shown successfully,
+        /// the boolean parameter will be YES. Otherwise, the boolean parameter will be NO and an
+        /// `NSError`will be provided describing the failure.
+        ///
+        ///
+        /// Note: If the template is not successfully shown AND no completion block is specified, an exception will be thrown.
+        #[unsafe(method(showOverlayTemplate:animated:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn showOverlayTemplate_animated_completion(
+            &self,
+            template_to_show: &CPTemplate,
+            animated: bool,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Dismiss the current overlay template, optionally animating the dismissal.
+        ///
+        ///
+        /// Note: If there is no current overlay template, this method will have no effect.
+        ///
+        /// The completion block will be called after the template has been dismissed. If the template was dismissed successfully,
+        /// the boolean parameter will be YES. Otherwise, the boolean parameter will be NO and an
+        /// `NSError`will be provided describing the failure.
+        #[unsafe(method(hideOverlayTemplateAnimated:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hideOverlayTemplateAnimated_completion(
+            &self,
+            animated: bool,
+            completion: Option<&block2::Block<'static, fn(Bool, *mut NSError)>>,
+        );
+
         #[cfg(feature = "CPTemplate")]
         /// The current modally-presented template.
         ///

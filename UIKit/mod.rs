@@ -105,9 +105,15 @@ mod __NSTextSelectionNavigation;
 #[cfg(feature = "NSTextStorage")]
 #[path = "NSTextStorage.rs"]
 mod __NSTextStorage;
+#[cfg(feature = "NSTextTable")]
+#[path = "NSTextTable.rs"]
+mod __NSTextTable;
 #[cfg(feature = "NSTextViewportLayoutController")]
 #[path = "NSTextViewportLayoutController.rs"]
 mod __NSTextViewportLayoutController;
+#[cfg(feature = "NSTextViewportRenderingSurface")]
+#[path = "NSTextViewportRenderingSurface.rs"]
+mod __NSTextViewportRenderingSurface;
 #[cfg(feature = "NSToolbar_UIKitAdditions")]
 #[path = "NSToolbar_UIKitAdditions.rs"]
 mod __NSToolbar_UIKitAdditions;
@@ -684,6 +690,9 @@ mod __UILocalizedIndexedCollation;
 #[cfg(feature = "UILongPressGestureRecognizer")]
 #[path = "UILongPressGestureRecognizer.rs"]
 mod __UILongPressGestureRecognizer;
+#[cfg(feature = "UILookToScrollInteraction")]
+#[path = "UILookToScrollInteraction.rs"]
+mod __UILookToScrollInteraction;
 #[cfg(feature = "UIMailConversationContext")]
 #[path = "UIMailConversationContext.rs"]
 mod __UIMailConversationContext;
@@ -888,9 +897,18 @@ mod __UIRotationGestureRecognizer;
 #[cfg(feature = "UIScene")]
 #[path = "UIScene.rs"]
 mod __UIScene;
+#[cfg(feature = "UISceneAccessory")]
+#[path = "UISceneAccessory.rs"]
+mod __UISceneAccessory;
+#[cfg(feature = "UISceneAccessoryRegistration")]
+#[path = "UISceneAccessoryRegistration.rs"]
+mod __UISceneAccessoryRegistration;
 #[cfg(feature = "UISceneActivationConditions")]
 #[path = "UISceneActivationConditions.rs"]
 mod __UISceneActivationConditions;
+#[cfg(feature = "UISceneClosureConfirmation")]
+#[path = "UISceneClosureConfirmation.rs"]
+mod __UISceneClosureConfirmation;
 #[cfg(feature = "UISceneConfiguration")]
 #[path = "UISceneConfiguration.rs"]
 mod __UISceneConfiguration;
@@ -1748,10 +1766,30 @@ pub use self::__NSTextStorage::NSTextStorageEditActions;
 pub use self::__NSTextStorage::NSTextStorageObserving;
 #[cfg(feature = "NSTextStorage")]
 pub use self::__NSTextStorage::NSTextStorageWillProcessEditingNotification;
+#[cfg(feature = "NSTextTable")]
+pub use self::__NSTextTable::NSTextBlock;
+#[cfg(feature = "NSTextTable")]
+pub use self::__NSTextTable::NSTextBlockDimension;
+#[cfg(feature = "NSTextTable")]
+pub use self::__NSTextTable::NSTextBlockLayer;
+#[cfg(feature = "NSTextTable")]
+pub use self::__NSTextTable::NSTextBlockValueType;
+#[cfg(feature = "NSTextTable")]
+pub use self::__NSTextTable::NSTextBlockVerticalAlignment;
+#[cfg(feature = "NSTextTable")]
+pub use self::__NSTextTable::NSTextTable;
+#[cfg(feature = "NSTextTable")]
+pub use self::__NSTextTable::NSTextTableBlock;
+#[cfg(feature = "NSTextTable")]
+pub use self::__NSTextTable::NSTextTableLayoutAlgorithm;
 #[cfg(feature = "NSTextViewportLayoutController")]
 pub use self::__NSTextViewportLayoutController::NSTextViewportLayoutController;
 #[cfg(feature = "NSTextViewportLayoutController")]
 pub use self::__NSTextViewportLayoutController::NSTextViewportLayoutControllerDelegate;
+#[cfg(feature = "NSTextViewportRenderingSurface")]
+pub use self::__NSTextViewportRenderingSurface::NSTextViewportRenderingSurface;
+#[cfg(feature = "NSTextViewportRenderingSurface")]
+pub use self::__NSTextViewportRenderingSurface::NSTextViewportRenderingSurfaceKey;
 #[cfg(feature = "UIAccelerometer")]
 pub use self::__UIAccelerometer::UIAcceleration;
 #[cfg(feature = "UIAccelerometer")]
@@ -2470,6 +2508,14 @@ pub use self::__UIBarAppearance::UIBarAppearance;
 pub use self::__UIBarButtonItem::UIBarButtonItem;
 #[cfg(feature = "UIBarButtonItem")]
 pub use self::__UIBarButtonItem::UIBarButtonItemStyle;
+#[cfg(feature = "UIBarButtonItem")]
+pub use self::__UIBarButtonItem::UIBarButtonItemVisibilityPriority;
+#[cfg(feature = "UIBarButtonItem")]
+pub use self::__UIBarButtonItem::UIBarButtonItemVisibilityPriorityHigh;
+#[cfg(feature = "UIBarButtonItem")]
+pub use self::__UIBarButtonItem::UIBarButtonItemVisibilityPriorityLow;
+#[cfg(feature = "UIBarButtonItem")]
+pub use self::__UIBarButtonItem::UIBarButtonItemVisibilityPriorityStandard;
 #[cfg(feature = "UIBarButtonItem")]
 pub use self::__UIBarButtonItem::UIBarButtonSystemItem;
 #[cfg(feature = "UIBarButtonItemAppearance")]
@@ -3230,6 +3276,8 @@ pub use self::__UIDragInteraction::UIDragAnimating;
 pub use self::__UIDragInteraction::UIDragInteraction;
 #[cfg(feature = "UIDragInteraction")]
 pub use self::__UIDragInteraction::UIDragInteractionDelegate;
+#[cfg(feature = "UIDragInteraction")]
+pub use self::__UIDragInteraction::UIDragLiftBehavior;
 #[cfg(feature = "UIDragItem")]
 pub use self::__UIDragItem::UIDragItem;
 #[cfg(feature = "UIDragPreview")]
@@ -3903,6 +3951,8 @@ pub use self::__UILocalizedIndexedCollation::UILocalizedIndexedCollation;
     feature = "UILongPressGestureRecognizer"
 ))]
 pub use self::__UILongPressGestureRecognizer::UILongPressGestureRecognizer;
+#[cfg(feature = "UILookToScrollInteraction")]
+pub use self::__UILookToScrollInteraction::UILookToScrollInteraction;
 #[cfg(all(
     feature = "UIConversationContext",
     feature = "UIMailConversationContext"
@@ -4051,6 +4101,8 @@ pub use self::__UIMenuElement::UIMenuElement;
 #[cfg(feature = "UIMenuElement")]
 pub use self::__UIMenuElement::UIMenuElementAttributes;
 #[cfg(feature = "UIMenuElement")]
+pub use self::__UIMenuElement::UIMenuElementImageVisibility;
+#[cfg(feature = "UIMenuElement")]
 pub use self::__UIMenuElement::UIMenuElementRepeatBehavior;
 #[cfg(feature = "UIMenuElement")]
 pub use self::__UIMenuElement::UIMenuElementState;
@@ -4108,6 +4160,10 @@ pub use self::__UINavigationController::UINavigationControllerDelegate;
 pub use self::__UINavigationController::UINavigationControllerHideShowBarDuration;
 #[cfg(feature = "UINavigationController")]
 pub use self::__UINavigationController::UINavigationControllerOperation;
+#[cfg(feature = "UINavigationItem")]
+pub use self::__UINavigationItem::UIBarMinimizationSafeAreaAdjustment;
+#[cfg(feature = "UINavigationItem")]
+pub use self::__UINavigationItem::UIBarMinimizeBehavior;
 #[cfg(feature = "UINavigationItem")]
 pub use self::__UINavigationItem::UINavigationItem;
 #[cfg(feature = "UINavigationItem")]
@@ -4529,10 +4585,16 @@ pub use self::__UIScene::UISceneWillConnectNotification;
 pub use self::__UIScene::UISceneWillDeactivateNotification;
 #[cfg(feature = "UIScene")]
 pub use self::__UIScene::UISceneWillEnterForegroundNotification;
+#[cfg(feature = "UISceneAccessory")]
+pub use self::__UISceneAccessory::UISceneAccessory;
+#[cfg(feature = "UISceneAccessoryRegistration")]
+pub use self::__UISceneAccessoryRegistration::UISceneAccessoryRegistration;
 #[cfg(feature = "UISceneActivationConditions")]
 pub use self::__UISceneActivationConditions::NSUserActivityUISceneActivationConditions;
 #[cfg(feature = "UISceneActivationConditions")]
 pub use self::__UISceneActivationConditions::UISceneActivationConditions;
+#[cfg(feature = "UISceneClosureConfirmation")]
+pub use self::__UISceneClosureConfirmation::UISceneClosureConfirmation;
 #[cfg(feature = "UISceneConfiguration")]
 pub use self::__UISceneConfiguration::UISceneConfiguration;
 #[cfg(feature = "UISceneDefinitions")]
@@ -4937,6 +4999,8 @@ pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebarAnimating;
 pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebarDelegate;
 #[cfg(feature = "UITabBarControllerSidebar")]
 pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebarLayout;
+#[cfg(feature = "UITabBarControllerSidebar")]
+pub use self::__UITabBarControllerSidebar::UITabBarControllerSidebarPlacement;
 #[cfg(feature = "UITabBarControllerSidebar")]
 pub use self::__UITabBarControllerSidebar::UITabSidebarScrollTarget;
 #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
@@ -5477,6 +5541,8 @@ pub use self::__UITextSelectionDisplayInteraction::UITextSelectionDisplayInterac
 pub use self::__UITextSelectionHandleView::UITextSelectionHandleView;
 #[cfg(all(feature = "UITextSelectionHighlightView", feature = "UIView"))]
 pub use self::__UITextSelectionHighlightView::UITextSelectionHighlightView;
+#[cfg(feature = "UITextView")]
+pub use self::__UITextView::UITextAttachmentViewProviderReusePolicy;
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIScrollView",

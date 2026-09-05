@@ -24,6 +24,32 @@ extern_protocol!(
     }
 );
 
+/// Determines the gesture lift behaviors for the interaction.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragliftbehavior?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UIDragLiftBehavior(pub NSUInteger);
+impl UIDragLiftBehavior {
+    /// The default lift behavior, which configures the `UIDragInteraction` with the default timing parameters.
+    #[doc(alias = "UIDragLiftBehaviorDefault")]
+    pub const Default: Self = Self(0);
+    /// An extended lift behavior, which has a longer lift delay for the `UIDragInteraction`, allowing better disambiguation of
+    /// gestures in the same view. This is useful for 'canvas' like views where they can be many gestures involved in the manipulation
+    /// of objects on screen. For extended lifts, when a second touch is recognized in the view, the gesture will be cancelled.
+    #[doc(alias = "UIDragLiftBehaviorExtended")]
+    pub const Extended: Self = Self(1);
+}
+
+unsafe impl Encode for UIDragLiftBehavior {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIDragLiftBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidraginteraction?language=objc)
     #[unsafe(super(NSObject))]
@@ -43,21 +69,15 @@ extern_conformance!(
 
 impl UIDragInteraction {
     extern_methods!(
-        #[unsafe(method(initWithDelegate:))]
-        #[unsafe(method_family = init)]
-        pub fn initWithDelegate(
-            this: Allocated<Self>,
-            delegate: &ProtocolObject<dyn UIDragInteractionDelegate>,
-        ) -> Retained<Self>;
-
-        // -init (unavailable)
-
-        // +new (unavailable)
-
+        /// The object managing the delegate for the interaction.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIDragInteractionDelegate>>>;
 
+        /// Determines whether this interaction allows recognition of other gesture recognizers during the lift.
+        /// If true, the interaction will be cancelled during the lift if another gesture recognizer recognizes.
+        /// If false (the default value), all competing gesture recognizers will be failed when the lift begins.
+        /// Note: `UILongPressGestureRecognizers` are always delayed and simultaneous during the lift.
         #[unsafe(method(allowsSimultaneousRecognitionDuringLift))]
         #[unsafe(method_family = none)]
         pub fn allowsSimultaneousRecognitionDuringLift(&self) -> bool;
@@ -70,6 +90,40 @@ impl UIDragInteraction {
             allows_simultaneous_recognition_during_lift: bool,
         );
 
+        /// For pointer-initiated drags, whether to wait for the lift delay. Similar to `liftBehavior`, this is useful to disambiguate drag initiation
+        /// gestures alongside other gestures in the same view.
+        ///
+        /// If `YES`, then when the pointer moves past its activation hysteresis , the drag will begin, regardless of whether the lift delay has elapsed.
+        /// If `NO`, then just like the touch-based drag initiation gesture, the drag waits for the lift delay to elapse first, then checks for the activation hysteresis.
+        ///
+        /// Default is `YES` on iOS, and `NO` on macOS.
+        #[unsafe(method(allowsPointerDragBeforeLiftDelay))]
+        #[unsafe(method_family = none)]
+        pub fn allowsPointerDragBeforeLiftDelay(&self) -> bool;
+
+        /// Setter for [`allowsPointerDragBeforeLiftDelay`][Self::allowsPointerDragBeforeLiftDelay].
+        #[unsafe(method(setAllowsPointerDragBeforeLiftDelay:))]
+        #[unsafe(method_family = none)]
+        pub fn setAllowsPointerDragBeforeLiftDelay(
+            &self,
+            allows_pointer_drag_before_lift_delay: bool,
+        );
+
+        /// Determines the lift behavior for the drag gesture.
+        ///
+        /// The default value is `UIDragLiftBehaviorDefault`
+        #[unsafe(method(liftBehavior))]
+        #[unsafe(method_family = none)]
+        pub fn liftBehavior(&self) -> UIDragLiftBehavior;
+
+        /// Setter for [`liftBehavior`][Self::liftBehavior].
+        #[unsafe(method(setLiftBehavior:))]
+        #[unsafe(method_family = none)]
+        pub fn setLiftBehavior(&self, lift_behavior: UIDragLiftBehavior);
+
+        /// Whether this interaction is allowed to drag.
+        /// If true, the interaction will use touches to begin drags and/or add items to drags.
+        /// If false, it will ignore touches.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub fn isEnabled(&self) -> bool;
@@ -79,9 +133,18 @@ impl UIDragInteraction {
         #[unsafe(method_family = none)]
         pub fn setEnabled(&self, enabled: bool);
 
+        /// The default value of `enabled` in newly created `UIDragInteraction` instances.
+        /// The value depends on the device.
         #[unsafe(method(isEnabledByDefault))]
         #[unsafe(method_family = none)]
         pub fn isEnabledByDefault(mtm: MainThreadMarker) -> bool;
+
+        #[unsafe(method(initWithDelegate:))]
+        #[unsafe(method_family = init)]
+        pub fn initWithDelegate(
+            this: Allocated<Self>,
+            delegate: &ProtocolObject<dyn UIDragInteractionDelegate>,
+        ) -> Retained<Self>;
     );
 }
 

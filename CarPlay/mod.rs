@@ -39,6 +39,9 @@ mod __CPBarButtonProviding;
 #[cfg(feature = "CPButton")]
 #[path = "CPButton.rs"]
 mod __CPButton;
+#[cfg(feature = "CPChargingStationConnection")]
+#[path = "CPChargingStationConnection.rs"]
+mod __CPChargingStationConnection;
 #[cfg(feature = "CPContact")]
 #[path = "CPContact.rs"]
 mod __CPContact;
@@ -129,6 +132,18 @@ mod __CPManeuver;
 #[cfg(feature = "CPMapButton")]
 #[path = "CPMapButton.rs"]
 mod __CPMapButton;
+#[cfg(feature = "CPMapPanel")]
+#[path = "CPMapPanel.rs"]
+mod __CPMapPanel;
+#[cfg(feature = "CPMapPanelButtonConfiguration")]
+#[path = "CPMapPanelButtonConfiguration.rs"]
+mod __CPMapPanelButtonConfiguration;
+#[cfg(feature = "CPMapPanelItem")]
+#[path = "CPMapPanelItem.rs"]
+mod __CPMapPanelItem;
+#[cfg(feature = "CPMapPanelSection")]
+#[path = "CPMapPanelSection.rs"]
+mod __CPMapPanelSection;
 #[cfg(feature = "CPMapTemplate")]
 #[path = "CPMapTemplate.rs"]
 mod __CPMapTemplate;
@@ -141,6 +156,9 @@ mod __CPMessageComposeBarButton;
 #[cfg(feature = "CPMessageListItem")]
 #[path = "CPMessageListItem.rs"]
 mod __CPMessageListItem;
+#[cfg(feature = "CPMultiStopCardConfiguration")]
+#[path = "CPMultiStopCardConfiguration.rs"]
+mod __CPMultiStopCardConfiguration;
 #[cfg(feature = "CPNavigationAlert")]
 #[path = "CPNavigationAlert.rs"]
 mod __CPNavigationAlert;
@@ -162,6 +180,15 @@ mod __CPNowPlayingMode;
 #[cfg(feature = "CPNowPlayingTemplate")]
 #[path = "CPNowPlayingTemplate.rs"]
 mod __CPNowPlayingTemplate;
+#[cfg(feature = "CPPanel")]
+#[path = "CPPanel.rs"]
+mod __CPPanel;
+#[cfg(feature = "CPPanelButtonConfiguration")]
+#[path = "CPPanelButtonConfiguration.rs"]
+mod __CPPanelButtonConfiguration;
+#[cfg(feature = "CPPanelItem")]
+#[path = "CPPanelItem.rs"]
+mod __CPPanelItem;
 #[cfg(feature = "CPPlaybackConfiguration")]
 #[path = "CPPlaybackConfiguration.rs"]
 mod __CPPlaybackConfiguration;
@@ -174,6 +201,9 @@ mod __CPPointOfInterestTemplate;
 #[cfg(feature = "CPRerouteReason")]
 #[path = "CPRerouteReason.rs"]
 mod __CPRerouteReason;
+#[cfg(feature = "CPRouteDetail")]
+#[path = "CPRouteDetail.rs"]
+mod __CPRouteDetail;
 #[cfg(feature = "CPRouteInformation")]
 #[path = "CPRouteInformation.rs"]
 mod __CPRouteInformation;
@@ -253,6 +283,10 @@ pub use self::__CPBarButtonProviding::CPBarButtonProviding;
 pub use self::__CPButton::CPButton;
 #[cfg(all(feature = "CPButton", feature = "objc2-core-foundation"))]
 pub use self::__CPButton::CPButtonMaximumImageSize;
+#[cfg(feature = "CPChargingStationConnection")]
+pub use self::__CPChargingStationConnection::CPChargingStationConnection;
+#[cfg(feature = "CPChargingStationConnection")]
+pub use self::__CPChargingStationConnection::CPChargingStationConnectionConnector;
 #[cfg(feature = "CPContact")]
 pub use self::__CPContact::CPContact;
 #[cfg(all(feature = "CPButton", feature = "CPContact"))]
@@ -386,6 +420,19 @@ pub use self::__CPManeuver::CPManeuverType;
 pub use self::__CPManeuver::CPTrafficSide;
 #[cfg(feature = "CPMapButton")]
 pub use self::__CPMapButton::CPMapButton;
+#[cfg(all(feature = "CPMapPanel", feature = "CPPanel"))]
+pub use self::__CPMapPanel::CPMapPanel;
+#[cfg(feature = "CPMapPanel")]
+pub use self::__CPMapPanel::CPMapPanelDelegate;
+#[cfg(all(
+    feature = "CPMapPanelButtonConfiguration",
+    feature = "CPPanelButtonConfiguration"
+))]
+pub use self::__CPMapPanelButtonConfiguration::CPMapPanelButtonConfiguration;
+#[cfg(all(feature = "CPMapPanelItem", feature = "CPPanelItem"))]
+pub use self::__CPMapPanelItem::CPMapPanelItem;
+#[cfg(feature = "CPMapPanelSection")]
+pub use self::__CPMapPanelSection::CPMapPanelSection;
 #[cfg(feature = "CPMapTemplate")]
 pub use self::__CPMapTemplate::CPManeuverDisplayStyle;
 #[cfg(all(feature = "CPMapTemplate", feature = "CPTemplate"))]
@@ -416,6 +463,8 @@ pub use self::__CPMessageListItem::CPMessageListItemLeadingConfiguration;
 pub use self::__CPMessageListItem::CPMessageListItemTrailingConfiguration;
 #[cfg(feature = "CPMessageListItem")]
 pub use self::__CPMessageListItem::CPMessageTrailingItem;
+#[cfg(feature = "CPMultiStopCardConfiguration")]
+pub use self::__CPMultiStopCardConfiguration::CPMultiStopCardConfiguration;
 #[cfg(feature = "CPNavigationAlert")]
 pub use self::__CPNavigationAlert::CPNavigationAlert;
 #[cfg(feature = "CPNavigationAlert")]
@@ -470,6 +519,12 @@ pub use self::__CPNowPlayingMode::CPNowPlayingSportsTeamLogo;
 pub use self::__CPNowPlayingTemplate::CPNowPlayingTemplate;
 #[cfg(feature = "CPNowPlayingTemplate")]
 pub use self::__CPNowPlayingTemplate::CPNowPlayingTemplateObserver;
+#[cfg(feature = "CPPanel")]
+pub use self::__CPPanel::CPPanel;
+#[cfg(feature = "CPPanelButtonConfiguration")]
+pub use self::__CPPanelButtonConfiguration::CPPanelButtonConfiguration;
+#[cfg(feature = "CPPanelItem")]
+pub use self::__CPPanelItem::CPPanelItem;
 #[cfg(feature = "CPPlaybackConfiguration")]
 pub use self::__CPPlaybackConfiguration::CPPlayableItem;
 #[cfg(feature = "CPPlaybackConfiguration")]
@@ -486,6 +541,8 @@ pub use self::__CPPointOfInterestTemplate::CPPointOfInterestTemplate;
 pub use self::__CPPointOfInterestTemplate::CPPointOfInterestTemplateDelegate;
 #[cfg(feature = "CPRerouteReason")]
 pub use self::__CPRerouteReason::CPRerouteReason;
+#[cfg(feature = "CPRouteDetail")]
+pub use self::__CPRouteDetail::CPRouteDetail;
 #[cfg(feature = "CPRouteInformation")]
 pub use self::__CPRouteInformation::CPRouteInformation;
 #[cfg(feature = "CPRouteSegment")]

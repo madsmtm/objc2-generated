@@ -136,7 +136,19 @@ impl NSAlert {
         ///
         /// The first three buttons are identified by the order in which they are added (not the order in which they may appear visually) as `NSAlertFirstButtonReturn`, `NSAlertSecondButtonReturn`, `NSAlertThirdButtonReturn` in the return-code parameter. Subsequent buttons are identified as `NSAlertThirdButtonReturn` + *n*, where *n* is an integer.
         ///
-        /// By default, the first button has a key equivalent of Return, any button with a title of “Cancel” has a key equivalent of Escape, and any button with the title “Don’t Save” has a key equivalent of Command-D (but only if it’s not the first button). You can also assign different key equivalents for the buttons using the `keyEquivalent` method of the `NSButton` class. In addition, you can use the `tag` property of the `NSButton` class to set the alert presentation’s return-code. The framework reserves the use of the button’s `target` and `action`.
+        /// By default, the first button has a key equivalent of Return, any button with a title of “Cancel” has a key equivalent of Escape, and any button with the title “Don’t Save” has a key equivalent of Command-D (but only if it’s not the first button). You can also assign different key equivalents for the buttons using the `keyEquivalent` method of the `NSButton` class.
+        ///
+        /// You can use the `tag` property of the `NSButton` class to set the alert presentation’s return-code.
+        ///
+        /// Alert button properties that are valid to customize are:
+        /// - `keyEquivalent`
+        /// - `keyEquivalentModifierMask`
+        /// - `tag`
+        /// - `hasDestructiveAction`
+        /// - `enabled`
+        /// - `title`
+        /// Other button properties are not supported in alert contexts.
+        /// The framework reserves the use of the button’s `target` and `action`.
         ///
         /// - Parameter title: Title of the button to add to the alert.
         /// - Returns: The button that was added to the alert.

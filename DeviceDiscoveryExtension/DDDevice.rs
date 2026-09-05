@@ -349,11 +349,13 @@ impl DDDevice {
         pub unsafe fn setIdentifier(&self, identifier: &NSString);
 
         /// Current state of media playback on this device.
+        #[deprecated = "Please use MediaDeviceExtension"]
         #[unsafe(method(mediaPlaybackState))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaPlaybackState(&self) -> DDDeviceMediaPlaybackState;
 
         /// Setter for [`mediaPlaybackState`][Self::mediaPlaybackState].
+        #[deprecated = "Please use MediaDeviceExtension"]
         #[unsafe(method(setMediaPlaybackState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaPlaybackState(
@@ -362,6 +364,7 @@ impl DDDevice {
         );
 
         /// Title of the media content being played.
+        #[deprecated = "Please use MediaDeviceExtension"]
         #[unsafe(method(mediaContentTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaContentTitle(&self) -> Option<Retained<NSString>>;
@@ -369,11 +372,13 @@ impl DDDevice {
         /// Setter for [`mediaContentTitle`][Self::mediaContentTitle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "Please use MediaDeviceExtension"]
         #[unsafe(method(setMediaContentTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaContentTitle(&self, media_content_title: Option<&NSString>);
 
         /// Subtitle of the media content being played. It can be used to display extra information about the content, such as the name of the artist.
+        #[deprecated = "Please use MediaDeviceExtension"]
         #[unsafe(method(mediaContentSubtitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaContentSubtitle(&self) -> Option<Retained<NSString>>;
@@ -381,6 +386,7 @@ impl DDDevice {
         /// Setter for [`mediaContentSubtitle`][Self::mediaContentSubtitle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "Please use MediaDeviceExtension"]
         #[unsafe(method(setMediaContentSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaContentSubtitle(&self, media_content_subtitle: Option<&NSString>);

@@ -55,6 +55,26 @@ unsafe impl RefEncode for CBCharacteristicWriteType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Specifies which channel sounding role a CBPeripheral should assume for a given session.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbchannelsoundingsessionconfigurationrole?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct CBChannelSoundingSessionConfigurationRole(pub NSInteger);
+impl CBChannelSoundingSessionConfigurationRole {
+    #[doc(alias = "CBChannelSoundingSessionConfigurationRoleInitiator")]
+    pub const Initiator: Self = Self(0);
+}
+
+unsafe impl Encode for CBChannelSoundingSessionConfigurationRole {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for CBChannelSoundingSessionConfigurationRole {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// Represents a peripheral.
     ///
@@ -434,6 +454,28 @@ impl CBPeripheral {
         #[unsafe(method(openL2CAPChannel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openL2CAPChannel(&self, psm: CBL2CAPPSM);
+
+        /// Parameter `configuration`: An object specifying the channel sounding session configuration.
+        ///
+        ///
+        /// Initiate a channel sounding session.
+        ///
+        ///
+        /// See: peripheral:didReceiveChannelSoundingProcedureResults:error
+        #[unsafe(method(startChannelSoundingSession:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn startChannelSoundingSession(
+            &self,
+            configuration: &CBChannelSoundingSessionConfiguration,
+        );
+
+        /// Cancels the active channel sounding session, if it exists.
+        ///
+        ///
+        /// See: peripheral:didCompleteChannelSoundingSession:
+        #[unsafe(method(cancelChannelSoundingSession))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cancelChannelSoundingSession(&self);
     );
 }
 
@@ -929,5 +971,107 @@ extern_protocol!(
             channel: Option<&CBL2CAPChannel>,
             error: Option<&NSError>,
         );
+
+        #[cfg(feature = "CBPeer")]
+        /// Parameter `peripheral`: The peripheral providing this update.
+        ///
+        /// Parameter `results`: An object containing the results of a channel sounding procedure.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the results of a channel sounding procedure.
+        #[optional]
+        #[unsafe(method(peripheral:didReceiveChannelSoundingProcedureResults:error:))]
+        #[unsafe(method_family = none)]
+        unsafe fn peripheral_didReceiveChannelSoundingProcedureResults_error(
+            &self,
+            peripheral: &CBPeripheral,
+            results: Option<&CBChannelSoundingProcedureResults>,
+            error: Option<&NSError>,
+        );
+
+        #[cfg(feature = "CBPeer")]
+        /// Parameter `peripheral`: The peripheral providing this update.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method is called when a channel sounding session completes.
+        #[optional]
+        #[unsafe(method(peripheral:didCompleteChannelSoundingSession:))]
+        #[unsafe(method_family = none)]
+        unsafe fn peripheral_didCompleteChannelSoundingSession(
+            &self,
+            peripheral: &CBPeripheral,
+            error: Option<&NSError>,
+        );
     }
 );
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbchannelsoundingsessionconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct CBChannelSoundingSessionConfiguration;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBChannelSoundingSessionConfiguration {}
+);
+
+impl CBChannelSoundingSessionConfiguration {
+    extern_methods!(
+        // -init (unavailable)
+
+        /// The channel sounding role a CBPeripheral should assume for a given session.
+        #[unsafe(method(role))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn role(&self) -> CBChannelSoundingSessionConfigurationRole;
+
+        #[unsafe(method(initWithRole:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithRole(
+            this: Allocated<Self>,
+            role: CBChannelSoundingSessionConfigurationRole,
+        ) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl CBChannelSoundingSessionConfiguration {
+    extern_methods!(
+        // +new (unavailable)
+
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbchannelsoundingprocedureresults?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct CBChannelSoundingProcedureResults;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CBChannelSoundingProcedureResults {}
+);
+
+impl CBChannelSoundingProcedureResults {
+    extern_methods!(
+        // -init (unavailable)
+
+        /// The measured distance in meters of a CBPeripheral.
+        #[unsafe(method(distance))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn distance(&self) -> c_double;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl CBChannelSoundingProcedureResults {
+    extern_methods!(
+        // +new (unavailable)
+
+    );
+}

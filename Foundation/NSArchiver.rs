@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// **********        Archiving: Writing    ***************
+    /// A coder that stores an object's data to an archive.
+    ///
+    /// ``NSArchiver``, a concrete subclass of ``NSCoder``, provides a way to encode objects into an architecture-independent format that can be stored in a file. When you archive a graph of objects, the class information and instance variables for each object are written to the archive. The companion class ``NSUnarchiver`` decodes the data in an archive and creates a graph of objects equivalent to the original set.
+    ///
+    /// ``NSArchiver`` stores the archive data in a mutable data object (``NSMutableData``). After encoding the objects, you can have the ``NSArchiver`` object write this mutable data object immediately to a file, or you can retrieve the mutable data object for some other use.
+    ///
+    /// In macOS 10.2 and later, ``NSArchiver`` and ``NSUnarchiver`` have been replaced by ``NSKeyedArchiver`` and ``NSKeyedUnarchiver`` respectively—see [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsarchiver?language=objc)
     #[unsafe(super(NSCoder, NSObject))]
@@ -26,6 +32,13 @@ extern_conformance!(
 impl NSArchiver {
     extern_methods!(
         #[cfg(feature = "NSData")]
+        /// Returns an archiver, initialized to encode stream and version information into a given mutable data object.
+        ///
+        /// - Parameters:
+        /// - mdata: The mutable data object into which to write the archive. This value must not be `nil`.
+        /// - Returns: An archiver object, initialized to encode stream and version information into `mdata`.
+        ///
+        /// Raises an `NSInvalidArgumentException` if `mdata` is `nil`.
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(initForWritingWithMutableData:))]
         #[unsafe(method_family = init)]
@@ -35,11 +48,22 @@ impl NSArchiver {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
+        /// The receiver's archive data.
+        ///
+        /// The returned data object is the same one specified as the argument to ``NSArchiver/init(forWritingWith:)``. It contains whatever data has been encoded thus far by invocations of the various encoding methods. It is safest not to invoke this method until after ``NSArchiver/encodeRootObject(_:)`` has returned. In other words, although it is possible for a class to invoke this method from within its ``NSCoding/encode(with:)`` method, that method must not alter the data.
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(archiverData))]
         #[unsafe(method_family = none)]
         pub fn archiverData(&self) -> Retained<NSMutableData>;
 
+        /// Encodes a given root object, along with all of the objects it's connected to.
+        ///
+        /// If any object is encountered more than once while traversing the graph, it is encoded only once, but the multiple references to it are stored.
+        ///
+        /// This message must not be sent more than once to a given `NSArchiver` object; an `NSInvalidArgumentException` is raised if a root object has already been encoded. If you need to encode multiple object graphs, don't attempt to reuse an `NSArchiver` instance; instead, create a new one for each graph.
+        ///
+        /// - Parameter rootObject: The root object of the object graph to archive.
+        ///
         /// # Safety
         ///
         /// `root_object` should be of the correct type.
@@ -48,6 +72,14 @@ impl NSArchiver {
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRootObject(&self, root_object: &AnyObject);
 
+        /// Encodes an object only if it is referenced by another object in the archive.
+        ///
+        /// This method overrides the superclass implementation to allow `object` to be encoded only if it is also encoded unconditionally by another object in the object graph. Conditional encoding lets you encode one part of a graph detached from the rest.
+        ///
+        /// This method should be invoked only from within an ``NSCoding/encode(with:)`` method. If `object` is `nil`, the `NSArchiver` object encodes it unconditionally as `nil`. This method raises an `NSInvalidArgumentException` if no root object has been encoded.
+        ///
+        /// - Parameter object: The object to archive.
+        ///
         /// # Safety
         ///
         /// `object` should be of the correct type.
@@ -57,6 +89,13 @@ impl NSArchiver {
         pub unsafe fn encodeConditionalObject(&self, object: Option<&AnyObject>);
 
         #[cfg(feature = "NSData")]
+        /// Returns a data object that contains the encoded form of the object graph formed by the given root object.
+        ///
+        /// This method invokes ``NSArchiver/initForWritingWithMutableData:`` and ``NSArchiver/encodeRootObject:`` to create a temporary archiver that encodes the object graph.
+        ///
+        /// - Parameter rootObject: The root object of the object graph to archive.
+        /// - Returns: A data object containing the encoded form of the object graph whose root object is `rootObject`.
+        ///
         /// # Safety
         ///
         /// `root_object` should be of the correct type.
@@ -66,6 +105,17 @@ impl NSArchiver {
         pub unsafe fn archivedDataWithRootObject(root_object: &AnyObject) -> Retained<NSData>;
 
         #[cfg(feature = "NSString")]
+        /// Archives an object graph rooted at a given object by encoding it into a data object then atomically writing the resulting data object to a file at a given path.
+        ///
+        /// This convenience method invokes ``NSArchiver/archivedDataWithRootObject:`` to get the encoded data, and then sends that data object the message ``NSData/writeToFile:atomically:``, using `path` for the first argument and `YES` for the second.
+        ///
+        /// The archived data should be retrieved from the archive by an ``NSUnarchiver`` object.
+        ///
+        /// - Parameters:
+        /// - rootObject: The root object of the object graph to archive.
+        /// - path: The location of the file into which to write the archive.
+        /// - Returns: `YES` if the archive was written successfully, otherwise `NO`.
+        ///
         /// # Safety
         ///
         /// `root_object` should be of the correct type.
@@ -75,6 +125,13 @@ impl NSArchiver {
         pub unsafe fn archiveRootObject_toFile(root_object: &AnyObject, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Encodes a given class under a given name.
+        ///
+        /// Any subsequently encountered objects of class `trueName` are archived as instances of class `inArchiveName`. It is safest not to invoke this method during the archiving process (that is, within an ``NSCoding/encode(with:)`` method). Instead, invoke it before ``encodeRootObject:``.
+        ///
+        /// - Parameters:
+        /// - trueName: The real name of a class in the object graph being archived.
+        /// - inArchiveName: The name of the class to use in the archive in place of `trueName`.
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(encodeClassName:intoClassName:))]
         #[unsafe(method_family = none)]
@@ -85,6 +142,10 @@ impl NSArchiver {
         );
 
         #[cfg(feature = "NSString")]
+        /// Returns the name under which a given class was encoded.
+        ///
+        /// - Parameter trueName: The real name of an encoded class.
+        /// - Returns: The name of the class used to archive instances of the class `trueName`.
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(classNameEncodedForTrueClassName:))]
         #[unsafe(method_family = none)]
@@ -93,6 +154,14 @@ impl NSArchiver {
             true_name: &NSString,
         ) -> Option<Retained<NSString>>;
 
+        /// Replaces one object with another during encoding.
+        ///
+        /// Causes the receiver to treat subsequent requests to encode `object` as though they were requests to encode `newObject` instead. Both `object` and `newObject` must be valid objects.
+        ///
+        /// - Parameters:
+        /// - object: An object in the object graph being archived.
+        /// - newObject: The object with which to replace `object` in the archive.
+        ///
         /// # Safety
         ///
         /// - `object` should be of the correct type.
@@ -127,7 +196,11 @@ impl DefaultRetained for NSArchiver {
 }
 
 extern_class!(
-    /// **********        Archiving: Reading        ***************
+    /// A decoder that restores data from an archive.
+    ///
+    /// ``NSUnarchiver``, a concrete subclass of ``NSCoder``, defines methods for decoding a set of Objective-C objects from an archive. Such archives are produced by objects of the ``NSArchiver`` class.
+    ///
+    /// In macOS 10.2 and later, ``NSArchiver`` and ``NSUnarchiver`` have been replaced by ``NSKeyedArchiver`` and ``NSKeyedUnarchiver`` respectively—see [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunarchiver?language=objc)
     #[unsafe(super(NSCoder, NSObject))]
@@ -146,6 +219,14 @@ extern_conformance!(
 impl NSUnarchiver {
     extern_methods!(
         #[cfg(feature = "NSData")]
+        /// Returns an `NSUnarchiver` object initialized to read an archive from a given data object.
+        ///
+        /// The method decodes the system version number that was archived in `data` and prepares the `NSUnarchiver` object for a subsequent invocation of ``NSCoder/decodeObject()``.
+        ///
+        /// Raises an `NSInvalidArgumentException` if `data` is `nil`.
+        ///
+        /// - Parameter data: The archive data.
+        /// - Returns: An `NSUnarchiver` object initialized to read an archive from `data`. Returns `nil` if `data` is not a valid archive.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(initForReadingWithData:))]
         #[unsafe(method_family = init)]
@@ -155,6 +236,8 @@ impl NSUnarchiver {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSZone")]
+        /// Sets the zone in which decoded objects are allocated.
+        ///
         /// # Safety
         ///
         /// `zone` must be a valid pointer or null.
@@ -164,34 +247,62 @@ impl NSUnarchiver {
         pub unsafe fn setObjectZone(&self, zone: *mut NSZone);
 
         #[cfg(feature = "NSZone")]
+        /// Returns the zone in which decoded objects are allocated.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(objectZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectZone(&self) -> *mut NSZone;
 
+        /// A Boolean value that indicates whether the receiver has reached the end of the encoded data while decoding.
+        ///
+        /// You can invoke this after invoking `decodeObject` to discover whether the archive contains extra data following the encoded object graph. If it does, you can either ignore this anomaly or consider it an error.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(isAtEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAtEnd(&self) -> bool;
 
+        /// The system version number in effect when the archive was created.
+        ///
+        /// This information is available as soon as the receiver has been initialized.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(systemVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemVersion(&self) -> c_uint;
 
         #[cfg(feature = "NSData")]
+        /// Decodes and returns the previously-archived object graph in the given data.
+        ///
+        /// This method invokes ``NSUnarchiver/initForReadingWithData:`` and ``NSCoder/decodeObject`` to create a temporary `NSUnarchiver` object that decodes the object. If the archived object is the root of a graph of objects, the entire graph is unarchived.
+        ///
+        /// - Parameter data: An `NSData` object that contains an archive created using `NSArchiver`.
+        /// - Returns: The object, or object graph, that was archived in `data`. Returns `nil` if `data` cannot be unarchived.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(unarchiveObjectWithData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// Decodes and returns the previously-archived object graph from the file at the given path.
+        ///
+        /// This convenience method reads the file by invoking the `NSData` method ``NSData/dataWithContentsOfFile:`` and then invokes ``NSUnarchiver/unarchiveObjectWithData:``.
+        ///
+        /// - Parameter path: The path to a file that contains an archive created using ``NSArchiver``.
+        /// - Returns: The object, or object graph, that was archived in the file at `path`. Returns `nil` if the file at `path` cannot be unarchived.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(unarchiveObjectWithFile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// Sets a class-wide substitution mapping, translating a given class name from the archive to a given replacement class name during decoding.
+        ///
+        /// This method enables easy conversion of unarchived data when the name of a class has changed since the archive was created.
+        ///
+        /// Note that there is also an instance method of the same name. An instance of `NSUnarchiver` can maintain its own mapping of class names. However, if both the class method and the instance method have been invoked using an identical value for `inArchiveName`, the class method takes precedence.
+        ///
+        /// - Parameters:
+        /// - inArchiveName: The ostensible name of a class in an archive.
+        /// - trueName: The name of the class to use when instantiating objects whose ostensible class, according to the archived data, is `inArchiveName`.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(decodeClassName:asClassName:))]
         #[unsafe(method_family = none)]
@@ -201,6 +312,15 @@ impl NSUnarchiver {
         );
 
         #[cfg(feature = "NSString")]
+        /// Sets a per-instance substitution mapping, translating a given class name from the archive to a given replacement class name during decoding.
+        ///
+        /// This method enables easy conversion of unarchived data when the name of a class has changed since the archive was created.
+        ///
+        /// Note that there's also a class method of the same name. The class method has precedence in case of conflicts.
+        ///
+        /// - Parameters:
+        /// - inArchiveName: The ostensible name of a class in an archive.
+        /// - trueName: The name of the class to use when instantiating objects whose ostensible class, according to the archived data, is `inArchiveName`.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(decodeClassName:asClassName:))]
         #[unsafe(method_family = none)]
@@ -211,6 +331,14 @@ impl NSUnarchiver {
         );
 
         #[cfg(feature = "NSString")]
+        /// Returns the class name that the unarchiver class substitutes for a given archived class name.
+        ///
+        /// Returns `inArchiveName` if no substitute name has been specified using the class method ``NSUnarchiver/decodeClassName:asClassName:``.
+        ///
+        /// Note that each individual instance of `NSUnarchiver` can be given its own class name mappings by invoking the instance method ``NSUnarchiver/decodeClassName:asClassName:``. The `NSUnarchiver` class has no information about these instance-specific mappings, however, so they don't affect the return value of this method.
+        ///
+        /// - Parameter inArchiveName: The name of a class.
+        /// - Returns: The name of the class used when instantiating objects whose ostensible class, according to the archived data, is `inArchiveName`.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(classNameDecodedForArchiveClassName:))]
         #[unsafe(method_family = none)]
@@ -219,6 +347,12 @@ impl NSUnarchiver {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the class name that this unarchiver substitutes for a given archived class name.
+        ///
+        /// Returns `inArchiveName` unless a substitute name has been specified using the instance method ``decodeClassName:asClassName:``.
+        ///
+        /// - Parameter inArchiveName: The name of a class.
+        /// - Returns: The name of the class used when instantiating objects whose ostensible class, according to the archived data, is `inArchiveName`.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(classNameDecodedForArchiveClassName:))]
         #[unsafe(method_family = none)]
@@ -227,6 +361,14 @@ impl NSUnarchiver {
             in_archive_name: &NSString,
         ) -> Retained<NSString>;
 
+        /// Replaces one object with another during decoding.
+        ///
+        /// Causes the receiver to substitute `newObject` for `object` whenever `object` is extracted from the archive. `newObject` can be of a different class from `object`, and the class mappings set by ``decodeClassName:asClassName:`` are ignored.
+        ///
+        /// - Parameters:
+        /// - object: The archived object to replace.
+        /// - newObject: The object with which to replace `object`.
+        ///
         /// # Safety
         ///
         /// - `object` should be of the correct type.
@@ -257,8 +399,6 @@ mod private_NSObjectNSArchiverCallback {
 }
 
 /// Category "NSArchiverCallback" on [`NSObject`].
-///
-/// **********        Object call back        ***************
 #[doc(alias = "NSArchiverCallback")]
 pub unsafe trait NSObjectNSArchiverCallback:
     ClassType + Sized + private_NSObjectNSArchiverCallback::Sealed

@@ -36,6 +36,9 @@ mod __CLBeaconIdentityConstraint;
 #[cfg(feature = "CLBeaconRegion")]
 #[path = "CLBeaconRegion.rs"]
 mod __CLBeaconRegion;
+#[cfg(feature = "CLBody")]
+#[path = "CLBody.rs"]
+mod __CLBody;
 #[cfg(feature = "CLCircularGeographicCondition")]
 #[path = "CLCircularGeographicCondition.rs"]
 mod __CLCircularGeographicCondition;
@@ -123,6 +126,8 @@ pub use self::__CLBeaconIdentityConstraint::CLBeaconIdentityConstraint;
 pub use self::__CLBeaconRegion::CLBeacon;
 #[cfg(all(feature = "CLBeaconRegion", feature = "CLRegion"))]
 pub use self::__CLBeaconRegion::CLBeaconRegion;
+#[cfg(feature = "CLBody")]
+pub use self::__CLBody::CLBodyIdentifiable;
 #[cfg(all(feature = "CLCircularGeographicCondition", feature = "CLCondition"))]
 pub use self::__CLCircularGeographicCondition::CLCircularGeographicCondition;
 #[cfg(all(feature = "CLCircularRegion", feature = "CLRegion"))]

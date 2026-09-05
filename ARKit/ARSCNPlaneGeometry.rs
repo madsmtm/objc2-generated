@@ -86,10 +86,9 @@ impl ARSCNPlaneGeometry {
         #[cfg(feature = "objc2-metal")]
         /// Creates a new plane geometry using a Metal device.
         ///
+        /// - Parameter device: A Metal device.
         ///
-        /// Parameter `device`: A Metal device.
-        ///
-        /// Returns: A new plane geometry.
+        /// - Returns: A new plane geometry.
         #[unsafe(method(planeGeometryWithDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn planeGeometryWithDevice(
@@ -99,8 +98,7 @@ impl ARSCNPlaneGeometry {
         #[cfg(feature = "ARPlaneGeometry")]
         /// Updates the geometry with the vertices of a plane geometry.
         ///
-        ///
-        /// Parameter `planeGeometry`: A plane geometry.
+        /// - Parameter planeGeometry: A plane geometry.
         #[unsafe(method(updateFromPlaneGeometry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateFromPlaneGeometry(&self, plane_geometry: &ARPlaneGeometry);

@@ -383,6 +383,41 @@ unsafe impl RefEncode for NSFileProviderContentPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidernamespacepolicy?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NSFileProviderNamespacePolicy(pub NSInteger);
+impl NSFileProviderNamespacePolicy {
+    /// Inherit the namespace policy of the parent folder.
+    ///
+    /// This is the default namespace policy on every item other than the root.
+    #[doc(alias = "NSFileProviderNamespacePolicyInherited")]
+    pub const Inherited: Self = Self(0);
+    /// Enumerate this folder lazily (i.e upon access) if it is dataless.
+    /// Keep populate new items below this folder eagerly if it's already on disk.
+    ///
+    /// This is the default policy on the root.
+    #[doc(alias = "NSFileProviderNamespacePolicyMaterializeLazily")]
+    pub const MaterializeLazily: Self = Self(1);
+    /// Download this folder eagerly, make sure it's always fully enumerated
+    /// Keep downloading remote updates eagerly.
+    /// Prevent eviction on low disk pressure and other triggers.
+    ///
+    /// When a folder with the inherited policy is moved into a folder with
+    /// this policy, the system will automatically schedule a download.
+    #[doc(alias = "NSFileProviderNamespacePolicyMaterializeEagerly")]
+    pub const MaterializeEagerly: Self = Self(2);
+}
+
+unsafe impl Encode for NSFileProviderNamespacePolicy {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSFileProviderNamespacePolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemprotocol?language=objc)
     #[doc(alias = "NSFileProviderItem")]
@@ -1117,6 +1152,12 @@ extern_protocol!(
         #[unsafe(method(contentPolicy))]
         #[unsafe(method_family = none)]
         unsafe fn contentPolicy(&self) -> NSFileProviderContentPolicy;
+
+        /// Declarative API to define the item namespace policy according to the available NSFileProviderNamespacePolicy
+        #[optional]
+        #[unsafe(method(namespacePolicy))]
+        #[unsafe(method_family = none)]
+        unsafe fn namespacePolicy(&self) -> NSFileProviderNamespacePolicy;
     }
 );
 

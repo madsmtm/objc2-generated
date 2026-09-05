@@ -17,11 +17,11 @@ extern_class!(
     /// The VZBridgedNetworkInterface can be used with a VZBridgedNetworkDeviceAttachment to set up a network device VZNetworkDeviceConfiguration.
     ///
     ///
-    /// See also: VZBridgedNetworkDeviceAttachment
+    /// See: VZBridgedNetworkDeviceAttachment
     ///
-    /// See also: VZNATNetworkDeviceAttachment
+    /// See: VZNATNetworkDeviceAttachment
     ///
-    /// See also: VZNetworkDeviceConfiguration
+    /// See: VZNetworkDeviceConfiguration
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface?language=objc)
     #[unsafe(super(NSObject))]

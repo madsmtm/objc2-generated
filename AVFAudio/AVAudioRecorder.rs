@@ -16,10 +16,6 @@ extern_class!(
     pub struct AVAudioRecorder;
 );
 
-unsafe impl Send for AVAudioRecorder {}
-
-unsafe impl Sync for AVAudioRecorder {}
-
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioRecorder {}
 );
@@ -198,12 +194,6 @@ impl AVAudioRecorder {
         /// Array of AVAudioSessionChannelDescription objects
         ///
         /// The channels property lets you assign the output to record specific channels as described by AVAudioSessionPortDescription's channels property. This property is nil valued until set. The array must have the same number of channels as returned by the numberOfChannels property.
-        ///
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
         #[unsafe(method(channelAssignments))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelAssignments(
@@ -214,10 +204,6 @@ impl AVAudioRecorder {
         /// Setter for [`channelAssignments`][Self::channelAssignments].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
         #[unsafe(method(setChannelAssignments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelAssignments(

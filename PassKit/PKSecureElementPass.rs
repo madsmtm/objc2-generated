@@ -68,6 +68,15 @@ impl PKSecureElementPass {
         #[unsafe(method_family = none)]
         pub unsafe fn passActivationState(&self) -> PKSecureElementPassActivationState;
 
+        /// A Boolean value indicating whether provisioning is available for this pass.
+        ///
+        /// This property is YES when the pass is in a pre-provisioned state and the issuer app
+        /// can guide the user to complete provisioning. Check this property when passActivationState
+        /// returns PKSecureElementPassActivationStateDeactivated to determine if provisioning is available.
+        #[unsafe(method(isProvisioningAvailable))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isProvisioningAvailable(&self) -> bool;
+
         #[unsafe(method(devicePassIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn devicePassIdentifier(&self) -> Option<Retained<NSString>>;

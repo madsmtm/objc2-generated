@@ -211,6 +211,52 @@ impl MTLFXTemporalScalerDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputContentMaxScale(&self, input_content_max_scale: c_float);
 
+        /// A Boolean value that indicates whether the scaler expects motion vectors at output resolution.
+        ///
+        /// Set this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true> when your app provides
+        /// motion vectors at the output resolution rather than the input resolution.
+        ///
+        /// When you enable this property, the scaler interprets the ``MTLFXTemporalScalerBase/motionTexture``
+        /// dimensions to match ``outputWidth`` and ``outputHeight`` instead of ``inputWidth`` and ``inputHeight``.
+        ///
+        /// This property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>.
+        #[unsafe(method(isOutputResolutionMotionVectorsEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isOutputResolutionMotionVectorsEnabled(&self) -> bool;
+
+        /// Setter for [`isOutputResolutionMotionVectorsEnabled`][Self::isOutputResolutionMotionVectorsEnabled].
+        #[unsafe(method(setOutputResolutionMotionVectorsEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setOutputResolutionMotionVectorsEnabled(
+            &self,
+            output_resolution_motion_vectors_enabled: bool,
+        );
+
+        /// A Boolean value that indicates whether the motion vectors include the jittering pattern.
+        ///
+        /// When you set this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>, the scaler internally
+        /// subtracts the jitter from the motion vectors using the jitter offset values provided each frame via
+        /// ``MTLFXTemporalScalerBase/jitterOffsetX`` and ``MTLFXTemporalScalerBase/jitterOffsetY``.
+        ///
+        /// When
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false> (the default), the scaler uses the motion vectors
+        /// directly without any adjustment.
+        #[unsafe(method(isJitteredMotionVectorsEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isJitteredMotionVectorsEnabled(&self) -> bool;
+
+        /// Setter for [`isJitteredMotionVectorsEnabled`][Self::isJitteredMotionVectorsEnabled].
+        #[unsafe(method(setJitteredMotionVectorsEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setJitteredMotionVectorsEnabled(&self, jittered_motion_vectors_enabled: bool);
+
         /// A Boolean value that indicates whether a temporal scaler you create with the descriptor applies a reactive mask.
         #[unsafe(method(isReactiveMaskTextureEnabled))]
         #[unsafe(method_family = none)]
@@ -390,7 +436,13 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn motionTextureUsage(&self) -> MTLTextureUsage;
 
-        /// The minimal texture usage options that your app’s reactive texture needs in order to support this scaler.
+        /// The minimal texture usage options that your app's reactive mask texture needs in order to support this scaler.
+        #[unsafe(method(reactiveMaskTextureUsage))]
+        #[unsafe(method_family = none)]
+        unsafe fn reactiveMaskTextureUsage(&self) -> MTLTextureUsage;
+
+        /// The minimal texture usage options that your app's reactive texture needs in order to support this scaler.
+        #[deprecated]
         #[unsafe(method(reactiveTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn reactiveTextureUsage(&self) -> MTLTextureUsage;
@@ -419,6 +471,106 @@ extern_protocol!(
         #[unsafe(method(setInputContentHeight:))]
         #[unsafe(method_family = none)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
+
+        /// The horizontal offset, in pixels, of the region within the color texture to use as input.
+        #[unsafe(method(colorContentOffsetX))]
+        #[unsafe(method_family = none)]
+        unsafe fn colorContentOffsetX(&self) -> NSUInteger;
+
+        /// Setter for [`colorContentOffsetX`][Self::colorContentOffsetX].
+        #[unsafe(method(setColorContentOffsetX:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setColorContentOffsetX(&self, color_content_offset_x: NSUInteger);
+
+        /// The vertical offset, in pixels, of the region within the color texture to use as input.
+        #[unsafe(method(colorContentOffsetY))]
+        #[unsafe(method_family = none)]
+        unsafe fn colorContentOffsetY(&self) -> NSUInteger;
+
+        /// Setter for [`colorContentOffsetY`][Self::colorContentOffsetY].
+        #[unsafe(method(setColorContentOffsetY:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setColorContentOffsetY(&self, color_content_offset_y: NSUInteger);
+
+        /// The horizontal offset, in pixels, of the region within the depth texture to use as input.
+        #[unsafe(method(depthContentOffsetX))]
+        #[unsafe(method_family = none)]
+        unsafe fn depthContentOffsetX(&self) -> NSUInteger;
+
+        /// Setter for [`depthContentOffsetX`][Self::depthContentOffsetX].
+        #[unsafe(method(setDepthContentOffsetX:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthContentOffsetX(&self, depth_content_offset_x: NSUInteger);
+
+        /// The vertical offset, in pixels, of the region within the depth texture to use as input.
+        #[unsafe(method(depthContentOffsetY))]
+        #[unsafe(method_family = none)]
+        unsafe fn depthContentOffsetY(&self) -> NSUInteger;
+
+        /// Setter for [`depthContentOffsetY`][Self::depthContentOffsetY].
+        #[unsafe(method(setDepthContentOffsetY:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthContentOffsetY(&self, depth_content_offset_y: NSUInteger);
+
+        /// The horizontal offset, in pixels, of the region within the motion texture to use as input.
+        #[unsafe(method(motionContentOffsetX))]
+        #[unsafe(method_family = none)]
+        unsafe fn motionContentOffsetX(&self) -> NSUInteger;
+
+        /// Setter for [`motionContentOffsetX`][Self::motionContentOffsetX].
+        #[unsafe(method(setMotionContentOffsetX:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setMotionContentOffsetX(&self, motion_content_offset_x: NSUInteger);
+
+        /// The vertical offset, in pixels, of the region within the motion texture to use as input.
+        #[unsafe(method(motionContentOffsetY))]
+        #[unsafe(method_family = none)]
+        unsafe fn motionContentOffsetY(&self) -> NSUInteger;
+
+        /// Setter for [`motionContentOffsetY`][Self::motionContentOffsetY].
+        #[unsafe(method(setMotionContentOffsetY:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setMotionContentOffsetY(&self, motion_content_offset_y: NSUInteger);
+
+        /// The horizontal offset, in pixels, of the region within the reactive mask texture to use as input.
+        #[unsafe(method(reactiveMaskContentOffsetX))]
+        #[unsafe(method_family = none)]
+        unsafe fn reactiveMaskContentOffsetX(&self) -> NSUInteger;
+
+        /// Setter for [`reactiveMaskContentOffsetX`][Self::reactiveMaskContentOffsetX].
+        #[unsafe(method(setReactiveMaskContentOffsetX:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setReactiveMaskContentOffsetX(&self, reactive_mask_content_offset_x: NSUInteger);
+
+        /// The vertical offset, in pixels, of the region within the reactive mask texture to use as input.
+        #[unsafe(method(reactiveMaskContentOffsetY))]
+        #[unsafe(method_family = none)]
+        unsafe fn reactiveMaskContentOffsetY(&self) -> NSUInteger;
+
+        /// Setter for [`reactiveMaskContentOffsetY`][Self::reactiveMaskContentOffsetY].
+        #[unsafe(method(setReactiveMaskContentOffsetY:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setReactiveMaskContentOffsetY(&self, reactive_mask_content_offset_y: NSUInteger);
+
+        /// The horizontal offset, in pixels, of the region within the output texture to write results.
+        #[unsafe(method(outputOffsetX))]
+        #[unsafe(method_family = none)]
+        unsafe fn outputOffsetX(&self) -> NSUInteger;
+
+        /// Setter for [`outputOffsetX`][Self::outputOffsetX].
+        #[unsafe(method(setOutputOffsetX:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setOutputOffsetX(&self, output_offset_x: NSUInteger);
+
+        /// The vertical offset, in pixels, of the region within the output texture to write results.
+        #[unsafe(method(outputOffsetY))]
+        #[unsafe(method_family = none)]
+        unsafe fn outputOffsetY(&self) -> NSUInteger;
+
+        /// Setter for [`outputOffsetY`][Self::outputOffsetY].
+        #[unsafe(method(setOutputOffsetY:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setOutputOffsetY(&self, output_offset_y: NSUInteger);
 
         /// An input color texture you set for the scaler that supports the correct color texture usage options.
         #[unsafe(method(colorTexture))]
@@ -701,10 +853,10 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler?language=objc)
     pub unsafe trait MTLFXTemporalScaler: MTLFXTemporalScalerBase {
-        /// Encode this spatial scaler work into a command buffer.
+        /// Adds a scaling pass to a command buffer.
         ///
         /// - Parameters:
-        /// - commandBuffer: A command buffer into which this spatial scaler encodes work.
+        /// - commandBuffer: A command buffer into which this scaler encodes work.
         #[unsafe(method(encodeToCommandBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeToCommandBuffer(

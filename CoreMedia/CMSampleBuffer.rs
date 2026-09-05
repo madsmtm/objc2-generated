@@ -2040,7 +2040,13 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_drainafterdecoding?language=objc)
+    /// A value of kCFBooleanTrue requires the media converter to emit all prior enqueued samples without any further enqueue expectation.
+    ///
+    /// kCMSampleBufferAttachmentKey_DrainAfterDecoding, value kCFBooleanTrue, indicates to the buffer consumer that all prior enqueued samples must be
+    /// processed without waiting on further media dependencies. Clients should attach this marker to an empty CMSampleBuffer.
+    /// Clients may use this marker as a signal to finish processing any remaining sample buffers in the queue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_drainafterdecoding?language=objc)
     pub static kCMSampleBufferAttachmentKey_DrainAfterDecoding: &'static CFString;
 }
 

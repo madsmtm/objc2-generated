@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXDiskIOMetric;
 );
 
@@ -37,6 +38,7 @@ impl MXDiskIOMetric {
         /// Cumulative amount of logical writes.
         ///
         /// Dimensioned as NSUnitInformationStorage.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeLogicalWrites))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeLogicalWrites(

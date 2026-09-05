@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXCPUMetric;
 );
 
@@ -39,6 +40,7 @@ impl MXCPUMetric {
         /// The data here represents the total CPU time an application consumed over the date range of the containing payload.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeCPUTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;

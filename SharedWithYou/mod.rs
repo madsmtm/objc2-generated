@@ -66,6 +66,8 @@ mod __SWRemoveParticipantAlert;
 
 #[cfg(feature = "NSItemProvider_SWCollaborationMetadata")]
 pub use self::__NSItemProvider_SWCollaborationMetadata::SWCollaborationMetadataTypeIdentifier;
+#[cfg(feature = "NSItemProvider_SWCollaborationMetadata")]
+pub use self::__NSItemProvider_SWCollaborationMetadata::SWCopyRepresentationTypeIdentifier;
 #[cfg(feature = "NSPasteboardItem_SWCollaborationMetadata")]
 pub use self::__NSPasteboardItem_SWCollaborationMetadata::NSPasteboardItemSWCollaborationMetadata;
 #[cfg(all(

@@ -125,6 +125,31 @@ impl CPNavigationSession {
             reroute_reason: CPRerouteReason,
         );
 
+        #[cfg(all(
+            feature = "CPRerouteReason",
+            feature = "CPRouteSegment",
+            feature = "CPTrip"
+        ))]
+        /// Resume navigation with an updated trip and route segments for cases such as the trip destination changing.
+        ///
+        ///
+        /// Parameter `trip`: The updated trip
+        ///
+        /// Parameter `routeSegments`: The updated route segments for the current trip
+        ///
+        /// Parameter `currentSegment`: The current route segment
+        ///
+        /// Parameter `rerouteReason`: The reason for the reroute
+        #[unsafe(method(resumeNavigationWithUpdatedTrip:routeSegments:currentSegment:rerouteReason:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resumeNavigationWithUpdatedTrip_routeSegments_currentSegment_rerouteReason(
+            &self,
+            trip: &CPTrip,
+            route_segments: &NSArray<CPRouteSegment>,
+            current_segment: &CPRouteSegment,
+            reroute_reason: CPRerouteReason,
+        );
+
         /// Finish the trip.
         #[unsafe(method(finishTrip))]
         #[unsafe(method_family = none)]
@@ -234,6 +259,18 @@ impl CPNavigationSession {
             estimates: &CPTravelEstimates,
             maneuver: &CPManeuver,
         );
+
+        #[cfg(all(feature = "CPMapPanel", feature = "CPPanel"))]
+        /// The options panel to display when the ellipsis button on the travel estimates is tapped.
+        #[unsafe(method(optionsPanel))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn optionsPanel(&self) -> Option<Retained<CPMapPanel>>;
+
+        #[cfg(all(feature = "CPMapPanel", feature = "CPPanel"))]
+        /// Setter for [`optionsPanel`][Self::optionsPanel].
+        #[unsafe(method(setOptionsPanel:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setOptionsPanel(&self, options_panel: Option<&CPMapPanel>);
 
         #[cfg(feature = "CPRouteSegment")]
         /// The route segments associated with this navigation session.

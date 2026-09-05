@@ -64,6 +64,10 @@ impl VNErrorCode {
     pub const UnsupportedComputeStage: Self = Self(21);
     #[doc(alias = "VNErrorUnsupportedComputeDevice")]
     pub const UnsupportedComputeDevice: Self = Self(22);
+    #[doc(alias = "VNErrorResourceUnavailable")]
+    pub const ResourceUnavailable: Self = Self(23);
+    #[doc(alias = "VNErrorResourceCorrupted")]
+    pub const ResourceCorrupted: Self = Self(24);
 }
 
 unsafe impl Encode for VNErrorCode {

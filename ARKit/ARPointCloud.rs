@@ -10,7 +10,9 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arpointcloud?language=objc)
+    /// A collection of 3D points representing features in the environment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arpointcloud?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

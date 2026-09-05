@@ -10,7 +10,9 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus?language=objc)
+/// Constants that indicate the result of animating an image sequence.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,30 +41,66 @@ unsafe impl RefEncode for CGImageAnimationStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageanimationstartindex?language=objc)
+    /// A property that specifies the index of the first frame of an animation.
+    ///
+    /// The value of this property is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfnumber> that contains an unsigned integer. To override the start index value in the image file, include this property in the options dictionary when animating an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageanimationstartindex?language=objc)
     pub static kCGImageAnimationStartIndex: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageanimationdelaytime?language=objc)
+    /// The number of seconds to wait before displaying the next image in an animated sequence.
+    ///
+    /// The value of this property is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfnumber> with a floating-point value. To override the delay time value in the image file, include this property in the options dictionary when animating an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageanimationdelaytime?language=objc)
     pub static kCGImageAnimationDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageanimationloopcount?language=objc)
+    /// The number of times to repeat the animated sequence.
+    ///
+    /// The value of this property is a
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfnumber> that contains an unsigned integer. To override the loop count value in the image file, include this property in the options dictionary when animating an image.
+    ///
+    /// You may specify
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/kcfnumberpositiveinfinity> for this property to animate the images continuously.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageanimationloopcount?language=objc)
     pub static kCGImageAnimationLoopCount: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourceanimationblock?language=objc)
+/// The block to execute for each frame of an image animation.
+///
+/// - Parameters:
+/// - index: The index of the image in the file.
+/// - image: The image to display.
+/// - stop: A Boolean flag set to `false` on input. To stop the animation, set the value of this parameter to `true`.
+///
+/// During the animation of an image, the system calls this block for each successive frame of the animation. Use this block to display the new image in your app's interface, and to update any additional details.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourceanimationblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
 pub type CGImageSourceAnimationBlock =
     block2::Block<'static, fn(usize, NonNull<CGImage>, NonNull<bool>)>;
 
-/// Animate the sequence of images contained in the file at `url`. Currently supported image
-/// formats are GIF and APNG. The `options` dictionary may be used to request additional playback
-/// options; see the list of keys above for more information. The block is called on the main queue
-/// at time intervals specified by the `delay time` of the image. The animation can be stopped by
-/// setting the boolean parameter of the block to true.
+/// Animate the sequence of images in the Graphics Interchange Format (GIF) or Animated Portable Network Graphics (APNG) file at the specified URL.
+///
+/// - Parameters:
+/// - url: The URL of the image file.
+/// - options: Additional playback options. Include the ``kCGImageAnimationDelayTime`` or ``kCGImageAnimationLoopCount`` keys to override the timing information in the image file. Include the ``kCGImageAnimationStartIndex`` key to specify the index of the first image in the animation.
+/// - block: The animation block to execute for each image frame. The system executes this block on the main queue, and at the intervals indicated by the image's delay time metadata. Use this block to display the provided image in your interface.
+///
+/// - Returns: A status code indicating the success or failure of the animation.
+///
+/// The function executes the provided `block` for each frame of the animation. By default, the function uses the timing information contained in the image's metadata. This information includes the number of seconds between individual frames, and the number of times to loop the animation. For example, the function uses the ``kCGImagePropertyGIFDelayTime`` and ``kCGImagePropertyGIFLoopCount`` tags from a GIF file's metadata. To override the default timing information, provide the appropriate keys in the `options` dictionary.
 ///
 /// # Safety
 ///
@@ -84,11 +122,16 @@ pub unsafe fn CGAnimateImageAtURLWithBlock(
     unsafe { CGAnimateImageAtURLWithBlock(url, options, block) }
 }
 
-/// Animate the sequence of images contained in `data`. Currently supported image
-/// formats are GIF and APNG. The `options` dictionary may be used to request additional playback
-/// options; see the list of keys above for more information. The block is called on the main queue
-/// at time intervals specified by the `delay time` of the image. The animation can be stopped by
-/// setting the boolean parameter of the block to true.
+/// Animate the sequence of images using data from a Graphics Interchange Format (GIF) or Animated Portable Network Graphics (APNG) file file.
+///
+/// - Parameters:
+/// - data: The image data to animate.
+/// - options: Additional playback options. Include the ``kCGImageAnimationDelayTime`` or ``kCGImageAnimationLoopCount`` keys to override the timing information in the image file. Include the ``kCGImageAnimationStartIndex`` key to specify the index of the first image in the animation.
+/// - block: The animation block to execute for each image frame. The system executes this block on the main queue, and at the intervals indicated by the image's delay time metadata. Use this block to display the provided image in your interface.
+///
+/// - Returns: A status code indicating the success or failure of the animation.
+///
+/// The function executes the provided `block` for each frame of the animation. By default, the function uses the timing information contained in the image's metadata. This information includes the number of seconds between individual frames, and the number of times to loop the animation. For example, the function uses the ``kCGImagePropertyGIFDelayTime`` and ``kCGImagePropertyGIFLoopCount`` tags from a GIF image's metadata. To override the default timing information, provide the appropriate keys in the `options` dictionary.
 ///
 /// # Safety
 ///

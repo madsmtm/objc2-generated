@@ -9,60 +9,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// A GCHapticsLocality represents the locations of haptic actuators on a controller. You can create a haptic engine with a given
-/// GCHapticsLocality, and any patterns you send to that engine will play on all specified actuators.
-///
-/// ```text
-/// CHHapticEngine *engine = [controller.haptics createEngineWithLocality:GCHapticsLocalityDefault];
-/// ```
-///
-///
-/// See: GCDeviceHaptics
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality?language=objc)
-// NS_TYPED_ENUM
-pub type GCHapticsLocality = NSString;
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalitydefault?language=objc)
-    pub static GCHapticsLocalityDefault: &'static GCHapticsLocality;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalityall?language=objc)
-    pub static GCHapticsLocalityAll: &'static GCHapticsLocality;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalityhandles?language=objc)
-    pub static GCHapticsLocalityHandles: &'static GCHapticsLocality;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalitylefthandle?language=objc)
-    pub static GCHapticsLocalityLeftHandle: &'static GCHapticsLocality;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalityrighthandle?language=objc)
-    pub static GCHapticsLocalityRightHandle: &'static GCHapticsLocality;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalitytriggers?language=objc)
-    pub static GCHapticsLocalityTriggers: &'static GCHapticsLocality;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalitylefttrigger?language=objc)
-    pub static GCHapticsLocalityLeftTrigger: &'static GCHapticsLocality;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocalityrighttrigger?language=objc)
-    pub static GCHapticsLocalityRightTrigger: &'static GCHapticsLocality;
-}
-
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticdurationinfinite?language=objc)
     pub static GCHapticDurationInfinite: c_float;
@@ -81,10 +27,13 @@ extern_conformance!(
 
 impl GCDeviceHaptics {
     extern_methods!(
-        /// The set of supported haptic localities for this device - representing the locations of its haptic actuators.
+        #[cfg(feature = "GCDeviceHapticsLocality")]
+        /// The set of supported haptic localities for this device - representing the
+        /// locations of its haptic actuators.
         ///
         ///
-        /// Note: GCHapticsLocalityDefault and GCHapticsLocalityAll are guaranteed to be supported - and they may be equivalent.
+        /// Note: `GCHapticsLocalityDefault` and `GCHapticsLocalityAll` are guaranteed to be
+        /// supported - and they may be equivalent.
         ///
         ///
         /// See: GCHapticsLocality
@@ -92,18 +41,19 @@ impl GCDeviceHaptics {
         #[unsafe(method_family = none)]
         pub unsafe fn supportedLocalities(&self) -> Retained<NSSet<GCHapticsLocality>>;
 
-        // -init (unavailable)
-
-        #[cfg(feature = "objc2-core-haptics")]
-        /// Creates and returns a new instance of CHHapticEngine with a given GCHapticsLocality. Any patterns you send to this engine will play on
+        #[cfg(all(feature = "GCDeviceHapticsLocality", feature = "objc2-core-haptics"))]
+        /// Creates and returns a new instance of `CHHapticEngine` with a given
+        /// `GCHapticsLocality`.  Any patterns you send to this engine will play on
         /// all specified actuators.
         ///
-        ///
-        /// Note: Often times, it is best to use GCHapticsLocalityDefault. Engines created with the default locality will give users an expected
-        /// haptic experience. On most game controllers, this will cause your haptic patterns to play on the handles. If you want to play different
-        /// experiences on different actuators (for example, using the left handle actuator as a woofer and the right actuator as a tweeter), you can
-        /// create multiple engines (for example, one with a GCHapticsLocalityLeftHandle locality and another with a GCHapticsLocalityRightHandle
-        /// locality).
+        /// Often times, it is best to use `GCHapticsLocalityDefault`.  Engines created
+        /// with the default locality will give users an expected haptic experience.
+        /// On most game controllers, this will cause your haptic patterns to play on
+        /// the handles. If you want to play different experiences on different
+        /// actuators (for example, using the left handle actuator as a woofer and the
+        /// right actuator as a tweeter), you can create multiple engines (for example,
+        /// one with a `GCHapticsLocalityLeftHandle` locality and another with a
+        /// `GCHapticsLocalityRightHandle` locality).
         ///
         ///
         /// See: CHHapticEngine
@@ -121,7 +71,12 @@ impl GCDeviceHaptics {
 /// Methods declared on superclass `NSObject`.
 impl GCDeviceHaptics {
     extern_methods!(
-        // +new (unavailable)
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
     );
 }

@@ -24,6 +24,12 @@ extern_class!(
 );
 
 #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+unsafe impl Send for AVAudioUnitTimeEffect {}
+
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+unsafe impl Sync for AVAudioUnitTimeEffect {}
+
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioUnitTimeEffect {}
 );
@@ -47,11 +53,21 @@ impl AVAudioUnitTimeEffect {
         ) -> Retained<Self>;
 
         /// bypass state of the audio unit
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bypass))]
         #[unsafe(method_family = none)]
         pub unsafe fn bypass(&self) -> bool;
 
         /// Setter for [`bypass`][Self::bypass].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBypass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBypass(&self, bypass: bool);

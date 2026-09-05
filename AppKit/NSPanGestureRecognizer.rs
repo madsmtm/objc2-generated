@@ -52,14 +52,41 @@ impl NSPanGestureRecognizer {
         #[unsafe(method_family = none)]
         pub fn velocityInView(&self, view: Option<&NSView>) -> NSPoint;
 
+        #[deprecated]
         #[unsafe(method(numberOfTouchesRequired))]
         #[unsafe(method_family = none)]
         pub fn numberOfTouchesRequired(&self) -> NSInteger;
 
         /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
+        #[deprecated]
         #[unsafe(method(setNumberOfTouchesRequired:))]
         #[unsafe(method_family = none)]
         pub fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSInteger);
+
+        /// The minimum number of touches needed to recognize this gesture
+        ///
+        /// Defaults to 1.
+        #[unsafe(method(minimumNumberOfTouches))]
+        #[unsafe(method_family = none)]
+        pub fn minimumNumberOfTouches(&self) -> NSInteger;
+
+        /// Setter for [`minimumNumberOfTouches`][Self::minimumNumberOfTouches].
+        #[unsafe(method(setMinimumNumberOfTouches:))]
+        #[unsafe(method_family = none)]
+        pub fn setMinimumNumberOfTouches(&self, minimum_number_of_touches: NSInteger);
+
+        /// The maximum number of touches allowed to recognize this gesture
+        ///
+        /// Set this property to 0 to require exactly `minimumNumberOfTouches` touches to recognize the gesture.
+        /// Defaults to `NSIntegerMax`.
+        #[unsafe(method(maximumNumberOfTouches))]
+        #[unsafe(method_family = none)]
+        pub fn maximumNumberOfTouches(&self) -> NSInteger;
+
+        /// Setter for [`maximumNumberOfTouches`][Self::maximumNumberOfTouches].
+        #[unsafe(method(setMaximumNumberOfTouches:))]
+        #[unsafe(method_family = none)]
+        pub fn setMaximumNumberOfTouches(&self, maximum_number_of_touches: NSInteger);
     );
 }
 

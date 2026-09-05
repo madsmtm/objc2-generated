@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// The protocol for HTTP
+    /// The protocol for HTTP.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttp?language=objc)
     #[cfg(feature = "NSString")]
@@ -14,7 +14,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// The protocol for HTTPS
+    /// The protocol for HTTPS.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttps?language=objc)
     #[cfg(feature = "NSString")]
@@ -22,7 +22,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// The protocol for FTP
+    /// The protocol for FTP.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftp?language=objc)
     #[cfg(feature = "NSString")]
@@ -31,7 +31,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// The proxy type for http proxies
+    /// The proxy type for HTTP proxies.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpproxy?language=objc)
     #[cfg(feature = "NSString")]
@@ -39,7 +39,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// The proxy type for https proxies
+    /// The proxy type for HTTPS proxies.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpsproxy?language=objc)
     #[cfg(feature = "NSString")]
@@ -47,7 +47,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// The proxy type for ftp proxies
+    /// The proxy type for FTP proxies.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftpproxy?language=objc)
     #[cfg(feature = "NSString")]
@@ -56,7 +56,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// The proxy type for SOCKS proxies
+    /// The proxy type for SOCKS proxies.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacesocksproxy?language=objc)
     #[cfg(feature = "NSString")]
@@ -64,7 +64,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// The default authentication method for a protocol
+    /// The default authentication method for a protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethoddefault?language=objc)
     #[cfg(feature = "NSString")]
@@ -72,8 +72,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// HTTP basic authentication. Equivalent to
-    /// NSURLAuthenticationMethodDefault for http.
+    /// HTTP basic authentication. Equivalent to ``NSURLAuthenticationMethodDefault`` for HTTP.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhttpbasic?language=objc)
     #[cfg(feature = "NSString")]
@@ -113,7 +112,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// SSL Client certificate.  Applies to any protocol.
+    /// SSL client certificate. Applies to any protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodclientcertificate?language=objc)
     #[cfg(feature = "NSString")]
@@ -121,7 +120,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// SecTrustRef validation required.  Applies to any protocol.
+    /// `SecTrustRef` validation required. Applies to any protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodservertrust?language=objc)
     #[cfg(feature = "NSString")]
@@ -129,7 +128,12 @@ extern "C" {
 }
 
 extern_class!(
-    /// This class represents a protection space requiring authentication.
+    /// A server or an area on a server, commonly referred to as a realm, that requires authentication.
+    ///
+    /// A protection space defines a series of matching constraints that determine which credential should be provided. For example, if a request provides your delegate with a ``URLAuthenticationChallenge`` object that requests a client username and password, your app should provide the correct username and password for the particular host, port, protocol, and realm, as specified in the challenge's protection space.
+    ///
+    /// > Note:
+    /// > This class has no designated initializer; its `init` method always returns `nil`. You must initialize this class by calling one of the initialization methods described in Creating a protection space.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspace?language=objc)
     #[unsafe(super(NSObject))]
@@ -168,25 +172,15 @@ extern_conformance!(
 impl NSURLProtectionSpace {
     extern_methods!(
         #[cfg(feature = "NSString")]
-        /// Initialize a protection space representing an origin server, or a realm on one
+        /// Creates a protection space object from the given host, port, protocol, realm, and authentication method.
         ///
-        /// Parameter `host`: The hostname of the server
-        ///
-        /// Parameter `port`: The port for the server
-        ///
-        /// Parameter `protocol`: The protocol for this server - e.g. "http", "ftp", "https"
-        ///
-        /// Parameter `realm`: A string indicating a protocol-specific subdivision
-        /// of a single host. For http and https, this maps to the realm
-        /// string in http authentication challenges. For many other protocols
-        /// it is unused.
-        ///
-        /// Parameter `authenticationMethod`: The authentication method to use to access this protection space -
-        /// valid values include nil (default method),
-        /// "
-        /// digest" and @"form".
-        ///
-        /// Returns: The initialized object.
+        /// - Parameters:
+        /// - host: The host name for the protection space object.
+        /// - port: The port for the protection space object. If `port` is `0`, the default port for the specified protocol is used, for example, port 80 for HTTP. Note that servers can, and do, treat these values differently.
+        /// - protocol: The protocol for the protection space object. The value of `protocol` is equivalent to the scheme for a URL in the protection space, for example, `"http"`, `"https"`, `"ftp"`, etc.
+        /// - realm: A string indicating a protocol-specific subdivision of the host. `realm` may be `nil` if there is no specified realm or if the protocol doesn't support realms.
+        /// - authenticationMethod: The type of authentication to use. `authenticationMethod` should be set to one of the authentication method constants or `nil` to use the default.
+        /// - Returns: A new protection space object, initialized with the given host, port, protocol, realm, and authentication method.
         #[unsafe(method(initWithHost:port:protocol:realm:authenticationMethod:))]
         #[unsafe(method_family = init)]
         pub fn initWithHost_port_protocol_realm_authenticationMethod(
@@ -199,25 +193,15 @@ impl NSURLProtectionSpace {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        /// Initialize a protection space representing a proxy server, or a realm on one
+        /// Creates a protection space object representing a proxy server.
         ///
-        /// Parameter `host`: The hostname of the proxy server
-        ///
-        /// Parameter `port`: The port for the proxy server
-        ///
-        /// Parameter `type`: The type of proxy - e.g. "http", "ftp", "SOCKS"
-        ///
-        /// Parameter `realm`: A string indicating a protocol-specific subdivision
-        /// of a single host. For http and https, this maps to the realm
-        /// string in http authentication challenges. For many other protocols
-        /// it is unused.
-        ///
-        /// Parameter `authenticationMethod`: The authentication method to use to access this protection space -
-        /// valid values include nil (default method) and
-        /// "
-        /// digest"
-        ///
-        /// Returns: The initialized object.
+        /// - Parameters:
+        /// - host: The host of the proxy server for the protection space object.
+        /// - port: The port for the protection space object. If `port` is `0`, the default port for the specified proxy type is used, for example, port 80 for HTTP. Note that servers can, and do, treat these values differently.
+        /// - type: The type of proxy server.
+        /// - realm: A string indicating a protocol-specific subdivision of the host. `realm` may be `nil` if there is no specified realm or if the protocol doesn't support realms.
+        /// - authenticationMethod: The type of authentication to use. `authenticationMethod` should be set to one of the authentication method constants or `nil` to use the default.
+        /// - Returns: A new protection space object, with the given host, port, proxy type, realm, and authentication method.
         #[unsafe(method(initWithProxyHost:port:type:realm:authenticationMethod:))]
         #[unsafe(method_family = init)]
         pub fn initWithProxyHost_port_type_realm_authenticationMethod(
@@ -230,66 +214,52 @@ impl NSURLProtectionSpace {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        /// Get the authentication realm for which the protection space that
-        /// needs authentication
+        /// The receiver's authentication realm.
         ///
-        /// This is generally only available for http
-        /// authentication, and may be nil otherwise.
-        ///
-        /// Returns: The realm string
+        /// This value is `nil` if no realm has been set. A realm is generally only specified for HTTP and HTTPS authentication.
         #[unsafe(method(realm))]
         #[unsafe(method_family = none)]
         pub fn realm(&self) -> Option<Retained<NSString>>;
 
-        /// Determine if the password for this protection space can be sent securely
-        ///
-        /// Returns: YES if a secure authentication method or protocol will be used, NO otherwise
+        /// A Boolean value that indicates whether the credentials for the protection space can be sent securely.
         #[unsafe(method(receivesCredentialSecurely))]
         #[unsafe(method_family = none)]
         pub fn receivesCredentialSecurely(&self) -> bool;
 
-        /// Determine if this authenticating protection space is a proxy server
-        ///
-        /// Returns: YES if a proxy, NO otherwise
+        /// A Boolean value that indicates whether this authenticating protection space is a proxy server.
         #[unsafe(method(isProxy))]
         #[unsafe(method_family = none)]
         pub fn isProxy(&self) -> bool;
 
         #[cfg(feature = "NSString")]
-        /// Get the proxy host if this is a proxy authentication, or the host from the URL.
-        ///
-        /// Returns: The host for this protection space.
+        /// The receiver's host.
         #[unsafe(method(host))]
         #[unsafe(method_family = none)]
         pub fn host(&self) -> Retained<NSString>;
 
-        /// Get the proxy port if this is a proxy authentication, or the port from the URL.
-        ///
-        /// Returns: The port for this protection space, or 0 if not set.
+        /// The receiver's port.
         #[unsafe(method(port))]
         #[unsafe(method_family = none)]
         pub fn port(&self) -> NSInteger;
 
         #[cfg(feature = "NSString")]
-        /// Get the type of this protection space, if a proxy
+        /// The receiver's proxy type.
         ///
-        /// Returns: The type string, or nil if not a proxy.
+        /// This value is `nil` if the receiver does not represent a proxy protection space.
         #[unsafe(method(proxyType))]
         #[unsafe(method_family = none)]
         pub fn proxyType(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        /// Get the protocol of this protection space, if not a proxy
+        /// The receiver's protocol.
         ///
-        /// Returns: The type string, or nil if a proxy.
+        /// This value is `nil` if the receiver represents a proxy protection space.
         #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
         pub fn protocol(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        /// Get the authentication method to be used for this protection space
-        ///
-        /// Returns: The authentication method
+        /// The authentication method used by the receiver.
         #[unsafe(method(authenticationMethod))]
         #[unsafe(method_family = none)]
         pub fn authenticationMethod(&self) -> Retained<NSString>;
@@ -322,9 +292,10 @@ impl DefaultRetained for NSURLProtectionSpace {
 impl NSURLProtectionSpace {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
-        /// Returns an array of acceptable certificate issuing authorities for client certification authentication. Issuers are identified by their distinguished name and returned as a DER encoded data.
+        /// The acceptable certificate-issuing authorities for client certificate authentication.
         ///
-        /// Returns: An array of NSData objects.  (Nil if the authenticationMethod is not NSURLAuthenticationMethodClientCertificate)
+        /// Issuers are identified by their distinguished name and returned as DER encoded data.
+        /// This value is `nil` if the authentication method is not `NSURLAuthenticationMethodClientCertificate`.
         #[unsafe(method(distinguishedNames))]
         #[unsafe(method_family = none)]
         pub fn distinguishedNames(&self) -> Option<Retained<NSArray<NSData>>>;

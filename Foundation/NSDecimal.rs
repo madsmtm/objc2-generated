@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// *************    Type definitions        **********
+/// These constants specify rounding behaviors.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsroundingmode?language=objc)
 // NS_ENUM
@@ -14,12 +14,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRoundingMode(pub NSUInteger);
 impl NSRoundingMode {
+    /// Round to the closest possible return value; when caught halfway between two positive numbers, round up; when caught between two negative numbers, round down.
     #[doc(alias = "NSRoundPlain")]
     pub const RoundPlain: Self = Self(0);
+    /// Round return values down.
     #[doc(alias = "NSRoundDown")]
     pub const RoundDown: Self = Self(1);
+    /// Round return values up.
     #[doc(alias = "NSRoundUp")]
     pub const RoundUp: Self = Self(2);
+    /// Round to the closest possible return value; when halfway between two possibilities, return the possibility whose last digit is even.
     #[doc(alias = "NSRoundBankers")]
     pub const RoundBankers: Self = Self(3);
 }
@@ -32,20 +36,27 @@ unsafe impl RefEncode for NSRoundingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalculationerror?language=objc)
+/// Calculation error constants used to describe an error in ``NSDecimalNumberBehaviors/exceptionDuringOperation(_:error:leftOperand:rightOperand:)``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalculationerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalculationError(pub NSUInteger);
 impl NSCalculationError {
+    /// No error occurred.
     #[doc(alias = "NSCalculationNoError")]
     pub const NoError: Self = Self(0);
+    /// The number can't be represented in 38 significant digits.
     #[doc(alias = "NSCalculationLossOfPrecision")]
     pub const LossOfPrecision: Self = Self(1);
+    /// The number is too small to represent.
     #[doc(alias = "NSCalculationUnderflow")]
     pub const Underflow: Self = Self(2);
+    /// The number is too large to represent.
     #[doc(alias = "NSCalculationOverflow")]
     pub const Overflow: Self = Self(3);
+    /// The caller tried to divide by `0`.
     #[doc(alias = "NSCalculationDivideByZero")]
     pub const DivideByZero: Self = Self(4);
 }
@@ -61,7 +72,7 @@ unsafe impl RefEncode for NSCalculationError {
 impl NSDecimal {
     // TODO: pub fn NSDecimalIsNotANumber(dcm: &NSDecimal,) -> Bool;
 
-    /// *************    Operations        **********
+    /// Copies the value of a decimal number.
     #[doc(alias = "NSDecimalCopy")]
     #[inline]
     pub fn copy(destination: &mut NSDecimal, source: &NSDecimal) {
@@ -71,6 +82,7 @@ impl NSDecimal {
         unsafe { NSDecimalCopy(destination, source) }
     }
 
+    /// Compacts the decimal structure for efficiency.
     #[doc(alias = "NSDecimalCompact")]
     #[inline]
     pub fn compact(number: &mut NSDecimal) {
@@ -80,6 +92,7 @@ impl NSDecimal {
         unsafe { NSDecimalCompact(number) }
     }
 
+    /// Compares two decimal values.
     #[doc(alias = "NSDecimalCompare")]
     #[cfg(feature = "NSObjCRuntime")]
     #[inline]
@@ -93,6 +106,9 @@ impl NSDecimal {
         unsafe { NSDecimalCompare(left_operand, right_operand) }
     }
 
+    /// Rounds a decimal value to the given scale using the given mode.
+    ///
+    /// The `result` parameter may be a pointer to the same space as `number`. The `scale` parameter indicates the number of significant digits after the decimal point.
     #[doc(alias = "NSDecimalRound")]
     #[inline]
     pub fn round(
@@ -112,6 +128,7 @@ impl NSDecimal {
         unsafe { NSDecimalRound(result, number, scale, rounding_mode) }
     }
 
+    /// Normalizes the internal representation of two decimal numbers to simplify later operations.
     #[doc(alias = "NSDecimalNormalize")]
     #[inline]
     pub fn normalize(
@@ -129,6 +146,9 @@ impl NSDecimal {
         unsafe { NSDecimalNormalize(number1, number2, rounding_mode) }
     }
 
+    /// Adds two decimal values.
+    ///
+    /// The `result` parameter may be a pointer to the same space as `leftOperand` or `rightOperand`.
     #[doc(alias = "NSDecimalAdd")]
     #[inline]
     pub fn add(
@@ -148,6 +168,9 @@ impl NSDecimal {
         unsafe { NSDecimalAdd(result, left_operand, right_operand, rounding_mode) }
     }
 
+    /// Subtracts one decimal value from another.
+    ///
+    /// The `result` parameter may be a pointer to the same space as `leftOperand` or `rightOperand`.
     #[doc(alias = "NSDecimalSubtract")]
     #[inline]
     pub fn subtract(
@@ -167,6 +190,9 @@ impl NSDecimal {
         unsafe { NSDecimalSubtract(result, left_operand, right_operand, rounding_mode) }
     }
 
+    /// Multiplies two decimal numbers together.
+    ///
+    /// The `result` parameter may be a pointer to the same space as `leftOperand` or `rightOperand`.
     #[doc(alias = "NSDecimalMultiply")]
     #[inline]
     pub fn multiply(
@@ -186,6 +212,9 @@ impl NSDecimal {
         unsafe { NSDecimalMultiply(result, left_operand, right_operand, rounding_mode) }
     }
 
+    /// Divides one decimal number by another.
+    ///
+    /// Division could be silently inexact. The `result` parameter may be a pointer to the same space as `leftOperand` or `rightOperand`.
     #[doc(alias = "NSDecimalDivide")]
     #[inline]
     pub fn divide(
@@ -205,6 +234,7 @@ impl NSDecimal {
         unsafe { NSDecimalDivide(result, left_operand, right_operand, rounding_mode) }
     }
 
+    /// Raises a decimal number to the given power.
     #[doc(alias = "NSDecimalPower")]
     #[inline]
     pub fn power(
@@ -224,6 +254,7 @@ impl NSDecimal {
         unsafe { NSDecimalPower(result, number, power, rounding_mode) }
     }
 
+    /// Multiplies a decimal number by a power of 10.
     #[doc(alias = "NSDecimalMultiplyByPowerOf10")]
     #[inline]
     pub fn multiply_by_power_of10(
@@ -243,6 +274,8 @@ impl NSDecimal {
         unsafe { NSDecimalMultiplyByPowerOf10(result, number, power, rounding_mode) }
     }
 
+    /// Returns a string representation of a decimal value appropriate for the given locale.
+    ///
     /// # Safety
     ///
     /// `locale` should be of the correct type.

@@ -8,24 +8,77 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringkey?language=objc)
+/// The attributes you apply to ranges of characters in an attributed string.
+///
+/// Some attributes provide information about how to render, lay out, or interpret the text, while other attributes provide transient or collaborative information.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSAttributedStringKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingcontextkey?language=objc)
+/// A type that represents a key in the formatting context dictionary.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingcontextkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSAttributedStringFormattingContextKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionconceptskey?language=objc)
+    /// A key for the inflection concepts in the formatting context dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionconceptskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionConceptsKey: &'static NSAttributedStringFormattingContextKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring?language=objc)
+    /// A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.
+    ///
+    /// ``NSAttributedString`` is a type you use to manage strings of stylized Unicode text. In addition to text, an attributed string contains key-value pairs known as _attributes_ that specify additional information to apply to ranges of characters within the string. Attributed strings support many different kinds of attributes, including:
+    ///
+    /// - Rendering attributes that specify font, color, kern, ligature, and other details
+    /// - Attributes for attachments and adaptive image glyphs
+    /// - Semantic attributes such as link URLs or tool-tip information
+    /// - Language attributes to support automatic gender agreement and text layout
+    /// - Accessibility attributes that provide information for assistive technologies
+    /// - Attributes that summarize details of the Markdown import process
+    /// - Custom attributes you define for your app
+    ///
+    /// Use attributed strings anywhere you need styled text, or when you need to associate additional information with your text. Because ``NSAttributedString`` is an immutable type, you specify all of the text and attributes for it at creation time and can't change them later. You can create attributed strings directly from a string of characters and a dictionary of attributes. You can also create attributed strings from the contents of a file, including files that contain RTF, RTFD, HTML, Markdown, or other file formats. If you need to modify the contents of an attributed string later, use the ``NSMutableAttributedString`` type instead.
+    ///
+    /// If you create an ``NSAttributedString`` without any font information, the string's default font is Helvetica 12-point, which might differ from the default system font for the platform. To change the font, specify a font attribute at creation time.
+    ///
+    /// ### Persistence
+    ///
+    /// Be aware of how you persist attributed strings to and from the disk. RTF and RTFD are the preferred format for attributed strings because they offer the best fidelity for reading and writing attribute data. The RTF formats support a large number of standard attributes, and Apple extends the formats to support many Apple-specific attributes. If you define custom attributes for ranges of characters, store them separately alongside the RTF file for your text.
+    ///
+    /// If you work extensively with HTML content, validate the results and performance of import and export operations during testing. WebKit handles the conversion between HTML markup and attributed strings. If an HTML file contains tags or constructs that attributed strings don't support, the import process ignores them and imports what it can.
+    ///
+    /// When you create an attributed string from Markdown, the system adds presentation intent attributes with information about the original Markdown content. The system doesn't add style attributes to match the Markdown elements, but the system applies default style information when it renders a string with intent attributes. To change the rendering behavior of your Markdown content, remove the intent attributes and add the style attributes you prefer.
+    ///
+    /// > Important:
+    /// > When reading or writing attributed strings, choose methods that return or throw an error, and check any errors you receive. Handling errors is the best way to detect issues with the import or export process and take corrective action.
+    ///
+    /// The methods for reading and writing common file formats also support document attributes. Document attributes aren't part of the attributed string itself, but accompany the text when you save it to a file. When you read a file, the system returns any document attributes that it finds. Similarly, when you write an attributed string to a file, you can specify the attributes to include. For more information about document attributes, see ``DocumentAttributeKey`` and ``DocumentReadingOptionKey``.
+    ///
+    /// ### System framework interoperability
+    ///
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/textkit> and
+    /// <doc
+    /// ://com.apple.documentation/documentation/coretext> use attributed strings extensively during the layout and rendering processes. These technologies use the string's text and rendering-related attributes to calculate the text metrics needed during layout. Similarly, these technologies apply those same attributes during rendering to give the text its styled appearance. The technologies use only attributes that directly affect the appearance of the text, and ignore most other attributes. For some attributes, the text system adds attributes during rendering as needed. For example, the text system provides default style attributes for text with the ``Key/link`` attribute.
+    ///
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit> and
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit> also support attributed strings in several ways. Some views and controls in these frameworks have APIs that accept attributed strings, and render the string with its style information. The frameworks also add methods to the ``NSAttributedString`` class that let you draw a styled string directly in one of your custom views. Because these methods use TextKit to draw the string, they recognize the same rendering-related attributes as that technology.
+    ///
+    /// The ``NSAttributedString`` class and its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfattributedstring>, are toll-free bridged, which means you can use the two types interchangeably in your code without losing any text or attribute information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedString;
@@ -84,11 +137,21 @@ extern_conformance!(
 impl NSAttributedString {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The character contents of the receiver as a string.
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub fn string(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// Returns the attributes for the character at the specified index.
+        ///
+        /// Raises an `NSRangeException` if `location` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameters:
+        /// - location: The index for which to return attributes. This value must lie within the bounds of the receiver.
+        /// - range: Upon return, the range over which the attributes and values are the same as those at `location`. This range isn't necessarily the maximum range covered, and its extent is implementation-dependent. If you need the maximum range, use `attributesAtIndex:longestEffectiveRange:inRange:`. If you don't need this value, pass `NULL`.
+        /// - Returns: The attributes for the character at `location`.
+        ///
         /// # Safety
         ///
         /// `range` must be a valid pointer or null.
@@ -122,15 +185,19 @@ impl DefaultRetained for NSAttributedString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringenumerationoptions?language=objc)
+/// Options for enumerating attributes of an attributed string.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAttributedStringEnumerationOptions: NSUInteger {
+/// Causes the enumeration to occur in reverse.
         #[doc(alias = "NSAttributedStringEnumerationReverse")]
         const Reverse = 1<<1;
+/// If this option is supplied, the longest effective range computation is not performed; the blocks may be invoked with consecutive attribute runs that have the same value.
         #[doc(alias = "NSAttributedStringEnumerationLongestEffectiveRangeNotRequired")]
         const LongestEffectiveRangeNotRequired = 1<<20;
         const _ = !0;
@@ -148,11 +215,22 @@ unsafe impl RefEncode for NSAttributedStringEnumerationOptions {
 /// NSExtendedAttributedString.
 impl NSAttributedString {
     extern_methods!(
+        /// The length of the attributed string.
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub fn length(&self) -> NSUInteger;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Returns the value for an attribute with the specified name of the character at the specified index and, by reference, the range where the attribute applies.
+        ///
+        /// Raises an `NSRangeException` if `location` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameters:
+        /// - attrName: The name of an attribute.
+        /// - location: The index for which to return attributes. This value must not exceed the bounds of the receiver.
+        /// - range: If non-`NULL`, upon return contains a range over which the named attribute's value applies, or a range over which the attribute does not exist. The range isn't necessarily the maximum range covered by `attrName`, and its extent is implementation-dependent. If you need the maximum range, use `attribute:atIndex:longestEffectiveRange:inRange:`. If you don't need this value, pass `NULL`.
+        /// - Returns: The value for the attribute named `attrName` of the character at `location`, or `nil` if there is no such attribute.
+        ///
         /// # Safety
         ///
         /// `range` must be a valid pointer or null.
@@ -166,11 +244,28 @@ impl NSAttributedString {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSRange")]
+        /// Returns an attributed string consisting of the characters and attributes within the specified range in the attributed string.
+        ///
+        /// Raises an `NSRangeException` if any part of `range` lies beyond the end of the receiver's characters. This method treats the length of the string as a valid range value that returns an empty string.
+        ///
+        /// - Parameter range: The range from which to create a new attributed string. `range` must lie within the bounds of the receiver.
+        /// - Returns: An `NSAttributedString` object consisting of the characters and attributes within `range` in the receiver.
         #[unsafe(method(attributedSubstringFromRange:))]
         #[unsafe(method_family = none)]
         pub fn attributedSubstringFromRange(&self, range: NSRange) -> Retained<NSAttributedString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// Returns the attributes for the character at the specified index and, by reference, the range where the attributes apply.
+        ///
+        /// Raises an `NSRangeException` if `location` or any part of `rangeLimit` lies beyond the end of the receiver's characters.
+        ///
+        /// If you don't need the range information, it's far more efficient to use `attributesAtIndex:effectiveRange:` to retrieve the attribute value.
+        ///
+        /// - Parameters:
+        /// - location: The index for which to return attributes. This value must not exceed the bounds of the receiver.
+        /// - range: If non-`NULL`, upon return contains the maximum range over which the attributes and values are the same as those at `location`, clipped to `rangeLimit`.
+        /// - rangeLimit: The range over which to search for continuous presence of the attributes at `location`. This value must not exceed the bounds of the receiver.
+        ///
         /// # Safety
         ///
         /// `range` must be a valid pointer or null.
@@ -184,6 +279,19 @@ impl NSAttributedString {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Returns the value for the attribute with the specified name of the character at the specified index and, by reference, the range where the attribute applies.
+        ///
+        /// Raises an `NSRangeException` if `location` or any part of `rangeLimit` lies beyond the end of the receiver's characters.
+        ///
+        /// If you don't need the longest effective range, it's far more efficient to use `attribute:atIndex:effectiveRange:` to retrieve the attribute value.
+        ///
+        /// - Parameters:
+        /// - attrName: The name of an attribute.
+        /// - location: The index at which to test for `attrName`.
+        /// - range: If non-`NULL`, upon return contains the full range over which the value of the named attribute is the same as that at `location`, clipped to `rangeLimit`, or the full range over which the attribute does not exist. If you don't need this value, pass `NULL`.
+        /// - rangeLimit: The range over which to search for continuous presence of `attrName`. This value must not exceed the bounds of the receiver.
+        /// - Returns: The value for the attribute named `attrName` of the character at `location`, or `nil` if there is no such attribute.
+        ///
         /// # Safety
         ///
         /// `range` must be a valid pointer or null.
@@ -197,16 +305,34 @@ impl NSAttributedString {
             range_limit: NSRange,
         ) -> Option<Retained<AnyObject>>;
 
+        /// Returns a Boolean value that indicates whether the attributed string is equal to the specified string.
+        ///
+        /// This method performs a character-by-character comparison of the string and its attributes. The character and its attributes must be the same in both strings for the method to return `YES`.
+        ///
+        /// - Parameter other: The attributed string with which to compare the receiver.
+        /// - Returns: `YES` if the text and attributes in the current string and `other` are the same, otherwise `NO`.
         #[unsafe(method(isEqualToAttributedString:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToAttributedString(&self, other: &NSAttributedString) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Creates an attributed string with the specified text and no attribute information.
+        ///
+        /// - Parameter str: The text for the new attributed string.
+        /// - Returns: An `NSAttributedString` object initialized with the characters of `str` and no attribute information.
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub fn initWithString(this: Allocated<Self>, str: &NSString) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Creates an attributed string with the specified text and attributes.
+        ///
+        /// Returns an `NSAttributedString` object initialized with the characters of `str` and the attributes of `attrs`.
+        ///
+        /// - Parameters:
+        /// - str: The text for the new attributed string.
+        /// - attrs: The attributes for the new attributed string. This method applies the attributes to the entire string.
+        ///
         /// # Safety
         ///
         /// `attrs` generic should be of the correct type.
@@ -218,6 +344,10 @@ impl NSAttributedString {
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> Retained<Self>;
 
+        /// Creates a new attributed string from the contents of another attributed string.
+        ///
+        /// - Parameter attrStr: An attributed string.
+        /// - Returns: An `NSAttributedString` object initialized with the characters and attributes of `attrStr`.
         #[unsafe(method(initWithAttributedString:))]
         #[unsafe(method_family = init)]
         pub fn initWithAttributedString(
@@ -231,6 +361,14 @@ impl NSAttributedString {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// Executes the specified block for each range of attributes in the attributed string.
+        ///
+        /// If this method is called by an instance of `NSMutableAttributedString`, mutation (deletion, addition, or change) is allowed only if the mutation is within the range provided to the block. After a mutation, the enumeration continues with the range immediately following the processed range, adjusting for any change in length caused by the mutation.
+        ///
+        /// - Parameters:
+        /// - enumerationRange: The range over which the attributes are enumerated.
+        /// - opts: The options used by the enumeration.
+        /// - block: The block to apply to ranges of attributes in the attributed string.
         #[unsafe(method(enumerateAttributesInRange:options:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateAttributesInRange_options_usingBlock(
@@ -244,6 +382,15 @@ impl NSAttributedString {
         );
 
         #[cfg(all(feature = "NSRange", feature = "NSString", feature = "block2"))]
+        /// Executes the specified block for each range of a particular attribute in the attributed string.
+        ///
+        /// If this method is called by an instance of `NSMutableAttributedString`, mutation (deletion, addition, or change) is allowed only if the mutation is within the range provided to the block. After a mutation, the enumeration continues with the range immediately following the processed range, adjusting for any change in length caused by the mutation.
+        ///
+        /// - Parameters:
+        /// - attrName: The name of the attribute to enumerate.
+        /// - enumerationRange: The range over which the attribute values are enumerated.
+        /// - opts: The options used by the enumeration.
+        /// - block: A block to apply to ranges of the specified attribute in the attributed string.
         #[unsafe(method(enumerateAttribute:inRange:options:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateAttribute_inRange_options_usingBlock(
@@ -262,11 +409,23 @@ impl NSAttributedString {
 impl NSMutableAttributedString {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Creates an attributed string with the specified text and no attribute information.
+        ///
+        /// - Parameter str: The text for the new attributed string.
+        /// - Returns: An `NSAttributedString` object initialized with the characters of `str` and no attribute information.
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub fn initWithString(this: Allocated<Self>, str: &NSString) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Creates an attributed string with the specified text and attributes.
+        ///
+        /// Returns an `NSAttributedString` object initialized with the characters of `str` and the attributes of `attrs`.
+        ///
+        /// - Parameters:
+        /// - str: The text for the new attributed string.
+        /// - attrs: The attributes for the new attributed string. This method applies the attributes to the entire string.
+        ///
         /// # Safety
         ///
         /// `attrs` generic should be of the correct type.
@@ -278,6 +437,10 @@ impl NSMutableAttributedString {
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> Retained<Self>;
 
+        /// Creates a new attributed string from the contents of another attributed string.
+        ///
+        /// - Parameter attrStr: An attributed string.
+        /// - Returns: An `NSAttributedString` object initialized with the characters and attributes of `attrStr`.
         #[unsafe(method(initWithAttributedString:))]
         #[unsafe(method_family = init)]
         pub fn initWithAttributedString(
@@ -288,7 +451,28 @@ impl NSMutableAttributedString {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableattributedstring?language=objc)
+    /// A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.
+    ///
+    /// The `NSMutableAttributedString` class declares additional methods for mutating the content of an attributed string. You can add and remove characters (raw strings) and attributes separately or together as attributed strings. See the class description for ``NSAttributedString`` for more information about attributed strings.
+    ///
+    /// `NSMutableAttributedString` adds two primitive methods to those of `NSAttributedString`. These primitive methods provide the basis for all the other methods in its class. The primitive ``replaceCharacters(in:with:)-6oq9r`` method replaces a range of characters with those from a string, leaving all attribute information outside that range intact. The primitive ``setAttributes(_:range:)`` method sets attributes and values for a given range of characters, replacing any previous attributes and values for that range.
+    ///
+    /// In macOS, AppKit also uses
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nsparagraphstyle> and its subclass
+    /// <doc
+    /// ://com.apple.documentation/documentation/appkit/nsmutableparagraphstyle> to encapsulate the paragraph or ruler attributes used by the `NSAttributedString` classes.
+    ///
+    /// Note that the default font for `NSAttributedString` objects is Helvetica 12-point, which may differ from the macOS system font, so you may wish to create the string with non-default attributes suitable for your application using, for example, ``NSAttributedString/init(string:attributes:)``.
+    ///
+    /// > iOS Note:
+    /// > In iOS, this class is used primarily in conjunction with the Core Text framework.
+    ///
+    /// `NSMutableAttributedString` is "toll-free bridged" with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring>. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableattributedstring?language=objc)
     #[unsafe(super(NSAttributedString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableAttributedString;
@@ -347,11 +531,28 @@ extern_conformance!(
 impl NSMutableAttributedString {
     extern_methods!(
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Replaces the characters in the given range with the characters of the given string.
+        ///
+        /// The new characters inherit the attributes of the first replaced character from `range`. Where the length of `range` is 0, the new characters inherit the attributes of the character preceding `range` if it has any, otherwise of the character following `range`.
+        ///
+        /// Raises an `NSRangeException` if any part of `range` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameters:
+        /// - range: A range specifying the characters to replace.
+        /// - str: A string specifying the characters to replace those in `range`.
         #[unsafe(method(replaceCharactersInRange:withString:))]
         #[unsafe(method_family = none)]
         pub fn replaceCharactersInRange_withString(&self, range: NSRange, str: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// Sets the attributes for the characters in the specified range to the specified attributes.
+        ///
+        /// These new attributes replace any attributes previously associated with the characters in `range`. Raises an `NSRangeException` if any part of `range` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameters:
+        /// - attrs: A dictionary containing the attributes to set.
+        /// - range: The range of characters whose attributes are set.
+        ///
         /// # Safety
         ///
         /// `attrs` generic should be of the correct type.
@@ -389,11 +590,23 @@ impl DefaultRetained for NSMutableAttributedString {
 impl NSMutableAttributedString {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The character contents of the receiver as a mutable string object.
+        ///
+        /// The receiver tracks changes to this string and keeps its attribute mappings up to date.
         #[unsafe(method(mutableString))]
         #[unsafe(method_family = none)]
         pub fn mutableString(&self) -> Retained<NSMutableString>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Adds an attribute with the given name and value to the characters in the specified range.
+        ///
+        /// You may assign any `name`/`value` pair you wish to a range of characters. Raises an `NSInvalidArgumentException` if `name` or `value` is `nil` and an `NSRangeException` if any part of `range` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameters:
+        /// - name: A string specifying the attribute name.
+        /// - value: The attribute value associated with `name`.
+        /// - range: The range of characters to which the specified attribute/value pair applies.
+        ///
         /// # Safety
         ///
         /// `value` should be of the correct type.
@@ -407,6 +620,14 @@ impl NSMutableAttributedString {
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// Adds the given collection of attributes to the characters in the specified range.
+        ///
+        /// You may assign any name/value pair you wish to a range of characters. Raises an `NSInvalidArgumentException` if `attrs` is `nil` and an `NSRangeException` if any part of `range` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameters:
+        /// - attrs: A dictionary containing the attributes to add.
+        /// - range: The range of characters to which the specified attributes apply.
+        ///
         /// # Safety
         ///
         /// `attrs` generic should be of the correct type.
@@ -419,11 +640,25 @@ impl NSMutableAttributedString {
         );
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Removes the named attribute from the characters in the specified range.
+        ///
+        /// Raises an `NSRangeException` if any part of `range` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameters:
+        /// - name: A string specifying the attribute name to remove.
+        /// - range: The range of characters from which the specified attribute is removed.
         #[unsafe(method(removeAttribute:range:))]
         #[unsafe(method_family = none)]
         pub fn removeAttribute_range(&self, name: &NSAttributedStringKey, range: NSRange);
 
         #[cfg(feature = "NSRange")]
+        /// Replaces the characters and attributes in a given range with the characters and attributes of the given attributed string.
+        ///
+        /// Raises an `NSRangeException` if any part of `range` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameters:
+        /// - range: The range of characters and attributes replaced.
+        /// - attrString: The attributed string whose characters and attributes replace those in the specified range.
         #[unsafe(method(replaceCharactersInRange:withAttributedString:))]
         #[unsafe(method_family = none)]
         pub fn replaceCharactersInRange_withAttributedString(
@@ -432,6 +667,13 @@ impl NSMutableAttributedString {
             attr_string: &NSAttributedString,
         );
 
+        /// Inserts the characters and attributes of the given attributed string into the receiver at the given index.
+        ///
+        /// The new characters and attributes begin at the given index and the existing characters and attributes from the index to the end of the receiver are shifted by the length of the attributed string. Raises an `NSRangeException` if `loc` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameters:
+        /// - attrString: The string whose characters and attributes are inserted.
+        /// - loc: The index at which the characters and attributes are inserted.
         #[unsafe(method(insertAttributedString:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertAttributedString_atIndex(
@@ -440,50 +682,84 @@ impl NSMutableAttributedString {
             loc: NSUInteger,
         );
 
+        /// Adds the characters and attributes of a given attributed string to the end of the receiver.
+        ///
+        /// - Parameter attrString: The string whose characters and attributes are added.
         #[unsafe(method(appendAttributedString:))]
         #[unsafe(method_family = none)]
         pub fn appendAttributedString(&self, attr_string: &NSAttributedString);
 
         #[cfg(feature = "NSRange")]
+        /// Deletes the characters in the given range along with their associated attributes.
+        ///
+        /// Raises an `NSRangeException` if any part of `range` lies beyond the end of the receiver's characters.
+        ///
+        /// - Parameter range: A range specifying the characters to delete.
         #[unsafe(method(deleteCharactersInRange:))]
         #[unsafe(method_family = none)]
         pub fn deleteCharactersInRange(&self, range: NSRange);
 
+        /// Replaces the receiver's entire contents with the characters and attributes of the given attributed string.
+        ///
+        /// - Parameter attrString: The attributed string whose characters and attributes replace those in the receiver.
         #[unsafe(method(setAttributedString:))]
         #[unsafe(method_family = none)]
         pub fn setAttributedString(&self, attr_string: &NSAttributedString);
 
+        /// Begins the buffering of changes to the string's characters and attributes.
+        ///
+        /// Override this method in a subclass to buffer or optimize a series of changes to the string's characters or attributes. The string continues to buffer text until you call `endEditing`, at which time it consolidates the changes and notifies observers.
+        ///
+        /// You can nest pairs of `beginEditing` and `endEditing` messages.
         #[unsafe(method(beginEditing))]
         #[unsafe(method_family = none)]
         pub fn beginEditing(&self);
 
+        /// Ends the buffering of changes to the string's characters and attributes.
+        ///
+        /// Override this method in a subclass to consolidate changes made since a previous call to `beginEditing`. When you call this method, the string notifies observers of the changes.
+        ///
+        /// The default implementation of this method does nothing.
         #[unsafe(method(endEditing))]
         #[unsafe(method_family = none)]
         pub fn endEditing(&self);
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintent?language=objc)
+/// A type that defines presentation intent for runs of characters for traits like emphasis, strikethrough, and code voice.
+///
+/// Inline presentation intents.
+/// For use with `NSInlinePresentationAttributeName`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintent?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSInlinePresentationIntent(pub NSUInteger);
 bitflags::bitflags! {
     impl NSInlinePresentationIntent: NSUInteger {
+/// An intent that represents an emphasized presentation.
         #[doc(alias = "NSInlinePresentationIntentEmphasized")]
         const Emphasized = 1<<0;
+/// An intent that represents a strongly emphasized presentation.
         #[doc(alias = "NSInlinePresentationIntentStronglyEmphasized")]
         const StronglyEmphasized = 1<<1;
+/// An intent that represents a code voice presentation.
         #[doc(alias = "NSInlinePresentationIntentCode")]
         const Code = 1<<2;
+/// An intent that represents a strikethrough presentation.
         #[doc(alias = "NSInlinePresentationIntentStrikethrough")]
         const Strikethrough = 1<<5;
+/// An intent that represents a soft line break.
         #[doc(alias = "NSInlinePresentationIntentSoftBreak")]
         const SoftBreak = 1<<6;
+/// An intent that represents a line break.
         #[doc(alias = "NSInlinePresentationIntentLineBreak")]
         const LineBreak = 1<<7;
+/// An intent that represents an inline HTML presentation.
         #[doc(alias = "NSInlinePresentationIntentInlineHTML")]
         const InlineHTML = 1<<8;
+/// An intent that represents a block HTML presentation.
         #[doc(alias = "NSInlinePresentationIntentBlockHTML")]
         const BlockHTML = 1<<9;
         const _ = !0;
@@ -499,43 +775,57 @@ unsafe impl RefEncode for NSInlinePresentationIntent {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintentattributename?language=objc)
+    /// An attribute key whose value is an `NSNumber` wrapping a value of type `NSInlinePresentationIntent`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintentattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInlinePresentationIntentAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsalternatedescriptionattributename?language=objc)
+    /// An attribute key whose value is an `NSString` providing an alternate description.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsalternatedescriptionattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAlternateDescriptionAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsimageurlattributename?language=objc)
+    /// An attribute key whose value is an `NSURL` for an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsimageurlattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSImageURLAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslanguageidentifierattributename?language=objc)
+    /// An attribute key whose value is an `NSString` containing a BCP-47 language identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslanguageidentifierattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLanguageIdentifierAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmarkdownsourcepositionattributename?language=objc)
+    /// An attribute key whose value is an `NSAttributedStringMarkdownSourcePosition` indicating the position in the original Markdown source.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmarkdownsourcepositionattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMarkdownSourcePositionAttributeName: &'static NSAttributedStringKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingfailurepolicy?language=objc)
+/// A type that represents policies for handling parsing failures.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingfailurepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringMarkdownParsingFailurePolicy(pub NSInteger);
 impl NSAttributedStringMarkdownParsingFailurePolicy {
+    /// A policy to return an error from the initializer if parsing fails.
     #[doc(alias = "NSAttributedStringMarkdownParsingFailureReturnError")]
     pub const ReturnError: Self = Self(0);
+    /// A policy to return a partially parsed string, if possible. The returned string may include unparsed markup. If returning a partially parsed string isn't possible, the parser may return an error anyway.
     #[doc(alias = "NSAttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible")]
     pub const ReturnPartiallyParsedIfPossible: Self = Self(1);
 }
@@ -548,16 +838,21 @@ unsafe impl RefEncode for NSAttributedStringMarkdownParsingFailurePolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdowninterpretedsyntax?language=objc)
+/// A type that represents the syntax for intepreting a Markdown string.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdowninterpretedsyntax?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringMarkdownInterpretedSyntax(pub NSInteger);
 impl NSAttributedStringMarkdownInterpretedSyntax {
+    /// A syntax value that interprets the full Markdown syntax and produces all relevant attributes.
     #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxFull")]
     pub const Full: Self = Self(0);
+    /// A syntax value that parses all Markdown text, but interprets only attributes that apply to inline spans. Attributes that differentiate blocks (e.g. `NSPresentationIntentAttributeName`) will not be applied. (Extended attributes apply to inline spans, if allowed, and will also be interpreted.)
     #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnly")]
     pub const InlineOnly: Self = Self(1);
+    /// A syntax value that behaves like `NSAttributedStringMarkdownInterpretedSyntaxInlineOnly`, but does not interpret multiple consecutive instances of whitespace as a single separator space. All whitespace characters will appear in the result as they are specified in the source.
     #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace")]
     pub const InlineOnlyPreservingWhitespace: Self = Self(2);
 }
@@ -571,7 +866,9 @@ unsafe impl RefEncode for NSAttributedStringMarkdownInterpretedSyntax {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownsourceposition?language=objc)
+    /// The position of attributed string text in its original Markdown source string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownsourceposition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedStringMarkdownSourcePosition;
@@ -603,22 +900,33 @@ extern_conformance!(
 
 impl NSAttributedStringMarkdownSourcePosition {
     extern_methods!(
+        /// The line where the text begins in the Markdown source. Uses 1-based counting.
         #[unsafe(method(startLine))]
         #[unsafe(method_family = none)]
         pub fn startLine(&self) -> NSInteger;
 
+        /// The column where the text begins in the Markdown source. Uses 1-based counting. Columns represent UTF-8 indices; for multi-byte characters, the column indicates the first byte.
         #[unsafe(method(startColumn))]
         #[unsafe(method_family = none)]
         pub fn startColumn(&self) -> NSInteger;
 
+        /// The line where the text ends in the Markdown source. Uses 1-based counting.
         #[unsafe(method(endLine))]
         #[unsafe(method_family = none)]
         pub fn endLine(&self) -> NSInteger;
 
+        /// The column where the text ends in the Markdown source. Uses 1-based counting. Columns represent UTF-8 indices; for multi-byte characters, the column indicates the first byte.
         #[unsafe(method(endColumn))]
         #[unsafe(method_family = none)]
         pub fn endColumn(&self) -> NSInteger;
 
+        /// Creates a Markdown source position instance from its start and end line and column.
+        ///
+        /// - Parameters:
+        /// - startLine: The line number where text begins in the Markdown source. Specify a 1-based number.
+        /// - startColumn: The column number where text begins in the Markdown source. Specify a 1-based number. Columns represent UTF-8 indices; for multi-byte characters, the column indicates the first byte.
+        /// - endLine: The line number where the Markdown source ends. Specify a 1-based number.
+        /// - endColumn: The column number where the Markdown source ends. Specify a 1-based number.
         #[unsafe(method(initWithStartLine:startColumn:endLine:endColumn:))]
         #[unsafe(method_family = init)]
         pub fn initWithStartLine_startColumn_endLine_endColumn(
@@ -630,6 +938,12 @@ impl NSAttributedStringMarkdownSourcePosition {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// Returns a range indicating the source portion within a Markdown string.
+        ///
+        /// Use this method to access the marked-up region of `string` with an `NSRange`, rather than making manual calculations based on row and column values.
+        ///
+        /// - Parameter string: The Markdown source string that this source position object refers to.
+        /// - Returns: A range that represents the source portion within a source Markdown string.
         #[unsafe(method(rangeInString:))]
         #[unsafe(method_family = none)]
         pub fn rangeInString(&self, string: &NSString) -> NSRange;
@@ -657,7 +971,9 @@ impl DefaultRetained for NSAttributedStringMarkdownSourcePosition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingoptions?language=objc)
+    /// Options that affect the parsing of Markdown content into an attributed string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAttributedStringMarkdownParsingOptions;
@@ -679,10 +995,12 @@ extern_conformance!(
 
 impl NSAttributedStringMarkdownParsingOptions {
     extern_methods!(
+        /// Creates a Markdown parsing options instance.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// A Boolean value that indicates whether parsing allows extensions to Markdown that specify extended attributes. Defaults to `NO` (only parse CommonMark syntax).
         #[unsafe(method(allowsExtendedAttributes))]
         #[unsafe(method_family = none)]
         pub fn allowsExtendedAttributes(&self) -> bool;
@@ -692,6 +1010,9 @@ impl NSAttributedStringMarkdownParsingOptions {
         #[unsafe(method_family = none)]
         pub fn setAllowsExtendedAttributes(&self, allows_extended_attributes: bool);
 
+        /// The syntax for interpreting a Markdown string.
+        ///
+        /// If your Markdown data uses syntax that this setting excludes, the parser still parses it and includes its text in the final result. However, the relevant text won't have attributes.
         #[unsafe(method(interpretedSyntax))]
         #[unsafe(method_family = none)]
         pub fn interpretedSyntax(&self) -> NSAttributedStringMarkdownInterpretedSyntax;
@@ -704,6 +1025,7 @@ impl NSAttributedStringMarkdownParsingOptions {
             interpreted_syntax: NSAttributedStringMarkdownInterpretedSyntax,
         );
 
+        /// The policy for handling a parsing failure. The default is `NSAttributedStringMarkdownParsingFailureReturnError`.
         #[unsafe(method(failurePolicy))]
         #[unsafe(method_family = none)]
         pub fn failurePolicy(&self) -> NSAttributedStringMarkdownParsingFailurePolicy;
@@ -717,6 +1039,7 @@ impl NSAttributedStringMarkdownParsingOptions {
         );
 
         #[cfg(feature = "NSString")]
+        /// The BCP-47 language code for this document. If not `nil`, the `NSLanguageIdentifierAttributeName` attribute will be applied to any range in the returned string that doesn't otherwise specify a language attribute. The default is `nil`, which applies no attributes.
         #[unsafe(method(languageCode))]
         #[unsafe(method_family = none)]
         pub fn languageCode(&self) -> Option<Retained<NSString>>;
@@ -729,6 +1052,7 @@ impl NSAttributedStringMarkdownParsingOptions {
         #[unsafe(method_family = none)]
         pub fn setLanguageCode(&self, language_code: Option<&NSString>);
 
+        /// A Boolean value that indicates whether parsing applies attributes that indicate the position of attributed text in the original Markdown string.
         #[unsafe(method(appliesSourcePositionAttributes))]
         #[unsafe(method_family = none)]
         pub fn appliesSourcePositionAttributes(&self) -> bool;
@@ -760,6 +1084,14 @@ impl DefaultRetained for NSAttributedStringMarkdownParsingOptions {
 impl NSAttributedString {
     extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Creates an attributed string from the contents of a specified URL that contains Markdown-formatted data using the provided options.
+        ///
+        /// - Parameters:
+        /// - markdownFile: The URL to load Markdown-formatted data from.
+        /// - options: Options that affect how the initializer interprets formatting in the Markdown string. This parameter defaults to no options.
+        /// - baseURL: The base URL to use when resolving Markdown URLs. The initializer treats URLs as being relative to this URL. If this value is `nil`, the initializer doesn't resolve URLs. The default is `nil`.
+        /// - error: On return, if an error occurs, this pointer contains an actual error object with the error information. You may specify `nil` for this parameter if you don't want the error information.
+        /// - Returns: An attributed string with the parsed Markdown text and styling, or `nil` if parsing the data fails.
         #[unsafe(method(initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
@@ -770,6 +1102,14 @@ impl NSAttributedString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSURL"))]
+        /// Creates an attributed string from Markdown-formatted data using the provided options.
+        ///
+        /// - Parameters:
+        /// - markdown: The `NSData` instance that contains the Markdown formatting.
+        /// - options: Options that affect how the initializer interprets formatting in the Markdown string. This parameter defaults to no options.
+        /// - baseURL: The base URL to use when resolving Markdown URLs. The initializer treats URLs as being relative to this URL. If this value is `nil`, the initializer doesn't resolve URLs. The default is `nil`.
+        /// - error: On return, if an error occurs, this pointer contains an actual error object with the error information. You may specify `nil` for this parameter if you don't want the error information.
+        /// - Returns: An attributed string with the parsed Markdown text and styling, or `nil` if parsing the data fails.
         #[unsafe(method(initWithMarkdown:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithMarkdown_options_baseURL_error(
@@ -780,6 +1120,14 @@ impl NSAttributedString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString", feature = "NSURL"))]
+        /// Creates an attributed string from a Markdown-formatted string using the provided options.
+        ///
+        /// - Parameters:
+        /// - markdownString: The string that contains the Markdown formatting.
+        /// - options: Options that affect how the initializer interprets formatting in the Markdown string. This parameter defaults to no options.
+        /// - baseURL: The base URL to use when resolving Markdown URLs. The initializer treats URLs as being relative to this URL. If this value is `nil`, the initializer doesn't resolve URLs. The default is `nil`.
+        /// - error: On return, if an error occurs, this pointer contains an actual error object with the error information. You may specify `nil` for this parameter if you don't want the error information.
+        /// - Returns: An attributed string with the parsed Markdown text and styling, or `nil` if parsing the data fails.
         #[unsafe(method(initWithMarkdownString:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithMarkdownString_options_baseURL_error(
@@ -797,6 +1145,14 @@ impl NSAttributedString {
 impl NSMutableAttributedString {
     extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Creates an attributed string from the contents of a specified URL that contains Markdown-formatted data using the provided options.
+        ///
+        /// - Parameters:
+        /// - markdownFile: The URL to load Markdown-formatted data from.
+        /// - options: Options that affect how the initializer interprets formatting in the Markdown string. This parameter defaults to no options.
+        /// - baseURL: The base URL to use when resolving Markdown URLs. The initializer treats URLs as being relative to this URL. If this value is `nil`, the initializer doesn't resolve URLs. The default is `nil`.
+        /// - error: On return, if an error occurs, this pointer contains an actual error object with the error information. You may specify `nil` for this parameter if you don't want the error information.
+        /// - Returns: An attributed string with the parsed Markdown text and styling, or `nil` if parsing the data fails.
         #[unsafe(method(initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
@@ -807,6 +1163,14 @@ impl NSMutableAttributedString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSURL"))]
+        /// Creates an attributed string from Markdown-formatted data using the provided options.
+        ///
+        /// - Parameters:
+        /// - markdown: The `NSData` instance that contains the Markdown formatting.
+        /// - options: Options that affect how the initializer interprets formatting in the Markdown string. This parameter defaults to no options.
+        /// - baseURL: The base URL to use when resolving Markdown URLs. The initializer treats URLs as being relative to this URL. If this value is `nil`, the initializer doesn't resolve URLs. The default is `nil`.
+        /// - error: On return, if an error occurs, this pointer contains an actual error object with the error information. You may specify `nil` for this parameter if you don't want the error information.
+        /// - Returns: An attributed string with the parsed Markdown text and styling, or `nil` if parsing the data fails.
         #[unsafe(method(initWithMarkdown:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithMarkdown_options_baseURL_error(
@@ -817,6 +1181,14 @@ impl NSMutableAttributedString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString", feature = "NSURL"))]
+        /// Creates an attributed string from a Markdown-formatted string using the provided options.
+        ///
+        /// - Parameters:
+        /// - markdownString: The string that contains the Markdown formatting.
+        /// - options: Options that affect how the initializer interprets formatting in the Markdown string. This parameter defaults to no options.
+        /// - baseURL: The base URL to use when resolving Markdown URLs. The initializer treats URLs as being relative to this URL. If this value is `nil`, the initializer doesn't resolve URLs. The default is `nil`.
+        /// - error: On return, if an error occurs, this pointer contains an actual error object with the error information. You may specify `nil` for this parameter if you don't want the error information.
+        /// - Returns: An attributed string with the parsed Markdown text and styling, or `nil` if parsing the data fails.
         #[unsafe(method(initWithMarkdownString:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithMarkdownString_options_baseURL_error(
@@ -828,15 +1200,19 @@ impl NSMutableAttributedString {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingoptions?language=objc)
+/// Options to use when creating an attributed string from a format string and variable list of arguments.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringFormattingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAttributedStringFormattingOptions: NSUInteger {
+/// An option to replace the attributes in a substituted string with those of the provided attributed string.
         #[doc(alias = "NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging")]
         const InsertArgumentAttributesWithoutMerging = 1<<0;
+/// An option to apply the replacement index attribute to the replaced portions of text in a format string.
         #[doc(alias = "NSAttributedStringFormattingApplyReplacementIndexAttribute")]
         const ApplyReplacementIndexAttribute = 1<<1;
         const _ = !0;
@@ -858,7 +1234,9 @@ impl NSAttributedString {}
 impl NSMutableAttributedString {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreplacementindexattributename?language=objc)
+    /// An attribute key whose value is an `NSNumber` indicating the replacement's position in a format string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreplacementindexattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSReplacementIndexAttributeName: &'static NSAttributedStringKey;
 }
@@ -876,87 +1254,119 @@ impl NSAttributedString {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologyattributename?language=objc)
+    /// An attribute key whose value is an `NSMorphology` object that specifies the morphology for the attributed string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologyattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMorphologyAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionruleattributename?language=objc)
+    /// An attribute key whose value is an `NSInflectionRule` object that specifies the inflection rule to apply to the attributed string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionruleattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionRuleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionagreementargumentattributename?language=objc)
+    /// An attribute key whose value indicates inflection agreement with a specific argument.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionagreementargumentattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionAgreementArgumentAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionagreementconceptattributename?language=objc)
+    /// An attribute key whose value indicates inflection agreement with a specific concept.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionagreementconceptattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionAgreementConceptAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionreferentconceptattributename?language=objc)
+    /// An attribute key whose value indicates the referent concept for inflection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionreferentconceptattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionReferentConceptAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionalternativeattributename?language=objc)
+    /// An attribute key whose value provides an alternative inflection for the attributed string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionalternativeattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionAlternativeAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizednumberformatattributename?language=objc)
+    /// An attribute key whose value specifies a localized number format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizednumberformatattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedNumberFormatAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslistitemdelimiterattributename?language=objc)
+    /// An attribute key whose value is an `NSString` representing the delimiter used when declaring the current list item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslistitemdelimiterattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSListItemDelimiterAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentattributename?language=objc)
+    /// An attribute key whose value is an `NSPresentationIntent` object representing the presentation intent for a block-level element.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPresentationIntentAttributeName: &'static NSAttributedStringKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind?language=objc)
+/// An enumeration of intended display styles for blocks of text like paragraphs, lists, and code blocks.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPresentationIntentKind(pub NSInteger);
 impl NSPresentationIntentKind {
+    /// A presentation style for a paragraph of text.
     #[doc(alias = "NSPresentationIntentKindParagraph")]
     pub const Paragraph: Self = Self(0);
+    /// A presentation style for a section header.
     #[doc(alias = "NSPresentationIntentKindHeader")]
     pub const Header: Self = Self(1);
+    /// A presentation style for an ordered list of items.
     #[doc(alias = "NSPresentationIntentKindOrderedList")]
     pub const OrderedList: Self = Self(2);
+    /// A presentation style for an unordered list of items.
     #[doc(alias = "NSPresentationIntentKindUnorderedList")]
     pub const UnorderedList: Self = Self(3);
+    /// A presentation style for a list of items.
     #[doc(alias = "NSPresentationIntentKindListItem")]
     pub const ListItem: Self = Self(4);
+    /// A presentation style for a block of code.
     #[doc(alias = "NSPresentationIntentKindCodeBlock")]
     pub const CodeBlock: Self = Self(5);
+    /// A presentation style for a block quote.
     #[doc(alias = "NSPresentationIntentKindBlockQuote")]
     pub const BlockQuote: Self = Self(6);
+    /// A presentation style for a horizontal rule.
     #[doc(alias = "NSPresentationIntentKindThematicBreak")]
     pub const ThematicBreak: Self = Self(7);
+    /// A presentation style for a table.
     #[doc(alias = "NSPresentationIntentKindTable")]
     pub const Table: Self = Self(8);
+    /// A presentation style for the header row of a table.
     #[doc(alias = "NSPresentationIntentKindTableHeaderRow")]
     pub const TableHeaderRow: Self = Self(9);
+    /// A presentation style for a row of a table.
     #[doc(alias = "NSPresentationIntentKindTableRow")]
     pub const TableRow: Self = Self(10);
+    /// A presentation style for a single cell of a table.
     #[doc(alias = "NSPresentationIntentKindTableCell")]
     pub const TableCell: Self = Self(11);
 }
@@ -969,16 +1379,21 @@ unsafe impl RefEncode for NSPresentationIntentKind {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintenttablecolumnalignment?language=objc)
+/// An enumeration of values for aligning the contents of table columns.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintenttablecolumnalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPresentationIntentTableColumnAlignment(pub NSInteger);
 impl NSPresentationIntentTableColumnAlignment {
+    /// A presentation style for columns with left-aligned text.
     #[doc(alias = "NSPresentationIntentTableColumnAlignmentLeft")]
     pub const Left: Self = Self(0);
+    /// A presentation style for columns with center-aligned text.
     #[doc(alias = "NSPresentationIntentTableColumnAlignmentCenter")]
     pub const Center: Self = Self(1);
+    /// A presentation style for columns with right-aligned text.
     #[doc(alias = "NSPresentationIntentTableColumnAlignmentRight")]
     pub const Right: Self = Self(2);
 }
@@ -992,7 +1407,11 @@ unsafe impl RefEncode for NSPresentationIntentTableColumnAlignment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintent?language=objc)
+    /// A type that contains the Markdown formatting for blocks of text, like paragraphs, lists, code blocks, and parts of tables.
+    ///
+    /// An ``NSPresentationIntent`` object stores the Markdown semantics for a range of characters in an attributed string. When parsing Markdown into an attributed string, the system sets the value of the ``NSAttributedString/Key/presentationIntentAttributeName`` attribute to an instance of this class. When displaying your string in system views, the system applies a default visual style to match the corresponding information in this type. To replace the system's default formatting, remove these attributes from your attributed string and apply the formatting you want.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPresentationIntent;
@@ -1024,16 +1443,24 @@ extern_conformance!(
 
 impl NSPresentationIntent {
     extern_methods!(
+        /// The type of the intent.
         #[unsafe(method(intentKind))]
         #[unsafe(method_family = none)]
         pub fn intentKind(&self) -> NSPresentationIntentKind;
 
         // -init (unavailable)
 
+        /// The parent of the current intent.
         #[unsafe(method(parentIntent))]
         #[unsafe(method_family = none)]
         pub fn parentIntent(&self) -> Option<Retained<NSPresentationIntent>>;
 
+        /// Creates a paragraph intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - parent: The parent intent of the paragraph.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindParagraph`.
         #[unsafe(method(paragraphIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn paragraphIntentWithIdentity_nestedInsideIntent(
@@ -1041,6 +1468,13 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// Creates a header intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - level: The level for the header section. Specify `1` or greater for this parameter. Don't specify `0`.
+        /// - parent: The parent intent of the header.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindHeader`.
         #[unsafe(method(headerIntentWithIdentity:level:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn headerIntentWithIdentity_level_nestedInsideIntent(
@@ -1050,6 +1484,13 @@ impl NSPresentationIntent {
         ) -> Retained<NSPresentationIntent>;
 
         #[cfg(feature = "NSString")]
+        /// Creates a code-block intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - languageHint: The programming language for the code listing.
+        /// - parent: The parent intent of the code block.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindCodeBlock`.
         #[unsafe(method(codeBlockIntentWithIdentity:languageHint:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn codeBlockIntentWithIdentity_languageHint_nestedInsideIntent(
@@ -1058,6 +1499,12 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// Creates a thematic break intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - parent: The parent intent of the thematic break.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindThematicBreak`.
         #[unsafe(method(thematicBreakIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn thematicBreakIntentWithIdentity_nestedInsideIntent(
@@ -1065,6 +1512,12 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// Creates an ordered list intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - parent: The parent intent of the ordered list.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindOrderedList`.
         #[unsafe(method(orderedListIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn orderedListIntentWithIdentity_nestedInsideIntent(
@@ -1072,6 +1525,12 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// Creates an unordered list intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - parent: The parent intent of the unordered list.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindUnorderedList`.
         #[unsafe(method(unorderedListIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn unorderedListIntentWithIdentity_nestedInsideIntent(
@@ -1079,6 +1538,13 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// Creates a list item intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - ordinal: The ordinal number of the list item.
+        /// - parent: The parent intent of the list item.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindListItem`.
         #[unsafe(method(listItemIntentWithIdentity:ordinal:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn listItemIntentWithIdentity_ordinal_nestedInsideIntent(
@@ -1087,6 +1553,12 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// Creates a block quote intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - parent: The parent intent of the block quote.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindBlockQuote`.
         #[unsafe(method(blockQuoteIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn blockQuoteIntentWithIdentity_nestedInsideIntent(
@@ -1095,6 +1567,14 @@ impl NSPresentationIntent {
         ) -> Retained<NSPresentationIntent>;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
+        /// Creates a table intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - columnCount: The number of columns in the table.
+        /// - alignments: An array of `NSNumber` values indicating the alignment of each column.
+        /// - parent: The parent intent of the table.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindTable`.
         #[unsafe(method(tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn tableIntentWithIdentity_columnCount_alignments_nestedInsideIntent(
@@ -1104,6 +1584,12 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// Creates a table header row intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - parent: The parent intent of the table header row.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindTableHeaderRow`.
         #[unsafe(method(tableHeaderRowIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn tableHeaderRowIntentWithIdentity_nestedInsideIntent(
@@ -1111,6 +1597,13 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// Creates a table row intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - row: The row number (0-based).
+        /// - parent: The parent intent of the table row.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindTableRow`.
         #[unsafe(method(tableRowIntentWithIdentity:row:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn tableRowIntentWithIdentity_row_nestedInsideIntent(
@@ -1119,6 +1612,13 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// Creates a table cell intent with the provided information.
+        ///
+        /// - Parameters:
+        /// - identity: The unique identifier for the intent.
+        /// - column: The column number (0-based).
+        /// - parent: The parent intent of the table cell.
+        /// - Returns: A new intent with the kind set to `NSPresentationIntentKindTableCell`.
         #[unsafe(method(tableCellIntentWithIdentity:column:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
         pub fn tableCellIntentWithIdentity_column_nestedInsideIntent(
@@ -1127,55 +1627,77 @@ impl NSPresentationIntent {
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        /// An integer value which uniquely identifies this intent in the document. Identity disambiguates attributes which apply to contiguous text -- for example, two headers in a row with the same level. It can also be used to track the location in an attributed string of a particular part of a document, even after mutation.
+        /// A unique identifier for the intent in the document.
+        ///
+        /// Use the value in this property to disambiguate attributes that apply to contiguous text. For example, you might use it to differentiate between two headers in a row with the same level.
         #[unsafe(method(identity))]
         #[unsafe(method_family = none)]
         pub fn identity(&self) -> NSInteger;
 
-        /// If the intent is not a list, this value is 0.
+        /// The number for an item in an ordered list.
+        ///
+        /// If the intent is not a list, the value of this property is `0`.
         #[unsafe(method(ordinal))]
         #[unsafe(method_family = none)]
         pub fn ordinal(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
-        /// If the intent is not a table, this value is `nil`.
+        /// The alignments for the columns in a table.
+        ///
+        /// If the intent is not a table, the value of this property is `nil`.
         #[unsafe(method(columnAlignments))]
         #[unsafe(method_family = none)]
         pub fn columnAlignments(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
-        /// If the intent is not a table, this value is 0.
+        /// The number of columns in a table.
+        ///
+        /// If the intent is not a table, the value of this property is `0`.
         #[unsafe(method(columnCount))]
         #[unsafe(method_family = none)]
         pub fn columnCount(&self) -> NSInteger;
 
-        /// If the intent is not a header, this value is 0.
+        /// The level of a header section.
+        ///
+        /// This value corresponds to the number of hash marks (`#`) associated with the header. If the intent is not a header, the value of this property is `0`.
         #[unsafe(method(headerLevel))]
         #[unsafe(method_family = none)]
         pub fn headerLevel(&self) -> NSInteger;
 
         #[cfg(feature = "NSString")]
-        /// If the intent is not a code block, this value is `nil`.
+        /// The language associated with the code listing.
+        ///
+        /// If the intent is not a code block, the value of this property is `nil`.
         #[unsafe(method(languageHint))]
         #[unsafe(method_family = none)]
         pub fn languageHint(&self) -> Option<Retained<NSString>>;
 
-        /// The column to which this cell belongs (0-based). If the intent is not a cell, this value is 0.
+        /// The column number to which the cell belongs.
+        ///
+        /// The value of this property is `0`-based, with the first column at `0`, the second column at `1`, and so on. If the intent is not a cell, this value is `0`.
         #[unsafe(method(column))]
         #[unsafe(method_family = none)]
         pub fn column(&self) -> NSInteger;
 
-        /// The row to which this cell belongs (0-based). If the intent is not a row, this value is 0. Header rows are always row 0. If the table has more rows, those start at row 1.
+        /// The row number to which this cell belongs.
+        ///
+        /// The value of this property is `0`-based, with the first row at `0`, the second row at `1`, and so on. If the intent is not a cell, this value is `0`.
         #[unsafe(method(row))]
         #[unsafe(method_family = none)]
         pub fn row(&self) -> NSInteger;
 
-        /// The indentation level of this intent. Each nested list increases the indentation level by one; all elements within the same list (and not then nested into a child list intent) have the same indentation level.
-        /// Text outside list intents has an indentation level of 0.
+        /// The indentation level of the intent.
+        ///
+        /// The initial list has an indentation level of `0`. Each time you nest a new list, the indentation level increases by `1`. All elements within the same list have the same indentation level. Text outside list intents has an indentation level of `0`.
         #[unsafe(method(indentationLevel))]
         #[unsafe(method_family = none)]
         pub fn indentationLevel(&self) -> NSInteger;
 
-        /// Returns `YES` if this intent is equivalent to the other presentation intent. Equivalence is the same as equality except that identity is not taken into account.
+        /// Returns a Boolean value that indicates whether the current intent is equivalent to the specified intent.
+        ///
+        /// Two intents are equivalent if their attributes match. This method doesn't consider the `identity` property of the intents when determining their equivalence.
+        ///
+        /// - Parameter other: The other intent to use in the comparison.
+        /// - Returns: `YES` if the current intent is equivalent to the specified intent, or `NO` if it isn't.
         #[unsafe(method(isEquivalentToPresentationIntent:))]
         #[unsafe(method_family = none)]
         pub fn isEquivalentToPresentationIntent(&self, other: &NSPresentationIntent) -> bool;

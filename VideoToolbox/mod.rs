@@ -144,6 +144,8 @@ pub use self::__VTCompressionProperties::kVTCameraCalibrationLensRole_Right;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPreset_Balanced;
 #[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPreset_ConsistentQuality;
+#[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPreset_HighQuality;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPreset_HighSpeed;
@@ -204,6 +206,8 @@ pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_ColorPrimarie
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_ConstantBitRate;
 #[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_ConstantQualityFactor;
+#[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_ContentLightLevelInfo;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_DataRateLimits;
@@ -241,6 +245,8 @@ pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_HorizontalDis
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_HorizontalFieldOfView;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_ICCProfile;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_LogTransferFunction;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs;
 #[cfg(feature = "VTCompressionProperties")]
@@ -471,6 +477,8 @@ pub use self::__VTCompressionProperties::kVTProfileLevel_MP4V_Simple_L1;
 pub use self::__VTCompressionProperties::kVTProfileLevel_MP4V_Simple_L2;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTProfileLevel_MP4V_Simple_L3;
+#[cfg(feature = "VTCompressionProperties")]
+pub use self::__VTCompressionProperties::kVTProjectionKind_AppleImmersiveVideo;
 #[cfg(feature = "VTCompressionProperties")]
 pub use self::__VTCompressionProperties::kVTProjectionKind_Equirectangular;
 #[cfg(feature = "VTCompressionProperties")]
@@ -708,6 +716,8 @@ pub use self::__VTErrors::kVTImageRotationNotSupportedErr;
 pub use self::__VTErrors::kVTInsufficientSourceColorDataErr;
 #[cfg(feature = "VTErrors")]
 pub use self::__VTErrors::kVTInvalidSessionErr;
+#[cfg(feature = "VTErrors")]
+pub use self::__VTErrors::kVTLogTransferFunctionMismatchErr;
 #[cfg(feature = "VTErrors")]
 pub use self::__VTErrors::kVTMultiPassStorageIdentifierMismatchErr;
 #[cfg(feature = "VTErrors")]

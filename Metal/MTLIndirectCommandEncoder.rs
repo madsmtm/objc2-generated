@@ -316,7 +316,7 @@ extern_protocol!(
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setFrontFacingWinding:))]
         #[unsafe(method_family = none)]
-        fn setFrontFacingWinding(&self, front_facing_windning: MTLWinding);
+        fn setFrontFacingWinding(&self, front_facing_winding: MTLWinding);
 
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setTriangleFillMode:))]

@@ -7,9 +7,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// A NSURLDownload loads a request and saves the downloaded data to a file. The progress of the download
-    /// is reported via the NSURLDownloadDelegate protocol. Note: The word "download" is used to refer to the process
-    /// of loading data off a network, decoding the data if necessary and saving the data to a file.
+    /// An object that downloads a resource asynchronously and saves the data to a file.
+    ///
+    /// > Important:
+    /// > This API is considered legacy. Use ``URLSession`` instead.
+    ///
+    /// The interface for ``NSURLDownload`` provides methods to initialize a download, set the destination path and cancel loading the request.
+    ///
+    /// The delegate object assigned to each instance of this class should implement the methods defined by the ``NSURLDownloadDelegate`` protocol. These methods provide the delegate with the current status of in-progress asynchronous downloads and allow the delegate to customize the URL loading process. These delegate methods are called on the thread that started the asynchronous load operation for the associated ``NSURLDownload`` object.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurldownload?language=objc)
     #[unsafe(super(NSObject))]
@@ -24,26 +29,36 @@ extern_conformance!(
 impl NSURLDownload {
     extern_methods!(
         #[cfg(feature = "NSString")]
-        /// Returns whether or not NSURLDownload can resume a download that was decoded with a given encoding MIME type.
+        /// Returns whether a URL download object can resume a download that was decoded with the specified MIME type.
         ///
-        /// Parameter `MIMEType`: The encoding MIME type.
+        /// The MIME type of a file, in conjunction with the value returned by the `download:shouldDecodeSourceDataOfMIMEType:` delegate method, determines whether the `NSURLDownload` class should decode or decompress the incoming data as it is received.
         ///
-        /// canResumeDownloadDecodedWithEncodingMIMEType: returns whether or not NSURLDownload can resume a download
-        /// that was decoded with a given encoding MIME type.  NSURLDownload cannot resume a download that was partially decoded
-        /// in the gzip format for example. In order to ensure that a download can be later resumed,
-        /// canResumeDownloadDecodedWithEncodingMIMEType: should be used when download:shouldDecodeSourceDataOfMIMEType: is called.
+        /// Some compression techniques, such as the `DEFLATE` algorithm (`gzip`) use symbol dictionaries that vary during the compression process, making it impractical to decompress only a portion of the data starting in the middle. For this reason, this method returns `NO` unless both of the following conditions are met:
+        ///
+        /// - The MIME type is of a type that the `NSURLDownload` class knows how to decompress or decode.
+        /// - The decoding can be safely resumed.
+        ///
+        /// In practice, this method returns `YES` for MacBinary and BinHex, otherwise `NO`.
+        ///
+        /// If your app needs to be able to resume file downloads in `gzip` format, your `download:shouldDecodeSourceDataOfMIMEType:` method must return `NO`, and you must decode the resulting file yourself after you finish downloading it in its entirety.
+        ///
+        /// - Parameter MIMEType: The MIME type the caller wants to know about.
+        /// - Returns: `YES` if the URL download object can resume a download that was decoded with the specified MIME type, `NO` otherwise.
         #[unsafe(method(canResumeDownloadDecodedWithEncodingMIMEType:))]
         #[unsafe(method_family = none)]
         pub fn canResumeDownloadDecodedWithEncodingMIMEType(mime_type: &NSString) -> bool;
 
         #[cfg(feature = "NSURLRequest")]
-        /// Initializes a NSURLDownload object and starts the download.
+        /// Initializes an `NSURLDownload` object and starts the download.
         ///
-        /// Parameter `request`: The request to download. Must not be nil.
+        /// The `request` object is deep-copied as part of the initialization process. Changes made to `request` after this method returns do not affect the request that is used for the loading process.
         ///
-        /// Parameter `delegate`: The delegate of the download.
+        /// Delegate messages will be sent on the thread which calls this method. For the download to work correctly, the calling thread's run loop must be operating in the default run loop mode.
         ///
-        /// Returns: An initialized NSURLDownload object.
+        /// - Parameters:
+        /// - request: The request to download. Must not be `nil`.
+        /// - delegate: The delegate of the download. The `NSURLDownload` class maintains a strong reference to this delegate object.
+        /// - Returns: An initialized `NSURLDownload` object for `request`.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[unsafe(method(initWithRequest:delegate:))]
         #[unsafe(method_family = init)]
@@ -54,15 +69,15 @@ impl NSURLDownload {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
-        /// Initializes a NSURLDownload object for resuming a previous download.
+        /// Initializes an `NSURLDownload` object for resuming a previous download and begins the download.
         ///
-        /// Parameter `resumeData`: The resume data from the previous download.
+        /// If you want to support pausing and resuming downloads, your app must call ``deletesFileUponFailure`` passing `NO` immediately after initializing the download, then call ``cancel()`` to pause, and ``resumeData`` to obtain the data needed to resume later.
         ///
-        /// Parameter `delegate`: The delegate of the download.
-        ///
-        /// Parameter `path`: The path of the incomplete downloaded file.
-        ///
-        /// Returns: An initialized NSURLDownload object.
+        /// - Parameters:
+        /// - resumeData: The resume data from the previous download.
+        /// - delegate: The delegate of the download. The `NSURLDownload` class maintains a strong reference to this delegate object.
+        /// - path: The location for the downloaded data.
+        /// - Returns: An initialized `NSURLDownload` object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[unsafe(method(initWithResumeData:delegate:path:))]
         #[unsafe(method_family = init)]
@@ -73,7 +88,9 @@ impl NSURLDownload {
             path: &NSString,
         ) -> Retained<Self>;
 
-        /// Cancels the download and deletes the downloaded file.
+        /// Cancels the receiver's download and deletes the downloaded file.
+        ///
+        /// This method deletes the partially downloaded file unless you have previously called ``deletesFileUponFailure``, passing `NO`.
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub fn cancel(&self);
@@ -81,48 +98,36 @@ impl NSURLDownload {
         #[cfg(feature = "NSString")]
         /// Sets the destination path of the downloaded file.
         ///
-        /// Parameter `path`: The destination path of the downloaded file.
+        /// If `allowOverwrite` is `NO` and a file already exists at `path`, a unique filename will be created by appending a number to the filename. The delegate can implement ``NSURLDownloadDelegate/download(_:didCreateDestination:)`` to determine the filename used when the file is written to disk.
         ///
-        /// Parameter `allowOverwrite`: Allows a file of the same path to be overwritten.
+        /// An `NSURLDownload` instance ignores multiple calls to this method.
         ///
-        /// This method can be called after the download is created or in response to the
-        /// decideDestinationWithSuggestedFilename: delegate method. It should only be called once.
-        /// If NO is passed for allowOverwrite and a file of the same path exists, a number will be
-        /// appended to the filename to prevent the overwrite. Because of this, use the path
-        /// passed with didCreateDestination: to determine the actual path of the downloaded file.
+        /// - Parameters:
+        /// - path: The path for the downloaded file.
+        /// - allowOverwrite: `YES` if an existing file at `path` can be replaced, `NO` otherwise.
         #[unsafe(method(setDestination:allowOverwrite:))]
         #[unsafe(method_family = none)]
         pub fn setDestination_allowOverwrite(&self, path: &NSString, allow_overwrite: bool);
 
         #[cfg(feature = "NSURLRequest")]
-        /// Returns the request of the download.
-        ///
-        /// Returns: The request of the download.
+        /// The URL request that initiated the receiver's download.
         #[unsafe(method(request))]
         #[unsafe(method_family = none)]
         pub fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSData")]
-        /// Returns the resume data of a download that is incomplete.
+        /// The resume data for a download that is not yet complete.
         ///
-        /// Returns: The resume data.
+        /// This data represents the necessary state information that an `NSURLDownload` object needs to resume a download. The resume data can later be used when initializing a download with `initWithResumeData:delegate:path:`. Returns `nil` if the download is not able to be resumed.
         ///
-        /// resumeData returns the resume data of a download that is incomplete. This data represents the necessary
-        /// state information that NSURLDownload needs to resume a download. The resume data can later be used when initializing
-        /// a download with initWithResumeData:delegate:path:. Non-nil is returned if resuming the download seems possible.
-        /// Non-nil is returned if the download was cancelled or ended in error after some but not all data has been received.
-        /// The protocol of the download as well as the server must support resuming for non-nil to be returned.
-        /// In order to later resume a download, be sure to call setDeletesFileUponFailure: with NO.
+        /// Resume data is returned only if both the protocol and the server support resuming.
         #[unsafe(method(resumeData))]
         #[unsafe(method_family = none)]
         pub fn resumeData(&self) -> Option<Retained<NSData>>;
 
-        /// Sets whether or not the downloaded file should be deleted upon failure.
-        /// 1
+        /// Whether the receiver deletes partially downloaded files when a download stops prematurely.
         ///
-        /// To allow the download to be resumed in case the download ends prematurely,
-        /// deletesFileUponFailure must be set to NO as soon as possible to prevent the downloaded file
-        /// from being deleted. deletesFileUponFailure is YES by default.
+        /// The default value is `YES`. To allow the download to be resumed in case the download ends prematurely, set this property to `NO` as soon as possible to prevent the downloaded file from being deleted.
         #[unsafe(method(deletesFileUponFailure))]
         #[unsafe(method_family = none)]
         pub fn deletesFileUponFailure(&self) -> bool;
@@ -155,31 +160,64 @@ impl DefaultRetained for NSURLDownload {
 }
 
 extern_protocol!(
-    /// The NSURLDownloadDelegate delegate is used to report the progress of the download.
+    /// A protocol that URL download delegates implement to interact with a URL download request.
+    ///
+    /// The ``NSURLDownloadDelegate`` protocol defines methods that allow an object to receive informational callbacks about the asynchronous load of a download's URL request. Other delegate methods provide facilities that allow the delegate to customize the process of performing an asynchronous URL load.
+    ///
+    /// Note that these delegate methods will be called on the thread that started the asynchronous load operation for the associated ``NSURLDownload`` object.
+    ///
+    /// - A ``downloadDidBegin(_:)`` message will be sent to the delegate immediately upon starting the download.
+    /// - Zero or more ``download(_:willSend:redirectResponse:)`` messages will be sent to the delegate before any further messages are sent if it is determined that the download must redirect to a new location. The delegate can allow the redirect, modify the destination or deny the redirect.
+    /// - Zero or more ``download(_:didReceive:)-1pc0v`` messages will be sent to the delegate if it is necessary to authenticate in order to download the request and NSURLDownload does not already have authenticated credentials.
+    /// - Zero or more ``download(_:didCancel:)`` messages will be sent to the delegate if ``NSURLDownload`` cancels the authentication challenge due to encountering a protocol implementation error.
+    /// - Zero or more ``download(_:didReceive:)-817z3`` messages will be sent to the delegate before receiving a ``download(_:didReceiveDataOfLength:)`` message. The only case where ``download(_:didReceive:)-817z3`` is not sent to a delegate is when the protocol implementation encounters an error before a response could be created.
+    /// - Zero or more ``download(_:didReceiveDataOfLength:)`` messages will be sent before ``downloadDidFinish(_:)`` or ``download(_:didFailWithError:)`` is sent to the delegate.
+    /// - Zero or one ``download(_:decideDestinationWithSuggestedFilename:)`` will be sent to the delegate when sufficient information has been received to determine the suggested filename for the downloaded file. The delegate will not receive this message if ``NSURLDownload/setDestination(_:allowOverwrite:)`` has already been sent to the ``NSURLDownload`` instance.
+    /// - A ``download(_:didCreateDestination:)`` message will be sent to the delegate when the ``NSURLDownload`` instance creates the file on disk.
+    /// - If NSURLDownload determines that the downloaded file is in a format that it is able to decode (MacBinary, Binhex or gzip), the delegate will receive a ``download(_:shouldDecodeSourceDataOfMIMEType:)``. The delegate should return
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> to decode the data,
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> otherwise.
+    /// - Unless an ``NSURLDownload`` instance receives a ``NSURLDownload/cancel()`` message, the delegate will receive one and only one ``downloadDidFinish(_:)`` or ``download(_:didFailWithError:)`` message, but never both. In addition, once either of these messages are sent, the delegate will receive no further messages for the given ``NSURLDownload``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate?language=objc)
     pub unsafe trait NSURLDownloadDelegate: NSObjectProtocol {
-        /// This method is called immediately after the download has started.
+        /// Sent immediately after a download object begins a download.
         ///
-        /// Parameter `download`: The download that just started downloading.
+        /// - Parameter download: The download that just started downloading.
         #[optional]
         #[unsafe(method(downloadDidBegin:))]
         #[unsafe(method_family = none)]
         fn downloadDidBegin(&self, download: &NSURLDownload);
 
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
-        /// This method is called if the download must load another request because the previous
-        /// request was redirected.
-        ///
-        /// Parameter `download`: The download that will send the request.
-        ///
-        /// Parameter `request`: The request that will be used to continue loading.
-        ///
-        /// Returns: The request to be used; either the request parameter or a replacement. If nil is returned,
-        /// the download is cancelled.
+        /// Sent when the download object determines that it must change URLs in order to continue loading a request.
         ///
         /// This method gives the delegate an opportunity to inspect the request
         /// that will be used to continue loading the request, and modify it if necessary.
+        ///
+        /// If the delegate wishes to cancel the redirect, it should call the `download` object's
+        /// ``NSURLDownload/cancel()`` method. Alternatively, the delegate method can return `nil` to cancel
+        /// the redirect, and the download will continue to process. This has special relevance in the case
+        /// where `redirectResponse` is not `nil`. In this case, any data that is loaded for the download will
+        /// be sent to the delegate, and the delegate will receive a ``NSURLDownloadDelegate/downloadDidFinish(_:)``
+        /// or ``NSURLDownloadDelegate/download(_:didFailWithError:)`` message, as appropriate.
+        ///
+        /// The delegate can receive this message as a result of transforming a request's URL to its canonical
+        /// form, or for protocol-specific reasons, such as an HTTP redirect. The delegate implementation
+        /// should be prepared to receive this message multiple times.
+        ///
+        /// - Parameters:
+        /// - download: The download that will send the request.
+        /// - request: The proposed redirected request. The delegate should inspect the redirected request to
+        /// verify that it meets its needs, and create a copy with new attributes to return to the connection
+        /// if necessary.
+        /// - redirectResponse: The URL response that caused the redirect. May be `nil` in cases where this
+        /// method is not being sent as a result of involving the delegate in redirect processing.
+        /// - Returns: The actual URL request to use in light of the redirection response. The delegate may copy
+        /// and modify `request` as necessary to change its attributes, return `request` unmodified, or return
+        /// `nil` to cancel the redirect.
         #[optional]
         #[unsafe(method(download:willSendRequest:redirectResponse:))]
         #[unsafe(method_family = none)]
@@ -191,20 +229,18 @@ extern_protocol!(
         ) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "NSURLProtectionSpace")]
-        /// This method gives the delegate an opportunity to inspect an NSURLProtectionSpace before an authentication attempt is made.
+        /// Sent to determine whether the delegate is able to respond to a protection space's form of authentication.
         ///
-        /// If implemented, will be called before connection:didReceiveAuthenticationChallenge
-        /// to give the delegate a chance to inspect the protection space that will be authenticated against.  Delegates should determine
-        /// if they are prepared to respond to the authentication method of the protection space and if so, return YES, or NO to
-        /// allow default processing to handle the authentication.  If this delegate is not implemented, then default
-        /// processing will occur (typically, consulting
-        /// the user's keychain and/or failing the connection attempt.
+        /// This method is called before ``NSURLDownloadDelegate/download(_:didReceive:)-1pc0v``, allowing
+        /// the delegate to inspect a protection space before attempting to authenticate against it. By returning
+        /// `YES`, the delegate indicates that it can handle the form of authentication, which it does in the
+        /// subsequent call to ``NSURLDownloadDelegate/download(_:didReceive:)-1pc0v``. Not implementing this
+        /// method is the same as returning `NO`, in which case default authentication handling is used.
         ///
-        /// Parameter `connection`: an NSURLConnection that has an NSURLProtectionSpace ready for inspection
-        ///
-        /// Parameter `protectionSpace`: an NSURLProtectionSpace that will be used to generate an authentication challenge
-        ///
-        /// Returns: a boolean value that indicates the willingness of the delegate to handle the authentication
+        /// - Parameters:
+        /// - connection: The download sending the message.
+        /// - protectionSpace: The protection space that generates an authentication challenge.
+        /// - Returns: `YES` if the delegate can handle the authentication, `NO` otherwise.
         #[optional]
         #[unsafe(method(download:canAuthenticateAgainstProtectionSpace:))]
         #[unsafe(method_family = none)]
@@ -215,15 +251,31 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "NSURLAuthenticationChallenge")]
-        /// Start authentication for a given challenge
+        /// Sent when the URL download must authenticate a challenge in order to download the request.
         ///
-        /// Parameter `download`: The download that needs authentication.
+        /// This method gives the delegate the opportunity to determine the course of action taken for the
+        /// challenge: provide credentials, continue without providing credentials, or cancel the authentication
+        /// challenge and the download.
         ///
-        /// Parameter `challenge`: The NSURLAuthenticationChallenge for which to start authentication.
+        /// The delegate can determine the number of previous authentication challenges by sending the message
+        /// ``URLAuthenticationChallenge/previousFailureCount`` to `challenge`.
         ///
-        /// Call useCredential:forAuthenticationChallenge:,
-        /// continueWithoutCredentialForAuthenticationChallenge: or cancel on
-        /// the connection sender when done.
+        /// If the delegate implements this method, the download will suspend until `[challenge sender]` is sent
+        /// one of the following messages: ``URLAuthenticationChallengeSender/use(_:for:)``,
+        /// ``URLAuthenticationChallengeSender/continueWithoutCredential(for:)``, or
+        /// ``URLAuthenticationChallengeSender/cancel(_:)``.
+        ///
+        /// If the delegate does not implement this method, the default implementation is used. If a valid
+        /// credential for the request is provided as part of the URL, or is available from the
+        /// `NSURLCredentialStorage`, the `[challenge sender]` is sent a
+        /// ``URLAuthenticationChallengeSender/use(_:for:)`` with the credential. If the challenge has no
+        /// credential or the credentials fail to authorize access, then
+        /// ``URLAuthenticationChallengeSender/continueWithoutCredential(for:)`` is sent to `[challenge sender]`
+        /// instead.
+        ///
+        /// - Parameters:
+        /// - download: The download that needs authentication.
+        /// - challenge: The `NSURLAuthenticationChallenge` for which to start authentication.
         #[optional]
         #[unsafe(method(download:didReceiveAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
@@ -234,11 +286,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSURLAuthenticationChallenge")]
-        /// Cancel authentication for a given request
+        /// Sent if an authentication challenge is canceled due to the protocol implementation encountering an error.
         ///
-        /// Parameter `download`: The download that's cancelling
+        /// If the delegate receives this message, the download will fail and the delegate will receive
+        /// a ``NSURLDownloadDelegate/download(_:didFailWithError:)`` message.
         ///
-        /// Parameter `challenge`: The NSURLAuthenticationChallenge to cancel authentication for
+        /// - Parameters:
+        /// - download: The download that's cancelling.
+        /// - challenge: The `NSURLAuthenticationChallenge` to cancel authentication for.
         #[optional]
         #[unsafe(method(download:didCancelAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
@@ -248,54 +303,49 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
-        /// This method allows the delegate to inform the url loader that it
-        /// should not consult the credential storage for the download.
+        /// Sent to determine whether the URL loader should consult the credential storage to authenticate the download.
         ///
-        /// This method will be called before any attempt to authenticate is
-        /// attempted on a download.  By returning NO the delegate is telling the
-        /// download to not consult the credential storage and taking responsibility
-        /// for providing any credentials for authentication challenges.  Not implementing
-        /// this method is the same as returning YES.  The delegate is free to consult the
-        /// credential storage itself when it receives a didReceiveAuthenticationChallenge
-        /// message.
+        /// This method is called before any attempt to authenticate is made. By returning `NO`, the delegate
+        /// tells the download not to consult the credential storage and takes responsibility for providing any
+        /// credentials for authentication challenges. Not implementing this method is the same as returning `YES`.
+        /// The delegate is free to consult the credential storage itself when it receives a
+        /// ``NSURLDownloadDelegate/download(_:didReceive:)-1pc0v`` message.
         ///
-        /// Parameter `download`: the NSURLDownload object asking if it should consult the credential storage.
-        ///
-        /// Returns: NO if the download should not consult the credential storage, Yes if it should.
+        /// - Parameter download: The `NSURLDownload` object asking if it should consult the credential storage.
+        /// - Returns: `NO` if the download should not consult the credential storage, `YES` if it should.
         #[optional]
         #[unsafe(method(downloadShouldUseCredentialStorage:))]
         #[unsafe(method_family = none)]
         fn downloadShouldUseCredentialStorage(&self, download: &NSURLDownload) -> bool;
 
         #[cfg(feature = "NSURLResponse")]
-        /// This method is called when the download has received a response from the server.
+        /// Sent when a download object has received sufficient load data to construct the `NSURLResponse` object for the download.
         ///
-        /// Parameter `download`: The download that now has a NSURLResponse available for inspection.
+        /// In some rare cases, multiple responses may be received for a single download. This occurs
+        /// with multipart/x-mixed-replace, or "server push". In this case, the client should assume that
+        /// each new response resets progress so far for the resource back to 0, and should check the new
+        /// response for the expected content length.
         ///
-        /// Parameter `response`: The NSURLResponse object for the given download.
-        ///
-        /// In some rare cases, multiple responses may be received for a single download.
-        /// This occurs with multipart/x-mixed-replace, or "server push". In this case, the client
-        /// should assume that each new response resets progress so far for the resource back to 0,
-        /// and should check the new response for the expected content length.
+        /// - Parameters:
+        /// - download: The download that now has an `NSURLResponse` available for inspection.
+        /// - response: The `NSURLResponse` object for the given download. `response` is immutable
+        /// and will not be modified after this method is called.
         #[optional]
         #[unsafe(method(download:didReceiveResponse:))]
         #[unsafe(method_family = none)]
         fn download_didReceiveResponse(&self, download: &NSURLDownload, response: &NSURLResponse);
 
         #[cfg(feature = "NSURLResponse")]
-        /// This method is called when the download has received a response from the server after attempting to
-        /// resume a download.
+        /// Sent when a download object has received a response from the server after attempting to resume a download.
         ///
-        /// Parameter `download`: The download that now has a NSURLResponse available for inspection.
+        /// This method is called instead of ``NSURLDownloadDelegate/download(_:didReceive:)-817z3`` when a
+        /// download is initialized with `initWithResumeData:delegate:path:`.
         ///
-        /// Parameter `response`: The NSURLResponse object for the given download.
-        ///
-        /// Parameter `startingByte`: The number of bytes from where the download will resume. 0 indicates that the download will
-        /// restart from the beginning.
-        ///
-        /// download:willResumeWithResponse:fromByte: is called instead of download:didReceiveResponse:
-        /// when a download is initialized with initWithResumeData:delegate:path:.
+        /// - Parameters:
+        /// - download: The download that now has an `NSURLResponse` available for inspection.
+        /// - response: The `NSURLResponse` object for the given download.
+        /// - startingByte: The number of bytes from where the download will resume. 0 indicates that the
+        /// download will restart from the beginning.
         #[optional]
         #[unsafe(method(download:willResumeWithResponse:fromByte:))]
         #[unsafe(method_family = none)]
@@ -306,30 +356,31 @@ extern_protocol!(
             starting_byte: c_longlong,
         );
 
-        /// This method is called when the download has loaded data.
-        ///
-        /// Parameter `download`: The download that has received data.
-        ///
-        /// Parameter `length`: The length of the received data.
+        /// Sent as a download object receives data incrementally.
         ///
         /// This method will be called one or more times.
+        ///
+        /// - Parameters:
+        /// - download: The download that has received data.
+        /// - length: The amount of data received in this increment of the download, measured in bytes.
         #[optional]
         #[unsafe(method(download:didReceiveDataOfLength:))]
         #[unsafe(method_family = none)]
         fn download_didReceiveDataOfLength(&self, download: &NSURLDownload, length: NSUInteger);
 
         #[cfg(feature = "NSString")]
-        /// This method is called if the download detects that the downloading file is encoded.
+        /// Sent when a download object determines that the downloaded file is encoded to inquire whether the file should be automatically decoded.
         ///
-        /// Parameter `download`: The download that has detected that the downloading file is encoded.
+        /// The supported encoding formats are MacBinary (`"application/macbinary"`), Binhex
+        /// (`"application/mac-binhex40"`), and gzip (`"application/gzip"`).
         ///
-        /// Parameter `encodingType`: A MIME type expressing the encoding type.
+        /// The delegate may receive this message more than once if the file has been encoded multiple times.
+        /// This method is not called if the downloaded file is not encoded.
         ///
-        /// Returns: Return YES to decode the file, NO to not decode the file.
-        ///
-        /// An encoded file is encoded in MacBinary, BinHex or gzip format. This method may be
-        /// called more than once if the file is encoded multiple times. This method is not called if the
-        /// download is not encoded.
+        /// - Parameters:
+        /// - download: The download that has detected that the downloading file is encoded.
+        /// - encodingType: A MIME type expressing the encoding type.
+        /// - Returns: `YES` to decode the file, `NO` to not decode the file.
         #[optional]
         #[unsafe(method(download:shouldDecodeSourceDataOfMIMEType:))]
         #[unsafe(method_family = none)]
@@ -340,18 +391,18 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "NSString")]
-        /// This method is called when enough information has been loaded to decide a destination
-        /// for the downloaded file.
+        /// The delegate receives this message when enough information has been loaded to decide a destination for the downloaded file.
         ///
-        /// Parameter `download`: The download that requests the download path.
+        /// The suggested filename is either derived from the last path component of the URL and the MIME type or,
+        /// if the download was encoded, from the encoding. If the delegate wishes to modify the path, it should
+        /// send ``NSURLDownload/setDestination(_:allowOverwrite:)`` to `download` before this method returns.
         ///
-        /// Parameter `filename`: The suggested filename for deciding the path of the downloaded file. The filename is either
-        /// derived from the last path component of the URL and the MIME type or if the download was encoded,
-        /// it is the filename specified in the encoding.
+        /// The delegate will not receive this message if ``NSURLDownload/setDestination(_:allowOverwrite:)``
+        /// has already been called.
         ///
-        /// Once the delegate has decided a path, it should call setDestination:allowOverwrite:.
-        /// The delegate may respond immediately or later. This method is not called if
-        /// setDestination:allowOverwrite: has already been called.
+        /// - Parameters:
+        /// - download: The download that requests the download path.
+        /// - filename: The suggested filename for deciding the path of the downloaded file.
         #[optional]
         #[unsafe(method(download:decideDestinationWithSuggestedFilename:))]
         #[unsafe(method_family = none)]
@@ -362,36 +413,41 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSString")]
-        /// This method is called after the download creates the downloaded file.
+        /// Sent when the destination file is created.
         ///
-        /// Parameter `download`: The download that created the downloaded file.
-        ///
-        /// Parameter `path`: The path of the downloaded file.
+        /// - Parameters:
+        /// - download: The download that created the downloaded file.
+        /// - path: The path of the downloaded file.
         #[optional]
         #[unsafe(method(download:didCreateDestination:))]
         #[unsafe(method_family = none)]
         fn download_didCreateDestination(&self, download: &NSURLDownload, path: &NSString);
 
-        /// This method is called when the download has finished downloading.
-        ///
-        /// Parameter `download`: The download that has finished downloading.
+        /// Sent when a download object has completed downloading successfully and has written its results to disk.
         ///
         /// This method is called after all the data has been received and written to disk.
-        /// This method or download:didFailWithError: will only be called once.
+        /// The delegate will receive no further messages for `download`.
+        ///
+        /// This method or ``NSURLDownloadDelegate/download(_:didFailWithError:)`` will only be called once.
+        ///
+        /// - Parameter download: The download that has finished downloading.
         #[optional]
         #[unsafe(method(downloadDidFinish:))]
         #[unsafe(method_family = none)]
         fn downloadDidFinish(&self, download: &NSURLDownload);
 
         #[cfg(feature = "NSError")]
-        /// This method is called when the download has failed.
+        /// Sent if the download fails or if an I/O error occurs when the file is written to disk.
         ///
-        /// Parameter `download`: The download that ended in error.
+        /// Any partially downloaded file will be deleted.
         ///
-        /// Parameter `error`: The error caused the download to fail.
+        /// Once the delegate receives this message, it will receive no further messages for `download`.
         ///
-        /// This method is called when the download encounters a network or file I/O related error.
-        /// This method or downloadDidFinish: will only be called once.
+        /// This method or ``NSURLDownloadDelegate/downloadDidFinish(_:)`` will only be called once.
+        ///
+        /// - Parameters:
+        /// - download: The download that ended in error.
+        /// - error: The error that caused the download to fail.
         #[optional]
         #[unsafe(method(download:didFailWithError:))]
         #[unsafe(method_family = none)]

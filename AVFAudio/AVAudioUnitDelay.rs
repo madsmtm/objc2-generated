@@ -34,6 +34,20 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitEffect"
 ))]
+unsafe impl Send for AVAudioUnitDelay {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+unsafe impl Sync for AVAudioUnitDelay {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioUnitDelay {}
 );
@@ -50,11 +64,21 @@ impl AVAudioUnitDelay {
         /// Range:      0 -> 2
         /// Default:    1
         /// Unit:       Seconds
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delayTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn delayTime(&self) -> NSTimeInterval;
 
         /// Setter for [`delayTime`][Self::delayTime].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDelayTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelayTime(&self, delay_time: NSTimeInterval);
@@ -63,11 +87,21 @@ impl AVAudioUnitDelay {
         /// Range:      -100 -> 100
         /// Default:    50
         /// Unit:       Percent
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(feedback))]
         #[unsafe(method_family = none)]
         pub unsafe fn feedback(&self) -> c_float;
 
         /// Setter for [`feedback`][Self::feedback].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFeedback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFeedback(&self, feedback: c_float);
@@ -76,11 +110,21 @@ impl AVAudioUnitDelay {
         /// Range:      10 -> (samplerate/2)
         /// Default:    15000
         /// Unit:       Hertz
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(lowPassCutoff))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowPassCutoff(&self) -> c_float;
 
         /// Setter for [`lowPassCutoff`][Self::lowPassCutoff].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setLowPassCutoff:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLowPassCutoff(&self, low_pass_cutoff: c_float);
@@ -89,11 +133,21 @@ impl AVAudioUnitDelay {
         /// Range:      0 (all dry) -> 100 (all wet)
         /// Default:    100
         /// Unit:       Percent
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(wetDryMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn wetDryMix(&self) -> c_float;
 
         /// Setter for [`wetDryMix`][Self::wetDryMix].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setWetDryMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);

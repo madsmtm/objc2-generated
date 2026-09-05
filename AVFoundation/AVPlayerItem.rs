@@ -1007,6 +1007,21 @@ impl AVPlayerItem {
         #[unsafe(method(currentMediaSelection))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentMediaSelection(&self) -> Retained<AVMediaSelection>;
+
+        #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Returns the media selection options in the specified media selection group that can produce content.
+        ///
+        /// Some media selection options depend on other options to produce content. For example, a subtitle option generated via audio transcription may require that the source audio option is currently selected. This method filters the options in the specified group to only those that can produce content given the current state of the player item's media selection.
+        ///
+        /// - Parameter mediaSelectionGroup: A media selection group obtained from the receiver's asset.
+        ///
+        /// - Returns: An array containing the media selection options from the group that can produce content. Options in the group that are not in this array can still be selected, but will produce no content.
+        #[unsafe(method(selectableMediaSelectionOptionsInMediaSelectionGroup:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn selectableMediaSelectionOptionsInMediaSelectionGroup(
+            &self,
+            media_selection_group: &AVMediaSelectionGroup,
+        ) -> Retained<NSArray<AVMediaSelectionOption>>;
     );
 }
 
@@ -1122,6 +1137,7 @@ impl AVPlayerItem {
         /// It is strongly recommended that the caller take appropriate measures to prevent blocking essential services such as the user interface, for example, by avoiding calling this method in the main thread.
         ///
         /// - Returns: An autoreleased AVPlayerItemAccessLog instance.
+        #[deprecated = "Use fetchAccessLogWithCompletionHandler:"]
         #[unsafe(method(accessLog))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessLog(&self) -> Option<Retained<AVPlayerItemAccessLog>>;
@@ -1135,9 +1151,39 @@ impl AVPlayerItem {
         /// It is strongly recommended that the caller take appropriate measures to prevent blocking essential services such as the user interface, for example, by avoiding calling this method in the main thread.
         ///
         /// - Returns: An autoreleased AVPlayerItemErrorLog instance.
+        #[deprecated = "Use fetchErrorLogWithCompletionHandler:"]
         #[unsafe(method(errorLog))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorLog(&self) -> Option<Retained<AVPlayerItemErrorLog>>;
+
+        #[cfg(feature = "block2")]
+        /// Asynchronously retrieves the access log without blocking the calling thread.
+        ///
+        /// An AVPlayerItemAccessLog provides methods to retrieve the network access log in a format suitable for serialization.
+        /// If nil is returned then there is no logging information currently available for this AVPlayerItem.
+        /// An AVPlayerItemNewAccessLogEntryNotification will be posted when new logging information becomes available. However, accessLog might already return a non-nil value even before the first notification is posted.
+        ///
+        /// - Parameter completionHandler: A block that is called with the access log. May be called with nil if no logging information is available.
+        #[unsafe(method(fetchAccessLogWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fetchAccessLogWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<'static, fn(*mut AVPlayerItemAccessLog)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Asynchronously retrieves the error log without blocking the calling thread.
+        ///
+        /// An AVPlayerItemErrorLog provides methods to retrieve the error log in a format suitable for serialization.
+        /// If nil is returned then there is no logging information currently available for this AVPlayerItem.
+        ///
+        /// - Parameter completionHandler: A block that is called with the error log. May be called with nil if no logging information is available.
+        #[unsafe(method(fetchErrorLogWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fetchErrorLogWithCompletionHandler(
+            &self,
+            completion_handler: &block2::Block<'static, fn(*mut AVPlayerItemErrorLog)>,
+        );
     );
 }
 

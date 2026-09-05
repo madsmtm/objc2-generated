@@ -191,6 +191,22 @@ impl CMMotionManager {
         #[unsafe(method_family = none)]
         pub unsafe fn attitudeReferenceFrame(&self) -> CMAttitudeReferenceFrame;
 
+        #[cfg(feature = "CMBody")]
+        #[unsafe(method(deviceMotionBody))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn deviceMotionBody(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn CMBodyIdentifiable>>>;
+
+        #[cfg(feature = "CMBody")]
+        /// Setter for [`deviceMotionBody`][Self::deviceMotionBody].
+        #[unsafe(method(setDeviceMotionBody:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDeviceMotionBody(
+            &self,
+            device_motion_body: Option<&ProtocolObject<dyn CMBodyIdentifiable>>,
+        );
+
         #[unsafe(method(isDeviceMotionAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDeviceMotionAvailable(&self) -> bool;

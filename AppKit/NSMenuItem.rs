@@ -7,6 +7,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Values for the `preferredImageVisibility` property of NSMenuItem.
+/// When a menu item is initialized, the default value for the item's image visibility is Automatic.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitemimagevisibility?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NSMenuItemImageVisibility(pub NSInteger);
+impl NSMenuItemImageVisibility {
+    #[doc(alias = "NSMenuItemImageVisibilityAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// AppKit should choose whether the item's image is visible, considering the system configuration.
+    #[doc(alias = "NSMenuItemImageVisibilityVisible")]
+    pub const Visible: Self = Self(1);
+    /// The item image should always be visible. Note that in some cases, AppKit may still hide the image, overriding this preference.
+    #[doc(alias = "NSMenuItemImageVisibilityHidden")]
+    pub const Hidden: Self = Self(2);
+}
+
+unsafe impl Encode for NSMenuItemImageVisibility {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSMenuItemImageVisibility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitem?language=objc)
     #[unsafe(super(NSObject))]
@@ -257,6 +284,21 @@ impl NSMenuItem {
         #[unsafe(method_family = none)]
         pub fn setImage(&self, image: Option<&NSImage>);
 
+        /// A menu item's image visibility determines whether the item's image is displayed when the menu is open.
+        /// The default visibility for an item's image is Automatic. With this value, AppKit determines whether the item's image is visible based on system configuration.
+        /// If an item's image should be visible in all cases, regardless of macOS version or other settings, then set the image visibility to `.visible`.
+        #[unsafe(method(preferredImageVisibility))]
+        #[unsafe(method_family = none)]
+        pub fn preferredImageVisibility(&self) -> NSMenuItemImageVisibility;
+
+        /// Setter for [`preferredImageVisibility`][Self::preferredImageVisibility].
+        #[unsafe(method(setPreferredImageVisibility:))]
+        #[unsafe(method_family = none)]
+        pub fn setPreferredImageVisibility(
+            &self,
+            preferred_image_visibility: NSMenuItemImageVisibility,
+        );
+
         #[cfg(feature = "NSCell")]
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
@@ -339,7 +381,9 @@ impl NSMenuItem {
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
         pub fn target(&self) -> Option<Retained<AnyObject>>;
+    );
 
+    extern_methods!(
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
@@ -354,9 +398,7 @@ impl NSMenuItem {
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub fn action(&self) -> Option<Sel>;
-    );
 
-    extern_methods!(
         /// Setter for [`action`][Self::action].
         ///
         /// # Safety

@@ -28,6 +28,11 @@ extern_conformance!(
     unsafe impl NSSecureCoding for NSTextContainer {}
 );
 
+#[cfg(feature = "NSLayoutManager")]
+extern_conformance!(
+    unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
+);
+
 impl NSTextContainer {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
@@ -63,6 +68,19 @@ impl NSTextContainer {
         #[unsafe(method(setLineBreakMode:))]
         #[unsafe(method_family = none)]
         pub fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
+
+        #[cfg(feature = "UIBezierPath")]
+        #[unsafe(method(exclusionPaths))]
+        #[unsafe(method_family = none)]
+        pub fn exclusionPaths(&self) -> Retained<NSArray<UIBezierPath>>;
+
+        #[cfg(feature = "UIBezierPath")]
+        /// Setter for [`exclusionPaths`][Self::exclusionPaths].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setExclusionPaths:))]
+        #[unsafe(method_family = none)]
+        pub fn setExclusionPaths(&self, exclusion_paths: &NSArray<UIBezierPath>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// *********************** Layout constraint properties ************************
@@ -142,6 +160,7 @@ impl DefaultRetained for NSTextContainer {
     }
 }
 
+/// NSTextContainer_NSLayoutManagerInterface.
 impl NSTextContainer {
     extern_methods!(
         #[cfg(feature = "NSLayoutManager")]
@@ -166,23 +185,5 @@ impl NSTextContainer {
         #[unsafe(method(replaceLayoutManager:))]
         #[unsafe(method_family = none)]
         pub fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
-
-        #[cfg(feature = "UIBezierPath")]
-        #[unsafe(method(exclusionPaths))]
-        #[unsafe(method_family = none)]
-        pub fn exclusionPaths(&self) -> Retained<NSArray<UIBezierPath>>;
-
-        #[cfg(feature = "UIBezierPath")]
-        /// Setter for [`exclusionPaths`][Self::exclusionPaths].
-        ///
-        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        #[unsafe(method(setExclusionPaths:))]
-        #[unsafe(method_family = none)]
-        pub fn setExclusionPaths(&self, exclusion_paths: &NSArray<UIBezierPath>);
     );
 }
-
-#[cfg(feature = "NSLayoutManager")]
-extern_conformance!(
-    unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
-);

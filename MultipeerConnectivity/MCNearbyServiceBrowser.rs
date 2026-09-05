@@ -11,6 +11,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyservicebrowser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Network Framework instead"]
     pub struct MCNearbyServiceBrowser;
 );
 
@@ -21,6 +22,7 @@ extern_conformance!(
 impl MCNearbyServiceBrowser {
     extern_methods!(
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(initWithPeer:serviceType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPeer_serviceType(
@@ -29,15 +31,18 @@ impl MCNearbyServiceBrowser {
             service_type: &NSString,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(startBrowsingForPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn startBrowsingForPeers(&self);
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(stopBrowsingForPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopBrowsingForPeers(&self);
 
         #[cfg(all(feature = "MCPeerID", feature = "MCSession"))]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(invitePeer:toSession:withContext:timeout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invitePeer_toSession_withContext_timeout(
@@ -48,6 +53,7 @@ impl MCNearbyServiceBrowser {
             timeout: NSTimeInterval,
         );
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -57,6 +63,7 @@ impl MCNearbyServiceBrowser {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -65,10 +72,12 @@ impl MCNearbyServiceBrowser {
         );
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(myPeerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(serviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
@@ -90,8 +99,10 @@ impl MCNearbyServiceBrowser {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyservicebrowserdelegate?language=objc)
+    #[deprecated = "Use Network Framework instead"]
     pub unsafe trait MCNearbyServiceBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(browser:foundPeer:withDiscoveryInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn browser_foundPeer_withDiscoveryInfo(
@@ -102,10 +113,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MCPeerID")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(browser:lostPeer:))]
         #[unsafe(method_family = none)]
         unsafe fn browser_lostPeer(&self, browser: &MCNearbyServiceBrowser, peer_id: &MCPeerID);
 
+        #[deprecated = "Use Network Framework instead"]
         #[optional]
         #[unsafe(method(browser:didNotStartBrowsingForPeers:))]
         #[unsafe(method_family = none)]

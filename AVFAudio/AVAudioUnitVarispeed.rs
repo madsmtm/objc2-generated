@@ -28,6 +28,20 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitTimeEffect"
 ))]
+unsafe impl Send for AVAudioUnitVarispeed {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitTimeEffect"
+))]
+unsafe impl Sync for AVAudioUnitVarispeed {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitTimeEffect"
+))]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioUnitVarispeed {}
 );
@@ -56,11 +70,21 @@ impl AVAudioUnitVarispeed {
         /// Range:      0.25 -> 4.0
         /// Default:    1.0
         /// Unit:       Generic
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);

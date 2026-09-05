@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnection?language=objc)
+    /// An object that manages the communication between objects in different threads or between a thread and a process running on a local or remote system.
+    ///
+    /// Connection objects form the backbone of the distributed objects mechanism and normally operate in the background. You use the methods of ``NSConnection`` explicitly when vending an object to other applications, when accessing such a vended object through a proxy, and when altering default communication parameters. At other times, you simply interact with a vended object or its proxy.
+    ///
+    /// A single connection object may be shared by multiple threads and used to access a vended object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
@@ -21,23 +27,30 @@ extern_conformance!(
 impl NSConnection {
     extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSValue"))]
+        /// A dictionary containing various statistics for the receiver.
+        ///
+        /// An `NSDictionary` object containing various statistics for the receiver, such as the number of vended objects,
+        /// the number of requests and replies, and so on. The statistics dictionary should be used only for debugging purposes.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(statistics))]
         #[unsafe(method_family = none)]
         pub fn statistics(&self) -> Retained<NSDictionary<NSString, NSNumber>>;
 
         #[cfg(feature = "NSArray")]
+        /// Returns an array of all existing `NSConnection` objects.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(allConnections))]
         #[unsafe(method_family = none)]
         pub fn allConnections() -> Retained<NSArray<NSConnection>>;
 
+        /// Returns the default `NSConnection` object for the current thread.
         #[deprecated]
         #[unsafe(method(defaultConnection))]
         #[unsafe(method_family = none)]
         pub fn defaultConnection() -> Retained<NSConnection>;
 
         #[cfg(feature = "NSString")]
+        /// Returns an `NSConnection` object for the specified registered name and host.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connectionWithRegisteredName:host:))]
         #[unsafe(method_family = none)]
@@ -47,6 +60,7 @@ impl NSConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSPortNameServer", feature = "NSString"))]
+        /// Returns an `NSConnection` object for the specified registered name, host, and name server.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connectionWithRegisteredName:host:usingNameServer:))]
         #[unsafe(method_family = none)]
@@ -57,6 +71,7 @@ impl NSConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSDistantObject", feature = "NSProxy", feature = "NSString"))]
+        /// Returns a proxy for the root object of the `NSConnection` object registered under the specified name and host.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(rootProxyForConnectionWithRegisteredName:host:))]
         #[unsafe(method_family = none)]
@@ -71,6 +86,7 @@ impl NSConnection {
             feature = "NSProxy",
             feature = "NSString"
         ))]
+        /// Returns a proxy for the root object of the `NSConnection` object registered under the specified name, host, and name server.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(rootProxyForConnectionWithRegisteredName:host:usingNameServer:))]
         #[unsafe(method_family = none)]
@@ -81,6 +97,8 @@ impl NSConnection {
         ) -> Option<Retained<NSDistantObject>>;
 
         #[cfg(all(feature = "NSPortNameServer", feature = "NSString"))]
+        /// Returns an `NSConnection` object that both listens for contact from external clients and has a designated root object.
+        ///
         /// # Safety
         ///
         /// `root` should be of the correct type.
@@ -93,6 +111,8 @@ impl NSConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns an `NSConnection` object that both listens for contact from external clients and has a designated root object, using the default name server.
+        ///
         /// # Safety
         ///
         /// `root` should be of the correct type.
@@ -104,6 +124,7 @@ impl NSConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSDate")]
+        /// The timeout interval for outgoing requests.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(requestTimeout))]
         #[unsafe(method_family = none)]
@@ -117,6 +138,7 @@ impl NSConnection {
         pub fn setRequestTimeout(&self, request_timeout: NSTimeInterval);
 
         #[cfg(feature = "NSDate")]
+        /// The timeout interval for replies.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(replyTimeout))]
         #[unsafe(method_family = none)]
@@ -129,6 +151,7 @@ impl NSConnection {
         #[unsafe(method_family = none)]
         pub fn setReplyTimeout(&self, reply_timeout: NSTimeInterval);
 
+        /// The object that the receiver makes available to other applications or threads.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(rootObject))]
         #[unsafe(method_family = none)]
@@ -144,6 +167,11 @@ impl NSConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn setRootObject(&self, root_object: Option<&AnyObject>);
 
+        /// The receiver's delegate.
+        ///
+        /// A connection's delegate can process incoming messages itself instead of letting the `NSConnection` object handle them.
+        /// The delegate can also authenticate messages and accept, deny, or modify new connections.
+        ///
         /// # Safety
         ///
         /// This is not retained internally, you must ensure the object is still alive.
@@ -166,6 +194,7 @@ impl NSConnection {
             delegate: Option<&ProtocolObject<dyn NSConnectionDelegate>>,
         );
 
+        /// A Boolean value that indicates whether the receiver handles requests atomically.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(independentConversationQueueing))]
         #[unsafe(method_family = none)]
@@ -177,47 +206,62 @@ impl NSConnection {
         #[unsafe(method_family = none)]
         pub fn setIndependentConversationQueueing(&self, independent_conversation_queueing: bool);
 
+        /// A Boolean value that indicates whether the receiver is known to be valid.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(isValid))]
         #[unsafe(method_family = none)]
         pub fn isValid(&self) -> bool;
 
         #[cfg(all(feature = "NSDistantObject", feature = "NSProxy"))]
+        /// The proxy for the root object of the receiver's peer in another application or thread.
+        ///
+        /// The proxy returned can change between invocations if the peer `NSConnection` object's root object is changed.
+        ///
+        /// > Note: If the `NSConnection` object uses separate send and receive ports and has no peer, when you invoke
+        /// > `rootProxy` it will block for the duration of the reply timeout interval, waiting for a reply.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(rootProxy))]
         #[unsafe(method_family = none)]
         pub fn rootProxy(&self) -> Retained<NSDistantObject>;
 
+        /// Invalidates the receiver.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub fn invalidate(&self);
 
         #[cfg(feature = "NSString")]
+        /// Adds `rmode` to the set of run-loop input modes that the receiver uses for connection requests.
+        ///
+        /// The default input mode is `NSDefaultRunLoopMode`. See the `NSRunLoop` class specification for more information on input modes.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(addRequestMode:))]
         #[unsafe(method_family = none)]
         pub fn addRequestMode(&self, rmode: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Removes `rmode` from the set of run-loop input modes the receiver uses for connection requests.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(removeRequestMode:))]
         #[unsafe(method_family = none)]
         pub fn removeRequestMode(&self, rmode: &NSString);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The set of request modes the receiver's receive port is registered for with its `NSRunLoop` object.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(requestModes))]
         #[unsafe(method_family = none)]
         pub fn requestModes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Registers the receiver with the default `NSPortNameServer` under the given name.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(registerName:))]
         #[unsafe(method_family = none)]
         pub fn registerName(&self, name: Option<&NSString>) -> bool;
 
         #[cfg(all(feature = "NSPortNameServer", feature = "NSString"))]
+        /// Registers the receiver with the given name server under the given name.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(registerName:withNameServer:))]
         #[unsafe(method_family = none)]
@@ -228,6 +272,7 @@ impl NSConnection {
         ) -> bool;
 
         #[cfg(feature = "NSPort")]
+        /// Returns an `NSConnection` object initialized with the specified send and receive ports.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connectionWithReceivePort:sendPort:))]
         #[unsafe(method_family = none)]
@@ -236,12 +281,14 @@ impl NSConnection {
             send_port: Option<&NSPort>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an object representing an ongoing conversation triggered by a received message.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(currentConversation))]
         #[unsafe(method_family = none)]
         pub fn currentConversation() -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSPort")]
+        /// Initializes and returns an `NSConnection` object initialized with the specified send and receive ports.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(initWithReceivePort:sendPort:))]
         #[unsafe(method_family = init)]
@@ -252,28 +299,34 @@ impl NSConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSPort")]
+        /// The port on which the receiver sends messages.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(sendPort))]
         #[unsafe(method_family = none)]
         pub fn sendPort(&self) -> Retained<NSPort>;
 
         #[cfg(feature = "NSPort")]
+        /// The port on which the receiver receives messages.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(receivePort))]
         #[unsafe(method_family = none)]
         pub fn receivePort(&self) -> Retained<NSPort>;
 
+        /// Configures the receiver to allow requests from multiple threads to the remote object, without requiring each thread to maintain its own connection.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(enableMultipleThreads))]
         #[unsafe(method_family = none)]
         pub fn enableMultipleThreads(&self);
 
+        /// A Boolean value that indicates whether the receiver supports requests from multiple threads.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(multipleThreadsEnabled))]
         #[unsafe(method_family = none)]
         pub fn multipleThreadsEnabled(&self) -> bool;
 
         #[cfg(feature = "NSRunLoop")]
+        /// Adds the specified run loop to the list of run loops on which the receiver listens for incoming messages.
+        ///
         /// # Safety
         ///
         /// `runloop` possibly has additional threading requirements.
@@ -283,6 +336,8 @@ impl NSConnection {
         pub unsafe fn addRunLoop(&self, runloop: &NSRunLoop);
 
         #[cfg(feature = "NSRunLoop")]
+        /// Removes the specified run loop from the list of run loops on which the receiver listens for incoming messages.
+        ///
         /// # Safety
         ///
         /// `runloop` possibly has additional threading requirements.
@@ -291,24 +346,32 @@ impl NSConnection {
         #[unsafe(method_family = none)]
         pub unsafe fn removeRunLoop(&self, runloop: &NSRunLoop);
 
+        /// Configures the receiver to use a new thread for its connection.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(runInNewThread))]
         #[unsafe(method_family = none)]
         pub fn runInNewThread(&self);
 
         #[cfg(feature = "NSArray")]
+        /// The proxies for all remote objects that have been received over the connection but have not yet been deallocated.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(remoteObjects))]
         #[unsafe(method_family = none)]
         pub fn remoteObjects(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
+        /// All local objects that are being vended over the connection.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(localObjects))]
         #[unsafe(method_family = none)]
         pub fn localObjects(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
+        /// Dispatches Distributed Objects component data received over the wire.
+        ///
+        /// NSPort subclasses should use this method to ask a connection object to dispatch Distributed Objects component data.
+        /// This will decode the data, authenticate, and send the message.
+        ///
         /// # Safety
         ///
         /// `components` generic should be of the correct type.
@@ -339,29 +402,43 @@ impl DefaultRetained for NSConnection {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectionreplymode?language=objc)
+    /// The run loop mode that `NSConnection` objects use for waiting for replies.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectionreplymode?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub static NSConnectionReplyMode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondiddienotification?language=objc)
+    /// Posted when an `NSConnection` object is deallocated or when it's notified that its port has been invalidated.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondiddienotification?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub static NSConnectionDidDieNotification: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondelegate?language=objc)
+    /// An interface for interacting with low-level, interprocess connections.
+    ///
+    /// The ``NSConnectionDelegate`` protocol defines the optional methods implemented by delegates of ``NSConnection`` objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondelegate?language=objc)
     #[deprecated = "Use NSXPCConnection instead"]
     pub unsafe trait NSConnectionDelegate: NSObjectProtocol {
+        /// Informs the delegate that a new connection object has been created.
+        ///
+        /// Use the `NSConnectionDidInitializeNotification` notification instead of this delegate method if possible.
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[unsafe(method(makeNewConnection:sender:))]
         #[unsafe(method_family = none)]
         fn makeNewConnection_sender(&self, conn: &NSConnection, ancestor: &NSConnection) -> bool;
 
+        /// Asks the delegate whether it will allow a new connection to be created.
+        ///
+        /// Use the `NSConnectionDidInitializeNotification` notification instead of this delegate method if possible.
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[unsafe(method(connection:shouldMakeNewConnection:))]
@@ -373,6 +450,8 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
+        /// Returns authentication data for the given components.
+        ///
         /// # Safety
         ///
         /// `components` generic should be of the correct type.
@@ -383,6 +462,11 @@ extern_protocol!(
         unsafe fn authenticationDataForComponents(&self, components: &NSArray) -> Retained<NSData>;
 
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
+        /// Returns a Boolean value that indicates whether given authentication data is valid for a given set of components.
+        ///
+        /// Use this message for validation of incoming messages. An `NSConnection` object raises an
+        /// `NSFailedAuthenticationException` on receipt of a remote message the delegate doesn't authenticate.
+        ///
         /// # Safety
         ///
         /// `components` generic should be of the correct type.
@@ -396,12 +480,16 @@ extern_protocol!(
             signature: &NSData,
         ) -> bool;
 
+        /// Allows the delegate to create a new conversation object for the given connection.
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[unsafe(method(createConversationForConnection:))]
         #[unsafe(method_family = none)]
         fn createConversationForConnection(&self, conn: &NSConnection) -> Retained<AnyObject>;
 
+        /// Allows the delegate to intercept distant object requests.
+        ///
+        /// - Returns: `YES` if the request was handled by the delegate, `NO` if the request should proceed as if the delegate did not intercept it.
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[unsafe(method(connection:handleRequest:))]
@@ -415,21 +503,29 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfailedauthenticationexception?language=objc)
+    /// The name of an exception raised in case of authentication failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfailedauthenticationexception?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub static NSFailedAuthenticationException: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondidinitializenotification?language=objc)
+    /// Posted when an `NSConnection` object is initialized.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondidinitializenotification?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub static NSConnectionDidInitializeNotification: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistantobjectrequest?language=objc)
+    /// An object used by the distributed objects system to help handle invocations between different processes.
+    ///
+    /// Do not create ``NSDistantObjectRequest`` objects directly. Unless you are getting involved with the low-level details of distributed objects, there should never be a need to access an ``NSDistantObjectRequest``. To intercept and possibly process requests yourself, implement the ``NSConnection`` delegate method ``NSConnectionDelegate/connection:handleRequest:``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistantobjectrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
@@ -443,22 +539,26 @@ extern_conformance!(
 impl NSDistantObjectRequest {
     extern_methods!(
         #[cfg(feature = "NSInvocation")]
+        /// The invocation object for the request.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(invocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn invocation(&self) -> Retained<NSInvocation>;
 
+        /// The connection over which the request was received.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connection))]
         #[unsafe(method_family = none)]
         pub fn connection(&self) -> Retained<NSConnection>;
 
+        /// The token object representing the conversation in which the request was received.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(conversation))]
         #[unsafe(method_family = none)]
         pub fn conversation(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSException")]
+        /// Sends a reply back to the sender of the request, signaling an exception if one is provided.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(replyWithException:))]
         #[unsafe(method_family = none)]

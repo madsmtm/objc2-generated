@@ -6,18 +6,24 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenergyformatterunit?language=objc)
+/// The units supported by the `NSEnergyFormatter` class.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenergyformatterunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSEnergyFormatterUnit(pub NSInteger);
 impl NSEnergyFormatterUnit {
+    /// The joule unit.
     #[doc(alias = "NSEnergyFormatterUnitJoule")]
     pub const Joule: Self = Self(11);
+    /// The kilojoule unit.
     #[doc(alias = "NSEnergyFormatterUnitKilojoule")]
     pub const Kilojoule: Self = Self(14);
+    /// The calorie unit (chemistry "calories", abbreviated "cal").
     #[doc(alias = "NSEnergyFormatterUnitCalorie")]
     pub const Calorie: Self = Self((7 << 8) + 1);
+    /// The kilocalorie unit (kilocalories in general, abbreviated "kcal", or "C" in some locales when `isForFoodEnergyUse` is set to `YES`).
     #[doc(alias = "NSEnergyFormatterUnitKilocalorie")]
     pub const Kilocalorie: Self = Self((7 << 8) + 2);
 }
@@ -31,7 +37,12 @@ unsafe impl RefEncode for NSEnergyFormatterUnit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenergyformatter?language=objc)
+    /// A formatter that provides localized descriptions of energy values.
+    ///
+    /// > Note:
+    /// > As of iOS 10, macOS 10.12, tvOS 10, and watchOS 3, Foundation provides the ``MeasurementFormatter`` class, which can be used to represent quantities of ``UnitEnergy`` to provide equivalent functionality to ``EnergyFormatter``. You are encouraged to transition to these new Foundation Units and Measurements APIs whenever possible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenergyformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -62,6 +73,9 @@ extern_conformance!(
 impl NSEnergyFormatter {
     extern_methods!(
         #[cfg(feature = "NSNumberFormatter")]
+        /// The number formatter used to format the numbers in an energy string.
+        ///
+        /// The default value is an `NSNumberFormatter` with `NSNumberFormatterDecimalStyle`.
         #[unsafe(method(numberFormatter))]
         #[unsafe(method_family = none)]
         pub fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
@@ -74,6 +88,9 @@ impl NSEnergyFormatter {
         #[unsafe(method_family = none)]
         pub fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
+        /// The unit style used when creating string representations of energy values.
+        ///
+        /// The default value is `NSFormattingUnitStyleMedium`.
         #[unsafe(method(unitStyle))]
         #[unsafe(method_family = none)]
         pub fn unitStyle(&self) -> NSFormattingUnitStyle;
@@ -83,6 +100,9 @@ impl NSEnergyFormatter {
         #[unsafe(method_family = none)]
         pub fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
+        /// A Boolean value that indicates whether the resulting string is used to represent food energy.
+        ///
+        /// The default value is `NO`. If set to `YES`, `NSEnergyFormatterUnitKilocalorie` may be displayed as "C" instead of "kcal".
         #[unsafe(method(isForFoodEnergyUse))]
         #[unsafe(method_family = none)]
         pub fn isForFoodEnergyUse(&self) -> bool;
@@ -93,6 +113,7 @@ impl NSEnergyFormatter {
         pub fn setForFoodEnergyUse(&self, for_food_energy_use: bool);
 
         #[cfg(feature = "NSString")]
+        /// Returns an energy string for the provided value and unit.
         #[unsafe(method(stringFromValue:unit:))]
         #[unsafe(method_family = none)]
         pub fn stringFromValue_unit(
@@ -102,11 +123,17 @@ impl NSEnergyFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns an energy string for the provided value in joules.
+        ///
+        /// Formats a number in joules to a localized string with the locale-appropriate unit and an appropriate scale (e.g. 10.3J = 2.46cal in the US locale).
         #[unsafe(method(stringFromJoules:))]
         #[unsafe(method_family = none)]
         pub fn stringFromJoules(&self, number_in_joules: c_double) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a unit string for the provided value and unit.
+        ///
+        /// Returns a localized string of the given unit, and if the unit is singular or plural is based on the given number.
         #[unsafe(method(unitStringFromValue:unit:))]
         #[unsafe(method_family = none)]
         pub fn unitStringFromValue_unit(
@@ -116,6 +143,9 @@ impl NSEnergyFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a unit string based on the provided value in joules.
+        ///
+        /// Returns the locale-appropriate unit, the same unit used by `stringFromJoules:`.
         #[unsafe(method(unitStringFromJoules:usedUnit:))]
         #[unsafe(method_family = none)]
         pub fn unitStringFromJoules_usedUnit(
@@ -125,6 +155,8 @@ impl NSEnergyFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// No parsing is supported. This method will return `NO`.
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.

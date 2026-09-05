@@ -627,6 +627,8 @@ pub use self::__MTLArgument::MTLStructMember;
 #[cfg(feature = "MTLArgument")]
 pub use self::__MTLArgument::MTLStructType;
 #[cfg(feature = "MTLArgument")]
+pub use self::__MTLArgument::MTLTensorAuxiliaryPlaneType;
+#[cfg(feature = "MTLArgument")]
 pub use self::__MTLArgument::MTLTensorBinding;
 #[cfg(feature = "MTLArgument")]
 pub use self::__MTLArgument::MTLTensorReferenceType;
@@ -1277,6 +1279,14 @@ pub use self::__MTLStageInputOutputDescriptor::MTLStepFunction;
 ))]
 pub use self::__MTLTensor::MTLTensor;
 #[cfg(feature = "MTLTensor")]
+pub use self::__MTLTensor::MTLTensorAuxiliaryPlane;
+#[cfg(feature = "MTLTensor")]
+pub use self::__MTLTensor::MTLTensorAuxiliaryPlaneDescriptor;
+#[cfg(feature = "MTLTensor")]
+pub use self::__MTLTensor::MTLTensorAuxiliaryPlaneDescriptorMap;
+#[cfg(feature = "MTLTensor")]
+pub use self::__MTLTensor::MTLTensorBufferAttachments;
+#[cfg(feature = "MTLTensor")]
 pub use self::__MTLTensor::MTLTensorDataType;
 #[cfg(feature = "MTLTensor")]
 pub use self::__MTLTensor::MTLTensorDescriptor;
@@ -1286,6 +1296,8 @@ pub use self::__MTLTensor::MTLTensorDomain;
 pub use self::__MTLTensor::MTLTensorError;
 #[cfg(feature = "MTLTensor")]
 pub use self::__MTLTensor::MTLTensorExtents;
+#[cfg(feature = "MTLTensor")]
+pub use self::__MTLTensor::MTLTensorPlaneType;
 #[cfg(feature = "MTLTensor")]
 pub use self::__MTLTensor::MTLTensorUsage;
 #[cfg(feature = "MTLTexture")]

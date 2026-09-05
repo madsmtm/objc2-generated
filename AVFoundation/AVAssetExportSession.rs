@@ -223,6 +223,102 @@ unsafe impl RefEncode for AVAssetTrackGroupOutputHandling {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enum that identifies various reasons why resumable export configuration has failed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereason?language=objc)
+// NS_TYPED_EXTENSIBLE_ENUM
+pub type AVAssetExportSessionResumptionFailureReason = NSString;
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonincompatiblepreset?language=objc)
+    pub static AVAssetExportSessionResumptionFailureReasonIncompatiblePreset:
+        &'static AVAssetExportSessionResumptionFailureReason;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonunsupportedforpresetonplatform?language=objc)
+    pub static AVAssetExportSessionResumptionFailureReasonUnsupportedForPresetOnPlatform:
+        &'static AVAssetExportSessionResumptionFailureReason;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasontemporarydirectorydoesnotexist?language=objc)
+    pub static AVAssetExportSessionResumptionFailureReasonTemporaryDirectoryDoesNotExist:
+        &'static AVAssetExportSessionResumptionFailureReason;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonincompatiblesessionsettings?language=objc)
+    pub static AVAssetExportSessionResumptionFailureReasonIncompatibleSessionSettings:
+        &'static AVAssetExportSessionResumptionFailureReason;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionfailurereasonincompatibletemporarydirectorycontents?language=objc)
+    pub static AVAssetExportSessionResumptionFailureReasonIncompatibleTemporaryDirectoryContents:
+        &'static AVAssetExportSessionResumptionFailureReason;
+}
+
+extern_class!(
+    /// AVAssetExportSessionResumptionState details the current resumption state
+    /// of the export session.
+    /// A resumable export session is configured via configureForResumableExportWithCompletionHandler:.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionresumptionstate?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVAssetExportSessionResumptionState;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAssetExportSessionResumptionState {}
+);
+
+impl AVAssetExportSessionResumptionState {
+    extern_methods!(
+        /// Reports whether or not the export session has been successfully configure as resumable.
+        ///
+        /// If YES, the export session in configured as resumable.  If NO, the export session will remain
+        /// as non-resumable (default).  exportAsynchronouslyWithCompletionHandler may still be called
+        /// if this returns as NO.
+        #[unsafe(method(isResumptionConfigured))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isResumptionConfigured(&self) -> bool;
+
+        /// Reports whether or not a resuming export is continuing from a previous state.
+        ///
+        /// This indicates whether or not the export is resuming (YES) or starting from the beginning (NO).
+        /// Valid only if resumptionConfigured is YES.
+        #[unsafe(method(isResumingFromPreviousState))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isResumingFromPreviousState(&self) -> bool;
+
+        /// Provides details on why the session was not able to be configured as resumable.
+        ///
+        /// Reasons for failure include incompatible session settings and incompatible
+        /// directoryForTemporaryFiles contents.
+        /// Valid only if resumptionConfigured is NO.
+        #[unsafe(method(configurationFailureReason))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configurationFailureReason(
+            &self,
+        ) -> Option<Retained<AVAssetExportSessionResumptionFailureReason>>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl AVAssetExportSessionResumptionState {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
 extern_class!(
     /// An AVAssetExportSession creates a new timed media resource from the contents of an
     /// existing AVAsset in the form described by a specified export preset.
@@ -695,6 +791,58 @@ impl AVAssetExportSession {
         pub unsafe fn setDirectoryForTemporaryFiles(
             &self,
             directory_for_temporary_files: Option<&NSURL>,
+        );
+    );
+}
+
+/// AVAssetExportSessionResumable.
+impl AVAssetExportSession {
+    extern_methods!(
+        #[cfg(feature = "block2")]
+        /// Attempt to configure the exportSession into resumption mode.
+        ///
+        /// For select encoders, an export can be performed in temporal segments, and then
+        /// stitched together at the end.
+        ///
+        /// The client is responsible for configuring the export session identically for subsequent
+        /// sessions, if the export is to be resumed from partial results from a previous run.
+        ///
+        /// IMPORTANT:  directoryForTemporaryFiles MUST be specified for resumable exports.
+        /// This directory holds the temporary files for resumable exports which allows the export to
+        /// resume on a subsequent instantiation.  The client is responsible for making the
+        /// directoryForTemporaryFiles unique and deterministic across app launches or device reboots
+        /// if the session is intended to be resumable after such events.  The client must ensure that
+        /// it does not re-use a temporary directory corresponding to a different resumable export
+        /// session, or the contents between different exports may be erroneously combined.
+        ///
+        /// This method validates that the currently configured export properties allow resumption,
+        /// and interrogates the contents of directoryForTemporaryFiles to determine if this is a resuming
+        /// session or a new one.  As such, this should be called after all settings are finalized for this
+        /// export session, i.e. just prior to exportAsynchronouslyWithCompletionHandler.
+        ///
+        /// resumptionState details the currently configured resumption state of the export session.
+        /// Even if resumptionState indicates not all conditions for resumption are met, a client may still
+        /// call exportAsynchronouslyWithCompletionHandler using the current session, and the export
+        /// will be performed in the default (non-resuming) manner.
+        ///
+        /// This method cannot be called after the export has started.
+        ///
+        /// cancelExport may be called if an in-flight export needs to be interrupted.  The partial results
+        /// will be maintained.
+        ///
+        /// The client is responsible for deleting the temporary directory if the export will never be
+        /// resumed in the future.
+        ///
+        /// Since intermediate files are written to support the resume functionality, resumable exports
+        /// will typically double the NAND accesses, since the samples need to be written to disk twice.
+        #[unsafe(method(configureForResumableExportWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn configureForResumableExportWithCompletionHandler(
+            &self,
+            completion_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<AVAssetExportSessionResumptionState>),
+            >,
         );
     );
 }

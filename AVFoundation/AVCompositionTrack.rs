@@ -228,7 +228,7 @@ impl AVMutableCompositionTrack {
         ///
         /// Parameter `startTime`: Specifies the time at which the inserted track is to be presented by the composition track. You may pass kCMTimeInvalid for startTime to indicate that the timeRange should be appended to the end of the track.
         ///
-        /// Parameter `error`: Describes failures that may be reported to the user, e.g. the asset that was selected for insertion in the composition is restricted by copy-protection.
+        /// Parameter `outError`: Describes failures that may be reported to the user, e.g. the asset that was selected for insertion in the composition is restricted by copy-protection.
         ///
         /// Returns: A BOOL value indicating the success of the insertion.
         ///
@@ -253,7 +253,7 @@ impl AVMutableCompositionTrack {
         ///
         /// Parameter `startTime`: Specifies the time at which the inserted tracks are to be presented by the composition track. You may pass kCMTimeInvalid for startTime to indicate that the timeRanges should be appended to the end of the track.
         ///
-        /// Parameter `error`: Describes failures that may be reported to the user, e.g. the asset that was selected for insertion in the composition is restricted by copy-protection.
+        /// Parameter `outError`: Describes failures that may be reported to the user, e.g. the asset that was selected for insertion in the composition is restricted by copy-protection.
         ///
         /// Returns: A BOOL value indicating the success of the insertion.
         ///
@@ -309,7 +309,7 @@ impl AVMutableCompositionTrack {
         ///
         /// Parameter `trackSegments`: The array of AVCompositionTrackSegments to be validated.
         ///
-        /// Parameter `error`: If validation fais, returns information about the failure.
+        /// Parameter `outError`: If validation fais, returns information about the failure.
         ///
         /// Returns: YES if validation suceeds, otherwise NO.
         ///

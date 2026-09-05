@@ -1392,8 +1392,30 @@ impl NSView {
             feature = "NSDragging",
             feature = "NSDraggingItem",
             feature = "NSDraggingSession",
+            feature = "NSGestureRecognizer"
+        ))]
+        /// Starts a gesture based dragging session with an array of `NSDraggingItems`.
+        ///
+        /// The frame property of each NSDraggingItem must be in the view's coordinate system. The images may animate (flock) from their initial layout into a system defined formation. Flocking may not be done immediately (see NSDraggingSession's flockOnBeginDrag). The visible area of the view is used as the clip rect.
+        ///
+        ///
+        /// Returns: If the drag begins, returns the dragging session. If the drag fails to begin, returns `nil`.
+        #[unsafe(method(beginDraggingSessionWithItems:gesture:source:))]
+        #[unsafe(method_family = none)]
+        pub fn beginDraggingSessionWithItems_gesture_source(
+            &self,
+            items: &NSArray<NSDraggingItem>,
+            gesture: &NSGestureRecognizer,
+            source: &ProtocolObject<dyn NSDraggingSource>,
+        ) -> Option<Retained<NSDraggingSession>>;
+
+        #[cfg(all(
+            feature = "NSDragging",
+            feature = "NSDraggingItem",
+            feature = "NSDraggingSession",
             feature = "NSEvent"
         ))]
+        /// Starts a dragging session with an array of NSDraggingItems. The frame property of each NSDraggingItem must be in the view's coordinate system. The images may animate (flock) from their initial layout into a system defined formation. Flocking may or may not be done immediately (see NSDraggingSession's flockOnBeginDrag). The visible area of the view is used as the clip rect.
         #[unsafe(method(beginDraggingSessionWithItems:event:source:))]
         #[unsafe(method_family = none)]
         pub fn beginDraggingSessionWithItems_event_source(
@@ -1538,6 +1560,35 @@ impl NSView {
     );
 }
 
+/// Exclusive gesture behavior
+///
+/// See the `exclusiveGestureBehavior` property of `NSView` more information.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewexclusivegesturebehavior?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NSViewExclusiveGestureBehavior(pub NSInteger);
+impl NSViewExclusiveGestureBehavior {
+    /// Inherit from superview
+    #[doc(alias = "NSViewExclusiveGestureBehaviorInherit")]
+    pub const Inherit: Self = Self(0);
+    /// This view and its subviews have exclusive gestures
+    #[doc(alias = "NSViewExclusiveGestureBehaviorExclusive")]
+    pub const Exclusive: Self = Self(1);
+    /// This view and its subviews do not have exclusive gestures
+    #[doc(alias = "NSViewExclusiveGestureBehaviorNotExclusive")]
+    pub const NotExclusive: Self = Self(2);
+}
+
+unsafe impl Encode for NSViewExclusiveGestureBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSViewExclusiveGestureBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// NSGestureRecognizer.
 #[cfg(feature = "NSResponder")]
 impl NSView {
@@ -1564,6 +1615,24 @@ impl NSView {
         #[unsafe(method(removeGestureRecognizer:))]
         #[unsafe(method_family = none)]
         pub fn removeGestureRecognizer(&self, gesture_recognizer: &NSGestureRecognizer);
+
+        /// Declares whether gesture recognizers should be exclusive in this view and its subviews.
+        ///
+        /// When a view is set to `.exclusive`, and one or more of its gesture recognizers is active, a second input event
+        /// will not activate any further gesture recognizers, unless that event hit tests to this view or its subviews.
+        ///
+        /// Defaults to `.inherit`.
+        #[unsafe(method(exclusiveGestureBehavior))]
+        #[unsafe(method_family = none)]
+        pub fn exclusiveGestureBehavior(&self) -> NSViewExclusiveGestureBehavior;
+
+        /// Setter for [`exclusiveGestureBehavior`][Self::exclusiveGestureBehavior].
+        #[unsafe(method(setExclusiveGestureBehavior:))]
+        #[unsafe(method_family = none)]
+        pub fn setExclusiveGestureBehavior(
+            &self,
+            exclusive_gesture_behavior: NSViewExclusiveGestureBehavior,
+        );
     );
 }
 
@@ -1617,13 +1686,40 @@ impl NSView {
     );
 }
 
+/// NSViewCornerConfigurations.
+#[cfg(feature = "NSResponder")]
+impl NSView {
+    extern_methods!(
+        #[cfg(feature = "NSViewCornerConfiguration")]
+        /// Defines the corner styles (e.g., square, capsule, concentric, etc) for the view’s corners.
+        #[unsafe(method(cornerConfiguration))]
+        #[unsafe(method_family = none)]
+        pub fn cornerConfiguration(&self) -> Option<Retained<NSViewCornerConfiguration>>;
+
+        #[cfg(feature = "NSViewCornerRadii")]
+        /// The effective radius of each corner in the view, calculated based on the corner configuration (`cornerConfiguration`). This value is `nil` when the corner configuration is `nil`.
+        #[unsafe(method(effectiveCornerRadii))]
+        #[unsafe(method_family = none)]
+        pub fn effectiveCornerRadii(&self) -> Option<Retained<NSViewCornerRadii>>;
+
+        /// Informs the view that its effective corner radii changed. This method should be overridden to apply the corner radii to the view as required.
+        #[unsafe(method(viewDidChangeEffectiveCornerRadii))]
+        #[unsafe(method_family = none)]
+        pub fn viewDidChangeEffectiveCornerRadii(&self);
+
+        /// Invalidates the corner configuration, causing both the configuration and its dependencies to be recomputed.
+        #[unsafe(method(invalidateCornerConfiguration))]
+        #[unsafe(method_family = none)]
+        pub fn invalidateCornerConfiguration(&self);
+    );
+}
+
 /// NSCompactControlSizeMetrics.
 #[cfg(feature = "NSResponder")]
 impl NSView {
     extern_methods!(
-        /// When this property is true, any NSControls in the view or its descendants will be sized with compact
-        /// metrics compatible with macOS 15 and earlier.
-        /// Defaults to false
+        /// When this property is `YES`, any `NSControl`s in the view or its descendants will be sized with compact metrics compatible with macOS 15.0 and earlier.
+        /// Defaults to `NO`.
         #[unsafe(method(prefersCompactControlSizeMetrics))]
         #[unsafe(method_family = none)]
         pub fn prefersCompactControlSizeMetrics(&self) -> bool;

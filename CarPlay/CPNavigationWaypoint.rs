@@ -65,9 +65,23 @@ impl CPNavigationWaypoint {
         /// # Safety
         ///
         /// This might not be thread-safe.
+        #[deprecated]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+
+        /// nameVariants is an array of
+        /// `NSString`representing variants of the waypoint's display name, arranged from most to least preferred.
+        /// The variant strings should be provided as localized, displayable content.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(nameVariants))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn nameVariants(&self) -> Retained<NSArray<NSString>>;
 
         /// address is an optional address string for the waypoint, formatted with newline characters separating each address component.
         /// Example: "Apple Inc.\n1 Apple Park Way\nCupertino, CA 95014\nUnited States"
@@ -77,9 +91,23 @@ impl CPNavigationWaypoint {
         /// # Safety
         ///
         /// This might not be thread-safe.
+        #[deprecated]
         #[unsafe(method(address))]
         #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> Option<Retained<NSString>>;
+
+        /// addressVariants is an array of
+        /// `NSString`representing variants of the waypoint's address, arranged from most to least preferred.
+        /// The variant strings should be provided as localized, displayable content.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(addressVariants))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addressVariants(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "CPLocation", feature = "objc2-core-location"))]
         /// entryPoints is an optional array of CPLocationCoordinate3D entry points. These represent alternative access points to reach the waypoint.
@@ -116,11 +144,31 @@ impl CPNavigationWaypoint {
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         #[cfg(all(feature = "CPLocation", feature = "objc2-core-location"))]
+        /// Initialize a CPNavigationWaypoint object with a center point, location threshold, optional name and name variants, optional long address and short address, optional entry points, and a timezone.
+        ///
+        /// # Safety
+        ///
+        /// `entry_points` must be a valid pointer.
+        #[unsafe(method(initWithCenterPoint:locationThreshold:nameVariants:addressVariants:entryPoints:entryPointsCount:timeZone:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithCenterPoint_locationThreshold_nameVariants_addressVariants_entryPoints_entryPointsCount_timeZone(
+            this: Allocated<Self>,
+            center_point: CPLocationCoordinate3D,
+            location_threshold: Option<&NSMeasurement<NSUnitLength>>,
+            name_variants: &NSArray<NSString>,
+            address_variants: &NSArray<NSString>,
+            entry_points: NonNull<CPLocationCoordinate3D>,
+            entry_points_count: NSUInteger,
+            time_zone: Option<&NSTimeZone>,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "CPLocation", feature = "objc2-core-location"))]
         /// Initialize a CPNavigationWaypoint object with a center point, location threshold, optional name and address, optional entry points, and a timezone.
         ///
         /// # Safety
         ///
         /// `entry_points` must be a valid pointer.
+        #[deprecated]
         #[unsafe(method(initWithCenterPoint:locationThreshold:name:address:entryPoints:entryPointsCount:timeZone:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCenterPoint_locationThreshold_name_address_entryPoints_entryPointsCount_timeZone(

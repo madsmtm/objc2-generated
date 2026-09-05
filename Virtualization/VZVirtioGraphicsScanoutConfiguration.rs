@@ -12,7 +12,7 @@ extern_class!(
     ///
     /// This scanout can be shown in a VZVirtualMachineView.
     ///
-    /// See also: VZVirtioGraphicsDeviceConfiguration
+    /// See: VZVirtioGraphicsDeviceConfiguration
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsscanoutconfiguration?language=objc)
     #[unsafe(super(VZGraphicsDisplayConfiguration, NSObject))]

@@ -7,7 +7,28 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquery?language=objc)
+    /// A query that you perform against Spotlight metadata.
+    ///
+    /// The ``NSMetadataQuery`` class encapsulates the functionality provided by the
+    /// <doc
+    /// ://com.apple.documentation/documentation/coreservices/file_metadata/mdquery> opaque type for querying the Spotlight metadata.
+    ///
+    /// ``NSMetadataQuery`` objects provide metadata query results in several ways:
+    ///
+    /// - As individual attribute values for requested attributes.
+    /// - As value lists that contain the distinct values for given attributes in the query results.
+    /// - As a result array proxy, containing all the query results. This is suitable for use with Cocoa bindings.
+    /// - As a hierarchical collection of results, grouping together items with the same values for specified grouping attributes. This is also suitable for use with Cocoa bindings.
+    ///
+    /// Queries have two phases: the initial gathering phase that collects all currently matching results and a second live-update phase.
+    ///
+    /// By default, the receiver has no limitation on its search scope. Use the ``searchScopes`` property to customize.
+    ///
+    /// By default, notification of updated results occurs at 1.0 seconds. Use the ``notificationBatchingInterval`` property to customize.
+    ///
+    /// You must set a predicate with the ``predicate`` property before starting a query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquery?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQuery;
@@ -19,6 +40,10 @@ extern_conformance!(
 
 impl NSMetadataQuery {
     extern_methods!(
+        /// The query's delegate.
+        ///
+        /// This property contains an object that acts as the query's delegate, or nil. The delegate must implement the NSMetadataQueryDelegate protocol. Pass nil to remove the current delegate.
+        ///
         /// # Safety
         ///
         /// This is not retained internally, you must ensure the object is still alive.
@@ -41,6 +66,9 @@ impl NSMetadataQuery {
         );
 
         #[cfg(feature = "NSPredicate")]
+        /// The predicate used to filter query results.
+        ///
+        /// Setting this property while a query is running stops the query and discards the current results. The receiver immediately starts a new query.
         #[unsafe(method(predicate))]
         #[unsafe(method_family = none)]
         pub fn predicate(&self) -> Option<Retained<NSPredicate>>;
@@ -54,6 +82,7 @@ impl NSMetadataQuery {
         pub fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
         #[cfg(all(feature = "NSArray", feature = "NSSortDescriptor"))]
+        /// An array of sort descriptors to use when sorting the query results.
         #[unsafe(method(sortDescriptors))]
         #[unsafe(method_family = none)]
         pub fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
@@ -67,6 +96,7 @@ impl NSMetadataQuery {
         pub fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of attributes whose values are gathered by the query.
         #[unsafe(method(valueListAttributes))]
         #[unsafe(method_family = none)]
         pub fn valueListAttributes(&self) -> Retained<NSArray<NSString>>;
@@ -80,6 +110,7 @@ impl NSMetadataQuery {
         pub fn setValueListAttributes(&self, value_list_attributes: &NSArray<NSString>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array of attributes used to group query results.
         #[unsafe(method(groupingAttributes))]
         #[unsafe(method_family = none)]
         pub fn groupingAttributes(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -93,6 +124,7 @@ impl NSMetadataQuery {
         pub fn setGroupingAttributes(&self, grouping_attributes: Option<&NSArray<NSString>>);
 
         #[cfg(feature = "NSDate")]
+        /// The interval at which notification of updated results occurs.
         #[unsafe(method(notificationBatchingInterval))]
         #[unsafe(method_family = none)]
         pub fn notificationBatchingInterval(&self) -> NSTimeInterval;
@@ -107,6 +139,12 @@ impl NSMetadataQuery {
         );
 
         #[cfg(feature = "NSArray")]
+        /// An array of search scopes that limits where the query searches for results.
+        ///
+        /// Scopes is an NSArray of NSURL objects (file URLs only) and/or string
+        /// paths and/or the special string constants below, which specifies the
+        /// locations to which the search is limited; an empty array means no
+        /// limits, which is the default state.
         #[unsafe(method(searchScopes))]
         #[unsafe(method_family = none)]
         pub fn searchScopes(&self) -> Retained<NSArray>;
@@ -124,6 +162,10 @@ impl NSMetadataQuery {
         pub unsafe fn setSearchScopes(&self, search_scopes: &NSArray);
 
         #[cfg(feature = "NSArray")]
+        /// An array of objects that the query will search.
+        ///
+        /// Items can be a mixture of NSMetadataItem, NSURL objects (file URLs only)
+        /// and/or string paths; the getter returns the same mixture as was set.
         #[unsafe(method(searchItems))]
         #[unsafe(method_family = none)]
         pub fn searchItems(&self) -> Option<Retained<NSArray>>;
@@ -141,6 +183,7 @@ impl NSMetadataQuery {
         pub unsafe fn setSearchItems(&self, search_items: Option<&NSArray>);
 
         #[cfg(feature = "NSOperation")]
+        /// An optional operation queue for notifications and delegate method calls.
         #[unsafe(method(operationQueue))]
         #[unsafe(method_family = none)]
         pub fn operationQueue(&self) -> Option<Retained<NSOperationQueue>>;
@@ -155,43 +198,59 @@ impl NSMetadataQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
 
+        /// Attempts to start the query.
+        ///
+        /// Returns YES when successful; otherwise, NO. A query may fail to start if it does not specify a predicate, or if the query has already been started. This method must be called from the receiver's operationQueue or on the main thread.
         #[unsafe(method(startQuery))]
         #[unsafe(method_family = none)]
         pub fn startQuery(&self) -> bool;
 
+        /// Stops the query from generating any further results.
         #[unsafe(method(stopQuery))]
         #[unsafe(method_family = none)]
         pub fn stopQuery(&self);
 
+        /// A Boolean value that indicates whether the query has started.
         #[unsafe(method(isStarted))]
         #[unsafe(method_family = none)]
         pub fn isStarted(&self) -> bool;
 
+        /// A Boolean value that indicates whether the query is in its initial gathering phase.
         #[unsafe(method(isGathering))]
         #[unsafe(method_family = none)]
         pub fn isGathering(&self) -> bool;
 
+        /// A Boolean value that indicates whether the query has been stopped.
         #[unsafe(method(isStopped))]
         #[unsafe(method_family = none)]
         pub fn isStopped(&self) -> bool;
 
+        /// Disables updates to the query results. These nest.
         #[unsafe(method(disableUpdates))]
         #[unsafe(method_family = none)]
         pub fn disableUpdates(&self);
 
+        /// Enables updates to the query results.
         #[unsafe(method(enableUpdates))]
         #[unsafe(method_family = none)]
         pub fn enableUpdates(&self);
 
+        /// The number of results returned by the query.
         #[unsafe(method(resultCount))]
         #[unsafe(method_family = none)]
         pub fn resultCount(&self) -> NSUInteger;
 
+        /// Returns the query result at a specific index.
+        ///
+        /// For performance reasons, use this method when retrieving a specific result, rather than the array returned by the results property.
         #[unsafe(method(resultAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn resultAtIndex(&self, idx: NSUInteger) -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
+        /// Enumerates the current set of results using the given block.
+        ///
+        /// This method disables the query at the start of the iteration and reenables it upon completion.
         #[unsafe(method(enumerateResultsUsingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateResultsUsingBlock(
@@ -200,6 +259,7 @@ impl NSMetadataQuery {
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// Enumerates the current set of results using the given block and enumeration options.
         #[unsafe(method(enumerateResultsWithOptions:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateResultsWithOptions_usingBlock(
@@ -209,10 +269,15 @@ impl NSMetadataQuery {
         );
 
         #[cfg(feature = "NSArray")]
+        /// An array containing the query's results.
+        ///
+        /// This is for key-value bindings, and causes side-effects on the query.
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub fn results(&self) -> Retained<NSArray>;
 
+        /// Returns the index of the specified result.
+        ///
         /// # Safety
         ///
         /// `result` should be of the correct type.
@@ -221,6 +286,9 @@ impl NSMetadataQuery {
         pub unsafe fn indexOfResult(&self, result: &AnyObject) -> NSUInteger;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
+        /// A dictionary containing arrays of attribute value tuples, keyed by attribute name.
+        ///
+        /// Values are arrays of `NSMetadataQueryAttributeValueTuple`.
         #[unsafe(method(valueLists))]
         #[unsafe(method_family = none)]
         pub fn valueLists(
@@ -228,11 +296,15 @@ impl NSMetadataQuery {
         ) -> Retained<NSDictionary<NSString, NSArray<NSMetadataQueryAttributeValueTuple>>>;
 
         #[cfg(feature = "NSArray")]
+        /// An array of NSMetadataQueryResultGroups, for the first grouping attribute.
         #[unsafe(method(groupedResults))]
         #[unsafe(method_family = none)]
         pub fn groupedResults(&self) -> Retained<NSArray<NSMetadataQueryResultGroup>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the value for the attribute name attrName at the index in the results specified by idx.
+        ///
+        /// The attribute must be specified in valueListAttributes, as a sorting key in a specified sort descriptor, or as one of the grouping attributes specified for the query.
         #[unsafe(method(valueOfAttribute:forResultAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn valueOfAttribute_forResultAtIndex(
@@ -264,8 +336,11 @@ impl DefaultRetained for NSMetadataQuery {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydelegate?language=objc)
+    /// An interface that enables the delegate of a metadata query to provide substitute results or attributes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydelegate?language=objc)
     pub unsafe trait NSMetadataQueryDelegate: NSObjectProtocol {
+        /// Implemented by the delegate to return a different object for a given query result.
         #[optional]
         #[unsafe(method(metadataQuery:replacementObjectForResultObject:))]
         #[unsafe(method_family = none)]
@@ -276,6 +351,8 @@ extern_protocol!(
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
+        /// Implemented by the delegate to return a replacement value for an attribute in a query result.
+        ///
         /// # Safety
         ///
         /// `attr_value` should be of the correct type.
@@ -292,43 +369,63 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidstartgatheringnotification?language=objc)
+    /// Posted when the receiver begins with the initial result-gathering phase of the query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidstartgatheringnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidStartGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerygatheringprogressnotification?language=objc)
+    /// Posted as the receiver is collecting results during the initial result-gathering phase of the query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerygatheringprogressnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryGatheringProgressNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidfinishgatheringnotification?language=objc)
+    /// Posted when the receiver has finished with the initial result-gathering phase of the query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidfinishgatheringnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidFinishGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidupdatenotification?language=objc)
+    /// Posted when the receiver's results have changed during the live-update phase of the query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidupdatenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdateaddeditemskey?language=objc)
+    /// The key for retrieving an array of items added to the query result.
+    ///
+    /// By default, this array contains ``NSMetadataItem`` objects, representing the query's results; however, the query's delegate can substitute these objects with instances of a different class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdateaddeditemskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateAddedItemsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdatechangeditemskey?language=objc)
+    /// The key for retrieving an array of items that have changed in the query result.
+    ///
+    /// By default, this array contains ``NSMetadataItem`` objects, representing the query's results; however, the query's delegate can substitute these objects with instances of a different class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdatechangeditemskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateChangedItemsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdateremoveditemskey?language=objc)
+    /// The key for retrieving an array of items removed from the query result.
+    ///
+    /// By default, this array contains ``NSMetadataItem`` objects, representing the query's results; however, the query's delegate can substitute these objects with instances of a different class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdateremoveditemskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateRemovedItemsKey: &'static NSString;
 }
@@ -340,55 +437,75 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryuserhomescope?language=objc)
+    /// Searches the user's home directory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryuserhomescope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUserHomeScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerylocalcomputerscope?language=objc)
+    /// Searches all local mounted volumes and the user home directory (even if remote).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerylocalcomputerscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryLocalComputerScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerynetworkscope?language=objc)
+    /// Searches all user-mounted remote volumes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerynetworkscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryNetworkScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryindexedlocalcomputerscope?language=objc)
+    /// Searches all indexed local mounted volumes and the user home directory (even if remote).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryindexedlocalcomputerscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryIndexedLocalComputerScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryindexednetworkscope?language=objc)
+    /// Searches all indexed user-mounted remote volumes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryindexednetworkscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryIndexedNetworkScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryubiquitousdocumentsscope?language=objc)
+    /// The "Documents" subdirectory in the application's Ubiquity container.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryubiquitousdocumentsscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUbiquitousDocumentsScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryubiquitousdatascope?language=objc)
+    /// The application's Ubiquity container, excluding the "Documents" subdirectory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryubiquitousdatascope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUbiquitousDataScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryaccessibleubiquitousexternaldocumentsscope?language=objc)
+    /// Documents from outside the application's container that are accessible without user interaction. NSMetadataItemURLKey attributes of results are security-scoped NSURLs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryaccessibleubiquitousexternaldocumentsscope?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitem?language=objc)
+    /// The metadata associated with a file.
+    ///
+    /// Metadata items provide a simple interface to retrieve the available attribute names and values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataItem;
@@ -401,16 +518,19 @@ extern_conformance!(
 impl NSMetadataItem {
     extern_methods!(
         #[cfg(feature = "NSURL")]
+        /// Initializes a metadata item with the given URL.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the value for the specified attribute of the receiver.
         #[unsafe(method(valueForAttribute:))]
         #[unsafe(method_family = none)]
         pub fn valueForAttribute(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
+        /// Returns a dictionary containing the specified attributes and their values.
         #[unsafe(method(valuesForAttributes:))]
         #[unsafe(method_family = none)]
         pub fn valuesForAttributes(
@@ -419,6 +539,7 @@ impl NSMetadataItem {
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array containing the attributes of the receiver.
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
         pub fn attributes(&self) -> Retained<NSArray<NSString>>;
@@ -446,7 +567,11 @@ impl DefaultRetained for NSMetadataItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryattributevaluetuple?language=objc)
+    /// The `NSMetadataQueryAttributeValueTuple` class represents attribute-value tuples, which are objects that contain the attribute name and value of a metadata attribute.
+    ///
+    /// Attribute-value tuples are returned by `NSMetadataQuery` objects as the results in the value lists. Each attribute/value tuple contains the attribute name, the value, and the number of instances of that value that exist for the attribute name.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryattributevaluetuple?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryAttributeValueTuple;
@@ -459,14 +584,17 @@ extern_conformance!(
 impl NSMetadataQueryAttributeValueTuple {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The attribute name for the tuple.
         #[unsafe(method(attribute))]
         #[unsafe(method_family = none)]
         pub fn attribute(&self) -> Retained<NSString>;
 
+        /// The attribute value for the tuple.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub fn value(&self) -> Option<Retained<AnyObject>>;
 
+        /// The number of results with the given attribute value.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub fn count(&self) -> NSUInteger;
@@ -494,7 +622,9 @@ impl DefaultRetained for NSMetadataQueryAttributeValueTuple {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryresultgroup?language=objc)
+    /// The `NSMetadataQueryResultGroup` class represents a collection of grouped attribute results returned by an ``NSMetadataQuery`` object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryresultgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryResultGroup;
@@ -507,28 +637,34 @@ extern_conformance!(
 impl NSMetadataQueryResultGroup {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The attribute name for this result group.
         #[unsafe(method(attribute))]
         #[unsafe(method_family = none)]
         pub fn attribute(&self) -> Retained<NSString>;
 
+        /// The attribute value for this result group.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub fn value(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSArray")]
+        /// An array of subgroups for this result group, or nil if this is a leaf group.
         #[unsafe(method(subgroups))]
         #[unsafe(method_family = none)]
         pub fn subgroups(&self) -> Option<Retained<NSArray<NSMetadataQueryResultGroup>>>;
 
+        /// The number of results in this group.
         #[unsafe(method(resultCount))]
         #[unsafe(method_family = none)]
         pub fn resultCount(&self) -> NSUInteger;
 
+        /// Returns the result at the specified index within this group.
         #[unsafe(method(resultAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn resultAtIndex(&self, idx: NSUInteger) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSArray")]
+        /// An array containing the results in this group. This is for K-V Bindings, and causes side-effects on the query.
         #[unsafe(method(results))]
         #[unsafe(method_family = none)]
         pub fn results(&self) -> Retained<NSArray>;

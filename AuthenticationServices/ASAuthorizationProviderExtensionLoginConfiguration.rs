@@ -140,6 +140,10 @@ impl ASAuthorizationProviderExtensionFederationType {
     pub const WSTrust: Self = Self(1);
     #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust")]
     pub const DynamicWSTrust: Self = Self(2);
+    #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeOpenID")]
+    pub const OpenID: Self = Self(3);
+    #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeDynamicOpenID")]
+    pub const DynamicOpenID: Self = Self(4);
 }
 
 unsafe impl Encode for ASAuthorizationProviderExtensionFederationType {
@@ -772,6 +776,21 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
             federation_type: ASAuthorizationProviderExtensionFederationType,
         );
 
+        /// The federation method to use for fallback.
+        #[unsafe(method(fallbackFederationType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn fallbackFederationType(
+            &self,
+        ) -> ASAuthorizationProviderExtensionFederationType;
+
+        /// Setter for [`fallbackFederationType`][Self::fallbackFederationType].
+        #[unsafe(method(setFallbackFederationType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setFallbackFederationType(
+            &self,
+            fallback_federation_type: ASAuthorizationProviderExtensionFederationType,
+        );
+
         /// The URN to request when performing a federated login.
         #[unsafe(method(federationRequestURN))]
         #[unsafe(method_family = none)]
@@ -854,6 +873,30 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
             &self,
             custom_federation_user_preauthentication_request_values: &NSArray<NSURLQueryItem>,
         );
+
+        /// The OpenID authorization request URL.  This can be overwritten when using dynamic federation.
+        #[unsafe(method(authorizationURL))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn authorizationURL(&self) -> Retained<NSURL>;
+
+        /// Setter for [`authorizationURL`][Self::authorizationURL].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setAuthorizationURL:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAuthorizationURL(&self, authorization_url: &NSURL);
+
+        /// The claim in the preauthentication response that contains the OpenID authorization URL.
+        #[unsafe(method(authorizationURLKeypath))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn authorizationURLKeypath(&self) -> Retained<NSString>;
+
+        /// Setter for [`authorizationURLKeypath`][Self::authorizationURLKeypath].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setAuthorizationURLKeypath:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAuthorizationURLKeypath(&self, authorization_url_keypath: &NSString);
 
         #[cfg(feature = "objc2-security")]
         /// The public key to use for encrypting the embedded login assertion.
@@ -1055,7 +1098,9 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
+    );
 
+    extern_methods!(
         /// The PreSharedKey to be used for HKPE. Setting this value will change the mode to PSK or AuthPSK if the hpkeAuthPublicKey is also set. Must be at least 32 bytes.
         #[unsafe(method(hpkePreSharedKey))]
         #[unsafe(method_family = none)]

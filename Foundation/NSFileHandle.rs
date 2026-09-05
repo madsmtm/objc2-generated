@@ -7,7 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandle?language=objc)
+    /// An object-oriented wrapper for a file descriptor.
+    ///
+    /// You use file handle objects to access data associated with files, sockets, pipes, and devices. For files, you can read, write, and seek within the file. For sockets, pipes, and devices, you can use a file handle object to monitor the device and process data asynchronously.
+    ///
+    /// Most creation methods for ``FileHandle`` cause the file handle object to take ownership of the associated file descriptor. This means that the file handle object both creates the file descriptor and is responsible for closing it later, usually when the system deallocates the file handle object. If you want to use a file handle object with a file descriptor that you created, use the ``init(fileDescriptor:)`` method or use the ``init(fileDescriptor:closeOnDealloc:)`` method and pass
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> for the `flag` parameter.
+    ///
+    /// ### Run Loop Considerations
+    ///
+    /// When using a file handle object to communicate asynchronously with a socket, you must initiate the corresponding operations from a thread with an active run loop. Although the read, accept, and wait operations themselves are performed asynchronously on background threads, the file handle uses a run loop source to monitor the operations and notify your code appropriately. Therefore, you must call those methods from your application's main thread or from any thread where you've configured a run loop and are using it to process events.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileHandle;
@@ -34,10 +46,21 @@ extern_conformance!(
 impl NSFileHandle {
     extern_methods!(
         #[cfg(feature = "NSData")]
+        /// The data currently available in the receiver.
+        ///
+        /// If the receiver is a file, returns the data obtained by reading the file from the current file pointer to the end of the file. If the receiver is a communications channel, reads up to a buffer of data and returns it; if no data is available, the method blocks. Returns an empty data object if the end of file has been reached. Raises ``NSExceptionName/fileHandleOperationException`` upon failure.
         #[unsafe(method(availableData))]
         #[unsafe(method_family = none)]
         pub fn availableData(&self) -> Retained<NSData>;
 
+        /// Creates and returns a file handle object associated with the specified file descriptor and deallocation policy.
+        ///
+        /// - Parameters:
+        /// - fd: The POSIX file descriptor with which to initialize the file handle. This descriptor represents an open file or socket that you created previously. For example, when creating a file handle for a socket, you would pass the value returned by the `socket` function.
+        /// - closeopt: `YES` if the returned file handle object should take ownership of the file descriptor and close it for you or `NO` if you want to maintain ownership of the file descriptor.
+        /// - Returns: An initialized file handle object.
+        ///
+        /// If `flag` is `NO`, you are responsible for closing the file descriptor at some point after disposing of the file handle object. If you want the file handle object to close the descriptor for you automatically, pass `YES` for the `flag` parameter. The file handle does not close the descriptor if you release the file handle after sending ``FileHandle/closeFile()`` or ``FileHandle/close()``.
         #[unsafe(method(initWithFileDescriptor:closeOnDealloc:))]
         #[unsafe(method_family = init)]
         pub fn initWithFileDescriptor_closeOnDealloc(
@@ -47,6 +70,11 @@ impl NSFileHandle {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Reads the available data synchronously up to the end of file or maximum number of bytes.
+        ///
+        /// - Returns: The data available through the receiver up to the maximum size that can be represented by an `NSData` object.
+        ///
+        /// This method invokes ``FileHandle/readData(ofLength:)`` as part of its implementation.
         #[unsafe(method(readDataToEndOfFileAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub fn readDataToEndOfFileAndReturnError(
@@ -54,6 +82,14 @@ impl NSFileHandle {
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Reads data synchronously up to the specified number of bytes.
+        ///
+        /// - Parameters:
+        /// - length: The number of bytes to read from the receiver.
+        /// - error: If an error occurs, upon return contains an `NSError` object that describes the problem.
+        /// - Returns: The data available through the receiver up to a maximum of `length` bytes, or `nil` if an error occurred.
+        ///
+        /// If the receiver is a file, this method returns data obtained by reading `length` bytes starting at the current file pointer. If `length` bytes are not available, returns as many bytes as are available. Returns an empty `NSData` when the end of file is reached.
         #[unsafe(method(readDataUpToLength:error:_))]
         #[unsafe(method_family = none)]
         pub fn readDataUpToLength_error(
@@ -62,11 +98,25 @@ impl NSFileHandle {
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Writes the specified data synchronously to the file handle.
+        ///
+        /// - Parameters:
+        /// - data: The data to write.
+        /// - error: If an error occurs, upon return contains an `NSError` object that describes the problem.
+        /// - Returns: `YES` if the data was written successfully; otherwise, `NO`.
+        ///
+        /// This method writes data at the current file pointer, advancing the file pointer.
         #[unsafe(method(writeData:error:_))]
         #[unsafe(method_family = none)]
         pub fn writeData_error(&self, data: &NSData) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Gets the position of the file pointer within the file.
+        ///
+        /// - Parameters:
+        /// - offsetInFile: On return, contains the file offset.
+        /// - error: If an error occurs, upon return contains an `NSError` object that describes the problem.
+        /// - Returns: `YES` if the offset was retrieved successfully; otherwise, `NO`.
         #[unsafe(method(getOffset:error:_))]
         #[unsafe(method_family = none)]
         pub fn getOffset_error(
@@ -75,6 +125,12 @@ impl NSFileHandle {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Places the file pointer at the end of the file and returns the new file offset.
+        ///
+        /// - Parameters:
+        /// - offsetInFile: On return, contains the new file offset, which is the file size.
+        /// - error: If an error occurs, upon return contains an `NSError` object that describes the problem.
+        /// - Returns: `YES` if the operation succeeded; otherwise, `NO`.
         #[unsafe(method(seekToEndReturningOffset:error:_))]
         #[unsafe(method_family = none)]
         pub fn seekToEndReturningOffset_error(
@@ -83,21 +139,41 @@ impl NSFileHandle {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Moves the file pointer to the specified offset within the file.
+        ///
+        /// - Parameters:
+        /// - offset: The offset to seek to.
+        /// - error: If an error occurs, upon return contains an `NSError` object that describes the problem.
+        /// - Returns: `YES` if the operation succeeded; otherwise, `NO`.
         #[unsafe(method(seekToOffset:error:_))]
         #[unsafe(method_family = none)]
         pub fn seekToOffset_error(&self, offset: c_ulonglong) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.
+        ///
+        /// - Parameters:
+        /// - offset: The offset within the file that will mark the new end of the file.
+        /// - error: If an error occurs, upon return contains an `NSError` object that describes the problem.
+        /// - Returns: `YES` if the operation succeeded; otherwise, `NO`.
+        ///
+        /// If the file is extended (if `offset` is beyond the current end of file), the added characters are null bytes.
         #[unsafe(method(truncateAtOffset:error:_))]
         #[unsafe(method_family = none)]
         pub fn truncateAtOffset_error(&self, offset: c_ulonglong) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Causes all in-memory data and attributes of the file represented by the file handle to write to permanent storage.
+        ///
+        /// This method should be invoked by programs that require the file to be in a known state. Invocation of this method does not return until memory is flushed.
         #[unsafe(method(synchronizeAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub fn synchronizeAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
+        ///
+        /// If the file handle object owns its file descriptor, it automatically closes that descriptor when it is deallocated. If you initialized the file handle object using the ``FileHandle/init(fileDescriptor:closeOnDealloc:)`` method, the file handle object takes ownership of the file descriptor if you passed `YES` for the `flag` parameter. After invoking this method, you may still need to release the file handle object, but the object should not be used to read from or write to the file.
         #[unsafe(method(closeAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub fn closeAndReturnError(&self) -> Result<(), Retained<NSError>>;
@@ -127,38 +203,80 @@ impl DefaultRetained for NSFileHandle {
 /// NSFileHandleCreation.
 impl NSFileHandle {
     extern_methods!(
+        /// The file handle associated with the standard input file.
+        ///
+        /// Conventionally this is a terminal device on which the user enters a stream of data. There is one standard input file handle per process; it is a shared instance.
         #[unsafe(method(fileHandleWithStandardInput))]
         #[unsafe(method_family = none)]
         pub fn fileHandleWithStandardInput() -> Retained<NSFileHandle>;
 
+        /// The file handle associated with the standard output file.
+        ///
+        /// Conventionally this is a terminal device that receives a stream of data from a program. There is one standard output file handle per process; it is a shared instance.
         #[unsafe(method(fileHandleWithStandardOutput))]
         #[unsafe(method_family = none)]
         pub fn fileHandleWithStandardOutput() -> Retained<NSFileHandle>;
 
+        /// The file handle associated with the standard error file.
+        ///
+        /// Conventionally this is a terminal device to which error messages are sent. There is one standard error file handle per process; it is a shared instance.
         #[unsafe(method(fileHandleWithStandardError))]
         #[unsafe(method_family = none)]
         pub fn fileHandleWithStandardError() -> Retained<NSFileHandle>;
 
+        /// The file handle associated with a null device.
+        ///
+        /// You can use the returned file handle as a "stand in" for standard file handles. Reads from the null-device file handle return an empty ``NSData`` object. Writes to it are discarded. The ``FileHandle/fileDescriptor`` property returns an illegal value. The ``FileHandle/close()`` method has no effect.
         #[unsafe(method(fileHandleWithNullDevice))]
         #[unsafe(method_family = none)]
         pub fn fileHandleWithNullDevice() -> Retained<NSFileHandle>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a file handle initialized for reading the file, device, or named socket at the specified path.
+        ///
+        /// - Parameter path: The path to the file, device, or named socket to access.
+        /// - Returns: The initialized file handle object or `nil` if no file exists at `path`.
+        ///
+        /// The file pointer is set to the beginning of the file. You cannot write data to the returned file handle object. The returned object responds only to ``FileHandle/readData(ofLength:)``, ``FileHandle/readDataToEndOfFile()``, and ``FileHandle/availableData``. The file handle owns its file descriptor.
         #[unsafe(method(fileHandleForReadingAtPath:))]
         #[unsafe(method_family = none)]
         pub fn fileHandleForReadingAtPath(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
+        ///
+        /// - Parameter path: The path to the file, device, or named socket to access.
+        /// - Returns: The initialized file handle object or `nil` if no file exists at `path`.
+        ///
+        /// The file pointer is set to the beginning of the file. You cannot read data from the returned file handle object. Use ``FileHandle/write(_:)`` to write data to the returned file handle object. The file handle owns its file descriptor.
         #[unsafe(method(fileHandleForWritingAtPath:))]
         #[unsafe(method_family = none)]
         pub fn fileHandleForWritingAtPath(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified path.
+        ///
+        /// - Parameter path: The path to the file, device, or named socket to access.
+        /// - Returns: The initialized file handle object or `nil` if no file exists at `path`.
+        ///
+        /// The file pointer is set to the beginning of the file. The returned object responds to both read and write messages.
         #[unsafe(method(fileHandleForUpdatingAtPath:))]
         #[unsafe(method_family = none)]
         pub fn fileHandleForUpdatingAtPath(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns a file handle initialized for reading the file, device, or named socket at the specified URL.
+        ///
+        /// - Parameters:
+        /// - url: The URL of the file, device, or named socket to access.
+        /// - error: If an error occurs, upon return contains an `NSError` object that describes the problem. Pass `NULL` if you do not want error information.
+        /// - Returns: The initialized file handle object or `nil` if no file exists at `url`.
+        ///
+        /// The file pointer is set to the beginning of the file. You cannot write data to the returned file handle object.
+        /// Use the ``FileHandle/readDataToEndOfFile()`` or ``FileHandle/readData(ofLength:)`` methods to read data from it.
+        ///
+        /// When using this method to create a file handle object, the file handle owns its associated file descriptor
+        /// and is responsible for closing it.
         #[unsafe(method(fileHandleForReadingFromURL:error:_))]
         #[unsafe(method_family = none)]
         pub fn fileHandleForReadingFromURL_error(
@@ -166,6 +284,17 @@ impl NSFileHandle {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns a file handle initialized for writing to the file, device, or named socket at the specified URL.
+        ///
+        /// - Parameters:
+        /// - url: The URL of the file, device, or named socket to access.
+        /// - error: If an error occurs, upon return contains an `NSError` object that describes the problem. Pass `NULL` if you do not want error information.
+        /// - Returns: The initialized file handle object or `nil` if no file exists at `url`.
+        ///
+        /// The file pointer is set to the beginning of the file. The returned object responds only to ``FileHandle/write(_:)``.
+        ///
+        /// When using this method to create a file handle object, the file handle owns its associated file descriptor
+        /// and is responsible for closing it.
         #[unsafe(method(fileHandleForWritingToURL:error:_))]
         #[unsafe(method_family = none)]
         pub fn fileHandleForWritingToURL_error(
@@ -173,6 +302,17 @@ impl NSFileHandle {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified URL.
+        ///
+        /// - Parameters:
+        /// - url: The URL of the file, device, or named socket to access.
+        /// - error: If an error occurs, upon return contains an `NSError` object that describes the problem. Pass `NULL` if you do not want error information.
+        /// - Returns: The initialized file handle object or `nil` if no file exists at `url`.
+        ///
+        /// The file pointer is set to the beginning of the file. The returned object responds to both read and ``FileHandle/write(_:)`` messages.
+        ///
+        /// When using this method to create a file handle object, the file handle owns its associated file descriptor
+        /// and is responsible for closing it.
         #[unsafe(method(fileHandleForUpdatingURL:error:_))]
         #[unsafe(method_family = none)]
         pub fn fileHandleForUpdatingURL_error(
@@ -182,49 +322,67 @@ impl NSFileHandle {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandleoperationexception?language=objc)
+    /// The name of a file-operation exception.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandleoperationexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSFileHandleOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlereadcompletionnotification?language=objc)
+    /// Posted when the file handle reads the data currently available in a file or at a communications channel.
+    ///
+    /// The notification object is the ``FileHandle`` object that sent the notification. To cause the posting of this notification, you must send either ``FileHandle/readInBackgroundAndNotify()`` or ``FileHandle/readInBackgroundAndNotify(forModes:)`` to an appropriate file handle object. The notification's `userInfo` dictionary contains the `NSFileHandleNotificationDataItem` key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlereadcompletionnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlereadtoendoffilecompletionnotification?language=objc)
+    /// Posted when the file handle reads all data in the file or, if a communications channel, until the other process signals the end of data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlereadtoendoffilecompletionnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadToEndOfFileCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandleconnectionacceptednotification?language=objc)
+    /// Posted when an ``FileHandle`` object establishes a socket connection between two processes, creates a ``FileHandle`` object for one end of the connection, and makes this object available to observers by putting it in the `userInfo` dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandleconnectionacceptednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleConnectionAcceptedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandledataavailablenotification?language=objc)
+    /// Posted when the file handle determines that data is currently available for reading in a file or at a communications channel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandledataavailablenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleDataAvailableNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationdataitem?language=objc)
+    /// A key in a userInfo dictionary to access the data object received by a ``FileHandle/readCompletionNotification``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationdataitem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationDataItem: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationfilehandleitem?language=objc)
+    /// A key in a userInfo dictionary to access the ``FileHandle`` object of a connected-socket.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationfilehandleitem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationFileHandleItem: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes?language=objc)
+    /// Currently unused.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "Not supported"]
     pub static NSFileHandleNotificationMonitorModes: &'static NSString;
@@ -234,15 +392,28 @@ extern "C" {
 impl NSFileHandle {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
+        /// Reads from the file or communications channel in the background and posts a notification when finished.
+        ///
+        /// - Parameter modes: The runloop modes in which the read completion notification can be posted.
+        ///
+        /// See ``FileHandle/readInBackgroundAndNotify()`` for details. This method differs in that the notification is queued for posting in the specified run-loop modes.
         #[unsafe(method(readInBackgroundAndNotifyForModes:))]
         #[unsafe(method_family = none)]
         pub fn readInBackgroundAndNotifyForModes(&self, modes: Option<&NSArray<NSRunLoopMode>>);
 
+        /// Reads from the file or communications channel in the background and posts a notification when finished.
+        ///
+        /// This method performs an asynchronous ``FileHandle/availableData`` operation on a file or communications channel and posts an ``FileHandle/readCompletionNotification``. You must call this method from a thread that has an active run loop.
         #[unsafe(method(readInBackgroundAndNotify))]
         #[unsafe(method_family = none)]
         pub fn readInBackgroundAndNotify(&self);
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
+        /// Reads to the end of file from the file or communications channel in the background and posts a notification when finished.
+        ///
+        /// - Parameter modes: The runloop modes in which the read completion notification can be posted.
+        ///
+        /// See ``FileHandle/readToEndOfFileInBackgroundAndNotify()`` for details. This method differs in that the notification is queued for posting in the specified run-loop modes.
         #[unsafe(method(readToEndOfFileInBackgroundAndNotifyForModes:))]
         #[unsafe(method_family = none)]
         pub fn readToEndOfFileInBackgroundAndNotifyForModes(
@@ -250,11 +421,19 @@ impl NSFileHandle {
             modes: Option<&NSArray<NSRunLoopMode>>,
         );
 
+        /// Reads to the end of file from the file or communications channel in the background and posts a notification when finished.
+        ///
+        /// This method performs an asynchronous ``FileHandle/readDataToEndOfFile()`` operation on a file or communications channel and posts an `NSFileHandleReadToEndOfFileCompletionNotification`. You must call this method from a thread that has an active run loop.
         #[unsafe(method(readToEndOfFileInBackgroundAndNotify))]
         #[unsafe(method_family = none)]
         pub fn readToEndOfFileInBackgroundAndNotify(&self);
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
+        /// Accepts a socket connection (for stream-type sockets only) in the background and creates a file handle for the "near" (client) end of the communications channel.
+        ///
+        /// - Parameter modes: The runloop modes in which the connection accepted notification can be posted.
+        ///
+        /// See ``FileHandle/acceptConnectionInBackgroundAndNotify()`` for details. This method differs in that the notification is queued for posting in the specified run-loop modes.
         #[unsafe(method(acceptConnectionInBackgroundAndNotifyForModes:))]
         #[unsafe(method_family = none)]
         pub fn acceptConnectionInBackgroundAndNotifyForModes(
@@ -262,11 +441,21 @@ impl NSFileHandle {
             modes: Option<&NSArray<NSRunLoopMode>>,
         );
 
+        /// Accepts a socket connection (for stream-type sockets only) in the background and creates a file handle for the "near" (client) end of the communications channel.
+        ///
+        /// This method asynchronously creates a file handle for the other end of the socket connection and returns that object by posting an `NSFileHandleConnectionAcceptedNotification`. The notification includes a `userInfo` dictionary with the created ``FileHandle`` object, accessible using the `NSFileHandleNotificationFileHandleItem` key.
+        ///
+        /// You must call this method from a thread that has an active run loop.
         #[unsafe(method(acceptConnectionInBackgroundAndNotify))]
         #[unsafe(method_family = none)]
         pub fn acceptConnectionInBackgroundAndNotify(&self);
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
+        /// Asynchronously checks to see if data is available.
+        ///
+        /// - Parameter modes: The runloop modes in which the data available notification can be posted.
+        ///
+        /// See ``FileHandle/waitForDataInBackgroundAndNotify()`` for details. This method differs in that the notification is queued for posting in the specified run-loop modes.
         #[unsafe(method(waitForDataInBackgroundAndNotifyForModes:))]
         #[unsafe(method_family = none)]
         pub fn waitForDataInBackgroundAndNotifyForModes(
@@ -274,11 +463,18 @@ impl NSFileHandle {
             modes: Option<&NSArray<NSRunLoopMode>>,
         );
 
+        /// Asynchronously checks to see if data is available.
+        ///
+        /// When the data becomes available, this method posts a ``FileHandle/dataAvailableNotification`` notification on the current thread. You must call this method from a thread that has an active run loop.
         #[unsafe(method(waitForDataInBackgroundAndNotify))]
         #[unsafe(method_family = none)]
         pub fn waitForDataInBackgroundAndNotify(&self);
 
         #[cfg(feature = "block2")]
+        /// The block to use for reading the contents of the file handle asynchronously.
+        ///
+        /// The default value is `nil`. To read data asynchronously, assign a non-nil block. Doing so creates a dispatch source for the associated file descriptor and submits the block to that source when data arrives. Set to `nil` to stop reading.
+        ///
         /// # Safety
         ///
         /// The returned block's argument must be a valid pointer.
@@ -300,6 +496,10 @@ impl NSFileHandle {
         );
 
         #[cfg(feature = "block2")]
+        /// The block to use for writing the contents of the file handle asynchronously.
+        ///
+        /// The default value is `nil`. To write data asynchronously, assign a non-nil block. Doing so creates a dispatch source for the associated file descriptor and submits the block when the file handle has room for data. Set to `nil` to stop.
+        ///
         /// # Safety
         ///
         /// The returned block's argument must be a valid pointer.
@@ -327,10 +527,19 @@ impl NSFileHandle {
 /// NSFileHandlePlatformSpecific.
 impl NSFileHandle {
     extern_methods!(
+        /// Creates and returns a file handle object associated with the specified file descriptor.
+        ///
+        /// - Parameter fd: The POSIX file descriptor.
+        /// - Returns: A file handle initialized with `fileDescriptor`.
+        ///
+        /// The file descriptor is not owned by the file handle object, so you are responsible for closing the file descriptor at some point after disposing of the file handle object. You can create a file handle for a socket by using the result of a `socket` call as `fileDescriptor`.
         #[unsafe(method(initWithFileDescriptor:))]
         #[unsafe(method_family = init)]
         pub fn initWithFileDescriptor(this: Allocated<Self>, fd: c_int) -> Retained<Self>;
 
+        /// The POSIX file descriptor associated with the receiver.
+        ///
+        /// You can use this property to get the file descriptor while it is open. If the file handle object owns the file descriptor, you must not close it yourself. However, you can use the ``FileHandle/close()`` method to close the file handle, which also closes the file descriptor. If the receiver is not the owner of the file descriptor, closing the file descriptor while the file handle is still associated with it raises ``NSExceptionName/fileHandleOperationException``.
         #[unsafe(method(fileDescriptor))]
         #[unsafe(method_family = none)]
         pub fn fileDescriptor(&self) -> c_int;
@@ -340,48 +549,97 @@ impl NSFileHandle {
 impl NSFileHandle {
     extern_methods!(
         #[cfg(feature = "NSData")]
+        /// Reads the available data synchronously up to the end of file or maximum number of bytes.
+        ///
+        ///
+        /// - Returns: The data available through the receiver up to the maximum size that can be represented by an `NSData` object.
+        ///
+        /// This method invokes ``FileHandle/readData(ofLength:)`` as part of its implementation. Raises ``NSExceptionName/fileHandleOperationException`` upon failure.
         #[deprecated]
         #[unsafe(method(readDataToEndOfFile))]
         #[unsafe(method_family = none)]
         pub fn readDataToEndOfFile(&self) -> Retained<NSData>;
 
         #[cfg(feature = "NSData")]
+        /// Reads data synchronously up to the specified number of bytes.
+        ///
+        ///
+        /// - Parameter length: The number of bytes to read from the receiver.
+        /// - Returns: The data available through the receiver up to a maximum of `length` bytes.
+        ///
+        /// If the receiver is a file, this method returns data obtained by reading `length` bytes starting at the current file pointer. Returns an empty `NSData` when the end of file is reached. Raises ``NSExceptionName/fileHandleOperationException`` upon failure.
         #[deprecated]
         #[unsafe(method(readDataOfLength:))]
         #[unsafe(method_family = none)]
         pub fn readDataOfLength(&self, length: NSUInteger) -> Retained<NSData>;
 
         #[cfg(feature = "NSData")]
+        /// Writes the specified data synchronously to the file handle.
+        ///
+        ///
+        /// - Parameter data: The data to write.
+        ///
+        /// This method writes data at the current file pointer, advancing the file pointer. Raises ``NSExceptionName/fileHandleOperationException`` upon failure.
         #[deprecated]
         #[unsafe(method(writeData:))]
         #[unsafe(method_family = none)]
         pub fn writeData(&self, data: &NSData);
 
+        /// The position of the file pointer within the file represented by the file handle.
+        ///
+        ///
+        /// Raises ``NSExceptionName/fileHandleOperationException`` if the message is sent to a file handle representing a pipe or socket, or if the file descriptor is closed.
         #[deprecated]
         #[unsafe(method(offsetInFile))]
         #[unsafe(method_family = none)]
         pub fn offsetInFile(&self) -> c_ulonglong;
 
+        /// Places the file pointer at the end of the file referenced by the file handle and returns the new file offset.
+        ///
+        ///
+        /// - Returns: The file offset with the file pointer at the end of the file. This is the size of the file.
+        ///
+        /// Raises ``NSExceptionName/fileHandleOperationException`` if the message is sent to a file handle representing a pipe or socket, or if the file descriptor is closed.
         #[deprecated]
         #[unsafe(method(seekToEndOfFile))]
         #[unsafe(method_family = none)]
         pub fn seekToEndOfFile(&self) -> c_ulonglong;
 
+        /// Moves the file pointer to the specified offset within the file represented by the receiver.
+        ///
+        ///
+        /// - Parameter offset: The offset to seek to.
+        ///
+        /// Raises ``NSExceptionName/fileHandleOperationException`` if the message is sent to a file handle representing a pipe or socket, or if the file descriptor is closed.
         #[deprecated]
         #[unsafe(method(seekToFileOffset:))]
         #[unsafe(method_family = none)]
         pub fn seekToFileOffset(&self, offset: c_ulonglong);
 
+        /// Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.
+        ///
+        ///
+        /// - Parameter offset: The offset within the file that will mark the new end of the file.
+        ///
+        /// If the file is extended (if `offset` is beyond the current end of file), the added characters are null bytes. Raises ``NSExceptionName/fileHandleOperationException`` upon failure.
         #[deprecated]
         #[unsafe(method(truncateFileAtOffset:))]
         #[unsafe(method_family = none)]
         pub fn truncateFileAtOffset(&self, offset: c_ulonglong);
 
+        /// Causes all in-memory data and attributes of the file represented by the handle to write to permanent storage.
+        ///
+        ///
+        /// This method should be invoked by programs that require the file to be in a known state. Invocation of this method does not return until memory is flushed. Raises ``NSExceptionName/fileHandleOperationException`` upon failure.
         #[deprecated]
         #[unsafe(method(synchronizeFile))]
         #[unsafe(method_family = none)]
         pub fn synchronizeFile(&self);
 
+        /// Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
+        ///
+        ///
+        /// If the file handle object owns its file descriptor, it automatically closes that descriptor when it is deallocated. After invoking this method, you may still need to release the file handle object, but the object should not be used to read from or write to the file.
         #[deprecated]
         #[unsafe(method(closeFile))]
         #[unsafe(method_family = none)]
@@ -390,7 +648,11 @@ impl NSFileHandle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspipe?language=objc)
+    /// A one-way communications channel between related processes.
+    ///
+    /// ``Pipe`` objects provide an object-oriented interface for accessing pipes. An ``Pipe`` object represents both ends of a pipe and enables communication through the pipe. A pipe is a one-way communications channel between related processes; one process writes data, while the other process reads that data. The data that passes through the pipe is buffered; the size of the buffer is determined by the underlying operating system. ``Pipe`` is an abstract class, the public interface of a class cluster.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspipe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPipe;
@@ -406,14 +668,17 @@ extern_conformance!(
 
 impl NSPipe {
     extern_methods!(
+        /// The receiver's read file handle.
         #[unsafe(method(fileHandleForReading))]
         #[unsafe(method_family = none)]
         pub fn fileHandleForReading(&self) -> Retained<NSFileHandle>;
 
+        /// The receiver's write file handle.
         #[unsafe(method(fileHandleForWriting))]
         #[unsafe(method_family = none)]
         pub fn fileHandleForWriting(&self) -> Retained<NSFileHandle>;
 
+        /// Returns a new `NSPipe` object.
         #[unsafe(method(pipe))]
         #[unsafe(method_family = none)]
         pub fn pipe() -> Retained<NSPipe>;

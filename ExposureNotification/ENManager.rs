@@ -13,34 +13,42 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus?language=objc)
 // NS_ENUM
+#[deprecated = "No longer supported."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENStatus(pub NSInteger);
 impl ENStatus {
     /// Status of Exposure Notification is unknown. This is the status before ENManager has activated successfully.
     #[doc(alias = "ENStatusUnknown")]
+    #[deprecated = "No longer supported."]
     pub const Unknown: Self = Self(0);
     /// Exposure Notification is active on the system.
     #[doc(alias = "ENStatusActive")]
+    #[deprecated = "No longer supported."]
     pub const Active: Self = Self(1);
     /// Exposure Notification is disabled. setExposureNotificationEnabled:completionHandler can be used to enable it.
     #[doc(alias = "ENStatusDisabled")]
+    #[deprecated = "No longer supported."]
     pub const Disabled: Self = Self(2);
     /// Bluetooth has been turned off on the system. Bluetooth is required for Exposure Notification.
     /// Note: this may not match the state of Bluetooth as reported by CoreBluetooth.
     /// Exposure Notification is a system service and can use Bluetooth in situations when apps cannot.
     /// So for the purposes of Exposure Notification, it's better to use this API instead of CoreBluetooth.
     #[doc(alias = "ENStatusBluetoothOff")]
+    #[deprecated = "No longer supported."]
     pub const BluetoothOff: Self = Self(3);
     /// Exposure Notification is not active due to system restrictions, such as parental controls.
     /// When in this state, the app cannot enable Exposure Notification.
     #[doc(alias = "ENStatusRestricted")]
+    #[deprecated = "No longer supported."]
     pub const Restricted: Self = Self(4);
     /// For future use. Not returned by any APIs yet.
     #[doc(alias = "ENStatusPaused")]
+    #[deprecated = "No longer supported."]
     pub const Paused: Self = Self(5);
     /// Exposure Notification is not available due to insufficient authorization.
     #[doc(alias = "ENStatusUnauthorized")]
+    #[deprecated = "No longer supported."]
     pub const Unauthorized: Self = Self(6);
 }
 
@@ -56,6 +64,7 @@ unsafe impl RefEncode for ENStatus {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags?language=objc)
 // NS_OPTIONS
+#[deprecated = "No longer supported."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENActivityFlags(pub u32);
@@ -63,15 +72,19 @@ bitflags::bitflags! {
     impl ENActivityFlags: u32 {
 /// Reserved field
         #[doc(alias = "ENActivityFlagsReserved1")]
+#[deprecated = "No longer supported."]
         const Reserved1 = 1<<0;
 /// Reserved field
         #[doc(alias = "ENActivityFlagsReserved2")]
+#[deprecated = "No longer supported."]
         const Reserved2 = 1<<1;
 /// The app launched in the background to perform periodic operations on iOS 12.5.
         #[doc(alias = "ENActivityFlagsPeriodicRun")]
+#[deprecated = "No longer supported."]
         const PeriodicRun = 1<<2;
 /// The app launched in the foreground to display information about the pre-authorized key release
         #[doc(alias = "ENActivityFlagsPreAuthorizedKeyReleaseNotificationTapped")]
+#[deprecated = "No longer supported."]
         const PreAuthorizedKeyReleaseNotificationTapped = 1<<3;
         const _ = !0;
     }
@@ -88,6 +101,7 @@ unsafe impl RefEncode for ENActivityFlags {
 /// Invoked after the app is launched to report activities that occurred while the app might not be running.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityhandler?language=objc)
+#[deprecated = "No longer supported."]
 #[cfg(feature = "block2")]
 pub type ENActivityHandler = block2::Block<'static, fn(ENActivityFlags)>;
 
@@ -96,6 +110,7 @@ pub type ENActivityHandler = block2::Block<'static, fn(ENActivityFlags)>;
 /// If it fails, keys will be nil and error indicates the reason it failed.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetdiagnosiskeyshandler?language=objc)
+#[deprecated = "No longer supported."]
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetDiagnosisKeysHandler =
     block2::SendableBlock<'static, fn(*mut NSArray<ENTemporaryExposureKey>, *mut NSError)>;
@@ -105,11 +120,13 @@ pub type ENGetDiagnosisKeysHandler =
 /// If it fails, summary will be nil and error indicates the reason it failed.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endetectexposureshandler?language=objc)
+#[deprecated = "No longer supported."]
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENDetectExposuresHandler =
     block2::Block<'static, fn(*mut ENExposureDetectionSummary, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosiskeysavailablehandler?language=objc)
+#[deprecated = "No longer supported."]
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENDiagnosisKeysAvailableHandler =
     block2::Block<'static, fn(NonNull<NSArray<ENTemporaryExposureKey>>)>;
@@ -119,6 +136,7 @@ pub type ENDiagnosisKeysAvailableHandler =
 /// If it fails, exposures will be nil and error indicates the reason it failed.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetexposureinfohandler?language=objc)
+#[deprecated = "No longer supported."]
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetExposureInfoHandler =
     block2::Block<'static, fn(*mut NSArray<ENExposureInfo>, *mut NSError)>;
@@ -128,6 +146,7 @@ pub type ENGetExposureInfoHandler =
 /// If it fails, exposureWindows will be nil and error indicates the reason it failed.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetexposurewindowshandler?language=objc)
+#[deprecated = "No longer supported."]
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetExposureWindowsHandler =
     block2::Block<'static, fn(*mut NSArray<ENExposureWindow>, *mut NSError)>;
@@ -135,6 +154,7 @@ pub type ENGetExposureWindowsHandler =
 /// Invoked when getUserTraveled completes.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetusertraveledhandler?language=objc)
+#[deprecated = "No longer supported."]
 #[cfg(feature = "block2")]
 pub type ENGetUserTraveledHandler = block2::SendableBlock<'static, fn(Bool, *mut NSError)>;
 
@@ -144,6 +164,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "No longer supported."]
     pub struct ENManager;
 );
 
@@ -156,6 +177,7 @@ impl ENManager {
         #[cfg(feature = "block2")]
         /// Invoked when the app is launched for an activity while it might not be running.
         /// When the app is launched, it should create an ENManager instance, set this handler, and then activate the manager.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(activityHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityHandler(&self) -> *mut ENActivityHandler;
@@ -164,11 +186,13 @@ impl ENManager {
         /// Setter for [`activityHandler`][Self::activityHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setActivityHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityHandler(&self, activity_handler: Option<&ENActivityHandler>);
 
         #[cfg(feature = "dispatch2")]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(dispatchQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchQueue(&self) -> Retained<DispatchQueue>;
@@ -179,17 +203,20 @@ impl ENManager {
         /// # Safety
         ///
         /// `dispatch_queue` possibly has additional threading requirements.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDispatchQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDispatchQueue(&self, dispatch_queue: &DispatchQueue);
 
         /// Overall status of Exposure Notification. KVO may be used to monitor for changes.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(exposureNotificationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureNotificationStatus(&self) -> ENStatus;
 
         #[cfg(feature = "dispatch2")]
         /// Invoked exactly once when invalidation completes. This property is cleared before it's invoked to break retain cycles.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(invalidationHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidationHandler(&self) -> *mut DispatchBlock;
@@ -198,24 +225,28 @@ impl ENManager {
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setInvalidationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInvalidationHandler(&self, invalidation_handler: Option<&DispatchBlock>);
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Activates the object to prepare it for use. Properties may not be usable until the completion handler reports success.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(activateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateWithCompletionHandler(&self, completion_handler: &ENErrorHandler);
 
         /// Stops any outstanding operations and invalidates this object. Once this is called, the object can no longer be used.
         /// To start using ENManager again, a new instance of the class must be created and activated.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
         #[cfg(feature = "block2")]
         /// Reports if the user traveled within an exposure period (e.g. 14 days).
+        #[deprecated = "No longer supported."]
         #[unsafe(method(getUserTraveledWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getUserTraveledWithCompletionHandler(
@@ -226,6 +257,7 @@ impl ENManager {
         #[cfg(feature = "ENCommon")]
         /// Reports the current authorization status of the app.
         /// Apps can use this property to preflight authorization in order to determine if the user will be prompted.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(authorizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> ENAuthorizationStatus;
@@ -234,6 +266,7 @@ impl ENManager {
         /// This will be NO until activateWithCompletionHandler has completed successfully.
         /// Note that even if it's enabled, it may be inactive for other reasons, such as Bluetooth being turned off.
         /// The exposureNotificationStatus property can be monitored for the overall status of Exposure Notification.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(exposureNotificationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureNotificationEnabled(&self) -> bool;
@@ -243,6 +276,7 @@ impl ENManager {
         /// If not previously authorized, this shows a user dialog for consent to enable Exposure Notification.
         /// Note: Disabling stops Bluetooth advertising and scanning related to Exposure Notification, but the
         /// Diagnosis Keys and data will remain.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setExposureNotificationEnabled:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposureNotificationEnabled_completionHandler(
@@ -255,6 +289,7 @@ impl ENManager {
         /// Detects exposures using the specified configuration to control the scoring algorithm.
         /// This uses the diagnosis keys already known to the system.
         /// Only available to apps with ENAPIVersion 2 or higher.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(detectExposuresWithConfiguration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectExposuresWithConfiguration_completionHandler(
@@ -267,6 +302,7 @@ impl ENManager {
         /// Detects exposures using the specified configuration to control the scoring algorithm and URLs to specify the
         /// files containing diagnosis keys the app has downloaded. The diagnosis key files must be signed appropriately.
         /// When the app's ENAPIVersion is 2 or higher, keys already known to the system are included in the analysis.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(detectExposuresWithConfiguration:diagnosisKeyURLs:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectExposuresWithConfiguration_diagnosisKeyURLs_completionHandler(
@@ -292,6 +328,7 @@ impl ENManager {
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Gets info about each exposure window from the summary provided when exposure detection completes.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(getExposureWindowsFromSummary:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getExposureWindowsFromSummary_completionHandler(
@@ -303,6 +340,7 @@ impl ENManager {
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Requests the temporary exposure keys used by this device to share with a server.
         /// Each use of this API will present the user with system UI to authorize it.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(getDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDiagnosisKeysWithCompletionHandler(
@@ -315,6 +353,7 @@ impl ENManager {
         /// Each use of this API will present the user with system UI to authorize it.
         /// WARNING: This API is only for use by developers. It requires a special entitlement that is not allowed in the app store.
         /// It's only intended to allow developers to test without needing to wait 24 hours for a key to be released.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(getTestDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTestDiagnosisKeysWithCompletionHandler(
@@ -328,6 +367,7 @@ impl ENManager {
         /// # Safety
         ///
         /// The returned block's argument must be a valid pointer.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(diagnosisKeysAvailableHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn diagnosisKeysAvailableHandler(&self) -> *mut ENDiagnosisKeysAvailableHandler;
@@ -336,6 +376,7 @@ impl ENManager {
         /// Setter for [`diagnosisKeysAvailableHandler`][Self::diagnosisKeysAvailableHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDiagnosisKeysAvailableHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiagnosisKeysAvailableHandler(
@@ -347,6 +388,7 @@ impl ENManager {
         /// Authorizes a one-time, future release of diagnosis keys without a user prompt at the time of release.
         /// This allows the user to authorize ahead of time in case they are unable to approve at the time of positive diagnosis.
         /// WARNING: Application should be in foreground to request the authorization
+        #[deprecated = "No longer supported."]
         #[unsafe(method(preAuthorizeDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preAuthorizeDiagnosisKeysWithCompletionHandler(
@@ -358,6 +400,7 @@ impl ENManager {
         /// Requests diagnosis keys after previously using preAuthorizeDiagnosisKeys successfully.
         /// This will display a notification to the user for the user to know the keys will be returned.
         /// Keys are returned by invoking diagnosisKeysAvailable, which must be set before calling this.
+        #[deprecated = "No longer supported."]
         #[unsafe(method(requestPreAuthorizedDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPreAuthorizedDiagnosisKeysWithCompletionHandler(

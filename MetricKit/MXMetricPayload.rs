@@ -20,6 +20,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricpayload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use MetricReport instead."]
     pub struct MXMetricPayload;
 );
 
@@ -40,6 +41,7 @@ impl MXMetricPayload {
         /// An NSString representation of the application version from which this payload was generated.
         ///
         /// If the application version was changed during the aggregation of this data, this value will reflect the latest application version at the time of retrieval.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(latestApplicationVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn latestApplicationVersion(&self) -> Retained<NSString>;
@@ -49,34 +51,40 @@ impl MXMetricPayload {
         /// A value of YES indicates that this payload's data reflects multiple application versions.
         ///
         /// A value of NO indicates that this payload only reflects data from the application version specified by latestApplicationVersion.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(includesMultipleApplicationVersions))]
         #[unsafe(method_family = none)]
         pub unsafe fn includesMultipleApplicationVersions(&self) -> bool;
 
         /// An NSDate object that indicates the time which the payload was generated.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(timeStampBegin))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStampBegin(&self) -> Retained<NSDate>;
 
         /// An NSDate object that indicates the time which the payload was generated.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(timeStampEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeStampEnd(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "MXCPUMetric", feature = "MXMetric"))]
         /// An object containing CPU metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(cpuMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn cpuMetrics(&self) -> Option<Retained<MXCPUMetric>>;
 
         #[cfg(all(feature = "MXGPUMetric", feature = "MXMetric"))]
         /// An object containing GPU metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(gpuMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn gpuMetrics(&self) -> Option<Retained<MXGPUMetric>>;
 
         #[cfg(all(feature = "MXCellularConditionMetric", feature = "MXMetric"))]
         /// An object containing a cellular condition metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(cellularConditionMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellularConditionMetrics(
@@ -85,30 +93,35 @@ impl MXMetricPayload {
 
         #[cfg(all(feature = "MXAppRunTimeMetric", feature = "MXMetric"))]
         /// An object containing running mode metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(applicationTimeMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationTimeMetrics(&self) -> Option<Retained<MXAppRunTimeMetric>>;
 
         #[cfg(all(feature = "MXLocationActivityMetric", feature = "MXMetric"))]
         /// An object containing location activity metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(locationActivityMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationActivityMetrics(&self) -> Option<Retained<MXLocationActivityMetric>>;
 
         #[cfg(all(feature = "MXMetric", feature = "MXNetworkTransferMetric"))]
         /// An object containing network transfer metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(networkTransferMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn networkTransferMetrics(&self) -> Option<Retained<MXNetworkTransferMetric>>;
 
         #[cfg(all(feature = "MXAppLaunchMetric", feature = "MXMetric"))]
         /// An object containing launch metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(applicationLaunchMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationLaunchMetrics(&self) -> Option<Retained<MXAppLaunchMetric>>;
 
         #[cfg(all(feature = "MXAppResponsivenessMetric", feature = "MXMetric"))]
         /// An object containing hang metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(applicationResponsivenessMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationResponsivenessMetrics(
@@ -117,18 +130,21 @@ impl MXMetricPayload {
 
         #[cfg(all(feature = "MXDiskIOMetric", feature = "MXMetric"))]
         /// An object containing disk IO metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(diskIOMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn diskIOMetrics(&self) -> Option<Retained<MXDiskIOMetric>>;
 
         #[cfg(all(feature = "MXMemoryMetric", feature = "MXMetric"))]
         /// An object containing memory metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(memoryMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn memoryMetrics(&self) -> Option<Retained<MXMemoryMetric>>;
 
         #[cfg(all(feature = "MXDisplayMetric", feature = "MXMetric"))]
         /// An object containing display metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(displayMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayMetrics(&self) -> Option<Retained<MXDisplayMetric>>;
@@ -153,12 +169,14 @@ impl MXMetricPayload {
 
         #[cfg(all(feature = "MXMetric", feature = "MXSignpostMetric"))]
         /// An array containing signpost metrics for this application.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(signpostMetrics))]
         #[unsafe(method_family = none)]
         pub unsafe fn signpostMetrics(&self) -> Option<Retained<NSArray<MXSignpostMetric>>>;
 
         #[cfg(feature = "MXMetaData")]
         /// An object containing extra metadata for this payload.
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(metaData))]
         #[unsafe(method_family = none)]
         pub unsafe fn metaData(&self) -> Option<Retained<MXMetaData>>;
@@ -166,6 +184,7 @@ impl MXMetricPayload {
         /// Convenience method to return a JSON representation of this payload.
         ///
         /// Returns: An NSData object containing the JSON representation
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
@@ -181,6 +200,7 @@ impl MXMetricPayload {
         /// Convenience method to return a NSDictionary representation of this payload.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
+        #[deprecated = "Use MetricReport instead."]
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;

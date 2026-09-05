@@ -78,6 +78,12 @@ impl CKLocationSortDescriptor {
 /// Methods declared on superclass `NSSortDescriptor`.
 impl CKLocationSortDescriptor {
     extern_methods!(
+        /// Creates and returns a sort descriptor with the specified key path and ordering.
+        ///
+        /// - Parameters:
+        /// - key: The key path to use when performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order, otherwise `NO`.
+        /// - Returns: A sort descriptor initialized with the specified key path and sort order, and the default comparison selector (`compare:`).
         #[unsafe(method(sortDescriptorWithKey:ascending:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorWithKey_ascending(
@@ -85,6 +91,14 @@ impl CKLocationSortDescriptor {
             ascending: bool,
         ) -> Retained<Self>;
 
+        /// Creates a sort descriptor with the specified key path, ordering, and comparison selector.
+        ///
+        /// - Parameters:
+        /// - key: The key path for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - selector: The method to use when comparing the properties of objects. The selector must specify a method implemented by the value of the property identified by the key path. The selector used for the comparison is passed a single parameter, the object to compare against, and it returns the appropriate `NSComparisonResult` constant.
+        /// - Returns: A sort descriptor initialized with the specified key path, sort order, and comparison selector.
+        ///
         /// # Safety
         ///
         /// `selector` must be a valid selector.
@@ -96,6 +110,12 @@ impl CKLocationSortDescriptor {
             selector: Option<Sel>,
         ) -> Retained<Self>;
 
+        /// Creates a sort descriptor with a specified string key path and sort order.
+        ///
+        /// - Parameters:
+        /// - key: The key path for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - Returns: A sort descriptor initialized with the specified key path and sort order, and the default comparison selector (`compare:`).
         #[unsafe(method(initWithKey:ascending:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey_ascending(
@@ -104,6 +124,14 @@ impl CKLocationSortDescriptor {
             ascending: bool,
         ) -> Retained<Self>;
 
+        /// Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
+        ///
+        /// - Parameters:
+        /// - key: The key path for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - selector: The method to use when comparing the properties of objects. The selector must specify a method implemented by the value of the property identified by the key path. The selector used for the comparison is passed a single parameter, the object to compare against, and it returns the appropriate `NSComparisonResult` constant.
+        /// - Returns: A sort descriptor initialized with the specified key path, sort order, and comparison selector.
+        ///
         /// # Safety
         ///
         /// `selector` must be a valid selector.
@@ -116,6 +144,13 @@ impl CKLocationSortDescriptor {
             selector: Option<Sel>,
         ) -> Retained<Self>;
 
+        /// Creates and returns a sort descriptor initialized with the specified key path and ordering, and a comparator block.
+        ///
+        /// - Parameters:
+        /// - key: The property for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - cmptr: A comparator block.
+        /// - Returns: A sort descriptor initialized with the specified key, ordering, and comparator.
         #[unsafe(method(sortDescriptorWithKey:ascending:comparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorWithKey_ascending_comparator(
@@ -124,6 +159,13 @@ impl CKLocationSortDescriptor {
             cmptr: &NSComparator,
         ) -> Retained<Self>;
 
+        /// Creates a sort descriptor with a specified string key path and ordering, and a comparator block.
+        ///
+        /// - Parameters:
+        /// - key: The property key for performing a comparison.
+        /// - ascending: `YES` if the receiver specifies sorting in ascending order; otherwise, `NO`.
+        /// - cmptr: A comparator block.
+        /// - Returns: A sort descriptor initialized with the specified key, ordering, and comparator.
         #[unsafe(method(initWithKey:ascending:comparator:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey_ascending_comparator(

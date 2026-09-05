@@ -192,6 +192,18 @@ impl NSGestureRecognizer {
         #[unsafe(method_family = none)]
         pub fn setDelaysRotationEvents(&self, delays_rotation_events: bool);
 
+        /// Causes the receiver to be cancelled when its enclosing scroll view's gesture recognizer begins.
+        ///
+        /// Defaults to `false`.
+        #[unsafe(method(isCancellableByScrollGesture))]
+        #[unsafe(method_family = none)]
+        pub fn isCancellableByScrollGesture(&self) -> bool;
+
+        /// Setter for [`isCancellableByScrollGesture`][Self::isCancellableByScrollGesture].
+        #[unsafe(method(setCancellableByScrollGesture:))]
+        #[unsafe(method_family = none)]
+        pub fn setCancellableByScrollGesture(&self, cancellable_by_scroll_gesture: bool);
+
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(locationInView:))]
         #[unsafe(method_family = none)]

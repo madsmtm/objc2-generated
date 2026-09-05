@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendardate?language=objc)
+    /// A specialized date object with embedded calendar information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendardate?language=objc)
     #[unsafe(super(NSDate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSDate")]
@@ -275,10 +277,18 @@ impl NSCalendarDate {
 #[cfg(feature = "NSDate")]
 impl NSCalendarDate {
     extern_methods!(
+        /// Returns a date object initialized to the current date and time.
+        ///
+        /// This method is a designated initializer for `NSDate`.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns a date object initialized relative to 00:00:00 UTC on 1 January 2001 by a given number of seconds.
+        ///
+        /// - Parameter ti: The number of seconds to add to the reference date (00:00:00 UTC on 1 January 2001). A negative value means the receiver will be earlier than the reference date.
+        ///
+        /// This method is a designated initializer for the `NSDate` class and is declared primarily for the use of subclasses of `NSDate`. When you subclass `NSDate` to create a concrete date class, you must override this method.
         #[unsafe(method(initWithTimeIntervalSinceReferenceDate:))]
         #[unsafe(method_family = init)]
         pub fn initWithTimeIntervalSinceReferenceDate(
@@ -311,6 +321,27 @@ impl DefaultRetained for NSCalendarDate {
 impl NSDate {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Creates and returns a date object set to the date and time specified by a given string.
+        ///
+        /// This method supports only a limited set of colloquial phrases, primarily in English. It may give unexpected results, and its use is strongly discouraged. To create a date object from a string, you should use a date formatter object instead (see ``DateFormatter`` and [Data Formatting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DataFormatting/DataFormatting.html#//apple_ref/doc/uid/10000029i)).
+        ///
+        /// The keys and values that represent the locale data from `locale` are used when parsing the string. In addition to the locale keys listed in the class description, these keys are used when parsing natural language strings:
+        ///
+        /// - NSDateTimeOrdering
+        /// - NSEarlierTimeDesignations
+        /// - NSHourNameDesignations
+        /// - NSLaterTimeDesignations
+        /// - NSNextDayDesignations
+        /// - NSNextNextDayDesignations
+        /// - NSPriorDayDesignations
+        /// - NSThisDayDesignations
+        /// - NSYearMonthWeekDesignations
+        ///
+        /// - Parameters:
+        /// - string: A string that contains a colloquial specification of a date, such as "last Tuesday at dinner," "3pm December 31, 2001," "12/31/01," or "31/12/01."
+        /// - locale: An `NSDictionary` object containing locale data. To use the user's preferences, you can use `[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]`. If you pass `nil` or an instance of `NSLocale`, `NSDate` uses the system default locale---this is not the same as the current user's locale.
+        /// - Returns: A new `NSDate` object set to the date and time specified by `string` as interpreted according to `locale`.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -323,18 +354,39 @@ impl NSDate {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// Creates and returns a date object set to the date and time specified by a given string.
+        ///
+        /// This method supports only a limited set of colloquial phrases, primarily in English. It may give unexpected results, and its use is strongly discouraged. To create a date object from a string, you should use a date formatter object instead (see ``DateFormatter`` and [Data Formatting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DataFormatting/DataFormatting.html#//apple_ref/doc/uid/10000029i)).
+        ///
+        /// In parsing the string, this method uses the date and time preferences stored in the user's defaults database. (See ``NSDate/date(withNaturalLanguageString:locale:)`` for a list of the specific items used.)
+        ///
+        /// - Parameter string: A string that contains a colloquial specification of a date, such as "last Tuesday at dinner," "3pm December 31, 2001," "12/31/01," or "31/12/01."
+        /// - Returns: A new `NSDate` object set to the current date and time specified by `string`.
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
         #[unsafe(method(dateWithNaturalLanguageString:))]
         #[unsafe(method_family = none)]
         pub fn dateWithNaturalLanguageString(string: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// Creates and returns a date object with a date and time value specified by a given string in the international string representation format (`YYYY-MM-DD HH:MM:SS ±HHMM`).
+        ///
+        /// To create a date object from a string, you should typically use a date formatter object instead (see ``DateFormatter`` and [Data Formatting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DataFormatting/DataFormatting.html#//apple_ref/doc/uid/10000029i)).
+        ///
+        /// - Parameter aString: A string that specifies a date and time value in the international string representation format---`YYYY-MM-DD HH:MM:SS ±HHMM`, where `±HHMM` is a time zone offset in hours and minutes from UTC (for example, "`2001-03-24 10:45:32 +0600`"). You must specify all fields of the format string, including the time zone offset, which must have a plus or minus sign prefix.
+        /// - Returns: An `NSDate` object with a date and time value specified by `aString`.
         #[deprecated = "Use NSDateFormatter instead"]
         #[unsafe(method(dateWithString:))]
         #[unsafe(method_family = none)]
         pub fn dateWithString(a_string: &NSString) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSString", feature = "NSTimeZone"))]
+        /// Converts the receiver to a calendar date with a given format string and time zone.
+        ///
+        ///
+        /// - Parameters:
+        /// - format: The format for the returned string. Pass `nil` to use the default format string, `"%Y-%m-%d %H:%M:%S %z"`.
+        /// - aTimeZone: The time zone for the new calendar date. Pass `nil` to use the default time zone.
+        /// - Returns: A new `NSCalendarDate` object bound to `format` and the time zone `aTimeZone`.
         #[deprecated]
         #[unsafe(method(dateWithCalendarFormat:timeZone:))]
         #[unsafe(method_family = none)]
@@ -345,6 +397,8 @@ impl NSDate {
         ) -> Retained<NSCalendarDate>;
 
         #[cfg(all(feature = "NSString", feature = "NSTimeZone"))]
+        /// Returns a string representation of the date formatted as specified by given conversion specifiers.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -359,6 +413,13 @@ impl NSDate {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a date object initialized with a date and time value specified by a given string in the international string representation format.
+        ///
+        /// - Parameters:
+        /// - description: A string that specifies a date and time value in the international string representation format---`YYYY-MM-DD HH:MM:SS ±HHMM`,
+        /// where `±HHMM` is a time zone offset in hours and minutes from UTC (for example, "`2001-03-24 10:45:32 +0600`").
+        /// You must specify all fields of the format string, including the time zone offset, which must have a plus or minus sign prefix.
+        /// - Returns: An `NSDate` object initialized with a date and time value specified by `description`.
         #[deprecated = "Use NSDateFormatter instead"]
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]

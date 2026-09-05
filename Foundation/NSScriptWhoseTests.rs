@@ -5,26 +5,36 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstestcomparisonoperation?language=objc)
+/// Constants that specify comparison operations for use in script whose tests.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstestcomparisonoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTestComparisonOperation(pub NSUInteger);
 impl NSTestComparisonOperation {
+    /// Tests for equality.
     #[doc(alias = "NSEqualToComparison")]
     pub const EqualToComparison: Self = Self(0);
+    /// Tests for less-than-or-equal-to.
     #[doc(alias = "NSLessThanOrEqualToComparison")]
     pub const LessThanOrEqualToComparison: Self = Self(1);
+    /// Tests for less-than.
     #[doc(alias = "NSLessThanComparison")]
     pub const LessThanComparison: Self = Self(2);
+    /// Tests for greater-than-or-equal-to.
     #[doc(alias = "NSGreaterThanOrEqualToComparison")]
     pub const GreaterThanOrEqualToComparison: Self = Self(3);
+    /// Tests for greater-than.
     #[doc(alias = "NSGreaterThanComparison")]
     pub const GreaterThanComparison: Self = Self(4);
+    /// Tests whether a string begins with another string.
     #[doc(alias = "NSBeginsWithComparison")]
     pub const BeginsWithComparison: Self = Self(5);
+    /// Tests whether a string ends with another string.
     #[doc(alias = "NSEndsWithComparison")]
     pub const EndsWithComparison: Self = Self(6);
+    /// Tests whether a string contains another string.
     #[doc(alias = "NSContainsComparison")]
     pub const ContainsComparison: Self = Self(7);
 }
@@ -38,7 +48,13 @@ unsafe impl RefEncode for NSTestComparisonOperation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptwhosetest?language=objc)
+    /// An abstract class that provides the basis for testing specifiers one at a time or in groups.
+    ///
+    /// `NSScriptWhoseTest` is an abstract class whose sole method is ``isTrue()``. Two concrete subclasses of `NSScriptWhoseTest` generate objects representing Boolean expressions comparing one object with another and objects representing multiple Boolean expressions connected by logical operators (`OR`, `AND`, `NOT`). These classes are, respectively, ``NSSpecifierTest`` and ``NSLogicalTest``. In evaluating itself, an ``NSWhoseSpecifier`` invokes the ``isTrue()`` method of its "test" object.
+    ///
+    /// You shouldn't need to subclass `NSScriptWhoseTest`, and you should rarely need to subclass one of its subclasses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptwhosetest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptWhoseTest;
@@ -55,6 +71,7 @@ extern_conformance!(
 
 impl NSScriptWhoseTest {
     extern_methods!(
+        /// Returns a Boolean value that indicates whether this test evaluates to true.
         #[unsafe(method(isTrue))]
         #[unsafe(method_family = none)]
         pub fn isTrue(&self) -> bool;
@@ -82,7 +99,9 @@ impl DefaultRetained for NSScriptWhoseTest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslogicaltest?language=objc)
+    /// A script whose test that combines other tests using logical AND, OR, or NOT operations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslogicaltest?language=objc)
     #[unsafe(super(NSScriptWhoseTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLogicalTest;
@@ -100,6 +119,7 @@ extern_conformance!(
 impl NSLogicalTest {
     extern_methods!(
         #[cfg(feature = "NSArray")]
+        /// Initializes a logical AND test with the given subtests.
         #[unsafe(method(initAndTestWithTests:))]
         #[unsafe(method_family = init)]
         pub fn initAndTestWithTests(
@@ -108,6 +128,7 @@ impl NSLogicalTest {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Initializes a logical OR test with the given subtests.
         #[unsafe(method(initOrTestWithTests:))]
         #[unsafe(method_family = init)]
         pub fn initOrTestWithTests(
@@ -115,6 +136,7 @@ impl NSLogicalTest {
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Retained<Self>;
 
+        /// Initializes a logical NOT test with the given subtest.
         #[unsafe(method(initNotTestWithTest:))]
         #[unsafe(method_family = init)]
         pub fn initNotTestWithTest(
@@ -150,7 +172,11 @@ impl DefaultRetained for NSLogicalTest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest?language=objc)
+    /// A script whose test that compares an object specifier against a value using a comparison operator.
+    ///
+    /// The specifiers are evaluated normally before the comparison operator is evaluated.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest?language=objc)
     #[unsafe(super(NSScriptWhoseTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpecifierTest;
@@ -170,6 +196,8 @@ impl NSSpecifierTest {
         // -init (unavailable)
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
+        /// Initializes a specifier test with an object specifier, comparison operator, and test object.
+        ///
         /// # Safety
         ///
         /// `obj2` should be of the correct type.

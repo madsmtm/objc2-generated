@@ -7,7 +7,61 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvalue?language=objc)
+    /// A simple container for a single C or Objective-C data item.
+    ///
+    /// An ``NSValue`` object can hold any of the scalar types such as `int`, `float`, and `char`, as well as pointers, structures, and object `id` references. Use this class to work with such data types in collections (such as ``NSArray`` and ``NSSet``), [Key-value coding](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25), and other APIs that require Objective-C objects. ``NSValue`` objects are always immutable.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The abstract ``NSValue`` class is the public interface of a class cluster consisting mostly of private, concrete classes that create and return a value object appropriate for a given situation. It is possible to subclass ``NSValue``, but doing so requires providing storage facilities for the value (which is not inherited by subclasses) and implementing two primitive methods.
+    ///
+    /// #### Methods to Override
+    ///
+    /// Any subclass of ``NSValue`` _must_ override the primitive instance methods ``getValue(_:)`` and ``objCType``. These methods must operate on the storage that you provide for the value.
+    ///
+    /// You might want to implement an initializer for your subclass that is suited to the storage you provide. The ``NSValue`` class does not have a designated initializer, so your initializer need only invoke the
+    /// <doc
+    /// ://com.apple.documentation/documentation/objectivec/nsobject-swift.class/init()> method of `super`. The ``NSValue`` class adopts the ``NSCopying`` and ``NSSecureCoding`` protocols; if you want instances of your own custom subclass created from copying or coding, override the methods in these protocols.
+    ///
+    /// You may also wish to implement the
+    /// <doc
+    /// ://com.apple.documentation/documentation/objectivec/nsobjectprotocol/hash> method to make your subclass work well in collections.
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// If you need only to use ``NSValue`` objects for wrap a custom data types or structures defined by your app, you need not create an ``NSValue`` subclass. Instead, create a category that uses existing ``NSValue`` methods to store and retrieve data of your custom type. For example, the code below defines a custom Polyhedron structure and creates ``NSValue`` convenience methods to store and retrieve it:
+    ///
+    /// ```objc
+    /// typedef struct {
+    /// int numFaces;
+    /// float radius;
+    /// } Polyhedron;
+    ///
+    ///
+    /// NSValue (Polyhedron)
+    /// + (instancetype)valuewithPolyhedron:(Polyhedron)value;
+    ///
+    /// (readonly) Polyhedron polyhedronValue;
+    /// @end
+    /// @implementation NSValue (Polyhedron)
+    /// + (instancetype)valuewithPolyhedron:(Polyhedron)value
+    /// {
+    /// return [self valueWithBytes:
+    /// &value
+    /// objCType:
+    /// (Polyhedron)];
+    /// }
+    /// - (Polyhedron) polyhedronValue
+    /// {
+    /// Polyhedron value;
+    /// [self getValue:
+    /// &value
+    /// ];
+    /// return value;
+    /// }
+    /// @end ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvalue?language=objc)
     #[unsafe(super(NSObject))]
 
     pub struct NSValue;
@@ -39,6 +93,12 @@ extern_conformance!(
 
 impl NSValue {
     extern_methods!(
+        /// Copies the value into the specified buffer.
+        ///
+        /// - Parameters:
+        /// - value: A buffer into which to copy the value. The buffer must be large enough to hold the value.
+        /// - size: The number of bytes to copy.
+        ///
         /// # Safety
         ///
         /// `value` must be a valid pointer.
@@ -46,10 +106,22 @@ impl NSValue {
         #[unsafe(method_family = none)]
         pub unsafe fn getValue_size(&self, value: NonNull<c_void>, size: NSUInteger);
 
+        /// A C string containing the Objective-C type of the data contained in the value object, as encoded by the `
+        /// ()` compiler directive.
         #[unsafe(method(objCType))]
         #[unsafe(method_family = none)]
         pub fn objCType(&self) -> NonNull<c_char>;
 
+        /// Initializes a value object to contain the specified value, interpreted with the specified Objective-C type.
+        ///
+        /// - Parameters:
+        /// - value: A pointer to data to be stored in the new value object.
+        /// - type: The Objective-C type of `value`, as provided by the `
+        /// ()` compiler directive. Do not hard-code this parameter as a C string.
+        /// - Returns: An initialized value object that contains `value`, interpreted as being of the Objective-C type `type`. The returned object might be different than the original receiver.
+        ///
+        /// This is the designated initializer for the ``NSValue`` class.
+        ///
         /// # Safety
         ///
         /// `value` must be a valid pointer.
@@ -66,6 +138,14 @@ impl NSValue {
 /// NSValueCreation.
 impl NSValue {
     extern_methods!(
+        /// Creates a value object containing the specified value, interpreted with the specified Objective-C type.
+        ///
+        /// - Parameters:
+        /// - value: A pointer to data to be stored in the new value object.
+        /// - type: The Objective-C type of `value`, as provided by the `
+        /// ()` compiler directive. Do not hard-code this parameter as a C string.
+        /// - Returns: A new value object that contains `value`, which is interpreted as being of the Objective-C type `type`.
+        ///
         /// # Safety
         ///
         /// `value` must be a valid pointer.
@@ -76,6 +156,8 @@ impl NSValue {
             r#type: &CStr,
         ) -> Retained<NSValue>;
 
+        /// Creates a value object containing the specified value, interpreted with the specified Objective-C type.
+        ///
         /// # Safety
         ///
         /// `value` must be a valid pointer.
@@ -91,6 +173,13 @@ impl NSValue {
 /// NSValueExtensionMethods.
 impl NSValue {
     extern_methods!(
+        /// Creates a value object containing the specified object without retaining it.
+        ///
+        /// - Parameter anObject: The value for the new object.
+        /// - Returns: A new value object that contains `anObject`. Accessing `nonretainedObjectValue` on the result will return `anObject` itself (as opposed to a copy).
+        ///
+        /// This method is useful for preventing an object from being retained when it's added to a collection object (such as an `NSArray` or `NSDictionary` instance).
+        ///
         /// # Safety
         ///
         /// `an_object` should be of the correct type.
@@ -100,10 +189,20 @@ impl NSValue {
             an_object: Option<&AnyObject>,
         ) -> Retained<NSValue>;
 
+        /// The value as a non-retained pointer to an object.
+        ///
+        /// This method is potentially dangerous, because the returned object might have been released by the time it is used. Ensure that the object has a retained reference before using it.
         #[unsafe(method(nonretainedObjectValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn nonretainedObjectValue(&self) -> Option<Retained<AnyObject>>;
 
+        /// Creates a value object containing the specified pointer.
+        ///
+        /// - Parameter pointer: The value for the new object.
+        /// - Returns: A new value object that contains `aPointer`.
+        ///
+        /// This method does not copy the data that `pointer` points to.
+        ///
         /// # Safety
         ///
         /// `pointer` must be a valid pointer or null.
@@ -111,10 +210,17 @@ impl NSValue {
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithPointer(pointer: *const c_void) -> Retained<NSValue>;
 
+        /// Returns the value as an untyped pointer.
         #[unsafe(method(pointerValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointerValue(&self) -> *mut c_void;
 
+        /// Returns a Boolean value that indicates whether the value object and another value object are equal.
+        ///
+        /// - Parameter value: The other value object with which to compare the value object.
+        /// - Returns: `YES` if both value objects are equal; otherwise, `NO`.
+        ///
+        /// The ``NSValue`` class compares the type and contents of each value object to determine equality.
         #[unsafe(method(isEqualToValue:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToValue(&self, value: &NSValue) -> bool;
@@ -122,7 +228,76 @@ impl NSValue {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumber?language=objc)
+    /// An object wrapper for primitive scalar numeric values.
+    ///
+    /// `NSNumber` is a subclass of `NSValue` that offers a value as any C scalar (numeric) type. It defines a set of methods specifically for setting and accessing the value as a signed or unsigned `char`, `short int`, `int`, `long int`, `long long int`, `float`, or `double` or as a `BOOL`. (Note that number objects do not necessarily preserve the type they are created with.) It also defines a ``compare(_:)`` method to determine the ordering of two `NSNumber` objects.
+    ///
+    /// `NSNumber` is "toll-free bridged" with its Core Foundation counterparts:
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfnumber> for integer and floating point values, and
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfboolean> for Boolean values. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// ### Value Conversions
+    ///
+    /// `NSNumber` provides readonly properties that return the object's stored value converted to a particular Boolean, integer, unsigned integer, or floating point C scalar type. Because numeric types have different storage capabilities, attempting to initialize with a value of one type and access the value of another type may produce an erroneous result—for example, initializing with a `double` value exceeding `FLT_MAX` and accessing its ``floatValue``, or initializing with an negative integer value and accessing its ``uintValue``. In some cases, attempting to initialize with a value of a type and access the value of another type may result in loss of precision—for example, initializing with a `double` value with many significant digits and accessing its ``floatValue``, or initializing with a large integer value and accessing its ``int8Value``.
+    ///
+    /// An `NSNumber` object initialized with a value of a particular type accessing the converted value of a different _kind_ of type, such as `unsigned int` and `float`, will convert its stored value to that converted type in the following ways:
+    ///
+    /// | `Value` | ``boolValue`` | ``intValue-95zzp`` | ``uintValue`` | ``floatValue`` |
+    /// |---|---|---|---|---|
+    /// |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> | `0` | `0` | `0.0` |
+    /// |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> | `1` | `1` | `1.0` |
+    ///
+    /// | `Value` | ``boolValue`` | ``intValue-95zzp`` | ``uintValue`` | ``floatValue`` |
+    /// |---|---|---|---|---|
+    /// | `0` |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> | `0` | `0` | `0.0` |
+    /// | `1` |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> | `1` | `1` | `1.0` |
+    /// | `-1` |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> | `-1` | _invalid, erroneous result_ | `-1.0` |
+    ///
+    /// | `Value` | ``boolValue`` | ``intValue-95zzp`` | ``uintValue`` | ``floatValue`` |
+    /// |---|---|---|---|---|
+    /// | `0` |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> | `0` | `0` | `0.0` |
+    /// | `1` |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> | `1` | `1` | `1.0` |
+    ///
+    /// | `Value` | ``boolValue`` | ``intValue-95zzp`` | ``uintValue`` | ``floatValue`` |
+    /// |---|---|---|---|---|
+    /// | `0.0` |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false> | `0` | `0` | `0.0` |
+    /// | `1.0` |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> | `1` | `1` | `1.0` |
+    /// | `-1.0` |
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true> | `-1` | _invalid, erroneous result_ | `-1.0` |
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// As with any class cluster, subclasses of `NSNumber` must override the primitive methods of its superclass, `NSValue`. In addition, there are two requirements around the data type your subclass represents:
+    ///
+    /// 1. Your implementation of ``NSValue/objCType`` must return one of "`c`", "`C`", "`s`", "`S`", "`i`", "`I`", "`l`", "`L`", "`q`", "`Q`", "`f`", and "`d`". This is required for the other methods of ``NSNumber`` to behave correctly.
+    /// 2. Your subclass must override the accessor method that corresponds to the declared type—for example, if your implementation of ``NSValue/objCType`` returns  "`i`", you must override ``int32Value``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumber?language=objc)
     #[unsafe(super(NSValue, NSObject))]
 
     pub struct NSNumber;
@@ -158,42 +333,52 @@ extern_conformance!(
 
 impl NSNumber {
     extern_methods!(
+        /// Creates a number object containing a `char` value.
         #[unsafe(method(initWithChar:))]
         #[unsafe(method_family = init)]
         pub fn initWithChar(this: Allocated<Self>, value: c_char) -> Retained<NSNumber>;
 
+        /// Creates a number object containing an `unsigned char` value.
         #[unsafe(method(initWithUnsignedChar:))]
         #[unsafe(method_family = init)]
         pub fn initWithUnsignedChar(this: Allocated<Self>, value: c_uchar) -> Retained<NSNumber>;
 
+        /// Creates a number object containing a `short` value.
         #[unsafe(method(initWithShort:))]
         #[unsafe(method_family = init)]
         pub fn initWithShort(this: Allocated<Self>, value: c_short) -> Retained<NSNumber>;
 
+        /// Creates a number object containing an `unsigned short` value.
         #[unsafe(method(initWithUnsignedShort:))]
         #[unsafe(method_family = init)]
         pub fn initWithUnsignedShort(this: Allocated<Self>, value: c_ushort) -> Retained<NSNumber>;
 
+        /// Creates a number object containing an `int` value.
         #[unsafe(method(initWithInt:))]
         #[unsafe(method_family = init)]
         pub fn initWithInt(this: Allocated<Self>, value: c_int) -> Retained<NSNumber>;
 
+        /// Creates a number object containing an `unsigned int` value.
         #[unsafe(method(initWithUnsignedInt:))]
         #[unsafe(method_family = init)]
         pub fn initWithUnsignedInt(this: Allocated<Self>, value: c_uint) -> Retained<NSNumber>;
 
+        /// Creates a number object containing a `long` value.
         #[unsafe(method(initWithLong:))]
         #[unsafe(method_family = init)]
         pub fn initWithLong(this: Allocated<Self>, value: c_long) -> Retained<NSNumber>;
 
+        /// Creates a number object containing an `unsigned long` value.
         #[unsafe(method(initWithUnsignedLong:))]
         #[unsafe(method_family = init)]
         pub fn initWithUnsignedLong(this: Allocated<Self>, value: c_ulong) -> Retained<NSNumber>;
 
+        /// Creates a number object containing a `long long` value.
         #[unsafe(method(initWithLongLong:))]
         #[unsafe(method_family = init)]
         pub fn initWithLongLong(this: Allocated<Self>, value: c_longlong) -> Retained<NSNumber>;
 
+        /// Creates a number object containing an `unsigned long long` value.
         #[unsafe(method(initWithUnsignedLongLong:))]
         #[unsafe(method_family = init)]
         pub fn initWithUnsignedLongLong(
@@ -201,22 +386,27 @@ impl NSNumber {
             value: c_ulonglong,
         ) -> Retained<NSNumber>;
 
+        /// Creates a number object containing a `float` value.
         #[unsafe(method(initWithFloat:))]
         #[unsafe(method_family = init)]
         pub fn initWithFloat(this: Allocated<Self>, value: c_float) -> Retained<NSNumber>;
 
+        /// Creates a number object containing a `double` value.
         #[unsafe(method(initWithDouble:))]
         #[unsafe(method_family = init)]
         pub fn initWithDouble(this: Allocated<Self>, value: c_double) -> Retained<NSNumber>;
 
+        /// Creates a number object containing a `BOOL` value.
         #[unsafe(method(initWithBool:))]
         #[unsafe(method_family = init)]
         pub fn initWithBool(this: Allocated<Self>, value: bool) -> Retained<NSNumber>;
 
+        /// Creates a number object containing an `NSInteger` value.
         #[unsafe(method(initWithInteger:))]
         #[unsafe(method_family = init)]
         pub fn initWithInteger(this: Allocated<Self>, value: NSInteger) -> Retained<NSNumber>;
 
+        /// Creates a number object containing an `NSUInteger` value.
         #[unsafe(method(initWithUnsignedInteger:))]
         #[unsafe(method_family = init)]
         pub fn initWithUnsignedInteger(
@@ -224,81 +414,118 @@ impl NSNumber {
             value: NSUInteger,
         ) -> Retained<NSNumber>;
 
+        /// The number object's value expressed as a `char`.
         #[unsafe(method(charValue))]
         #[unsafe(method_family = none)]
         pub fn charValue(&self) -> c_char;
 
+        /// The number object's value expressed as an `unsigned char`.
         #[unsafe(method(unsignedCharValue))]
         #[unsafe(method_family = none)]
         pub fn unsignedCharValue(&self) -> c_uchar;
 
+        /// The number object's value expressed as a `short`.
         #[unsafe(method(shortValue))]
         #[unsafe(method_family = none)]
         pub fn shortValue(&self) -> c_short;
 
+        /// The number object's value expressed as an `unsigned short`.
         #[unsafe(method(unsignedShortValue))]
         #[unsafe(method_family = none)]
         pub fn unsignedShortValue(&self) -> c_ushort;
 
+        /// The number object's value expressed as an `int`.
         #[unsafe(method(intValue))]
         #[unsafe(method_family = none)]
         pub fn intValue(&self) -> c_int;
 
+        /// The number object's value expressed as an `unsigned int`.
         #[unsafe(method(unsignedIntValue))]
         #[unsafe(method_family = none)]
         pub fn unsignedIntValue(&self) -> c_uint;
 
+        /// The number object's value expressed as a `long`.
         #[unsafe(method(longValue))]
         #[unsafe(method_family = none)]
         pub fn longValue(&self) -> c_long;
 
+        /// The number object's value expressed as an `unsigned long`.
         #[unsafe(method(unsignedLongValue))]
         #[unsafe(method_family = none)]
         pub fn unsignedLongValue(&self) -> c_ulong;
 
+        /// The number object's value expressed as a `long long`.
         #[unsafe(method(longLongValue))]
         #[unsafe(method_family = none)]
         pub fn longLongValue(&self) -> c_longlong;
 
+        /// The number object's value expressed as an `unsigned long long`.
         #[unsafe(method(unsignedLongLongValue))]
         #[unsafe(method_family = none)]
         pub fn unsignedLongLongValue(&self) -> c_ulonglong;
 
+        /// The number object's value expressed as a `float`.
         #[unsafe(method(floatValue))]
         #[unsafe(method_family = none)]
         pub fn floatValue(&self) -> c_float;
 
+        /// The number object's value expressed as a `double`.
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
         pub fn doubleValue(&self) -> c_double;
 
+        /// The number object's value expressed as a Boolean value.
+        ///
+        /// A `0` value always means `NO`, and any nonzero value is interpreted as `YES`.
         #[unsafe(method(boolValue))]
         #[unsafe(method_family = none)]
         pub fn boolValue(&self) -> bool;
 
+        /// The number object's value expressed as an `NSInteger`.
         #[unsafe(method(integerValue))]
         #[unsafe(method_family = none)]
         pub fn integerValue(&self) -> NSInteger;
 
+        /// The number object's value expressed as an `NSUInteger`.
         #[unsafe(method(unsignedIntegerValue))]
         #[unsafe(method_family = none)]
         pub fn unsignedIntegerValue(&self) -> NSUInteger;
 
         #[cfg(feature = "NSString")]
+        /// The number object's value expressed as a human-readable string.
+        ///
+        /// The string is created by invoking ``NSNumber/descriptionWithLocale:`` where locale is `nil`.
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
         pub fn stringValue(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Returns an `NSComparisonResult` value that indicates whether the number object's value is greater than, equal to, or less than a given number.
+        ///
+        /// - Parameter otherNumber: The number to compare to the number object's value. This value must not be `nil`.
+        /// - Returns: `NSOrderedAscending` if the value of `otherNumber` is greater than the number object's, `NSOrderedSame` if they're equal, and `NSOrderedDescending` if the value of `otherNumber` is less than the number object's.
+        ///
+        /// The ``NSNumber/compare:`` method follows the standard C rules for type conversion. For example, if you compare an `NSNumber` object that has an integer value with an `NSNumber` object that has a floating point value, the integer value is converted to a floating-point value for comparison.
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         pub fn compare(&self, other_number: &NSNumber) -> NSComparisonResult;
 
+        /// Returns a Boolean value that indicates whether the number object's value and a given number are equal.
+        ///
+        /// - Parameter number: The number to compare to the number object's value.
+        /// - Returns: `YES` if the number object's value and `number` are equal; otherwise, `NO`.
+        ///
+        /// Two `NSNumber` objects are considered equal if they have the same id values or if they have equivalent values (as determined by the ``NSNumber/compare:`` method). This method is more efficient than ``NSNumber/compare:`` if you know the two objects are numbers.
         #[unsafe(method(isEqualToNumber:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToNumber(&self, number: &NSNumber) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Returns a string that represents the contents of the number object for a given locale.
+        ///
+        /// - Parameter locale: An object containing locale information with which to format the description. Use `nil` if you don't want the description formatted.
+        /// - Returns: A string that represents the contents of the number object formatted using the locale information in `locale`.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -314,6 +541,16 @@ impl NSNumber {
 /// Methods declared on superclass `NSValue`.
 impl NSNumber {
     extern_methods!(
+        /// Initializes a value object to contain the specified value, interpreted with the specified Objective-C type.
+        ///
+        /// - Parameters:
+        /// - value: A pointer to data to be stored in the new value object.
+        /// - type: The Objective-C type of `value`, as provided by the `
+        /// ()` compiler directive. Do not hard-code this parameter as a C string.
+        /// - Returns: An initialized value object that contains `value`, interpreted as being of the Objective-C type `type`. The returned object might be different than the original receiver.
+        ///
+        /// This is the designated initializer for the ``NSValue`` class.
+        ///
         /// # Safety
         ///
         /// `value` must be a valid pointer.
@@ -330,62 +567,77 @@ impl NSNumber {
 /// NSNumberCreation.
 impl NSNumber {
     extern_methods!(
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as a `char`.
         #[unsafe(method(numberWithChar:))]
         #[unsafe(method_family = none)]
         pub fn numberWithChar(value: c_char) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as an `unsigned char`.
         #[unsafe(method(numberWithUnsignedChar:))]
         #[unsafe(method_family = none)]
         pub fn numberWithUnsignedChar(value: c_uchar) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as a `short`.
         #[unsafe(method(numberWithShort:))]
         #[unsafe(method_family = none)]
         pub fn numberWithShort(value: c_short) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as an `unsigned short`.
         #[unsafe(method(numberWithUnsignedShort:))]
         #[unsafe(method_family = none)]
         pub fn numberWithUnsignedShort(value: c_ushort) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as an `int`.
         #[unsafe(method(numberWithInt:))]
         #[unsafe(method_family = none)]
         pub fn numberWithInt(value: c_int) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as an `unsigned int`.
         #[unsafe(method(numberWithUnsignedInt:))]
         #[unsafe(method_family = none)]
         pub fn numberWithUnsignedInt(value: c_uint) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as a `long`.
         #[unsafe(method(numberWithLong:))]
         #[unsafe(method_family = none)]
         pub fn numberWithLong(value: c_long) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as an `unsigned long`.
         #[unsafe(method(numberWithUnsignedLong:))]
         #[unsafe(method_family = none)]
         pub fn numberWithUnsignedLong(value: c_ulong) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as a `long long`.
         #[unsafe(method(numberWithLongLong:))]
         #[unsafe(method_family = none)]
         pub fn numberWithLongLong(value: c_longlong) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as an `unsigned long long`.
         #[unsafe(method(numberWithUnsignedLongLong:))]
         #[unsafe(method_family = none)]
         pub fn numberWithUnsignedLongLong(value: c_ulonglong) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as a `float`.
         #[unsafe(method(numberWithFloat:))]
         #[unsafe(method_family = none)]
         pub fn numberWithFloat(value: c_float) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as a `double`.
         #[unsafe(method(numberWithDouble:))]
         #[unsafe(method_family = none)]
         pub fn numberWithDouble(value: c_double) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as a `BOOL`.
         #[unsafe(method(numberWithBool:))]
         #[unsafe(method_family = none)]
         pub fn numberWithBool(value: bool) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as an `NSInteger`.
         #[unsafe(method(numberWithInteger:))]
         #[unsafe(method_family = none)]
         pub fn numberWithInteger(value: NSInteger) -> Retained<NSNumber>;
 
+        /// Creates and returns an `NSNumber` object containing a given value, treating it as an `NSUInteger`.
         #[unsafe(method(numberWithUnsignedInteger:))]
         #[unsafe(method_family = none)]
         pub fn numberWithUnsignedInteger(value: NSUInteger) -> Retained<NSNumber>;
@@ -395,6 +647,8 @@ impl NSNumber {
 /// NSDeprecated.
 impl NSValue {
     extern_methods!(
+        /// Copies the value into the specified buffer.
+        ///
         /// # Safety
         ///
         /// `value` must be a valid pointer.

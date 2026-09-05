@@ -7,24 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Elements on a GCDevice can be used for system gestures. The system gesture state represents how input is handled in the app
-/// for a controller element that is bound to a system gesture.
+/// Elements on a GCDevice can be used for system gestures, such as showing the
+/// Game Overlay or taking a screenshot of gameplay.
+///
+/// The system gesture state represents an app preference to utilize a button
+/// with an attached system gesture for an app-specific purpose.  For example,
+/// a game streaming app may want to forward the button state to the remote
+/// device.
 ///
 ///
-/// The Options button on an extended gamepad can be bound to take a screenshot with a long press. This occurs outside of
-/// the control of the app. If a user presses the Options button, the system gesture recognizer will run by default. If a long press is detected,
-/// input will not be forwarded to your app (your application won't see the Options button was pressed at all). If a long press is not detected,
-/// input will be forwared to your app, with a delay.
+/// The Options button on an extended gamepad can be bound to take a screenshot
+/// with a long press. This occurs outside of the control of the app. If a user
+/// presses the Options button, the system gesture recognizer will run by
+/// default.  If a long press is detected, input will not be forwarded to your
+/// app (your application won't see the Options button was pressed at all).
+/// If a long press is not detected, input will be forwarded to your app, with a
+/// delay.
 ///
-/// If you do not want any delay in receiving input for this element, you have two options
-/// - Set the preferred state of the element to GCSystemGestureStateAlwaysReceive. The system gesture recognize will run
-/// concurrently with input being sent to your app. This removes input delay, but can lead to system gestures being triggered
-/// simulatenously with in-app actions.
-/// - Set the preferred state of the element to GCSystemGestureStateDisabled. This will disable the system gesture recognizer - your app
-/// will receive full control of the input for this element.
+/// This behavior may not be desirable in certain applications, such as those
+/// that forward controller input to a remote gaming device (which may have its
+/// own screenshot function).  The app can set the `preferredSystemGestureState`
+/// of the element to `.Disabled`.  This requests the system disable its gesture
+/// recognizer - giving the app full control of the input for the element.
 ///
-///
-/// See: GCControllerElement.boundToSystemGesture
 ///
 /// See: GCControllerElement.preferredSystemGestureState
 ///
@@ -34,15 +39,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCSystemGestureState(pub NSInteger);
 impl GCSystemGestureState {
-    /// System gesture recognizers will run before input is sent to app, this is the default state
+    /// System gesture recognizers will run before input is sent to app, this
+    /// is the default state
     #[doc(alias = "GCSystemGestureStateEnabled")]
     pub const Enabled: Self = Self(0);
-    /// Input is sent to app and processed by system gesture recognizers simultaneously
-    #[doc(alias = "GCSystemGestureStateAlwaysReceive")]
-    pub const AlwaysReceive: Self = Self(1);
-    /// System gesture recognizers will not run at all. Input is passed directly to app
+    /// System gesture recognizers will not run at all.  Input is passed
+    /// directly to the app.
     #[doc(alias = "GCSystemGestureStateDisabled")]
     pub const Disabled: Self = Self(2);
+    /// Input is sent to app and processed by system gesture recognizers
+    /// simultaneously.  This is no longer recommended - prefer `.Disabled`
+    /// instead.
+    #[doc(alias = "GCSystemGestureStateAlwaysReceive")]
+    #[deprecated]
+    pub const AlwaysReceive: Self = Self(1);
 }
 
 unsafe impl Encode for GCSystemGestureState {
@@ -79,39 +89,6 @@ impl GCControllerElement {
         #[unsafe(method(isAnalog))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAnalog(&self) -> bool;
-
-        /// Check if the element is bound to a system gesture.
-        /// Defaults to NO for most elements.
-        ///
-        ///
-        /// See: preferredSystemGestureState
-        ///
-        /// See: GCSystemGestureState
-        #[unsafe(method(isBoundToSystemGesture))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn isBoundToSystemGesture(&self) -> bool;
-
-        /// The preferred system gesture state for this element.
-        /// Defaults to GCSystemGestureStateEnabled for most elements
-        ///
-        ///
-        /// Note: This is merely the preferred system gesture state - it is not guaranteed to be respected by the system.
-        ///
-        /// Note: It is highly recommended to leave this set to the default value, however there may be situations (for example, game
-        /// streaming apps) where it is preferrable to disable system gestures.
-        ///
-        /// See: boundToSystemGesture
-        #[unsafe(method(preferredSystemGestureState))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn preferredSystemGestureState(&self) -> GCSystemGestureState;
-
-        /// Setter for [`preferredSystemGestureState`][Self::preferredSystemGestureState].
-        #[unsafe(method(setPreferredSystemGestureState:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredSystemGestureState(
-            &self,
-            preferred_system_gesture_state: GCSystemGestureState,
-        );
 
         /// The element's SF Symbols name, taking input remapping into account.
         ///
@@ -169,6 +146,39 @@ impl GCControllerElement {
         #[unsafe(method(aliases))]
         #[unsafe(method_family = none)]
         pub unsafe fn aliases(&self) -> Retained<NSSet<NSString>>;
+
+        /// Check if the element is bound to a system gesture.
+        ///
+        /// Defaults to NO for most elements.
+        ///
+        ///
+        /// See: preferredSystemGestureState
+        #[unsafe(method(isBoundToSystemGesture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isBoundToSystemGesture(&self) -> bool;
+
+        /// The preferred system gesture state for this element.
+        ///
+        /// This is merely the preferred system gesture state - it is not guaranteed to
+        /// be respected by the system.  It is highly recommended to leave this set to
+        /// the default value, however there may be situations (for example, game
+        /// streaming apps) where it is preferrable to disable system gestures.
+        ///
+        /// Defaults to `GCSystemGestureStateEnabled`.
+        ///
+        ///
+        /// See: GCSystemGestureState
+        #[unsafe(method(preferredSystemGestureState))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferredSystemGestureState(&self) -> GCSystemGestureState;
+
+        /// Setter for [`preferredSystemGestureState`][Self::preferredSystemGestureState].
+        #[unsafe(method(setPreferredSystemGestureState:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreferredSystemGestureState(
+            &self,
+            preferred_system_gesture_state: GCSystemGestureState,
+        );
     );
 }
 

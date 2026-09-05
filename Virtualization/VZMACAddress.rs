@@ -85,12 +85,12 @@ impl VZMACAddress {
         #[unsafe(method_family = none)]
         pub unsafe fn isUnicastAddress(&self) -> bool;
 
-        /// True if the address is a locally administered addresses (LAA), false otherwise.
+        /// True if the address is a locally administered address (LAA), false otherwise.
         #[unsafe(method(isLocallyAdministeredAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLocallyAdministeredAddress(&self) -> bool;
 
-        /// True if the address is a universally administered addresses (UAA), false otherwise.
+        /// True if the address is a universally administered address (UAA), false otherwise.
         #[unsafe(method(isUniversallyAdministeredAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUniversallyAdministeredAddress(&self) -> bool;

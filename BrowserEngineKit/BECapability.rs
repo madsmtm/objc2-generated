@@ -54,11 +54,13 @@ impl BEMediaEnvironment {
         pub unsafe fn initWithWebPageURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         /// Activates the media environment.
+        #[deprecated = "Use -[BEProcessCapability activateWithError:] instead"]
         #[unsafe(method(activateWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateWithError(&self) -> Result<(), Retained<NSError>>;
 
         /// Suspends the media environment.
+        #[deprecated = "Use -[BEProcessCapability suspendWithError:] instead"]
         #[unsafe(method(suspendWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn suspendWithError(&self) -> Result<(), Retained<NSError>>;
@@ -97,6 +99,13 @@ impl BEProcessCapability {
             environment: &BEMediaEnvironment,
         ) -> Retained<Self>;
 
+        /// The helper extension process may capture the contents of the screen.
+        #[unsafe(method(screenCaptureWithEnvironment:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn screenCaptureWithEnvironment(
+            environment: &BEMediaEnvironment,
+        ) -> Retained<Self>;
+
         /// The helper extension process may run in the background to finish work.
         #[unsafe(method(background))]
         #[unsafe(method_family = none)]
@@ -120,6 +129,16 @@ impl BEProcessCapability {
         pub unsafe fn requestWithError(
             &self,
         ) -> Result<Retained<ProtocolObject<dyn BEProcessCapabilityGrant>>, Retained<NSError>>;
+
+        /// Activates the capability.
+        #[unsafe(method(activateWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn activateWithError(&self) -> Result<(), Retained<NSError>>;
+
+        /// Suspends the capability.
+        #[unsafe(method(suspendWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn suspendWithError(&self) -> Result<(), Retained<NSError>>;
     );
 }
 

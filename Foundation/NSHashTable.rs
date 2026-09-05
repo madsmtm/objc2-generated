@@ -32,11 +32,31 @@ pub static NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions =
 pub static NSHashTableWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::WeakMemory.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableoptions?language=objc)
+/// Components in a bit-field to specify the behavior of elements in an ``NSHashTable`` object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableoptions?language=objc)
 pub type NSHashTableOptions = NSUInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtable?language=objc)
+    /// A collection similar to a set, but with broader range of available memory semantics.
+    ///
+    /// The hash table is modeled after ``NSSet`` with the following differences:
+    ///
+    /// - It can hold weak references to its members.
+    /// - Its members may be copied on input or may use pointer identity for equality and hashing.
+    /// - It can contain arbitrary pointers (its members are not constrained to being objects).
+    ///
+    /// You can configure an ``NSHashTable`` instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void\* pointers. The object-based API (such as ``add(_:)``) will not work for non-object pointers without type-casting.
+    ///
+    /// Because of its options, `NSHashTable` is not a set because it can behave differently (for example, if pointer equality is specified two `isEqual:` strings will both be entered).
+    ///
+    /// When configuring hash tables, note that only the options listed in ``NSHashTableOptions`` guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other ``NSPointerFunctions`` options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the hash table may not work correctly, or may not even be initialized correctly.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSHashTable` is not suitable for subclassing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtable?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHashTable<ObjectType: ?Sized = AnyObject>;
@@ -88,6 +108,10 @@ extern_conformance!(
 impl<ObjectType: Message> NSHashTable<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSPointerFunctions")]
+        /// Returns a hash table initialized with the given attributes.
+        ///
+        /// - Parameter options: A bit field that specifies the options for the elements in the hash table.
+        /// - Parameter initialCapacity: The initial number of elements the hash table can hold.
         #[unsafe(method(initWithOptions:capacity:))]
         #[unsafe(method_family = init)]
         pub fn initWithOptions_capacity(
@@ -97,6 +121,12 @@ impl<ObjectType: Message> NSHashTable<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// Returns a hash table initialized with the given functions and capacity.
+        ///
+        /// Hash tables allocate additional memory as needed, so `initialCapacity` simply establishes the object's initial capacity.
+        ///
+        /// - Parameter functions: The pointer functions for the new hash table.
+        /// - Parameter initialCapacity: The initial capacity of the hash table.
         #[unsafe(method(initWithPointerFunctions:capacity:))]
         #[unsafe(method_family = init)]
         pub fn initWithPointerFunctions_capacity(
@@ -106,35 +136,56 @@ impl<ObjectType: Message> NSHashTable<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// Returns a hash table with given pointer functions options.
+        ///
+        /// - Parameter options: A bit field that specifies the options for the elements in the hash table.
+        /// - Returns: A hash table with given pointer functions options.
         #[unsafe(method(hashTableWithOptions:))]
         #[unsafe(method_family = none)]
         pub fn hashTableWithOptions(
             options: NSPointerFunctionsOptions,
         ) -> Retained<NSHashTable<ObjectType>>;
 
+        /// Returns a new hash table for storing weak references to its contents.
+        ///
+        ///
+        /// This method is not supported under Automatic Reference Counting (ARC).
         #[deprecated = "GC no longer supported"]
         #[unsafe(method(hashTableWithWeakObjects))]
         #[unsafe(method_family = none)]
         pub fn hashTableWithWeakObjects() -> Retained<AnyObject>;
 
+        /// Returns a new hash table for storing weak references to its contents.
         #[unsafe(method(weakObjectsHashTable))]
         #[unsafe(method_family = none)]
         pub fn weakObjectsHashTable() -> Retained<NSHashTable<ObjectType>>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// The pointer functions for the hash table.
         #[unsafe(method(pointerFunctions))]
         #[unsafe(method_family = none)]
         pub fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
+        /// The number of elements in the hash table.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub fn count(&self) -> NSUInteger;
 
+        /// Determines whether the hash table contains a given object, and returns that object if it is present.
+        ///
+        /// - Parameter object: The object to test for membership in the hash table.
+        /// - Returns: If `object` is a member of the hash table, returns `object`, otherwise returns `nil`.
         #[unsafe(method(member:))]
         #[unsafe(method_family = none)]
         pub fn member(&self, object: Option<&ObjectType>) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// Returns an enumerator object that lets you access each object in the hash table.
+        ///
+        /// It is more efficient to use the fast enumeration protocol (see `NSFastEnumeration`).
+        ///
+        /// - Returns: An enumerator object that lets you access each object in the hash table.
+        ///
         /// # Safety
         ///
         /// The returned enumerator's underlying collection should not be mutated while in use.
@@ -142,56 +193,96 @@ impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
+        /// Adds a given object to the hash table.
+        ///
+        /// - Parameter object: The object to add to the hash table.
         #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub fn addObject(&self, object: Option<&ObjectType>);
 
+        /// Removes a given object from the hash table.
+        ///
+        /// - Parameter object: The object to remove from the hash table.
         #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
         pub fn removeObject(&self, object: Option<&ObjectType>);
 
+        /// Removes all objects from the hash table.
         #[unsafe(method(removeAllObjects))]
         #[unsafe(method_family = none)]
         pub fn removeAllObjects(&self);
 
         #[cfg(feature = "NSArray")]
+        /// The hash table's members.
         #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
         pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
 
+        /// One of the objects in the hash table.
+        ///
+        /// One of the objects in the hash table, or `nil` if the hash table contains no objects.
+        /// The object returned is chosen at the hash table's convenience -- the selection is not guaranteed to be random.
         #[unsafe(method(anyObject))]
         #[unsafe(method_family = none)]
         pub fn anyObject(&self) -> Option<Retained<ObjectType>>;
 
+        /// Returns a Boolean value that indicates whether the hash table contains a given object.
+        ///
+        /// - Parameter anObject: The object to test for membership in the hash table.
+        /// - Returns: `YES` if the hash table contains `anObject`, otherwise `NO`.
         #[unsafe(method(containsObject:))]
         #[unsafe(method_family = none)]
         pub fn containsObject(&self, an_object: Option<&ObjectType>) -> bool;
 
+        /// Returns a Boolean value that indicates whether a given hash table intersects with the receiving hash table.
+        ///
+        /// - Parameter other: The hash table with which to compare the receiving hash table.
+        /// - Returns: `YES` if `other` intersects with the receiving hash table, otherwise `NO`.
         #[unsafe(method(intersectsHashTable:))]
         #[unsafe(method_family = none)]
         pub fn intersectsHashTable(&self, other: &NSHashTable<ObjectType>) -> bool;
 
+        /// Returns a Boolean value that indicates whether a given hash table is equal to the receiving hash table.
+        ///
+        /// Two hash tables have equal contents if they each have the same number of members and if each member of one hash table is present in the other.
+        ///
+        /// - Parameter other: The hash table with which to compare the receiving hash table.
+        /// - Returns: `YES` if the contents of `other` are equal to the contents of the receiving hash table, otherwise `NO`.
         #[unsafe(method(isEqualToHashTable:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToHashTable(&self, other: &NSHashTable<ObjectType>) -> bool;
 
+        /// Returns a Boolean value that indicates whether every element in the receiving hash table is also present in another given hash table.
+        ///
+        /// - Parameter other: The hash table with which to compare the receiving hash table.
+        /// - Returns: `YES` if every element in the receiving hash table is also present in `other`, otherwise `NO`.
         #[unsafe(method(isSubsetOfHashTable:))]
         #[unsafe(method_family = none)]
         pub fn isSubsetOfHashTable(&self, other: &NSHashTable<ObjectType>) -> bool;
 
+        /// Removes from the receiving hash table each element that isn't a member of another given hash table.
+        ///
+        /// - Parameter other: The hash table with which to perform the intersection.
         #[unsafe(method(intersectHashTable:))]
         #[unsafe(method_family = none)]
         pub fn intersectHashTable(&self, other: &NSHashTable<ObjectType>);
 
+        /// Adds each element in another given hash table to the receiving hash table, if not present.
+        ///
+        /// - Parameter other: The hash table of elements to add to the receiving hash table.
         #[unsafe(method(unionHashTable:))]
         #[unsafe(method_family = none)]
         pub fn unionHashTable(&self, other: &NSHashTable<ObjectType>);
 
+        /// Removes each element in another given hash table from the receiving hash table, if present.
+        ///
+        /// - Parameter other: The hash table of elements to remove from the receiving hash table.
         #[unsafe(method(minusHashTable:))]
         #[unsafe(method_family = none)]
         pub fn minusHashTable(&self, other: &NSHashTable<ObjectType>);
 
         #[cfg(feature = "NSSet")]
+        /// A set that contains the hash table's members.
         #[unsafe(method(setRepresentation))]
         #[unsafe(method_family = none)]
         pub fn setRepresentation(&self) -> Retained<NSSet<ObjectType>>;
@@ -218,9 +309,7 @@ impl<ObjectType: Message> DefaultRetained for NSHashTable<ObjectType> {
     }
 }
 
-/// **************    (void *) Hash table operations    ***************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashenumerator?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashenumerator?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSHashEnumerator {
@@ -244,6 +333,8 @@ unsafe impl RefEncode for NSHashEnumerator {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Frees a hash table.
+///
 /// # Safety
 ///
 /// `table` must be a valid pointer.
@@ -255,6 +346,8 @@ pub unsafe fn NSFreeHashTable(table: NonNull<NSHashTable>) {
     unsafe { NSFreeHashTable(table) }
 }
 
+/// Deletes the elements from a hash table, without freeing the table itself.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -266,6 +359,8 @@ pub unsafe fn NSResetHashTable(table: &NSHashTable) {
     unsafe { NSResetHashTable(table) }
 }
 
+/// Returns a Boolean value that indicates whether two hash tables are equal.
+///
 /// # Safety
 ///
 /// - `table1` generic should be of the correct type.
@@ -278,6 +373,8 @@ pub unsafe fn NSCompareHashTables(table1: &NSHashTable, table2: &NSHashTable) ->
     unsafe { NSCompareHashTables(table1, table2) }.as_bool()
 }
 
+/// Returns a copy of a hash table.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -295,6 +392,8 @@ pub unsafe fn NSCopyHashTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns an element of the hash table.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -308,6 +407,8 @@ pub unsafe fn NSHashGet(table: &NSHashTable, pointer: *const c_void) -> NonNull<
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Adds an element to the hash table.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -320,6 +421,8 @@ pub unsafe fn NSHashInsert(table: &NSHashTable, pointer: *const c_void) {
     unsafe { NSHashInsert(table, pointer) }
 }
 
+/// Adds an element to the hash table, raising an exception if the element is already present.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -332,6 +435,8 @@ pub unsafe fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *const c_voi
     unsafe { NSHashInsertKnownAbsent(table, pointer) }
 }
 
+/// Adds an element to the hash table if it is not already present, and returns the element.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -344,6 +449,8 @@ pub unsafe fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *const c_void) 
     unsafe { NSHashInsertIfAbsent(table, pointer) }
 }
 
+/// Removes an element from the hash table.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -356,6 +463,8 @@ pub unsafe fn NSHashRemove(table: &NSHashTable, pointer: *const c_void) {
     unsafe { NSHashRemove(table, pointer) }
 }
 
+/// Returns an enumerator for a hash table.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -367,6 +476,8 @@ pub unsafe fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator {
     unsafe { NSEnumerateHashTable(table) }
 }
 
+/// Returns the next element in the hash table enumeration.
+///
 /// # Safety
 ///
 /// `enumerator` must be a valid pointer.
@@ -378,6 +489,8 @@ pub unsafe fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) ->
     unsafe { NSNextHashEnumeratorItem(enumerator) }
 }
 
+/// Frees an enumerator for a hash table.
+///
 /// # Safety
 ///
 /// `enumerator` must be a valid pointer.
@@ -389,6 +502,8 @@ pub unsafe fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>) {
     unsafe { NSEndHashTableEnumeration(enumerator) }
 }
 
+/// Returns the number of elements in a hash table.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -402,6 +517,8 @@ pub unsafe fn NSCountHashTable(table: &NSHashTable) -> NSUInteger {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// Returns a string describing the hash table's contents.
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
@@ -418,6 +535,8 @@ impl NSString {
     }
 }
 
+/// Returns all of the elements in a hash table.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -432,19 +551,22 @@ pub unsafe fn NSAllHashTableObjects(table: &NSHashTable) -> Retained<NSArray> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// **************    Legacy    ***************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecallbacks?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSHashTableCallBacks {
+    /// Points to the function that must produce hash code for elements of the hash table. If `NULL`, the pointer value is used as the hash code. Second parameter is the element for which hash code should be produced.
     pub hash: Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>) -> NSUInteger>,
+    /// Points to the function that compares second and third parameters. If `NULL`, then == is used for comparison.
     pub isEqual:
         Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>, NonNull<c_void>) -> Bool>,
+    /// Points to the function that increments a reference count for the given element. If `NULL`, then nothing is done for reference counting.
     pub retain: Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>)>,
+    /// Points to the function that decrements a reference count for the given element, and if the reference count becomes 0, frees the given element. If `NULL`, then nothing is done for reference counting or releasing.
     pub release: Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>)>,
+    /// Points to the function that produces an autoreleased NSString describing the given element. If `NULL`, then the hash table produces a generic string description.
     pub describe:
         Option<unsafe extern "C-unwind" fn(&NSHashTable, NonNull<c_void>) -> *mut NSString>,
 }
@@ -468,6 +590,16 @@ unsafe impl RefEncode for NSHashTableCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Creates a new hash table in a given zone.
+///
+/// The table's size is dependent on (but generally not equal to) `capacity`. If `capacity` is 0, a small hash table is created. The `NSHashTableCallBacks` structure `callBacks` has five pointers to functions, with the following defaults: pointer hashing, if `hash` is `NULL`; pointer equality, if `isEqual` is `NULL`; no callback upon adding an element, if `retain` is `NULL`; no callback upon removing an element, if `release` is `NULL`; and a function returning a pointer's hexadecimal value as a string, if `describe` is `NULL`. The hashing function must be defined such that if two data elements are equal, as defined by the comparison function, the values produced by hashing on these elements must also be equal. Also, data elements must remain invariant if the value of the hashing function depends on them; for example, if the hashing function operates directly on the characters of a string, that string can't change.
+///
+/// - Parameters:
+/// - callBacks: A structure that defines the callbacks for the hash table.
+/// - capacity: The initial capacity of the hash table.
+/// - zone: The zone in which to create the hash table. If `NULL`, the hash table is created in the default zone.
+/// - Returns: A pointer to a new hash table created in the specified zone. If `zone` is `NULL`, the hash table is created in the default zone.
+///
 /// # Safety
 ///
 /// - `call_backs` struct field `hash` must be implemented correctly.
@@ -494,6 +626,15 @@ pub unsafe fn NSCreateHashTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Creates and returns a new hash table.
+///
+/// The table's size is dependent on (but generally not equal to) `capacity`. If `capacity` is 0, a small hash table is created. The `NSHashTableCallBacks` structure `callBacks` has five pointers to functions, with the following defaults: pointer hashing, if `hash` is `NULL`; pointer equality, if `isEqual` is `NULL`; no callback upon adding an element, if `retain` is `NULL`; no callback upon removing an element, if `release` is `NULL`; and a function returning a pointer's hexadecimal value as a string, if `describe` is `NULL`. The hashing function must be defined such that if two data elements are equal, as defined by the comparison function, the values produced by hashing on these elements must also be equal. Also, data elements must remain invariant if the value of the hashing function depends on them; for example, if the hashing function operates directly on the characters of a string, that string can't change.
+///
+/// - Parameters:
+/// - callBacks: A structure that defines the callbacks for the hash table.
+/// - capacity: The initial capacity of the hash table.
+/// - Returns: A pointer to an `NSHashTable` created in the default zone.
+///
 /// # Safety
 ///
 /// - `call_backs` struct field `hash` must be implemented correctly.

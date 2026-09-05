@@ -121,6 +121,8 @@ mod __BEWebContentProcess;
 #[cfg(feature = "BEAccessibility")]
 pub use self::__BEAccessibility::BEAccessibilityContainerType;
 #[cfg(feature = "BEAccessibility")]
+pub use self::__BEAccessibility::BEAccessibilityOrientation;
+#[cfg(feature = "BEAccessibility")]
 pub use self::__BEAccessibility::BEAccessibilityPressedState;
 #[cfg(feature = "BEAccessibility")]
 pub use self::__BEAccessibility::NSObjectBEAccessibility;
@@ -234,5 +236,7 @@ pub use self::__BETextSuggestion::BETextSuggestion;
 pub use self::__BEWebAppManifest::BEWebAppManifest;
 #[cfg(feature = "BEWebContentFilter")]
 pub use self::__BEWebContentFilter::BEWebContentFilter;
+#[cfg(feature = "BEWebContentFilter")]
+pub use self::__BEWebContentFilter::BEWebContentFilterPermissionDecision;
 #[cfg(feature = "BEWebContentProcess")]
 pub use self::__BEWebContentProcess::BEWebContentProcess;

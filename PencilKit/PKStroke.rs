@@ -73,6 +73,40 @@ impl PKStroke {
             random_seed: u32,
         ) -> Retained<Self>;
 
+        #[cfg(all(
+            feature = "PKInk",
+            feature = "PKStrokePath",
+            feature = "PKStrokeRenderState",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
+        #[cfg(target_os = "macos")]
+        #[unsafe(method(initWithInk:strokePath:transform:mask:randomSeed:strokeID:renderGroupID:renderState:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithInk_strokePath_transform_mask_randomSeed_strokeID_renderGroupID_renderState(
+            this: Allocated<Self>,
+            ink: &PKInk,
+            stroke_path: &PKStrokePath,
+            transform: CGAffineTransform,
+            mask: Option<&NSBezierPath>,
+            random_seed: u32,
+            stroke_id: &NSUUID,
+            render_group_id: Option<&NSUUID>,
+            render_state: Option<&PKStrokeRenderState>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "PKContentVersion")]
+        /// The PencilKit version required to use this stroke.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(requiredContentVersion))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn requiredContentVersion(&self) -> PKContentVersion;
+
         #[cfg(feature = "PKInk")]
         /// The ink used to render this stroke.
         ///
@@ -84,6 +118,17 @@ impl PKStroke {
         #[unsafe(method(ink))]
         #[unsafe(method_family = none)]
         pub unsafe fn ink(&self) -> Retained<PKInk>;
+
+        /// The unique identity of the stroke.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(strokeID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn strokeID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The affine transform of the stroke when rendered.
@@ -121,11 +166,7 @@ impl PKStroke {
         pub unsafe fn mask(&self) -> Option<Retained<NSBezierPath>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// The bounds of the rendered stroke.
-        /// This includes the width
-        /// &
-        /// ink of the stroke after the transform
-        /// is applied.
+        /// The bounds of the rendered stroke, including its width and ink after the transform is applied.
         ///
         /// This property is not atomic.
         ///
@@ -137,8 +178,7 @@ impl PKStroke {
         pub unsafe fn renderBounds(&self) -> CGRect;
 
         #[cfg(feature = "PKFloatRange")]
-        /// These are the parametric parameter ranges of points in `strokePath`
-        /// that intersect the stroke's mask.
+        /// The parametric ranges of points in the stroke path that intersect the mask.
         ///
         /// This property is not atomic.
         ///
@@ -160,17 +200,47 @@ impl PKStroke {
         #[unsafe(method_family = none)]
         pub unsafe fn randomSeed(&self) -> u32;
 
-        #[cfg(feature = "PKContentVersion")]
-        /// The PencilKit version required to use this stroke.
+        /// A UUID that groups strokes for wet-ink compositing with compatible inks such as marker.
+        ///
+        /// Set this to the same value for a run of strokes to render them as if drawn while the previous
+        /// stroke with the same ink was still wet.
         ///
         /// This property is not atomic.
         ///
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[unsafe(method(requiredContentVersion))]
+        #[unsafe(method(renderGroupID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiredContentVersion(&self) -> PKContentVersion;
+        pub unsafe fn renderGroupID(&self) -> Option<Retained<NSUUID>>;
+
+        #[cfg(feature = "PKStrokeRenderState")]
+        /// The render details of the stroke, such as particle positioning. Uses default rendering when nil.
+        ///
+        /// This may be set on substrokes returned by `-substrokeWithRange:`.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(renderState))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn renderState(&self) -> Option<Retained<PKStrokeRenderState>>;
+
+        #[cfg(feature = "PKFloatRange")]
+        /// Returns a copy of the stroke containing the control points in the specified range.
+        ///
+        /// Maintains rendering information so the returned substroke renders the same as the corresponding
+        /// portion of the receiver. The returned stroke may have a `renderState` set to maintain this information.
+        ///
+        ///
+        /// Parameter `range`: The range of control points in the receiver to copy to the returned stroke.
+        ///
+        /// Returns: A new stroke containing only the control points within the specified range.
+        #[unsafe(method(substrokeWithRange:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn substrokeWithRange(&self, range: &PKFloatRange) -> Retained<PKStroke>;
     );
 }
 

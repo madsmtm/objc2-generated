@@ -1103,3 +1103,67 @@ impl AVMetricDownloadSummaryEvent {
         pub unsafe fn variants(&self) -> Retained<NSArray<AVAssetVariant>>;
     );
 }
+
+/// These constants are the possible playback modes returned by the property "mode" on AVMetricPlaybackModeSwitchEvent
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplaybackmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct AVMetricPlaybackMode(pub NSInteger);
+impl AVMetricPlaybackMode {
+    /// Indicates that playback is local.
+    #[doc(alias = "AVMetricPlaybackModeLocal")]
+    pub const Local: Self = Self(0);
+    /// Indicates that playback is via AirPlay Video.
+    #[doc(alias = "AVMetricPlaybackModeAirPlayVideo")]
+    pub const AirPlayVideo: Self = Self(1);
+}
+
+unsafe impl Encode for AVMetricPlaybackMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for AVMetricPlaybackMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// Represents a change in playback state, entering one of AVMetricPlaybackMode
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplaybackmodeswitchevent?language=objc)
+    #[unsafe(super(AVMetricEvent, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVMetricPlaybackModeSwitchEvent;
+);
+
+unsafe impl Send for AVMetricPlaybackModeSwitchEvent {}
+
+unsafe impl Sync for AVMetricPlaybackModeSwitchEvent {}
+
+extern_conformance!(
+    unsafe impl NSCoding for AVMetricPlaybackModeSwitchEvent {}
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetricPlaybackModeSwitchEvent {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for AVMetricPlaybackModeSwitchEvent {}
+);
+
+impl AVMetricPlaybackModeSwitchEvent {
+    extern_methods!(
+        // -init (unavailable)
+
+        // +new (unavailable)
+
+        /// Returns the mode into which playback entered.
+        #[unsafe(method(mode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mode(&self) -> AVMetricPlaybackMode;
+    );
+}

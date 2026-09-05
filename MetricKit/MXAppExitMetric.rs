@@ -16,6 +16,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxforegroundexitdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use ForegroundTerminationMetric instead."]
     pub struct MXForegroundExitData;
 );
 
@@ -34,16 +35,19 @@ extern_conformance!(
 impl MXForegroundExitData {
     extern_methods!(
         /// Cumulative number of times the application exited normally, or was gracefully terminated by the system.
+        #[deprecated = "Use ForegroundTerminationMetric instead."]
         #[unsafe(method(cumulativeNormalAppExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeNormalAppExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for exceeding a memory consumption limit.
+        #[deprecated = "Use ForegroundTerminationMetric instead."]
         #[unsafe(method(cumulativeMemoryResourceLimitExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeMemoryResourceLimitExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for attempting to access invalid memory, or attempting to access memory in a manner not allowed by the memory's protection level (e.g. writing to read-only memory).
+        #[deprecated = "Use ForegroundTerminationMetric instead."]
         #[unsafe(method(cumulativeBadAccessExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBadAccessExitCount(&self) -> NSUInteger;
@@ -51,6 +55,7 @@ impl MXForegroundExitData {
         /// Cumulative number of times the application exited abnormally.
         ///
         /// The most common causes of crashes with this exception type are uncaught Objective-C/C++ exceptions and calls to abort().
+        #[deprecated = "Use ForegroundTerminationMetric instead."]
         #[unsafe(method(cumulativeAbnormalExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeAbnormalExitCount(&self) -> NSUInteger;
@@ -58,6 +63,7 @@ impl MXForegroundExitData {
         /// Cumulative number of times the application terminated for attempting to execute an illegal or undefined instruction.
         ///
         /// The process may have attempted to jump to an invalid address via a misconfigured function pointer.
+        #[deprecated = "Use ForegroundTerminationMetric instead."]
         #[unsafe(method(cumulativeIllegalInstructionExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeIllegalInstructionExitCount(&self) -> NSUInteger;
@@ -65,6 +71,7 @@ impl MXForegroundExitData {
         /// Cumulative number of times the application was terminated because a watchdog timeout occured.
         ///
         /// These can occur when the application took too long to launch, terminate, or respond to system events.
+        #[deprecated = "Use ForegroundTerminationMetric instead."]
         #[unsafe(method(cumulativeAppWatchdogExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeAppWatchdogExitCount(&self) -> NSUInteger;
@@ -94,6 +101,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use BackgroundTerminationMetric instead."]
     pub struct MXBackgroundExitData;
 );
 
@@ -112,26 +120,31 @@ extern_conformance!(
 impl MXBackgroundExitData {
     extern_methods!(
         /// Cumulative number of times the application exited normally, or was gracefully terminated by the system.
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeNormalAppExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeNormalAppExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for exceeding a memory consumption limit.
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeMemoryResourceLimitExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeMemoryResourceLimitExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for exceeding a CPU consumption limit.
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeCPUResourceLimitExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCPUResourceLimitExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application exited due to memory pressure on the system.
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeMemoryPressureExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeMemoryPressureExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for attempting to access invalid memory, or attempting to access memory in a manner not allowed by the memory's protection level (e.g. writing to read-only memory).
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeBadAccessExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBadAccessExitCount(&self) -> NSUInteger;
@@ -139,6 +152,7 @@ impl MXBackgroundExitData {
         /// Cumulative number of times the application exited abnormally.
         ///
         /// The most common causes of crashes with this exception type are uncaught Objective-C/C++ exceptions and calls to abort().
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeAbnormalExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeAbnormalExitCount(&self) -> NSUInteger;
@@ -146,6 +160,7 @@ impl MXBackgroundExitData {
         /// Cumulative number of times the application terminated for attempting to execute an illegal or undefined instruction.
         ///
         /// The process may have attempted to jump to an invalid address via a misconfigured function pointer.
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeIllegalInstructionExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeIllegalInstructionExitCount(&self) -> NSUInteger;
@@ -153,6 +168,7 @@ impl MXBackgroundExitData {
         /// Cumulative number of times the application was terminated because a watchdog timeout occured.
         ///
         /// These can occur when the application took too long to launch, terminate, or respond to system events.
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeAppWatchdogExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeAppWatchdogExitCount(&self) -> NSUInteger;
@@ -160,6 +176,7 @@ impl MXBackgroundExitData {
         /// Cumulative number of times the application was terminated because it became suspended while holding onto file locks or sqlite database locks.
         ///
         /// If your application is performing operations on a locked file or sqlite database at suspension time, it must request additional background execution time to complete those operations and relinquish the lock before suspending.
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeSuspendedWithLockedFileExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeSuspendedWithLockedFileExitCount(&self) -> NSUInteger;
@@ -167,6 +184,7 @@ impl MXBackgroundExitData {
         /// Cumulative number of times the application was terminated for exceeding the alotted time limit associated with a background tasks.
         ///
         /// If your application begins a background task, you must call endBackgroundTask() to signal completion of the task to prevent your application from being terminated. You can do this in the expiration handler of the task, but it must be done immediately.
+        #[deprecated = "Use BackgroundTerminationMetric instead."]
         #[unsafe(method(cumulativeBackgroundTaskAssertionTimeoutExitCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundTaskAssertionTimeoutExitCount(&self) -> NSUInteger;
@@ -197,6 +215,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXAppExitMetric;
 );
 
@@ -221,6 +240,7 @@ impl MXAppExitMetric {
         /// Cumulative foreground exit data.
         ///
         /// This includes application exit data when the application was on screen and visible to the user.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(foregroundExitData))]
         #[unsafe(method_family = none)]
         pub unsafe fn foregroundExitData(&self) -> Retained<MXForegroundExitData>;
@@ -228,6 +248,7 @@ impl MXAppExitMetric {
         /// Cumulative background exit data.
         ///
         /// This includes application exit data when the application was off screen and not visible to the user.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(backgroundExitData))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundExitData(&self) -> Retained<MXBackgroundExitData>;

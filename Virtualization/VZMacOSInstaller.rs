@@ -77,9 +77,9 @@ extern_class!(
     ///
     /// </pre>
     ///
-    /// See also: VZVirtualMachine
+    /// See: VZVirtualMachine
     ///
-    /// See also: VZMacOSRestoreImage
+    /// See: VZMacOSRestoreImage
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosinstaller?language=objc)
     #[unsafe(super(NSObject))]

@@ -93,6 +93,28 @@ unsafe impl RefEncode for NSSegmentDistribution {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrolrole?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NSSegmentedControlRole(pub NSInteger);
+impl NSSegmentedControlRole {
+    #[doc(alias = "NSSegmentedControlRoleAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "NSSegmentedControlRoleTabs")]
+    pub const Tabs: Self = Self(1);
+    #[doc(alias = "NSSegmentedControlRoleValueSelection")]
+    pub const ValueSelection: Self = Self(2);
+}
+
+unsafe impl Encode for NSSegmentedControlRole {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSSegmentedControlRole {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol?language=objc)
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
@@ -306,6 +328,15 @@ impl NSSegmentedControl {
         #[unsafe(method(setSegmentStyle:))]
         #[unsafe(method_family = none)]
         pub fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
+
+        #[unsafe(method(role))]
+        #[unsafe(method_family = none)]
+        pub fn role(&self) -> NSSegmentedControlRole;
+
+        /// Setter for [`role`][Self::role].
+        #[unsafe(method(setRole:))]
+        #[unsafe(method_family = none)]
+        pub fn setRole(&self, role: NSSegmentedControlRole);
 
         #[unsafe(method(isSpringLoaded))]
         #[unsafe(method_family = none)]

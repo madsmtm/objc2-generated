@@ -512,6 +512,61 @@ impl DefaultRetained for MTLTextureReferenceType {
 }
 
 extern_class!(
+    /// An auxiliary plane that a shader's tensor argument requires.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorauxiliaryplanetype?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct MTLTensorAuxiliaryPlaneType;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for MTLTensorAuxiliaryPlaneType {}
+);
+
+impl MTLTensorAuxiliaryPlaneType {
+    extern_methods!(
+        #[cfg(feature = "MTLTensor")]
+        /// The data format of all elements in the plane.
+        #[unsafe(method(dataType))]
+        #[unsafe(method_family = none)]
+        pub fn dataType(&self) -> MTLTensorDataType;
+
+        #[cfg(feature = "MTLTensor")]
+        /// The number of data plane elements that correspond to one element in this plane.
+        #[unsafe(method(blockFactors))]
+        #[unsafe(method_family = none)]
+        pub fn blockFactors(&self) -> Retained<MTLTensorExtents>;
+
+        #[cfg(feature = "MTLTensor")]
+        /// The type of information this plane stores.
+        #[unsafe(method(planeType))]
+        #[unsafe(method_family = none)]
+        pub fn planeType(&self) -> MTLTensorPlaneType;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl MTLTensorAuxiliaryPlaneType {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub fn new() -> Retained<Self>;
+    );
+}
+
+impl DefaultRetained for MTLTensorAuxiliaryPlaneType {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
+}
+
+extern_class!(
     /// An object that represents a tensor in the shading language in a struct or array.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorreferencetype?language=objc)
@@ -541,10 +596,20 @@ impl MTLTensorReferenceType {
         #[cfg(feature = "MTLTensor")]
         /// The array of sizes, in elements, one for each dimension of this tensor.
         ///
-        /// Because shader-bound tensors have dynamic extents, the ``MTLTensorExtents/rank`` of `dimensions` corresponds to the rank the shader function specifies, and ``MTLTensorExtents/extentsAtDimensionIndex:`` always returns a value of -1.
+        /// For shader-bound tensors with dynamic extents, the ``MTLTensorExtents/rank`` of `dimensions` corresponds to the rank the shader
+        /// function specifies, and ``MTLTensorExtents/extentAtDimensionIndex:`` always returns a value of -1.
         #[unsafe(method(dimensions))]
         #[unsafe(method_family = none)]
         pub fn dimensions(&self) -> Option<Retained<MTLTensorExtents>>;
+
+        /// The auxiliary planes that this tensor reference requires.
+        ///
+        /// Returns an array of ``MTLTensorAuxiliaryPlaneType`` objects describing
+        /// each auxiliary plane the shader expects. Empty if the tensor has no
+        /// auxiliary planes.
+        #[unsafe(method(auxiliaryPlanes))]
+        #[unsafe(method_family = none)]
+        pub fn auxiliaryPlanes(&self) -> Retained<NSArray<MTLTensorAuxiliaryPlaneType>>;
 
         /// A value that represents the read/write permissions of the tensor.
         #[unsafe(method(access))]
@@ -819,10 +884,17 @@ extern_protocol!(
         #[cfg(feature = "MTLTensor")]
         /// The array of sizes, in elements, one for each dimension of this tensor.
         ///
-        /// Because shader-bound tensors have dynamic extents, if this tensor is shader bound, the ``MTLTensorExtents/rank`` of `dimensions` corresponds to the rank the shader function specifies, and ``MTLTensorExtents/extentsAtDimensionIndex:`` always returns a value of -1.
-        /// In the case of functions used with machine learning pipelines, `dimensions` corresponds to the default shape, if you provide one. Otherwise, it's `nil` in the case of an undefined shape.
+        /// For shader-bound tensors with dynamic extents, the ``MTLTensorExtents/rank`` of `dimensions` corresponds to the rank the shader
+        /// function specifies, and ``MTLTensorExtents/extentAtDimensionIndex:`` always returns a value of -1.
+        ///
+        /// For machine learning pipelines, `dimensions` corresponds to the default shape, if you provide one. Otherwise, it's `nil` in the case of an undefined shape.
         #[unsafe(method(dimensions))]
         #[unsafe(method_family = none)]
         fn dimensions(&self) -> Option<Retained<MTLTensorExtents>>;
+
+        /// An array of the tensor's auxiliary planes.
+        #[unsafe(method(auxiliaryPlanes))]
+        #[unsafe(method_family = none)]
+        fn auxiliaryPlanes(&self) -> Retained<NSArray<MTLTensorAuxiliaryPlaneType>>;
     }
 );

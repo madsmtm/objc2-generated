@@ -1426,13 +1426,10 @@ impl AVCaptureDevice {
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Sets focusMode to AVCaptureFocusModeLocked and locks lensPosition at an explicit value.
         ///
+        /// - Parameter lensPosition: The lens position, as described in the documentation for the ``lensPosition`` property. A value of ``AVCaptureLensPositionCurrent`` can be used to indicate that the caller does not wish to specify a value for ``lensPosition``.
+        /// - Parameter handler: A block to be called when ``lensPosition`` has been set to the value specified and ``focusMode`` is set to ``AVCaptureFocusModeLocked``. If ``setFocusModeLockedWithLensPosition:completionHandler:`` is called multiple times, the completion handlers will be called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the ``AVCaptureSession/synchronizationClock`` prior to comparison with the timestamps of buffers delivered via an ``AVCaptureVideoDataOutput``. The client may pass nil for the handler parameter if knowledge of the operation's completion is not required.
         ///
-        /// Parameter `lensPosition`: The lens position, as described in the documentation for the lensPosition property. A value of AVCaptureLensPositionCurrent can be used to indicate that the caller does not wish to specify a value for lensPosition.
-        ///
-        /// Parameter `handler`: A block to be called when lensPosition has been set to the value specified and focusMode is set to AVCaptureFocusModeLocked. If setFocusModeLockedWithLensPosition:completionHandler: is called multiple times, the completion handlers will be called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the `AVCaptureSession/synchronizationClock` prior to comparison with the timestamps of buffers delivered via an AVCaptureVideoDataOutput. The client may pass nil for the handler parameter if knowledge of the operation's completion is not required.
-        ///
-        ///
-        /// This is the only way of setting lensPosition. This method throws an NSRangeException if lensPosition is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
+        /// This is the only way of setting ``lensPosition``. This method throws an NSRangeException if ``lensPosition`` is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using ``lockForConfiguration:``. Before setting custom lens position value, check ``lockingFocusWithCustomLensPositionSupported`` first.
         #[unsafe(method(setFocusModeLockedWithLensPosition:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusModeLockedWithLensPosition_completionHandler(

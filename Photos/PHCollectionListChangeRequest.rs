@@ -42,7 +42,11 @@ impl PHCollectionListChangeRequest {
             collection_lists: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+        #[cfg(all(
+            feature = "PHCollection",
+            feature = "PHCollectionList",
+            feature = "PHObject"
+        ))]
         #[unsafe(method(changeRequestForCollectionList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForCollectionList(
@@ -51,6 +55,7 @@ impl PHCollectionListChangeRequest {
 
         #[cfg(all(
             feature = "PHCollection",
+            feature = "PHCollectionList",
             feature = "PHFetchResult",
             feature = "PHObject"
         ))]

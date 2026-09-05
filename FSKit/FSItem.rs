@@ -187,7 +187,61 @@ extern_conformance!(
     unsafe impl NSObjectProtocol for FSItem {}
 );
 
-impl FSItem {}
+impl FSItem {
+    extern_methods!(
+        #[cfg(feature = "block2")]
+        /// Reclaims the `FSItem`, by executing the given `reclaimBlock`, only if conditions allow.
+        ///
+        /// Should be invoked by the file system during the ``FSVolume/Handler/reclaimItem(_:replyHandler:)`` operation.
+        ///
+        /// FSKit internally maintains a count of how many times each FSItem has been returned to the kernel, via either a creation operation or a lookup. The kernel file system also maintains a count of how many times a vnode has been returned by a create or a lookup operation. When the kernel reclaims the vnode associated with an FSItem, the FSItem should only get reclaimed when both the kernel and user space counts agree.
+        /// This mechanism addresses a potential race condition wherein concurrent reclaim and lookup operations could lead to a lookup returning a deallocated FSItem, thereby inducing undefined behavior.
+        ///
+        /// > Important: The caller must invoke this method within a synchronization context that ensures the FSItem is not concurrently returned by lookup operations.
+        ///
+        /// > Note: File systems which do not invoke this method during reclaim are exposed to this race condition.
+        ///
+        /// - Parameters:
+        /// - reclaimBlock The block to execute if reclaim should proceed. Should include all required cleanup operations for reclaiming this item, excluding only the final teardown of the `FSItem` instance itself.
+        ///
+        /// - Returns: YES if the reclaim block was executed, NO otherwise. In case it returns NO, the ``FSVolume/Handler/reclaimItem(_:replyHandler:)`` implementation should call `replyHandler(nil)`.
+        ///
+        /// Example Usage:
+        ///
+        /// ```objc
+        /// - (void)reclaimItem:(FSItem *)item
+        /// replyHandler:(void(^)(NSError * _Nullable error))reply
+        /// {
+        /// __block NSError *reclaimError = nil; // To be set during the reclaim block in case of an error
+        ///
+        /// // *** CRITICAL SECTION BEGINS HERE ***
+        /// // (A synchronization context that ensures the FSItem is not concurrently returned by lookup operations)
+        ///
+        /// // Calling `tryReclaimWithBlock:` with the cleanup logic within the passed block
+        /// BOOL wasReclaimed = [self tryReclaimWithBlock:^{
+        /// // Includes all required cleanup operations for reclaiming this item.
+        /// // Sets `reclaimError` in case of an error during the cleanup phase
+        /// }];
+        ///
+        /// // *** CRITICAL SECTION ENDS HERE ***
+        ///
+        /// if (wasReclaimed) {
+        /// // Clean up the FSItem if special teardown is needed.
+        /// reply(reclaimError);
+        /// } else {
+        /// // Do nothing, the FSItem shouldn't get deallocated yet.
+        /// reply(nil);
+        /// }
+        /// }
+        /// ```
+        #[unsafe(method(tryReclaimWithBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn tryReclaimWithBlock(
+            &self,
+            reclaim_block: &block2::Block<'static, fn()>,
+        ) -> bool;
+    );
+}
 
 /// Methods declared on superclass `NSObject`.
 impl FSItem {

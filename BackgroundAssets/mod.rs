@@ -109,9 +109,13 @@ pub use self::__BAManagedDownloaderExtension::BAManagedDownloaderExtension;
 #[cfg(feature = "BAManagedError")]
 pub use self::__BAManagedError::BAAssetPackIdentifierErrorKey;
 #[cfg(feature = "BAManagedError")]
+pub use self::__BAManagedError::BAFailuresErrorKey;
+#[cfg(feature = "BAManagedError")]
 pub use self::__BAManagedError::BAManagedErrorCode;
 #[cfg(feature = "BAManagedError")]
 pub use self::__BAManagedError::BAManagedErrorDomain;
+#[cfg(feature = "BAManagedError")]
+pub use self::__BAManagedError::BASuccessesErrorKey;
 #[cfg(feature = "BATypes")]
 pub use self::__BATypes::BAContentRequest;
 #[cfg(all(feature = "BADownload", feature = "BAURLDownload"))]

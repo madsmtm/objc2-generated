@@ -141,7 +141,7 @@ pub unsafe trait NSObjectCIImageProvider:
         );
 
         #[cfg(feature = "objc2-metal")]
-        /// An optional method that an image provider object way implement.
+        /// An optional method that an image provider object may implement.
         /// With this method, the provider object can use the Metal API to provide pixel
         /// data into a MTLTexture when the image object is rendered.
         ///

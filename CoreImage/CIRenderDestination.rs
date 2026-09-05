@@ -285,6 +285,22 @@ extern_conformance!(
 
 impl CIRenderTask {
     extern_methods!(
+        #[unsafe(method(plannedPixelsProcessed))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn plannedPixelsProcessed(&self) -> NSInteger;
+
+        #[unsafe(method(plannedPixelsOverdrawn))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn plannedPixelsOverdrawn(&self) -> NSInteger;
+
+        #[unsafe(method(plannedPassCount))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn plannedPassCount(&self) -> NSInteger;
+
+        #[unsafe(method(plannedPeakMemory))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn plannedPeakMemory(&self) -> NSInteger;
+
         #[unsafe(method(waitUntilCompletedAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn waitUntilCompletedAndReturnError(

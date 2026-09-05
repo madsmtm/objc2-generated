@@ -32,6 +32,11 @@ impl HMAccessorySetupManager {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// A flag that indicates whether `HMAccessorySetupManager` usage is supported
+        #[unsafe(method(isSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isSupported() -> bool;
+
         #[cfg(all(
             feature = "HMAccessorySetupRequest",
             feature = "HMAccessorySetupResult",

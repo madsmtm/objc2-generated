@@ -6,39 +6,71 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601dateformatoptions?language=objc)
+/// Options used to generate and parse ISO 8601 date representations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601dateformatoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSISO8601DateFormatOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSISO8601DateFormatOptions: NSUInteger {
+/// The date representation includes the year. The format for year is inferred
+/// based on whether or not the week of year option is specified.
+///
+/// - If week of year is present, `YYYY` is used to display week dates.
+/// - If week of year is not present, `yyyy` is used by default.
         #[doc(alias = "NSISO8601DateFormatWithYear")]
         const WithYear = 1;
+/// The date representation includes the month. The format for month is `MM`.
         #[doc(alias = "NSISO8601DateFormatWithMonth")]
         const WithMonth = 2;
+/// The date representation includes the week of the year.
+/// The format for week of year is `ww`, including the `W` prefix.
         #[doc(alias = "NSISO8601DateFormatWithWeekOfYear")]
         const WithWeekOfYear = 4;
+/// The date representation includes the day. The format for day is inferred
+/// based on provided options:
+///
+/// - If month is not present, day of year (`DDD`) is used.
+/// - If month is present, day of month (`dd`) is used.
+/// - If either weekOfMonth or weekOfYear is present, local day of week (`ee`) is used.
         #[doc(alias = "NSISO8601DateFormatWithDay")]
         const WithDay = 16;
+/// The date representation includes the time. The format for time is `HH:mm:ss`.
         #[doc(alias = "NSISO8601DateFormatWithTime")]
         const WithTime = 32;
+/// The date representation includes the timezone. The format for timezone is `ZZZZZ`.
         #[doc(alias = "NSISO8601DateFormatWithTimeZone")]
         const WithTimeZone = 64;
+/// The date representation uses a space (` `) instead of `T` between the date and time.
         #[doc(alias = "NSISO8601DateFormatWithSpaceBetweenDateAndTime")]
         const WithSpaceBetweenDateAndTime = 128;
+/// The date representation uses the dash separator (`-`) in the date.
         #[doc(alias = "NSISO8601DateFormatWithDashSeparatorInDate")]
         const WithDashSeparatorInDate = 256;
+/// The date representation uses the colon separator (`:`) in the time.
         #[doc(alias = "NSISO8601DateFormatWithColonSeparatorInTime")]
         const WithColonSeparatorInTime = 512;
+/// The date representation uses the colon separator (`:`) in the time zone.
         #[doc(alias = "NSISO8601DateFormatWithColonSeparatorInTimeZone")]
         const WithColonSeparatorInTimeZone = 1024;
+/// The date representation uses the colon separator (`:`) in the time zone.
         #[doc(alias = "NSISO8601DateFormatWithFractionalSeconds")]
         const WithFractionalSeconds = 2048;
+/// The date representation includes the year, month, and day. Equivalent to specifying
+/// `NSISO8601DateFormatWithYear`, `NSISO8601DateFormatWithMonth`, and
+/// `NSISO8601DateFormatWithDay`.
         #[doc(alias = "NSISO8601DateFormatWithFullDate")]
         const WithFullDate = 275;
+/// The date representation includes the hour, minute, and second.
         #[doc(alias = "NSISO8601DateFormatWithFullTime")]
         const WithFullTime = 1632;
+/// The format used for internet date times, according to the RFC 3339 standard.
+/// Equivalent to specifying `NSISO8601DateFormatWithFullDate`,
+/// `NSISO8601DateFormatWithFullTime`, `NSISO8601DateFormatWithDashSeparatorInDate`,
+/// `NSISO8601DateFormatWithColonSeparatorInTime`, and
+/// `NSISO8601DateFormatWithColonSeparatorInTimeZone`.
         #[doc(alias = "NSISO8601DateFormatWithInternetDateTime")]
         const WithInternetDateTime = 1907;
         const _ = !0;
@@ -54,7 +86,14 @@ unsafe impl RefEncode for NSISO8601DateFormatOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601dateformatter?language=objc)
+    /// A formatter that converts between dates and their ISO 8601 string representations.
+    ///
+    /// The ``ISO8601DateFormatter`` class generates and parses string representations of dates following the [ISO 8601](http://www.iso.org/iso/home/standards/iso8601) standard. Use this class to create ISO 8601 representations of dates and create dates from text strings in ISO 8601 format.
+    ///
+    /// > Tip:
+    /// > In Swift, you can use ``Date/ISO8601FormatStyle`` rather than ``ISO8601DateFormatter``. The ``FormatStyle`` API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical ``FormatStyle`` instances, so you don't need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601dateformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -90,6 +129,10 @@ extern_conformance!(
 impl NSISO8601DateFormatter {
     extern_methods!(
         #[cfg(feature = "NSTimeZone")]
+        /// The time zone used to create and parse date representations. When unspecified, GMT is used.
+        ///
+        /// Resetting this property can incur a significant performance cost, as it may cause
+        /// internal state to be regenerated.
         #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
         pub fn timeZone(&self) -> Retained<NSTimeZone>;
@@ -102,6 +145,14 @@ impl NSISO8601DateFormatter {
         #[unsafe(method_family = none)]
         pub fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
+        /// Options for generating and parsing ISO 8601 date representations.
+        ///
+        /// The ISO 8601 specification allows for dates to be expressed in a variety of ways.
+        /// You can configure the format used to parse and generate representations by specifying
+        /// various combinations of format options.
+        ///
+        /// > Important: Resetting this property can incur a significant performance cost,
+        /// > as it may cause internal state to be regenerated.
         #[unsafe(method(formatOptions))]
         #[unsafe(method_family = none)]
         pub fn formatOptions(&self) -> NSISO8601DateFormatOptions;
@@ -111,21 +162,45 @@ impl NSISO8601DateFormatter {
         #[unsafe(method_family = none)]
         pub fn setFormatOptions(&self, format_options: NSISO8601DateFormatOptions);
 
+        /// Initializes an ISO 8601 date formatter with default format, time zone, and options.
+        ///
+        /// By default, a formatter is initialized to use the GMT time zone and preconfigured
+        /// with the RFC 3339 standard format (`yyyy-MM-dd'T'HH:mm:ssXXXXX`) using the following
+        /// options: `NSISO8601DateFormatWithInternetDateTime`,
+        /// `NSISO8601DateFormatWithDashSeparatorInDate`,
+        /// `NSISO8601DateFormatWithColonSeparatorInTime`, and
+        /// `NSISO8601DateFormatWithColonSeparatorInTimeZone`.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
+        /// Creates and returns an ISO 8601 formatted string representation of the specified date.
+        ///
+        /// - Parameter date: The date to be represented.
+        /// - Returns: A user-readable string representing the date.
         #[unsafe(method(stringFromDate:))]
         #[unsafe(method_family = none)]
         pub fn stringFromDate(&self, date: &NSDate) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
+        /// Creates and returns a date object from the specified ISO 8601 formatted string
+        /// representation.
+        ///
+        /// - Parameter string: The ISO 8601 formatted string representation of a date.
+        /// - Returns: A date object, or `nil` if no valid date was found.
         #[unsafe(method(dateFromString:))]
         #[unsafe(method_family = none)]
         pub fn dateFromString(&self, string: &NSString) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString", feature = "NSTimeZone"))]
+        /// Creates a representation of the specified date with a given time zone and format options.
+        ///
+        /// - Parameters:
+        /// - date: The date to be represented.
+        /// - timeZone: The time zone used.
+        /// - formatOptions: The options used. For possible values, see `NSISO8601DateFormatOptions`.
+        /// - Returns: A user-readable string representing the date.
         #[unsafe(method(stringFromDate:timeZone:formatOptions:))]
         #[unsafe(method_family = none)]
         pub fn stringFromDate_timeZone_formatOptions(

@@ -5393,6 +5393,10 @@ pub use self::__hid::kHIDUsage_Snsr_Data_Environmental_WindDirection;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Data_Environmental_WindSpeed;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_Snsr_Data_Hinge;
+#[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_Snsr_Data_Hinge_Angle;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Data_Light;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Data_Light_Chromaticity;
@@ -5895,6 +5899,8 @@ pub use self::__hid::kHIDUsage_Snsr_Other_Generic;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Other_GenericEnumerator;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_Snsr_Other_HingeAngle;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Property;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Property_Accuracy;
@@ -6389,6 +6395,8 @@ pub use self::__hid::kIOHIDDeviceCarPlayDeviceKey;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDDeviceDefaultAsyncRequestTimeout;
 #[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDDeviceHIDRMHashKey;
+#[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDDeviceKey;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDDeviceMaxAsyncRequestTimeout;
@@ -6514,6 +6522,8 @@ pub use self::__hid::kIOHIDElementVariableSizeKey;
 pub use self::__hid::kIOHIDElementVendorSpecificKey;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDEventDriverHandlesReport;
+#[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDEventServicePropertiesRequiredForMatching;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDEventServiceSensorControlOptionsKey;
 #[cfg(feature = "hid")]
@@ -8800,6 +8810,9 @@ pub const kIOMatchCategoryKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodefaultmatchcategorykey?language=objc)
 pub const kIODefaultMatchCategoryKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODefaultMatchCategory\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioconfigorderkey?language=objc)
+pub const kIOConfigOrderKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOConfigOrder\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchedpersonalitykey?language=objc)
 pub const kIOMatchedPersonalityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMatchedPersonality\0") };
@@ -8882,6 +8895,10 @@ pub const kIONVRAMWriteAccessKey: &CStr =
 pub const kIOResourcesSetPropertyKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.ioresources.setproperty\0")
 };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserresourcessetpropertykey?language=objc)
+pub const kIOUserResourcesSetPropertyKey: &CStr = unsafe {
+    CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.iouserresources.setproperty\0")
+};
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramsystemallowkey?language=objc)
 pub const kIONVRAMSystemAllowKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.system-nvram-allow\0") };
@@ -8927,6 +8944,9 @@ pub const kIOUserServerOneProcessKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserserverpreserveuserspacerebootkey?language=objc)
 pub const kIOUserServerPreserveUserspaceRebootKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServerPreserveUserspaceReboot\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserplatformfunctionhandlerget?language=objc)
+pub const kIOUserPlatformFunctionHandlerGet: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserPlatformFunctionHandlerGet\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopublishnotification?language=objc)
 pub const kIOPublishNotification: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServicePublish\0") };
@@ -13019,6 +13039,8 @@ pub const kIORPCMessageOnqueue: c_uint = 0x00000020;
 pub const kIORPCMessageError: c_uint = 0x00000040;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorpcmessagesimplereply?language=objc)
 pub const kIORPCMessageSimpleReply: c_uint = 0x00000080;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorpcmessagedeepserialization?language=objc)
+pub const kIORPCMessageDeepSerialization: c_uint = 0x00000100;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iorpcmessage?language=objc)
 #[repr(C, packed(4))]

@@ -16,6 +16,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
+    #[deprecated = "Use SCRecordingEditor instead"]
     pub struct RPPreviewViewController;
 );
 
@@ -53,6 +54,7 @@ extern_conformance!(
 #[cfg(target_os = "macos")]
 impl RPPreviewViewController {
     extern_methods!(
+        #[deprecated = "Use SCRecordingEditor instead"]
         #[unsafe(method(previewControllerDelegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewControllerDelegate(
@@ -62,6 +64,7 @@ impl RPPreviewViewController {
         /// Setter for [`previewControllerDelegate`][Self::previewControllerDelegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        #[deprecated = "Use SCRecordingEditor instead"]
         #[unsafe(method(setPreviewControllerDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewControllerDelegate(
@@ -112,9 +115,11 @@ impl RPPreviewViewController {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rppreviewviewcontrollerdelegate?language=objc)
+    #[deprecated = "Use SCRecordingEditor instead"]
     pub unsafe trait RPPreviewViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        #[deprecated = "Use SCRecordingEditor instead"]
         #[optional]
         #[unsafe(method(previewControllerDidFinish:))]
         #[unsafe(method_family = none)]

@@ -29,7 +29,9 @@ extern_class!(
     /// [[VZDiskBlockDeviceStorageDeviceAttachment alloc] initWithFileHandle:fileHandle
     /// readOnly:YES
     /// synchronizationMode:VZDiskSynchronizationModeFull
-    /// error:error];
+    /// error:
+    /// &error
+    /// ];
     /// if (!attachment) {
     /// // Handle errors.
     /// }

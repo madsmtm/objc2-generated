@@ -20,7 +20,9 @@ extern_protocol!(
         /// This initializer will be called any time copy is called on anchor of this class.
         /// This method must be implemented for any ARAnchor subclasses that adds properties.
         ///
-        /// Parameter `anchor`: The anchor from which to copy values.
+        /// - Parameter anchor: The anchor from which to copy values.
+        ///
+        /// - Returns: An initialized anchor object.
         #[unsafe(method(initWithAnchor:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithAnchor(this: Allocated<Self>, anchor: &ARAnchor) -> Retained<Self>;
@@ -34,10 +36,10 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackable?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait ARTrackable: NSObjectProtocol {
-        /// Tracking state of the anchor
+        /// Tracking state of the anchor.
         ///
-        /// The isTracked value is used to determine the anchor transform’s validity. When the object being tracked is no longer detected in the
-        /// camera image, its anchor will return NO for isTracked.
+        /// The `isTracked` value is used to determine the anchor transform's validity. When the object being tracked is no longer detected in the
+        /// camera image, its anchor will return `NO` for `isTracked`.
         #[unsafe(method(isTracked))]
         #[unsafe(method_family = none)]
         unsafe fn isTracked(&self) -> bool;
@@ -120,7 +122,6 @@ impl ARAnchor {
 
         #[cfg(feature = "objc2-foundation")]
         /// Identifier of the session that owns the anchor.
-        ///
         ///
         /// The session identifier will be assigned to anchor when added to the session.
         ///

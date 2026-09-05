@@ -257,6 +257,20 @@ impl PKPaymentRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedNetworks(&self, supported_networks: &NSArray<PKPaymentNetwork>);
 
+        #[unsafe(method(unsupportedPrimaryAccountIdentifiers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn unsupportedPrimaryAccountIdentifiers(&self) -> Retained<NSArray<NSString>>;
+
+        /// Setter for [`unsupportedPrimaryAccountIdentifiers`][Self::unsupportedPrimaryAccountIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setUnsupportedPrimaryAccountIdentifiers:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUnsupportedPrimaryAccountIdentifiers(
+            &self,
+            unsupported_primary_account_identifiers: &NSArray<NSString>,
+        );
+
         #[unsafe(method(merchantCapabilities))]
         #[unsafe(method_family = none)]
         pub unsafe fn merchantCapabilities(&self) -> PKMerchantCapability;
@@ -454,7 +468,9 @@ impl PKPaymentRequest {
         #[unsafe(method(supportedCountries))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedCountries(&self) -> Option<Retained<NSSet<NSString>>>;
+    );
 
+    extern_methods!(
         /// Setter for [`supportedCountries`][Self::supportedCountries].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -466,9 +482,7 @@ impl PKPaymentRequest {
         #[unsafe(method(multiTokenContexts))]
         #[unsafe(method_family = none)]
         pub unsafe fn multiTokenContexts(&self) -> Retained<NSArray<PKPaymentTokenContext>>;
-    );
 
-    extern_methods!(
         #[cfg(feature = "PKPaymentTokenContext")]
         /// Setter for [`multiTokenContexts`][Self::multiTokenContexts].
         ///

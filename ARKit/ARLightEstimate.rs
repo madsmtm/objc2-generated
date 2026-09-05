@@ -38,8 +38,7 @@ impl ARLightEstimate {
         #[cfg(feature = "objc2-core-foundation")]
         /// Ambient intensity of the lighting.
         ///
-        ///
-        /// In a well lit environment, this value is close to 1000. It typically ranges from 0 (very dark) to around 2000 (very bright).
+        /// In a well lit environment, this value is close to `1000`. It typically ranges from `0` (very dark) to around `2000` (very bright).
         ///
         /// This property is not atomic.
         ///
@@ -53,8 +52,7 @@ impl ARLightEstimate {
         #[cfg(feature = "objc2-core-foundation")]
         /// The ambient color temperature of the lighting.
         ///
-        ///
-        /// This specifies the ambient color temperature of the lighting in Kelvin (6500 corresponds to pure white).
+        /// This specifies the ambient color temperature of the lighting in Kelvin (`6500` corresponds to pure white).
         ///
         /// This property is not atomic.
         ///
@@ -95,8 +93,7 @@ impl ARDirectionalLightEstimate {
         #[cfg(feature = "objc2-foundation")]
         /// Second degree spherical harmonics coefficients representing the intensity of light.
         ///
-        ///
-        /// The data is an array of 27 32-bit floating-point values, containing three non-interleaved data sets
+        /// The data is an array of `27` 32-bit floating-point values, containing three non-interleaved data sets
         /// corresponding to the red, green, and blue sets of coefficients.
         ///
         /// This property is not atomic.

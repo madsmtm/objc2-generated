@@ -208,6 +208,12 @@ pub use self::__AVAudioEngine::AVAudioEngineManualRenderingError;
 pub use self::__AVAudioEngine::AVAudioEngineManualRenderingMode;
 #[cfg(feature = "AVAudioEngine")]
 pub use self::__AVAudioEngine::AVAudioEngineManualRenderingStatus;
+#[cfg(all(
+    feature = "AVAudioEngine",
+    feature = "block2",
+    feature = "objc2-core-midi"
+))]
+pub use self::__AVAudioEngine::AVMIDIEventListBlock;
 #[cfg(feature = "AVAudioEnvironmentNode")]
 pub use self::__AVAudioEnvironmentNode::AVAudioEnvironmentDistanceAttenuationModel;
 #[cfg(feature = "AVAudioEnvironmentNode")]
@@ -233,6 +239,13 @@ pub use self::__AVAudioIONode::AVAudioIONode;
     feature = "objc2-core-audio-types"
 ))]
 pub use self::__AVAudioIONode::AVAudioIONodeInputBlock;
+#[cfg(all(
+    feature = "AVAudioIONode",
+    feature = "AVAudioTypes",
+    feature = "block2",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AVAudioIONode::AVAudioIONodeInputBlockRealtimeSafe;
 #[cfg(all(feature = "AVAudioIONode", feature = "AVAudioNode"))]
 pub use self::__AVAudioIONode::AVAudioInputNode;
 #[cfg(all(feature = "AVAudioIONode", feature = "AVAudioNode"))]
@@ -359,6 +372,12 @@ pub use self::__AVAudioSequencer::AVMusicTrack;
 pub use self::__AVAudioSequencer::AVMusicTrackLoopCount;
 #[cfg(feature = "AVAudioSession")]
 pub use self::__AVAudioSession::AVAudioSession;
+#[cfg(feature = "AVAudioSession")]
+pub use self::__AVAudioSession::AVAudioSessionDeactivationContext;
+#[cfg(feature = "AVAudioSession")]
+pub use self::__AVAudioSession::AVAudioSessionInterruptionContext;
+#[cfg(feature = "AVAudioSession")]
+pub use self::__AVAudioSession::AVAudioSessionResumptionContext;
 #[cfg(feature = "AVAudioSessionDeprecated")]
 pub use self::__AVAudioSessionDeprecated::AVAudioSessionDelegate;
 #[cfg(feature = "AVAudioSessionDeprecated")]
@@ -429,6 +448,16 @@ pub use self::__AVAudioSessionTypes::AVAudioSessionCategoryPlayback;
 pub use self::__AVAudioSessionTypes::AVAudioSessionCategoryRecord;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionCategorySoloAmbient;
+#[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionDeactivationContextKey;
+#[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionDeactivationOptions;
+#[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionDeactivationSource;
+#[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionDidBecomeActiveNotification;
+#[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionDidBecomeInactiveNotification;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionIOType;
 #[cfg(feature = "AVAudioSessionTypes")]
@@ -522,6 +551,8 @@ pub use self::__AVAudioSessionTypes::AVAudioSessionPortLineIn;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionPortLineOut;
 #[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionPortMediaDeviceExtension;
+#[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionPortOverride;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionPortPCI;
@@ -543,6 +574,12 @@ pub use self::__AVAudioSessionTypes::AVAudioSessionRenderingMode;
 pub use self::__AVAudioSessionTypes::AVAudioSessionRenderingModeChangeNotification;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionRenderingModeNewRenderingModeKey;
+#[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionResumptionContextKey;
+#[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionResumptionRecommendation;
+#[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionResumptionRecommendationNotification;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionRouteChangeNotification;
 #[cfg(feature = "AVAudioSessionTypes")]
@@ -638,6 +675,13 @@ pub use self::__AVAudioSinkNode::AVAudioSinkNode;
     feature = "objc2-core-audio-types"
 ))]
 pub use self::__AVAudioSinkNode::AVAudioSinkNodeReceiverBlock;
+#[cfg(all(
+    feature = "AVAudioSinkNode",
+    feature = "AVAudioTypes",
+    feature = "block2",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AVAudioSinkNode::AVAudioSinkNodeReceiverBlockRealtimeSafe;
 #[cfg(all(feature = "AVAudioNode", feature = "AVAudioSourceNode"))]
 pub use self::__AVAudioSourceNode::AVAudioSourceNode;
 #[cfg(all(
@@ -647,6 +691,13 @@ pub use self::__AVAudioSourceNode::AVAudioSourceNode;
     feature = "objc2-core-audio-types"
 ))]
 pub use self::__AVAudioSourceNode::AVAudioSourceNodeRenderBlock;
+#[cfg(all(
+    feature = "AVAudioSourceNode",
+    feature = "AVAudioTypes",
+    feature = "block2",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AVAudioSourceNode::AVAudioSourceNodeRenderBlockRealtimeSafe;
 #[cfg(feature = "AVAudioTime")]
 pub use self::__AVAudioTime::AVAudioTime;
 #[cfg(feature = "AVAudioTypes")]

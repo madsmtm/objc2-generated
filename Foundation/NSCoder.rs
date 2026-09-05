@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Describes the action an NSCoder should take when it encounters decode failures (e.g. corrupt data) for non-TopLevel decodes.
+/// Policies describing the action the coder should take when encountering decode failures.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecodingfailurepolicy?language=objc)
 // NS_ENUM
@@ -14,8 +14,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDecodingFailurePolicy(pub NSInteger);
 impl NSDecodingFailurePolicy {
+    /// A failure policy that directs the coder to raise an exception.
+    ///
+    /// With this policy, the `NSCoder` raises an exception internally to propagate failure messages (and unwind the stack). This exception can be transformed into an `NSError` via any of the TopLevel decode APIs.
     #[doc(alias = "NSDecodingFailurePolicyRaiseException")]
     pub const RaiseException: Self = Self(0);
+    /// A failure policy that directs the coder to capture the failure as an error object.
+    ///
+    /// On decode failure, the `NSCoder` will capture the failure as an `NSError`, and prevent further decodes (by returning `0` / `nil` equivalent as appropriate). Use this policy if you know that all encoded objects use `failWithError:` to communicate decode failures and don't raise exceptions for error propagation.
     #[doc(alias = "NSDecodingFailurePolicySetErrorAndReturn")]
     pub const SetErrorAndReturn: Self = Self(1);
 }
@@ -29,7 +35,19 @@ unsafe impl RefEncode for NSDecodingFailurePolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoder?language=objc)
+    /// An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.
+    ///
+    /// ``NSCoder`` declares the interface used by concrete subclasses to transfer objects and other values between memory and some other format. This capability provides the basis for archiving (storing objects and data on disk) and distribution (copying objects and data items between different processes or threads). The concrete subclasses provided by Foundation for these purposes are ``NSArchiver``, ``NSUnarchiver``, ``NSKeyedArchiver``, ``NSKeyedUnarchiver``, and ``NSPortCoder``. Concrete subclasses of ``NSCoder`` are "coder classes", and instances of these classes are "coder objects" (or simply "coders"). A coder that can only encode values is an "encoder", and one that can only decode values is a "decoder".
+    ///
+    /// ``NSCoder`` operates on objects, scalars, C arrays, structures, strings, and on pointers to these types. It doesn't handle types whose implementation varies across platforms, such as `union`, `void *`, function pointers, and long chains of pointers. A coder stores object type information along with the data, so an object decoded from a stream of bytes is normally of the same class as the object that was originally encoded into the stream. An object can change its class when encoded, however; this is described in [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
+    ///
+    /// The AVFoundation framework adds methods to the ``NSCoder`` class to make it easier to create archives including Core Media time structures, and extract Core Media time structure from archives.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// For details of how to create a subclass of `NSCoder`, see [Subclassing NSCoder](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Articles/subclassing.html#//apple_ref/doc/uid/20000951) in [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCoder;
@@ -41,6 +59,12 @@ extern_conformance!(
 
 impl NSCoder {
     extern_methods!(
+        /// Encodes a value of the given type at the given address.
+        ///
+        /// Subclasses must override this method, and match it with a subsequent ``decodeValueOfObjCType:at:size:`` message.
+        /// When calling this method, `type` must contain exactly one type code.
+        /// You should not use this method to encode Objective-C objects.
+        ///
         /// # Safety
         ///
         /// `addr` must be a valid pointer.
@@ -49,15 +73,27 @@ impl NSCoder {
         pub unsafe fn encodeValueOfObjCType_at(&self, r#type: &CStr, addr: NonNull<c_void>);
 
         #[cfg(feature = "NSData")]
+        /// Encodes a given data object.
+        ///
+        /// Subclasses must override this method. This method must be matched by a subsequent ``decodeDataObject`` message.
         #[unsafe(method(encodeDataObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeDataObject(&self, data: &NSData);
 
         #[cfg(feature = "NSData")]
+        /// Decodes and returns an `NSData` object that was previously encoded with ``encodeDataObject:``.
+        ///
+        /// Subclasses must override this method.
         #[unsafe(method(decodeDataObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeDataObject(&self) -> Option<Retained<NSData>>;
 
+        /// Decodes a single value of a known type from the specified data buffer.
+        ///
+        /// The `type` parameter must contain exactly one type code, and the buffer specified by `data` must be large enough to hold the value corresponding to that type code.
+        /// Subclasses must override this method and provide an implementation to decode the value.
+        /// This method matches an ``encodeValueOfObjCType:at:`` message used during encoding.
+        ///
         /// # Safety
         ///
         /// `data` must be a valid pointer.
@@ -71,6 +107,9 @@ impl NSCoder {
         );
 
         #[cfg(feature = "NSString")]
+        /// This method is present for historical reasons and is not used with keyed archivers.
+        ///
+        /// - Returns: The version in effect for the class named `className` or `NSNotFound` if no class named `className` exists.
         #[unsafe(method(versionForClassName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn versionForClassName(&self, class_name: &NSString) -> NSInteger;
@@ -93,6 +132,11 @@ impl NSCoder {
 /// NSExtendedCoder.
 impl NSCoder {
     extern_methods!(
+        /// Encodes an object.
+        ///
+        /// `NSCoder`'s implementation simply invokes ``encodeValueOfObjCType:at:`` to encode `object`. Subclasses can override this method to encode a reference to `object` instead of `object` itself.
+        /// This method must be matched by a subsequent ``decodeObject`` message.
+        ///
         /// # Safety
         ///
         /// `object` should be of the correct type.
@@ -100,6 +144,10 @@ impl NSCoder {
         #[unsafe(method_family = none)]
         pub unsafe fn encodeObject(&self, object: Option<&AnyObject>);
 
+        /// An encoding method for subclasses to override to encode an interconnected group of objects, starting with the provided root object.
+        ///
+        /// `NSCoder`'s implementation simply invokes ``encodeObject:``. This method must be matched by a subsequent ``decodeObject`` message.
+        ///
         /// # Safety
         ///
         /// `root_object` should be of the correct type.
@@ -107,6 +155,10 @@ impl NSCoder {
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRootObject(&self, root_object: &AnyObject);
 
+        /// An encoding method for subclasses to override such that it creates a copy, rather than a proxy, when decoded.
+        ///
+        /// `NSCoder`'s implementation simply invokes ``encodeObject:``. This method must be matched by a corresponding ``decodeObject`` message.
+        ///
         /// # Safety
         ///
         /// `an_object` should be of the correct type.
@@ -114,6 +166,10 @@ impl NSCoder {
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBycopyObject(&self, an_object: Option<&AnyObject>);
 
+        /// An encoding method for subclasses to override such that it creates a proxy, rather than a copy, when decoded.
+        ///
+        /// `NSCoder`'s implementation simply invokes ``encodeObject:``. This method must be matched by a corresponding ``decodeObject`` message.
+        ///
         /// # Safety
         ///
         /// `an_object` should be of the correct type.
@@ -121,6 +177,12 @@ impl NSCoder {
         #[unsafe(method_family = none)]
         pub unsafe fn encodeByrefObject(&self, an_object: Option<&AnyObject>);
 
+        /// An encoding method for subclasses to override to conditionally encode an object, preserving common references to it.
+        ///
+        /// In the overriding method, `object` should be encoded only if it's unconditionally encoded elsewhere (with any other `encode...Object:` method).
+        /// `NSCoder`'s implementation simply invokes ``encodeObject:``.
+        /// This method must be matched by a subsequent ``decodeObject`` message.
+        ///
         /// # Safety
         ///
         /// `object` should be of the correct type.
@@ -128,6 +190,12 @@ impl NSCoder {
         #[unsafe(method_family = none)]
         pub unsafe fn encodeConditionalObject(&self, object: Option<&AnyObject>);
 
+        /// Encodes an array of the given Objective-C type, provided the number of items and a pointer.
+        ///
+        /// The values are encoded from the buffer beginning at `array`. `type` must contain exactly one type code.
+        /// This method must be matched by a subsequent ``decodeArrayOfObjCType:count:at:`` message.
+        /// You should not use this method to encode C arrays of Objective-C objects.
+        ///
         /// # Safety
         ///
         /// `array` must be a valid pointer.
@@ -140,6 +208,11 @@ impl NSCoder {
             array: NonNull<c_void>,
         );
 
+        /// Encodes a buffer of data of an unspecified type.
+        ///
+        /// The buffer to be encoded begins at `byteaddr`, and its length in bytes is given by `length`.
+        /// This method must be matched by a corresponding ``decodeBytesWithReturnedLength:`` message.
+        ///
         /// # Safety
         ///
         /// `byteaddr` must be a valid pointer or null.
@@ -147,17 +220,28 @@ impl NSCoder {
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBytes_length(&self, byteaddr: *const c_void, length: NSUInteger);
 
+        /// Decodes and returns a previously-encoded object.
+        ///
+        /// `NSCoder`'s implementation invokes ``decodeValueOfObjCType:at:size:`` to decode the object data.
+        /// Subclasses may need to override this method if they override any of the corresponding `encode...Object` methods.
         #[unsafe(method(decodeObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeObject(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSError")]
+        /// Decodes a previously-encoded object, returning an error if decoding fails.
         #[unsafe(method(decodeTopLevelObjectAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeTopLevelObjectAndReturnError(
             &self,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
+        /// Decodes an array of `count` items, whose Objective-C type is given by `itemType`.
+        ///
+        /// The items are decoded into the buffer beginning at `array`, which must be large enough to contain them all. `itemType` must contain exactly one type code.
+        /// This method matches an ``encodeArrayOfObjCType:count:at:`` message used during encoding.
+        /// You should not use this method to decode C arrays of Objective-C objects.
+        ///
         /// # Safety
         ///
         /// `array` must be a valid pointer.
@@ -170,11 +254,21 @@ impl NSCoder {
             array: NonNull<c_void>,
         );
 
+        /// Decodes a buffer of data whose types are unspecified.
+        ///
+        /// The buffer's length is returned by reference in `lengthp`. If you need the bytes beyond the scope of the current `
+        /// objc2::rc::autoreleasepool` block, you must copy them.
+        /// This method matches an ``encodeBytes:length:`` message used during encoding.
         #[unsafe(method(decodeBytesWithReturnedLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeBytesWithReturnedLength(&self, lengthp: &mut NSUInteger)
             -> *mut c_void;
 
+        /// Encodes a property list.
+        ///
+        /// `NSCoder`'s implementation invokes ``encodeValueOfObjCType:at:`` to encode the property list.
+        /// This method must be matched by a subsequent ``decodePropertyList`` message.
+        ///
         /// # Safety
         ///
         /// `a_property_list` should be of the correct type.
@@ -182,11 +276,14 @@ impl NSCoder {
         #[unsafe(method_family = none)]
         pub unsafe fn encodePropertyList(&self, a_property_list: &AnyObject);
 
+        /// Decodes a property list that was previously encoded with ``encodePropertyList:``.
         #[unsafe(method(decodePropertyList))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodePropertyList(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSZone")]
+        /// This method is present for historical reasons and has no effect.
+        ///
         /// # Safety
         ///
         /// `zone` must be a valid pointer or null.
@@ -195,19 +292,33 @@ impl NSCoder {
         pub unsafe fn setObjectZone(&self, zone: *mut NSZone);
 
         #[cfg(feature = "NSZone")]
+        /// This method is present for historical reasons and has no effect.
+        ///
+        /// `NSCoder`'s implementation returns the default memory zone, as given by `NSDefaultMallocZone()`.
         #[unsafe(method(objectZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectZone(&self) -> *mut NSZone;
 
+        /// The system version in effect for the archive.
+        ///
+        /// During encoding, the current version. During decoding, the version that was in effect when the data was encoded.
+        /// Subclasses that implement decoding must override this property to return the system version of the data being decoded.
         #[unsafe(method(systemVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemVersion(&self) -> c_uint;
 
+        /// A Boolean value that indicates whether the receiver supports keyed coding of objects.
+        ///
+        /// `NO` by default. Concrete subclasses that support keyed coding, such as `NSKeyedArchiver`, need to override this property to return `YES`.
         #[unsafe(method(allowsKeyedCoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsKeyedCoding(&self) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Encodes an object and associates it with the string key.
+        ///
+        /// Subclasses must override this method to identify multiple encodings of `object` and encode a reference to `object` instead.
+        ///
         /// # Safety
         ///
         /// `object` should be of the correct type.
@@ -216,6 +327,10 @@ impl NSCoder {
         pub unsafe fn encodeObject_forKey(&self, object: Option<&AnyObject>, key: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// An encoding method for subclasses to override to conditionally encode an object, preserving common references to it, only if it has been unconditionally encoded.
+        ///
+        /// Subclasses must override this method if they support keyed coding.
+        ///
         /// # Safety
         ///
         /// `object` should be of the correct type.
@@ -228,36 +343,58 @@ impl NSCoder {
         );
 
         #[cfg(feature = "NSString")]
+        /// Encodes a Boolean value and associates it with the string `key`.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(encodeBool:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBool_forKey(&self, value: bool, key: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Encodes a C integer value and associates it with the string key.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(encodeInt:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeInt_forKey(&self, value: c_int, key: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Encodes a 32-bit integer value and associates it with the string key.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(encodeInt32:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeInt32_forKey(&self, value: i32, key: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Encodes a 64-bit integer value and associates it with the string key.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(encodeInt64:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeInt64_forKey(&self, value: i64, key: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Encodes a floating point value and associates it with the string key.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(encodeFloat:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeFloat_forKey(&self, value: c_float, key: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Encodes a double-precision floating point value and associates it with the string key.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(encodeDouble:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeDouble_forKey(&self, value: c_double, key: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Encodes a buffer of data, given its length and a pointer, and associates it with a string key.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
+        ///
         /// # Safety
         ///
         /// `bytes` must be a valid pointer or null.
@@ -271,16 +408,23 @@ impl NSCoder {
         );
 
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value that indicates whether an encoded value is available for a string.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(containsValueForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsValueForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Decodes and returns a previously-encoded object that was associated with the string `key`.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(decodeObjectForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
+        /// Decodes and returns a previously-encoded object for the given key, returning an error if decoding fails.
         #[unsafe(method(decodeTopLevelObjectForKey:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeTopLevelObjectForKey_error(
@@ -289,36 +433,57 @@ impl NSCoder {
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(feature = "NSString")]
+        /// Decodes and returns a boolean value that was previously encoded and associated with the string `key`.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(decodeBoolForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeBoolForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Decodes and returns an int value that was previously encoded and associated with the string `key`.
+        ///
+        /// If the encoded integer does not fit into the default integer size, the method raises an `NSRangeException`. Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(decodeIntForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeIntForKey(&self, key: &NSString) -> c_int;
 
         #[cfg(feature = "NSString")]
+        /// Decodes and returns a 32-bit integer value that was previously encoded and associated with the string `key`.
+        ///
+        /// If the encoded integer does not fit into a 32-bit integer, the method raises an `NSRangeException`. Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(decodeInt32ForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeInt32ForKey(&self, key: &NSString) -> i32;
 
         #[cfg(feature = "NSString")]
+        /// Decodes and returns a 64-bit integer value that was previously encoded and associated with the string `key`.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(decodeInt64ForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeInt64ForKey(&self, key: &NSString) -> i64;
 
         #[cfg(feature = "NSString")]
+        /// Decodes and returns a float value that was previously encoded and associated with the string `key`.
+        ///
+        /// If the value was encoded as a double, the extra precision is lost. Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(decodeFloatForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeFloatForKey(&self, key: &NSString) -> c_float;
 
         #[cfg(feature = "NSString")]
+        /// Decodes and returns a double value that was previously encoded and associated with the string `key`.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(decodeDoubleForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeDoubleForKey(&self, key: &NSString) -> c_double;
 
         #[cfg(feature = "NSString")]
+        /// Decodes a buffer of data that was previously encoded with ``encodeBytes:length:forKey:`` and associated with the string `key`.
+        ///
+        /// The buffer's length is returned by reference in `lengthp`. The returned bytes are immutable. Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(decodeBytesForKey:returnedLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeBytesForKey_returnedLength(
@@ -345,20 +510,34 @@ impl NSCoder {
         ) -> *const u8;
 
         #[cfg(feature = "NSString")]
+        /// Encodes an integer value and associates it with the string key.
+        ///
+        /// Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(encodeInteger:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeInteger_forKey(&self, value: NSInteger, key: &NSString);
 
         #[cfg(feature = "NSString")]
+        /// Decodes and returns an NSInteger value that was previously encoded and associated with the string `key`.
+        ///
+        /// If the encoded integer does not fit into the NSInteger size, the method raises an `NSRangeException`. Subclasses must override this method if they perform keyed coding.
         #[unsafe(method(decodeIntegerForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeIntegerForKey(&self, key: &NSString) -> NSInteger;
 
+        /// Indicates whether the archiver requires all archived classes to resist object substitution attacks.
+        ///
+        /// Secure coders check a set of allowed classes before decoding objects, and all objects must implement `NSSecureCoding`.
         #[unsafe(method(requiresSecureCoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSecureCoding(&self) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Decodes an object for the key, restricted to the specified class.
+        ///
+        /// If the coder requires secure coding, then an exception will be thrown if the class to be decoded does not implement `NSSecureCoding` or is not `isKindOfClass:` of the argument.
+        /// If the coder does not require secure coding, then the class argument is ignored.
+        ///
         /// # Safety
         ///
         /// `a_class` probably has further requirements.
@@ -371,6 +550,8 @@ impl NSCoder {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
+        /// Decodes an object for the key and restricted class, returning an error if decoding fails.
+        ///
         /// # Safety
         ///
         /// `a_class` probably has further requirements.
@@ -439,6 +620,10 @@ impl NSCoder {
         ) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// Decodes an object for the key, restricted to the specified classes.
+        ///
+        /// The class of the object may be any class in the provided `NSSet`, or a subclass of any class in the set.
+        ///
         /// # Safety
         ///
         /// `classes` generic probably has further requirements.
@@ -451,6 +636,8 @@ impl NSCoder {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSError", feature = "NSSet", feature = "NSString"))]
+        /// Decodes an object for the key and restricted classes, returning an error if decoding fails.
+        ///
         /// # Safety
         ///
         /// `classes` generic probably has further requirements.
@@ -519,6 +706,9 @@ impl NSCoder {
         ) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a decoded property list for the specified key.
+        ///
+        /// This method calls ``decodeObjectOfClasses:forKey:`` with a set allowing only property list types.
         #[unsafe(method(decodePropertyListForKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodePropertyListForKey(
@@ -529,68 +719,62 @@ impl NSCoder {
 
     extern_methods!(
         #[cfg(feature = "NSSet")]
+        /// The set of coded classes allowed for secure coding.
+        ///
+        /// Secure coders check this set of allowed classes before decoding objects, and all objects must implement `NSSecureCoding`.
         #[unsafe(method(allowedClasses))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedClasses(&self) -> Option<Retained<NSSet<AnyClass>>>;
 
         #[cfg(feature = "NSError")]
-        /// Signals to this coder that the decode has failed.
+        /// Signals to this coder that the decode operation has failed.
         ///
-        /// Parameter non-nil error that describes the reason why the decode failed
-        ///
-        /// Sets an error on this NSCoder once per TopLevel decode; calling it repeatedly will have no effect until the call stack unwinds to one of the TopLevel decode entry-points.
+        /// Typically, you call this method in your ``NSCoding/init(coder:)`` implementation. You should set the error when you detect problems such as lack of secure coding, data corruption, or a domain validation failure.
         ///
         /// This method is only meaningful to call for decodes.
         ///
-        /// Typically, you would want to call this method in your -initWithCoder: implementation when you detect situations like:
-        /// - lack of secure coding
-        /// - corruption of your data
-        /// - domain validation failures
+        /// The effect of calling this method depends on the value of ``decodingFailurePolicy``, as follows:
         ///
-        /// After calling -failWithError: within your -initWithCoder: implementation, you should clean up and return nil as early as possible.
+        /// - If the policy is ``DecodingFailurePolicy/raiseException``, calling this method throws an exception immediately. Swift code cannot catch this kind of exception.
+        /// - If the policy is ``DecodingFailurePolicy/setErrorAndReturn``, calling this method sets the error property once per call to one of the `decode` methods. Calling it repeatedly has no effect until the call stack unwinds to one of these methods' entry points.
         ///
-        /// Once an error has been signaled to a decoder, it remains set until it has handed off to the first TopLevel decode invocation above it.  For example, consider the following call graph:
-        /// A    -decodeTopLevelObjectForKey:error:
-        /// B        -initWithCoder:
-        /// C            -decodeObjectForKey:
-        /// D                -initWithCoder:
-        /// E                    -decodeObjectForKey:
-        /// F                        -failWithError:
+        /// After calling `failWithError:` within your ``NSCoding/init(coder:)`` implementation, you should clean up and return `nil` as early as possible.
         ///
-        /// In this case the error provided in stack-frame F will be returned via the outError in stack-frame A. Furthermore the result object from decodeTopLevelObjectForKey:error: will be nil, regardless of the result of stack-frame B.
-        ///
-        /// NSCoder implementations support two mechanisms for the stack-unwinding from F to A:
-        /// - forced (NSException based)
-        /// - particpatory (error based)
-        ///
-        /// The kind of unwinding you get is determined by the decodingFailurePolicy property of this NSCoder (which defaults to NSDecodingFailurePolicyRaiseException to match historical behavior).
+        /// - Parameter error: An error that indicates why decoding failed.
         #[unsafe(method(failWithError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn failWithError(&self, error: &NSError);
 
-        /// Defines the behavior this NSCoder should take on decode failure (i.e. corrupt archive, invalid data, etc.).
+        /// The action the coder should take when decoding fails.
         ///
-        /// The default result of this property is NSDecodingFailurePolicyRaiseException, subclasses can change this to an alternative policy.
+        /// A decode call can fail for the following reasons:
+        ///
+        /// - The keyed archive data is corrupt or missing.
+        /// - A type mismatch occurs, such as expecting a class but encountering a numeric type instead. This also occurs when `decodeInteger(forKey:)` encounters a value encoded as floating-point, or vice versa.
+        /// - A secure coding violation occurs. This happens when you attempt to decode an object that doesn't conform to `NSSecureCoding`, or when the encoded type doesn't match any of the expected types.
         #[unsafe(method(decodingFailurePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodingFailurePolicy(&self) -> NSDecodingFailurePolicy;
 
         #[cfg(feature = "NSError")]
-        /// The current error (if there is one) for the current TopLevel decode.
+        /// An error in the top-level decode.
         ///
-        /// The meaning of this property changes based on the result of the decodingFailurePolicy property:
-        /// For NSDecodingFailurePolicyRaiseException, this property will always be nil.
-        /// For NSDecodingFailurePolicySetErrorAndReturn, this property can be non-nil, and if so, indicates that there was a failure while decoding the archive (specifically its the very first error encountered).
+        /// The meaning of this property depends on the setting of the `decodingFailurePolicy` property. For `NSDecodingFailurePolicyRaiseException`, this property is always `nil`. For `NSDecodingFailurePolicySetErrorAndReturn`, a non-`nil` value represents the first error encountered while decoding the archive.
         ///
-        /// While .error is non-nil, all attempts to decode data from this coder will return a nil/zero-equivalent value.
-        ///
-        /// This error is consumed by a TopLevel decode API (which resets this coder back to a being able to potentially decode data).
+        /// While `error` is non-`nil`, all attempts to decode data from this coder will return a `nil`/zero-equivalent value. This error is consumed by a top-level decode API, which resets the coder back to being able to potentially decode data.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     );
 }
 
+/// Returns the next object from the coder.
+///
+/// Given an `NSCoder`, returns an object previously written with `NXWriteNSObject()`. The returned object is autoreleased.
+///
+/// - Parameter decoder: The coder from which to read the object.
+/// - Returns: The next object from the coder.
+///
 /// # Safety
 ///
 /// `decoder` possibly has further requirements.
@@ -607,6 +791,11 @@ pub unsafe fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> Option<Retained<NSOb
 /// NSTypedstreamCompatibility.
 impl NSCoder {
     extern_methods!(
+        /// Encodes an old-style object onto the coder.
+        ///
+        ///
+        /// No sharing is done across separate ``encodeNXObject:`` invocations. Callers must have implemented an ``NSCoding/encode(with:)``, which parallels the `write:` methods, on all of their classes that may be touched by this operation.
+        ///
         /// # Safety
         ///
         /// `object` should be of the correct type.
@@ -615,6 +804,10 @@ impl NSCoder {
         #[unsafe(method_family = none)]
         pub unsafe fn encodeNXObject(&self, object: &AnyObject);
 
+        /// Decodes an object previously written with ``encodeNXObject:``.
+        ///
+        ///
+        /// No sharing is done across separate ``decodeNXObject`` invocations. Callers must have implemented an ``NSCoding/init(coder:)``, which parallels the `read:` methods, on all of their classes that may be touched by this operation. The returned object is autoreleased.
         #[deprecated = "Not supported"]
         #[unsafe(method(decodeNXObject))]
         #[unsafe(method_family = none)]
@@ -625,6 +818,11 @@ impl NSCoder {
 /// NSDeprecated.
 impl NSCoder {
     extern_methods!(
+        /// Decodes a single value, whose Objective-C type is given by `type`.
+        ///
+        ///
+        /// This method is unsafe because it could potentially cause buffer overruns.
+        ///
         /// # Safety
         ///
         /// `data` must be a valid pointer.

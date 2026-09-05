@@ -10,9 +10,9 @@ extern_class!(
     ///
     /// When a VZMacOSRestoreImage is loaded, it can be inspected to determine the configurations supported by that restore image.
     ///
-    /// See also: VZMacHardwareModel
+    /// See: VZMacHardwareModel
     ///
-    /// See also: VZMacOSRestoreImage
+    /// See: VZMacOSRestoreImage
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements?language=objc)
     #[unsafe(super(NSObject))]
@@ -36,9 +36,9 @@ impl VZMacOSConfigurationRequirements {
         /// The hardware model can be used to configure a new virtual machine that meets the requirements.
         /// Use VZMacPlatformConfiguration.hardwareModel to configure the Mac platform, and -[VZMacAuxiliaryStorage initCreatingStorageAtURL:hardwareModel:options:error:] to create its auxiliary storage.
         ///
-        /// See also: VZMacPlatformConfiguration
+        /// See: VZMacPlatformConfiguration
         ///
-        /// See also: VZMacAuxiliaryStorage
+        /// See: VZMacAuxiliaryStorage
         #[unsafe(method(hardwareModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn hardwareModel(&self) -> Retained<VZMacHardwareModel>;

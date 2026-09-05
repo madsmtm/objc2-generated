@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXMemoryMetric;
 );
 
@@ -37,6 +38,7 @@ impl MXMemoryMetric {
         /// A single value representing the peak memory consumption of the application.
         ///
         /// Dimensioned as NSUnitInformationStorage.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(peakMemoryUsage))]
         #[unsafe(method_family = none)]
         pub unsafe fn peakMemoryUsage(&self) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -45,6 +47,7 @@ impl MXMemoryMetric {
         /// Average memory of the application upon suspend.
         ///
         /// Dimensioned as NSUnitInformationStorage.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(averageSuspendedMemory))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageSuspendedMemory(

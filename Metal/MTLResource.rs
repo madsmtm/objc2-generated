@@ -83,6 +83,7 @@ impl MTLStorageMode {
     /// Blit overhead is only incurred if GPU has modified the resource.
     /// This is the default storage mode for OS X Textures.
     #[doc(alias = "MTLStorageModeManaged")]
+    #[deprecated = "Managed storage has no effect on Apple Silicon, use Shared storage instead"]
     pub const Managed: Self = Self(1);
     /// This mode allows the texture resource data to be kept entirely to GPU (or driver) private memory that will never be accessed by the CPU directly, so no
     /// conherency of any kind must be maintained.
@@ -145,6 +146,7 @@ bitflags::bitflags! {
         #[doc(alias = "MTLResourceStorageModeShared")]
         const StorageModeShared = MTLStorageMode::Shared.0<<MTLResourceStorageModeShift;
         #[doc(alias = "MTLResourceStorageModeManaged")]
+#[deprecated = "Managed storage has no effect on Apple Silicon, use Shared storage instead"]
         const StorageModeManaged = MTLStorageMode::Managed.0<<MTLResourceStorageModeShift;
         #[doc(alias = "MTLResourceStorageModePrivate")]
         const StorageModePrivate = MTLStorageMode::Private.0<<MTLResourceStorageModeShift;

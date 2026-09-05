@@ -30,6 +30,11 @@ extern_conformance!(
     unsafe impl ARAnchorCopying for ARObjectAnchor {}
 );
 
+#[cfg(all(feature = "ARAnchor", feature = "objc2"))]
+extern_conformance!(
+    unsafe impl ARTrackable for ARObjectAnchor {}
+);
+
 #[cfg(all(feature = "ARAnchor", feature = "objc2", feature = "objc2-foundation"))]
 extern_conformance!(
     unsafe impl NSCoding for ARObjectAnchor {}
@@ -69,6 +74,17 @@ impl ARObjectAnchor {
         #[unsafe(method(referenceObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceObject(&self) -> Retained<ARReferenceObject>;
+
+        /// A Boolean value indicating whether the anchor is currently being tracked.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(isTracked))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isTracked(&self) -> bool;
     );
 }
 

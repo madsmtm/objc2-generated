@@ -355,7 +355,7 @@ impl HKQuery {
 /// HKWorkoutPredicates.
 impl HKQuery {
     extern_methods!(
-        #[cfg(feature = "HKWorkout")]
+        #[cfg(feature = "HKWorkoutActivityType")]
         /// Creates a predicate for use with HKQuery subclasses.
         ///
         /// Creates a query predicate that matches HKWorkouts with the given HKWorkoutActivityType.
@@ -547,7 +547,7 @@ impl HKQuery {
 /// HKWorkoutActivityPredicates.
 impl HKQuery {
     extern_methods!(
-        #[cfg(feature = "HKWorkout")]
+        #[cfg(feature = "HKWorkoutActivityType")]
         /// Creates a predicate for use with HKQuery subclasses.
         ///
         /// Creates a query predicate that matches HKWorkoutActivity objects with the given HKWorkoutActivityType.

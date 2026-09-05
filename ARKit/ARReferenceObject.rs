@@ -80,13 +80,14 @@ impl ARReferenceObject {
         /// The AR resource group name for this object.
         ///
         /// If this object was loaded via an AR resource group in the Xcode asset catalogue this property will have the name of the resource group,
-        /// else be set to nil.
+        /// else be set to `nil`.
         ///
         /// This property is not atomic.
         ///
         /// # Safety
         ///
         /// This might not be thread-safe.
+        #[deprecated = "Only supported for legacy reference objects."]
         #[unsafe(method(resourceGroupName))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceGroupName(&self) -> Option<Retained<NSString>>;
@@ -99,19 +100,32 @@ impl ARReferenceObject {
         /// # Safety
         ///
         /// This might not be thread-safe.
+        #[deprecated = "Only supported for legacy reference objects."]
         #[unsafe(method(rawFeaturePoints))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawFeaturePoints(&self) -> Retained<ARPointCloud>;
 
         #[cfg(feature = "objc2-foundation")]
+        /// The URL to the extracted USDZ model, if available.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(usdzFile))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn usdzFile(&self) -> Option<Retained<NSURL>>;
+
+        #[cfg(feature = "objc2-foundation")]
         /// Returns the set of ARReferenceObjects in the specified resource group and bundle.
         ///
+        /// - Parameters:
+        /// - name: The name of the resource group.
+        /// - bundle: The bundle containing the image file or asset catalog. Specify `nil` to search the app’s main bundle.
         ///
-        /// Parameter `name`: The name of the resource group.
-        ///
-        /// Parameter `bundle`: The bundle containing the image file or asset catalog. Specify nil to search the app’s main bundle.
-        ///
-        /// Returns: The set of reference objects or nil on error.
+        /// - Returns: The set of reference objects or `nil` on error.
+        #[deprecated = "Only supported for legacy reference objects."]
         #[unsafe(method(referenceObjectsInGroupNamed:bundle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceObjectsInGroupNamed_bundle(
@@ -122,9 +136,11 @@ impl ARReferenceObject {
         #[cfg(feature = "objc2-foundation")]
         /// Initializes a new reference object with the contents of an archive at the specified URL.
         ///
-        /// Parameter `url`: The URL from which to read data (.arobject archive).
+        /// - Parameters:
+        /// - url: The `URL` from which to read data (.arobject archive).
+        /// - error: The error to populate if the object could not be initialized.
         ///
-        /// Parameter `error`: The error to populate if the object could not be initialized.
+        /// - Returns: An initialized reference object.
         #[unsafe(method(initWithArchiveURL:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArchiveURL_error(
@@ -135,17 +151,16 @@ impl ARReferenceObject {
         #[cfg(all(feature = "objc2-foundation", feature = "objc2-ui-kit"))]
         /// Exports the object as an archive at the given URL.
         ///
-        ///
-        /// The URL path should use ARReferenceObjectArchiveExtension (.arobject) for the file extension.
+        /// The `URL` path should use `ARReferenceObjectArchiveExtension` (.arobject) for the file extension.
         /// If serialization across devices is desired, NSKeyedArchiver should be used instead.
         ///
-        /// Parameter `url`: The URL at which to write the exported object.
+        /// - Parameters:
+        /// - url: The `URL` at which to write the exported object.
+        /// - previewImage: An optional preview image to include in the archive.
+        /// - error: The error to populate if the write is not successful.
         ///
-        /// Parameter `previewImage`: An optional preview image to include in the archive.
-        ///
-        /// Parameter `error`: The error to populate if the write is not successful.
-        ///
-        /// Returns: YES if the location is written successfully, otherwise NO.
+        /// - Returns: `YES` if the location is written successfully, otherwise `NO`.
+        #[deprecated = "Only supported for legacy reference objects."]
         #[unsafe(method(exportObjectToURL:previewImage:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportObjectToURL_previewImage_error(
@@ -160,11 +175,12 @@ impl ARReferenceObject {
         /// This can be used to combine multiple scans of the same object for detection in different conditions. The object being merged
         /// must share similar feature points for the merge to succeed.
         ///
-        /// Parameter `object`: The reference object to align and merge.
+        /// - Parameters:
+        /// - object: The reference object to align and merge.
+        /// - error: The error to populate if the merge is not successful.
         ///
-        /// Parameter `error`: The error to populate if the merge is not successful.
-        ///
-        /// Returns: A new reference object combining features of both scans or nil if the merge was not successful.
+        /// - Returns: A new reference object combining features of both scans or `nil` if the merge was not successful.
+        #[deprecated = "Only supported for legacy reference objects."]
         #[unsafe(method(referenceObjectByMergingObject:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceObjectByMergingObject_error(

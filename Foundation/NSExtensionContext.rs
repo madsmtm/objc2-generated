@@ -7,7 +7,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensioncontext?language=objc)
+    /// The host app context from which an app extension is invoked.
+    ///
+    /// When a host app sends a request to an app extension, it provides an extension context. For many app extensions, the most important part of the context is the data the user wants to work with, which is contained in the ``inputItems`` property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensioncontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExtensionContext;
@@ -20,11 +24,22 @@ extern_conformance!(
 impl NSExtensionContext {
     extern_methods!(
         #[cfg(feature = "NSArray")]
+        /// The list of input NSExtensionItems associated with the context.
+        ///
+        /// If the context has no input items, this array will be empty.
         #[unsafe(method(inputItems))]
         #[unsafe(method_family = none)]
         pub fn inputItems(&self) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
+        /// Signals the host to complete the app extension request with the supplied result items.
+        ///
+        /// The completion handler optionally contains any work which the extension may need to perform after the request has been completed,
+        /// as a background-priority task. The
+        /// `expired`parameter will be
+        /// `YES`if the system decides to prematurely terminate
+        /// a previous non-expiration invocation of the completion handler. Calling this method will eventually dismiss the associated view controller.
+        ///
         /// # Safety
         ///
         /// `items` generic should be of the correct type.
@@ -37,11 +52,21 @@ impl NSExtensionContext {
         );
 
         #[cfg(feature = "NSError")]
+        /// Signals the host to cancel the app extension request, with the supplied error, which should be non-nil.
+        ///
+        /// The
+        /// `userInfo`of the
+        /// `NSError`will contain a key
+        /// `NSExtensionItemsAndErrorsKey`which will have as its value
+        /// a dictionary of
+        /// `NSExtensionItems`and associated
+        /// `NSError`instances.
         #[unsafe(method(cancelRequestWithError:))]
         #[unsafe(method_family = none)]
         pub fn cancelRequestWithError(&self, error: &NSError);
 
         #[cfg(all(feature = "NSURL", feature = "block2"))]
+        /// Asks the host to open a URL on the extension's behalf.
         #[unsafe(method(openURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub fn openURL_completionHandler(
@@ -73,31 +98,41 @@ impl DefaultRetained for NSExtensionContext {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey?language=objc)
+    /// Key in userInfo. Value is a dictionary of NSExtensionItems and associated NSError instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemsAndErrorsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillenterforegroundnotification?language=objc)
+    /// Posted when the host process will enter the foreground.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillenterforegroundnotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillEnterForegroundNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidenterbackgroundnotification?language=objc)
+    /// Posted when the host process did enter the background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidenterbackgroundnotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidEnterBackgroundNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillresignactivenotification?language=objc)
+    /// Posted when the host process will resign active status (stop receiving events); the extension may be suspended.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillresignactivenotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillResignActiveNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidbecomeactivenotification?language=objc)
+    /// Posted when the host process did become active (begin receiving events).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidbecomeactivenotification?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidBecomeActiveNotification: &'static NSString;
 }

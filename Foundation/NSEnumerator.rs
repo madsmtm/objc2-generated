@@ -6,8 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfastenumeration?language=objc)
+    /// A protocol that objects adopt to support fast enumeration.
+    ///
+    /// The abstract class ``NSEnumerator`` provides a convenience implementation that uses ``NSEnumerator/nextObject()`` to return items one at a time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfastenumeration?language=objc)
     pub unsafe trait NSFastEnumeration {
+        /// Returns by reference a C array of objects over which the sender should iterate, and as the return value the number of objects in the array.
+        ///
         /// # Safety
         ///
         /// - `state` struct field `itemsPtr` must be a valid pointer or null.
@@ -25,7 +31,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerator?language=objc)
+    /// An abstract class whose subclasses enumerate collections of objects, such as arrays and dictionaries.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEnumerator<ObjectType: ?Sized = AnyObject>;
@@ -55,6 +63,7 @@ extern_conformance!(
 
 impl<ObjectType: Message> NSEnumerator<ObjectType> {
     extern_methods!(
+        /// Returns the next object from the collection being enumerated.
         #[unsafe(method(nextObject))]
         #[unsafe(method_family = none)]
         pub fn nextObject(&self) -> Option<Retained<ObjectType>>;
@@ -85,6 +94,7 @@ impl<ObjectType: Message> DefaultRetained for NSEnumerator<ObjectType> {
 impl<ObjectType: Message> NSEnumerator<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSArray")]
+        /// The array of unenumerated objects.
         #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
         pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;

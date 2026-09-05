@@ -7,6 +7,47 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// AVExternalStorageDeviceReasonNotRecommendedForCaptureUse string constants
+///
+///
+/// Constants indicating the reasons external storage device is not recommended for capturing high data rate videos based on https://support.apple.com/en-us/109041.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicereasonnotrecommendedforcaptureuse?language=objc)
+// NS_TYPED_ENUM
+pub type AVExternalStorageDeviceReasonNotRecommendedForCaptureUse = NSString;
+
+extern "C" {
+    /// Indicates that the storage device is not recommended for capture as it is encrypted.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicereasonnotrecommendedforcaptureuseencrypted?language=objc)
+    pub static AVExternalStorageDeviceReasonNotRecommendedForCaptureUseEncrypted:
+        &'static AVExternalStorageDeviceReasonNotRecommendedForCaptureUse;
+}
+
+extern "C" {
+    /// Indicates that the storage device is not recommended for capture as it is not a supported file system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicereasonnotrecommendedforcaptureuseunsupportedfilesystem?language=objc)
+    pub static AVExternalStorageDeviceReasonNotRecommendedForCaptureUseUnsupportedFileSystem:
+        &'static AVExternalStorageDeviceReasonNotRecommendedForCaptureUse;
+}
+
+extern "C" {
+    /// Indicates that the storage device is not recommended for capture as it doesn't support the recommended writing speed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicereasonnotrecommendedforcaptureuseslowwritingspeed?language=objc)
+    pub static AVExternalStorageDeviceReasonNotRecommendedForCaptureUseSlowWritingSpeed:
+        &'static AVExternalStorageDeviceReasonNotRecommendedForCaptureUse;
+}
+
+extern "C" {
+    /// Indicates that the storage device is not recommended for capture as its writing speed is unknown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicereasonnotrecommendedforcaptureuseunknownwritingspeed?language=objc)
+    pub static AVExternalStorageDeviceReasonNotRecommendedForCaptureUseUnknownWritingSpeed:
+        &'static AVExternalStorageDeviceReasonNotRecommendedForCaptureUse;
+}
+
 extern_class!(
     /// An AVExternalStorageDevice represents a physical external storage device connected to the device that can be used to store captured media assets.
     ///
@@ -72,10 +113,21 @@ impl AVExternalStorageDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn uuid(&self) -> Option<Retained<NSUUID>>;
 
+        /// A set of reasons why the storage device is not recommended for capture.
+        ///
+        ///
+        /// Contains one or more AVExternalStorageDeviceReasonNotRecommendedForCaptureUse values indicating the issues with the device. Returns an empty set if there are no known issues.
+        #[unsafe(method(reasonsNotRecommendedForCaptureUse))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn reasonsNotRecommendedForCaptureUse(
+            &self,
+        ) -> Retained<NSSet<AVExternalStorageDeviceReasonNotRecommendedForCaptureUse>>;
+
         /// Indicates whether the external storage device is not recommended for capture use.
         ///
         ///
         /// This property is used to let the client know if the external storage device is not suitable for camera capture.
+        #[deprecated = "Use reasonsNotRecommendedForCaptureUse instead"]
         #[unsafe(method(isNotRecommendedForCaptureUse))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNotRecommendedForCaptureUse(&self) -> bool;

@@ -13,6 +13,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXAppResponsivenessMetric;
 );
 
@@ -44,6 +45,7 @@ impl MXAppResponsivenessMetric {
         /// Application hang times that exceeds 9 seconds of wall clock time are reported in the final bucket of the histogram.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(histogrammedApplicationHangTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn histogrammedApplicationHangTime(

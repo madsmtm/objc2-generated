@@ -50,6 +50,7 @@ extern_protocol!(
         /// When the device writes to a resource with a storage mode of MTLResourceStorageModeManaged, those writes may be cached (for example, in VRAM or on chip renderer cache),
         /// making any CPU access (either MTLBuffer.contents or -[MTLTexture getBytes:...] and -[MTLTexture replaceRegion:]) produce undefined results.  To allow the CPU to see what the device
         /// has written, a CommandBuffer containing this synchronization must be executed.  After completion of the CommandBuffer, the CPU can access the contents of the resource safely.
+        #[deprecated = "Managed storage has no effect on Apple Silicon, use Shared storage instead"]
         #[unsafe(method(synchronizeResource:))]
         #[unsafe(method_family = none)]
         fn synchronizeResource(&self, resource: &ProtocolObject<dyn MTLResource>);
@@ -73,6 +74,7 @@ extern_protocol!(
         ///
         /// - `texture` may need to be synchronized.
         /// - `texture` may be unretained, you must ensure it is kept alive while in use.
+        #[deprecated = "Managed storage has no effect on Apple Silicon, use Shared storage instead"]
         #[unsafe(method(synchronizeTexture:slice:level:))]
         #[unsafe(method_family = none)]
         unsafe fn synchronizeTexture_slice_level(
@@ -648,16 +650,34 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTensor"
         ))]
-        /// Encodes a command to copy data from a slice of one tensor into a slice of another tensor.
+        /// Encodes a command to copy data from a slice of the data plane of a tensor into a slice of the data plane of
+        /// another tensor.
         ///
-        /// This command applies reshapes if `sourceTensor` and `destinationTensor` are not aliasable.
+        /// If `sourceTensor` and `destinationTensor` are not aliasable, this command applies a reshape operation.
+        ///
+        /// Ensure the first dimension of `sourceOrigin`, `sourceDimensions`, `destinationOrigin`,
+        /// and `destinationDimensions` is byte aligned.
+        ///
         /// - Parameters:
-        /// - sourceTensor: A tensor instance that this command copies data from.
-        /// - sourceOrigin: An array of offsets, in elements, to the first element of the slice of `sourceTensor` that this command copies data from.
-        /// - sourceDimensions: An array of sizes, in elements, of the slice `sourceTensor` that this command copies data from.
-        /// - destinationTensor: A tensor instance that this command copies data to.
-        /// - destinationOrigin: An array of offsets, in elements, to the first element of the slice of `destinationTensor` that this command copies data to.
-        /// - destinationDimensions: An array of sizes, in elements, of the slice of `destinationTensor` that this command copies data to.
+        /// - sourceTensor: A tensor instance the method copies data from.
+        /// - sourceOrigin: An array of per-dimension offsets that together locate the first element
+        /// to copy in `sourceTensor`. Each element in this array corresponds to the dimension at the
+        /// same index in `sourceDimensions`. Each offset value represents the number of elements from
+        /// the start of that dimension.
+        /// - sourceDimensions: An array of per-dimension sizes that together define the extent of the
+        /// slice to copy from `sourceTensor`. Each element in this array corresponds to the dimension
+        /// at the same index in `sourceOrigin`. Each size value represents the number of elements to
+        /// include along that dimension, starting from the corresponding offset in `sourceOrigin`.
+        /// - destinationTensor: A tensor instance the method copies data to.
+        /// - destinationOrigin: An array of per-dimension offsets that together locate the first element
+        /// to write in `destinationTensor`. Each element in this array corresponds to the dimension at
+        /// the same index in `destinationDimensions`. Each offset value represents the number of elements
+        /// from the start of that dimension.
+        /// - destinationDimensions: An array of per-dimension sizes that together define the extent of
+        /// the slice to write in `destinationTensor`. Each element in this array corresponds to the
+        /// dimension at the same index in `destinationOrigin`. Each size value represents the number of
+        /// elements to include along that dimension, starting from the corresponding offset in
+        /// `destinationOrigin`.
         ///
         /// # Safety
         ///
@@ -675,6 +695,64 @@ extern_protocol!(
             destination_tensor: &ProtocolObject<dyn MTLTensor>,
             destination_origin: &MTLTensorExtents,
             destination_dimensions: &MTLTensorExtents,
+        );
+
+        #[cfg(all(
+            feature = "MTLAllocation",
+            feature = "MTLResource",
+            feature = "MTLTensor"
+        ))]
+        /// Encodes a command to copy data from a slice of a plane of a tensor into a slice of a plane of
+        /// another tensor.
+        ///
+        /// If `sourceTensor` and `destinationTensor` are not aliasable, this command applies a reshape operation.
+        /// For auxiliary planes, specify origin and dimensions in plane coordinates by applying the corresponding auxiliary plane's block
+        /// factors.
+        ///
+        /// Ensure the first dimension of `sourceOrigin`, `sourceDimensions`, `destinationOrigin`,
+        /// and `destinationDimensions` is byte aligned.
+        ///
+        /// - Parameters:
+        /// - sourceTensor: A tensor instance the method copies data from.
+        /// - sourceOrigin: An array of per-dimension offsets that together locate the first element
+        /// to copy in `sourceTensor`. Each element in this array corresponds to the dimension at the
+        /// same index in `sourceDimensions`. Each offset value represents the number of elements from
+        /// the start of that dimension.
+        /// - sourceDimensions: An array of per-dimension sizes that together define the extent of the
+        /// slice to copy from `sourceTensor`. Each element in this array corresponds to the dimension
+        /// at the same index in `sourceOrigin`. Each size value represents the number of elements to
+        /// include along that dimension, starting from the corresponding offset in `sourceOrigin`.
+        /// - sourcePlane: The plane the method copies data from.
+        /// - destinationTensor: A tensor instance the method copies data to.
+        /// - destinationOrigin: An array of per-dimension offsets that together locate the first element
+        /// to write in `destinationTensor`. Each element in this array corresponds to the dimension at
+        /// the same index in `destinationDimensions`. Each offset value represents the number of elements
+        /// from the start of that dimension.
+        /// - destinationDimensions: An array of per-dimension sizes that together define the extent of
+        /// the slice to write in `destinationTensor`. Each element in this array corresponds to the
+        /// dimension at the same index in `destinationOrigin`. Each size value represents the number of
+        /// elements to include along that dimension, starting from the corresponding offset in
+        /// `destinationOrigin`.
+        /// - destinationPlane: The plane the method copies data to.
+        ///
+        /// # Safety
+        ///
+        /// - `source_tensor` may need to be synchronized.
+        /// - `source_tensor` may be unretained, you must ensure it is kept alive while in use.
+        /// - `destination_tensor` may need to be synchronized.
+        /// - `destination_tensor` may be unretained, you must ensure it is kept alive while in use.
+        #[unsafe(method(copyFromTensor:sourceOrigin:sourceDimensions:sourcePlane:toTensor:destinationOrigin:destinationDimensions:destinationPlane:))]
+        #[unsafe(method_family = none)]
+        unsafe fn copyFromTensor_sourceOrigin_sourceDimensions_sourcePlane_toTensor_destinationOrigin_destinationDimensions_destinationPlane(
+            &self,
+            source_tensor: &ProtocolObject<dyn MTLTensor>,
+            source_origin: &MTLTensorExtents,
+            source_dimensions: &MTLTensorExtents,
+            source_plane: MTLTensorPlaneType,
+            destination_tensor: &ProtocolObject<dyn MTLTensor>,
+            destination_origin: &MTLTensorExtents,
+            destination_dimensions: &MTLTensorExtents,
+            destination_plane: MTLTensorPlaneType,
         );
     }
 );

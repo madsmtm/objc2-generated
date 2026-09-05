@@ -42,14 +42,16 @@ impl NSShadow {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(shadowOffset))]
         #[unsafe(method_family = none)]
-        pub fn shadowOffset(&self) -> NSSize;
+        pub fn shadowOffset(&self) -> CGSize;
 
+        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowOffset`][Self::shadowOffset].
         #[unsafe(method(setShadowOffset:))]
         #[unsafe(method_family = none)]
-        pub fn setShadowOffset(&self, shadow_offset: NSSize);
+        pub fn setShadowOffset(&self, shadow_offset: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(shadowBlurRadius))]

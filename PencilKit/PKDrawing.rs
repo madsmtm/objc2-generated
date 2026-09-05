@@ -12,7 +12,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// The UTType for storing drawing data.
+    /// The UTType identifier for PencilKit drawing data.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkappledrawingtypeidentifier?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
@@ -20,7 +20,7 @@ extern "C" {
 }
 
 extern_class!(
-    /// The data model object for storing drawing data created from PKCanvasView.
+    /// The data model for a drawing that a `PKCanvasView` displays.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkdrawing?language=objc)
     #[unsafe(super(NSObject))]
@@ -54,13 +54,16 @@ extern_conformance!(
 
 impl PKDrawing {
     extern_methods!(
-        /// Initializes and returns a blank drawing.
+        /// Creates a blank drawing.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "PKStroke")]
-        /// Initializes a drawing with an array of strokes.
+        /// Creates a drawing with the specified strokes.
+        ///
+        /// When setting strokes, duplicate IDs are automatically resolved by generating
+        /// new UUIDs for conflicting strokes. The first occurrence keeps its original ID.
         #[unsafe(method(initWithStrokes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStrokes(
@@ -68,16 +71,15 @@ impl PKDrawing {
             strokes: &NSArray<PKStroke>,
         ) -> Retained<Self>;
 
-        /// Initializes and returns the drawing with the specified data.
+        /// Creates a drawing from the specified encoded data.
         ///
         ///
-        /// Parameter `data`: The data containing the drawing data.
+        /// Parameter `data`: The data containing the encoded drawing.
         ///
-        /// Parameter `error`: If an error occurs, upon return the NSError object describes the error.
-        /// Set to NULL to ignore errors.
+        /// Parameter `error`: If an error occurs, upon return the `NSError` object describes the error.
+        /// Pass `NULL` to ignore errors.
         ///
-        /// Returns: On success, an initialized PKDrawing object. If nil, the outError parameter
-        /// contains an NSError instance describing the problem.
+        /// Returns: An initialized `PKDrawing` object on success, or `nil` if the data is invalid.
         #[unsafe(method(initWithData:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_error(
@@ -85,16 +87,16 @@ impl PKDrawing {
             data: &NSData,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        /// Generate a data representation of the drawing.
+        /// Returns a data representation of the drawing.
         ///
         ///
-        /// Returns: A NSData object containing a representation of the drawing.
+        /// Returns: An `NSData` object containing the drawing data.
         #[unsafe(method(dataRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
 
         #[cfg(feature = "PKStroke")]
-        /// The strokes that this drawing contains.
+        /// The strokes the drawing contains.
         ///
         /// This property is not atomic.
         ///
@@ -106,8 +108,9 @@ impl PKDrawing {
         pub unsafe fn strokes(&self) -> Retained<NSArray<PKStroke>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// The bounds of the drawing's contents, taking into account the rendered width of all content.
-        /// If these bounds are used to render an image with `imageFromRect:scale:`, no contents will be cropped.
+        /// The bounds of the drawing's contents, accounting for the rendered width of all strokes.
+        ///
+        /// Passing these bounds to `imageFromRect:scale:` produces an image that includes all content without cropping.
         ///
         /// This property is not atomic.
         ///
@@ -138,7 +141,7 @@ impl PKDrawing {
             -> Retained<NSImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Returns a new drawing with `transform` applied.
+        /// Returns a new drawing with the specified transform applied.
         ///
         ///
         /// Parameter `transform`: The transform to apply to this drawing.
@@ -151,29 +154,47 @@ impl PKDrawing {
             transform: CGAffineTransform,
         ) -> Retained<PKDrawing>;
 
-        /// Returns a new drawing by appending the contents of `drawing` on top of the receiver’s contents.
+        /// Returns a new drawing by appending the contents of the specified drawing on top of the receiver's contents.
         ///
         ///
         /// Parameter `drawing`: The drawing to append.
         ///
-        /// Returns: A new copy of this drawing with `drawing` appended onto it.
+        /// Returns: A new copy of this drawing with `drawing` appended.
+        ///
+        /// The combined array of strokes is uniqued by `strokeID`.
         #[unsafe(method(drawingByAppendingDrawing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawingByAppendingDrawing(&self, drawing: &PKDrawing) -> Retained<PKDrawing>;
 
         #[cfg(feature = "PKStroke")]
-        /// Create a new drawing by appending an array of strokes to this drawing.
-        /// This is a convenience method, to quickly add strokes to a drawing.
+        /// Returns a new drawing with the specified strokes appended.
         ///
         ///
         /// Parameter `strokes`: The strokes to append.
         ///
-        /// Returns: A new copy of this drawing with `strokes` appended onto it.
+        /// Returns: A new copy of this drawing with `strokes` appended.
+        ///
+        /// The combined array of strokes is uniqued by `strokeID`.
         #[unsafe(method(drawingByAppendingStrokes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawingByAppendingStrokes(
             &self,
             strokes: &NSArray<PKStroke>,
+        ) -> Retained<PKDrawing>;
+
+        #[cfg(all(
+            feature = "PKStrokePath",
+            feature = "objc2-app-kit",
+            feature = "objc2-core-foundation"
+        ))]
+        #[cfg(target_os = "macos")]
+        #[unsafe(method(drawingByErasingStrokePath:mask:transform:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn drawingByErasingStrokePath_mask_transform(
+            &self,
+            eraser_path: &PKStrokePath,
+            mask: Option<&NSBezierPath>,
+            transform: CGAffineTransform,
         ) -> Retained<PKDrawing>;
     );
 }

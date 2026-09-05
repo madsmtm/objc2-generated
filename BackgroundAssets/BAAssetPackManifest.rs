@@ -7,9 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A representation of a manifest that lists asset packs that are available to download.
-    ///
-    /// This class applies only when you want to manage your asset packs manually. Don’t use this class if you want to opt in to automatic management of asset packs.
+    /// A manifest of asset packs that are available to download.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackmanifest?language=objc)
     #[unsafe(super(NSObject))]
@@ -28,10 +26,35 @@ extern_conformance!(
 impl BAAssetPackManifest {
     extern_methods!(
         #[cfg(feature = "BAAssetPack")]
-        /// The asset packs that are available to download.
+        /// The asset packs in this manifest that are available to download.
         #[unsafe(method(assetPacks))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetPacks(&self) -> Retained<NSSet<BAAssetPack>>;
+
+        /// The application’s primary language, represented as a BCP-47 identifier, as configured in App Store Connect.
+        ///
+        /// If no available localized asset packs match the user’s preferred languages, then the system will fall back on the application’s primary language.
+        #[unsafe(method(primaryLanguage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
+
+        /// The languages, represented as their respective BCP-47 identifiers, for which asset packs in this manifest are localized.
+        #[unsafe(method(availableLanguages))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn availableLanguages(&self) -> Retained<NSArray<NSString>>;
+
+        /// The language, represented as a BCP-47 identifier, asset packs in this manifest that are localized for which the system automatically makes available locally.
+        ///
+        /// The user’s preferred languages inform the choice of resolved language, respecting any language that your application sets manually via ``BAAssetPackManager/resolvedLanguage``. This property may be `nil` if no localized asset packs are available. If the user recently changed their preferred language or if this manifest is outdated, then this property’s value may be out of sync with the set of asset packs that are available locally.
+        #[unsafe(method(resolvedLanguage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resolvedLanguage(&self) -> Option<Retained<NSString>>;
+
+        #[cfg(feature = "BAAssetPack")]
+        /// The subset of asset packs in this manifest that best match the user’s preferred languages.
+        #[unsafe(method(localizedAssetPacks))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn localizedAssetPacks(&self) -> Retained<NSSet<BAAssetPack>>;
 
         // -init (unavailable)
 
@@ -62,6 +85,30 @@ impl BAAssetPackManifest {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         // +new (unavailable)
+
+        #[cfg(feature = "BAAssetPack")]
+        /// Returns the asset pack in this manifest with the given identifier.
+        /// - Parameter assetPackIdentifier: The asset pack’s identifier.
+        /// - Returns: The asset pack, if it could be found in this manifest; otherwise, `nil`.
+        #[unsafe(method(assetPackWithIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn assetPackWithIdentifier(
+            &self,
+            asset_pack_identifier: &NSString,
+        ) -> Option<Retained<BAAssetPack>>;
+
+        #[cfg(feature = "BAAssetPack")]
+        /// Returns the subset of asset packs in this manifest that are available to download and that best match the specified language.
+        ///
+        /// Depending on which languages are available, the returned asset packs’ respective languages may not exactly match the specified language.
+        /// - Parameter languageIdentifier: The language’s BCP-47 identifier.
+        /// - Returns: The localized asset packs.
+        #[unsafe(method(localizedAssetPacksForLanguage:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn localizedAssetPacksForLanguage(
+            &self,
+            language_identifier: &NSString,
+        ) -> Retained<NSSet<BAAssetPack>>;
 
         #[cfg(feature = "BADownload")]
         /// Creates download objects for every asset pack in this manifest.

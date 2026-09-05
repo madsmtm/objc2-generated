@@ -30,6 +30,7 @@ extern "C" {
     /// For more details about alias resolution, consult documentation of the bookmark-related interfaces of NSURL.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmovieshouldsupportaliasdatareferenceskey?language=objc)
+    #[deprecated = "AVMovieShouldSupportAliasDataReferencesKey is not supported on this platform"]
     pub static AVMovieShouldSupportAliasDataReferencesKey: &'static NSString;
 }
 

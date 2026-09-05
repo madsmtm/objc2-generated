@@ -65,6 +65,10 @@ extern_class!(
     pub struct AVAudioEnvironmentDistanceAttenuationParameters;
 );
 
+unsafe impl Send for AVAudioEnvironmentDistanceAttenuationParameters {}
+
+unsafe impl Sync for AVAudioEnvironmentDistanceAttenuationParameters {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioEnvironmentDistanceAttenuationParameters {}
 );
@@ -76,12 +80,22 @@ impl AVAudioEnvironmentDistanceAttenuationParameters {
         /// Type of distance attenuation model
         ///
         /// Default:    AVAudioEnvironmentDistanceAttenuationModelInverse
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(distanceAttenuationModel))]
         #[unsafe(method_family = none)]
         pub unsafe fn distanceAttenuationModel(&self)
             -> AVAudioEnvironmentDistanceAttenuationModel;
 
         /// Setter for [`distanceAttenuationModel`][Self::distanceAttenuationModel].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDistanceAttenuationModel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDistanceAttenuationModel(
@@ -94,11 +108,21 @@ impl AVAudioEnvironmentDistanceAttenuationParameters {
         /// Default:    1.0 meter
         /// Models:     AVAudioEnvironmentDistanceAttenuationModelInverse,
         /// AVAudioEnvironmentDistanceAttenuationModelLinear
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(referenceDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceDistance(&self) -> c_float;
 
         /// Setter for [`referenceDistance`][Self::referenceDistance].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setReferenceDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReferenceDistance(&self, reference_distance: c_float);
@@ -107,11 +131,21 @@ impl AVAudioEnvironmentDistanceAttenuationParameters {
         ///
         /// Default:    100000.0 meters
         /// Models:     AVAudioEnvironmentDistanceAttenuationModelLinear
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(maximumDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumDistance(&self) -> c_float;
 
         /// Setter for [`maximumDistance`][Self::maximumDistance].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setMaximumDistance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumDistance(&self, maximum_distance: c_float);
@@ -124,11 +158,21 @@ impl AVAudioEnvironmentDistanceAttenuationParameters {
         /// Models:     AVAudioEnvironmentDistanceAttenuationModelExponential
         /// AVAudioEnvironmentDistanceAttenuationModelInverse
         /// AVAudioEnvironmentDistanceAttenuationModelLinear
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rolloffFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn rolloffFactor(&self) -> c_float;
 
         /// Setter for [`rolloffFactor`][Self::rolloffFactor].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRolloffFactor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRolloffFactor(&self, rolloff_factor: c_float);
@@ -164,6 +208,10 @@ extern_class!(
     pub struct AVAudioEnvironmentReverbParameters;
 );
 
+unsafe impl Send for AVAudioEnvironmentReverbParameters {}
+
+unsafe impl Sync for AVAudioEnvironmentReverbParameters {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioEnvironmentReverbParameters {}
 );
@@ -175,11 +223,21 @@ impl AVAudioEnvironmentReverbParameters {
         /// Turns on/off the reverb
         ///
         /// Default:    NO
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(enable))]
         #[unsafe(method_family = none)]
         pub unsafe fn enable(&self) -> bool;
 
         /// Setter for [`enable`][Self::enable].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setEnable:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEnable(&self, enable: bool);
@@ -188,17 +246,33 @@ impl AVAudioEnvironmentReverbParameters {
         ///
         /// Range:      -40 to 40 dB
         /// Default:    0.0
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(level))]
         #[unsafe(method_family = none)]
         pub unsafe fn level(&self) -> c_float;
 
         /// Setter for [`level`][Self::level].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setLevel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLevel(&self, level: c_float);
 
         #[cfg(feature = "AVAudioUnitEQ")]
         /// filter that applies to the output of the reverb
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(filterParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterParameters(&self) -> Retained<AVAudioUnitEQFilterParameters>;
@@ -295,6 +369,12 @@ extern_class!(
     pub struct AVAudioEnvironmentNode;
 );
 
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Send for AVAudioEnvironmentNode {}
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Sync for AVAudioEnvironmentNode {}
+
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
 extern_conformance!(
     unsafe impl AVAudio3DMixing for AVAudioEnvironmentNode {}
@@ -333,11 +413,21 @@ impl AVAudioEnvironmentNode {
         /// notifications and update the output type accordingly.
         ///
         /// Default:    AVAudio3DMixingOutputTypeAuto
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(outputType))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputType(&self) -> AVAudioEnvironmentOutputType;
 
         /// Setter for [`outputType`][Self::outputType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setOutputType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputType(&self, output_type: AVAudioEnvironmentOutputType);
@@ -345,11 +435,21 @@ impl AVAudioEnvironmentNode {
         /// The mixer's output volume.
         ///
         /// This accesses the mixer's output volume (0.0-1.0, inclusive).
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(outputVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputVolume(&self) -> c_float;
 
         /// Setter for [`outputVolume`][Self::outputVolume].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setOutputVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputVolume(&self, output_volume: c_float);
@@ -358,6 +458,12 @@ impl AVAudioEnvironmentNode {
         /// Find an unused input bus
         ///
         /// This will find and return the first input bus to which no other node is connected.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(nextAvailableInputBus))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextAvailableInputBus(&self) -> AVAudioNodeBus;
@@ -371,12 +477,22 @@ impl AVAudioEnvironmentNode {
         /// x: 0.0
         /// y: 0.0
         /// z: 0.0
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(listenerPosition))]
         #[unsafe(method_family = none)]
         pub unsafe fn listenerPosition(&self) -> AVAudio3DPoint;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`listenerPosition`][Self::listenerPosition].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setListenerPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListenerPosition(&self, listener_position: AVAudio3DPoint);
@@ -389,12 +505,22 @@ impl AVAudioEnvironmentNode {
         /// The default orientation is with the listener looking directly along the negative Z axis.
         /// forward: (0, 0, -1)
         /// up:      (0, 1, 0)
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(listenerVectorOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn listenerVectorOrientation(&self) -> AVAudio3DVectorOrientation;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`listenerVectorOrientation`][Self::listenerVectorOrientation].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setListenerVectorOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListenerVectorOrientation(
@@ -412,12 +538,22 @@ impl AVAudioEnvironmentNode {
         /// yaw: 0.0
         /// pitch: 0.0
         /// roll: 0.0
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(listenerAngularOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn listenerAngularOrientation(&self) -> AVAudio3DAngularOrientation;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`listenerAngularOrientation`][Self::listenerAngularOrientation].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setListenerAngularOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListenerAngularOrientation(
@@ -426,6 +562,12 @@ impl AVAudioEnvironmentNode {
         );
 
         /// The distance attenuation parameters for the environment
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(distanceAttenuationParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn distanceAttenuationParameters(
@@ -433,6 +575,12 @@ impl AVAudioEnvironmentNode {
         ) -> Retained<AVAudioEnvironmentDistanceAttenuationParameters>;
 
         /// The reverb parameters for the environment
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(reverbParameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverbParameters(&self) -> Retained<AVAudioEnvironmentReverbParameters>;
@@ -451,16 +599,32 @@ impl AVAudioEnvironmentNode {
         ///
         /// This information should be retrieved after a successful connection to the destination node
         /// via the engine's connect method.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(applicableRenderingAlgorithms))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicableRenderingAlgorithms(&self) -> Retained<NSArray<NSNumber>>;
 
         /// On capable devices, listener orientation will be automatically rotated based on user's head-orientation if enabled.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isListenerHeadTrackingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isListenerHeadTrackingEnabled(&self) -> bool;
 
         /// Setter for [`isListenerHeadTrackingEnabled`][Self::isListenerHeadTrackingEnabled].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setListenerHeadTrackingEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListenerHeadTrackingEnabled(&self, listener_head_tracking_enabled: bool);

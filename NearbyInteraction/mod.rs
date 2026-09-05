@@ -63,6 +63,8 @@ pub use self::__NIConfiguration::NIConfiguration;
 #[cfg(feature = "NIConfiguration")]
 pub use self::__NIConfiguration::NIDLTDOAConfiguration;
 #[cfg(feature = "NIConfiguration")]
+pub use self::__NIConfiguration::NIDLTDOADiscoveryMethod;
+#[cfg(feature = "NIConfiguration")]
 pub use self::__NIConfiguration::NIDiscoveryToken;
 #[cfg(feature = "NIConfiguration")]
 pub use self::__NIConfiguration::NINearbyAccessoryConfiguration;
@@ -73,6 +75,8 @@ pub use self::__NIDLTDOAMeasurement::NIDLTDOACoordinatesType;
 #[cfg(feature = "NIDLTDOAMeasurement")]
 pub use self::__NIDLTDOAMeasurement::NIDLTDOAMeasurement;
 #[cfg(feature = "NIDLTDOAMeasurement")]
+pub use self::__NIDLTDOAMeasurement::NIDLTDOAMeasurementFloorElevation;
+#[cfg(feature = "NIDLTDOAMeasurement")]
 pub use self::__NIDLTDOAMeasurement::NIDLTDOAMeasurementType;
 #[cfg(feature = "NIDeviceCapability")]
 pub use self::__NIDeviceCapability::NIDeviceCapability;
@@ -80,6 +84,8 @@ pub use self::__NIDeviceCapability::NIDeviceCapability;
 pub use self::__NIError::NIErrorCode;
 #[cfg(feature = "NIError")]
 pub use self::__NIError::NIErrorDomain;
+#[cfg(feature = "NINearbyObject")]
+pub use self::__NINearbyObject::NIMotionActivityState;
 #[cfg(feature = "NINearbyObject")]
 pub use self::__NINearbyObject::NINearbyObject;
 #[cfg(feature = "NINearbyObject")]

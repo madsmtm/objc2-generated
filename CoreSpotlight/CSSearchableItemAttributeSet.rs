@@ -125,6 +125,12 @@ impl CSLocalizedString {
 /// Methods declared on superclass `NSString`.
 impl CSLocalizedString {
     extern_methods!(
+        /// Returns an initialized
+        /// `NSString`object that contains no characters.
+        ///
+        ///
+        /// Returns: An initialized
+        /// `NSString`object that contains no characters. The returned object may be different from the original receiver.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

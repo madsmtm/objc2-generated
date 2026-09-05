@@ -16,6 +16,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
+    #[deprecated = "Use Network Framework instead"]
     pub struct MCBrowserViewController;
 );
 
@@ -60,6 +61,7 @@ extern_conformance!(
 impl MCBrowserViewController {
     extern_methods!(
         #[cfg(feature = "MCSession")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(initWithServiceType:session:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServiceType_session(
@@ -69,6 +71,7 @@ impl MCBrowserViewController {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MCNearbyServiceBrowser", feature = "MCSession"))]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(initWithBrowser:session:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBrowser_session(
@@ -77,6 +80,7 @@ impl MCBrowserViewController {
             session: &MCSession,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -86,6 +90,7 @@ impl MCBrowserViewController {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -94,29 +99,35 @@ impl MCBrowserViewController {
         );
 
         #[cfg(feature = "MCNearbyServiceBrowser")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(browser))]
         #[unsafe(method_family = none)]
         pub unsafe fn browser(&self) -> Retained<MCNearbyServiceBrowser>;
 
         #[cfg(feature = "MCSession")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(session))]
         #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Retained<MCSession>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(minimumNumberOfPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumNumberOfPeers(&self) -> NSUInteger;
 
         /// Setter for [`minimumNumberOfPeers`][Self::minimumNumberOfPeers].
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(setMinimumNumberOfPeers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumNumberOfPeers(&self, minimum_number_of_peers: NSUInteger);
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(maximumNumberOfPeers))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumNumberOfPeers(&self) -> NSUInteger;
 
         /// Setter for [`maximumNumberOfPeers`][Self::maximumNumberOfPeers].
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(setMaximumNumberOfPeers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfPeers(&self, maximum_number_of_peers: NSUInteger);
@@ -162,9 +173,11 @@ impl MCBrowserViewController {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcbrowserviewcontrollerdelegate?language=objc)
+    #[deprecated = "Use Network Framework instead"]
     pub unsafe trait MCBrowserViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(browserViewControllerDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn browserViewControllerDidFinish(
@@ -174,6 +187,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(browserViewControllerWasCancelled:))]
         #[unsafe(method_family = none)]
         unsafe fn browserViewControllerWasCancelled(
@@ -183,6 +197,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "MCPeerID", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        #[deprecated = "Use Network Framework instead"]
         #[optional]
         #[unsafe(method(browserViewController:shouldPresentNearbyPeer:withDiscoveryInfo:))]
         #[unsafe(method_family = none)]

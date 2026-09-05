@@ -10,6 +10,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcpeerid?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Network Framework instead"]
     pub struct MCPeerID;
 );
 
@@ -35,6 +36,7 @@ extern_conformance!(
 
 impl MCPeerID {
     extern_methods!(
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(initWithDisplayName:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplayName(
@@ -42,6 +44,7 @@ impl MCPeerID {
             my_display_name: &NSString,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use Network Framework instead"]
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;

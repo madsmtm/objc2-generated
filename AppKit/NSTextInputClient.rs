@@ -45,7 +45,7 @@ unsafe impl RefEncode for NSTextCursorAccessoryPlacement {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputclient?language=objc)
-    pub unsafe trait NSTextInputClient {
+    pub unsafe trait NSTextInputClient: NSObjectProtocol {
         /// # Safety
         ///
         /// `string` should be of the correct type.

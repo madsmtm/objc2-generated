@@ -7,15 +7,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// An NSURLResponse object represents a URL load response in a
-    /// manner independent of protocol and URL scheme.
+    /// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
     ///
+    /// The related ``HTTPURLResponse`` class is a commonly used subclass of ``URLResponse`` whose objects represent a response to an HTTP URL load request and store additional protocol-specific information such as the response headers. Whenever you make an HTTP request, the ``URLResponse`` object you get back is actually an instance of the ``HTTPURLResponse`` class.
     ///
-    /// NSURLResponse encapsulates the metadata associated
-    /// with a URL load. Note that NSURLResponse objects do not contain
-    /// the actual bytes representing the content of a URL. See
-    /// NSURLConnection and NSURLConnectionDelegate for more information
-    /// about receiving the content data for a URL load.
+    /// > Note:
+    /// > ``URLResponse`` objects don't contain the actual bytes representing the content of a URL. Instead, the data is returned either a piece at a time through delegate calls or in its entirety when the request completes, depending on the method and class used to initiate the request.
+    /// >
+    /// > Read
+    /// <doc
+    /// :fetching-website-data-into-memory> to learn various ways to receive the content data from a URL load.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlresponse?language=objc)
     #[unsafe(super(NSObject))]
@@ -54,19 +55,16 @@ extern_conformance!(
 impl NSURLResponse {
     extern_methods!(
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
-        /// Initialize an NSURLResponse with the provided values.
+        /// Creates an initialized `NSURLResponse` object with the URL, MIME type, length, and text encoding set to given values.
         ///
-        /// Parameter `URL`: the URL
+        /// This is the designated initializer for `NSURLResponse`.
         ///
-        /// Parameter `MIMEType`: the MIME content type of the response
-        ///
-        /// Parameter `length`: the expected content length of the associated data
-        ///
-        /// Parameter `name`: the name of the text encoding for the associated data, if applicable, else nil
-        ///
-        /// Returns: The initialized NSURLResponse.
-        ///
-        /// This is the designated initializer for NSURLResponse.
+        /// - Parameters:
+        /// - URL: The URL for the new object.
+        /// - MIMEType: The MIME content type of the response.
+        /// - length: The expected content length. This value should be `-1` if the expected length is undetermined.
+        /// - name: The name of the text encoding for the associated data, if applicable, else `nil`.
+        /// - Returns: The initialized URL response.
         #[unsafe(method(initWithURL:MIMEType:expectedContentLength:textEncodingName:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
@@ -78,71 +76,53 @@ impl NSURLResponse {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        /// Returns the URL of the receiver.
-        ///
-        /// Returns: The URL of the receiver.
+        /// The URL for the response.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the MIME type of the receiver.
+        /// The MIME type of the response.
         ///
-        /// The MIME type is based on the information provided
-        /// from an origin source. However, that value may be changed or
-        /// corrected by a protocol implementation if it can be determined
-        /// that the origin server or source reported the information
-        /// incorrectly or imprecisely. An attempt to guess the MIME type may
-        /// be made if the origin source did not report any such information.
-        ///
-        /// Returns: The MIME type of the receiver.
+        /// The MIME type is often provided by the response's originating source. However, that value may be changed or
+        /// corrected by a protocol implementation if it can be determined that the response's source reported the
+        /// information incorrectly. If the response's originating source does not provide a MIME type, an attempt to
+        /// guess the MIME type may be made.
         #[unsafe(method(MIMEType))]
         #[unsafe(method_family = none)]
         pub fn MIMEType(&self) -> Option<Retained<NSString>>;
 
-        /// Returns the expected content length of the receiver.
+        /// The expected length of the response's content.
         ///
-        /// Some protocol implementations report a content length
-        /// as part of delivering load metadata, but not all protocols
-        /// guarantee the amount of data that will be delivered in actuality.
-        /// Hence, this method returns an expected amount. Clients should use
-        /// this value as an advisory, and should be prepared to deal with
-        /// either more or less data.
-        ///
-        /// Returns: The expected content length of the receiver, or -1 if
-        /// there is no expectation that can be arrived at regarding expected
-        /// content length.
+        /// This property's value is `NSURLResponseUnknownLength` if the length can't be determined.
+        /// Some protocol implementations report the content length as part of the response, but not all protocols
+        /// guarantee to deliver that amount of data. Your app should be prepared to deal with more or less data.
         #[unsafe(method(expectedContentLength))]
         #[unsafe(method_family = none)]
         pub fn expectedContentLength(&self) -> c_longlong;
 
         #[cfg(feature = "NSString")]
-        /// Returns the name of the text encoding of the receiver.
+        /// The name of the text encoding provided by the response's originating source.
         ///
-        /// This name will be the actual string reported by the
-        /// origin source during the course of performing a protocol-specific
-        /// URL load. Clients can inspect this string and convert it to an
-        /// NSStringEncoding or CFStringEncoding using the methods and
-        /// functions made available in the appropriate framework.
-        ///
-        /// Returns: The name of the text encoding of the receiver, or nil if no
-        /// text encoding was specified.
+        /// If no text encoding was provided by the protocol, this property's value is `nil`.
+        /// You can convert this string to a `CFStringEncoding` value by calling `CFStringConvertIANACharSetNameToEncoding(_:)`.
+        /// You can subsequently convert that value to an `NSStringEncoding` value by calling
+        /// `CFStringConvertEncodingToNSStringEncoding(_:)`.
         #[unsafe(method(textEncodingName))]
         #[unsafe(method_family = none)]
         pub fn textEncodingName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns a suggested filename if the resource were saved to disk.
+        /// A suggested filename for the response data.
         ///
-        /// The method first checks if the server has specified a filename using the
-        /// content disposition header. If no valid filename is specified using that mechanism,
-        /// this method checks the last path component of the URL. If no valid filename can be
-        /// obtained using the last path component, this method uses the URL's host as the filename.
-        /// If the URL's host can't be converted to a valid filename, the filename "unknown" is used.
-        /// In most cases, this method appends the proper file extension based on the MIME type.
-        /// This method always returns a valid filename.
+        /// Accessing this property attempts to generate a filename using the following information, in order:
+        /// 1. A filename specified using the content disposition header.
+        /// 2. The last path component of the URL.
+        /// 3. The host of the URL.
         ///
-        /// Returns: A suggested filename to use if saving the resource to disk.
+        /// If the host of URL can't be converted to a valid filename, the filename `"unknown"` is used.
+        /// In most cases, this property appends the proper file extension based on the MIME type.
+        /// Accessing this property always returns a valid filename regardless of whether the resource is saved to disk.
         #[unsafe(method(suggestedFilename))]
         #[unsafe(method_family = none)]
         pub fn suggestedFilename(&self) -> Option<Retained<NSString>>;
@@ -170,10 +150,9 @@ impl DefaultRetained for NSURLResponse {
 }
 
 extern_class!(
-    /// An NSHTTPURLResponse object represents a response to an
-    /// HTTP URL load. It is a specialization of NSURLResponse which
-    /// provides conveniences for accessing information specific to HTTP
-    /// protocol responses.
+    /// The metadata associated with the response to an HTTP protocol URL load request.
+    ///
+    /// The ``HTTPURLResponse`` class is a subclass of ``URLResponse`` that provides methods for accessing information specific to HTTP protocol responses. Whenever you make HTTP URL load requests, any response objects you get back from the ``URLSession``, ``NSURLConnection``, or ``NSURLDownload`` class are instances of the ``HTTPURLResponse`` class.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpurlresponse?language=objc)
     #[unsafe(super(NSURLResponse, NSObject))]
@@ -212,19 +191,14 @@ extern_conformance!(
 impl NSHTTPURLResponse {
     extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSURL"))]
-        /// initializer for NSHTTPURLResponse objects.
+        /// Initializes an HTTP URL response object with a status code, protocol version, and response headers.
         ///
-        /// Parameter `url`: the URL from which the response was generated.
-        ///
-        /// Parameter `statusCode`: an HTTP status code.
-        ///
-        /// Parameter `HTTPVersion`: The version of the HTTP response as represented by the server.  This is typically represented as "HTTP/1.1".
-        ///
-        /// Parameter `headerFields`: A dictionary representing the header keys and values of the server response.
-        ///
-        /// Returns: the instance of the object, or NULL if an error occurred during initialization.
-        ///
-        /// This API was introduced in Mac OS X 10.7.2 and iOS 5.0 and is not available prior to those releases.
+        /// - Parameters:
+        /// - url: The URL from which the response was generated.
+        /// - statusCode: An HTTP status code. See [RFC 2616](http://www.ietf.org/rfc/rfc2616.txt) for details.
+        /// - HTTPVersion: The version of the HTTP response as represented by the server. This is typically represented as `"HTTP/1.1"`.
+        /// - headerFields: A dictionary representing the header keys and values of the server response.
+        /// - Returns: An initialized `NSHTTPURLResponse` object, or `nil` if an error occurred during initialization.
         #[unsafe(method(initWithURL:statusCode:HTTPVersion:headerFields:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL_statusCode_HTTPVersion_headerFields(
@@ -235,49 +209,46 @@ impl NSHTTPURLResponse {
             header_fields: Option<&NSDictionary<NSString, NSString>>,
         ) -> Option<Retained<Self>>;
 
-        /// Returns the HTTP status code of the receiver.
+        /// The response's HTTP status code.
         ///
-        /// Returns: The HTTP status code of the receiver.
+        /// See [RFC 2616](http://www.ietf.org/rfc/rfc2616.txt) for details.
         #[unsafe(method(statusCode))]
         #[unsafe(method_family = none)]
         pub fn statusCode(&self) -> NSInteger;
 
         #[cfg(feature = "NSDictionary")]
-        /// Returns a dictionary containing all the HTTP header fields
-        /// of the receiver.
+        /// All HTTP header fields of the response.
         ///
-        /// By examining this header dictionary, clients can see
-        /// the "raw" header information which was reported to the protocol
-        /// implementation by the HTTP server. This may be of use to
-        /// sophisticated or special-purpose HTTP clients.
+        /// The value of this property is a dictionary that contains all the HTTP header fields received as part of
+        /// the server's response. By examining this dictionary, clients can see the "raw" header information returned
+        /// by the HTTP server.
         ///
-        /// Returns: A dictionary containing all the HTTP header fields of the
-        /// receiver.
+        /// HTTP headers are case insensitive. To simplify your code, URL Loading System canonicalizes certain header
+        /// field names into their standard form. For example, if the server sends a `content-length` header, it's
+        /// automatically adjusted to be `Content-Length`.
+        ///
+        /// When using Swift, this property is a standard dictionary, so its keys are case-sensitive.
+        /// To perform a case-insensitive header lookup, use the `valueForHTTPHeaderField:` method instead.
         #[unsafe(method(allHeaderFields))]
         #[unsafe(method_family = none)]
         pub fn allHeaderFields(&self) -> Retained<NSDictionary>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the value which corresponds to the given header
-        /// field. Note that, in keeping with the HTTP RFC, HTTP header field
-        /// names are case-insensitive.
+        /// Returns the value that corresponds to the given header field.
         ///
-        /// Parameter `field`: the header field name to use for the lookup
-        /// (case-insensitive).
+        /// In keeping with the HTTP RFC, HTTP header field names are case-insensitive.
         ///
-        /// Returns: the value associated with the given header field, or nil if
-        /// there is no value associated with the given header field.
+        /// - Parameter field: The header field name to use for the lookup (case-insensitive).
+        /// - Returns: The value associated with the given header field, or `nil` if there is no value associated with the given header field.
         #[unsafe(method(valueForHTTPHeaderField:))]
         #[unsafe(method_family = none)]
         pub fn valueForHTTPHeaderField(&self, field: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        /// Convenience method which returns a localized string
-        /// corresponding to the status code for this response.
+        /// Returns a localized string corresponding to a specified HTTP status code.
         ///
-        /// Parameter `statusCode`: the status code to use to produce a localized string.
-        ///
-        /// Returns: A localized string corresponding to the given status code.
+        /// - Parameter statusCode: The HTTP status code. See [RFC 2616](http://www.ietf.org/rfc/rfc2616.txt) for details.
+        /// - Returns: A localized string suitable for displaying to users that describes the specified status code.
         #[unsafe(method(localizedStringForStatusCode:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForStatusCode(status_code: NSInteger) -> Retained<NSString>;
@@ -288,19 +259,16 @@ impl NSHTTPURLResponse {
 impl NSHTTPURLResponse {
     extern_methods!(
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
-        /// Initialize an NSURLResponse with the provided values.
+        /// Creates an initialized `NSURLResponse` object with the URL, MIME type, length, and text encoding set to given values.
         ///
-        /// Parameter `URL`: the URL
+        /// This is the designated initializer for `NSURLResponse`.
         ///
-        /// Parameter `MIMEType`: the MIME content type of the response
-        ///
-        /// Parameter `length`: the expected content length of the associated data
-        ///
-        /// Parameter `name`: the name of the text encoding for the associated data, if applicable, else nil
-        ///
-        /// Returns: The initialized NSURLResponse.
-        ///
-        /// This is the designated initializer for NSURLResponse.
+        /// - Parameters:
+        /// - URL: The URL for the new object.
+        /// - MIMEType: The MIME content type of the response.
+        /// - length: The expected content length. This value should be `-1` if the expected length is undetermined.
+        /// - name: The name of the text encoding for the associated data, if applicable, else `nil`.
+        /// - Returns: The initialized URL response.
         #[unsafe(method(initWithURL:MIMEType:expectedContentLength:textEncodingName:))]
         #[unsafe(method_family = init)]
         pub fn initWithURL_MIMEType_expectedContentLength_textEncodingName(

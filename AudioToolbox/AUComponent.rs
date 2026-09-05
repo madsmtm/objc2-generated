@@ -91,6 +91,11 @@ pub const kAudioUnitType_MIDIProcessor: u32 = 0x61756d69;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_speechsynthesizer?language=objc)
 pub const kAudioUnitType_SpeechSynthesizer: u32 = 0x61757370;
+/// An Audio Unit that enables third-party developers to provide custom spatial audio rendering
+/// for their compatible Bluetooth headphones.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_headtrackingbinauralrenderer?language=objc)
+pub const kAudioUnitType_HeadTrackingBinauralRenderer: u32 = 0x61756874;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounittype_remoteeffect?language=objc)
 pub const kAudioUnitType_RemoteEffect: u32 = 0x61757278;
@@ -1714,6 +1719,17 @@ pub unsafe fn AudioUnitProcessMultiple(
 ///
 /// The call should only clear memory, it should NOT allocate or free memory
 /// resources (this is done in the Initialize calls).
+///
+/// It is the AudioUnit host's responsibility to synchronize calls to AudioUnitReset()
+/// against calls to AudioUnitRender() so that they are not being called concurrently.
+/// Generally, this should not be accomplished by calling AudioUnitReset() from a realtime
+/// thread, since the clearing of large internal buffers can be sufficiently slow as to
+/// trigger an overload.
+///
+/// Note: Some Audio Unit implementations do internally synchronize Reset against Render,
+/// because they must synchronize with external event sources (beyond the host).
+/// The Apple base implementation, AUBase, provides an optional mutex for this purpose,
+/// though most AudioUnits don't need to use it.
 ///
 ///
 /// Parameter `inUnit`: the audio unit

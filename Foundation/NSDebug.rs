@@ -6,22 +6,28 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// **************    General        ***************
+    /// A Boolean value that indicates whether debug-level checking is enabled.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdebugenabled?language=objc)
     pub static NSDebugEnabled: Bool;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszombieenabled?language=objc)
+    /// A Boolean value that indicates whether deallocated objects should be replaced with zombie objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nszombieenabled?language=objc)
     pub static NSZombieEnabled: Bool;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdeallocatezombies?language=objc)
+    /// A Boolean value that indicates whether zombie objects should eventually be deallocated.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdeallocatezombies?language=objc)
     pub static NSDeallocateZombies: Bool;
 }
 
+/// Returns a Boolean indicating whether the specified object has been freed.
+///
 /// # Safety
 ///
 /// - `an_object` should be of the correct type.
@@ -34,7 +40,7 @@ pub unsafe fn NSIsFreedObject(an_object: Option<&AnyObject>) -> bool {
     unsafe { NSIsFreedObject(an_object) }.as_bool()
 }
 
-/// **************    Stack processing    ***************
+/// Returns the value of the frame pointer of the specified frame.
 #[inline]
 pub fn NSFrameAddress(frame: NSUInteger) -> *mut c_void {
     extern "C-unwind" {
@@ -43,6 +49,7 @@ pub fn NSFrameAddress(frame: NSUInteger) -> *mut c_void {
     unsafe { NSFrameAddress(frame) }
 }
 
+/// Returns the value of the return address of the specified frame.
 #[inline]
 pub fn NSReturnAddress(frame: NSUInteger) -> *mut c_void {
     extern "C-unwind" {
@@ -51,6 +58,7 @@ pub fn NSReturnAddress(frame: NSUInteger) -> *mut c_void {
     unsafe { NSReturnAddress(frame) }
 }
 
+/// Returns the number of call frames on the stack.
 #[inline]
 pub fn NSCountFrames() -> NSUInteger {
     extern "C-unwind" {
@@ -70,10 +78,14 @@ impl NSAutoreleasePool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeepallocationstatistics?language=objc)
+    /// A Boolean value that indicates whether allocation statistics are being gathered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeepallocationstatistics?language=objc)
     pub static NSKeepAllocationStatistics: Bool;
 }
 
+/// Notes an object or zone allocation event and various other statistics.
+///
 /// # Safety
 ///
 /// - `object` should be of the correct type.

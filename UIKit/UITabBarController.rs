@@ -205,6 +205,32 @@ impl UITabBarController {
         #[unsafe(method_family = none)]
         pub fn setCompactTabIdentifiers(&self, compact_tab_identifiers: Option<&NSArray<NSString>>);
 
+        /// The identifier of the tab that should be displayed as prominent. Where supported, the specified tab receives
+        /// enhanced visual emphasis in the tab bar. If this property is nil, and there is a `UISearchTab` that could
+        /// become prominent (when `automaticallyActivatesSearch = true`), then the search tab will receive
+        /// the prominent treatment by default.
+        ///
+        /// Default is nil.
+        #[unsafe(method(prominentTabIdentifier))]
+        #[unsafe(method_family = none)]
+        pub fn prominentTabIdentifier(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`prominentTabIdentifier`][Self::prominentTabIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setProminentTabIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub fn setProminentTabIdentifier(&self, prominent_tab_identifier: Option<&NSString>);
+
+        /// Sets the prominent tab identifier with an option to animate the change.
+        #[unsafe(method(setProminentTabIdentifier:animated:))]
+        #[unsafe(method_family = none)]
+        pub fn setProminentTabIdentifier_animated(
+            &self,
+            identifier: Option<&NSString>,
+            animated: bool,
+        );
+
         #[cfg(feature = "UITab")]
         /// The currently selected tab, which can be a root tab or any of their descendants.
         ///
@@ -246,6 +272,18 @@ impl UITabBarController {
         #[unsafe(method(tabForIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn tabForIdentifier(&self, identifier: &NSString) -> Option<Retained<UITab>>;
+
+        #[cfg(feature = "block2")]
+        /// Animates multiple tab changes as a single update.
+        ///
+        /// Use this method when you need to make several changes to tab properties simultaneously. Changes made
+        /// inside the `updates` block are coalesced into a single animated layout pass, preventing intermediate states
+        /// from being visible to the user.
+        ///
+        /// The `updates` block is called synchronously. You can safely read and write any mutable tab properties inside this block.
+        #[unsafe(method(performBatchUpdates:))]
+        #[unsafe(method_family = none)]
+        pub fn performBatchUpdates(&self, updates: &block2::Block<'_, fn()>);
 
         #[cfg(feature = "UITab")]
         /// Creates a tab bar controller with the specified tabs.

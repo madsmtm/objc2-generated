@@ -65,7 +65,6 @@ extern "C" {
 extern_class!(
     /// Definition of a skeleton.
     ///
-    ///
     /// A skeleton consists of a set of labeled joints that are defined in a certain hierarchy, i.e. joints are parented to other joints.
     /// One may use the parentIndices property to identify the hierarchy for a given skeleton definition.
     ///
@@ -91,17 +90,16 @@ extern_conformance!(
 impl ARSkeletonDefinition {
     extern_methods!(
         /// Default skeleton definition for bodies defined in 3D.
+        /// - Note: The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be `1.71` meters.
         ///
-        /// Note: The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be 1.71 meters.
-        ///
-        /// See: ARSkeleton3D
+        /// - SeeAlso: ``ARSkeleton3D``
         #[unsafe(method(defaultBody3DSkeletonDefinition))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultBody3DSkeletonDefinition() -> Retained<ARSkeletonDefinition>;
 
         /// Default skeleton definition for bodies defined in 2D.
         ///
-        /// See: ARBody2D
+        /// - SeeAlso: ``ARBody2D``
         #[unsafe(method(defaultBody2DSkeletonDefinition))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultBody2DSkeletonDefinition() -> Retained<ARSkeletonDefinition>;
@@ -134,7 +132,7 @@ impl ARSkeletonDefinition {
         ///
         /// This property may be used to identify the hierarchical dependency between joints. If a line is drawn for every joint and its parent joint
         /// the result is a visualization of the underlying skeleton. The joint with no parent is denoted as the root joint. The root joint's parent index has
-        /// a value of -1.
+        /// a value of `-1`.
         ///
         /// This property is not atomic.
         ///
@@ -162,12 +160,11 @@ impl ARSkeletonDefinition {
         #[cfg(feature = "objc2-foundation")]
         /// Returns the index for a given joint identifier.
         ///
+        /// This function returns `NSNotFound` if an invalid joint name is passed.
         ///
-        /// Parameter `jointName`: Name of a given joint.
+        /// - Parameter jointName: Name of a given joint.
         ///
-        /// This function returns NSNotFound if an invalid joint name is passed.
-        ///
-        /// Returns: Joint index.
+        /// - Returns: The joint index.
         #[unsafe(method(indexForJointName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexForJointName(&self, joint_name: &ARSkeletonJointName) -> NSUInteger;

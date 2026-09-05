@@ -45,6 +45,9 @@ mod __CTCellularPlanProvisioningRequest;
 #[cfg(feature = "CTCellularPlanStatus")]
 #[path = "CTCellularPlanStatus.rs"]
 mod __CTCellularPlanStatus;
+#[cfg(feature = "CTQuickSwitch")]
+#[path = "CTQuickSwitch.rs"]
+mod __CTQuickSwitch;
 #[cfg(feature = "CTSubscriber")]
 #[path = "CTSubscriber.rs"]
 mod __CTSubscriber;
@@ -92,6 +95,12 @@ pub use self::__CTCellularPlanProvisioningRequest::CTCellularPlanProvisioningAdd
 pub use self::__CTCellularPlanProvisioningRequest::CTCellularPlanProvisioningRequest;
 #[cfg(feature = "CTCellularPlanStatus")]
 pub use self::__CTCellularPlanStatus::CTCellularPlanStatus;
+#[cfg(feature = "CTQuickSwitch")]
+pub use self::__CTQuickSwitch::CTQuickSwitchManager;
+#[cfg(feature = "CTQuickSwitch")]
+pub use self::__CTQuickSwitch::CTQuickSwitchManagerDelegate;
+#[cfg(feature = "CTQuickSwitch")]
+pub use self::__CTQuickSwitch::CTQuickSwitchState;
 #[cfg(feature = "CTSubscriber")]
 pub use self::__CTSubscriber::CTSubscriber;
 #[cfg(feature = "CTSubscriber")]

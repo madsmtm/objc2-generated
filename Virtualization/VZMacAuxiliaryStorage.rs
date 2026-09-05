@@ -57,13 +57,13 @@ extern_class!(
     /// When using an existing file, the hardware model of the VZMacPlatformConfiguration must match the hardware model used when
     /// the file was created.
     ///
-    /// See also: VZMacPlatformConfiguration
+    /// See: VZMacPlatformConfiguration
     ///
-    /// See also: VZMacOSRestoreImage
+    /// See: VZMacOSRestoreImage
     ///
-    /// See also: VZMacOSConfigurationRequirements
+    /// See: VZMacOSConfigurationRequirements
     ///
-    /// See also: VZMacOSInstaller
+    /// See: VZMacOSInstaller
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage?language=objc)
     #[unsafe(super(NSObject))]

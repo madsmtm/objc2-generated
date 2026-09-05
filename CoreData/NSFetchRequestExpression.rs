@@ -63,6 +63,7 @@ impl NSFetchRequestExpression {
 /// Methods declared on superclass `NSExpression`.
 impl NSFetchRequestExpression {
     extern_methods!(
+        /// Creates the expression with the specified expression type.
         #[unsafe(method(initWithExpressionType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExpressionType(

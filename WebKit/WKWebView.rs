@@ -253,6 +253,16 @@ impl WKWebView {
         pub unsafe fn loadRequest(&self, request: &NSURLRequest) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Navigates to a requested URL.
+        ///
+        /// Parameter `url`: The URL to which to navigate.
+        ///
+        /// Returns: A new navigation for the given request.
+        #[unsafe(method(loadURL:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn loadURL(&self, url: &NSURL) -> Option<Retained<WKNavigation>>;
+
+        #[cfg(feature = "WKNavigation")]
         /// Navigates to the requested file URL on the filesystem.
         ///
         /// Parameter `URL`: The file URL to which to navigate.
@@ -755,14 +765,14 @@ impl WKWebView {
         #[unsafe(method(allowsLinkPreview))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsLinkPreview(&self) -> bool;
+    );
 
+    extern_methods!(
         /// Setter for [`allowsLinkPreview`][Self::allowsLinkPreview].
         #[unsafe(method(setAllowsLinkPreview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsLinkPreview(&self, allows_link_preview: bool);
-    );
 
-    extern_methods!(
         #[unsafe(method(allowsMagnification))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsMagnification(&self) -> bool;

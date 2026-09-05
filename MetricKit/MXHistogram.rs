@@ -16,6 +16,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhistogrambucket?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Histogram.Bucket instead."]
     pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject>;
 );
 
@@ -51,16 +52,19 @@ extern_conformance!(
 impl<UnitType: Message + AsRef<NSUnit>> MXHistogramBucket<UnitType> {
     extern_methods!(
         /// An NSMeasurement representing the start of a histogram bucket.
+        #[deprecated = "Use Histogram.Bucket instead."]
         #[unsafe(method(bucketStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn bucketStart(&self) -> Retained<NSMeasurement<UnitType>>;
 
         /// An NSMeasurement representing the end of a histogram bucket.
+        #[deprecated = "Use Histogram.Bucket instead."]
         #[unsafe(method(bucketEnd))]
         #[unsafe(method_family = none)]
         pub unsafe fn bucketEnd(&self) -> Retained<NSMeasurement<UnitType>>;
 
         /// An NSUInteger representing the number of samples in this histogram bucket.
+        #[deprecated = "Use Histogram.Bucket instead."]
         #[unsafe(method(bucketCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn bucketCount(&self) -> NSUInteger;
@@ -86,6 +90,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhistogram?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use Histogram instead."]
     pub struct MXHistogram<UnitType: ?Sized = AnyObject>;
 );
 
@@ -123,6 +128,7 @@ impl<UnitType: Message + AsRef<NSUnit>> MXHistogram<UnitType> {
         /// The number of buckets contained within this histogram.
         ///
         /// This value can never be negative.
+        #[deprecated = "Use Histogram instead."]
         #[unsafe(method(totalBucketCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalBucketCount(&self) -> NSUInteger;
@@ -132,6 +138,7 @@ impl<UnitType: Message + AsRef<NSUnit>> MXHistogram<UnitType> {
         /// # Safety
         ///
         /// The returned enumerator's underlying collection should not be mutated while in use.
+        #[deprecated = "Use Histogram instead."]
         #[unsafe(method(bucketEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn bucketEnumerator(

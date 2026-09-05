@@ -63,6 +63,43 @@ impl CPVoiceControlState {
             repeats: bool,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-ui-kit")]
+        /// Initialize a voice control state with a title and image.
+        ///
+        ///
+        /// Parameter `identifier`: A custom identifier you can use to identify this voice control state. You'll also
+        /// switch to this state by specifying this identifier.
+        ///
+        /// Parameter `titleVariants`: An array of title variants. The Voice Control template will select the longest
+        /// variant that fits your specified content.
+        ///
+        /// Parameter `image`: An image to be animated while this template is visible. The system
+        /// enforces a minimum cycle duration of 0.3 seconds and a maximum cycle duration of 5 seconds.
+        /// Voice Control state images may be a maximum of 150 by 150 points.
+        ///
+        /// Parameter `backgroundImage`: A custom background image to be displayed behind the voice control template content.
+        /// The background image fills the entire template view and appears behind all voice control
+        /// state content, including the state image, title variants, and action buttons.
+        ///
+        /// Parameter `repeats`: For an animated image, YES if the animation should repeat indefinitely, NO
+        /// to run the animation only once.
+        ///
+        ///
+        /// When providing an image, your app should provide a
+        /// `UIImage`that is display-ready. If necessary for the image, provide light and dark styles by using an asset from your asset catalog, prepared with light and dark styles or by using
+        /// `UIImageAsset`to combine two
+        /// `UIImage`instances into a single image with both styles.
+        #[unsafe(method(initWithIdentifier:titleVariants:image:backgroundImage:repeats:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithIdentifier_titleVariants_image_backgroundImage_repeats(
+            this: Allocated<Self>,
+            identifier: &NSString,
+            title_variants: Option<&NSArray<NSString>>,
+            image: Option<&UIImage>,
+            background_image: Option<&UIImage>,
+            repeats: bool,
+        ) -> Retained<Self>;
+
         #[unsafe(method(titleVariants))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleVariants(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -114,6 +151,15 @@ impl CPVoiceControlState {
         #[unsafe(method(maximumActionButtonCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumActionButtonCount() -> NSInteger;
+
+        #[cfg(feature = "objc2-ui-kit")]
+        /// A custom background image to be displayed behind the voice control template content.
+        ///
+        /// The background image fills the entire template view and appears behind all voice control
+        /// state content, including the state image, title variants, and action buttons.
+        #[unsafe(method(backgroundImage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
     );
 }
 

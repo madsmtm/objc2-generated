@@ -13,35 +13,47 @@ use crate::*;
 pub type NSErrorDomain = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscocoaerrordomain?language=objc)
+    /// The error domain for Cocoa errors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscocoaerrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCocoaErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsposixerrordomain?language=objc)
+    /// The error domain for POSIX errors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsposixerrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPOSIXErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsosstatuserrordomain?language=objc)
+    /// The error domain for Mac OS 9/Carbon errors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsosstatuserrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSOSStatusErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmacherrordomain?language=objc)
+    /// The error domain for Mach errors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmacherrordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMachErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserroruserinfokey?language=objc)
+/// These keys may exist in the user info dictionary.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nserroruserinfokey?language=objc)
 #[cfg(feature = "NSString")]
 pub type NSErrorUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey?language=objc)
+    /// The underlying error that caused this error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSUnderlyingErrorKey: &'static NSErrorUserInfoKey;
 }
@@ -53,37 +65,49 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizeddescriptionkey?language=objc)
+    /// A human-readable description of the error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizeddescriptionkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedDescriptionKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedfailurereasonerrorkey?language=objc)
+    /// A human-readable reason for the failure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedfailurereasonerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedFailureReasonErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedrecoverysuggestionerrorkey?language=objc)
+    /// A human-readable suggestion for recovering from the error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedrecoverysuggestionerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedRecoverySuggestionErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedrecoveryoptionserrorkey?language=objc)
+    /// An array of localized titles for buttons appropriate for displaying in an alert panel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedrecoveryoptionserrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedRecoveryOptionsErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecoveryattemptererrorkey?language=objc)
+    /// An object that conforms to the `NSErrorRecoveryAttempting` protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecoveryattemptererrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSRecoveryAttempterErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshelpanchorerrorkey?language=objc)
+    /// A string to display in response to an attempt to show help related to an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshelpanchorerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHelpAnchorErrorKey: &'static NSErrorUserInfoKey;
 }
@@ -101,25 +125,47 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingerrorkey?language=objc)
+    /// The corresponding value is an `NSNumber` object containing the `NSStringEncoding` value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStringEncodingErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorkey?language=objc)
+    /// The URL which caused the error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilepatherrorkey?language=objc)
+    /// The file path of the error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilepatherrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFilePathErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserror?language=objc)
+    /// Information about an error condition including a domain, a domain-specific error code, and application-specific information.
+    ///
+    /// Objective-C methods can signal an error condition by returning an ``NSError`` object by reference, which provides additional information about the kind of error and any underlying cause, if one can be determined. An ``NSError`` object may also provide localized error descriptions suitable for display to the user in its user info dictionary. See [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806) for more information.
+    ///
+    /// Methods in Foundation and other Cocoa frameworks most often produce errors in the Cocoa error domain (``NSCocoaErrorDomain``); error codes for the Cocoa Error Domain are documented in the
+    /// <doc
+    /// :foundation-constants>. There are also predefined domains corresponding to Mach (``NSMachErrorDomain``), POSIX (``NSPOSIXErrorDomain``), and Carbon (``NSOSStatusErrorDomain``) errors.
+    ///
+    /// ``NSError`` is "toll-free bridged" with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cferror>. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Applications may choose to create subclasses of `NSError`, for example, to provide better localized error strings by overriding ``localizedDescription``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nserror?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSError;
@@ -171,7 +217,32 @@ extern_conformance!(
 
 impl NSError {
     extern_methods!(
+        #[deprecated = "Use -[NSError initWithDomain:code:userInfo:] to specify an error domain and code instead."]
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Returns an `NSError` object initialized for a given domain and code with a given
+        /// `userInfo`dictionary.
+        ///
+        /// This is the designated initializer for
+        /// `NSError.``domain`must not be
+        /// `nil.`
+        /// Parameter `domain`: The error domain---this can be one of the predefined
+        /// `NSError`domains, or an arbitrary string describing a custom domain.
+        ///
+        /// Parameter `code`: The error code for the error.
+        ///
+        /// Parameter `dict`: The
+        /// `userInfo`dictionary for the error. May be
+        /// `nil.`
+        /// Returns: An
+        /// `NSError`object initialized for
+        /// `domain`with the specified error
+        /// `code`and the dictionary of arbitrary data
+        /// `userInfo.`
+        ///
         /// # Safety
         ///
         /// `dict` generic should be of the correct type.
@@ -185,6 +256,25 @@ impl NSError {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Creates and initializes an
+        /// `NSError`object for a given domain and code with a given
+        /// `userInfo`dictionary.
+        ///
+        ///
+        /// Parameter `domain`: The error domain---this can be one of the predefined
+        /// `NSError`domains, or an arbitrary string describing a custom domain.
+        ///
+        /// Parameter `code`: The error code for the error.
+        ///
+        /// Parameter `dict`: The
+        /// `userInfo`dictionary for the error. May be
+        /// `nil.`
+        /// Returns: An
+        /// `NSError`object for
+        /// `domain`with the specified error
+        /// `code`and the dictionary of arbitrary data
+        /// `userInfo.`
+        ///
         /// # Safety
         ///
         /// `dict` generic should be of the correct type.
@@ -197,44 +287,110 @@ impl NSError {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// A string containing the error domain.
+        ///
+        /// Domains are described by names that are arbitrary strings used to differentiate groups of codes;
+        /// for custom domains, using reverse-DNS naming will help avoid conflicts.
         #[unsafe(method(domain))]
         #[unsafe(method_family = none)]
         pub fn domain(&self) -> Retained<NSErrorDomain>;
 
+        /// The error code.
+        ///
+        /// Codes are domain-specific.
         #[unsafe(method(code))]
         #[unsafe(method_family = none)]
         pub fn code(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The user info dictionary.
+        ///
+        /// Contains application-specific data related to the error. Examples of keys that might be included are
+        /// `NSLocalizedDescriptionKey,``NSFilePathErrorKey,`and
+        /// `NSUnderlyingErrorKey.`
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub fn userInfo(&self) -> Retained<NSDictionary<NSErrorUserInfoKey, AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// A string containing the localized description of the error.
+        ///
+        /// For instance, for `NSFileReadNoPermissionError`: "The file "File Name" couldn't be opened because you don't have permission to view it.". This message should ideally indicate what failed and why it failed. This value either comes from `NSLocalizedDescriptionKey`, or `NSLocalizedFailureErrorKey` + `NSLocalizedFailureReasonErrorKey`, or `NSLocalizedFailureErrorKey`. The steps this takes to construct the description include:
+        /// 1. Look for NSLocalizedDescriptionKey in userInfo, use value as-is if present.
+        /// 2. Look for NSLocalizedFailureErrorKey in userInfo. If present, use, combining with value for NSLocalizedFailureReasonErrorKey if available.
+        /// 3. Fetch NSLocalizedDescriptionKey from userInfoValueProvider, use value as-is if present.
+        /// 4. Fetch NSLocalizedFailureErrorKey from userInfoValueProvider. If present, use, combining with value for NSLocalizedFailureReasonErrorKey if available.
+        /// 5. Look for NSLocalizedFailureReasonErrorKey in userInfo or from userInfoValueProvider; combine with generic "Operation failed" message.
+        /// 6. Last resort localized but barely-presentable string manufactured from domain and code. The result is never nil.
+        /// This value either comes from
+        /// `NSLocalizedDescriptionKey,`or
+        /// `NSLocalizedFailureErrorKey`combined with
+        /// `NSLocalizedFailureReasonErrorKey,`or a last-resort string manufactured from the domain and code.
         #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub fn localizedDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// A string containing the localized explanation of the reason for the error.
+        ///
+        /// Return a complete sentence which describes why the operation failed.
+        ///
+        /// For instance, for `NSFileReadNoPermissionError`: "You don't have permission.". In many cases this will be just the "because" part of the error message (but as a complete sentence, which makes localization easier).  Default implementation of this picks up the value of `NSLocalizedFailureReasonErrorKey` from the userInfo dictionary. If not present, it consults the `userInfoValueProvider` for the domain, and if that returns `nil`, this also returns `nil`.
+        /// The object in the user info dictionary for the key
+        /// `NSLocalizedFailureReasonErrorKey.`If not present, consults the
+        /// `userInfoValueProvider`for the domain. Returns
+        /// `nil`if unavailable.
         #[unsafe(method(localizedFailureReason))]
         #[unsafe(method_family = none)]
         pub fn localizedFailureReason(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// A string containing the localized recovery suggestion for the error.
+        ///
+        /// For instance, for `NSFileReadNoPermissionError`: "To view or change permissions, select the item in the Finder and choose File > Get Info.". The default implementation of this picks up the value of `NSLocalizedRecoverySuggestionErrorKey` from the `userInfo` dictionary. If not present, it consults the `userInfoValueProvider` for the domain, and if that returns `nil`, this also returns `nil`.
+        ///
+        /// The object in the user info dictionary for the key
+        /// `NSLocalizedRecoverySuggestionErrorKey.`The returned string is suitable for displaying as the secondary message in an alert panel.
+        /// Returns
+        /// `nil`if unavailable.
         #[unsafe(method(localizedRecoverySuggestion))]
         #[unsafe(method_family = none)]
         pub fn localizedRecoverySuggestion(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// An array containing the localized titles of buttons appropriate for displaying in an alert panel.
+        ///
+        /// The object in the user info dictionary for the key
+        /// `NSLocalizedRecoveryOptionsErrorKey.`
+        /// These should match the string provided as a part of `localizedRecoverySuggestion`.  The first string would be the title of the right-most and default button, the second one next to it, and so on. If used in an alert the corresponding default return values are `NSAlertFirstButtonReturn` + `n`. Default implementation of this picks up the value of `NSLocalizedRecoveryOptionsErrorKey` from the `userInfo` dictionary. If not present, it consults the `userInfoValueProvider` for the domain, and if that returns `nil`, this also returns `nil`. `nil` return usually implies no special suggestion, which would imply a single "OK" button.
+        ///
+        /// Returns
+        /// `nil`if no recovery options are available, which typically implies a single "OK" button.
         #[unsafe(method(localizedRecoveryOptions))]
         #[unsafe(method_family = none)]
         pub fn localizedRecoveryOptions(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// The object in the user info dictionary corresponding to the
+        /// `NSRecoveryAttempterErrorKey`key.
+        ///
+        /// The recovery attempter must be an object that conforms to the
+        /// `NSErrorRecoveryAttempting`informal protocol.
+        /// It must be able to correctly interpret an index into the
+        /// `localizedRecoveryOptions`array.
+        /// The default implementation of this picks up the value of `NSRecoveryAttempterErrorKey` from the `userInfo` dictionary. If not present, it consults the `userInfoValueProvider` for the domain. If that returns `nil`, this also returns `nil`.
+        /// Returns
+        /// `nil`if not present in the user info or from the
+        /// `userInfoValueProvider.`
         #[unsafe(method(recoveryAttempter))]
         #[unsafe(method_family = none)]
         pub fn recoveryAttempter(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// A string to display in response to an alert panel help anchor button being pressed.
+        ///
+        /// The object in the user info dictionary for the key
+        /// `NSHelpAnchorErrorKey.`Returns
+        /// `nil`if not present.
         #[unsafe(method(helpAnchor))]
         #[unsafe(method_family = none)]
         pub fn helpAnchor(&self) -> Option<Retained<NSString>>;
@@ -245,6 +401,21 @@ impl NSError {
         pub fn underlyingErrors(&self) -> Retained<NSArray<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
+        /// Specifies a block to call when the corresponding property is not present in the user info dictionary.
+        ///
+        /// The provider is called synchronously from the implementations of
+        /// `localizedDescription,``localizedFailureReason,``localizedRecoverySuggestion,``localizedRecoveryOptions,``recoveryAttempter,``helpAnchor,`and
+        /// `debugDescription`when the underlying value is not present in the
+        /// `userInfo`dictionary of NSError instances with the specified domain.
+        /// The provider should return
+        /// `nil`for any keys it is not able to provide and any keys it does not recognize.
+        /// The results are not cached. It is expected that only the “owner” of an NSError domain specifies the provider, and this is done once. This facility is not meant for consumers of errors to customize the userInfo entries.  This facility should not be used to customize the behaviors of error domains provided by the system.
+        /// If an appropriate result for the requested key cannot be provided, return nil rather than choosing to manufacture a generic fallback response such as "Operation could not be completed, error 42." `NSError` will take care of the fallback cases.
+        ///
+        /// Parameter `errorDomain`: The error domain of the provider.
+        ///
+        /// Parameter `provider`: A block to be executed synchronously at the time a corresponding property is accessed.
+        ///
         /// # Safety
         ///
         /// `provider` block's return must be a valid pointer or null.
@@ -261,6 +432,14 @@ impl NSError {
         );
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
+        /// Returns any user info provider specified for a given error domain.
+        ///
+        ///
+        /// Parameter `errorDomain`: The error domain of the user info provider.
+        ///
+        /// Returns: The user info provider of the error domain, or
+        /// `nil`if none is specified.
+        ///
         /// # Safety
         ///
         /// - The returned block's argument 1 must be a valid pointer.
@@ -273,15 +452,6 @@ impl NSError {
             'static,
             fn(NonNull<NSError>, NonNull<NSErrorUserInfoKey>) -> *mut AnyObject,
         >;
-    );
-}
-
-/// Methods declared on superclass `NSObject`.
-impl NSError {
-    extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 

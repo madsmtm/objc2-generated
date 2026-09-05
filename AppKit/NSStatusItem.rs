@@ -12,6 +12,28 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitemautosavename?language=objc)
 pub type NSStatusItemAutosaveName = NSString;
 
+extern_protocol!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitemexpandedinterfacedelegate?language=objc)
+    pub unsafe trait NSStatusItemExpandedInterfaceDelegate: NSObjectProtocol {
+        #[cfg(feature = "NSStatusItemExpandedInterfaceSession")]
+        #[unsafe(method(statusItem:didBeginExpandedInterfaceSession:))]
+        #[unsafe(method_family = none)]
+        fn statusItem_didBeginExpandedInterfaceSession(
+            &self,
+            status_item: &NSStatusItem,
+            expanded_interface_session: &NSStatusItemExpandedInterfaceSession,
+        );
+
+        #[unsafe(method(statusItemDidEndExpandedInterfaceSession:animated:))]
+        #[unsafe(method_family = none)]
+        fn statusItemDidEndExpandedInterfaceSession_animated(
+            &self,
+            status_item: &NSStatusItem,
+            animated: bool,
+        );
+    }
+);
+
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitembehavior?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -114,6 +136,70 @@ impl NSStatusItem {
         #[unsafe(method(setAutosaveName:))]
         #[unsafe(method_family = none)]
         pub fn setAutosaveName(&self, autosave_name: Option<&NSStatusItemAutosaveName>);
+
+        #[unsafe(method(expandedInterfaceDelegate))]
+        #[unsafe(method_family = none)]
+        pub fn expandedInterfaceDelegate(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn NSStatusItemExpandedInterfaceDelegate>>>;
+
+        /// Setter for [`expandedInterfaceDelegate`][Self::expandedInterfaceDelegate].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
+        #[unsafe(method(setExpandedInterfaceDelegate:))]
+        #[unsafe(method_family = none)]
+        pub fn setExpandedInterfaceDelegate(
+            &self,
+            expanded_interface_delegate: Option<
+                &ProtocolObject<dyn NSStatusItemExpandedInterfaceDelegate>,
+            >,
+        );
+
+        #[cfg(feature = "NSStatusItemExpandedInterfaceSession")]
+        #[unsafe(method(expandedInterfaceSession))]
+        #[unsafe(method_family = none)]
+        pub fn expandedInterfaceSession(
+            &self,
+        ) -> Option<Retained<NSStatusItemExpandedInterfaceSession>>;
+
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        #[unsafe(method(view))]
+        #[unsafe(method_family = none)]
+        pub fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
+
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`view`][Self::view].
+        #[unsafe(method(setView:))]
+        #[unsafe(method_family = none)]
+        pub fn setView(&self, view: Option<&NSView>);
+
+        #[unsafe(method(target))]
+        #[unsafe(method_family = none)]
+        pub fn target(&self) -> Option<Retained<AnyObject>>;
+
+        /// Setter for [`target`][Self::target].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
+        #[unsafe(method(setTarget:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
+
+        #[unsafe(method(action))]
+        #[unsafe(method_family = none)]
+        pub fn action(&self) -> Option<Sel>;
+
+        /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
+        #[unsafe(method(setAction:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAction(&self, action: Option<Sel>);
     );
 }
 
@@ -140,21 +226,6 @@ impl DefaultRetained for NSStatusItem {
 /// NSStatusItemDeprecated.
 impl NSStatusItem {
     extern_methods!(
-        #[deprecated = "Use the receiver's button.action instead"]
-        #[unsafe(method(action))]
-        #[unsafe(method_family = none)]
-        pub fn action(&self) -> Option<Sel>;
-
-        /// Setter for [`action`][Self::action].
-        ///
-        /// # Safety
-        ///
-        /// `action` must be a valid selector.
-        #[deprecated = "Use the receiver's button.action instead"]
-        #[unsafe(method(setAction:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setAction(&self, action: Option<Sel>);
-
         #[deprecated = "Use the receiver's button.doubleAction instead"]
         #[unsafe(method(doubleAction))]
         #[unsafe(method_family = none)]
@@ -169,23 +240,6 @@ impl NSStatusItem {
         #[unsafe(method(setDoubleAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
-
-        #[deprecated = "Use the receiver's button.target instead"]
-        #[unsafe(method(target))]
-        #[unsafe(method_family = none)]
-        pub fn target(&self) -> Option<Retained<AnyObject>>;
-
-        /// Setter for [`target`][Self::target].
-        ///
-        /// This is a [weak property][objc2::topics::weak_property].
-        ///
-        /// # Safety
-        ///
-        /// `target` should be of the correct type.
-        #[deprecated = "Use the receiver's button.target instead"]
-        #[unsafe(method(setTarget:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[deprecated = "Use the receiver's button.title instead"]
         #[unsafe(method(title))]
@@ -279,19 +333,6 @@ impl NSStatusItem {
         #[unsafe(method(sendActionOn:))]
         #[unsafe(method_family = none)]
         pub fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
-
-        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[deprecated = "Use the standard button property instead"]
-        #[unsafe(method(view))]
-        #[unsafe(method_family = none)]
-        pub fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
-
-        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        /// Setter for [`view`][Self::view].
-        #[deprecated = "Use the standard button property instead"]
-        #[unsafe(method(setView:))]
-        #[unsafe(method_family = none)]
-        pub fn setView(&self, view: Option<&NSView>);
 
         #[deprecated = "Use the standard button instead which handles highlight drawing, making this method obsolete"]
         #[unsafe(method(drawStatusBarBackgroundInRect:withHighlight:))]

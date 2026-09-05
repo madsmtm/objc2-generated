@@ -45,6 +45,7 @@ extern "C" {
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
@@ -145,7 +146,7 @@ impl AVSampleBufferDisplayLayer {
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layer() -> Retained<Self>;
+        pub unsafe fn layer(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -167,7 +168,7 @@ impl AVSampleBufferDisplayLayer {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

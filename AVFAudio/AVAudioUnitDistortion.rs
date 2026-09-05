@@ -88,6 +88,20 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitEffect"
 ))]
+unsafe impl Send for AVAudioUnitDistortion {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+unsafe impl Sync for AVAudioUnitDistortion {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioUnitDistortion {}
 );
@@ -109,11 +123,21 @@ impl AVAudioUnitDistortion {
         /// Range:      -80 -> 20
         /// Default:    -6
         /// Unit:       dB
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(preGain))]
         #[unsafe(method_family = none)]
         pub unsafe fn preGain(&self) -> c_float;
 
         /// Setter for [`preGain`][Self::preGain].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPreGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreGain(&self, pre_gain: c_float);
@@ -122,11 +146,21 @@ impl AVAudioUnitDistortion {
         /// Range:      0 (all dry) -> 100 (all distorted)
         /// Default:    50
         /// Unit:       Percent
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(wetDryMix))]
         #[unsafe(method_family = none)]
         pub unsafe fn wetDryMix(&self) -> c_float;
 
         /// Setter for [`wetDryMix`][Self::wetDryMix].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setWetDryMix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);

@@ -5,17 +5,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicateoptions?language=objc)
+/// Constants that describe the possible types of string comparison for comparison predicates.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicateoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSComparisonPredicateOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSComparisonPredicateOptions: NSUInteger {
+/// A case-insensitive predicate. You represent this option in a predicate format string using a `[c]` following a string operation (for example, `"NeXT" like[c] "next"`).
         #[doc(alias = "NSCaseInsensitivePredicateOption")]
         const CaseInsensitivePredicateOption = 0x01;
+/// A diacritic-insensitive predicate. You represent this option in a predicate format string using a `[d]` following a string operation (for example, `"naïve" like[d] "naive"`).
         #[doc(alias = "NSDiacriticInsensitivePredicateOption")]
         const DiacriticInsensitivePredicateOption = 0x02;
+/// Indicates that the strings to be compared have been preprocessed; this supersedes other options and is intended as a performance optimization option.
         #[doc(alias = "NSNormalizedPredicateOption")]
         const NormalizedPredicateOption = 0x04;
         const _ = !0;
@@ -30,16 +35,21 @@ unsafe impl RefEncode for NSComparisonPredicateOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicatemodifier?language=objc)
+/// Constants that describe the possible types of modifier for a comparison predicate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicatemodifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSComparisonPredicateModifier(pub NSUInteger);
 impl NSComparisonPredicateModifier {
+    /// A predicate to compare directly the left and right hand sides.
     #[doc(alias = "NSDirectPredicateModifier")]
     pub const DirectPredicateModifier: Self = Self(0);
+    /// A predicate to compare all entries in the destination of a to-many relationship.
     #[doc(alias = "NSAllPredicateModifier")]
     pub const AllPredicateModifier: Self = Self(1);
+    /// A predicate to match with any entry in the destination of a to-many relationship.
     #[doc(alias = "NSAnyPredicateModifier")]
     pub const AnyPredicateModifier: Self = Self(2);
 }
@@ -52,38 +62,54 @@ unsafe impl RefEncode for NSComparisonPredicateModifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspredicateoperatortype?language=objc)
+/// Defines the type of comparison for a comparison predicate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspredicateoperatortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPredicateOperatorType(pub NSUInteger);
 impl NSPredicateOperatorType {
+    /// A less-than predicate.
     #[doc(alias = "NSLessThanPredicateOperatorType")]
     pub const LessThanPredicateOperatorType: Self = Self(0);
+    /// A less-than-or-equal-to predicate.
     #[doc(alias = "NSLessThanOrEqualToPredicateOperatorType")]
     pub const LessThanOrEqualToPredicateOperatorType: Self = Self(1);
+    /// A greater-than predicate.
     #[doc(alias = "NSGreaterThanPredicateOperatorType")]
     pub const GreaterThanPredicateOperatorType: Self = Self(2);
+    /// A greater-than-or-equal-to predicate.
     #[doc(alias = "NSGreaterThanOrEqualToPredicateOperatorType")]
     pub const GreaterThanOrEqualToPredicateOperatorType: Self = Self(3);
+    /// An equal-to predicate.
     #[doc(alias = "NSEqualToPredicateOperatorType")]
     pub const EqualToPredicateOperatorType: Self = Self(4);
+    /// A not-equal-to predicate.
     #[doc(alias = "NSNotEqualToPredicateOperatorType")]
     pub const NotEqualToPredicateOperatorType: Self = Self(5);
+    /// A full regular expression matching predicate.
     #[doc(alias = "NSMatchesPredicateOperatorType")]
     pub const MatchesPredicateOperatorType: Self = Self(6);
+    /// A simple subset of the `MATCHES` predicate, similar in behavior to SQL `LIKE`.
     #[doc(alias = "NSLikePredicateOperatorType")]
     pub const LikePredicateOperatorType: Self = Self(7);
+    /// A begins-with predicate.
     #[doc(alias = "NSBeginsWithPredicateOperatorType")]
     pub const BeginsWithPredicateOperatorType: Self = Self(8);
+    /// An ends-with predicate.
     #[doc(alias = "NSEndsWithPredicateOperatorType")]
     pub const EndsWithPredicateOperatorType: Self = Self(9);
+    /// A predicate to determine if the left hand side is in the right hand side. For strings, returns `YES` if the left hand side is a substring of the right hand side. For collections, returns `YES` if the left hand side is in the right hand side.
     #[doc(alias = "NSInPredicateOperatorType")]
     pub const InPredicateOperatorType: Self = Self(10);
+    /// A predicate that uses a custom selector that takes a single argument and returns a `BOOL` value. The selector is invoked on the left hand side with the right hand side as the argument.
     #[doc(alias = "NSCustomSelectorPredicateOperatorType")]
     pub const CustomSelectorPredicateOperatorType: Self = Self(11);
+    /// A predicate to determine if the left hand side contains the right hand side. Returns `YES` if `[lhs contains rhs]`; the left hand side must be an `NSExpression` object that evaluates to a collection.
     #[doc(alias = "NSContainsPredicateOperatorType")]
     pub const ContainsPredicateOperatorType: Self = Self(99);
+    /// A predicate to determine if the left hand side lies at or between bounds specified by the right hand side. The right hand side must be an array in which the first element sets the lower bound and the second element the upper, inclusive.
     #[doc(alias = "NSBetweenPredicateOperatorType")]
     pub const BetweenPredicateOperatorType: Self = Self(100);
 }
@@ -97,7 +123,11 @@ unsafe impl RefEncode for NSPredicateOperatorType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate?language=objc)
+    /// A specialized predicate for comparing expressions.
+    ///
+    /// Use comparison predicates to compare the results of two expressions. You create a comparison predicate with an operator, a left expression, and a right expression, and use instances of the ``NSExpression`` class to represent those expressions. When you evaluate the predicate, it returns a `BOOL` value as the result of invoking the operator with the results of evaluating the expressions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate?language=objc)
     #[unsafe(super(NSPredicate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPredicate")]
@@ -133,6 +163,14 @@ extern_conformance!(
 impl NSComparisonPredicate {
     extern_methods!(
         #[cfg(feature = "NSExpression")]
+        /// Creates and returns a predicate of a given type formed by combining given left and right expressions using a given modifier and options.
+        /// - Parameters:
+        /// - lhs: The left hand expression.
+        /// - rhs: The right hand expression.
+        /// - modifier: The modifier to apply.
+        /// - type: The predicate operator type.
+        /// - options: The options to apply. For no options, pass `0`.
+        /// - Returns: A new predicate of type `type` formed by combining the given left and right expressions using the `modifier` and `options`.
         #[unsafe(method(predicateWithLeftExpression:rightExpression:modifier:type:options:))]
         #[unsafe(method_family = none)]
         pub fn predicateWithLeftExpression_rightExpression_modifier_type_options(
@@ -144,6 +182,13 @@ impl NSComparisonPredicate {
         ) -> Retained<NSComparisonPredicate>;
 
         #[cfg(feature = "NSExpression")]
+        /// Returns a new predicate formed by combining the left and right expressions using a given selector.
+        /// - Parameters:
+        /// - lhs: The left hand side expression.
+        /// - rhs: The right hand side expression.
+        /// - selector: The selector to use for comparison. The method defined by the selector must take a single argument and return a `BOOL` value.
+        /// - Returns: A new predicate formed by combining the left and right expressions using `selector`.
+        ///
         /// # Safety
         ///
         /// `selector` must be a valid selector.
@@ -156,6 +201,14 @@ impl NSComparisonPredicate {
         ) -> Retained<NSComparisonPredicate>;
 
         #[cfg(feature = "NSExpression")]
+        /// Creates a predicate to a specified type that you form by combining specified left and right expressions using a specified modifier and options.
+        /// - Parameters:
+        /// - lhs: The left hand expression.
+        /// - rhs: The right hand expression.
+        /// - modifier: The modifier to apply.
+        /// - type: The predicate operator type.
+        /// - options: The options to apply. For no options, pass `0`.
+        /// - Returns: The receiver, initialized to a predicate of type `type` formed by combining the left and right expressions using the `modifier` and `options`.
         #[unsafe(method(initWithLeftExpression:rightExpression:modifier:type:options:))]
         #[unsafe(method_family = init)]
         pub fn initWithLeftExpression_rightExpression_modifier_type_options(
@@ -168,6 +221,13 @@ impl NSComparisonPredicate {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSExpression")]
+        /// Creates a predicate that you form by combining specified left and right expressions using a specified selector.
+        /// - Parameters:
+        /// - lhs: The left hand expression.
+        /// - rhs: The right hand expression.
+        /// - selector: The selector to use. The method defined by the selector must take a single argument and return a `BOOL` value.
+        /// - Returns: The receiver, initialized by combining the left and right expressions using `selector`.
+        ///
         /// # Safety
         ///
         /// `selector` must be a valid selector.
@@ -180,28 +240,34 @@ impl NSComparisonPredicate {
             selector: Sel,
         ) -> Retained<Self>;
 
+        /// The predicate type for the receiver.
         #[unsafe(method(predicateOperatorType))]
         #[unsafe(method_family = none)]
         pub fn predicateOperatorType(&self) -> NSPredicateOperatorType;
 
+        /// The comparison predicate modifier for the receiver. The default value is `NSDirectPredicateModifier`.
         #[unsafe(method(comparisonPredicateModifier))]
         #[unsafe(method_family = none)]
         pub fn comparisonPredicateModifier(&self) -> NSComparisonPredicateModifier;
 
         #[cfg(feature = "NSExpression")]
+        /// The left expression for the receiver.
         #[unsafe(method(leftExpression))]
         #[unsafe(method_family = none)]
         pub fn leftExpression(&self) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSExpression")]
+        /// The right expression for the receiver.
         #[unsafe(method(rightExpression))]
         #[unsafe(method_family = none)]
         pub fn rightExpression(&self) -> Retained<NSExpression>;
 
+        /// The selector for the receiver, or `NULL` if there is none.
         #[unsafe(method(customSelector))]
         #[unsafe(method_family = none)]
         pub fn customSelector(&self) -> Option<Sel>;
 
+        /// The options to use for the receiver.
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
         pub fn options(&self) -> NSComparisonPredicateOptions;

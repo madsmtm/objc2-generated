@@ -6,9 +6,14 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// The NSURLCacheStoragePolicy enum defines constants that
-/// can be used to specify the type of storage that is allowable for an
-/// NSCachedURLResponse object that is to be stored in an NSURLCache.
+/// Constants that specify the caching strategy used by an `NSCachedURLResponse` object stored in an `NSURLCache`.
+///
+/// These constants cover interactions that have to do with whether already-existing cache data is returned
+/// to satisfy a URL load request.
+///
+/// - `NSURLCacheStorageAllowed`: Storage in an `NSURLCache` is allowed without restriction.
+/// - `NSURLCacheStorageAllowedInMemoryOnly`: Storage in an `NSURLCache` is allowed; however storage should be done in memory only, no disk storage should be done.
+/// - `NSURLCacheStorageNotAllowed`: Storage in an `NSURLCache` is not allowed in any fashion, either in memory or on disk.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcachestoragepolicy?language=objc)
 // NS_ENUM
@@ -16,18 +21,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLCacheStoragePolicy(pub NSUInteger);
 impl NSURLCacheStoragePolicy {
-    /// Specifies that storage in an
-    /// NSURLCache is allowed without restriction.
+    /// Storage in `NSURLCache` is allowed without restriction.
     #[doc(alias = "NSURLCacheStorageAllowed")]
     pub const Allowed: Self = Self(0);
-    /// Specifies that
-    /// storage in an NSURLCache is allowed; however storage should be
-    /// done in memory only, no disk storage should be done.
+    /// Storage in `NSURLCache` is allowed; however storage should be restricted to memory only.
     #[doc(alias = "NSURLCacheStorageAllowedInMemoryOnly")]
     pub const AllowedInMemoryOnly: Self = Self(1);
-    /// Specifies that storage in an
-    /// NSURLCache is not allowed in any fashion, either in memory or on
-    /// disk.
+    /// Storage in `NSURLCache` is not allowed in any fashion, either in memory or on disk.
     #[doc(alias = "NSURLCacheStorageNotAllowed")]
     pub const NotAllowed: Self = Self(2);
 }
@@ -41,10 +41,13 @@ unsafe impl RefEncode for NSURLCacheStoragePolicy {
 }
 
 extern_class!(
-    /// NSCachedURLResponse is a class whose objects functions as a wrapper for
-    /// objects that are stored in the framework's caching system.
-    /// It is used to maintain characteristics and attributes of a cached
-    /// object.
+    /// A cached response to a URL request.
+    ///
+    /// A ``CachedURLResponse`` object provides the server's response metadata in the form of a ``URLResponse`` object, along with an [NSData](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html#//apple_ref/doc/uid/20001012-47169) object containing the actual cached content data. Its storage policy determines whether the response should be cached on disk, in memory, or not at all.
+    ///
+    /// Cached responses also contain a user info dictionary where you can store app-specific information about the cached item.
+    ///
+    /// The ``URLCache`` class stores and retrieves instances of ``CachedURLResponse``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscachedurlresponse?language=objc)
     #[unsafe(super(NSObject))]
@@ -83,19 +86,14 @@ extern_conformance!(
 impl NSCachedURLResponse {
     extern_methods!(
         #[cfg(all(feature = "NSData", feature = "NSURLResponse"))]
-        /// Initializes an NSCachedURLResponse with the given
-        /// response and data.
+        /// Creates a cached URL response instance.
         ///
-        /// A default NSURLCacheStoragePolicy is used for
-        /// NSCachedURLResponse objects initialized with this method:
-        /// NSURLCacheStorageAllowed.
+        /// The cache storage policy is set to the default, `NSURLCacheStorageAllowed`.
         ///
-        /// Parameter `response`: a NSURLResponse object.
-        ///
-        /// Parameter `data`: an NSData object representing the URL content
-        /// corresponding to the given response.
-        ///
-        /// Returns: an initialized NSCachedURLResponse.
+        /// - Parameters:
+        /// - response: The response to cache.
+        /// - data: The data to cache.
+        /// - Returns: A cached URL response object, containing the response and data.
         #[unsafe(method(initWithResponse:data:))]
         #[unsafe(method_family = init)]
         pub fn initWithResponse_data(
@@ -109,20 +107,14 @@ impl NSCachedURLResponse {
             feature = "NSDictionary",
             feature = "NSURLResponse"
         ))]
-        /// Initializes an NSCachedURLResponse with the given
-        /// response, data, user-info dictionary, and storage policy.
+        /// Creates a cached URL response with a given server response, data, user-info dictionary, and storage policy.
         ///
-        /// Parameter `response`: a NSURLResponse object.
-        ///
-        /// Parameter `data`: an NSData object representing the URL content
-        /// corresponding to the given response.
-        ///
-        /// Parameter `userInfo`: a dictionary user-specified information to be
-        /// stored with the NSCachedURLResponse.
-        ///
-        /// Parameter `storagePolicy`: an NSURLCacheStoragePolicy constant.
-        ///
-        /// Returns: an initialized NSCachedURLResponse.
+        /// - Parameters:
+        /// - response: The response to cache.
+        /// - data: The data to cache.
+        /// - userInfo: An optional dictionary of user information. May be `nil`.
+        /// - storagePolicy: An `NSURLCacheStoragePolicy` constant.
+        /// - Returns: A cached URL response object, containing the response and data.
         ///
         /// # Safety
         ///
@@ -138,32 +130,24 @@ impl NSCachedURLResponse {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURLResponse")]
-        /// Returns the response wrapped by this instance.
-        ///
-        /// Returns: The response wrapped by this instance.
+        /// The URL response object associated with the instance.
         #[unsafe(method(response))]
         #[unsafe(method_family = none)]
         pub fn response(&self) -> Retained<NSURLResponse>;
 
         #[cfg(feature = "NSData")]
-        /// Returns the data of the receiver.
-        ///
-        /// Returns: The data of the receiver.
+        /// The cached response's data.
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "NSDictionary")]
-        /// Returns the userInfo dictionary of the receiver.
-        ///
-        /// Returns: The userInfo dictionary of the receiver.
+        /// The cached response's user info dictionary.
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
-        /// Returns the NSURLCacheStoragePolicy constant of the receiver.
-        ///
-        /// Returns: The NSURLCacheStoragePolicy constant of the receiver.
+        /// The cached response's storage policy.
         #[unsafe(method(storagePolicy))]
         #[unsafe(method_family = none)]
         pub fn storagePolicy(&self) -> NSURLCacheStoragePolicy;
@@ -191,7 +175,32 @@ impl DefaultRetained for NSCachedURLResponse {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcache?language=objc)
+    /// An object that maps URL requests to cached response objects.
+    ///
+    /// The ``URLCache`` class implements the caching of responses to URL load requests, by mapping ``NSURLRequest`` objects to ``CachedURLResponse`` objects. It provides a composite in-memory and on-disk cache, and lets you manipulate the sizes of both the in-memory and on-disk portions. You can also control the path where cache data is persistently stored.
+    ///
+    /// > Note:
+    /// > In iOS, the on-disk cache may be purged when the system runs low on disk space, but only when your app is not running.
+    ///
+    /// ### Thread safety
+    ///
+    /// In iOS 8 and later, and macOS 10.10 and later, ``URLCache`` is thread safe.
+    ///
+    /// Although ``URLCache`` instance methods can safely be called from multiple execution contexts at the same time, be aware that methods like  ``cachedResponse(for:)`` and ``storeCachedResponse(_:for:)-7p7bl`` have an unavoidable race condition when attempting to read or write responses for the same request.
+    ///
+    /// Subclasses of ``URLCache`` must implement overridden methods in such a thread-safe manner.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// The ``URLCache`` class is meant to be used as-is, but you can subclass it when you have specific needs. For example, you might want to screen which responses are cached, or reimplement the storage mechanism for security or other reasons.
+    ///
+    /// When overriding methods of this class, be aware that methods that take a `task` parameter are preferred by the system to those that do not. Therefore, you should override the task-based methods when subclassing, as follows:
+    ///
+    /// - Storing responses in the cache — Override the task-based ``storeCachedResponse(_:for:)-8uq91``, instead of or in addition to the request-based ``storeCachedResponse(_:for:)-7p7bl``.
+    /// - Getting responses from the cache — Override ``getCachedResponse(for:completionHandler:)``, instead of or in addition to ``cachedResponse(for:)``.
+    /// - Removing cached responses — Override the task-based ``removeCachedResponse(for:)-1zwp6``, instead of or in addition to the request-based ``removeCachedResponse(for:)-1dh89``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcache?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCache;
@@ -207,49 +216,16 @@ extern_conformance!(
 
 impl NSURLCache {
     extern_methods!(
-        /// Returns the shared NSURLCache instance or
-        /// sets the NSURLCache instance shared by all clients of
-        /// the current process. This will be the new object returned when
-        /// calls to the
-        /// <tt>
-        /// sharedURLCache
-        /// </tt>
-        /// method are made.
+        /// The shared URL cache instance.
         ///
-        /// Unless set explicitly through a call to
-        /// <tt>
-        /// +setSharedURLCache:
-        /// </tt>
-        /// , this method returns an NSURLCache
-        /// instance created with the following default values:
-        /// <ul>
-        /// <li>
-        /// Memory capacity: 4 megabytes (4 * 1024 * 1024 bytes)
-        /// <li>
-        /// Disk capacity: 20 megabytes (20 * 1024 * 1024 bytes)
-        /// <li>
-        /// Disk path:
-        /// <nobr
-        /// >(user home directory)/Library/Caches/(application bundle id)
-        /// </nobr
-        /// >
-        /// </ul>
-        /// <p>
-        /// Users who do not have special caching requirements or
-        /// constraints should find the default shared cache instance
-        /// acceptable. If this default shared cache instance is not
-        /// acceptable,
-        /// <tt>
-        /// +setSharedURLCache:
-        /// </tt>
-        /// can be called to set a
-        /// different NSURLCache instance to be returned from this method.
-        /// Callers should take care to ensure that the setter is called
-        /// at a time when no other caller has a reference to the previously-set
-        /// shared URL cache. This is to prevent storing cache data from
-        /// becoming unexpectedly unretrievable.
+        /// Unless set explicitly, this method returns an `NSURLCache` instance created with the following default values:
+        /// - Memory capacity: 4 megabytes (4 * 1024 * 1024 bytes)
+        /// - Disk capacity: 20 megabytes (20 * 1024 * 1024 bytes)
+        /// - Disk path: `(user home directory)/Library/Caches/(application bundle id)`
         ///
-        /// Returns: the shared NSURLCache instance.
+        /// If your app doesn't have special caching requirements or constraints, the default shared cache instance should
+        /// be acceptable. Callers should take care to ensure that the setter is called at a time when no other caller has
+        /// a reference to the previously-set shared URL cache.
         #[unsafe(method(sharedURLCache))]
         #[unsafe(method_family = none)]
         pub fn sharedURLCache() -> Retained<NSURLCache>;
@@ -260,22 +236,15 @@ impl NSURLCache {
         pub fn setSharedURLCache(shared_url_cache: &NSURLCache);
 
         #[cfg(feature = "NSString")]
-        /// Initializes an NSURLCache with the given capacity and
-        /// path.
+        /// Initializes an `NSURLCache` with the given capacity and path.
         ///
-        /// The returned NSURLCache is backed by disk, so
-        /// developers can be more liberal with space when choosing the
-        /// capacity for this kind of cache. A disk cache measured in the tens
-        /// of megabytes should be acceptable in most cases.
+        /// The returned `NSURLCache` is backed by disk. A disk cache measured in the tens of megabytes should be acceptable in most cases.
         ///
-        /// Parameter `memoryCapacity`: the capacity, measured in bytes, for the cache in memory.
-        ///
-        /// Parameter `diskCapacity`: the capacity, measured in bytes, for the cache on disk.
-        ///
-        /// Parameter `path`: the path on disk where the cache data is stored.
-        ///
-        /// Returns: an initialized NSURLCache, with the given capacity, backed
-        /// by disk.
+        /// - Parameters:
+        /// - memoryCapacity: The capacity, measured in bytes, for the cache in memory.
+        /// - diskCapacity: The capacity, measured in bytes, for the cache on disk.
+        /// - path: The path on disk where the cache data is stored.
+        /// - Returns: An initialized `NSURLCache`, with the given capacity, backed by disk.
         #[deprecated]
         #[unsafe(method(initWithMemoryCapacity:diskCapacity:diskPath:))]
         #[unsafe(method_family = init)]
@@ -287,15 +256,13 @@ impl NSURLCache {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        /// Initializes an NSURLCache with the given capacity and directory.
+        /// Initializes an `NSURLCache` with the given capacity and directory.
         ///
-        /// Parameter `memoryCapacity`: the capacity, measured in bytes, for the cache in memory. Or 0 to disable memory cache.
-        ///
-        /// Parameter `diskCapacity`: the capacity, measured in bytes, for the cache on disk. Or 0 to disable disk cache.
-        ///
-        /// Parameter `directoryURL`: the path to a directory on disk where the cache data is stored. Or nil for default directory.
-        ///
-        /// Returns: an initialized NSURLCache, with the given capacity, optionally backed by disk.
+        /// - Parameters:
+        /// - memoryCapacity: The capacity, measured in bytes, for the cache in memory. Or `0` to disable memory cache.
+        /// - diskCapacity: The capacity, measured in bytes, for the cache on disk. Or `0` to disable disk cache.
+        /// - directoryURL: The path to a directory on disk where the cache data is stored. Or `nil` for default directory.
+        /// - Returns: An initialized `NSURLCache`, with the given capacity, optionally backed by disk.
         #[unsafe(method(initWithMemoryCapacity:diskCapacity:directoryURL:))]
         #[unsafe(method_family = init)]
         pub fn initWithMemoryCapacity_diskCapacity_directoryURL(
@@ -306,17 +273,12 @@ impl NSURLCache {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURLRequest")]
-        /// Returns the NSCachedURLResponse stored in the cache with
-        /// the given request.
+        /// Returns the cached URL response in the cache for the specified URL request.
         ///
-        /// The method returns nil if there is no
-        /// NSCachedURLResponse stored using the given request.
+        /// Returns `nil` if there is no `NSCachedURLResponse` stored using the given request.
         ///
-        /// Parameter `request`: the NSURLRequest to use as a key for the lookup.
-        ///
-        /// Returns: The NSCachedURLResponse stored in the cache with the given
-        /// request, or nil if there is no NSCachedURLResponse stored with the
-        /// given request.
+        /// - Parameter request: The `NSURLRequest` to use as a key for the lookup.
+        /// - Returns: The `NSCachedURLResponse` stored in the cache with the given request, or `nil` if there is no cached response.
         #[unsafe(method(cachedResponseForRequest:))]
         #[unsafe(method_family = none)]
         pub fn cachedResponseForRequest(
@@ -325,12 +287,11 @@ impl NSURLCache {
         ) -> Option<Retained<NSCachedURLResponse>>;
 
         #[cfg(feature = "NSURLRequest")]
-        /// Stores the given NSCachedURLResponse in the cache using
-        /// the given request.
+        /// Stores a cached URL response for a specified request.
         ///
-        /// Parameter `cachedResponse`: The cached response to store.
-        ///
-        /// Parameter `request`: the NSURLRequest to use as a key for the storage.
+        /// - Parameters:
+        /// - cachedResponse: The cached response to store.
+        /// - request: The `NSURLRequest` to use as a key for the storage.
         #[unsafe(method(storeCachedResponse:forRequest:))]
         #[unsafe(method_family = none)]
         pub fn storeCachedResponse_forRequest(
@@ -340,34 +301,29 @@ impl NSURLCache {
         );
 
         #[cfg(feature = "NSURLRequest")]
-        /// Removes the NSCachedURLResponse from the cache that is
-        /// stored using the given request.
+        /// Removes the cached URL response for a specified request.
         ///
-        /// No action is taken if there is no NSCachedURLResponse
-        /// stored with the given request.
+        /// No action is taken if there is no `NSCachedURLResponse` stored with the given request.
         ///
-        /// Parameter `request`: the NSURLRequest to use as a key for the lookup.
+        /// - Parameter request: The `NSURLRequest` to use as a key for the lookup.
         #[unsafe(method(removeCachedResponseForRequest:))]
         #[unsafe(method_family = none)]
         pub fn removeCachedResponseForRequest(&self, request: &NSURLRequest);
 
-        /// Clears the given cache, removing all NSCachedURLResponse
-        /// objects that it stores.
+        /// Clears the cache, removing all `NSCachedURLResponse` objects that it stores.
         #[unsafe(method(removeAllCachedResponses))]
         #[unsafe(method_family = none)]
         pub fn removeAllCachedResponses(&self);
 
         #[cfg(feature = "NSDate")]
-        /// Clears the given cache of any cached responses since the provided date.
+        /// Clears the cache of any cached responses since the provided date.
         #[unsafe(method(removeCachedResponsesSinceDate:))]
         #[unsafe(method_family = none)]
         pub fn removeCachedResponsesSinceDate(&self, date: &NSDate);
 
-        /// In-memory capacity of the receiver.
+        /// The in-memory capacity of the receiver, measured in bytes.
         ///
-        /// At the time this call is made, the in-memory cache will truncate its contents to the size given, if necessary.
-        ///
-        /// Returns: The in-memory capacity, measured in bytes, for the receiver.
+        /// At the time this value is set, the in-memory cache will truncate its contents to the size given, if necessary.
         #[unsafe(method(memoryCapacity))]
         #[unsafe(method_family = none)]
         pub fn memoryCapacity(&self) -> NSUInteger;
@@ -377,9 +333,9 @@ impl NSURLCache {
         #[unsafe(method_family = none)]
         pub fn setMemoryCapacity(&self, memory_capacity: NSUInteger);
 
-        /// The on-disk capacity of the receiver.
+        /// The on-disk capacity of the receiver, measured in bytes.
         ///
-        /// The on-disk capacity, measured in bytes, for the receiver. On mutation the on-disk cache will truncate its contents to the size given, if necessary.
+        /// On mutation, the on-disk cache will truncate its contents to the size given, if necessary.
         #[unsafe(method(diskCapacity))]
         #[unsafe(method_family = none)]
         pub fn diskCapacity(&self) -> NSUInteger;
@@ -389,24 +345,12 @@ impl NSURLCache {
         #[unsafe(method_family = none)]
         pub fn setDiskCapacity(&self, disk_capacity: NSUInteger);
 
-        /// Returns the current amount of space consumed by the
-        /// in-memory cache of the receiver.
-        ///
-        /// This size, measured in bytes, indicates the current
-        /// usage of the in-memory cache.
-        ///
-        /// Returns: the current usage of the in-memory cache of the receiver.
+        /// The current amount of space consumed by the in-memory cache of the receiver, measured in bytes.
         #[unsafe(method(currentMemoryUsage))]
         #[unsafe(method_family = none)]
         pub fn currentMemoryUsage(&self) -> NSUInteger;
 
-        /// Returns the current amount of space consumed by the
-        /// on-disk cache of the receiver.
-        ///
-        /// This size, measured in bytes, indicates the current
-        /// usage of the on-disk cache.
-        ///
-        /// Returns: the current usage of the on-disk cache of the receiver.
+        /// The current amount of space consumed by the on-disk cache of the receiver, measured in bytes.
         #[unsafe(method(currentDiskUsage))]
         #[unsafe(method_family = none)]
         pub fn currentDiskUsage(&self) -> NSUInteger;
@@ -437,6 +381,7 @@ impl DefaultRetained for NSURLCache {
 impl NSURLCache {
     extern_methods!(
         #[cfg(feature = "NSURLSession")]
+        /// Stores a cached URL response for a specified data task.
         #[unsafe(method(storeCachedResponse:forDataTask:))]
         #[unsafe(method_family = none)]
         pub fn storeCachedResponse_forDataTask(
@@ -446,6 +391,7 @@ impl NSURLCache {
         );
 
         #[cfg(all(feature = "NSURLSession", feature = "block2"))]
+        /// Gets the cached URL response for a specified data task, passing it to a completion handler.
         #[unsafe(method(getCachedResponseForDataTask:completionHandler:))]
         #[unsafe(method_family = none)]
         pub fn getCachedResponseForDataTask_completionHandler(
@@ -455,6 +401,7 @@ impl NSURLCache {
         );
 
         #[cfg(feature = "NSURLSession")]
+        /// Removes the cached URL response for a specified data task.
         #[unsafe(method(removeCachedResponseForDataTask:))]
         #[unsafe(method_family = none)]
         pub fn removeCachedResponseForDataTask(&self, data_task: &NSURLSessionDataTask);

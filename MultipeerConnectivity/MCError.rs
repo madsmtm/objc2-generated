@@ -7,28 +7,37 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerrordomain?language=objc)
+    #[deprecated = "Use Network Framework instead"]
     pub static MCErrorDomain: &'static NSString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerrorcode?language=objc)
 // NS_ENUM
+#[deprecated = "Use Network Framework instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCErrorCode(pub NSInteger);
 impl MCErrorCode {
     #[doc(alias = "MCErrorUnknown")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "MCErrorNotConnected")]
+    #[deprecated = "Use Network Framework instead"]
     pub const NotConnected: Self = Self(1);
     #[doc(alias = "MCErrorInvalidParameter")]
+    #[deprecated = "Use Network Framework instead"]
     pub const InvalidParameter: Self = Self(2);
     #[doc(alias = "MCErrorUnsupported")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Unsupported: Self = Self(3);
     #[doc(alias = "MCErrorTimedOut")]
+    #[deprecated = "Use Network Framework instead"]
     pub const TimedOut: Self = Self(4);
     #[doc(alias = "MCErrorCancelled")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Cancelled: Self = Self(5);
     #[doc(alias = "MCErrorUnavailable")]
+    #[deprecated = "Use Network Framework instead"]
     pub const Unavailable: Self = Self(6);
 }
 

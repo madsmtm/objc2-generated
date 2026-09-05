@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionrule?language=objc)
+    /// A rule that affects how an attributed string performs automatic grammatical agreement.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionrule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRule;
@@ -40,6 +42,7 @@ impl NSInflectionRule {
     extern_methods!(
         // -init (unavailable)
 
+        /// Returns a rule that performs automatic grammar agreement based on the system's current locale and language settings.
         #[unsafe(method(automaticRule))]
         #[unsafe(method_family = none)]
         pub fn automaticRule() -> Retained<NSInflectionRule>;
@@ -55,7 +58,9 @@ impl NSInflectionRule {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionruleexplicit?language=objc)
+    /// An inflection rule that uses a morphology instance to determine how to inflect attributed strings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionruleexplicit?language=objc)
     #[unsafe(super(NSInflectionRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRuleExplicit;
@@ -88,6 +93,7 @@ extern_conformance!(
 impl NSInflectionRuleExplicit {
     extern_methods!(
         #[cfg(feature = "NSMorphology")]
+        /// Initializes the inflection rule with the specified morphology.
         #[unsafe(method(initWithMorphology:))]
         #[unsafe(method_family = init)]
         pub fn initWithMorphology(
@@ -96,6 +102,7 @@ impl NSInflectionRuleExplicit {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSMorphology")]
+        /// The morphology used by the receiver.
         #[unsafe(method(morphology))]
         #[unsafe(method_family = none)]
         pub fn morphology(&self) -> Retained<NSMorphology>;
@@ -122,10 +129,12 @@ impl NSInflectionRuleExplicit {
 impl NSInflectionRule {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns a Boolean value that indicates whether inflection will work in the specified language code.
         #[unsafe(method(canInflectLanguage:))]
         #[unsafe(method_family = none)]
         pub fn canInflectLanguage(language: &NSString) -> bool;
 
+        /// A Boolean value that indicates whether inflection will work in the language of the main bundle's first preferred localization.
         #[unsafe(method(canInflectPreferredLocalization))]
         #[unsafe(method_family = none)]
         pub fn canInflectPreferredLocalization() -> bool;

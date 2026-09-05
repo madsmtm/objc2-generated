@@ -4,7 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// A version specifying which PencilKit features are used/allowed.
+/// A version that specifies which PencilKit features a drawing uses or requires.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkcontentversion?language=objc)
 // NS_ENUM
@@ -12,25 +12,24 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKContentVersion(pub NSInteger);
 impl PKContentVersion {
-    /// Version for inks introduced in iOS 14.0.
-    ///
-    /// Inks included are Pen, Pencil, and Marker.
+    /// The version for inks introduced in iOS 14, including Pen, Pencil, and Marker.
     #[doc(alias = "PKContentVersion1")]
     pub const Version1: Self = Self(1);
-    /// Version for inks introduced in iOS 17.0.
-    ///
-    /// Inks included are Pen, Pencil, Marker, Monoline, Fountain Pen, Watercolor, and Crayon.
+    /// The version for inks introduced in iOS 17, adding Monoline, Fountain Pen, Watercolor, and Crayon.
     #[doc(alias = "PKContentVersion2")]
     pub const Version2: Self = Self(2);
-    /// New Fountain Pen
+    /// The version that includes the updated Fountain Pen ink.
     #[doc(alias = "PKContentVersion3")]
     pub const Version3: Self = Self(3);
-    /// New Reed Pen
+    /// The version that adds the Reed Pen ink.
     #[doc(alias = "PKContentVersion4")]
     pub const Version4: Self = Self(4);
-    /// The latest version including all features.
+    /// The version that adds stroke render state support.
+    #[doc(alias = "PKContentVersion5")]
+    pub const Version5: Self = Self(5);
+    /// The latest version, which includes all available PencilKit features.
     #[doc(alias = "PKContentVersionLatest")]
-    pub const VersionLatest: Self = Self(4);
+    pub const VersionLatest: Self = Self(5);
 }
 
 unsafe impl Encode for PKContentVersion {

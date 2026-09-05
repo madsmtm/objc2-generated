@@ -15,6 +15,7 @@ extern_class!(
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
+    #[deprecated = "Use DiagnosticResult instead."]
     pub struct MXCrashDiagnostic;
 );
 
@@ -40,6 +41,7 @@ impl MXCrashDiagnostic {
         /// The application call stack tree associated with this crash.
         ///
         /// This call stack tree includes those stack frames present at the time of the crash.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(callStackTree))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
@@ -47,6 +49,7 @@ impl MXCrashDiagnostic {
         /// The termination reason associated with this crash.
         ///
         /// Exit reason information specified when a process is terminated. Key system components, both inside and outside of a process, will terminate the process upon encountering a fatal error (e.g. a bad code signature, a missing dependent library, or accessing privacy sensitive information without the proper entitlement).
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(terminationReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn terminationReason(&self) -> Option<Retained<NSString>>;
@@ -54,6 +57,7 @@ impl MXCrashDiagnostic {
         /// Details about memory that the app incorrectly accessed in relation to other sections of the app’s virtual memory address space.
         ///
         /// This property is set when a bad memory access crash occurs.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(virtualMemoryRegionInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn virtualMemoryRegionInfo(&self) -> Option<Retained<NSString>>;
@@ -61,6 +65,7 @@ impl MXCrashDiagnostic {
         /// The name of the Mach exception that terminated the app.
         ///
         /// See: sys/exception_types.h
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(exceptionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionType(&self) -> Option<Retained<NSNumber>>;
@@ -68,6 +73,7 @@ impl MXCrashDiagnostic {
         /// Processor specific information about the exception encoded into one or more 64-bit hexadecimal numbers
         ///
         /// See: sys/exception_types.h
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(exceptionCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionCode(&self) -> Option<Retained<NSNumber>>;
@@ -75,6 +81,7 @@ impl MXCrashDiagnostic {
         /// The signal associated with this crash.
         ///
         /// See: sys/signal.h
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(signal))]
         #[unsafe(method_family = none)]
         pub unsafe fn signal(&self) -> Option<Retained<NSNumber>>;

@@ -6,14 +6,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstaskterminationreason?language=objc)
+/// Constants that specify the termination reason values that the system returns.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstaskterminationreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTaskTerminationReason(pub NSInteger);
 impl NSTaskTerminationReason {
+    /// The task exited normally.
     #[doc(alias = "NSTaskTerminationReasonExit")]
     pub const Exit: Self = Self(1);
+    /// The task exited due to an uncaught signal.
     #[doc(alias = "NSTaskTerminationReasonUncaughtSignal")]
     pub const UncaughtSignal: Self = Self(2);
 }
@@ -27,7 +31,21 @@ unsafe impl RefEncode for NSTaskTerminationReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstask?language=objc)
+    /// An object that represents a subprocess of the current process.
+    ///
+    /// Using this class, your program can run another program as a subprocess and monitor that program's execution. Unlike ``Thread``, it doesn't share memory space with the process that creates it.
+    ///
+    /// A process operates within an environment defined by the current values for several items: the current directory, standard input, standard output, standard error, and the values of any environment variables, inheriting its environment from the process that launches it.
+    /// If there are any environment variables that should be different for the subprocess (for example, if the current directory needs to change), change it in the instance after initialization, before your app launches it. Your app can't change a process's environment while it's running.
+    ///
+    /// You can only run the subprocess once per instance. Subsequent attempts raise an error.
+    ///
+    /// > Important:
+    /// > In a sandboxed app, child processes you create with this class inherit the sandbox of the parent app. Instead, write helper apps as XPC Services because it allows you to specify different sandbox entitlements for helper apps. For more information, see [Daemons and Services Programming Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i) and
+    /// <doc
+    /// ://com.apple.documentation/documentation/xpc>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstask?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTask;
@@ -43,11 +61,17 @@ extern_conformance!(
 
 impl NSTask {
     extern_methods!(
+        /// Returns an initialized process object with the environment of the current process.
+        ///
+        /// If you need to modify the environment of a process, use alloc and init, and then set up the environment before launching the new process. Otherwise, use the class method ``NSTask/launchedProcess(launchPath:arguments:)`` to create and run the process.
+        ///
+        /// - Returns: An initialized process object with the environment of the current process.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
+        /// The receiver's executable.
         #[unsafe(method(executableURL))]
         #[unsafe(method_family = none)]
         pub fn executableURL(&self) -> Option<Retained<NSURL>>;
@@ -61,6 +85,9 @@ impl NSTask {
         pub fn setExecutableURL(&self, executable_url: Option<&NSURL>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The command arguments that the system uses to launch the executable.
+        ///
+        /// The `NSTask` object converts both `path` and the strings in `arguments` to appropriate C-style strings (using `fileSystemRepresentation`) before passing them to the task through `argv[]`. The strings in `arguments` don't undergo shell expansion, so you don't need to do special quoting, and shell variables, such as `$PWD`, aren't resolved.
         #[unsafe(method(arguments))]
         #[unsafe(method_family = none)]
         pub fn arguments(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -74,6 +101,9 @@ impl NSTask {
         pub fn setArguments(&self, arguments: Option<&NSArray<NSString>>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// The environment for the receiver.
+        ///
+        /// If this method isn't used, the environment is inherited from the process that created the receiver. This method raises an `NSInvalidArgumentException` if the system has launched the receiver.
         #[unsafe(method(environment))]
         #[unsafe(method_family = none)]
         pub fn environment(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
@@ -87,6 +117,7 @@ impl NSTask {
         pub fn setEnvironment(&self, environment: Option<&NSDictionary<NSString, NSString>>);
 
         #[cfg(feature = "NSURL")]
+        /// The current directory for the receiver.
         #[unsafe(method(currentDirectoryURL))]
         #[unsafe(method_family = none)]
         pub fn currentDirectoryURL(&self) -> Option<Retained<NSURL>>;
@@ -100,6 +131,7 @@ impl NSTask {
         pub fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
 
         #[cfg(feature = "NSData")]
+        /// The launch requirement data for the receiver.
         #[unsafe(method(launchRequirementData))]
         #[unsafe(method_family = none)]
         pub fn launchRequirementData(&self) -> Option<Retained<NSData>>;
@@ -112,6 +144,11 @@ impl NSTask {
         #[unsafe(method_family = none)]
         pub fn setLaunchRequirementData(&self, launch_requirement_data: Option<&NSData>);
 
+        /// The standard input for the receiver.
+        ///
+        /// If this is an `NSPipe` object, launching the receiver automatically closes the read end of the pipe in the current task. Don't create a handle for the pipe and pass that as the argument, or the read end of the pipe won't be closed automatically.
+        ///
+        /// If this method isn't used, the standard input is inherited from the process that created the receiver. This method raises an `NSInvalidArgumentException` if the system has launched the receiver.
         #[unsafe(method(standardInput))]
         #[unsafe(method_family = none)]
         pub fn standardInput(&self) -> Option<Retained<AnyObject>>;
@@ -125,6 +162,11 @@ impl NSTask {
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardInput(&self, standard_input: Option<&AnyObject>);
 
+        /// The standard output for the receiver.
+        ///
+        /// If this is an `NSPipe` object, launching the receiver automatically closes the write end of the pipe in the current task. Don't create a handle for the pipe and pass that as the argument, or the write end of the pipe won't be closed automatically.
+        ///
+        /// If this method isn't used, the standard output is inherited from the process that created the receiver. This method raises an `NSInvalidArgumentException` if the system has launched the receiver.
         #[unsafe(method(standardOutput))]
         #[unsafe(method_family = none)]
         pub fn standardOutput(&self) -> Option<Retained<AnyObject>>;
@@ -138,6 +180,11 @@ impl NSTask {
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardOutput(&self, standard_output: Option<&AnyObject>);
 
+        /// The standard error for the receiver.
+        ///
+        /// If this is an `NSPipe` object, launching the receiver automatically closes the write end of the pipe in the current task. Don't create a handle for the pipe and pass that as the argument, or the system won't automatically close the write end of the pipe.
+        ///
+        /// If this method isn't used, the standard error is inherited from the process that created the receiver. This method raises an `NSInvalidArgumentException` if the system has launched the receiver.
         #[unsafe(method(standardError))]
         #[unsafe(method_family = none)]
         pub fn standardError(&self) -> Option<Retained<AnyObject>>;
@@ -152,43 +199,82 @@ impl NSTask {
         pub unsafe fn setStandardError(&self, standard_error: Option<&AnyObject>);
 
         #[cfg(feature = "NSError")]
+        /// Runs the process with the current environment.
         #[unsafe(method(launchAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub fn launchAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
+        /// Sends an interrupt signal to the receiver and all of its subtasks.
+        ///
+        /// If the task terminates as a result, which is the default behavior, an `NSTaskDidTerminateNotification` gets sent to the default notification center. This method has no effect if the receiver was already launched and has already finished executing. If the system hasn't launched the receiver, this method raises an `NSInvalidArgumentException`.
+        ///
+        /// It isn't always possible to interrupt the receiver because it might be ignoring the interrupt signal. This method sends `SIGINT`.
         #[unsafe(method(interrupt))]
         #[unsafe(method_family = none)]
         pub fn interrupt(&self);
 
+        /// Sends a terminate signal to the receiver and all of its subtasks.
+        ///
+        /// If the task terminates as a result, which is the default behavior, an `NSTaskDidTerminateNotification` gets sent to the default notification center. This method has no effect if the receiver was already launched and has already finished executing. If the receiver hasn't been launched yet, this method raises an `NSInvalidArgumentException`.
+        ///
+        /// It's not always possible to terminate the receiver because it might be ignoring the terminate signal. This method sends `SIGTERM`.
         #[unsafe(method(terminate))]
         #[unsafe(method_family = none)]
         pub fn terminate(&self);
 
+        /// Suspends execution of the receiver task.
+        ///
+        /// Multiple `suspend` messages can be sent, but they must be balanced with an equal number of `resume` messages before the task resumes execution.
+        ///
+        /// - Returns: `YES` if the receiver was successfully suspended, `NO` otherwise.
         #[unsafe(method(suspend))]
         #[unsafe(method_family = none)]
         pub fn suspend(&self) -> bool;
 
+        /// Resumes execution of a suspended task.
+        ///
+        /// If the system sent multiple `suspend` messages to the receiver, an equal number of `resume` messages must be sent before the task resumes execution.
+        ///
+        /// - Returns: `YES` if the receiver was able to resume execution, `NO` otherwise.
         #[unsafe(method(resume))]
         #[unsafe(method_family = none)]
         pub fn resume(&self) -> bool;
 
+        /// The receiver's process identifier.
         #[unsafe(method(processIdentifier))]
         #[unsafe(method_family = none)]
         pub fn processIdentifier(&self) -> c_int;
 
+        /// A status that indicates whether the receiver is still running.
         #[unsafe(method(isRunning))]
         #[unsafe(method_family = none)]
         pub fn isRunning(&self) -> bool;
 
+        /// The exit status the receiver's executable returns.
+        ///
+        /// Each task defines and documents how your app should interpret the return value. For example, many commands return 0 if they complete successfully or an error code if they don't. You'll need to look at the documentation for that task to learn what values it returns under what circumstances.
+        ///
+        /// This method raises an `NSInvalidArgumentException` if the receiver is still running. Verify that the receiver isn't running before you use it.
         #[unsafe(method(terminationStatus))]
         #[unsafe(method_family = none)]
         pub fn terminationStatus(&self) -> c_int;
 
+        /// The reason the system terminated the task.
+        ///
+        /// The possible values are described in `NSTaskTerminationReason`.
         #[unsafe(method(terminationReason))]
         #[unsafe(method_family = none)]
         pub fn terminationReason(&self) -> NSTaskTerminationReason;
 
         #[cfg(feature = "block2")]
+        /// A completion block the system invokes when the task completes.
+        ///
+        /// The system passes the task object to the block to allow access to the task parameters, for example to determine if the task completed successfully.
+        ///
+        /// This block isn't guaranteed to be fully executed prior to `waitUntilExit` returning.
+        ///
+        /// Setting the block to nil is valid, and stops the previous block from being invoked, as long as it hasn't started in any way. Only one termination handler block can be set at any time. If a terminationHandler is set on an NSTask, the NSTaskDidTerminateNotification notification is not posted for that task.
+        ///
         /// # Safety
         ///
         /// The returned block's argument must be a valid pointer.
@@ -210,6 +296,7 @@ impl NSTask {
         );
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// The default quality of service level the system applies to operations the task executes.
         #[unsafe(method(qualityOfService))]
         #[unsafe(method_family = none)]
         pub fn qualityOfService(&self) -> NSQualityOfService;
@@ -248,6 +335,13 @@ impl NSTask {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// Creates and runs a task with a specified executable and arguments.
+        ///
+        /// - Parameter url: The URL for the executable.
+        /// - Parameter arguments: An array of `NSString` objects that supplies the arguments to the task.
+        /// - Parameter error: If an error occurs, upon return contains an `NSError` object that describes the problem.
+        /// - Parameter terminationHandler: The system invokes this completion block when the task has completed.
+        /// - Returns: An initialized `NSTask` object with the environment of the current process.
         #[unsafe(method(launchedTaskWithExecutableURL:arguments:error:terminationHandler:))]
         #[unsafe(method_family = none)]
         pub fn launchedTaskWithExecutableURL_arguments_error_terminationHandler(
@@ -257,6 +351,45 @@ impl NSTask {
             termination_handler: Option<&block2::SendableBlock<'static, fn(NonNull<NSTask>)>>,
         ) -> Option<Retained<NSTask>>;
 
+        /// Blocks the process until the receiver is finished.
+        ///
+        /// This method first checks to see if the receiver is still running using `isRunning`. Then it polls the current run loop using `NSDefaultRunLoopMode` until the task completes.
+        ///
+        ///
+        /// @TabNavigator{
+        ///
+        /// @Tab("Swift") {
+        /// ```swift
+        /// let task: NSTask = // Create and initialize a task
+        /// task.launch()
+        /// task.waitUntilExit()
+        /// let status = task.terminationStatus
+        ///
+        /// if status == 0 {
+        /// print("Task succeeded.")
+        /// } else {
+        /// print("Task failed.")
+        /// }
+        /// ```
+        /// }
+        ///
+        /// @Tab("Objective-C") {
+        /// ```objc
+        /// NSTask *task = // Create and initialize a task
+        /// [task launch];
+        /// [task waitUntilExit];
+        /// int status = [task terminationStatus];
+        ///
+        /// if (status == 0) {
+        /// NSLog(@"Task succeeded.");
+        /// } else {
+        /// NSLog(@"Task failed.");
+        /// }
+        /// ```
+        /// }
+        /// }
+        ///
+        /// `waitUntilExit` does not guarantee that the `terminationHandler` block has been fully executed before `waitUntilExit` returns.
         #[unsafe(method(waitUntilExit))]
         #[unsafe(method_family = none)]
         pub fn waitUntilExit(&self);
@@ -267,6 +400,7 @@ impl NSTask {
 impl NSTask {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Sets the receiver's executable.
         #[deprecated]
         #[unsafe(method(launchPath))]
         #[unsafe(method_family = none)]
@@ -282,6 +416,10 @@ impl NSTask {
         pub fn setLaunchPath(&self, launch_path: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// Sets the current directory for the receiver.
+        ///
+        ///
+        /// If this method isn't used, the current directory is inherited from the process that created the receiver. This method raises an `NSInvalidArgumentException` if the receiver has already been launched.
         #[deprecated]
         #[unsafe(method(currentDirectoryPath))]
         #[unsafe(method_family = none)]
@@ -296,12 +434,26 @@ impl NSTask {
         #[unsafe(method_family = none)]
         pub fn setCurrentDirectoryPath(&self, current_directory_path: &NSString);
 
+        /// Launches the task represented by the receiver.
+        ///
+        ///
+        /// Raises an `NSInvalidArgumentException` if the launch path has not been set or is invalid or if it fails to create a process.
         #[deprecated]
         #[unsafe(method(launch))]
         #[unsafe(method_family = none)]
         pub fn launch(&self);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Creates and launches a task with a specified executable and arguments.
+        ///
+        ///
+        /// The task inherits its environment from the process that invokes this method.
+        ///
+        /// The `NSTask` object converts both `path` and the strings in `arguments` to appropriate C-style strings (using `fileSystemRepresentation`) before passing them to the task via `argv[]`. The strings in `arguments` don't undergo shell expansion, so you don't need to do special quoting, and shell variables, such as `$PWD`, aren't resolved.
+        ///
+        /// - Parameter path: The path to the executable.
+        /// - Parameter arguments: An array of `NSString` objects that supplies the arguments to the task.
+        /// - Returns: An initialized `NSTask` object with the supplied `arguments`.
         #[deprecated]
         #[unsafe(method(launchedTaskWithLaunchPath:arguments:))]
         #[unsafe(method_family = none)]
@@ -313,7 +465,15 @@ impl NSTask {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstaskdidterminatenotification?language=objc)
+    /// Posted when the task has stopped execution.
+    ///
+    /// The notification object is the `NSTask` object that the system terminated. This notification doesn't contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification from the thread in which the `NSTask` object called `launch`. When launching a task from a secondary thread or background queue, you can use the `terminationHandler` property instead for greater control over the execution context of any operations to be performed after the task finishes.
+    ///
+    /// This notification can be posted either when the task has exited normally or as a result of `terminate` being sent to the `NSTask` object. If the `NSTask` object gets released, however, this notification won't get sent, as the port the message would have been sent on was released as part of the task release. The observer method can use `terminationStatus` to determine why the task died.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nstaskdidterminatenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSTaskDidTerminateNotification: &'static NSNotificationName;
 }

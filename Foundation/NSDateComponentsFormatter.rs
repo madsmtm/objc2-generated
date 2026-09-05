@@ -6,22 +6,61 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentsformatterunitsstyle?language=objc)
+/// Constants for specifying how to represent quantities of time.
+///
+/// All date and time values are localized and formatted according to the current user's language preferences.
+///
+/// The following table shows how the quantity of 9 hours, 41 minutes, and 30 seconds is displayed in the U.S. English locale for each style:
+///
+/// | Style | Displayed result |
+/// |---|---|
+/// | `spellOut` | "nine hours, forty-one minutes, thirty seconds" |
+/// | `full` | "9 hours, 41 minutes, 30 seconds" |
+/// | `short` | "9 hr, 41 min, 30 sec" |
+/// | `brief` | "9hr 41min 30sec" |
+/// | `abbreviated` | "9h 41m 30s" |
+/// | `positional` | "9:31:30" |
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentsformatterunitsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateComponentsFormatterUnitsStyle(pub NSInteger);
 impl NSDateComponentsFormatterUnitsStyle {
+    /// A style that uses the position of a unit of time to identify its value.
+    ///
+    /// This style is most commonly used for time values where the hour, minute, and second values are separated by colons.
+    ///
+    /// For example, one hour and ten minutes is displayed in the U.S. English locale as "1:10:00".
+    ///
+    /// > Note: This style may fall back to the behavior of `NSDateComponentsFormatterUnitsStyleAbbreviated` when attempting to display large time quantities.
     #[doc(alias = "NSDateComponentsFormatterUnitsStylePositional")]
     pub const Positional: Self = Self(0);
+    /// A style that uses the most abbreviated spelling for units of time.
+    ///
+    /// This style represents the shortest representation of units and quantities of time.
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as "3y 9mo 26d 19h 17s".
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleAbbreviated")]
     pub const Abbreviated: Self = Self(1);
+    /// A style that uses a shortened spelling for units.
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as "3 yrs, 9 mths, 26 days, 19 hr, 17 sec".
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleShort")]
     pub const Short: Self = Self(2);
+    /// A style that spells out the units of time, but not the quantities.
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as "3 years, 9 months, 26 days, 19 hours, 17 seconds".
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleFull")]
     pub const Full: Self = Self(3);
+    /// A style that spells out the units and quantities of time.
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as "three years, nine months, twenty-six days, nineteen hours, seventeen seconds".
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleSpellOut")]
     pub const SpellOut: Self = Self(4);
+    /// A style that uses a shortened spelling for units of time that is shorter than `NSDateComponentsFormatterUnitsStyleShort`.
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as "3yrs 9mths 26days 19hr 17sec".
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleBrief")]
     pub const Brief: Self = Self(5);
 }
@@ -34,25 +73,34 @@ unsafe impl RefEncode for NSDateComponentsFormatterUnitsStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentsformatterzeroformattingbehavior?language=objc)
+/// Formatting constants for when values contain zeroes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentsformatterzeroformattingbehavior?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateComponentsFormatterZeroFormattingBehavior(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDateComponentsFormatterZeroFormattingBehavior: NSUInteger {
+/// No formatting behavior. This behavior prevents the dropping of zero values or adding of zeroes for padding. For example, with hours, minutes, and seconds displayed, the abbreviated value for one hour and 10 seconds is "1h 0m 10s".
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorNone")]
         const None = 0;
+/// The default formatting behavior. When using positional units, this behavior drops leading zeroes but pads middle and trailing values with zeros as needed. For example, with hours, minutes, and seconds displayed, the value for one hour and 10 seconds is "1:00:10". For all other unit styles, this behavior drops all units whose values are 0. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of one hour and 10 seconds is displayed as "1h 10s".
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDefault")]
         const Default = 1<<0;
+/// The drop leading zeroes formatting behavior. Units whose values are 0 are dropped starting at the beginning of the sequence. Units continue to be dropped until a non-zero value is encountered. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of ten minutes is displayed as "10m 0s".
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropLeading")]
         const DropLeading = 1<<1;
+/// The drop middle zero units behavior. Units whose values are 0 are dropped from anywhere in the middle of a sequence. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of one hour, zero minutes, and five seconds is displayed as "0d 1h 5s".
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle")]
         const DropMiddle = 1<<2;
+/// The drop trailing zero units behavior. Units whose value is 0 are dropped starting at the end of the sequence. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of one hour is displayed as "0d 1h".
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing")]
         const DropTrailing = 1<<3;
+/// The drop all zero units behavior. This behavior drops all units whose values are 0. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of one hour is displayed as "1h".
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropAll")]
         const DropAll = NSDateComponentsFormatterZeroFormattingBehavior::DropLeading.0|NSDateComponentsFormatterZeroFormattingBehavior::DropMiddle.0|NSDateComponentsFormatterZeroFormattingBehavior::DropTrailing.0;
+/// The add padding zeroes behavior. This behavior pads values with zeroes as appropriate. For example, consider the value of one hour formatted using the positional and abbreviated unit styles. When days, hours, minutes, and seconds are allowed, the value is displayed as "0d 1:00:00" using the positional style, and as "0d 1h 0m 0s" using the abbreviated style.
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorPad")]
         const Pad = 1<<16;
         const _ = !0;
@@ -68,7 +116,48 @@ unsafe impl RefEncode for NSDateComponentsFormatterZeroFormattingBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentsformatter?language=objc)
+    /// A formatter that creates string representations of quantities of time.
+    ///
+    /// An ``DateComponentsFormatter`` object takes quantities of time and formats them as a user-readable string. Use a date components formatter to create strings for your app's interface. The formatter object has many options for creating both abbreviated and expanded strings. The formatter takes the current user's locale and language into account when generating strings.
+    ///
+    /// To use this class, create an instance, configure its properties, and call one of its methods to generate an appropriate string. The properties of this class let you configure the calendar and specify the date and time units you want displayed in the resulting string. The listing below shows how to configure a formatter to create the string "About 5 minutes remaining".
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let formatter = DateComponentsFormatter()
+    /// formatter.unitsStyle = .full
+    /// formatter.includesApproximationPhrase = true
+    /// formatter.includesTimeRemainingPhrase = true
+    /// formatter.allowedUnits = [.minute]
+    ///
+    /// // Use the configured formatter to generate the string.
+    /// let outputString = formatter.string(from: 300.0)
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSDateComponentsFormatter *formatter = [[NSDateComponentsFormatter alloc] init];
+    /// formatter.unitsStyle = NSDateComponentsFormatterUnitsStyleFull;
+    /// formatter.includesApproximationPhrase = YES;
+    /// formatter.includesTimeRemainingPhrase = YES;
+    /// formatter.allowedUnits = NSCalendarUnitMinute;
+    ///
+    /// // Use the configured formatter to generate the string.
+    /// NSString* outputString = [formatter stringFromTimeInterval:300.0];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// The methods of this class may be called safely from any thread of your app. It is also safe to share a single instance of this class from multiple threads, with the caveat that you should not change the configuration of the object while another thread is using it to generate a string.
+    ///
+    /// > Tip:
+    /// > In Swift, you can use ``Date/RelativeFormatStyle`` rather than ``DateComponentsFormatter``. The ``FormatStyle`` API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical ``FormatStyle`` instances, so you don't need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentsformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -105,6 +194,13 @@ extern_conformance!(
 impl NSDateComponentsFormatter {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Returns a formatted string based on the date information in the specified object.
+        ///
+        ///
+        /// Parameter `obj`: An object containing the date and time information to format. The object in this parameter must be an instance of `NSDateComponents`.
+        ///
+        /// Returns: A formatted string representing the specified date information.
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.
@@ -116,6 +212,14 @@ impl NSDateComponentsFormatter {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
+        /// Returns a formatted string based on the specified date component information.
+        ///
+        /// Use this method to format date information that is already broken down into the component day and time values.
+        ///
+        ///
+        /// Parameter `components`: A date components object containing the date and time information to format. The `allowedUnits` property determines which date components are actually used to generate the string. All other date components are ignored. This parameter must not be `nil`.
+        ///
+        /// Returns: A formatted string representing the specified date information.
         #[unsafe(method(stringFromDateComponents:))]
         #[unsafe(method_family = none)]
         pub fn stringFromDateComponents(
@@ -124,6 +228,18 @@ impl NSDateComponentsFormatter {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
+        /// Returns a formatted string based on the time difference between two dates.
+        ///
+        /// This method calculates the elapsed time between the `startDate` and `endDate` values and uses that information to generate the string. For example, if there is exactly one hour and ten minutes difference between the start and end dates, generating an abbreviated string would result in a string of "1h 10m".
+        ///
+        /// Note that this is still formatting the quantity of time between the dates, not the pair of dates itself. For strings like "Feb 22nd - Feb 28th", use `NSDateIntervalFormatter`.
+        ///
+        ///
+        /// Parameter `startDate`: The start time. This parameter must not be `nil`.
+        ///
+        /// Parameter `endDate`: The end time. This parameter must not be `nil`.
+        ///
+        /// Returns: A formatted string representing the specified time information.
         #[unsafe(method(stringFromDate:toDate:))]
         #[unsafe(method_family = none)]
         pub fn stringFromDate_toDate(
@@ -133,11 +249,29 @@ impl NSDateComponentsFormatter {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
+        /// Returns a formatted string based on the specified number of seconds.
+        ///
+        /// This method formats the specified number of seconds into the appropriate units. For example, if the formatter allows the display of minutes and seconds, creating an abbreviated string for the value 70 seconds results in the string "1m 10s".
+        ///
+        ///
+        /// Parameter `ti`: The time interval, measured in seconds. The value must be a finite number. Negative numbers are treated as positive numbers when creating the string.
+        ///
+        /// Returns: A formatted string representing the specified time interval.
         #[unsafe(method(stringFromTimeInterval:))]
         #[unsafe(method_family = none)]
         pub fn stringFromTimeInterval(&self, ti: NSTimeInterval) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
+        /// Returns a localized string based on the specified date components and style option.
+        ///
+        /// Use this convenience method to format a string using the default formatter values, with the exception of the `unitsStyle` value.
+        ///
+        ///
+        /// Parameter `components`: The value to format.
+        ///
+        /// Parameter `unitsStyle`: The style for the resulting units. Use this parameter to specify whether you want the resulting string to use an abbreviated or more spelled out format.
+        ///
+        /// Returns: A string containing the localized date and time information.
         #[unsafe(method(localizedStringFromDateComponents:unitsStyle:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringFromDateComponents_unitsStyle(
@@ -145,6 +279,11 @@ impl NSDateComponentsFormatter {
             units_style: NSDateComponentsFormatterUnitsStyle,
         ) -> Option<Retained<NSString>>;
 
+        /// The formatting style for unit names.
+        ///
+        /// Configures the strings to use (if any) for unit names such as days, hours, minutes, and seconds. Use this property to specify whether you want abbreviated or shortened versions of unit names---for example, "hrs" instead of "hours".
+        ///
+        /// The default value of this property is `NSDateComponentsFormatterUnitsStylePositional`.
         #[unsafe(method(unitsStyle))]
         #[unsafe(method_family = none)]
         pub fn unitsStyle(&self) -> NSDateComponentsFormatterUnitsStyle;
@@ -155,6 +294,19 @@ impl NSDateComponentsFormatter {
         pub fn setUnitsStyle(&self, units_style: NSDateComponentsFormatterUnitsStyle);
 
         #[cfg(feature = "NSCalendar")]
+        /// The bitmask of calendrical units such as day and month to include in the output string.
+        ///
+        /// The allowed calendar units are:
+        ///
+        /// - `NSCalendarUnitYear`
+        /// - `NSCalendarUnitMonth`
+        /// - `NSCalendarUnitWeekOfMonth` (used to mean "quantity of weeks")
+        /// - `NSCalendarUnitDay`
+        /// - `NSCalendarUnitHour`
+        /// - `NSCalendarUnitMinute`
+        /// - `NSCalendarUnitSecond`
+        ///
+        /// Assigning any other calendar units to this property results in an exception.
         #[unsafe(method(allowedUnits))]
         #[unsafe(method_family = none)]
         pub fn allowedUnits(&self) -> NSCalendarUnit;
@@ -165,6 +317,11 @@ impl NSDateComponentsFormatter {
         #[unsafe(method_family = none)]
         pub fn setAllowedUnits(&self, allowed_units: NSCalendarUnit);
 
+        /// The formatting style for units whose value is 0.
+        ///
+        /// When the value for a particular unit is 0, the zero formatting behavior determines whether that value is retained or omitted from any resulting strings. For example, when the formatting behavior is `NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing`, the value of one hour, ten minutes, and zero seconds would omit the mention of seconds.
+        ///
+        /// The default value of this property is `NSDateComponentsFormatterZeroFormattingBehaviorDefault`.
         #[unsafe(method(zeroFormattingBehavior))]
         #[unsafe(method_family = none)]
         pub fn zeroFormattingBehavior(&self) -> NSDateComponentsFormatterZeroFormattingBehavior;
@@ -178,6 +335,11 @@ impl NSDateComponentsFormatter {
         );
 
         #[cfg(feature = "NSCalendar")]
+        /// The default calendar to use when formatting date components.
+        ///
+        /// The formatter uses the calendar in this property to format values that do not have an inherent calendar of their own. For example, the formatter uses this calendar when formatting an `NSTimeInterval` value.
+        ///
+        /// The default value of this property is the autoupdating current calendar. Setting this property to `nil` causes the formatter to use the Gregorian calendar with the `en_US_POSIX` locale.
         #[unsafe(method(calendar))]
         #[unsafe(method_family = none)]
         pub fn calendar(&self) -> Option<Retained<NSCalendar>>;
@@ -191,6 +353,7 @@ impl NSDateComponentsFormatter {
         pub fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSDate")]
+        /// Where units have variable length (number of days in a month, number of hours in a day, etc.), `NSDateComponentsFormatter` will calculate as though counting from the date specified by the `referenceDate` in the appropriate calendar. Defaults to `[NSDate dateWithTimeIntervalSinceReferenceDate:0]` at the time of the `-stringForObjectValue:` call if not set. Set to `nil` to get the default behavior.
         #[unsafe(method(referenceDate))]
         #[unsafe(method_family = none)]
         pub fn referenceDate(&self) -> Option<Retained<NSDate>>;
@@ -203,6 +366,11 @@ impl NSDateComponentsFormatter {
         #[unsafe(method_family = none)]
         pub fn setReferenceDate(&self, reference_date: Option<&NSDate>);
 
+        /// A Boolean indicating whether non-integer units may be used for values.
+        ///
+        /// Fractional units may be used when a value cannot be exactly represented using the available units. For example, if minutes are not allowed, the value "1h 30m" could be formatted as "1.5h".
+        ///
+        /// The default value of this property is `NO`.
         #[unsafe(method(allowsFractionalUnits))]
         #[unsafe(method_family = none)]
         pub fn allowsFractionalUnits(&self) -> bool;
@@ -212,6 +380,11 @@ impl NSDateComponentsFormatter {
         #[unsafe(method_family = none)]
         pub fn setAllowsFractionalUnits(&self, allows_fractional_units: bool);
 
+        /// The maximum number of time units to include in the output string.
+        ///
+        /// Use this property to limit the number of units displayed in the resulting string. For example, with this property set to 2, instead of "1h 10m, 30s", the resulting string would be "1h 10m". Use this property when you are constrained for space or want to round up values to the nearest large unit.
+        ///
+        /// The default value of this property is `0`, which does not cause the elimination of any units.
         #[unsafe(method(maximumUnitCount))]
         #[unsafe(method_family = none)]
         pub fn maximumUnitCount(&self) -> NSInteger;
@@ -221,6 +394,11 @@ impl NSDateComponentsFormatter {
         #[unsafe(method_family = none)]
         pub fn setMaximumUnitCount(&self, maximum_unit_count: NSInteger);
 
+        /// A Boolean value indicating whether to collapse the largest unit into smaller units when a certain threshold is met.
+        ///
+        /// An example of when this property might apply is when expressing 63 seconds worth of time. When this property is set to `YES`, the formatted value would be "63s". When the value of this property is `NO`, the formatted value would be "1m 3s".
+        ///
+        /// The default value of this property is `NO`.
         #[unsafe(method(collapsesLargestUnit))]
         #[unsafe(method_family = none)]
         pub fn collapsesLargestUnit(&self) -> bool;
@@ -230,6 +408,11 @@ impl NSDateComponentsFormatter {
         #[unsafe(method_family = none)]
         pub fn setCollapsesLargestUnit(&self, collapses_largest_unit: bool);
 
+        /// A Boolean value indicating whether the resulting phrase reflects an inexact time value.
+        ///
+        /// Setting the value of this property to `YES` adds phrasing to output strings to reflect that the given time value is approximate and not exact. Using this property yields more correct phrasing than simply prepending the string "About" to an output string.
+        ///
+        /// The default value of this property is `NO`.
         #[unsafe(method(includesApproximationPhrase))]
         #[unsafe(method_family = none)]
         pub fn includesApproximationPhrase(&self) -> bool;
@@ -239,6 +422,11 @@ impl NSDateComponentsFormatter {
         #[unsafe(method_family = none)]
         pub fn setIncludesApproximationPhrase(&self, includes_approximation_phrase: bool);
 
+        /// A Boolean value indicating whether output strings reflect the amount of time remaining.
+        ///
+        /// Setting this property to `YES` results in output strings like "30 minutes remaining".
+        ///
+        /// The default value of this property is `NO`.
         #[unsafe(method(includesTimeRemainingPhrase))]
         #[unsafe(method_family = none)]
         pub fn includesTimeRemainingPhrase(&self) -> bool;
@@ -248,6 +436,7 @@ impl NSDateComponentsFormatter {
         #[unsafe(method_family = none)]
         pub fn setIncludesTimeRemainingPhrase(&self, includes_time_remaining_phrase: bool);
 
+        /// Not yet supported.
         #[unsafe(method(formattingContext))]
         #[unsafe(method_family = none)]
         pub fn formattingContext(&self) -> NSFormattingContext;
@@ -258,6 +447,8 @@ impl NSDateComponentsFormatter {
         pub fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(feature = "NSString")]
+        /// `NSDateComponentsFormatter` currently only implements formatting, not parsing. Until it implements parsing, this will always return `NO`.
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.

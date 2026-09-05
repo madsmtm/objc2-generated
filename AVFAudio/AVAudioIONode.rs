@@ -31,7 +31,8 @@ use crate::*;
 ///
 /// Note that when the engine is configured to operate in
 /// `AVAudioEngineManualRenderingModeRealtime`, this block will be called from a realtime
-/// context. Care should be taken not to make any blocking call (e.g. calling libdispatch,
+/// context and using AVAudioIONodeInputBlockRealtimeSafe is preferred.
+/// Care should be taken not to make any blocking call (e.g. calling libdispatch,
 /// blocking on a mutex, allocating memory etc.) which may cause an overload at the lower layers.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioionodeinputblock?language=objc)
@@ -41,6 +42,19 @@ use crate::*;
     feature = "objc2-core-audio-types"
 ))]
 pub type AVAudioIONodeInputBlock =
+    block2::Block<'static, fn(AVAudioFrameCount) -> *const AudioBufferList>;
+
+/// Identical to AVAudioIONodeInputBlock, with the addition of a realtime-safety guarantee.
+/// When the engine is configured to operate in `AVAudioEngineManualRenderingModeRealtime`,
+/// use of this block is preferred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioionodeinputblockrealtimesafe?language=objc)
+#[cfg(all(
+    feature = "AVAudioTypes",
+    feature = "block2",
+    feature = "objc2-core-audio-types"
+))]
+pub type AVAudioIONodeInputBlockRealtimeSafe =
     block2::Block<'static, fn(AVAudioFrameCount) -> *const AudioBufferList>;
 
 /// Types of speech activity events.
@@ -144,6 +158,12 @@ extern_class!(
 );
 
 #[cfg(feature = "AVAudioNode")]
+unsafe impl Send for AVAudioIONode {}
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Sync for AVAudioIONode {}
+
+#[cfg(feature = "AVAudioNode")]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioIONode {}
 );
@@ -158,6 +178,12 @@ impl AVAudioIONode {
         /// See
         /// <CoreAudio
         /// /AudioHardwareBase.h>.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(presentationLatency))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationLatency(&self) -> NSTimeInterval;
@@ -167,11 +193,23 @@ impl AVAudioIONode {
         /// The node's underlying AudioUnit, if any.
         ///
         /// This is only necessary for certain advanced usages.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(audioUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioUnit(&self) -> AudioUnit;
 
         /// Indicates whether voice processing is enabled.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isVoiceProcessingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoiceProcessingEnabled(&self) -> bool;
@@ -247,6 +285,12 @@ extern_class!(
     pub struct AVAudioInputNode;
 );
 
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Send for AVAudioInputNode {}
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Sync for AVAudioInputNode {}
+
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
 extern_conformance!(
     unsafe impl AVAudio3DMixing for AVAudioInputNode {}
@@ -303,14 +347,44 @@ impl AVAudioInputNode {
             block: &AVAudioIONodeInputBlock,
         ) -> bool;
 
+        #[cfg(all(
+            feature = "AVAudioFormat",
+            feature = "AVAudioTypes",
+            feature = "block2",
+            feature = "objc2-core-audio-types"
+        ))]
+        /// Identical to setManualRenderingInputPCMFormat:inputBlock:, but requires a realtime-safe
+        /// input block.
+        ///
+        /// # Safety
+        ///
+        /// `block` block's return must be a valid pointer or null.
+        #[unsafe(method(setRealtimeSafeManualRenderingInputPCMFormat:inputBlock:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setRealtimeSafeManualRenderingInputPCMFormat_inputBlock(
+            &self,
+            format: &AVAudioFormat,
+            block: &AVAudioIONodeInputBlockRealtimeSafe,
+        ) -> bool;
+
         /// Bypass all processing for microphone uplink done by the voice processing unit.
         ///
         /// Querying this property when voice processing is disabled will return false.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isVoiceProcessingBypassed))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoiceProcessingBypassed(&self) -> bool;
 
         /// Setter for [`isVoiceProcessingBypassed`][Self::isVoiceProcessingBypassed].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setVoiceProcessingBypassed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceProcessingBypassed(&self, voice_processing_bypassed: bool);
@@ -319,11 +393,21 @@ impl AVAudioInputNode {
         /// signal. Enabled by default.
         ///
         /// Querying this property when voice processing is disabled will return false.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isVoiceProcessingAGCEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoiceProcessingAGCEnabled(&self) -> bool;
 
         /// Setter for [`isVoiceProcessingAGCEnabled`][Self::isVoiceProcessingAGCEnabled].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setVoiceProcessingAGCEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceProcessingAGCEnabled(&self, voice_processing_agc_enabled: bool);
@@ -331,11 +415,21 @@ impl AVAudioInputNode {
         /// Mutes the input of the voice processing unit.
         ///
         /// Querying this property when voice processing is disabled will return false.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isVoiceProcessingInputMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVoiceProcessingInputMuted(&self) -> bool;
 
         /// Setter for [`isVoiceProcessingInputMuted`][Self::isVoiceProcessingInputMuted].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setVoiceProcessingInputMuted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceProcessingInputMuted(&self, voice_processing_input_muted: bool);
@@ -355,7 +449,7 @@ impl AVAudioInputNode {
         pub unsafe fn setMutedSpeechActivityEventListener(
             &self,
             listener_block: Option<
-                &block2::Block<'static, fn(AVAudioVoiceProcessingSpeechActivityEvent)>,
+                &block2::SendableBlock<'static, fn(AVAudioVoiceProcessingSpeechActivityEvent)>,
             >,
         ) -> bool;
 
@@ -364,6 +458,12 @@ impl AVAudioInputNode {
         /// Configures the ducking of other (i.e. non-voice) audio, including advanced ducking enablement and ducking level.
         /// In general, when other audio is played during voice chat, applying a higher level of ducking could increase the intelligibility of the voice chat.
         /// If not set, the default ducking configuration is to disable advanced ducking, with a ducking level set to AVAudioVoiceProcessingOtherAudioDuckingLevelDefault.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(voiceProcessingOtherAudioDuckingConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceProcessingOtherAudioDuckingConfiguration(
@@ -371,6 +471,10 @@ impl AVAudioInputNode {
         ) -> AVAudioVoiceProcessingOtherAudioDuckingConfiguration;
 
         /// Setter for [`voiceProcessingOtherAudioDuckingConfiguration`][Self::voiceProcessingOtherAudioDuckingConfiguration].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setVoiceProcessingOtherAudioDuckingConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceProcessingOtherAudioDuckingConfiguration(
@@ -412,6 +516,12 @@ extern_class!(
     #[cfg(feature = "AVAudioNode")]
     pub struct AVAudioOutputNode;
 );
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Send for AVAudioOutputNode {}
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Sync for AVAudioOutputNode {}
 
 #[cfg(feature = "AVAudioNode")]
 extern_conformance!(

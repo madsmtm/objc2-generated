@@ -12,6 +12,29 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattachmentviewproviderreusepolicy?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UITextAttachmentViewProviderReusePolicy(pub NSUInteger);
+bitflags::bitflags! {
+    impl UITextAttachmentViewProviderReusePolicy: NSUInteger {
+        #[doc(alias = "UITextAttachmentViewProviderReusePolicyOnScrollingOutOfViewport")]
+        const OnScrollingOutOfViewport = 1<<0;
+        #[doc(alias = "UITextAttachmentViewProviderReusePolicyOnEditingInlineParagraphs")]
+        const OnEditingInlineParagraphs = 1<<1;
+        const _ = !0;
+    }
+}
+
+unsafe impl Encode for UITextAttachmentViewProviderReusePolicy {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UITextAttachmentViewProviderReusePolicy {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextviewdelegate?language=objc)
     #[cfg(feature = "UIScrollView")]
@@ -551,6 +574,16 @@ extern_conformance!(
 );
 
 #[cfg(all(
+    feature = "NSTextViewportLayoutController",
+    feature = "UIResponder",
+    feature = "UIScrollView",
+    feature = "UIView"
+))]
+extern_conformance!(
+    unsafe impl NSTextViewportLayoutControllerDelegate for UITextView {}
+);
+
+#[cfg(all(
     feature = "UIAppearance",
     feature = "UIResponder",
     feature = "UIScrollView",
@@ -1071,6 +1104,71 @@ impl UITextView {
         pub fn setTextFormattingConfiguration(
             &self,
             text_formatting_configuration: Option<&UITextFormattingViewControllerConfiguration>,
+        );
+
+        /// Register the UITextAttachmentViewProviderReusePolicy for all instances of a particular subclass of NSTextAttachmentViewProvider.
+        ///
+        /// # Safety
+        ///
+        /// `view_provider_type` probably has further requirements.
+        #[unsafe(method(registerTextAttachmentViewProviderReusePolicy:forTextAttachmentViewProviderType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn registerTextAttachmentViewProviderReusePolicy_forTextAttachmentViewProviderType(
+            &self,
+            policy: UITextAttachmentViewProviderReusePolicy,
+            view_provider_type: &AnyClass,
+        );
+
+        #[cfg(all(
+            feature = "NSTextLayoutFragment",
+            feature = "NSTextViewportLayoutController"
+        ))]
+        /// `NSTextViewportLayoutControllerDelegate` method that the framework calls when the layout controller lays out a text layout fragment in the UI. Requires a call to super.
+        #[unsafe(method(textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:))]
+        #[unsafe(method_family = none)]
+        pub fn textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment(
+            &self,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
+            text_layout_fragment: &NSTextLayoutFragment,
+        );
+
+        #[cfg(all(
+            feature = "NSTextViewportLayoutController",
+            feature = "objc2-core-foundation"
+        ))]
+        /// `NSTextViewportLayoutControllerDelegate` method that the framework calls to request the current viewport, which is the view visible bounds plus the overdraw area. Requires a call to super.
+        #[unsafe(method(viewportBoundsForTextViewportLayoutController:))]
+        #[unsafe(method_family = none)]
+        pub fn viewportBoundsForTextViewportLayoutController(
+            &self,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
+        ) -> CGRect;
+
+        #[cfg(feature = "NSTextViewportLayoutController")]
+        /// `NSTextViewportLayoutControllerDelegate` method that the framework calls when the text viewport layout controller starts its layout process. Requires a call to super.
+        #[unsafe(method(textViewportLayoutControllerWillLayout:))]
+        #[unsafe(method_family = none)]
+        pub fn textViewportLayoutControllerWillLayout(
+            &self,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
+        );
+
+        #[cfg(feature = "NSTextViewportLayoutController")]
+        /// `NSTextViewportLayoutControllerDelegate` method that the framework calls when the text viewport layout controller finishes its layout process. Requires a call to super.
+        #[unsafe(method(textViewportLayoutControllerDidLayout:))]
+        #[unsafe(method_family = none)]
+        pub fn textViewportLayoutControllerDidLayout(
+            &self,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
+        );
+
+        #[cfg(feature = "NSTextViewportLayoutController")]
+        /// `NSTextViewportLayoutControllerDelegate` method that the framework calls when the text viewport layout controller receives a `setNeedsLayout` call. Requires a call to super.
+        #[unsafe(method(textViewportLayoutControllerReceivedSetNeedsLayout:))]
+        #[unsafe(method_family = none)]
+        pub fn textViewportLayoutControllerReceivedSetNeedsLayout(
+            &self,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
         );
     );
 }

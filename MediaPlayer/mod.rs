@@ -323,6 +323,8 @@ pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoProperty3x4AnimatedArtwo
 #[cfg(feature = "MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyAdTimeRanges;
 #[cfg(feature = "MPNowPlayingInfoCenter")]
+pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyAppEntityIdentifiers;
+#[cfg(feature = "MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyAssetURL;
 #[cfg(feature = "MPNowPlayingInfoCenter")]
 pub use self::__MPNowPlayingInfoCenter::MPNowPlayingInfoPropertyAvailableLanguageOptions;

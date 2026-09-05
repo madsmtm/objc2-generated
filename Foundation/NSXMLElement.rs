@@ -7,9 +7,35 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// An XML element
+    /// The element nodes in an XML tree structure.
     ///
-    /// Note: Trying to add a document, namespace, attribute, or node with a parent throws an exception. To add a node with a parent first detach or create a copy of it.
+    /// An ``XMLElement`` object may have child nodes, specifically comment nodes, processing-instruction nodes, text nodes, and other ``XMLElement`` nodes. It may also have attribute nodes and namespace nodes associated with it (however, namespace and attribute nodes are not considered children). Any attempt to add a ``XMLDocument`` node, ``XMLDTD`` node, namespace node, or attribute node as a child raises an exception. If you add a child node to an ``XMLElement`` object and that child already has a parent, ``XMLElement`` raises an exception; the child must be detached or copied first.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You can subclass `NSXMLElement` if you want element nodes with more specialized attributes or behavior, for example, paragraph and font attributes that specify how the string value of the element should appear.
+    ///
+    /// #### Methods to Override
+    ///
+    /// To subclass `NSXMLElement` you need to override the primary initializer, ``init(name:uri:)``, and the methods listed below. In most cases, you need only invoke the superclass implementation, adding any subclass-specific code before or after the invocation, as necessary.
+    ///
+    /// | ``addAttribute(_:)`` | ``removeNamespace(forPrefix:)`` |
+    /// |---|---|
+    /// | ``removeAttribute(forName:)`` | ``namespaces`` |
+    /// | ``attributes`` | ``namespaces`` |
+    /// | ``attribute(forLocalName:uri:)`` | ``insertChild(_:at:)`` |
+    /// | ``attributes`` | ``removeChild(at:)`` |
+    /// | ``addNamespace(_:)`` | ``setChildren(_:)`` |
+    ///
+    /// `NSXMLElement` implements
+    /// <doc
+    /// ://com.apple.documentation/documentation/objectivec/nsobjectprotocol/isequal(_:)> to perform a deep comparison: two ``XMLDocument`` objects are not considered equal unless they have the same name, same child nodes, same attributes, and so on. If you want a different standard of comparison, override `isEqual:`.
+    ///
+    /// #### Special Considerations
+    ///
+    /// Because of the architecture and data model of NSXML, when it parses and processes a source of XML it cannot know about your subclass unless you override the class method ``XMLDocument/replacementClass(for:)`` to return your custom class in place of an NSXML class. If your custom class has no direct NSXML counterpart—for example, it is a subclass of `NSXMLNode` that represents CDATA sections—then you can walk the tree after it has been created and insert the new node where appropriate.
+    ///
+    /// Note that you can safely set the root element of the XML document (using the `NSXMLDocument` ``XMLDocument/setRootElement(_:)``method) to be an instance of your subclass because this method only checks to see if the added node is of an element kind (`NSXMLElementKind`). These precautions do not apply, of course, if you are creating an XML tree programmatically.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlelement?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
@@ -37,20 +63,29 @@ extern_conformance!(
 impl NSXMLElement {
     extern_methods!(
         #[cfg(feature = "NSString")]
-        /// Returns an element
-        /// <tt>
-        /// <
-        /// name>
-        /// <
-        /// /name>
-        /// </tt>
-        /// .
+        /// Returns an
+        /// `NSXMLElement`object initialized with the specified name.
+        ///
+        /// The XML string representation of this object is
+        /// `<name></name>`. This method invokes
+        /// `initWithName:URI:`with the URI parameter set to
+        /// `nil.`
+        /// Parameter `name`: A string specifying the name of the element.
         #[unsafe(method(initWithName:))]
         #[unsafe(method_family = init)]
         pub fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        /// Returns an element whose full QName is specified.
+        /// Returns an
+        /// `NSXMLElement`object initialized with the specified name and URI.
+        ///
+        /// You can look up the namespace prefix for this element node based on its URI using
+        /// `resolvePrefixForNamespaceURI:`. This method is the primary initializer for the
+        /// `NSXMLElement`class.
+        ///
+        /// Parameter `name`: A string that specifies the qualified name of the element.
+        ///
+        /// Parameter `URI`: A string that specifies the namespace URI associated with the element.
         #[unsafe(method(initWithName:URI:))]
         #[unsafe(method_family = init)]
         pub fn initWithName_URI(
@@ -60,14 +95,15 @@ impl NSXMLElement {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        /// Returns an element with a single text node child
-        /// <tt>
-        /// <
-        /// name>string
-        /// <
-        /// /name>
-        /// </tt>
-        /// .
+        /// Returns an
+        /// `NSXMLElement`object initialized with a specified name and a single text-node child containing a specified value.
+        ///
+        /// The string representation of this object is
+        /// `<name>string</name>`.
+        ///
+        /// Parameter `name`: A string specifying the name of the element.
+        ///
+        /// Parameter `string`: The string value of the receiver's text node.
         #[unsafe(method(initWithName:stringValue:))]
         #[unsafe(method_family = init)]
         pub fn initWithName_stringValue(
@@ -77,11 +113,13 @@ impl NSXMLElement {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
-        /// Returns an element created from a string. Parse errors are collected in
-        /// <tt>
-        /// error
-        /// </tt>
-        /// .
+        /// Returns an
+        /// `NSXMLElement`object created from a specified string containing XML markup.
+        ///
+        /// Parameter `string`: A string containing XML markup for an element.
+        ///
+        /// Parameter `error`: On return, an
+        /// `NSError`object that describes any errors or warnings resulting from the parsing of the markup.
         #[unsafe(method(initWithXMLString:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithXMLString_error(
@@ -99,13 +137,31 @@ impl NSXMLElement {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        /// Returns all of the child elements that match this name.
+        /// Returns the child element nodes (as
+        /// `NSXMLElement`objects) of the receiver that have a specified name.
+        ///
+        /// If
+        /// `name`is a qualified name, then this method invokes
+        /// `elementsForLocalName:URI:`with the URI parameter set to the URI associated with the prefix. Otherwise comparison is based on string equality of the qualified or non-qualified name.
+        ///
+        /// Parameter `name`: A string specifying the name of the child element nodes to find and return.
+        ///
+        /// Returns: An array of
+        /// `NSXMLElement`objects or an empty array if no matching children can be found.
         #[unsafe(method(elementsForName:))]
         #[unsafe(method_family = none)]
         pub fn elementsForName(&self, name: &NSString) -> Retained<NSArray<NSXMLElement>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        /// Returns all of the child elements that match this localname URI pair.
+        /// Returns the child element nodes (as
+        /// `NSXMLElement`objects) of the receiver that are matched with the specified local name and URI.
+        ///
+        /// Parameter `localName`: A string specifying a local name of an element.
+        ///
+        /// Parameter `URI`: A string specifying a URI associated with an element.
+        ///
+        /// Returns: An array of
+        /// `NSXMLElement`objects or an empty array if no matching children could be found.
         #[unsafe(method(elementsForLocalName:URI:))]
         #[unsafe(method_family = none)]
         pub fn elementsForLocalName_URI(
@@ -114,19 +170,31 @@ impl NSXMLElement {
             uri: Option<&NSString>,
         ) -> Retained<NSArray<NSXMLElement>>;
 
-        /// Adds an attribute. Attributes with duplicate names are not added.
+        /// Adds an attribute node to the receiver.
+        ///
+        /// If the receiver already has an attribute with the same name,
+        /// `attribute`replaces the old attribute. The order of multiple attributes is preserved if the
+        /// `NSXMLPreserveAttributeOrder`option is specified when the element is created.
+        ///
+        /// Parameter `attribute`: An XML node object representing an attribute.
         #[unsafe(method(addAttribute:))]
         #[unsafe(method_family = none)]
         pub fn addAttribute(&self, attribute: &NSXMLNode);
 
         #[cfg(feature = "NSString")]
-        /// Removes an attribute based on its name.
+        /// Removes an attribute node identified by name.
+        ///
+        /// Parameter `name`: A string specifying the name of an attribute.
         #[unsafe(method(removeAttributeForName:))]
         #[unsafe(method_family = none)]
         pub fn removeAttributeForName(&self, name: &NSString);
 
         #[cfg(feature = "NSArray")]
-        /// Set the attributes. In the case of duplicate names, the first attribute with the name is used.
+        /// The attributes of the receiver.
+        ///
+        /// In the case of duplicate names, the first attribute with the name is used. To set attributes using an
+        /// `NSDictionary`object as the input parameter, see
+        /// `setAttributesWithDictionary:`.
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
         pub fn attributes(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
@@ -140,19 +208,41 @@ impl NSXMLElement {
         pub fn setAttributes(&self, attributes: Option<&NSArray<NSXMLNode>>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        /// Set the attributes based on a name-value dictionary.
+        /// Sets the attributes of the receiver based on a name-value dictionary.
+        ///
+        /// The method uses these names and object values to create
+        /// `NSXMLNode`objects of kind
+        /// `NSXMLAttributeKind.`Existing attributes are removed.
+        ///
+        /// Parameter `attributes`: A dictionary of key-value pairs where the attribute name is the key and the object value of the attribute is the dictionary value.
         #[unsafe(method(setAttributesWithDictionary:))]
         #[unsafe(method_family = none)]
         pub fn setAttributesWithDictionary(&self, attributes: &NSDictionary<NSString, NSString>);
 
         #[cfg(feature = "NSString")]
-        /// Returns an attribute matching this name.
+        /// Returns the attribute node of the receiver with the specified name.
+        ///
+        /// If
+        /// `name`is a qualified name, then this method invokes
+        /// `attributeForLocalName:URI:`with the URI parameter set to the URI associated with the prefix. Otherwise comparison is based on string equality of the qualified or non-qualified name.
+        ///
+        /// Parameter `name`: A string specifying the name of an attribute.
+        ///
+        /// Returns: An XML node object representing a matching attribute or
+        /// `nil`if no such node was found.
         #[unsafe(method(attributeForName:))]
         #[unsafe(method_family = none)]
         pub fn attributeForName(&self, name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns an attribute matching this localname URI pair.
+        /// Returns the attribute node of the receiver that is identified by a local name and URI.
+        ///
+        /// Parameter `localName`: A string specifying the local name of an attribute.
+        ///
+        /// Parameter `URI`: A string identifying the URI associated with an attribute.
+        ///
+        /// Returns: An XML node object representing a matching attribute or
+        /// `nil`if no such node was found.
         #[unsafe(method(attributeForLocalName:URI:))]
         #[unsafe(method_family = none)]
         pub fn attributeForLocalName_URI(
@@ -161,19 +251,30 @@ impl NSXMLElement {
             uri: Option<&NSString>,
         ) -> Option<Retained<NSXMLNode>>;
 
-        /// Adds a namespace. Namespaces with duplicate names are not added.
+        /// Adds a namespace node to the receiver.
+        ///
+        /// If the receiver already has a namespace with the same name,
+        /// `aNamespace`is not added.
+        ///
+        /// Parameter `aNamespace`: An XML node object of kind
+        /// `NSXMLNamespaceKind.`
         #[unsafe(method(addNamespace:))]
         #[unsafe(method_family = none)]
         pub fn addNamespace(&self, a_namespace: &NSXMLNode);
 
         #[cfg(feature = "NSString")]
-        /// Removes a namespace with a particular name.
+        /// Removes a namespace node that is identified by a given prefix.
+        ///
+        /// Parameter `name`: A string that is the prefix for a namespace.
         #[unsafe(method(removeNamespaceForPrefix:))]
         #[unsafe(method_family = none)]
         pub fn removeNamespaceForPrefix(&self, name: &NSString);
 
         #[cfg(feature = "NSArray")]
-        /// Set the namespaces. In the case of duplicate names, the first namespace with the name is used.
+        /// The namespace nodes of the receiver.
+        ///
+        /// In the case of duplicate names, the first namespace with the name is used. Set to
+        /// `nil`to remove all namespace nodes.
         #[unsafe(method(namespaces))]
         #[unsafe(method_family = none)]
         pub fn namespaces(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
@@ -187,19 +288,42 @@ impl NSXMLElement {
         pub fn setNamespaces(&self, namespaces: Option<&NSArray<NSXMLNode>>);
 
         #[cfg(feature = "NSString")]
-        /// Returns the namespace matching this prefix.
+        /// Returns the namespace node with a specified prefix.
+        ///
+        /// Parameter `name`: A string specifying a namespace prefix.
+        ///
+        /// Returns: An
+        /// `NSXMLNode`object of kind
+        /// `NSXMLNamespaceKind`or
+        /// `nil`if there is no namespace node with that prefix.
         #[unsafe(method(namespaceForPrefix:))]
         #[unsafe(method_family = none)]
         pub fn namespaceForPrefix(&self, name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the namespace who matches the prefix of the name given. Looks in the entire namespace chain.
+        /// Returns the namespace node with the prefix matching the given qualified name.
+        ///
+        /// The method looks in the entire namespace chain for the prefix.
+        ///
+        /// Parameter `name`: A string that is the qualified name for a namespace (a qualified name is prefix plus local name).
+        ///
+        /// Returns: An
+        /// `NSXMLNode`object of kind
+        /// `NSXMLNamespaceKind`or
+        /// `nil`if there is no matching namespace node.
         #[unsafe(method(resolveNamespaceForName:))]
         #[unsafe(method_family = none)]
         pub fn resolveNamespaceForName(&self, name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
-        /// Returns the URI of this prefix. Looks in the entire namespace chain.
+        /// Returns the prefix associated with the specified URI.
+        ///
+        /// The method looks in the entire namespace chain for the URI.
+        ///
+        /// Parameter `namespaceURI`: A string identifying the URI associated with the namespace.
+        ///
+        /// Returns: A string that is the matching prefix or
+        /// `nil`if it finds no matching prefix.
         #[unsafe(method(resolvePrefixForNamespaceURI:))]
         #[unsafe(method_family = none)]
         pub fn resolvePrefixForNamespaceURI(
@@ -207,39 +331,87 @@ impl NSXMLElement {
             namespace_uri: &NSString,
         ) -> Option<Retained<NSString>>;
 
-        /// Inserts a child at a particular index.
+        /// Inserts a new child node at a specified location in the receiver's list of child nodes.
+        ///
+        /// Insertion of the node increments the indexes of sibling nodes after it.
+        ///
+        /// Parameter `child`: An XML node object to be inserted as a child of the receiver.
+        ///
+        /// Parameter `index`: An integer identifying a position in the receiver's list of children. An exception is raised if
+        /// `index`is out of bounds.
         #[unsafe(method(insertChild:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
-        /// Insert several children at a particular index.
+        /// Inserts an array of child nodes at a specified location in the receiver's list of children.
+        ///
+        /// Insertion of the nodes increases the indexes of sibling nodes after them by the count of
+        /// `children.`
+        /// Parameter `children`: An array of XML node objects to add as children of the receiver.
+        ///
+        /// Parameter `index`: An integer identifying a position in the receiver's list of children. An exception is raised if
+        /// `index`is out of bounds.
         #[unsafe(method(insertChildren:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertChildren_atIndex(&self, children: &NSArray<NSXMLNode>, index: NSUInteger);
 
-        /// Removes a child at a particular index.
+        /// Removes the child node of the receiver identified by a given index.
+        ///
+        /// The XML node object is released upon removal. The indices of subsequent children are decremented by one.
+        ///
+        /// Parameter `index`: An integer identifying the node in the receiver's list of children to remove. An exception is raised if
+        /// `index`is out of bounds.
         #[unsafe(method(removeChildAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn removeChildAtIndex(&self, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
-        /// Removes all existing children and replaces them with the new children. Set children to nil to simply remove all children.
+        /// Removes all existing children and replaces them with the new children.
+        ///
+        /// Set
+        /// `children`to
+        /// `nil`to simply remove all children.
+        ///
+        /// Parameter `children`: An array of
+        /// `NSXMLElement`objects or
+        /// `NSXMLNode`objects.
         #[unsafe(method(setChildren:))]
         #[unsafe(method_family = none)]
         pub fn setChildren(&self, children: Option<&NSArray<NSXMLNode>>);
 
-        /// Adds a child to the end of the existing children.
+        /// Adds a child node at the end of the receiver's current list of children.
+        ///
+        /// The new node has an index value that is one greater than the last of the current children.
+        ///
+        /// Parameter `child`: An XML node object to add to the receiver's children.
         #[unsafe(method(addChild:))]
         #[unsafe(method_family = none)]
         pub fn addChild(&self, child: &NSXMLNode);
 
-        /// Replaces a child at a particular index with another child.
+        /// Replaces a child node at a specified location with another child node.
+        ///
+        /// The replaced XML node object is released upon removal.
+        ///
+        /// Parameter `index`: An integer identifying a position in the receiver's list of children. An exception is raised if
+        /// `index`is out of bounds.
+        ///
+        /// Parameter `node`: An XML node object that will replace the current child.
         #[unsafe(method(replaceChildAtIndex:withNode:))]
         #[unsafe(method_family = none)]
         pub fn replaceChildAtIndex_withNode(&self, index: NSUInteger, node: &NSXMLNode);
 
-        /// Adjacent text nodes are coalesced. If the node's value is the empty string, it is removed. This should be called with a value of NO before using XQuery or XPath.
+        /// Coalesces adjacent text nodes of the receiver that you have explicitly added, optionally including CDATA sections.
+        ///
+        /// A text node with a value of an empty string is removed. When you process an input source of XML, adjacent text nodes are automatically normalized. You should invoke this method (with
+        /// `preserve`as
+        /// `NO)`before using the
+        /// `NSXMLNode`methods
+        /// `objectsForXQuery:constants:error:`or
+        /// `nodesForXPath:error:`.
+        ///
+        /// Parameter `preserve`: `YES`if CDATA sections are left alone as text nodes,
+        /// `NO`otherwise.
         #[unsafe(method(normalizeAdjacentTextNodesPreservingCDATA:))]
         #[unsafe(method_family = none)]
         pub fn normalizeAdjacentTextNodesPreservingCDATA(&self, preserve: bool);
@@ -254,13 +426,21 @@ impl NSXMLElement {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns an
+        /// `NSXMLNode`instance initialized with the constant indicating node kind.
+        ///
         /// Invokes
+        /// `initWithKind:options:`with options set to
+        /// `NSXMLNodeOptionsNone.`
+        /// Do not use this initializer for creating instances of
+        /// `NSXMLDTDNode`for attribute-list declarations. Instead, use the
+        /// `DTDNodeWithXMLString:`class method of this class or the
+        /// `initWithXMLString:`method of the
+        /// `NSXMLDTDNode`class.
         ///
-        /// ```text
-        ///  initWithKind:options:
-        /// ```
-        ///
-        /// with options set to NSXMLNodeOptionsNone
+        /// Parameter `kind`: An
+        /// `enum`constant of type
+        /// `NSXMLNodeKind`that indicates the type of node.
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
         pub fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
@@ -290,9 +470,10 @@ impl DefaultRetained for NSXMLElement {
 impl NSXMLElement {
     extern_methods!(
         #[cfg(feature = "NSDictionary")]
-        /// Set the attributes base on a name-value dictionary.
+        /// Sets the attributes based on a name-value dictionary.
         ///
-        /// This method is deprecated and does not function correctly. Use -setAttributesWithDictionary: instead.
+        ///
+        /// Parameter `attributes`: A dictionary of key-value pairs where the attribute name is the key and the object value of the attribute is the dictionary value.
         ///
         /// # Safety
         ///

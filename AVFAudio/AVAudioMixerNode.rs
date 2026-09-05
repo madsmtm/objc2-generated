@@ -22,6 +22,12 @@ extern_class!(
     pub struct AVAudioMixerNode;
 );
 
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Send for AVAudioMixerNode {}
+
+#[cfg(feature = "AVAudioNode")]
+unsafe impl Sync for AVAudioMixerNode {}
+
 #[cfg(all(feature = "AVAudioMixing", feature = "AVAudioNode"))]
 extern_conformance!(
     unsafe impl AVAudio3DMixing for AVAudioMixerNode {}
@@ -52,11 +58,21 @@ impl AVAudioMixerNode {
         /// The mixer's output volume.
         ///
         /// This accesses the mixer's output volume (0.0-1.0, inclusive).
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(outputVolume))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputVolume(&self) -> c_float;
 
         /// Setter for [`outputVolume`][Self::outputVolume].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setOutputVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputVolume(&self, output_volume: c_float);
@@ -65,6 +81,12 @@ impl AVAudioMixerNode {
         /// Find an unused input bus.
         ///
         /// This will find and return the first input bus to which no other node is connected.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(nextAvailableInputBus))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextAvailableInputBus(&self) -> AVAudioNodeBus;

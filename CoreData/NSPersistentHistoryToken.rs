@@ -13,6 +13,10 @@ extern_class!(
     pub struct NSPersistentHistoryToken;
 );
 
+unsafe impl Send for NSPersistentHistoryToken {}
+
+unsafe impl Sync for NSPersistentHistoryToken {}
+
 extern_conformance!(
     unsafe impl NSCoding for NSPersistentHistoryToken {}
 );

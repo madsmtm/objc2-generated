@@ -43,6 +43,48 @@ extern_protocol!(
             &self,
             text_viewport_layout_controller: &NSTextViewportLayoutController,
         );
+
+        #[cfg(feature = "NSTextViewportRenderingSurface")]
+        #[optional]
+        #[unsafe(method(textViewportLayoutController:cacheRenderingSurface:forKey:))]
+        #[unsafe(method_family = none)]
+        fn textViewportLayoutController_cacheRenderingSurface_forKey(
+            &self,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
+            rendering_surface: &ProtocolObject<dyn NSTextViewportRenderingSurface>,
+            rendering_surface_key: &ProtocolObject<dyn NSTextViewportRenderingSurfaceKey>,
+        );
+
+        #[cfg(feature = "NSTextViewportRenderingSurface")]
+        #[optional]
+        #[unsafe(method(textViewportLayoutController:retrieveCachedRenderingSurfaceForKey:))]
+        #[unsafe(method_family = none)]
+        fn textViewportLayoutController_retrieveCachedRenderingSurfaceForKey(
+            &self,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
+            rendering_surface_key: &ProtocolObject<dyn NSTextViewportRenderingSurfaceKey>,
+        ) -> Retained<ProtocolObject<dyn NSTextViewportRenderingSurface>>;
+
+        #[optional]
+        #[unsafe(method(textViewportLayoutControllerReceivedSetNeedsLayout:))]
+        #[unsafe(method_family = none)]
+        fn textViewportLayoutControllerReceivedSetNeedsLayout(
+            &self,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
+        );
+
+        #[cfg(all(
+            feature = "NSTextLayoutFragment",
+            feature = "NSTextViewportRenderingSurface"
+        ))]
+        #[optional]
+        #[unsafe(method(textViewportLayoutController:renderingSurfaceForTextLayoutFragment:))]
+        #[unsafe(method_family = none)]
+        fn textViewportLayoutController_renderingSurfaceForTextLayoutFragment(
+            &self,
+            text_viewport_layout_controller: &NSTextViewportLayoutController,
+            text_layout_fragment: &NSTextLayoutFragment,
+        ) -> Option<Retained<ProtocolObject<dyn NSTextViewportRenderingSurface>>>;
     }
 );
 
@@ -118,5 +160,13 @@ impl NSTextViewportLayoutController {
         #[unsafe(method(adjustViewportByVerticalOffset:))]
         #[unsafe(method_family = none)]
         pub fn adjustViewportByVerticalOffset(&self, vertical_offset: CGFloat);
+
+        #[cfg(feature = "NSTextViewportRenderingSurface")]
+        #[unsafe(method(renderingSurfaceForKey:))]
+        #[unsafe(method_family = none)]
+        pub fn renderingSurfaceForKey(
+            &self,
+            key: &ProtocolObject<dyn NSTextViewportRenderingSurfaceKey>,
+        ) -> Option<Retained<ProtocolObject<dyn NSTextViewportRenderingSurface>>>;
     );
 }

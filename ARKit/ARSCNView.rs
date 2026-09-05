@@ -11,24 +11,26 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arscnviewdelegate?language=objc)
+    /// A delegate protocol for SceneKit-based AR view events and node mapping.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscnviewdelegate?language=objc)
     #[cfg(all(feature = "ARSession", feature = "objc2", feature = "objc2-scene-kit"))]
+    #[deprecated]
     pub unsafe trait ARSCNViewDelegate:
         SCNSceneRendererDelegate + ARSessionObserver
     {
         #[cfg(feature = "ARAnchor")]
         /// Implement this to provide a custom node for the given anchor.
         ///
-        ///
         /// This node will automatically be added to the scene graph.
         /// If this method is not implemented, a node will be automatically created.
         /// If nil is returned the anchor will be ignored.
         ///
-        /// Parameter `renderer`: The renderer that will render the scene.
+        /// - Parameters:
+        /// - renderer: The renderer that will render the scene.
+        /// - anchor: The added anchor.
         ///
-        /// Parameter `anchor`: The added anchor.
-        ///
-        /// Returns: Node that will be mapped to the anchor or nil.
+        /// - Returns: Node that will be mapped to the anchor or `nil`.
         #[optional]
         #[unsafe(method(renderer:nodeForAnchor:))]
         #[unsafe(method_family = none)]
@@ -41,12 +43,10 @@ extern_protocol!(
         #[cfg(feature = "ARAnchor")]
         /// Called when a new node has been mapped to the given anchor.
         ///
-        ///
-        /// Parameter `renderer`: The renderer that will render the scene.
-        ///
-        /// Parameter `node`: The node that maps to the anchor.
-        ///
-        /// Parameter `anchor`: The added anchor.
+        /// - Parameters:
+        /// - renderer: The renderer that will render the scene.
+        /// - node: The node that maps to the anchor.
+        /// - anchor: The added anchor.
         #[optional]
         #[unsafe(method(renderer:didAddNode:forAnchor:))]
         #[unsafe(method_family = none)]
@@ -60,12 +60,10 @@ extern_protocol!(
         #[cfg(feature = "ARAnchor")]
         /// Called when a node will be updated with data from the given anchor.
         ///
-        ///
-        /// Parameter `renderer`: The renderer that will render the scene.
-        ///
-        /// Parameter `node`: The node that will be updated.
-        ///
-        /// Parameter `anchor`: The anchor that was updated.
+        /// - Parameters:
+        /// - renderer: The renderer that will render the scene.
+        /// - node: The node that will be updated.
+        /// - anchor: The anchor that was updated.
         #[optional]
         #[unsafe(method(renderer:willUpdateNode:forAnchor:))]
         #[unsafe(method_family = none)]
@@ -79,12 +77,10 @@ extern_protocol!(
         #[cfg(feature = "ARAnchor")]
         /// Called when a node has been updated with data from the given anchor.
         ///
-        ///
-        /// Parameter `renderer`: The renderer that will render the scene.
-        ///
-        /// Parameter `node`: The node that was updated.
-        ///
-        /// Parameter `anchor`: The anchor that was updated.
+        /// - Parameters:
+        /// - renderer: The renderer that will render the scene.
+        /// - node: The node that was updated.
+        /// - anchor: The anchor that was updated.
         #[optional]
         #[unsafe(method(renderer:didUpdateNode:forAnchor:))]
         #[unsafe(method_family = none)]
@@ -98,12 +94,10 @@ extern_protocol!(
         #[cfg(feature = "ARAnchor")]
         /// Called when a mapped node has been removed from the scene graph for the given anchor.
         ///
-        ///
-        /// Parameter `renderer`: The renderer that will render the scene.
-        ///
-        /// Parameter `node`: The node that was removed.
-        ///
-        /// Parameter `anchor`: The anchor that was removed.
+        /// - Parameters:
+        /// - renderer: The renderer that will render the scene.
+        /// - node: The node that was removed.
+        /// - anchor: The anchor that was removed.
         #[optional]
         #[unsafe(method(renderer:didRemoveNode:forAnchor:))]
         #[unsafe(method_family = none)]

@@ -127,6 +127,24 @@ impl NISession {
         #[unsafe(method(setARSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setARSession(&self, session: &ARSession);
+
+        #[cfg(all(feature = "NIConfiguration", feature = "NINearbyObject"))]
+        /// Update the motion state for a specific nearby object identified by its discovery token.
+        ///
+        ///
+        /// Parameter `motionState`: The current motion activity state.
+        ///
+        /// Parameter `token`: The discovery token identifying the nearby object.
+        ///
+        /// This information helps improve location estimation accuracy.
+        /// Call this method whenever the motion state changes for a specific nearby object.
+        #[unsafe(method(updateMotionState:forObjectWithToken:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn updateMotionState_forObjectWithToken(
+            &self,
+            motion_state: NIMotionActivityState,
+            token: &NIDiscoveryToken,
+        );
     );
 }
 

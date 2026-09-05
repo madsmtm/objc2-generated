@@ -9,7 +9,10 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskviewdelegate?language=objc)
+    /// A delegate protocol for SpriteKit-based AR view events and node mapping.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arskviewdelegate?language=objc)
     #[cfg(all(feature = "ARSession", feature = "objc2", feature = "objc2-sprite-kit"))]
+    #[deprecated = "This API is deprecated on visionOS."]
     pub unsafe trait ARSKViewDelegate: SKViewDelegate + ARSessionObserver {}
 );

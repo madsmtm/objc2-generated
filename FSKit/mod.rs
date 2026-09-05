@@ -27,6 +27,9 @@ mod __FSClient;
 #[cfg(feature = "FSContainer")]
 #[path = "FSContainer.rs"]
 mod __FSContainer;
+#[cfg(feature = "FSContext")]
+#[path = "FSContext.rs"]
+mod __FSContext;
 #[cfg(feature = "FSEntityIdentifier")]
 #[path = "FSEntityIdentifier.rs"]
 mod __FSEntityIdentifier;
@@ -39,6 +42,9 @@ mod __FSFileSystem;
 #[cfg(feature = "FSFileSystemBase")]
 #[path = "FSFileSystemBase.rs"]
 mod __FSFileSystemBase;
+#[cfg(feature = "FSFreeSpace")]
+#[path = "FSFreeSpace.rs"]
+mod __FSFreeSpace;
 #[cfg(feature = "FSItem")]
 #[path = "FSItem.rs"]
 mod __FSItem;
@@ -75,9 +81,15 @@ mod __FSUnaryFileSystem;
 #[cfg(feature = "FSVolume")]
 #[path = "FSVolume.rs"]
 mod __FSVolume;
+#[cfg(feature = "FSVolumeDataCacheHandler")]
+#[path = "FSVolumeDataCacheHandler.rs"]
+mod __FSVolumeDataCacheHandler;
 #[cfg(feature = "FSVolumeExtent")]
 #[path = "FSVolumeExtent.rs"]
 mod __FSVolumeExtent;
+#[cfg(feature = "FSVolumeHandlerResult")]
+#[path = "FSVolumeHandlerResult.rs"]
+mod __FSVolumeHandlerResult;
 
 #[cfg(feature = "FSClient")]
 pub use self::__FSClient::FSClient;
@@ -87,6 +99,8 @@ pub use self::__FSContainer::FSContainerIdentifier;
 pub use self::__FSContainer::FSContainerState;
 #[cfg(feature = "FSContainer")]
 pub use self::__FSContainer::FSContainerStatus;
+#[cfg(feature = "FSContext")]
+pub use self::__FSContext::FSContext;
 #[cfg(feature = "FSEntityIdentifier")]
 pub use self::__FSEntityIdentifier::FSEntityIdentifier;
 #[cfg(feature = "FSFileName")]
@@ -95,6 +109,8 @@ pub use self::__FSFileName::FSFileName;
 pub use self::__FSFileSystem::FSFileSystem;
 #[cfg(feature = "FSFileSystemBase")]
 pub use self::__FSFileSystemBase::FSFileSystemBase;
+#[cfg(feature = "FSFreeSpace")]
+pub use self::__FSFreeSpace::FSFreeSpace;
 #[cfg(feature = "FSItem")]
 pub use self::__FSItem::FSItem;
 #[cfg(feature = "FSItem")]
@@ -109,6 +125,8 @@ pub use self::__FSItem::FSItemID;
 pub use self::__FSItem::FSItemSetAttributesRequest;
 #[cfg(feature = "FSItem")]
 pub use self::__FSItem::FSItemType;
+#[cfg(feature = "FSKitError")]
+pub use self::__FSKitError::FSDataCacheErrorCode;
 #[cfg(feature = "FSKitError")]
 pub use self::__FSKitError::FSErrorCode;
 #[cfg(feature = "FSKitError")]
@@ -158,8 +176,6 @@ pub use self::__FSVolume::FSDirectoryCookieInitial;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSDirectoryEntryPacker;
 #[cfg(feature = "FSVolume")]
-pub use self::__FSVolume::FSDirectoryVerifier;
-#[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSDirectoryVerifierInitial;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSItemDeactivationOptions;
@@ -167,6 +183,8 @@ pub use self::__FSVolume::FSItemDeactivationOptions;
 pub use self::__FSVolume::FSMountOptions;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSPreallocateFlags;
+#[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSSeekRegion;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSSetXattrPolicy;
 #[cfg(feature = "FSVolume")]
@@ -176,13 +194,21 @@ pub use self::__FSVolume::FSSyncFlags;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolume;
 #[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumeAccessCheckHandler;
+#[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeAccessCheckOperations;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeCaseFormat;
+#[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumeHandler;
 #[cfg(all(feature = "FSEntityIdentifier", feature = "FSVolume"))]
 pub use self::__FSVolume::FSVolumeIdentifier;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeItemDeactivation;
+#[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumeItemDeactivationHandler;
+#[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumeOpenCloseHandler;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeOpenCloseOperations;
 #[cfg(feature = "FSVolume")]
@@ -192,15 +218,33 @@ pub use self::__FSVolume::FSVolumeOperations;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumePathConfOperations;
 #[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumePreallocateHandler;
+#[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumePreallocateOperations;
+#[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumeReadWriteHandler;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeReadWriteOperations;
 #[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumeRenameHandler;
+#[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeRenameOperations;
+#[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumeSeekRegionHandler;
 #[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeSupportedCapabilities;
 #[cfg(feature = "FSVolume")]
+pub use self::__FSVolume::FSVolumeXattrHandler;
+#[cfg(feature = "FSVolume")]
 pub use self::__FSVolume::FSVolumeXattrOperations;
+#[cfg(feature = "FSVolumeDataCacheHandler")]
+pub use self::__FSVolumeDataCacheHandler::FSDataCacheMode;
+#[cfg(feature = "FSVolumeDataCacheHandler")]
+pub use self::__FSVolumeDataCacheHandler::FSKernelCacheCoherencyAction;
+#[cfg(feature = "FSVolumeDataCacheHandler")]
+pub use self::__FSVolumeDataCacheHandler::FSKernelCacheCoherencyType;
+#[cfg(feature = "FSVolumeDataCacheHandler")]
+pub use self::__FSVolumeDataCacheHandler::FSVolumeDataCacheHandler;
 #[cfg(feature = "FSVolumeExtent")]
 pub use self::__FSVolumeExtent::FSBlockmapFlags;
 #[cfg(feature = "FSVolumeExtent")]
@@ -214,7 +258,67 @@ pub use self::__FSVolumeExtent::FSOperationID;
 #[cfg(feature = "FSVolumeExtent")]
 pub use self::__FSVolumeExtent::FSOperationIDUnspecified;
 #[cfg(feature = "FSVolumeExtent")]
+pub use self::__FSVolumeExtent::FSVolumeKernelOffloadedIOHandler;
+#[cfg(feature = "FSVolumeExtent")]
 pub use self::__FSVolumeExtent::FSVolumeKernelOffloadedIOOperations;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSActivateResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSBlockmapResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSCheckAccessResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSCompleteIOResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSCreateFileKOIOResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSCreateItemResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSCreateLinkResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSCreateSymlinkResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSDeactivateItemResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSEnumerateDirectoryResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSGetAttributesResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSGetXattrResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSListXattrsResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSLookupItemKOIOResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSLookupItemResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSOpenItemResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSPreallocateKOIOResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSPreallocateResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSReadFileResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSReadSymlinkResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSRemoveItemResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSRenameItemResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSSeekRegionResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSSetAttributesResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSSetXattrResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSUpgradeItemResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSVolumeHandlerResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSVolumeRenameResult;
+#[cfg(feature = "FSVolumeHandlerResult")]
+pub use self::__FSVolumeHandlerResult::FSWriteFileResult;
 use core::ffi::*;
 
 use crate::*;

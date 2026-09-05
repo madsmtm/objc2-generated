@@ -51,6 +51,33 @@ unsafe impl RefEncode for NINearbyObjectVerticalDirectionEstimate {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enumeration of the possible motion activity states.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nimotionactivitystate?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NIMotionActivityState(pub NSInteger);
+impl NIMotionActivityState {
+    /// Motion activity state is unknown
+    #[doc(alias = "NIMotionActivityStateUnknown")]
+    pub const Unknown: Self = Self(0);
+    /// Motion activity state is stationary
+    #[doc(alias = "NIMotionActivityStateStationary")]
+    pub const Stationary: Self = Self(1);
+    /// Motion activity state is moving
+    #[doc(alias = "NIMotionActivityStateMoving")]
+    pub const Moving: Self = Self(2);
+}
+
+unsafe impl Encode for NIMotionActivityState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NIMotionActivityState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// A nearby object with distance and direction measurements.
     ///

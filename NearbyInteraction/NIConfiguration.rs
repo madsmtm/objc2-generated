@@ -258,7 +258,47 @@ impl NINearbyAccessoryConfiguration {
             accessory_data: &NSData,
             identifier: &NSUUID,
         ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        /// Configure the session for Bluetooth Channel Sounding ranging using a Bluetooth Channel Sounding identifier.
+        ///
+        ///
+        /// Parameter `bluetoothIdentifier`: The pairing identifier necessary to form a bluetooth connection for Bluetooth Channel Sounding ranging.
+        ///
+        /// Parameter `previousBluetoothIdentifier`: Optional previous Bluetooth identifier for reconnection scenarios. Defaults to nil for initial configuration.
+        ///
+        /// Returns: The configuration instance.
+        ///
+        /// When previousBluetoothIdentifier is provided, this method provides continuity of the internal state from the previousBluetoothIdentifier to the bluetoothIdentifier, allowing the session to maintain context across reconnections where the Bluetooth identifier may change.
+        #[unsafe(method(initWithBluetoothChannelSoundingIdentifier:previousBluetoothIdentifier:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithBluetoothChannelSoundingIdentifier_previousBluetoothIdentifier(
+            this: Allocated<Self>,
+            bluetooth_identifier: &NSUUID,
+            previous_bluetooth_identifier: Option<&NSUUID>,
+        ) -> Retained<Self>;
     );
+}
+
+/// DL-TDoA out-of-band discovery method defines how session scans for DL-TDoA anchors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoadiscoverymethod?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NIDLTDOADiscoveryMethod(pub NSInteger);
+impl NIDLTDOADiscoveryMethod {
+    #[doc(alias = "NIDLTDOADiscoveryMethodWiFi")]
+    pub const WiFi: Self = Self(0);
+    #[doc(alias = "NIDLTDOADiscoveryMethodBluetoothLowEnergy")]
+    pub const BluetoothLowEnergy: Self = Self(1);
+}
+
+unsafe impl Encode for NIDLTDOADiscoveryMethod {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NIDLTDOADiscoveryMethod {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern_class!(
@@ -316,12 +356,41 @@ impl NIDLTDOAConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setNetworkIdentifier(&self, network_identifier: NSInteger);
 
-        /// Initializes a new configuration with a network identifier
+        /// Current session's out-of-band discovery method.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(discoveryMethod))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn discoveryMethod(&self) -> NIDLTDOADiscoveryMethod;
+
+        /// Setter for [`discoveryMethod`][Self::discoveryMethod].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(setDiscoveryMethod:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDiscoveryMethod(&self, discovery_method: NIDLTDOADiscoveryMethod);
+
+        /// Initializes a new configuration with a network identifier(default discovery method - NIDLTDOADiscoveryMethodBluetoothLowEnergy)
         #[unsafe(method(initWithNetworkIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNetworkIdentifier(
             this: Allocated<Self>,
             network_identifier: NSInteger,
+        ) -> Retained<Self>;
+
+        /// Initializes a new configuration with a network identifier and anchor discovery method
+        #[unsafe(method(initWithNetworkIdentifier:discoveryMethod:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithNetworkIdentifier_discoveryMethod(
+            this: Allocated<Self>,
+            network_identifier: NSInteger,
+            discovery_method: NIDLTDOADiscoveryMethod,
         ) -> Retained<Self>;
     );
 }

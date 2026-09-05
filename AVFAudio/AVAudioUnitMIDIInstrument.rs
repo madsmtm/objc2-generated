@@ -22,6 +22,12 @@ extern_class!(
     pub struct AVAudioUnitMIDIInstrument;
 );
 
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+unsafe impl Send for AVAudioUnitMIDIInstrument {}
+
+#[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+unsafe impl Sync for AVAudioUnitMIDIInstrument {}
+
 #[cfg(all(
     feature = "AVAudioMixing",
     feature = "AVAudioNode",

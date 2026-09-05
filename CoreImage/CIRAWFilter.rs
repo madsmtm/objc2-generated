@@ -102,6 +102,12 @@ impl CIRAWFilter {
         #[unsafe(method_family = none)]
         pub unsafe fn supportedCameraModels() -> Retained<NSArray<NSString>>;
 
+        #[unsafe(method(supportedCameraModelsWithVersion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportedCameraModelsWithVersion(
+            version: &CIRAWDecoderVersion,
+        ) -> Retained<NSArray<NSString>>;
+
         #[unsafe(method(supportedDecoderVersions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedDecoderVersions(&self) -> Retained<NSArray<CIRAWDecoderVersion>>;
@@ -314,6 +320,21 @@ impl CIRAWFilter {
         #[unsafe(method_family = none)]
         pub unsafe fn setMoireReductionAmount(&self, moire_reduction_amount: c_float);
 
+        #[unsafe(method(isDespeckleSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isDespeckleSupported(&self) -> bool;
+    );
+
+    extern_methods!(
+        #[unsafe(method(despeckleAmount))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn despeckleAmount(&self) -> c_float;
+
+        /// Setter for [`despeckleAmount`][Self::despeckleAmount].
+        #[unsafe(method(setDespeckleAmount:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDespeckleAmount(&self, despeckle_amount: c_float);
+
         #[unsafe(method(isLocalToneMapSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLocalToneMapSupported(&self) -> bool;
@@ -321,9 +342,7 @@ impl CIRAWFilter {
         #[unsafe(method(localToneMapAmount))]
         #[unsafe(method_family = none)]
         pub unsafe fn localToneMapAmount(&self) -> c_float;
-    );
 
-    extern_methods!(
         /// Setter for [`localToneMapAmount`][Self::localToneMapAmount].
         #[unsafe(method(setLocalToneMapAmount:))]
         #[unsafe(method_family = none)]

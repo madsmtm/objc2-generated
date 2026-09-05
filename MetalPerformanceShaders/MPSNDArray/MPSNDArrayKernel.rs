@@ -393,6 +393,26 @@ impl MPSNDArrayMultiaryKernel {
             source_arrays: &NSArray<MPSNDArray>,
             destination: &MPSNDArray,
         );
+
+        /// Encode a simple inference NDArray kernel.
+        /// The encoder associates the commands with MTLStageDispatch. Synchronize your
+        /// workloads against this stage when using this function to prevent race conditions.
+        ///
+        /// Parameter `encoder`: The MTL4ComputeCommandEncoder to encode the kernel with.
+        ///
+        /// Parameter `sourceArrays`: The source NDArray instances in a NSArray. Make sure the instances
+        /// are arranged in the order required by the MPSNDArrayMultiaryKernel
+        /// subclass.
+        ///
+        /// Parameter `destination`: The destination NDArray.
+        #[unsafe(method(encodeWithMTL4CommandEncoder:sourceArrays:destinationArray:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn encodeWithMTL4CommandEncoder_sourceArrays_destinationArray(
+            &self,
+            encoder: &ProtocolObject<dyn MTL4ComputeCommandEncoder>,
+            source_arrays: &NSArray<MPSNDArray>,
+            destination: &MPSNDArray,
+        );
     );
 }
 
@@ -709,6 +729,24 @@ impl MPSNDArrayUnaryKernel {
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             source_array: &MPSNDArray,
             out_gradient_state: Option<&MPSState>,
+            destination: &MPSNDArray,
+        );
+
+        /// Encode a simple inference NDArray kernel.
+        /// The encoder associates the commands with MTLStageDispatch. Synchronize your
+        /// workloads against this stage when using this function to prevent race conditions.
+        ///
+        /// Parameter `encoder`: The MTL4ComputeCommandEncoder to encode the kernel with.
+        ///
+        /// Parameter `sourceArray`: The source NDArray.
+        ///
+        /// Parameter `destination`: The destination NDArray.
+        #[unsafe(method(encodeWithMTL4CommandEncoder:sourceArray:destinationArray:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn encodeWithMTL4CommandEncoder_sourceArray_destinationArray(
+            &self,
+            encoder: &ProtocolObject<dyn MTL4ComputeCommandEncoder>,
+            source_array: &MPSNDArray,
             destination: &MPSNDArray,
         );
     );

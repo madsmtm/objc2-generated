@@ -8,6 +8,8 @@ use objc2::__framework_prelude::*;
 use objc2_audio_toolbox::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
+#[cfg(feature = "objc2-core-midi")]
+use objc2_core_midi::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -178,6 +180,19 @@ pub type AVAudioEngineManualRenderingBlock = block2::Block<
     ) -> AVAudioEngineManualRenderingStatus,
 >;
 
+/// A block used by an audio unit to send or receive MIDIEventList data.
+///
+/// Parameter `eventSampleTime`: The time in samples at which the MIDI events are to occur.
+///
+/// Parameter `cable`: The virtual cable number associated with this MIDI data.
+///
+/// Parameter `eventList`: One full MIDI, partial MIDI SysEx, or a full SysEx UMP message.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidieventlistblock?language=objc)
+#[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
+pub type AVMIDIEventListBlock =
+    block2::Block<'static, fn(i64, u8, NonNull<MIDIEventList>) -> OSStatus>;
+
 extern_class!(
     /// An AVAudioEngine contains a group of connected AVAudioNodes ("nodes"), each of which performs
     /// an audio signal generation, processing, or input/output task.
@@ -201,6 +216,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioEngine;
 );
+
+unsafe impl Send for AVAudioEngine {}
+
+unsafe impl Sync for AVAudioEngine {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioEngine {}
@@ -273,6 +292,7 @@ impl AVAudioEngine {
         ///
         /// Note that any pre-existing connection(s) involving the source's output bus or the
         /// destination's input bus will be broken.
+        #[deprecated]
         #[unsafe(method(connect:to:fromBus:toBus:format:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connect_to_fromBus_toBus_format(
@@ -284,12 +304,53 @@ impl AVAudioEngine {
             format: Option<&AVAudioFormat>,
         );
 
+        #[cfg(all(
+            feature = "AVAudioFormat",
+            feature = "AVAudioNode",
+            feature = "AVAudioTypes"
+        ))]
+        /// Establish a connection between two nodes.
+        ///
+        /// Parameter `node1`: The source node
+        ///
+        /// Parameter `node2`: The destination node
+        ///
+        /// Parameter `bus1`: The output bus on the source node
+        ///
+        /// Parameter `bus2`: The input bus on the destination node
+        ///
+        /// Parameter `format`: If non-nil, the format of the source node's output bus is set to this
+        /// format. In all cases, the format of the destination node's input bus is set to
+        /// match that of the source node's output bus.
+        ///
+        /// Parameter `error`: on exit, if an error occurs, a description of the error
+        ///
+        /// Returns: YES for success
+        ///
+        /// Nodes have input and output buses (AVAudioNodeBus). Use this method to establish
+        /// one-to-one connections betweeen nodes. Connections made using this method are always
+        /// one-to-one, never one-to-many or many-to-one.
+        ///
+        /// Note that any pre-existing connection(s) involving the source's output bus or the
+        /// destination's input bus will be broken.
+        #[unsafe(method(connect:to:fromBus:toBus:format:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn connect_to_fromBus_toBus_format_error(
+            &self,
+            node1: &AVAudioNode,
+            node2: &AVAudioNode,
+            bus1: AVAudioNodeBus,
+            bus2: AVAudioNodeBus,
+            format: Option<&AVAudioFormat>,
+        ) -> Result<(), Retained<NSError>>;
+
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioNode"))]
         /// Establish a connection between two nodes
         ///
         /// This calls connect:to:fromBus:toBus:format: using bus 0 on the source node,
         /// and bus 0 on the destination node, except in the case of a destination which is a mixer,
         /// in which case the destination is the mixer's nextAvailableInputBus.
+        #[deprecated]
         #[unsafe(method(connect:to:format:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connect_to_format(
@@ -298,6 +359,25 @@ impl AVAudioEngine {
             node2: &AVAudioNode,
             format: Option<&AVAudioFormat>,
         );
+
+        #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioNode"))]
+        /// Establish a connection between two nodes
+        ///
+        /// Parameter `error`: on exit, if an error occurs, a description of the error
+        ///
+        /// Returns: YES for success
+        ///
+        /// This calls connect:to:fromBus:toBus:format: using bus 0 on the source node,
+        /// and bus 0 on the destination node, except in the case of a destination which is a mixer,
+        /// in which case the destination is the mixer's nextAvailableInputBus.
+        #[unsafe(method(connect:to:format:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn connect_to_format_error(
+            &self,
+            node1: &AVAudioNode,
+            node2: &AVAudioNode,
+            format: Option<&AVAudioFormat>,
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
             feature = "AVAudioConnectionPoint",
@@ -337,6 +417,7 @@ impl AVAudioEngine {
         /// paths terminate, you cannot have:
         /// - any AVAudioUnitTimeEffect
         /// - any sample rate conversion
+        #[deprecated]
         #[unsafe(method(connect:toConnectionPoints:fromBus:format:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connect_toConnectionPoints_fromBus_format(
@@ -346,6 +427,58 @@ impl AVAudioEngine {
             source_bus: AVAudioNodeBus,
             format: Option<&AVAudioFormat>,
         );
+
+        #[cfg(all(
+            feature = "AVAudioConnectionPoint",
+            feature = "AVAudioFormat",
+            feature = "AVAudioNode",
+            feature = "AVAudioTypes"
+        ))]
+        /// Establish connections between a source node and multiple destination nodes.
+        ///
+        /// Parameter `sourceNode`: The source node
+        ///
+        /// Parameter `destNodes`: An array of AVAudioConnectionPoint objects specifying destination
+        /// nodes and busses
+        ///
+        /// Parameter `sourceBus`: The output bus on source node
+        ///
+        /// Parameter `format`: If non-nil, the format of the source node's output bus is set to this
+        /// format. In all cases, the format of the destination nodes' input bus is set to
+        /// match that of the source node's output bus
+        ///
+        /// Parameter `error`: on exit, if an error occurs, a description of the error
+        ///
+        /// Returns: YES for success
+        ///
+        /// Use this method to establish connections from a source node to multiple destination nodes.
+        /// Connections made using this method are either one-to-one (when a single destination
+        /// connection is specified) or one-to-many (when multiple connections are specified), but
+        /// never many-to-one.
+        ///
+        /// To incrementally add a new connection to a source node, use this method with an array
+        /// of AVAudioConnectionPoint objects comprising of pre-existing connections (obtained from
+        /// `outputConnectionPointsForNode:outputBus:`) and the new connection.
+        ///
+        /// Note that any pre-existing connection involving the destination's input bus will be
+        /// broken. And, any pre-existing connection on source node which is not a part of the
+        /// specified destination connection array will also be broken.
+        ///
+        /// Also note that when the output of a node is split into multiple paths, all the paths
+        /// must render at the same rate until they reach a common mixer.
+        /// In other words, starting from the split node until the common mixer node where all split
+        /// paths terminate, you cannot have:
+        /// - any AVAudioUnitTimeEffect
+        /// - any sample rate conversion
+        #[unsafe(method(connect:toConnectionPoints:fromBus:format:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn connect_toConnectionPoints_fromBus_format_error(
+            &self,
+            source_node: &AVAudioNode,
+            dest_nodes: &NSArray<AVAudioConnectionPoint>,
+            source_bus: AVAudioNodeBus,
+            format: Option<&AVAudioFormat>,
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioTypes"))]
         /// Remove a connection between two nodes.
@@ -505,6 +638,12 @@ impl AVAudioEngine {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// The MusicSequence previously attached to the engine (if any).
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(musicSequence))]
         #[unsafe(method_family = none)]
         pub unsafe fn musicSequence(&self) -> MusicSequence;
@@ -515,7 +654,8 @@ impl AVAudioEngine {
         ///
         /// # Safety
         ///
-        /// `music_sequence` must be a valid pointer or null.
+        /// - `music_sequence` must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(setMusicSequence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMusicSequence(&self, music_sequence: MusicSequence);
@@ -537,6 +677,12 @@ impl AVAudioEngine {
         /// In manual rendering mode, the output format of the output node will determine the
         /// render format of the engine. It can be changed through
         /// `enableManualRenderingMode:format:maximumFrameCount:error:`.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(outputNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputNode(&self) -> Retained<AVAudioOutputNode>;
@@ -563,6 +709,12 @@ impl AVAudioEngine {
         /// In manual rendering mode, the input node can be used to synchronously supply data to
         /// the engine while it is rendering (see
         /// `AVAudioInputNode(setManualRenderingInputPCMFormat:inputBlock:)`.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(inputNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputNode(&self) -> Retained<AVAudioInputNode>;
@@ -581,11 +733,23 @@ impl AVAudioEngine {
         ///
         /// By default, the mixer's output format (sample rate and channel count) will track the format
         /// of the output node. You may however make the connection explicitly with a different format.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mainMixerNode))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainMixerNode(&self) -> Retained<AVAudioMixerNode>;
 
         /// The engine's running state.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isRunning))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRunning(&self) -> bool;
@@ -606,11 +770,21 @@ impl AVAudioEngine {
         /// This property is applicable only when the engine is rendering to/from an audio device. If
         /// the value is changed when the engine is in manual rendering mode, it will take effect
         /// whenever the engine is switched to render to/from the audio device.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isAutoShutdownEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoShutdownEnabled(&self) -> bool;
 
         /// Setter for [`isAutoShutdownEnabled`][Self::isAutoShutdownEnabled].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAutoShutdownEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoShutdownEnabled(&self, auto_shutdown_enabled: bool);
@@ -704,16 +878,25 @@ impl AVAudioEngine {
         /// call or    `renderOffline:toBuffer:error:` ObjC method can be used.
         /// All the rules outlined in `renderOffline:toBuffer:error:` are applicable here as well.
         ///
+        /// This property is not atomic.
+        ///
         /// # Safety
         ///
         /// - The returned block's argument 2 must be a valid pointer.
         /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(manualRenderingBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingBlock(&self) -> NonNull<AVAudioEngineManualRenderingBlock>;
 
         /// Whether or not the engine is operating in manual rendering mode, i.e. not connected
         /// to an audio device and rendering in response to the requests from the client
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isInManualRenderingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInManualRenderingMode(&self) -> bool;
@@ -722,6 +905,12 @@ impl AVAudioEngine {
         ///
         /// This property is meaningful only when the engine is operating in manual rendering mode,
         /// i.e. when `isInManualRenderingMode` returns true.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(manualRenderingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingMode(&self) -> AVAudioEngineManualRenderingMode;
@@ -731,6 +920,12 @@ impl AVAudioEngine {
         ///
         /// Querying this property when the engine is not in manual rendering mode will return an
         /// invalid format, with zero sample rate and channel count.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(manualRenderingFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingFormat(&self) -> Retained<AVAudioFormat>;
@@ -740,6 +935,12 @@ impl AVAudioEngine {
         /// the manual rendering mode.
         ///
         /// Querying this property when the engine is not in manual rendering mode will return zero.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(manualRenderingMaximumFrameCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingMaximumFrameCount(&self) -> AVAudioFrameCount;
@@ -750,6 +951,12 @@ impl AVAudioEngine {
         /// The timeline in manual rendering mode starts at a sample time of zero, and is in terms
         /// of the render format's sample rate. Resetting the engine (see `reset`) will reset the
         /// timeline back to zero.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(manualRenderingSampleTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingSampleTime(&self) -> AVAudioFramePosition;
@@ -801,6 +1008,49 @@ impl AVAudioEngine {
         #[cfg(all(
             feature = "AVAudioFormat",
             feature = "AVAudioNode",
+            feature = "block2",
+            feature = "objc2-core-midi"
+        ))]
+        /// Establish a MIDI only connection between two nodes.
+        ///
+        /// Parameter `sourceNode`: The source node.
+        ///
+        /// Parameter `destinationNode`: The destination node.
+        ///
+        /// Parameter `format`: If non-nil, the format of the source node's output bus is set to this format.
+        /// In all cases, the format of the source nodes' output bus has to match with the
+        /// destination nodes' output bus format.
+        /// Although the output bus of the source is not in use, the format needs to be set
+        /// in order to be able to use the sample rate for MIDI event timing calculations.
+        ///
+        /// Parameter `tapBlock`: This block is called from the source node's `AUMIDIOutputEventListBlock`
+        /// on the realtime thread. The host can tap the MIDI data of the source node through
+        /// this block.
+        ///
+        /// Use this method to establish a MIDI only connection between a source node and a
+        /// destination node that has MIDI input capability.
+        ///
+        /// The source node can only be a AVAudioUnit node of type `kAudioUnitType_MIDIProcessor`.
+        /// The destination node types can be `kAudioUnitType_MusicDevice`,
+        /// `kAudioUnitType_MusicEffect` or `kAudioUnitType_MIDIProcessor`.
+        ///
+        /// Note that any pre-existing MIDI connection involving the destination will be broken.
+        ///
+        /// Any client installed block on the source node's audio unit `AUMIDIOutputEventListBlock`
+        /// will be overwritten when making the MIDI connection.
+        #[unsafe(method(connectMIDI:to:format:eventListProvider:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn connectMIDI_to_format_eventListProvider(
+            &self,
+            source_node: &AVAudioNode,
+            destination_node: &AVAudioNode,
+            format: Option<&AVAudioFormat>,
+            tap_block: Option<&AVMIDIEventListBlock>,
+        );
+
+        #[cfg(all(
+            feature = "AVAudioFormat",
+            feature = "AVAudioNode",
             feature = "objc2-audio-toolbox"
         ))]
         #[cfg(not(target_os = "watchos"))]
@@ -844,6 +1094,53 @@ impl AVAudioEngine {
             destination_nodes: &NSArray<AVAudioNode>,
             format: Option<&AVAudioFormat>,
             tap_block: Option<&AUMIDIOutputEventBlock>,
+        );
+
+        #[cfg(all(
+            feature = "AVAudioFormat",
+            feature = "AVAudioNode",
+            feature = "block2",
+            feature = "objc2-core-midi"
+        ))]
+        /// Establish a MIDI only connection between a source node and multiple destination nodes.
+        ///
+        /// Parameter `sourceNode`: The source node.
+        ///
+        /// Parameter `destinationNodes`: An array of AVAudioNodes specifying destination nodes.
+        ///
+        /// Parameter `format`: If non-nil, the format of the source node's output bus is set to this format.
+        /// In all cases, the format of the source nodes' output bus has to match with the
+        /// destination nodes' output bus format.
+        /// Although the output bus of the source is not in use, the format needs to be set
+        /// in order to be able to use the sample rate for MIDI event timing calculations.
+        ///
+        /// Parameter `tapBlock`: This block is called from the source node's `AUMIDIOutputEventListBlock`
+        /// on the realtime thread. The host can tap the MIDI data of the source node through
+        /// this block.
+        ///
+        /// Use this method to establish a MIDI only connection between a source node and
+        /// multiple destination nodes.
+        ///
+        /// The source node can only be a AVAudioUnit node of type `kAudioUnitType_MIDIProcessor`.
+        /// The destination node types can be `kAudioUnitType_MusicDevice`,
+        /// `kAudioUnitType_MusicEffect` or `kAudioUnitType_MIDIProcessor`.
+        ///
+        /// MIDI connections made using this method are either one-to-one (when a single
+        /// destination connection is specified) or one-to-many (when multiple connections are
+        /// specified), but never many-to-one.
+        ///
+        /// Note that any pre-existing connection involving the destination will be broken.
+        ///
+        /// Any client installed block on the source node's audio unit `AUMIDIOutputEventListBlock`
+        /// will be overwritten when making the MIDI connection.
+        #[unsafe(method(connectMIDI:toNodes:format:eventListProvider:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn connectMIDI_toNodes_format_eventListProvider(
+            &self,
+            source_node: &AVAudioNode,
+            destination_nodes: &NSArray<AVAudioNode>,
+            format: Option<&AVAudioFormat>,
+            tap_block: Option<&AVMIDIEventListBlock>,
         );
 
         #[cfg(feature = "AVAudioNode")]

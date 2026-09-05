@@ -375,6 +375,20 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_hybrid_composite_mldsa87_rsa3072_withsha512?language=objc)
+    #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
+    pub static CSSMOID_HYBRID_COMPOSITE_MLDSA87_RSA3072_WithSHA512: SecAsn1Oid;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_hybrid_composite_mldsa87_rsa3072_withsha512_draft_13?language=objc)
+    #[cfg(feature = "SecAsn1Types")]
+    #[deprecated]
+    pub static CSSMOID_HYBRID_COMPOSITE_MLDSA87_RSA3072_WithSHA512_draft_13: SecAsn1Oid;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/cssmoid_apple_isign?language=objc)
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated]

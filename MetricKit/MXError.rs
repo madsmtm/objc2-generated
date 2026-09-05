@@ -11,6 +11,7 @@ extern "C" {
     /// This error domain is used as the domain for all NSError instances stemming from the MetricKit Framework.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerrordomain?language=objc)
+    #[deprecated = "Use MetricManager.LaunchTaskError instead."]
     pub static MXErrorDomain: &'static NSErrorDomain;
 }
 
@@ -20,27 +21,34 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerrorcode?language=objc)
 // NS_ERROR_ENUM
+#[deprecated = "Use MetricManager.LaunchTaskError instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MXErrorCode(pub NSInteger);
 impl MXErrorCode {
     /// The passed-in task ID is a null value or exceeds the max 128 character length.
     #[doc(alias = "MXErrorLaunchTaskInvalidID")]
+    #[deprecated = "Use MetricManager.LaunchTaskError instead."]
     pub const LaunchTaskInvalidID: Self = Self(0);
     /// Exceeded the max number of tasks.
     #[doc(alias = "MXErrorLaunchTaskMaxCount")]
+    #[deprecated = "Use MetricManager.LaunchTaskError instead."]
     pub const LaunchTaskMaxCount: Self = Self(1);
     /// The start call was made too late, see @discussion.
     #[doc(alias = "MXErrorLaunchTaskPastDeadline")]
+    #[deprecated = "Use MetricManager.LaunchTaskError instead."]
     pub const LaunchTaskPastDeadline: Self = Self(2);
     /// A task with the same ID has already been started.
     #[doc(alias = "MXErrorLaunchTaskDuplicated")]
+    #[deprecated = "Use MetricManager.LaunchTaskError instead."]
     pub const LaunchTaskDuplicated: Self = Self(3);
     /// The task hasn't been started or has already been finished.
     #[doc(alias = "MXErrorLaunchTaskUnknown")]
+    #[deprecated = "Use MetricManager.LaunchTaskError instead."]
     pub const LaunchTaskUnknown: Self = Self(4);
     /// Internal failures happened inside of MetricKit.
     #[doc(alias = "MXErrorLaunchTaskInternalFailure")]
+    #[deprecated = "Use MetricManager.LaunchTaskError instead."]
     pub const LaunchTaskInternalFailure: Self = Self(5);
 }
 

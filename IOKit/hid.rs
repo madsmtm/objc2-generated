@@ -103,6 +103,9 @@ pub const kIOHIDSupportedVendorUsagePairsKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohideventservicesensorcontroloptionskey?language=objc)
 pub const kIOHIDEventServiceSensorControlOptionsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDDefaultSensorControlOptions\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohideventservicepropertiesrequiredformatching?language=objc)
+pub const kIOHIDEventServicePropertiesRequiredForMatching: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPropertiesRequiredForMatching\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmouseaccelerationtype?language=objc)
 pub const kIOHIDMouseAccelerationType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDMouseAcceleration\0") };
@@ -218,6 +221,9 @@ pub const kIOHIDDeviceCarPlayDeviceKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddeviceapprovedcarplaydevicekey?language=objc)
 pub const kIOHIDDeviceApprovedCarPlayDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"isApprovedCarPlayDevice\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddevicehidrmhashkey?language=objc)
+pub const kIOHIDDeviceHIDRMHashKey: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDRMHash\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddevicekey?language=objc)
 pub const kIOHIDDeviceKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDDevice\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidvendoridsourcekey?language=objc)
@@ -8107,6 +8113,8 @@ pub const kHIDUsage_Snsr_Other_Custom: c_uint = 0xE1;
 pub const kHIDUsage_Snsr_Other_Generic: c_uint = 0xE2;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_other_genericenumerator?language=objc)
 pub const kHIDUsage_Snsr_Other_GenericEnumerator: c_uint = 0xE3;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_other_hingeangle?language=objc)
+pub const kHIDUsage_Snsr_Other_HingeAngle: c_uint = 0xE4;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_modifier_none?language=objc)
 pub const kHIDUsage_Snsr_Modifier_None: c_uint = 0x0;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_modifier_changesensitivityabsolute?language=objc)
@@ -8669,6 +8677,10 @@ pub const kHIDUsage_Snsr_Data_Custom_Value4: c_uint = 0x0547;
 pub const kHIDUsage_Snsr_Data_Custom_Value5: c_uint = 0x0548;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_data_custom_value6?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_Value6: c_uint = 0x0549;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_data_hinge?language=objc)
+pub const kHIDUsage_Snsr_Data_Hinge: c_uint = 0x05E0;
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_snsr_data_hinge_angle?language=objc)
+pub const kHIDUsage_Snsr_Data_Hinge_Angle: c_uint = 0x05E1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidusage_bd_undefined?language=objc)
 pub const kHIDUsage_BD_Undefined: c_uint = 0x00;

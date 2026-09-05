@@ -75,6 +75,10 @@ impl CSSearchableIndex {
             index_delegate: Option<&ProtocolObject<dyn CSSearchableIndexDelegate>>,
         );
 
+        #[unsafe(method(protectionClass))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn protectionClass(&self) -> Retained<NSFileProtectionType>;
+
         #[unsafe(method(isIndexingAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isIndexingAvailable() -> bool;
@@ -260,7 +264,21 @@ extern_protocol!(
         unsafe fn searchableItemsForIdentifiers_searchableItemsHandler(
             &self,
             identifiers: &NSArray<NSString>,
-            searchable_items_handler: &block2::Block<
+            searchable_items_handler: &block2::SendableBlock<
+                'static,
+                fn(NonNull<NSArray<CSSearchableItem>>),
+            >,
+        );
+
+        #[cfg(all(feature = "CSSearchableItem", feature = "block2"))]
+        #[optional]
+        #[unsafe(method(searchableItemsForIdentifiers:protectionClass:searchableItemsHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn searchableItemsForIdentifiers_protectionClass_searchableItemsHandler(
+            &self,
+            identifiers: &NSArray<NSString>,
+            protection_class: &NSFileProtectionType,
+            searchable_items_handler: &block2::SendableBlock<
                 'static,
                 fn(NonNull<NSArray<CSSearchableItem>>),
             >,

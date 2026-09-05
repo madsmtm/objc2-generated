@@ -15,6 +15,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXLocationActivityMetric;
 );
 
@@ -39,6 +40,7 @@ impl MXLocationActivityMetric {
         /// Cumulative time spent acquiring location at kCLLocationAccuracyBest.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeBestAccuracyTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBestAccuracyTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -46,6 +48,7 @@ impl MXLocationActivityMetric {
         /// Cumulative time spent acquiring location at kCLLocationAccuracyBestForNavigation.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeBestAccuracyForNavigationTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBestAccuracyForNavigationTime(
@@ -55,6 +58,7 @@ impl MXLocationActivityMetric {
         /// Cumulative time spent acquiring location at kCLLocationAccuracyNearestTenMeters.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeNearestTenMetersAccuracyTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeNearestTenMetersAccuracyTime(
@@ -64,6 +68,7 @@ impl MXLocationActivityMetric {
         /// Cumulative time spent acquiring location at kCLLocationAccuracyHundredMeters.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeHundredMetersAccuracyTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeHundredMetersAccuracyTime(
@@ -73,6 +78,7 @@ impl MXLocationActivityMetric {
         /// Cumulative time spent acquiring location at kCLLocationAccuracyKilometer.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeKilometerAccuracyTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeKilometerAccuracyTime(
@@ -82,6 +88,7 @@ impl MXLocationActivityMetric {
         /// Cumulative time spent acquiring location at kCLLocationAccuracyThreeKilometers.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(cumulativeThreeKilometersAccuracyTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeThreeKilometersAccuracyTime(

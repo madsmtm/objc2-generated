@@ -87,7 +87,7 @@ impl ASCredentialProviderViewController {
         );
 
         #[cfg(feature = "ASCredentialServiceIdentifier")]
-        /// Prepare the view controller to show a list of one time code credentials.
+        /// Prepare the view controller to show a list of one-time code credentials.
         ///
         /// Parameter `serviceIdentifiers`: the array of service identifiers.
         ///
@@ -139,7 +139,7 @@ impl ASCredentialProviderViewController {
         /// to enhance the user experience. If your extension can accomplish this (for example, the user’s passwords
         /// database is still unlocked from a recent interaction), call `-[ASCredentialProviderExtensionContext completeRequestWithSelectedCredential:completionHandler:]`
         /// for password credentials, `-[ASCredentialProviderExtensionContext completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:]` for passkey credentials,
-        /// or `-[ASCredentialProviderExtensionContext completeOneTimeCodeRequestWithSelectedCredential:completionHandler:]` for one time code credentials.
+        /// or `-[ASCredentialProviderExtensionContext completeOneTimeCodeRequestWithSelectedCredential:completionHandler:]` for one-time code credentials.
         /// If an error occurs, call `-[ASCredentialProviderExtensionContext cancelRequestWithError:]`
         /// and pass an error with domain `ASExtensionErrorDomain` and an appropriate error code from
         /// `ASExtensionErrorCode`. For example, if your extension requires user interaction because the
@@ -157,7 +157,7 @@ impl ASCredentialProviderViewController {
         ///
         /// Similarly, your extension needs to specify a true value for the Information Property List key `ProvidesOneTimeCodes`
         /// under the `ASCredentialProviderExtensionCapabilities` dictionary in order to be presented in
-        /// the list of options for one time code requests.
+        /// the list of options for one-time code requests.
         ///
         /// - Note: When this method is called, your extension's view controller is not present on the screen. Do not
         /// attempt or expect to show any user interface in this method.

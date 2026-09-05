@@ -18,6 +18,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use SignpostIntervalMetric instead."]
     pub struct MXSignpostIntervalData;
 );
 
@@ -37,6 +38,7 @@ impl MXSignpostIntervalData {
     extern_methods!(
         #[cfg(feature = "MXHistogram")]
         /// A histogram of signpost intervals durations associated with the given signposts with signpostName and signpostCategory.
+        #[deprecated = "Use SignpostIntervalMetric instead."]
         #[unsafe(method(histogrammedSignpostDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn histogrammedSignpostDuration(&self) -> Retained<MXHistogram<NSUnitDuration>>;
@@ -44,6 +46,7 @@ impl MXSignpostIntervalData {
         /// Cumulative CPU time aggregated over the MXSignpost intervals.
         ///
         /// This property is null when signposts with the associated signpostName and signpostCategory contain no interval metric data.
+        #[deprecated = "Use SignpostIntervalMetric instead."]
         #[unsafe(method(cumulativeCPUTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCPUTime(&self) -> Option<Retained<NSMeasurement<NSUnitDuration>>>;
@@ -52,6 +55,7 @@ impl MXSignpostIntervalData {
         /// Average value of memory snapshots taken at beginning and end of MXSignpost intervals
         ///
         /// This property is null when signposts with the associated signpostName and signpostCategory contain no interval metric data.
+        #[deprecated = "Use SignpostIntervalMetric instead."]
         #[unsafe(method(averageMemory))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageMemory(&self)
@@ -60,6 +64,7 @@ impl MXSignpostIntervalData {
         /// Cumulative logical writes aggregated over the MXSignpost intervals.
         ///
         /// This property is null when signposts with the associated signpostName and signpostCategory contain no interval metric data.
+        #[deprecated = "Use SignpostIntervalMetric instead."]
         #[unsafe(method(cumulativeLogicalWrites))]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeLogicalWrites(
@@ -97,6 +102,7 @@ extern_class!(
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
+    #[deprecated = "Use MetricResult instead."]
     pub struct MXSignpostMetric;
 );
 
@@ -119,11 +125,13 @@ extern_conformance!(
 impl MXSignpostMetric {
     extern_methods!(
         /// The name associated with this aggregated signpost.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(signpostName))]
         #[unsafe(method_family = none)]
         pub unsafe fn signpostName(&self) -> Retained<NSString>;
 
         /// The category associated with this aggregated signpost.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(signpostCategory))]
         #[unsafe(method_family = none)]
         pub unsafe fn signpostCategory(&self) -> Retained<NSString>;
@@ -131,11 +139,13 @@ impl MXSignpostMetric {
         /// A class that encapsulates metrics associated with app specific signpost intervals.
         ///
         /// This property is null when signposts with the associated signpostName and signpostCategory contain no intervals.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(signpostIntervalData))]
         #[unsafe(method_family = none)]
         pub unsafe fn signpostIntervalData(&self) -> Option<Retained<MXSignpostIntervalData>>;
 
         /// The total number of signposts emit with the given signpostName in the aggregation period of the parent payload.
+        #[deprecated = "Use MetricResult instead."]
         #[unsafe(method(totalCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCount(&self) -> NSUInteger;

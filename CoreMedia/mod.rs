@@ -480,6 +480,8 @@ pub use self::__CMFormatDescription::kCMFormatDescriptionKey_PixelAspectRatioVer
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionLogTransferFunction_AppleLog;
 #[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::kCMFormatDescriptionLogTransferFunction_AppleLog2;
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_AppleImmersiveVideo;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_Equirectangular;
@@ -1026,9 +1028,13 @@ pub use self::__CMMetadata::kCMMetadataBaseDataType_Float64;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_GIF;
 #[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataBaseDataType_ISOLatin1;
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_JPEG;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_JSON;
+#[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataBaseDataType_MacRoman;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_PNG;
 #[cfg(feature = "CMMetadata")]
@@ -1084,6 +1090,8 @@ pub use self::__CMMetadata::kCMMetadataDataType_QuickTimeMetadataLocation_ISO670
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataDataType_QuickTimeMetadataMilliLux;
 #[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataDataType_QuickTimeMetadataSMPTE2094_50;
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataDataType_QuickTimeMetadataUUID;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifierError_AllocationFailed;
@@ -1103,6 +1111,8 @@ pub use self::__CMMetadata::kCMMetadataIdentifierError_BadNumberKey;
 pub use self::__CMMetadata::kCMMetadataIdentifierError_NoKeyValueAvailable;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifierError_RequiredParameterMissing;
+#[cfg(feature = "CMMetadata")]
+pub use self::__CMMetadata::kCMMetadataIdentifier_ITUT_T35MetadataSMPTE2094_50;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing;
 #[cfg(feature = "CMMetadata")]

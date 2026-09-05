@@ -601,6 +601,18 @@ extern "C" {
 }
 
 extern "C" {
+    /// Markdown data
+    ///
+    /// UTI: net.daringfireball.markdown
+    ///
+    /// conforms to: public.utf8-plain-text
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemarkdown?language=objc)
+    #[cfg(feature = "UTType")]
+    pub static UTTypeMarkdown: &'static UTType;
+}
+
+extern "C" {
     /// A base type for property lists.
     ///
     /// UTI: com.apple.property-list

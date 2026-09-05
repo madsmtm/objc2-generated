@@ -179,15 +179,6 @@ impl NSColorPanel {
         #[unsafe(method_family = none)]
         pub fn sharedColorPanelExists(mtm: MainThreadMarker) -> bool;
 
-        #[cfg(all(feature = "NSColor", feature = "NSEvent", feature = "NSView"))]
-        #[unsafe(method(dragColor:withEvent:fromView:))]
-        #[unsafe(method_family = none)]
-        pub fn dragColor_withEvent_fromView(
-            color: &NSColor,
-            event: &NSEvent,
-            source_view: &NSView,
-        ) -> bool;
-
         #[unsafe(method(setPickerMask:))]
         #[unsafe(method_family = none)]
         pub fn setPickerMask(mask: NSColorPanelOptions, mtm: MainThreadMarker);
@@ -196,16 +187,14 @@ impl NSColorPanel {
         #[unsafe(method_family = none)]
         pub fn setPickerMode(mode: NSColorPanelMode, mtm: MainThreadMarker);
 
-        #[cfg(feature = "NSView")]
-        #[unsafe(method(accessoryView))]
+        #[cfg(all(feature = "NSColor", feature = "NSEvent", feature = "NSView"))]
+        #[unsafe(method(dragColor:withEvent:fromView:))]
         #[unsafe(method_family = none)]
-        pub fn accessoryView(&self) -> Option<Retained<NSView>>;
-
-        #[cfg(feature = "NSView")]
-        /// Setter for [`accessoryView`][Self::accessoryView].
-        #[unsafe(method(setAccessoryView:))]
-        #[unsafe(method_family = none)]
-        pub fn setAccessoryView(&self, accessory_view: Option<&NSView>);
+        pub fn dragColor_withEvent_fromView(
+            color: &NSColor,
+            event: &NSEvent,
+            source_view: &NSView,
+        ) -> bool;
 
         #[unsafe(method(isContinuous))]
         #[unsafe(method_family = none)]
@@ -252,6 +241,29 @@ impl NSColorPanel {
         #[unsafe(method_family = none)]
         pub fn alpha(&self) -> CGFloat;
 
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The maximum linear exposure that can be set on a color picked in the color panel. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked by the panel may have a linear exposure applied to it.
+        #[unsafe(method(maximumLinearExposure))]
+        #[unsafe(method_family = none)]
+        pub fn maximumLinearExposure(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
+        #[unsafe(method(setMaximumLinearExposure:))]
+        #[unsafe(method_family = none)]
+        pub fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
+
+        #[cfg(feature = "NSView")]
+        #[unsafe(method(accessoryView))]
+        #[unsafe(method_family = none)]
+        pub fn accessoryView(&self) -> Option<Retained<NSView>>;
+
+        #[cfg(feature = "NSView")]
+        /// Setter for [`accessoryView`][Self::accessoryView].
+        #[unsafe(method(setAccessoryView:))]
+        #[unsafe(method_family = none)]
+        pub fn setAccessoryView(&self, accessory_view: Option<&NSView>);
+
         /// # Safety
         ///
         /// `selector` must be a valid selector.
@@ -275,18 +287,6 @@ impl NSColorPanel {
         #[unsafe(method(detachColorList:))]
         #[unsafe(method_family = none)]
         pub fn detachColorList(&self, color_list: &NSColorList);
-
-        #[cfg(feature = "objc2-core-foundation")]
-        /// The maximum linear exposure that can be set on a color picked in the color panel. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked by the panel may have a linear exposure applied to it.
-        #[unsafe(method(maximumLinearExposure))]
-        #[unsafe(method_family = none)]
-        pub fn maximumLinearExposure(&self) -> CGFloat;
-
-        #[cfg(feature = "objc2-core-foundation")]
-        /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
-        #[unsafe(method(setMaximumLinearExposure:))]
-        #[unsafe(method_family = none)]
-        pub fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
     );
 }
 

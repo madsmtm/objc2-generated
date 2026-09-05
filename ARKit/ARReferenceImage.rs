@@ -99,8 +99,8 @@ impl ARReferenceImage {
         /// When loading reference images from the asset catalog this verification is not needed as the same verification happens
         /// at compile time.
         ///
-        /// Parameter `completionHandler`: Completion handler invoked when validation is done. The completion handler takes the following parameters:
-        /// error - An error that indicates why the image is not suitable for tracking, or nil if no error occurred.
+        /// - Parameter completionHandler: Completion handler invoked when validation is done. The completion handler takes the following parameters:
+        /// error - An error that indicates why the image is not suitable for tracking, or `nil` if no error occurred.
         #[unsafe(method(validateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateWithCompletionHandler(
@@ -115,12 +115,12 @@ impl ARReferenceImage {
         ))]
         /// Creates a new reference image.
         ///
+        /// - Parameters:
+        /// - image: The reference image as `CGImage`.
+        /// - orientation: The image orientation.
+        /// - physicalWidth: The width in meters of the physical object.
         ///
-        /// Parameter `image`: The reference image as CGImage.
-        ///
-        /// Parameter `orientation`: The image orientation.
-        ///
-        /// Parameter `physicalWidth`: The width in meters of the physical object.
+        /// - Returns: An initialized reference image.
         #[unsafe(method(initWithCGImage:orientation:physicalWidth:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGImage_orientation_physicalWidth(
@@ -137,12 +137,12 @@ impl ARReferenceImage {
         ))]
         /// Creates a new reference image.
         ///
+        /// - Parameters:
+        /// - pixelBuffer: The reference image as `CVPixelBuffer`.
+        /// - physicalWidth: The width in meters of the physical object.
+        /// - orientation: The image orientation.
         ///
-        /// Parameter `pixelBuffer`: The reference image as CVPixelBuffer.
-        ///
-        /// Parameter `physicalWidth`: The width in meters of the physical object.
-        ///
-        /// Parameter `orientation`: The image orientation.
+        /// - Returns: An initialized reference image.
         #[unsafe(method(initWithPixelBuffer:orientation:physicalWidth:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPixelBuffer_orientation_physicalWidth(
@@ -155,12 +155,11 @@ impl ARReferenceImage {
         #[cfg(feature = "objc2-foundation")]
         /// Returns the set of ARReferenceImages in the specified resource group and bundle.
         ///
+        /// - Parameters:
+        /// - name: The name of the resource group.
+        /// - bundle: The bundle containing the image file or asset catalog. Specify `nil` to search the app’s main bundle.
         ///
-        /// Parameter `name`: The name of the resource group.
-        ///
-        /// Parameter `bundle`: The bundle containing the image file or asset catalog. Specify nil to search the app’s main bundle.
-        ///
-        /// Returns: The set of reference images or nil on error.
+        /// - Returns: The set of reference images or `nil` on error.
         #[unsafe(method(referenceImagesInGroupNamed:bundle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceImagesInGroupNamed_bundle(

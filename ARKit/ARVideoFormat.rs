@@ -14,7 +14,9 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arvideoformat?language=objc)
+    /// A video format supported by an AR configuration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arvideoformat?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -84,9 +86,9 @@ impl ARVideoFormat {
         /// Calling this getter will return a new instance that may be mutated to customize settings. Pass that instance to
         /// `captureHighResolutionFrameUsingPhotoSettings:completion:` to capture a high resolution frame with custom settings.
         ///
-        /// See: [ARSession captureHighResolutionFrameUsingPhotoSettings:completion:]
+        /// - Returns: An `AVCapturePhotoSettings` object.
         ///
-        /// Returns: An AVCapturePhotoSettings object.
+        /// - SeeAlso: ``ARSession/captureHighResolutionFrameUsingPhotoSettings:completion:``
         #[unsafe(method(defaultPhotoSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultPhotoSettings(&self) -> Retained<AVCapturePhotoSettings>;

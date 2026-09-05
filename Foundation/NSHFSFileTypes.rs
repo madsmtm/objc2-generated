@@ -4,6 +4,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Returns a string encoding a file type code.
+///
+/// - Parameter hfsFileTypeCode: An HFS file type code.
+/// - Returns: A string that encodes `hfsFileTypeCode`. The format of the string is a private implementation detail, but such strings are suitable for inclusion in arrays that also contain file name extension strings.
 #[cfg(feature = "NSString")]
 #[inline]
 pub fn NSFileTypeForHFSTypeCode(hfs_file_type_code: OSType) -> Option<Retained<NSString>> {
@@ -14,6 +18,11 @@ pub fn NSFileTypeForHFSTypeCode(hfs_file_type_code: OSType) -> Option<Retained<N
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// Returns a file type code.
+///
+/// - Parameter fileTypeString: A string of the sort encoded by `NSFileTypeForHFSTypeCode()`.
+/// - Returns: The HFS file type code corresponding to `fileTypeString`, or `0` if it cannot be found.
+///
 /// # Safety
 ///
 /// `file_type_string` might not allow `None`.
@@ -26,6 +35,11 @@ pub unsafe fn NSHFSTypeCodeFromFileType(file_type_string: Option<&NSString>) -> 
     unsafe { NSHFSTypeCodeFromFileType(file_type_string) }
 }
 
+/// Returns a string encoding a file type.
+///
+/// - Parameter fullFilePath: The full absolute path of a file.
+/// - Returns: A string that encodes `fullFilePath`'s HFS file type, or `nil` if the operation was not successful.
+///
 /// # Safety
 ///
 /// `full_file_path` might not allow `None`.

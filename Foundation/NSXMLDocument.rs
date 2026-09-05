@@ -6,7 +6,11 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Define what type of document this is.
+/// Type used to define the kind of document content.
+///
+/// For possible values, see
+/// <doc
+/// :xmldocument/document_content_types>.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldocumentcontentkind?language=objc)
 // NS_ENUM
@@ -14,16 +18,18 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLDocumentContentKind(pub NSUInteger);
 impl NSXMLDocumentContentKind {
-    /// The default document type
+    /// The default type of document content type, which is XML.
     #[doc(alias = "NSXMLDocumentXMLKind")]
     pub const XMLKind: Self = Self(0);
-    /// Set if NSXMLDocumentTidyHTML is set and HTML is detected
+    /// The document output is XHTML. This is set automatically if the
+    /// `NSXMLDocumentTidyHTML`option is set and NSXML detects HTML.
     #[doc(alias = "NSXMLDocumentXHTMLKind")]
     pub const XHTMLKind: Self = Self(1);
-    /// Outputs empty tags without a close tag, eg <br>
+    /// Outputs empty tags in HTML without a close tag, such as
+    /// `<br>`.
     #[doc(alias = "NSXMLDocumentHTMLKind")]
     pub const HTMLKind: Self = Self(2);
-    /// Output the string value of the document
+    /// Outputs the string value of the document by extracting the string values from all text nodes.
     #[doc(alias = "NSXMLDocumentTextKind")]
     pub const TextKind: Self = Self(3);
 }
@@ -37,9 +43,41 @@ unsafe impl RefEncode for NSXMLDocumentContentKind {
 }
 
 extern_class!(
-    /// An XML Document
+    /// An XML document as internalized into a logical tree structure.
     ///
-    /// Note: if the application of a method would result in more than one element in the children array, an exception is thrown. Trying to add a document, namespace, attribute, or node with a parent also throws an exception. To add a node with a parent first detach or create a copy of it.
+    /// An ``XMLDocument`` object can have multiple child nodes but only one element, the root element. Any other node must be a ``XMLNode`` object representing a comment or a processing instruction. If you attempt to add any other kind of child node to an ``XMLDocument`` object, such as an attribute, namespace, another document object, or an element other than the root, ``XMLDocument`` raises an exception. If you add a valid child node and that object already has a parent, ``XMLDocument`` raises an exception. An ``XMLDocument`` object may also have document-global attributes, such as XML version, character encoding, referenced DTD, and MIME type.
+    ///
+    /// The initializers of the ``XMLDocument`` class read an external source of XML, whether it be a local file or remote website, parse it, and process it into the tree representation. You can also construct an ``XMLDocument`` programmatically. There are accessor methods for getting and setting document attributes, methods for transforming documents using XSLT, a method for dynamically validating a document, and methods for printing out the content of an ``XMLDocument`` as XML, XHTML, HTML, or plain text.
+    ///
+    /// The ``XMLDocument`` class is thread-safe as long as any given instance is used only in one thread.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// #### Methods to Override
+    ///
+    /// To subclass `NSXMLDocument` you need to override the primary initializer, ``init(data:options:)``, and the methods listed below. In most cases, you need only invoke the superclass implementation, adding any subclass-specific code before or after the invocation, as necessary.
+    ///
+    /// - ``rootElement()``
+    /// - ``setChildren(_:)``
+    /// - ``removeChild(at:)``
+    /// - ``insertChild(_:at:)``
+    /// - ``characterEncoding``
+    /// - ``characterEncoding``
+    /// - ``documentContentKind``
+    /// - ``documentContentKind``
+    /// - ``dtd``
+    /// - ``mimeType``
+    /// - ``isStandalone``
+    /// - ``version``
+    /// - ``version``
+    ///
+    /// By default `NSXMLDocument` implements the `NSObject`
+    /// <doc
+    /// ://com.apple.documentation/documentation/objectivec/nsobjectprotocol/isequal(_:)> method to perform a deep comparison: two `NSXMLDocument` objects are not considered equal unless they have the same name, same child nodes, same attributes, and so on. The comparison does not consider the parent node (and hence the node's location). If you want a different standard of comparison, override `isEqual:`.
+    ///
+    /// #### Special Considerations
+    ///
+    /// Because of the architecture and data model of NSXML, when it parses and processes a source of XML it cannot know about your subclass unless you override the class method ``replacementClass(for:)`` to return your custom class in place of an `NSXML` class. If your custom class has no direct `NSXML` counterpart—for example, it is a subclass of `NSXMLNode` that represents CDATA sections—then you can walk the tree after it has been created and insert the new node where appropriate.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldocument?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
@@ -75,11 +113,16 @@ impl NSXMLDocument {
             feature = "NSString",
             feature = "NSXMLNodeOptions"
         ))]
-        /// Returns a document created from either XML or HTML, if the HTMLTidy option is set. Parse errors are returned in
-        /// <tt>
-        /// error
-        /// </tt>
-        /// .
+        /// Initializes and returns an
+        /// `NSXMLDocument`object created from a string containing XML markup text.
+        ///
+        /// The encoding of the document is set to UTF-8.
+        ///
+        /// Parameter `string`: A string object containing XML markup text.
+        ///
+        /// Parameter `mask`: A bit mask for input options. You can specify multiple options by bit-OR'ing them.
+        ///
+        /// Parameter `error`: An error object that, on return, identifies any parsing errors and warnings or connection problems.
         #[unsafe(method(initWithXMLString:options:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithXMLString_options_error(
@@ -89,11 +132,15 @@ impl NSXMLDocument {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "NSXMLNodeOptions"))]
-        /// Returns a document created from the contents of an XML or HTML URL. Connection problems such as 404, parse errors are returned in
-        /// <tt>
-        /// error
-        /// </tt>
-        /// .
+        /// Initializes and returns an
+        /// `NSXMLDocument`object created from the XML or HTML contents of a URL-referenced source.
+        ///
+        /// Parameter `url`: An
+        /// `NSURL`object specifying a URL source.
+        ///
+        /// Parameter `mask`: A bit mask for input options. You can specify multiple options by bit-OR'ing them.
+        ///
+        /// Parameter `error`: An error object that, on return, identifies any parsing errors and warnings or connection problems.
         #[unsafe(method(initWithContentsOfURL:options:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfURL_options_error(
@@ -103,11 +150,20 @@ impl NSXMLDocument {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSXMLNodeOptions"))]
-        /// Returns a document created from data. Parse errors are returned in
-        /// <tt>
-        /// error
-        /// </tt>
-        /// .
+        /// Initializes and returns an
+        /// `NSXMLDocument`object created from data.
+        ///
+        /// This method is the designated initializer for the
+        /// `NSXMLDocument`class. If you specify
+        /// `NSXMLDocumentTidyXML`as one of the options,
+        /// `NSXMLDocument`performs several clean-up operations on the document XML (such as removing leading tabs). It does respect the
+        /// `xml:space="preserve"`attribute when it attempts to tidy the XML.
+        ///
+        /// Parameter `data`: A data object with XML content.
+        ///
+        /// Parameter `mask`: A bit mask for input options. You can specify multiple options by bit-OR'ing them.
+        ///
+        /// Parameter `error`: An error object that, on return, identifies any parsing errors and warnings or connection problems.
         #[unsafe(method(initWithData:options:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithData_options_error(
@@ -117,7 +173,11 @@ impl NSXMLDocument {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSXMLElement")]
-        /// Returns a document with a single child, the root element.
+        /// Returns an
+        /// `NSXMLDocument`object initialized with a single child, the root element.
+        ///
+        /// Parameter `element`: An
+        /// `NSXMLElement`object representing an XML element.
         #[unsafe(method(initWithRootElement:))]
         #[unsafe(method_family = init)]
         pub fn initWithRootElement(
@@ -125,6 +185,16 @@ impl NSXMLDocument {
             element: Option<&NSXMLElement>,
         ) -> Retained<Self>;
 
+        /// Overridden by subclasses to substitute a custom class for an NSXML class that the parser uses to create node instances.
+        ///
+        /// This method is invoked before a document is parsed. The substituted class must be a subclass of
+        /// `NSXMLNode,``NSXMLDocument,``NSXMLElement,``NSXMLDTD,`or
+        /// `NSXMLDTDNode.`
+        /// Parameter `cls`: A
+        /// `Class`object identifying an NSXML class that is to be replaced by your custom class.
+        ///
+        /// Returns: The substituted class.
+        ///
         /// # Safety
         ///
         /// `cls` probably has further requirements.
@@ -133,7 +203,9 @@ impl NSXMLDocument {
         pub unsafe fn replacementClassForClass(cls: &AnyClass) -> &'static AnyClass;
 
         #[cfg(feature = "NSString")]
-        /// Sets the character encoding to an IANA type.
+        /// The character encoding of the receiver.
+        ///
+        /// The encoding must match the name of an IANA character set. Typically the encoding is specified in the XML declaration of a document that is processed, but it can be set at any time. If the specified encoding does not match the actual encoding, parsing of the document might fail.
         #[unsafe(method(characterEncoding))]
         #[unsafe(method_family = none)]
         pub fn characterEncoding(&self) -> Option<Retained<NSString>>;
@@ -147,7 +219,9 @@ impl NSXMLDocument {
         pub fn setCharacterEncoding(&self, character_encoding: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        /// Sets the XML version. Should be 1.0 or 1.1.
+        /// The version of the receiver's XML.
+        ///
+        /// Currently, the version should be either "1.0" or "1.1".
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub fn version(&self) -> Option<Retained<NSString>>;
@@ -160,7 +234,9 @@ impl NSXMLDocument {
         #[unsafe(method_family = none)]
         pub fn setVersion(&self, version: Option<&NSString>);
 
-        /// Set whether this document depends on an external DTD. If this option is set the standalone declaration will appear on output.
+        /// A Boolean value that specifies whether the receiver represents a standalone XML document.
+        ///
+        /// A standalone document does not have an external DTD associated with it. If this option is set the standalone declaration will appear on output.
         #[unsafe(method(isStandalone))]
         #[unsafe(method_family = none)]
         pub fn isStandalone(&self) -> bool;
@@ -170,7 +246,10 @@ impl NSXMLDocument {
         #[unsafe(method_family = none)]
         pub fn setStandalone(&self, standalone: bool);
 
-        /// The kind of document.
+        /// The kind of output content for the receiver.
+        ///
+        /// Most of the differences among document-content kind have to do with the handling of content-less tags such as
+        /// `<br>`.
         #[unsafe(method(documentContentKind))]
         #[unsafe(method_family = none)]
         pub fn documentContentKind(&self) -> NSXMLDocumentContentKind;
@@ -181,7 +260,7 @@ impl NSXMLDocument {
         pub fn setDocumentContentKind(&self, document_content_kind: NSXMLDocumentContentKind);
 
         #[cfg(feature = "NSString")]
-        /// Set the MIME type, eg text/xml.
+        /// The MIME type for the receiver (for example, "text/xml").
         #[unsafe(method(MIMEType))]
         #[unsafe(method_family = none)]
         pub fn MIMEType(&self) -> Option<Retained<NSString>>;
@@ -195,7 +274,11 @@ impl NSXMLDocument {
         pub fn setMIMEType(&self, mime_type: Option<&NSString>);
 
         #[cfg(feature = "NSXMLDTD")]
-        /// Set the associated DTD. This DTD will be output with the document.
+        /// The internal DTD associated with the receiver.
+        ///
+        /// Returns an
+        /// `NSXMLDTD`object representing the internal DTD associated with the receiver or
+        /// `nil`if no DTD has been associated. This DTD will be output with the document.
         #[unsafe(method(DTD))]
         #[unsafe(method_family = none)]
         pub fn DTD(&self) -> Option<Retained<NSXMLDTD>>;
@@ -209,57 +292,110 @@ impl NSXMLDocument {
         pub fn setDTD(&self, dtd: Option<&NSXMLDTD>);
 
         #[cfg(feature = "NSXMLElement")]
-        /// Set the root element. Removes all other children including comments and processing-instructions.
+        /// Sets the root element of the receiver.
+        ///
+        /// As a side effect, this method removes all other children, including
+        /// `NSXMLNode`objects representing comments and processing-instructions.
+        ///
+        /// Parameter `root`: An
+        /// `NSXMLElement`object that is to be the root element.
         #[unsafe(method(setRootElement:))]
         #[unsafe(method_family = none)]
         pub fn setRootElement(&self, root: &NSXMLElement);
 
         #[cfg(feature = "NSXMLElement")]
-        /// The root element.
+        /// Returns the root element of the receiver.
         #[unsafe(method(rootElement))]
         #[unsafe(method_family = none)]
         pub fn rootElement(&self) -> Option<Retained<NSXMLElement>>;
 
-        /// Inserts a child at a particular index.
+        /// Inserts a node object at a specified position in the receiver's array of children.
+        ///
+        /// Parameter `child`: The
+        /// `NSXMLNode`object to be inserted. The added node must represent a comment, processing instruction, or the root element.
+        ///
+        /// Parameter `index`: An integer specifying the index of the children array to insert
+        /// `child.`The indexes of children after the new child are incremented. If
+        /// `index`is out of bounds, an exception is raised.
         #[unsafe(method(insertChild:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
-        /// Insert several children at a particular index.
+        /// Inserts an array of children at a specified position in the receiver's array of children.
+        ///
+        /// Parameter `children`: An array of
+        /// `NSXMLNode`objects representing comments, processing instructions, or the root element.
+        ///
+        /// Parameter `index`: An integer identifying the location in the receiver's children array for insertion. If
+        /// `index`is out of bounds, an exception is raised.
         #[unsafe(method(insertChildren:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertChildren_atIndex(&self, children: &NSArray<NSXMLNode>, index: NSUInteger);
 
-        /// Removes a child at a particular index.
+        /// Removes the child node of the receiver located at a specified position in its array of children.
+        ///
+        /// Subsequent children have their indexes decreased by one. The removed
+        /// `NSXMLNode`object is autoreleased.
+        ///
+        /// Parameter `index`: An integer identifying the position of a child in the receiver's array. If
+        /// `index`is out of bounds, an exception is raised.
         #[unsafe(method(removeChildAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn removeChildAtIndex(&self, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
-        /// Removes all existing children and replaces them with the new children. Set children to nil to simply remove all children.
+        /// Sets the child nodes of the receiver.
+        ///
+        /// Each of these objects must represent comments, processing instructions, or the root element; otherwise, an exception is raised. Pass in
+        /// `nil`to remove all children.
+        ///
+        /// Parameter `children`: An array of
+        /// `NSXMLNode`objects.
         #[unsafe(method(setChildren:))]
         #[unsafe(method_family = none)]
         pub fn setChildren(&self, children: Option<&NSArray<NSXMLNode>>);
 
-        /// Adds a child to the end of the existing children.
+        /// Adds a child node after the last of the receiver's existing children.
+        ///
+        /// Parameter `child`: The
+        /// `NSXMLNode`object to be added.
         #[unsafe(method(addChild:))]
         #[unsafe(method_family = none)]
         pub fn addChild(&self, child: &NSXMLNode);
 
-        /// Replaces a child at a particular index with another child.
+        /// Replaces the child node of the receiver located at a specified position with another node.
+        ///
+        /// The removed
+        /// `NSXMLNode`object is autoreleased.
+        ///
+        /// Parameter `index`: An integer identifying a position in the receiver's array of children. If
+        /// `index`is out of bounds, an exception is raised.
+        ///
+        /// Parameter `node`: An
+        /// `NSXMLNode`object to replace the one at
+        /// `index;`it must represent a comment, a processing instruction, or the root element.
         #[unsafe(method(replaceChildAtIndex:withNode:))]
         #[unsafe(method_family = none)]
         pub fn replaceChildAtIndex_withNode(&self, index: NSUInteger, node: &NSXMLNode);
 
         #[cfg(feature = "NSData")]
-        /// Invokes XMLDataWithOptions with NSXMLNodeOptionsNone.
+        /// The XML string representation of the receiver—that is, the entire document—encapsulated in a data object.
+        ///
+        /// This property invokes
+        /// `XMLDataWithOptions:`with an option of
+        /// `NSXMLNodeOptionsNone.`The encoding used is based on the value returned from
+        /// `characterEncoding`or UTF-8 if no valid encoding is returned.
         #[unsafe(method(XMLData))]
         #[unsafe(method_family = none)]
         pub fn XMLData(&self) -> Retained<NSData>;
 
         #[cfg(all(feature = "NSData", feature = "NSXMLNodeOptions"))]
-        /// The representation of this node as it would appear in an XML document, encoded based on characterEncoding.
+        /// Returns the XML string representation of the receiver—that is, the entire document—encapsulated in a data object.
+        ///
+        /// The encoding used is based on the value returned from
+        /// `characterEncoding.`
+        /// Parameter `options`: One or more options (bit-OR'd if multiple) to affect the output of the document.
         #[unsafe(method(XMLDataWithOptions:))]
         #[unsafe(method_family = none)]
         pub fn XMLDataWithOptions(&self, options: NSXMLNodeOptions) -> Retained<NSData>;
@@ -270,7 +406,20 @@ impl NSXMLDocument {
             feature = "NSError",
             feature = "NSString"
         ))]
-        /// Applies XSLT with arguments (NSString key/value pairs) to this document, returning a new document.
+        /// Applies the XSLT pattern rules and templates (specified as a data object) to the receiver and returns a document object containing transformed XML or HTML markup.
+        ///
+        /// Depending on intended output, the method returns an
+        /// `NSXMLDocument`object or an
+        /// `NSData`object containing transformed XML or HTML markup.
+        ///
+        /// Parameter `xslt`: A data object containing the XSLT pattern rules and templates.
+        ///
+        /// Parameter `arguments`: A dictionary containing
+        /// `NSString`key-value pairs that are passed as runtime parameters to the XSLT processor. Pass in
+        /// `nil`if you have no parameters to pass.
+        ///
+        /// Parameter `error`: If an error occurs, indirectly returns an
+        /// `NSError`object encapsulating error or warning messages generated by XSLT processing.
         #[unsafe(method(objectByApplyingXSLT:arguments:error:_))]
         #[unsafe(method_family = none)]
         pub fn objectByApplyingXSLT_arguments_error(
@@ -280,7 +429,20 @@ impl NSXMLDocument {
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
-        /// Applies XSLT as expressed by a string with arguments (NSString key/value pairs) to this document, returning a new document.
+        /// Applies the XSLT pattern rules and templates (specified as a string) to the receiver and returns a document object containing transformed XML or HTML markup.
+        ///
+        /// Depending on intended output, the method returns an
+        /// `NSXMLDocument`object or an
+        /// `NSData`object containing transformed XML or HTML markup.
+        ///
+        /// Parameter `xslt`: A string object containing the XSLT pattern rules and templates.
+        ///
+        /// Parameter `arguments`: A dictionary containing
+        /// `NSString`key-value pairs that are passed as runtime parameters to the XSLT processor. Pass in
+        /// `nil`if you have no parameters to pass.
+        ///
+        /// Parameter `error`: If an error occurs, indirectly returns an
+        /// `NSError`object encapsulating error or warning messages generated by XSLT processing.
         #[unsafe(method(objectByApplyingXSLTString:arguments:error:_))]
         #[unsafe(method_family = none)]
         pub fn objectByApplyingXSLTString_arguments_error(
@@ -295,7 +457,21 @@ impl NSXMLDocument {
             feature = "NSString",
             feature = "NSURL"
         ))]
-        /// Applies the XSLT at a URL with arguments (NSString key/value pairs) to this document, returning a new document. Error may contain a connection error from the URL.
+        /// Applies the XSLT pattern rules and templates located at a specified URL to the receiver and returns a document object containing transformed XML markup.
+        ///
+        /// Depending on intended output, the method returns an
+        /// `NSXMLDocument`object or an
+        /// `NSData`object containing transformed XML or HTML markup.
+        ///
+        /// Parameter `xsltURL`: An
+        /// `NSURL`object specifying a valid URL.
+        ///
+        /// Parameter `argument`: A dictionary containing
+        /// `NSString`key-value pairs that are passed as runtime parameters to the XSLT processor. Pass in
+        /// `nil`if you have no parameters to pass.
+        ///
+        /// Parameter `error`: If an error occurs, indirectly returns an
+        /// `NSError`object encapsulating error or warning messages generated by XSLT processing or from an attempt to connect to a website identified by the URL.
         #[unsafe(method(objectByApplyingXSLTAtURL:arguments:error:_))]
         #[unsafe(method_family = none)]
         pub fn objectByApplyingXSLTAtURL_arguments_error(
@@ -305,6 +481,15 @@ impl NSXMLDocument {
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Validates the document against the governing schema and returns whether the document conforms to the schema.
+        ///
+        /// If the schema is defined with a DTD, this method uses the
+        /// `NSXMLDTD`object set for the receiver for validation. If the schema is based on XML Schema, the method uses the URL specified as the value of the
+        /// `xsi:schemaLocation`attribute of the root element. You can validate an XML document when it is first processed by specifying the
+        /// `NSXMLDocumentValidate`option in the initializer methods.
+        ///
+        /// Parameter `error`: If validation fails, on return contains an
+        /// `NSError`object describing the reason or reasons for failure.
         #[unsafe(method(validateAndReturnError:_))]
         #[unsafe(method_family = none)]
         pub fn validateAndReturnError(&self) -> Result<(), Retained<NSError>>;
@@ -315,19 +500,40 @@ impl NSXMLDocument {
 #[cfg(feature = "NSXMLNode")]
 impl NSXMLDocument {
     extern_methods!(
+        /// Returns an
+        /// `NSXMLNode`instance initialized with the constant indicating node kind.
+        ///
         /// Invokes
+        /// `initWithKind:options:`with options set to
+        /// `NSXMLNodeOptionsNone.`
+        /// Do not use this initializer for creating instances of
+        /// `NSXMLDTDNode`for attribute-list declarations. Instead, use the
+        /// `DTDNodeWithXMLString:`class method of this class or the
+        /// `initWithXMLString:`method of the
+        /// `NSXMLDTDNode`class.
         ///
-        /// ```text
-        ///  initWithKind:options:
-        /// ```
-        ///
-        /// with options set to NSXMLNodeOptionsNone
+        /// Parameter `kind`: An
+        /// `enum`constant of type
+        /// `NSXMLNodeKind`that indicates the type of node.
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
         pub fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
-        /// Inits a node with fidelity options as description NSXMLNodeOptions.h
+        /// Returns an
+        /// `NSXMLNode`instance initialized with the constant indicating node kind and one or more initialization options.
+        ///
+        /// Do not use this initializer for creating instances of
+        /// `NSXMLDTDNode`for attribute-list declarations. Instead, use the
+        /// `DTDNodeWithXMLString:`class method of this class or the
+        /// `initWithXMLString:`method of the
+        /// `NSXMLDTDNode`class.
+        ///
+        /// Parameter `kind`: An
+        /// `enum`constant of type
+        /// `NSXMLNodeKind`that indicates the type of node.
+        ///
+        /// Parameter `options`: One or more constants that specify initialization options; if there are multiple constants, bit-OR them together.
         #[unsafe(method(initWithKind:options:))]
         #[unsafe(method_family = init)]
         pub fn initWithKind_options(

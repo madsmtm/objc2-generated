@@ -7,7 +7,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptcoercionhandler?language=objc)
+    /// A mechanism for converting one kind of scripting data to another.
+    ///
+    /// A shared instance of this class coerces (converts) object values to objects of another class using information supplied by classes that register with it. Coercions frequently are required during key-value coding.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptcoercionhandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptCoercionHandler;
@@ -19,10 +23,13 @@ extern_conformance!(
 
 impl NSScriptCoercionHandler {
     extern_methods!(
+        /// Returns the shared coercion handler.
         #[unsafe(method(sharedCoercionHandler))]
         #[unsafe(method_family = none)]
         pub fn sharedCoercionHandler() -> Retained<NSScriptCoercionHandler>;
 
+        /// Attempts to coerce the given value to the given class.
+        ///
         /// # Safety
         ///
         /// - `value` should be of the correct type.
@@ -35,6 +42,10 @@ impl NSScriptCoercionHandler {
             to_class: &AnyClass,
         ) -> Option<Retained<AnyObject>>;
 
+        /// Registers a coercer to convert values from one class to another.
+        ///
+        /// The selector should take two arguments: the first is the value to be converted, and the second is the class to convert it to. The coercer should typically be a class object and the selector a factory method.
+        ///
         /// # Safety
         ///
         /// - `coercer` should be of the correct type.

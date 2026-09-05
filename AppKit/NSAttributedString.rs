@@ -589,6 +589,31 @@ impl private_NSAttributedStringKitAdditions::Sealed for NSAttributedString {}
 unsafe impl NSAttributedStringKitAdditions for NSAttributedString {}
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspapermargindocumentattribute?language=objc)
+    pub static NSPaperMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
+}
+
+extern "C" {
+    /// ********************** Deprecated ***********************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsobliquenessattributename?language=objc)
+    #[deprecated = "This attribute is not supported with TextKit 2"]
+    pub static NSObliquenessAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsexpansionattributename?language=objc)
+    #[deprecated = "This attribute is not supported with TextKit 2"]
+    pub static NSExpansionAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticalglyphformattributename?language=objc)
+    #[deprecated = "This attribute is not supported with TextKit 2"]
+    pub static NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorattributename?language=objc)
     pub static NSCursorAttributeName: &'static NSAttributedStringKey;
 }
@@ -1170,29 +1195,33 @@ pub unsafe trait NSMutableAttributedStringAppKitAdditions:
 impl private_NSMutableAttributedStringAppKitAdditions::Sealed for NSMutableAttributedString {}
 unsafe impl NSMutableAttributedStringAppKitAdditions for NSMutableAttributedString {}
 
-/// ********************** Deprecated ***********************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatternsolid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatternsolid?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternSolid: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternSolid.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatterndot?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDot.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatterndash?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternDash: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDash.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatterndashdot?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternDashDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDashDot.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinepatterndashdotdot?language=objc)
+#[deprecated]
 pub static NSUnderlinePatternDashDotDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDashDotDot.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinebyword?language=objc)
+#[deprecated]
 pub static NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::ByWord.0);
 
 extern "C" {
@@ -1205,24 +1234,6 @@ extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsusesscreenfontsdocumentattribute?language=objc)
     #[deprecated]
     pub static NSUsesScreenFontsDocumentAttribute: &'static NSAttributedStringKey;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsobliquenessattributename?language=objc)
-    #[deprecated = "This attribute is not supported with TextKit 2"]
-    pub static NSObliquenessAttributeName: &'static NSAttributedStringKey;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsexpansionattributename?language=objc)
-    #[deprecated = "This attribute is not supported with TextKit 2"]
-    pub static NSExpansionAttributeName: &'static NSAttributedStringKey;
-}
-
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticalglyphformattributename?language=objc)
-    #[deprecated = "This attribute is not supported with TextKit 2"]
-    pub static NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnounderlinestyle?language=objc)
@@ -1240,7 +1251,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinebywordmask?language=objc)
-    #[deprecated = "Use NSUnderlineByWord instead"]
+    #[deprecated = "Use NSUnderlineStyleByWord instead"]
     pub static NSUnderlineByWordMask: NSUInteger;
 }
 

@@ -39,20 +39,10 @@ impl ARRaycastResult {
         #[cfg(feature = "ARAnchor")]
         /// The anchor that the ray intersected.
         ///
-        ///
         /// In case of an existing plane target, an anchor will always be provided. In case of an estimated plane target,
         /// an anchor may be provided if the ray hit an existing plane.
         #[unsafe(method(anchor))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchor(&self) -> Option<Retained<ARAnchor>>;
-    );
-}
-
-/// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
-impl ARRaycastResult {
-    extern_methods!(
-        // +new (unavailable)
-
     );
 }

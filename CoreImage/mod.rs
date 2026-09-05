@@ -959,11 +959,17 @@ pub use self::__CIImage::kCIImageNearestSampling;
 #[cfg(feature = "CIImage")]
 pub use self::__CIImage::kCIImageProperties;
 #[cfg(feature = "CIImage")]
+pub use self::__CIImage::kCIImageSubsampleFactor;
+#[cfg(feature = "CIImage")]
 pub use self::__CIImage::kCIImageTextureFormat;
 #[cfg(feature = "CIImage")]
 pub use self::__CIImage::kCIImageTextureTarget;
 #[cfg(feature = "CIImage")]
 pub use self::__CIImage::kCIImageToneMapHDRtoSDR;
+#[cfg(feature = "CIImage")]
+pub use self::__CIImage::kCIImageTypeIdentifierHint;
+#[cfg(feature = "CIImage")]
+pub use self::__CIImage::kCIImageUseHardwareAcceleration;
 #[cfg(feature = "CIImage")]
 pub use self::__CIImage::CIFormat;
 #[cfg(feature = "CIImage")]

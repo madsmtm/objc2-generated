@@ -5,16 +5,21 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicatetype?language=objc)
+/// Constants that describe the possible types of a compound predicate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicatetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCompoundPredicateType(pub NSUInteger);
 impl NSCompoundPredicateType {
+    /// A logical NOT predicate.
     #[doc(alias = "NSNotPredicateType")]
     pub const NotPredicateType: Self = Self(0);
+    /// A logical AND predicate.
     #[doc(alias = "NSAndPredicateType")]
     pub const AndPredicateType: Self = Self(1);
+    /// A logical OR predicate.
     #[doc(alias = "NSOrPredicateType")]
     pub const OrPredicateType: Self = Self(2);
 }
@@ -28,7 +33,19 @@ unsafe impl RefEncode for NSCompoundPredicateType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate?language=objc)
+    /// A specialized predicate that evaluates logical combinations of other predicates.
+    ///
+    /// Use ``NSCompoundPredicate`` to create an `AND` or `OR` compound predicate of one or more other predicates, or the `NOT` of a single predicate. For the logical `AND` and `OR` operations:
+    ///
+    /// - An `AND` predicate with no subpredicates evaluates to
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/true>.
+    /// - An `OR` predicate with no subpredicates evaluates to
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/false>.
+    /// - A compound predicate with one or more subpredicates evaluates to the truth of its subpredicates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate?language=objc)
     #[unsafe(super(NSPredicate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPredicate")]
@@ -64,6 +81,9 @@ extern_conformance!(
 impl NSCompoundPredicate {
     extern_methods!(
         #[cfg(feature = "NSArray")]
+        /// Returns the receiver that a specified type initializes using predicates from a specified array.
+        ///
+        /// For applications linked on macOS 10.5 or later, the `subpredicates` array is copied. For applications linked on OS X v10.4, the `subpredicates` array is retained (for binary compatibility).
         #[unsafe(method(initWithType:subpredicates:))]
         #[unsafe(method_family = init)]
         pub fn initWithType_subpredicates(
@@ -72,17 +92,27 @@ impl NSCompoundPredicate {
             subpredicates: &NSArray<NSPredicate>,
         ) -> Retained<Self>;
 
+        /// The predicate type for the receiver.
         #[unsafe(method(compoundPredicateType))]
         #[unsafe(method_family = none)]
         pub fn compoundPredicateType(&self) -> NSCompoundPredicateType;
 
         #[cfg(feature = "NSArray")]
+        /// The receiver's subpredicates.
         #[unsafe(method(subpredicates))]
         #[unsafe(method_family = none)]
         pub fn subpredicates(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
         /// * Convenience Methods **
+        ///
+        /// Returns a new predicate that you form using an AND operation on the predicates in a specified array.
+        ///
+        /// - Parameters:
+        /// - subpredicates: An array of `NSPredicate` objects.
+        /// - Returns: A new predicate formed by AND-ing the predicates specified by `subpredicates`.
+        ///
+        /// An AND predicate with no subpredicates evaluates to TRUE.
         #[unsafe(method(andPredicateWithSubpredicates:))]
         #[unsafe(method_family = none)]
         pub fn andPredicateWithSubpredicates(
@@ -90,12 +120,16 @@ impl NSCompoundPredicate {
         ) -> Retained<NSCompoundPredicate>;
 
         #[cfg(feature = "NSArray")]
+        /// Returns a new predicate that you form using an OR operation on the predicates in a specified array.
+        ///
+        /// An OR predicate with no subpredicates evaluates to FALSE.
         #[unsafe(method(orPredicateWithSubpredicates:))]
         #[unsafe(method_family = none)]
         pub fn orPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
         ) -> Retained<NSCompoundPredicate>;
 
+        /// Returns a new predicate that you form using a NOT operation on a specified predicate.
         #[unsafe(method(notPredicateWithSubpredicate:))]
         #[unsafe(method_family = none)]
         pub fn notPredicateWithSubpredicate(

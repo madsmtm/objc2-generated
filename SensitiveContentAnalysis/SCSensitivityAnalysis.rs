@@ -2,8 +2,35 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
+
+/// Identifies the specific types of sensitive content that can be detected during media analysis.
+///
+/// These content types are used to categorize potentially sensitive material found in images,
+/// videos, or other media. Use these constants to determine what kind of sensitive content
+/// was detected and to implement appropriate handling or filtering logic in your application.
+///
+///
+/// Content that contains nudity or sexually explicit material.
+///
+///
+/// Content that depicts graphic violence, gore, or disturbing imagery.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivecontenttype?language=objc)
+// NS_TYPED_ENUM
+pub type SCSensitiveContentType = NSString;
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivecontenttypesexuallyexplicit?language=objc)
+    pub static SCSensitiveContentTypeSexuallyExplicit: &'static SCSensitiveContentType;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivecontenttypegoreorviolence?language=objc)
+    pub static SCSensitiveContentTypeGoreOrViolence: &'static SCSensitiveContentType;
+}
 
 extern_class!(
     /// Sensitive Analysis Results object is returned after sensitivity analysis is performed on media
@@ -28,6 +55,17 @@ impl SCSensitivityAnalysis {
         #[unsafe(method(isSensitive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSensitive(&self) -> bool;
+
+        /// Type of sensitive content the analyzed media contains
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(detectedTypes))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn detectedTypes(&self) -> Retained<NSSet<SCSensitiveContentType>>;
     );
 }
 

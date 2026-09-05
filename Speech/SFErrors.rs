@@ -22,7 +22,7 @@ impl SFSpeechErrorCode {
     /// There was an internal error.
     #[doc(alias = "SFSpeechErrorCodeInternalServiceError")]
     pub const InternalServiceError: Self = Self(1);
-    /// The audio file could not be read.
+    /// The audio source could not be read.
     #[doc(alias = "SFSpeechErrorCodeAudioReadFailed")]
     pub const AudioReadFailed: Self = Self(2);
     /// The custom language model templates were malformed.

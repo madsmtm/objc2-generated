@@ -7,12 +7,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocking?language=objc)
+    /// The elementary methods adopted by classes that define lock objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocking?language=objc)
     pub unsafe trait NSLocking {
+        /// Attempts to acquire a lock, blocking a thread's execution until the lock can be acquired.
         #[unsafe(method(lock))]
         #[unsafe(method_family = none)]
         unsafe fn lock(&self);
 
+        /// Relinquishes a previously acquired lock.
         #[unsafe(method(unlock))]
         #[unsafe(method_family = none)]
         unsafe fn unlock(&self);
@@ -20,7 +24,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslock?language=objc)
+    /// An object that coordinates the operation of multiple threads of execution within the same application.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nslock?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLock;
@@ -40,16 +46,19 @@ extern_conformance!(
 
 impl NSLock {
     extern_methods!(
+        /// Attempts to acquire a lock and immediately returns a Boolean value that indicates whether the attempt was successful.
         #[unsafe(method(tryLock))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryLock(&self) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Attempts to acquire a lock before a given date and returns a Boolean value indicating whether the attempt was successful.
         #[unsafe(method(lockBeforeDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// The name associated with the receiver.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
@@ -85,7 +94,9 @@ impl DefaultRetained for NSLock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconditionlock?language=objc)
+    /// A lock that can be associated with specific, user-defined conditions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconditionlock?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConditionLock;
@@ -105,6 +116,7 @@ extern_conformance!(
 
 impl NSConditionLock {
     extern_methods!(
+        /// Initializes a newly allocated ``NSConditionLock`` object and sets its condition.
         #[unsafe(method(initWithCondition:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCondition(
@@ -112,32 +124,39 @@ impl NSConditionLock {
             condition: NSInteger,
         ) -> Retained<Self>;
 
+        /// The condition associated with the receiver.
         #[unsafe(method(condition))]
         #[unsafe(method_family = none)]
         pub unsafe fn condition(&self) -> NSInteger;
 
+        /// Attempts to acquire a lock when the receiver's condition is equal to a specific value.
         #[unsafe(method(lockWhenCondition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lockWhenCondition(&self, condition: NSInteger);
 
+        /// Attempts to acquire a lock and immediately returns a Boolean value that indicates whether the attempt was successful.
         #[unsafe(method(tryLock))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryLock(&self) -> bool;
 
+        /// Attempts to acquire a lock if the receiver's condition is equal to a specific value and immediately returns a Boolean value that indicates whether the attempt was successful.
         #[unsafe(method(tryLockWhenCondition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryLockWhenCondition(&self, condition: NSInteger) -> bool;
 
+        /// Relinquishes the lock and sets the receiver's condition.
         #[unsafe(method(unlockWithCondition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unlockWithCondition(&self, condition: NSInteger);
 
         #[cfg(feature = "NSDate")]
+        /// Attempts to acquire a lock before a given date and returns a Boolean value indicating whether the attempt was successful.
         #[unsafe(method(lockBeforeDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Attempts to acquire a lock when the receiver's condition is equal to a specific value, and returns before a given date.
         #[unsafe(method(lockWhenCondition:beforeDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lockWhenCondition_beforeDate(
@@ -147,6 +166,7 @@ impl NSConditionLock {
         ) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// The name associated with the receiver.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
@@ -175,7 +195,9 @@ impl NSConditionLock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecursivelock?language=objc)
+    /// A lock that may be acquired multiple times by the same thread without causing a deadlock.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecursivelock?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRecursiveLock;
@@ -195,16 +217,19 @@ extern_conformance!(
 
 impl NSRecursiveLock {
     extern_methods!(
+        /// Attempts to acquire a lock and immediately returns a Boolean value that indicates whether the attempt was successful.
         #[unsafe(method(tryLock))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryLock(&self) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Attempts to acquire a lock before a given date and returns a Boolean value indicating whether the attempt was successful.
         #[unsafe(method(lockBeforeDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// The name associated with the receiver.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
@@ -233,7 +258,9 @@ impl NSRecursiveLock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscondition?language=objc)
+    /// A condition variable whose semantics follow those used for POSIX-style conditions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscondition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCondition;
@@ -253,24 +280,29 @@ extern_conformance!(
 
 impl NSCondition {
     extern_methods!(
+        /// Blocks the current thread until the condition is signaled.
         #[unsafe(method(wait))]
         #[unsafe(method_family = none)]
         pub unsafe fn wait(&self);
 
         #[cfg(feature = "NSDate")]
+        /// Blocks the current thread until the condition is signaled or the specified time limit is reached.
         #[unsafe(method(waitUntilDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn waitUntilDate(&self, limit: &NSDate) -> bool;
 
+        /// Signals the condition, waking up one waiting thread.
         #[unsafe(method(signal))]
         #[unsafe(method_family = none)]
         pub unsafe fn signal(&self);
 
+        /// Signals the condition, waking up all waiting threads.
         #[unsafe(method(broadcast))]
         #[unsafe(method_family = none)]
         pub unsafe fn broadcast(&self);
 
         #[cfg(feature = "NSString")]
+        /// The name associated with the receiver.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;

@@ -57,6 +57,7 @@ impl PHAssetResourceUploadJob {
 
         #[cfg(feature = "PHAssetResource")]
         /// The asset resource this job promises to upload.
+        #[deprecated = "Use +[PHAssetResource assetResourceForUploadJob:] instead"]
         #[unsafe(method(resource))]
         #[unsafe(method_family = none)]
         pub unsafe fn resource(&self) -> Retained<PHAssetResource>;

@@ -7,7 +7,26 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitconverter?language=objc)
+    /// An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension.
+    ///
+    /// For units that can be converted by a scale factor or linear equation, use the concrete subclass ``UnitConverterLinear``.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// ``NSUnitConverter`` is an abstract class that is intended for subclassing. You can implement your own subclass of ``NSUnitConverter`` to convert between units according to any desired mapping function. For example, units may be converted using a logarithmic, exponential, or quantile scale.
+    ///
+    /// #### Methods to Override
+    ///
+    /// All subclasses must fully implement the following methods:
+    ///
+    /// - ``baseUnitValue(fromValue:)``
+    /// - ``value(fromBaseUnitValue:)``
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// As stated above, most physical units can be converted using a linear equation with ``UnitConverterLinear``. You should only create a custom subclass of ``NSUnitConverter`` for units that cannot be converted in this way.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitconverter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConverter;
@@ -19,10 +38,27 @@ extern_conformance!(
 
 impl NSUnitConverter {
     extern_methods!(
+        /// For a given unit, returns the specified value of that unit in terms of the base unit of its dimension.
+        ///
+        /// This method takes a value in a particular unit and returns the result of converting it into the base unit of that unit's dimension.
+        /// For example, a converter for the miles unit calling this method, passing `1.0` to the `value` parameter, results in `1609.34` (_1 mi = 1609.34 m_).
+        ///
+        ///
+        /// Parameter `value`: Value in terms of the unit class.
+        ///
+        /// Returns: Value in terms of the base unit.
         #[unsafe(method(baseUnitValueFromValue:))]
         #[unsafe(method_family = none)]
         pub fn baseUnitValueFromValue(&self, value: c_double) -> c_double;
 
+        /// For a given unit, returns the specified base unit value in terms of that unit.
+        ///
+        /// This method takes in a value in terms of the base unit of a unit's dimension and returns the equivalent value in terms of the unit.
+        ///
+        ///
+        /// Parameter `baseUnitValue`: Value in terms of the base unit.
+        ///
+        /// Returns: Value in terms of the unit class.
         #[unsafe(method(valueFromBaseUnitValue:))]
         #[unsafe(method_family = none)]
         pub fn valueFromBaseUnitValue(&self, base_unit_value: c_double) -> c_double;
@@ -50,7 +86,54 @@ impl DefaultRetained for NSUnitConverter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitconverterlinear?language=objc)
+    /// A description of how to convert between units using a linear equation.
+    ///
+    /// A linear equation for unit conversion takes the form `y = mx + b`, such that the following is true:
+    ///
+    /// - `y` is the value in terms of the base unit of the dimension.
+    /// - `m` is the known coefficient to use for this unit's conversion.
+    /// - `x` is the value in terms of the unit on which you call this method.
+    /// - `b` is the known constant to use for this unit's conversion.
+    ///
+    /// The `baseUnitValueFromValue:` method performs the conversion in the form of `y = mx + b`, where `x` represents the value passed in and `y` represents the value returned. The `valueFromBaseUnitValue:` method performs the inverse conversion in the form of `x = (y - b) / m`, where `y` represents the value passed in and `x` represents the value returned.
+    ///
+    /// For example, consider the ``UnitTemperature/fahrenheit`` unit that ``UnitTemperature`` defines. The ``UnitConverter/baseUnitValue(fromValue:)`` method calculates the value in the base unit, ``UnitTemperature/kelvin``, using the formula `K = (0.55555555555556) × °F + 255.37222222222427`. The ``UnitConverter/value(fromBaseUnitValue:)`` method calculates the value in ``UnitTemperature/fahrenheit`` using the formula `°F = (K — 255.37222222222427) / (0.55555555555556)`, where the ``coefficient`` is `(0.55555555555556)` and the ``constant`` is `255.37222222222427`.
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let kelvinToFahrenheit = UnitConverterLinear(coefficient: 0.55555555555556, constant: 255.37222222222427)
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSUnitConverter *kelvinToFahrenheit = [[NSUnitConverterLinear alloc] initWithCoefficient:0.55555555555556 constant:255.37222222222427];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// Units that perform conversion using only a scale factor have a ``coefficient`` equal to the scale factor and a ``constant`` equal to `0`. For example, consider the ``UnitLength/kilometers`` unit ``UnitLength`` defines. The ``UnitConverter/baseUnitValue(fromValue:)`` method calculates the value in meters using the formula `valueInMeters = 1000 * valueInKilometers + 0`. The ``UnitConverter/value(fromBaseUnitValue:)`` calculates the value in kilometers using the formula `valueInKilometers = (valueInMeters - 0) / 1000`, where the coefficient is `1000` and the constant is `0`.
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let kilometersToMeters = UnitConverterLinear(coefficient: 1000.0, constant: 0.0)
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSUnitConverterLinear *kilometersToMeters = [[NSUnitConverterLinear alloc] initWithCoefficient:1000.0 constant:0.0];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitconverterlinear?language=objc)
     #[unsafe(super(NSUnitConverter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConverterLinear;
@@ -72,18 +155,22 @@ extern_conformance!(
 
 impl NSUnitConverterLinear {
     extern_methods!(
+        /// The coefficient to use in the linear unit conversion calculation.
         #[unsafe(method(coefficient))]
         #[unsafe(method_family = none)]
         pub fn coefficient(&self) -> c_double;
 
+        /// The constant to use in the linear unit conversion calculation.
         #[unsafe(method(constant))]
         #[unsafe(method_family = none)]
         pub fn constant(&self) -> c_double;
 
+        /// Initializes a linear unit converter with the specified coefficient, using a constant of `0`.
         #[unsafe(method(initWithCoefficient:))]
         #[unsafe(method_family = init)]
         pub fn initWithCoefficient(this: Allocated<Self>, coefficient: c_double) -> Retained<Self>;
 
+        /// Initializes a linear unit converter with the specified coefficient and constant.
         #[unsafe(method(initWithCoefficient:constant:))]
         #[unsafe(method_family = init)]
         pub fn initWithCoefficient_constant(
@@ -115,7 +202,17 @@ impl DefaultRetained for NSUnitConverterLinear {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunit?language=objc)
+    /// An abstract class representing a unit of measure.
+    ///
+    /// Each instance of an ``Unit`` subclass consists of a ``symbol``, which can be used to create string representations of ``NSMeasurement`` objects with the ``MeasurementFormatter`` class.
+    ///
+    /// The ``Dimension`` subclass is an abstract class that represents a dimensional unit, which can be converted into different units of the same type. The Foundation framework provides several concrete ``Dimension`` subclasses to represent the most common physical quantities, including mass, length, duration, and speed.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// ``NSUnit`` is intended for subclassing. For dimensional units, you should use one of the Apple provided ``Dimension`` subclasses listed in Table 1 of ``Dimension``, or create a custom subclass of ``Dimension``. You can create a direct subclass of ``NSUnit`` to represent a custom dimensionless unit, such as a count, score, or ratio.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunit?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnit;
@@ -152,6 +249,17 @@ extern_conformance!(
 impl NSUnit {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// The symbolic representation of the unit.
+        ///
+        /// The symbol of a unit is a string that can be used to designate a number as a quantity of a particular unit in user-readable representations.
+        /// Units typically have symbols that are abbreviated and standardized, so as to be easily and unambiguously conveyed.
+        /// For example, the `milePerHour` unit has the symbol `mph`.
+        /// If a unit does not have a standardized or well-understood symbol, the lowercase name of the unit can be used.
+        /// For example, the `metricCup` unit has the symbol `metric cup`.
+        ///
+        /// Unit symbols may incorporate a metric prefix to indicate a multiple or fraction of existing unit symbols.
+        /// For example, the `kilogram` unit has the symbol `kg`, which uses the SI prefix k for kilo- to indicate a magnitude of 10^3 for the `gram` unit,
+        /// and the `microgram` unit has the symbol `µg`, which uses the SI prefix µ for micro- to indicate a magnitude of 10^-6 for the `gram` unit.
         #[unsafe(method(symbol))]
         #[unsafe(method_family = none)]
         pub fn symbol(&self) -> Retained<NSString>;
@@ -161,6 +269,7 @@ impl NSUnit {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -168,7 +277,166 @@ impl NSUnit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdimension?language=objc)
+    /// An abstract class representing a dimensional unit of measure.
+    ///
+    /// The Foundation framework provides concrete subclasses for many of the most common types of physical units.
+    ///
+    /// Table 1: ``Dimension`` subclasses.
+    ///
+    /// | NSDimension subclass | Description | Base unit |
+    /// |---|---|---|
+    /// | ``UnitAcceleration`` | Unit of measure for acceleration | meters per second squared (m/s²) |
+    /// | ``UnitAngle`` | Unit of measure for planar angle and rotation | degrees (°) |
+    /// | ``UnitArea`` | Unit of measure for area | square meters (m²) |
+    /// | ``UnitConcentrationMass`` | Unit of measure for concentration of mass | grams per liter (g/L) |
+    /// | ``UnitDispersion`` | Unit of measure for dispersion | parts per million (ppm) |
+    /// | ``UnitDuration`` | Unit of measure for duration of time | seconds (sec) |
+    /// | ``UnitElectricCharge`` | Unit of measure for electric charge | coulombs (C) |
+    /// | ``UnitElectricCurrent`` | Unit of measure for electric current | amperes (A) |
+    /// | ``UnitElectricPotentialDifference`` | Unit of measure for electric potential difference | volts (V) |
+    /// | ``UnitElectricResistance`` | Unit of measure for electric resistance | ohms (Ω) |
+    /// | ``UnitEnergy`` | Unit of measure for energy | joules (J) |
+    /// | ``UnitFrequency`` | Unit of measure for frequency | hertz (Hz) |
+    /// | ``UnitFuelEfficiency`` | Unit of measure for fuel efficiency | liters per 100 kilometers (L/100km) |
+    /// | ``UnitIlluminance`` | Unit of measure for illuminance | lux (lx) |
+    /// | ``UnitInformationStorage`` | Unit of measure for quantities of information | bytes (b) |
+    /// | ``UnitLength`` | Unit of measure for length | meters (m) |
+    /// | ``UnitMass`` | Unit of measure for mass | kilograms (kg) |
+    /// | ``UnitPower`` | Unit of measure for power | watts (W) |
+    /// | ``UnitPressure`` | Unit of measure for pressure | newtons per square meter (N/m²) |
+    /// | ``UnitSpeed`` | Unit of measure for speed | meters per second (m/s) |
+    /// | ``UnitTemperature`` | Unit of measure for temperature | kelvin (K) |
+    /// | ``UnitVolume`` | Unit of measure for volume | liters (L) |
+    ///
+    /// Each instance of a ``Dimension`` subclass has a ``converter``, which represents the unit in terms of the dimension's ``baseUnit()``. For example, the `NSLengthUnit` class uses ``UnitLength/meters`` as its base unit. The system defines the predefined ``UnitLength/miles`` unit by a ``UnitConverterLinear`` with a ``UnitConverterLinear/coefficient`` of `1609.34`, which corresponds to the conversion ratio of miles to meters (1 mi = 1609.34 m); the system defines the predefined ``UnitLength/meters`` unit by a ``UnitConverterLinear`` with a ``UnitConverterLinear/coefficient`` of `1.0` because it's the base unit.
+    ///
+    /// You typically use an `NSDimension` subclass in conjunction with the ``NSMeasurement`` class to represent specific quantities of a particular unit.
+    ///
+    /// ### Working with Custom Units
+    ///
+    /// In addition to the Apple-provided units, you can define custom units. You can initialize custom units from a symbol and converter of an existing type or implemented as a class method of an existing type for additional convenience. You can also define your own `NSDimension` subclass to represent an entirely new unit dimension.
+    ///
+    /// #### Initializing a Custom Unit with a Specified Symbol and Definition
+    ///
+    /// The simplest way to define a custom unit is to create a new instance of an existing `NSDimension` subclass using the ``init(symbol:converter:)`` method.
+    ///
+    /// For example, the _smoot_ is a nonstandard unit of length (1 smoot = 1.70180 m). You can create a new instance of ``UnitLength`` as follows:
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let smoots = UnitLength(symbol: "smoot", converter: UnitConverterLinear(coefficient: 1.70180))
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSUnitConverter *smootsToMeters = [[NSUnitConverterLinear alloc] initWithCoefficient:1.70180];
+    /// NSUnitLength *smoots = [[NSUnitLength alloc] initWithSymbol:
+    /// "
+    /// smoot" converter:smootsToMeters];
+    /// ```
+    /// }
+    /// }
+    ///
+    /// #### Extending Existing Dimension Subclasses
+    ///
+    /// Alternatively, if you use a custom unit extensively throughout an app, consider extending the corresponding ``Dimension`` subclass and adding a static variable.
+    ///
+    /// For example, a measurement of speed can be furlongs per fortnight (1 fur/ftn = 201.168 m / 1,209,600 s). If an app makes frequent use of this unit, you can extend ``UnitSpeed`` to add a `furlongsPerFortnight` static variable for convenient access as follows:
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// extension UnitSpeed {
+    /// static let furlongPerFortnight = UnitSpeed(symbol: "fur/ftn", converter: UnitConverterLinear(coefficient: 201.168 / 1209600.0))
+    /// }
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    ///
+    /// NSUnitSpeed ()
+    /// + (NSUnitSpeed *)furlongsPerFortnight;
+    /// @end
+    /// @implementation NSUnitSpeed ()
+    /// + (NSUnitSpeed *)furlongsPerFortnight {
+    /// NSUnitConverter *furlongsPerFortnightToMetersPerSecond = [[NSUnitConverterLinear alloc] initWithCoefficient:201.168 / 1209600.0];
+    /// return [[NSUnitSpeed alloc] initWithSymbol:@"fur/ftn" converter:furlongsPerFortnightToMetersPerSecond];
+    /// }
+    /// @end ```
+    /// }
+    /// }
+    ///
+    /// #### Creating a Custom Dimension Subclass
+    ///
+    /// You can create a new subclass of ``Dimension`` to describe a new unit dimension.
+    ///
+    /// For example, the Foundation framework doesn't define any units for radioactivity. Radioactivity is the process by which the nucleus of an atom emits radiation. The SI unit of measure for radioactivity is the becquerel (Bq), which is the quantity of radioactive material in which one nucleus decays per second (1 Bq = 1 s-1). Radioactivity is also commonly described in terms of curies (Ci), a unit defined relative to the decay of one gram of the radium-226 isotope (1 Ci = 3.7 × 1010 Bq). You can implement a `CustomUnitRadioactivity` class that defines both units of radioactivity as follows:
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// class CustomRadioactivityUnit: Dimension {
+    /// static let becquerel = CustomRadioactivityUnit(symbol: "Bq", UnitConverterLinear(coefficient: 1.0))
+    /// static let curie = CustomRadioactivityUnit(symbol: "Ci", UnitConverterLinear(coefficient: 3.7e10))
+    ///
+    /// static let baseUnit = self.becquerel
+    /// }
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    ///
+    /// CustomUnitRadioactivity: NSDimension
+    /// + (CustomUnitRadioactivity *)becquerels;
+    /// + (CustomUnitRadioactivity *)curies;
+    /// @end
+    /// @implementation CustomRadioactivityUnit
+    /// + (CustomUnitRadioactivity *)becquerels {
+    /// NSUnitConverter *baseUnitConverter = [[NSUnitConverterLinear alloc] initWithCoefficient:1];
+    /// return [[CustomUnitRadioactivity alloc] initWithSymbol:@"Bq" converter:baseUnitConverter];
+    /// }
+    ///
+    /// + (CustomUnitRadioactivity *)curies {
+    /// NSUnitConverter *curiesToBecquerels = [[NSUnitConverterLinear alloc] initWithCoefficient:3.7e10];
+    /// return [[CustomUnitRadioactivity alloc] initWithSymbol:@"Ci" converter:curiesToBecquerels];
+    /// }
+    ///
+    /// + (instancetype)baseUnit {
+    /// return [self bacquerels];
+    /// }
+    /// @end ```
+    /// }
+    /// }
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The system provides ``Dimension`` for subclassing. Although the subclasses listed in Table 1 above are suitable for most purposes, you may want to define a custom unit type. For instance, you may need a custom unit type to represent a derived unit, such as magnetic flux (measured as the product of electric potential difference and time).
+    ///
+    /// To represent dimensionless units, subclass ``Unit`` directly.
+    ///
+    /// #### Methods to Override
+    ///
+    /// All subclasses must fully implement the ``baseUnit()`` method designating the base unit, relative to which you define any additional units.
+    ///
+    /// You must also implement a class method named for the base unit itself, to use interchangeably. For example, the ``UnitIlluminance`` class defines its ``baseUnit()`` in terms of the lux (lx) and provides a corresponding ``UnitIlluminance/lux`` class method.
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// As described in
+    /// <doc
+    /// :#Working-with-Custom-Units>, you need to create a custom subclass of ``Dimension`` only if you or the system haven't defined a unit of the desired dimension. You can define a custom unit for an existing ``Dimension`` subclass by either calling the ``init(symbol:converter:)`` method or extending the subclass and adding a corresponding class method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdimension?language=objc)
     #[unsafe(super(NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDimension;
@@ -204,11 +472,13 @@ extern_conformance!(
 
 impl NSDimension {
     extern_methods!(
+        /// The unit converter that describes how this unit converts to and from the base unit of its dimension.
         #[unsafe(method(converter))]
         #[unsafe(method_family = none)]
         pub fn converter(&self) -> Retained<NSUnitConverter>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -217,6 +487,13 @@ impl NSDimension {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -231,6 +508,7 @@ impl NSDimension {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -238,7 +516,22 @@ impl NSDimension {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitacceleration?language=objc)
+    /// A unit of measure for acceleration.
+    ///
+    /// You typically use instances of ``NSUnitAcceleration`` to represent specific quantities of acceleration using the ``NSMeasurement`` class.
+    ///
+    /// ### Acceleration
+    ///
+    /// Acceleration is the rate of change of velocity. Acceleration can be expressed by SI derived units in terms of meters per second squared (m/s2).
+    ///
+    /// The ``NSUnitAcceleration`` class defines its ``Dimension/baseUnit()`` as ``metersPerSecondSquared``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Meters Per Second Squared | ``metersPerSecondSquared`` | m/s² | `1.0` |
+    /// | Gravity | ``gravity`` | g | `9.81` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitacceleration?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitAcceleration;
@@ -274,10 +567,12 @@ extern_conformance!(
 
 impl NSUnitAcceleration {
     extern_methods!(
+        /// The meters per second squared unit of acceleration.
         #[unsafe(method(metersPerSecondSquared))]
         #[unsafe(method_family = none)]
         pub fn metersPerSecondSquared() -> Retained<NSUnitAcceleration>;
 
+        /// The gravity unit of acceleration.
         #[unsafe(method(gravity))]
         #[unsafe(method_family = none)]
         pub fn gravity() -> Retained<NSUnitAcceleration>;
@@ -288,6 +583,7 @@ impl NSUnitAcceleration {
 impl NSUnitAcceleration {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -296,6 +592,13 @@ impl NSUnitAcceleration {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -310,6 +613,7 @@ impl NSUnitAcceleration {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -317,7 +621,26 @@ impl NSUnitAcceleration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitangle?language=objc)
+    /// A unit of measure for planar angle and rotation.
+    ///
+    /// You typically use instances of ``NSUnitAngle`` to represent specific quantities of planar angle using the ``NSMeasurement`` class.
+    ///
+    /// ### Angle
+    ///
+    /// Angle is a quantity of rotation. The SI unit for angle is the radian (rad), which is dimensionless and defined to be the angle subtended by an arc that is equal in length to the radius of a circle. Angle is also commonly expressed in terms of degrees (°) and revolutions (rev).
+    ///
+    /// The ``NSUnitAngle`` class defines its ``Dimension/baseUnit()`` as ``degrees``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Definition |
+    /// |---|---|---|---|
+    /// | Degrees | ``degrees`` | ° | `1.0` |
+    /// | Arc Minutes | ``arcMinutes`` | ʹ | `0.016667` |
+    /// | Arc Seconds | ``arcSeconds`` | ʺ | `0.00027778` |
+    /// | Radians | ``radians`` | rad | `57.2958` |
+    /// | Gradians | ``gradians`` | grad | `0.9` |
+    /// | Revolutions | ``revolutions`` | rev | `360` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitangle?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitAngle;
@@ -353,26 +676,32 @@ extern_conformance!(
 
 impl NSUnitAngle {
     extern_methods!(
+        /// The degrees unit of angle.
         #[unsafe(method(degrees))]
         #[unsafe(method_family = none)]
         pub fn degrees() -> Retained<NSUnitAngle>;
 
+        /// The arc minutes unit of angle.
         #[unsafe(method(arcMinutes))]
         #[unsafe(method_family = none)]
         pub fn arcMinutes() -> Retained<NSUnitAngle>;
 
+        /// The arc seconds unit of angle.
         #[unsafe(method(arcSeconds))]
         #[unsafe(method_family = none)]
         pub fn arcSeconds() -> Retained<NSUnitAngle>;
 
+        /// The radians unit of angle.
         #[unsafe(method(radians))]
         #[unsafe(method_family = none)]
         pub fn radians() -> Retained<NSUnitAngle>;
 
+        /// The gradians unit of angle.
         #[unsafe(method(gradians))]
         #[unsafe(method_family = none)]
         pub fn gradians() -> Retained<NSUnitAngle>;
 
+        /// The revolutions unit of angle.
         #[unsafe(method(revolutions))]
         #[unsafe(method_family = none)]
         pub fn revolutions() -> Retained<NSUnitAngle>;
@@ -383,6 +712,7 @@ impl NSUnitAngle {
 impl NSUnitAngle {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -391,6 +721,13 @@ impl NSUnitAngle {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -405,6 +742,7 @@ impl NSUnitAngle {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -412,7 +750,34 @@ impl NSUnitAngle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitarea?language=objc)
+    /// A unit of measure for area.
+    ///
+    /// You typically use instances of ``NSUnitArea`` to represent specific quantities of area using the ``NSMeasurement`` class.
+    ///
+    /// ### Area
+    ///
+    /// Area is a quantity of extent in two dimensions. Area can be expressed by SI derived units in terms of square meters (m2). Area is also commonly measured in square feet (ft2) and acres (ac).
+    ///
+    /// The ``NSUnitArea`` class defines its ``Dimension/baseUnit()`` as ``squareMeters``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Square Megameters | ``squareMegameters`` | Mm² | `1e12` |
+    /// | Square Kilometers | ``squareKilometers`` | km² | `1000000.0` |
+    /// | Square Meters | ``squareMeters`` | m² | `1.0` |
+    /// | Square Centimeter | ``squareCentimeters`` | cm² | `0.0001` |
+    /// | Square Millimeters | ``squareMillimeters`` | mm² | `0.000001` |
+    /// | Square Micrometers | ``squareMicrometers`` | µm² | `1e-12` |
+    /// | Square Nanometers | ``squareNanometers`` | nm² | `1e-18` |
+    /// | Square Inches | ``squareInches`` | in² | `0.00064516` |
+    /// | Square Feet | ``squareFeet`` | ft² | `0.092903` |
+    /// | Square Yards | ``squareYards`` | yd² | `0.836127` |
+    /// | Square Miles | ``squareMiles`` | mi² | `2.59e+6` |
+    /// | Acres | ``acres`` | ac | `4046.86` |
+    /// | Ares | ``ares`` | a | `100` |
+    /// | Hectares | ``hectares`` | ha | `10000` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitarea?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitArea;
@@ -448,58 +813,72 @@ extern_conformance!(
 
 impl NSUnitArea {
     extern_methods!(
+        /// The square megameters unit of area.
         #[unsafe(method(squareMegameters))]
         #[unsafe(method_family = none)]
         pub fn squareMegameters() -> Retained<NSUnitArea>;
 
+        /// The square kilometers unit of area.
         #[unsafe(method(squareKilometers))]
         #[unsafe(method_family = none)]
         pub fn squareKilometers() -> Retained<NSUnitArea>;
 
+        /// The square meters unit of area.
         #[unsafe(method(squareMeters))]
         #[unsafe(method_family = none)]
         pub fn squareMeters() -> Retained<NSUnitArea>;
 
+        /// The square centimeters unit of area.
         #[unsafe(method(squareCentimeters))]
         #[unsafe(method_family = none)]
         pub fn squareCentimeters() -> Retained<NSUnitArea>;
 
+        /// The square millimeters unit of area.
         #[unsafe(method(squareMillimeters))]
         #[unsafe(method_family = none)]
         pub fn squareMillimeters() -> Retained<NSUnitArea>;
 
+        /// The square micrometers unit of area.
         #[unsafe(method(squareMicrometers))]
         #[unsafe(method_family = none)]
         pub fn squareMicrometers() -> Retained<NSUnitArea>;
 
+        /// The square nanometers unit of area.
         #[unsafe(method(squareNanometers))]
         #[unsafe(method_family = none)]
         pub fn squareNanometers() -> Retained<NSUnitArea>;
 
+        /// The square inches unit of area.
         #[unsafe(method(squareInches))]
         #[unsafe(method_family = none)]
         pub fn squareInches() -> Retained<NSUnitArea>;
 
+        /// The square feet unit of area.
         #[unsafe(method(squareFeet))]
         #[unsafe(method_family = none)]
         pub fn squareFeet() -> Retained<NSUnitArea>;
 
+        /// The square yards unit of area.
         #[unsafe(method(squareYards))]
         #[unsafe(method_family = none)]
         pub fn squareYards() -> Retained<NSUnitArea>;
 
+        /// The square miles unit of area.
         #[unsafe(method(squareMiles))]
         #[unsafe(method_family = none)]
         pub fn squareMiles() -> Retained<NSUnitArea>;
 
+        /// The acres unit of area.
         #[unsafe(method(acres))]
         #[unsafe(method_family = none)]
         pub fn acres() -> Retained<NSUnitArea>;
 
+        /// The ares unit of area.
         #[unsafe(method(ares))]
         #[unsafe(method_family = none)]
         pub fn ares() -> Retained<NSUnitArea>;
 
+        /// The hectares unit of area.
         #[unsafe(method(hectares))]
         #[unsafe(method_family = none)]
         pub fn hectares() -> Retained<NSUnitArea>;
@@ -510,6 +889,7 @@ impl NSUnitArea {
 impl NSUnitArea {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -518,6 +898,13 @@ impl NSUnitArea {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -532,6 +919,7 @@ impl NSUnitArea {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -539,7 +927,23 @@ impl NSUnitArea {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitconcentrationmass?language=objc)
+    /// A unit of measure for concentration of mass.
+    ///
+    /// You typically use instances of ``NSUnitConcentrationMass`` to represent specific quantities of concentration using the ``NSMeasurement`` class.
+    ///
+    /// ### Concentration of Mass
+    ///
+    /// Concentration is the abundance of a constituent within a volume. Concentration can be expressed by SI derived units in terms of kilograms per cubic meter (kg/m3).
+    ///
+    /// The ``NSUnitConcentrationMass`` class defines its ``Dimension/baseUnit()`` as ``gramsPerLiter``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Grams Per Liter | ``gramsPerLiter`` | g/L | `1` |
+    /// | Milligrams Per Deciliter | ``milligramsPerDeciliter`` | mg/dL | `0.01` |
+    /// | Millimoles Per Liter | ``millimolesPerLiter(withGramsPerMole:)`` | mmol/L | `18 * gramsPerMole` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitconcentrationmass?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConcentrationMass;
@@ -575,14 +979,17 @@ extern_conformance!(
 
 impl NSUnitConcentrationMass {
     extern_methods!(
+        /// The grams per liter unit of concentration.
         #[unsafe(method(gramsPerLiter))]
         #[unsafe(method_family = none)]
         pub fn gramsPerLiter() -> Retained<NSUnitConcentrationMass>;
 
+        /// The milligrams per deciliter unit of concentration.
         #[unsafe(method(milligramsPerDeciliter))]
         #[unsafe(method_family = none)]
         pub fn milligramsPerDeciliter() -> Retained<NSUnitConcentrationMass>;
 
+        /// Returns the millimoles per liter unit with the specified grams per mole.
         #[unsafe(method(millimolesPerLiterWithGramsPerMole:))]
         #[unsafe(method_family = none)]
         pub fn millimolesPerLiterWithGramsPerMole(
@@ -595,6 +1002,7 @@ impl NSUnitConcentrationMass {
 impl NSUnitConcentrationMass {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -603,6 +1011,13 @@ impl NSUnitConcentrationMass {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -617,6 +1032,7 @@ impl NSUnitConcentrationMass {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -624,7 +1040,21 @@ impl NSUnitConcentrationMass {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitdispersion?language=objc)
+    /// A unit of measure for specific quantities of dispersion.
+    ///
+    /// You typically use instances of ``NSUnitDispersion`` to represent specific quantities of dispersion using the ``NSMeasurement`` class.
+    ///
+    /// ### Dispersion
+    ///
+    /// Dispersion describes the amount of a constituent divided by the amount of all other constituents in a mixture. Dispersion is a dimensionless quantity that is commonly expressed in "parts-per" notation, such as "parts per million" (ppm), to describe small relative quantities.
+    ///
+    /// The ``NSUnitDispersion`` class defines its ``Dimension/baseUnit()`` as ``partsPerMillion``.
+    ///
+    /// | Name | Method | Abbreviation |
+    /// |---|---|---|
+    /// | Parts Per Million | ``partsPerMillion`` | ppm |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitdispersion?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitDispersion;
@@ -660,6 +1090,7 @@ extern_conformance!(
 
 impl NSUnitDispersion {
     extern_methods!(
+        /// The parts per million unit of dispersion.
         #[unsafe(method(partsPerMillion))]
         #[unsafe(method_family = none)]
         pub fn partsPerMillion() -> Retained<NSUnitDispersion>;
@@ -670,6 +1101,7 @@ impl NSUnitDispersion {
 impl NSUnitDispersion {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -678,6 +1110,13 @@ impl NSUnitDispersion {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -692,6 +1131,7 @@ impl NSUnitDispersion {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -699,7 +1139,26 @@ impl NSUnitDispersion {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitduration?language=objc)
+    /// A unit of measure for a duration of time.
+    ///
+    /// You typically use instances of ``NSUnitDuration`` to represent specific quantities of planar angle using the ``NSMeasurement`` class.
+    ///
+    /// ### Duration
+    ///
+    /// Duration is a quantity of time. The SI unit for time is the second (sec), which is defined in terms of the radioactivity of a cesium-133 atom. Duration is also commonly expressed in terms of minutes (min) and hours (hr).
+    ///
+    /// > Note:
+    /// > Use the ``NSDateComponents`` class to represent quantities of calendrical units, such as days, weeks, months, and years.
+    ///
+    /// The ``NSUnitDuration`` class defines its ``Dimension/baseUnit()`` as ``seconds``, and provides the following units, which ``UnitConverterLinear`` converters initialize with the given coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Seconds | ``seconds`` | sec | `1` |
+    /// | Minutes | ``minutes`` | min | `60` |
+    /// | Hours | ``hours`` | hr | `3600` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitduration?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitDuration;
@@ -735,30 +1194,37 @@ extern_conformance!(
 
 impl NSUnitDuration {
     extern_methods!(
+        /// The hours unit of duration.
         #[unsafe(method(hours))]
         #[unsafe(method_family = none)]
         pub fn hours() -> Retained<NSUnitDuration>;
 
+        /// The minutes unit of duration.
         #[unsafe(method(minutes))]
         #[unsafe(method_family = none)]
         pub fn minutes() -> Retained<NSUnitDuration>;
 
+        /// The seconds unit of duration.
         #[unsafe(method(seconds))]
         #[unsafe(method_family = none)]
         pub fn seconds() -> Retained<NSUnitDuration>;
 
+        /// The milliseconds unit of duration.
         #[unsafe(method(milliseconds))]
         #[unsafe(method_family = none)]
         pub fn milliseconds() -> Retained<NSUnitDuration>;
 
+        /// The microseconds unit of duration.
         #[unsafe(method(microseconds))]
         #[unsafe(method_family = none)]
         pub fn microseconds() -> Retained<NSUnitDuration>;
 
+        /// The nanoseconds unit of duration.
         #[unsafe(method(nanoseconds))]
         #[unsafe(method_family = none)]
         pub fn nanoseconds() -> Retained<NSUnitDuration>;
 
+        /// The picoseconds unit of duration.
         #[unsafe(method(picoseconds))]
         #[unsafe(method_family = none)]
         pub fn picoseconds() -> Retained<NSUnitDuration>;
@@ -769,6 +1235,7 @@ impl NSUnitDuration {
 impl NSUnitDuration {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -777,6 +1244,13 @@ impl NSUnitDuration {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -791,6 +1265,7 @@ impl NSUnitDuration {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -798,7 +1273,26 @@ impl NSUnitDuration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectriccharge?language=objc)
+    /// A unit of measure for electric charge.
+    ///
+    /// You typically use instances of ``NSUnitElectricCharge`` to represent specific quantities of electric charge using the ``NSMeasurement`` class.
+    ///
+    /// ### Electric Charge
+    ///
+    /// Electric charge is a fundamental physical property of matter that causes it to experience a force within an electromagnetic field. The SI unit for electric charge is the coulomb (C), which is defined as the amount of charge carried by a current of one ampere in one second (1C = 1A · 1s). Charge is also commonly expressed in terms of ampere hours (Ah).
+    ///
+    /// The ``NSUnitElectricCharge`` class defines its ``Dimension/baseUnit()`` as ``coulombs``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Coulombs | ``coulombs`` | C | `1.0` |
+    /// | Megaampere Hours | ``megaampereHours`` | MAh | `3.6e9` |
+    /// | Kiloampere Hours | ``kiloampereHours`` | kAh | `3600000.0` |
+    /// | Ampere Hours | ``ampereHours`` | Ah | `3600.0` |
+    /// | Milliampere Hours | ``milliampereHours`` | mAh | `3.6` |
+    /// | Microampere Hours | ``microampereHours`` | µAh | `0.0036` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectriccharge?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCharge;
@@ -834,26 +1328,32 @@ extern_conformance!(
 
 impl NSUnitElectricCharge {
     extern_methods!(
+        /// The coulombs unit of electric charge.
         #[unsafe(method(coulombs))]
         #[unsafe(method_family = none)]
         pub fn coulombs() -> Retained<NSUnitElectricCharge>;
 
+        /// The megaampere hours unit of electric charge.
         #[unsafe(method(megaampereHours))]
         #[unsafe(method_family = none)]
         pub fn megaampereHours() -> Retained<NSUnitElectricCharge>;
 
+        /// The kiloampere hours unit of electric charge.
         #[unsafe(method(kiloampereHours))]
         #[unsafe(method_family = none)]
         pub fn kiloampereHours() -> Retained<NSUnitElectricCharge>;
 
+        /// The ampere hours unit of electric charge.
         #[unsafe(method(ampereHours))]
         #[unsafe(method_family = none)]
         pub fn ampereHours() -> Retained<NSUnitElectricCharge>;
 
+        /// The milliampere hours unit of electric charge.
         #[unsafe(method(milliampereHours))]
         #[unsafe(method_family = none)]
         pub fn milliampereHours() -> Retained<NSUnitElectricCharge>;
 
+        /// The microampere hours unit of electric charge.
         #[unsafe(method(microampereHours))]
         #[unsafe(method_family = none)]
         pub fn microampereHours() -> Retained<NSUnitElectricCharge>;
@@ -864,6 +1364,7 @@ impl NSUnitElectricCharge {
 impl NSUnitElectricCharge {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -872,6 +1373,13 @@ impl NSUnitElectricCharge {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -886,6 +1394,7 @@ impl NSUnitElectricCharge {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -893,7 +1402,25 @@ impl NSUnitElectricCharge {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectriccurrent?language=objc)
+    /// A unit of measure for electric current.
+    ///
+    /// You typically use instances of ``NSUnitElectricCurrent`` to represent specific quantities of electric current using the ``NSMeasurement`` class.
+    ///
+    /// ### Electric Current
+    ///
+    /// Electric current is the flow of electric charge. The SI unit for electric current is the ampere (A), which is defined in terms the production of electromagnetic force between two parallel linear conductors. It can also be expressed as the flow of one coulomb per second (1A = 1C / s).
+    ///
+    /// The ``NSUnitElectricCurrent`` class defines its ``Dimension/baseUnit()`` as ``amperes``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Megaamperes | ``megaamperes`` | MA | `1000000.0` |
+    /// | Kiloamperes | ``kiloamperes`` | kA | `1000.0` |
+    /// | Amperes | ``amperes`` | A | `1.0` |
+    /// | Milliamperes | ``milliamperes`` | mA | `0.001` |
+    /// | Microamperes | ``microamperes`` | µA | `0.000001` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectriccurrent?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCurrent;
@@ -929,22 +1456,27 @@ extern_conformance!(
 
 impl NSUnitElectricCurrent {
     extern_methods!(
+        /// The megaamperes unit of electric current.
         #[unsafe(method(megaamperes))]
         #[unsafe(method_family = none)]
         pub fn megaamperes() -> Retained<NSUnitElectricCurrent>;
 
+        /// The kiloamperes unit of electric current.
         #[unsafe(method(kiloamperes))]
         #[unsafe(method_family = none)]
         pub fn kiloamperes() -> Retained<NSUnitElectricCurrent>;
 
+        /// The amperes unit of electric current.
         #[unsafe(method(amperes))]
         #[unsafe(method_family = none)]
         pub fn amperes() -> Retained<NSUnitElectricCurrent>;
 
+        /// The milliamperes unit of electric current.
         #[unsafe(method(milliamperes))]
         #[unsafe(method_family = none)]
         pub fn milliamperes() -> Retained<NSUnitElectricCurrent>;
 
+        /// The microamperes unit of electric current.
         #[unsafe(method(microamperes))]
         #[unsafe(method_family = none)]
         pub fn microamperes() -> Retained<NSUnitElectricCurrent>;
@@ -955,6 +1487,7 @@ impl NSUnitElectricCurrent {
 impl NSUnitElectricCurrent {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -963,6 +1496,13 @@ impl NSUnitElectricCurrent {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -977,6 +1517,7 @@ impl NSUnitElectricCurrent {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -984,7 +1525,25 @@ impl NSUnitElectricCurrent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectricpotentialdifference?language=objc)
+    /// A unit of measure for electric potential difference.
+    ///
+    /// You typically use instances of ``NSUnitElectricPotentialDifference`` to represent specific quantities of electric potential difference using the ``NSMeasurement`` class.
+    ///
+    /// ### Electric Potential Difference
+    ///
+    /// Electric potential difference is the amount of electric potential energy of a point charge at a point in space. The SI unit for electric potential difference is the volt (V), which is derived as the difference in electric potential energy between two points of a linear conductor when an electric current of one ampere dissipates one watt of power between those points (1V = 1W/1A).
+    ///
+    /// The ``NSUnitElectricPotentialDifference`` class defines its ``Dimension/baseUnit()`` as ``volts``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Megavolts | ``megavolts`` | MV | `1000000.0` |
+    /// | Kilovolts | ``kilovolts`` | kV | `1000.0` |
+    /// | Volts | ``volts`` | V | `1.0` |
+    /// | Millivolts | ``millivolts`` | mV | `0.001` |
+    /// | Microvolts | ``microvolts`` | µV | `0.000001` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectricpotentialdifference?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricPotentialDifference;
@@ -1020,22 +1579,27 @@ extern_conformance!(
 
 impl NSUnitElectricPotentialDifference {
     extern_methods!(
+        /// The megavolts unit of electric potential difference.
         #[unsafe(method(megavolts))]
         #[unsafe(method_family = none)]
         pub fn megavolts() -> Retained<NSUnitElectricPotentialDifference>;
 
+        /// The kilovolts unit of electric potential difference.
         #[unsafe(method(kilovolts))]
         #[unsafe(method_family = none)]
         pub fn kilovolts() -> Retained<NSUnitElectricPotentialDifference>;
 
+        /// The volts unit of electric potential difference.
         #[unsafe(method(volts))]
         #[unsafe(method_family = none)]
         pub fn volts() -> Retained<NSUnitElectricPotentialDifference>;
 
+        /// The millivolts unit of electric potential difference.
         #[unsafe(method(millivolts))]
         #[unsafe(method_family = none)]
         pub fn millivolts() -> Retained<NSUnitElectricPotentialDifference>;
 
+        /// The microvolts unit of electric potential difference.
         #[unsafe(method(microvolts))]
         #[unsafe(method_family = none)]
         pub fn microvolts() -> Retained<NSUnitElectricPotentialDifference>;
@@ -1046,6 +1610,7 @@ impl NSUnitElectricPotentialDifference {
 impl NSUnitElectricPotentialDifference {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -1054,6 +1619,13 @@ impl NSUnitElectricPotentialDifference {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -1068,6 +1640,7 @@ impl NSUnitElectricPotentialDifference {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -1075,7 +1648,25 @@ impl NSUnitElectricPotentialDifference {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectricresistance?language=objc)
+    /// A unit of measure for electric resistance.
+    ///
+    /// You typically use instances of ``NSUnitElectricResistance`` to represent specific quantities of electric resistance using the ``NSMeasurement`` class.
+    ///
+    /// ### Electric Resistance
+    ///
+    /// Electric resistance is the difficulty of passing an electric current through a conductor. The SI unit for electric resistance is the ohm (Ω), which is derived as the electric resistance that produces one ampere of current between two points in conductor with one volt of electric potential difference (1Ω = 1V/1A).
+    ///
+    /// The ``NSUnitElectricResistance`` class defines its ``Dimension/baseUnit()`` as ``ohms``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Megaohms | ``megaohms`` | MΩ | `1000000.0` |
+    /// | Kiloohms | ``kiloohms`` | kΩ | `1000.0` |
+    /// | Ohms | ``ohms`` | Ω | `1.0` |
+    /// | Milliohms | ``milliohms`` | mΩ | `0.001` |
+    /// | Microohms | ``microohms`` | µΩ | `0.000001` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectricresistance?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricResistance;
@@ -1111,22 +1702,27 @@ extern_conformance!(
 
 impl NSUnitElectricResistance {
     extern_methods!(
+        /// The megaohms unit of electric resistance.
         #[unsafe(method(megaohms))]
         #[unsafe(method_family = none)]
         pub fn megaohms() -> Retained<NSUnitElectricResistance>;
 
+        /// The kiloohms unit of electric resistance.
         #[unsafe(method(kiloohms))]
         #[unsafe(method_family = none)]
         pub fn kiloohms() -> Retained<NSUnitElectricResistance>;
 
+        /// The ohms unit of electric resistance.
         #[unsafe(method(ohms))]
         #[unsafe(method_family = none)]
         pub fn ohms() -> Retained<NSUnitElectricResistance>;
 
+        /// The milliohms unit of electric resistance.
         #[unsafe(method(milliohms))]
         #[unsafe(method_family = none)]
         pub fn milliohms() -> Retained<NSUnitElectricResistance>;
 
+        /// The microohms unit of electric resistance.
         #[unsafe(method(microohms))]
         #[unsafe(method_family = none)]
         pub fn microohms() -> Retained<NSUnitElectricResistance>;
@@ -1137,6 +1733,7 @@ impl NSUnitElectricResistance {
 impl NSUnitElectricResistance {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -1145,6 +1742,13 @@ impl NSUnitElectricResistance {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -1159,6 +1763,7 @@ impl NSUnitElectricResistance {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -1166,7 +1771,25 @@ impl NSUnitElectricResistance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitenergy?language=objc)
+    /// A unit of measure for energy.
+    ///
+    /// You typically use instances of ``NSUnitEnergy`` to represent specific quantities of energy using the ``NSMeasurement`` class.
+    ///
+    /// ### Energy
+    ///
+    /// Energy is a fundamental property of matter than can be transferred and converted into different forms, such as kinetic, electric, and thermal. The SI unit for energy is the joule (J), which is derived as the work of one meter of displacement in the direction of a force of one newton (1J = 1N ∙ 1m). It can also be derived as the work required to displace an electric charge of one coulomb through an electrical potential difference of one volt (1J = 1C ∙ 1V), or the work required to produce one watt of power for one second (1J = 1W ∙ 1s). Energy is also commonly expressed in terms of the calorie (cal), or the energy needed to raise the temperature of one gram of water by one degree Celsius at a pressure of one atmosphere (1cal ≡ 4.184J).
+    ///
+    /// The ``NSUnitEnergy`` class defines its ``Dimension/baseUnit()`` as ``joules``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Kilojoules | ``kilojoules`` | kJ | `1000.0` |
+    /// | Joules | ``joules`` | J | `1.0` |
+    /// | Kilocalories | ``kilocalories`` | kCal | `4184.0` |
+    /// | Calories | ``calories`` | cal | `4.184` |
+    /// | Kilowatt Hours | ``kilowattHours`` | kWh | `3600000.0` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitenergy?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitEnergy;
@@ -1202,22 +1825,27 @@ extern_conformance!(
 
 impl NSUnitEnergy {
     extern_methods!(
+        /// The kilojoules unit of energy.
         #[unsafe(method(kilojoules))]
         #[unsafe(method_family = none)]
         pub fn kilojoules() -> Retained<NSUnitEnergy>;
 
+        /// The joules unit of energy.
         #[unsafe(method(joules))]
         #[unsafe(method_family = none)]
         pub fn joules() -> Retained<NSUnitEnergy>;
 
+        /// The kilocalories unit of energy.
         #[unsafe(method(kilocalories))]
         #[unsafe(method_family = none)]
         pub fn kilocalories() -> Retained<NSUnitEnergy>;
 
+        /// The calories unit of energy.
         #[unsafe(method(calories))]
         #[unsafe(method_family = none)]
         pub fn calories() -> Retained<NSUnitEnergy>;
 
+        /// The kilowatt hours unit of energy.
         #[unsafe(method(kilowattHours))]
         #[unsafe(method_family = none)]
         pub fn kilowattHours() -> Retained<NSUnitEnergy>;
@@ -1228,6 +1856,7 @@ impl NSUnitEnergy {
 impl NSUnitEnergy {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -1236,6 +1865,13 @@ impl NSUnitEnergy {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -1250,6 +1886,7 @@ impl NSUnitEnergy {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -1257,7 +1894,28 @@ impl NSUnitEnergy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitfrequency?language=objc)
+    /// A unit of measure for frequency.
+    ///
+    /// You typically use instances of ``NSUnitFrequency`` to represent specific quantities of frequency using the ``NSMeasurement`` class.
+    ///
+    /// ### Frequency
+    ///
+    /// Frequency is a quantity of occurrences for a repeating event over time. The SI unit for frequency is the hertz (Hz), which is a derived as one occurrence per second (`1 Hz = 1 / 1s`).
+    ///
+    /// The ``UnitFrequency`` class defines its ``Dimension/baseUnit()`` as ``hertz``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Terahertz | ``terahertz`` | THz | `1e12` |
+    /// | Gigahertz | ``gigahertz`` | GHz | `1e9` |
+    /// | Megahertz | ``megahertz`` | MHz | `1000000.0` |
+    /// | Kilohertz | ``kilohertz`` | kHz | `1000.0` |
+    /// | Hertz | ``hertz`` | Hz | `1` |
+    /// | Millihertz | ``millihertz`` | mHz | `0.001` |
+    /// | Microhertz | ``microhertz`` | µHz | `0.000001` |
+    /// | Nanohertz | ``nanohertz`` | nHz | `1e-9` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitfrequency?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitFrequency;
@@ -1293,38 +1951,47 @@ extern_conformance!(
 
 impl NSUnitFrequency {
     extern_methods!(
+        /// The terahertz unit of frequency.
         #[unsafe(method(terahertz))]
         #[unsafe(method_family = none)]
         pub fn terahertz() -> Retained<NSUnitFrequency>;
 
+        /// The gigahertz unit of frequency.
         #[unsafe(method(gigahertz))]
         #[unsafe(method_family = none)]
         pub fn gigahertz() -> Retained<NSUnitFrequency>;
 
+        /// The megahertz unit of frequency.
         #[unsafe(method(megahertz))]
         #[unsafe(method_family = none)]
         pub fn megahertz() -> Retained<NSUnitFrequency>;
 
+        /// The kilohertz unit of frequency.
         #[unsafe(method(kilohertz))]
         #[unsafe(method_family = none)]
         pub fn kilohertz() -> Retained<NSUnitFrequency>;
 
+        /// The hertz unit of frequency.
         #[unsafe(method(hertz))]
         #[unsafe(method_family = none)]
         pub fn hertz() -> Retained<NSUnitFrequency>;
 
+        /// The millihertz unit of frequency.
         #[unsafe(method(millihertz))]
         #[unsafe(method_family = none)]
         pub fn millihertz() -> Retained<NSUnitFrequency>;
 
+        /// The microhertz unit of frequency.
         #[unsafe(method(microhertz))]
         #[unsafe(method_family = none)]
         pub fn microhertz() -> Retained<NSUnitFrequency>;
 
+        /// The nanohertz unit of frequency.
         #[unsafe(method(nanohertz))]
         #[unsafe(method_family = none)]
         pub fn nanohertz() -> Retained<NSUnitFrequency>;
 
+        /// The frames per second unit of frequency.
         #[unsafe(method(framesPerSecond))]
         #[unsafe(method_family = none)]
         pub fn framesPerSecond() -> Retained<NSUnitFrequency>;
@@ -1335,6 +2002,7 @@ impl NSUnitFrequency {
 impl NSUnitFrequency {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -1343,6 +2011,13 @@ impl NSUnitFrequency {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -1357,6 +2032,7 @@ impl NSUnitFrequency {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -1364,7 +2040,23 @@ impl NSUnitFrequency {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitfuelefficiency?language=objc)
+    /// A unit of measure for fuel efficiency.
+    ///
+    /// You typically use instances of ``NSUnitFuelEfficiency`` to represent specific quantities of fuel efficiency using the ``NSMeasurement`` class.
+    ///
+    /// ### Fuel Efficiency
+    ///
+    /// Fuel efficiency corresponds to the thermal efficiency of a process that converts the chemical potential energy of a fuel into kinetic energy. Fuel efficiency can be expressed by SI derived units in terms of cubic meters per meter (m3/m), but is more commonly expressed in terms of liters per kilometer (L/km) and miles per gallon (mpg).
+    ///
+    /// The ``NSUnitFuelEfficiency`` class defines its ``Dimension/baseUnit()`` as ``litersPer100Kilometers``, and provides the following units:
+    ///
+    /// | Name | Method | Symbol |
+    /// |---|---|---|
+    /// | Liters Per 100 Kilometers | ``litersPer100Kilometers`` | L/100km |
+    /// | Miles Per Gallon | ``milesPerGallon`` | mpg |
+    /// | Miles Per Imperial Gallon | ``milesPerImperialGallon`` | mpg |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitfuelefficiency?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitFuelEfficiency;
@@ -1400,14 +2092,17 @@ extern_conformance!(
 
 impl NSUnitFuelEfficiency {
     extern_methods!(
+        /// The liters per 100 kilometers unit of fuel efficiency.
         #[unsafe(method(litersPer100Kilometers))]
         #[unsafe(method_family = none)]
         pub fn litersPer100Kilometers() -> Retained<NSUnitFuelEfficiency>;
 
+        /// The miles per imperial gallon unit of fuel efficiency.
         #[unsafe(method(milesPerImperialGallon))]
         #[unsafe(method_family = none)]
         pub fn milesPerImperialGallon() -> Retained<NSUnitFuelEfficiency>;
 
+        /// The miles per gallon unit of fuel efficiency.
         #[unsafe(method(milesPerGallon))]
         #[unsafe(method_family = none)]
         pub fn milesPerGallon() -> Retained<NSUnitFuelEfficiency>;
@@ -1418,6 +2113,7 @@ impl NSUnitFuelEfficiency {
 impl NSUnitFuelEfficiency {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -1426,6 +2122,13 @@ impl NSUnitFuelEfficiency {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -1440,6 +2143,7 @@ impl NSUnitFuelEfficiency {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -1447,7 +2151,43 @@ impl NSUnitFuelEfficiency {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitinformationstorage?language=objc)
+    /// A unit of measure for quantities of information.
+    ///
+    /// Use instances of ``UnitInformationStorage`` to represent quantities of information using the ``NSMeasurement`` class. The base unit of measure for information is the bit, with a nibble representing four bits and a byte representing eight bits.
+    ///
+    /// Larger units of information expand on bits and bytes by orders of magnitude in both decimal and binary forms.
+    ///
+    /// ### Information Transfer
+    ///
+    /// Units of bits commonly represent the amount of transferred information.
+    ///
+    /// | Decimal Bits | Coefficient | Binary Bits | Coefficient |
+    /// |---|---|---|---|
+    /// | ``kilobits`` | `1000` | ``kibibits`` | `1024` |
+    /// | ``megabits`` | `1000e2` | ``mebibits`` | `1024e2` |
+    /// | ``gigabits`` | `1000e3` | ``gibibits`` | `1024e3` |
+    /// | ``terabits`` | `1000e4` | ``tebibits`` | `1024e4` |
+    /// | ``petabits`` | `1000e5` | ``pebibits`` | `1024e5` |
+    /// | ``exabits`` | `1000e6` | ``exbibits`` | `1024e6` |
+    /// | ``zettabits`` | `1000e7` | ``zebibits`` | `1024e7` |
+    /// | ``yottabits`` | `1000e8` | ``yobibits`` | `1024e8` |
+    ///
+    /// ### Information Storage
+    ///
+    /// Units of bytes commonly represent the amount of stored information.
+    ///
+    /// | Decimal Bytes | Coefficient | Binary Bytes | Coefficient |
+    /// |---|---|---|---|
+    /// | ``kilobytes`` | `1000` | ``kibibytes`` | `1024` |
+    /// | ``megabytes`` | `1000e2` | ``mebibytes`` | `1024e2` |
+    /// | ``gigabytes`` | `1000e3` | ``gibibytes`` | `1024e3` |
+    /// | ``terabytes`` | `1000e4` | ``tebibytes`` | `1024e4` |
+    /// | ``petabytes`` | `1000e5` | ``pebibytes`` | `1024e5` |
+    /// | ``exabytes`` | `1000e6` | ``exbibytes`` | `1024e6` |
+    /// | ``zettabytes`` | `1000e7` | ``zebibytes`` | `1024e7` |
+    /// | ``yottabytes`` | `1000e8` | ``yobibytes`` | `1024e8` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitinformationstorage?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitInformationStorage;
@@ -1483,6 +2223,7 @@ extern_conformance!(
 
 impl NSUnitInformationStorage {
     extern_methods!(
+        /// The bytes unit of information storage.
         #[unsafe(method(bytes))]
         #[unsafe(method_family = none)]
         pub fn bytes() -> Retained<NSUnitInformationStorage>;
@@ -1491,134 +2232,167 @@ impl NSUnitInformationStorage {
         #[unsafe(method_family = none)]
         pub fn bits() -> Retained<NSUnitInformationStorage>;
 
+        /// The nibbles unit of information storage.
         #[unsafe(method(nibbles))]
         #[unsafe(method_family = none)]
         pub fn nibbles() -> Retained<NSUnitInformationStorage>;
 
+        /// The yottabytes unit of information storage.
         #[unsafe(method(yottabytes))]
         #[unsafe(method_family = none)]
         pub fn yottabytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The zettabytes unit of information storage.
         #[unsafe(method(zettabytes))]
         #[unsafe(method_family = none)]
         pub fn zettabytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The exabytes unit of information storage.
         #[unsafe(method(exabytes))]
         #[unsafe(method_family = none)]
         pub fn exabytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The petabytes unit of information storage.
         #[unsafe(method(petabytes))]
         #[unsafe(method_family = none)]
         pub fn petabytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The terabytes unit of information storage.
         #[unsafe(method(terabytes))]
         #[unsafe(method_family = none)]
         pub fn terabytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The gigabytes unit of information storage.
         #[unsafe(method(gigabytes))]
         #[unsafe(method_family = none)]
         pub fn gigabytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The megabytes unit of information storage.
         #[unsafe(method(megabytes))]
         #[unsafe(method_family = none)]
         pub fn megabytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The kilobytes unit of information storage.
         #[unsafe(method(kilobytes))]
         #[unsafe(method_family = none)]
         pub fn kilobytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The yottabits unit of information storage.
         #[unsafe(method(yottabits))]
         #[unsafe(method_family = none)]
         pub fn yottabits() -> Retained<NSUnitInformationStorage>;
 
+        /// The zettabits unit of information storage.
         #[unsafe(method(zettabits))]
         #[unsafe(method_family = none)]
         pub fn zettabits() -> Retained<NSUnitInformationStorage>;
 
+        /// The exabits unit of information storage.
         #[unsafe(method(exabits))]
         #[unsafe(method_family = none)]
         pub fn exabits() -> Retained<NSUnitInformationStorage>;
 
+        /// The petabits unit of information storage.
         #[unsafe(method(petabits))]
         #[unsafe(method_family = none)]
         pub fn petabits() -> Retained<NSUnitInformationStorage>;
 
+        /// The terabits unit of information storage.
         #[unsafe(method(terabits))]
         #[unsafe(method_family = none)]
         pub fn terabits() -> Retained<NSUnitInformationStorage>;
 
+        /// The gigabits unit of information storage.
         #[unsafe(method(gigabits))]
         #[unsafe(method_family = none)]
         pub fn gigabits() -> Retained<NSUnitInformationStorage>;
 
+        /// The megabits unit of information storage.
         #[unsafe(method(megabits))]
         #[unsafe(method_family = none)]
         pub fn megabits() -> Retained<NSUnitInformationStorage>;
 
+        /// The kilobits unit of information storage.
         #[unsafe(method(kilobits))]
         #[unsafe(method_family = none)]
         pub fn kilobits() -> Retained<NSUnitInformationStorage>;
 
+        /// The yobibytes unit of information storage.
         #[unsafe(method(yobibytes))]
         #[unsafe(method_family = none)]
         pub fn yobibytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The zebibytes unit of information storage.
         #[unsafe(method(zebibytes))]
         #[unsafe(method_family = none)]
         pub fn zebibytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The exbibytes unit of information storage.
         #[unsafe(method(exbibytes))]
         #[unsafe(method_family = none)]
         pub fn exbibytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The pebibytes unit of information storage.
         #[unsafe(method(pebibytes))]
         #[unsafe(method_family = none)]
         pub fn pebibytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The tebibytes unit of information storage.
         #[unsafe(method(tebibytes))]
         #[unsafe(method_family = none)]
         pub fn tebibytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The gibibytes unit of information storage.
         #[unsafe(method(gibibytes))]
         #[unsafe(method_family = none)]
         pub fn gibibytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The mebibytes unit of information storage.
         #[unsafe(method(mebibytes))]
         #[unsafe(method_family = none)]
         pub fn mebibytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The kibibytes unit of information storage.
         #[unsafe(method(kibibytes))]
         #[unsafe(method_family = none)]
         pub fn kibibytes() -> Retained<NSUnitInformationStorage>;
 
+        /// The yobibits unit of information storage.
         #[unsafe(method(yobibits))]
         #[unsafe(method_family = none)]
         pub fn yobibits() -> Retained<NSUnitInformationStorage>;
 
+        /// The zebibits unit of information storage.
         #[unsafe(method(zebibits))]
         #[unsafe(method_family = none)]
         pub fn zebibits() -> Retained<NSUnitInformationStorage>;
 
+        /// The exbibits unit of information storage.
         #[unsafe(method(exbibits))]
         #[unsafe(method_family = none)]
         pub fn exbibits() -> Retained<NSUnitInformationStorage>;
 
+        /// The pebibits unit of information storage.
         #[unsafe(method(pebibits))]
         #[unsafe(method_family = none)]
         pub fn pebibits() -> Retained<NSUnitInformationStorage>;
 
+        /// The tebibits unit of information storage.
         #[unsafe(method(tebibits))]
         #[unsafe(method_family = none)]
         pub fn tebibits() -> Retained<NSUnitInformationStorage>;
 
+        /// The gibibits unit of information storage.
         #[unsafe(method(gibibits))]
         #[unsafe(method_family = none)]
         pub fn gibibits() -> Retained<NSUnitInformationStorage>;
 
+        /// The mebibits unit of information storage.
         #[unsafe(method(mebibits))]
         #[unsafe(method_family = none)]
         pub fn mebibits() -> Retained<NSUnitInformationStorage>;
 
+        /// The kibibits unit of information storage.
         #[unsafe(method(kibibits))]
         #[unsafe(method_family = none)]
         pub fn kibibits() -> Retained<NSUnitInformationStorage>;
@@ -1629,6 +2403,7 @@ impl NSUnitInformationStorage {
 impl NSUnitInformationStorage {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -1637,6 +2412,13 @@ impl NSUnitInformationStorage {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -1651,6 +2433,7 @@ impl NSUnitInformationStorage {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -1658,7 +2441,42 @@ impl NSUnitInformationStorage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitlength?language=objc)
+    /// A unit of measure for length.
+    ///
+    /// You typically use instances of ``UnitLength`` to represent specific quantities of length using the ``NSMeasurement`` class.
+    ///
+    /// ### Length
+    ///
+    /// Length is the dimensional extent of matter. The SI unit for length is the meter (m), which is defined in terms of the distance traveled by light in a vacuum.
+    ///
+    /// The ``UnitLength`` class defines its ``Dimension/baseUnit()`` as ``meters``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Megameters | ``megameters`` | Mm | `1000000.0` |
+    /// | Kilometers | ``kilometers`` | kM | `1000.0` |
+    /// | Hectometers | ``hectometers`` | hm | `100.0` |
+    /// | Decameters | ``decameters`` | dam | `10.0` |
+    /// | Meters | ``meters`` | m | `1.0` |
+    /// | Decimeters | ``decimeters`` | dm | `0.1` |
+    /// | Centimeters | ``centimeters`` | cm | `0.01` |
+    /// | Millimeters | ``millimeters`` | mm | `0.001` |
+    /// | Micrometers | ``micrometers`` | µm | `0.000001` |
+    /// | Nanometers | ``nanometers`` | nm | `1e-9` |
+    /// | Picometers | ``picometers`` | pm | `1e-12` |
+    /// | Inches | ``inches`` | in | `0.0254` |
+    /// | Feet | ``feet`` | ft | `0.3048` |
+    /// | Yards | ``yards`` | yd | `0.9144` |
+    /// | Miles | ``miles`` | mi | `1609.34` |
+    /// | Scandinavian Miles | ``scandinavianMiles`` | smi | `10000` |
+    /// | Light Years | ``lightyears`` | ly | `9.461e+15` |
+    /// | Nautical Miles | ``nauticalMiles`` | NM | `1852` |
+    /// | Fathoms | ``fathoms`` | ftm | `1.8288` |
+    /// | Furlongs | ``furlongs`` | fur | `201.168` |
+    /// | Astronomical Units | ``astronomicalUnits`` | au | `1.496e+11` |
+    /// | Parsecs | ``parsecs`` | pc | `3.086e+16` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitlength?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitLength;
@@ -1694,90 +2512,112 @@ extern_conformance!(
 
 impl NSUnitLength {
     extern_methods!(
+        /// The megameters unit of length.
         #[unsafe(method(megameters))]
         #[unsafe(method_family = none)]
         pub fn megameters() -> Retained<NSUnitLength>;
 
+        /// The kilometers unit of length.
         #[unsafe(method(kilometers))]
         #[unsafe(method_family = none)]
         pub fn kilometers() -> Retained<NSUnitLength>;
 
+        /// The hectometers unit of length.
         #[unsafe(method(hectometers))]
         #[unsafe(method_family = none)]
         pub fn hectometers() -> Retained<NSUnitLength>;
 
+        /// The decameters unit of length.
         #[unsafe(method(decameters))]
         #[unsafe(method_family = none)]
         pub fn decameters() -> Retained<NSUnitLength>;
 
+        /// The meters unit of length.
         #[unsafe(method(meters))]
         #[unsafe(method_family = none)]
         pub fn meters() -> Retained<NSUnitLength>;
 
+        /// The decimeters unit of length.
         #[unsafe(method(decimeters))]
         #[unsafe(method_family = none)]
         pub fn decimeters() -> Retained<NSUnitLength>;
 
+        /// The centimeters unit of length.
         #[unsafe(method(centimeters))]
         #[unsafe(method_family = none)]
         pub fn centimeters() -> Retained<NSUnitLength>;
 
+        /// The millimeters unit of length.
         #[unsafe(method(millimeters))]
         #[unsafe(method_family = none)]
         pub fn millimeters() -> Retained<NSUnitLength>;
 
+        /// The micrometers unit of length.
         #[unsafe(method(micrometers))]
         #[unsafe(method_family = none)]
         pub fn micrometers() -> Retained<NSUnitLength>;
 
+        /// The nanometers unit of length.
         #[unsafe(method(nanometers))]
         #[unsafe(method_family = none)]
         pub fn nanometers() -> Retained<NSUnitLength>;
 
+        /// The picometers unit of length.
         #[unsafe(method(picometers))]
         #[unsafe(method_family = none)]
         pub fn picometers() -> Retained<NSUnitLength>;
 
+        /// The inches unit of length.
         #[unsafe(method(inches))]
         #[unsafe(method_family = none)]
         pub fn inches() -> Retained<NSUnitLength>;
 
+        /// The feet unit of length.
         #[unsafe(method(feet))]
         #[unsafe(method_family = none)]
         pub fn feet() -> Retained<NSUnitLength>;
 
+        /// The yards unit of length.
         #[unsafe(method(yards))]
         #[unsafe(method_family = none)]
         pub fn yards() -> Retained<NSUnitLength>;
 
+        /// The miles unit of length.
         #[unsafe(method(miles))]
         #[unsafe(method_family = none)]
         pub fn miles() -> Retained<NSUnitLength>;
 
+        /// The Scandinavian miles unit of length.
         #[unsafe(method(scandinavianMiles))]
         #[unsafe(method_family = none)]
         pub fn scandinavianMiles() -> Retained<NSUnitLength>;
 
+        /// The lightyears unit of length.
         #[unsafe(method(lightyears))]
         #[unsafe(method_family = none)]
         pub fn lightyears() -> Retained<NSUnitLength>;
 
+        /// The nautical miles unit of length.
         #[unsafe(method(nauticalMiles))]
         #[unsafe(method_family = none)]
         pub fn nauticalMiles() -> Retained<NSUnitLength>;
 
+        /// The fathoms unit of length.
         #[unsafe(method(fathoms))]
         #[unsafe(method_family = none)]
         pub fn fathoms() -> Retained<NSUnitLength>;
 
+        /// The furlongs unit of length.
         #[unsafe(method(furlongs))]
         #[unsafe(method_family = none)]
         pub fn furlongs() -> Retained<NSUnitLength>;
 
+        /// The astronomical units unit of length.
         #[unsafe(method(astronomicalUnits))]
         #[unsafe(method_family = none)]
         pub fn astronomicalUnits() -> Retained<NSUnitLength>;
 
+        /// The parsecs unit of length.
         #[unsafe(method(parsecs))]
         #[unsafe(method_family = none)]
         pub fn parsecs() -> Retained<NSUnitLength>;
@@ -1788,6 +2628,7 @@ impl NSUnitLength {
 impl NSUnitLength {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -1796,6 +2637,13 @@ impl NSUnitLength {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -1810,6 +2658,7 @@ impl NSUnitLength {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -1817,7 +2666,21 @@ impl NSUnitLength {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitilluminance?language=objc)
+    /// A unit of measure for illuminance.
+    ///
+    /// You typically use instances of ``NSUnitIlluminance`` to represent specific quantities of illuminance using the ``NSMeasurement`` class.
+    ///
+    /// ### Illuminance
+    ///
+    /// Illuminance is the luminous flux incident on a surface. The SI unit for illuminance is the lux (lx), which is derived as one lumen per square meter (1lm / 1m2).
+    ///
+    /// The ``NSUnitIlluminance`` class defines its ``Dimension/baseUnit()`` as ``lux``.
+    ///
+    /// | Name | Method | Symbol |
+    /// |---|---|---|
+    /// | Lux | ``lux`` | lx |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitilluminance?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitIlluminance;
@@ -1853,6 +2716,7 @@ extern_conformance!(
 
 impl NSUnitIlluminance {
     extern_methods!(
+        /// The lux unit of illuminance.
         #[unsafe(method(lux))]
         #[unsafe(method_family = none)]
         pub fn lux() -> Retained<NSUnitIlluminance>;
@@ -1863,6 +2727,7 @@ impl NSUnitIlluminance {
 impl NSUnitIlluminance {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -1871,6 +2736,13 @@ impl NSUnitIlluminance {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -1885,6 +2757,7 @@ impl NSUnitIlluminance {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -1892,7 +2765,36 @@ impl NSUnitIlluminance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitmass?language=objc)
+    /// A unit of measure for mass.
+    ///
+    /// You typically use instances of ``NSUnitMass`` to represent specific quantities of mass using the ``NSMeasurement`` class.
+    ///
+    /// ### Mass
+    ///
+    /// Mass is a fundamental property of matter that causes it to resist a force accelerating it. The SI unit for mass is the kilogram (kg), which defined in terms of the mass of the international prototype kilogram.
+    ///
+    /// The ``NSUnitMass`` class defines its ``Dimension/baseUnit()`` as ``kilograms``, and provides the following units, which ``UnitConverterLinear`` converters initialize with the given coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Kilograms | ``kilograms`` | kg | `1.0` |
+    /// | Grams | ``grams`` | g | `0.001` |
+    /// | Decigrams | ``decigrams`` | dg | `0.0001` |
+    /// | Centigrams | ``centigrams`` | cg | `0.00001` |
+    /// | Milligrams | ``milligrams`` | mg | `0.000001` |
+    /// | Micrograms | ``micrograms`` | µg | `1e-9` |
+    /// | Nanograms | ``nanograms`` | ng | `1e-12` |
+    /// | Picograms | ``picograms`` | pg | `1e-15` |
+    /// | Ounces | ``ounces`` | oz | `0.0283495` |
+    /// | Pounds | ``pounds`` | lb | `0.453592` |
+    /// | Stones | ``stones`` | st | `0.157473` |
+    /// | Metric Tons | ``metricTons`` | t | `1000` |
+    /// | Short Tons | ``shortTons`` | ton | `907.185` |
+    /// | Carats | ``carats`` | ct | `0.0002` |
+    /// | Ounces Troy | ``ouncesTroy`` | oz t | `0.03110348` |
+    /// | Slugs | ``slugs`` | slug | `14.5939` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitmass?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitMass;
@@ -1928,66 +2830,82 @@ extern_conformance!(
 
 impl NSUnitMass {
     extern_methods!(
+        /// The kilograms unit of mass.
         #[unsafe(method(kilograms))]
         #[unsafe(method_family = none)]
         pub fn kilograms() -> Retained<NSUnitMass>;
 
+        /// The grams unit of mass.
         #[unsafe(method(grams))]
         #[unsafe(method_family = none)]
         pub fn grams() -> Retained<NSUnitMass>;
 
+        /// The decigrams unit of mass.
         #[unsafe(method(decigrams))]
         #[unsafe(method_family = none)]
         pub fn decigrams() -> Retained<NSUnitMass>;
 
+        /// The centigrams unit of mass.
         #[unsafe(method(centigrams))]
         #[unsafe(method_family = none)]
         pub fn centigrams() -> Retained<NSUnitMass>;
 
+        /// The milligrams unit of mass.
         #[unsafe(method(milligrams))]
         #[unsafe(method_family = none)]
         pub fn milligrams() -> Retained<NSUnitMass>;
 
+        /// The micrograms unit of mass.
         #[unsafe(method(micrograms))]
         #[unsafe(method_family = none)]
         pub fn micrograms() -> Retained<NSUnitMass>;
 
+        /// The nanograms unit of mass.
         #[unsafe(method(nanograms))]
         #[unsafe(method_family = none)]
         pub fn nanograms() -> Retained<NSUnitMass>;
 
+        /// The picograms unit of mass.
         #[unsafe(method(picograms))]
         #[unsafe(method_family = none)]
         pub fn picograms() -> Retained<NSUnitMass>;
 
+        /// The ounces unit of mass.
         #[unsafe(method(ounces))]
         #[unsafe(method_family = none)]
         pub fn ounces() -> Retained<NSUnitMass>;
 
+        /// The pounds unit of mass.
         #[unsafe(method(poundsMass))]
         #[unsafe(method_family = none)]
         pub fn poundsMass() -> Retained<NSUnitMass>;
 
+        /// The stones unit of mass.
         #[unsafe(method(stones))]
         #[unsafe(method_family = none)]
         pub fn stones() -> Retained<NSUnitMass>;
 
+        /// The metric tons unit of mass.
         #[unsafe(method(metricTons))]
         #[unsafe(method_family = none)]
         pub fn metricTons() -> Retained<NSUnitMass>;
 
+        /// The short tons unit of mass.
         #[unsafe(method(shortTons))]
         #[unsafe(method_family = none)]
         pub fn shortTons() -> Retained<NSUnitMass>;
 
+        /// The carats unit of mass.
         #[unsafe(method(carats))]
         #[unsafe(method_family = none)]
         pub fn carats() -> Retained<NSUnitMass>;
 
+        /// The troy ounces unit of mass.
         #[unsafe(method(ouncesTroy))]
         #[unsafe(method_family = none)]
         pub fn ouncesTroy() -> Retained<NSUnitMass>;
 
+        /// The slugs unit of mass.
         #[unsafe(method(slugs))]
         #[unsafe(method_family = none)]
         pub fn slugs() -> Retained<NSUnitMass>;
@@ -1998,6 +2916,7 @@ impl NSUnitMass {
 impl NSUnitMass {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -2006,6 +2925,13 @@ impl NSUnitMass {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -2020,6 +2946,7 @@ impl NSUnitMass {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -2027,7 +2954,31 @@ impl NSUnitMass {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitpower?language=objc)
+    /// A unit of measure for power.
+    ///
+    /// You typically use instances of ``NSUnitPower`` to represent specific quantities of power using the ``NSMeasurement`` class.
+    ///
+    /// ### Power
+    ///
+    /// Power is the amount of energy used over time. The SI unit for power is the watt (W), which is derived as one joule per second (1W = 1J / 1s).
+    ///
+    /// The ``NSUnitPower`` class defines its ``Dimension/baseUnit()`` as ``watts``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Terawatts | ``terawatts`` | TW | `1e12` |
+    /// | Gigawatts | ``gigawatts`` | GW | `1e9` |
+    /// | Megawatts | ``megawatts`` | MW | `1000000.0` |
+    /// | Kilowatts | ``kilowatts`` | kW | `1000.0` |
+    /// | Watts | ``watts`` | W | `1` |
+    /// | Milliwatts | ``milliwatts`` | mW | `0.001` |
+    /// | Microwatts | ``microwatts`` | µW | `0.000001` |
+    /// | Nanowatts | ``nanowatts`` | nW | `1e-9` |
+    /// | Picowatts | ``picowatts`` | pW | `1e-12` |
+    /// | Femtowatts | ``femtowatts`` | fW | `1e-15` |
+    /// | Horsepower | ``horsepower`` | hp | `745.7` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitpower?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPower;
@@ -2063,46 +3014,57 @@ extern_conformance!(
 
 impl NSUnitPower {
     extern_methods!(
+        /// The terawatts unit of power.
         #[unsafe(method(terawatts))]
         #[unsafe(method_family = none)]
         pub fn terawatts() -> Retained<NSUnitPower>;
 
+        /// The gigawatts unit of power.
         #[unsafe(method(gigawatts))]
         #[unsafe(method_family = none)]
         pub fn gigawatts() -> Retained<NSUnitPower>;
 
+        /// The megawatts unit of power.
         #[unsafe(method(megawatts))]
         #[unsafe(method_family = none)]
         pub fn megawatts() -> Retained<NSUnitPower>;
 
+        /// The kilowatts unit of power.
         #[unsafe(method(kilowatts))]
         #[unsafe(method_family = none)]
         pub fn kilowatts() -> Retained<NSUnitPower>;
 
+        /// The watts unit of power.
         #[unsafe(method(watts))]
         #[unsafe(method_family = none)]
         pub fn watts() -> Retained<NSUnitPower>;
 
+        /// The milliwatts unit of power.
         #[unsafe(method(milliwatts))]
         #[unsafe(method_family = none)]
         pub fn milliwatts() -> Retained<NSUnitPower>;
 
+        /// The microwatts unit of power.
         #[unsafe(method(microwatts))]
         #[unsafe(method_family = none)]
         pub fn microwatts() -> Retained<NSUnitPower>;
 
+        /// The nanowatts unit of power.
         #[unsafe(method(nanowatts))]
         #[unsafe(method_family = none)]
         pub fn nanowatts() -> Retained<NSUnitPower>;
 
+        /// The picowatts unit of power.
         #[unsafe(method(picowatts))]
         #[unsafe(method_family = none)]
         pub fn picowatts() -> Retained<NSUnitPower>;
 
+        /// The femtowatts unit of power.
         #[unsafe(method(femtowatts))]
         #[unsafe(method_family = none)]
         pub fn femtowatts() -> Retained<NSUnitPower>;
 
+        /// The horsepower unit of power.
         #[unsafe(method(horsepower))]
         #[unsafe(method_family = none)]
         pub fn horsepower() -> Retained<NSUnitPower>;
@@ -2113,6 +3075,7 @@ impl NSUnitPower {
 impl NSUnitPower {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -2121,6 +3084,13 @@ impl NSUnitPower {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -2135,6 +3105,7 @@ impl NSUnitPower {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -2142,7 +3113,30 @@ impl NSUnitPower {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitpressure?language=objc)
+    /// A unit of measure for pressure.
+    ///
+    /// You typically use instances of ``NSUnitPressure`` to represent specific quantities of pressure using the ``NSMeasurement`` class.
+    ///
+    /// ### Pressure
+    ///
+    /// Pressure is the normal force over a surface. The SI unit for pressure is the pascal (Pa), which is derived as one newton of force over one square meter (`1 Pa = 1 N / 1 m`2).
+    ///
+    /// The ``UnitPressure`` class defines its ``Dimension/baseUnit()`` as ``newtonsPerMetersSquared`` and provides the following units, which ``UnitConverterLinear`` converters initialize with the given coefficients:
+    ///
+    /// | Name | Method | Symbol | Definition |
+    /// |---|---|---|---|
+    /// | Newtons Per Meter Squared (Equivalent to Pascals) | ``newtonsPerMetersSquared`` | N/m² | `1.0` |
+    /// | Gigapascals | ``gigapascals`` | GPa | `1e9` |
+    /// | Megapascals | ``megapascals`` | MPa | `1000000.0` |
+    /// | Kilopascals | ``kilopascals`` | kPa | `1000.0` |
+    /// | Hectopascals | ``hectopascals`` | hPa | `100.0` |
+    /// | Inches of Mercury | ``inchesOfMercury`` | inHg | `3386.39` |
+    /// | Bars | ``bars`` | bar | `100000` |
+    /// | Millibars | ``millibars`` | mbar | `100` |
+    /// | Millimeters of Mercury | ``millimetersOfMercury`` | mmHg | `133.322` |
+    /// | Pounds Per Square Inch | ``poundsForcePerSquareInch`` | psi | `6894.76` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitpressure?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPressure;
@@ -2178,42 +3172,52 @@ extern_conformance!(
 
 impl NSUnitPressure {
     extern_methods!(
+        /// The newtons per meters squared unit of pressure.
         #[unsafe(method(newtonsPerMetersSquared))]
         #[unsafe(method_family = none)]
         pub fn newtonsPerMetersSquared() -> Retained<NSUnitPressure>;
 
+        /// The gigapascals unit of pressure.
         #[unsafe(method(gigapascals))]
         #[unsafe(method_family = none)]
         pub fn gigapascals() -> Retained<NSUnitPressure>;
 
+        /// The megapascals unit of pressure.
         #[unsafe(method(megapascals))]
         #[unsafe(method_family = none)]
         pub fn megapascals() -> Retained<NSUnitPressure>;
 
+        /// The kilopascals unit of pressure.
         #[unsafe(method(kilopascals))]
         #[unsafe(method_family = none)]
         pub fn kilopascals() -> Retained<NSUnitPressure>;
 
+        /// The hectopascals unit of pressure.
         #[unsafe(method(hectopascals))]
         #[unsafe(method_family = none)]
         pub fn hectopascals() -> Retained<NSUnitPressure>;
 
+        /// The inches of mercury unit of pressure.
         #[unsafe(method(inchesOfMercury))]
         #[unsafe(method_family = none)]
         pub fn inchesOfMercury() -> Retained<NSUnitPressure>;
 
+        /// The bars unit of pressure.
         #[unsafe(method(bars))]
         #[unsafe(method_family = none)]
         pub fn bars() -> Retained<NSUnitPressure>;
 
+        /// The millibars unit of pressure.
         #[unsafe(method(millibars))]
         #[unsafe(method_family = none)]
         pub fn millibars() -> Retained<NSUnitPressure>;
 
+        /// The millimeters of mercury unit of pressure.
         #[unsafe(method(millimetersOfMercury))]
         #[unsafe(method_family = none)]
         pub fn millimetersOfMercury() -> Retained<NSUnitPressure>;
 
+        /// The pounds per square inch unit of pressure.
         #[unsafe(method(poundsForcePerSquareInch))]
         #[unsafe(method_family = none)]
         pub fn poundsForcePerSquareInch() -> Retained<NSUnitPressure>;
@@ -2224,6 +3228,7 @@ impl NSUnitPressure {
 impl NSUnitPressure {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -2232,6 +3237,13 @@ impl NSUnitPressure {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -2246,6 +3258,7 @@ impl NSUnitPressure {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -2253,7 +3266,26 @@ impl NSUnitPressure {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitspeed?language=objc)
+    /// A unit of measure for speed.
+    ///
+    /// You typically use instances of ``NSUnitSpeed`` to represent specific quantities of speed using the ``NSMeasurement`` class.
+    ///
+    /// ### Speed
+    ///
+    /// Speed is the magnitude of velocity, or the rate of change of position. Speed can be expressed by SI derived units in terms of meters per second (m/s), and is also commonly expressed in terms of kilometers per hour (km/h) and miles per hour (mph).
+    ///
+    /// The ``NSUnitSpeed`` class defines its ``Dimension/baseUnit()`` as ``metersPerSecond``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Meters Per Second | ``metersPerSecond`` | m/s | `1.0` |
+    /// | Kilometers Per Hour | ``kilometersPerHour`` | km/h | `0.277778` |
+    /// | Miles Per Hour | ``milesPerHour`` | mph | `0.44704` |
+    /// | Knots | ``knots`` | kn | `0.514444` |
+    ///
+    /// The base unit is ``metersPerSecond`` and is accessed via ``NSDimension/baseUnit`` on the ``NSDimension`` protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitspeed?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitSpeed;
@@ -2289,18 +3321,22 @@ extern_conformance!(
 
 impl NSUnitSpeed {
     extern_methods!(
+        /// The meters per second unit of speed.
         #[unsafe(method(metersPerSecond))]
         #[unsafe(method_family = none)]
         pub fn metersPerSecond() -> Retained<NSUnitSpeed>;
 
+        /// The kilometers per hour unit of speed.
         #[unsafe(method(kilometersPerHour))]
         #[unsafe(method_family = none)]
         pub fn kilometersPerHour() -> Retained<NSUnitSpeed>;
 
+        /// The miles per hour unit of speed.
         #[unsafe(method(milesPerHour))]
         #[unsafe(method_family = none)]
         pub fn milesPerHour() -> Retained<NSUnitSpeed>;
 
+        /// The knots unit of speed.
         #[unsafe(method(knots))]
         #[unsafe(method_family = none)]
         pub fn knots() -> Retained<NSUnitSpeed>;
@@ -2311,6 +3347,7 @@ impl NSUnitSpeed {
 impl NSUnitSpeed {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -2319,6 +3356,13 @@ impl NSUnitSpeed {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -2333,6 +3377,7 @@ impl NSUnitSpeed {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -2340,7 +3385,23 @@ impl NSUnitSpeed {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunittemperature?language=objc)
+    /// A unit of measure for temperature.
+    ///
+    /// You typically use instances of ``NSUnitTemperature`` to represent specific quantities of temperature using the ``NSMeasurement`` class.
+    ///
+    /// ### Temperature
+    ///
+    /// Temperature is a comparative measure of thermal energy. The SI unit for temperature is the kelvin (K), which is defined in terms of the triple point of water. Temperature is also commonly measured by degrees of various scales, including Celsius (°C) and Fahrenheit (°F).
+    ///
+    /// The ``NSUnitTemperature`` class defines its ``Dimension/baseUnit()`` to be ``kelvin``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients and constants:
+    ///
+    /// | Name | Method | Symbol | Coefficient | Constant |
+    /// |---|---|---|---|---|
+    /// | Kelvin | ``kelvin`` | K | `1` | `0` |
+    /// | Degree Celsius | ``celsius`` | °C | `1.0` | `273.15` |
+    /// | Degree Fahrenheit | ``fahrenheit`` | °F | `0.55555555555556` | `255.37222222222427` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunittemperature?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitTemperature;
@@ -2376,14 +3437,17 @@ extern_conformance!(
 
 impl NSUnitTemperature {
     extern_methods!(
+        /// The kelvin unit of temperature.
         #[unsafe(method(kelvin))]
         #[unsafe(method_family = none)]
         pub fn kelvin() -> Retained<NSUnitTemperature>;
 
+        /// The degrees Celsius unit of temperature.
         #[unsafe(method(celsius))]
         #[unsafe(method_family = none)]
         pub fn celsius() -> Retained<NSUnitTemperature>;
 
+        /// The degrees Fahrenheit unit of temperature.
         #[unsafe(method(fahrenheit))]
         #[unsafe(method_family = none)]
         pub fn fahrenheit() -> Retained<NSUnitTemperature>;
@@ -2394,6 +3458,7 @@ impl NSUnitTemperature {
 impl NSUnitTemperature {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -2402,6 +3467,13 @@ impl NSUnitTemperature {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -2416,6 +3488,7 @@ impl NSUnitTemperature {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -2423,7 +3496,51 @@ impl NSUnitTemperature {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitvolume?language=objc)
+    /// A unit of measure for volume.
+    ///
+    /// You typically use instances of ``NSUnitVolume`` to represent specific quantities of volume using the ``NSMeasurement`` class.
+    ///
+    /// ### Volume
+    ///
+    /// Volume is a quantity of the extend of matter in three dimensions. The SI accepted unit of volume is the liter (L), which is derived as one cubic decimeter (1 dm3). Volume is also commonly expressed in terms of cubic meters (m3), gallons (gal), and cups (cup).
+    ///
+    /// The ``NSUnitVolume`` class defines its ``Dimension/baseUnit()`` as ``liters``, and provides the following units, which are initialized using ``UnitConverterLinear`` converters with the specified coefficients:
+    ///
+    /// | Name | Method | Symbol | Coefficient |
+    /// |---|---|---|---|
+    /// | Megaliters | ``megaliters`` | ML | `1000000.0` |
+    /// | Kiloliters | ``kiloliters`` | kL | `1000.0` |
+    /// | Liters | ``liters`` | L | `1.0` |
+    /// | Deciliters | ``deciliters`` | dL | `0.1` |
+    /// | Centiliters | ``centiliters`` | cL | `0.01` |
+    /// | Milliliters | ``milliliters`` | mL | `0.001` |
+    /// | Cubic Kilometers | ``cubicKilometers`` | km³ | `1e12` |
+    /// | Cubic Meters | ``cubicMeters`` | m³ | `1000.0` |
+    /// | Cubic Decimeters | ``cubicDecimeters`` | dm³ | `1.0` |
+    /// | Cubic Centimeters | ``cubicCentimeters`` | cm³ | `0.001` |
+    /// | Cubic Millimeters | ``cubicMillimeters`` | mm³ | `0.000001` |
+    /// | Cubic Inches | ``cubicInches`` | in³ | `0.0163871` |
+    /// | Cubic Feet | ``cubicFeet`` | ft³ | `28.3168` |
+    /// | Cubic Yards | ``cubicYards`` | yd³ | `764.555` |
+    /// | Cubic Miles | ``cubicMiles`` | mi³ | `4.168e+12` |
+    /// | Acre Feet | ``acreFeet`` | af | `1.233e+6` |
+    /// | Bushels | ``bushels`` | bsh | `35.2391` |
+    /// | Teaspoons | ``teaspoons`` | tsp | `0.00492892` |
+    /// | Tablespoons | ``tablespoons`` | tbsp | `0.0147868` |
+    /// | Fluid Ounces | ``fluidOunces`` | fl oz | `0.0295735` |
+    /// | Cups | ``cups`` | cup | `0.24` |
+    /// | Pints | ``pints`` | pt | `0.473176` |
+    /// | Quarts | ``quarts`` | qt | `0.946353` |
+    /// | Gallons | ``gallons`` | gal | `3.78541` |
+    /// | Imperial Teaspoons | ``imperialTeaspoons`` | tsp | `0.00591939` |
+    /// | Imperial Tablespoons | ``imperialTablespoons`` | tbsp | `0.0177582` |
+    /// | Imperial Fluid Ounces | ``imperialFluidOunces`` | fl oz | `0.0284131` |
+    /// | Imperial Pints | ``imperialPints`` | pt | `0.568261` |
+    /// | Imperial Quarts | ``imperialQuarts`` | qt | `1.13652` |
+    /// | Imperial Gallons | ``imperialGallons`` | gal | `4.54609` |
+    /// | Metric Cups | ``metricCups`` | metric cup | `0.25` |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitvolume?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitVolume;
@@ -2459,126 +3576,157 @@ extern_conformance!(
 
 impl NSUnitVolume {
     extern_methods!(
+        /// The megaliters unit of volume.
         #[unsafe(method(megaliters))]
         #[unsafe(method_family = none)]
         pub fn megaliters() -> Retained<NSUnitVolume>;
 
+        /// The kiloliters unit of volume.
         #[unsafe(method(kiloliters))]
         #[unsafe(method_family = none)]
         pub fn kiloliters() -> Retained<NSUnitVolume>;
 
+        /// The liters unit of volume.
         #[unsafe(method(liters))]
         #[unsafe(method_family = none)]
         pub fn liters() -> Retained<NSUnitVolume>;
 
+        /// The deciliters unit of volume.
         #[unsafe(method(deciliters))]
         #[unsafe(method_family = none)]
         pub fn deciliters() -> Retained<NSUnitVolume>;
 
+        /// The centiliters unit of volume.
         #[unsafe(method(centiliters))]
         #[unsafe(method_family = none)]
         pub fn centiliters() -> Retained<NSUnitVolume>;
 
+        /// The milliliters unit of volume.
         #[unsafe(method(milliliters))]
         #[unsafe(method_family = none)]
         pub fn milliliters() -> Retained<NSUnitVolume>;
 
+        /// The cubic kilometers unit of volume.
         #[unsafe(method(cubicKilometers))]
         #[unsafe(method_family = none)]
         pub fn cubicKilometers() -> Retained<NSUnitVolume>;
 
+        /// The cubic meters unit of volume.
         #[unsafe(method(cubicMeters))]
         #[unsafe(method_family = none)]
         pub fn cubicMeters() -> Retained<NSUnitVolume>;
 
+        /// The cubic decimeters unit of volume.
         #[unsafe(method(cubicDecimeters))]
         #[unsafe(method_family = none)]
         pub fn cubicDecimeters() -> Retained<NSUnitVolume>;
 
+        /// The cubic centimeters unit of volume.
         #[unsafe(method(cubicCentimeters))]
         #[unsafe(method_family = none)]
         pub fn cubicCentimeters() -> Retained<NSUnitVolume>;
 
+        /// The cubic millimeters unit of volume.
         #[unsafe(method(cubicMillimeters))]
         #[unsafe(method_family = none)]
         pub fn cubicMillimeters() -> Retained<NSUnitVolume>;
 
+        /// The cubic inches unit of volume.
         #[unsafe(method(cubicInches))]
         #[unsafe(method_family = none)]
         pub fn cubicInches() -> Retained<NSUnitVolume>;
 
+        /// The cubic feet unit of volume.
         #[unsafe(method(cubicFeet))]
         #[unsafe(method_family = none)]
         pub fn cubicFeet() -> Retained<NSUnitVolume>;
 
+        /// The cubic yards unit of volume.
         #[unsafe(method(cubicYards))]
         #[unsafe(method_family = none)]
         pub fn cubicYards() -> Retained<NSUnitVolume>;
 
+        /// The cubic miles unit of volume.
         #[unsafe(method(cubicMiles))]
         #[unsafe(method_family = none)]
         pub fn cubicMiles() -> Retained<NSUnitVolume>;
 
+        /// The acre-feet unit of volume.
         #[unsafe(method(acreFeet))]
         #[unsafe(method_family = none)]
         pub fn acreFeet() -> Retained<NSUnitVolume>;
 
+        /// The bushels unit of volume.
         #[unsafe(method(bushels))]
         #[unsafe(method_family = none)]
         pub fn bushels() -> Retained<NSUnitVolume>;
 
+        /// The teaspoons unit of volume.
         #[unsafe(method(teaspoons))]
         #[unsafe(method_family = none)]
         pub fn teaspoons() -> Retained<NSUnitVolume>;
 
+        /// The tablespoons unit of volume.
         #[unsafe(method(tablespoons))]
         #[unsafe(method_family = none)]
         pub fn tablespoons() -> Retained<NSUnitVolume>;
 
+        /// The fluid ounces unit of volume.
         #[unsafe(method(fluidOunces))]
         #[unsafe(method_family = none)]
         pub fn fluidOunces() -> Retained<NSUnitVolume>;
 
+        /// The cups unit of volume.
         #[unsafe(method(cups))]
         #[unsafe(method_family = none)]
         pub fn cups() -> Retained<NSUnitVolume>;
 
+        /// The pints unit of volume.
         #[unsafe(method(pints))]
         #[unsafe(method_family = none)]
         pub fn pints() -> Retained<NSUnitVolume>;
 
+        /// The quarts unit of volume.
         #[unsafe(method(quarts))]
         #[unsafe(method_family = none)]
         pub fn quarts() -> Retained<NSUnitVolume>;
 
+        /// The gallons unit of volume.
         #[unsafe(method(gallons))]
         #[unsafe(method_family = none)]
         pub fn gallons() -> Retained<NSUnitVolume>;
 
+        /// The imperial teaspoons unit of volume.
         #[unsafe(method(imperialTeaspoons))]
         #[unsafe(method_family = none)]
         pub fn imperialTeaspoons() -> Retained<NSUnitVolume>;
 
+        /// The imperial tablespoons unit of volume.
         #[unsafe(method(imperialTablespoons))]
         #[unsafe(method_family = none)]
         pub fn imperialTablespoons() -> Retained<NSUnitVolume>;
 
+        /// The imperial fluid ounces unit of volume.
         #[unsafe(method(imperialFluidOunces))]
         #[unsafe(method_family = none)]
         pub fn imperialFluidOunces() -> Retained<NSUnitVolume>;
 
+        /// The imperial pints unit of volume.
         #[unsafe(method(imperialPints))]
         #[unsafe(method_family = none)]
         pub fn imperialPints() -> Retained<NSUnitVolume>;
 
+        /// The imperial quarts unit of volume.
         #[unsafe(method(imperialQuarts))]
         #[unsafe(method_family = none)]
         pub fn imperialQuarts() -> Retained<NSUnitVolume>;
 
+        /// The imperial gallons unit of volume.
         #[unsafe(method(imperialGallons))]
         #[unsafe(method_family = none)]
         pub fn imperialGallons() -> Retained<NSUnitVolume>;
 
+        /// The metric cups unit of volume.
         #[unsafe(method(metricCups))]
         #[unsafe(method_family = none)]
         pub fn metricCups() -> Retained<NSUnitVolume>;
@@ -2589,6 +3737,7 @@ impl NSUnitVolume {
 impl NSUnitVolume {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol_converter(
@@ -2597,6 +3746,13 @@ impl NSUnitVolume {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub fn baseUnit() -> Retained<Self>;
@@ -2611,6 +3767,7 @@ impl NSUnitVolume {
         // +new (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;

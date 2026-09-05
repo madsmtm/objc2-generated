@@ -10,6 +10,7 @@ use crate::*;
 /// Describes the general purpose of a specific launch task.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxlaunchtaskid?language=objc)
+#[deprecated = "Use LaunchTaskID instead."]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MXLaunchTaskID = NSString;
 
@@ -25,6 +26,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use MetricManager instead."]
     pub struct MXMetricManager;
 );
 
@@ -36,6 +38,7 @@ impl MXMetricManager {
     extern_methods!(
         #[cfg(feature = "MXMetricPayload")]
         /// A list of past metric payloads received.
+        #[deprecated = "Use MetricManager instead."]
         #[unsafe(method(pastPayloads))]
         #[unsafe(method_family = none)]
         pub unsafe fn pastPayloads(&self) -> Retained<NSArray<MXMetricPayload>>;
@@ -47,6 +50,7 @@ impl MXMetricManager {
         pub unsafe fn pastDiagnosticPayloads(&self) -> Retained<NSArray<MXDiagnosticPayload>>;
 
         /// Singleton instance of MXMetricManager.
+        #[deprecated = "Use MetricManager instead."]
         #[unsafe(method(sharedManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<MXMetricManager>;
@@ -56,6 +60,7 @@ impl MXMetricManager {
         /// Parameter `subscriber`: An object that conforms to the MXMetricManagerSubscriber protocol.
         ///
         /// Subscribers can receive metric payloads by conforming to the MXMetricManagerSubscriber protocol.
+        #[deprecated = "Use MetricManager instead."]
         #[unsafe(method(addSubscriber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSubscriber(
@@ -68,6 +73,7 @@ impl MXMetricManager {
         /// Parameter `subscriber`: An object that conforms to the MXMetricManagerSubscriber protocol.
         ///
         /// The subscriber indicated, if previously registered, will no longer receive metric payloads.
+        #[deprecated = "Use MetricManager instead."]
         #[unsafe(method(removeSubscriber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSubscriber(
@@ -96,6 +102,7 @@ impl MXMetricManager {
         /// Returns: Returns
         /// `YES`if the measurement started successfully and
         /// `NO`otherwise.
+        #[deprecated = "Use MetricManager.trackLaunchTask(id:onTrackingError:_:) instead."]
         #[unsafe(method(extendLaunchMeasurementForTaskID:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendLaunchMeasurementForTaskID_error(
@@ -116,6 +123,7 @@ impl MXMetricManager {
         /// Returns: Returns
         /// `YES`if the measurement for the task finished successfully and
         /// `NO`otherwise.
+        #[deprecated = "Use MetricManager.trackLaunchTask(id:onTrackingError:_:) instead."]
         #[unsafe(method(finishExtendedLaunchMeasurementForTaskID:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishExtendedLaunchMeasurementForTaskID_error(
@@ -145,6 +153,7 @@ extern_protocol!(
     /// Objects which conform to this protocol can be passed to addSubscriber:subscriber and removeSubscriber:subscriber to manage their subscription state.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricmanagersubscriber?language=objc)
+    #[deprecated = "Use MetricManager instead."]
     pub unsafe trait MXMetricManagerSubscriber: NSObjectProtocol {
         #[cfg(feature = "MXMetricPayload")]
         /// This method is invoked when a new MXMetricPayload has been received.
@@ -158,6 +167,7 @@ extern_protocol!(
         /// Atleast one subscriber must be available to receive metrics.
         ///
         /// This method is invoked on a background queue.
+        #[deprecated = "Use MetricManager.metricReports instead."]
         #[optional]
         #[unsafe(method(didReceiveMetricPayloads:))]
         #[unsafe(method_family = none)]
@@ -175,6 +185,7 @@ extern_protocol!(
         /// Atleast one subscriber must be available to receive diagnostics.
         ///
         /// This method is invoked on a background queue.
+        #[deprecated = "Use MetricManager.diagnosticReports instead."]
         #[optional]
         #[unsafe(method(didReceiveDiagnosticPayloads:))]
         #[unsafe(method_family = none)]

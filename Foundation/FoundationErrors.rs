@@ -4,171 +4,365 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilenosuchfileerror?language=objc)
+/// A filesystem operation was attempted on a non-existent file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilenosuchfileerror?language=objc)
 pub const NSFileNoSuchFileError: NSInteger = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilelockingerror?language=objc)
+/// The file could not be locked.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilelockingerror?language=objc)
 pub const NSFileLockingError: NSInteger = 255;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadunknownerror?language=objc)
+/// Read error, for unknown reasons.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadunknownerror?language=objc)
 pub const NSFileReadUnknownError: NSInteger = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadnopermissionerror?language=objc)
+/// Could not read because of a permission problem.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadnopermissionerror?language=objc)
 pub const NSFileReadNoPermissionError: NSInteger = 257;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadinvalidfilenameerror?language=objc)
+/// Could not read because of an invalid file name.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadinvalidfilenameerror?language=objc)
 pub const NSFileReadInvalidFileNameError: NSInteger = 258;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadcorruptfileerror?language=objc)
+/// Could not read because of a corrupted file, bad format, or similar reason.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadcorruptfileerror?language=objc)
 pub const NSFileReadCorruptFileError: NSInteger = 259;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadnosuchfileerror?language=objc)
+/// Could not read because no such file was found.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadnosuchfileerror?language=objc)
 pub const NSFileReadNoSuchFileError: NSInteger = 260;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadinapplicablestringencodingerror?language=objc)
+/// Could not read because the string encoding was not applicable.
+///
+/// Access the bad encoding from the `userInfo` dictionary using the ``NSStringEncodingErrorKey`` key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadinapplicablestringencodingerror?language=objc)
 pub const NSFileReadInapplicableStringEncodingError: NSInteger = 261;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadunsupportedschemeerror?language=objc)
+/// Could not read because the specified URL scheme is unsupported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadunsupportedschemeerror?language=objc)
 pub const NSFileReadUnsupportedSchemeError: NSInteger = 262;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadtoolargeerror?language=objc)
+/// Could not read because the specified file was too large.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadtoolargeerror?language=objc)
 pub const NSFileReadTooLargeError: NSInteger = 263;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadunknownstringencodingerror?language=objc)
+/// Could not read because the string encoding of the file contents could not be determined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadunknownstringencodingerror?language=objc)
 pub const NSFileReadUnknownStringEncodingError: NSInteger = 264;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteunknownerror?language=objc)
+/// Write error, for unknown reasons.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteunknownerror?language=objc)
 pub const NSFileWriteUnknownError: NSInteger = 512;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewritenopermissionerror?language=objc)
+/// Could not write because of a permission problem.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewritenopermissionerror?language=objc)
 pub const NSFileWriteNoPermissionError: NSInteger = 513;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteinvalidfilenameerror?language=objc)
+/// Could not write because of an invalid file name.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteinvalidfilenameerror?language=objc)
 pub const NSFileWriteInvalidFileNameError: NSInteger = 514;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewritefileexistserror?language=objc)
+/// Could not perform an operation because the destination file already exists.
+///
+/// This error can be produced by the ``NSFileManager`` class's copy, move, and link methods.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewritefileexistserror?language=objc)
 pub const NSFileWriteFileExistsError: NSInteger = 516;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteinapplicablestringencodingerror?language=objc)
+/// Could not write because the string encoding was not applicable.
+///
+/// Access the bad encoding from the `userInfo` dictionary using the ``NSStringEncodingErrorKey`` key.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteinapplicablestringencodingerror?language=objc)
 pub const NSFileWriteInapplicableStringEncodingError: NSInteger = 517;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteunsupportedschemeerror?language=objc)
+/// Could not write because the specified URL scheme is unsupported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteunsupportedschemeerror?language=objc)
 pub const NSFileWriteUnsupportedSchemeError: NSInteger = 518;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteoutofspaceerror?language=objc)
+/// Could not write because of a lack of disk space.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteoutofspaceerror?language=objc)
 pub const NSFileWriteOutOfSpaceError: NSInteger = 640;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewritevolumereadonlyerror?language=objc)
+/// Could not write because the volume is read-only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewritevolumereadonlyerror?language=objc)
 pub const NSFileWriteVolumeReadOnlyError: NSInteger = 642;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountunknownerror?language=objc)
+/// The volume could not be unmounted (reason unknown).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountunknownerror?language=objc)
 pub const NSFileManagerUnmountUnknownError: NSInteger = 768;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountbusyerror?language=objc)
+/// The volume could not be unmounted because it is in use.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountbusyerror?language=objc)
 pub const NSFileManagerUnmountBusyError: NSInteger = 769;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluevalidationerror?language=objc)
+/// A key-value coding validation error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluevalidationerror?language=objc)
 pub const NSKeyValueValidationError: NSInteger = 1024;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsformattingerror?language=objc)
+/// A formatter could not generate a string for an object, or parse a string into an object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsformattingerror?language=objc)
 pub const NSFormattingError: NSInteger = 2048;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusercancellederror?language=objc)
+/// The user canceled the operation (for example, by pressing Command-period).
+///
+/// This code is for errors that do not require a dialog displayed and might be candidates for special-casing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusercancellederror?language=objc)
 pub const NSUserCancelledError: NSInteger = 3072;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfeatureunsupportederror?language=objc)
+/// The feature is not supported, because the file system lacks the feature, or required libraries are missing, or other similar reasons.
+///
+/// For example, some volumes may not support a Trash folder, so these methods will report failure by returning `false` or `nil` and an ``NSError`` with ``NSFeatureUnsupportedError``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfeatureunsupportederror?language=objc)
 pub const NSFeatureUnsupportedError: NSInteger = 3328;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror?language=objc)
+/// The executable type is not loadable in the current process.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror?language=objc)
 pub const NSExecutableNotLoadableError: NSInteger = 3584;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror?language=objc)
+/// The executable does not provide an architecture compatible with the current process.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror?language=objc)
 pub const NSExecutableArchitectureMismatchError: NSInteger = 3585;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror?language=objc)
+/// The executable has Objective-C runtime information incompatible with the current process.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror?language=objc)
 pub const NSExecutableRuntimeMismatchError: NSInteger = 3586;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableloaderror?language=objc)
+/// The executable cannot be loaded for an otherwise-unspecified reason.
+///
+/// This error covers situations such as an error caused by a library the executable depends on.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableloaderror?language=objc)
 pub const NSExecutableLoadError: NSInteger = 3587;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutablelinkerror?language=objc)
+/// The executable failed due to linking issues.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutablelinkerror?language=objc)
 pub const NSExecutableLinkError: NSInteger = 3588;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileerrorminimum?language=objc)
+/// The start of the range of error codes reserved for file errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileerrorminimum?language=objc)
 pub const NSFileErrorMinimum: NSInteger = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileerrormaximum?language=objc)
+/// The end of the range of error codes reserved for file errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileerrormaximum?language=objc)
 pub const NSFileErrorMaximum: NSInteger = 1023;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvalidationerrorminimum?language=objc)
+/// The start of the range of error codes reserved for validation errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvalidationerrorminimum?language=objc)
 pub const NSValidationErrorMinimum: NSInteger = 1024;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvalidationerrormaximum?language=objc)
+/// The end of the range of error codes reserved for validation errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvalidationerrormaximum?language=objc)
 pub const NSValidationErrorMaximum: NSInteger = 2047;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum?language=objc)
+/// The beginning of the range of error codes reserved for errors related to executable files.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum?language=objc)
 pub const NSExecutableErrorMinimum: NSInteger = 3584;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum?language=objc)
+/// The end of the range of error codes reserved for errors related to executable files.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum?language=objc)
 pub const NSExecutableErrorMaximum: NSInteger = 3839;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsformattingerrorminimum?language=objc)
+/// The start of the range of error codes reserved for formatting errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsformattingerrorminimum?language=objc)
 pub const NSFormattingErrorMinimum: NSInteger = 2048;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsformattingerrormaximum?language=objc)
+/// The end of the range of error codes reserved for formatting errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsformattingerrormaximum?language=objc)
 pub const NSFormattingErrorMaximum: NSInteger = 2559;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadcorrupterror?language=objc)
+/// Parsing of the property list failed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadcorrupterror?language=objc)
 pub const NSPropertyListReadCorruptError: NSInteger = 3840;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadunknownversionerror?language=objc)
+/// The version number of the property list could not be determined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadunknownversionerror?language=objc)
 pub const NSPropertyListReadUnknownVersionError: NSInteger = 3841;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadstreamerror?language=objc)
+/// Reading of the property list failed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadstreamerror?language=objc)
 pub const NSPropertyListReadStreamError: NSInteger = 3842;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistwritestreamerror?language=objc)
+/// Writing to the property list failed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistwritestreamerror?language=objc)
 pub const NSPropertyListWriteStreamError: NSInteger = 3851;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistwriteinvaliderror?language=objc)
+/// Writing failed because of an invalid property list object, or an invalid property list type was specified.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistwriteinvaliderror?language=objc)
 pub const NSPropertyListWriteInvalidError: NSInteger = 3852;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylisterrorminimum?language=objc)
+/// The start of the range of error codes reserved for property list errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylisterrorminimum?language=objc)
 pub const NSPropertyListErrorMinimum: NSInteger = 3840;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylisterrormaximum?language=objc)
+/// The end of the range of error codes reserved for property list errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylisterrormaximum?language=objc)
 pub const NSPropertyListErrorMaximum: NSInteger = 4095;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectioninterrupted?language=objc)
+/// The XPC connection was interrupted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectioninterrupted?language=objc)
 pub const NSXPCConnectionInterrupted: NSInteger = 4097;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectioninvalid?language=objc)
+/// The XPC connection was invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectioninvalid?language=objc)
 pub const NSXPCConnectionInvalid: NSInteger = 4099;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid?language=objc)
+/// The XPC connection reply was invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid?language=objc)
 pub const NSXPCConnectionReplyInvalid: NSInteger = 4101;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure?language=objc)
+/// A code-signing requirement check failed.
+///
+/// This error represents a failure to meet the requirement set by a call to ``NSXPCConnection``'s ``NSXPCConnection/setCodeSigningRequirement:`` method, or ``NSXPCListener``'s ``NSXPCListener/setConnectionCodeSigningRequirement:`` method.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure?language=objc)
 pub const NSXPCConnectionCodeSigningRequirementFailure: NSInteger = 4102;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum?language=objc)
+/// The lower bounds of XPC connection error code values.
+///
+/// All XPC error codes have values between ``NSXPCConnectionErrorMinimum`` and ``NSXPCConnectionErrorMaximum``, exclusive. This constant does not correspond to any particular error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum?language=objc)
 pub const NSXPCConnectionErrorMinimum: NSInteger = 4096;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum?language=objc)
+/// The upper bounds of XPC connection error code values.
+///
+/// All XPC error codes have values between ``NSXPCConnectionErrorMinimum`` and ``NSXPCConnectionErrorMaximum``, exclusive. This constant does not correspond to any particular error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum?language=objc)
 pub const NSXPCConnectionErrorMaximum: NSInteger = 4224;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileunavailableerror?language=objc)
+/// The item has not been uploaded to iCloud by another device yet.
+///
+/// When this error occurs, you do not need to ask the system to start downloading the item. The system will download the item as soon as it can. If you want to know when the item becomes available, use an ``NSMetadataQuery`` object to monitor changes to the file's URL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileunavailableerror?language=objc)
 pub const NSUbiquitousFileUnavailableError: NSInteger = 4353;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfilenotuploadedduetoquotaerror?language=objc)
+/// The item could not be uploaded to iCloud because it would make the account go over its quota.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfilenotuploadedduetoquotaerror?language=objc)
 pub const NSUbiquitousFileNotUploadedDueToQuotaError: NSInteger = 4354;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileubiquityservernotavailable?language=objc)
+/// Connecting to the iCloud servers failed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileubiquityservernotavailable?language=objc)
 pub const NSUbiquitousFileUbiquityServerNotAvailable: NSInteger = 4355;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileerrorminimum?language=objc)
+/// The minimum error code value that represents an iCloud error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileerrorminimum?language=objc)
 pub const NSUbiquitousFileErrorMinimum: NSInteger = 4352;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileerrormaximum?language=objc)
+/// The maximum error code value that represents an iCloud error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileerrormaximum?language=objc)
 pub const NSUbiquitousFileErrorMaximum: NSInteger = 4607;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityhandofffailederror?language=objc)
+/// The data for the user activity wasn't available.
+///
+/// This error can occur if the remote device became unavailable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityhandofffailederror?language=objc)
 pub const NSUserActivityHandoffFailedError: NSInteger = 4608;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityconnectionunavailableerror?language=objc)
+/// The user activity could not be continued because a required connection was not available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityconnectionunavailableerror?language=objc)
 pub const NSUserActivityConnectionUnavailableError: NSInteger = 4609;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityremoteapplicationtimedouterror?language=objc)
+/// The remote application failed to send data within the specified time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityremoteapplicationtimedouterror?language=objc)
 pub const NSUserActivityRemoteApplicationTimedOutError: NSInteger = 4610;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityhandoffuserinfotoolargeerror?language=objc)
+/// The user activity's `userInfo` dictionary was too large to receive.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityhandoffuserinfotoolargeerror?language=objc)
 pub const NSUserActivityHandoffUserInfoTooLargeError: NSInteger = 4611;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityerrorminimum?language=objc)
+/// The start of the range of error codes reserved for user activity errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityerrorminimum?language=objc)
 pub const NSUserActivityErrorMinimum: NSInteger = 4608;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityerrormaximum?language=objc)
+/// The end of the range of error codes reserved for user activity errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityerrormaximum?language=objc)
 pub const NSUserActivityErrorMaximum: NSInteger = 4863;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoderreadcorrupterror?language=objc)
+/// Decoding failed due to corrupt data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoderreadcorrupterror?language=objc)
 pub const NSCoderReadCorruptError: NSInteger = 4864;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror?language=objc)
+/// The requested data was not found.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror?language=objc)
 pub const NSCoderValueNotFoundError: NSInteger = 4865;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoderinvalidvalueerror?language=objc)
+/// Data was not valid to encode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoderinvalidvalueerror?language=objc)
 pub const NSCoderInvalidValueError: NSInteger = 4866;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscodererrorminimum?language=objc)
+/// The start of the range of error codes reserved for coder errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscodererrorminimum?language=objc)
 pub const NSCoderErrorMinimum: NSInteger = 4864;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscodererrormaximum?language=objc)
+/// The end of the range of error codes reserved for coder errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscodererrormaximum?language=objc)
 pub const NSCoderErrorMaximum: NSInteger = 4991;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleerrorminimum?language=objc)
+/// The start of the range of error codes reserved for bundle errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleerrorminimum?language=objc)
 pub const NSBundleErrorMinimum: NSInteger = 4992;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleerrormaximum?language=objc)
+/// The end of the range of error codes reserved for bundle errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleerrormaximum?language=objc)
 pub const NSBundleErrorMaximum: NSInteger = 5119;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleondemandresourceoutofspaceerror?language=objc)
+/// Insufficient space available to download the requested On Demand Resources.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleondemandresourceoutofspaceerror?language=objc)
 pub const NSBundleOnDemandResourceOutOfSpaceError: NSInteger = 4992;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror?language=objc)
+/// The application exceeded the amount of On Demand Resources content in use at one time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror?language=objc)
 pub const NSBundleOnDemandResourceExceededMaximumSizeError: NSInteger = 4993;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleondemandresourceinvalidtagerror?language=objc)
+/// The application specified a tag that the system could not find in the application tag manifest.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleondemandresourceinvalidtagerror?language=objc)
 pub const NSBundleOnDemandResourceInvalidTagError: NSInteger = 4994;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingnetworkfailureerror?language=objc)
+/// Sharing failed due to a network failure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingnetworkfailureerror?language=objc)
 pub const NSCloudSharingNetworkFailureError: NSInteger = 5120;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingquotaexceedederror?language=objc)
+/// The user doesn't have enough storage space available to share the requested items.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingquotaexceedederror?language=objc)
 pub const NSCloudSharingQuotaExceededError: NSInteger = 5121;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingtoomanyparticipantserror?language=objc)
+/// Additional participants could not be added to the share because the limit was reached.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingtoomanyparticipantserror?language=objc)
 pub const NSCloudSharingTooManyParticipantsError: NSInteger = 5122;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingconflicterror?language=objc)
+/// A conflict occurred during an attempt to save changes.
+///
+/// This error occurs when a conflict is detected while trying to save changes to the `CKShare` or root `CKRecord`. Respond to this error by first fetching the server's changes to the records, then either handle the conflict manually or present it, which will instruct the user to try the operation again.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingconflicterror?language=objc)
 pub const NSCloudSharingConflictError: NSInteger = 5123;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingnopermissionerror?language=objc)
+/// The current user doesn't have permission to perform the requested actions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingnopermissionerror?language=objc)
 pub const NSCloudSharingNoPermissionError: NSInteger = 5124;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingothererror?language=objc)
+/// An otherwise unspecified cloud-sharing error occurred.
+///
+/// For CloudKit sharing, use the ``NSUnderlyingErrorKey``, whose value is a `CKErrorDomain` error, to discover the specific error. Refer to the CloudKit documentation for the proper response to these errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingothererror?language=objc)
 pub const NSCloudSharingOtherError: NSInteger = 5375;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingerrorminimum?language=objc)
+/// The start of the range of error codes reserved for cloud sharing errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingerrorminimum?language=objc)
 pub const NSCloudSharingErrorMinimum: NSInteger = 5120;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingerrormaximum?language=objc)
+/// The end of the range of error codes reserved for cloud sharing errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingerrormaximum?language=objc)
 pub const NSCloudSharingErrorMaximum: NSInteger = 5375;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompressionfailederror?language=objc)
+/// An error code value that indicates a failure to compress data using the provided algorithm.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompressionfailederror?language=objc)
 pub const NSCompressionFailedError: NSInteger = 5376;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecompressionfailederror?language=objc)
+/// An error code value that indicates a failure to decompress data using the provided algorithm.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecompressionfailederror?language=objc)
 pub const NSDecompressionFailedError: NSInteger = 5377;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompressionerrorminimum?language=objc)
+/// The start of the range of error codes reserved for compression errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompressionerrorminimum?language=objc)
 pub const NSCompressionErrorMinimum: NSInteger = 5376;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompressionerrormaximum?language=objc)
+/// The end of the range of error codes reserved for compression errors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompressionerrormaximum?language=objc)
 pub const NSCompressionErrorMaximum: NSInteger = 5503;

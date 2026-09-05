@@ -70,6 +70,8 @@ impl NSShadow {
 
         /// Setter for [`shadowColor`][Self::shadowColor].
         ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
         /// # Safety
         ///
         /// `shadow_color` should be of the correct type.

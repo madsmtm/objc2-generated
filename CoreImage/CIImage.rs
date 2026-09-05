@@ -240,12 +240,34 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagenearestsampling?language=objc)
+    /// A Boolean value specifying how the image should be sampled.
+    ///
+    /// If the value for this option is:
+    /// * True: The image will be sampled using nearest neighbor sampling.
+    /// * False: The image will be sampled using bilinear interpolation.
+    /// * Not specified: The default behavior is False.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagenearestsampling?language=objc)
     pub static kCIImageNearestSampling: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagecacheimmediately?language=objc)
+    /// A Boolean value specifying when the image should be decoded.
+    ///
+    /// If the value for this option is:
+    /// * True: The image will be decoded into a non-volatile cache at initialization time if possible.
+    /// * False: The image will be decoded into a volatile cache at render time.
+    /// * Not specified: The default behavior is True or False depening on the image size and available memeory.
+    ///
+    /// This option is only supported by these APIs:
+    /// * ``/CIImage/imageWithContentsOfURL:options:``
+    /// * ``/CIImage/initWithContentsOfURL:options:``
+    /// * ``/CIImage/imageWithData:options:``
+    /// * ``/CIImage/initWithData:options:``
+    /// * ``/CIImage/imageWithCGImageSource:index:options:``
+    /// * ``/CIImage/initWithCGImageSource:index:options:``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagecacheimmediately?language=objc)
     pub static kCIImageCacheImmediately: &'static CIImageOption;
 }
 
@@ -269,6 +291,75 @@ extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagetextureformat?language=objc)
     #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCIImageTextureFormat: &'static CIImageOption;
+}
+
+extern "C" {
+    /// The factor by which to scale down a returned images.
+    ///
+    /// The value of this key should be an `NSNumber` containing the integer value 2, 4, or 8.
+    /// It can be used to improve performance and reduce memory usage when working with large images.
+    ///
+    /// When you specify this key, the retured image will be scaled down the image data by the specified numerical factor.
+    /// If the image format doesn’t support the specified scale factor, a larger or full-size normal image is returned.
+    ///
+    /// This option is only supported by JPEG, HEIF, TIFF, PNG and RAW images formats.
+    ///
+    /// This option is only supported by these APIs:
+    /// * ``/CIImage/imageWithContentsOfURL:options:``
+    /// * ``/CIImage/initWithContentsOfURL:options:``
+    /// * ``/CIImage/imageWithData:options:``
+    /// * ``/CIImage/initWithData:options:``
+    /// * ``/CIImage/imageWithCGImageSource:index:options:``
+    /// * ``/CIImage/initWithCGImageSource:index:options:``
+    ///
+    /// > Note: the `kCGImageSourceSubsampleFactor` key can also be used for this purpose.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagesubsamplefactor?language=objc)
+    pub static kCIImageSubsampleFactor: &'static CIImageOption;
+}
+
+extern "C" {
+    /// The uniform type identifier string to use in cases where a file's format cannot
+    /// be conclusively determined based solely on its contents.
+    ///
+    /// The value of this key should be an `NSString` containing a hint.
+    /// It is most commonly needed for some RAW file formats which can also be
+    /// interpreted as TIFF files.
+    ///
+    /// This option is only supported by these APIs:
+    /// * ``/CIImage/imageWithContentsOfURL:options:``
+    /// * ``/CIImage/initWithContentsOfURL:options:``
+    /// * ``/CIImage/imageWithData:options:``
+    /// * ``/CIImage/initWithData:options:``
+    ///
+    /// > Note: the key `kCGImageSourceTypeIdentifierHint` key can also be used for this purpose.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagetypeidentifierhint?language=objc)
+    pub static kCIImageTypeIdentifierHint: &'static CIImageOption;
+}
+
+extern "C" {
+    /// A Boolean value specifying that using hardware is preferred when decoding.
+    ///
+    /// If the value for this option is:
+    /// * True: The image will be decoded using dedicated hardware if possible.
+    /// * False: The image will be decoded using the CPU is possible.
+    /// * Not specified: The default behavior is True.
+    ///
+    /// This option is only supported by JPEG and HEIF images formats.
+    ///
+    /// This option is only supported by these APIs:
+    /// * ``/CIImage/imageWithContentsOfURL:options:``
+    /// * ``/CIImage/initWithContentsOfURL:options:``
+    /// * ``/CIImage/imageWithData:options:``
+    /// * ``/CIImage/initWithData:options:``
+    /// * ``/CIImage/imageWithCGImageSource:index:options:``
+    /// * ``/CIImage/initWithCGImageSource:index:options:``
+    ///
+    /// > Note: the `kCGImageSourceUseHardwareAcceleration` key can also be used for this purpose.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageusehardwareacceleration?language=objc)
+    pub static kCIImageUseHardwareAcceleration: &'static CIImageOption;
 }
 
 extern "C" {

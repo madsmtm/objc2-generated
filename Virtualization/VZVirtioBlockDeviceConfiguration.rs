@@ -13,7 +13,7 @@ extern_class!(
     /// This device configuration creates a storage device using paravirtualization.
     /// The emulated device follows the Virtio Block Device specification.
     ///
-    /// The host implementation of the device is done through an attachment subclassing VZStorageDeviceAttachment
+    /// The host implementation of the device is done through an attachment that subclasses VZStorageDeviceAttachment
     /// like VZDiskImageStorageDeviceAttachment.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration?language=objc)

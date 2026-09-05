@@ -62,10 +62,10 @@ impl AVPlayerVideoOutput {
         ///
         /// Parameter `hostTime`: A CMTime that expresses a desired host time.
         ///
-        /// Parameter `presentationTimeStamp`: On return points to a CMTime whose value is the presentation time in terms of the corresponding AVPlayerItem's timebase for the copied tagged buffer group, or kCMTimeInvalid if no sample is available for the provided hostTime.
+        /// Parameter `presentationTimeStampOut`: On return points to a CMTime whose value is the presentation time in terms of the corresponding AVPlayerItem's timebase for the copied tagged buffer group, or kCMTimeInvalid if no sample is available for the provided hostTime.
         /// Note: This timestamp is in terms of the timebase of the AVPlayerItem for which this sample is associated.
         ///
-        /// Parameter `activeConfiguration`: On return points to the active configuration associated with the copied tagged buffer group, or nil, if no sample is available for the provided hostTime.
+        /// Parameter `activeConfigurationOut`: On return points to the active configuration associated with the copied tagged buffer group, or nil, if no sample is available for the provided hostTime.
         ///
         /// Returns: A tagged buffer group for the specified host time if a sample is available, and NULL otherwise.
         ///

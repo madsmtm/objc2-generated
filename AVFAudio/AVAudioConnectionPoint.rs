@@ -19,6 +19,10 @@ extern_class!(
     pub struct AVAudioConnectionPoint;
 );
 
+unsafe impl Send for AVAudioConnectionPoint {}
+
+unsafe impl Sync for AVAudioConnectionPoint {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioConnectionPoint {}
 );
@@ -45,12 +49,24 @@ impl AVAudioConnectionPoint {
 
         #[cfg(feature = "AVAudioNode")]
         /// Returns the node in the connection point.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(node))]
         #[unsafe(method_family = none)]
         pub unsafe fn node(&self) -> Option<Retained<AVAudioNode>>;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Returns the bus on the node in the connection point.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bus))]
         #[unsafe(method_family = none)]
         pub unsafe fn bus(&self) -> AVAudioNodeBus;

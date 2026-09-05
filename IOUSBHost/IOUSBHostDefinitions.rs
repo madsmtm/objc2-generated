@@ -354,6 +354,36 @@ unsafe impl RefEncode for IOUSBHostObjectDestroyOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for
+/// <code>
+/// dataWithCapacity:options:error
+/// </code>
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectdataoptions?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct IOUSBHostObjectDataOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl IOUSBHostObjectDataOptions: NSUInteger {
+        #[doc(alias = "IOUSBHostObjectDataOptionsNone")]
+        const None = 0;
+/// The created NSMutableData will be mapped into the current
+/// task as well as the kernel.  This option is recommended when allocating isochronous frame lists.
+        #[doc(alias = "IOUSBHostObjectDataOptionsKernelUserShared")]
+        const KernelUserShared = 1<<0;
+        const _ = !0;
+    }
+}
+
+unsafe impl Encode for IOUSBHostObjectDataOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for IOUSBHostObjectDataOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 // TODO: pub fn IOUSBHostDeviceRequestType(direction: tIOUSBDeviceRequestDirectionValue,r#type: tIOUSBDeviceRequestTypeValue,recipient: tIOUSBDeviceRequestRecipientValue,) -> u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey?language=objc)

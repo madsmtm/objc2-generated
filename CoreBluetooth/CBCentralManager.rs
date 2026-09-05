@@ -96,6 +96,9 @@ bitflags::bitflags! {
 /// The hardware supports extended scans and enhanced connection creation
         #[doc(alias = "CBCentralManagerFeatureExtendedScanAndConnect")]
         const ExtendedScanAndConnect = 1<<0;
+/// The hardware and region supports channel sounding
+        #[doc(alias = "CBCentralManagerFeatureChannelSounding")]
+        const ChannelSounding = 1<<10;
         const _ = !0;
     }
 }

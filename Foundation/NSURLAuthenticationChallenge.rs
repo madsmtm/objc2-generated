@@ -7,18 +7,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// This protocol represents the sender of an
-    /// authentication challenge. It has methods to provide a credential,
-    /// to continue without any credential, getting whatever failure
-    /// result would happen in that case, cancel a challenge, perform the default
-    /// action as defined by the system, or reject the currently supplied protection-space
-    /// in the challenge.
+    /// The `URLAuthenticationChallengeSender` protocol represents the interface that the sender of an authentication challenge must implement.
+    ///
+    /// The methods in the protocol are generally sent by a delegate in response to receiving a ``NSURLConnectionDelegate/connection(_:didReceive:)``: or ``NSURLDownloadDelegate/download(_:didReceive:)-1pc0v``:. The different methods provide different ways of responding to authentication challenges.
+    ///
+    /// > Important:
+    /// > This protocol is _only_ for use with the legacy ``NSURLConnection`` and ``NSURLDownload`` classes. It should not be used with ``URLSession``-based code, for which you respond to authentication challenges by passing ``URLSession/AuthChallengeDisposition`` constants to the provided completion handler blocks.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationchallengesender?language=objc)
     pub unsafe trait NSURLAuthenticationChallengeSender:
         NSObjectProtocol + Send + Sync
     {
         #[cfg(feature = "NSURLCredential")]
+        /// Attempts to use a given credential for a given authentication challenge.
+        ///
+        /// This method has no effect if it is called with an authentication challenge that has already been handled.
         #[unsafe(method(useCredential:forAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
         fn useCredential_forAuthenticationChallenge(
@@ -27,6 +30,9 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        /// Attempts to continue downloading a request without providing a credential for a given challenge.
+        ///
+        /// This method has no effect if it is called with an authentication challenge that has already been handled.
         #[unsafe(method(continueWithoutCredentialForAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
         fn continueWithoutCredentialForAuthenticationChallenge(
@@ -34,10 +40,12 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        /// Cancels a given authentication challenge.
         #[unsafe(method(cancelAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
         fn cancelAuthenticationChallenge(&self, challenge: &NSURLAuthenticationChallenge);
 
+        /// Causes the system-provided default behavior to be used.
         #[optional]
         #[unsafe(method(performDefaultHandlingForAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
@@ -46,6 +54,7 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
 
+        /// Rejects the currently supplied protection space.
         #[optional]
         #[unsafe(method(rejectProtectionSpaceAndContinueWithChallenge:))]
         #[unsafe(method_family = none)]
@@ -57,9 +66,11 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// This class represents an authentication challenge. It
-    /// provides all the information about the challenge, and has a method
-    /// to indicate when it's done.
+    /// A challenge from a server requiring authentication from the client.
+    ///
+    /// Your app receives authentication challenges in various ``URLSession``, ``NSURLConnection``, and ``NSURLDownload`` delegate methods, such as ``URLSessionTaskDelegate/urlSession(_:task:didReceive:completionHandler:)``. These objects provide the information you'll need when deciding how to handle a server's request for authentication.
+    ///
+    /// At the core of that authentication challenge is a _protection space_ that defines the type of authentication being requested, the host and port number, the networking protocol, and (where applicable) the authentication realm (a group of related URLs on the same server that share a single set of credentials).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationchallenge?language=objc)
     #[unsafe(super(NSObject))]
@@ -93,19 +104,15 @@ impl NSURLAuthenticationChallenge {
             feature = "NSURLProtectionSpace",
             feature = "NSURLResponse"
         ))]
-        /// Initialize an authentication challenge
+        /// Initializes an authentication challenge.
         ///
-        /// Parameter `space`: The NSURLProtectionSpace to use
-        ///
-        /// Parameter `credential`: The proposed NSURLCredential for this challenge, or nil
-        ///
-        /// Parameter `previousFailureCount`: A count of previous failures attempting access.
-        ///
-        /// Parameter `response`: The NSURLResponse for the authentication failure, if applicable, else nil
-        ///
-        /// Parameter `error`: The NSError for the authentication failure, if applicable, else nil
-        ///
-        /// Returns: An authentication challenge initialized with the specified parameters
+        /// - Parameter space: The `NSURLProtectionSpace` to use.
+        /// - Parameter credential: The proposed `NSURLCredential` for this challenge, or `nil`.
+        /// - Parameter previousFailureCount: A count of previous failures attempting access.
+        /// - Parameter response: The `NSURLResponse` for the authentication failure, if applicable, else `nil`.
+        /// - Parameter error: The `NSError` for the authentication failure, if applicable, else `nil`.
+        /// - Parameter sender: The sender of this challenge.
+        /// - Returns: An authentication challenge initialized with the specified parameters.
         #[unsafe(method(initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:))]
         #[unsafe(method_family = init)]
         pub fn initWithProtectionSpace_proposedCredential_previousFailureCount_failureResponse_error_sender(
@@ -118,12 +125,13 @@ impl NSURLAuthenticationChallenge {
             sender: &ProtocolObject<dyn NSURLAuthenticationChallengeSender>,
         ) -> Retained<Self>;
 
-        /// Initialize an authentication challenge copying all parameters from another one.
+        /// Initializes an authentication challenge copying all parameters from another one.
         ///
-        /// Returns: A new challenge initialized with the parameters from the passed in challenge
+        /// - Parameter challenge: The existing challenge to copy.
+        /// - Parameter sender: The sender of the challenge.
+        /// - Returns: A new challenge initialized with the parameters from the passed in challenge.
         ///
-        /// This initializer may be useful to subclassers that want to proxy
-        /// one type of authentication challenge to look like another type.
+        /// This initializer may be useful to subclassers that want to proxy one type of authentication challenge to look like another type.
         #[unsafe(method(initWithAuthenticationChallenge:sender:))]
         #[unsafe(method_family = init)]
         pub fn initWithAuthenticationChallenge_sender(
@@ -133,63 +141,45 @@ impl NSURLAuthenticationChallenge {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURLProtectionSpace")]
-        /// Get a description of the protection space that requires authentication
-        ///
-        /// Returns: The protection space that needs authentication
+        /// A description of the protection space that requires authentication.
         #[unsafe(method(protectionSpace))]
         #[unsafe(method_family = none)]
         pub fn protectionSpace(&self) -> Retained<NSURLProtectionSpace>;
 
         #[cfg(feature = "NSURLCredential")]
-        /// Get the proposed credential for this challenge
+        /// The proposed credential for this challenge.
         ///
-        /// Returns: The proposed credential
-        ///
-        /// proposedCredential may be nil, if there is no default
-        /// credential to use for this challenge (either stored or in the
-        /// URL). If the credential is not nil and returns YES for
-        /// hasPassword, this means the NSURLConnection thinks the credential
-        /// is ready to use as-is. If it returns NO for hasPassword, then the
-        /// credential is not ready to use as-is, but provides a default
-        /// username the client could use when prompting.
+        /// The proposed credential may be `nil`, if there is no default credential to use for this challenge (either stored
+        /// or in the URL). If the credential is not `nil` and returns `YES` for `hasPassword`, it is ready to use as-is.
+        /// If it returns `NO` for `hasPassword`, it provides a default username the client could use when prompting.
         #[unsafe(method(proposedCredential))]
         #[unsafe(method_family = none)]
         pub fn proposedCredential(&self) -> Option<Retained<NSURLCredential>>;
 
-        /// Get count of previous failed authentication attempts
-        ///
-        /// Returns: The count of previous failures
+        /// The count of previous failed authentication attempts.
         #[unsafe(method(previousFailureCount))]
         #[unsafe(method_family = none)]
         pub fn previousFailureCount(&self) -> NSInteger;
 
         #[cfg(feature = "NSURLResponse")]
-        /// Get the response representing authentication failure.
+        /// The response representing authentication failure.
         ///
-        /// Returns: The failure response or nil
-        ///
-        /// If there was a previous authentication failure, and
-        /// this protocol uses responses to indicate authentication failure,
-        /// then this method will return the response. Otherwise it will
-        /// return nil.
+        /// If there was a previous authentication failure, and this protocol uses responses to indicate authentication
+        /// failure, then this method will return the response. Otherwise it will return `nil`.
         #[unsafe(method(failureResponse))]
         #[unsafe(method_family = none)]
         pub fn failureResponse(&self) -> Option<Retained<NSURLResponse>>;
 
         #[cfg(feature = "NSError")]
-        /// Get the error representing authentication failure.
+        /// The error representing authentication failure.
         ///
-        /// If there was a previous authentication failure, and
-        /// this protocol uses errors to indicate authentication failure,
-        /// then this method will return the error. Otherwise it will
-        /// return nil.
+        /// If there was a previous authentication failure, and this protocol uses errors to indicate authentication
+        /// failure, then this method will return the error. Otherwise it will return `nil`.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub fn error(&self) -> Option<Retained<NSError>>;
 
-        /// Get the sender of this challenge
-        ///
-        /// Returns: The sender of the challenge
+        /// The sender of this challenge.
         ///
         /// The sender is the object you should reply to when done processing the challenge.
         #[unsafe(method(sender))]

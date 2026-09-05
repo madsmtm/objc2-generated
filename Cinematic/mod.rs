@@ -39,6 +39,9 @@ mod __CNDetection;
 #[cfg(feature = "CNDetectionTrack")]
 #[path = "CNDetectionTrack.rs"]
 mod __CNDetectionTrack;
+#[cfg(feature = "CNImageRenderingSession")]
+#[path = "CNImageRenderingSession.rs"]
+mod __CNImageRenderingSession;
 #[cfg(feature = "CNObjectTracker")]
 #[path = "CNObjectTracker.rs"]
 mod __CNObjectTracker;
@@ -78,6 +81,10 @@ pub use self::__CNDetectionTrack::CNCustomDetectionTrack;
 pub use self::__CNDetectionTrack::CNDetectionTrack;
 #[cfg(feature = "CNDetectionTrack")]
 pub use self::__CNDetectionTrack::CNFixedDetectionTrack;
+#[cfg(feature = "CNImageRenderingSession")]
+pub use self::__CNImageRenderingSession::CNImageRenderingSession;
+#[cfg(feature = "CNImageRenderingSession")]
+pub use self::__CNImageRenderingSession::CNImageRenderingSessionConfiguration;
 #[cfg(feature = "CNObjectTracker")]
 pub use self::__CNObjectTracker::CNBoundsPrediction;
 #[cfg(feature = "CNObjectTracker")]

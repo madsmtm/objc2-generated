@@ -59,6 +59,19 @@ impl CPTravelEstimates {
             time: NSTimeInterval,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "CPRouteDetail")]
+        /// Initialize a
+        /// `CPTravelEstimates`with distance, distance to display, time remaining, and additional trip information.
+        #[unsafe(method(initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:routeDetails:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDistanceRemaining_distanceRemainingToDisplay_timeRemaining_routeDetails(
+            this: Allocated<Self>,
+            distance_remaining: &NSMeasurement<NSUnitLength>,
+            distance_remaining_to_display: &NSMeasurement<NSUnitLength>,
+            time: NSTimeInterval,
+            route_details: &NSArray<CPRouteDetail>,
+        ) -> Retained<Self>;
+
         /// Distance remaining for displaying to the user.  If not set falls back to distanceRemaining;
         #[unsafe(method(distanceRemainingToDisplay))]
         #[unsafe(method_family = none)]
@@ -73,5 +86,14 @@ impl CPTravelEstimates {
         #[unsafe(method(timeRemaining))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRemaining(&self) -> NSTimeInterval;
+
+        #[cfg(feature = "CPRouteDetail")]
+        /// Additional trip information such as battery, fuel, or toll information to display with travel estimates.
+        #[unsafe(method(routeDetails))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn routeDetails(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> Retained<NSArray<CPRouteDetail>>;
     );
 }

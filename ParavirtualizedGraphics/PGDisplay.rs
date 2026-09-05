@@ -55,11 +55,14 @@ pub type PGDisplayNewFrameEventHandler = block2::Block<'static, fn()>;
 
 /// A block that will be invoked to handle cursor glyph updates.
 ///
+/// The legacy cursor glyph handler is no longer available.
+///
 /// Parameter `glyph`: Cursor glyph to apply.
 ///
 /// Parameter `hotSpot`: Top,left relative location of hotSpot.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursorglyphhandler?language=objc)
+#[deprecated = "No longer supported"]
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 pub type PGDisplayCursorGlyphHandler =
     block2::Block<'static, fn(NonNull<NSBitmapImageRep>, PGDisplayCoord_t)>;
@@ -185,6 +188,7 @@ impl PGDisplayDescriptor {
         /// # Safety
         ///
         /// The returned block's argument 1 must be a valid pointer.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(cursorGlyphHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn cursorGlyphHandler(&self) -> *mut PGDisplayCursorGlyphHandler;
@@ -193,6 +197,7 @@ impl PGDisplayDescriptor {
         /// Setter for [`cursorGlyphHandler`][Self::cursorGlyphHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(setCursorGlyphHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorGlyphHandler(
@@ -353,6 +358,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// The returned block's argument 1 must be a valid pointer.
+        #[deprecated = "No longer supported"]
         #[unsafe(method(cursorGlyphHandler))]
         #[unsafe(method_family = none)]
         unsafe fn cursorGlyphHandler(&self) -> *mut PGDisplayCursorGlyphHandler;

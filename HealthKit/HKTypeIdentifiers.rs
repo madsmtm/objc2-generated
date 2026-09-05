@@ -690,6 +690,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierbleedingaftermenopause?language=objc)
+    pub static HKCategoryTypeIdentifierBleedingAfterMenopause: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierbleedingafterpregnancy?language=objc)
     pub static HKCategoryTypeIdentifierBleedingAfterPregnancy: &'static HKCategoryTypeIdentifier;
 }
@@ -727,6 +732,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierlactation?language=objc)
     pub static HKCategoryTypeIdentifierLactation: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifiermenopausalstate?language=objc)
+    pub static HKCategoryTypeIdentifierMenopausalState: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {

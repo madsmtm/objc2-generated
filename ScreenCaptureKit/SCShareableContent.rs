@@ -28,6 +28,7 @@ impl SCShareableContentStyle {
     /// display bound content stream
     #[doc(alias = "SCShareableContentStyleDisplay")]
     pub const Display: Self = Self(2);
+    /// display bound content stream
     #[doc(alias = "SCShareableContentStyleApplication")]
     pub const Application: Self = Self(3);
 }

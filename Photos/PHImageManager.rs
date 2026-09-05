@@ -193,6 +193,44 @@ impl PHImageRequestOptions {
         #[unsafe(method(setAllowSecondaryDegradedImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowSecondaryDegradedImage(&self, allow_secondary_degraded_image: bool);
+
+        /// Request HDR image data if available (such as PQ/HLG formats).
+        ///
+        /// When set to `YES`, the image manager will attempt to provide HDR image data if the asset contains HDR content.
+        /// Defaults to `NO`.
+        #[unsafe(method(preferHDR))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferHDR(&self) -> bool;
+
+        /// Setter for [`preferHDR`][Self::preferHDR].
+        #[unsafe(method(setPreferHDR:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreferHDR(&self, prefer_hdr: bool);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Target HDR headroom for image rendering.
+        ///
+        /// Specifies the target headroom value for HDR image rendering. Headroom represents the ratio between
+        /// the maximum display brightness and standard dynamic range (SDR) white level.
+        ///
+        /// - A headroom value of `0.0` means "headroom unknown". Images with unknown content headroom will be
+        /// excluded from tone mapping, following CGImage documentation behavior.
+        /// - Headroom values less than `0.0` or between `0.0` and `1.0` (exclusive) are undefined and will be
+        /// clamped to `0.0` (unknown) rather than throwing an error.
+        /// - Headroom is dependent on the current display capabilities. It is the responsibility of the caller
+        /// to re-request the image if the display's headroom characteristics change. Swift view default behavior
+        /// applies to views that use images outside of the current display headroom supported range.
+        ///
+        /// Defaults to `1.0` (SDR, fully tone mapped).
+        #[unsafe(method(targetHDRHeadroom))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn targetHDRHeadroom(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`targetHDRHeadroom`][Self::targetHDRHeadroom].
+        #[unsafe(method(setTargetHDRHeadroom:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setTargetHDRHeadroom(&self, target_hdr_headroom: CGFloat);
     );
 }
 

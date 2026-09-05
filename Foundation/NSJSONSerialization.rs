@@ -5,23 +5,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjsonreadingoptions?language=objc)
+/// Options used when reading JSON data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjsonreadingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSJSONReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONReadingOptions: NSUInteger {
+/// Specifies that arrays and dictionaries in the returned object are mutable.
         #[doc(alias = "NSJSONReadingMutableContainers")]
         const MutableContainers = 1<<0;
+/// Specifies that leaf strings in the JSON object graph are mutable.
         #[doc(alias = "NSJSONReadingMutableLeaves")]
         const MutableLeaves = 1<<1;
+/// Specifies that the parser should allow top-level objects that are not an `NSArray` or `NSDictionary`.
         #[doc(alias = "NSJSONReadingFragmentsAllowed")]
         const FragmentsAllowed = 1<<2;
+/// Specifies that reading serialized JSON data supports the JSON5 syntax.
         #[doc(alias = "NSJSONReadingJSON5Allowed")]
         const JSON5Allowed = 1<<3;
+/// Specifies that the parser assumes the top-level object is a dictionary, even without surrounding curly braces.
         #[doc(alias = "NSJSONReadingTopLevelDictionaryAssumed")]
         const TopLevelDictionaryAssumed = 1<<4;
+/// Specifies that the parser should allow top-level objects that are not an `NSArray` or `NSDictionary`.
         #[doc(alias = "NSJSONReadingAllowFragments")]
 #[deprecated]
         const AllowFragments = NSJSONReadingOptions::FragmentsAllowed.0;
@@ -37,19 +45,25 @@ unsafe impl RefEncode for NSJSONReadingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjsonwritingoptions?language=objc)
+/// Options used when writing JSON data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjsonwritingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSJSONWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONWritingOptions: NSUInteger {
+/// Specifies that the JSON output uses whitespace and indentation to make the output more readable.
         #[doc(alias = "NSJSONWritingPrettyPrinted")]
         const PrettyPrinted = 1<<0;
+/// Specifies that the output sorts dictionary keys using `[NSLocale systemLocale]` and `NSNumericSearch`.
         #[doc(alias = "NSJSONWritingSortedKeys")]
         const SortedKeys = 1<<1;
+/// Specifies that the serializer should allow top-level objects that are not an `NSArray` or `NSDictionary`.
         #[doc(alias = "NSJSONWritingFragmentsAllowed")]
         const FragmentsAllowed = 1<<2;
+/// Specifies that the serializer should not escape forward slashes (`/`).
         #[doc(alias = "NSJSONWritingWithoutEscapingSlashes")]
         const WithoutEscapingSlashes = 1<<3;
         const _ = !0;
@@ -65,7 +79,23 @@ unsafe impl RefEncode for NSJSONWritingOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjsonserialization?language=objc)
+    /// An object that converts between JSON and the equivalent Foundation objects.
+    ///
+    /// You use the ``JSONSerialization`` class to convert JSON to Foundation objects and convert Foundation objects to JSON.
+    ///
+    /// To convert a Foundation object to JSON, the object must have the following properties:
+    ///
+    /// - The top level object is an ``NSArray`` or ``NSDictionary``, unless you set the ``WritingOptions/fragmentsAllowed`` option.
+    /// - All objects are instances of ``NSString``, ``NSNumber``, ``NSArray``, ``NSDictionary``, or ``NSNull``.
+    /// - All dictionary keys are instances of ``NSString``.
+    /// - Numbers are neither `NaN` nor infinity.
+    ///
+    /// Other rules may apply. Calling ``isValidJSONObject(_:)`` or attempting a conversion are the definitive ways to tell if the ``JSONSerialization`` class can convert given object to JSON data.
+    ///
+    /// > Note:
+    /// > On iOS 7 and later and macOS 10.9 and later, ``JSONSerialization`` is thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjsonserialization?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSJSONSerialization;
@@ -77,6 +107,10 @@ extern_conformance!(
 
 impl NSJSONSerialization {
     extern_methods!(
+        /// Returns a Boolean value that indicates whether a given object can be converted to JSON data.
+        ///
+        /// The object must have the following properties: the top level object is an `NSArray` or `NSDictionary`; all objects are `NSString`, `NSNumber`, `NSArray`, `NSDictionary`, or `NSNull`; all dictionary keys are `NSString` instances; and `NSNumber` values are not NaN or infinity.
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.
@@ -85,6 +119,10 @@ impl NSJSONSerialization {
         pub unsafe fn isValidJSONObject(obj: &AnyObject) -> bool;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Returns JSON data from a Foundation object.
+        ///
+        /// If the object will not produce valid JSON then an exception will be thrown. Setting the `NSJSONWritingPrettyPrinted` option will generate JSON with whitespace designed to make the output more readable. If that option is not set, the most compact possible JSON will be generated. The resulting data is encoded in UTF-8.
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.
@@ -96,6 +134,9 @@ impl NSJSONSerialization {
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Returns a Foundation object from JSON data.
+        ///
+        /// Set the `NSJSONReadingFragmentsAllowed` option if the parser should allow top-level objects that are not an `NSArray` or `NSDictionary`. Setting the `NSJSONReadingMutableContainers` option will make the parser generate mutable `NSArrays` and `NSDictionaries`. Setting the `NSJSONReadingMutableLeaves` option will make the parser generate mutable `NSString` objects. The data must be in one of the 5 supported encodings listed in the JSON specification: UTF-8, UTF-16LE, UTF-16BE, UTF-32LE, UTF-32BE. The most efficient encoding to use for parsing is UTF-8.
         #[unsafe(method(JSONObjectWithData:options:error:_))]
         #[unsafe(method_family = none)]
         pub fn JSONObjectWithData_options_error(
@@ -104,6 +145,9 @@ impl NSJSONSerialization {
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSStream"))]
+        /// Returns a Foundation object from a JSON data stream.
+        ///
+        /// The stream should be opened and configured. All other behavior of this method is the same as the `JSONObjectWithData:options:error:` method.
         #[unsafe(method(JSONObjectWithStream:options:error:_))]
         #[unsafe(method_family = none)]
         pub fn JSONObjectWithStream_options_error(

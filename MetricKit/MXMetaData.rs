@@ -12,6 +12,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetadata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use MetricReport.Environment or DiagnosticReport.Environment instead."]
     pub struct MXMetaData;
 );
 
@@ -30,21 +31,25 @@ extern_conformance!(
 impl MXMetaData {
     extern_methods!(
         /// An NSString designating the region format associated with the application.
+        #[deprecated = "Use MetricReport.Environment or DiagnosticReport.Environment instead."]
         #[unsafe(method(regionFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn regionFormat(&self) -> Retained<NSString>;
 
         /// An NSString designating the OS version associated with the device.
+        #[deprecated = "Use MetricReport.Environment or DiagnosticReport.Environment instead."]
         #[unsafe(method(osVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn osVersion(&self) -> Retained<NSString>;
 
         /// An NSString designating the device type associated with this device.
+        #[deprecated = "Use MetricReport.Environment or DiagnosticReport.Environment instead."]
         #[unsafe(method(deviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceType(&self) -> Retained<NSString>;
 
         /// An NSString designating the app build version.
+        #[deprecated = "Use MetricReport.Environment or DiagnosticReport.Environment instead."]
         #[unsafe(method(applicationBuildVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationBuildVersion(&self) -> Retained<NSString>;
@@ -80,6 +85,7 @@ impl MXMetaData {
         /// Convenience method to return a JSON representation of this metadata.
         ///
         /// Returns: An NSData object containing the JSON representation
+        #[deprecated = "Use MetricReport.Environment or DiagnosticReport.Environment instead."]
         #[unsafe(method(JSONRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
@@ -95,6 +101,7 @@ impl MXMetaData {
         /// Convenience method to return a NSDictionary representation of this metadata.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
+        #[deprecated = "Use MetricReport.Environment or DiagnosticReport.Environment instead."]
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;

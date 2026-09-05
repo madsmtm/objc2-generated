@@ -1565,6 +1565,8 @@ pub use self::__CGImageProperties::IMAGEIO_PNG_NO_FILTERS;
 #[cfg(feature = "CGImageSource")]
 pub use self::__CGImageSource::kCGComputeHDRStats;
 #[cfg(feature = "CGImageSource")]
+pub use self::__CGImageSource::kCGImageSourceAllowableTypes;
+#[cfg(feature = "CGImageSource")]
 pub use self::__CGImageSource::kCGImageSourceCreateThumbnailFromImageAlways;
 #[cfg(feature = "CGImageSource")]
 pub use self::__CGImageSource::kCGImageSourceCreateThumbnailFromImageIfAbsent;

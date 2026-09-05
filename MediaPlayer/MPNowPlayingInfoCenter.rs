@@ -245,3 +245,8 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfoproperty3x4animatedartwork?language=objc)
     pub static MPNowPlayingInfoProperty3x4AnimatedArtwork: &'static NSString;
 }
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyappentityidentifiers?language=objc)
+    pub static MPNowPlayingInfoPropertyAppEntityIdentifiers: &'static NSString;
+}

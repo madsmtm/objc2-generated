@@ -297,6 +297,8 @@ pub use self::__MPSGraphFourierTransformOps::MPSGraphFFTScalingMode;
 pub use self::__MPSGraphImToColOps::MPSGraphImToColOpDescriptor;
 #[cfg(feature = "MPSGraphLossOps")]
 pub use self::__MPSGraphLossOps::MPSGraphLossReductionType;
+#[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphMatrixMultiplicationOps"))]
+pub use self::__MPSGraphMatrixMultiplicationOps::MPSGraphSDPADescriptor;
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphMemoryOps",

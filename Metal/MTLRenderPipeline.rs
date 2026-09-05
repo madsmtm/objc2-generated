@@ -1153,9 +1153,17 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
-        /// > Tip:
-        /// Verify the apps that need reflection information in production by testing them
-        /// without a frame capture, Metal API validation layer, or shader validation layer.
+        /// The render pipeline's reflection information, if available.
+        ///
+        /// The property is `nil` by default to help reduce your app's memory footprint,
+        /// but you can create reflection information when your app needs it.
+        ///
+        /// Create reflection information by building a pipeline from an
+        /// ``MTL4Compiler`` instance with the following steps:
+        ///
+        /// 1. Configure the ``MTL4PipelineOptions/shaderReflection`` property of an ``MTL4PipelineOptions`` instance.
+        /// 2. Assign that instance to the ``MTL4PipelineDescriptor/options`` property of an ``MTL4PipelineDescriptor`` instance.
+        /// 3. Create a compute pipeline state by passing that pipeline descriptor to one of the ``MTL4Compiler`` instance's methods.
         ///
         /// The property is `nil` when you create a pipeline state from an``MTLDevice`` instance,
         /// such as with its ``MTLDevice/newRenderPipelineStateWithDescriptor:error:`` method.

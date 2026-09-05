@@ -431,6 +431,8 @@ impl MTLLanguageVersion {
     pub const Version3_2: Self = Self((3 << 16) + 2);
     #[doc(alias = "MTLLanguageVersion4_0")]
     pub const Version4_0: Self = Self((4 << 16) + 0);
+    #[doc(alias = "MTLLanguageVersion4_1")]
+    pub const Version4_1: Self = Self((4 << 16) + 1);
 }
 
 unsafe impl Encode for MTLLanguageVersion {

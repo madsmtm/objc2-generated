@@ -39,6 +39,9 @@ mod __CSSearchQuery;
 #[cfg(feature = "CSSearchableIndex")]
 #[path = "CSSearchableIndex.rs"]
 mod __CSSearchableIndex;
+#[cfg(feature = "CSSearchableIndexDescription")]
+#[path = "CSSearchableIndexDescription.rs"]
+mod __CSSearchableIndexDescription;
 #[cfg(feature = "CSSearchableItem")]
 #[path = "CSSearchableItem.rs"]
 mod __CSSearchableItem;
@@ -100,6 +103,8 @@ pub use self::__CSSearchableIndex::CSIndexErrorDomain;
 pub use self::__CSSearchableIndex::CSSearchableIndex;
 #[cfg(feature = "CSSearchableIndex")]
 pub use self::__CSSearchableIndex::CSSearchableIndexDelegate;
+#[cfg(feature = "CSSearchableIndexDescription")]
+pub use self::__CSSearchableIndexDescription::CSSearchableIndexDescription;
 #[cfg(feature = "CSSearchableItem")]
 pub use self::__CSSearchableItem::CSActionIdentifier;
 #[cfg(feature = "CSSearchableItem")]

@@ -6,14 +6,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatterstyle?language=objc)
+/// Specifies how to describe a relative date.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativeDateTimeFormatterStyle(pub NSInteger);
 impl NSRelativeDateTimeFormatterStyle {
+    /// A numeric relative date style (e.g. "1 day ago", "2 days ago", "1 week ago", "in 1 week").
     #[doc(alias = "NSRelativeDateTimeFormatterStyleNumeric")]
     pub const Numeric: Self = Self(0);
+    /// A named relative date style (e.g. "yesterday", "2 days ago", "last week", "next week"). Falls back to the numeric style if no name is available.
     #[doc(alias = "NSRelativeDateTimeFormatterStyleNamed")]
     pub const Named: Self = Self(1);
 }
@@ -26,18 +30,24 @@ unsafe impl RefEncode for NSRelativeDateTimeFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatterunitsstyle?language=objc)
+/// Specifies how to format the quantity or the name of the unit.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatterunitsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativeDateTimeFormatterUnitsStyle(pub NSInteger);
 impl NSRelativeDateTimeFormatterUnitsStyle {
+    /// The full units style (e.g. "2 months ago").
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleFull")]
     pub const Full: Self = Self(0);
+    /// The spelled-out units style (e.g. "two months ago").
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleSpellOut")]
     pub const SpellOut: Self = Self(1);
+    /// The short units style (e.g. "2 mo. ago").
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleShort")]
     pub const Short: Self = Self(2);
+    /// The abbreviated units style (e.g. "2 mo. ago"). May give different results in languages other than English.
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleAbbreviated")]
     pub const Abbreviated: Self = Self(3);
 }
@@ -51,7 +61,11 @@ unsafe impl RefEncode for NSRelativeDateTimeFormatterUnitsStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatter?language=objc)
+    /// A formatter that creates locale-aware string representations of a relative date or time.
+    ///
+    /// Use the strings that the formatter produces, such as "1 hour ago", "in 2 weeks", "yesterday", and "tomorrow" as standalone strings. Embedding them in other strings may not be grammatically correct.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -81,6 +95,9 @@ extern_conformance!(
 #[cfg(feature = "NSFormatter")]
 impl NSRelativeDateTimeFormatter {
     extern_methods!(
+        /// Specifies how to describe a relative date.
+        ///
+        /// For example, "yesterday" vs "1 day ago" in English. Default is `NSRelativeDateTimeFormatterStyleNumeric`.
         #[unsafe(method(dateTimeStyle))]
         #[unsafe(method_family = none)]
         pub fn dateTimeStyle(&self) -> NSRelativeDateTimeFormatterStyle;
@@ -90,6 +107,9 @@ impl NSRelativeDateTimeFormatter {
         #[unsafe(method_family = none)]
         pub fn setDateTimeStyle(&self, date_time_style: NSRelativeDateTimeFormatterStyle);
 
+        /// Specifies how to format the quantity or the name of the unit.
+        ///
+        /// For example, "1 day ago" vs "one day ago" in English. Default is `NSRelativeDateTimeFormatterUnitsStyleFull`.
         #[unsafe(method(unitsStyle))]
         #[unsafe(method_family = none)]
         pub fn unitsStyle(&self) -> NSRelativeDateTimeFormatterUnitsStyle;
@@ -99,6 +119,9 @@ impl NSRelativeDateTimeFormatter {
         #[unsafe(method_family = none)]
         pub fn setUnitsStyle(&self, units_style: NSRelativeDateTimeFormatterUnitsStyle);
 
+        /// Specifies the formatting context of the output.
+        ///
+        /// Default is `NSFormattingContextUnknown`.
         #[unsafe(method(formattingContext))]
         #[unsafe(method_family = none)]
         pub fn formattingContext(&self) -> NSFormattingContext;
@@ -109,6 +132,9 @@ impl NSRelativeDateTimeFormatter {
         pub fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(feature = "NSCalendar")]
+        /// Specifies the calendar to use for formatting values that do not have an inherent calendar of their own.
+        ///
+        /// Defaults to `autoupdatingCurrentCalendar`. Also resets to `autoupdatingCurrentCalendar` on assignment of `nil`.
         #[unsafe(method(calendar))]
         #[unsafe(method_family = none)]
         pub fn calendar(&self) -> Retained<NSCalendar>;
@@ -122,6 +148,9 @@ impl NSRelativeDateTimeFormatter {
         pub fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSLocale")]
+        /// Specifies the locale of the output string.
+        ///
+        /// Defaults to and resets on assignment of `nil` to the calendar's locale.
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub fn locale(&self) -> Retained<NSLocale>;
@@ -135,6 +164,12 @@ impl NSRelativeDateTimeFormatter {
         pub fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
+        /// Returns a formatted string representing a relative time from the given date components.
+        ///
+        /// Negative component values are evaluated as a date in the past.
+        /// This method formats the value of the least granular unit in the `NSDateComponents` object, and does not provide a compound format of the date component.
+        ///
+        /// Note this method only supports the following components: year, month, week of month, day, hour, minute, and second. The rest will be ignored.
         #[unsafe(method(localizedStringFromDateComponents:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringFromDateComponents(
@@ -143,6 +178,9 @@ impl NSRelativeDateTimeFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
+        /// Returns a formatted string representing a relative time from the given time interval.
+        ///
+        /// Negative time interval is evaluated as a date in the past.
         #[unsafe(method(localizedStringFromTimeInterval:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringFromTimeInterval(
@@ -151,6 +189,7 @@ impl NSRelativeDateTimeFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
+        /// Formats the date interval from the reference date to the given date using the formatter's calendar.
         #[unsafe(method(localizedStringForDate:relativeToDate:))]
         #[unsafe(method_family = none)]
         pub fn localizedStringForDate_relativeToDate(
@@ -160,6 +199,14 @@ impl NSRelativeDateTimeFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Creates a formatted string for a date relative to the current date and time.
+        ///
+        /// To determine the relative interval, the formatter uses `[NSDate date]` as the reference date.
+        ///
+        /// - Parameters:
+        /// - obj: A date object to format.
+        /// - Returns: A string that represents the date interval between a date and the current date and time, or `nil` if `obj` isn't an instance of `NSDate`.
+        ///
         /// # Safety
         ///
         /// `obj` should be of the correct type.

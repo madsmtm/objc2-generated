@@ -32,15 +32,37 @@ extern_conformance!(
 
 impl PKIdentityElement {
     extern_methods!(
-        /// The user's given name or first name.
+        /// The user's given name
+        ///
+        /// When requested, this element returns the given name if the identity document provides it
+        /// as a separate field. For documents that do not provide separated name fields (common with
+        /// international identity documents), this will fall back to returning the full name.
         #[unsafe(method(givenNameElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn givenNameElement() -> Retained<PKIdentityElement>;
 
-        /// The user's family name or last name.
+        /// The user's family name
+        ///
+        /// When requested, this element returns the family name if the identity document provides it
+        /// as a separate field. For documents that do not provide separated name fields (common with
+        /// international identity documents), this will fall back to returning the full name.
         #[unsafe(method(familyNameElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn familyNameElement() -> Retained<PKIdentityElement>;
+
+        /// The user's full name.
+        ///
+        /// For National ID and other identity documents, requesting this element returns the user's
+        /// full name as a single properly formatted string. The response may also include given name
+        /// and family name when available.
+        ///
+        /// For Driver's License documents, requesting this element returns the given name and family
+        /// name as separate fields, but does not return a full name field. This limitation exists
+        /// because the mDL (mobile Driver's License) standard does not currently include a full name
+        /// field in its specification.
+        #[unsafe(method(nameElement))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn nameElement() -> Retained<PKIdentityElement>;
 
         /// The portrait of the user on record with the issuer.
         #[unsafe(method(portraitElement))]

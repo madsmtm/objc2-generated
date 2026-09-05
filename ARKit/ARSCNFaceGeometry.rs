@@ -86,10 +86,9 @@ impl ARSCNFaceGeometry {
         #[cfg(feature = "objc2-metal")]
         /// Creates a new face geometry using a Metal device.
         ///
+        /// - Parameter device: A Metal device.
         ///
-        /// Parameter `device`: A Metal device.
-        ///
-        /// Returns: A new face geometry.
+        /// - Returns: A new face geometry.
         #[unsafe(method(faceGeometryWithDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn faceGeometryWithDevice(
@@ -99,7 +98,6 @@ impl ARSCNFaceGeometry {
         #[cfg(feature = "objc2-metal")]
         /// Creates a new face geometry using a Metal device.
         ///
-        ///
         /// By default the regions between the eye lids as well as the region
         /// between the lips are not covered by geometry. For using the face geometry as an
         /// occlusion geometry set
@@ -107,11 +105,12 @@ impl ARSCNFaceGeometry {
         /// in additional geometry into the gaps between the eye lids as well as into the
         /// gap between the lips.
         ///
-        /// Parameter `fillMesh`: Whether to fill in additional geometry into the
+        /// - Parameters:
+        /// - device: A Metal device.
+        /// - fillMesh: Whether to fill in additional geometry into the
         /// gaps between the eye lids as well as into the gap between the lips.
         ///
-        ///
-        /// Returns: A new face geometry.
+        /// - Returns: A new face geometry.
         #[unsafe(method(faceGeometryWithDevice:fillMesh:))]
         #[unsafe(method_family = none)]
         pub unsafe fn faceGeometryWithDevice_fillMesh(
@@ -122,8 +121,7 @@ impl ARSCNFaceGeometry {
         #[cfg(feature = "ARFaceGeometry")]
         /// Updates the geometry with the vertices of a face geometry.
         ///
-        ///
-        /// Parameter `faceGeometry`: A face geometry.
+        /// - Parameter faceGeometry: A face geometry.
         #[unsafe(method(updateFromFaceGeometry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateFromFaceGeometry(&self, face_geometry: &ARFaceGeometry);

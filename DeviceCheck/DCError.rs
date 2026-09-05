@@ -42,6 +42,7 @@ impl DCError {
     /// - You call
     /// ``DeviceCheck/DCAppAttestService/generateAssertion:clientDataHash:completionHandler:``
     /// with an unattested key.
+    /// - The App Attest service cannot enforce the key access control policy on macOS.
     /// - The App Attest service rejects the key.
     #[doc(alias = "DCErrorInvalidKey")]
     pub const InvalidKey: Self = Self(3);

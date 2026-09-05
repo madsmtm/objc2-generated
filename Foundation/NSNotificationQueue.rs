@@ -6,16 +6,23 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspostingstyle?language=objc)
+/// The constants that specify when notifications are posted.
+///
+/// These constants are used by the ``NotificationQueue/enqueue(_:postingStyle:)`` and ``NotificationQueue/enqueue(_:postingStyle:coalesceMask:forModes:)`` methods.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspostingstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPostingStyle(pub NSUInteger);
 impl NSPostingStyle {
+    /// The notification is posted at the end of the current notification callout or timer.
     #[doc(alias = "NSPostWhenIdle")]
     pub const PostWhenIdle: Self = Self(1);
+    /// The notification is posted at the end of the current event processing cycle.
     #[doc(alias = "NSPostASAP")]
     pub const PostASAP: Self = Self(2);
+    /// The notification is posted immediately after coalescing.
     #[doc(alias = "NSPostNow")]
     pub const PostNow: Self = Self(3);
 }
@@ -28,17 +35,24 @@ unsafe impl RefEncode for NSPostingStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationcoalescing?language=objc)
+/// The constants that specify how notifications are coalesced.
+///
+/// These constants are used by the ``NotificationQueue/enqueue(_:postingStyle:coalesceMask:forModes:)`` method.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationcoalescing?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNotificationCoalescing(pub NSUInteger);
 bitflags::bitflags! {
     impl NSNotificationCoalescing: NSUInteger {
+/// Do not coalesce notifications in the queue.
         #[doc(alias = "NSNotificationNoCoalescing")]
         const NoCoalescing = 0;
+/// Coalesce notifications with the same name.
         #[doc(alias = "NSNotificationCoalescingOnName")]
         const CoalescingOnName = 1;
+/// Coalesce notifications with the same object (sender).
         #[doc(alias = "NSNotificationCoalescingOnSender")]
         const CoalescingOnSender = 2;
         const _ = !0;
@@ -54,7 +68,15 @@ unsafe impl RefEncode for NSNotificationCoalescing {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationqueue?language=objc)
+    /// A notification center buffer.
+    ///
+    /// Whereas a notification center distributes notifications when posted, notifications placed into the queue can be delayed until the end of the current pass through the run loop or until the run loop is idle. Duplicate notifications can be coalesced so that only one notification is sent although multiple notifications are posted.
+    ///
+    /// A notification queue maintains notifications in first in, first out (FIFO) order. When a notification moves to the front of the queue, the queue posts it to the notification center, which in turn dispatches the notification to all objects registered as observers.
+    ///
+    /// Every thread has a default notification queue, which is associated with the default notification center for the process. You can create your own notification queues and have multiple queues per center and thread.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationqueue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotificationQueue;
@@ -66,11 +88,15 @@ extern_conformance!(
 
 impl NSNotificationQueue {
     extern_methods!(
+        /// Returns the default notification queue for the current thread.
+        ///
+        /// This notification queue uses the default notification center.
         #[unsafe(method(defaultQueue))]
         #[unsafe(method_family = none)]
         pub fn defaultQueue() -> Retained<NSNotificationQueue>;
 
         #[cfg(feature = "NSNotification")]
+        /// Initializes and returns a notification queue for the specified notification center.
         #[unsafe(method(initWithNotificationCenter:))]
         #[unsafe(method_family = init)]
         pub fn initWithNotificationCenter(
@@ -79,6 +105,7 @@ impl NSNotificationQueue {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSNotification")]
+        /// Adds a notification to the notification queue with a specified posting style.
         #[unsafe(method(enqueueNotification:postingStyle:))]
         #[unsafe(method_family = none)]
         pub fn enqueueNotification_postingStyle(
@@ -93,6 +120,9 @@ impl NSNotificationQueue {
             feature = "NSObjCRuntime",
             feature = "NSString"
         ))]
+        /// Adds a notification to the notification queue with a specified posting style, criteria for coalescing, and run loop mode.
+        ///
+        /// The notification queue will only post the notification to its notification center if the run loop is in one of the modes provided in the array. The modes parameter may be nil, in which case it defaults to NSDefaultRunLoopMode.
         #[unsafe(method(enqueueNotification:postingStyle:coalesceMask:forModes:))]
         #[unsafe(method_family = none)]
         pub fn enqueueNotification_postingStyle_coalesceMask_forModes(
@@ -104,6 +134,7 @@ impl NSNotificationQueue {
         );
 
         #[cfg(feature = "NSNotification")]
+        /// Removes all notifications from the queue that match a provided notification using provided matching criteria.
         #[unsafe(method(dequeueNotificationsMatching:coalesceMask:))]
         #[unsafe(method_family = none)]
         pub fn dequeueNotificationsMatching_coalesceMask(

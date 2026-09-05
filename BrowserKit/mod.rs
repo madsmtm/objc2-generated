@@ -24,6 +24,9 @@ extern "C" {}
 #[cfg(feature = "BEAvailability")]
 #[path = "BEAvailability.rs"]
 mod __BEAvailability;
+#[cfg(feature = "BEBrowserContentFilter")]
+#[path = "BEBrowserContentFilter.rs"]
+mod __BEBrowserContentFilter;
 #[cfg(feature = "BEBrowserData")]
 #[path = "BEBrowserData.rs"]
 mod __BEBrowserData;
@@ -41,6 +44,8 @@ mod __BEBrowserDataImportManager;
 pub use self::__BEAvailability::BEAvailability;
 #[cfg(feature = "BEAvailability")]
 pub use self::__BEAvailability::BEEligibilityContext;
+#[cfg(feature = "BEBrowserContentFilter")]
+pub use self::__BEBrowserContentFilter::BEBrowserContentFilter;
 #[cfg(feature = "BEBrowserData")]
 pub use self::__BEBrowserData::BEBrowserData;
 #[cfg(feature = "BEBrowserData")]

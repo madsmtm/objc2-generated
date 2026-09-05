@@ -64,6 +64,7 @@ extern_class!(
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
+    #[deprecated]
     pub struct ARSession;
 );
 
@@ -78,8 +79,7 @@ impl ARSession {
         #[cfg(feature = "objc2-foundation")]
         /// Unique identifier of the running session.
         ///
-        ///
-        /// The identifier may change after calling runWithConfiguration.
+        /// The identifier may change after calling `runWithConfiguration`.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
@@ -99,7 +99,7 @@ impl ARSession {
         #[cfg(feature = "dispatch2")]
         /// The dispatch queue on which the delegate calls are performed.
         ///
-        /// If not provided or nil, delegate calls will be performed on the main queue.
+        /// If not provided or `nil`, delegate calls will be performed on the main queue.
         #[unsafe(method(delegateQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;
@@ -132,7 +132,7 @@ impl ARSession {
         /// Calling run on a session that has already started will
         /// transition immediately to using the new configuration.
         ///
-        /// Parameter `configuration`: The configuration to use.
+        /// - Parameter configuration: The configuration to use.
         #[unsafe(method(runWithConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWithConfiguration(&self, configuration: &ARConfiguration);
@@ -144,9 +144,9 @@ impl ARSession {
         /// transition immediately to using the new configuration. Options
         /// can be used to alter the default behavior when transitioning configurations.
         ///
-        /// Parameter `configuration`: The configuration to use.
-        ///
-        /// Parameter `options`: The run options to use.
+        /// - Parameters:
+        /// - configuration: The configuration to use.
+        /// - options: The run options to use.
         #[unsafe(method(runWithConfiguration:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWithConfiguration_options(
@@ -158,7 +158,7 @@ impl ARSession {
         /// Pauses the session.
         ///
         /// Once paused, no more updates will be received from the
-        /// session until run is called again.
+        /// session until `run` is called again.
         #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
@@ -168,7 +168,7 @@ impl ARSession {
         ///
         /// The anchor will be added in the next frame update.
         ///
-        /// Parameter `anchor`: The anchor to add.
+        /// - Parameter anchor: The anchor to add.
         #[unsafe(method(addAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAnchor(&self, anchor: &ARAnchor);
@@ -178,7 +178,7 @@ impl ARSession {
         ///
         /// The anchor will be removed from subsequent frame updates.
         ///
-        /// Parameter `anchor`: The anchor to remove.
+        /// - Parameter anchor: The anchor to remove.
         #[unsafe(method(removeAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAnchor(&self, anchor: &ARAnchor);
@@ -190,12 +190,12 @@ impl ARSession {
         ))]
         /// Copies the current state of the world being tracked by the session.
         ///
-        /// A world map is only provided when running an ARWorldTrackingConfiguration.
+        /// A world map is only provided when running an `ARWorldTrackingConfiguration`.
         ///
-        /// Parameter `completionHandler`: The completion handler to call when the get has completed. This handler is executed
+        /// - Parameter completionHandler: The completion handler to call when the get has completed. This handler is executed
         /// on the session's delegate queue. The completion handler takes the following parameters:
-        /// worldMap - The current world map or nil if unavailable.
-        /// error - An error that indicates why the world map is unavailable, or nil if a world map was provided.
+        /// worldMap - The current world map or `nil` if unavailable.
+        /// error - An error that indicates why the world map is unavailable, or `nil` if a world map was provided.
         #[unsafe(method(getCurrentWorldMapWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCurrentWorldMapWithCompletionHandler(
@@ -210,9 +210,9 @@ impl ARSession {
         ))]
         /// Perform a raycast.
         ///
-        /// Parameter `query`: Raycast query used for raycasting.
+        /// - Parameter query: Raycast query used for raycasting.
         ///
-        /// Returns: List of raycast results, sorted from nearest to farthest (in distance from the camera). The results could be empty if raycast fails.
+        /// - Returns: List of raycast results, sorted from nearest to farthest (in distance from the camera). The results could be empty if raycast fails.
         #[unsafe(method(raycast:))]
         #[unsafe(method_family = none)]
         pub unsafe fn raycast(&self, query: &ARRaycastQuery) -> Retained<NSArray<ARRaycastResult>>;
@@ -229,13 +229,13 @@ impl ARSession {
         /// The session performs continuous raycasting and calls the update handler with the updated results.
         /// The ARTrackedRaycast object returned can be used to update the raycast with a new raycast query or stop raycasting.
         ///
-        /// Parameter `query`: Raycast query used for raycasting.
+        /// - Parameters:
+        /// - query: Raycast query used for raycasting.
+        /// - updateHandler: Update handler where updated list of results, sorted from nearest to farthest (in distance from
+        /// the camera) are delivered. `updateHandler` will be called on session's delegate queue.
         ///
-        /// Parameter `updateHandler`: update handler where updated list of results, sorted from nearest to farthest (in distance from
-        /// the camera) are delivered. updateHandler will be called on session's delegate queue.
-        ///
-        /// Returns: Tracked raycast object used to update or stop raycasting. This could be nil if the raycast fails or if the
-        /// configuration is not `ARWorldTrackingConfiguration` or its subclasses.
+        /// - Returns: Tracked raycast object used to update or stop raycasting. This could be `nil` if the raycast fails or if the configuration is not
+        /// `ARWorldTrackingConfiguration` or its subclasses.
         #[unsafe(method(trackedRaycast:updateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackedRaycast_updateHandler(
@@ -247,13 +247,9 @@ impl ARSession {
         #[cfg(feature = "ARCollaborationData")]
         /// Update session with collaboration data.
         ///
-        ///
         /// Use this to update the session with collaboration data received from other participants.
         ///
-        ///
-        /// Parameter `collaborationData`: Collaboration data for updating the session.
-        ///
-        /// See: ARCollaborationData
+        /// - Parameter collaborationData: Collaboration data for updating the session.
         #[unsafe(method(updateWithCollaborationData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateWithCollaborationData(&self, collaboration_data: &ARCollaborationData);
@@ -262,11 +258,10 @@ impl ARSession {
         /// Requests a single, high resolution frame to be captured.
         ///
         /// Some video formats do not support a significantly higher still image resolution than the streaming camera resolution. Use the
-        /// `isRecommendedForHighResolutionFrameCapturing`method on the video format to check if the format is recommended.
+        /// `isRecommendedForHighResolutionFrameCapturing` method on the video format to check if the format is recommended.
+        /// - SeeAlso: ``ARVideoFormat/isRecommendedForHighResolutionFrameCapturing``
         ///
-        /// See: -[ARVideoFormat isRecommendedForHighResolutionFrameCapturing]
-        ///
-        /// Parameter `completion`: Block being called when the call completes.
+        /// - Parameter completion: Block being called when the call completes.
         #[unsafe(method(captureHighResolutionFrameWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureHighResolutionFrameWithCompletion(
@@ -283,17 +278,12 @@ impl ARSession {
         /// Requests a single, high resolution frame to be captured.
         ///
         /// Some video formats do not support a significantly higher still image resolution than the streaming camera resolution. Use the
-        /// `isRecommendedForHighResolutionFrameCapturing`method on the video format to check if the format is recommended. For passing customized photo settings
-        /// to this method, obtain a
-        /// `defaultPhotoSettings`object from the video format and modify it.
+        /// `isRecommendedForHighResolutionFrameCapturing` method on the video format to check if the format is recommended. For passing customized photo
+        /// settings to this method, obtain a `defaultPhotoSettings` object from the video format and modify it.
         ///
-        /// See: -[ARVideoFormat isRecommendedForHighResolutionFrameCapturing]
-        ///
-        /// See: -[ARVideoFormat defaultPhotoSettings]
-        ///
-        /// Parameter `photoSettings`: Custom AVCapturePhotoSettings to be used.
-        ///
-        /// Parameter `completion`: Block being called when the call completes.
+        /// - Parameters:
+        /// - photoSettings: Custom AVCapturePhotoSettings to be used.
+        /// - completion: Block being called when the call completes.
         #[unsafe(method(captureHighResolutionFrameUsingPhotoSettings:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureHighResolutionFrameUsingPhotoSettings_completion(
@@ -320,18 +310,20 @@ impl ARSession {
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arsessionobserver?language=objc)
+    /// A protocol for observing session state and receiving updates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsessionobserver?language=objc)
     #[cfg(feature = "objc2")]
+    #[deprecated]
     pub unsafe trait ARSessionObserver: NSObjectProtocol {
         #[cfg(feature = "objc2-foundation")]
         /// This is called when a session fails.
         ///
-        ///
         /// On failure the session will be paused.
         ///
-        /// Parameter `session`: The session that failed.
-        ///
-        /// Parameter `error`: The error being reported (see ARError.h).
+        /// - Parameters:
+        /// - session: The session that failed.
+        /// - error: The error being reported (see ARError.h).
         #[optional]
         #[unsafe(method(session:didFailWithError:))]
         #[unsafe(method_family = none)]
@@ -340,10 +332,9 @@ extern_protocol!(
         #[cfg(feature = "ARCamera")]
         /// This is called when the camera’s tracking state has changed.
         ///
-        ///
-        /// Parameter `session`: The session being run.
-        ///
-        /// Parameter `camera`: The camera that changed tracking states.
+        /// - Parameters:
+        /// - session: The session being run.
+        /// - camera: The camera that changed tracking states.
         #[optional]
         #[unsafe(method(session:cameraDidChangeTrackingState:))]
         #[unsafe(method_family = none)]
@@ -355,14 +346,13 @@ extern_protocol!(
 
         /// This is called when a session is interrupted.
         ///
-        ///
         /// A session will be interrupted and no longer able to track when
         /// it fails to receive required sensor data. This happens when video capture is interrupted,
         /// for example when the application is sent to the background or when there are
         /// multiple foreground applications (see AVCaptureSessionInterruptionReason).
         /// No additional frame updates will be delivered until the interruption has ended.
         ///
-        /// Parameter `session`: The session that was interrupted.
+        /// - Parameter session: The session that was interrupted.
         #[optional]
         #[unsafe(method(sessionWasInterrupted:))]
         #[unsafe(method_family = none)]
@@ -370,21 +360,18 @@ extern_protocol!(
 
         /// This is called when a session interruption has ended.
         ///
-        ///
         /// A session will continue running from the last known state once
         /// the interruption has ended. If the device has moved, anchors will be misaligned.
         /// To avoid this, some applications may want to reset tracking (see ARSessionRunOptions)
         /// or attempt to relocalize (see `-[ARSessionObserver sessionShouldAttemptRelocalization:]`).
         ///
-        /// Parameter `session`: The session that was interrupted.
+        /// - Parameter session: The session that was interrupted.
         #[optional]
         #[unsafe(method(sessionInterruptionEnded:))]
         #[unsafe(method_family = none)]
         unsafe fn sessionInterruptionEnded(&self, session: &ARSession);
 
-        /// This is called after a session resumes from a pause or interruption to determine
-        /// whether or not the session should attempt to relocalize.
-        ///
+        /// This is called after a session resumes from a pause or interruption to determine whether or not the session should attempt to relocalize.
         ///
         /// To avoid misaligned anchors, apps may wish to attempt a relocalization after
         /// a session pause or interruption. If YES is returned: the session will begin relocalizing
@@ -393,9 +380,9 @@ extern_protocol!(
         /// the user's location, it can run indefinitely. Apps that wish to give up on relocalization
         /// may call run with `ARSessionRunOptionResetTracking` at any time.
         ///
-        /// Parameter `session`: The session to relocalize.
+        /// - Parameter session: The session to relocalize.
         ///
-        /// Returns: Return YES to begin relocalizing.
+        /// - Returns: Return YES to begin relocalizing.
         #[optional]
         #[unsafe(method(sessionShouldAttemptRelocalization:))]
         #[unsafe(method_family = none)]
@@ -404,10 +391,9 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-media")]
         /// This is called when the session outputs a new audio sample buffer.
         ///
-        ///
-        /// Parameter `session`: The session being run.
-        ///
-        /// Parameter `audioSampleBuffer`: The captured audio sample buffer.
+        /// - Parameters:
+        /// - session: The session being run.
+        /// - audioSampleBuffer: The captured audio sample buffer.
         #[optional]
         #[unsafe(method(session:didOutputAudioSampleBuffer:))]
         #[unsafe(method_family = none)]
@@ -420,15 +406,11 @@ extern_protocol!(
         #[cfg(feature = "ARCollaborationData")]
         /// This is called when the session generated new collaboration data.
         ///
-        ///
         /// This data should be sent to all participants.
         ///
-        ///
-        /// Parameter `session`: The session that produced world tracking collaboration data.
-        ///
-        /// Parameter `data`: Collaboration data to be sent to participants.
-        ///
-        /// See: ARCollaborationData
+        /// - Parameters:
+        /// - session: The session that produced world tracking collaboration data.
+        /// - data: Collaboration data to be sent to participants.
         #[optional]
         #[unsafe(method(session:didOutputCollaborationData:))]
         #[unsafe(method_family = none)]
@@ -441,10 +423,9 @@ extern_protocol!(
         #[cfg(feature = "ARGeoTrackingTypes")]
         /// This is called when geo tracking status changes.
         ///
-        ///
-        /// Parameter `session`: The session being run.
-        ///
-        /// Parameter `geoTrackingStatus`: Latest geo tracking status.
+        /// - Parameters:
+        /// - session: The session being run.
+        /// - geoTrackingStatus: Latest geo tracking status.
         #[optional]
         #[unsafe(method(session:didChangeGeoTrackingStatus:))]
         #[unsafe(method_family = none)]
@@ -458,16 +439,18 @@ extern_protocol!(
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arsessiondelegate?language=objc)
+    /// A delegate protocol for receiving AR session updates including frames and anchors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsessiondelegate?language=objc)
     #[cfg(feature = "objc2")]
+    #[deprecated]
     pub unsafe trait ARSessionDelegate: ARSessionObserver {
         #[cfg(feature = "ARFrame")]
         /// This is called when a new frame has been updated.
         ///
-        ///
-        /// Parameter `session`: The session being run.
-        ///
-        /// Parameter `frame`: The frame that has been updated.
+        /// - Parameters:
+        /// - session: The session being run.
+        /// - frame: The frame that has been updated.
         #[optional]
         #[unsafe(method(session:didUpdateFrame:))]
         #[unsafe(method_family = none)]
@@ -476,10 +459,9 @@ extern_protocol!(
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
         /// This is called when new anchors are added to the session.
         ///
-        ///
-        /// Parameter `session`: The session being run.
-        ///
-        /// Parameter `anchors`: An array of added anchors.
+        /// - Parameters:
+        /// - session: The session being run.
+        /// - anchors: An array of added anchors.
         #[optional]
         #[unsafe(method(session:didAddAnchors:))]
         #[unsafe(method_family = none)]
@@ -488,10 +470,9 @@ extern_protocol!(
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
         /// This is called when anchors are updated.
         ///
-        ///
-        /// Parameter `session`: The session being run.
-        ///
-        /// Parameter `anchors`: An array of updated anchors.
+        /// - Parameters:
+        /// - session: The session being run.
+        /// - anchors: An array of updated anchors.
         #[optional]
         #[unsafe(method(session:didUpdateAnchors:))]
         #[unsafe(method_family = none)]
@@ -500,10 +481,9 @@ extern_protocol!(
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
         /// This is called when anchors are removed from the session.
         ///
-        ///
-        /// Parameter `session`: The session being run.
-        ///
-        /// Parameter `anchors`: An array of removed anchors.
+        /// - Parameters:
+        /// - session: The session being run.
+        /// - anchors: An array of removed anchors.
         #[optional]
         #[unsafe(method(session:didRemoveAnchors:))]
         #[unsafe(method_family = none)]
@@ -517,9 +497,12 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsessionproviding?language=objc)
     #[cfg(feature = "objc2")]
+    #[deprecated]
     pub unsafe trait ARSessionProviding: NSObjectProtocol {
+        /// The AR session instance.
+        ///
         /// To ensure session changes are detected, Swift classes should mark this property as `
-        /// @objc ` and `dynamic`
+        /// @objc ` and `dynamic`.
         #[unsafe(method(session))]
         #[unsafe(method_family = none)]
         unsafe fn session(&self) -> Retained<ARSession>;

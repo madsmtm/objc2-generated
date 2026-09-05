@@ -243,6 +243,12 @@ impl AVError {
     pub const AutoWhiteBalanceNotLocked: Self = Self(-11891);
     #[doc(alias = "AVErrorFollowExternalSyncDeviceTimedOut")]
     pub const FollowExternalSyncDeviceTimedOut: Self = Self(-11892);
+    #[doc(alias = "AVErrorFollowExternalSyncFailed")]
+    pub const FollowExternalSyncFailed: Self = Self(-11894);
+    #[doc(alias = "AVErrorExternalSyncDeviceFrequencyHigherThanSpecified")]
+    pub const ExternalSyncDeviceFrequencyHigherThanSpecified: Self = Self(-11895);
+    #[doc(alias = "AVErrorExternalSyncDeviceFrequencyLowerThanSpecified")]
+    pub const ExternalSyncDeviceFrequencyLowerThanSpecified: Self = Self(-11896);
 }
 
 unsafe impl Encode for AVError {

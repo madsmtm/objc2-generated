@@ -12,6 +12,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxunitsignalbars?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use SignalBars instead."]
     pub struct MXUnitSignalBars;
 );
 
@@ -37,6 +38,7 @@ extern_conformance!(
 
 impl MXUnitSignalBars {
     extern_methods!(
+        #[deprecated = "Use SignalBars instead."]
         #[unsafe(method(bars))]
         #[unsafe(method_family = none)]
         pub unsafe fn bars() -> Retained<MXUnitSignalBars>;
@@ -46,6 +48,7 @@ impl MXUnitSignalBars {
 /// Methods declared on superclass `NSDimension`.
 impl MXUnitSignalBars {
     extern_methods!(
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
@@ -54,6 +57,13 @@ impl MXUnitSignalBars {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
@@ -71,6 +81,7 @@ impl MXUnitSignalBars {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
@@ -83,6 +94,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxunitaveragepixelluminance?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[deprecated = "Use AveragePixelLuminance instead."]
     pub struct MXUnitAveragePixelLuminance;
 );
 
@@ -108,6 +120,7 @@ extern_conformance!(
 
 impl MXUnitAveragePixelLuminance {
     extern_methods!(
+        #[deprecated = "Use AveragePixelLuminance instead."]
         #[unsafe(method(apl))]
         #[unsafe(method_family = none)]
         pub unsafe fn apl() -> Retained<MXUnitAveragePixelLuminance>;
@@ -117,6 +130,7 @@ impl MXUnitAveragePixelLuminance {
 /// Methods declared on superclass `NSDimension`.
 impl MXUnitAveragePixelLuminance {
     extern_methods!(
+        /// Initializes a dimensional unit with the specified symbol and unit converter.
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol_converter(
@@ -125,6 +139,13 @@ impl MXUnitAveragePixelLuminance {
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
+        /// Returns the base unit of the dimension.
+        ///
+        /// The default implementation returns `nil` to indicate that the `NSDimension` class should not be used directly.
+        ///
+        /// When implementing a subclass, you should return a unit converter that returns the inputted value for both the
+        /// `baseUnitValueFromValue:` and `valueFromBaseUnitValue:` methods. You can create a unit converter for a base unit
+        /// using the `NSUnitConverterLinear` `initWithCoefficient:` initializer, passing `1` as the coefficient.
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseUnit() -> Retained<Self>;
@@ -142,6 +163,7 @@ impl MXUnitAveragePixelLuminance {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Initializes a unit with the specified symbol.
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;

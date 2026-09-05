@@ -19,6 +19,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryairportterminal?language=objc)
+    pub static MKPointOfInterestCategoryAirportTerminal: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryamusementpark?language=objc)
     pub static MKPointOfInterestCategoryAmusementPark: &'static MKPointOfInterestCategory;
 }
@@ -31,6 +36,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryatm?language=objc)
     pub static MKPointOfInterestCategoryATM: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryautomotivedealership?language=objc)
+    pub static MKPointOfInterestCategoryAutomotiveDealership: &'static MKPointOfInterestCategory;
 }
 
 extern "C" {
@@ -96,6 +106,12 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorycastle?language=objc)
     pub static MKPointOfInterestCategoryCastle: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorycommercialvehicledealership?language=objc)
+    pub static MKPointOfInterestCategoryCommercialVehicleDealership:
+        &'static MKPointOfInterestCategory;
 }
 
 extern "C" {
@@ -174,6 +190,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryinformationbooth?language=objc)
+    pub static MKPointOfInterestCategoryInformationBooth: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorykayaking?language=objc)
     pub static MKPointOfInterestCategoryKayaking: &'static MKPointOfInterestCategory;
 }
@@ -206,6 +227,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryminigolf?language=objc)
     pub static MKPointOfInterestCategoryMiniGolf: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorymotorbikedealership?language=objc)
+    pub static MKPointOfInterestCategoryMotorbikeDealership: &'static MKPointOfInterestCategory;
 }
 
 extern "C" {
@@ -254,6 +280,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorypicnicarea?language=objc)
+    pub static MKPointOfInterestCategoryPicnicArea: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryplanetarium?language=objc)
     pub static MKPointOfInterestCategoryPlanetarium: &'static MKPointOfInterestCategory;
 }
@@ -274,6 +305,16 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryrangerstation?language=objc)
+    pub static MKPointOfInterestCategoryRangerStation: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryrestarea?language=objc)
+    pub static MKPointOfInterestCategoryRestArea: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryrestaurant?language=objc)
     pub static MKPointOfInterestCategoryRestaurant: &'static MKPointOfInterestCategory;
 }
@@ -291,6 +332,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryrvpark?language=objc)
     pub static MKPointOfInterestCategoryRVPark: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryscenicview?language=objc)
+    pub static MKPointOfInterestCategoryScenicView: &'static MKPointOfInterestCategory;
 }
 
 extern "C" {
@@ -354,8 +400,18 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryticketoffice?language=objc)
+    pub static MKPointOfInterestCategoryTicketOffice: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryuniversity?language=objc)
     pub static MKPointOfInterestCategoryUniversity: &'static MKPointOfInterestCategory;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryvisitorcenter?language=objc)
+    pub static MKPointOfInterestCategoryVisitorCenter: &'static MKPointOfInterestCategory;
 }
 
 extern "C" {

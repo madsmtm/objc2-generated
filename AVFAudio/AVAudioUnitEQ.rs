@@ -109,6 +109,10 @@ extern_class!(
     pub struct AVAudioUnitEQFilterParameters;
 );
 
+unsafe impl Send for AVAudioUnitEQFilterParameters {}
+
+unsafe impl Sync for AVAudioUnitEQFilterParameters {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioUnitEQFilterParameters {}
 );
@@ -120,11 +124,21 @@ impl AVAudioUnitEQFilterParameters {
         /// AVAudioUnitEQFilterType
         ///
         /// Default:    AVAudioUnitEQFilterTypeParametric
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(filterType))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterType(&self) -> AVAudioUnitEQFilterType;
 
         /// Setter for [`filterType`][Self::filterType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFilterType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilterType(&self, filter_type: AVAudioUnitEQFilterType);
@@ -133,11 +147,21 @@ impl AVAudioUnitEQFilterParameters {
         ///
         /// Range:      20 -> (SampleRate/2)
         /// Unit:       Hertz
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(frequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn frequency(&self) -> c_float;
 
         /// Setter for [`frequency`][Self::frequency].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFrequency:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrequency(&self, frequency: c_float);
@@ -146,11 +170,21 @@ impl AVAudioUnitEQFilterParameters {
         ///
         /// Range:      0.05 -> 5.0
         /// Unit:       Octaves
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bandwidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn bandwidth(&self) -> c_float;
 
         /// Setter for [`bandwidth`][Self::bandwidth].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBandwidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBandwidth(&self, bandwidth: c_float);
@@ -160,11 +194,21 @@ impl AVAudioUnitEQFilterParameters {
         /// Range:      -96 -> 24
         /// Default:    0
         /// Unit:       dB
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(gain))]
         #[unsafe(method_family = none)]
         pub unsafe fn gain(&self) -> c_float;
 
         /// Setter for [`gain`][Self::gain].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGain(&self, gain: c_float);
@@ -172,11 +216,21 @@ impl AVAudioUnitEQFilterParameters {
         /// bypass state of band.
         ///
         /// Default:    YES
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bypass))]
         #[unsafe(method_family = none)]
         pub unsafe fn bypass(&self) -> bool;
 
         /// Setter for [`bypass`][Self::bypass].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBypass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBypass(&self, bypass: bool);
@@ -210,6 +264,20 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitEffect"
 ))]
+unsafe impl Send for AVAudioUnitEQ {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
+unsafe impl Sync for AVAudioUnitEQ {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitEffect"
+))]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioUnitEQ {}
 );
@@ -234,6 +302,12 @@ impl AVAudioUnitEQ {
         /// Array of AVAudioUnitEQFilterParameters objects.
         ///
         /// The number of elements in the array is equal to the number of bands.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bands))]
         #[unsafe(method_family = none)]
         pub unsafe fn bands(&self) -> Retained<NSArray<AVAudioUnitEQFilterParameters>>;
@@ -243,11 +317,21 @@ impl AVAudioUnitEQ {
         /// Range:     -96 -> 24
         /// Default:   0
         /// Unit:      dB
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(globalGain))]
         #[unsafe(method_family = none)]
         pub unsafe fn globalGain(&self) -> c_float;
 
         /// Setter for [`globalGain`][Self::globalGain].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setGlobalGain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlobalGain(&self, global_gain: c_float);

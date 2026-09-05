@@ -73,8 +73,10 @@ impl NSEventType {
     #[doc(alias = "NSEventTypeRotate")]
     pub const Rotate: Self = Self(18);
     #[doc(alias = "NSEventTypeBeginGesture")]
+    #[deprecated = "NSEventTypeBeginGesture is no longer delivered. Use the phase property on NSEvent or NSGestureRecognizer instead."]
     pub const BeginGesture: Self = Self(19);
     #[doc(alias = "NSEventTypeEndGesture")]
+    #[deprecated = "NSEventTypeEndGesture is no longer delivered. Use the phase property on NSEvent or NSGestureRecognizer instead."]
     pub const EndGesture: Self = Self(20);
     #[doc(alias = "NSEventTypeSmartMagnify")]
     pub const SmartMagnify: Self = Self(32);
@@ -252,8 +254,10 @@ bitflags::bitflags! {
         #[doc(alias = "NSEventMaskRotate")]
         const Rotate = 1<<NSEventType::Rotate.0;
         #[doc(alias = "NSEventMaskBeginGesture")]
+#[deprecated = "NSEventMaskBeginGesture is no longer delivered. Use the phase property on NSEvent or NSGestureRecognizer instead."]
         const BeginGesture = 1<<NSEventType::BeginGesture.0;
         #[doc(alias = "NSEventMaskEndGesture")]
+#[deprecated = "NSEventMaskEndGesture is no longer delivered. Use the phase property on NSEvent or NSGestureRecognizer instead."]
         const EndGesture = 1<<NSEventType::EndGesture.0;
         #[doc(alias = "NSEventMaskSmartMagnify")]
         const SmartMagnify = 1<<NSEventType::SmartMagnify.0;
@@ -1053,6 +1057,10 @@ impl NSEvent {
         #[unsafe(method(pressureBehavior))]
         #[unsafe(method_family = none)]
         pub fn pressureBehavior(&self) -> NSPressureBehavior;
+
+        #[unsafe(method(isTouchSwipeNavigationEnabled))]
+        #[unsafe(method_family = none)]
+        pub fn isTouchSwipeNavigationEnabled() -> bool;
 
         #[unsafe(method(isSwipeTrackingFromScrollEventsEnabled))]
         #[unsafe(method_family = none)]

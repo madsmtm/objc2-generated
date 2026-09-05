@@ -54,6 +54,9 @@ mod __PKStrokePath;
 #[cfg(feature = "PKStrokePoint")]
 #[path = "PKStrokePoint.rs"]
 mod __PKStrokePoint;
+#[cfg(feature = "PKStrokeRenderState")]
+#[path = "PKStrokeRenderState.rs"]
+mod __PKStrokeRenderState;
 #[cfg(feature = "PKTool")]
 #[path = "PKTool.rs"]
 mod __PKTool;
@@ -106,9 +109,13 @@ pub use self::__PKLassoTool::PKLassoTool;
 #[cfg(feature = "PKStroke")]
 pub use self::__PKStroke::PKStroke;
 #[cfg(feature = "PKStrokePath")]
+pub use self::__PKStrokePath::PKConvertedBezierPoint;
+#[cfg(feature = "PKStrokePath")]
 pub use self::__PKStrokePath::PKStrokePath;
 #[cfg(feature = "PKStrokePoint")]
 pub use self::__PKStrokePoint::PKStrokePoint;
+#[cfg(feature = "PKStrokeRenderState")]
+pub use self::__PKStrokeRenderState::PKStrokeRenderState;
 #[cfg(feature = "PKTool")]
 pub use self::__PKTool::PKTool;
 #[cfg(all(feature = "PKToolPickerEraserItem", feature = "PKToolPickerItem"))]

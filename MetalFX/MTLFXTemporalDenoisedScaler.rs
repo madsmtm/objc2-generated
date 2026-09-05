@@ -443,7 +443,13 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn motionTextureUsage(&self) -> MTLTextureUsage;
 
-        /// The minimal texture usage options that your app’s input reactive texture needs in order to support this denoiser scaler.
+        /// The minimal texture usage options that your app's input reactive mask texture needs in order to support this denoiser scaler.
+        #[unsafe(method(reactiveMaskTextureUsage))]
+        #[unsafe(method_family = none)]
+        unsafe fn reactiveMaskTextureUsage(&self) -> MTLTextureUsage;
+
+        /// The minimal texture usage options that your app's input reactive texture needs in order to support this denoiser scaler.
+        #[deprecated]
         #[unsafe(method(reactiveTextureUsage))]
         #[unsafe(method_family = none)]
         unsafe fn reactiveTextureUsage(&self) -> MTLTextureUsage;

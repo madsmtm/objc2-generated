@@ -685,6 +685,8 @@ pub use self::__IOUSBHostDefinitions::IOUSBHostMatchingPropertyKeySpeed;
 #[cfg(feature = "IOUSBHostDefinitions")]
 pub use self::__IOUSBHostDefinitions::IOUSBHostMatchingPropertyKeyVendorID;
 #[cfg(feature = "IOUSBHostDefinitions")]
+pub use self::__IOUSBHostDefinitions::IOUSBHostObjectDataOptions;
+#[cfg(feature = "IOUSBHostDefinitions")]
 pub use self::__IOUSBHostDefinitions::IOUSBHostObjectDestroyOptions;
 #[cfg(feature = "IOUSBHostDefinitions")]
 pub use self::__IOUSBHostDefinitions::IOUSBHostObjectInitOptions;

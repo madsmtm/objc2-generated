@@ -67,6 +67,20 @@ impl WKHTTPCookieStore {
         );
 
         #[cfg(feature = "block2")]
+        /// Fetches stored cookies that match the passed in URL.
+        ///
+        /// Parameter `url`: The URL to fetch the matching cookies for.
+        ///
+        /// Parameter `completionHandler`: A block to invoke with the fetched cookies.
+        #[unsafe(method(getCookiesForURL:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn getCookiesForURL_completionHandler(
+            &self,
+            url: &NSURL,
+            completion_handler: &block2::Block<'static, fn(NonNull<NSArray<NSHTTPCookie>>)>,
+        );
+
+        #[cfg(feature = "block2")]
         /// Set a cookie.
         ///
         /// Parameter `cookie`: The cookie to set.

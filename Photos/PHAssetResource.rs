@@ -22,10 +22,12 @@ extern_conformance!(
 impl PHAssetResource {
     extern_methods!(
         #[cfg(feature = "PhotosTypes")]
+        /// Describes the type of asset resource represented by this object, e.g. `photo`
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> PHAssetResourceType;
 
+        /// The local identifier of the asset associated with this asset resource
         #[unsafe(method(assetLocalIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetLocalIdentifier(&self) -> Retained<NSString>;
@@ -35,7 +37,7 @@ impl PHAssetResource {
         pub unsafe fn originalFilename(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
-        /// The type of data associated with this asset resource (the data can be retrieved via PHAssetResourceManager)
+        /// The content type of the data associated with this asset resource (the data can be retrieved via `PHAssetResourceManager`)
         #[unsafe(method(contentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentType(&self) -> Retained<UTType>;
@@ -53,6 +55,11 @@ impl PHAssetResource {
         #[unsafe(method_family = none)]
         pub unsafe fn pixelHeight(&self) -> NSInteger;
 
+        /// The size of the resource in bytes if known, `nil` if unavailable (may not be available until resource download/processing is complete)
+        #[unsafe(method(dataSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dataSize(&self) -> Option<Retained<NSNumber>>;
+
         #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
         #[unsafe(method(assetResourcesForAsset:))]
         #[unsafe(method_family = none)]
@@ -65,6 +72,19 @@ impl PHAssetResource {
         pub unsafe fn assetResourcesForLivePhoto(
             live_photo: &PHLivePhoto,
         ) -> Retained<NSArray<PHAssetResource>>;
+
+        #[cfg(all(feature = "PHAssetResourceUploadJob", feature = "PHObject"))]
+        /// Returns the asset resource associated with the given upload job.
+        ///
+        /// - Parameters:
+        /// - job: the upload job whose associated asset resource is returned
+        ///
+        /// - Returns: The asset resource associated with the upload job, or nil if the resource cannot be found.
+        #[unsafe(method(assetResourceForUploadJob:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn assetResourceForUploadJob(
+            job: &PHAssetResourceUploadJob,
+        ) -> Option<Retained<PHAssetResource>>;
     );
 }
 

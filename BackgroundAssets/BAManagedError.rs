@@ -16,10 +16,32 @@ extern "C" {
 extern "C" {
     /// The `-[NSError userInfo]` key for an asset pack’s identifier.
     ///
-    /// This key is relevant when the error code is ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound``.
+    /// This key is relevant when the error code is ``BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound``. Its value should be an `NSString` object.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackidentifiererrorkey?language=objc)
     pub static BAAssetPackIdentifierErrorKey: &'static NSErrorUserInfoKey;
+}
+
+extern "C" {
+    /// The `-[NSError userInfo]` key for the set of asset packs the local availability of which the system successfully ensured.
+    ///
+    /// This key is relevant when the error code is ``BAManagedErrorCode/BAManagedErrorCodeLocalAvailabilityFailure``. Its value should be an `NSSet
+    /// <BAAssetPack
+    /// *>` object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/basuccesseserrorkey?language=objc)
+    pub static BASuccessesErrorKey: &'static NSErrorUserInfoKey;
+}
+
+extern "C" {
+    /// The `-[NSError userInfo]` key for the set of asset packs the local availability of which the system couldn’t ensure and their respective associated underlying errors.
+    ///
+    /// This key is relevant when the error code is ``BAManagedErrorCode/BAManagedErrorCodeLocalAvailabilityFailure``. Its value should be an `NSDictionary
+    /// <BAAssetPack
+    /// *, NSError*>` object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bafailureserrorkey?language=objc)
+    pub static BAFailuresErrorKey: &'static NSErrorUserInfoKey;
 }
 
 /// An error code for a managed asset pack.
@@ -30,16 +52,21 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BAManagedErrorCode(pub NSInteger);
 impl BAManagedErrorCode {
-    /// An error code that indicates the system can’t find an asset pack with the given identifier.
+    /// An error code that indicates the system couldn’t find an asset pack with the given identifier.
     ///
-    /// Refer to the value in `-[NSError userInfo]` for the key `BAAssetPackIdentifierErrorKey` for the asset pack’s identifier.
+    /// Refer to the value in `-[NSError userInfo]` for the key ``BAAssetPackIdentifierErrorKey`` for the asset pack’s identifier.
     #[doc(alias = "BAManagedErrorCodeAssetPackNotFound")]
     pub const AssetPackNotFound: Self = Self(0);
-    /// An error code that indicates the system can’t find a file at the specified path.
+    /// An error code that indicates the system couldn’t find a file at the specified path.
     ///
     /// Refer to the value in `-[NSError userInfo]` for the key `NSFilePathErrorKey` for the file path.
     #[doc(alias = "BAManagedErrorCodeFileNotFound")]
     pub const FileNotFound: Self = Self(1);
+    /// An error code that indicates that the system couldn’t ensure the local availability of some or all of the requested asset packs.
+    ///
+    /// Refer to the values in `-[NSError userInfo]` for the keys ``BASuccessesErrorKey`` and ``BAFailuresErrorKey`` for, respectively, the asset packs the local availability of which the system ensured successfully and the asset packs the local availability of which the system couldn’t ensure with associated underlying errors for the latter.
+    #[doc(alias = "BAManagedErrorCodeLocalAvailabilityFailure")]
+    pub const LocalAvailabilityFailure: Self = Self(2);
 }
 
 unsafe impl Encode for BAManagedErrorCode {

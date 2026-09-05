@@ -101,12 +101,3 @@ impl ARRaycastQuery {
         pub unsafe fn targetAlignment(&self) -> ARRaycastTargetAlignment;
     );
 }
-
-/// Methods declared on superclass `NSObject`.
-#[cfg(feature = "objc2")]
-impl ARRaycastQuery {
-    extern_methods!(
-        // +new (unavailable)
-
-    );
-}

@@ -24,6 +24,9 @@ extern "C" {}
 #[cfg(feature = "MPSCore")]
 #[path = "MPSCore/mod.rs"]
 mod __MPSCore;
+#[cfg(feature = "MPSFunctions")]
+#[path = "MPSFunctions/mod.rs"]
+mod __MPSFunctions;
 #[cfg(feature = "MPSImage")]
 #[path = "MPSImage/mod.rs"]
 mod __MPSImage;
@@ -42,6 +45,8 @@ mod __MPSRayIntersector;
 
 #[cfg(feature = "MPSCore")]
 pub use self::__MPSCore::*;
+#[cfg(feature = "MPSFunctions")]
+pub use self::__MPSFunctions::*;
 #[cfg(feature = "MPSImage")]
 pub use self::__MPSImage::*;
 #[cfg(feature = "MPSMatrix")]

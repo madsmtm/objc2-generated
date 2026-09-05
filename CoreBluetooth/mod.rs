@@ -177,6 +177,12 @@ pub use self::__CBManager::CBManagerState;
 #[cfg(feature = "CBPeer")]
 pub use self::__CBPeer::CBPeer;
 #[cfg(feature = "CBPeripheral")]
+pub use self::__CBPeripheral::CBChannelSoundingProcedureResults;
+#[cfg(feature = "CBPeripheral")]
+pub use self::__CBPeripheral::CBChannelSoundingSessionConfiguration;
+#[cfg(feature = "CBPeripheral")]
+pub use self::__CBPeripheral::CBChannelSoundingSessionConfigurationRole;
+#[cfg(feature = "CBPeripheral")]
 pub use self::__CBPeripheral::CBCharacteristicWriteType;
 #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
 pub use self::__CBPeripheral::CBPeripheral;

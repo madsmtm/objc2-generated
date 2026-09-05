@@ -38,6 +38,31 @@ unsafe impl RefEncode for UITabBarControllerSidebarLayout {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollersidebarplacement?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UITabBarControllerSidebarPlacement(pub NSInteger);
+impl UITabBarControllerSidebarPlacement {
+    /// The system determines the appropriate placement.
+    #[doc(alias = "UITabBarControllerSidebarPlacementAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// Display the sidebar when it is supported.
+    #[doc(alias = "UITabBarControllerSidebarPlacementSidebar")]
+    pub const Sidebar: Self = Self(1);
+    /// Display the tab bar.
+    #[doc(alias = "UITabBarControllerSidebarPlacementTabBar")]
+    pub const TabBar: Self = Self(2);
+}
+
+unsafe impl Encode for UITabBarControllerSidebarPlacement {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UITabBarControllerSidebarPlacement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabsidebarscrolltarget?language=objc)
     #[unsafe(super(NSObject))]
@@ -112,6 +137,36 @@ impl UITabBarControllerSidebar {
         pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UITabBarControllerSidebarDelegate>>,
+        );
+
+        /// Indicates when the tab sidebar is available to be displayed in the current context. When available, the sidebar is either visible, or
+        /// can become visible depending on `isHidden`. Use this property to gate behaviors or UI that is dependent on the availability of
+        /// the sidebar (like child tabs, or landing pages for groups).
+        ///
+        /// Implement the delegate method `tabBarController:sidebarAvailabilityDidChange:` to be notified when the value of this property changes.
+        #[unsafe(method(isAvailable))]
+        #[unsafe(method_family = none)]
+        pub fn isAvailable(&self) -> bool;
+
+        /// The preferred placement for the tab bar controller when the sidebar and tab bar
+        /// are mutually exclusive, and only one placement can be displayed.
+        ///
+        /// When set to `UITabBarControllerSidebarPlacementAutomatic`, the system
+        /// resolves to the platform default. On iOS, this resolves to showing the tab bar by default.
+        /// This property has no effect on platforms where multiple placements are supported, like
+        /// on iPadOS, where the sidebar can be minimized into the top tab bar.
+        ///
+        /// Default is `UITabBarControllerSidebarPlacementAutomatic`.
+        #[unsafe(method(preferredPlacement))]
+        #[unsafe(method_family = none)]
+        pub fn preferredPlacement(&self) -> UITabBarControllerSidebarPlacement;
+
+        /// Setter for [`preferredPlacement`][Self::preferredPlacement].
+        #[unsafe(method(setPreferredPlacement:))]
+        #[unsafe(method_family = none)]
+        pub fn setPreferredPlacement(
+            &self,
+            preferred_placement: UITabBarControllerSidebarPlacement,
         );
 
         /// Determines if the sidebar is currently hidden.
@@ -243,6 +298,21 @@ extern_protocol!(
     pub unsafe trait UITabBarControllerSidebarDelegate:
         NSObjectProtocol + MainThreadOnly
     {
+        #[cfg(all(
+            feature = "UIResponder",
+            feature = "UITabBarController",
+            feature = "UIViewController"
+        ))]
+        /// Notifies the delegate when `UITabBarController.Sidebar.isAvailable` changes.
+        #[optional]
+        #[unsafe(method(tabBarController:sidebarAvailabilityDidChange:))]
+        #[unsafe(method_family = none)]
+        fn tabBarController_sidebarAvailabilityDidChange(
+            &self,
+            tab_bar_controller: &UITabBarController,
+            sidebar: &UITabBarControllerSidebar,
+        );
+
         #[cfg(all(
             feature = "UIResponder",
             feature = "UITabBarController",

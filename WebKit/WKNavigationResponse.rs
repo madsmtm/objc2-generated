@@ -38,6 +38,12 @@ impl WKNavigationResponse {
         #[unsafe(method(canShowMIMEType))]
         #[unsafe(method_family = none)]
         pub unsafe fn canShowMIMEType(&self) -> bool;
+
+        #[cfg(feature = "WKNavigation")]
+        /// The most recent main frame navigation that took place that encompasses this navigation response.
+        #[unsafe(method(mainFrameNavigation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mainFrameNavigation(&self) -> Option<Retained<WKNavigation>>;
     );
 }
 

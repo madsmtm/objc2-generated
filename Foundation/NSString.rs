@@ -11,29 +11,54 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unichar?language=objc)
 pub type unichar = c_ushort;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringcompareoptions?language=objc)
+/// These options apply to the various search/find and comparison methods (except where noted).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringcompareoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringCompareOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringCompareOptions: NSUInteger {
+/// A case-insensitive search.
         #[doc(alias = "NSCaseInsensitiveSearch")]
         const CaseInsensitiveSearch = 1;
+/// Exact character-by-character equivalence.
         #[doc(alias = "NSLiteralSearch")]
         const LiteralSearch = 2;
+/// Search from end of source string.
         #[doc(alias = "NSBackwardsSearch")]
         const BackwardsSearch = 4;
+/// Search is limited to start (or end, if `NSBackwardsSearch`) of source string.
         #[doc(alias = "NSAnchoredSearch")]
         const AnchoredSearch = 8;
+/// Numbers within strings are compared using numeric value, that is, `Name2.txt`
+/// <
+/// `Name7.txt`
+/// <
+/// `Name25.txt`.
+///
+/// Numeric comparison only applies to the numerals in the string, not other characters that would have meaning in a numeric representation such as a negative sign, a comma, or a decimal point. This option only applies to compare methods, not find.
         #[doc(alias = "NSNumericSearch")]
         const NumericSearch = 64;
+/// Search ignores diacritic marks.
+///
+/// For example, 'o' is equal to 'o'.
         #[doc(alias = "NSDiacriticInsensitiveSearch")]
         const DiacriticInsensitiveSearch = 128;
+/// Search ignores width differences in characters that have full-width and half-width forms, as occurs in East Asian character sets.
+///
+/// For example, with this option, the full-width Latin small letter 'a' (`U+FF41`) is equal to the basic Latin small letter 'a' (`U+0061`).
         #[doc(alias = "NSWidthInsensitiveSearch")]
         const WidthInsensitiveSearch = 256;
+/// Comparisons are forced to return either `NSOrderedAscending` or `NSOrderedDescending` if the strings are equivalent but not strictly equal.
+///
+/// This option ensures reliable, reproducible results when sorting. For example, "aaa" is greater than "AAA" if `NSCaseInsensitiveSearch` is specified.
         #[doc(alias = "NSForcedOrderingSearch")]
         const ForcedOrderingSearch = 512;
+/// The search string is treated as an ICU-compatible regular expression.
+///
+/// If set, no other options can apply except `NSCaseInsensitiveSearch` and `NSAnchoredSearch`. You can use this option only with the `rangeOfString:` methods and `stringByReplacingOccurrencesOfString:withString:options:range:`.
         #[doc(alias = "NSRegularExpressionSearch")]
         const RegularExpressionSearch = 1024;
         const _ = !0;
@@ -48,65 +73,119 @@ unsafe impl RefEncode for NSStringCompareOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencoding?language=objc)
+/// The type for string encoding values.
+///
+/// In addition to the values explicitly listed below, `NSStringEncoding` supports encodings provided by CFString. See `CFStringEncodingExt.h` for a list of these encodings and `CFString.h` for functions which convert between `NSStringEncoding` and `CFStringEncoding`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencoding?language=objc)
 pub type NSStringEncoding = NSUInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsasciistringencoding?language=objc)
+/// Strict 7-bit ASCII encoding within 8-bit chars; ASCII values 0…127 only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsasciistringencoding?language=objc)
 pub const NSASCIIStringEncoding: NSStringEncoding = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextstepstringencoding?language=objc)
+/// 8-bit ASCII encoding with NEXTSTEP extensions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextstepstringencoding?language=objc)
 pub const NSNEXTSTEPStringEncoding: NSStringEncoding = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjapaneseeucstringencoding?language=objc)
+/// 8-bit EUC encoding for Japanese text.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjapaneseeucstringencoding?language=objc)
 pub const NSJapaneseEUCStringEncoding: NSStringEncoding = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf8stringencoding?language=objc)
+/// An 8-bit representation of Unicode characters, suitable for transmission or storage by ASCII-based systems.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf8stringencoding?language=objc)
 pub const NSUTF8StringEncoding: NSStringEncoding = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisolatin1stringencoding?language=objc)
+/// 8-bit ISO Latin 1 encoding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisolatin1stringencoding?language=objc)
 pub const NSISOLatin1StringEncoding: NSStringEncoding = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssymbolstringencoding?language=objc)
+/// 8-bit Adobe Symbol encoding vector.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssymbolstringencoding?language=objc)
 pub const NSSymbolStringEncoding: NSStringEncoding = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonlossyasciistringencoding?language=objc)
+/// 7-bit verbose ASCII to represent all Unicode characters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonlossyasciistringencoding?language=objc)
 pub const NSNonLossyASCIIStringEncoding: NSStringEncoding = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshiftjisstringencoding?language=objc)
+/// 8-bit Shift-JIS encoding for Japanese text.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshiftjisstringencoding?language=objc)
 pub const NSShiftJISStringEncoding: NSStringEncoding = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisolatin2stringencoding?language=objc)
+/// 8-bit ISO Latin 2 encoding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisolatin2stringencoding?language=objc)
 pub const NSISOLatin2StringEncoding: NSStringEncoding = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunicodestringencoding?language=objc)
+/// The canonical Unicode encoding for string objects.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunicodestringencoding?language=objc)
 pub const NSUnicodeStringEncoding: NSStringEncoding = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1251stringencoding?language=objc)
+/// Microsoft Windows codepage 1251, encoding Cyrillic characters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1251stringencoding?language=objc)
 pub const NSWindowsCP1251StringEncoding: NSStringEncoding = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1252stringencoding?language=objc)
+/// Microsoft Windows codepage 1252; equivalent to WinLatin1.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1252stringencoding?language=objc)
 pub const NSWindowsCP1252StringEncoding: NSStringEncoding = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1253stringencoding?language=objc)
+/// Microsoft Windows codepage 1253, encoding Greek characters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1253stringencoding?language=objc)
 pub const NSWindowsCP1253StringEncoding: NSStringEncoding = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1254stringencoding?language=objc)
+/// Microsoft Windows codepage 1254, encoding Turkish characters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1254stringencoding?language=objc)
 pub const NSWindowsCP1254StringEncoding: NSStringEncoding = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1250stringencoding?language=objc)
+/// Microsoft Windows codepage 1250; equivalent to WinLatin2.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1250stringencoding?language=objc)
 pub const NSWindowsCP1250StringEncoding: NSStringEncoding = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso2022jpstringencoding?language=objc)
+/// ISO 2022 Japanese encoding for electronic mail.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso2022jpstringencoding?language=objc)
 pub const NSISO2022JPStringEncoding: NSStringEncoding = 21;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmacosromanstringencoding?language=objc)
+/// Classic Macintosh Roman encoding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmacosromanstringencoding?language=objc)
 pub const NSMacOSRomanStringEncoding: NSStringEncoding = 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16stringencoding?language=objc)
+/// An alias for ``NSUnicodeStringEncoding``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16stringencoding?language=objc)
 pub const NSUTF16StringEncoding: NSStringEncoding = NSUnicodeStringEncoding;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16bigendianstringencoding?language=objc)
+/// ``NSUTF16StringEncoding`` encoding with explicit big-endian byte order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16bigendianstringencoding?language=objc)
 pub const NSUTF16BigEndianStringEncoding: NSStringEncoding = 0x90000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16littleendianstringencoding?language=objc)
+/// ``NSUTF16StringEncoding`` encoding with explicit little-endian byte order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16littleendianstringencoding?language=objc)
 pub const NSUTF16LittleEndianStringEncoding: NSStringEncoding = 0x94000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32stringencoding?language=objc)
+/// 32-bit UTF encoding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32stringencoding?language=objc)
 pub const NSUTF32StringEncoding: NSStringEncoding = 0x8c000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32bigendianstringencoding?language=objc)
+/// ``NSUTF32StringEncoding`` encoding with explicit big-endian byte order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32bigendianstringencoding?language=objc)
 pub const NSUTF32BigEndianStringEncoding: NSStringEncoding = 0x98000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32littleendianstringencoding?language=objc)
+/// ``NSUTF32StringEncoding`` encoding with explicit little-endian byte order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32littleendianstringencoding?language=objc)
 pub const NSUTF32LittleEndianStringEncoding: NSStringEncoding = 0x9c000100;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingconversionoptions?language=objc)
+/// Options for converting string encodings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingconversionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringEncodingConversionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringEncodingConversionOptions: NSUInteger {
+/// Allows lossy conversion.
         #[doc(alias = "NSStringEncodingConversionAllowLossy")]
         const AllowLossy = 1;
+/// Specifies an external representation (with a byte-order mark, if necessary, to indicate endianness).
         #[doc(alias = "NSStringEncodingConversionExternalRepresentation")]
         const ExternalRepresentation = 2;
         const _ = !0;
@@ -122,7 +201,66 @@ unsafe impl RefEncode for NSStringEncodingConversionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring?language=objc)
+    /// A static, plain-text Unicode string object.
+    ///
+    /// You can use this type in Swift when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// The ``NSString`` class and its mutable subclass, ``NSMutableString``, provide an extensive set of APIs for working with strings, including methods for comparing, searching, and modifying strings. ``NSString`` objects are used throughout Foundation and other Cocoa frameworks, serving as the basis for all textual and linguistic functionality on the platform.
+    ///
+    /// ``NSString`` is _toll-free bridged_ with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring>. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// ### String Objects
+    ///
+    /// An ``NSString`` object encodes a Unicode-compliant text string, represented as a sequence of UTF–16 code units. All lengths, character indexes, and ranges are expressed in terms of 16-bit platform-endian values, with index values starting at `0`.
+    ///
+    /// An ``NSString`` object can be initialized from or written to a C buffer, an ``NSData`` object, or the contents of an ``NSURL``. It can also be encoded and decoded to and from ASCII, UTF–8, UTF–16, UTF–32, or any other string encoding represented by ``NSStringEncoding``.
+    ///
+    /// > Note:
+    /// > An immutable string is a text string that is defined when it is created and subsequently cannot be changed. An immutable string is implemented as an array of UTF–16 code units (in other words, a text string). To create and manage an immutable string, use the ``NSString`` class. To construct and manage a string that can be changed after it has been created, use ``NSMutableString``.
+    ///
+    /// The objects you create using ``NSString`` and ``NSMutableString`` are referred to as string objects (or, when no confusion will result, merely as strings). The term C string refers to the standard `char *` type.
+    ///
+    /// Because of the nature of class clusters, string objects aren't actual instances of the ``NSString`` or ``NSMutableString`` classes but of one of their private subclasses. Although a string object's class is private, its interface is public, as declared by these abstract superclasses, ``NSString`` and ``NSMutableString``. The string classes adopt the ``NSCopying`` and ``NSMutableCopying`` protocols, making it convenient to convert a string of one type to the other.
+    ///
+    /// #### Understanding Characters
+    ///
+    /// A string object presents itself as a sequence of UTF–16 code units. You can determine how many UTF-16 code units a string object contains with the ``length`` method and can retrieve a specific UTF-16 code unit with the ``character(at:)`` method. These two "primitive" methods provide basic access to a string object.
+    ///
+    /// Most use of strings, however, is at a higher level, with the strings being treated as single entities: You compare strings against one another, search them for substrings, combine them into new strings, and so on. If you need to access string objects character by character, you must understand the Unicode character encoding, specifically issues related to composed character sequences. For details see _The Unicode Standard, Version 4.0_ (The Unicode Consortium, Boston: Addison-Wesley, 2003, ISBN 0-321-18578-1) and the Unicode Consortium web site: [http://www.unicode.org/](http://www.unicode.org/). See also [Characters and Grapheme Clusters](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/stringsClusters.html#//apple_ref/doc/uid/TP40008025) in [String Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/introStrings.html#//apple_ref/doc/uid/10000035i).
+    ///
+    /// Localized string comparisons are based on the Unicode Collation Algorithm, as tailored for different languages by CLDR (Common Locale Data Repository). Both are projects of the Unicode Consortium. Unicode is a registered trademark of Unicode, Inc.
+    ///
+    /// #### Interpreting UTF-16-Encoded Data
+    ///
+    /// When creating an `NSString` object from a UTF-16-encoded string (or a byte stream interpreted as UTF-16), if the byte order is not otherwise specified, `NSString` assumes that the UTF-16 characters are big-endian, unless there is a BOM (byte-order mark), in which case the BOM dictates the byte order. When creating an `NSString` object from an array of `unichar` values, the returned string is always native-endian, since the array always contains UTF–16 code units in native byte order.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// It is possible to subclass ``NSString`` (and ``NSMutableString``), but doing so requires providing storage facilities for the string (which is not inherited by subclasses) and implementing two primitive methods. The abstract ``NSString`` and ``NSMutableString`` classes are the public interface of a class cluster consisting mostly of private, concrete classes that create and return a string object appropriate for a given situation. Making your own concrete subclass of this cluster imposes certain requirements (discussed in
+    /// <doc
+    /// :#Methods-to-Override>).
+    ///
+    /// Make sure your reasons for subclassing ``NSString`` are valid. Instances of your subclass should represent a string and not something else. Thus the only attributes the subclass should have are the length of the character buffer it's managing and access to individual characters in the buffer. Valid reasons for making a subclass of ``NSString`` include providing a different backing store (perhaps for better performance) or implementing some aspect of object behavior differently, such as memory management. If your purpose is to add non-essential attributes or metadata to your subclass of ``NSString``, a better alternative would be object composition (see
+    /// <doc
+    /// :#Alternatives-to-Subclassing>). Cocoa already provides an example of this with the ``NSAttributedString`` class.
+    ///
+    /// #### Methods to Override
+    ///
+    /// Any subclass of `NSString`   _must_ override the primitive instance methods ``length`` and ``character(at:)``. These methods must operate on the backing store that you provide for the characters of the string. For this backing store you can use a static array, a dynamically allocated buffer, a standard `NSString` object, or some other data type or mechanism. You may also choose to override, partially or fully, any other `NSString` method for which you want to provide an alternative implementation. For example, for better performance it is recommended that you override ``getCharacters(_:range:)`` and give it a faster implementation.
+    ///
+    /// You might want to implement an initializer for your subclass that is suited to the backing store that the subclass is managing. The `NSString` class does not have a designated initializer, so your initializer need only invoke the
+    /// <doc
+    /// ://com.apple.documentation/documentation/objectivec/nsobject-swift.class/init()> method of `super`. The `NSString` class adopts the ``NSCopying``, ``NSMutableCopying``, and ``NSCoding`` protocols; if you want instances of your own custom subclass created from copying or coding, override the methods in these protocols.
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// Often a better and easier alternative to making a subclass of `NSString`—or of any other abstract, public class of a class cluster, for that matter—is object composition. This is especially the case when your intent is to add to the subclass metadata or some other attribute that is not essential to a string object. In object composition, you would have an `NSString` object as one instance variable of your custom class (typically a subclass of `NSObject`) and one or more instance variables that store the metadata that you want for the custom object. Then just design your subclass interface to include accessor methods for the embedded string object and the metadata.
+    ///
+    /// If the behavior you want to add supplements that of the existing class, you could write a category on `NSString`. Keep in mind, however, that this category will be in effect for all instances of `NSString` that you use, and this might have unintended consequences.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSString;
@@ -180,14 +318,35 @@ extern_conformance!(
 
 impl NSString {
     extern_methods!(
+        /// The number of UTF-16 code units in the receiver.
+        ///
+        /// This number includes the individual characters of composed character sequences, so you cannot use this property to determine if a string will be visible when printed or how long it will appear.
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub fn length(&self) -> NSUInteger;
 
+        /// Returns the character at a given UTF-16 code unit index.
+        ///
+        ///
+        /// Parameter `index`: The index of the character to retrieve. Raises an `NSRangeException` if
+        /// `index`lies beyond the end of the receiver.
+        ///
+        /// Returns: The character at the array position given by
+        /// `index.`
+        /// You should always use the
+        /// `rangeOfComposedCharacterSequenceAtIndex:`or
+        /// `rangeOfComposedCharacterSequencesForRange:`method to determine character boundaries,
+        /// so that any surrogate pairs or character clusters are handled correctly.
         #[unsafe(method(characterAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn characterAtIndex(&self, index: NSUInteger) -> unichar;
 
+        /// Returns an initialized
+        /// `NSString`object that contains no characters.
+        ///
+        ///
+        /// Returns: An initialized
+        /// `NSString`object that contains no characters. The returned object may be different from the original receiver.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -210,7 +369,11 @@ impl DefaultRetained for NSString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringenumerationoptions?language=objc)
+/// Constants to specify kinds of substrings and styles of enumeration.
+///
+/// These options are used with the ``NSString/enumerateSubstrings(in:options:using:)`` method. Pass in one `NSStringEnumerationBy...` option and combine with any of the remaining enumeration style constants using the C bitwise `OR` operator.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -249,107 +412,191 @@ unsafe impl RefEncode for NSStringEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransform?language=objc)
+/// Constants representing an ICU string transform.
+///
+/// These constants are used by the `NSString` method `stringByApplyingTransform:reverse:`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransform?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSStringTransform = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintokatakana?language=objc)
+    /// A transform that converts Latin script to Katakana.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintokatakana?language=objc)
     pub static NSStringTransformLatinToKatakana: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintohiragana?language=objc)
+    /// A transform that converts Latin script to Hiragana.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintohiragana?language=objc)
     pub static NSStringTransformLatinToHiragana: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintohangul?language=objc)
+    /// A transform that converts Latin script to Hangul.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintohangul?language=objc)
     pub static NSStringTransformLatinToHangul: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintoarabic?language=objc)
+    /// A transform that converts Latin script to Arabic.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintoarabic?language=objc)
     pub static NSStringTransformLatinToArabic: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintohebrew?language=objc)
+    /// A transform that converts Latin script to Hebrew.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintohebrew?language=objc)
     pub static NSStringTransformLatinToHebrew: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintothai?language=objc)
+    /// A transform that converts Latin script to Thai.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintothai?language=objc)
     pub static NSStringTransformLatinToThai: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintocyrillic?language=objc)
+    /// A transform that converts Latin script to Cyrillic.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintocyrillic?language=objc)
     pub static NSStringTransformLatinToCyrillic: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintogreek?language=objc)
+    /// A transform that converts Latin script to Greek.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformlatintogreek?language=objc)
     pub static NSStringTransformLatinToGreek: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformtolatin?language=objc)
+    /// A transform that converts text to Latin script.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformtolatin?language=objc)
     pub static NSStringTransformToLatin: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformmandarintolatin?language=objc)
+    /// A transform that converts Mandarin to Latin script.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformmandarintolatin?language=objc)
     pub static NSStringTransformMandarinToLatin: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformhiraganatokatakana?language=objc)
+    /// A transform that converts Hiragana to Katakana.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformhiraganatokatakana?language=objc)
     pub static NSStringTransformHiraganaToKatakana: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformfullwidthtohalfwidth?language=objc)
+    /// A transform that converts fullwidth characters to halfwidth.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformfullwidthtohalfwidth?language=objc)
     pub static NSStringTransformFullwidthToHalfwidth: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformtoxmlhex?language=objc)
+    /// A transform that converts characters to XML hex escape codes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformtoxmlhex?language=objc)
     pub static NSStringTransformToXMLHex: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformtounicodename?language=objc)
+    /// A transform that converts characters to their Unicode names.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformtounicodename?language=objc)
     pub static NSStringTransformToUnicodeName: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformstripcombiningmarks?language=objc)
+    /// A transform that strips combining marks (accents or diacritics).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformstripcombiningmarks?language=objc)
     pub static NSStringTransformStripCombiningMarks: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformstripdiacritics?language=objc)
+    /// A transform that strips diacritics from the string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringtransformstripdiacritics?language=objc)
     pub static NSStringTransformStripDiacritics: &'static NSStringTransform;
 }
 
 /// NSStringExtensionMethods.
 impl NSString {
     extern_methods!(
+        /// Returns a new string containing the characters of the receiver from the one at a given index to the end.
+        ///
+        ///
+        /// Parameter `from`: An index. The value must lie within the bounds of the receiver, or be equal to the length of the receiver.
+        /// Raises an
+        /// `NSRangeException`if (
+        /// `anIndex`- 1) lies beyond the end of the receiver.
+        ///
+        /// Returns: A new string containing the characters of the receiver from the one at
+        /// `anIndex`to the end.
+        /// If
+        /// `anIndex`is equal to the length of the string, returns an empty string.
         #[unsafe(method(substringFromIndex:))]
         #[unsafe(method_family = none)]
         pub fn substringFromIndex(&self, from: NSUInteger) -> Retained<NSString>;
 
+        /// Returns a new string containing the characters of the receiver up to, but not including, the one at a given index.
+        ///
+        ///
+        /// Parameter `to`: An index. The value must lie within the bounds of the receiver, or be equal to the length of the receiver.
+        /// Raises an
+        /// `NSRangeException`if (
+        /// `anIndex`- 1) lies beyond the end of the receiver.
+        ///
+        /// Returns: A new string containing the characters of the receiver up to, but not including, the one at
+        /// `anIndex.`If
+        /// `anIndex`is equal to the length of the string, returns a copy of the receiver.
         #[unsafe(method(substringToIndex:))]
         #[unsafe(method_family = none)]
         pub fn substringToIndex(&self, to: NSUInteger) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
+        /// Returns a string object containing the characters of the receiver that lie within a given range.
+        ///
+        ///
+        /// Parameter `range`: A range. The range must not exceed the bounds of the receiver.
+        /// Raises an
+        /// `NSRangeException`if any part of
+        /// `range`lies beyond the bounds of the receiver.
+        ///
+        /// Returns: A string object containing the characters of the receiver that lie within
+        /// `aRange.`
         #[unsafe(method(substringWithRange:))]
         #[unsafe(method_family = none)]
         pub fn substringWithRange(&self, range: NSRange) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
+        /// Copies characters from a given range in the receiver into a given buffer.
+        ///
+        ///
+        /// Parameter `buffer`: Upon return, contains the characters from the receiver.
+        /// `buffer`must be large enough
+        /// to contain the characters in the range
+        /// `aRange`(
+        /// `aRange.length*sizeof(unichar)).`This method does not add a
+        /// `NULL`character.
+        ///
+        /// Parameter `range`: The range of characters to retrieve. The range must not exceed the bounds of the receiver.
+        /// Raises an
+        /// `NSRangeException`if any part of
+        /// `aRange`lies beyond the bounds of the receiver.
+        ///
         /// # Safety
         ///
         /// `buffer` must be a valid pointer.
@@ -358,11 +605,33 @@ impl NSString {
         pub unsafe fn getCharacters_range(&self, buffer: NonNull<unichar>, range: NSRange);
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Returns the result of invoking
+        /// `compare:options:range:`with no options and the receiver's full extent as the range.
+        ///
+        ///
+        /// Parameter `string`: The string with which to compare the receiver. This value must not be
+        /// `nil.`
+        /// Returns: The lexical ordering.
+        /// `NSOrderedAscending`if the receiver precedes
+        /// `aString`in lexical ordering,
+        /// `NSOrderedSame`if the receiver and
+        /// `aString`are equivalent in lexical value,
+        /// and
+        /// `NSOrderedDescending`if the receiver follows
+        /// `aString.`
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         pub fn compare(&self, string: &NSString) -> NSComparisonResult;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Compares the string with the specified string using the given options.
+        ///
+        ///
+        /// Parameter `string`: The string with which to compare the receiver. This value must not be
+        /// `nil.`
+        /// Parameter `mask`: Options for the search---you can combine any of the following using a C bitwise OR operator:
+        /// `NSCaseInsensitiveSearch,``NSLiteralSearch,``NSNumericSearch.`
+        /// Returns: The lexical ordering.
         #[unsafe(method(compare:options:))]
         #[unsafe(method_family = none)]
         pub fn compare_options(
@@ -372,6 +641,19 @@ impl NSString {
         ) -> NSComparisonResult;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange"))]
+        /// Returns the result of invoking
+        /// `compare:options:range:locale:`with a
+        /// `nil`locale.
+        ///
+        ///
+        /// Parameter `string`: The string with which to compare the range of the receiver specified by
+        /// `range.`This value must not be
+        /// `nil.`
+        /// Parameter `mask`: Options for the search.
+        ///
+        /// Parameter `rangeOfReceiverToCompare`: The range of the receiver over which to perform the comparison. The range must not exceed the bounds of the receiver.
+        ///
+        /// Returns: The lexical ordering.
         #[unsafe(method(compare:options:range:))]
         #[unsafe(method_family = none)]
         pub fn compare_options_range(
@@ -382,6 +664,22 @@ impl NSString {
         ) -> NSComparisonResult;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange"))]
+        /// Compares the string using the specified options and returns the lexical ordering for the range.
+        ///
+        ///
+        /// Parameter `string`: The string with which to compare the range of the receiver. This value must not be
+        /// `nil.`
+        /// Parameter `mask`: Options for the search.
+        ///
+        /// Parameter `rangeOfReceiverToCompare`: The range of the receiver over which to perform the comparison. The range must not exceed the bounds of the receiver.
+        ///
+        /// Parameter `locale`: An instance of
+        /// `NSLocale.`To use the current locale, pass
+        /// `[NSLocale`currentLocale].
+        /// To use the system locale, pass
+        /// `nil.`
+        /// Returns: The lexical ordering.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -396,37 +694,103 @@ impl NSString {
         ) -> NSComparisonResult;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Returns the result of invoking
+        /// `compare:options:`with
+        /// `NSCaseInsensitiveSearch`as the only option.
+        ///
+        ///
+        /// Parameter `string`: The string with which to compare the receiver.
+        ///
+        /// Returns: The lexical ordering.
         #[unsafe(method(caseInsensitiveCompare:))]
         #[unsafe(method_family = none)]
         pub fn caseInsensitiveCompare(&self, string: &NSString) -> NSComparisonResult;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Compares the string and a given string using a localized comparison.
+        ///
+        ///
+        /// Parameter `string`: The string with which to compare the receiver. This value must not be
+        /// `nil.`
+        /// Returns: The lexical ordering. This method uses the current locale.
         #[unsafe(method(localizedCompare:))]
         #[unsafe(method_family = none)]
         pub fn localizedCompare(&self, string: &NSString) -> NSComparisonResult;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Compares the string with a given string using a case-insensitive, localized, comparison.
+        ///
+        ///
+        /// Parameter `string`: The string with which to compare the receiver. This value must not be
+        /// `nil.`
+        /// Returns: The lexical ordering. This method uses the current locale.
         #[unsafe(method(localizedCaseInsensitiveCompare:))]
         #[unsafe(method_family = none)]
         pub fn localizedCaseInsensitiveCompare(&self, string: &NSString) -> NSComparisonResult;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Compares strings as sorted by the Finder.
+        ///
+        /// This method should be used whenever file names or other strings are presented in lists and tables
+        /// where Finder-like sorting is appropriate. The exact sorting behavior of this method is different
+        /// under different locales and may be changed in future releases. This method uses the current locale.
         #[unsafe(method(localizedStandardCompare:))]
         #[unsafe(method_family = none)]
         pub fn localizedStandardCompare(&self, string: &NSString) -> NSComparisonResult;
 
+        /// Returns a Boolean value that indicates whether a given string is equal to the receiver using a literal Unicode-based comparison.
+        ///
+        ///
+        /// Parameter `aString`: The string with which to compare the receiver.
+        ///
+        /// Returns: `YES`if
+        /// `aString`is equivalent to the receiver (if they have the same id or if they are
+        /// `NSOrderedSame`in a literal comparison), otherwise
+        /// `NO.`
+        /// When you know both objects are strings, this method is a faster way to check equality than
+        /// `isEqual:.`
         #[unsafe(method(isEqualToString:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToString(&self, a_string: &NSString) -> bool;
 
+        /// Returns a Boolean value that indicates whether a given string matches the beginning characters of the receiver.
+        ///
+        ///
+        /// Parameter `str`: A string.
+        ///
+        /// Returns: `YES`if
+        /// `aString`matches the beginning characters of the receiver, otherwise
+        /// `NO.`Returns
+        /// `NO`if
+        /// `aString`is empty.
         #[unsafe(method(hasPrefix:))]
         #[unsafe(method_family = none)]
         pub fn hasPrefix(&self, str: &NSString) -> bool;
 
+        /// Returns a Boolean value that indicates whether a given string matches the ending characters of the receiver.
+        ///
+        ///
+        /// Parameter `str`: A string.
+        ///
+        /// Returns: `YES`if
+        /// `aString`matches the ending characters of the receiver, otherwise
+        /// `NO.`Returns
+        /// `NO`if
+        /// `aString`is empty.
         #[unsafe(method(hasSuffix:))]
         #[unsafe(method_family = none)]
         pub fn hasSuffix(&self, str: &NSString) -> bool;
 
+        /// Returns a string containing characters the receiver and a given string have in common, starting from the beginning of each up to the first characters that aren't equivalent.
+        ///
+        ///
+        /// Parameter `str`: The string with which to compare the receiver.
+        ///
+        /// Parameter `mask`: Options for the comparison. The following search options may be specified by combining them
+        /// with the C bitwise OR operator:
+        /// `NSCaseInsensitiveSearch,``NSLiteralSearch.`
+        /// Returns: A string containing characters the receiver and
+        /// `aString`have in common.
         #[unsafe(method(commonPrefixWithString:options:))]
         #[unsafe(method_family = none)]
         pub fn commonPrefixWithString_options(
@@ -435,29 +799,87 @@ impl NSString {
             mask: NSStringCompareOptions,
         ) -> Retained<NSString>;
 
+        /// Returns a Boolean value indicating whether the string contains a given string by performing a case-sensitive, locale-unaware search.
+        ///
+        ///
+        /// Parameter `str`: The string to search for. This value must not be
+        /// `nil.`
+        /// Returns: `YES`if the receiver contains
+        /// `str,`otherwise
+        /// `NO.`
+        /// Calling this method is equivalent to calling
+        /// `rangeOfString:options:`with no options.
         #[unsafe(method(containsString:))]
         #[unsafe(method_family = none)]
         pub fn containsString(&self, str: &NSString) -> bool;
 
+        /// Returns a Boolean value indicating whether the string contains a given string by performing a case-insensitive, locale-aware search.
+        ///
+        ///
+        /// Parameter `str`: The string to search for. This value must not be
+        /// `nil.`
+        /// Returns: `YES`if the receiver contains
+        /// `str,`otherwise
+        /// `NO.`
         #[unsafe(method(localizedCaseInsensitiveContainsString:))]
         #[unsafe(method_family = none)]
         pub fn localizedCaseInsensitiveContainsString(&self, str: &NSString) -> bool;
 
+        /// Returns a Boolean value indicating whether the string contains a given string by performing a case and diacritic insensitive, locale-aware search.
+        ///
+        ///
+        /// Parameter `str`: The string to search for. This value must not be
+        /// `nil.`
+        /// Returns: `YES`if the receiver contains
+        /// `str,`otherwise
+        /// `NO.`
         #[unsafe(method(localizedStandardContainsString:))]
         #[unsafe(method_family = none)]
         pub fn localizedStandardContainsString(&self, str: &NSString) -> bool;
 
         #[cfg(feature = "NSRange")]
+        /// Finds and returns the range of the first occurrence of a given string within the string by performing a case and diacritic insensitive, locale-aware search.
+        ///
+        ///
+        /// Parameter `str`: The string to search for. This value must not be
+        /// `nil.`
+        /// Returns: The range of the first occurrence of
+        /// `str`in the receiver. Returns
+        /// `{NSNotFound,`0} if
+        /// `str`is not found.
         #[unsafe(method(localizedStandardRangeOfString:))]
         #[unsafe(method_family = none)]
         pub fn localizedStandardRangeOfString(&self, str: &NSString) -> NSRange;
 
         #[cfg(feature = "NSRange")]
+        /// Finds and returns the range of the first occurrence of a given string within the string.
+        ///
+        ///
+        /// Parameter `searchString`: The string to search for.
+        ///
+        /// Returns: An
+        /// `NSRange`structure giving the location and length in the receiver of the first occurrence of
+        /// `searchString.`Returns
+        /// `{NSNotFound,`0} if
+        /// `searchString`is not found or is empty.
         #[unsafe(method(rangeOfString:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfString(&self, search_string: &NSString) -> NSRange;
 
         #[cfg(feature = "NSRange")]
+        /// Finds and returns the range of the first occurrence of a given string within the string, subject to given options.
+        ///
+        ///
+        /// Parameter `searchString`: The string to search for.
+        ///
+        /// Parameter `mask`: A mask specifying search options. For possible values, see
+        /// `NSStringCompareOptions.`
+        /// Returns: An
+        /// `NSRange`structure giving the location and length in the receiver of the first occurrence of
+        /// `searchString,`modulo the options in
+        /// `mask.`Returns
+        /// `{NSNotFound,`0} if
+        /// `searchString`is not found or is empty.
         #[unsafe(method(rangeOfString:options:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfString_options(
@@ -467,6 +889,24 @@ impl NSString {
         ) -> NSRange;
 
         #[cfg(feature = "NSRange")]
+        /// Finds and returns the range of the first occurrence of a given string, within the given range of the string, subject to given options.
+        ///
+        ///
+        /// Parameter `searchString`: The string for which to search.
+        ///
+        /// Parameter `mask`: A mask specifying search options.
+        ///
+        /// Parameter `rangeOfReceiverToSearch`: The range within the receiver for which to search. Raises an
+        /// `NSRangeException`if the range is invalid.
+        ///
+        /// Returns: An
+        /// `NSRange`structure giving the location and length in the receiver of
+        /// `searchString`within
+        /// `rangeOfReceiverToSearch,`modulo the options in
+        /// `mask.`The range returned is relative to the start of the string.
+        /// Returns
+        /// `{NSNotFound,`0} if
+        /// `searchString`is not found or is empty.
         #[unsafe(method(rangeOfString:options:range:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfString_options_range(
@@ -477,6 +917,28 @@ impl NSString {
         ) -> NSRange;
 
         #[cfg(all(feature = "NSLocale", feature = "NSRange"))]
+        /// Finds and returns the range of the first occurrence of a given string within a given range of the string, subject to given options, using the specified locale, if any.
+        ///
+        ///
+        /// Parameter `searchString`: The string for which to search.
+        ///
+        /// Parameter `mask`: A mask specifying search options.
+        ///
+        /// Parameter `rangeOfReceiverToSearch`: The range within the receiver for which to search. Raises an
+        /// `NSRangeException`if the range is invalid.
+        ///
+        /// Parameter `locale`: The locale to use when comparing the receiver with
+        /// `aString.`To use the current locale, pass
+        /// `[NSLocale`currentLocale]. To use the system locale, pass
+        /// `nil.`
+        /// Returns: An
+        /// `NSRange`structure giving the location and length in the receiver of
+        /// `aString`within
+        /// `aRange,`modulo the options in
+        /// `mask.`The range returned is relative to the start of the string.
+        /// Returns
+        /// `{NSNotFound,`0} if
+        /// `aString`is not found or is empty.
         #[unsafe(method(rangeOfString:options:range:locale:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfString_options_range_locale(
@@ -488,11 +950,31 @@ impl NSString {
         ) -> NSRange;
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSRange"))]
+        /// Finds and returns the range in the string of the first character from a given character set.
+        ///
+        ///
+        /// Parameter `searchSet`: A character set. This value must not be
+        /// `nil.`
+        /// Returns: The range in the receiver of the first character found from
+        /// `aSet.`Returns a range of
+        /// `{NSNotFound,`0} if none of the characters in
+        /// `aSet`are found.
         #[unsafe(method(rangeOfCharacterFromSet:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfCharacterFromSet(&self, search_set: &NSCharacterSet) -> NSRange;
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSRange"))]
+        /// Finds and returns the range in the string of the first character, using given options, from a given character set.
+        ///
+        ///
+        /// Parameter `searchSet`: A character set. This value must not be
+        /// `nil.`
+        /// Parameter `mask`: A mask specifying search options. The following options may be combined:
+        /// `NSAnchoredSearch,``NSBackwardsSearch.`
+        /// Returns: The range in the receiver of the first character found from
+        /// `aSet.`Returns a range of
+        /// `{NSNotFound,`0} if none of the characters in
+        /// `aSet`are found.
         #[unsafe(method(rangeOfCharacterFromSet:options:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfCharacterFromSet_options(
@@ -502,6 +984,21 @@ impl NSString {
         ) -> NSRange;
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSRange"))]
+        /// Finds and returns the range in the string of the first character from a given character set found in a given range with given options.
+        ///
+        ///
+        /// Parameter `searchSet`: A character set. This value must not be
+        /// `nil.`
+        /// Parameter `mask`: A mask specifying search options. The following options may be combined:
+        /// `NSAnchoredSearch,``NSBackwardsSearch.`
+        /// Parameter `rangeOfReceiverToSearch`: The range in which to search.
+        /// `aRange`must not exceed the bounds of the receiver.
+        ///
+        /// Returns: The range in the receiver of the first character found from
+        /// `aSet`within
+        /// `aRange.`Returns a range of
+        /// `{NSNotFound,`0} if none of the characters in
+        /// `aSet`are found.
         #[unsafe(method(rangeOfCharacterFromSet:options:range:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfCharacterFromSet_options_range(
@@ -512,83 +1009,188 @@ impl NSString {
         ) -> NSRange;
 
         #[cfg(feature = "NSRange")]
+        /// Returns the range in the receiver of the composed character sequence located at a given index.
+        ///
+        ///
+        /// Parameter `index`: The index of a character in the receiver. The value must not exceed the bounds of the receiver.
+        ///
+        /// Returns: The range in the receiver of the composed character sequence located at
+        /// `anIndex.`
         #[unsafe(method(rangeOfComposedCharacterSequenceAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfComposedCharacterSequenceAtIndex(&self, index: NSUInteger) -> NSRange;
 
         #[cfg(feature = "NSRange")]
+        /// Returns the range in the string of the composed character sequences for a given range.
+        ///
+        ///
+        /// Parameter `range`: A range in the receiver. The range must not exceed the bounds of the receiver.
+        ///
+        /// Returns: The range in the receiver that includes the composed character sequences in
+        /// `range.`
+        /// This method provides a convenient way to grow a range to include all composed character sequences it overlaps.
         #[unsafe(method(rangeOfComposedCharacterSequencesForRange:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfComposedCharacterSequencesForRange(&self, range: NSRange) -> NSRange;
 
+        /// Returns a new string made by appending a given string to the receiver.
+        ///
+        ///
+        /// Parameter `aString`: The string to append to the receiver.
+        /// `aString`must not be
+        /// `nil.`
+        /// Returns: A new string made by appending
+        /// `aString`to the receiver.
         #[unsafe(method(stringByAppendingString:))]
         #[unsafe(method_family = none)]
         pub fn stringByAppendingString(&self, a_string: &NSString) -> Retained<NSString>;
 
+        /// The floating-point value of the string as a
+        /// `double.`
+        /// This property doesn't include any whitespace at the beginning of the string. This property is
+        /// `HUGE_VAL`or
+        /// `-HUGE_VAL`on overflow,
+        /// `0.0`on underflow. This property is
+        /// `0.0`if the string doesn't begin with a valid text representation of a floating-point number. Uses non-localized formatting information.
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
         pub fn doubleValue(&self) -> c_double;
 
+        /// The floating-point value of the string as a
+        /// `float.`
+        /// This property doesn't include whitespace at the beginning of the string. This property is
+        /// `HUGE_VAL`or
+        /// `-HUGE_VAL`on overflow,
+        /// `0.0`on underflow. This property is
+        /// `0.0`if the string doesn't begin with a valid text representation of a floating-point number. Uses non-localized formatting information.
         #[unsafe(method(floatValue))]
         #[unsafe(method_family = none)]
         pub fn floatValue(&self) -> c_float;
 
+        /// The integer value of the string.
+        ///
+        /// The integer value of the string, assuming a decimal representation and skipping whitespace at the beginning of the string. This property is
+        /// `INT_MAX`or
+        /// `INT_MIN`on overflow. This property is
+        /// `0`if the string doesn't begin with a valid decimal text representation of a number. Uses non-localized formatting information.
         #[unsafe(method(intValue))]
         #[unsafe(method_family = none)]
         pub fn intValue(&self) -> c_int;
 
+        /// The
+        /// `NSInteger`value of the string.
+        ///
+        /// The
+        /// `NSInteger`value of the string, assuming a decimal representation and skipping whitespace at the beginning of the string. This property is
+        /// `0`if the string doesn't begin with a valid decimal text representation of a number. Uses non-localized formatting information.
         #[unsafe(method(integerValue))]
         #[unsafe(method_family = none)]
         pub fn integerValue(&self) -> NSInteger;
 
+        /// The
+        /// `long``long`value of the string.
+        ///
+        /// The
+        /// `long``long`value of the string, assuming a decimal representation and skipping whitespace at the beginning of the string. This property is
+        /// `LLONG_MAX`or
+        /// `LLONG_MIN`on overflow. This property is
+        /// `0`if the receiver doesn't begin with a valid decimal text representation of a number. Uses non-localized formatting information.
         #[unsafe(method(longLongValue))]
         #[unsafe(method_family = none)]
         pub fn longLongValue(&self) -> c_longlong;
 
+        /// The Boolean value of the string.
+        ///
+        /// Returns
+        /// `YES`on encountering one of "Y", "y", "T", "t", or a digit 1-9---the method ignores any trailing characters. Returns
+        /// `NO`if the receiver doesn't begin with a valid decimal text representation of a number. Skips initial space characters (whitespaceSet), or optional -/+ sign followed by zeroes.
         #[unsafe(method(boolValue))]
         #[unsafe(method_family = none)]
         pub fn boolValue(&self) -> bool;
 
+        /// An uppercase representation of the string.
+        ///
+        /// This property performs the canonical (non-localized) mapping. It is suitable for programming operations that require stable results not depending on the current locale. Case transformations aren't guaranteed to be symmetrical or to produce strings of the same lengths as the originals.
         #[unsafe(method(uppercaseString))]
         #[unsafe(method_family = none)]
         pub fn uppercaseString(&self) -> Retained<NSString>;
 
+        /// A lowercase representation of the string.
+        ///
+        /// This property performs the canonical (non-localized) mapping. It is suitable for programming operations that require stable results not depending on the current locale. Case transformations aren't guaranteed to be symmetrical or to produce strings of the same lengths as the originals.
         #[unsafe(method(lowercaseString))]
         #[unsafe(method_family = none)]
         pub fn lowercaseString(&self) -> Retained<NSString>;
 
+        /// A capitalized representation of the string.
+        ///
+        /// A capitalized string is a string with the first character in each word changed to its corresponding uppercase value, and all remaining characters set to their corresponding lowercase values. This property performs the canonical (non-localized) mapping. Case transformations aren't guaranteed to be symmetrical or to produce strings of the same lengths as the originals.
         #[unsafe(method(capitalizedString))]
         #[unsafe(method_family = none)]
         pub fn capitalizedString(&self) -> Retained<NSString>;
 
+        /// Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
         #[unsafe(method(localizedUppercaseString))]
         #[unsafe(method_family = none)]
         pub fn localizedUppercaseString(&self) -> Retained<NSString>;
 
+        /// Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
         #[unsafe(method(localizedLowercaseString))]
         #[unsafe(method_family = none)]
         pub fn localizedLowercaseString(&self) -> Retained<NSString>;
 
+        /// Returns a capitalized representation of the receiver using the current locale.
         #[unsafe(method(localizedCapitalizedString))]
         #[unsafe(method_family = none)]
         pub fn localizedCapitalizedString(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSLocale")]
+        /// Returns a version of the string with all letters converted to uppercase, taking into account the specified locale.
+        ///
+        ///
+        /// Parameter `locale`: The locale. For strings presented to users, pass the current locale. To use the system locale, pass
+        /// `nil.`
         #[unsafe(method(uppercaseStringWithLocale:))]
         #[unsafe(method_family = none)]
         pub fn uppercaseStringWithLocale(&self, locale: Option<&NSLocale>) -> Retained<NSString>;
 
         #[cfg(feature = "NSLocale")]
+        /// Returns a version of the string with all letters converted to lowercase, taking into account the specified locale.
+        ///
+        ///
+        /// Parameter `locale`: The locale. For strings presented to users, pass the current locale. To use the system locale, pass
+        /// `nil.`
         #[unsafe(method(lowercaseStringWithLocale:))]
         #[unsafe(method_family = none)]
         pub fn lowercaseStringWithLocale(&self, locale: Option<&NSLocale>) -> Retained<NSString>;
 
         #[cfg(feature = "NSLocale")]
+        /// Returns a capitalized representation of the receiver using the specified locale.
+        ///
+        ///
+        /// Parameter `locale`: The locale. For strings presented to users, pass the current locale. To use the system locale, pass
+        /// `nil.`
         #[unsafe(method(capitalizedStringWithLocale:))]
         #[unsafe(method_family = none)]
         pub fn capitalizedStringWithLocale(&self, locale: Option<&NSLocale>) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
+        /// Returns by reference the beginning of the first line and the end of the last line touched by the given range.
+        ///
+        ///
+        /// Parameter `startPtr`: Upon return, contains the index of the first character of the line containing the beginning of
+        /// `aRange.`Pass
+        /// `NULL`if you do not need this value.
+        ///
+        /// Parameter `lineEndPtr`: Upon return, contains the index of the first character past the terminator of the line containing the end of
+        /// `aRange.`Pass
+        /// `NULL`if you do not need this value.
+        ///
+        /// Parameter `contentsEndPtr`: Upon return, contains the index of the first character of the terminator of the line containing the end of
+        /// `aRange.`Pass
+        /// `NULL`if you do not need this value.
+        ///
+        /// Parameter `range`: A range within the receiver. The value must not exceed the bounds of the receiver.
         #[unsafe(method(getLineStart:end:contentsEnd:forRange:))]
         #[unsafe(method_family = none)]
         pub fn getLineStart_end_contentsEnd_forRange(
@@ -600,11 +1202,34 @@ impl NSString {
         );
 
         #[cfg(feature = "NSRange")]
+        /// Returns the range of characters representing the line or lines containing a given range.
+        ///
+        ///
+        /// Parameter `range`: A range within the receiver. The value must not exceed the bounds of the receiver.
+        ///
+        /// Returns: The range of characters representing the line or lines containing
+        /// `aRange,`including the line termination characters.
         #[unsafe(method(lineRangeForRange:))]
         #[unsafe(method_family = none)]
         pub fn lineRangeForRange(&self, range: NSRange) -> NSRange;
 
         #[cfg(feature = "NSRange")]
+        /// Returns by reference the beginning of the first paragraph and the end of the last paragraph touched by the given range.
+        ///
+        ///
+        /// Parameter `startPtr`: Upon return, contains the index of the first character of the paragraph containing the beginning of
+        /// `aRange.`Pass
+        /// `NULL`if you do not need this value.
+        ///
+        /// Parameter `parEndPtr`: Upon return, contains the index of the first character past the terminator of the paragraph containing the end of
+        /// `aRange.`Pass
+        /// `NULL`if you do not need this value.
+        ///
+        /// Parameter `contentsEndPtr`: Upon return, contains the index of the first character of the terminator of the paragraph containing the end of
+        /// `aRange.`Pass
+        /// `NULL`if you do not need this value.
+        ///
+        /// Parameter `range`: A range within the receiver. The value must not exceed the bounds of the receiver.
         #[unsafe(method(getParagraphStart:end:contentsEnd:forRange:))]
         #[unsafe(method_family = none)]
         pub fn getParagraphStart_end_contentsEnd_forRange(
@@ -616,11 +1241,26 @@ impl NSString {
         );
 
         #[cfg(feature = "NSRange")]
+        /// Returns the range of characters representing the paragraph or paragraphs containing a given range.
+        ///
+        ///
+        /// Parameter `range`: A range within the receiver. The range must not exceed the bounds of the receiver.
+        ///
+        /// Returns: The range of characters representing the paragraph or paragraphs containing
+        /// `aRange,`including the paragraph termination characters.
         #[unsafe(method(paragraphRangeForRange:))]
         #[unsafe(method_family = none)]
         pub fn paragraphRangeForRange(&self, range: NSRange) -> NSRange;
 
         #[cfg(all(feature = "NSRange", feature = "block2"))]
+        /// Enumerates the substrings of the specified type in the specified range of the string.
+        ///
+        ///
+        /// Parameter `range`: The range within the string to enumerate substrings.
+        ///
+        /// Parameter `opts`: Options specifying types of substrings and enumeration styles.
+        ///
+        /// Parameter `block`: The block executed for the enumeration.
         #[unsafe(method(enumerateSubstringsInRange:options:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateSubstringsInRange_options_usingBlock(
@@ -633,6 +1273,10 @@ impl NSString {
 
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// Enumerates all the lines in the string.
+        ///
+        ///
+        /// Parameter `block`: The block executed for the enumeration. The block takes two arguments: the current line (without line terminators), and a stop flag.
         #[unsafe(method(enumerateLinesUsingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateLinesUsingBlock(
@@ -640,19 +1284,43 @@ impl NSString {
             block: &block2::Block<'static, fn(NonNull<NSString>, NonNull<Bool>)>,
         );
 
+        /// A null-terminated UTF8 representation of the string.
+        ///
+        /// This C string is a pointer to a structure inside the string object, which may have a lifetime shorter than the string object and will certainly not have a longer lifetime. Therefore, you should copy the C string if it needs to be stored outside of the memory context in which you use this property.
         #[unsafe(method(UTF8String))]
         #[unsafe(method_family = none)]
         pub fn UTF8String(&self) -> *const c_char;
 
+        /// The fastest encoding to which the receiver may be converted without loss of information.
+        ///
+        /// "Fastest" applies to retrieval of characters from the string. This encoding may not be space efficient.
         #[unsafe(method(fastestEncoding))]
         #[unsafe(method_family = none)]
         pub fn fastestEncoding(&self) -> NSStringEncoding;
 
+        /// The smallest encoding to which the receiver can be converted without loss of information.
+        ///
+        /// This encoding may not be the fastest for accessing characters, but is space-efficient. This property may take some time to access.
         #[unsafe(method(smallestEncoding))]
         #[unsafe(method_family = none)]
         pub fn smallestEncoding(&self) -> NSStringEncoding;
 
         #[cfg(feature = "NSData")]
+        /// Returns an
+        /// `NSData`object containing a representation of the receiver encoded using a given encoding.
+        ///
+        ///
+        /// Parameter `encoding`: A string encoding.
+        ///
+        /// Parameter `lossy`: If
+        /// `YES,`then allows characters to be removed or altered in conversion.
+        ///
+        /// Returns: An
+        /// `NSData`object containing a representation of the receiver encoded using
+        /// `encoding.`Returns
+        /// `nil`if
+        /// `flag`is
+        /// `NO`and the receiver can't be converted without losing some information.
         #[unsafe(method(dataUsingEncoding:allowLossyConversion:))]
         #[unsafe(method_family = none)]
         pub fn dataUsingEncoding_allowLossyConversion(
@@ -662,18 +1330,64 @@ impl NSString {
         ) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
+        /// Returns an
+        /// `NSData`object containing a representation of the receiver encoded using a given encoding.
+        ///
+        ///
+        /// Parameter `encoding`: A string encoding.
+        ///
+        /// Returns: The result of invoking
+        /// `dataUsingEncoding:allowLossyConversion:`with
+        /// `NO`as the second argument (that is, requiring lossless conversion).
         #[unsafe(method(dataUsingEncoding:))]
         #[unsafe(method_family = none)]
         pub fn dataUsingEncoding(&self, encoding: NSStringEncoding) -> Option<Retained<NSData>>;
 
+        /// Returns a Boolean value that indicates whether the receiver can be converted to a given encoding without loss of information.
+        ///
+        ///
+        /// Parameter `encoding`: A string encoding.
+        ///
+        /// Returns: `YES`if the receiver can be converted to
+        /// `encoding`without loss of information. Returns
+        /// `NO`if characters would have to be changed or deleted in the process of changing encodings.
         #[unsafe(method(canBeConvertedToEncoding:))]
         #[unsafe(method_family = none)]
         pub fn canBeConvertedToEncoding(&self, encoding: NSStringEncoding) -> bool;
 
+        /// Returns a representation of the string as a C string using a given encoding.
+        ///
+        ///
+        /// Parameter `encoding`: The encoding for the returned C string.
+        ///
+        /// Returns: A C string representation of the receiver using the encoding specified by
+        /// `encoding.`Returns
+        /// `NULL`if the receiver cannot be losslessly converted to
+        /// `encoding.`
+        /// The returned C string is guaranteed to be valid only until either the receiver is freed, or until the current memory is emptied, whichever occurs first. You should copy the C string or use
+        /// `getCString:maxLength:encoding:`if it needs to store the C string beyond this time.
         #[unsafe(method(cStringUsingEncoding:))]
         #[unsafe(method_family = none)]
         pub fn cStringUsingEncoding(&self, encoding: NSStringEncoding) -> *const c_char;
 
+        /// Converts the string to a given encoding and stores it in a buffer.
+        ///
+        ///
+        /// Parameter `buffer`: Upon return, contains the converted C-string plus the
+        /// `NULL`termination byte. The buffer must include room for
+        /// `maxBufferCount`bytes.
+        ///
+        /// Parameter `maxBufferCount`: The maximum number of bytes to write to
+        /// `buffer`(including the
+        /// `NULL`termination byte).
+        ///
+        /// Parameter `encoding`: The encoding for the returned C string.
+        ///
+        /// Returns: `YES`if the operation was successful, otherwise
+        /// `NO.`Returns
+        /// `NO`if conversion is not possible due to encoding errors or if
+        /// `buffer`is too small.
+        ///
         /// # Safety
         ///
         /// `buffer` must be a valid pointer.
@@ -687,6 +1401,29 @@ impl NSString {
         ) -> bool;
 
         #[cfg(feature = "NSRange")]
+        /// Gets a given range of characters as bytes in a specified encoding.
+        ///
+        ///
+        /// Parameter `buffer`: A buffer into which to store the bytes from the receiver. The returned bytes are not
+        /// `NULL-terminated.`
+        /// Parameter `maxBufferCount`: The maximum number of bytes to write to
+        /// `buffer.`
+        /// Parameter `usedBufferCount`: The number of bytes used from
+        /// `buffer.`Pass
+        /// `NULL`if you do not need this value.
+        ///
+        /// Parameter `encoding`: The encoding to use for the returned bytes.
+        ///
+        /// Parameter `options`: A mask to specify options to use for converting the receiver's contents to
+        /// `encoding.`
+        /// Parameter `range`: The range of characters in the receiver to get.
+        ///
+        /// Parameter `leftover`: The remaining range. Pass
+        /// `NULL`if you do not need this value.
+        ///
+        /// Returns: `YES`if some characters were converted, otherwise
+        /// `NO.`
+        ///
         /// # Safety
         ///
         /// - `buffer` must be a valid pointer or null.
@@ -704,43 +1441,90 @@ impl NSString {
             leftover: NSRangePointer,
         ) -> bool;
 
+        /// Returns the maximum number of bytes needed to store the receiver in a given encoding.
+        ///
+        ///
+        /// Parameter `enc`: The encoding for which to determine the receiver's length.
+        ///
+        /// Returns: The maximum number of bytes needed to store the receiver in
+        /// `encoding`in a non-external representation.
+        /// The length does not include space for a terminating
+        /// `NULL`character. Returns
+        /// `0`on error (overflow).
+        /// The result is an estimate and is returned in
+        /// `O(1)`time; the estimate may be considerably greater than the actual length needed.
         #[unsafe(method(maximumLengthOfBytesUsingEncoding:))]
         #[unsafe(method_family = none)]
         pub fn maximumLengthOfBytesUsingEncoding(&self, enc: NSStringEncoding) -> NSUInteger;
 
+        /// Returns the number of bytes required to store the receiver in a given encoding.
+        ///
+        ///
+        /// Parameter `enc`: The encoding for which to determine the receiver's length.
+        ///
+        /// Returns: The number of bytes required to store the receiver in the encoding
+        /// `enc`in a non-external representation.
+        /// The length does not include space for a terminating
+        /// `NULL`character. Returns
+        /// `0`on error.
+        /// The result is exact and is returned in
+        /// `O(n)`time.
         #[unsafe(method(lengthOfBytesUsingEncoding:))]
         #[unsafe(method_family = none)]
         pub fn lengthOfBytesUsingEncoding(&self, enc: NSStringEncoding) -> NSUInteger;
 
+        /// Returns a zero-terminated list of the encodings string objects support in the application's environment.
         #[unsafe(method(availableStringEncodings))]
         #[unsafe(method_family = none)]
         pub fn availableStringEncodings() -> NonNull<NSStringEncoding>;
 
+        /// Returns a human-readable string giving the name of a given encoding.
+        ///
+        ///
+        /// Parameter `encoding`: A string encoding.
+        ///
+        /// Returns: A human-readable string giving the name of
+        /// `encoding`in the current locale.
         #[unsafe(method(localizedNameOfStringEncoding:))]
         #[unsafe(method_family = none)]
         pub fn localizedNameOfStringEncoding(encoding: NSStringEncoding) -> Retained<NSString>;
 
+        /// Returns the C-string encoding assumed for any method accepting a C string as an argument.
+        ///
+        /// This property returns a user-dependent encoding whose value is derived from user's default language and potentially other factors. You might sometimes need to use this encoding when interpreting user documents with unknown encodings, in the absence of other hints, but in general this encoding should be used rarely, if at all.
         #[unsafe(method(defaultCStringEncoding))]
         #[unsafe(method_family = none)]
         pub fn defaultCStringEncoding() -> NSStringEncoding;
 
+        /// A string made by normalizing the string's contents using the Unicode Normalization Form D.
         #[unsafe(method(decomposedStringWithCanonicalMapping))]
         #[unsafe(method_family = none)]
         pub fn decomposedStringWithCanonicalMapping(&self) -> Retained<NSString>;
 
+        /// A string made by normalizing the string's contents using the Unicode Normalization Form C.
         #[unsafe(method(precomposedStringWithCanonicalMapping))]
         #[unsafe(method_family = none)]
         pub fn precomposedStringWithCanonicalMapping(&self) -> Retained<NSString>;
 
+        /// A string made by normalizing the receiver's contents using the Unicode Normalization Form KD.
         #[unsafe(method(decomposedStringWithCompatibilityMapping))]
         #[unsafe(method_family = none)]
         pub fn decomposedStringWithCompatibilityMapping(&self) -> Retained<NSString>;
 
+        /// A string made by normalizing the receiver's contents using the Unicode Normalization Form KC.
         #[unsafe(method(precomposedStringWithCompatibilityMapping))]
         #[unsafe(method_family = none)]
         pub fn precomposedStringWithCompatibilityMapping(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSArray")]
+        /// Returns an array containing substrings from the receiver that have been divided by a given separator.
+        ///
+        ///
+        /// Parameter `separator`: The separator string.
+        ///
+        /// Returns: An
+        /// `NSArray`object containing substrings from the receiver that have been divided by
+        /// `separator.`
         #[unsafe(method(componentsSeparatedByString:))]
         #[unsafe(method_family = none)]
         pub fn componentsSeparatedByString(
@@ -749,6 +1533,14 @@ impl NSString {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSCharacterSet"))]
+        /// Returns an array containing substrings from the receiver that have been divided by characters in a given set.
+        ///
+        ///
+        /// Parameter `separator`: A character set containing the characters to use to split the receiver. Must not be
+        /// `nil.`
+        /// Returns: An
+        /// `NSArray`object containing substrings from the receiver that have been divided by characters in
+        /// `separator.`
         #[unsafe(method(componentsSeparatedByCharactersInSet:))]
         #[unsafe(method_family = none)]
         pub fn componentsSeparatedByCharactersInSet(
@@ -757,10 +1549,28 @@ impl NSString {
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSCharacterSet")]
+        /// Returns a new string made by removing from both ends of the receiver characters contained in a given character set.
+        ///
+        ///
+        /// Parameter `set`: A character set containing the characters to remove from the receiver.
+        /// `set`must not be
+        /// `nil.`
+        /// Returns: A new string made by removing from both ends of the receiver characters contained in
+        /// `set.`If the receiver is composed entirely of characters from
+        /// `set,`the empty string is returned.
         #[unsafe(method(stringByTrimmingCharactersInSet:))]
         #[unsafe(method_family = none)]
         pub fn stringByTrimmingCharactersInSet(&self, set: &NSCharacterSet) -> Retained<NSString>;
 
+        /// Returns a new string formed from the receiver by either removing characters from the end, or by appending as many occurrences as necessary of a given pad string.
+        ///
+        ///
+        /// Parameter `newLength`: The new length for the receiver.
+        ///
+        /// Parameter `padString`: The string with which to extend the receiver.
+        ///
+        /// Parameter `padIndex`: The index in
+        /// `padString`from which to start padding.
         #[unsafe(method(stringByPaddingToLength:withString:startingAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn stringByPaddingToLength_withString_startingAtIndex(
@@ -771,6 +1581,17 @@ impl NSString {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSLocale")]
+        /// Creates a string suitable for comparison by removing the specified character distinctions from a string.
+        ///
+        ///
+        /// Parameter `options`: Any combination of
+        /// `NSCaseInsensitiveSearch,``NSWidthInsensitiveSearch,`and
+        /// `NSDiacriticInsensitiveSearch`comparison options.
+        ///
+        /// Parameter `locale`: The locale to use for the folding operation. Pass
+        /// `nil`to use the system locale.
+        ///
+        /// Returns: A string created by performing a character folding operation with the specified options and locale.
         #[unsafe(method(stringByFoldingWithOptions:locale:))]
         #[unsafe(method_family = none)]
         pub fn stringByFoldingWithOptions_locale(
@@ -780,6 +1601,24 @@ impl NSString {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
+        /// Returns a new string in which all occurrences of a target string in a specified range of the receiver are replaced by another given string.
+        ///
+        ///
+        /// Parameter `target`: The string to replace.
+        ///
+        /// Parameter `replacement`: The string with which to replace
+        /// `target.`
+        /// Parameter `options`: A mask of options to use when comparing
+        /// `target`with the receiver. Pass
+        /// `0`to specify no options.
+        ///
+        /// Parameter `searchRange`: The range in the receiver in which to search for
+        /// `target.`
+        /// Returns: A new string in which all occurrences of
+        /// `target,`matched using
+        /// `options,`in
+        /// `searchRange`of the receiver are replaced by
+        /// `replacement.`
         #[unsafe(method(stringByReplacingOccurrencesOfString:withString:options:range:))]
         #[unsafe(method_family = none)]
         pub fn stringByReplacingOccurrencesOfString_withString_options_range(
@@ -790,6 +1629,16 @@ impl NSString {
             search_range: NSRange,
         ) -> Retained<NSString>;
 
+        /// Returns a new string in which all occurrences of a target string in the receiver are replaced by another given string.
+        ///
+        ///
+        /// Parameter `target`: The string to replace.
+        ///
+        /// Parameter `replacement`: The string with which to replace
+        /// `target.`
+        /// Returns: A new string in which all occurrences of
+        /// `target`in the receiver are replaced by
+        /// `replacement.`
         #[unsafe(method(stringByReplacingOccurrencesOfString:withString:))]
         #[unsafe(method_family = none)]
         pub fn stringByReplacingOccurrencesOfString_withString(
@@ -799,6 +1648,16 @@ impl NSString {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
+        /// Returns a new string in which the characters in a specified range of the receiver are replaced by a given string.
+        ///
+        ///
+        /// Parameter `range`: A range of characters in the receiver.
+        ///
+        /// Parameter `replacement`: The string with which to replace the characters in
+        /// `range.`
+        /// Returns: A new string in which the characters in
+        /// `range`of the receiver are replaced by
+        /// `replacement.`
         #[unsafe(method(stringByReplacingCharactersInRange:withString:))]
         #[unsafe(method_family = none)]
         pub fn stringByReplacingCharactersInRange_withString(
@@ -807,6 +1666,9 @@ impl NSString {
             replacement: &NSString,
         ) -> Retained<NSString>;
 
+        /// Returns a new string by applying a specified transform to the string.
+        ///
+        /// You can use this method to, for example, transliterate text from one script to another, strip diacritics or combining marks, and get the unicode names of characters.
         #[unsafe(method(stringByApplyingTransform:reverse:))]
         #[unsafe(method_family = none)]
         pub fn stringByApplyingTransform_reverse(
@@ -816,6 +1678,25 @@ impl NSString {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Writes the contents of the receiver to the URL specified by
+        /// `url`using the specified encoding.
+        ///
+        ///
+        /// Parameter `url`: The URL to which to write the receiver. Only file URLs are supported.
+        ///
+        /// Parameter `useAuxiliaryFile`: If
+        /// `YES,`the receiver is written to an auxiliary file, and then the auxiliary file is renamed to
+        /// `url.`The
+        /// `YES`option guarantees that
+        /// `url,`if it exists at all, won't be corrupted even if the system should crash during writing.
+        ///
+        /// Parameter `enc`: The encoding to use for the output.
+        ///
+        /// Parameter `error`: If there is an error, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: `YES`if the URL is written successfully, otherwise
+        /// `NO.`
         #[unsafe(method(writeToURL:atomically:encoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn writeToURL_atomically_encoding_error(
@@ -826,6 +1707,24 @@ impl NSString {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Writes the contents of the receiver to a file at a given path using a given encoding.
+        ///
+        ///
+        /// Parameter `path`: The file to which to write the receiver.
+        ///
+        /// Parameter `useAuxiliaryFile`: If
+        /// `YES,`the receiver is written to an auxiliary file, and then the auxiliary file is renamed to
+        /// `path.`The
+        /// `YES`option guarantees that
+        /// `path,`if it exists at all, won't be corrupted even if the system should crash during writing.
+        ///
+        /// Parameter `enc`: The encoding to use for the output.
+        ///
+        /// Parameter `error`: If there is an error, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: `YES`if the file is written successfully, otherwise
+        /// `NO.`
         #[unsafe(method(writeToFile:atomically:encoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn writeToFile_atomically_encoding_error(
@@ -839,10 +1738,31 @@ impl NSString {
         #[unsafe(method_family = none)]
         pub fn description(&self) -> Retained<NSString>;
 
+        /// An unsigned integer that can be used as a hash table address.
+        ///
+        /// If two string objects are equal (as determined by the
+        /// `isEqualToString:`method), they must have the same hash value.
+        /// You should not rely on this property having the same hash value across releases of macOS.
         #[unsafe(method(hash))]
         #[unsafe(method_family = none)]
         pub fn hash(&self) -> NSUInteger;
 
+        /// Returns an initialized
+        /// `NSString`object that contains a given number of characters from a given C array of UTF-16 code units.
+        ///
+        ///
+        /// Parameter `characters`: A C array of UTF-16 code units.
+        ///
+        /// Parameter `length`: The number of characters to use from
+        /// `characters.`
+        /// Parameter `freeBuffer`: If
+        /// `YES,`the receiver releases the memory with
+        /// `free()`when it no longer needs the data; if
+        /// `NO`it won't.
+        ///
+        /// Returns: An initialized
+        /// `NSString`object. The returned object may be different from the original receiver.
+        ///
         /// # Safety
         ///
         /// `characters` must be a valid pointer.
@@ -868,6 +1788,19 @@ impl NSString {
             deallocator: Option<&block2::Block<'static, fn(NonNull<unichar>, NSUInteger)>>,
         ) -> Retained<Self>;
 
+        /// Returns an initialized
+        /// `NSString`object that contains a given number of characters from a given C array of UTF-16 code units.
+        ///
+        ///
+        /// Parameter `characters`: A C array of UTF-16 code units; the value must not be
+        /// `NULL.`
+        /// Parameter `length`: The number of characters to use from
+        /// `characters.`
+        /// Returns: An initialized
+        /// `NSString`object containing
+        /// `length`characters taken from
+        /// `characters.`The returned object may be different from the original receiver.
+        ///
         /// # Safety
         ///
         /// `characters` must be a valid pointer.
@@ -879,6 +1812,16 @@ impl NSString {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Returns an
+        /// `NSString`object initialized by copying the characters from a given C array of UTF8-encoded bytes.
+        ///
+        ///
+        /// Parameter `nullTerminatedCString`: A
+        /// `NULL-terminated`C array of bytes in UTF-8 encoding. This value must not be
+        /// `NULL.`
+        /// Returns: An
+        /// `NSString`object initialized by copying the bytes from
+        /// `nullTerminatedCString.`The returned object may be different from the original receiver.
         #[unsafe(method(initWithUTF8String:))]
         #[unsafe(method_family = init)]
         pub fn initWithUTF8String(
@@ -886,11 +1829,35 @@ impl NSString {
             null_terminated_c_string: &CStr,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an
+        /// `NSString`object initialized by copying the characters from another given string.
+        ///
+        ///
+        /// Parameter `aString`: The string from which to copy characters. This value must not be
+        /// `nil.`
+        /// Returns: An
+        /// `NSString`object initialized by copying the characters from
+        /// `aString.`The returned object may be different from the original receiver.
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub fn initWithString(this: Allocated<Self>, a_string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
+        /// Returns an
+        /// `NSString`object initialized by converting given data into UTF-16 code units using a given encoding.
+        ///
+        ///
+        /// Parameter `data`: An
+        /// `NSData`object containing bytes in
+        /// `encoding`and the default plain text format for that encoding.
+        ///
+        /// Parameter `encoding`: The encoding used by
+        /// `data.`
+        /// Returns: An
+        /// `NSString`object initialized by converting the bytes in
+        /// `data`into UTF-16 code units using
+        /// `encoding.`The returned object may be different from the original receiver. Returns
+        /// `nil`if the initialization fails.
         #[unsafe(method(initWithData:encoding:))]
         #[unsafe(method_family = init)]
         pub fn initWithData_encoding(
@@ -899,6 +1866,23 @@ impl NSString {
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an initialized
+        /// `NSString`object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding.
+        ///
+        ///
+        /// Parameter `bytes`: A buffer of bytes interpreted in the encoding specified by
+        /// `encoding.`
+        /// Parameter `len`: The number of bytes to use from
+        /// `bytes.`
+        /// Parameter `encoding`: The character encoding applied to
+        /// `bytes.`
+        /// Returns: An initialized
+        /// `NSString`object containing
+        /// `length`bytes from
+        /// `bytes`interpreted using the encoding
+        /// `encoding.`The returned object may be different from the original receiver. Returns
+        /// `nil`if the conversion fails.
+        ///
         /// # Safety
         ///
         /// `bytes` must be a valid pointer.
@@ -911,6 +1895,24 @@ impl NSString {
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an initialized
+        /// `NSString`object that contains a given number of bytes from a given buffer of bytes interpreted in a given encoding, and optionally frees the buffer.
+        ///
+        ///
+        /// Parameter `bytes`: A buffer of bytes interpreted in the encoding specified by
+        /// `encoding.`
+        /// Parameter `len`: The number of bytes to use from
+        /// `bytes.`
+        /// Parameter `encoding`: The character encoding of
+        /// `bytes.`
+        /// Parameter `freeBuffer`: If
+        /// `YES,`the receiver releases the memory with
+        /// `free()`when it no longer needs the data; if
+        /// `NO`it won't.
+        ///
+        /// Returns: An initialized
+        /// `NSString`object. The returned object may be different from the original receiver.
+        ///
         /// # Safety
         ///
         /// `bytes` must be a valid pointer.
@@ -938,14 +1940,18 @@ impl NSString {
             deallocator: Option<&block2::Block<'static, fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an empty string.
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub fn string() -> Retained<Self>;
 
+        /// Returns a string created by copying the characters from another given string.
         #[unsafe(method(stringWithString:))]
         #[unsafe(method_family = none)]
         pub fn stringWithString(string: &NSString) -> Retained<Self>;
 
+        /// Returns a string containing a given number of characters taken from a given C array of UTF-16 code units.
+        ///
         /// # Safety
         ///
         /// `characters` must be a valid pointer.
@@ -956,10 +1962,24 @@ impl NSString {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Returns a string created by copying the data from a given C array of UTF8-encoded bytes.
         #[unsafe(method(stringWithUTF8String:))]
         #[unsafe(method_family = none)]
         pub fn stringWithUTF8String(null_terminated_c_string: &CStr) -> Option<Retained<Self>>;
 
+        /// Returns an
+        /// `NSString`object initialized using the characters in a given C array, interpreted according to a given encoding.
+        ///
+        ///
+        /// Parameter `nullTerminatedCString`: A C array of characters. The array must end with a
+        /// `NULL`character; intermediate
+        /// `NULL`characters are not allowed.
+        ///
+        /// Parameter `encoding`: The encoding of
+        /// `nullTerminatedCString.`
+        /// Returns: An
+        /// `NSString`object initialized using the characters from
+        /// `nullTerminatedCString.`The returned object may be different from the original receiver.
         #[unsafe(method(initWithCString:encoding:))]
         #[unsafe(method_family = init)]
         pub fn initWithCString_encoding(
@@ -968,6 +1988,7 @@ impl NSString {
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
+        /// Returns a string containing the bytes in a given C array, interpreted according to a given encoding.
         #[unsafe(method(stringWithCString:encoding:))]
         #[unsafe(method_family = none)]
         pub fn stringWithCString_encoding(
@@ -976,6 +1997,21 @@ impl NSString {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns an
+        /// `NSString`object initialized by reading data from a given URL interpreted using a given encoding.
+        ///
+        ///
+        /// Parameter `url`: The URL to read.
+        ///
+        /// Parameter `enc`: The encoding of the file at
+        /// `url.`
+        /// Parameter `error`: If an error occurs, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: An
+        /// `NSString`object initialized by reading data from
+        /// `url.`Returns
+        /// `nil`if the URL can't be opened or there is an encoding error.
         #[unsafe(method(initWithContentsOfURL:encoding:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfURL_encoding_error(
@@ -985,6 +2021,21 @@ impl NSString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Returns an
+        /// `NSString`object initialized by reading data from the file at a given path using a given encoding.
+        ///
+        ///
+        /// Parameter `path`: A path to a file.
+        ///
+        /// Parameter `enc`: The encoding of the file at
+        /// `path.`
+        /// Parameter `error`: If an error occurs, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: An
+        /// `NSString`object initialized by reading data from the file named by
+        /// `path.`Returns
+        /// `nil`if the file can't be opened or there is an encoding error.
         #[unsafe(method(initWithContentsOfFile:encoding:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfFile_encoding_error(
@@ -994,6 +2045,7 @@ impl NSString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns a string created by reading data from the file at a given path interpreted using a given encoding.
         #[unsafe(method(stringWithContentsOfURL:encoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn stringWithContentsOfURL_encoding_error(
@@ -1004,6 +2056,7 @@ impl NSString {
 
     extern_methods!(
         #[cfg(feature = "NSError")]
+        /// Returns a string created by reading data from the file at a given path interpreted using a given encoding.
         #[unsafe(method(stringWithContentsOfFile:encoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn stringWithContentsOfFile_encoding_error(
@@ -1012,6 +2065,21 @@ impl NSString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns an
+        /// `NSString`object initialized by reading data from a given URL and returns by reference the encoding used to interpret the data.
+        ///
+        ///
+        /// Parameter `url`: The URL to read.
+        ///
+        /// Parameter `enc`: Upon return, if the URL is read successfully, contains the encoding used to interpret the file at
+        /// `url.`
+        /// Parameter `error`: If an error occurs, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: An
+        /// `NSString`object initialized by reading data from
+        /// `url.`Returns
+        /// `nil`if the URL can't be opened or there is an encoding error.
         #[unsafe(method(initWithContentsOfURL:usedEncoding:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfURL_usedEncoding_error(
@@ -1021,6 +2089,21 @@ impl NSString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Returns an
+        /// `NSString`object initialized by reading data from the file at a given path and returns by reference the encoding used to interpret the characters.
+        ///
+        ///
+        /// Parameter `path`: A path to a file.
+        ///
+        /// Parameter `enc`: Upon return, if the file is read successfully, contains the encoding used to interpret the file at
+        /// `path.`
+        /// Parameter `error`: If an error occurs, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: An
+        /// `NSString`object initialized by reading data from the file named by
+        /// `path.`Returns
+        /// `nil`if the file can't be opened or there is an encoding error.
         #[unsafe(method(initWithContentsOfFile:usedEncoding:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfFile_usedEncoding_error(
@@ -1030,6 +2113,7 @@ impl NSString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns a string created by reading data from the file at a given URL and returns by reference the encoding used to interpret the data.
         #[unsafe(method(stringWithContentsOfURL:usedEncoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn stringWithContentsOfURL_usedEncoding_error(
@@ -1038,6 +2122,7 @@ impl NSString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Returns a string created by reading data from the file at a given path and returns by reference the encoding used to interpret the data.
         #[unsafe(method(stringWithContentsOfFile:usedEncoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn stringWithContentsOfFile_usedEncoding_error(
@@ -1052,6 +2137,22 @@ impl NSString {
 /// NSStringExtensionMethods.
 impl NSMutableString {
     extern_methods!(
+        /// Returns an initialized
+        /// `NSString`object that contains a given number of characters from a given C array of UTF-16 code units.
+        ///
+        ///
+        /// Parameter `characters`: A C array of UTF-16 code units.
+        ///
+        /// Parameter `length`: The number of characters to use from
+        /// `characters.`
+        /// Parameter `freeBuffer`: If
+        /// `YES,`the receiver releases the memory with
+        /// `free()`when it no longer needs the data; if
+        /// `NO`it won't.
+        ///
+        /// Returns: An initialized
+        /// `NSString`object. The returned object may be different from the original receiver.
+        ///
         /// # Safety
         ///
         /// `characters` must be a valid pointer.
@@ -1077,6 +2178,19 @@ impl NSMutableString {
             deallocator: Option<&block2::Block<'static, fn(NonNull<unichar>, NSUInteger)>>,
         ) -> Retained<Self>;
 
+        /// Returns an initialized
+        /// `NSString`object that contains a given number of characters from a given C array of UTF-16 code units.
+        ///
+        ///
+        /// Parameter `characters`: A C array of UTF-16 code units; the value must not be
+        /// `NULL.`
+        /// Parameter `length`: The number of characters to use from
+        /// `characters.`
+        /// Returns: An initialized
+        /// `NSString`object containing
+        /// `length`characters taken from
+        /// `characters.`The returned object may be different from the original receiver.
+        ///
         /// # Safety
         ///
         /// `characters` must be a valid pointer.
@@ -1088,6 +2202,16 @@ impl NSMutableString {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Returns an
+        /// `NSString`object initialized by copying the characters from a given C array of UTF8-encoded bytes.
+        ///
+        ///
+        /// Parameter `nullTerminatedCString`: A
+        /// `NULL-terminated`C array of bytes in UTF-8 encoding. This value must not be
+        /// `NULL.`
+        /// Returns: An
+        /// `NSString`object initialized by copying the bytes from
+        /// `nullTerminatedCString.`The returned object may be different from the original receiver.
         #[unsafe(method(initWithUTF8String:))]
         #[unsafe(method_family = init)]
         pub fn initWithUTF8String(
@@ -1095,11 +2219,35 @@ impl NSMutableString {
             null_terminated_c_string: &CStr,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an
+        /// `NSString`object initialized by copying the characters from another given string.
+        ///
+        ///
+        /// Parameter `aString`: The string from which to copy characters. This value must not be
+        /// `nil.`
+        /// Returns: An
+        /// `NSString`object initialized by copying the characters from
+        /// `aString.`The returned object may be different from the original receiver.
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
         pub fn initWithString(this: Allocated<Self>, a_string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
+        /// Returns an
+        /// `NSString`object initialized by converting given data into UTF-16 code units using a given encoding.
+        ///
+        ///
+        /// Parameter `data`: An
+        /// `NSData`object containing bytes in
+        /// `encoding`and the default plain text format for that encoding.
+        ///
+        /// Parameter `encoding`: The encoding used by
+        /// `data.`
+        /// Returns: An
+        /// `NSString`object initialized by converting the bytes in
+        /// `data`into UTF-16 code units using
+        /// `encoding.`The returned object may be different from the original receiver. Returns
+        /// `nil`if the initialization fails.
         #[unsafe(method(initWithData:encoding:))]
         #[unsafe(method_family = init)]
         pub fn initWithData_encoding(
@@ -1108,6 +2256,23 @@ impl NSMutableString {
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an initialized
+        /// `NSString`object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding.
+        ///
+        ///
+        /// Parameter `bytes`: A buffer of bytes interpreted in the encoding specified by
+        /// `encoding.`
+        /// Parameter `len`: The number of bytes to use from
+        /// `bytes.`
+        /// Parameter `encoding`: The character encoding applied to
+        /// `bytes.`
+        /// Returns: An initialized
+        /// `NSString`object containing
+        /// `length`bytes from
+        /// `bytes`interpreted using the encoding
+        /// `encoding.`The returned object may be different from the original receiver. Returns
+        /// `nil`if the conversion fails.
+        ///
         /// # Safety
         ///
         /// `bytes` must be a valid pointer.
@@ -1120,6 +2285,24 @@ impl NSMutableString {
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an initialized
+        /// `NSString`object that contains a given number of bytes from a given buffer of bytes interpreted in a given encoding, and optionally frees the buffer.
+        ///
+        ///
+        /// Parameter `bytes`: A buffer of bytes interpreted in the encoding specified by
+        /// `encoding.`
+        /// Parameter `len`: The number of bytes to use from
+        /// `bytes.`
+        /// Parameter `encoding`: The character encoding of
+        /// `bytes.`
+        /// Parameter `freeBuffer`: If
+        /// `YES,`the receiver releases the memory with
+        /// `free()`when it no longer needs the data; if
+        /// `NO`it won't.
+        ///
+        /// Returns: An initialized
+        /// `NSString`object. The returned object may be different from the original receiver.
+        ///
         /// # Safety
         ///
         /// `bytes` must be a valid pointer.
@@ -1147,14 +2330,18 @@ impl NSMutableString {
             deallocator: Option<&block2::Block<'static, fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an empty string.
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub fn string() -> Retained<Self>;
 
+        /// Returns a string created by copying the characters from another given string.
         #[unsafe(method(stringWithString:))]
         #[unsafe(method_family = none)]
         pub fn stringWithString(string: &NSString) -> Retained<Self>;
 
+        /// Returns a string containing a given number of characters taken from a given C array of UTF-16 code units.
+        ///
         /// # Safety
         ///
         /// `characters` must be a valid pointer.
@@ -1165,10 +2352,24 @@ impl NSMutableString {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Returns a string created by copying the data from a given C array of UTF8-encoded bytes.
         #[unsafe(method(stringWithUTF8String:))]
         #[unsafe(method_family = none)]
         pub fn stringWithUTF8String(null_terminated_c_string: &CStr) -> Option<Retained<Self>>;
 
+        /// Returns an
+        /// `NSString`object initialized using the characters in a given C array, interpreted according to a given encoding.
+        ///
+        ///
+        /// Parameter `nullTerminatedCString`: A C array of characters. The array must end with a
+        /// `NULL`character; intermediate
+        /// `NULL`characters are not allowed.
+        ///
+        /// Parameter `encoding`: The encoding of
+        /// `nullTerminatedCString.`
+        /// Returns: An
+        /// `NSString`object initialized using the characters from
+        /// `nullTerminatedCString.`The returned object may be different from the original receiver.
         #[unsafe(method(initWithCString:encoding:))]
         #[unsafe(method_family = init)]
         pub fn initWithCString_encoding(
@@ -1177,6 +2378,7 @@ impl NSMutableString {
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
+        /// Returns a string containing the bytes in a given C array, interpreted according to a given encoding.
         #[unsafe(method(stringWithCString:encoding:))]
         #[unsafe(method_family = none)]
         pub fn stringWithCString_encoding(
@@ -1185,6 +2387,21 @@ impl NSMutableString {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns an
+        /// `NSString`object initialized by reading data from a given URL interpreted using a given encoding.
+        ///
+        ///
+        /// Parameter `url`: The URL to read.
+        ///
+        /// Parameter `enc`: The encoding of the file at
+        /// `url.`
+        /// Parameter `error`: If an error occurs, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: An
+        /// `NSString`object initialized by reading data from
+        /// `url.`Returns
+        /// `nil`if the URL can't be opened or there is an encoding error.
         #[unsafe(method(initWithContentsOfURL:encoding:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfURL_encoding_error(
@@ -1194,6 +2411,21 @@ impl NSMutableString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Returns an
+        /// `NSString`object initialized by reading data from the file at a given path using a given encoding.
+        ///
+        ///
+        /// Parameter `path`: A path to a file.
+        ///
+        /// Parameter `enc`: The encoding of the file at
+        /// `path.`
+        /// Parameter `error`: If an error occurs, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: An
+        /// `NSString`object initialized by reading data from the file named by
+        /// `path.`Returns
+        /// `nil`if the file can't be opened or there is an encoding error.
         #[unsafe(method(initWithContentsOfFile:encoding:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfFile_encoding_error(
@@ -1203,6 +2435,7 @@ impl NSMutableString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns a string created by reading data from the file at a given path interpreted using a given encoding.
         #[unsafe(method(stringWithContentsOfURL:encoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn stringWithContentsOfURL_encoding_error(
@@ -1211,6 +2444,7 @@ impl NSMutableString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Returns a string created by reading data from the file at a given path interpreted using a given encoding.
         #[unsafe(method(stringWithContentsOfFile:encoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn stringWithContentsOfFile_encoding_error(
@@ -1219,6 +2453,21 @@ impl NSMutableString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns an
+        /// `NSString`object initialized by reading data from a given URL and returns by reference the encoding used to interpret the data.
+        ///
+        ///
+        /// Parameter `url`: The URL to read.
+        ///
+        /// Parameter `enc`: Upon return, if the URL is read successfully, contains the encoding used to interpret the file at
+        /// `url.`
+        /// Parameter `error`: If an error occurs, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: An
+        /// `NSString`object initialized by reading data from
+        /// `url.`Returns
+        /// `nil`if the URL can't be opened or there is an encoding error.
         #[unsafe(method(initWithContentsOfURL:usedEncoding:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfURL_usedEncoding_error(
@@ -1228,6 +2477,21 @@ impl NSMutableString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Returns an
+        /// `NSString`object initialized by reading data from the file at a given path and returns by reference the encoding used to interpret the characters.
+        ///
+        ///
+        /// Parameter `path`: A path to a file.
+        ///
+        /// Parameter `enc`: Upon return, if the file is read successfully, contains the encoding used to interpret the file at
+        /// `path.`
+        /// Parameter `error`: If an error occurs, upon return contains an
+        /// `NSError`object that describes the problem.
+        ///
+        /// Returns: An
+        /// `NSString`object initialized by reading data from the file named by
+        /// `path.`Returns
+        /// `nil`if the file can't be opened or there is an encoding error.
         #[unsafe(method(initWithContentsOfFile:usedEncoding:error:_))]
         #[unsafe(method_family = init)]
         pub fn initWithContentsOfFile_usedEncoding_error(
@@ -1237,6 +2501,7 @@ impl NSMutableString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// Returns a string created by reading data from the file at a given URL and returns by reference the encoding used to interpret the data.
         #[unsafe(method(stringWithContentsOfURL:usedEncoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn stringWithContentsOfURL_usedEncoding_error(
@@ -1245,6 +2510,7 @@ impl NSMutableString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// Returns a string created by reading data from the file at a given path and returns by reference the encoding used to interpret the data.
         #[unsafe(method(stringWithContentsOfFile:usedEncoding:error:_))]
         #[unsafe(method_family = none)]
         pub fn stringWithContentsOfFile_usedEncoding_error(
@@ -1259,42 +2525,56 @@ impl NSMutableString {
 pub type NSStringEncodingDetectionOptionsKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionsuggestedencodingskey?language=objc)
+    /// An array of `NSNumber` values containing `NSStringEncoding` values representing suggested encodings. If not present, all encodings are weighted the same.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionsuggestedencodingskey?language=objc)
     pub static NSStringEncodingDetectionSuggestedEncodingsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectiondisallowedencodingskey?language=objc)
+    /// An array of `NSNumber` values containing `NSStringEncoding` values representing disallowed encodings. If not present, all encodings are considered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectiondisallowedencodingskey?language=objc)
     pub static NSStringEncodingDetectionDisallowedEncodingsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionuseonlysuggestedencodingskey?language=objc)
+    /// An `NSNumber` boolean value. If `YES`, only the suggested encodings are used. Default is `NO`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionuseonlysuggestedencodingskey?language=objc)
     pub static NSStringEncodingDetectionUseOnlySuggestedEncodingsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionallowlossykey?language=objc)
+    /// An `NSNumber` boolean value. If `YES`, lossy encodings may be used. Default is `YES`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionallowlossykey?language=objc)
     pub static NSStringEncodingDetectionAllowLossyKey: &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionfromwindowskey?language=objc)
+    /// An `NSNumber` boolean value. If `YES`, Windows encodings are considered. Default is `NO`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionfromwindowskey?language=objc)
     pub static NSStringEncodingDetectionFromWindowsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionlossysubstitutionkey?language=objc)
+    /// An `NSString` value used as a substitute for characters that cannot be represented in the encoding. Default is U+FFFD.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionlossysubstitutionkey?language=objc)
     pub static NSStringEncodingDetectionLossySubstitutionKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionlikelylanguagekey?language=objc)
+    /// An `NSString` value containing an ISO language code. If present, the language is used to aid in encoding detection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingdetectionlikelylanguagekey?language=objc)
     pub static NSStringEncodingDetectionLikelyLanguageKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
@@ -1303,6 +2583,25 @@ extern "C" {
 impl NSString {
     extern_methods!(
         #[cfg(all(feature = "NSData", feature = "NSDictionary"))]
+        /// Returns the string encoding for the given data as detected by attempting to create a string according to the specified encoding options.
+        ///
+        ///
+        /// Parameter `data`: An
+        /// `NSData`object containing bytes in an encoding to be determined.
+        ///
+        /// Parameter `opts`: Options to use when attempting to determine the string encoding.
+        ///
+        /// Parameter `string`: If a string encoding could be determined, upon return contains an
+        /// `NSString`object constructed from
+        /// `data`using the determined string encoding.
+        ///
+        /// Parameter `usedLossyConversion`: If a string encoding could be determined, upon return contains a
+        /// `BOOL`value corresponding to whether lossy conversion was used.
+        ///
+        /// Returns: An
+        /// `NSStringEncoding`value, or
+        /// `0`if a string encoding could not be determined.
+        ///
         /// # Safety
         ///
         /// `opts` generic should be of the correct type.
@@ -1331,7 +2630,21 @@ extern_conformance!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablestring?language=objc)
+    /// A dynamic plain-text Unicode string object.
+    ///
+    /// In Swift, you can use this type instead of a
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/string> in cases that require reference semantics.
+    ///
+    /// The `NSMutableString` class declares the programmatic interface to an object that manages a mutable string—that is, a string whose contents can be edited—that conceptually represents an array of Unicode characters. To construct and manage an immutable string—or a string that cannot be changed after it has been created—use an object of the ``NSString`` class.
+    ///
+    /// The `NSMutableString` class adds one primitive method—``replaceCharacters(in:with:)``—to the basic string-handling behavior inherited from `NSString`. All other methods that modify a string work through this method. For example, ``insert(_:at:)`` simply replaces the characters in a range of `0` length, while ``deleteCharacters(in:)`` replaces the characters in a given range with no characters.
+    ///
+    /// NSMutableString is "toll-free bridged" with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfmutablestring>. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablestring?language=objc)
     #[unsafe(super(NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableString;
@@ -1390,6 +2703,16 @@ extern_conformance!(
 impl NSMutableString {
     extern_methods!(
         #[cfg(feature = "NSRange")]
+        /// Replaces the characters from
+        /// `range`with those in
+        /// `aString.`
+        ///
+        /// Parameter `range`: The range of characters to replace.
+        /// `range`must not exceed the bounds of the receiver.
+        ///
+        /// Parameter `aString`: The string with which to replace the characters in
+        /// `range.``aString`must not be
+        /// `nil.`
         #[unsafe(method(replaceCharactersInRange:withString:))]
         #[unsafe(method_family = none)]
         pub fn replaceCharactersInRange_withString(&self, range: NSRange, a_string: &NSString);
@@ -1399,6 +2722,12 @@ impl NSMutableString {
 /// Methods declared on superclass `NSString`.
 impl NSMutableString {
     extern_methods!(
+        /// Returns an initialized
+        /// `NSString`object that contains no characters.
+        ///
+        ///
+        /// Returns: An initialized
+        /// `NSString`object that contains no characters. The returned object may be different from the original receiver.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1424,24 +2753,64 @@ impl DefaultRetained for NSMutableString {
 /// NSMutableStringExtensionMethods.
 impl NSMutableString {
     extern_methods!(
+        /// Inserts into the receiver the characters of a given string at a given location.
+        ///
+        ///
+        /// Parameter `aString`: The string to insert into the receiver.
+        /// `aString`must not be
+        /// `nil.`
+        /// Parameter `loc`: The location at which
+        /// `aString`is inserted. The location must not exceed the bounds of the receiver.
         #[unsafe(method(insertString:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertString_atIndex(&self, a_string: &NSString, loc: NSUInteger);
 
         #[cfg(feature = "NSRange")]
+        /// Removes from the receiver the characters in a given range.
+        ///
+        ///
+        /// Parameter `range`: The range of characters to delete.
+        /// `range`must not exceed the bounds of the receiver.
         #[unsafe(method(deleteCharactersInRange:))]
         #[unsafe(method_family = none)]
         pub fn deleteCharactersInRange(&self, range: NSRange);
 
+        /// Adds to the end of the receiver the characters of a given string.
+        ///
+        ///
+        /// Parameter `aString`: The string to append to the receiver.
+        /// `aString`must not be
+        /// `nil.`
         #[unsafe(method(appendString:))]
         #[unsafe(method_family = none)]
         pub fn appendString(&self, a_string: &NSString);
 
+        /// Replaces the characters of the receiver with those in a given string.
+        ///
+        ///
+        /// Parameter `aString`: The string with which to replace the receiver's content.
+        /// `aString`must not be
+        /// `nil.`
         #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
         pub fn setString(&self, a_string: &NSString);
 
         #[cfg(feature = "NSRange")]
+        /// Replaces all occurrences of a given string in a given range with another given string, returning the number of replacements.
+        ///
+        ///
+        /// Parameter `target`: The string to replace.
+        ///
+        /// Parameter `replacement`: The string with which to replace
+        /// `target.`
+        /// Parameter `options`: A mask specifying search options.
+        ///
+        /// Parameter `searchRange`: The range of characters to replace.
+        /// `searchRange`must not exceed the bounds of the receiver.
+        /// Specify
+        /// `NSMakeRange(0,`[receiver length]) to process the entire string.
+        ///
+        /// Returns: The number of replacements made.
         #[unsafe(method(replaceOccurrencesOfString:withString:options:range:))]
         #[unsafe(method_family = none)]
         pub fn replaceOccurrencesOfString_withString_options_range(
@@ -1453,6 +2822,21 @@ impl NSMutableString {
         ) -> NSUInteger;
 
         #[cfg(feature = "NSRange")]
+        /// Transliterates the receiver by applying a specified ICU string transform.
+        ///
+        ///
+        /// Parameter `transform`: The transformation to apply. If the specified transform does not exist, the receiver is not modified, and this method returns
+        /// `NO.`
+        /// Parameter `reverse`: Whether an inverse transform should be used. If the specified transform does not have an inverse, the receiver is not modified, and this method returns
+        /// `NO.`
+        /// Parameter `range`: The range of the string to transform.
+        /// `range`must not exceed the bounds of the receiver.
+        ///
+        /// Parameter `resultingRange`: If the transform was successfully applied, upon return contains the range of the transformed string.
+        ///
+        /// Returns: `YES`if the transform was successfully applied. Otherwise,
+        /// `NO.`
+        ///
         /// # Safety
         ///
         /// `resulting_range` must be a valid pointer or null.
@@ -1466,6 +2850,15 @@ impl NSMutableString {
             resulting_range: NSRangePointer,
         ) -> bool;
 
+        /// Returns an
+        /// `NSMutableString`object initialized with initial storage for a given number of characters.
+        ///
+        ///
+        /// Parameter `capacity`: The number of characters the string is expected to initially contain. The value does not limit the length of the string.
+        ///
+        /// Returns: An initialized
+        /// `NSMutableString`object with initial storage for
+        /// `capacity`characters.
         #[unsafe(method(initWithCapacity:))]
         #[unsafe(method_family = init)]
         pub fn initWithCapacity(
@@ -1473,6 +2866,15 @@ impl NSMutableString {
             capacity: NSUInteger,
         ) -> Retained<NSMutableString>;
 
+        /// Returns an empty
+        /// `NSMutableString`object with initial storage for a given number of characters.
+        ///
+        ///
+        /// Parameter `capacity`: The number of characters the string is expected to initially contain. The value does not limit the length of the string.
+        ///
+        /// Returns: An empty
+        /// `NSMutableString`object with initial storage for
+        /// `capacity`characters.
         #[unsafe(method(stringWithCapacity:))]
         #[unsafe(method_family = none)]
         pub fn stringWithCapacity(capacity: NSUInteger) -> Retained<NSMutableString>;
@@ -1480,13 +2882,17 @@ impl NSMutableString {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscharacterconversionexception?language=objc)
+    /// Name of an exception raised when a string encoding conversion fails.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscharacterconversionexception?language=objc)
     #[cfg(feature = "NSObjCRuntime")]
     pub static NSCharacterConversionException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsparseerrorexception?language=objc)
+    /// Name of an exception raised by `-propertyList` when parsing fails.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsparseerrorexception?language=objc)
     #[cfg(feature = "NSObjCRuntime")]
     pub static NSParseErrorException: &'static NSExceptionName;
 }
@@ -1494,11 +2900,23 @@ extern "C" {
 /// NSExtendedStringPropertyListParsing.
 impl NSString {
     extern_methods!(
+        /// Parses the receiver as a text representation of a property list, returning an
+        /// `NSString,``NSData,``NSArray,`or
+        /// `NSDictionary`object, according to the topmost element.
+        ///
+        ///
+        /// Returns: A property list representation of the receiver.
         #[unsafe(method(propertyList))]
         #[unsafe(method_family = none)]
         pub fn propertyList(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSDictionary")]
+        /// Returns a dictionary object initialized with the keys and values found in the receiver.
+        ///
+        ///
+        /// Returns: A dictionary object initialized with the keys and values found in the receiver.
+        /// The receiver must contain text in the format used for
+        /// `.strings`files.
         #[unsafe(method(propertyListFromStringsFileFormat))]
         #[unsafe(method_family = none)]
         pub fn propertyListFromStringsFileFormat(&self) -> Option<Retained<NSDictionary>>;
@@ -1508,21 +2926,26 @@ impl NSString {
 /// NSStringDeprecated.
 impl NSString {
     extern_methods!(
+        /// Returns a pointer to the receiver's contents as a C string in the default C-string encoding.
         #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[unsafe(method(cString))]
         #[unsafe(method_family = none)]
         pub fn cString(&self) -> *const c_char;
 
+        /// Returns a pointer to a lossy C-string representation of the receiver in the default C-string encoding.
         #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[unsafe(method(lossyCString))]
         #[unsafe(method_family = none)]
         pub fn lossyCString(&self) -> *const c_char;
 
+        /// Returns the length of the receiver's C-string representation in the default C-string encoding.
         #[deprecated = "Use -lengthOfBytesUsingEncoding: instead"]
         #[unsafe(method(cStringLength))]
         #[unsafe(method_family = none)]
         pub fn cStringLength(&self) -> NSUInteger;
 
+        /// Copies the receiver's C-string representation into a given buffer.
+        ///
         /// # Safety
         ///
         /// `bytes` must be a valid pointer.
@@ -1555,17 +2978,24 @@ impl NSString {
             leftover_range: NSRangePointer,
         );
 
+        /// Writes the contents of the receiver to the file specified by
+        /// `path.`
         #[deprecated = "Use -writeToFile:atomically:encoding:error: instead"]
         #[unsafe(method(writeToFile:atomically:))]
         #[unsafe(method_family = none)]
         pub fn writeToFile_atomically(&self, path: &NSString, use_auxiliary_file: bool) -> bool;
 
         #[cfg(feature = "NSURL")]
+        /// Writes the contents of the receiver to the URL specified by
+        /// `url.`
         #[deprecated = "Use -writeToURL:atomically:encoding:error: instead"]
         #[unsafe(method(writeToURL:atomically:))]
         #[unsafe(method_family = none)]
         pub fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
 
+        /// Returns an
+        /// `NSString`object initialized by reading data from the file named by
+        /// `path.`
         #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
         #[unsafe(method(initWithContentsOfFile:))]
         #[unsafe(method_family = init)]
@@ -1575,6 +3005,9 @@ impl NSString {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
+        /// Returns an
+        /// `NSString`object initialized by reading data from the URL named by
+        /// `url.`
         #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
         #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
@@ -1637,6 +3070,12 @@ impl NSString {
         #[unsafe(method_family = none)]
         pub fn stringWithCString(bytes: &CStr) -> Option<Retained<AnyObject>>;
 
+        /// Copies all characters from the receiver into a given buffer.
+        ///
+        ///
+        /// Parameter `buffer`: Upon return, contains the characters from the receiver.
+        /// `buffer`must be large enough to contain all characters in the string.
+        ///
         /// # Safety
         ///
         /// `buffer` must be a valid pointer.
@@ -1651,6 +3090,9 @@ impl NSString {
 /// NSStringDeprecated.
 impl NSMutableString {
     extern_methods!(
+        /// Returns an
+        /// `NSString`object initialized by reading data from the file named by
+        /// `path.`
         #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
         #[unsafe(method(initWithContentsOfFile:))]
         #[unsafe(method_family = init)]
@@ -1660,6 +3102,9 @@ impl NSMutableString {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
+        /// Returns an
+        /// `NSString`object initialized by reading data from the URL named by
+        /// `url.`
         #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
         #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
@@ -1723,6 +3168,12 @@ impl NSSimpleCString {}
 /// Methods declared on superclass `NSString`.
 impl NSSimpleCString {
     extern_methods!(
+        /// Returns an initialized
+        /// `NSString`object that contains no characters.
+        ///
+        ///
+        /// Returns: An initialized
+        /// `NSString`object that contains no characters. The returned object may be different from the original receiver.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1771,6 +3222,12 @@ impl NSConstantString {}
 /// Methods declared on superclass `NSString`.
 impl NSConstantString {
     extern_methods!(
+        /// Returns an initialized
+        /// `NSString`object that contains no characters.
+        ///
+        ///
+        /// Returns: An initialized
+        /// `NSString`object that contains no characters. The returned object may be different from the original receiver.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;

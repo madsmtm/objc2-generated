@@ -3,6 +3,7 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
 
@@ -193,6 +194,43 @@ impl WKWebpagePreferences {
         pub unsafe fn setSecurityRestrictionMode(
             &self,
             security_restriction_mode: WKSecurityRestrictionMode,
+        );
+
+        #[unsafe(method(alternateRequest))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn alternateRequest(&self) -> Option<Retained<NSURLRequest>>;
+
+        /// Setter for [`alternateRequest`][Self::alternateRequest].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setAlternateRequest:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAlternateRequest(&self, alternate_request: Option<&NSURLRequest>);
+
+        #[unsafe(method(overrideReferrer))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn overrideReferrer(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`overrideReferrer`][Self::overrideReferrer].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setOverrideReferrer:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setOverrideReferrer(&self, override_referrer: Option<&NSString>);
+
+        /// A boolean indicating whether `window.webkit.createJSHandle` will be available in `[WKContentWorld pageWorld]`
+        ///
+        /// The default value is false.
+        #[unsafe(method(allowsJSHandleCreationInPageWorld))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsJSHandleCreationInPageWorld(&self) -> bool;
+
+        /// Setter for [`allowsJSHandleCreationInPageWorld`][Self::allowsJSHandleCreationInPageWorld].
+        #[unsafe(method(setAllowsJSHandleCreationInPageWorld:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsJSHandleCreationInPageWorld(
+            &self,
+            allows_js_handle_creation_in_page_world: bool,
         );
     );
 }

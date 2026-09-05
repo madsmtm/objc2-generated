@@ -335,7 +335,7 @@ impl CKModifyRecordsOperation {
         /// This property is a closure that returns no value and has the following parameters:
         ///
         /// - The ID of the record that CloudKit saves.
-        /// - The record that CloudKit saves, or `nil` if CloudKit can't save the record.
+        /// - The saved record (as it appears on the server), or `nil` if there's an error.
         /// - If CloudKit can't save the record, an error that provides information about the failure; otherwise, `nil`.
         ///
         /// The closure executes once for each record in the ``CKModifyRecordsOperation/recordsToSave`` property. Each time the closure executes, it executes serially with respect to the other record completion blocks of the operation.

@@ -148,6 +148,8 @@ impl VZDiskImageStorageDeviceAttachment {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// URL of the underlying disk image.
+        ///
+        /// If the attachment was created with `initWithDiskImage:`, this is the URL of the top image in the stack.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;

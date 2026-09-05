@@ -9,9 +9,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A point value stores all the attributes of a PKStroke at a specific point.
-    /// `PKStrokePoint` stores its properties compressed, the value read for a property may not
-    /// exactly equal the value set for a property.
+    /// A value that stores all attributes of a stroke at a specific point.
+    ///
+    /// Properties are stored in a compressed format, so the value you read back may not exactly equal the value you set.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkstrokepoint?language=objc)
     #[unsafe(super(NSObject))]
@@ -40,7 +40,7 @@ impl PKStrokePoint {
         // -init (unavailable)
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Create a new point with the provided properties.
+        /// Creates a stroke point with the specified properties.
         #[unsafe(method(initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocation_timeOffset_size_opacity_force_azimuth_altitude(
@@ -55,7 +55,7 @@ impl PKStrokePoint {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Create a new point with the provided properties.
+        /// Creates a stroke point with the specified properties, including secondary scale.
         #[unsafe(method(initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocation_timeOffset_size_opacity_force_azimuth_altitude_secondaryScale(
@@ -71,7 +71,7 @@ impl PKStrokePoint {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Create a new point with the provided properties.
+        /// Creates a stroke point with the specified properties, including a rendering threshold.
         #[unsafe(method(initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocation_timeOffset_size_opacity_force_azimuth_altitude_secondaryScale_threshold(
@@ -88,7 +88,25 @@ impl PKStrokePoint {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Location of the point.
+        /// Creates a stroke point with the specified properties, including lateral jitter.
+        #[unsafe(method(initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:lateralJitter:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithLocation_timeOffset_size_opacity_force_azimuth_altitude_secondaryScale_threshold_lateralJitter(
+            this: Allocated<Self>,
+            location: CGPoint,
+            time_offset: NSTimeInterval,
+            size: CGSize,
+            opacity: CGFloat,
+            force: CGFloat,
+            azimuth: CGFloat,
+            altitude: CGFloat,
+            secondary_scale: CGFloat,
+            threshold: CGFloat,
+            lateral_jitter: CGFloat,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The location of the point.
         ///
         /// This property is not atomic.
         ///
@@ -99,7 +117,7 @@ impl PKStrokePoint {
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> CGPoint;
 
-        /// Time offset since the start of the stroke path in seconds.
+        /// The time offset in seconds from the start of the stroke path.
         ///
         /// This property is not atomic.
         ///
@@ -111,7 +129,7 @@ impl PKStrokePoint {
         pub unsafe fn timeOffset(&self) -> NSTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Size of the point.
+        /// The size of the point.
         ///
         /// This property is not atomic.
         ///
@@ -123,7 +141,7 @@ impl PKStrokePoint {
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Opacity of the point 0-2.
+        /// The opacity of the point, in the range 0 to 2.
         ///
         /// This property is not atomic.
         ///
@@ -135,19 +153,7 @@ impl PKStrokePoint {
         pub unsafe fn opacity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Azimuth of the point in radians, 0.0-2π radians
-        ///
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(azimuth))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn azimuth(&self) -> CGFloat;
-
-        #[cfg(feature = "objc2-core-foundation")]
-        /// Force used to create this point.
+        /// The force used to create the point.
         ///
         /// This property is not atomic.
         ///
@@ -159,7 +165,19 @@ impl PKStrokePoint {
         pub unsafe fn force(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// Altitude used to create this point in radians, 0.0-π/2 radians
+        /// The azimuth of the point in radians, in the range 0.0 to 2π.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(azimuth))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn azimuth(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The altitude used to create the point in radians, in the range 0.0 to π/2.
         ///
         /// This property is not atomic.
         ///
@@ -171,9 +189,9 @@ impl PKStrokePoint {
         pub unsafe fn altitude(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// The scaling of the point for secondary effects.
+        /// The scale factor for secondary rendering effects at this point.
         ///
-        /// For example the scaling of the pigment in the watercolor ink.
+        /// For example, this controls the pigment spread in watercolor ink.
         ///
         /// This property is not atomic.
         ///
@@ -185,10 +203,10 @@ impl PKStrokePoint {
         pub unsafe fn secondaryScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// The threshold for clipping the stroke rendering.
+        /// The alpha threshold for clipping the stroke rendering for supported inks.
         ///
-        /// When rendering only pixels with an alpha greater than the threshold are drawn. A threshold of 0 has no affect on rendering,
-        /// a threshold of 1 does not draw anything. Thresholds are only used for some inks, eg. `PKInkIdentifierReed`.
+        /// Only pixels with an alpha greater than the threshold are drawn. A threshold of `0` has no effect
+        /// on rendering; a threshold of `1` draws nothing. Thresholds apply only to some inks, such as `PKInkIdentifierReed`.
         ///
         /// This property is not atomic.
         ///
@@ -198,6 +216,20 @@ impl PKStrokePoint {
         #[unsafe(method(threshold))]
         #[unsafe(method_family = none)]
         pub unsafe fn threshold(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The amount of lateral particle jitter at the stroke edge for supported inks.
+        ///
+        /// Lateral jitter applies only to some inks, such as `PKInkIdentifierPencil`.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(lateralJitter))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn lateralJitter(&self) -> CGFloat;
     );
 }
 

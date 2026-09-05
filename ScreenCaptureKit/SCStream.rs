@@ -334,6 +334,20 @@ impl SCContentFilter {
             applications: &NSArray<SCRunningApplication>,
             excepting_windows: &NSArray<SCWindow>,
         ) -> Retained<Self>;
+
+        /// Indicates whether the microphone is enabled via the picker.
+        ///
+        /// Readonly - microphone enable state determined by user via system picker when showsMicrophoneControl is enabled in SCContentSharingPickerConfiguration.
+        #[unsafe(method(isMicrophoneEnabled))]
+        #[unsafe(method_family = none)]
+        pub fn isMicrophoneEnabled(&self) -> bool;
+
+        /// Indicates whether the camera is enabled via the picker.
+        ///
+        /// Readonly - camera enable state determined by user via system picker when showsCameraControl is enabled in SCContentSharingPickerConfiguration.
+        #[unsafe(method(isCameraEnabled))]
+        #[unsafe(method_family = none)]
+        pub fn isCameraEnabled(&self) -> bool;
     );
 }
 
@@ -409,7 +423,7 @@ extern_conformance!(
 
 impl SCStreamConfiguration {
     extern_methods!(
-        /// SCStreamProperty for output width as measured in pixels. Default is set to 1920.
+        /// SCStreamProperty for output width as measured in pixels. On macOS default is set to 1920. In iOS/tvOS platforms, default is the native resolution width of the captured content. On supported embedded platforms, if either width or height is greater than native resolution, resulting frame will be capped at native resolution.
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub fn width(&self) -> usize;
@@ -419,7 +433,7 @@ impl SCStreamConfiguration {
         #[unsafe(method_family = none)]
         pub fn setWidth(&self, width: usize);
 
-        /// SCStreamProperty for output height as measured in pixels. Default is set to 1080.
+        /// SCStreamProperty for output height as measured in pixels. on macOS default is set to 1080. In iOS/tvOS platforms, default is the native resolution width of the captured content. On supported embedded platforms, if either width or height is greater than native resolution, resulting frame will be capped at native resolution.
         #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub fn height(&self) -> usize;
@@ -441,13 +455,15 @@ impl SCStreamConfiguration {
         #[unsafe(method_family = none)]
         pub fn setMinimumFrameInterval(&self, minimum_frame_interval: CMTime);
 
-        /// SCStreamProperty for output pixel format. Supported pixel formats are:
-        /// 'BGRA': Packed Little Endian ARGB8888
-        /// 'l10r': Packed Little Endian ARGB2101010
-        /// '420v': 2-plane "video" range YCbCr 4:2:0
-        /// '420f': 2-plane "full" range YCbCr 4:2:0
-        /// 'xf44': 2 plane "full" range YCbCr10 4:4:4
-        /// 'RGhA': 64 bit RGBA IEEE half-precision float, 16-bit little-endian
+        /// SCStreamProperty for output pixel format.
+        /// Supported pixel formats are:
+        /// 'BGRA': Packed Little Endian ARGB8888 (macOS, iOS)
+        /// 'l10r': Packed Little Endian ARGB2101010 (macOS)
+        /// '420v': 2-plane "video" range YCbCr 4:2:0 (macOS, iOS)
+        /// '420f': 2-plane "full" range YCbCr 4:2:0 (macOS, iOS)
+        /// 'xf44': 2 plane "full" range YCbCr10 4:4:4 (macOS)
+        /// 'RGhA': 64 bit RGBA IEEE half-precision float, 16-bit little-endian (macOS)
+        /// 'x420': 2 plane "video" range YCbCr10 4:2:0 (macOS, iOS)
         /// See https://developer.apple.com/documentation/coregraphics/1455170-cgdisplaystreamcreate
         #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
@@ -738,7 +754,7 @@ impl SCStreamConfiguration {
         #[unsafe(method_family = none)]
         pub fn setIncludeChildWindows(&self, include_child_windows: bool);
 
-        /// SCStreamProperty that specifies whether the microphone audio will be captured.  By default microphone is not captured.
+        /// SCStreamProperty that specifies whether the microphone audio will be captured.  By default microphone is not captured. on iOS and visionos, client can configure showsMicrophoneControl in SCContentSharingPickerConfiguration for user to choose enable microphone capture or not
         #[unsafe(method(captureMicrophone))]
         #[unsafe(method_family = none)]
         pub fn captureMicrophone(&self) -> bool;
@@ -868,6 +884,13 @@ extern "C" {
     pub static SCStreamFrameInfoPresenterOverlayContentRect: &'static SCStreamFrameInfo;
 }
 
+extern "C" {
+    /// The key for the CFDictionary attached to the CMSampleBuffer for the video orientation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfovideoorientation?language=objc)
+    pub static SCStreamFrameInfoVideoOrientation: &'static SCStreamFrameInfo;
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstream?language=objc)
     #[unsafe(super(NSObject))]
@@ -886,6 +909,13 @@ impl SCStream {
         #[unsafe(method(synchronizationClock))]
         #[unsafe(method_family = none)]
         pub fn synchronizationClock(&self) -> Option<Retained<CMClock>>;
+
+        /// indicates whether this stream is currently capturing screen content
+        ///
+        /// Returns YES if the stream has been started and is actively capturing, NO otherwise.
+        #[unsafe(method(isCapturing))]
+        #[unsafe(method_family = none)]
+        pub fn isCapturing(&self) -> bool;
 
         // -init (unavailable)
 
@@ -1038,6 +1068,66 @@ impl SCStream {
             &self,
             recording_output: &SCRecordingOutput,
         ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "SCClipBufferingOutput")]
+        /// Add a SCClipBufferingOutput to the SCStream to start clip buffering. Samples will begin accumulating in a rolling buffer that retains the most recent content up to 15 seconds.
+        ///
+        /// Parameter `clipBufferingOutput`: a SCClipBufferingOutput object
+        ///
+        /// Parameter `error`: the error pertaining to adding clip buffering output
+        ///
+        /// Returns a BOOL denoting if the add was successful. The stream must be actively capturing before clip buffering can be started. Only one clip buffering session can be active on a stream at a time. Once buffering is active, clips can be exported using the SCClipBufferingOutput's exportClipToURL:duration:completionHandler: method. Media to be buffered is based on the SCStream configuration.
+        #[unsafe(method(addClipBufferingOutput:error:_))]
+        #[unsafe(method_family = none)]
+        pub fn addClipBufferingOutput_error(
+            &self,
+            clip_buffering_output: &SCClipBufferingOutput,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "SCClipBufferingOutput")]
+        /// Remove SCClipBufferingOutput from the SCStream to stop clip buffering and flush the buffer
+        ///
+        /// Parameter `clipBufferingOutput`: a SCClipBufferingOutput object
+        ///
+        /// Parameter `error`: the error pertaining to removing clip buffering output
+        ///
+        /// Returns a BOOL denoting if the remove was successful. This method stops the accumulation of samples and releases all buffered content. Once removed, no new exports can be requested until clip buffering is added again. If the stream is stopped while clip buffering is active, clip buffering will be automatically stopped as well.
+        #[unsafe(method(removeClipBufferingOutput:error:_))]
+        #[unsafe(method_family = none)]
+        pub fn removeClipBufferingOutput_error(
+            &self,
+            clip_buffering_output: &SCClipBufferingOutput,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "SCVideoEffectOutput")]
+        /// Add a SCVideoEffectOutput to the SCStream to start camera video effect. Only one video effect output can be active per stream.
+        ///
+        /// Parameter `videoEffectOutput`: a SCVideoEffectOutput object to add to the stream.
+        ///
+        /// Parameter `error`: the error pertaining to the add video effect output operation.
+        ///
+        /// Returns a BOOL denoting if the add was successful. Video effect output is only supported on streams using in-app capture (presentPickerForCurrentApplication). Attempting to add a video effect output to a non-in-app capture stream will return NO with SCStreamErrorNotSupported. Camera video effect will start after successfully adding or if stream has not yet started, when stream starts capturing. Delegate for outputVideoEffectDidStartForStream: will be notified on the SCStreamDelegate, or outputVideoEffectDidFailForStream:withError: will be notified if camera video effect failed to start.
+        #[unsafe(method(addVideoEffectOutput:error:_))]
+        #[unsafe(method_family = none)]
+        pub fn addVideoEffectOutput_error(
+            &self,
+            video_effect_output: &SCVideoEffectOutput,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "SCVideoEffectOutput")]
+        /// Remove SCVideoEffectOutput from the SCStream. Stops camera video effect if currently active.
+        ///
+        /// Parameter `videoEffectOutput`: a SCVideoEffectOutput object to remove from the stream.
+        ///
+        /// Parameter `error`: the error pertaining to the remove video effect output operation.
+        ///
+        /// Returns a BOOL denoting if the remove was successful. Delegate for outputVideoEffectDidStopForStream: will be notified on the SCStreamDelegate. If stopCapture is called without removing videoEffectOutput, camera video effect will be stopped automatically.
+        #[unsafe(method(removeVideoEffectOutput:error:_))]
+        #[unsafe(method_family = none)]
+        pub fn removeVideoEffectOutput_error(
+            &self,
+            video_effect_output: &SCVideoEffectOutput,
+        ) -> Result<(), Retained<NSError>>;
     );
 }
 
@@ -1093,15 +1183,27 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn outputVideoEffectDidStartForStream(&self, stream: &SCStream);
 
-        /// stream:outputVideoEffectDidStart:
+        /// outputVideoEffectDidStopForStream:
         ///
         /// Parameter `stream`: the SCStream object
         ///
-        /// notifies the delegate that the stream's overlay video  effect has stopped.
+        /// notifies the delegate that the stream's overlay video effect has stopped.
         #[optional]
         #[unsafe(method(outputVideoEffectDidStopForStream:))]
         #[unsafe(method_family = none)]
         fn outputVideoEffectDidStopForStream(&self, stream: &SCStream);
+
+        /// outputVideoEffectDidFailForStream:withError:
+        ///
+        /// Parameter `stream`: the SCStream object
+        ///
+        /// Parameter `error`: the error describing why the video effect failed
+        ///
+        /// Notifies the delegate that the video effect failed with an error. This can occur if the camera device is unavailable, permissions are missing, or an internal error occurs.
+        #[optional]
+        #[unsafe(method(outputVideoEffectDidFailForStream:withError:))]
+        #[unsafe(method_family = none)]
+        fn outputVideoEffectDidFailForStream_withError(&self, stream: &SCStream, error: &NSError);
 
         /// streamDidBecomeActive:
         ///

@@ -391,6 +391,7 @@ impl SecCode {
     /// For a given Code or StaticCode object, returns a URL to a location on disk where the
     /// code object can be found. For single files, the URL points to that file.
     /// For bundles, it points to the directory containing the entire bundle.
+    /// If the process is the main executable of a bundle, then the bundle path will be returned.
     ///
     ///
     /// Parameter `staticCode`: The Code or StaticCode object to be located. For a Code
@@ -498,6 +499,16 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfocms?language=objc)
     pub static kSecCodeInfoCMS: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfototalsignatures?language=objc)
+    pub static kSecCodeInfoTotalSignatures: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfochosensignature?language=objc)
+    pub static kSecCodeInfoChosenSignature: &'static CFString;
 }
 
 extern "C" {
@@ -623,6 +634,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfostaplednotarizationticket?language=objc)
     pub static kSecCodeInfoStapledNotarizationTicket: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfosignerinfoskid?language=objc)
+    pub static kSecCodeInfoSignerInfoSKID: &'static CFString;
 }
 
 #[cfg(feature = "CSCommon")]

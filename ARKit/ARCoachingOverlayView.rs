@@ -56,13 +56,13 @@ unsafe impl RefEncode for ARCoachingGoal {
 extern_class!(
     /// A view that guides users through session initialization
     ///
-    ///
     /// The view will use context aware messaging and animations to instruct the user on gathering required info for the AR session.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
+    #[deprecated = "This API is deprecated on visionOS."]
     pub struct ARCoachingOverlayView;
 );
 
@@ -157,7 +157,6 @@ impl ARCoachingOverlayView {
         #[cfg(feature = "ARSession")]
         /// A provider of a session to use
         ///
-        ///
         /// This property can be used to set the `session` when loading from a storyboard. Setting this property at runtime will also
         /// set the `session` property.
         #[unsafe(method(sessionProvider))]
@@ -200,8 +199,8 @@ impl ARCoachingOverlayView {
         pub unsafe fn setGoal(&self, goal: ARCoachingGoal);
 
         /// Whether or not the view should activate/deactivate automatically, depending on the current state of the session
-        /// Defaults to `YES`
         ///
+        /// Defaults to `YES`
         ///
         /// When set to automatically activate, the view will transition to active when the session loses normal tracking for a set amount
         /// of time.
@@ -217,26 +216,23 @@ impl ARCoachingOverlayView {
 
         /// Whether or not the view is currently active.
         ///
-        ///
-        /// See: -[ARCoachingOverlayView setActive:animated:]
+        /// - SeeAlso: ``ARCoachingOverlayView/setActive:animated:``
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
         /// Transition the view to either an activated or deactivated state
         ///
-        ///
         /// On activation the view will check the current session, and if relocalization is needed it will present a modified UI with
         /// relocalization coaching and a reset button.
         ///
         /// On deactivation the view will become hidden
         ///
-        /// Parameter `active`: Whether the view should activate, or deactivate
+        /// - Parameters:
+        /// - active: Whether the view should activate, or deactivate.
+        /// - animated: Whether the view animated to activated/deactivated states, or transitions instantly.
         ///
-        /// Parameter `animated`: Whether the view animated to activated/deactivated states, or transitions instantly
-        ///
-        ///
-        /// See: -[ARCoachingOverlayViewDelegate coachingOverlayViewDidTriggerReset:]
+        /// - SeeAlso: ``ARCoachingOverlayViewDelegate/coachingOverlayViewDidRequestSessionReset:``
         #[unsafe(method(setActive:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActive_animated(&self, active: bool, animated: bool);
@@ -270,19 +266,20 @@ impl ARCoachingOverlayView {
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayviewdelegate?language=objc)
+    /// A delegate protocol for receiving coaching overlay view events.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayviewdelegate?language=objc)
     #[cfg(feature = "objc2")]
+    #[deprecated = "This API is deprecated on visionOS."]
     pub unsafe trait ARCoachingOverlayViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
         /// This is called when the user taps the reset button in the relocalization state
-        ///
         ///
         /// By default, when the relocalization reset button is tapped, the overlay will call run on the session using the current
         /// `configuration`, and the `ARSessionRunOptionResetTracking` and `ARSessionRunOptionRemoveExistingAnchors` options. The delegate may
         /// implement this method to override this behavior. The delegate is then responsible for resetting the session.
         ///
-        ///
-        /// Parameter `coachingOverlayView`: The view currently active
+        /// - Parameter coachingOverlayView: The view currently active.
         #[optional]
         #[unsafe(method(coachingOverlayViewDidRequestSessionReset:))]
         #[unsafe(method_family = none)]
@@ -294,11 +291,10 @@ extern_protocol!(
         #[cfg(feature = "objc2-ui-kit")]
         /// This is called when the view activate, either manually or automatically
         ///
-        ///
-        /// The Developer may hide their application UI in in this callback, and take other appropriate actions to allow
+        /// The Developer may hide their application UI in this callback, and take other appropriate actions to allow
         /// `ARCoachingOverlayView` to take over the full screen.
         ///
-        /// Parameter `coachingOverlayView`: The view that will be activated
+        /// - Parameter coachingOverlayView: The view that will be activated.
         #[optional]
         #[unsafe(method(coachingOverlayViewWillActivate:))]
         #[unsafe(method_family = none)]
@@ -308,10 +304,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-ui-kit")]
-        /// This is called when the view has been deactivated, either manually or automatically
+        /// This is called when the view has been deactivated, either manually or automatically.
         ///
-        ///
-        /// Parameter `coachingOverlayView`: The view that was deactivated
+        /// - Parameter coachingOverlayView: The view that was deactivated.
         #[optional]
         #[unsafe(method(coachingOverlayViewDidDeactivate:))]
         #[unsafe(method_family = none)]

@@ -43,7 +43,11 @@ impl PHAssetCollectionChangeRequest {
             asset_collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
-        #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
+        #[cfg(all(
+            feature = "PHAssetCollection",
+            feature = "PHCollection",
+            feature = "PHObject"
+        ))]
         #[unsafe(method(changeRequestForAssetCollection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAssetCollection(
@@ -52,6 +56,7 @@ impl PHAssetCollectionChangeRequest {
 
         #[cfg(all(
             feature = "PHAsset",
+            feature = "PHAssetCollection",
             feature = "PHCollection",
             feature = "PHFetchResult",
             feature = "PHObject"

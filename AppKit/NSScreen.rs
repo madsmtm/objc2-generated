@@ -14,6 +14,29 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreentouchcapabilities?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NSScreenTouchCapabilities(pub NSUInteger);
+bitflags::bitflags! {
+    impl NSScreenTouchCapabilities: NSUInteger {
+        #[doc(alias = "NSScreenTouchCapabilitiesNone")]
+        const None = 0;
+        #[doc(alias = "NSScreenTouchCapabilitiesMultiTouch")]
+        const MultiTouch = 0x1<<0;
+        const _ = !0;
+    }
+}
+
+unsafe impl Encode for NSScreenTouchCapabilities {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSScreenTouchCapabilities {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreen?language=objc)
     #[unsafe(super(NSObject))]
@@ -122,6 +145,10 @@ impl NSScreen {
         #[unsafe(method(CGDirectDisplayID))]
         #[unsafe(method_family = none)]
         pub fn CGDirectDisplayID(&self) -> CGDirectDisplayID;
+
+        #[unsafe(method(touchCapabilities))]
+        #[unsafe(method_family = none)]
+        pub fn touchCapabilities(&self) -> NSScreenTouchCapabilities;
     );
 }
 

@@ -8,103 +8,143 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifier?language=objc)
+/// The supported calendar types.
+///
+/// Use these identifiers to specify the kind of calendar. The Gregorian calendar is the calendar typically used in Europe, the Western Hemisphere, and elsewhere.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSCalendarIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiergregorian?language=objc)
+    /// Identifier for the Gregorian calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiergregorian?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierGregorian: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierbuddhist?language=objc)
+    /// Identifier for the Buddhist calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierbuddhist?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierBuddhist: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierchinese?language=objc)
+    /// Identifier for the Chinese calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierchinese?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierChinese: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiercoptic?language=objc)
+    /// Identifier for the Coptic calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifiercoptic?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierCoptic: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierethiopicametemihret?language=objc)
+    /// Identifier for the Ethiopic Amete Mihret calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierethiopicametemihret?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierEthiopicAmeteMihret: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierethiopicametealem?language=objc)
+    /// Identifier for the Ethiopic Amete Alem calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierethiopicametealem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierEthiopicAmeteAlem: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierhebrew?language=objc)
+    /// Identifier for the Hebrew calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierhebrew?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierHebrew: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifieriso8601?language=objc)
+    /// Identifier for the ISO 8601 calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifieriso8601?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierISO8601: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierindian?language=objc)
+    /// Identifier for the Indian calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierindian?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIndian: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierislamic?language=objc)
+    /// Identifier for the Islamic calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierislamic?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamic: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierislamiccivil?language=objc)
+    /// Identifier for the Islamic civil calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierislamiccivil?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamicCivil: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierjapanese?language=objc)
+    /// Identifier for the Japanese calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierjapanese?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierJapanese: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierpersian?language=objc)
+    /// Identifier for the Persian calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierpersian?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierPersian: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierrepublicofchina?language=objc)
+    /// Identifier for the Republic of China (Minguo) calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierrepublicofchina?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierRepublicOfChina: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierislamictabular?language=objc)
+    /// Identifier for the Islamic tabular calendar.
+    ///
+    /// A simple tabular Islamic calendar using the astronomical/Thursday epoch of CE 622 July 15.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierislamictabular?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamicTabular: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierislamicummalqura?language=objc)
+    /// Identifier for the Islamic Umm al-Qura calendar.
+    ///
+    /// The Islamic Umm al-Qura calendar used in Saudi Arabia. This is based on astronomical calculation, instead of tabular behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaridentifierislamicummalqura?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamicUmmAlQura: &'static NSCalendarIdentifier;
 }
@@ -175,81 +215,152 @@ extern "C" {
     pub static NSCalendarIdentifierVietnamese: &'static NSCalendarIdentifier;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendarunit?language=objc)
+/// Calendrical units such as year, month, day and hour.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendarunit?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalendarUnit(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCalendarUnit: NSUInteger {
+/// Identifier for the era unit.
+///
+/// The corresponding value is an `NSInteger`.
         #[doc(alias = "NSCalendarUnitEra")]
         const Era = 2;
+/// Identifier for the year unit.
+///
+/// The corresponding value is an `NSInteger`.
         #[doc(alias = "NSCalendarUnitYear")]
         const Year = 4;
+/// Identifier for the month unit.
+///
+/// The corresponding value is an `NSInteger`.
         #[doc(alias = "NSCalendarUnitMonth")]
         const Month = 8;
+/// Identifier for the day unit.
+///
+/// The corresponding value is an `NSInteger`.
         #[doc(alias = "NSCalendarUnitDay")]
         const Day = 16;
+/// Identifier for the hour unit.
+///
+/// The corresponding value is an `NSInteger`.
         #[doc(alias = "NSCalendarUnitHour")]
         const Hour = 32;
+/// Identifier for the minute unit.
+///
+/// The corresponding value is an `NSInteger`.
         #[doc(alias = "NSCalendarUnitMinute")]
         const Minute = 64;
+/// Identifier for the second unit.
+///
+/// The corresponding value is a `double`.
         #[doc(alias = "NSCalendarUnitSecond")]
         const Second = 128;
+/// Identifier for the weekday unit.
+///
+/// The corresponding value is an `NSInteger`. The weekday units are the numbers `1` through `N` (where for the Gregorian calendar `N`=`7` and `1` is Sunday).
         #[doc(alias = "NSCalendarUnitWeekday")]
         const Weekday = 512;
+/// Identifier for the ordinal weekday unit.
+///
+/// The corresponding value is an `NSInteger`. The weekday ordinal unit describes ordinal position within the month unit of the corresponding weekday unit. For example, in the Gregorian calendar a weekday ordinal unit of `2` for a weekday unit `3` indicates "the second Tuesday in the month".
         #[doc(alias = "NSCalendarUnitWeekdayOrdinal")]
         const WeekdayOrdinal = 1024;
+/// Identifier for the quarter of the calendar.
+///
+/// The corresponding value is an `NSInteger`.
+///
+/// > Important: The `NSCalendarUnitQuarter` unit is largely unimplemented, and is not recommended for use.
         #[doc(alias = "NSCalendarUnitQuarter")]
         const Quarter = 2048;
+/// Identifier for the week of the month calendar unit.
         #[doc(alias = "NSCalendarUnitWeekOfMonth")]
         const WeekOfMonth = 4096;
+/// Identifier for the week of the year calendar unit.
         #[doc(alias = "NSCalendarUnitWeekOfYear")]
         const WeekOfYear = 8192;
+/// Identifier for the week-counting year unit.
         #[doc(alias = "NSCalendarUnitYearForWeekOfYear")]
         const YearForWeekOfYear = 16384;
+/// Identifier for the nanosecond unit.
         #[doc(alias = "NSCalendarUnitNanosecond")]
         const Nanosecond = 32768;
+/// Identifier for the nanosecond unit.
         #[doc(alias = "NSCalendarUnitDayOfYear")]
         const DayOfYear = 65536;
+/// Identifier for the calendar of a date components object.
+///
+/// The corresponding value is an `NSCalendar`.
         #[doc(alias = "NSCalendarUnitCalendar")]
         const Calendar = 1048576;
+/// Identifier for the time zone of a date components object.
+///
+/// The corresponding value is an `NSTimeZone`.
         #[doc(alias = "NSCalendarUnitTimeZone")]
         const TimeZone = 2097152;
+/// Identifier for the time zone of a date components object.
+///
+/// The corresponding value is an `NSTimeZone`.
         #[doc(alias = "NSCalendarUnitIsLeapMonth")]
         const IsLeapMonth = 1073741824;
+/// Identifier for the time zone of a date components object.
+///
+/// The corresponding value is an `NSTimeZone`.
         #[doc(alias = "NSCalendarUnitIsRepeatedDay")]
         const IsRepeatedDay = 2147483648;
+/// Specifies the era unit.
 #[deprecated]
         const NSEraCalendarUnit = 2;
+/// Specifies the year unit.
 #[deprecated]
         const NSYearCalendarUnit = 4;
+/// Specifies the month unit.
 #[deprecated]
         const NSMonthCalendarUnit = 8;
+/// Specifies the day unit.
 #[deprecated]
         const NSDayCalendarUnit = 16;
+/// Specifies the hour unit.
 #[deprecated]
         const NSHourCalendarUnit = 32;
+/// Specifies the minute unit.
 #[deprecated]
         const NSMinuteCalendarUnit = 64;
+/// Specifies the second unit.
 #[deprecated]
         const NSSecondCalendarUnit = 128;
+/// Specifies the week unit.
+///
+/// Equal to `kCFCalendarUnitWeek`.
 #[deprecated = "NSCalendarUnitWeekOfMonth or NSCalendarUnitWeekOfYear, depending on which you mean"]
         const NSWeekCalendarUnit = 256;
+/// Specifies the weekday unit.
 #[deprecated]
         const NSWeekdayCalendarUnit = 512;
+/// Specifies the ordinal weekday unit.
+///
+/// The weekday ordinal unit describes the ordinal position within the month of the corresponding weekday unit. For example, in the Gregorian calendar a weekday ordinal of 2 for a weekday of 3 indicates "the second Tuesday in the month". Equal to `kCFCalendarUnitWeekdayOrdinal`.
 #[deprecated]
         const NSWeekdayOrdinalCalendarUnit = 1024;
+/// Specifies the quarter unit.
 #[deprecated]
         const NSQuarterCalendarUnit = 2048;
+/// Specifies the week of the month calendar unit.
 #[deprecated]
         const NSWeekOfMonthCalendarUnit = 4096;
+/// Specifies the week of the year calendar unit.
 #[deprecated]
         const NSWeekOfYearCalendarUnit = 8192;
+/// Specifies the year when the calendar is being interpreted as a week-based calendar.
 #[deprecated]
         const NSYearForWeekOfYearCalendarUnit = 16384;
+/// Specifies the calendar of the calendar.
 #[deprecated]
         const NSCalendarCalendarUnit = 1048576;
+/// Specifies the time zone of the calendar as an `NSTimeZone`.
 #[deprecated]
         const NSTimeZoneCalendarUnit = 2097152;
         const _ = !0;
@@ -264,27 +375,37 @@ unsafe impl RefEncode for NSCalendarUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaroptions?language=objc)
+/// The options for arithmetic operations involving calendars.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalendarOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCalendarOptions: NSUInteger {
+/// Specifies that the components specified for an `NSDateComponents` object should be incremented and wrap around to zero/one on overflow, but should not cause higher units to be incremented.
         #[doc(alias = "NSCalendarWrapComponents")]
         const WrapComponents = 1<<0;
+/// Specifies that the operation should travel as far forward or backward as necessary looking for a match.
         #[doc(alias = "NSCalendarMatchStrictly")]
         const MatchStrictly = 1<<1;
+/// Specifies that the operation should travel backwards to find the previous match before the given date.
         #[doc(alias = "NSCalendarSearchBackwards")]
         const SearchBackwards = 1<<2;
+/// Specifies that, when there is no matching time before the end of the next instance of the next highest unit specified in the given `NSDateComponents` object, this method uses the previous existing value of the missing unit and preserves the lower units' values.
         #[doc(alias = "NSCalendarMatchPreviousTimePreservingSmallerUnits")]
         const MatchPreviousTimePreservingSmallerUnits = 1<<8;
+/// Specifies that, when there is no matching time before the end of the next instance of the next highest unit specified in the given `NSDateComponents` object, this method uses the next existing value of the missing unit and preserves the lower units' values.
         #[doc(alias = "NSCalendarMatchNextTimePreservingSmallerUnits")]
         const MatchNextTimePreservingSmallerUnits = 1<<9;
+/// Specifies that, when there is no matching time before the end of the next instance of the next highest unit specified in the given `NSDateComponents` object, this method uses the next existing value of the missing unit and does not preserve the lower units' values.
         #[doc(alias = "NSCalendarMatchNextTime")]
         const MatchNextTime = 1<<10;
+/// Specifies that, if there are two or more matching times, the operation should return the first occurrence.
         #[doc(alias = "NSCalendarMatchFirst")]
         const MatchFirst = 1<<12;
+/// Specifies that, if there are two or more matching times, the operation should return the last occurrence.
         #[doc(alias = "NSCalendarMatchLast")]
         const MatchLast = 1<<13;
         const _ = !0;
@@ -299,12 +420,65 @@ unsafe impl RefEncode for NSCalendarOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswrapcalendarcomponents?language=objc)
+/// Specifies that the components specified for an `NSDateComponents` object should be incremented and wrap around to zero/one on overflow, but should not cause higher units to be incremented.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nswrapcalendarcomponents?language=objc)
 #[deprecated]
 pub const NSWrapCalendarComponents: NSUInteger = NSCalendarOptions::WrapComponents.0;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar?language=objc)
+    /// A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates.
+    ///
+    /// In Swift, this object bridges to ``Calendar``; use ``NSCalendar`` when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// ``NSCalendar`` objects encapsulate information about systems of reckoning time in which the beginning, length, and divisions of a year are defined. They provide information about the calendar and support for calendrical computations such as determining the range of a given calendrical unit and adding units to a given absolute time.
+    ///
+    /// ``NSCalendar`` is _toll-free bridged_ with its Core Foundation counterpart,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfcalendar>. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``Calendar`` structure, which bridges to the ``NSCalendar`` class. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
+    ///
+    /// ### Locales and Calendars
+    ///
+    /// Most locales use the most widely used civil calendar, called the _Gregorian calendar_ (``Identifier/gregorian``), but there remain exceptions to this trend. For example:
+    ///
+    /// - In Saudi Arabia, some locales use primarily the Islamic Umm al-Qura calendar (``Identifier/islamicUmmAlQura``).
+    /// - In Ethiopia, some locales use primarily the Ethiopian calendar (``Identifier/ethiopicAmeteMihret`` or ``Identifier/ethiopicAmeteAlem``).
+    /// - In Iran and Afghanistan, some locales use primarily the Persian calendar (``Identifier/persian``).
+    /// - In Thailand, some locales use primarily the Buddhist calendar (``Identifier/buddhist``).
+    ///
+    /// Other locales use another calendar alongside the Gregorian calendar. For example:
+    ///
+    /// - India also uses the Indian national calendar (``Identifier/indian``).
+    /// - Israel also uses the Hebrew calendar (``Identifier/hebrew``).
+    /// - China mainland and other regions also use the Chinese calendar (``Identifier/chinese``), primarily to calculate astronomical date and Chinese traditional holidays.
+    /// - Japan also uses the Japanese calendar (``Identifier/japanese``), primarily to add year names.
+    ///
+    /// Independent of any particular locale, certain calendars are used primarily to calculate dates for religious observances. Among these are the Buddhist (``Identifier/buddhist``), Coptic (``Identifier/coptic``), Hebrew (``Identifier/hebrew``), and Islamic (``Identifier/islamic``) calendars.
+    ///
+    /// ### How NSCalendar Models the Gregorian Calendar
+    ///
+    /// The Gregorian calendar was first introduced in 1582, as a replacement for the Julian Calendar. According to the Julian calendar, a leap day is added to February for any year with a number divisible by 4, which results in an annual disparity of 11 minutes, or 1 day every 128 years. The Gregorian calendar revised the rules for leap day calculation, by skipping the leap day for any year with a number divisible by 100, unless that year number is also divisible by 400, resulting in an annual disparity of only 26 seconds, or 1 day every 3323 years.
+    ///
+    /// To transition from the Julian calendar to the Gregorian calendar, 10 days were dropped from the Gregorian calendar (October 5–14).
+    ///
+    /// After the Gregorian calendar was introduced, many regions continued to use the Julian calendar, with Turkey being the last country or region to adopt the Gregorian calendar, in 1926. As a result of the staggered adoption, the transition period for regions at the time of adoption have different start dates and a different number of skipped days to account for the additional disparity from leap day calculations.
+    ///
+    /// ``NSCalendar`` models the behavior of a _proleptic_ Gregorian calendar (_as defined by ISO 8601:2004_), which extends the Gregorian calendar backward in time from the date of its introduction. This behavior should be taken into account when working with dates created before the transition period of the affected locales.
+    ///
+    /// ### Calendar Arithmetic
+    ///
+    /// To do calendar arithmetic, you use ``NSDate`` objects in conjunction with a calendar. For example, to convert between a decomposed date in one calendar and another calendar, you must first convert the decomposed elements into a date using the first calendar, then decompose it using the second. ``NSDate`` provides the absolute scale and epoch (reference point) for dates and times, which can then be rendered into a particular calendar, for calendrical computations or user display.
+    ///
+    /// Two ``NSCalendar`` methods that return a date object, ``date(from:)``, ``date(byAdding:to:options:)``, take as a parameter an ``NSDateComponents`` object that describes the calendrical components required for the computation. You can provide as many components as you need (or choose to). When there is incomplete information to compute an absolute time, default values similar to `0` and `1` are usually chosen by a calendar, but this is a calendar-specific choice. If you provide inconsistent information, calendar-specific disambiguation is performed (which may involve ignoring one or more of the parameters). Related methods (``components(_:from:)`` and ``components(_:from:to:options:)-84y5w``) take a bit mask parameter that specifies which components to calculate when returning an ``NSDateComponents`` object. The bit mask is composed of ``Unit`` constants (see `Constants`).
+    ///
+    /// In a calendar, day, week, weekday, month, and year numbers are generally 1-based, but there may be calendar-specific exceptions. Ordinal numbers, where they occur, are 1-based. Some calendars represented by this API may have to map their basic unit concepts into year/month/week/day/… nomenclature. For example, a calendar composed of 4 quarters in a year instead of 12 months uses the month unit to represent quarters. The particular values of the unit are defined by each calendar, and are not necessarily consistent with values for that unit in another calendar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCalendar;
@@ -352,15 +526,28 @@ extern_conformance!(
 
 impl NSCalendar {
     extern_methods!(
+        /// The user's current calendar.
+        ///
+        /// The returned calendar is formed from the settings for the current user's chosen system locale overlaid with any custom settings the user has specified in System Preferences. Settings you get from this calendar do not change as System Preferences are changed.
         #[unsafe(method(currentCalendar))]
         #[unsafe(method_family = none)]
         pub fn currentCalendar() -> Retained<NSCalendar>;
 
+        /// A calendar that tracks changes to user's preferred calendar.
+        ///
+        /// Settings you get from this calendar do change as the user's settings change. Note that if you cache values based on the calendar or related information those caches will of course not be automatically updated by the updating of the calendar object.
         #[unsafe(method(autoupdatingCurrentCalendar))]
         #[unsafe(method_family = none)]
         pub fn autoupdatingCurrentCalendar() -> Retained<NSCalendar>;
 
         #[cfg(feature = "NSString")]
+        /// Creates a new calendar specified by a given identifier.
+        ///
+        /// - Parameters:
+        /// - calendarIdentifierConstant: The identifier for the new calendar. For valid identifiers, see `Calendar Identifiers`.
+        /// - Returns: The initialized calendar, or `nil` if the identifier is unknown (if, for example, it is either an unrecognized string or the calendar is not supported by the current version of the operating system).
+        ///
+        /// The returned calendar defaults to the current locale and default time zone.
         #[unsafe(method(calendarWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn calendarWithIdentifier(
@@ -370,6 +557,11 @@ impl NSCalendar {
         // -init (unavailable)
 
         #[cfg(feature = "NSString")]
+        /// Initializes a calendar according to a given identifier.
+        ///
+        /// - Parameters:
+        /// - ident: The identifier for the new calendar. For valid identifiers, see `Calendar Identifiers`.
+        /// - Returns: The initialized calendar, or `nil` if the identifier is unknown (if, for example, it is either an unrecognized string or the calendar is not supported by the current version of the operating system).
         #[unsafe(method(initWithCalendarIdentifier:))]
         #[unsafe(method_family = init)]
         pub fn initWithCalendarIdentifier(
@@ -378,11 +570,13 @@ impl NSCalendar {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// An identifier for the calendar.
         #[unsafe(method(calendarIdentifier))]
         #[unsafe(method_family = none)]
         pub fn calendarIdentifier(&self) -> Retained<NSCalendarIdentifier>;
 
         #[cfg(feature = "NSLocale")]
+        /// The locale for the calendar.
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub fn locale(&self) -> Option<Retained<NSLocale>>;
@@ -396,6 +590,7 @@ impl NSCalendar {
         pub fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "NSTimeZone")]
+        /// The time zone for the calendar.
         #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
         pub fn timeZone(&self) -> Retained<NSTimeZone>;
@@ -408,6 +603,7 @@ impl NSCalendar {
         #[unsafe(method_family = none)]
         pub fn setTimeZone(&self, time_zone: &NSTimeZone);
 
+        /// The index of the first weekday for the calendar.
         #[unsafe(method(firstWeekday))]
         #[unsafe(method_family = none)]
         pub fn firstWeekday(&self) -> NSUInteger;
@@ -417,6 +613,7 @@ impl NSCalendar {
         #[unsafe(method_family = none)]
         pub fn setFirstWeekday(&self, first_weekday: NSUInteger);
 
+        /// The minimum number of days in the first week of the calendar.
         #[unsafe(method(minimumDaysInFirstWeek))]
         #[unsafe(method_family = none)]
         pub fn minimumDaysInFirstWeek(&self) -> NSUInteger;
@@ -427,116 +624,139 @@ impl NSCalendar {
         pub fn setMinimumDaysInFirstWeek(&self, minimum_days_in_first_week: NSUInteger);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// A list of era symbols for this calendar.
         #[unsafe(method(eraSymbols))]
         #[unsafe(method_family = none)]
         pub fn eraSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The long era symbols for this calendar.
         #[unsafe(method(longEraSymbols))]
         #[unsafe(method_family = none)]
         pub fn longEraSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of month symbols for this calendar.
         #[unsafe(method(monthSymbols))]
         #[unsafe(method_family = none)]
         pub fn monthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of short month symbols for this calendar.
         #[unsafe(method(shortMonthSymbols))]
         #[unsafe(method_family = none)]
         pub fn shortMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of very short month symbols for this calendar.
         #[unsafe(method(veryShortMonthSymbols))]
         #[unsafe(method_family = none)]
         pub fn veryShortMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of standalone month symbols for this calendar.
         #[unsafe(method(standaloneMonthSymbols))]
         #[unsafe(method_family = none)]
         pub fn standaloneMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of short standalone month symbols for this calendar.
         #[unsafe(method(shortStandaloneMonthSymbols))]
         #[unsafe(method_family = none)]
         pub fn shortStandaloneMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of very short standalone month symbols for this calendar.
         #[unsafe(method(veryShortStandaloneMonthSymbols))]
         #[unsafe(method_family = none)]
         pub fn veryShortStandaloneMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of weekday symbols for this calendar.
         #[unsafe(method(weekdaySymbols))]
         #[unsafe(method_family = none)]
         pub fn weekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of short weekday symbols for this calendar.
         #[unsafe(method(shortWeekdaySymbols))]
         #[unsafe(method_family = none)]
         pub fn shortWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of very short weekday symbols for this calendar.
         #[unsafe(method(veryShortWeekdaySymbols))]
         #[unsafe(method_family = none)]
         pub fn veryShortWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of standalone weekday symbols for this calendar.
         #[unsafe(method(standaloneWeekdaySymbols))]
         #[unsafe(method_family = none)]
         pub fn standaloneWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of short standalone weekday symbols for this calendar.
         #[unsafe(method(shortStandaloneWeekdaySymbols))]
         #[unsafe(method_family = none)]
         pub fn shortStandaloneWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of very short standalone weekday symbols for this calendar.
         #[unsafe(method(veryShortStandaloneWeekdaySymbols))]
         #[unsafe(method_family = none)]
         pub fn veryShortStandaloneWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of quarter symbols for this calendar.
         #[unsafe(method(quarterSymbols))]
         #[unsafe(method_family = none)]
         pub fn quarterSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of short quarter symbols for this calendar.
         #[unsafe(method(shortQuarterSymbols))]
         #[unsafe(method_family = none)]
         pub fn shortQuarterSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of standalone quarter symbols for this calendar.
         #[unsafe(method(standaloneQuarterSymbols))]
         #[unsafe(method_family = none)]
         pub fn standaloneQuarterSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// The list of short standalone quarter symbols for this calendar.
         #[unsafe(method(shortStandaloneQuarterSymbols))]
         #[unsafe(method_family = none)]
         pub fn shortStandaloneQuarterSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// The AM symbol for this calendar.
         #[unsafe(method(AMSymbol))]
         #[unsafe(method_family = none)]
         pub fn AMSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// The PM symbol for this calendar.
         #[unsafe(method(PMSymbol))]
         #[unsafe(method_family = none)]
         pub fn PMSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
+        /// The minimum range limits of the values that a given unit can take on.
         #[unsafe(method(minimumRangeOfUnit:))]
         #[unsafe(method_family = none)]
         pub fn minimumRangeOfUnit(&self, unit: NSCalendarUnit) -> NSRange;
 
         #[cfg(feature = "NSRange")]
+        /// The maximum range limits of the values that a given unit can take on.
         #[unsafe(method(maximumRangeOfUnit:))]
         #[unsafe(method_family = none)]
         pub fn maximumRangeOfUnit(&self, unit: NSCalendarUnit) -> NSRange;
 
         #[cfg(all(feature = "NSDate", feature = "NSRange"))]
+        /// The range of absolute time values that a smaller calendar unit can take on in a larger calendar unit for a specified absolute time.
         #[unsafe(method(rangeOfUnit:inUnit:forDate:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfUnit_inUnit_forDate(
@@ -547,6 +767,7 @@ impl NSCalendar {
         ) -> NSRange;
 
         #[cfg(feature = "NSDate")]
+        /// The ordinal number of a smaller calendar unit within a specified larger calendar unit for a specified absolute time.
         #[unsafe(method(ordinalityOfUnit:inUnit:forDate:))]
         #[unsafe(method_family = none)]
         pub fn ordinalityOfUnit_inUnit_forDate(
@@ -557,6 +778,7 @@ impl NSCalendar {
         ) -> NSUInteger;
 
         #[cfg(feature = "NSDate")]
+        /// The starting time and duration of a given calendar unit that contains a given date.
         #[unsafe(method(rangeOfUnit:startDate:interval:forDate:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfUnit_startDate_interval_forDate(
@@ -568,11 +790,13 @@ impl NSCalendar {
         ) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// A date created from the specified components.
         #[unsafe(method(dateFromComponents:))]
         #[unsafe(method_family = none)]
         pub fn dateFromComponents(&self, comps: &NSDateComponents) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// The date components representing a given date.
         #[unsafe(method(components:fromDate:))]
         #[unsafe(method_family = none)]
         pub fn components_fromDate(
@@ -582,6 +806,7 @@ impl NSCalendar {
         ) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "NSDate")]
+        /// A date representing the absolute time calculated by adding given components to a given date.
         #[unsafe(method(dateByAddingComponents:toDate:options:))]
         #[unsafe(method_family = none)]
         pub fn dateByAddingComponents_toDate_options(
@@ -592,6 +817,18 @@ impl NSCalendar {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns the difference between two supplied dates as date components.
+        ///
+        /// The result is lossy if there is not a small enough unit requested to hold the full precision of the difference. Some operations can be ambiguous, and the behavior of the computation is calendar-specific, but generally larger components will be computed before smaller components; for example, in the Gregorian calendar a result might be 1 month and 5 days instead of, for example, 0 months and 35 days. The resulting component values may be negative if `resultDate` is before `startDate`.
+        ///
+        /// Note that some computations can take a relatively long time.
+        ///
+        /// - Parameters:
+        /// - unitFlags: Specifies the components for the returned `NSDateComponents` object.
+        /// - startingDate: The start date for the calculation.
+        /// - resultDate: The end date for the calculation.
+        /// - opts: Options for the calculation. If you specify ``NSCalendar/Options/wrapComponents``, the specified components are incremented and wrap around to zero/one on overflow, but do not cause higher units to be incremented.
+        /// - Returns: An `NSDateComponents` object whose components are specified by `unitFlags` and calculated from the difference between the `resultDate` and `startDate`. Returns `nil` if either date falls outside the defined range of the receiver or if the computation cannot be performed.
         #[unsafe(method(components:fromDate:toDate:options:))]
         #[unsafe(method_family = none)]
         pub fn components_fromDate_toDate_options(
@@ -603,6 +840,9 @@ impl NSCalendar {
         ) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns the era, year, month, and day of a given date.
+        ///
+        /// Pass `NULL` for a `NSInteger` pointer parameter if you don't care about that value.
         #[unsafe(method(getEra:year:month:day:fromDate:))]
         #[unsafe(method_family = none)]
         pub fn getEra_year_month_day_fromDate(
@@ -615,6 +855,9 @@ impl NSCalendar {
         );
 
         #[cfg(feature = "NSDate")]
+        /// Returns the era, year for week-of-year calculations, week of year, and weekday of a given date.
+        ///
+        /// Pass `NULL` for a `NSInteger` pointer parameter if you don't care about that value.
         #[unsafe(method(getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:))]
         #[unsafe(method_family = none)]
         pub fn getEra_yearForWeekOfYear_weekOfYear_weekday_fromDate(
@@ -627,6 +870,9 @@ impl NSCalendar {
         );
 
         #[cfg(feature = "NSDate")]
+        /// Returns the hour, minute, second, and nanoseconds of a given date.
+        ///
+        /// Pass `NULL` for a `NSInteger` pointer parameter if you don't care about that value.
         #[unsafe(method(getHour:minute:second:nanosecond:fromDate:))]
         #[unsafe(method_family = none)]
         pub fn getHour_minute_second_nanosecond_fromDate(
@@ -639,11 +885,13 @@ impl NSCalendar {
         );
 
         #[cfg(feature = "NSDate")]
+        /// Returns the value for one component of a date.
         #[unsafe(method(component:fromDate:))]
         #[unsafe(method_family = none)]
         pub fn component_fromDate(&self, unit: NSCalendarUnit, date: &NSDate) -> NSInteger;
 
         #[cfg(feature = "NSDate")]
+        /// Creates a date with given components. Current era is assumed.
         #[unsafe(method(dateWithEra:year:month:day:hour:minute:second:nanosecond:))]
         #[unsafe(method_family = none)]
         pub fn dateWithEra_year_month_day_hour_minute_second_nanosecond(
@@ -659,6 +907,7 @@ impl NSCalendar {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Creates a date with given week-of-year-based components. Current era is assumed.
         #[unsafe(method(dateWithEra:yearForWeekOfYear:weekOfYear:weekday:hour:minute:second:nanosecond:))]
         #[unsafe(method_family = none)]
         pub fn dateWithEra_yearForWeekOfYear_weekOfYear_weekday_hour_minute_second_nanosecond(
@@ -674,6 +923,10 @@ impl NSCalendar {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns the first moment date of a given date.
+        ///
+        /// Pass in `[NSDate date]`, for example, if you want the start of "today".
+        /// If there were two midnights, it returns the first. If there was none, it returns the first moment that did exist.
         #[unsafe(method(startOfDayForDate:))]
         #[unsafe(method_family = none)]
         pub fn startOfDayForDate(&self, date: &NSDate) -> Retained<NSDate>;
@@ -681,6 +934,9 @@ impl NSCalendar {
 
     extern_methods!(
         #[cfg(all(feature = "NSDate", feature = "NSTimeZone"))]
+        /// Returns all the date components of a date, as if in a given time zone (instead of the receiving calendar's time zone).
+        ///
+        /// The time zone overrides the time zone of the `NSCalendar` for the purposes of this calculation.
         #[unsafe(method(componentsInTimeZone:fromDate:))]
         #[unsafe(method_family = none)]
         pub fn componentsInTimeZone_fromDate(
@@ -690,6 +946,7 @@ impl NSCalendar {
         ) -> Retained<NSDateComponents>;
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime"))]
+        /// Compares the given dates down to the given unit, reporting them equal if they are the same in the given unit and all larger units, otherwise either less than or greater than.
         #[unsafe(method(compareDate:toDate:toUnitGranularity:))]
         #[unsafe(method_family = none)]
         pub fn compareDate_toDate_toUnitGranularity(
@@ -700,6 +957,7 @@ impl NSCalendar {
         ) -> NSComparisonResult;
 
         #[cfg(feature = "NSDate")]
+        /// Returns whether the given dates are equal down to the given unit, reporting them equal if they are the same in the given unit and all larger units.
         #[unsafe(method(isDate:equalToDate:toUnitGranularity:))]
         #[unsafe(method_family = none)]
         pub fn isDate_equalToDate_toUnitGranularity(
@@ -710,31 +968,45 @@ impl NSCalendar {
         ) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Returns whether the given dates are in the same day.
         #[unsafe(method(isDate:inSameDayAsDate:))]
         #[unsafe(method_family = none)]
         pub fn isDate_inSameDayAsDate(&self, date1: &NSDate, date2: &NSDate) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Returns whether the given date is within "today".
         #[unsafe(method(isDateInToday:))]
         #[unsafe(method_family = none)]
         pub fn isDateInToday(&self, date: &NSDate) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Returns whether the given date is within "yesterday".
         #[unsafe(method(isDateInYesterday:))]
         #[unsafe(method_family = none)]
         pub fn isDateInYesterday(&self, date: &NSDate) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Returns whether the given date is within "tomorrow".
         #[unsafe(method(isDateInTomorrow:))]
         #[unsafe(method_family = none)]
         pub fn isDateInTomorrow(&self, date: &NSDate) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Returns whether the given date is within a weekend period, as defined by the calendar and calendar's locale.
         #[unsafe(method(isDateInWeekend:))]
         #[unsafe(method_family = none)]
         pub fn isDateInWeekend(&self, date: &NSDate) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Returns whether a given date falls within a weekend period, and if so, returns by reference the start date and time interval of the weekend range.
+        ///
+        /// Note that a particular calendar day may not necessarily fall entirely within a weekend period, as weekends can start in the middle of a day in some calendars and locales.
+        ///
+        /// - Parameters:
+        /// - datep: Upon return, contains the starting date of the weekend period.
+        /// - tip: Upon return, contains the time interval of the weekend period.
+        /// - date: The date to use to perform the calculation.
+        /// - Returns: `YES` if the given date falls within a weekend period, otherwise `NO`.
         #[unsafe(method(rangeOfWeekendStartDate:interval:containingDate:))]
         #[unsafe(method_family = none)]
         pub fn rangeOfWeekendStartDate_interval_containingDate(
@@ -745,6 +1017,18 @@ impl NSCalendar {
         ) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// Returns by reference the starting date and time interval range of the next weekend period after a given date.
+        ///
+        /// Note that a particular calendar day may not necessarily fall entirely within a weekend period, as weekends can start in the middle of a day in some calendars and locales.
+        ///
+        /// The `NSCalendarSearchBackwards` option can be used to find the previous weekend range strictly before the date. Returns `NO` if there are no such things as weekends in the calendar and its locale.
+        ///
+        /// - Parameters:
+        /// - datep: Upon return, contains the starting date of the next weekend period.
+        /// - tip: Upon return, contains the time interval of the next weekend period.
+        /// - options: Options for the calculation. If you specify ``NSCalendar/Options/searchBackwards``, the starting date and time interval range of the preceding weekend period will be returned by reference instead.
+        /// - date: The date for which to perform the calculation.
+        /// - Returns: `NO` if the calendar and locale do not have the concept of a weekend, otherwise `YES`.
         #[unsafe(method(nextWeekendStartDate:interval:options:afterDate:))]
         #[unsafe(method_family = none)]
         pub fn nextWeekendStartDate_interval_options_afterDate(
@@ -755,6 +1039,18 @@ impl NSCalendar {
             date: &NSDate,
         ) -> bool;
 
+        /// Returns the difference between start and end dates given as date components.
+        ///
+        /// If an `NSDateComponents` object does not specify a value for a calendar unit required to determine an absolute date, the base value of that unit is assumed. For example, given an `NSDateComponents` object with only a `year` and a `month` specified, the resulting `NSDate` object would be constructed using a `day` value of `1` and `hour`, `minute`, `second` and `nanosecond` values of `0`. Passing an `NSDateComponents` argument with an unspecified `era` or `year` value is not advised.
+        ///
+        /// If an `NSDateComponents` object's `timeZone` property is set, the time zone property value will be used in the calculation. If an `NSDateComponents` object's `calendar` property is set, the calendar property value will be used instead of the receiving calendar. If both an `NSDateComponents` object's `timeZone` and `calendar` properties are set, the time zone property value overrides the time zone of the calendar property value.
+        ///
+        /// - Parameters:
+        /// - unitFlags: Specifies the components for the returned `NSDateComponents` object.
+        /// - startingDateComp: The start date for the calculation as an `NSDateComponents` object.
+        /// - resultDateComp: The end date for the calculation as an `NSDateComponents` object.
+        /// - options: The options parameter is currently unused.
+        /// - Returns: An `NSDateComponents` object whose components are specified by `unitFlags` and calculated from the difference between the `startingDateComp` and `resultDateComp`. Returns `nil` if either date falls outside the defined range of the receiver or if the computation cannot be performed.
         #[unsafe(method(components:fromDateComponents:toDateComponents:options:))]
         #[unsafe(method_family = none)]
         pub fn components_fromDateComponents_toDateComponents_options(
@@ -766,6 +1062,7 @@ impl NSCalendar {
         ) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns a new date representing the date calculated by adding an amount of a specific component to a given date.
         #[unsafe(method(dateByAddingUnit:value:toDate:options:))]
         #[unsafe(method_family = none)]
         pub fn dateByAddingUnit_value_toDate_options(
@@ -777,6 +1074,17 @@ impl NSCalendar {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
+        /// Computes the dates that match (or most closely match) a given set of components, and calls the block once for each of them, until the enumeration is stopped.
+        ///
+        /// If you specify a strict matching option (``NSCalendar/Options/matchStrictly``), this method searches as far as necessary looking for a match, up to an implementation-defined limit. If an exact match is not possible, `nil` is passed to the `date` argument of the block, and the enumeration is stopped. Otherwise, this method searches as far as the next instance of the next highest calendar unit in the given `NSDateComponents` object.
+        ///
+        /// If you do not specify a strict matching option, you must specify one of ``NSCalendar/Options/matchPreviousTimePreservingSmallerUnits``, ``NSCalendar/Options/matchNextTimePreservingSmallerUnits``, or ``NSCalendar/Options/matchNextTime``, or an illegal argument exception will be thrown.
+        ///
+        /// - Parameters:
+        /// - start: The date for which to perform the calculation.
+        /// - comps: The date components to match. If no components are specified, the enumeration will not be executed.
+        /// - opts: Options for the enumeration. For possible values, see ``NSCalendar/Options``.
+        /// - block: The block to apply to each enumerated date. The block takes three arguments: the enumerated date, whether the date exactly matches the specified date components, and a reference to a Boolean value that the block can set to `YES` to stop the enumeration.
         #[unsafe(method(enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateDatesStartingAfterDate_matchingComponents_options_usingBlock(
@@ -788,6 +1096,7 @@ impl NSCalendar {
         );
 
         #[cfg(feature = "NSDate")]
+        /// Computes the next date which matches (or most closely matches) a given set of components.
         #[unsafe(method(nextDateAfterDate:matchingComponents:options:))]
         #[unsafe(method_family = none)]
         pub fn nextDateAfterDate_matchingComponents_options(
@@ -798,6 +1107,7 @@ impl NSCalendar {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns a new date representing the date found which matches a specific component value.
         #[unsafe(method(nextDateAfterDate:matchingUnit:value:options:))]
         #[unsafe(method_family = none)]
         pub fn nextDateAfterDate_matchingUnit_value_options(
@@ -809,6 +1119,7 @@ impl NSCalendar {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns a new date representing the date found which matches the given hour, minute, and second values.
         #[unsafe(method(nextDateAfterDate:matchingHour:minute:second:options:))]
         #[unsafe(method_family = none)]
         pub fn nextDateAfterDate_matchingHour_minute_second_options(
@@ -821,6 +1132,16 @@ impl NSCalendar {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns a new date representing the date calculated by setting a specific component of a given date to a given value, while trying to keep lower components the same.
+        ///
+        /// Changing a component's value often requires higher or coupled components to change as well. For example, setting the `weekday` to "Thursday" will require the `day` component to change its value, and possibly the `month` and `year` as well. If no such time exists, the next available date is returned, which may be on a different calendar day.
+        ///
+        /// - Parameters:
+        /// - unit: The unit to set with the given value. For possible values, see ``NSCalendar/Unit``.
+        /// - v: The value to set for the given calendar unit.
+        /// - date: The date to use to perform the calculation.
+        /// - opts: Options for the calculation. For possible values, see ``NSCalendar/Options``.
+        /// - Returns: A new `NSDate` instance representing the date calculated by setting a specific component of a given date to a given value. If the unit already has that value, this may result in a date which is the same as the given date.
         #[unsafe(method(dateBySettingUnit:value:ofDate:options:))]
         #[unsafe(method_family = none)]
         pub fn dateBySettingUnit_value_ofDate_options(
@@ -832,6 +1153,9 @@ impl NSCalendar {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns a new date representing the date calculated by setting hour, minute, and second to a given time.
+        ///
+        /// If no such time exists, the next available time is returned (which could be in a different day than the nominal target date). The intent is to return a date on the same day as the original date argument.
         #[unsafe(method(dateBySettingHour:minute:second:ofDate:options:))]
         #[unsafe(method_family = none)]
         pub fn dateBySettingHour_minute_second_ofDate_options(
@@ -844,6 +1168,7 @@ impl NSCalendar {
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Returns `YES` if the date has all the matched components. Otherwise, it returns `NO`.
         #[unsafe(method(date:matchesComponents:))]
         #[unsafe(method_family = none)]
         pub fn date_matchesComponents(&self, date: &NSDate, components: &NSDateComponents) -> bool;
@@ -859,19 +1184,80 @@ impl NSCalendar {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendardaychangednotification?language=objc)
+    /// A notification posted whenever the calendar day of the system changes, as determined by the system calendar, locale, and time zone.
+    ///
+    /// If the device is asleep when the day changes, this notification will be posted on wakeup. Only one notification will be posted on wakeup if the device has been asleep for multiple days. There are no guarantees about the timeliness of when this notification will be received by observers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendardaychangednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSCalendarDayChangedNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentundefined?language=objc)
+/// Specifies a date component without a value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentundefined?language=objc)
 pub const NSDateComponentUndefined: NSInteger = NSIntegerMax as _;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundefineddatecomponent?language=objc)
+/// Specifies a date component without a value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundefineddatecomponent?language=objc)
 #[deprecated]
 pub const NSUndefinedDateComponent: NSInteger = NSDateComponentUndefined;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponents?language=objc)
+    /// An object that specifies a date or time in terms of units (such as year, month, day, hour, and minute) to be evaluated in a calendar system and time zone.
+    ///
+    /// In Swift, this object bridges to ``DateComponents``; use ``NSDateComponents`` when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// ``NSDateComponents`` encapsulates the components of a date in an extendable, object-oriented manner. It's used to specify a date by providing the temporal components that make up a date and time: hour, minutes, seconds, day, month, year, and so on. You can also use it to specify a duration of time, for example, 5 hours and 16 minutes. An ``NSDateComponents`` object is not required to define all the component fields. When a new instance of ``NSDateComponents`` is created, the date components are set to ``NSDateComponentUndefined``.
+    ///
+    /// > Important:
+    /// > An ``NSDateComponents`` object is meaningless in itself; you need to know what calendar it is interpreted against, and you need to know whether the values are absolute values of the units, or quantities of the units.
+    ///
+    /// An instance of ``NSDateComponents`` is not responsible for answering questions about a date beyond the information with which it was initialized. For example, if you initialize one with May 4, 2017, its weekday is ``NSDateComponentUndefined``, not Thursday. To get the correct day of the week, you must create a suitable instance of ``NSCalendar``, create an ``NSDate`` object using ``NSCalendar/date(from:)`` and then use ``NSCalendar/components(_:from:)`` to retrieve the weekday—as illustrated in the following example.
+    ///
+    ///
+    /// @TabNavigator{
+    ///
+    /// @Tab("Swift") {
+    /// ```swift
+    /// let dateComponents = NSDateComponents()
+    /// dateComponents.day = 4
+    /// dateComponents.month = 5
+    /// dateComponents.year = 2017
+    ///
+    /// if let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian),
+    /// let date = gregorianCalendar.date(from: dateComponents as DateComponents) {
+    /// let weekday = gregorianCalendar.component(.weekday, from: date)
+    /// print(weekday) // 5, which corresponds to Thursday in the Gregorian Calendar
+    /// }
+    ///
+    /// ```
+    /// }
+    ///
+    /// @Tab("Objective-C") {
+    /// ```objc
+    /// NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    /// dateComponents.day = 4;
+    /// dateComponents.month = 5;
+    /// dateComponents.year = 2017;
+    ///
+    /// NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    /// NSDate *date = [gregorianCalendar dateFromComponents:dateComponents];
+    ///
+    /// NSInteger weekday = [gregorianCalendar component:NSCalendarUnitWeekday fromDate:date];
+    /// NSLog(@"%d", weekday); // 5, which corresponds to Thursday in the Gregorian Calendar
+    /// ```
+    /// }
+    /// }
+    ///
+    /// For more details, see [Calendars, Date Components, and Calendar Units](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DatesAndTimes/Articles/dtCalendars.html#//apple_ref/doc/uid/TP40003470) in [Date and Time Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DatesAndTimes/DatesAndTimes.html#//apple_ref/doc/uid/10000039i).
+    ///
+    /// > Important:
+    /// > The Swift overlay to the Foundation framework provides the ``DateComponents`` structure, which bridges to the ``NSDateComponents`` class. For more information about value types, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/swift/working-with-foundation-types>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponents?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDateComponents;
@@ -903,6 +1289,7 @@ extern_conformance!(
 
 impl NSDateComponents {
     extern_methods!(
+        /// The calendar used to interpret the date components.
         #[unsafe(method(calendar))]
         #[unsafe(method_family = none)]
         pub fn calendar(&self) -> Option<Retained<NSCalendar>>;
@@ -915,6 +1302,7 @@ impl NSDateComponents {
         pub fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSTimeZone")]
+        /// The time zone used to interpret the date components.
         #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
         pub fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
@@ -927,6 +1315,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
+        /// The number of eras.
         #[unsafe(method(era))]
         #[unsafe(method_family = none)]
         pub fn era(&self) -> NSInteger;
@@ -936,6 +1325,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setEra(&self, era: NSInteger);
 
+        /// The number of years.
         #[unsafe(method(year))]
         #[unsafe(method_family = none)]
         pub fn year(&self) -> NSInteger;
@@ -945,6 +1335,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setYear(&self, year: NSInteger);
 
+        /// The number of months.
         #[unsafe(method(month))]
         #[unsafe(method_family = none)]
         pub fn month(&self) -> NSInteger;
@@ -954,6 +1345,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setMonth(&self, month: NSInteger);
 
+        /// The number of days.
         #[unsafe(method(day))]
         #[unsafe(method_family = none)]
         pub fn day(&self) -> NSInteger;
@@ -963,6 +1355,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setDay(&self, day: NSInteger);
 
+        /// The number of hour units for the receiver.
         #[unsafe(method(hour))]
         #[unsafe(method_family = none)]
         pub fn hour(&self) -> NSInteger;
@@ -972,6 +1365,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setHour(&self, hour: NSInteger);
 
+        /// The number of minute units for the receiver.
         #[unsafe(method(minute))]
         #[unsafe(method_family = none)]
         pub fn minute(&self) -> NSInteger;
@@ -981,6 +1375,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setMinute(&self, minute: NSInteger);
 
+        /// The number of second units for the receiver.
         #[unsafe(method(second))]
         #[unsafe(method_family = none)]
         pub fn second(&self) -> NSInteger;
@@ -990,6 +1385,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setSecond(&self, second: NSInteger);
 
+        /// The number of nanosecond units for the receiver.
         #[unsafe(method(nanosecond))]
         #[unsafe(method_family = none)]
         pub fn nanosecond(&self) -> NSInteger;
@@ -999,6 +1395,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setNanosecond(&self, nanosecond: NSInteger);
 
+        /// The number of the weekdays.
         #[unsafe(method(weekday))]
         #[unsafe(method_family = none)]
         pub fn weekday(&self) -> NSInteger;
@@ -1008,6 +1405,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setWeekday(&self, weekday: NSInteger);
 
+        /// The ordinal number of weekdays.
         #[unsafe(method(weekdayOrdinal))]
         #[unsafe(method_family = none)]
         pub fn weekdayOrdinal(&self) -> NSInteger;
@@ -1017,6 +1415,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setWeekdayOrdinal(&self, weekday_ordinal: NSInteger);
 
+        /// The number of quarters.
         #[unsafe(method(quarter))]
         #[unsafe(method_family = none)]
         pub fn quarter(&self) -> NSInteger;
@@ -1026,6 +1425,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setQuarter(&self, quarter: NSInteger);
 
+        /// The week number of the months.
         #[unsafe(method(weekOfMonth))]
         #[unsafe(method_family = none)]
         pub fn weekOfMonth(&self) -> NSInteger;
@@ -1035,6 +1435,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setWeekOfMonth(&self, week_of_month: NSInteger);
 
+        /// The ISO 8601 week date of the year.
         #[unsafe(method(weekOfYear))]
         #[unsafe(method_family = none)]
         pub fn weekOfYear(&self) -> NSInteger;
@@ -1044,6 +1445,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setWeekOfYear(&self, week_of_year: NSInteger);
 
+        /// The ISO 8601 week-numbering year.
         #[unsafe(method(yearForWeekOfYear))]
         #[unsafe(method_family = none)]
         pub fn yearForWeekOfYear(&self) -> NSInteger;
@@ -1053,6 +1455,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setYearForWeekOfYear(&self, year_for_week_of_year: NSInteger);
 
+        /// The day of the year value of the date components.
         #[unsafe(method(dayOfYear))]
         #[unsafe(method_family = none)]
         pub fn dayOfYear(&self) -> NSInteger;
@@ -1062,6 +1465,7 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setDayOfYear(&self, day_of_year: NSInteger);
 
+        /// A Boolean value that indicates whether the month is a leap month.
         #[unsafe(method(isLeapMonth))]
         #[unsafe(method_family = none)]
         pub fn isLeapMonth(&self) -> bool;
@@ -1081,6 +1485,7 @@ impl NSDateComponents {
         pub fn setRepeatedDay(&self, repeated_day: bool);
 
         #[cfg(feature = "NSDate")]
+        /// The date calculated from the current components using the stored calendar.
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub fn date(&self) -> Option<Retained<NSDate>>;
@@ -1095,18 +1500,30 @@ impl NSDateComponents {
         #[unsafe(method_family = none)]
         pub fn setWeek(&self, v: NSInteger);
 
+        /// Sets a value for a given calendar unit.
+        ///
+        /// The calendar and timeZone and isLeapMonth properties cannot be set by this method.
         #[unsafe(method(setValue:forComponent:))]
         #[unsafe(method_family = none)]
         pub fn setValue_forComponent(&self, value: NSInteger, unit: NSCalendarUnit);
 
+        /// Returns the value for a given calendar unit.
+        ///
+        /// The calendar and timeZone and isLeapMonth property values cannot be retrieved by this method.
         #[unsafe(method(valueForComponent:))]
         #[unsafe(method_family = none)]
         pub fn valueForComponent(&self, unit: NSCalendarUnit) -> NSInteger;
 
+        /// A Boolean value that indicates whether the current combination of properties represents a date which exists in the current calendar.
+        ///
+        /// This method is not appropriate for use on `NSDateComponents` objects which are specifying relative quantities of calendar components. The calendar property must be set, or `NO` is returned.
         #[unsafe(method(isValidDate))]
         #[unsafe(method_family = none)]
         pub fn isValidDate(&self) -> bool;
 
+        /// Returns a Boolean value that indicates whether the current combination of properties represents a date which exists in the specified calendar.
+        ///
+        /// This method is not appropriate for use on `NSDateComponents` objects which are specifying relative quantities of calendar components.
         #[unsafe(method(isValidDateInCalendar:))]
         #[unsafe(method_family = none)]
         pub fn isValidDateInCalendar(&self, calendar: &NSCalendar) -> bool;

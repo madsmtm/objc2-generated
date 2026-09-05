@@ -2,8 +2,6 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-location")]
-use objc2_core_location::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -67,6 +65,17 @@ impl PHCollection {
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Option<Retained<NSString>>;
 
+        /// The last date at which this collection was modified.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(modificationDate))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
+
         #[cfg(feature = "PhotosTypes")]
         #[unsafe(method(canPerformEditOperation:))]
         #[unsafe(method_family = none)]
@@ -75,7 +84,11 @@ impl PHCollection {
             an_operation: PHCollectionEditOperation,
         ) -> bool;
 
-        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
+        #[cfg(all(
+            feature = "PHCollectionList",
+            feature = "PHFetchOptions",
+            feature = "PHFetchResult"
+        ))]
         #[unsafe(method(fetchCollectionsInCollectionList:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCollectionsInCollectionList_options(
@@ -95,363 +108,6 @@ impl PHCollection {
 /// Methods declared on superclass `NSObject`.
 #[cfg(feature = "PHObject")]
 impl PHCollection {
-    extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-    );
-}
-
-extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollection?language=objc)
-    #[unsafe(super(PHCollection, PHObject, NSObject))]
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PHObject")]
-    pub struct PHAssetCollection;
-);
-
-#[cfg(feature = "PHObject")]
-unsafe impl Send for PHAssetCollection {}
-
-#[cfg(feature = "PHObject")]
-unsafe impl Sync for PHAssetCollection {}
-
-#[cfg(feature = "PHObject")]
-extern_conformance!(
-    unsafe impl NSCopying for PHAssetCollection {}
-);
-
-#[cfg(feature = "PHObject")]
-unsafe impl CopyingHelper for PHAssetCollection {
-    type Result = Self;
-}
-
-#[cfg(feature = "PHObject")]
-extern_conformance!(
-    unsafe impl NSObjectProtocol for PHAssetCollection {}
-);
-
-#[cfg(feature = "PHObject")]
-impl PHAssetCollection {
-    extern_methods!(
-        #[cfg(feature = "PhotosTypes")]
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(assetCollectionType))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn assetCollectionType(&self) -> PHAssetCollectionType;
-
-        #[cfg(feature = "PhotosTypes")]
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(assetCollectionSubtype))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn assetCollectionSubtype(&self) -> PHAssetCollectionSubtype;
-
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(estimatedAssetCount))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn estimatedAssetCount(&self) -> NSUInteger;
-
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(startDate))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
-
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(endDate))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
-
-        #[cfg(feature = "objc2-core-location")]
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(approximateLocation))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn approximateLocation(&self) -> Option<Retained<CLLocation>>;
-
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(localizedLocationNames))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn localizedLocationNames(&self) -> Retained<NSArray<NSString>>;
-
-        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[unsafe(method(fetchAssetCollectionsWithLocalIdentifiers:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchAssetCollectionsWithLocalIdentifiers_options(
-            identifiers: &NSArray<NSString>,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHAssetCollection>>;
-
-        #[cfg(all(
-            feature = "PHFetchOptions",
-            feature = "PHFetchResult",
-            feature = "PhotosTypes"
-        ))]
-        #[unsafe(method(fetchAssetCollectionsWithType:subtype:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchAssetCollectionsWithType_subtype_options(
-            r#type: PHAssetCollectionType,
-            subtype: PHAssetCollectionSubtype,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHAssetCollection>>;
-
-        #[cfg(all(
-            feature = "PHAsset",
-            feature = "PHFetchOptions",
-            feature = "PHFetchResult",
-            feature = "PhotosTypes"
-        ))]
-        #[unsafe(method(fetchAssetCollectionsContainingAsset:withType:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchAssetCollectionsContainingAsset_withType_options(
-            asset: &PHAsset,
-            r#type: PHAssetCollectionType,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHAssetCollection>>;
-
-        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[deprecated = "Will be removed in a future release"]
-        #[unsafe(method(fetchAssetCollectionsWithALAssetGroupURLs:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchAssetCollectionsWithALAssetGroupURLs_options(
-            asset_group_ur_ls: &NSArray<NSURL>,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHAssetCollection>>;
-
-        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[deprecated = "Will be removed in a future release"]
-        #[unsafe(method(fetchMomentsInMomentList:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchMomentsInMomentList_options(
-            moment_list: &PHCollectionList,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHAssetCollection>>;
-
-        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[deprecated = "Will be removed in a future release"]
-        #[unsafe(method(fetchMomentsWithOptions:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchMomentsWithOptions(
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHAssetCollection>>;
-
-        #[cfg(feature = "PHAsset")]
-        #[unsafe(method(transientAssetCollectionWithAssets:title:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn transientAssetCollectionWithAssets_title(
-            assets: &NSArray<PHAsset>,
-            title: Option<&NSString>,
-        ) -> Retained<PHAssetCollection>;
-
-        #[cfg(all(feature = "PHAsset", feature = "PHFetchResult"))]
-        #[unsafe(method(transientAssetCollectionWithAssetFetchResult:title:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn transientAssetCollectionWithAssetFetchResult_title(
-            fetch_result: &PHFetchResult<PHAsset>,
-            title: Option<&NSString>,
-        ) -> Retained<PHAssetCollection>;
-    );
-}
-
-/// Methods declared on superclass `NSObject`.
-#[cfg(feature = "PHObject")]
-impl PHAssetCollection {
-    extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-    );
-}
-
-extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlist?language=objc)
-    #[unsafe(super(PHCollection, PHObject, NSObject))]
-    #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "PHObject")]
-    pub struct PHCollectionList;
-);
-
-#[cfg(feature = "PHObject")]
-unsafe impl Send for PHCollectionList {}
-
-#[cfg(feature = "PHObject")]
-unsafe impl Sync for PHCollectionList {}
-
-#[cfg(feature = "PHObject")]
-extern_conformance!(
-    unsafe impl NSCopying for PHCollectionList {}
-);
-
-#[cfg(feature = "PHObject")]
-unsafe impl CopyingHelper for PHCollectionList {
-    type Result = Self;
-}
-
-#[cfg(feature = "PHObject")]
-extern_conformance!(
-    unsafe impl NSObjectProtocol for PHCollectionList {}
-);
-
-#[cfg(feature = "PHObject")]
-impl PHCollectionList {
-    extern_methods!(
-        #[cfg(feature = "PhotosTypes")]
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(collectionListType))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn collectionListType(&self) -> PHCollectionListType;
-
-        #[cfg(feature = "PhotosTypes")]
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(collectionListSubtype))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn collectionListSubtype(&self) -> PHCollectionListSubtype;
-
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(startDate))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
-
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(endDate))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
-
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(localizedLocationNames))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn localizedLocationNames(&self) -> Retained<NSArray<NSString>>;
-
-        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[unsafe(method(fetchCollectionListsContainingCollection:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchCollectionListsContainingCollection_options(
-            collection: &PHCollection,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHCollectionList>>;
-
-        #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[unsafe(method(fetchCollectionListsWithLocalIdentifiers:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchCollectionListsWithLocalIdentifiers_options(
-            identifiers: &NSArray<NSString>,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHCollectionList>>;
-
-        #[cfg(all(
-            feature = "PHFetchOptions",
-            feature = "PHFetchResult",
-            feature = "PhotosTypes"
-        ))]
-        #[unsafe(method(fetchCollectionListsWithType:subtype:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchCollectionListsWithType_subtype_options(
-            collection_list_type: PHCollectionListType,
-            subtype: PHCollectionListSubtype,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHCollectionList>>;
-
-        #[cfg(all(
-            feature = "PHFetchOptions",
-            feature = "PHFetchResult",
-            feature = "PhotosTypes"
-        ))]
-        #[deprecated = "Will be removed in a future release"]
-        #[unsafe(method(fetchMomentListsWithSubtype:containingMoment:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchMomentListsWithSubtype_containingMoment_options(
-            moment_list_subtype: PHCollectionListSubtype,
-            moment: &PHAssetCollection,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHCollectionList>>;
-
-        #[cfg(all(
-            feature = "PHFetchOptions",
-            feature = "PHFetchResult",
-            feature = "PhotosTypes"
-        ))]
-        #[deprecated = "Will be removed in a future release"]
-        #[unsafe(method(fetchMomentListsWithSubtype:options:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn fetchMomentListsWithSubtype_options(
-            moment_list_subtype: PHCollectionListSubtype,
-            options: Option<&PHFetchOptions>,
-        ) -> Retained<PHFetchResult<PHCollectionList>>;
-
-        #[unsafe(method(transientCollectionListWithCollections:title:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn transientCollectionListWithCollections_title(
-            collections: &NSArray<PHCollection>,
-            title: Option<&NSString>,
-        ) -> Retained<PHCollectionList>;
-
-        #[cfg(feature = "PHFetchResult")]
-        #[unsafe(method(transientCollectionListWithCollectionsFetchResult:title:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn transientCollectionListWithCollectionsFetchResult_title(
-            fetch_result: &PHFetchResult<PHCollection>,
-            title: Option<&NSString>,
-        ) -> Retained<PHCollectionList>;
-    );
-}
-
-/// Methods declared on superclass `NSObject`.
-#[cfg(feature = "PHObject")]
-impl PHCollectionList {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

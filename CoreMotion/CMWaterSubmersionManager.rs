@@ -11,6 +11,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmanagerdelegate?language=objc)
     pub unsafe trait CMWaterSubmersionManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CMWaterSubmersionData")]
+        #[optional]
         #[unsafe(method(manager:didUpdateEvent:))]
         #[unsafe(method_family = none)]
         unsafe fn manager_didUpdateEvent(
@@ -20,6 +21,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CMWaterSubmersionData")]
+        #[optional]
         #[unsafe(method(manager:didUpdateMeasurement:))]
         #[unsafe(method_family = none)]
         unsafe fn manager_didUpdateMeasurement(
@@ -29,6 +31,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CMWaterSubmersionData")]
+        #[optional]
         #[unsafe(method(manager:didUpdateTemperature:))]
         #[unsafe(method_family = none)]
         unsafe fn manager_didUpdateTemperature(
@@ -37,6 +40,7 @@ extern_protocol!(
             measurement: &CMWaterTemperature,
         );
 
+        #[optional]
         #[unsafe(method(manager:errorOccurred:))]
         #[unsafe(method_family = none)]
         unsafe fn manager_errorOccurred(&self, manager: &CMWaterSubmersionManager, error: &NSError);

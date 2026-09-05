@@ -15,7 +15,20 @@ extern_class!(
     /// The VZVirtualMachineView shows the contents of the virtual machine framebuffer. If the virtual machine configuration includes a keyboard and a pointing device,
     /// the view forwards keyboard and mouse events to the virtual machine via those devices.
     ///
-    /// See also: VZVirtualMachine
+    /// -- Swift 6 Strict Concurrency
+    ///
+    /// In Swift 6, assigning a non-Sendable `VZVirtualMachine` to this view's virtualMachine property across isolation
+    /// boundaries is a compiler error. Use `VZVirtualMachineViewAdaptor` as a Sendable alternative:
+    ///
+    /// ```text
+    /// let adaptor = VZVirtualMachineViewAdaptor(virtualMachine: virtualMachine)
+    /// await MainActor.run {
+    /// view.adaptor = adaptor
+    /// }
+    /// ```
+    ///
+    ///
+    /// See: VZVirtualMachine
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachineview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
@@ -69,6 +82,9 @@ impl VZVirtualMachineView {
     extern_methods!(
         #[cfg(feature = "VZVirtualMachine")]
         /// The virtual machine to display in the view.
+        ///
+        /// In Swift, when set, the `adaptor` property is set to nil.
+        /// If the `adaptor` is set, `virtualMachine` is reset to nil.
         #[unsafe(method(virtualMachine))]
         #[unsafe(method_family = none)]
         pub unsafe fn virtualMachine(&self) -> Option<Retained<VZVirtualMachine>>;

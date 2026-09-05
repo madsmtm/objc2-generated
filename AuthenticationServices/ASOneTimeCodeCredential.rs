@@ -13,6 +13,10 @@ extern_class!(
     pub struct ASOneTimeCodeCredential;
 );
 
+unsafe impl Send for ASOneTimeCodeCredential {}
+
+unsafe impl Sync for ASOneTimeCodeCredential {}
+
 #[cfg(feature = "ASAuthorizationCredential")]
 extern_conformance!(
     unsafe impl ASAuthorizationCredential for ASOneTimeCodeCredential {}
@@ -44,14 +48,14 @@ impl ASOneTimeCodeCredential {
 
         /// Creates and initializes a new ASOneTimeCodeCredential object.
         ///
-        /// Parameter `code`: the one time code.
+        /// Parameter `code`: the one-time code.
         #[unsafe(method(credentialWithCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialWithCode(code: &NSString) -> Retained<Self>;
 
         /// Initializes an ASOneTimeCodeCredential object.
         ///
-        /// Parameter `code`: the one time code.
+        /// Parameter `code`: the one-time code.
         #[unsafe(method(initWithCode:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCode(this: Allocated<Self>, code: &NSString) -> Retained<Self>;
@@ -59,6 +63,12 @@ impl ASOneTimeCodeCredential {
         /// The code of this credential.
         ///
         /// Returns: The code string.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(code))]
         #[unsafe(method_family = none)]
         pub unsafe fn code(&self) -> Retained<NSString>;

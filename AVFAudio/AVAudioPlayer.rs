@@ -97,6 +97,7 @@ impl AVAudioPlayer {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
+            mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn AVAudioPlayerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -244,7 +245,7 @@ impl AVAudioPlayer {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayerdelegate?language=objc)
-    pub unsafe trait AVAudioPlayerDelegate: NSObjectProtocol {
+    pub unsafe trait AVAudioPlayerDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(audioPlayerDidFinishPlaying:successfully:))]
         #[unsafe(method_family = none)]

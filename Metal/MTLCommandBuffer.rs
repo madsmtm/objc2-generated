@@ -91,6 +91,7 @@ impl MTLCommandBufferError {
     pub const Memoryless: Self = Self(10);
     /// The device was physically removed before the command could finish execution
     #[doc(alias = "MTLCommandBufferErrorDeviceRemoved")]
+    #[deprecated = "MTLCommandBufferErrorDeviceRemoved cannot occur on Apple Silicon"]
     pub const DeviceRemoved: Self = Self(11);
     /// Execution of the command buffer was stopped due to Stack Overflow Exception. [MTLComputePipelineDescriptor maxCallStackDepth] setting needs to be checked.
     #[doc(alias = "MTLCommandBufferErrorStackOverflow")]

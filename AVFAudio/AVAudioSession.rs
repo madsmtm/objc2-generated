@@ -387,6 +387,22 @@ impl AVAudioSession {
             options: AVAudioSessionActivationOptions,
             handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
         );
+
+        #[cfg(all(feature = "AVAudioSessionTypes", feature = "block2"))]
+        /// Deactivates the audio session asynchronously.
+        ///
+        /// This method returns immediately without blocking the calling thread. The system calls the completion handler with the result.
+        ///
+        /// - Parameters:
+        /// - options: Deactivation options.
+        /// - handler: A completion handler called with a success flag and an error if deactivation failed.
+        #[unsafe(method(deactivateWithOptions:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn deactivateWithOptions_completionHandler(
+            &self,
+            options: AVAudioSessionDeactivationOptions,
+            handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
+        );
     );
 }
 
@@ -754,5 +770,119 @@ impl AVAudioSession {
         #[unsafe(method(isMicrophoneInjectionAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMicrophoneInjectionAvailable(&self) -> bool;
+    );
+}
+
+extern_class!(
+    /// An object that provides context about an audio session interruption.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptioncontext?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVAudioSessionInterruptionContext;
+);
+
+unsafe impl Send for AVAudioSessionInterruptionContext {}
+
+unsafe impl Sync for AVAudioSessionInterruptionContext {}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSessionInterruptionContext {}
+);
+
+impl AVAudioSessionInterruptionContext {
+    extern_methods!(
+        #[cfg(feature = "AVAudioSessionTypes")]
+        /// The reason for the interruption.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(reason))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn reason(&self) -> AVAudioSessionInterruptionReason;
+    );
+}
+
+extern_class!(
+    /// An object that describes why and how the audio session deactivated.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessiondeactivationcontext?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVAudioSessionDeactivationContext;
+);
+
+unsafe impl Send for AVAudioSessionDeactivationContext {}
+
+unsafe impl Sync for AVAudioSessionDeactivationContext {}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSessionDeactivationContext {}
+);
+
+impl AVAudioSessionDeactivationContext {
+    extern_methods!(
+        #[cfg(feature = "AVAudioSessionTypes")]
+        /// The source of the audio session deactivation.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(source))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn source(&self) -> AVAudioSessionDeactivationSource;
+
+        /// Context about the interruption that caused deactivation.
+        ///
+        /// This property is only present when the session was interrupted by another application.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(interruptionContext))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn interruptionContext(
+            &self,
+        ) -> Option<Retained<AVAudioSessionInterruptionContext>>;
+    );
+}
+
+extern_class!(
+    /// An object that provides context when resumption becomes available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionresumptioncontext?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVAudioSessionResumptionContext;
+);
+
+unsafe impl Send for AVAudioSessionResumptionContext {}
+
+unsafe impl Sync for AVAudioSessionResumptionContext {}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVAudioSessionResumptionContext {}
+);
+
+impl AVAudioSessionResumptionContext {
+    extern_methods!(
+        #[cfg(feature = "AVAudioSessionTypes")]
+        /// The system's recommendation on whether to resume playback.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(recommendation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn recommendation(&self) -> AVAudioSessionResumptionRecommendation;
     );
 }

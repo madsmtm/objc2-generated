@@ -386,6 +386,37 @@ extern "C" {
     pub static SRSensorSleepSessions: &'static SRSensor;
 }
 
+extern "C" {
+    /// Sensor stream for headphone motion collection
+    ///
+    ///
+    /// This stream stores samples about headphone motion including:
+    ///
+    /// ```text
+    ///   - acceleration measured by the device's accelerometer
+    ///   - rotation rate measured by the device's gyroscope
+    ///   - altitude
+    /// ```
+    ///
+    /// Fetches from this stream return objects of type
+    /// `NSArray<CMRecordedDeviceMotion`*> * as defined in the CoreMotion framework
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorheadphonemotion?language=objc)
+    pub static SRSensorHeadphoneMotion: &'static SRSensor;
+}
+
+extern "C" {
+    /// Sensor stream for headphone settings
+    ///
+    ///
+    /// This stream stores samples about headphone settings.  Fetches from this stream return objects of
+    /// type
+    /// `SRHeadphoneSettings`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorheadphonesettings?language=objc)
+    pub static SRSensorHeadphoneSettings: &'static SRSensor;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetime?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type SRAbsoluteTime = CFTimeInterval;
@@ -480,6 +511,98 @@ impl private_NSDateSensorKit::Sealed for NSDate {}
 unsafe impl NSDateSensorKit for NSDate {}
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsourcedevice?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SRSourceDevice;
+);
+
+unsafe impl Send for SRSourceDevice {}
+
+unsafe impl Sync for SRSourceDevice {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SRSourceDevice {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for SRSourceDevice {}
+);
+
+unsafe impl CopyingHelper for SRSourceDevice {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRSourceDevice {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRSourceDevice {}
+);
+
+impl SRSourceDevice {
+    extern_methods!(
+        /// A unique identifier for the data source. This property is available to clients for
+        /// a local identifier. The local identifier distinguishes different peripheral
+        /// sources used by a common device.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(localIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn localIdentifier(&self) -> Retained<NSString>;
+
+        /// A nil value means a manufacter was not provided.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(manufacturer))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn manufacturer(&self) -> Option<Retained<NSString>>;
+
+        /// Model of the source. A nil value means a model name was not provided.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(model))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn model(&self) -> Option<Retained<NSString>>;
+
+        /// Hardware version of the source. A nil value means a hardware version was not provided.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(hardwareVersion))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hardwareVersion(&self) -> Option<Retained<NSString>>;
+
+        /// Firmware version of the source. A nil value means a firmware version was not provided.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(firmwareVersion))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn firmwareVersion(&self) -> Option<Retained<NSString>>;
+    );
+}
+
+extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfetchresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -529,6 +652,16 @@ impl<SampleType: Message> SRFetchResult<SampleType> {
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> SRAbsoluteTime;
+
+        /// the source of the sample data
+        ///
+        ///
+        /// Represents the peripheral supplying data. Useful for distinguishing
+        /// multiple source peripherals using a common device. Is nullable
+        /// when no source information is available when providing sample data.
+        #[unsafe(method(sourceDevice))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sourceDevice(&self) -> Option<Retained<SRSourceDevice>>;
     );
 }
 
@@ -538,6 +671,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRDevice;
 );
+
+unsafe impl Send for SRDevice {}
+
+unsafe impl Sync for SRDevice {}
 
 extern_conformance!(
     unsafe impl NSCoding for SRDevice {}
@@ -1069,6 +1206,10 @@ extern_class!(
     pub struct SRAmbientLightSample;
 );
 
+unsafe impl Send for SRAmbientLightSample {}
+
+unsafe impl Sync for SRAmbientLightSample {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRAmbientLightSample {}
 );
@@ -1136,6 +1277,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRVisit;
 );
+
+unsafe impl Send for SRVisit {}
+
+unsafe impl Sync for SRVisit {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRVisit {}
@@ -1396,6 +1541,10 @@ extern_class!(
     pub struct SRDeviceUsageReport;
 );
 
+unsafe impl Send for SRDeviceUsageReport {}
+
+unsafe impl Sync for SRDeviceUsageReport {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRDeviceUsageReport {}
 );
@@ -1453,6 +1602,12 @@ impl SRDeviceUsageReport {
         pub unsafe fn totalUnlockDuration(&self) -> NSTimeInterval;
 
         /// Version of the algorithm used to produce the report
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Retained<NSString>;
@@ -1503,6 +1658,10 @@ extern_class!(
     pub struct SRTextInputSession;
 );
 
+unsafe impl Send for SRTextInputSession {}
+
+unsafe impl Sync for SRTextInputSession {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRTextInputSession {}
 );
@@ -1544,6 +1703,10 @@ extern_class!(
     pub struct SRApplicationUsage;
 );
 
+unsafe impl Send for SRApplicationUsage {}
+
+unsafe impl Sync for SRApplicationUsage {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRApplicationUsage {}
 );
@@ -1581,6 +1744,12 @@ impl SRApplicationUsage {
         pub unsafe fn textInputSessions(&self) -> Retained<NSArray<SRTextInputSession>>;
 
         /// Additional categories that describe this app
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(supplementalCategories))]
         #[unsafe(method_family = none)]
         pub unsafe fn supplementalCategories(&self) -> Retained<NSArray<SRSupplementalCategory>>;
@@ -1590,6 +1759,12 @@ impl SRApplicationUsage {
         ///
         /// relativeStartTime value for the very first app in the report interval is equal to 0, N seconds for the seccond app and so on.
         /// This will allow to order app uses and determine the time between app uses.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(relativeStartTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn relativeStartTime(&self) -> NSTimeInterval;
@@ -1666,6 +1841,10 @@ extern_class!(
     pub struct SRNotificationUsage;
 );
 
+unsafe impl Send for SRNotificationUsage {}
+
+unsafe impl Sync for SRNotificationUsage {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRNotificationUsage {}
 );
@@ -1703,6 +1882,10 @@ extern_class!(
     pub struct SRWebUsage;
 );
 
+unsafe impl Send for SRWebUsage {}
+
+unsafe impl Sync for SRWebUsage {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRWebUsage {}
 );
@@ -1734,6 +1917,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRMessagesUsageReport;
 );
+
+unsafe impl Send for SRMessagesUsageReport {}
+
+unsafe impl Sync for SRMessagesUsageReport {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRMessagesUsageReport {}
@@ -1778,6 +1965,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRPhoneUsageReport;
 );
+
+unsafe impl Send for SRPhoneUsageReport {}
+
+unsafe impl Sync for SRPhoneUsageReport {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRPhoneUsageReport {}
@@ -1826,6 +2017,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRKeyboardMetrics;
 );
+
+unsafe impl Send for SRKeyboardMetrics {}
+
+unsafe impl Sync for SRKeyboardMetrics {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRKeyboardMetrics {}
@@ -2487,6 +2682,10 @@ extern_class!(
     pub struct SRDeletionRecord;
 );
 
+unsafe impl Send for SRDeletionRecord {}
+
+unsafe impl Sync for SRDeletionRecord {}
+
 extern_conformance!(
     unsafe impl NSCoding for SRDeletionRecord {}
 );
@@ -2604,6 +2803,10 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRWristDetection;
 );
+
+unsafe impl Send for SRWristDetection {}
+
+unsafe impl Sync for SRWristDetection {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for SRWristDetection {}
@@ -5069,5 +5272,336 @@ impl SRSleepSession {
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
+    );
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srheadphonesettingssettingenablement?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct SRHeadphoneSettingsSettingEnablement(pub NSInteger);
+impl SRHeadphoneSettingsSettingEnablement {
+    #[doc(alias = "SRHeadphoneSettingsSettingEnablementUnsupported")]
+    pub const Unsupported: Self = Self(0);
+    #[doc(alias = "SRHeadphoneSettingsSettingEnablementEnabled")]
+    pub const Enabled: Self = Self(1);
+    #[doc(alias = "SRHeadphoneSettingsSettingEnablementDisabled")]
+    pub const Disabled: Self = Self(2);
+}
+
+unsafe impl Encode for SRHeadphoneSettingsSettingEnablement {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for SRHeadphoneSettingsSettingEnablement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srheadphonesettingslisteningmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SRHeadphoneSettingsListeningMode(pub NSInteger);
+impl SRHeadphoneSettingsListeningMode {
+    #[doc(alias = "SRHeadphoneSettingsListeningModeNormal")]
+    pub const Normal: Self = Self(1);
+    #[doc(alias = "SRHeadphoneSettingsListeningModeActiveNoiseCancelling")]
+    pub const ActiveNoiseCancelling: Self = Self(2);
+    #[doc(alias = "SRHeadphoneSettingsListeningModeTransparency")]
+    pub const Transparency: Self = Self(3);
+    #[doc(alias = "SRHeadphoneSettingsListeningModeAutoActiveNoiseCancelling")]
+    pub const AutoActiveNoiseCancelling: Self = Self(4);
+}
+
+unsafe impl Encode for SRHeadphoneSettingsListeningMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for SRHeadphoneSettingsListeningMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srheadphonesettingsadaptiveaudiostrength?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct SRHeadphoneSettingsAdaptiveAudioStrength(pub u32);
+impl SRHeadphoneSettingsAdaptiveAudioStrength {
+    #[doc(alias = "SRHeadphoneSettingsAdaptiveAudioStrengthLow")]
+    pub const Low: Self = Self(1);
+    #[doc(alias = "SRHeadphoneSettingsAdaptiveAudioStrengthMedium")]
+    pub const Medium: Self = Self(2);
+    #[doc(alias = "SRHeadphoneSettingsAdaptiveAudioStrengthHigh")]
+    pub const High: Self = Self(3);
+}
+
+unsafe impl Encode for SRHeadphoneSettingsAdaptiveAudioStrength {
+    const ENCODING: Encoding = u32::ENCODING;
+}
+
+unsafe impl RefEncode for SRHeadphoneSettingsAdaptiveAudioStrength {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srheadphonesettingshearingassistance?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SRHeadphoneSettingsHearingAssistance;
+);
+
+unsafe impl Send for SRHeadphoneSettingsHearingAssistance {}
+
+unsafe impl Sync for SRHeadphoneSettingsHearingAssistance {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SRHeadphoneSettingsHearingAssistance {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for SRHeadphoneSettingsHearingAssistance {}
+);
+
+unsafe impl CopyingHelper for SRHeadphoneSettingsHearingAssistance {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRHeadphoneSettingsHearingAssistance {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRHeadphoneSettingsHearingAssistance {}
+);
+
+impl SRHeadphoneSettingsHearingAssistance {
+    extern_methods!(
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(hearingAidEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hearingAidEnabled(&self) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// Setting to enable adjustments to media that improve the clarity of music, video, and calls when hearing aid is active.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(mediaAssistEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mediaAssistEnabled(&self) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// Setting to enable audio adjustments to music and video playing on device.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(adjustMediaEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn adjustMediaEnabled(&self) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// Setting to enable audio adjustments to phone calls.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(adjustVoiceEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn adjustVoiceEnabled(&self) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// Actively reduce your exposure to loud environmental sounds in Transparency and Adaptive modes.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(hearingProtectionEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hearingProtectionEnabled(&self) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// In noisy environments, automatically focuses source on the person speaking to you.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(conversationBoostEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn conversationBoostEnabled(&self) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(hearingAidAmplification))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hearingAidAmplification(&self) -> c_double;
+
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(hearingAidBalance))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hearingAidBalance(&self) -> c_double;
+
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(hearingAidTone))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hearingAidTone(&self) -> c_double;
+
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(ambientNoiseReduction))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn ambientNoiseReduction(&self) -> c_double;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl SRHeadphoneSettingsHearingAssistance {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srheadphonesettings?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct SRHeadphoneSettings;
+);
+
+unsafe impl Send for SRHeadphoneSettings {}
+
+unsafe impl Sync for SRHeadphoneSettings {}
+
+extern_conformance!(
+    unsafe impl NSCoding for SRHeadphoneSettings {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for SRHeadphoneSettings {}
+);
+
+unsafe impl CopyingHelper for SRHeadphoneSettings {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for SRHeadphoneSettings {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for SRHeadphoneSettings {}
+);
+
+impl SRHeadphoneSettings {
+    extern_methods!(
+        /// Adaptive Audio dynamically responds to your environment and cancels or allows
+        /// external noise.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(adaptiveAudioStrength))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn adaptiveAudioStrength(&self) -> SRHeadphoneSettingsAdaptiveAudioStrength;
+
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(listeningMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn listeningMode(&self) -> SRHeadphoneSettingsListeningMode;
+
+        /// Media volume adjusts in response to your environment.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(personalizedVolumeEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn personalizedVolumeEnabled(&self) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// Media volume lowers and reduces background noise when you start speaking to other people.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(conversationAwarenessEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn conversationAwarenessEnabled(&self) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// Hear audio rendered immersively in three dimensions.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(spatialAudioEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn spatialAudioEnabled(&self) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// Improved audio rendering when used with supported AirPods or Beats headphones.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(personalizedSpatialAudioEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn personalizedSpatialAudioEnabled(
+            &self,
+        ) -> SRHeadphoneSettingsSettingEnablement;
+
+        /// Hearing Assistance Settings
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(hearingAssistance))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn hearingAssistance(
+            &self,
+        ) -> Option<Retained<SRHeadphoneSettingsHearingAssistance>>;
     );
 }

@@ -5,17 +5,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistmutabilityoptions?language=objc)
+/// These constants specify mutability options for property list objects created during property list deserialization.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistmutabilityoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPropertyListMutabilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPropertyListMutabilityOptions: NSUInteger {
+/// Causes the returned property list to contain immutable objects.
         #[doc(alias = "NSPropertyListImmutable")]
         const Immutable = 0;
+/// Causes the returned property list to have mutable containers but immutable leaves.
         #[doc(alias = "NSPropertyListMutableContainers")]
         const MutableContainers = 1;
+/// Causes the returned property list to have mutable containers and mutable leaves.
         #[doc(alias = "NSPropertyListMutableContainersAndLeaves")]
         const MutableContainersAndLeaves = 2;
         const _ = !0;
@@ -30,16 +35,21 @@ unsafe impl RefEncode for NSPropertyListMutabilityOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistformat?language=objc)
+/// These constants are used to specify a property list serialization format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPropertyListFormat(pub NSUInteger);
 impl NSPropertyListFormat {
+    /// Specifies the ASCII property list format inherited from the OpenStep APIs.
     #[doc(alias = "NSPropertyListOpenStepFormat")]
     pub const OpenStepFormat: Self = Self(1);
+    /// Specifies the XML property list format.
     #[doc(alias = "NSPropertyListXMLFormat_v1_0")]
     pub const XMLFormat_v1_0: Self = Self(100);
+    /// Specifies the binary property list format.
     #[doc(alias = "NSPropertyListBinaryFormat_v1_0")]
     pub const BinaryFormat_v1_0: Self = Self(200);
 }
@@ -52,14 +62,28 @@ unsafe impl RefEncode for NSPropertyListFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadoptions?language=objc)
+/// A type that specifies read options for property list deserialization.
+///
+/// The only read options supported are described in `NSPropertyListMutabilityOptions`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadoptions?language=objc)
 pub type NSPropertyListReadOptions = NSPropertyListMutabilityOptions;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistwriteoptions?language=objc)
 pub type NSPropertyListWriteOptions = NSUInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistserialization?language=objc)
+    /// An object that converts between a property list and one of several serialized representations.
+    ///
+    /// The ``PropertyListSerialization`` class provides methods that convert a property list to and from several serialized formats. A property list is itself an array or dictionary that contains only ``NSData``, ``NSString``, ``NSArray``, ``NSDictionary``, ``NSDate``, and ``NSNumber`` objects.
+    ///
+    /// Property list objects are toll-free bridged with their respective Core Foundation types (
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfdata>,
+    /// <doc
+    /// ://com.apple.documentation/documentation/corefoundation/cfstring>, and so on). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2)  for more information on toll-free bridging.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistserialization?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPropertyListSerialization;
@@ -71,6 +95,8 @@ extern_conformance!(
 
 impl NSPropertyListSerialization {
     extern_methods!(
+        /// Returns a Boolean value that indicates whether a given property list is valid for a given format.
+        ///
         /// # Safety
         ///
         /// `plist` should be of the correct type.
@@ -82,6 +108,10 @@ impl NSPropertyListSerialization {
         ) -> bool;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Returns an `NSData` object containing the serialized representation of a given property list in a given format.
+        ///
+        /// The format can be either `NSPropertyListXMLFormat_v1_0` or `NSPropertyListBinaryFormat_v1_0`. The `opt` parameter is currently unused and should be set to `0`. If an error occurs the return value will be `nil` and the error parameter (if non-NULL) set to an autoreleased `NSError` describing the problem.
+        ///
         /// # Safety
         ///
         /// `plist` should be of the correct type.
@@ -94,6 +124,9 @@ impl NSPropertyListSerialization {
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Creates and returns a property list from the specified data.
+        ///
+        /// The options can be any of `NSPropertyListMutabilityOptions`. If the format parameter is non-NULL, it will be filled out with the format that the property list was stored in. If an error occurs the return value will be `nil` and the error parameter (if non-NULL) set to an autoreleased `NSError` describing the problem.
         #[unsafe(method(propertyListWithData:options:format:error:_))]
         #[unsafe(method_family = none)]
         pub fn propertyListWithData_options_format_error(
@@ -103,6 +136,9 @@ impl NSPropertyListSerialization {
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSStream"))]
+        /// Creates and returns a property list by reading from the specified stream.
+        ///
+        /// The options can be any of `NSPropertyListMutabilityOptions`. If the format parameter is non-NULL, it will be filled out with the format that the property list was stored in. If an error occurs the return value will be `nil` and the error parameter (if non-NULL) set to an autoreleased `NSError` describing the problem.
         #[unsafe(method(propertyListWithStream:options:format:error:_))]
         #[unsafe(method_family = none)]
         pub fn propertyListWithStream_options_format_error(
@@ -112,6 +148,8 @@ impl NSPropertyListSerialization {
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
+        /// Returns a data object containing a given property list in a given format.
+        ///
         /// # Safety
         ///
         /// - `plist` should be of the correct type.
@@ -126,6 +164,8 @@ impl NSPropertyListSerialization {
         ) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
+        /// Creates and returns a property list from the specified data and using the specified options.
+        ///
         /// # Safety
         ///
         /// `error_string` must be a valid pointer or null.

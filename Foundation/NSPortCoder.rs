@@ -23,35 +23,42 @@ extern_conformance!(
 #[cfg(feature = "NSCoder")]
 impl NSPortCoder {
     extern_methods!(
+        /// Returns a Boolean value that indicates whether the receiver has been told to encode objects by copying them.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(isBycopy))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBycopy(&self) -> bool;
 
+        /// Returns a Boolean value that indicates whether the receiver has been told to encode objects by reference.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(isByref))]
         #[unsafe(method_family = none)]
         pub unsafe fn isByref(&self) -> bool;
 
         #[cfg(feature = "NSPort")]
+        /// Encodes a given port so that a copy or proxy of it can be decoded in another process.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(encodePortObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodePortObject(&self, aport: &NSPort);
 
         #[cfg(feature = "NSPort")]
+        /// Decodes and returns a port that was previously encoded with `-encodePortObject:`.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(decodePortObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodePortObject(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSConnection")]
+        /// Returns the connection used by the receiver.
         #[deprecated]
         #[unsafe(method(connection))]
         #[unsafe(method_family = none)]
         pub unsafe fn connection(&self) -> Option<Retained<NSConnection>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSPort"))]
+        /// Returns an `NSPortCoder` instance initialized with the given ports and components.
+        ///
         /// # Safety
         ///
         /// `comps` generic should be of the correct type.
@@ -65,6 +72,8 @@ impl NSPortCoder {
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSArray", feature = "NSPort"))]
+        /// Initializes and returns an `NSPortCoder` instance with the given ports and components.
+        ///
         /// # Safety
         ///
         /// `comps` generic should be of the correct type.
@@ -78,6 +87,7 @@ impl NSPortCoder {
             comps: Option<&NSArray>,
         ) -> Retained<Self>;
 
+        /// Processes the encoded message and delivers it to the intended receiver.
         #[deprecated]
         #[unsafe(method(dispatch))]
         #[unsafe(method_family = none)]

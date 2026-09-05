@@ -9,7 +9,7 @@ use crate::*;
 
 /// A value that indicates a location in a directory from which to enumerate.
 ///
-/// Your implementation of ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)`` defines the semantics of this value; it's opaque to FSKit.
+/// Your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)`` defines the semantics of this value; it's opaque to FSKit.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectorycookie?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
@@ -21,14 +21,6 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectorycookieinitial?language=objc)
     pub static FSDirectoryCookieInitial: FSDirectoryCookie;
 }
-
-/// A tool to detect whether the directory contents changed since the last call to enumerate a directory.
-///
-/// Your implementation of ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)`` defines the semantics of this value; it's opaque to FSKit.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectoryverifier?language=objc)
-// NS_TYPED_EXTENSIBLE_ENUM
-pub type FSDirectoryVerifier = u64;
 
 extern "C" {
     /// The constant initial value for the directory-enumeration verifier.
@@ -192,6 +184,12 @@ impl FSVolumeIdentifier {
         /// - Parameters:
         /// - uuid: The UUID to use for this identifier.
         /// - qualifierData: The data to distinguish entities that otherwise share the same UUID.
+        ///
+        /// - Warning: This initializer is annotated as returning a non-optional value but silently
+        /// returns `nil` when `qualifierData` is not exactly eight bytes, which can surface as a
+        /// null value in a non-optional Swift variable. Use ``initWithUUID:qualifierData:``
+        /// instead, which is explicitly failable.
+        #[deprecated]
         #[unsafe(method(initWithUUID:data:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUUID_data(
@@ -199,6 +197,21 @@ impl FSVolumeIdentifier {
             uuid: &NSUUID,
             qualifier_data: &NSData,
         ) -> Retained<Self>;
+
+        /// Creates an entity identifier with the given UUID and qualifier data.
+        ///
+        /// - Parameters:
+        /// - uuid: The UUID to use for this identifier.
+        /// - qualifierData: The data to distinguish entities that otherwise share the same UUID.
+        /// Must be exactly eight bytes; any other length causes this initializer to return `nil`.
+        /// - Returns: A new identifier, or `nil` if `qualifierData` is not exactly eight bytes long.
+        #[unsafe(method(initWithUUID:qualifierData:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithUUID_qualifierData(
+            this: Allocated<Self>,
+            uuid: &NSUUID,
+            qualifier_data: &NSData,
+        ) -> Option<Retained<Self>>;
     );
 }
 
@@ -215,7 +228,7 @@ impl FSVolumeIdentifier {
 extern_class!(
     /// An object used to provide items during a directory enumeration.
     ///
-    /// You use this type in your implementation of ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``.
+    /// You use this type in your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``.
     ///
     /// Packing allows your implementation to provide information FSKit needs, including each item's name, type, and identifier (such as an inode number).
     /// Some directory enumerations require other attributes, as indicated by the ``FSItemGetAttributesRequest`` sent to the enumerate method.
@@ -237,13 +250,13 @@ impl FSDirectoryEntryPacker {
         #[cfg(all(feature = "FSFileName", feature = "FSItem"))]
         /// Provides a directory entry during enumeration.
         ///
-        /// You call this method in your implementation of ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``, for each directory entry you want to provide to the enumeration.
+        /// You call this method in your implementation of ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``, for each directory entry you want to provide to the enumeration.
         ///
         /// - Parameters:
         /// - name: The item's name.
         /// - itemType: The type of the item.
         /// - itemID: The item's identifier. Typically this is an inode number, or one of the constants defined by ``FSItem/Identifier`` like ``FSItem/Identifier/rootDirectory``.
-        /// - nextCookie: A value to indicate the next entry in the directory to enumerate. FSKit passes this value as the `cookie` parameter on the next call to ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``. Use whatever value is appropriate for your implementation; the value is opaque to FSKit.
+        /// - nextCookie: A value to indicate the next entry in the directory to enumerate. FSKit passes this value as the `cookie` parameter on the next call to ``FSVolume/Handler/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``. Use whatever value is appropriate for your implementation; the value is opaque to FSKit.
         /// - attributes: The item's attributes. Pass `nil` if the enumeration call didn't request attributes.
         /// - Returns: `true` (Swift) or `YES` (Objective-C) if packing was successful and enumeration can continue with the next directory entry. If the value is `false` (Swift) or `NO` (Objective-C), stop enumerating. This result can happen when the entry is too big for the remaining space in the buffer.
         #[unsafe(method(packEntryWithName:itemType:itemID:nextCookie:attributes:))]
@@ -297,7 +310,7 @@ unsafe impl RefEncode for FSVolumeCaseFormat {
 }
 
 extern_class!(
-    /// A type that represents capabillities supported by a volume, such as hard and symbolic links, journaling, and large file sizes.
+    /// A type that represents capabilities supported by a volume, such as hard and symbolic links, journaling, and large file sizes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumesupportedcapabilities?language=objc)
     #[unsafe(super(NSObject))]
@@ -371,7 +384,7 @@ impl FSVolumeSupportedCapabilities {
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportsActiveJournal(&self, supports_active_journal: bool);
 
-        /// A Boolan property that indicates the volume doesn't store reliable times for the root directory.
+        /// A Boolean property that indicates the volume doesn't store reliable times for the root directory.
         ///
         /// If this value is `true` (Swift) or `YES` (Objective-C), the volume doesn't store reliable times for the root directory.
         #[unsafe(method(doesNotSupportRootTimes))]
@@ -570,7 +583,7 @@ extern_class!(
     /// A file system, depending on its type, provides one or more volumes to clients.
     /// The ``FSUnaryFileSystem`` by definition provides only one volume, while an ``FSFileSystem`` supports multiple volumes.
     ///
-    /// You implement a volume for your file system type by subclassing this class, and also conforming to the ``FSVolume/Operations`` and ``FSVolume/PathConfOperations`` protocols.
+    /// You implement a volume for your file system type by subclassing this class, and also conforming to the ``FSVolume/Handler`` and ``FSVolume/PathConfOperations`` protocols.
     /// This protocol defines the minimum set of operations supported by a volume, such as mounting, activating, creating and removing items, and more.
     ///
     /// Your volume can provide additional functionality by conforming to other volume operations protocols.
@@ -922,20 +935,23 @@ extern_protocol!(
     /// Methods that all volumes implement to provide required capabilities.
     ///
     /// Conform to this protocol in your subclass of ``FSVolume``.
-    /// To provide additional capabilities, conform to the other `FSVolume` operations protocols, like ``FSVolumeOpenCloseOperations`` and ``FSVolumeReadWriteOperations``.
+    /// To provide additional capabilities, conform to the other `FSVolume` operations protocols, such as ``FSVolumeOpenCloseOperations`` and ``FSVolumeReadWriteOperations``.
     ///
     /// > Note: This protocol extends ``FSVolumePathConfOperations``, so your volume implementation must also conform to that protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeoperations?language=objc)
+    #[deprecated]
     pub unsafe trait FSVolumeOperations:
         NSObjectProtocol + FSVolumePathConfOperations
     {
         /// A property that provides the supported capabilities of the volume.
+        #[deprecated]
         #[unsafe(method(supportedVolumeCapabilities))]
         #[unsafe(method_family = none)]
         unsafe fn supportedVolumeCapabilities(&self) -> Retained<FSVolumeSupportedCapabilities>;
 
         /// A property that provides up-to-date statistics of the volume.
+        #[deprecated]
         #[unsafe(method(volumeStatistics))]
         #[unsafe(method_family = none)]
         unsafe fn volumeStatistics(&self) -> Retained<FSStatFSResult>;
@@ -975,6 +991,489 @@ extern_protocol!(
         #[unsafe(method(setRequestedMountOptions:))]
         #[unsafe(method_family = none)]
         unsafe fn setRequestedMountOptions(&self, requested_mount_options: FSMountOptions);
+
+        #[cfg(all(feature = "FSItem", feature = "FSTaskOptions", feature = "block2"))]
+        /// Activates the volume using the specified options.
+        ///
+        /// When FSKit calls this method, allocate any in-memory state required to represent the file system.
+        /// Also allocate an ``FSItem`` for the root directory of the file system, and pass it to the reply block.
+        /// FSKit caches this root item for the lifetime of the volume, and uses it as a starting point for all file look-ups.
+        ///
+        /// Volume activation occurs prior to any call to mount the volume.
+        ///
+        /// - Parameters:
+        /// - options: Options to apply to the activation. These can include security-scoped file paths. There are no defined options currently.
+        /// - reply: A block or closure to indicate success or failure. If activation succeeds, pass the root ``FSItem`` and a `nil` error. If activation fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItem`` in this case. In Swift, `reply` takes only the ``FSItem`` as the parameter; you signal any error with a `throw`. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItem`` or throw an error.
+        #[deprecated]
+        #[unsafe(method(activateWithOptions:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn activateWithOptions_replyHandler(
+            &self,
+            options: &FSTaskOptions,
+            reply: &block2::SendableBlock<'static, fn(*mut FSItem, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Tears down a previously initialized volume instance.
+        ///
+        /// Set up your implementation to release any resources allocated for the volume instance.
+        /// By the time you receive this callback, FSKit has already performed a reclaim call to release all other file nodes associated with this file system instance.
+        ///
+        /// Avoid performing any I/O in this method.
+        /// Prior to calling this method, FSKit has already issued a sync call to perform any
+        /// cleanup-related I/O.
+        ///
+        /// FSKit unmounts any mounted volume with a call to ``unmount(replyHandler:)`` prior to the deactivate callback.
+        ///
+        /// - Parameters:
+        /// - options: Options to apply to the deactivation.
+        /// - reply: A block or closure to indicate success or failure. If activation fails, pass an error as the one parameter to the reply handler. If activation succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[deprecated]
+        #[unsafe(method(deactivateWithOptions:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn deactivateWithOptions_replyHandler(
+            &self,
+            options: FSDeactivateOptions,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSTaskOptions", feature = "block2"))]
+        /// Mounts this volume, using the specified options.
+        ///
+        /// FSKit calls this method as a signal that some process is trying to mount this volume.
+        /// Your file system receives a call to ``activate(options:replyHandler:)`` prior to receiving any mount calls.
+        ///
+        /// - Parameters:
+        /// - options: Options to apply to the mount. These can include security-scoped file paths. There are no defined options currently.
+        /// - reply: A block or closure to indicate success or failure. If mounting fails, pass an error as the one parameter to the reply handler. If mounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
+        #[deprecated]
+        #[unsafe(method(mountWithOptions:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn mountWithOptions_replyHandler(
+            &self,
+            options: &FSTaskOptions,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Unmounts this volume.
+        ///
+        /// Clear and flush all cached state in your implementation of this method.
+        ///
+        /// - Parameters:
+        /// - reply: A block or closure to indicate success or failure. If unmounting fails, pass an error as the one parameter to the reply handler. If unmounting succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply return normally.
+        #[deprecated]
+        #[unsafe(method(unmountWithReplyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn unmountWithReplyHandler(&self, reply: &block2::SendableBlock<'static, fn()>);
+
+        #[cfg(feature = "block2")]
+        /// Synchronizes the volume with its underlying resource.
+        ///
+        /// After calling this method, FSKit assumes that the volume has sent all pending I/O or metadata to its resource.
+        ///
+        /// - Parameters:
+        /// - flags: Timing flags, as defined in `mount.h.` These flags let the file system know whether to run the operation in a blocking or nonblocking fashion.
+        /// - reply: A block or closure to indicate success or failure. If synchronization fails, pass an error as the one parameter to the reply handler. If synchronization succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[deprecated]
+        #[unsafe(method(synchronizeWithFlags:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn synchronizeWithFlags_replyHandler(
+            &self,
+            flags: FSSyncFlags,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        /// Looks up an item within a directory.
+        ///
+        /// If no item matching `name` exists in the directory indicated by `directory`, complete the request with an error with a domain of
+        /// <doc
+        /// ://com.apple.documentation/documentation/Foundation/NSPOSIXErrorDomain> and a code of `ENOENT`.
+        ///
+        /// > Tip: The ``FSFileName`` sent back to the caller may differ from the `name` parameter. This flexibility allows your implementation to handle case-insensitive and case-sensitive file systems. It might also be the case that `name` uses a composed Unicode string, but the name maintained by the file system and provided to the caller is uncomposed Unicode.
+        ///
+        /// - Parameters:
+        /// - name: The name of the item to look up.
+        /// - directory: The directory in which to look up the item.
+        /// - reply: A block or closure to indicate success or failure. If lookup succeeds, pass the found ``FSItem`` and its ``FSFileName`` (as saved within the file system), along with a `nil` error. If lookup fails, pass the relevant error as the third parameter; any ``FSItem`` or ``FSFileName`` are ignored in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItem`` and ``FSFileName`` as a tuple or throw an error.
+        #[deprecated]
+        #[unsafe(method(lookupItemNamed:inDirectory:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn lookupItemNamed_inDirectory_replyHandler(
+            &self,
+            name: &FSFileName,
+            directory: &FSItem,
+            reply: &block2::SendableBlock<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSItem", feature = "block2"))]
+        /// Reclaims an item, releasing any resources allocated for the item.
+        ///
+        /// FSKit guarantees that for every ``FSItem`` returned by the volume, a corresponding reclaim operation occurs after the upper layers no longer reference that item.
+        ///
+        /// > Note: Block device file systems may assess whether an underlying resource terminates before processing reclaim operations. On unary file systems, for example, the associated volumes unmount when such resources disconnect from the system. The unmount triggers a reclaiming of all items. Some implementations benefit greatly from short-circuiting in such cases. With a terminated resource, all I/O results in an error, making short-circuiting the most efficient response.
+        ///
+        /// - Parameters:
+        /// - item: The item to reclaim.
+        /// - reply: A block or closure to indicate success or failure. If removal fails, pass an error as the one parameter to the reply handler. If removal succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[deprecated]
+        #[unsafe(method(reclaimItem:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn reclaimItem_replyHandler(
+            &self,
+            item: &FSItem,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        /// Creates a new file or directory item.
+        ///
+        /// If an item named `name` already exists in the directory indicated by `directory`, complete the request with an error with a domain of
+        /// <doc
+        /// ://com.apple.documentation/documentation/Foundation/NSPOSIXErrorDomain> and a code of `EEXIST`.
+        ///
+        /// - Parameters:
+        /// - name: The new item's name.
+        /// - type: The new item's type.  Valid values are ``FSItem/ItemType/file`` or ``FSItem/ItemType/directory``.
+        /// - directory: The directory in which to create the item.
+        /// - newAttributes: Attributes to apply to the new item.
+        /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass the newly-created ``FSItem`` and its ``FSFileName``, along with a `nil` error. If creation fails, pass the relevant error as the third parameter; FSKit ignores any ``FSItem`` or ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return a tuple of the ``FSItem`` and its ``FSFileName`` or throw an error.
+        #[deprecated]
+        #[unsafe(method(createItemNamed:type:inDirectory:attributes:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn createItemNamed_type_inDirectory_attributes_replyHandler(
+            &self,
+            name: &FSFileName,
+            r#type: FSItemType,
+            directory: &FSItem,
+            new_attributes: &FSItemSetAttributesRequest,
+            reply: &block2::SendableBlock<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        /// Creates a new symbolic link.
+        ///
+        /// If an item named `name` already exists in the directory indicated by `directory`, complete the request with an error with a domain of
+        /// <doc
+        /// ://com.apple.documentation/documentation/Foundation/NSPOSIXErrorDomain> and a code of `EEXIST`.
+        ///
+        /// - Parameters:
+        /// - name: The new item's name.
+        /// - directory: The directory in which to create the item.
+        /// - newAttributes: Attributes to apply to the new item.
+        /// - contents: The contents of the new symbolic link.
+        /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass the newly-created ``FSItem`` and a `nil` error. If creation fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItem`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItem`` or throw an error.
+        #[deprecated]
+        #[unsafe(method(createSymbolicLinkNamed:inDirectory:attributes:linkContents:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn createSymbolicLinkNamed_inDirectory_attributes_linkContents_replyHandler(
+            &self,
+            name: &FSFileName,
+            directory: &FSItem,
+            new_attributes: &FSItemSetAttributesRequest,
+            contents: &FSFileName,
+            reply: &block2::SendableBlock<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        /// Creates a new hard link.
+        ///
+        /// If creating the link fails, complete the request with an error with a domain of
+        /// <doc
+        /// ://com.apple.documentation/documentation/Foundation/NSPOSIXErrorDomain> and the following error codes:
+        ///
+        /// * `EEXIST` if there's already an item named `name` in the directory.
+        /// * `EMLINK` if creating the link would exceed the maximum number of hard links supported on `item`.
+        /// * `ENOTSUP` if the file system doesn't support creating hard links to the type of file system object that `item` represents.
+        ///
+        /// - Parameters:
+        /// - item: The existing item to which to link.
+        /// - name: The name for the new link.
+        /// - directory: The directory in which to create the link.
+        /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass an ``FSFileName`` of the newly-created link and a `nil` error. If creation fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
+        #[deprecated]
+        #[unsafe(method(createLinkToItem:named:inDirectory:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn createLinkToItem_named_inDirectory_replyHandler(
+            &self,
+            item: &FSItem,
+            name: &FSFileName,
+            directory: &FSItem,
+            reply: &block2::SendableBlock<'static, fn(*mut FSFileName, *mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        /// Renames an item from one path in the file system to another.
+        ///
+        /// Implement renaming along the lines of this algorithm:
+        ///
+        /// - If `item` is a file:
+        /// - If the destination file exists:
+        /// - Remove the destination file.
+        /// - If the source and destination directories are the same:
+        /// - Rewrite the name in the existing directory.
+        /// - Else:
+        /// - Write the new entry in the destination directory.
+        /// - Clear the old directory entry.
+        /// - If `item` is a directory:
+        /// - If the destination directory exists:
+        /// - If the destination directory isn't empty:
+        /// - Fail the operation with an error of
+        /// <doc
+        /// ://com.apple.documentation/documentation/Foundation/NSPOSIXErrorDomain> and a code of `ENOTEMPTY`.
+        /// - Else:
+        /// - Remove the destination directory.
+        /// - If the source and destination directories are the same:
+        /// - Rewrite the name in the existing directory.
+        /// - Else:
+        /// - If the destination is a child of the source directory:
+        /// - Fail the operation with an error.
+        /// - Else:
+        /// - Write the new entry in the destination directory.
+        /// - Update `"."` and `".."` in the moved directory.
+        /// - Clear the old directory entry.
+        ///
+        /// - Parameters:
+        /// - item: The file system object being renamed.
+        /// - sourceDirectory: The directory that currently contains the item to rename.
+        /// - sourceName: The name of the item within the source directory.
+        /// - destinationName: The new name of the item as it appears in `destinationDirectory`.
+        /// - destinationDirectory: The directory to contain the renamed object, which may be the same as `sourceDirectory`.
+        /// - overItem: The file system object if the destination exists, as discovered in a prior lookup. If this parameter is non-`nil`, mark `overItem` as deleted, so the file system can free its allocated space on the next call to ``reclaimItem(_:replyHandler:)``. After doing so, ensure the operation finishes without errors.
+        /// - reply: A block or closure to indicate success or failure. If renaming succeeds, pass the ``FSFileName`` as it exists within `destinationDirectory` and a `nil` error. If renaming fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
+        #[deprecated]
+        #[unsafe(method(renameItem:inDirectory:named:toNewName:inDirectory:overItem:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn renameItem_inDirectory_named_toNewName_inDirectory_overItem_replyHandler(
+            &self,
+            item: &FSItem,
+            source_directory: &FSItem,
+            source_name: &FSFileName,
+            destination_name: &FSFileName,
+            destination_directory: &FSItem,
+            over_item: Option<&FSItem>,
+            reply: &block2::SendableBlock<'static, fn(*mut FSFileName, *mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        /// Removes an existing item from a given directory.
+        ///
+        /// Don't actually remove the item object itself in your implementation; instead, only remove the given item name from the given directory.
+        /// Remove and deallocate the item in ``reclaimItem(_:replyHandler:)``.
+        ///
+        /// - Parameters:
+        /// - item: The item to remove.
+        /// - name: The name of the item to remove.
+        /// - directory: The directory from which to remove the item.
+        /// - reply: A block or closure to indicate success or failure. If removal fails, pass an error as the one parameter to the reply handler. If removal succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[deprecated]
+        #[unsafe(method(removeItem:named:fromDirectory:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn removeItem_named_fromDirectory_replyHandler(
+            &self,
+            item: &FSItem,
+            name: &FSFileName,
+            directory: &FSItem,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSItem", feature = "block2"))]
+        /// Fetches attributes for the given item.
+        ///
+        /// For file systems that don't support hard links, set ``FSItemAttributes/linkCount`` to `1` for regular files and symbolic links.
+        ///
+        /// If the item's `bsdFlags` contain the `UF_COMPRESSED` flag, your file system returns the uncompressed size of the file.
+        ///
+        /// - Parameters:
+        /// - desiredAttributes: A requested set of attributes to get. The implementation inspects the request's ``FSItemGetAttributesRequest/wantedAttributes`` to determine which attributes to populate.
+        /// - item: The item to get attributes for.
+        /// - reply: A block or closure to indicate success or failure. If getting attributes succeeds, pass an ``FSItemAttributes`` with the requested attributes populated and a `nil` error. If getting attributes fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItemAttributes`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItemAttributes`` or throw an error.
+        #[deprecated]
+        #[unsafe(method(getAttributes:ofItem:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn getAttributes_ofItem_replyHandler(
+            &self,
+            desired_attributes: &FSItemGetAttributesRequest,
+            item: &FSItem,
+            reply: &block2::SendableBlock<'static, fn(*mut FSItemAttributes, *mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSItem", feature = "block2"))]
+        /// Sets the given attributes on an item.
+        ///
+        /// Several attributes are considered "read-only", and an attempt to set these attributes results in an error with the code `EINVAL`.
+        ///
+        /// A request may set ``FSItem/Attributes/size`` beyond the end of the file.
+        /// If the underlying file system doesn't support sparse files, allocate space to fill the new file size.
+        /// Either fill this space with zeroes, or configure it to read as zeroes.
+        ///
+        /// If a request sets the file size below the current end-of-file, truncate the file and return any unused space to the file system as free space.
+        ///
+        /// Ignore attempts to set the size of directories or symbolic links; don't produce an error.
+        ///
+        /// If the caller attempts to set an attribute not supported by the on-disk file system format, don't produce an error.
+        /// The upper layers of the framework will detect this situation.
+        ///
+        /// - Parameters:
+        /// - newAttributes: A request containing the attributes to set.
+        /// - item: The item on which to set the attributes.
+        /// - reply: A block or closure to indicate success or failure. If setting attributes succeeds, pass an ``FSItemAttributes`` with the item's updated attributes and a `nil` error. If setting attributes fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItemAttributes`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItemAttributes`` or throw an error.
+        #[deprecated]
+        #[unsafe(method(setAttributes:onItem:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setAttributes_onItem_replyHandler(
+            &self,
+            new_attributes: &FSItemSetAttributesRequest,
+            item: &FSItem,
+            reply: &block2::SendableBlock<'static, fn(*mut FSItemAttributes, *mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSItem", feature = "block2"))]
+        /// Enumerates the contents of the given directory.
+        ///
+        /// This method uses the ``FSDirectoryEntryPacker/packEntry(name:itemType:itemID:nextCookie:attributes:)`` method of the `packer` parameter to deliver the enumerated items to the caller.
+        /// The general flow of an enumeration implementation follows these steps:
+        ///
+        /// 1. Enumeration starts with a call to `enumerateDirectory` using the initial next-cookie and verifier values ``FSDirectoryCookieInitial`` and ``FSDirectoryVerifierInitial``, respectively.
+        /// 2. The implementation uses `packer` to pack the initial set of directory entries. Packing also sets a `nextCookie` to use on the next call.
+        /// 3. The implementation replies with a new verifier value, a nonzero value that reflects the directory's current version.
+        /// 4. On the next call the implementation packs the next set of entries, starting with the item indicated by `cookie`. If `cookie` doesn't resolve to a valid directory entry, complete the request with an error of domain
+        /// <doc
+        /// ://com.apple.documentation/documentation/Foundation/NSPOSIXErrorDomain> and code ``FSError/Code/invalidDirectoryCookie``.
+        ///
+        /// When packing, make sure to use acceptable directory entry names and unambiguous input to all file operations that take names without additional normalization, such as`lookupName`.
+        ///
+        /// > Tip: If the `attributes` parameter is `nil`, include at least two entries in a directory: `"."` and `".."`, which represent the current and parent directories, respectively. Both of these items have type ``FSItem/ItemType/directory``. For the root directory, `"."` and `".."` have identical contents. Don't pack  `"."` and `".."` if `attributes` isn't `nil`.
+        ///
+        /// - Parameters:
+        /// - directory: The item to enumerate. FSKit guarantees this item is of type ``FSItem/ItemType/directory``.
+        /// - cookie: A value that indicates the location within the directory from which to enumerate. Your implementation defines the semantics of the cookie values; they're opaque to FSKit. The first call to the enumerate method passes ``FSDirectoryCookieInitial`` for this parameter. Subsequent calls pass whatever cookie value you previously passed to the packer's `nextCookie` parameter.
+        /// - verifier: A tool to detect whether the directory contents changed since the last call to `enumerateDirectory`. Your implementation defines the semantics of the verifier values; they're opaque to FSKit. The first call to the enumerate method passes ``FSDirectoryVerifierInitial`` for this parameter. Subsequent calls pass whatever cookie value you previously passed to the packer's `currentVerifier` parameter.
+        /// - attributes: The desired attributes to provide, or `nil` if the caller doesn't require attributes.
+        /// - packer: An object that your implementation uses to enumerate directory items, packing one item per callback to `enumerateDirectory`.
+        /// - reply: A block or closure to indicate success or failure. If enumeration succeeds, pass the current verifier and a `nil` error. If enumeration fails, pass the relevant error as the second parameter; FSKit ignores any verifier in this case. For an `async` Swift implementation, there's no reply handler; simply return the current verifier or throw an error.
+        #[deprecated]
+        #[unsafe(method(enumerateDirectory:startingAtCookie:verifier:providingAttributes:usingPacker:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn enumerateDirectory_startingAtCookie_verifier_providingAttributes_usingPacker_replyHandler(
+            &self,
+            directory: &FSItem,
+            cookie: FSDirectoryCookie,
+            verifier: FSDirectoryVerifier,
+            attributes: Option<&FSItemGetAttributesRequest>,
+            packer: &FSDirectoryEntryPacker,
+            reply: &block2::SendableBlock<'static, fn(FSDirectoryVerifier, *mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        /// Reads a symbolic link.
+        ///
+        /// - Parameters:
+        /// - item: The symbolic link to read from. FSKit guarantees this item is of type ``FSItem/ItemType/symlink``.
+        /// - reply: A block or closure to indicate success or failure. If reading succeeds, pass the link's contents as an ``FSFileName`` and a `nil` error. If reading fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
+        #[deprecated]
+        #[unsafe(method(readSymbolicLink:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn readSymbolicLink_replyHandler(
+            &self,
+            item: &FSItem,
+            reply: &block2::SendableBlock<'static, fn(*mut FSFileName, *mut NSError)>,
+        );
+    }
+);
+
+extern_protocol!(
+    /// Methods that all volumes implement to provide required capabilities.
+    ///
+    /// Conform to this protocol in your subclass of ``FSVolume``.
+    /// To provide additional capabilities, conform to the other `FSVolume` handler protocols, such as ``FSVolumeOpenCloseHandler`` and ``FSVolumeReadWriteHandler``.
+    ///
+    /// > Note: This protocol extends ``FSVolumePathConfOperations``, so your volume implementation must also conform to that protocol.
+    ///
+    /// > Important: This protocol replaces the ``FSVolumeOperations`` protocol. It exposes the same functionality, while using ``FSVolumeHandlerResult`` objects. These objects add the ability to reply with ``FSItemAttributes`` and free space from the relevant methods.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumehandler?language=objc)
+    pub unsafe trait FSVolumeHandler: NSObjectProtocol + FSVolumePathConfOperations {
+        #[unsafe(method(supportedVolumeCapabilities))]
+        #[unsafe(method_family = none)]
+        unsafe fn supportedVolumeCapabilities(&self) -> Retained<FSVolumeSupportedCapabilities>;
+
+        /// A property that provides up-to-date statistics of the volume.
+        #[unsafe(method(volumeStatistics))]
+        #[unsafe(method_family = none)]
+        unsafe fn volumeStatistics(&self) -> Retained<FSStatFSResult>;
+
+        /// A property that allows the file system to use open-unlink emulation.
+        ///
+        /// _Open-unlink_ functionality refers to a file system's ability to support an open file being fully unlinked from the file system namespace.
+        /// If a file system doesn't support this functionality, FSKit can emulate it instead; this is called "open-unlink emulation".
+        ///
+        /// Implement this property to return `true` (Swift) or `YES` (Objective-C) to allow FSKit to perform open-unlink emulation.
+        /// If you don't implement this property at all, FSKit doesn't perform open-unlink emulation for this volume.
+        ///
+        /// FSKit reads this value after the file system replies to the `loadResource` message.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(enableOpenUnlinkEmulation))]
+        #[unsafe(method_family = none)]
+        unsafe fn enableOpenUnlinkEmulation(&self) -> bool;
+
+        /// A property that allows the file system to request for specific mount options from FSKit.
+        ///
+        /// FSKit reads this value after the volume replies to the ``mount(options:replyHandler:)`` call.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(requestedMountOptions))]
+        #[unsafe(method_family = none)]
+        unsafe fn requestedMountOptions(&self) -> FSMountOptions;
+
+        #[cfg(all(
+            feature = "FSTaskOptions",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Activates the volume using the specified options.
+        ///
+        /// When FSKit calls this method, allocate any in-memory state required to represent the file system.
+        /// Also allocate an ``FSItem`` for the root directory of the file system, and pass it to the reply block.
+        /// FSKit caches this root item for the lifetime of the volume, and uses it as a starting point for all file look-ups.
+        ///
+        /// Volume activation occurs prior to any call to mount the volume.
+        ///
+        /// - Parameters:
+        /// - options: Options to apply to the activation. These can include security-scoped file paths. There are no defined options currently.
+        /// - reply: A block or closure to indicate success or failure. If activation succeeds, pass an instance of ``FSActivateResult`` containing the root ``FSItem``, along with a `nil` error. If activation fails, pass the relevant error as the second parameter; FSKit ignores the ``FSActivateResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(activateWithOptions:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn activateWithOptions_replyHandler(
+            &self,
+            options: &FSTaskOptions,
+            reply: &block2::SendableBlock<'static, fn(*mut FSActivateResult, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Tears down a previously initialized volume instance.
+        ///
+        /// Set up your implementation to release any resources allocated for the volume instance.
+        /// By the time you receive this callback, FSKit has already performed a reclaim call to release all other file nodes associated with this file system instance.
+        ///
+        /// Avoid performing any I/O in this method.
+        /// Prior to calling this method, FSKit has already issued a sync call to perform any
+        /// cleanup-related I/O.
+        ///
+        /// FSKit unmounts any mounted volume with a call to ``unmount(replyHandler:)`` prior to the deactivate callback.
+        ///
+        /// - Parameters:
+        /// - options: Options to apply to the deactivation.
+        /// - reply: A block or closure to indicate success or failure. If activation fails, pass an error as the one parameter to the reply handler. If activation succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[unsafe(method(deactivateWithOptions:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn deactivateWithOptions_replyHandler(
+            &self,
+            options: FSDeactivateOptions,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
 
         #[cfg(all(feature = "FSTaskOptions", feature = "block2"))]
         /// Mounts this volume, using the specified options.
@@ -1020,56 +1519,13 @@ extern_protocol!(
             reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "FSItem", feature = "block2"))]
-        /// Fetches attributes for the given item.
-        ///
-        /// For file systems that don't support hard links, set ``FSItemAttributes/linkCount`` to `1` for regular files and symbolic links.
-        ///
-        /// If the item's `bsdFlags` contain the `UF_COMPRESSED` flag, your file system returns the uncompressed size of the file.
-        ///
-        /// - Parameters:
-        /// - desiredAttributes: A requested set of attributes to get. The implementation inspects the request's ``FSItemGetAttributesRequest/wantedAttributes`` to determine which attributes to populate.
-        /// - item: The item to get attributes for.
-        /// - reply: A block or closure to indicate success or failure. If getting attributes succeeds, pass an ``FSItemAttributes`` with the requested attributes populated and a `nil` error. If getting attributes fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItemAttributes`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItemAttributes`` or throw an error.
-        #[unsafe(method(getAttributes:ofItem:replyHandler:))]
-        #[unsafe(method_family = none)]
-        unsafe fn getAttributes_ofItem_replyHandler(
-            &self,
-            desired_attributes: &FSItemGetAttributesRequest,
-            item: &FSItem,
-            reply: &block2::SendableBlock<'static, fn(*mut FSItemAttributes, *mut NSError)>,
-        );
-
-        #[cfg(all(feature = "FSItem", feature = "block2"))]
-        /// Sets the given attributes on an item.
-        ///
-        /// Several attributes are considered "read-only", and an attempt to set these attributes results in an error with the code `EINVAL`.
-        ///
-        /// A request may set ``FSItem/Attributes/size`` beyond the end of the file.
-        /// If the underlying file system doesn't support sparse files, allocate space to fill the new file size.
-        /// Either fill this space with zeroes, or configure it to read as zeroes.
-        ///
-        /// If a request sets the file size below the current end-of-file, truncate the file and return any unused space to the file system as free space.
-        ///
-        /// Ignore attempts to set the size of directories or symbolic links; don't produce an error.
-        ///
-        /// If the caller attepts to sest an attribute not supported by the on-disk file system format, don't produce an error.
-        /// The upper layers of the framework will detect this situation.
-        ///
-        /// - Parameters:
-        /// - newAttributes: A request containing the attributes to set.
-        /// - item: The item on which to set the attributes.
-        /// - reply: A block or closure to indicate success or failure. If setting attributes succeeds, pass an ``FSItemAttributes`` with the item's updated attributes and a `nil` error. If setting attributes fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItemAttributes`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItemAttributes`` or throw an error.
-        #[unsafe(method(setAttributes:onItem:replyHandler:))]
-        #[unsafe(method_family = none)]
-        unsafe fn setAttributes_onItem_replyHandler(
-            &self,
-            new_attributes: &FSItemSetAttributesRequest,
-            item: &FSItem,
-            reply: &block2::SendableBlock<'static, fn(*mut FSItemAttributes, *mut NSError)>,
-        );
-
-        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSFileName",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
         /// Looks up an item within a directory.
         ///
         /// If no item matching `name` exists in the directory indicated by `directory`, complete the request with an error with a domain of
@@ -1081,14 +1537,16 @@ extern_protocol!(
         /// - Parameters:
         /// - name: The name of the item to look up.
         /// - directory: The directory in which to look up the item.
-        /// - reply: A block or closure to indicate success or failure. If lookup succeeds, pass the found ``FSItem`` and its ``FSFileName`` (as saved within the file system), along with a `nil` error. If lookup fails, pass the relevant error as the third parameter; any ``FSItem`` or ``FSFileName`` are ignored in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItem`` and ``FSFileName`` as a tuple or throw an error.
-        #[unsafe(method(lookupItemNamed:inDirectory:replyHandler:))]
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If lookup succeeds, pass an instance of ``FSLookupItemResult`` containing the found ``FSItem``, its ``FSFileName`` (as saved within the file system), and its ``FSItemAttributes``, along with a `nil` error. If lookup fails, pass the relevant error as the second parameter; FSKit ignores the ``FSLookupItemResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(lookupItemNamed:inDirectory:context:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn lookupItemNamed_inDirectory_replyHandler(
+        unsafe fn lookupItemNamed_inDirectory_context_replyHandler(
             &self,
             name: &FSFileName,
             directory: &FSItem,
-            reply: &block2::SendableBlock<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSLookupItemResult, *mut NSError)>,
         );
 
         #[cfg(all(feature = "FSItem", feature = "block2"))]
@@ -1096,7 +1554,7 @@ extern_protocol!(
         ///
         /// FSKit guarantees that for every ``FSItem`` returned by the volume, a corresponding reclaim operation occurs after the upper layers no longer reference that item.
         ///
-        /// > Note: Block device file systems may assess whether an underyling resource terminates before processing reclaim operations. On unary file systems, for example, the associated volumes unmount when such resources disconnect from the system. The unmount triggers a reclaiming of all items. Some implementations benefit greatly from short-circuiting in such cases. With a terminated resource, all I/O results in an error, making short-circuiting the most efficient response.
+        /// > Note: Block device file systems may assess whether an underlying resource terminates before processing reclaim operations. On unary file systems, for example, the associated volumes unmount when such resources disconnect from the system. The unmount triggers a reclaiming of all items. Some implementations benefit greatly from short-circuiting in such cases. With a terminated resource, all I/O results in an error, making short-circuiting the most efficient response.
         ///
         /// - Parameters:
         /// - item: The item to reclaim.
@@ -1109,21 +1567,13 @@ extern_protocol!(
             reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
-        /// Reads a symbolic link.
-        ///
-        /// - Parameters:
-        /// - item: The symbolic link to read from. FSKit guarantees this item is of type ``FSItem/ItemType/symlink``.
-        /// - reply: A block or closure to indicate success or failure. If reading succeeds, pass the link's contents as an ``FSFileName`` and a `nil` error. If reading fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
-        #[unsafe(method(readSymbolicLink:replyHandler:))]
-        #[unsafe(method_family = none)]
-        unsafe fn readSymbolicLink_replyHandler(
-            &self,
-            item: &FSItem,
-            reply: &block2::SendableBlock<'static, fn(*mut FSFileName, *mut NSError)>,
-        );
-
-        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSFileName",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
         /// Creates a new file or directory item.
         ///
         /// If an item named `name` already exists in the directory indicated by `directory`, complete the request with an error with a domain of
@@ -1135,19 +1585,27 @@ extern_protocol!(
         /// - type: The new item's type.  Valid values are ``FSItem/ItemType/file`` or ``FSItem/ItemType/directory``.
         /// - directory: The directory in which to create the item.
         /// - newAttributes: Attributes to apply to the new item.
-        /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass the newly-created ``FSItem`` and its ``FSFileName``, along with a `nil` error. If creation fails, pass the relevant error as the third parameter; FSKit ignores any ``FSItem`` or ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return a tuple of the ``FSItem`` and its ``FSFileName`` or throw an error.
-        #[unsafe(method(createItemNamed:type:inDirectory:attributes:replyHandler:))]
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass an instance of ``FSCreateItemResult`` containing the newly-created ``FSItem``, its ``FSFileName``, its ``FSItemAttributes``, the updated ``FSItemAttributes`` of the parent directory, and the volume's updated free space, along with a `nil` error. If creation fails, pass the relevant error as the second parameter; FSKit ignores the ``FSCreateItemResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(createItemNamed:type:inDirectory:attributes:context:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn createItemNamed_type_inDirectory_attributes_replyHandler(
+        unsafe fn createItemNamed_type_inDirectory_attributes_context_replyHandler(
             &self,
             name: &FSFileName,
             r#type: FSItemType,
             directory: &FSItem,
             new_attributes: &FSItemSetAttributesRequest,
-            reply: &block2::SendableBlock<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSCreateItemResult, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSFileName",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
         /// Creates a new symbolic link.
         ///
         /// If an item named `name` already exists in the directory indicated by `directory`, complete the request with an error with a domain of
@@ -1159,19 +1617,27 @@ extern_protocol!(
         /// - directory: The directory in which to create the item.
         /// - newAttributes: Attributes to apply to the new item.
         /// - contents: The contents of the new symbolic link.
-        /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass the newly-created ``FSItem`` and a `nil` error. If creation fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItem`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItem`` or throw an error.
-        #[unsafe(method(createSymbolicLinkNamed:inDirectory:attributes:linkContents:replyHandler:))]
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass an instance of ``FSCreateSymlinkResult`` containing the newly-created ``FSItem``, its ``FSFileName``, its ``FSItemAttributes``, the updated ``FSItemAttributes`` of the parent directory, and the volume's updated free space, along with a `nil` error. If creation fails, pass the relevant error as the second parameter; FSKit ignores the ``FSCreateSymlinkResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(createSymbolicLinkNamed:inDirectory:attributes:linkContents:context:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn createSymbolicLinkNamed_inDirectory_attributes_linkContents_replyHandler(
+        unsafe fn createSymbolicLinkNamed_inDirectory_attributes_linkContents_context_replyHandler(
             &self,
             name: &FSFileName,
             directory: &FSItem,
             new_attributes: &FSItemSetAttributesRequest,
             contents: &FSFileName,
-            reply: &block2::SendableBlock<'static, fn(*mut FSItem, *mut FSFileName, *mut NSError)>,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSCreateSymlinkResult, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSFileName",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
         /// Creates a new hard link.
         ///
         /// If creating the link fails, complete the request with an error with a domain of
@@ -1186,39 +1652,26 @@ extern_protocol!(
         /// - item: The existing item to which to link.
         /// - name: The name for the new link.
         /// - directory: The directory in which to create the link.
-        /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass an ``FSFileName`` of the newly-created link and a `nil` error. If creation fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
-        #[unsafe(method(createLinkToItem:named:inDirectory:replyHandler:))]
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If creation succeeds, pass an instance of ``FSCreateLinkResult`` containing the ``FSFileName`` of the newly-created link, the ``FSItemAttributes`` of the linked item, the updated ``FSItemAttributes`` of the parent directory, and the volume's updated free space, along with a `nil` error. If creation fails, pass the relevant error as the second parameter; FSKit ignores the ``FSCreateLinkResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(createLinkToItem:named:inDirectory:context:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn createLinkToItem_named_inDirectory_replyHandler(
+        unsafe fn createLinkToItem_named_inDirectory_context_replyHandler(
             &self,
             item: &FSItem,
             name: &FSFileName,
             directory: &FSItem,
-            reply: &block2::SendableBlock<'static, fn(*mut FSFileName, *mut NSError)>,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSCreateLinkResult, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
-        /// Removes an existing item from a given directory.
-        ///
-        /// Don't actually remove the item object itself in your implementation; instead, only remove the given item name from the given directory.
-        /// Remove and deallocate the item in ``reclaimItem(_:replyHandler:)``.
-        ///
-        /// - Parameters:
-        /// - item: The item to remove.
-        /// - name: The name of the item to remove.
-        /// - directory: The directory from which to remove the item.
-        /// - reply: A block or closure to indicate success or failure. If removal fails, pass an error as the one parameter to the reply handler. If removal succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
-        #[unsafe(method(removeItem:named:fromDirectory:replyHandler:))]
-        #[unsafe(method_family = none)]
-        unsafe fn removeItem_named_fromDirectory_replyHandler(
-            &self,
-            item: &FSItem,
-            name: &FSFileName,
-            directory: &FSItem,
-            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
-        );
-
-        #[cfg(all(feature = "FSFileName", feature = "FSItem", feature = "block2"))]
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSFileName",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
         /// Renames an item from one path in the file system to another.
         ///
         /// Implement renaming along the lines of this algorithm:
@@ -1256,10 +1709,11 @@ extern_protocol!(
         /// - destinationName: The new name of the item as it appears in `destinationDirectory`.
         /// - destinationDirectory: The directory to contain the renamed object, which may be the same as `sourceDirectory`.
         /// - overItem: The file system object if the destination exists, as discovered in a prior lookup. If this parameter is non-`nil`, mark `overItem` as deleted, so the file system can free its allocated space on the next call to ``reclaimItem(_:replyHandler:)``. After doing so, ensure the operation finishes without errors.
-        /// - reply: A block or closure to indicate success or failure. If renaming succeeds, pass the ``FSFileName`` as it exists within `destinationDirectory` and a `nil` error. If renaming fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
-        #[unsafe(method(renameItem:inDirectory:named:toNewName:inDirectory:overItem:replyHandler:))]
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If renaming succeeds, pass an instance of ``FSRenameItemResult`` containing the ``FSFileName`` as it exists within `destinationDirectory`, the ``FSItemAttributes`` of the renamed item, the updated ``FSItemAttributes`` of the source directory, the updated ``FSItemAttributes`` of the destination directory, the ``FSItemAttributes`` of the overwritten item (if any), and the volume's updated free space, along with a `nil` error. If renaming fails, pass the relevant error as the second parameter; FSKit ignores the ``FSRenameItemResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(renameItem:inDirectory:named:toNewName:inDirectory:overItem:context:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn renameItem_inDirectory_named_toNewName_inDirectory_overItem_replyHandler(
+        unsafe fn renameItem_inDirectory_named_toNewName_inDirectory_overItem_context_replyHandler(
             &self,
             item: &FSItem,
             source_directory: &FSItem,
@@ -1267,10 +1721,108 @@ extern_protocol!(
             destination_name: &FSFileName,
             destination_directory: &FSItem,
             over_item: Option<&FSItem>,
-            reply: &block2::SendableBlock<'static, fn(*mut FSFileName, *mut NSError)>,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSRenameItemResult, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "FSItem", feature = "block2"))]
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSFileName",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Removes an existing item from a given directory.
+        ///
+        /// Don't actually remove the item object itself in your implementation; instead, only remove the given item name from the given directory.
+        /// Remove and deallocate the item in ``reclaimItem(_:replyHandler:)``.
+        ///
+        /// - Parameters:
+        /// - item: The item to remove.
+        /// - name: The name of the item to remove.
+        /// - directory: The directory from which to remove the item.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If removal succeeds, pass an instance of ``FSRemoveItemResult`` containing the ``FSItemAttributes`` of the removed item, the updated ``FSItemAttributes`` of the parent directory, and the volume's updated free space, along with a `nil` error. If removal fails, pass the relevant error as the second parameter; FSKit ignores the ``FSRemoveItemResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(removeItem:named:fromDirectory:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn removeItem_named_fromDirectory_context_replyHandler(
+            &self,
+            item: &FSItem,
+            name: &FSFileName,
+            directory: &FSItem,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSRemoveItemResult, *mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Fetches attributes for the given item.
+        ///
+        /// For file systems that don't support hard links, set ``FSItemAttributes/linkCount`` to `1` for regular files and symbolic links.
+        ///
+        /// If the item's `bsdFlags` contain the `UF_COMPRESSED` flag, your file system returns the uncompressed size of the file.
+        ///
+        /// - Parameters:
+        /// - desiredAttributes: A requested set of attributes to get. The implementation inspects the request's ``FSItemGetAttributesRequest/wantedAttributes`` to determine which attributes to populate.
+        /// - item: The item to get attributes for.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If getting attributes succeeds, pass an instance of ``FSGetAttributesResult`` containing the requested attributes, along with a `nil` error. If getting attributes fails, pass the relevant error as the second parameter; FSKit ignores the ``FSGetAttributesResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(getAttributes:ofItem:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn getAttributes_ofItem_context_replyHandler(
+            &self,
+            desired_attributes: &FSItemGetAttributesRequest,
+            item: &FSItem,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSGetAttributesResult, *mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Sets the given attributes on an item.
+        ///
+        /// Several attributes are considered "read-only", and an attempt to set these attributes results in an error with the code `EINVAL`.
+        ///
+        /// A request may set ``FSItem/Attributes/size`` beyond the end of the file.
+        /// If the underlying file system doesn't support sparse files, allocate space to fill the new file size.
+        /// Either fill this space with zeroes, or configure it to read as zeroes.
+        ///
+        /// If a request sets the file size below the current end-of-file, truncate the file and return any unused space to the file system as free space.
+        ///
+        /// Ignore attempts to set the size of directories or symbolic links; don't produce an error.
+        ///
+        /// If the caller attempts to set an attribute not supported by the on-disk file system format, don't produce an error.
+        /// The upper layers of the framework will detect this situation.
+        ///
+        /// - Parameters:
+        /// - newAttributes: A request containing the attributes to set.
+        /// - item: The item on which to set the attributes.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If setting attributes succeeds, pass an instance of ``FSSetAttributesResult`` containing the item's updated attributes and the volume's updated free space, along with a `nil` error. If setting attributes fails, pass the relevant error as the second parameter; FSKit ignores the ``FSSetAttributesResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(setAttributes:onItem:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setAttributes_onItem_context_replyHandler(
+            &self,
+            new_attributes: &FSItemSetAttributesRequest,
+            item: &FSItem,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSSetAttributesResult, *mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
         /// Enumerates the contents of the given directory.
         ///
         /// This method uses the ``FSDirectoryEntryPacker/packEntry(name:itemType:itemID:nextCookie:attributes:)`` method of the `packer` parameter to deliver the enumerated items to the caller.
@@ -1289,64 +1841,47 @@ extern_protocol!(
         ///
         /// - Parameters:
         /// - directory: The item to enumerate. FSKit guarantees this item is of type ``FSItem/ItemType/directory``.
-        /// - cookie: A value that indicates the location within the directory from which to enumerate. Your implementation defines the semantics of the cookie values; they're opaque to FSKit. The first call to the enumerate method passes ``FSDirectoryCookieInitial`` for this parameter. Subsequent calls pass whatever cookie value you previously passed to the packer's `nextCookie` parmeter.
-        /// - verifier: A tool to detect whether the directory contents changed since the last call to `enumerateDirectory`. Your implementation defines the semantics of the verifier values; they're opaque to FSKit. The first call to the enumerate method passes ``FSDirectoryVerifierInitial`` for this parameter. Subsequent calls pass whatever cookie value you previously passed to the packer's `currentVerifier` parmeter.
+        /// - cookie: A value that indicates the location within the directory from which to enumerate. Your implementation defines the semantics of the cookie values; they're opaque to FSKit. The first call to the enumerate method passes ``FSDirectoryCookieInitial`` for this parameter. Subsequent calls pass whatever cookie value you previously passed to the packer's `nextCookie` parameter.
+        /// - verifier: A tool to detect whether the directory contents changed since the last call to `enumerateDirectory`. Your implementation defines the semantics of the verifier values; they're opaque to FSKit. The first call to the enumerate method passes ``FSDirectoryVerifierInitial`` for this parameter. Subsequent calls pass whatever cookie value you previously passed to the packer's `currentVerifier` parameter.
         /// - attributes: The desired attributes to provide, or `nil` if the caller doesn't require attributes.
         /// - packer: An object that your implementation uses to enumerate directory items, packing one item per callback to `enumerateDirectory`.
-        /// - reply: A block or closure to indicate success or failure. If enumeration succeeds, pass the current verifier and a `nil` error. If enumeration fails, pass the relevant error as the second parameter; FSKit ignores any verifier in this case. For an `async` Swift implementation, there's no reply handler; simply return the current verifier or throw an error.
-        #[unsafe(method(enumerateDirectory:startingAtCookie:verifier:providingAttributes:usingPacker:replyHandler:))]
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If enumeration succeeds, pass an instance of ``FSEnumerateDirectoryResult`` containing the current verifier, along with a `nil` error. If enumeration fails, pass the relevant error as the second parameter; FSKit ignores the ``FSEnumerateDirectoryResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(enumerateDirectory:startingAtCookie:verifier:providingAttributes:usingPacker:context:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn enumerateDirectory_startingAtCookie_verifier_providingAttributes_usingPacker_replyHandler(
+        unsafe fn enumerateDirectory_startingAtCookie_verifier_providingAttributes_usingPacker_context_replyHandler(
             &self,
             directory: &FSItem,
             cookie: FSDirectoryCookie,
             verifier: FSDirectoryVerifier,
             attributes: Option<&FSItemGetAttributesRequest>,
             packer: &FSDirectoryEntryPacker,
-            reply: &block2::SendableBlock<'static, fn(FSDirectoryVerifier, *mut NSError)>,
+            context: &FSContext,
+            reply: &block2::SendableBlock<
+                'static,
+                fn(*mut FSEnumerateDirectoryResult, *mut NSError),
+            >,
         );
 
-        #[cfg(all(feature = "FSItem", feature = "FSTaskOptions", feature = "block2"))]
-        /// Activates the volume using the specified options.
-        ///
-        /// When FSKit calls this method, allocate any in-memory state required to represent the file system.
-        /// Also allocate an ``FSItem`` for the root directory of the file system, and pass it to the reply block.
-        /// FSKit caches this root item for the lifetime of the volume, and uses it as a starting point for all file look-ups.
-        ///
-        /// Volume activation occurs prior to any call to mount the volume.
-        ///
-        /// - Parameters:
-        /// - options: Options to apply to the activation. These can include security-scoped file paths. There are no defined options currently.
-        /// - reply: A block or closure to indicate success or failure. If activation succeeds, pass the root ``FSItem`` and a `nil` error. If activation fails, pass the relevant error as the second parameter; FSKit ignores any ``FSItem`` in this case. In Swift, `reply` takes only the ``FSItem`` as the parameter; you signal any error with a `throw`. For an `async` Swift implementation, there's no reply handler; simply return the ``FSItem`` or throw an error.
-        #[unsafe(method(activateWithOptions:replyHandler:))]
-        #[unsafe(method_family = none)]
-        unsafe fn activateWithOptions_replyHandler(
-            &self,
-            options: &FSTaskOptions,
-            reply: &block2::SendableBlock<'static, fn(*mut FSItem, *mut NSError)>,
-        );
-
-        #[cfg(feature = "block2")]
-        /// Tears down a previously initialized volume instance.
-        ///
-        /// Set up your implementation to release any resources allocated for the volume instance.
-        /// By the time you receive this callback, FSKit has already performed a reclaim call to release all other file nodes associated with this file system instance.
-        ///
-        /// Avoid performing any I/O in this method.
-        /// Prior to calling this method, FSKit has already issued a sync call to perform any
-        /// cleanup-related I/O.
-        ///
-        /// FSKit unmounts any mounted volume with a call to ``unmount(replyHandler:)`` prior to the deactivate callback.
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Reads a symbolic link.
         ///
         /// - Parameters:
-        /// - options: Options to apply to the deactivation.
-        /// - reply: A block or closure to indicate success or failure. If activation fails, pass an error as the one parameter to the reply handler. If activation succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
-        #[unsafe(method(deactivateWithOptions:replyHandler:))]
+        /// - item: The symbolic link to read from. FSKit guarantees this item is of type ``FSItem/ItemType/symlink``.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If reading succeeds, pass an instance of ``FSReadSymlinkResult`` containing the link's contents and attributes, along with a `nil` error. If reading fails, pass the relevant error as the second parameter; FSKit ignores the ``FSReadSymlinkResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(readSymbolicLink:context:replyHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn deactivateWithOptions_replyHandler(
+        unsafe fn readSymbolicLink_context_replyHandler(
             &self,
-            options: FSDeactivateOptions,
-            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+            item: &FSItem,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSReadSymlinkResult, *mut NSError)>,
         );
     }
 );
@@ -1385,17 +1920,20 @@ extern_protocol!(
     /// Methods and properties implemented by volumes that natively or partially support extended attributes.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumexattroperations?language=objc)
+    #[deprecated]
     pub unsafe trait FSVolumeXattrOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
         /// FSKit reads this value after the file system replies to the `loadResource` message.
         /// Changing the returned value during the runtime of the volume has no effect.
+        #[deprecated]
         #[optional]
         #[unsafe(method(xattrOperationsInhibited))]
         #[unsafe(method_family = none)]
         unsafe fn xattrOperationsInhibited(&self) -> bool;
 
         /// Setter for [`xattrOperationsInhibited`][Self::xattrOperationsInhibited].
+        #[deprecated]
         #[optional]
         #[unsafe(method(setXattrOperationsInhibited:))]
         #[unsafe(method_family = none)]
@@ -1412,6 +1950,7 @@ extern_protocol!(
         /// > Note: If a file system implements this method, FSKit assumes limited support for extended attributes exists. In this mode, FSkit only calls this protocol's methods for the extended attribute names this method returns.
         ///
         /// - Parameter item: The item for which to get information.
+        #[deprecated]
         #[optional]
         #[unsafe(method(supportedXattrNamesForItem:))]
         #[unsafe(method_family = none)]
@@ -1425,6 +1964,7 @@ extern_protocol!(
         /// - name: The extended attribute name.
         /// - item: The item for which to get the extended attribute.
         /// - reply: A block or closure to indicate success or failure. If getting the attribute succeeds, pass an data instance containing the extended attribute data and a `nil` error. If getting the attribute fails, pass the relevant error as the second parameter; FSKit ignores any data in this case. For an `async` Swift implementation, there's no reply handler; simply return the data or throw an error.
+        #[deprecated]
         #[unsafe(method(getXattrNamed:ofItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn getXattrNamed_ofItem_replyHandler(
@@ -1443,6 +1983,7 @@ extern_protocol!(
         /// - item: The item on which to set the extended attribute.
         /// - policy: The policy to apply when setting the attribute. See ``FSSetXattrPolicy`` for possible values.
         /// - reply: A block or closure to indicate success or failure. If setting the attribute fails, pass an error as the one parameter to the reply handler. If setting the attribute succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[deprecated]
         #[unsafe(method(setXattrNamed:toData:onItem:policy:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setXattrNamed_toData_onItem_policy_replyHandler(
@@ -1459,13 +2000,122 @@ extern_protocol!(
         ///
         /// - Parameters:
         /// - item: The item from which to get extended attributes.
-        /// - reply: A block or closure to indicate success or failure. If getting the list of extended attributes succeeds, pass the xattrs as an array of ``FSFileName`` instances and a `nil` error. If getting the attriubtes fails, pass `nil` along with the relevant error. For an `async` Swift implementation, there's no reply handler; simply return the byte count or throw an error.
+        /// - reply: A block or closure to indicate success or failure. If getting the list of extended attributes succeeds, pass the xattrs as an array of ``FSFileName`` instances and a `nil` error. If getting the attributes fails, pass `nil` along with the relevant error. For an `async` Swift implementation, there's no reply handler; simply return the byte count or throw an error.
+        #[deprecated]
         #[unsafe(method(listXattrsOfItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn listXattrsOfItem_replyHandler(
             &self,
             item: &FSItem,
             reply: &block2::SendableBlock<'static, fn(*mut NSArray<FSFileName>, *mut NSError)>,
+        );
+    }
+);
+
+extern_protocol!(
+    /// Methods and properties implemented by volumes that natively or partially support extended attributes.
+    ///
+    /// > Important: This protocol replaces the ``FSVolumeXattrOperations`` protocol. It exposes the same functionality, while using ``FSVolumeHandlerResult`` objects. These objects add the ability to reply with ``FSItemAttributes`` and free space from the relevant methods.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumexattrhandler?language=objc)
+    pub unsafe trait FSVolumeXattrHandler: NSObjectProtocol {
+        /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
+        ///
+        /// FSKit reads this value after the file system replies to the `loadResource` message.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(xattrOperationsInhibited))]
+        #[unsafe(method_family = none)]
+        unsafe fn xattrOperationsInhibited(&self) -> bool;
+
+        #[cfg(all(feature = "FSFileName", feature = "FSItem"))]
+        /// Returns an array that specifies the extended attribute names the given item supports.
+        ///
+        /// If `item` supports no extended attributes, this method returns `nil`.
+        ///
+        /// Only implement this method if your volume works with "limited" extended attributes.
+        /// For purposes of this protocol, "limited" support means the volume doesn't support extended attributes generally, but uses these APIs to expose specific file system data.
+        ///
+        /// > Note: If a file system implements this method, FSKit assumes limited support for extended attributes exists. In this mode, FSkit only calls this protocol's methods for the extended attribute names this method returns.
+        ///
+        /// - Parameter item: The item for which to get information.
+        #[optional]
+        #[unsafe(method(supportedXattrNamesForItem:))]
+        #[unsafe(method_family = none)]
+        unsafe fn supportedXattrNamesForItem(&self, item: &FSItem)
+            -> Retained<NSArray<FSFileName>>;
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSFileName",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Gets the specified extended attribute of the given item.
+        ///
+        /// - Parameters:
+        /// - name: The extended attribute name.
+        /// - item: The item for which to get the extended attribute.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If getting the attribute succeeds, pass an instance of ``FSGetXattrResult`` containing the extended attribute data, along with a `nil` error. If getting the attribute fails, pass the relevant error as the second parameter; FSKit ignores the ``FSGetXattrResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(getXattrNamed:ofItem:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn getXattrNamed_ofItem_context_replyHandler(
+            &self,
+            name: &FSFileName,
+            item: &FSItem,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSGetXattrResult, *mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSFileName",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Sets the specified extended attribute data on the given item.
+        ///
+        /// - Parameters:
+        /// - name: The extended attribute name.
+        /// - value: The extended attribute value to set. This can't be `nil`, unless the policy is ``FSVolume/SetXattrPolicy/delete``.
+        /// - item: The item on which to set the extended attribute.
+        /// - policy: The policy to apply when setting the attribute. See ``FSSetXattrPolicy`` for possible values.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If setting the attribute succeeds, pass an instance of ``FSSetXattrResult`` containing the volume's updated free space, along with a `nil` error. If setting the attribute fails, pass the relevant error as the second parameter; FSKit ignores the ``FSSetXattrResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(setXattrNamed:toData:onItem:policy:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setXattrNamed_toData_onItem_policy_context_replyHandler(
+            &self,
+            name: &FSFileName,
+            value: Option<&NSData>,
+            item: &FSItem,
+            policy: FSSetXattrPolicy,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSSetXattrResult, *mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Gets the list of extended attributes currently set on the given item.
+        ///
+        /// - Parameters:
+        /// - item: The item from which to get extended attributes.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If getting the list of extended attributes succeeds, pass an instance of ``FSListXattrsResult`` containing the xattrs as an array of ``FSFileName`` instances, along with a `nil` error. If getting the attributes fails, pass the relevant error as the second parameter; FSKit ignores the ``FSListXattrsResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(listXattrsOfItem:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn listXattrsOfItem_context_replyHandler(
+            &self,
+            item: &FSItem,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSListXattrsResult, *mut NSError)>,
         );
     }
 );
@@ -1512,17 +2162,20 @@ extern_protocol!(
     /// If a file system volume doesn't conform to this protocol, the kernel layer can skip making such calls to the volume.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeopencloseoperations?language=objc)
+    #[deprecated]
     pub unsafe trait FSVolumeOpenCloseOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
         /// FSKit reads this value after the file system replies to the `loadResource` message.
         /// Changing the returned value during the runtime of the volume has no effect.
+        #[deprecated]
         #[optional]
         #[unsafe(method(isOpenCloseInhibited))]
         #[unsafe(method_family = none)]
         unsafe fn isOpenCloseInhibited(&self) -> bool;
 
         /// Setter for [`isOpenCloseInhibited`][Self::isOpenCloseInhibited].
+        #[deprecated]
         #[optional]
         #[unsafe(method(setOpenCloseInhibited:))]
         #[unsafe(method_family = none)]
@@ -1535,6 +2188,7 @@ extern_protocol!(
         /// - item: The item to open.
         /// - modes: The set of mode flags to open the item with.
         /// - reply: A block or closure to indicate success or failure. If opening fails, pass an error as the one parameter to the reply handler. If opening succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[deprecated]
         #[unsafe(method(openItem:withModes:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn openItem_withModes_replyHandler(
@@ -1551,12 +2205,74 @@ extern_protocol!(
         /// - item: The item to close.
         /// - modes: The set of mode flags to keep after this close.
         /// - reply: A block or closure to indicate success or failure. If closing fails, pass an error as the one parameter to the reply handler. If closing succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[deprecated]
         #[unsafe(method(closeItem:keepingModes:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn closeItem_keepingModes_replyHandler(
             &self,
             item: &FSItem,
             modes: FSVolumeOpenModes,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+    }
+);
+
+extern_protocol!(
+    /// Methods and properties implemented by volumes that want to receive open and close calls for each item.
+    ///
+    /// When a file system volume conforms to this protocol, the kernel layer issues an open call to indicate desired access, and a close call to indicate what access to retain.
+    /// A file is fully closed when the kernel layer issues a close call with no retained open nodes.
+    /// When a file system receives the close call, it removes all access to the item.
+    /// When all memory mappings to the item release, the kernel layer issues a final close.
+    ///
+    /// If a file system volume doesn't conform to this protocol, the kernel layer can skip making such calls to the volume.
+    ///
+    /// > Important: This protocol replaces the ``FSVolumeOpenCloseOperations`` protocol. It exposes the same functionality, while adding the ``FSContext`` parameters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeopenclosehandler?language=objc)
+    pub unsafe trait FSVolumeOpenCloseHandler: NSObjectProtocol {
+        /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
+        ///
+        /// FSKit reads this value after the file system replies to the `loadResource` message.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(isOpenCloseInhibited))]
+        #[unsafe(method_family = none)]
+        unsafe fn isOpenCloseInhibited(&self) -> bool;
+
+        #[cfg(all(feature = "FSContext", feature = "FSItem", feature = "block2"))]
+        /// Opens a file for access.
+        ///
+        /// - Parameters:
+        /// - item: The item to open.
+        /// - modes: The set of mode flags to open the item with.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If opening fails, pass an error as the one parameter to the reply handler. If opening succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[unsafe(method(openItem:withModes:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn openItem_withModes_context_replyHandler(
+            &self,
+            item: &FSItem,
+            modes: FSVolumeOpenModes,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
+        );
+
+        #[cfg(all(feature = "FSContext", feature = "FSItem", feature = "block2"))]
+        /// Closes a file from further access.
+        ///
+        /// - Parameters:
+        /// - item: The item to close.
+        /// - modes: The set of mode flags to keep after this close.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If closing fails, pass an error as the one parameter to the reply handler. If closing succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[unsafe(method(closeItem:keepingModes:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn closeItem_keepingModes_context_replyHandler(
+            &self,
+            item: &FSItem,
+            modes: FSVolumeOpenModes,
+            context: &FSContext,
             reply: &block2::SendableBlock<'static, fn(*mut NSError)>,
         );
     }
@@ -1571,6 +2287,7 @@ extern_protocol!(
     /// A volume that doesn't conform to either protocol can't support any I/O operation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumereadwriteoperations?language=objc)
+    #[deprecated]
     pub unsafe trait FSVolumeReadWriteOperations: NSObjectProtocol {
         #[cfg(all(
             feature = "FSItem",
@@ -1589,6 +2306,7 @@ extern_protocol!(
         /// - length: The number of bytes to read.
         /// - buffer: A buffer to receive the bytes read from the file.
         /// - reply: A block or closure to indicate success or failure. If reading succeeds, pass the number of bytes read and a `nil` error. If reading fails, pass the number of bytes read prior to the error along with the relevant error. For an `async` Swift implementation, there's no reply handler; simply return the byte count or throw an error.
+        #[deprecated]
         #[unsafe(method(readFromFile:offset:length:intoBuffer:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn readFromFile_offset_length_intoBuffer_replyHandler(
@@ -1614,6 +2332,7 @@ extern_protocol!(
         /// - item: The item to which to write. FSKit guarantees this item will be of type ``FSItem/ItemType/file``.
         /// - offset: The offset in the file from which to start writing.
         /// - reply: A block or closure to indicate success or failure. If writing succeeds, pass the number of bytes written and a `nil` error. If writing fails, pass the number of bytes written prior to the error along with the relevant error. For an `async` Swift implementation, there's no reply handler; simply return the byte count or throw an error.
+        #[deprecated]
         #[unsafe(method(writeContents:toFile:atOffset:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn writeContents_toFile_atOffset_replyHandler(
@@ -1622,6 +2341,78 @@ extern_protocol!(
             item: &FSItem,
             offset: libc::off_t,
             reply: &block2::SendableBlock<'static, fn(usize, *mut NSError)>,
+        );
+    }
+);
+
+extern_protocol!(
+    /// Methods implemented for read and write operations that deliver data to and from the extension.
+    ///
+    /// Most volumes conform to either this protocol or ``FSVolumeKernelOffloadedIOHandler``.
+    /// You can conform to both if you need to provide kernel-offloaded I/O only for certain files.
+    /// In that case, files with the ``FSItem/Attribute/inhibitKernelOffloadedIO`` attribute set use this protocol, and those without it use ``FSVolumeKernelOffloadedIOHandler``.
+    /// A volume that doesn't conform to either protocol can't support any I/O operation.
+    ///
+    /// > Important: This protocol replaces the ``FSVolumeReadWriteOperations`` protocol. It exposes the same functionality, while using ``FSVolumeHandlerResult`` objects. These objects add the ability to reply with ``FSItemAttributes`` and free space from the relevant methods.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumereadwritehandler?language=objc)
+    pub unsafe trait FSVolumeReadWriteHandler: NSObjectProtocol {
+        #[cfg(all(
+            feature = "FSItem",
+            feature = "FSMutableFileDataBuffer",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2",
+            feature = "libc"
+        ))]
+        /// Reads the contents of the given file item.
+        ///
+        /// If the number of bytes requested exceeds the number of bytes available before the end of the file, then the call copies only those bytes to `buffer`.
+        /// If `offset` points past the last valid byte of the file, don't reply with an error but set `actuallyRead` to `0`.
+        ///
+        /// - Parameters:
+        /// - item: The item from which to read. FSKit guarantees this item will be of type ``FSItem/ItemType/file``.
+        /// - offset: The offset in the file from which to start reading.
+        /// - length: The number of bytes to read.
+        /// - buffer: A buffer to receive the bytes read from the file.
+        /// - reply: A block or closure to indicate success or failure. If reading succeeds, pass an instance of ``FSReadFileResult`` containing the number of bytes read and the updated ``FSItemAttributes`` of the file, along with a `nil` error. If reading fails, pass the relevant error as the second parameter; FSKit ignores the ``FSReadFileResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(readFromFile:offset:length:intoBuffer:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn readFromFile_offset_length_intoBuffer_replyHandler(
+            &self,
+            item: &FSItem,
+            offset: libc::off_t,
+            length: usize,
+            buffer: &FSMutableFileDataBuffer,
+            reply: &block2::SendableBlock<'static, fn(*mut FSReadFileResult, *mut NSError)>,
+        );
+
+        #[cfg(all(
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2",
+            feature = "libc"
+        ))]
+        /// Writes contents to the given file item.
+        ///
+        /// FSKit expects this routine to allocate space in the file system to extend the file as necessary.
+        ///
+        /// If the volume experiences an out-of-space condition, reply with an error of domain
+        /// <doc
+        /// ://com.apple.documentation/documentation/Foundation/NSPOSIXErrorDomain> and code `ENOSPC`.
+        ///
+        /// - Parameters:
+        /// - contents: A buffer containing the data to write to the file.
+        /// - item: The item to which to write. FSKit guarantees this item will be of type ``FSItem/ItemType/file``.
+        /// - offset: The offset in the file from which to start writing.
+        /// - reply: A block or closure to indicate success or failure. If writing succeeds, pass an instance of ``FSWriteFileResult`` containing the number of bytes written, the updated ``FSItemAttributes`` of the file, and the volume's updated free space, along with a `nil` error. If writing fails, pass the relevant error as the second parameter; FSKit ignores the ``FSWriteFileResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(writeContents:toFile:atOffset:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn writeContents_toFile_atOffset_replyHandler(
+            &self,
+            contents: &NSData,
+            item: &FSItem,
+            offset: libc::off_t,
+            reply: &block2::SendableBlock<'static, fn(*mut FSWriteFileResult, *mut NSError)>,
         );
     }
 );
@@ -1647,7 +2438,7 @@ bitflags::bitflags! {
 /// The file system allows adding files.
         #[doc(alias = "FSAccessAddFile")]
         const AddFile = FSAccessMask::WriteData.0;
-/// The file system allows file executuion.
+/// The file system allows file execution.
         #[doc(alias = "FSAccessExecute")]
         const Execute = 1<<3;
 /// The file system allows searching files.
@@ -1702,17 +2493,20 @@ extern_protocol!(
     /// Methods and properties implemented by volumes that want to enforce access check operations.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeaccesscheckoperations?language=objc)
+    #[deprecated]
     pub unsafe trait FSVolumeAccessCheckOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
         /// FSKit reads this value after the file system replies to the `loadResource` message.
         /// Changing the returned value during the runtime of the volume has no effect.
+        #[deprecated]
         #[optional]
         #[unsafe(method(isAccessCheckInhibited))]
         #[unsafe(method_family = none)]
         unsafe fn isAccessCheckInhibited(&self) -> bool;
 
         /// Setter for [`isAccessCheckInhibited`][Self::isAccessCheckInhibited].
+        #[deprecated]
         #[optional]
         #[unsafe(method(setAccessCheckInhibited:))]
         #[unsafe(method_family = none)]
@@ -1725,6 +2519,7 @@ extern_protocol!(
         /// - theItem: The item for which to check access.
         /// - access: A mask indicating a set of access types for which to check.
         /// - reply: A block or closure to indicate success or failure. If the access check succeeds, pass a Boolean value to indicate whether the file system grants access, followed by a `nil` error. If the access check fails, pass the relevant error as the second parameter; FSKit ignores the Boolean parameter in this case. For an `async` Swift implementation, there's no reply handler; simply return the `Bool` or throw an error.
+        #[deprecated]
         #[unsafe(method(checkAccessToItem:requestedAccess:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn checkAccessToItem_requestedAccess_replyHandler(
@@ -1737,20 +2532,64 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// Methods and properties implemented by volumes that want to enforce access check operations.
+    ///
+    /// > Important: This protocol replaces the ``FSVolumeAccessCheckOperations`` protocol. It exposes the same functionality, while using the ``FSCheckAccessResult`` object, to align with all other `Handler` protocols.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeaccesscheckhandler?language=objc)
+    pub unsafe trait FSVolumeAccessCheckHandler: NSObjectProtocol {
+        /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
+        ///
+        /// FSKit reads this value after the file system replies to the `loadResource` message.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(isAccessCheckInhibited))]
+        #[unsafe(method_family = none)]
+        unsafe fn isAccessCheckInhibited(&self) -> bool;
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Checks whether the file system allows access to the given item.
+        ///
+        /// - Parameters:
+        /// - theItem: The item for which to check access.
+        /// - access: A mask indicating a set of access types for which to check.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If the access check succeeds, pass an instance of ``FSCheckAccessResult`` containing a Boolean value to indicate whether the file system grants access, along with a `nil` error. If the access check fails, pass the relevant error as the second parameter; FSKit ignores the ``FSCheckAccessResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(checkAccessToItem:requestedAccess:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn checkAccessToItem_requestedAccess_context_replyHandler(
+            &self,
+            the_item: &FSItem,
+            access: FSAccessMask,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSCheckAccessResult, *mut NSError)>,
+        );
+    }
+);
+
+extern_protocol!(
     /// Methods and properties implemented by volumes that support renaming the volume.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumerenameoperations?language=objc)
+    #[deprecated]
     pub unsafe trait FSVolumeRenameOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
         /// FSKit reads this value after the file system replies to the `loadResource` message.
         /// Changing the returned value during the runtime of the volume has no effect.
+        #[deprecated]
         #[optional]
         #[unsafe(method(isVolumeRenameInhibited))]
         #[unsafe(method_family = none)]
         unsafe fn isVolumeRenameInhibited(&self) -> bool;
 
         /// Setter for [`isVolumeRenameInhibited`][Self::isVolumeRenameInhibited].
+        #[deprecated]
         #[optional]
         #[unsafe(method(setVolumeRenameInhibited:))]
         #[unsafe(method_family = none)]
@@ -1762,12 +2601,52 @@ extern_protocol!(
         /// - Parameters:
         /// - name: The new volume name.
         /// - reply: A block or closure to indicate success or failure. If renaming succeeds, pass an ``FSFileName`` of the new volume name and a `nil` error. If renaming fails, pass the relevant error as the second parameter; FSKit ignores any ``FSFileName`` in this case. For an `async` Swift implementation, there's no reply handler; simply return the ``FSFileName`` or throw an error.
+        #[deprecated]
         #[unsafe(method(setVolumeName:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setVolumeName_replyHandler(
             &self,
             name: &FSFileName,
             reply: &block2::SendableBlock<'static, fn(*mut FSFileName, *mut NSError)>,
+        );
+    }
+);
+
+extern_protocol!(
+    /// Methods and properties implemented by volumes that support renaming the volume.
+    ///
+    /// > Important: This protocol replaces the ``FSVolumeRenameOperations`` protocol. It exposes the same functionality, while using the ``FSVolumeRenameResult`` object, to align with all other `Handler` protocols.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumerenamehandler?language=objc)
+    pub unsafe trait FSVolumeRenameHandler: NSObjectProtocol {
+        /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
+        ///
+        /// FSKit reads this value after the file system replies to the `loadResource` message.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(isVolumeRenameInhibited))]
+        #[unsafe(method_family = none)]
+        unsafe fn isVolumeRenameInhibited(&self) -> bool;
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSFileName",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Sets a new name for the volume.
+        ///
+        /// - Parameters:
+        /// - name: The new volume name.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If renaming succeeds, pass an instance of ``FSVolumeRenameResult`` containing the ``FSFileName`` of the new volume name, along with a `nil` error. If renaming fails, pass the relevant error as the second parameter; FSKit ignores the ``FSVolumeRenameResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(setVolumeName:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setVolumeName_context_replyHandler(
+            &self,
+            name: &FSFileName,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSVolumeRenameResult, *mut NSError)>,
         );
     }
 );
@@ -1795,7 +2674,7 @@ bitflags::bitflags! {
 /// Allocates space from the physical end of file.
 ///
 /// When implementing this behavior, ignore any offset in the preallocate call.
-/// This flag is currently set for all ``FSVolume/PreallocateOperations/preallocateSpace(for:at:length:flags:replyHandler:)`` calls.
+/// This flag is currently set for all ``FSVolume/PreallocateHandler/preallocateSpace(for:at:length:flags:replyHandler:)`` calls.
         #[doc(alias = "FSPreallocateFlagsFromEOF")]
         const FromEOF = 0x00000010;
         const _ = !0;
@@ -1821,24 +2700,27 @@ extern_protocol!(
     /// In a kernel-based file system, you typically preallocate space with the `VNOP_ALLOCATE` operation, called from `fcntl(F_PREALLOCATE)`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumepreallocateoperations?language=objc)
+    #[deprecated]
     pub unsafe trait FSVolumePreallocateOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
         /// FSKit reads this value after the file system replies to the `loadResource` message.
         /// Changing the returned value during the runtime of the volume has no effect.
+        #[deprecated]
         #[optional]
         #[unsafe(method(isPreallocateInhibited))]
         #[unsafe(method_family = none)]
         unsafe fn isPreallocateInhibited(&self) -> bool;
 
         /// Setter for [`isPreallocateInhibited`][Self::isPreallocateInhibited].
+        #[deprecated]
         #[optional]
         #[unsafe(method(setPreallocateInhibited:))]
         #[unsafe(method_family = none)]
         unsafe fn setPreallocateInhibited(&self, preallocate_inhibited: bool);
 
         #[cfg(all(feature = "FSItem", feature = "block2", feature = "libc"))]
-        /// Prealocates disk space for the given item.
+        /// Preallocates disk space for the given item.
         ///
         /// - Parameters:
         /// - item: The item for which to preallocate space.
@@ -1846,6 +2728,7 @@ extern_protocol!(
         /// - length: The length of the space in bytes.
         /// - flags: Flags that affect the preallocation behavior.
         /// - reply: A block or closure to indicate success or failure. If preallocation succeeds, pass the amount of bytes allocated and a `nil` error. If preallocation fails, pass the relevant error as the second parameter; FSKit ignores any byte count in this case. For an `async` Swift implementation, there's no reply handler; simply return the allocated byte count or throw an error.
+        #[deprecated]
         #[unsafe(method(preallocateSpaceForItem:atOffset:length:flags:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn preallocateSpaceForItem_atOffset_length_flags_replyHandler(
@@ -1855,6 +2738,59 @@ extern_protocol!(
             length: usize,
             flags: FSPreallocateFlags,
             reply: &block2::SendableBlock<'static, fn(usize, *mut NSError)>,
+        );
+    }
+);
+
+extern_protocol!(
+    /// Methods and properties implemented by volumes that want to offer preallocation functions.
+    ///
+    /// A preallocation operation allocates space for a file without writing to it yet.
+    /// A file system may use reallocation to avoid performing space allocation while in the midst of I/O; this strategy improves performance.
+    /// Also, if the expected I/O pattern is many small writes, preallocating contiguous chunks may prevent fragmenting the file system.
+    /// This process can improve performance later.
+    ///
+    /// In a kernel-based file system, you typically preallocate space with the `VNOP_ALLOCATE` operation, called from `fcntl(F_PREALLOCATE)`.
+    ///
+    /// > Important: This protocol replaces the ``FSVolumePreallocateOperations`` protocol. It exposes the same functionality, while using the ``FSPreallocateResult`` object. This objects adds the ability to reply with ``FSItemAttributes`` and free space from ``preallocateSpace(for:at:length:flags:replyHandler:)``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumepreallocatehandler?language=objc)
+    pub unsafe trait FSVolumePreallocateHandler: NSObjectProtocol {
+        /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
+        ///
+        /// FSKit reads this value after the file system replies to the `loadResource` message.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(isPreallocateInhibited))]
+        #[unsafe(method_family = none)]
+        unsafe fn isPreallocateInhibited(&self) -> bool;
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2",
+            feature = "libc"
+        ))]
+        /// Preallocates disk space for the given item.
+        ///
+        /// - Parameters:
+        /// - item: The item for which to preallocate space.
+        /// - offset: The offset from which to allocate.
+        /// - length: The length of the space in bytes.
+        /// - flags: Flags that affect the preallocation behavior.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If preallocation succeeds, pass an instance of ``FSPreallocateResult`` containing the amount of bytes allocated, the updated ``FSItemAttributes`` of the file and the volume's updated free space, along with a `nil` error. If preallocation fails, pass the relevant error as the second parameter; FSKit ignores the ``FSPreallocateResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(preallocateSpaceForItem:atOffset:length:flags:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn preallocateSpaceForItem_atOffset_length_flags_context_replyHandler(
+            &self,
+            item: &FSItem,
+            offset: libc::off_t,
+            length: usize,
+            flags: FSPreallocateFlags,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSPreallocateResult, *mut NSError)>,
         );
     }
 );
@@ -1890,7 +2826,7 @@ bitflags::bitflags! {
 /// An option to process deactivation for for files with preallocated space.
 ///
 /// This option facilitates a sort of trim-on-close behavior.
-/// It is only meaningful for volumes that conform to ``FSVolume/PreallocateOperations``.
+/// It is only meaningful for volumes that conform to ``FSVolume/PreallocateHandler``.
         #[doc(alias = "FSItemDeactivationForPreallocatedItems")]
         const ForPreallocatedItems = 1<<1;
         const _ = !0;
@@ -1909,11 +2845,13 @@ extern_protocol!(
     /// Methods and properties implemented by volumes that support deactivating items.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeitemdeactivation?language=objc)
+    #[deprecated]
     pub unsafe trait FSVolumeItemDeactivation: NSObjectProtocol {
         /// A property that tells FSKit to which types of items the deactivation applies, if any.
         ///
         /// FSKit reads this value after the file system replies to the `loadResource` message.
         /// Changing the returned value during the runtime of the volume has no effect.
+        #[deprecated]
         #[unsafe(method(itemDeactivationPolicy))]
         #[unsafe(method_family = none)]
         unsafe fn itemDeactivationPolicy(&self) -> FSItemDeactivationOptions;
@@ -1921,7 +2859,7 @@ extern_protocol!(
         #[cfg(all(feature = "FSItem", feature = "block2"))]
         /// Notifies the file system that the kernel is no longer making immediate use of the given item.
         ///
-        /// This method gives a file system a chance to release resources associated wtih an item.
+        /// This method gives a file system a chance to release resources associated with an item.
         /// However, this method prescribes no specific action; it's acceptable to defer all reclamation until ``FSVolume/Operations/reclaimItem(_:replyHandler:)``.
         /// This method is the equivalent of VFS's `VNOP_INACTIVE`.
         ///
@@ -1930,6 +2868,7 @@ extern_protocol!(
         /// - Parameters:
         /// - item: The item to deactivate.
         /// - reply: A block or closure to indicate success or failure. If deactivation fails, pass an error as the one parameter to the reply handler. If deactivation succeeds, pass `nil`. For an `async` Swift implementation, there's no reply handler; simply throw an error or return normally.
+        #[deprecated]
         #[unsafe(method(deactivateItem:replyHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn deactivateItem_replyHandler(
@@ -1939,3 +2878,160 @@ extern_protocol!(
         );
     }
 );
+
+extern_protocol!(
+    /// Methods and properties implemented by volumes that support deactivating items.
+    ///
+    /// > Important: This protocol replaces the ``FSVolumeItemDeactivation`` protocol. It exposes the same functionality, while using the ``FSDeactivateItemResult`` object. This object adds the ability to reply with free space from ``deactivateItem(_:replyHandler:)``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeitemdeactivationhandler?language=objc)
+    pub unsafe trait FSVolumeItemDeactivationHandler: NSObjectProtocol {
+        /// A property that tells FSKit to which types of items the deactivation applies, if any.
+        ///
+        /// FSKit reads this value after the file system replies to the `loadResource` message.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[unsafe(method(itemDeactivationPolicy))]
+        #[unsafe(method_family = none)]
+        unsafe fn itemDeactivationPolicy(&self) -> FSItemDeactivationOptions;
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2"
+        ))]
+        /// Notifies the file system that the kernel is no longer making immediate use of the given item.
+        ///
+        /// This method gives a file system a chance to release resources associated with an item.
+        /// However, this method prescribes no specific action; it's acceptable to defer all reclamation until ``FSVolume/Handler/reclaimItem(_:replyHandler:)``.
+        /// This method is the equivalent of VFS's `VNOP_INACTIVE`.
+        ///
+        /// FSKit restricts calls to this method based on the current value of ``FSVolume/ItemDeactivation/itemDeactivationPolicy``.
+        ///
+        /// - Parameters:
+        /// - item: The item to deactivate.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If deactivation succeeds, pass an instance of ``FSDeactivateItemResult`` containing the volume's updated free space, along with a `nil` error. If deactivation fails, pass the relevant error as the second parameter; FSKit ignores the ``FSDeactivateItemResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(deactivateItem:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn deactivateItem_context_replyHandler(
+            &self,
+            item: &FSItem,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSDeactivateItemResult, *mut NSError)>,
+        );
+    }
+);
+
+/// Types of region for seek operations
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsseekregion?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct FSSeekRegion(pub NSUInteger);
+impl FSSeekRegion {
+    /// Seek the next hole region.
+    ///
+    /// When there are no more hole regions past the supplied `offset`,
+    /// the current file size (end-of-file offset) should be returned.
+    #[doc(alias = "FSSeekRegionHole")]
+    pub const Hole: Self = Self(1);
+    /// Seek the next data region.
+    ///
+    /// When there are no more data regions past the supplied `offset`,
+    /// an error code `ENXIO` should be returned.
+    #[doc(alias = "FSSeekRegionData")]
+    pub const Data: Self = Self(2);
+}
+
+unsafe impl Encode for FSSeekRegion {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for FSSeekRegion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_protocol!(
+    /// Methods and properties implemented by volumes that support seek operations
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeseekregionhandler?language=objc)
+    pub unsafe trait FSVolumeSeekRegionHandler: NSObjectProtocol {
+        /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
+        ///
+        /// FSKit reads this value after the file system replies to the `loadResource` message.
+        /// Changing the returned value during the runtime of the volume has no effect.
+        #[optional]
+        #[unsafe(method(isSeekRegionInhibited))]
+        #[unsafe(method_family = none)]
+        unsafe fn isSeekRegionInhibited(&self) -> bool;
+
+        #[cfg(all(
+            feature = "FSContext",
+            feature = "FSItem",
+            feature = "FSVolumeHandlerResult",
+            feature = "block2",
+            feature = "libc"
+        ))]
+        /// Find the next offset of hole or data region greater than or equal to the
+        /// supplied offset
+        ///
+        /// - Parameters:
+        /// - item: The item for which to seek.
+        /// - offset: The offset from which to seek.
+        /// - region: The region to seek.
+        /// - context: An object that enables context-aware file system decisions throughout the operation.
+        /// - reply: A block or closure to indicate success or failure. If seek succeeds, pass an instance of ``FSSeekRegionResult`` containing the offset of the requested region greater than or equal to the supplied offset, along with a `nil` error. If seek fails, pass the relevant error as the second parameter; FSKit ignores the ``FSSeekRegionResult`` instance in this case. For an `async` Swift implementation, there's no reply handler; simply return the result instance or throw an error.
+        #[unsafe(method(seekWithinItem:fromOffset:region:context:replyHandler:))]
+        #[unsafe(method_family = none)]
+        unsafe fn seekWithinItem_fromOffset_region_context_replyHandler(
+            &self,
+            item: &FSItem,
+            offset: libc::off_t,
+            region: FSSeekRegion,
+            context: &FSContext,
+            reply: &block2::SendableBlock<'static, fn(*mut FSSeekRegionResult, *mut NSError)>,
+        );
+    }
+);
+
+/// DataCacheHandler.
+impl FSVolume {
+    extern_methods!(
+        #[cfg(all(feature = "FSItem", feature = "FSVolumeDataCacheHandler"))]
+        /// Sends a synchronous cache state update request from the module to the kernel.
+        ///
+        /// Volumes conforming to ``FSVolumeDataCacheHandler`` call this method to proactively notify
+        /// the kernel about cache policy changes that need to be applied immediately.
+        /// This allows module-initiated updates outside the normal open/close/upgrade/downgrade flow.
+        ///
+        /// When downgrading coherency type, the action must be ``FSKernelCacheCoherencyAction/push``,
+        /// ``FSKernelCacheCoherencyAction/pushInvalidate``, or ``FSKernelCacheCoherencyAction/invalidate``
+        /// to instruct the kernel how to handle cached data.
+        /// If the action (push/invalidate) fails, the cache state remains unchanged and an error is returned.
+        ///
+        /// > Important: This method must be called without holding any module-internal locks.
+        /// The kernel may issue additional operations back into the module to satisfy cache state changes,
+        /// which could result in deadlock if locks are held.
+        ///
+        /// > Note: This method is only functional for volumes that conform to ``FSVolumeDataCacheHandler``.
+        /// For volumes that don't conform to the protocol, this method returns `ENOTSUP`.
+        ///
+        /// - Parameters:
+        /// - item: The item for which to update the cache state.
+        /// - cacheMode: The new cache mode to apply.
+        /// - coherencyType: The new coherency type to apply.
+        /// - action: The action for the kernel to perform on cached data (push, invalidate, update, or revoke).
+        /// - Returns: An error if the kernel was unable to complete the requested cache state change, or `nil` on success.
+        #[unsafe(method(setCacheStateForItem:cacheMode:coherencyType:coherencyAction:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCacheStateForItem_cacheMode_coherencyType_coherencyAction(
+            &self,
+            item: &FSItem,
+            cache_mode: FSDataCacheMode,
+            coherency_type: FSKernelCacheCoherencyType,
+            action: FSKernelCacheCoherencyAction,
+        ) -> Option<Retained<NSError>>;
+    );
+}

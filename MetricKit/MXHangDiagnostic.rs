@@ -17,6 +17,7 @@ extern_class!(
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
+    #[deprecated = "Use DiagnosticResult instead."]
     pub struct MXHangDiagnostic;
 );
 
@@ -40,6 +41,7 @@ impl MXHangDiagnostic {
     extern_methods!(
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the hang.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(callStackTree))]
         #[unsafe(method_family = none)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
@@ -47,6 +49,7 @@ impl MXHangDiagnostic {
         /// Total hang duration for this diagnostic.
         ///
         /// Dimensioned as NSUnitDuration.
+        #[deprecated = "Use DiagnosticResult instead."]
         #[unsafe(method(hangDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn hangDuration(&self) -> Retained<NSMeasurement<NSUnitDuration>>;

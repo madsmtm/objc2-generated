@@ -26,9 +26,6 @@ pub const kAudioEndPointDeviceEndPointListKey: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicemainendpointkey?language=objc)
 pub const kAudioEndPointDeviceMainEndPointKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"main\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicemasterendpointkey?language=objc)
-pub const kAudioEndPointDeviceMasterEndPointKey: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceisprivatekey?language=objc)
 pub const kAudioEndPointDeviceIsPrivateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"private\0") };
@@ -596,15 +593,14 @@ pub const kAudioDeviceTransportTypeContinuityCaptureWired: u32 = 0x63637764;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapturewireless?language=objc)
 pub const kAudioDeviceTransportTypeContinuityCaptureWireless: u32 = 0x6363776c;
-/// The transport type ID for AudioDevices connected via the Continuity Capture
-/// feature. This constant is deprecated. Please use
-/// kAudioDeviceTransportTypeContinuityCaptureWired and
-/// kAudioDeviceTransportTypeContinuityCaptureWireless to describe Continuity
-/// Capture devices.
+/// The transport type ID for remote screen sharing devices.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapture?language=objc)
-#[deprecated = "Please use kAudioDeviceTransportTypeContinuityCaptureWired and kAudioDeviceTransportTypeContinuityCaptureWireless to describe Continuity Capture devices."]
-pub const kAudioDeviceTransportTypeContinuityCapture: u32 = 0x63636170;
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttyperemotescreen?language=objc)
+pub const kAudioDeviceTransportTypeRemoteScreen: u32 = 0x72736372;
+/// The transport type ID for remote high-latency streaming devices.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttyperemotestreaming?language=objc)
+pub const kAudioDeviceTransportTypeRemoteStreaming: u32 = 0x72737472;
 
 /// A CFString that contains the bundle ID for an application that provides a
 /// GUI for configuring the AudioDevice. By default, the value of this property
@@ -738,6 +734,18 @@ pub const kAudioDevicePropertyPreferredChannelsForStereo: AudioObjectPropertySel
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertypreferredchannellayout?language=objc)
 pub const kAudioDevicePropertyPreferredChannelLayout: AudioObjectPropertySelector = 0x73726e64;
+/// A UInt32 where a value of 0 indicates that the controls for the device should not be
+/// saved/restored when the device is first published. If the device doesn't implement
+/// this property, it is assumed that the settings should be saved and restored.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantscontrolsrestored?language=objc)
+pub const kAudioDevicePropertyWantsControlsRestored: AudioObjectPropertySelector = 0x72657363;
+/// A UInt32 where a value of 0 indicates that the stream formats for the device should
+/// not be saved/restored when the device is first published. If the device doesn't
+/// implement this property, it is assumed that the settings should be saved and restored.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantsstreamformatsrestored?language=objc)
+pub const kAudioDevicePropertyWantsStreamFormatsRestored: AudioObjectPropertySelector = 0x72657366;
 
 /// The AudioClassID that identifies the AudioClockDevice class.
 ///
@@ -993,13 +1001,13 @@ pub const kAudioStreamPropertyAvailablePhysicalFormats: AudioObjectPropertySelec
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolclassid?language=objc)
 pub const kAudioControlClassID: AudioClassID = 0x6163746c;
 
-/// An AudioServerPlugIn_PropertyScope that indicates which part of a device the
-/// control applies to.
+/// An AudioObjectPropertyScope that indicates which part of the owning device
+/// the control applies to.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolpropertyscope?language=objc)
 pub const kAudioControlPropertyScope: AudioObjectPropertySelector = 0x63736370;
-/// An AudioServerPlugIn_PropertyElement that indicates which element of the
-/// device the control applies to.
+/// An AudioObjectPropertyElement that indicates which element of the
+/// owning device the control applies to.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolpropertyelement?language=objc)
 pub const kAudioControlPropertyElement: AudioObjectPropertySelector = 0x63656c6d;
@@ -2214,7 +2222,7 @@ pub const kAudioDeviceProcessorOverload: AudioObjectPropertySelector = 0x6f76657
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiostoppedabnormally?language=objc)
 pub const kAudioDevicePropertyIOStoppedAbnormally: AudioObjectPropertySelector = 0x73747064;
-/// A pid_t indicating the process that currently owns exclusive access to the
+/// A pid\_t indicating the process that currently owns exclusive access to the
 /// AudioDevice or a value of -1 indicating that the device is currently
 /// available to all processes. If the AudioDevice is in a non-mixable mode,
 /// the HAL will automatically take hog mode on behalf of the first process to
@@ -2224,7 +2232,7 @@ pub const kAudioDevicePropertyIOStoppedAbnormally: AudioObjectPropertySelector =
 /// current process owns exclusive access, it is released and made available to
 /// all processes again. If no process has exclusive access (meaning the current
 /// value is -1), this process gains ownership of exclusive access.  On return,
-/// the pid_t pointed to by inPropertyData will contain the new value of the
+/// the pid\_t pointed to by inPropertyData will contain the new value of the
 /// property.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhogmode?language=objc)
@@ -2288,7 +2296,7 @@ pub const kAudioDevicePropertyActualSampleRate: AudioObjectPropertySelector = 0x
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockdevice?language=objc)
 pub const kAudioDevicePropertyClockDevice: AudioObjectPropertySelector = 0x61706364;
-/// An os_workgroup_t that represents the thread workgroup the AudioDevice's
+/// An os\_workgroup\_t that represents the thread workgroup the AudioDevice's
 /// IO thread belongs to. The caller is responsible for releasing the returned
 /// object.
 ///
@@ -2300,6 +2308,28 @@ pub const kAudioDevicePropertyIOThreadOSWorkgroup: AudioObjectPropertySelector =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyprocessmute?language=objc)
 pub const kAudioDevicePropertyProcessMute: AudioObjectPropertySelector = 0x6170706d;
+/// A UInt32 where 0 disables voice activity detection process and non-zero enables it.
+/// Voice activity detection can be used with input audio and has echo cancellation.
+/// Detection works when a process mute is used, but not with hardware mute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionenable?language=objc)
+pub const kAudioDevicePropertyVoiceActivityDetectionEnable: AudioObjectPropertySelector =
+    0x7641642b;
+/// A read-only UInt32 where 0 indicates no voice currently detected and 1 indicates voice.
+/// Used in conjunction with kAudioDevicePropertyVoiceActivityDetectionEnable.
+/// A client would normally register to listen to this property for changes and then query
+/// the state rather than continuously poll the value.
+/// NOTE: If input audio is not active/running or the voice activity detection is disabled,
+/// then it is not analyzed and this will provide 0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionstate?language=objc)
+pub const kAudioDevicePropertyVoiceActivityDetectionState: AudioObjectPropertySelector = 0x76416453;
+/// A Device UID CFStringRef that suggests which output device to use as a reference
+/// for echo cancellation when this input device is used with voice activity detection
+/// enabled. If not set, the system uses the system default output device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysuggestedreferencedevice?language=objc)
+pub const kAudioDevicePropertySuggestedReferenceDevice: AudioObjectPropertySelector = 0x656f7264;
 
 /// A UInt32 where a value of 0 means that there isn't anything plugged into the
 /// jack associated withe given element and scope. This property is implemented
@@ -2655,34 +2685,6 @@ pub const kAudioDevicePropertySubVolumeDecibelsToScalar: AudioObjectPropertySele
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubmute?language=objc)
 pub const kAudioDevicePropertySubMute: AudioObjectPropertySelector = 0x736d7574;
-/// A UInt32 where 0 disables voice activity detection process and non-zero enables it.
-/// Voice activity detection can be used with input audio and has echo cancellation.
-/// Detection works when a process mute is used, but not with hardware mute.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionenable?language=objc)
-pub const kAudioDevicePropertyVoiceActivityDetectionEnable: AudioObjectPropertySelector =
-    0x7641642b;
-/// A read-only UInt32 where 0 indicates no voice currently detected and 1 indicates voice.
-/// Used in conjunction with kAudioDevicePropertyVoiceActivityDetectionEnable.
-/// A client would normally register to listen to this property for changes and then query
-/// the state rather than continuously poll the value.
-/// NOTE: If input audio is not active/runnning or the voice activity detection is disabled,
-/// then it is not analyzed and this will provide 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionstate?language=objc)
-pub const kAudioDevicePropertyVoiceActivityDetectionState: AudioObjectPropertySelector = 0x76416453;
-/// A UInt32 where a value of 0 indicates that the controls for the device should not be
-/// saved/restored when the device is first published. If the device doesn't implement
-/// this property, it is assumed that the settings should be saved and restored.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantscontrolsrestored?language=objc)
-pub const kAudioDevicePropertyWantsControlsRestored: AudioObjectPropertySelector = 0x72657363;
-/// A UInt32 where a value of 0 indicates that the stream formats for the device should
-/// not be saved/restored when the device is first published. If the device doesn't
-/// implement this property, it is assumed that the settings should be saved and restored.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantsstreamformatsrestored?language=objc)
-pub const kAudioDevicePropertyWantsStreamFormatsRestored: AudioObjectPropertySelector = 0x72657366;
 
 /// Creates an AudioDeviceIOProcID from an AudioDeviceIOProc and a client data
 /// pointer.

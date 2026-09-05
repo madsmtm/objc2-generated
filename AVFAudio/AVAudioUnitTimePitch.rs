@@ -30,6 +30,20 @@ extern_class!(
     feature = "AVAudioUnit",
     feature = "AVAudioUnitTimeEffect"
 ))]
+unsafe impl Send for AVAudioUnitTimePitch {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitTimeEffect"
+))]
+unsafe impl Sync for AVAudioUnitTimePitch {}
+
+#[cfg(all(
+    feature = "AVAudioNode",
+    feature = "AVAudioUnit",
+    feature = "AVAudioUnitTimeEffect"
+))]
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioUnitTimePitch {}
 );
@@ -46,11 +60,21 @@ impl AVAudioUnitTimePitch {
         /// Range:      1/32 -> 32.0
         /// Default:    1.0
         /// Unit:       Generic
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
@@ -63,11 +87,21 @@ impl AVAudioUnitTimePitch {
         /// Range:      -2400 -> 2400
         /// Default:    0.0
         /// Unit:       Cents
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(pitch))]
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> c_float;
 
         /// Setter for [`pitch`][Self::pitch].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPitch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPitch(&self, pitch: c_float);
@@ -80,11 +114,21 @@ impl AVAudioUnitTimePitch {
         /// Range:      3.0 -> 32.0
         /// Default:    8.0
         /// Unit:       Generic
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(overlap))]
         #[unsafe(method_family = none)]
         pub unsafe fn overlap(&self) -> c_float;
 
         /// Setter for [`overlap`][Self::overlap].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setOverlap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverlap(&self, overlap: c_float);

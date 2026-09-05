@@ -24,9 +24,8 @@ use crate::*;
 /// When running a configuration with 'ARFrameSemanticPersonSegmentation' every pixel in the
 /// segmentationBuffer on the ARFrame will conform to one of these classes.
 ///
-/// See: -[ARConfiguration setFrameSemantics:]
-///
-/// See: -[ARFrame segmentationBuffer]
+/// - SeeAlso: ``ARConfiguration/frameSemantics``
+/// - SeeAlso: ``ARFrame/segmentationBuffer``
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsegmentationclass?language=objc)
 // NS_ENUM
@@ -161,9 +160,7 @@ impl ARFrame {
         pub unsafe fn exifData(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-metal")]
-        /// A tileable texture that contains image noise matching the current camera streams
-        /// noise properties.
-        ///
+        /// A tileable texture that contains image noise matching the current camera stream's noise properties.
         ///
         /// A camera stream depicts image noise that gives the captured image
         /// a grainy look and varies with light conditions.
@@ -181,7 +178,6 @@ impl ARFrame {
             -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// The frame’s camera grain intensity in range 0 to 1.
-        ///
         ///
         /// A camera stream depicts image noise that gives the captured image
         /// a grainy look and varies with light conditions.
@@ -252,7 +248,7 @@ impl ARFrame {
         #[cfg(feature = "ARLightEstimate")]
         /// A light estimate representing the light in the scene.
         ///
-        /// Returns nil if there is no light estimation.
+        /// Returns `nil` if there is no light estimation.
         ///
         /// This property is not atomic.
         ///
@@ -297,9 +293,8 @@ impl ARFrame {
         /// In order to identify to which class a pixel has been classified one needs to compare its intensity value with the values
         /// found in `ARSegmentationClass`.
         ///
-        /// See: ARSegmentationClass
-        ///
-        /// See: -[ARConfiguration setFrameSemantics:]
+        /// - SeeAlso: ``ARSegmentationClass``
+        /// - SeeAlso: ``ARConfiguration/frameSemantics``
         ///
         /// This property is not atomic.
         ///
@@ -315,9 +310,8 @@ impl ARFrame {
         ///
         /// For each non-background pixel in the segmentation buffer the corresponding depth value can be accessed in this buffer.
         ///
-        /// See: -[ARConfiguration setFrameSemantics:]
-        ///
-        /// See: -[ARFrame segmentationBuffer]
+        /// - SeeAlso: ``ARConfiguration/frameSemantics``
+        /// - SeeAlso: ``ARFrame/segmentationBuffer``
         ///
         /// This property is not atomic.
         ///
@@ -331,7 +325,7 @@ impl ARFrame {
         #[cfg(feature = "ARBody2D")]
         /// A detected body in the current frame.
         ///
-        /// See: -[ARConfiguration setFrameSemantics:]
+        /// - SeeAlso: ``ARConfiguration/frameSemantics``
         ///
         /// This property is not atomic.
         ///
@@ -357,9 +351,8 @@ impl ARFrame {
         #[cfg(feature = "ARDepthData")]
         /// Scene depth data.
         ///
-        /// See: ARFrameSemanticSceneDepth.
-        ///
-        /// See: -[ARConfiguration setFrameSemantics:]
+        /// - SeeAlso: ``ARFrameSemanticSceneDepth``
+        /// - SeeAlso: ``ARConfiguration/frameSemantics``
         ///
         /// This property is not atomic.
         ///
@@ -373,9 +366,8 @@ impl ARFrame {
         #[cfg(feature = "ARDepthData")]
         /// Scene depth data, smoothed for temporal consistency.
         ///
-        /// See: ARFrameSemanticSmoothedSceneDepth.
-        ///
-        /// See: -[ARConfiguration setFrameSemantics:]
+        /// - SeeAlso: ``ARFrameSemanticSmoothedSceneDepth``
+        /// - SeeAlso: ``ARConfiguration/frameSemantics``
         ///
         /// This property is not atomic.
         ///
@@ -386,6 +378,23 @@ impl ARFrame {
         #[unsafe(method_family = none)]
         pub unsafe fn smoothedSceneDepth(&self) -> Option<Retained<ARDepthData>>;
 
+        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-foundation"))]
+        /// Metadata objects associated with the current frame.
+        ///
+        /// This array contains `AVMetadataFaceObject`s for detected faces when running an `ARFaceTrackingConfiguration` and face tracking is not
+        /// active (`maximumNumberOfTrackedFaces` set to 0).
+        ///
+        /// - SeeAlso: ``ARFaceTrackingConfiguration/maximumNumberOfTrackedFaces``
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(metadataObjects))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn metadataObjects(&self) -> Retained<NSArray<AVMetadataObject>>;
+
         #[cfg(all(
             feature = "ARHitTestResult",
             feature = "objc2-core-foundation",
@@ -393,16 +402,15 @@ impl ARFrame {
         ))]
         /// Searches the frame for objects corresponding to a point in the captured image.
         ///
-        ///
         /// A 2D point in the captured image’s coordinate space can refer to any point along a line segment
         /// in the 3D coordinate space. Hit-testing is the process of finding objects in the world located along this line segment.
         ///
-        /// Parameter `point`: A point in the image-space coordinate system of the captured image.
+        /// - Parameters:
+        /// - point: A point in the image-space coordinate system of the captured image.
         /// Values should range from (0,0) - upper left corner to (1,1) - lower right corner.
+        /// - types: The types of results to search for.
         ///
-        /// Parameter `types`: The types of results to search for.
-        ///
-        /// Returns: An array of all hit-test results sorted from nearest to farthest.
+        /// - Returns: An array of all hit-test results sorted from nearest to farthest.
         #[deprecated = "Use [ARSession raycast:]"]
         #[unsafe(method(hitTest:types:))]
         #[unsafe(method_family = none)]
@@ -415,15 +423,16 @@ impl ARFrame {
         #[cfg(all(feature = "ARRaycastQuery", feature = "objc2-core-foundation"))]
         /// Creates a raycast query originating from the point on the captured image, aligned along the center of the field of view of the camera.
         ///
-        /// A 2D point in the captured image’s coordinate space and the field of view of the frame's camera is used to create a ray in the 3D
-        /// cooridnate space originating at the point.
+        /// A 2D point in the captured image's coordinate space and the field of view of the frame's camera is used to create a ray in the 3D
+        /// coordinate space originating at the point.
         ///
-        /// Parameter `point`: A point in the image-space coordinate system of the captured image.
+        /// - Parameters:
+        /// - point: A point in the image-space coordinate system of the captured image.
         /// Values should range from (0,0) - upper left corner to (1,1) - lower right corner.
+        /// - target: Type of target where the ray should terminate.
+        /// - alignment: Alignment of the target.
         ///
-        /// Parameter `target`: Type of target where the ray should terminate.
-        ///
-        /// Parameter `alignment`: Alignment of the target.
+        /// - Returns: A raycast query configured with the specified parameters.
         #[unsafe(method(raycastQueryFromPoint:allowingTarget:alignment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn raycastQueryFromPoint_allowingTarget_alignment(
@@ -436,14 +445,15 @@ impl ARFrame {
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-ui-kit"))]
         /// Returns a display transform for the provided viewport size and orientation.
         ///
-        ///
         /// The display transform can be used to convert normalized points in the image-space coordinate system
-        /// of the captured image to normalized points in the view’s coordinate space. The transform provides the correct rotation
+        /// of the captured image to normalized points in the view's coordinate space. The transform provides the correct rotation
         /// and aspect-fill for presenting the captured image in the given orientation and size.
         ///
-        /// Parameter `orientation`: The orientation of the viewport.
+        /// - Parameters:
+        /// - orientation: The orientation of the viewport.
+        /// - viewportSize: The size of the viewport.
         ///
-        /// Parameter `viewportSize`: The size of the viewport.
+        /// - Returns: The display transform matrix.
         #[unsafe(method(displayTransformForOrientation:viewportSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayTransformForOrientation_viewportSize(

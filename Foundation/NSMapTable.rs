@@ -6,9 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// **************    Class    ***************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablestrongmemory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablestrongmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableStrongMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::StrongMemory.0);
@@ -34,11 +32,29 @@ pub static NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions =
 pub static NSMapTableWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::WeakMemory.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableoptions?language=objc)
+/// Constants used as components in a bitfield to specify the behavior of elements (keys and values) in an `NSMapTable` object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableoptions?language=objc)
 pub type NSMapTableOptions = NSUInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptable?language=objc)
+    /// A collection similar to a dictionary, but with a broader range of available memory semantics.
+    ///
+    /// The map table is modeled after ``NSDictionary`` with the following differences:
+    ///
+    /// - Keys and/or values are optionally held "weakly" such that entries are removed when one of the objects is reclaimed.
+    /// - Its keys or values may be copied on input or may use pointer identity for equality and hashing.
+    /// - It can contain arbitrary pointers (its contents are not constrained to being objects).
+    ///
+    /// You can configure an ``NSMapTable`` instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void\* pointers. The object-based API (such as ``setObject(_:forKey:)``) will not work for non-object pointers without type-casting.
+    ///
+    /// When configuring map tables, note that only the options listed in ``NSMapTableOptions`` guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other ``NSPointerFunctions`` options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the map table may not work correctly, or may not even be initialized correctly.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSMapTable` is not suitable for subclassing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptable?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMapTable<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
@@ -104,6 +120,11 @@ extern_conformance!(
 impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSPointerFunctions")]
+        /// Returns a map table, initialized with the given options.
+        ///
+        /// - Parameter keyOptions: A bit field that specifies the options for the keys in the map table.
+        /// - Parameter valueOptions: A bit field that specifies the options for the values in the map table.
+        /// - Parameter initialCapacity: The initial capacity of the map table. This is just a hint; the map table may subsequently grow and shrink as required.
         #[unsafe(method(initWithKeyOptions:valueOptions:capacity:))]
         #[unsafe(method_family = init)]
         pub fn initWithKeyOptions_valueOptions_capacity(
@@ -114,6 +135,11 @@ impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// Returns a map table, initialized with the given functions.
+        ///
+        /// - Parameter keyFunctions: The functions the map table uses to manage keys.
+        /// - Parameter valueFunctions: The functions the map table uses to manage values.
+        /// - Parameter initialCapacity: The initial capacity of the map table. This is just a hint; the map table may subsequently grow and shrink as required.
         #[unsafe(method(initWithKeyPointerFunctions:valuePointerFunctions:capacity:))]
         #[unsafe(method_family = init)]
         pub fn initWithKeyPointerFunctions_valuePointerFunctions_capacity(
@@ -124,6 +150,11 @@ impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// Returns a new map table, initialized with the given options.
+        ///
+        /// - Parameter keyOptions: A bit field that specifies the options for the keys in the map table.
+        /// - Parameter valueOptions: A bit field that specifies the options for the values in the map table.
+        /// - Returns: A new map table, initialized with the given options.
         #[unsafe(method(mapTableWithKeyOptions:valueOptions:))]
         #[unsafe(method_family = none)]
         pub fn mapTableWithKeyOptions_valueOptions(
@@ -131,69 +162,110 @@ impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
             value_options: NSPointerFunctionsOptions,
         ) -> Retained<NSMapTable<KeyType, ObjectType>>;
 
+        /// Returns a new map table object which has strong references to the keys and values.
         #[deprecated = "GC no longer supported"]
         #[unsafe(method(mapTableWithStrongToStrongObjects))]
         #[unsafe(method_family = none)]
         pub fn mapTableWithStrongToStrongObjects() -> Retained<AnyObject>;
 
+        /// Returns a new map table object which has weak references to the keys and strong references to the values.
+        ///
+        ///
+        /// `NSMapTable` objects created using this method do not support weak references under Automatic Reference Counting (ARC).
         #[deprecated = "GC no longer supported"]
         #[unsafe(method(mapTableWithWeakToStrongObjects))]
         #[unsafe(method_family = none)]
         pub fn mapTableWithWeakToStrongObjects() -> Retained<AnyObject>;
 
+        /// Returns a new map table object which has strong references to the keys and weak references to the values.
+        ///
+        ///
+        /// `NSMapTable` objects created using this method do not support weak references under Automatic Reference Counting (ARC).
         #[deprecated = "GC no longer supported"]
         #[unsafe(method(mapTableWithStrongToWeakObjects))]
         #[unsafe(method_family = none)]
         pub fn mapTableWithStrongToWeakObjects() -> Retained<AnyObject>;
 
+        /// Returns a new map table object which has weak references to the keys and values.
+        ///
+        ///
+        /// `NSMapTable` objects created using this method do not support weak references under Automatic Reference Counting (ARC).
         #[deprecated = "GC no longer supported"]
         #[unsafe(method(mapTableWithWeakToWeakObjects))]
         #[unsafe(method_family = none)]
         pub fn mapTableWithWeakToWeakObjects() -> Retained<AnyObject>;
 
+        /// Returns a new map table object which has strong references to the keys and values.
         #[unsafe(method(strongToStrongObjectsMapTable))]
         #[unsafe(method_family = none)]
         pub fn strongToStrongObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
+        /// Returns a new map table object which has weak references to the keys and strong references to the values.
+        ///
+        /// Use of weak-to-strong map tables is not recommended. The strong values for weak keys which get zeroed out continue to be maintained until the map table resizes itself.
         #[unsafe(method(weakToStrongObjectsMapTable))]
         #[unsafe(method_family = none)]
         pub fn weakToStrongObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
+        /// Returns a new map table object which has strong references to the keys and weak references to the values.
         #[unsafe(method(strongToWeakObjectsMapTable))]
         #[unsafe(method_family = none)]
         pub fn strongToWeakObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
+        /// Returns a new map table object which has weak references to the keys and values.
         #[unsafe(method(weakToWeakObjectsMapTable))]
         #[unsafe(method_family = none)]
         pub fn weakToWeakObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// The pointer functions the map table uses to manage keys.
         #[unsafe(method(keyPointerFunctions))]
         #[unsafe(method_family = none)]
         pub fn keyPointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[cfg(feature = "NSPointerFunctions")]
+        /// The pointer functions the map table uses to manage values.
         #[unsafe(method(valuePointerFunctions))]
         #[unsafe(method_family = none)]
         pub fn valuePointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
+        /// Returns the value associated with a given key.
+        ///
+        /// - Parameter aKey: The key for which to return the corresponding value.
+        /// - Returns: The value associated with `aKey`, or `nil` if no value is associated with `aKey`.
         #[unsafe(method(objectForKey:))]
         #[unsafe(method_family = none)]
         pub fn objectForKey(&self, a_key: Option<&KeyType>) -> Option<Retained<ObjectType>>;
 
+        /// Removes a given key and its associated value from the map table.
+        ///
+        /// Does nothing if `aKey` does not exist.
+        ///
+        /// - Parameter aKey: The key to remove.
         #[unsafe(method(removeObjectForKey:))]
         #[unsafe(method_family = none)]
         pub fn removeObjectForKey(&self, a_key: Option<&KeyType>);
 
+        /// Adds a given key-value pair to the map table.
+        ///
+        /// - Parameter anObject: The value for `aKey`.
+        /// - Parameter aKey: The key for `anObject`.
         #[unsafe(method(setObject:forKey:))]
         #[unsafe(method_family = none)]
         pub fn setObject_forKey(&self, an_object: Option<&ObjectType>, a_key: Option<&KeyType>);
 
+        /// The number of key-value pairs in the map table.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub fn count(&self) -> NSUInteger;
 
         #[cfg(feature = "NSEnumerator")]
+        /// Returns an enumerator object that lets you access each key in the map table.
+        ///
+        /// It is more efficient to use the fast enumeration protocol (see `NSFastEnumeration`).
+        ///
+        /// - Returns: An enumerator object that lets you access each key in the map table.
+        ///
         /// # Safety
         ///
         /// The returned enumerator's underlying collection should not be mutated while in use.
@@ -202,6 +274,12 @@ impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         pub unsafe fn keyEnumerator(&self) -> Retained<NSEnumerator<KeyType>>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// Returns an enumerator object that lets you access each value in the map table.
+        ///
+        /// It is more efficient to use the fast enumeration protocol (see `NSFastEnumeration`).
+        ///
+        /// - Returns: An enumerator object that lets you access each value in the map table.
+        ///
         /// # Safety
         ///
         /// The returned enumerator's underlying collection should not be mutated while in use.
@@ -209,11 +287,15 @@ impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Option<Retained<NSEnumerator<ObjectType>>>;
 
+        /// Empties the map table of its entries.
         #[unsafe(method(removeAllObjects))]
         #[unsafe(method_family = none)]
         pub fn removeAllObjects(&self);
 
         #[cfg(feature = "NSDictionary")]
+        /// Returns a dictionary representation of the map table.
+        ///
+        /// - Returns: A dictionary representation of the map table.
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
         pub fn dictionaryRepresentation(&self) -> Retained<NSDictionary<KeyType, ObjectType>>;
@@ -240,9 +322,7 @@ impl<KeyType: Message, ObjectType: Message> DefaultRetained for NSMapTable<KeyTy
     }
 }
 
-/// **************    void * Map table operations    ***************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapenumerator?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapenumerator?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapEnumerator {
@@ -266,6 +346,8 @@ unsafe impl RefEncode for NSMapEnumerator {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Deletes the entries from a map table, without freeing the table itself.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -277,6 +359,8 @@ pub unsafe fn NSResetMapTable(table: &NSMapTable) {
     unsafe { NSResetMapTable(table) }
 }
 
+/// Returns a Boolean value that indicates whether two map tables are equal.
+///
 /// # Safety
 ///
 /// - `table1` generic should be of the correct type.
@@ -289,6 +373,8 @@ pub unsafe fn NSCompareMapTables(table1: &NSMapTable, table2: &NSMapTable) -> bo
     unsafe { NSCompareMapTables(table1, table2) }.as_bool()
 }
 
+/// Returns a copy of a map table.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -306,6 +392,8 @@ pub unsafe fn NSCopyMapTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a Boolean value that indicates whether a map table contains a given key.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -330,6 +418,8 @@ pub unsafe fn NSMapMember(
     unsafe { NSMapMember(table, key, original_key, value) }.as_bool()
 }
 
+/// Returns the value associated with a given key in a map table.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -342,6 +432,8 @@ pub unsafe fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void {
     unsafe { NSMapGet(table, key) }
 }
 
+/// Inserts a key-value pair into a map table.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -355,6 +447,8 @@ pub unsafe fn NSMapInsert(table: &NSMapTable, key: *const c_void, value: *const 
     unsafe { NSMapInsert(table, key, value) }
 }
 
+/// Inserts a key-value pair into a map table if the key does not already exist.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -368,6 +462,8 @@ pub unsafe fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *const c_void, val
     unsafe { NSMapInsertKnownAbsent(table, key, value) }
 }
 
+/// Inserts a key-value pair into a map table if the key does not already exist, and returns the value.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -389,6 +485,8 @@ pub unsafe fn NSMapInsertIfAbsent(
     unsafe { NSMapInsertIfAbsent(table, key, value) }
 }
 
+/// Removes a key and its associated value from a map table.
+///
 /// # Safety
 ///
 /// - `table` generic should be of the correct type.
@@ -401,6 +499,8 @@ pub unsafe fn NSMapRemove(table: &NSMapTable, key: *const c_void) {
     unsafe { NSMapRemove(table, key) }
 }
 
+/// Returns an enumerator for a map table.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -412,6 +512,8 @@ pub unsafe fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator {
     unsafe { NSEnumerateMapTable(table) }
 }
 
+/// Returns the next key-value pair in the enumeration.
+///
 /// # Safety
 ///
 /// - `enumerator` must be a valid pointer.
@@ -433,6 +535,8 @@ pub unsafe fn NSNextMapEnumeratorPair(
     unsafe { NSNextMapEnumeratorPair(enumerator, key, value) }.as_bool()
 }
 
+/// Frees an enumerator for a map table.
+///
 /// # Safety
 ///
 /// `enumerator` must be a valid pointer.
@@ -444,6 +548,8 @@ pub unsafe fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>) {
     unsafe { NSEndMapTableEnumeration(enumerator) }
 }
 
+/// Returns the number of entries in a map table.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -457,6 +563,8 @@ pub unsafe fn NSCountMapTable(table: &NSMapTable) -> NSUInteger {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// Returns a string describing the map table's contents.
+    ///
     /// # Safety
     ///
     /// `table` generic should be of the correct type.
@@ -473,6 +581,8 @@ impl NSString {
     }
 }
 
+/// Returns all of the keys in a map table.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -487,6 +597,8 @@ pub unsafe fn NSAllMapTableKeys(table: &NSMapTable) -> Retained<NSArray> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns all of the values in a map table.
+///
 /// # Safety
 ///
 /// `table` generic should be of the correct type.
@@ -501,21 +613,25 @@ pub unsafe fn NSAllMapTableValues(table: &NSMapTable) -> Retained<NSArray> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// **************     Legacy     **************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapTableKeyCallBacks {
+    /// Points to the function which must produce hash code for key elements of the map table. If `NULL`, the pointer value is used as the hash code. Second parameter is the element for which hash code should be produced.
     pub hash: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>) -> NSUInteger>,
+    /// Points to the function which compares second and third parameters. If `NULL`, then == is used for comparison.
     pub isEqual:
         Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>, NonNull<c_void>) -> Bool>,
+    /// Points to the function which increments a reference count for the given element. If `NULL`, then nothing is done for reference counting.
     pub retain: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>)>,
+    /// Points to the function which decrements a reference count for the given element, and if the reference count becomes zero, frees the given element. If `NULL`, then nothing is done for reference counting or releasing.
     pub release: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>)>,
+    /// Points to the function which produces an autoreleased NSString describing the given element. If `NULL`, then the map table produces a generic string description.
     pub describe:
         Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>) -> *mut NSString>,
+    /// No key put in map table can be this value. An exception is raised if attempt is made to use this value as a key.
     pub notAKeyMarker: *const c_void,
 }
 
@@ -539,14 +655,21 @@ unsafe impl RefEncode for NSMapTableKeyCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablevaluecallbacks?language=objc)
+/// The function pointers used to configure behavior of `NSMapTable` with respect to value elements within a map table.
+///
+/// All functions must know the types of things in the map table to be able to operate on them. Sets of predefined call backs are described in ``NSMapTable``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablevaluecallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSMapTableValueCallBacks {
+    /// Points to the function that increments a reference count for the given element. If `NULL`, then nothing is done for reference counting.
     pub retain: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>)>,
+    /// Points to the function that decrements a reference count for the given element, and if the reference count becomes zero, frees the given element. If `NULL`, then nothing is done for reference counting or releasing.
     pub release: Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>)>,
+    /// Points to the function that produces an autoreleased NSString describing the given element. If `NULL`, then the map table produces a generic string description.
     pub describe:
         Option<unsafe extern "C-unwind" fn(&NSMapTable, NonNull<c_void>) -> *mut NSString>,
 }
@@ -568,6 +691,17 @@ unsafe impl RefEncode for NSMapTableValueCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Creates a new map table in the specified zone.
+///
+/// The table's size is dependent on (but generally not equal to) `capacity`. If `capacity` is 0, a small map table is created. The `NSMapTableKeyCallBacks` arguments are structures that are very similar to the callback structure used by `NSCreateHashTable`; in fact, they have the same defaults as documented for that function.
+///
+/// - Parameters:
+/// - keyCallBacks: The key callback structure for the map table.
+/// - valueCallBacks: The value callback structure for the map table.
+/// - capacity: The initial capacity of the map table.
+/// - zone: The zone in which to create the map table. If `NULL`, the map table is created in the default zone.
+/// - Returns: A new map table allocated in `zone`. If `zone` is `NULL`, the map table is created in the default zone.
+///
 /// # Safety
 ///
 /// - `key_call_backs` struct field `hash` must be implemented correctly.
@@ -600,6 +734,15 @@ pub unsafe fn NSCreateMapTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Creates a new map table in the default zone.
+///
+/// The table's size is dependent on (but generally not equal to) `capacity`. If `capacity` is 0, a small map table is created. The `NSMapTableKeyCallBacks` arguments are structures that are very similar to the callback structure used by `NSCreateHashTable`—they have the same defaults as documented for that function.
+///
+/// - Parameters:
+/// - keyCallBacks: The key callback structure for the map table.
+/// - valueCallBacks: The value callback structure for the map table.
+/// - capacity: The initial capacity of the map table.
+///
 /// # Safety
 ///
 /// - `key_call_backs` struct field `hash` must be implemented correctly.
@@ -631,9 +774,7 @@ pub unsafe fn NSCreateMapTable(
 }
 
 extern "C" {
-    /// **************    Common map table key callbacks    ***************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapkeycallbacks?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntegerMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
@@ -676,9 +817,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// **************    Common map table value callbacks    ***************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapvaluecallbacks?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntegerMapValueCallBacks: NSMapTableValueCallBacks;
 }

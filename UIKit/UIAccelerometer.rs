@@ -66,7 +66,7 @@ extern_class!(
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
+    #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
     pub struct UIAccelerometer;
 );
 
@@ -76,23 +76,23 @@ extern_conformance!(
 
 impl UIAccelerometer {
     extern_methods!(
-        #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
+        #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(sharedAccelerometer))]
         #[unsafe(method_family = none)]
         pub fn sharedAccelerometer(mtm: MainThreadMarker) -> Retained<UIAccelerometer>;
 
-        #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
+        #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(updateInterval))]
         #[unsafe(method_family = none)]
         pub fn updateInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`updateInterval`][Self::updateInterval].
-        #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
+        #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(setUpdateInterval:))]
         #[unsafe(method_family = none)]
         pub fn setUpdateInterval(&self, update_interval: NSTimeInterval);
 
-        #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
+        #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIAccelerometerDelegate>>>;
@@ -100,7 +100,7 @@ impl UIAccelerometer {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
-        #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
+        #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIAccelerometerDelegate>>);

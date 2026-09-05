@@ -7,11 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinationmedium?language=objc)
+    /// The AVPlaybackCoordinationMedium passes states and messages between its connected playback coordinators.
+    ///
+    /// The coordination medium passes states and messages from one playback coordinator to all other connected playback coordinators to enable coordination of rate changes and seeks. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinationmedium?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlaybackCoordinationMedium;
 );
+
+unsafe impl Send for AVPlaybackCoordinationMedium {}
+
+unsafe impl Sync for AVPlaybackCoordinationMedium {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlaybackCoordinationMedium {}
@@ -31,6 +39,12 @@ impl AVPlaybackCoordinationMedium {
         /// This coordination is specifically for AVPlayerPlaybackCoordinators, and we exclude AVDelegatingPlaybackCoordinators.
         /// AVPlaybackCoordinator properties and methods are individually configurable for each playback coordinator. To ensure correct synchronized behavior across all local playback coordinators, any common AVPlaybackCoordinator properties and methods should be set and called on all playback coordinators in the coordination medium.
         /// The properties and methods `otherParticipants`, `setParticipantLimit:forWaitingOutSuspensionsWithReason:`, and `participantLimitForWaitingOutSuspensionsWithReason:` refer specifically to remote participants that are coordinated through a group session rather than through the playback coordination medium. `otherParticipants` only returns participants connected to the same group session. `setParticipantLimit` and `participantLimitForWaitingOutSuspensionsWithReason` affect only policies and behavior with the group session.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(connectedPlaybackCoordinators))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedPlaybackCoordinators(

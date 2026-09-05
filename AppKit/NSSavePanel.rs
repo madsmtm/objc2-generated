@@ -371,9 +371,10 @@ impl NSSavePanel {
         #[unsafe(method_family = none)]
         pub fn setTagNames(&self, tag_names: Option<&NSArray<NSString>>);
 
-        /// `NSSavePanel`: Whether or not to show a control for selecting the type of the saved file.
-        /// The control shows the types in `allowedContentTypes`. Default is `NO`.
-        /// `NSOpenPanel`: Not used.
+        /// Whether or not to show a popup list for selecting the type of the saved file.
+        ///
+        /// The popup list shows the localized description for the types in `allowedContentTypes`. To display a different description, implement the delegate method `-panel:displayNameForType:`.
+        /// The default value is `NO`, do not show the content types.
         /// - Note: If `allowedContentTypes` is empty, the control is not displayed.
         #[unsafe(method(showsContentTypes))]
         #[unsafe(method_family = none)]

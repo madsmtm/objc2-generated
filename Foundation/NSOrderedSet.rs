@@ -7,7 +7,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// **************       Immutable Ordered Set   ***************
+    /// A static, ordered collection of unique objects.
+    ///
+    /// ``NSOrderedSet`` declares the programmatic interface for static sets of distinct objects. You establish a static set's entries when it's created, and thereafter the entries can't be modified. ``NSMutableOrderedSet``, on the other hand, declares a programmatic interface for dynamic sets of distinct objects. A dynamic---or mutable---set allows the addition and deletion of entries at any time, automatically allocating memory as needed.
+    ///
+    /// You can use ordered sets as an alternative to arrays when the order of elements is important and performance in testing whether an object is contained in the set is a consideration---testing for membership of an array is slower than testing for membership of a set.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedset?language=objc)
     #[unsafe(super(NSObject))]
@@ -70,22 +74,46 @@ extern_conformance!(
 
 impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
+        /// The number of members in the set.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub fn count(&self) -> NSUInteger;
 
+        /// Returns the object at the specified index of the set.
+        ///
+        /// - Parameter idx: The object located at index.
+        /// - Returns: If `idx` is beyond the end of the ordered set (that is, if index is greater than or equal to the value returned by count), an ``NSExceptionName/rangeException`` is raised.
         #[unsafe(method(objectAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn objectAtIndex(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
+        /// Returns the index of the specified object.
+        ///
+        /// - Parameter object: The object.
+        /// - Returns: The index whose corresponding ordered set value is equal to `object`. If none of the objects in the ordered set  is equal to `object`, returns `NSNotFound`.
         #[unsafe(method(indexOfObject:))]
         #[unsafe(method_family = none)]
         pub fn indexOfObject(&self, object: &ObjectType) -> NSUInteger;
 
+        /// Initializes a newly allocated ordered set.
+        ///
+        /// - Returns: An ordered set.
+        ///
+        /// This method is a designated initializer of `NSOrderedSet`.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initializes a newly allocated set with a specified number of objects from a given C array of objects.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects to add to the new set.
+        /// If the same object appears more than once in objects, it is added only once to the returned ordered set.
+        /// - cnt: The number of objects from objects to add to the new ordered set.
+        /// - Returns: An initialized ordered set containing cnt objects from the list of objects specified by objects. The returned set might be different than the original receiver.
+        ///
+        /// This method is a designated initializer of `NSOrderedSet`.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer or null.
@@ -119,6 +147,13 @@ impl<ObjectType: Message> DefaultRetained for NSOrderedSet<ObjectType> {
 impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSRange")]
+        /// Copies the objects contained in the ordered set that fall within the specified range to `objects`.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects of size at least the length of the range specified by aRange.
+        /// - range: A range within the bounds of the array.
+        /// If the location plus the length of the range is greater than the count of the array, this method raises an ``NSExceptionName/rangeException``.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer or null.
@@ -127,49 +162,97 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         pub unsafe fn getObjects_range(&self, objects: *mut NonNull<ObjectType>, range: NSRange);
 
         #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
+        /// Returns the objects in the ordered set at the specified indexes.
+        ///
+        /// - Parameter indexes: The indexes.
+        /// - Returns: The returned objects are in the ascending order of their indexes in indexes, so that object in returned ordered set with higher index in indexes will follow the object with smaller index in indexes.
+        ///
+        /// Raises an ``NSExceptionName/rangeException`` if any location in indexes exceeds the bounds of the array, of if `indexes` is `nil`.
         #[unsafe(method(objectsAtIndexes:))]
         #[unsafe(method_family = none)]
         pub fn objectsAtIndexes(&self, indexes: &NSIndexSet) -> Retained<NSArray<ObjectType>>;
 
+        /// The first object in the ordered set.
         #[unsafe(method(firstObject))]
         #[unsafe(method_family = none)]
         pub fn firstObject(&self) -> Option<Retained<ObjectType>>;
 
+        /// The last object in the ordered set.
         #[unsafe(method(lastObject))]
         #[unsafe(method_family = none)]
         pub fn lastObject(&self) -> Option<Retained<ObjectType>>;
 
+        /// Compares the receiving ordered set to another ordered set.
+        ///
+        /// - Parameter other: The ordered set with which to compare the receiving ordered set.
+        /// - Returns: `YES` if the contents of `other` are equal to the contents of the receiving ordered set, otherwise `NO`.
+        ///
+        /// Two ordered sets have equal contents if they each have the same number of members, if each member of one ordered set is present in the other, and the members are in the same order.
         #[unsafe(method(isEqualToOrderedSet:))]
         #[unsafe(method_family = none)]
         pub fn isEqualToOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
 
+        /// Returns a Boolean value that indicates whether a given object is present in the ordered set.
+        ///
+        /// - Parameter object: The object for which to test membership of the ordered set.
+        /// - Returns: `YES` if `object` is present in the set, otherwise `NO`.
         #[unsafe(method(containsObject:))]
         #[unsafe(method_family = none)]
         pub fn containsObject(&self, object: &ObjectType) -> bool;
 
+        /// Returns a Boolean value that indicates whether at least one object in the receiving ordered set is also present in another given ordered set.
+        ///
+        /// - Parameter other: The other ordered set.
+        /// - Returns: `YES` if at least one object in the receiving ordered set is also present in `other`, otherwise `NO`.
         #[unsafe(method(intersectsOrderedSet:))]
         #[unsafe(method_family = none)]
         pub fn intersectsOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
 
         #[cfg(feature = "NSSet")]
+        /// Returns a Boolean value that indicates whether at least one object in the receiving ordered set is also present in another given set.
+        ///
+        /// - Parameter set: The set.
+        /// - Returns: `YES` if at least one object in the receiving ordered set is also present in `other`, otherwise `NO`.
         #[unsafe(method(intersectsSet:))]
         #[unsafe(method_family = none)]
         pub fn intersectsSet(&self, set: &NSSet<ObjectType>) -> bool;
 
+        /// Returns a Boolean value that indicates whether every object in the receiving ordered set is also present in another given ordered set.
+        ///
+        /// - Parameter other: The ordered set with which to compare the receiving ordered set.
+        /// - Returns: `YES` if every object in the receiving set is also present in `other`, otherwise `NO`.
         #[unsafe(method(isSubsetOfOrderedSet:))]
         #[unsafe(method_family = none)]
         pub fn isSubsetOfOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
 
         #[cfg(feature = "NSSet")]
+        /// Returns a Boolean value that indicates whether every object in the receiving ordered set is also present in another given set.
+        ///
+        /// - Parameter set: The set with which to compare the receiving ordered set.
+        /// - Returns: `YES` if every object in the receiving ordered set is also present in `set`, otherwise `NO`.
         #[unsafe(method(isSubsetOfSet:))]
         #[unsafe(method_family = none)]
         pub fn isSubsetOfSet(&self, set: &NSSet<ObjectType>) -> bool;
 
+        /// Returns the object at the specified index of the set.
+        ///
+        /// - Parameter idx: The object located at index.
+        /// - Returns: If `idx` is beyond the end of the ordered set (that is, if index is greater than or equal to the value returned by count), an ``NSExceptionName/rangeException`` is raised.
+        ///
+        /// This method is the same as ``NSOrderedSet/object(at:)``.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// Returns an enumerator object that lets you access each object in the ordered set.
+        ///
+        /// - Returns: An enumerator object that lets you access each object in the ordered set, in order, from the element at the lowest index upwards.
+        ///
+        /// When you use this method with mutable subclasses of `NSOrderedSet`, you must not modify the ordered set during enumeration.
+        ///
+        /// It is more efficient to use the fast enumeration protocol (see ``NSFastEnumeration``). Fast enumeration is available in macOS 10.5 and later and iOS 2.0 and later.
+        ///
         /// # Safety
         ///
         /// The returned enumerator's underlying collection should not be mutated while in use.
@@ -178,6 +261,14 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// Returns an enumerator object that lets you access each object in the ordered set.
+        ///
+        /// - Returns: An enumerator object that lets you access each object in the ordered set, in order, from the element at the highest index downwards.
+        ///
+        /// When you use this method with mutable subclasses of `NSOrderedSet`, you must not modify the ordered set during enumeration.
+        ///
+        /// It is more efficient to use the fast enumeration protocol (see ``NSFastEnumeration``). Fast enumeration is available in macOS 10.5 and later and iOS 2.0 and later.
+        ///
         /// # Safety
         ///
         /// The returned enumerator's underlying collection should not be mutated while in use.
@@ -185,21 +276,39 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn reverseObjectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
+        /// An ordered set in the reverse order.
         #[unsafe(method(reversedOrderedSet))]
         #[unsafe(method_family = none)]
         pub fn reversedOrderedSet(&self) -> Retained<NSOrderedSet<ObjectType>>;
 
         #[cfg(feature = "NSArray")]
+        /// A representation of the ordered set as an array.
+        ///
+        /// This returns a proxy object for the receiving ordered set, which acts like an immutable array.
+        ///
+        /// While you cannot mutate the ordered set through this proxy, mutations to the original ordered set will be reflected in the proxy and it will appear to change spontaneously, because a copy of the ordered set is not being made.
         #[unsafe(method(array))]
         #[unsafe(method_family = none)]
         pub fn array(&self) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSSet")]
+        /// A representation of the set containing the contents of the ordered set.
+        ///
+        /// This returns a proxy object for the receiving ordered set, which acts like an immutable set.
+        ///
+        /// While you cannot mutate the ordered set through this proxy, mutations to the original ordered set will be reflected in the proxy and it will appear to change spontaneously, because a copy of the ordered set is not being made.
         #[unsafe(method(set))]
         #[unsafe(method_family = none)]
         pub fn set(&self) -> Retained<NSSet<ObjectType>>;
 
         #[cfg(feature = "block2")]
+        /// Executes a given block using each object in the ordered set.
+        ///
+        /// - Parameter block: The block to apply to elements in the ordered set.
+        /// The block takes three arguments:
+        /// - `obj`: The element in the set.
+        /// - `idx`: The index of the item in the set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this value to `YES` within the block.
         #[unsafe(method(enumerateObjectsUsingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateObjectsUsingBlock(
@@ -208,6 +317,15 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// Executes a given block using each object in the set, using the specified enumeration options.
+        ///
+        /// - Parameters:
+        /// - opts: A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
+        /// - block: The block to apply to elements in the ordered set.
+        /// The block takes three arguments:
+        /// - `obj`: The element in the set.
+        /// - `idx`: The index of the item in the set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this value to `YES` within the block.
         #[unsafe(method(enumerateObjectsWithOptions:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateObjectsWithOptions_usingBlock(
@@ -217,6 +335,21 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         );
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
+        /// Executes a given block using the objects in the ordered set at the specified indexes.
+        ///
+        /// - Parameters:
+        /// - s: The indexes of the objects over which to enumerate.
+        /// - opts: A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
+        /// - block: The block to apply to elements in the ordered set.
+        /// The block takes three arguments:
+        /// - `obj`: The element in the ordered set.
+        /// - `idx`: The index of the element in the ordered set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the array. The `stop` argument is an out-only argument. You should only ever set this Boolean to `YES` within the block.
+        ///
+        /// By default, the enumeration starts with the first object and continues serially through the ordered set to the last element specified by `s`. You can specify ``NSEnumerationOptions/concurrent`` and/or ``NSEnumerationOptions/reverse`` as enumeration options to modify this behavior.
+        ///
+        /// > Important:
+        /// > If the block parameter or the `s` is `nil`, this method raises an exception.
         #[unsafe(method(enumerateObjectsAtIndexes:options:usingBlock:))]
         #[unsafe(method_family = none)]
         pub fn enumerateObjectsAtIndexes_options_usingBlock(
@@ -227,6 +360,14 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         );
 
         #[cfg(feature = "block2")]
+        /// Returns the index of the object in the ordered set that passes a test in a given block.
+        ///
+        /// - Parameter predicate: The block to apply to elements in the ordered set.
+        /// The block takes three arguments:
+        /// - `obj`: The element in the ordered set.
+        /// - `idx`: The index of the element in the ordered set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this value to `YES` within the block.
+        /// - Returns: The index of the corresponding value in the ordered set that passes the test specified by predicate. If no objects in the ordered set  pass the test, returns `NSNotFound`.
         #[unsafe(method(indexOfObjectPassingTest:))]
         #[unsafe(method_family = none)]
         pub fn indexOfObjectPassingTest(
@@ -238,6 +379,20 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// Returns the index of an object in the ordered set that passes a test in a given block for a given set of enumeration options.
+        ///
+        /// - Parameters:
+        /// - opts: A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
+        /// - predicate: The block to apply to elements in the ordered set.
+        /// The block takes three arguments:
+        /// - `obj`: The element in the array.
+        /// - `idx`: The index of the element in the ordered set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this value to `YES` within the block.
+        ///
+        /// The block returns a Boolean value that indicates whether obj passed the test.
+        /// - Returns: The index whose corresponding value in the ordered set passes the test specified by `predicate` and `opts`.  If no objects in the ordered set  pass the test, returns `NSNotFound`.
+        ///
+        /// By default, the enumeration starts with the first object and continues serially through the ordered set to the last object. You can specify ``NSEnumerationOptions/concurrent`` and/or ``NSEnumerationOptions/reverse`` as enumeration options to modify this behavior.
         #[unsafe(method(indexOfObjectWithOptions:passingTest:))]
         #[unsafe(method_family = none)]
         pub fn indexOfObjectWithOptions_passingTest(
@@ -250,6 +405,24 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
+        /// Returns the index, from a given set of indexes, of the object in the ordered set that passes a test in a given block for a given set of enumeration options.
+        ///
+        /// - Parameters:
+        /// - s: The indexes of the objects over which to enumerate.
+        /// - opts: A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
+        /// - predicate: The block to apply to elements in the ordered set.
+        /// The block takes three arguments:
+        /// - `obj`: The element in the ordered set.
+        /// - `idx`: The index of the element in the ordered set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this value to `YES` within the block.
+        ///
+        /// The block returns a Boolean value that indicates whether `obj` passed the test.
+        /// - Returns: The index of the corresponding value in the ordered set passes the test specified by predicate. If no objects in the ordered set pass the test, returns `NSNotFound`.
+        ///
+        /// By default, the enumeration starts with the first object and continues serially through the ordered set to the last element specified by `s`. You can specify ``NSEnumerationOptions/concurrent`` and/or ``NSEnumerationOptions/reverse`` as enumeration options to modify this behavior.
+        ///
+        /// > Important:
+        /// > If the block parameter or `s` is `nil`, this method raises an exception.
         #[unsafe(method(indexOfObjectAtIndexes:options:passingTest:))]
         #[unsafe(method_family = none)]
         pub fn indexOfObjectAtIndexes_options_passingTest(
@@ -263,6 +436,16 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSIndexSet", feature = "block2"))]
+        /// Returns the index of the object in the ordered set that passes a test in a given block.
+        ///
+        /// - Parameter predicate: The block to apply to elements in the ordered set.
+        /// The block takes three arguments:
+        /// - `obj`: The element in the ordered set.
+        /// - `idx`: The index of the element in the ordered set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this value to `YES` within the block.
+        /// - Returns: The index of the corresponding value in the ordered set that passes the test specified by predicate. If no objects in the ordered set pass the test, returns `NSNotFound`.
+        ///
+        /// If the block parameter is `nil`, this method raises an exception.
         #[unsafe(method(indexesOfObjectsPassingTest:))]
         #[unsafe(method_family = none)]
         pub fn indexesOfObjectsPassingTest(
@@ -274,6 +457,21 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
+        /// Returns the index of an object in the ordered set that passes a test in a given block for a given set of enumeration options.
+        ///
+        /// - Parameters:
+        /// - opts: A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
+        /// - predicate: The block to apply to elements in the ordered set.
+        /// The block takes three arguments:
+        /// - `obj`: The element in the ordered set.
+        /// - `idx`: The index of the element in the ordered set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this value to `YES` within the block.
+        /// - Returns: The index whose corresponding value in the ordered set passes the test specified by `predicate` and `opts`. If the `opts` bitmask specifies reverse order, then the last item that matches is returned. Otherwise, the index of the first matching object is returned. If no objects in the ordered set pass the test, returns `NSNotFound`.
+        ///
+        /// By default, the enumeration starts with the first object and continues serially through the ordered set to the last object. You can specify ``NSEnumerationOptions/concurrent`` and/or ``NSEnumerationOptions/reverse`` as enumeration options to modify this behavior.
+        ///
+        /// > Important:
+        /// >  If the block parameter or `s` is `nil`, this method raises an exception.
         #[unsafe(method(indexesOfObjectsWithOptions:passingTest:))]
         #[unsafe(method_family = none)]
         pub fn indexesOfObjectsWithOptions_passingTest(
@@ -286,6 +484,24 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
+        /// Returns the index, from a given set of indexes, of the object in the ordered set that passes a test in a given block for a given set of enumeration options.
+        ///
+        /// - Parameters:
+        /// - s: The indexes of the objects over which to enumerate.
+        /// - opts: A bitmask that specifies the options for the enumeration (whether it should be performed concurrently and whether it should be performed in reverse order).
+        /// - predicate: The block to apply to elements in the ordered set.
+        /// The block takes three arguments:
+        /// - `obj`: The element in the ordered set.
+        /// - `idx`: The index of the element in the ordered set.
+        /// - `stop`: A reference to a Boolean value. The block can set the value to `YES` to stop further processing of the set. The `stop` argument is an out-only argument. You should only ever set this value to `YES` within the block.
+        ///
+        /// The block returns a Boolean value that indicates whether `obj` passed the test.
+        /// - Returns: The index of the corresponding value in the ordered set that passes the test specified by predicate. If no objects in the ordered set pass the test, returns NSNotFound.
+        ///
+        /// By default, the enumeration starts with the first object and continues serially through the ordered set to the last object. You can specify ``NSEnumerationOptions/concurrent`` and/or ``NSEnumerationOptions/reverse`` as enumeration options to modify this behavior.
+        ///
+        /// > Important:
+        /// >  If the block parameter or `s` is `nil` this method will raise an exception.
         #[unsafe(method(indexesOfObjectsAtIndexes:options:passingTest:))]
         #[unsafe(method_family = none)]
         pub fn indexesOfObjectsAtIndexes_options_passingTest(
@@ -304,6 +520,28 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
             feature = "NSRange",
             feature = "block2"
         ))]
+        /// Returns the index, within a specified range, of an object compared with elements in the ordered set using a given NSComparator block.
+        ///
+        /// - Parameters:
+        /// - object: An object for which to search in the ordered set.
+        /// If this value is `nil`, throws an ``NSExceptionName/invalidArgumentException``.
+        /// - range: The range within the array to search for `object`.
+        /// If r exceeds the bounds of the ordered set (if the location plus length of the range is greater than the count of the ordered set), throws an ``NSExceptionName/rangeException``.
+        /// - opts: Options for the search. For possible values, see ``NSBinarySearchingOptions``.
+        /// - cmp: A comparator block used to compare the object obj with elements in the ordered set.
+        /// If this value is `NULL`, throws an ``NSExceptionName/invalidArgumentException``.
+        /// - Returns: If the ``NSBinarySearchingOptions/insertionIndex`` option is not specified:
+        /// - If the `object` is found and neither ``NSBinarySearchingOptions/firstEqual`` nor ``NSBinarySearchingOptions/lastEqual`` is specified, returns the matching object's index.
+        /// - If the ``NSBinarySearchingOptions/firstEqual`` or ``NSBinarySearchingOptions/lastEqual`` option is also specified, returns the index of equal objects.
+        /// - If the object is not found, returns `NSNotFound`.
+        ///
+        /// If the ``NSBinarySearchingOptions/insertionIndex`` option is specified, returns the index at which you should insert `obj` in order to maintain a sorted array:
+        ///
+        /// - If the `object` is found and neither ``NSBinarySearchingOptions/firstEqual`` nor ``NSBinarySearchingOptions/lastEqual`` is specified, returns the matching object's index.
+        /// - If the ``NSBinarySearchingOptions/firstEqual`` or  ``NSBinarySearchingOptions/lastEqual`` option is also specified, returns the index of the equal objects.
+        /// - If the object is not found, returns the index of the least greater object, or the index at the end of the array if the object is larger than all other elements.
+        ///
+        /// The elements in the ordered set  must have already been sorted using the comparator `cmp`. If the ordered set is not sorted, the result is undefined.
         #[unsafe(method(indexOfObject:inSortedRange:options:usingComparator:))]
         #[unsafe(method_family = none)]
         pub fn indexOfObject_inSortedRange_options_usingComparator(
@@ -315,6 +553,10 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
+        /// Returns an array that lists the receiving ordered set's elements in ascending order, as determined by the comparison method specified by a given `NSComparator` block.
+        ///
+        /// - Parameter cmptr: A comparator block.
+        /// - Returns: An array that lists the receiving ordered set's elements in ascending order, as determined by the comparison method specified `cmptr`.
         #[unsafe(method(sortedArrayUsingComparator:))]
         #[unsafe(method_family = none)]
         pub fn sortedArrayUsingComparator(
@@ -323,6 +565,12 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
+        /// Returns an array that lists the receiving ordered set's elements in ascending order, as determined by the comparison method specified by a given `NSComparator` block.
+        ///
+        /// - Parameters:
+        /// - opts: A bitmask that specifies the options for the sort (whether it should be performed concurrently and whether it should be performed stably).
+        /// - cmptr: A comparator block.
+        /// - Returns: An array that lists the receiving ordered set's elements in ascending order, as determined by the comparison method specified `cmptr`.
         #[unsafe(method(sortedArrayWithOptions:usingComparator:))]
         #[unsafe(method_family = none)]
         pub fn sortedArrayWithOptions_usingComparator(
@@ -332,11 +580,19 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSString")]
+        /// A string that represents the contents of the ordered set, formatted as a property list.
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
         pub fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a string that represents the contents of the ordered set, formatted as a property list.
+        ///
+        /// - Parameter locale: An ``NSLocale`` object or an `NSDictionary` object that specifies options used for formatting each of the ordered set's elements (where recognized). Specify `nil` if you don't want the elements formatted.
+        /// - Returns: A string that represents the contents of the ordered set, formatted as a property list.
+        ///
+        /// For a description of how locale is applied to each element in the receiving ordered set, see ``NSOrderedSet/description(withLocale:indent:)``.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -348,6 +604,20 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Returns a string that represents the contents of the ordered set, formatted as a property list.
+        ///
+        /// - Parameters:
+        /// - locale: An ``NSLocale`` object or an `NSDictionary` object that specifies options used for formatting each of the array's elements (where recognized). Specify `nil` if you don't want the elements formatted.
+        /// - level: Specifies a level of indentation, to make the output more readable: the indentation is (4 spaces) * `level`.
+        /// - Returns: A string that represents the contents of the ordered set, formatted as a property list.
+        ///
+        /// The returned `NSString` object contains the string representations of each of the ordered set's elements, in order, from first to last. To obtain the string representation of a given element, `descriptionWithLocale:indent:` proceeds as follows:
+        ///
+        /// - If the element is an `NSString` object, it is used as is.
+        /// - If the element responds to `descriptionWithLocale:indent:`, that method is invoked to obtain the element's string representation.
+        /// - If the element responds to `descriptionWithLocale:`, that method is invoked to obtain the element's string representation.
+        /// - If none of the above conditions is met, the element's string representation is obtained by invoking its `description` method.
+        ///
         /// # Safety
         ///
         /// `locale` should be of the correct type.
@@ -364,14 +634,31 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 /// NSOrderedSetCreation.
 impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
+        /// Creates and returns an empty ordered set.
+        ///
+        /// - Returns: A new empty ordered set.
+        ///
+        /// This method is declared primarily for the use of mutable subclasses of `NSOrderedSet`.
         #[unsafe(method(orderedSet))]
         #[unsafe(method_family = none)]
         pub fn orderedSet() -> Retained<Self>;
 
+        /// Creates and returns a ordered set that contains a single given object.
+        ///
+        /// - Parameter object: The object to add to the new set.
+        /// - Returns: A new ordered set containing `object`.
         #[unsafe(method(orderedSetWithObject:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetWithObject(object: &ObjectType) -> Retained<Self>;
 
+        /// Creates and returns a set containing a specified number of objects from a given C array of objects.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects to add to the new ordered set.
+        /// If the same object appears more than once in objects, it is added only once to the returned ordered set. Each object receives a retain message as it is added to the set.
+        /// - cnt: The number of objects from objects to add to the new set.
+        /// - Returns: A new ordered set containing cnt objects from the list of objects specified by `objects`.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer.
@@ -382,11 +669,23 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Creates and returns an ordered set containing the objects from another ordered set.
+        ///
+        /// - Parameter set: A set containing the objects to add to the new ordered set.
+        /// The objects are not copied, simply referenced.
+        /// - Returns: A new ordered set containing the objects from set.
         #[unsafe(method(orderedSetWithOrderedSet:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetWithOrderedSet(set: &NSOrderedSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
+        /// Creates and returns a new ordered set for a specified range of objects in an ordered set.
+        ///
+        /// - Parameters:
+        /// - set: An ordered set.
+        /// - range: The range of objects in `set` to add to the ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in the specified range of the ordered set.
         #[unsafe(method(orderedSetWithOrderedSet:range:copyItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithOrderedSet_range_copyItems(
@@ -396,11 +695,22 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Creates and returns a set containing a uniqued collection of the objects contained in a given array.
+        ///
+        /// - Parameter array: An array containing the objects to add to the new ordered set. If the same object appears more than once in `array`, it is added only once to the returned set.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in array.
         #[unsafe(method(orderedSetWithArray:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSRange"))]
+        /// Creates and returns a new ordered set for a specified range of objects in an array.
+        ///
+        /// - Parameters:
+        /// - array: The array.
+        /// - range: The range of the objects to add to the ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in the specified range of the array.
         #[unsafe(method(orderedSetWithArray:range:copyItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithArray_range_copyItems(
@@ -410,11 +720,21 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
+        /// Creates and returns an ordered set with the contents of a set.
+        ///
+        /// - Parameter set: A set.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in the set.
         #[unsafe(method(orderedSetWithSet:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
+        /// Creates and returns an ordered set with the contents of a set, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: A set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in the specified range of the set.
         #[unsafe(method(orderedSetWithSet:copyItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithSet_copyItems(
@@ -422,10 +742,18 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
             flag: bool,
         ) -> Retained<Self>;
 
+        /// Initializes a new ordered set with the object.
+        ///
+        /// - Parameter object: The object to add to the new ordered set.
+        /// - Returns: A new ordered set that contains a single member, `object`.
         #[unsafe(method(initWithObject:))]
         #[unsafe(method_family = init)]
         pub fn initWithObject(this: Allocated<Self>, object: &ObjectType) -> Retained<Self>;
 
+        /// Initializes a new ordered set with the contents of a set.
+        ///
+        /// - Parameter set: A set.
+        /// - Returns: An initialized ordered set containing references to the objects in the set.
         #[unsafe(method(initWithOrderedSet:))]
         #[unsafe(method_family = init)]
         pub fn initWithOrderedSet(
@@ -433,6 +761,12 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
             set: &NSOrderedSet<ObjectType>,
         ) -> Retained<Self>;
 
+        /// Initializes a new ordered set with the contents of a set, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: A set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing the objects in the set.
         #[unsafe(method(initWithOrderedSet:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOrderedSet_copyItems(
@@ -442,6 +776,13 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
+        /// Initializes a new ordered set with the contents of an ordered set, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: An ordered set.
+        /// - range: The range of objects in `orderedSet` to add to the ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing the objects in the ordered set.
         #[unsafe(method(initWithOrderedSet:range:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOrderedSet_range_copyItems(
@@ -452,11 +793,23 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Initializes a newly allocated set with the objects that are contained in a given array.
+        ///
+        /// - Parameter array: An array of objects to add to the new set.
+        /// If the same object appears more than once in array, it is represented only once in the returned ordered set.
+        /// - Returns: An initialized ordered set with the contents of array. The returned ordered set might be different than the original receiver.
         #[unsafe(method(initWithArray:))]
         #[unsafe(method_family = init)]
         pub fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Initializes a newly allocated set with the objects that are contained in a given array, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: An array of objects to add to the new set.
+        /// If the same object appears more than once in array, it is represented only once in the returned ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing a uniqued collection of the objects contained in the array.
         #[unsafe(method(initWithArray:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArray_copyItems(
@@ -466,6 +819,14 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSRange"))]
+        /// Initializes a newly allocated set with the objects that are contained in the specified range of an array, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: An array of objects to add to the new set.
+        /// If the same object appears more than once in array, it is represented only once in the returned ordered set.
+        /// - range: The range of objects in `array` to add to the ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing a uniqued collection of the objects contained in specified range of the array.
         #[unsafe(method(initWithArray:range:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArray_range_copyItems(
@@ -476,11 +837,21 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
+        /// Initializes a new ordered set with the contents of a set.
+        ///
+        /// - Parameter set: The set.
+        /// - Returns: An initialized ordered set containing the objects in the set.
         #[unsafe(method(initWithSet:))]
         #[unsafe(method_family = init)]
         pub fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
+        /// Initializes a new ordered set with the contents of a set, optionally copying the objects in the set.
+        ///
+        /// - Parameters:
+        /// - set: The set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing the objects in the set.
         #[unsafe(method(initWithSet:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSet_copyItems(
@@ -496,14 +867,31 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 /// NSOrderedSetCreation.
 impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
+        /// Creates and returns an empty ordered set.
+        ///
+        /// - Returns: A new empty ordered set.
+        ///
+        /// This method is declared primarily for the use of mutable subclasses of `NSOrderedSet`.
         #[unsafe(method(orderedSet))]
         #[unsafe(method_family = none)]
         pub fn orderedSet() -> Retained<Self>;
 
+        /// Creates and returns a ordered set that contains a single given object.
+        ///
+        /// - Parameter object: The object to add to the new set.
+        /// - Returns: A new ordered set containing `object`.
         #[unsafe(method(orderedSetWithObject:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetWithObject(object: &ObjectType) -> Retained<Self>;
 
+        /// Creates and returns a set containing a specified number of objects from a given C array of objects.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects to add to the new ordered set.
+        /// If the same object appears more than once in objects, it is added only once to the returned ordered set. Each object receives a retain message as it is added to the set.
+        /// - cnt: The number of objects from objects to add to the new set.
+        /// - Returns: A new ordered set containing cnt objects from the list of objects specified by `objects`.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer.
@@ -514,11 +902,23 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Creates and returns an ordered set containing the objects from another ordered set.
+        ///
+        /// - Parameter set: A set containing the objects to add to the new ordered set.
+        /// The objects are not copied, simply referenced.
+        /// - Returns: A new ordered set containing the objects from set.
         #[unsafe(method(orderedSetWithOrderedSet:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetWithOrderedSet(set: &NSOrderedSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
+        /// Creates and returns a new ordered set for a specified range of objects in an ordered set.
+        ///
+        /// - Parameters:
+        /// - set: An ordered set.
+        /// - range: The range of objects in `set` to add to the ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in the specified range of the ordered set.
         #[unsafe(method(orderedSetWithOrderedSet:range:copyItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithOrderedSet_range_copyItems(
@@ -528,11 +928,22 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Creates and returns a set containing a uniqued collection of the objects contained in a given array.
+        ///
+        /// - Parameter array: An array containing the objects to add to the new ordered set. If the same object appears more than once in `array`, it is added only once to the returned set.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in array.
         #[unsafe(method(orderedSetWithArray:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSRange"))]
+        /// Creates and returns a new ordered set for a specified range of objects in an array.
+        ///
+        /// - Parameters:
+        /// - array: The array.
+        /// - range: The range of the objects to add to the ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in the specified range of the array.
         #[unsafe(method(orderedSetWithArray:range:copyItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithArray_range_copyItems(
@@ -542,11 +953,21 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
+        /// Creates and returns an ordered set with the contents of a set.
+        ///
+        /// - Parameter set: A set.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in the set.
         #[unsafe(method(orderedSetWithSet:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
+        /// Creates and returns an ordered set with the contents of a set, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: A set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: A new ordered set containing a uniqued collection of the objects contained in the specified range of the set.
         #[unsafe(method(orderedSetWithSet:copyItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithSet_copyItems(
@@ -554,10 +975,18 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
             flag: bool,
         ) -> Retained<Self>;
 
+        /// Initializes a new ordered set with the object.
+        ///
+        /// - Parameter object: The object to add to the new ordered set.
+        /// - Returns: A new ordered set that contains a single member, `object`.
         #[unsafe(method(initWithObject:))]
         #[unsafe(method_family = init)]
         pub fn initWithObject(this: Allocated<Self>, object: &ObjectType) -> Retained<Self>;
 
+        /// Initializes a new ordered set with the contents of a set.
+        ///
+        /// - Parameter set: A set.
+        /// - Returns: An initialized ordered set containing references to the objects in the set.
         #[unsafe(method(initWithOrderedSet:))]
         #[unsafe(method_family = init)]
         pub fn initWithOrderedSet(
@@ -565,6 +994,12 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
             set: &NSOrderedSet<ObjectType>,
         ) -> Retained<Self>;
 
+        /// Initializes a new ordered set with the contents of a set, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: A set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing the objects in the set.
         #[unsafe(method(initWithOrderedSet:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOrderedSet_copyItems(
@@ -574,6 +1009,13 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
+        /// Initializes a new ordered set with the contents of an ordered set, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: An ordered set.
+        /// - range: The range of objects in `orderedSet` to add to the ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing the objects in the ordered set.
         #[unsafe(method(initWithOrderedSet:range:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOrderedSet_range_copyItems(
@@ -584,11 +1026,23 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Initializes a newly allocated set with the objects that are contained in a given array.
+        ///
+        /// - Parameter array: An array of objects to add to the new set.
+        /// If the same object appears more than once in array, it is represented only once in the returned ordered set.
+        /// - Returns: An initialized ordered set with the contents of array. The returned ordered set might be different than the original receiver.
         #[unsafe(method(initWithArray:))]
         #[unsafe(method_family = init)]
         pub fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
+        /// Initializes a newly allocated set with the objects that are contained in a given array, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: An array of objects to add to the new set.
+        /// If the same object appears more than once in array, it is represented only once in the returned ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing a uniqued collection of the objects contained in the array.
         #[unsafe(method(initWithArray:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArray_copyItems(
@@ -598,6 +1052,14 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSRange"))]
+        /// Initializes a newly allocated set with the objects that are contained in the specified range of an array, optionally copying the items.
+        ///
+        /// - Parameters:
+        /// - set: An array of objects to add to the new set.
+        /// If the same object appears more than once in array, it is represented only once in the returned ordered set.
+        /// - range: The range of objects in `array` to add to the ordered set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing a uniqued collection of the objects contained in specified range of the array.
         #[unsafe(method(initWithArray:range:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArray_range_copyItems(
@@ -608,11 +1070,21 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
+        /// Initializes a new ordered set with the contents of a set.
+        ///
+        /// - Parameter set: The set.
+        /// - Returns: An initialized ordered set containing the objects in the set.
         #[unsafe(method(initWithSet:))]
         #[unsafe(method_family = init)]
         pub fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
+        /// Initializes a new ordered set with the contents of a set, optionally copying the objects in the set.
+        ///
+        /// - Parameters:
+        /// - set: The set.
+        /// - flag: If `YES` the objects are copied to the ordered set; otherwise `NO`.
+        /// - Returns: An initialized ordered set containing the objects in the set.
         #[unsafe(method(initWithSet:copyItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSet_copyItems(
@@ -627,6 +1099,9 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
 impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
         #[cfg(all(feature = "NSOrderedCollectionDifference", feature = "block2"))]
+        /// Compares two ordered sets, using the provided block and with options, to create a difference object that represents the changes between them.
+        ///
+        /// The options allow you to choose to omit insertion or removal references to the change objects within the difference object's changes. Don't use the option ``NSOrderedCollectionDifferenceCalculationOptions/inferMoves`` when providing a block for the equivalence test. The changes returned in the difference object don't include valid values for ``NSOrderedCollectionChange/associatedIndex``.
         #[unsafe(method(differenceFromOrderedSet:withOptions:usingEquivalenceTest:))]
         #[unsafe(method_family = none)]
         pub fn differenceFromOrderedSet_withOptions_usingEquivalenceTest(
@@ -637,6 +1112,37 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]
+        /// Compares two ordered sets, with options, to create a difference object that represents the changes between them.
+        ///
+        /// The difference method creates the difference object by comparing objects within the ordered sets with the `isEqual:` method.
+        ///
+        /// The options allow you to choose to omit insertion or removal references to the change objects within the difference object. You can also choose to infer moves when computing the difference, which provides an ``NSOrderedCollectionChange/associatedIndex`` within the change objects that indicates the index in the ordered set where the object moved from.
+        ///
+        /// The following example computes the difference between two ordered sets, inferring moves between them:
+        ///
+        /// ```objc
+        /// NSOrderedSet *original = [NSOrderedSet
+        /// orderedSetWithObjects:@"Red", @"Green", @"Blue", nil];
+        /// NSOrderedSet *modified = [NSOrderedSet
+        /// orderedSetWithObjects:@"Red", @"Blue", @"Green", nil];
+        ///
+        /// NSOrderedCollectionDifference *diff = [original
+        /// differenceFromOrderedSet:modified
+        /// withOptions:NSOrderedCollectionDifferenceCalculationInferMoves];
+        ///
+        /// // diff.hasChanges == TRUE
+        /// // diff.insertions.count == 1
+        /// // diff.removals.count == 1
+        ///
+        /// // Inferring the moves adds an associatedIndex into the change.
+        /// NSOrderedCollectionChange* insertion = diff.insertions[0];
+        /// // insertion.index == 2
+        /// // insertion.associatedIndex == 1
+        ///
+        /// NSOrderedCollectionChange* deletion = diff.removals[0];
+        /// // deletion.index == 1
+        /// // deletion.associatedIndex == 2
+        /// ```
         #[unsafe(method(differenceFromOrderedSet:withOptions:))]
         #[unsafe(method_family = none)]
         pub fn differenceFromOrderedSet_withOptions(
@@ -646,6 +1152,22 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]
+        /// Compares two ordered sets to create a difference object that represents the changes between them.
+        ///
+        /// The difference method creates the difference object by comparing objects within the ordered sets with the `isEqual:` method.
+        ///
+        /// The following example computes the difference between two ordered sets:
+        ///
+        /// ```objc
+        /// NSOrderedSet *original = [NSOrderedSet orderedSetWithObjects:@"1", @"2", nil];
+        /// NSOrderedSet *modified = [NSOrderedSet orderedSetWithObjects:@"1", @"2", @"3", nil];
+        ///
+        /// NSOrderedCollectionDifference *diff = [modified differenceFromOrderedSet:original];
+        /// NSLog(@"diff is: %@", diff.debugDescription);
+        /// // diff.hasChanges == true
+        /// // diff.insertions.count == 1
+        /// // diff.removals.count == 0
+        /// ```
         #[unsafe(method(differenceFromOrderedSet:))]
         #[unsafe(method_family = none)]
         pub fn differenceFromOrderedSet(
@@ -654,6 +1176,22 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]
+        /// Creates a new ordered set by applying a difference object to an existing ordered set.
+        ///
+        /// The following example computes the difference between two ordered sets, then applies the difference to create an ordered set that duplicates the original:
+        ///
+        /// ```objc
+        /// NSOrderedSet *original = [NSOrderedSet orderedSetWithObjects:@"1", @"2", nil];
+        /// NSOrderedSet *modified = [NSOrderedSet orderedSetWithObjects:@"1", @"2", @"3", nil];
+        ///
+        /// NSOrderedCollectionDifference *diff = [modified differenceFromOrderedSet:original];
+        /// // diff.hasChanges == true
+        /// // diff.insertions.count == 1
+        /// // diff.removals.count == 0
+        ///
+        /// NSOrderedSet *updated = [original orderedSetByApplyingDifference:diff];
+        /// // updated == [@"1", @"2", @"3"]
+        /// ```
         #[unsafe(method(orderedSetByApplyingDifference:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetByApplyingDifference(
@@ -664,7 +1202,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 }
 
 extern_class!(
-    /// **************       Mutable Ordered Set     ***************
+    /// A dynamic, ordered collection of unique objects.
+    ///
+    /// ``NSMutableOrderedSet`` objects are not like C arrays. That is, even though you may specify a size when you create a mutable ordered set, the specified size is regarded as a "hint"; the actual size of the set is still 0. This means that you cannot insert an object at an index greater than the current count of an set. For example, if a set contains two objects, its size is 2, so you can add objects at indices 0, 1, or 2. Index 3 is illegal and out of bounds; if you try to add an object at index 3 (when the size of the array is 2), `NSMutableOrderedSet` raises an exception.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableorderedset?language=objc)
     #[unsafe(super(NSOrderedSet<ObjectType>, NSObject))]
@@ -730,22 +1270,61 @@ extern_conformance!(
 
 impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
+        /// Inserts the given object at the specified index of the mutable ordered set, if it is not already a member.
+        ///
+        /// - Parameters:
+        /// - object: The object to insert into the set's content.
+        /// - idx: The index in the mutable ordered set at which to insert `object`. This value must not be greater than the count of elements in the array.
+        ///
+        /// > Important:
+        /// > Raises an ``NSExceptionName/rangeException`` if `idx` is greater than the number of elements in the mutable ordered set.
+        ///
+        /// If the object is already a member, this method has no effect. If the specified index is already occupied, the objects at that index and beyond are shifted by adding `1` to their indexes to make room for the inserted object.
         #[unsafe(method(insertObject:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn insertObject_atIndex(&self, object: &ObjectType, idx: NSUInteger);
 
+        /// Removes a the object at the specified index from the mutable ordered set.
+        ///
+        /// - Parameter idx: The index of the object to remove from the mutable ordered set. The value must not exceed the bounds of the set.
+        ///
+        /// > Important:
+        /// > Raises an ``NSExceptionName/rangeException`` if index is beyond the end of the mutable ordered set.
+        ///
+        /// To fill the gap, all elements beyond index are moved by subtracting 1 from their index.
         #[unsafe(method(removeObjectAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn removeObjectAtIndex(&self, idx: NSUInteger);
 
+        /// Replaces the object at the specified index with the new object.
+        ///
+        /// - Parameters:
+        /// - idx: The index of the object to be replaced. This value must not exceed the bounds of the mutable ordered set.
+        ///
+        /// > Important:
+        /// > Raises an ``NSExceptionName/rangeException`` if index is beyond the end of the mutable ordered set.
+        /// - object: The object with which to replace the object at the index in the ordered set specified by `idx`.
         #[unsafe(method(replaceObjectAtIndex:withObject:))]
         #[unsafe(method_family = none)]
         pub fn replaceObjectAtIndex_withObject(&self, idx: NSUInteger, object: &ObjectType);
 
+        /// Initializes a newly allocated mutable ordered set.
+        ///
+        /// - Returns: A mutable ordered set.
+        ///
+        /// This method is a designated initializer of `NSMutableOrderedSet`.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns an initialized mutable ordered set with a given initial capacity.
+        ///
+        /// - Parameter numItems: The initial capacity of the new ordered set.
+        /// - Returns: An initialized mutable ordered set with initial capacity to hold `numItems` members.
+        ///
+        /// Mutable ordered sets allocate additional memory as needed, so `numItems` simply establishes the set's initial capacity.
+        ///
+        /// This method is a designated initializer of `NSMutableOrderedSet`.
         #[unsafe(method(initWithCapacity:))]
         #[unsafe(method_family = init)]
         pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
@@ -755,6 +1334,16 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
 /// Methods declared on superclass `NSOrderedSet`.
 impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
+        /// Initializes a newly allocated set with a specified number of objects from a given C array of objects.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects to add to the new set.
+        /// If the same object appears more than once in objects, it is added only once to the returned ordered set.
+        /// - cnt: The number of objects from objects to add to the new ordered set.
+        /// - Returns: An initialized ordered set containing cnt objects from the list of objects specified by objects. The returned set might be different than the original receiver.
+        ///
+        /// This method is a designated initializer of `NSOrderedSet`.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer or null.
@@ -787,10 +1376,19 @@ impl<ObjectType: Message> DefaultRetained for NSMutableOrderedSet<ObjectType> {
 /// NSExtendedMutableOrderedSet.
 impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
+        /// Appends a given object to the end of the mutable ordered set, if it is not already a member.
+        ///
+        /// - Parameter object: The object to add to the set.
         #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub fn addObject(&self, object: &ObjectType);
 
+        /// Appends the given number of objects from a given C array to the end of the mutable ordered set.
+        ///
+        /// - Parameters:
+        /// - objects: A C array of objects.
+        /// - count: The number of values from the objects C array to append to the mutable ordered set. This number will be the count of the new array---it must not be negative or greater than the number of elements in objects.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer or null.
@@ -799,33 +1397,102 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         pub unsafe fn addObjects_count(&self, objects: *mut NonNull<ObjectType>, count: NSUInteger);
 
         #[cfg(feature = "NSArray")]
+        /// Appends to the end of the mutable ordered set each object contained in a given array that is not already a member.
+        ///
+        /// - Parameter array: An array of objects to add to the set.
         #[unsafe(method(addObjectsFromArray:))]
         #[unsafe(method_family = none)]
         pub fn addObjectsFromArray(&self, array: &NSArray<ObjectType>);
 
+        /// Exchanges the object at the specified index with the object at the other index.
+        ///
+        /// - Parameters:
+        /// - idx1: The index of the first object.
+        ///
+        /// > Important:
+        /// > Raises an ``NSExceptionName/rangeException`` if index is beyond the end of the mutable ordered set.
+        /// - idx2: The index of the second object.
+        ///
+        /// > Important:
+        /// > Raises an ``NSExceptionName/rangeException`` if index is beyond the end of the mutable ordered set.
         #[unsafe(method(exchangeObjectAtIndex:withObjectAtIndex:))]
         #[unsafe(method_family = none)]
         pub fn exchangeObjectAtIndex_withObjectAtIndex(&self, idx1: NSUInteger, idx2: NSUInteger);
 
         #[cfg(feature = "NSIndexSet")]
+        /// Moves the objects at the specified indexes to the new location.
+        ///
+        /// - Parameters:
+        /// - indexes: The indexes of the objects to move.
+        /// - idx: The index in the mutable ordered set at which to insert the objects. The objects being moved are first removed from the set, then this index is used to find the location at which to insert the moved objects.
+        ///
+        /// For example, the following code results in the contents of `mySet` being equal to `["a", "c", "b", "d", "e"]:`
+        ///
+        /// ```objc
+        /// NSMutableIndexSet *movedObjectIndexes = [NSMutableIndexSet indexSet];
+        /// [movedObjectIndexes addIndex: 1];
+        /// [movedObjectIndexes addIndex: 3];
+        ///
+        /// NSMutableOrderedSet *mySet = [NSMutableOrderedSet orderedSetWithCapacity:5];
+        /// [mySet addObject:@"a"];
+        /// [mySet addObject:@"b"];
+        /// [mySet addObject:@"c"];
+        /// [mySet addObject:@"d"];
+        /// [mySet addObject:@"e"];
+        ///
+        /// [mySet moveObjectsAtIndexes:movedObjectIndexes toIndex:2];
+        /// ```
         #[unsafe(method(moveObjectsAtIndexes:toIndex:))]
         #[unsafe(method_family = none)]
         pub fn moveObjectsAtIndexes_toIndex(&self, indexes: &NSIndexSet, idx: NSUInteger);
 
         #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
+        /// Inserts the objects in the array at the specified indexes.
+        ///
+        /// - Parameters:
+        /// - objects: An array of objects to insert into the mutable ordered set.
+        /// - indexes: The indexes at which the objects in objects should be inserted. The count of locations in indexes must equal the count of objects.
+        ///
+        /// Each object in objects is inserted into the receiving mutable ordered set in turn at the corresponding location specified in indexes after earlier insertions have been made.
         #[unsafe(method(insertObjects:atIndexes:))]
         #[unsafe(method_family = none)]
         pub fn insertObjects_atIndexes(&self, objects: &NSArray<ObjectType>, indexes: &NSIndexSet);
 
+        /// Appends or replaces the object at the specified index.
+        ///
+        /// - Parameters:
+        /// - obj: The object to insert or append.
+        /// - idx: The index. If the index is equal to the length of the collection, then it inserts the object at that index, otherwise it replaces the object at that index with the given object.
         #[unsafe(method(setObject:atIndex:))]
         #[unsafe(method_family = none)]
         pub fn setObject_atIndex(&self, obj: &ObjectType, idx: NSUInteger);
 
+        /// Replaces the given object at the specified index of the mutable ordered set.
+        ///
+        /// - Parameters:
+        /// - obj: The object to replace the set's content.
+        /// - idx: The index in the mutable ordered set at which to insert `obj`. This value must not be greater than the count of elements in the array.
+        ///
+        /// > Important:
+        /// > Raises an ``NSExceptionName/rangeException`` if `idx` is greater than the number of elements in the mutable ordered set.
+        ///
+        /// If the index is already occupied, the objects at index and beyond are shifted by adding `1` to their indices to make room.
+        ///
+        /// This method is identical to ``NSMutableOrderedSet/insert(_:at:)-7qg51``.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub fn setObject_atIndexedSubscript(&self, obj: &ObjectType, idx: NSUInteger);
 
         #[cfg(feature = "NSRange")]
+        /// Replaces the objects in the receiving mutable ordered set at the range with the specified number of objects from a given C array.
+        ///
+        /// - Parameters:
+        /// - range: The range of the objects to replace.
+        /// - objects: A C array of objects.
+        /// - count: The number of values from the objects C array to insert in place of the objects in `range`. This number will be the count of the new array---it must not be negative or greater than the number of elements in objects.
+        ///
+        /// Elements are added to the new array in the same order they appear in objects, up to but not including index count.
+        ///
         /// # Safety
         ///
         /// `objects` must be a valid pointer or null.
@@ -839,6 +1506,15 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
+        /// Replaces the objects at the specified indexes with the new objects.
+        ///
+        /// - Parameters:
+        /// - indexes: The indexes of the objects to be replaced.
+        /// - objects: The objects with which to replace the objects in the receiving mutable ordered set at the indexes specified by indexes.
+        ///
+        /// The count of locations in `indexes` must equal the count of objects.
+        ///
+        /// The indexes in `indexes` are used in the same order as the objects in `objects`.
         #[unsafe(method(replaceObjectsAtIndexes:withObjects:))]
         #[unsafe(method_family = none)]
         pub fn replaceObjectsAtIndexes_withObjects(
@@ -848,66 +1524,123 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         );
 
         #[cfg(feature = "NSRange")]
+        /// Removes from the mutable ordered set each of the objects within a given range.
+        ///
+        /// - Parameter range: The range of the objects to remove from the mutable ordered set.
+        ///
+        /// The objects are removed using ``NSMutableOrderedSet/removeObject(at:)``.
         #[unsafe(method(removeObjectsInRange:))]
         #[unsafe(method_family = none)]
         pub fn removeObjectsInRange(&self, range: NSRange);
 
         #[cfg(feature = "NSIndexSet")]
+        /// Removes the objects at the specified indexes from the mutable ordered set.
+        ///
+        /// - Parameter indexes: The indexes of the objects to remove from the mutable ordered set. The locations specified by indexes must lie within the bounds of the mutable ordered set.
+        ///
+        /// This method is similar to ``NSMutableOrderedSet/removeObject(at:)``, but allows you to efficiently remove multiple objects with a single operation.
         #[unsafe(method(removeObjectsAtIndexes:))]
         #[unsafe(method_family = none)]
         pub fn removeObjectsAtIndexes(&self, indexes: &NSIndexSet);
 
+        /// Removes all the objects from the mutable ordered set.
         #[unsafe(method(removeAllObjects))]
         #[unsafe(method_family = none)]
         pub fn removeAllObjects(&self);
 
+        /// Removes a given object from the mutable ordered set.
+        ///
+        /// - Parameter object: The object to remove from the mutable ordered set.
         #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
         pub fn removeObject(&self, object: &ObjectType);
 
         #[cfg(feature = "NSArray")]
+        /// Removes the objects in the array from the mutable ordered set.
+        ///
+        /// - Parameter array: An array containing the objects to be removed from the receiving mutable ordered set.
+        ///
+        /// This method is similar to ``NSMutableOrderedSet/remove(_:)``, but allows you to efficiently remove large sets of objects with a single operation. If the receiving mutable ordered set does not contain objects in array, the method has no effect (although it does incur the overhead of searching the contents).
+        ///
+        /// This method assumes that all elements in array respond to
+        /// <doc
+        /// ://com.apple.documentation/documentation/objectivec/nsobjectprotocol/hash> and
+        /// <doc
+        /// ://com.apple.documentation/documentation/objectivec/nsobjectprotocol/isequal(_:)>.
         #[unsafe(method(removeObjectsInArray:))]
         #[unsafe(method_family = none)]
         pub fn removeObjectsInArray(&self, array: &NSArray<ObjectType>);
 
+        /// Removes from the receiving ordered set each object that isn't a member of another ordered set.
+        ///
+        /// - Parameter other: The ordered set with which to perform the intersection.
         #[unsafe(method(intersectOrderedSet:))]
         #[unsafe(method_family = none)]
         pub fn intersectOrderedSet(&self, other: &NSOrderedSet<ObjectType>);
 
+        /// Removes each object in another given ordered set from the receiving mutable ordered set, if present.
+        ///
+        /// - Parameter other: The ordered set of objects to remove from the receiving set.
         #[unsafe(method(minusOrderedSet:))]
         #[unsafe(method_family = none)]
         pub fn minusOrderedSet(&self, other: &NSOrderedSet<ObjectType>);
 
+        /// Adds each object in another given ordered set to the receiving mutable ordered set, if not present.
+        ///
+        /// - Parameter other: The set of objects to add to the receiving mutable ordered set.
         #[unsafe(method(unionOrderedSet:))]
         #[unsafe(method_family = none)]
         pub fn unionOrderedSet(&self, other: &NSOrderedSet<ObjectType>);
 
         #[cfg(feature = "NSSet")]
+        /// Removes from the receiving ordered set each object that isn't a member of another set.
+        ///
+        /// - Parameter other: The set with which to perform the intersection.
         #[unsafe(method(intersectSet:))]
         #[unsafe(method_family = none)]
         pub fn intersectSet(&self, other: &NSSet<ObjectType>);
 
         #[cfg(feature = "NSSet")]
+        /// Removes each object in another given set from the receiving mutable ordered set, if present.
+        ///
+        /// - Parameter other: The set of objects to remove from the receiving set.
         #[unsafe(method(minusSet:))]
         #[unsafe(method_family = none)]
         pub fn minusSet(&self, other: &NSSet<ObjectType>);
 
         #[cfg(feature = "NSSet")]
+        /// Adds each object in another given set to the receiving mutable ordered set, if not present.
+        ///
+        /// - Parameter other: The set of objects to add to the receiving mutable ordered set.
         #[unsafe(method(unionSet:))]
         #[unsafe(method_family = none)]
         pub fn unionSet(&self, other: &NSSet<ObjectType>);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// Sorts the mutable ordered set using the comparison method specified by the comparator block.
+        ///
+        /// - Parameter cmptr: A comparator block.
         #[unsafe(method(sortUsingComparator:))]
         #[unsafe(method_family = none)]
         pub fn sortUsingComparator(&self, cmptr: &NSComparator);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// Sorts the mutable ordered set using the specified options and the comparison method specified by a given comparator block.
+        ///
+        /// - Parameters:
+        /// - opts: A bitmask that specifies the options for the sort (whether it should be performed concurrently and whether it should be performed stably).
+        /// - cmptr: A comparator block.
         #[unsafe(method(sortWithOptions:usingComparator:))]
         #[unsafe(method_family = none)]
         pub fn sortWithOptions_usingComparator(&self, opts: NSSortOptions, cmptr: &NSComparator);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
+        /// Sorts the specified range of the mutable ordered set using the specified options and the comparison method specified by a given comparator block.
+        ///
+        /// - Parameters:
+        /// - range: The range to sort.
+        /// - opts: A bitmask that specifies the options for the sort (whether it should be performed concurrently and whether it should be performed stably).
+        /// - cmptr: A comparator block.
         #[unsafe(method(sortRange:options:usingComparator:))]
         #[unsafe(method_family = none)]
         pub fn sortRange_options_usingComparator(
@@ -922,6 +1655,12 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
 /// NSMutableOrderedSetCreation.
 impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
+        /// Creates and returns an mutable ordered set with a given initial capacity.
+        ///
+        /// - Parameter numItems: The initial capacity of the new ordered set.
+        /// - Returns: A mutable ordered set with initial capacity to hold `numItems` members.
+        ///
+        /// Mutable ordered sets allocate additional memory as needed, so `numItems` simply establishes the set's initial capacity.
         #[unsafe(method(orderedSetWithCapacity:))]
         #[unsafe(method_family = none)]
         pub fn orderedSetWithCapacity(num_items: NSUInteger) -> Retained<Self>;

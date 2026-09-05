@@ -33,13 +33,16 @@ impl WebDownload {}
 /// Methods declared on superclass `NSURLDownload`.
 impl WebDownload {
     extern_methods!(
-        /// Initializes a NSURLDownload object and starts the download.
+        /// Initializes an `NSURLDownload` object and starts the download.
         ///
-        /// Parameter `request`: The request to download. Must not be nil.
+        /// The `request` object is deep-copied as part of the initialization process. Changes made to `request` after this method returns do not affect the request that is used for the loading process.
         ///
-        /// Parameter `delegate`: The delegate of the download.
+        /// Delegate messages will be sent on the thread which calls this method. For the download to work correctly, the calling thread's run loop must be operating in the default run loop mode.
         ///
-        /// Returns: An initialized NSURLDownload object.
+        /// - Parameters:
+        /// - request: The request to download. Must not be `nil`.
+        /// - delegate: The delegate of the download. The `NSURLDownload` class maintains a strong reference to this delegate object.
+        /// - Returns: An initialized `NSURLDownload` object for `request`.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[unsafe(method(initWithRequest:delegate:))]
         #[unsafe(method_family = init)]
@@ -49,15 +52,15 @@ impl WebDownload {
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
         ) -> Retained<Self>;
 
-        /// Initializes a NSURLDownload object for resuming a previous download.
+        /// Initializes an `NSURLDownload` object for resuming a previous download and begins the download.
         ///
-        /// Parameter `resumeData`: The resume data from the previous download.
+        /// If you want to support pausing and resuming downloads, your app must call ``deletesFileUponFailure`` passing `NO` immediately after initializing the download, then call ``cancel()`` to pause, and ``resumeData`` to obtain the data needed to resume later.
         ///
-        /// Parameter `delegate`: The delegate of the download.
-        ///
-        /// Parameter `path`: The path of the incomplete downloaded file.
-        ///
-        /// Returns: An initialized NSURLDownload object.
+        /// - Parameters:
+        /// - resumeData: The resume data from the previous download.
+        /// - delegate: The delegate of the download. The `NSURLDownload` class maintains a strong reference to this delegate object.
+        /// - path: The location for the downloaded data.
+        /// - Returns: An initialized `NSURLDownload` object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[unsafe(method(initWithResumeData:delegate:path:))]
         #[unsafe(method_family = init)]

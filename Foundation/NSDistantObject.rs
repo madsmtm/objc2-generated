@@ -7,7 +7,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistantobject?language=objc)
+    /// A proxy for objects in other applications or threads.
+    ///
+    /// When a distant object receives a message, in most cases it forwards the message through its ``NSConnection`` object to the real object in another application, supplying the return value to the sender of the message if one is received, and propagating any exception back to the invoker of the method that raised it.
+    ///
+    /// ``NSDistantObject`` is a concrete subclass of ``NSProxy``, adding two useful instance methods of its own: ``NSDistantObject/connectionForProxy`` returns the ``NSConnection`` object that handles the receiver; ``setProtocolForProxy:`` establishes the set of methods the real object is known to respond to, saving the network traffic required to determine the argument and return types the first time a particular selector is forwarded to the remote proxy.
+    ///
+    /// There are two kinds of distant object: local proxies and remote proxies. A local proxy is created by an ``NSConnection`` object the first time an object is sent to another application. It is used by the connection for bookkeeping purposes and should be considered private. The local proxy is transmitted over the network using the ``NSCoding`` protocol to create the remote proxy, which is the object that the other application uses. ``NSDistantObject`` defines methods for an ``NSConnection`` object to create instances, but they're intended only for subclasses to override—you should never invoke them directly. Use the ``NSConnection/rootProxyForConnectionWithRegisteredName:host:`` method of ``NSConnection``, which sets up all the required state for an object-proxy pair.
+    ///
+    /// > Important:
+    /// > ``NSDistantObject`` conforms to the ``NSCoding`` protocol, but only supports coding by an ``NSPortCoder``. ``NSDistantObject`` and its subclasses do not support archiving.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistantobject?language=objc)
     #[unsafe(super(NSProxy))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSProxy")]
@@ -29,6 +40,8 @@ extern_conformance!(
 impl NSDistantObject {
     extern_methods!(
         #[cfg(feature = "NSConnection")]
+        /// Returns a proxy for the specified target object accessible through the given connection.
+        ///
         /// # Safety
         ///
         /// `target` should be of the correct type.
@@ -41,6 +54,8 @@ impl NSDistantObject {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSConnection")]
+        /// Initializes the receiver as a proxy for the specified target object accessible through the given connection.
+        ///
         /// # Safety
         ///
         /// `target` should be of the correct type.
@@ -54,6 +69,8 @@ impl NSDistantObject {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSConnection")]
+        /// Returns a local proxy for the specified target object accessible through the given connection.
+        ///
         /// # Safety
         ///
         /// `target` should be of the correct type.
@@ -66,6 +83,8 @@ impl NSDistantObject {
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSConnection")]
+        /// Initializes the receiver as a local proxy for the specified target object accessible through the given connection.
+        ///
         /// # Safety
         ///
         /// `target` should be of the correct type.
@@ -78,6 +97,8 @@ impl NSDistantObject {
             connection: &NSConnection,
         ) -> Retained<Self>;
 
+        /// Sets the protocol the receiver uses to determine which messages it can handle.
+        ///
         /// # Safety
         ///
         /// `proto` possibly has further requirements.
@@ -87,6 +108,7 @@ impl NSDistantObject {
         pub unsafe fn setProtocolForProxy(&self, proto: Option<&AnyProtocol>);
 
         #[cfg(feature = "NSConnection")]
+        /// The connection object used by the receiver.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connectionForProxy))]
         #[unsafe(method_family = none)]

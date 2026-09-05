@@ -712,6 +712,15 @@ extern_protocol!(
         ))]
         /// Encodes a command that runs a range of commands from an indirect command buffer.
         ///
+        /// Use this method to encode the execution of a range of Metal render commands in the GPU timeline.
+        ///
+        /// - Note: if the `indirectCommandBuffer` parameter references any pipeline state objects, you are responsible
+        /// for adding them to a ``MTLResidencySet`` instance in use when you commit the command buffer.
+        ///
+        /// An indirect render command references a pipeline state when you pass it as an argument to the
+        /// command's ``MTLIndirectRenderCommand/setRenderPipelineState:`` method during CPU encoding, or
+        /// `set_render_pipeline_state()` during GPU encoding.
+        ///
         /// - Parameters:
         /// - indirectCommandBuffer: A ``MTLIndirectCommandBuffer`` instance containing other commands that the current command runs.
         /// - executionRange: A span of integers that represent the command entries in the buffer that the current command runs.
@@ -747,6 +756,13 @@ extern_protocol!(
         ///
         /// Use an instance of ``MTLResidencySet`` to mark residency of the indirect buffer that the `indirectRangeBuffer`
         /// parameter references.
+        ///
+        /// - Note: if the `indirectCommandBuffer` parameter references any pipeline state objects, you are responsible
+        /// for adding them to a ``MTLResidencySet`` instance in use when you commit the command buffer.
+        ///
+        /// An indirect render command references a pipeline state when you pass it as an argument to the
+        /// command's ``MTLIndirectRenderCommand/setRenderPipelineState:`` method during CPU encoding, or
+        /// `set_render_pipeline_state()` during GPU encoding.
         ///
         /// - Parameters:
         /// - indirectCommandBuffer: A ``MTLIndirectCommandBuffer`` instance that contains other commands

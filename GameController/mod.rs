@@ -51,6 +51,9 @@ mod __GCControllerDirectionPad;
 #[cfg(feature = "GCControllerElement")]
 #[path = "GCControllerElement.rs"]
 mod __GCControllerElement;
+#[cfg(feature = "GCControllerHomeButtonSettingsManager")]
+#[path = "GCControllerHomeButtonSettingsManager.rs"]
+mod __GCControllerHomeButtonSettingsManager;
 #[cfg(feature = "GCControllerInput")]
 #[path = "GCControllerInput.rs"]
 mod __GCControllerInput;
@@ -69,6 +72,9 @@ mod __GCDeviceCursor;
 #[cfg(feature = "GCDeviceHaptics")]
 #[path = "GCDeviceHaptics.rs"]
 mod __GCDeviceHaptics;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+#[path = "GCDeviceHapticsLocality.rs"]
+mod __GCDeviceHapticsLocality;
 #[cfg(feature = "GCDeviceLight")]
 #[path = "GCDeviceLight.rs"]
 mod __GCDeviceLight;
@@ -81,6 +87,9 @@ mod __GCDevicePhysicalInputState;
 #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
 #[path = "GCDevicePhysicalInputStateDiff.rs"]
 mod __GCDevicePhysicalInputStateDiff;
+#[cfg(feature = "GCDeviceType")]
+#[path = "GCDeviceType.rs"]
+mod __GCDeviceType;
 #[cfg(feature = "GCDirectionPadElement")]
 #[path = "GCDirectionPadElement.rs"]
 mod __GCDirectionPadElement;
@@ -177,6 +186,9 @@ mod __GCRacingWheelInput;
 #[cfg(feature = "GCRelativeInput")]
 #[path = "GCRelativeInput.rs"]
 mod __GCRelativeInput;
+#[cfg(feature = "GCSpatialAccessory")]
+#[path = "GCSpatialAccessory.rs"]
+mod __GCSpatialAccessory;
 #[cfg(feature = "GCSteeringWheelElement")]
 #[path = "GCSteeringWheelElement.rs"]
 mod __GCSteeringWheelElement;
@@ -260,6 +272,12 @@ pub use self::__GCControllerDirectionPad::GCControllerDirectionPadValueChangedHa
 pub use self::__GCControllerElement::GCControllerElement;
 #[cfg(feature = "GCControllerElement")]
 pub use self::__GCControllerElement::GCSystemGestureState;
+#[cfg(feature = "GCControllerHomeButtonSettingsManager")]
+pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingsAction;
+#[cfg(feature = "GCControllerHomeButtonSettingsManager")]
+pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingsActivity;
+#[cfg(feature = "GCControllerHomeButtonSettingsManager")]
+pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingsManager;
 #[cfg(feature = "GCControllerInput")]
 pub use self::__GCControllerInput::GCControllerInputState;
 #[cfg(feature = "GCControllerInput")]
@@ -290,24 +308,24 @@ pub use self::__GCDeviceCursor::GCDeviceCursor;
 pub use self::__GCDeviceHaptics::GCDeviceHaptics;
 #[cfg(feature = "GCDeviceHaptics")]
 pub use self::__GCDeviceHaptics::GCHapticDurationInfinite;
-#[cfg(feature = "GCDeviceHaptics")]
-pub use self::__GCDeviceHaptics::GCHapticsLocality;
-#[cfg(feature = "GCDeviceHaptics")]
-pub use self::__GCDeviceHaptics::GCHapticsLocalityAll;
-#[cfg(feature = "GCDeviceHaptics")]
-pub use self::__GCDeviceHaptics::GCHapticsLocalityDefault;
-#[cfg(feature = "GCDeviceHaptics")]
-pub use self::__GCDeviceHaptics::GCHapticsLocalityHandles;
-#[cfg(feature = "GCDeviceHaptics")]
-pub use self::__GCDeviceHaptics::GCHapticsLocalityLeftHandle;
-#[cfg(feature = "GCDeviceHaptics")]
-pub use self::__GCDeviceHaptics::GCHapticsLocalityLeftTrigger;
-#[cfg(feature = "GCDeviceHaptics")]
-pub use self::__GCDeviceHaptics::GCHapticsLocalityRightHandle;
-#[cfg(feature = "GCDeviceHaptics")]
-pub use self::__GCDeviceHaptics::GCHapticsLocalityRightTrigger;
-#[cfg(feature = "GCDeviceHaptics")]
-pub use self::__GCDeviceHaptics::GCHapticsLocalityTriggers;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+pub use self::__GCDeviceHapticsLocality::GCHapticsLocality;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+pub use self::__GCDeviceHapticsLocality::GCHapticsLocalityAll;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+pub use self::__GCDeviceHapticsLocality::GCHapticsLocalityDefault;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+pub use self::__GCDeviceHapticsLocality::GCHapticsLocalityHandles;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+pub use self::__GCDeviceHapticsLocality::GCHapticsLocalityLeftHandle;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+pub use self::__GCDeviceHapticsLocality::GCHapticsLocalityLeftTrigger;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+pub use self::__GCDeviceHapticsLocality::GCHapticsLocalityRightHandle;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+pub use self::__GCDeviceHapticsLocality::GCHapticsLocalityRightTrigger;
+#[cfg(feature = "GCDeviceHapticsLocality")]
+pub use self::__GCDeviceHapticsLocality::GCHapticsLocalityTriggers;
 #[cfg(feature = "GCDeviceLight")]
 pub use self::__GCDeviceLight::GCDeviceLight;
 #[cfg(all(
@@ -321,6 +339,8 @@ pub use self::__GCDevicePhysicalInputState::GCDevicePhysicalInputState;
 pub use self::__GCDevicePhysicalInputStateDiff::GCDevicePhysicalInputElementChange;
 #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
 pub use self::__GCDevicePhysicalInputStateDiff::GCDevicePhysicalInputStateDiff;
+#[cfg(feature = "GCDeviceType")]
+pub use self::__GCDeviceType::GCDeviceType;
 #[cfg(all(feature = "GCDirectionPadElement", feature = "GCPhysicalInputElement"))]
 pub use self::__GCDirectionPadElement::GCDirectionPadElement;
 #[cfg(all(
@@ -1195,6 +1215,12 @@ pub use self::__GCRacingWheelInput::GCRacingWheelInput;
 pub use self::__GCRacingWheelInput::GCRacingWheelInputState;
 #[cfg(feature = "GCRelativeInput")]
 pub use self::__GCRelativeInput::GCRelativeInput;
+#[cfg(feature = "GCSpatialAccessory")]
+pub use self::__GCSpatialAccessory::GCSpatialAccessory;
+#[cfg(feature = "GCSpatialAccessory")]
+pub use self::__GCSpatialAccessory::GCSpatialAccessoryDidConnectNotification;
+#[cfg(feature = "GCSpatialAccessory")]
+pub use self::__GCSpatialAccessory::GCSpatialAccessoryDidDisconnectNotification;
 #[cfg(feature = "GCSteeringWheelElement")]
 pub use self::__GCSteeringWheelElement::GCSteeringWheelElement;
 #[cfg(feature = "GCStylus")]

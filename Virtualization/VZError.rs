@@ -10,10 +10,10 @@ extern "C" {
     pub static VZErrorDomain: &'static NSErrorDomain;
 }
 
-/// Error type returned by the Virtualization framework.
-/// The NSError domain is VZErrorDomain, the code is one of the VZErrorCode constants.
+/// Error types the Virtualization framework returns.
 ///
-/// The virtualization framework can also report errors from other domains when the error originates from a lower level component.
+/// The `NSError` domain is ``VZErrorDomain``; the code is one of the ``VZErrorCode`` constants.
+/// The Virtualization framework can also report errors from other domains when the error originates from a lower level component.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerrorcode?language=objc)
 // NS_ERROR_ENUM
@@ -21,81 +21,112 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VZErrorCode(pub NSInteger);
 impl VZErrorCode {
-    /// Internal error such as the virtual machine unexpectedly stopping.
+    /// An error that indicates there was an internal error, such as the virtual machine unexpectedly stopping.
+    ///
+    /// The framework reports this error when the virtual machine unexpectedly stops.
     #[doc(alias = "VZErrorInternal")]
     pub const Internal: Self = Self(1);
-    /// Invalid machine configuration.
+    /// An error that indicates the machine configuration was invalid.
+    ///
+    /// This error indicates that your ``VZVirtualMachineConfiguration`` object contains invalid data.
     #[doc(alias = "VZErrorInvalidVirtualMachineConfiguration")]
     pub const InvalidVirtualMachineConfiguration: Self = Self(2);
-    /// API used with a machine in the wrong state (e.g. interacting with a machine before it is running).
+    /// An error that indicates the app used the API with a machine in the wrong state.
+    ///
+    /// This error occurs when the virtual machine is in the wrong state for the current operation. For example,
+    /// you might receive this error when you attempt to interact with a stopped or paused virtual machine.
     #[doc(alias = "VZErrorInvalidVirtualMachineState")]
     pub const InvalidVirtualMachineState: Self = Self(3);
-    /// Invalid change of state (e.g. pausing a virtual machine that is not started).
+    /// An error that indicates there was an invalid change of state.
+    ///
+    /// This error occurs when you attempt to change the state of the virtual machine in an invalid way.
+    /// For example, it occurs when you attempt to start a virtual machine when its
+    /// ``VZVirtualMachine/canStart`` property is `false`.
     #[doc(alias = "VZErrorInvalidVirtualMachineStateTransition")]
     pub const InvalidVirtualMachineStateTransition: Self = Self(4);
-    /// Unrecognized disk image format or invalid disk image.
+    /// An error that indicates an unrecognized disk image format or invalid disk image.
+    ///
+    /// This error occurs when you supply a disk image in an unrecognized format, when there’s damage
+    /// to the disk image, or the disk image is invalid.
     #[doc(alias = "VZErrorInvalidDiskImage")]
     pub const InvalidDiskImage: Self = Self(5);
-    /// The running virtual machine limit was exceeded.
+    /// An error that indicates an attempt to start a virtual machine (VM) exceeded the limit of the number of running VMs the framework allows.
+    ///
+    /// This error occurs when starting a VM would exceed the system’s limit on the number of simultaneously running virtual machines.
     #[doc(alias = "VZErrorVirtualMachineLimitExceeded")]
     pub const VirtualMachineLimitExceeded: Self = Self(6);
-    /// Network error occurred.
+    /// An error that indicates a network issue, such as a failed connection error, occurred.
     #[doc(alias = "VZErrorNetworkError")]
     pub const NetworkError: Self = Self(7);
-    /// Machine ran out of disk space.
+    /// An error that indicates the host ran out of disk space, such as while attempting to install Rosetta.
     #[doc(alias = "VZErrorOutOfDiskSpace")]
     pub const OutOfDiskSpace: Self = Self(8);
-    /// The operation was cancelled.
+    /// An error that indicates the framework cancelled the operation.
     #[doc(alias = "VZErrorOperationCancelled")]
     pub const OperationCancelled: Self = Self(9);
-    /// The operation is not supported.
+    /// An error that indicates the framework doesn't support the operation.
     #[doc(alias = "VZErrorNotSupported")]
     pub const NotSupported: Self = Self(10);
-    /// The save operation failed.
+    /// An error that indicates the VM failed to save to the save file.
     #[doc(alias = "VZErrorSave")]
     pub const Save: Self = Self(11);
-    /// The restore operation failed.
+    /// An error that indicates the restore operation failed.
     #[doc(alias = "VZErrorRestore")]
     pub const Restore: Self = Self(12);
-    /// The restore image catalog failed to load.
+    /// An error that indicates the restore image catalog failed to load.
     #[doc(alias = "VZErrorRestoreImageCatalogLoadFailed")]
     pub const RestoreImageCatalogLoadFailed: Self = Self(10001);
-    /// The restore image catalog is invalid.
+    /// An error that indicates the restore image catalog is invalid.
     #[doc(alias = "VZErrorInvalidRestoreImageCatalog")]
     pub const InvalidRestoreImageCatalog: Self = Self(10002);
-    /// The restore image catalog has no supported restore images.
+    /// An error that indicates the restore image catalog has no supported restore images.
     #[doc(alias = "VZErrorNoSupportedRestoreImagesInCatalog")]
     pub const NoSupportedRestoreImagesInCatalog: Self = Self(10003);
-    /// The restore image failed to load.
+    /// An error that indicates the restore image failed to load.
     #[doc(alias = "VZErrorRestoreImageLoadFailed")]
     pub const RestoreImageLoadFailed: Self = Self(10004);
-    /// The restore image is invalid.
+    /// An error that indicates the restore image is invalid.
     #[doc(alias = "VZErrorInvalidRestoreImage")]
     pub const InvalidRestoreImage: Self = Self(10005);
-    /// A software update is required to complete the installation.
+    /// An error that indicates the installation requires a software update in order to complete.
     #[doc(alias = "VZErrorInstallationRequiresUpdate")]
     pub const InstallationRequiresUpdate: Self = Self(10006);
-    /// An error occurred during installation.
+    /// An error that indicates that an error occurred during installation.
     #[doc(alias = "VZErrorInstallationFailed")]
     pub const InstallationFailed: Self = Self(10007);
-    /// The connection or the negotiation with the NBD server failed.
+    /// An error that indicates the connection or the negotiation with the Network Block Device (NBD) server failed.
     #[doc(alias = "VZErrorNetworkBlockDeviceNegotiationFailed")]
     pub const NetworkBlockDeviceNegotiationFailed: Self = Self(20001);
-    /// The NBD client is disconnected from the server.
+    /// An error that indicates the Network Block Device (NBD) client disconnected from the server.
     #[doc(alias = "VZErrorNetworkBlockDeviceDisconnected")]
     pub const NetworkBlockDeviceDisconnected: Self = Self(20002);
-    /// Controller not found.
+    /// An error that indicates the framework wasn't able to find the controller.
     #[doc(alias = "VZErrorUSBControllerNotFound")]
     pub const USBControllerNotFound: Self = Self(30001);
-    /// Device is already attached.
+    /// An error that indicates the device is already attached.
     #[doc(alias = "VZErrorDeviceAlreadyAttached")]
     pub const DeviceAlreadyAttached: Self = Self(30002);
-    /// Device initialization failure.
+    /// An error that indicates the device failed to initialize.
     #[doc(alias = "VZErrorDeviceInitializationFailure")]
     pub const DeviceInitializationFailure: Self = Self(30003);
-    /// Device not found.
+    /// An error that indicates the framework wasn't able to find the specified device.
     #[doc(alias = "VZErrorDeviceNotFound")]
     pub const DeviceNotFound: Self = Self(30004);
+    /// An error that indicates the full name for guest provisioning is invalid.
+    #[doc(alias = "VZErrorGuestProvisioningInvalidFullName")]
+    pub const GuestProvisioningInvalidFullName: Self = Self(40001);
+    /// An error that indicates the username for guest provisioning is invalid.
+    #[doc(alias = "VZErrorGuestProvisioningInvalidUsername")]
+    pub const GuestProvisioningInvalidUsername: Self = Self(40002);
+    /// An error that indicates the password for guest provisioning is invalid.
+    #[doc(alias = "VZErrorGuestProvisioningInvalidPassword")]
+    pub const GuestProvisioningInvalidPassword: Self = Self(40003);
+    /// An error that indicates the Secure Boot signatures failed to enroll.
+    #[doc(alias = "VZErrorEFISecureBootEnrollmentFailed")]
+    pub const EFISecureBootEnrollmentFailed: Self = Self(50001);
+    /// An error that indicates the framework can't access the EFI variable store.
+    #[doc(alias = "VZErrorEFIVariableInaccessible")]
+    pub const EFIVariableInaccessible: Self = Self(50002);
 }
 
 unsafe impl Encode for VZErrorCode {
