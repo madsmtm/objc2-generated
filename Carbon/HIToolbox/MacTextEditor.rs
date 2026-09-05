@@ -917,34 +917,32 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txnfindprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
-pub type TXNFindProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *const TXNMatchTextRecord,
-        TXNDataType,
-        TXNMatchOptions,
-        *const c_void,
-        TextEncoding,
-        TXNOffset,
-        ByteCount,
-        *mut TXNOffset,
-        *mut TXNOffset,
-        *mut Boolean,
-        URefCon,
-    ) -> OSStatus,
->;
+pub type TXNFindProcPtr = unsafe extern "C-unwind" fn(
+    *const TXNMatchTextRecord,
+    TXNDataType,
+    TXNMatchOptions,
+    *const c_void,
+    TextEncoding,
+    TXNOffset,
+    ByteCount,
+    *mut TXNOffset,
+    *mut TXNOffset,
+    *mut Boolean,
+    URefCon,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txnactionnamemapperprocptr?language=objc)
 pub type TXNActionNameMapperProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&CFString>, u32, *mut c_void) -> *const CFString>;
+    unsafe extern "C-unwind" fn(Option<&CFString>, u32, *mut c_void) -> *const CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txncontextualmenusetupprocptr?language=objc)
 #[cfg(feature = "Menus")]
 pub type TXNContextualMenuSetupProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Menu>, TXNObject, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&Menu>, TXNObject, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txnscrollinfoprocptr?language=objc)
 pub type TXNScrollInfoProcPtr =
-    Option<unsafe extern "C-unwind" fn(i32, i32, TXNScrollBarOrientation, SRefCon)>;
+    unsafe extern "C-unwind" fn(i32, i32, TXNScrollBarOrientation, SRefCon);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txnfindupp?language=objc)
 #[cfg(feature = "objc2-core-services")]
@@ -962,100 +960,108 @@ pub type TXNScrollInfoUPP = TXNScrollInfoProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe fn NewTXNFindUPP(user_routine: TXNFindProcPtr) -> TXNFindUPP {
+pub unsafe fn NewTXNFindUPP(user_routine: Option<TXNFindProcPtr>) -> Option<TXNFindUPP> {
     extern "C-unwind" {
-        fn NewTXNFindUPP(user_routine: TXNFindProcPtr) -> TXNFindUPP;
+        fn NewTXNFindUPP(user_routine: Option<TXNFindProcPtr>) -> Option<TXNFindUPP>;
     }
     unsafe { NewTXNFindUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
 pub unsafe fn NewTXNActionNameMapperUPP(
-    user_routine: TXNActionNameMapperProcPtr,
-) -> TXNActionNameMapperUPP {
+    user_routine: Option<TXNActionNameMapperProcPtr>,
+) -> Option<TXNActionNameMapperUPP> {
     extern "C-unwind" {
         fn NewTXNActionNameMapperUPP(
-            user_routine: TXNActionNameMapperProcPtr,
-        ) -> TXNActionNameMapperUPP;
+            user_routine: Option<TXNActionNameMapperProcPtr>,
+        ) -> Option<TXNActionNameMapperUPP>;
     }
     unsafe { NewTXNActionNameMapperUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "Menus")]
 #[inline]
 pub unsafe fn NewTXNContextualMenuSetupUPP(
-    user_routine: TXNContextualMenuSetupProcPtr,
-) -> TXNContextualMenuSetupUPP {
+    user_routine: Option<TXNContextualMenuSetupProcPtr>,
+) -> Option<TXNContextualMenuSetupUPP> {
     extern "C-unwind" {
         fn NewTXNContextualMenuSetupUPP(
-            user_routine: TXNContextualMenuSetupProcPtr,
-        ) -> TXNContextualMenuSetupUPP;
+            user_routine: Option<TXNContextualMenuSetupProcPtr>,
+        ) -> Option<TXNContextualMenuSetupUPP>;
     }
     unsafe { NewTXNContextualMenuSetupUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewTXNScrollInfoUPP(user_routine: TXNScrollInfoProcPtr) -> TXNScrollInfoUPP {
+pub unsafe fn NewTXNScrollInfoUPP(
+    user_routine: Option<TXNScrollInfoProcPtr>,
+) -> Option<TXNScrollInfoUPP> {
     extern "C-unwind" {
-        fn NewTXNScrollInfoUPP(user_routine: TXNScrollInfoProcPtr) -> TXNScrollInfoUPP;
+        fn NewTXNScrollInfoUPP(
+            user_routine: Option<TXNScrollInfoProcPtr>,
+        ) -> Option<TXNScrollInfoUPP>;
     }
     unsafe { NewTXNScrollInfoUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe fn DisposeTXNFindUPP(user_upp: TXNFindUPP) {
+pub unsafe fn DisposeTXNFindUPP(user_upp: *mut TXNFindUPP) {
     extern "C-unwind" {
-        fn DisposeTXNFindUPP(user_upp: TXNFindUPP);
+        fn DisposeTXNFindUPP(user_upp: *mut TXNFindUPP);
     }
     unsafe { DisposeTXNFindUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeTXNActionNameMapperUPP(user_upp: TXNActionNameMapperUPP) {
+pub unsafe fn DisposeTXNActionNameMapperUPP(user_upp: *mut TXNActionNameMapperUPP) {
     extern "C-unwind" {
-        fn DisposeTXNActionNameMapperUPP(user_upp: TXNActionNameMapperUPP);
+        fn DisposeTXNActionNameMapperUPP(user_upp: *mut TXNActionNameMapperUPP);
     }
     unsafe { DisposeTXNActionNameMapperUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "Menus")]
 #[inline]
-pub unsafe fn DisposeTXNContextualMenuSetupUPP(user_upp: TXNContextualMenuSetupUPP) {
+pub unsafe fn DisposeTXNContextualMenuSetupUPP(user_upp: *mut TXNContextualMenuSetupUPP) {
     extern "C-unwind" {
-        fn DisposeTXNContextualMenuSetupUPP(user_upp: TXNContextualMenuSetupUPP);
+        fn DisposeTXNContextualMenuSetupUPP(user_upp: *mut TXNContextualMenuSetupUPP);
     }
     unsafe { DisposeTXNContextualMenuSetupUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeTXNScrollInfoUPP(user_upp: TXNScrollInfoUPP) {
+pub unsafe fn DisposeTXNScrollInfoUPP(user_upp: *mut TXNScrollInfoUPP) {
     extern "C-unwind" {
-        fn DisposeTXNScrollInfoUPP(user_upp: TXNScrollInfoUPP);
+        fn DisposeTXNScrollInfoUPP(user_upp: *mut TXNScrollInfoUPP);
     }
     unsafe { DisposeTXNScrollInfoUPP(user_upp) }
 }
@@ -1070,6 +1076,7 @@ pub unsafe fn DisposeTXNScrollInfoUPP(user_upp: TXNScrollInfoUPP) {
 /// - `ofound` might not allow `None`.
 /// - `ref_con` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn InvokeTXNFindUPP(
@@ -1084,7 +1091,7 @@ pub unsafe fn InvokeTXNFindUPP(
     o_end_match: Option<&mut TXNOffset>,
     ofound: Option<&mut Boolean>,
     ref_con: URefCon,
-    user_upp: TXNFindUPP,
+    user_upp: Option<TXNFindUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeTXNFindUPP(
@@ -1099,7 +1106,7 @@ pub unsafe fn InvokeTXNFindUPP(
             o_end_match: Option<&mut TXNOffset>,
             ofound: Option<&mut Boolean>,
             ref_con: URefCon,
-            user_upp: TXNFindUPP,
+            user_upp: Option<TXNFindUPP>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1125,19 +1132,20 @@ pub unsafe fn InvokeTXNFindUPP(
 /// - `action_name` might not allow `None`.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeTXNActionNameMapperUPP(
     action_name: Option<&CFString>,
     command_id: u32,
     in_user_data: *mut c_void,
-    user_upp: TXNActionNameMapperUPP,
+    user_upp: Option<TXNActionNameMapperUPP>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn InvokeTXNActionNameMapperUPP(
             action_name: Option<&CFString>,
             command_id: u32,
             in_user_data: *mut c_void,
-            user_upp: TXNActionNameMapperUPP,
+            user_upp: Option<TXNActionNameMapperUPP>,
         ) -> Option<NonNull<CFString>>;
     }
     let ret =
@@ -1150,20 +1158,21 @@ pub unsafe fn InvokeTXNActionNameMapperUPP(
 /// - `object` must be a valid pointer.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "Menus")]
 #[inline]
 pub unsafe fn InvokeTXNContextualMenuSetupUPP(
     i_contextual_menu: &Menu,
     object: TXNObject,
     in_user_data: *mut c_void,
-    user_upp: TXNContextualMenuSetupUPP,
+    user_upp: Option<TXNContextualMenuSetupUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeTXNContextualMenuSetupUPP(
             i_contextual_menu: &Menu,
             object: TXNObject,
             in_user_data: *mut c_void,
-            user_upp: TXNContextualMenuSetupUPP,
+            user_upp: Option<TXNContextualMenuSetupUPP>,
         );
     }
     unsafe { InvokeTXNContextualMenuSetupUPP(i_contextual_menu, object, in_user_data, user_upp) }
@@ -1173,13 +1182,14 @@ pub unsafe fn InvokeTXNContextualMenuSetupUPP(
 ///
 /// - `i_ref_con` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeTXNScrollInfoUPP(
     i_value: i32,
     i_maximum_value: i32,
     i_scroll_bar_orientation: TXNScrollBarOrientation,
     i_ref_con: SRefCon,
-    user_upp: TXNScrollInfoUPP,
+    user_upp: Option<TXNScrollInfoUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeTXNScrollInfoUPP(
@@ -1187,7 +1197,7 @@ pub unsafe fn InvokeTXNScrollInfoUPP(
             i_maximum_value: i32,
             i_scroll_bar_orientation: TXNScrollBarOrientation,
             i_ref_con: SRefCon,
-            user_upp: TXNScrollInfoUPP,
+            user_upp: Option<TXNScrollInfoUPP>,
         );
     }
     unsafe {
@@ -1355,54 +1365,56 @@ pub const kTXNUndoLastAction: c_uint = 1024;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txnactionkeymapperprocptr?language=objc)
 pub type TXNActionKeyMapperProcPtr =
-    Option<unsafe extern "C-unwind" fn(TXNActionKey, u32) -> *const CFString>;
+    unsafe extern "C-unwind" fn(TXNActionKey, u32) -> *const CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/txnactionkeymapperupp?language=objc)
 pub type TXNActionKeyMapperUPP = TXNActionKeyMapperProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewTXNActionKeyMapperUPP(
-    user_routine: TXNActionKeyMapperProcPtr,
-) -> TXNActionKeyMapperUPP {
+    user_routine: Option<TXNActionKeyMapperProcPtr>,
+) -> Option<TXNActionKeyMapperUPP> {
     extern "C-unwind" {
         fn NewTXNActionKeyMapperUPP(
-            user_routine: TXNActionKeyMapperProcPtr,
-        ) -> TXNActionKeyMapperUPP;
+            user_routine: Option<TXNActionKeyMapperProcPtr>,
+        ) -> Option<TXNActionKeyMapperUPP>;
     }
     unsafe { NewTXNActionKeyMapperUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeTXNActionKeyMapperUPP(user_upp: TXNActionKeyMapperUPP) {
+pub unsafe fn DisposeTXNActionKeyMapperUPP(user_upp: *mut TXNActionKeyMapperUPP) {
     extern "C-unwind" {
-        fn DisposeTXNActionKeyMapperUPP(user_upp: TXNActionKeyMapperUPP);
+        fn DisposeTXNActionKeyMapperUPP(user_upp: *mut TXNActionKeyMapperUPP);
     }
     unsafe { DisposeTXNActionKeyMapperUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeTXNActionKeyMapperUPP(
     action_key: TXNActionKey,
     command_id: u32,
-    user_upp: TXNActionKeyMapperUPP,
+    user_upp: Option<TXNActionKeyMapperUPP>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn InvokeTXNActionKeyMapperUPP(
             action_key: TXNActionKey,
             command_id: u32,
-            user_upp: TXNActionKeyMapperUPP,
+            user_upp: Option<TXNActionKeyMapperUPP>,
         ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { InvokeTXNActionKeyMapperUPP(action_key, command_id, user_upp) };

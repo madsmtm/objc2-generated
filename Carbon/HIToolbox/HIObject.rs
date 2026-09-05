@@ -154,6 +154,7 @@ impl HIObject {
     /// - `in_class_id` might not allow `None`.
     /// - `in_base_class_id` might not allow `None`.
     /// - `in_construct_proc` must be implemented correctly.
+    /// - `in_construct_proc` might not allow `None`.
     /// - `in_event_list` must be a valid pointer.
     /// - `in_construct_data` must be a valid pointer.
     /// - `out_class_ref` might not allow `None`.
@@ -164,7 +165,7 @@ impl HIObject {
         in_class_id: Option<&CFString>,
         in_base_class_id: Option<&CFString>,
         in_options: OptionBits,
-        in_construct_proc: EventHandlerUPP,
+        in_construct_proc: Option<EventHandlerUPP>,
         in_num_events: ItemCount,
         in_event_list: *const EventTypeSpec,
         in_construct_data: *mut c_void,
@@ -175,7 +176,7 @@ impl HIObject {
                 in_class_id: Option<&CFString>,
                 in_base_class_id: Option<&CFString>,
                 in_options: OptionBits,
-                in_construct_proc: EventHandlerUPP,
+                in_construct_proc: Option<EventHandlerUPP>,
                 in_num_events: ItemCount,
                 in_event_list: *const EventTypeSpec,
                 in_construct_data: *mut c_void,

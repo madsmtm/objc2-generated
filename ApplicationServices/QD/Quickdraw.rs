@@ -439,7 +439,7 @@ pub type QDRegionParseDirection = i32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/regiontorectsprocptr?language=objc)
 pub type RegionToRectsProcPtr =
-    Option<unsafe extern "C-unwind" fn(u16, RgnHandle, *const Rect, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(u16, RgnHandle, *const Rect, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/regiontorectsupp?language=objc)
 pub type RegionToRectsUPP = RegionToRectsProcPtr;
@@ -458,14 +458,13 @@ pub const kVerticalConstraint: c_uint = 1;
 pub const kHorizontalConstraint: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/draggrayrgnprocptr?language=objc)
-pub type DragGrayRgnProcPtr = Option<unsafe extern "C-unwind" fn()>;
+pub type DragGrayRgnProcPtr = unsafe extern "C-unwind" fn();
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/colorsearchprocptr?language=objc)
-pub type ColorSearchProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut RGBColor, *mut c_long) -> Boolean>;
+pub type ColorSearchProcPtr = unsafe extern "C-unwind" fn(*mut RGBColor, *mut c_long) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/colorcomplementprocptr?language=objc)
-pub type ColorComplementProcPtr = Option<unsafe extern "C-unwind" fn(*mut RGBColor) -> Boolean>;
+pub type ColorComplementProcPtr = unsafe extern "C-unwind" fn(*mut RGBColor) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/draggrayrgnupp?language=objc)
 pub type DragGrayRgnUPP = DragGrayRgnProcPtr;
@@ -574,70 +573,63 @@ pub type GrafVerb = i8;
 pub type PrinterStatusOpcode = i32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdtextprocptr?language=objc)
-pub type QDTextProcPtr = Option<unsafe extern "C-unwind" fn(c_short, *const c_void, Point, Point)>;
+pub type QDTextProcPtr = unsafe extern "C-unwind" fn(c_short, *const c_void, Point, Point);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdlineprocptr?language=objc)
-pub type QDLineProcPtr = Option<unsafe extern "C-unwind" fn(Point)>;
+pub type QDLineProcPtr = unsafe extern "C-unwind" fn(Point);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdrectprocptr?language=objc)
-pub type QDRectProcPtr = Option<unsafe extern "C-unwind" fn(GrafVerb, *const Rect)>;
+pub type QDRectProcPtr = unsafe extern "C-unwind" fn(GrafVerb, *const Rect);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdrrectprocptr?language=objc)
-pub type QDRRectProcPtr =
-    Option<unsafe extern "C-unwind" fn(GrafVerb, *const Rect, c_short, c_short)>;
+pub type QDRRectProcPtr = unsafe extern "C-unwind" fn(GrafVerb, *const Rect, c_short, c_short);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdovalprocptr?language=objc)
-pub type QDOvalProcPtr = Option<unsafe extern "C-unwind" fn(GrafVerb, *const Rect)>;
+pub type QDOvalProcPtr = unsafe extern "C-unwind" fn(GrafVerb, *const Rect);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdarcprocptr?language=objc)
-pub type QDArcProcPtr =
-    Option<unsafe extern "C-unwind" fn(GrafVerb, *const Rect, c_short, c_short)>;
+pub type QDArcProcPtr = unsafe extern "C-unwind" fn(GrafVerb, *const Rect, c_short, c_short);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdpolyprocptr?language=objc)
-pub type QDPolyProcPtr = Option<unsafe extern "C-unwind" fn(GrafVerb, PolyHandle)>;
+pub type QDPolyProcPtr = unsafe extern "C-unwind" fn(GrafVerb, PolyHandle);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdrgnprocptr?language=objc)
-pub type QDRgnProcPtr = Option<unsafe extern "C-unwind" fn(GrafVerb, RgnHandle)>;
+pub type QDRgnProcPtr = unsafe extern "C-unwind" fn(GrafVerb, RgnHandle);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdbitsprocptr?language=objc)
-pub type QDBitsProcPtr = Option<
-    unsafe extern "C-unwind" fn(*const BitMap, *const Rect, *const Rect, c_short, RgnHandle),
->;
+pub type QDBitsProcPtr =
+    unsafe extern "C-unwind" fn(*const BitMap, *const Rect, *const Rect, c_short, RgnHandle);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdcommentprocptr?language=objc)
-pub type QDCommentProcPtr = Option<unsafe extern "C-unwind" fn(c_short, c_short, Handle)>;
+pub type QDCommentProcPtr = unsafe extern "C-unwind" fn(c_short, c_short, Handle);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdtxmeasprocptr?language=objc)
-pub type QDTxMeasProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        c_short,
-        *const c_void,
-        *mut Point,
-        *mut Point,
-        *mut FontInfo,
-    ) -> c_short,
->;
+pub type QDTxMeasProcPtr = unsafe extern "C-unwind" fn(
+    c_short,
+    *const c_void,
+    *mut Point,
+    *mut Point,
+    *mut FontInfo,
+) -> c_short;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdgetpicprocptr?language=objc)
-pub type QDGetPicProcPtr = Option<unsafe extern "C-unwind" fn(*mut c_void, c_short)>;
+pub type QDGetPicProcPtr = unsafe extern "C-unwind" fn(*mut c_void, c_short);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdputpicprocptr?language=objc)
-pub type QDPutPicProcPtr = Option<unsafe extern "C-unwind" fn(*const c_void, c_short)>;
+pub type QDPutPicProcPtr = unsafe extern "C-unwind" fn(*const c_void, c_short);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdopcodeprocptr?language=objc)
-pub type QDOpcodeProcPtr = Option<unsafe extern "C-unwind" fn(*const Rect, *const Rect, u16, i16)>;
+pub type QDOpcodeProcPtr = unsafe extern "C-unwind" fn(*const Rect, *const Rect, u16, i16);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdstdglyphsprocptr?language=objc)
-pub type QDStdGlyphsProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, ByteCount) -> OSStatus>;
+pub type QDStdGlyphsProcPtr = unsafe extern "C-unwind" fn(*mut c_void, ByteCount) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdjshieldcursorprocptr?language=objc)
-pub type QDJShieldCursorProcPtr =
-    Option<unsafe extern "C-unwind" fn(c_short, c_short, c_short, c_short)>;
+pub type QDJShieldCursorProcPtr = unsafe extern "C-unwind" fn(c_short, c_short, c_short, c_short);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdprinterstatusprocptr?language=objc)
 pub type QDPrinterStatusProcPtr =
-    Option<unsafe extern "C-unwind" fn(PrinterStatusOpcode, CGrafPtr, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(PrinterStatusOpcode, CGrafPtr, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/qdtextupp?language=objc)
 pub type QDTextUPP = QDTextProcPtr;
@@ -695,26 +687,26 @@ pub type QDPrinterStatusUPP = QDPrinterStatusProcPtr;
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CQDProcs {
-    pub textProc: QDTextUPP,
-    pub lineProc: QDLineUPP,
-    pub rectProc: QDRectUPP,
-    pub rRectProc: QDRRectUPP,
-    pub ovalProc: QDOvalUPP,
-    pub arcProc: QDArcUPP,
-    pub polyProc: QDPolyUPP,
-    pub rgnProc: QDRgnUPP,
-    pub bitsProc: QDBitsUPP,
-    pub commentProc: QDCommentUPP,
-    pub txMeasProc: QDTxMeasUPP,
-    pub getPicProc: QDGetPicUPP,
-    pub putPicProc: QDPutPicUPP,
-    pub opcodeProc: QDOpcodeUPP,
-    pub newProc1: UniversalProcPtr,
-    pub glyphsProc: QDStdGlyphsUPP,
-    pub printerStatusProc: QDPrinterStatusUPP,
-    pub newProc4: UniversalProcPtr,
-    pub newProc5: UniversalProcPtr,
-    pub newProc6: UniversalProcPtr,
+    pub textProc: Option<QDTextUPP>,
+    pub lineProc: Option<QDLineUPP>,
+    pub rectProc: Option<QDRectUPP>,
+    pub rRectProc: Option<QDRRectUPP>,
+    pub ovalProc: Option<QDOvalUPP>,
+    pub arcProc: Option<QDArcUPP>,
+    pub polyProc: Option<QDPolyUPP>,
+    pub rgnProc: Option<QDRgnUPP>,
+    pub bitsProc: Option<QDBitsUPP>,
+    pub commentProc: Option<QDCommentUPP>,
+    pub txMeasProc: Option<QDTxMeasUPP>,
+    pub getPicProc: Option<QDGetPicUPP>,
+    pub putPicProc: Option<QDPutPicUPP>,
+    pub opcodeProc: Option<QDOpcodeUPP>,
+    pub newProc1: Option<UniversalProcPtr>,
+    pub glyphsProc: Option<QDStdGlyphsUPP>,
+    pub printerStatusProc: Option<QDPrinterStatusUPP>,
+    pub newProc4: Option<UniversalProcPtr>,
+    pub newProc5: Option<UniversalProcPtr>,
+    pub newProc6: Option<UniversalProcPtr>,
 }
 
 #[cfg(feature = "objc2")]

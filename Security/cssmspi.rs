@@ -9,15 +9,13 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_spi_moduleeventhandler?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-pub type CSSM_SPI_ModuleEventHandler = Option<
-    unsafe extern "C-unwind" fn(
-        *const CSSM_GUID,
-        *mut c_void,
-        uint32,
-        CSSM_SERVICE_TYPE,
-        CSSM_MODULE_EVENT,
-    ) -> CSSM_RETURN,
->;
+pub type CSSM_SPI_ModuleEventHandler = unsafe extern "C-unwind" fn(
+    *const CSSM_GUID,
+    *mut c_void,
+    uint32,
+    CSSM_SERVICE_TYPE,
+    CSSM_MODULE_EVENT,
+) -> CSSM_RETURN;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context_event?language=objc)
 #[cfg(feature = "cssmconfig")]
@@ -38,7 +36,7 @@ pub const CSSM_CONTEXT_EVENT_UPDATE: c_uint = 3;
 pub struct cssm_module_funcs {
     pub ServiceType: CSSM_SERVICE_TYPE,
     pub NumberOfServiceFuncs: uint32,
-    pub ServiceFuncs: *const CSSM_PROC_ADDR,
+    pub ServiceFuncs: *const Option<CSSM_PROC_ADDR>,
 }
 
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype", feature = "objc2"))]
@@ -48,7 +46,7 @@ unsafe impl Encode for cssm_module_funcs {
         &[
             <CSSM_SERVICE_TYPE>::ENCODING,
             <uint32>::ENCODING,
-            <*const CSSM_PROC_ADDR>::ENCODING,
+            <*const Option<CSSM_PROC_ADDR>>::ENCODING,
         ],
     );
 }
@@ -71,25 +69,24 @@ pub type CSSM_MODULE_FUNCS_PTR = *mut cssm_module_funcs;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls_malloc?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-pub type CSSM_UPCALLS_MALLOC =
-    Option<unsafe extern "C-unwind" fn(CSSM_HANDLE, usize) -> *mut c_void>;
+pub type CSSM_UPCALLS_MALLOC = unsafe extern "C-unwind" fn(CSSM_HANDLE, usize) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls_free?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-pub type CSSM_UPCALLS_FREE = Option<unsafe extern "C-unwind" fn(CSSM_HANDLE, *mut c_void)>;
+pub type CSSM_UPCALLS_FREE = unsafe extern "C-unwind" fn(CSSM_HANDLE, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls_realloc?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_UPCALLS_REALLOC =
-    Option<unsafe extern "C-unwind" fn(CSSM_HANDLE, *mut c_void, usize) -> *mut c_void>;
+    unsafe extern "C-unwind" fn(CSSM_HANDLE, *mut c_void, usize) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls_calloc?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_UPCALLS_CALLOC =
-    Option<unsafe extern "C-unwind" fn(CSSM_HANDLE, usize, usize) -> *mut c_void>;
+    unsafe extern "C-unwind" fn(CSSM_HANDLE, usize, usize) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
@@ -98,10 +95,10 @@ pub type CSSM_UPCALLS_CALLOC =
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_upcalls {
-    pub malloc_func: CSSM_UPCALLS_MALLOC,
-    pub free_func: CSSM_UPCALLS_FREE,
-    pub realloc_func: CSSM_UPCALLS_REALLOC,
-    pub calloc_func: CSSM_UPCALLS_CALLOC,
+    pub malloc_func: Option<CSSM_UPCALLS_MALLOC>,
+    pub free_func: Option<CSSM_UPCALLS_FREE>,
+    pub realloc_func: Option<CSSM_UPCALLS_REALLOC>,
+    pub calloc_func: Option<CSSM_UPCALLS_CALLOC>,
     pub CcToHandle_func:
         Option<unsafe extern "C-unwind" fn(CSSM_CC_HANDLE, CSSM_MODULE_HANDLE_PTR) -> CSSM_RETURN>,
     pub GetModuleInfo_func: Option<

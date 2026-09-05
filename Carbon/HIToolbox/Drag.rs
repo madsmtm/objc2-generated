@@ -116,29 +116,30 @@ pub const kDragActionAll: c_uint = 0xFFFFFFFF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/draginputprocptr?language=objc)
 pub type DragInputProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut Point, *mut i16, *mut c_void, Option<&Drag>) -> OSErr>;
+    unsafe extern "C-unwind" fn(*mut Point, *mut i16, *mut c_void, Option<&Drag>) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/draginputupp?language=objc)
 pub type DragInputUPP = DragInputProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewDragInputUPP(user_routine: DragInputProcPtr) -> DragInputUPP {
+pub unsafe fn NewDragInputUPP(user_routine: Option<DragInputProcPtr>) -> Option<DragInputUPP> {
     extern "C-unwind" {
-        fn NewDragInputUPP(user_routine: DragInputProcPtr) -> DragInputUPP;
+        fn NewDragInputUPP(user_routine: Option<DragInputProcPtr>) -> Option<DragInputUPP>;
     }
     unsafe { NewDragInputUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeDragInputUPP(user_upp: DragInputUPP) {
+pub unsafe fn DisposeDragInputUPP(user_upp: *mut DragInputUPP) {
     extern "C-unwind" {
-        fn DisposeDragInputUPP(user_upp: DragInputUPP);
+        fn DisposeDragInputUPP(user_upp: *mut DragInputUPP);
     }
     unsafe { DisposeDragInputUPP(user_upp) }
 }
@@ -151,13 +152,14 @@ pub unsafe fn DisposeDragInputUPP(user_upp: DragInputUPP) {
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeDragInputUPP(
     mouse: Option<&mut Point>,
     modifiers: Option<&mut i16>,
     drag_input_ref_con: *mut c_void,
     the_drag: Option<&Drag>,
-    user_upp: DragInputUPP,
+    user_upp: Option<DragInputUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeDragInputUPP(
@@ -165,7 +167,7 @@ pub unsafe fn InvokeDragInputUPP(
             modifiers: Option<&mut i16>,
             drag_input_ref_con: *mut c_void,
             the_drag: Option<&Drag>,
-            user_upp: DragInputUPP,
+            user_upp: Option<DragInputUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeDragInputUPP(mouse, modifiers, drag_input_ref_con, the_drag, user_upp) }
@@ -296,39 +298,34 @@ pub const kDragStandardDropLocationUnknown: c_uint = 0x756e6b6e;
 pub type StandardDropLocation = OSType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dragsenddataprocptr?language=objc)
-pub type DragSendDataProcPtr = Option<
-    unsafe extern "C-unwind" fn(FlavorType, *mut c_void, DragItemRef, Option<&Drag>) -> OSErr,
->;
+pub type DragSendDataProcPtr =
+    unsafe extern "C-unwind" fn(FlavorType, *mut c_void, DragItemRef, Option<&Drag>) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dragtrackinghandlerprocptr?language=objc)
 #[cfg(feature = "objc2-application-services")]
-pub type DragTrackingHandlerProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        DragTrackingMessage,
-        WindowRef,
-        *mut c_void,
-        Option<&Drag>,
-    ) -> OSErr,
->;
+pub type DragTrackingHandlerProcPtr = unsafe extern "C-unwind" fn(
+    DragTrackingMessage,
+    WindowRef,
+    *mut c_void,
+    Option<&Drag>,
+) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dragreceivehandlerprocptr?language=objc)
 #[cfg(feature = "objc2-application-services")]
 pub type DragReceiveHandlerProcPtr =
-    Option<unsafe extern "C-unwind" fn(WindowRef, *mut c_void, Option<&Drag>) -> OSErr>;
+    unsafe extern "C-unwind" fn(WindowRef, *mut c_void, Option<&Drag>) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dragdrawingprocptr?language=objc)
 #[cfg(feature = "objc2-application-services")]
-pub type DragDrawingProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        DragRegionMessage,
-        RgnHandle,
-        Point,
-        RgnHandle,
-        Point,
-        *mut c_void,
-        Option<&Drag>,
-    ) -> OSErr,
->;
+pub type DragDrawingProcPtr = unsafe extern "C-unwind" fn(
+    DragRegionMessage,
+    RgnHandle,
+    Point,
+    RgnHandle,
+    Point,
+    *mut c_void,
+    Option<&Drag>,
+) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dragsenddataupp?language=objc)
 pub type DragSendDataUPP = DragSendDataProcPtr;
@@ -347,110 +344,119 @@ pub type DragDrawingUPP = DragDrawingProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewDragSendDataUPP(user_routine: DragSendDataProcPtr) -> DragSendDataUPP {
+pub unsafe fn NewDragSendDataUPP(
+    user_routine: Option<DragSendDataProcPtr>,
+) -> Option<DragSendDataUPP> {
     extern "C-unwind" {
-        fn NewDragSendDataUPP(user_routine: DragSendDataProcPtr) -> DragSendDataUPP;
+        fn NewDragSendDataUPP(user_routine: Option<DragSendDataProcPtr>)
+            -> Option<DragSendDataUPP>;
     }
     unsafe { NewDragSendDataUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
 pub unsafe fn NewDragTrackingHandlerUPP(
-    user_routine: DragTrackingHandlerProcPtr,
-) -> DragTrackingHandlerUPP {
+    user_routine: Option<DragTrackingHandlerProcPtr>,
+) -> Option<DragTrackingHandlerUPP> {
     extern "C-unwind" {
         fn NewDragTrackingHandlerUPP(
-            user_routine: DragTrackingHandlerProcPtr,
-        ) -> DragTrackingHandlerUPP;
+            user_routine: Option<DragTrackingHandlerProcPtr>,
+        ) -> Option<DragTrackingHandlerUPP>;
     }
     unsafe { NewDragTrackingHandlerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
 pub unsafe fn NewDragReceiveHandlerUPP(
-    user_routine: DragReceiveHandlerProcPtr,
-) -> DragReceiveHandlerUPP {
+    user_routine: Option<DragReceiveHandlerProcPtr>,
+) -> Option<DragReceiveHandlerUPP> {
     extern "C-unwind" {
         fn NewDragReceiveHandlerUPP(
-            user_routine: DragReceiveHandlerProcPtr,
-        ) -> DragReceiveHandlerUPP;
+            user_routine: Option<DragReceiveHandlerProcPtr>,
+        ) -> Option<DragReceiveHandlerUPP>;
     }
     unsafe { NewDragReceiveHandlerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn NewDragDrawingUPP(user_routine: DragDrawingProcPtr) -> DragDrawingUPP {
+pub unsafe fn NewDragDrawingUPP(
+    user_routine: Option<DragDrawingProcPtr>,
+) -> Option<DragDrawingUPP> {
     extern "C-unwind" {
-        fn NewDragDrawingUPP(user_routine: DragDrawingProcPtr) -> DragDrawingUPP;
+        fn NewDragDrawingUPP(user_routine: Option<DragDrawingProcPtr>) -> Option<DragDrawingUPP>;
     }
     unsafe { NewDragDrawingUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDragSendDataUPP(user_upp: DragSendDataUPP) {
+pub unsafe fn DisposeDragSendDataUPP(user_upp: *mut DragSendDataUPP) {
     extern "C-unwind" {
-        fn DisposeDragSendDataUPP(user_upp: DragSendDataUPP);
+        fn DisposeDragSendDataUPP(user_upp: *mut DragSendDataUPP);
     }
     unsafe { DisposeDragSendDataUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDragTrackingHandlerUPP(user_upp: DragTrackingHandlerUPP) {
+pub unsafe fn DisposeDragTrackingHandlerUPP(user_upp: *mut DragTrackingHandlerUPP) {
     extern "C-unwind" {
-        fn DisposeDragTrackingHandlerUPP(user_upp: DragTrackingHandlerUPP);
+        fn DisposeDragTrackingHandlerUPP(user_upp: *mut DragTrackingHandlerUPP);
     }
     unsafe { DisposeDragTrackingHandlerUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDragReceiveHandlerUPP(user_upp: DragReceiveHandlerUPP) {
+pub unsafe fn DisposeDragReceiveHandlerUPP(user_upp: *mut DragReceiveHandlerUPP) {
     extern "C-unwind" {
-        fn DisposeDragReceiveHandlerUPP(user_upp: DragReceiveHandlerUPP);
+        fn DisposeDragReceiveHandlerUPP(user_upp: *mut DragReceiveHandlerUPP);
     }
     unsafe { DisposeDragReceiveHandlerUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDragDrawingUPP(user_upp: DragDrawingUPP) {
+pub unsafe fn DisposeDragDrawingUPP(user_upp: *mut DragDrawingUPP) {
     extern "C-unwind" {
-        fn DisposeDragDrawingUPP(user_upp: DragDrawingUPP);
+        fn DisposeDragDrawingUPP(user_upp: *mut DragDrawingUPP);
     }
     unsafe { DisposeDragDrawingUPP(user_upp) }
 }
@@ -462,6 +468,7 @@ pub unsafe fn DisposeDragDrawingUPP(user_upp: DragDrawingUPP) {
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeDragSendDataUPP(
@@ -469,7 +476,7 @@ pub unsafe fn InvokeDragSendDataUPP(
     drag_send_ref_con: *mut c_void,
     the_item_ref: DragItemRef,
     the_drag: Option<&Drag>,
-    user_upp: DragSendDataUPP,
+    user_upp: Option<DragSendDataUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeDragSendDataUPP(
@@ -477,7 +484,7 @@ pub unsafe fn InvokeDragSendDataUPP(
             drag_send_ref_con: *mut c_void,
             the_item_ref: DragItemRef,
             the_drag: Option<&Drag>,
-            user_upp: DragSendDataUPP,
+            user_upp: Option<DragSendDataUPP>,
         ) -> OSErr;
     }
     unsafe {
@@ -498,6 +505,7 @@ pub unsafe fn InvokeDragSendDataUPP(
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
@@ -506,7 +514,7 @@ pub unsafe fn InvokeDragTrackingHandlerUPP(
     the_window: WindowRef,
     handler_ref_con: *mut c_void,
     the_drag: Option<&Drag>,
-    user_upp: DragTrackingHandlerUPP,
+    user_upp: Option<DragTrackingHandlerUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeDragTrackingHandlerUPP(
@@ -514,7 +522,7 @@ pub unsafe fn InvokeDragTrackingHandlerUPP(
             the_window: WindowRef,
             handler_ref_con: *mut c_void,
             the_drag: Option<&Drag>,
-            user_upp: DragTrackingHandlerUPP,
+            user_upp: Option<DragTrackingHandlerUPP>,
         ) -> OSErr;
     }
     unsafe {
@@ -529,6 +537,7 @@ pub unsafe fn InvokeDragTrackingHandlerUPP(
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
@@ -536,14 +545,14 @@ pub unsafe fn InvokeDragReceiveHandlerUPP(
     the_window: WindowRef,
     handler_ref_con: *mut c_void,
     the_drag: Option<&Drag>,
-    user_upp: DragReceiveHandlerUPP,
+    user_upp: Option<DragReceiveHandlerUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeDragReceiveHandlerUPP(
             the_window: WindowRef,
             handler_ref_con: *mut c_void,
             the_drag: Option<&Drag>,
-            user_upp: DragReceiveHandlerUPP,
+            user_upp: Option<DragReceiveHandlerUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeDragReceiveHandlerUPP(the_window, handler_ref_con, the_drag, user_upp) }
@@ -557,6 +566,7 @@ pub unsafe fn InvokeDragReceiveHandlerUPP(
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
@@ -568,7 +578,7 @@ pub unsafe fn InvokeDragDrawingUPP(
     hide_origin: Point,
     drag_drawing_ref_con: *mut c_void,
     the_drag: Option<&Drag>,
-    user_upp: DragDrawingUPP,
+    user_upp: Option<DragDrawingUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeDragDrawingUPP(
@@ -579,7 +589,7 @@ pub unsafe fn InvokeDragDrawingUPP(
             hide_origin: Point,
             drag_drawing_ref_con: *mut c_void,
             the_drag: Option<&Drag>,
-            user_upp: DragDrawingUPP,
+            user_upp: Option<DragDrawingUPP>,
         ) -> OSErr;
     }
     unsafe {

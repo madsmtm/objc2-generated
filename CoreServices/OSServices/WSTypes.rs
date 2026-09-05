@@ -46,14 +46,14 @@ unsafe impl RefEncode for WSTypeID {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsclientcontextretaincallbackprocptr?language=objc)
 pub type WSClientContextRetainCallBackProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>;
+    unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsclientcontextreleasecallbackprocptr?language=objc)
-pub type WSClientContextReleaseCallBackProcPtr = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type WSClientContextReleaseCallBackProcPtr = unsafe extern "C-unwind" fn(*mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsclientcontextcopydescriptioncallbackprocptr?language=objc)
 pub type WSClientContextCopyDescriptionCallBackProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> *const CFString>;
+    unsafe extern "C-unwind" fn(*mut c_void) -> *const CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsclientcontext?language=objc)
 #[repr(C, packed(2))]
@@ -62,9 +62,9 @@ pub type WSClientContextCopyDescriptionCallBackProcPtr =
 pub struct WSClientContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: WSClientContextRetainCallBackProcPtr,
-    pub release: WSClientContextReleaseCallBackProcPtr,
-    pub copyDescription: WSClientContextCopyDescriptionCallBackProcPtr,
+    pub retain: Option<WSClientContextRetainCallBackProcPtr>,
+    pub release: Option<WSClientContextReleaseCallBackProcPtr>,
+    pub copyDescription: Option<WSClientContextCopyDescriptionCallBackProcPtr>,
 }
 
 #[cfg(feature = "objc2")]

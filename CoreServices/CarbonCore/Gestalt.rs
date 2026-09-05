@@ -5,7 +5,7 @@ use core::ffi::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/selectorfunctionprocptr?language=objc)
-pub type SelectorFunctionProcPtr = Option<unsafe extern "C-unwind" fn(OSType, *mut i32) -> OSErr>;
+pub type SelectorFunctionProcPtr = unsafe extern "C-unwind" fn(OSType, *mut i32) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/selectorfunctionupp?language=objc)
 pub type SelectorFunctionUPP = SelectorFunctionProcPtr;
@@ -60,24 +60,29 @@ pub unsafe fn DeleteGestaltValue(selector: OSType) -> OSErr {
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewSelectorFunctionUPP(user_routine: SelectorFunctionProcPtr) -> SelectorFunctionUPP {
+pub unsafe fn NewSelectorFunctionUPP(
+    user_routine: Option<SelectorFunctionProcPtr>,
+) -> Option<SelectorFunctionUPP> {
     extern "C-unwind" {
-        fn NewSelectorFunctionUPP(user_routine: SelectorFunctionProcPtr) -> SelectorFunctionUPP;
+        fn NewSelectorFunctionUPP(
+            user_routine: Option<SelectorFunctionProcPtr>,
+        ) -> Option<SelectorFunctionUPP>;
     }
     unsafe { NewSelectorFunctionUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeSelectorFunctionUPP(user_upp: SelectorFunctionUPP) {
+pub unsafe fn DisposeSelectorFunctionUPP(user_upp: *mut SelectorFunctionUPP) {
     extern "C-unwind" {
-        fn DisposeSelectorFunctionUPP(user_upp: SelectorFunctionUPP);
+        fn DisposeSelectorFunctionUPP(user_upp: *mut SelectorFunctionUPP);
     }
     unsafe { DisposeSelectorFunctionUPP(user_upp) }
 }
@@ -86,18 +91,19 @@ pub unsafe fn DisposeSelectorFunctionUPP(user_upp: SelectorFunctionUPP) {
 ///
 /// - `response` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeSelectorFunctionUPP(
     selector: OSType,
     response: Option<&mut i32>,
-    user_upp: SelectorFunctionUPP,
+    user_upp: Option<SelectorFunctionUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeSelectorFunctionUPP(
             selector: OSType,
             response: Option<&mut i32>,
-            user_upp: SelectorFunctionUPP,
+            user_upp: Option<SelectorFunctionUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeSelectorFunctionUPP(selector, response, user_upp) }

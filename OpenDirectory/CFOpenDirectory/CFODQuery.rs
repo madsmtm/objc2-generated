@@ -19,14 +19,12 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycallback?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
-pub type ODQueryCallback = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&ODQueryRef>,
-        Option<&CFArray>,
-        Option<&CFError>,
-        *mut c_void,
-    ),
->;
+pub type ODQueryCallback = unsafe extern "C-unwind" fn(
+    Option<&ODQueryRef>,
+    Option<&CFArray>,
+    Option<&CFError>,
+    *mut c_void,
+);
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for ODQueryRef {
@@ -302,15 +300,16 @@ impl ODQueryRef {
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
+    /// - `callback` might not allow `None`.
     /// - `user_info` must be a valid pointer.
     #[doc(alias = "ODQuerySetCallback")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn set_callback(&self, callback: ODQueryCallback, user_info: *mut c_void) {
+    pub unsafe fn set_callback(&self, callback: Option<ODQueryCallback>, user_info: *mut c_void) {
         extern "C-unwind" {
             fn ODQuerySetCallback(
                 query: &ODQueryRef,
-                callback: ODQueryCallback,
+                callback: Option<ODQueryCallback>,
                 user_info: *mut c_void,
             );
         }

@@ -416,9 +416,9 @@ pub struct TECConverterContextRec {
     pub reserved2: u32,
     pub bufferContext: TECBufferContextRec,
     pub contextRefCon: URefCon,
-    pub conversionProc: ProcPtr,
-    pub flushProc: ProcPtr,
-    pub clearContextInfoProc: ProcPtr,
+    pub conversionProc: Option<ProcPtr>,
+    pub flushProc: Option<ProcPtr>,
+    pub clearContextInfoProc: Option<ProcPtr>,
     pub options1: u32,
     pub options2: u32,
     pub pluginState: TECPluginStateRec,
@@ -466,8 +466,8 @@ pub struct TECSnifferContextRec {
     pub numFeatures: ItemCount,
     pub numErrors: ItemCount,
     pub contextRefCon: URefCon,
-    pub sniffProc: ProcPtr,
-    pub clearContextInfoProc: ProcPtr,
+    pub sniffProc: Option<ProcPtr>,
+    pub clearContextInfoProc: Option<ProcPtr>,
     pub pluginState: TECPluginStateRec,
 }
 
@@ -499,124 +499,108 @@ unsafe impl RefEncode for TECSnifferContextRec {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginnewencodingconverterptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginNewEncodingConverterPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *mut *mut TECObject,
-        *mut TECConverterContextRec,
-        TextEncoding,
-        TextEncoding,
-    ) -> OSStatus,
->;
+pub type TECPluginNewEncodingConverterPtr = unsafe extern "C-unwind" fn(
+    *mut *mut TECObject,
+    *mut TECConverterContextRec,
+    TextEncoding,
+    TextEncoding,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginclearcontextinfoptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginClearContextInfoPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&TECObject>, *mut TECConverterContextRec) -> OSStatus,
->;
+pub type TECPluginClearContextInfoPtr =
+    unsafe extern "C-unwind" fn(Option<&TECObject>, *mut TECConverterContextRec) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginconverttextencodingptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginConvertTextEncodingPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&TECObject>, *mut TECConverterContextRec) -> OSStatus,
->;
+pub type TECPluginConvertTextEncodingPtr =
+    unsafe extern "C-unwind" fn(Option<&TECObject>, *mut TECConverterContextRec) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginflushconversionptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginFlushConversionPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&TECObject>, *mut TECConverterContextRec) -> OSStatus,
->;
+pub type TECPluginFlushConversionPtr =
+    unsafe extern "C-unwind" fn(Option<&TECObject>, *mut TECConverterContextRec) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugindisposeencodingconverterptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginDisposeEncodingConverterPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&TECObject>, *mut TECConverterContextRec) -> OSStatus,
->;
+pub type TECPluginDisposeEncodingConverterPtr =
+    unsafe extern "C-unwind" fn(Option<&TECObject>, *mut TECConverterContextRec) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginnewencodingsnifferptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginNewEncodingSnifferPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *mut *mut TECSnifferObject,
-        *mut TECSnifferContextRec,
-        TextEncoding,
-    ) -> OSStatus,
->;
+pub type TECPluginNewEncodingSnifferPtr = unsafe extern "C-unwind" fn(
+    *mut *mut TECSnifferObject,
+    *mut TECSnifferContextRec,
+    TextEncoding,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginclearsniffercontextinfoptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginClearSnifferContextInfoPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&TECSnifferObject>, *mut TECSnifferContextRec) -> OSStatus,
->;
+pub type TECPluginClearSnifferContextInfoPtr =
+    unsafe extern "C-unwind" fn(Option<&TECSnifferObject>, *mut TECSnifferContextRec) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecpluginsnifftextencodingptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginSniffTextEncodingPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&TECSnifferObject>, *mut TECSnifferContextRec) -> OSStatus,
->;
+pub type TECPluginSniffTextEncodingPtr =
+    unsafe extern "C-unwind" fn(Option<&TECSnifferObject>, *mut TECSnifferContextRec) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugindisposeencodingsnifferptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginDisposeEncodingSnifferPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&TECSnifferObject>, *mut TECSnifferContextRec) -> OSStatus,
->;
+pub type TECPluginDisposeEncodingSnifferPtr =
+    unsafe extern "C-unwind" fn(Option<&TECSnifferObject>, *mut TECSnifferContextRec) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingetcountavailabletextencodingsptr?language=objc)
 #[cfg(feature = "TextCommon")]
 pub type TECPluginGetCountAvailableTextEncodingsPtr =
-    Option<unsafe extern "C-unwind" fn(*mut TextEncoding, ItemCount, *mut ItemCount) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*mut TextEncoding, ItemCount, *mut ItemCount) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingetcountavailabletextencodingpairsptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
-pub type TECPluginGetCountAvailableTextEncodingPairsPtr = Option<
-    unsafe extern "C-unwind" fn(*mut TECConversionInfo, ItemCount, *mut ItemCount) -> OSStatus,
->;
+pub type TECPluginGetCountAvailableTextEncodingPairsPtr =
+    unsafe extern "C-unwind" fn(*mut TECConversionInfo, ItemCount, *mut ItemCount) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingetcountdestinationtextencodingsptr?language=objc)
 #[cfg(feature = "TextCommon")]
-pub type TECPluginGetCountDestinationTextEncodingsPtr = Option<
-    unsafe extern "C-unwind" fn(
-        TextEncoding,
-        *mut TextEncoding,
-        ItemCount,
-        *mut ItemCount,
-    ) -> OSStatus,
->;
+pub type TECPluginGetCountDestinationTextEncodingsPtr = unsafe extern "C-unwind" fn(
+    TextEncoding,
+    *mut TextEncoding,
+    ItemCount,
+    *mut ItemCount,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingetcountsubtextencodingsptr?language=objc)
 #[cfg(feature = "TextCommon")]
-pub type TECPluginGetCountSubTextEncodingsPtr = Option<
-    unsafe extern "C-unwind" fn(
-        TextEncoding,
-        *mut TextEncoding,
-        ItemCount,
-        *mut ItemCount,
-    ) -> OSStatus,
->;
+pub type TECPluginGetCountSubTextEncodingsPtr = unsafe extern "C-unwind" fn(
+    TextEncoding,
+    *mut TextEncoding,
+    ItemCount,
+    *mut ItemCount,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingetcountavailablesniffersptr?language=objc)
 #[cfg(feature = "TextCommon")]
 pub type TECPluginGetCountAvailableSniffersPtr =
-    Option<unsafe extern "C-unwind" fn(*mut TextEncoding, ItemCount, *mut ItemCount) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*mut TextEncoding, ItemCount, *mut ItemCount) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingettextencodinginternetnameptr?language=objc)
 #[cfg(feature = "TextCommon")]
 pub type TECPluginGetTextEncodingInternetNamePtr =
-    Option<unsafe extern "C-unwind" fn(TextEncoding, Option<&mut Str255>) -> OSStatus>;
+    unsafe extern "C-unwind" fn(TextEncoding, Option<&mut Str255>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingettextencodingfrominternetnameptr?language=objc)
 #[cfg(feature = "TextCommon")]
 pub type TECPluginGetTextEncodingFromInternetNamePtr =
-    Option<unsafe extern "C-unwind" fn(*mut TextEncoding, ConstStr255Param) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*mut TextEncoding, ConstStr255Param) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingetcountwebencodingsptr?language=objc)
 #[cfg(feature = "TextCommon")]
 pub type TECPluginGetCountWebEncodingsPtr =
-    Option<unsafe extern "C-unwind" fn(*mut TextEncoding, ItemCount, *mut ItemCount) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*mut TextEncoding, ItemCount, *mut ItemCount) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingetcountmailencodingsptr?language=objc)
 #[cfg(feature = "TextCommon")]
 pub type TECPluginGetCountMailEncodingsPtr =
-    Option<unsafe extern "C-unwind" fn(*mut TextEncoding, ItemCount, *mut ItemCount) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*mut TextEncoding, ItemCount, *mut ItemCount) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ktecplugindispatchtableversion1?language=objc)
 pub const kTECPluginDispatchTableVersion1: c_uint = 0x00010000;
@@ -636,24 +620,26 @@ pub struct TECPluginDispatchTable {
     pub version: TECPluginVersion,
     pub compatibleVersion: TECPluginVersion,
     pub PluginID: TECPluginSignature,
-    pub PluginNewEncodingConverter: TECPluginNewEncodingConverterPtr,
-    pub PluginClearContextInfo: TECPluginClearContextInfoPtr,
-    pub PluginConvertTextEncoding: TECPluginConvertTextEncodingPtr,
-    pub PluginFlushConversion: TECPluginFlushConversionPtr,
-    pub PluginDisposeEncodingConverter: TECPluginDisposeEncodingConverterPtr,
-    pub PluginNewEncodingSniffer: TECPluginNewEncodingSnifferPtr,
-    pub PluginClearSnifferContextInfo: TECPluginClearSnifferContextInfoPtr,
-    pub PluginSniffTextEncoding: TECPluginSniffTextEncodingPtr,
-    pub PluginDisposeEncodingSniffer: TECPluginDisposeEncodingSnifferPtr,
-    pub PluginGetCountAvailableTextEncodings: TECPluginGetCountAvailableTextEncodingsPtr,
-    pub PluginGetCountAvailableTextEncodingPairs: TECPluginGetCountAvailableTextEncodingPairsPtr,
-    pub PluginGetCountDestinationTextEncodings: TECPluginGetCountDestinationTextEncodingsPtr,
-    pub PluginGetCountSubTextEncodings: TECPluginGetCountSubTextEncodingsPtr,
-    pub PluginGetCountAvailableSniffers: TECPluginGetCountAvailableSniffersPtr,
-    pub PluginGetCountWebTextEncodings: TECPluginGetCountWebEncodingsPtr,
-    pub PluginGetCountMailTextEncodings: TECPluginGetCountMailEncodingsPtr,
-    pub PluginGetTextEncodingInternetName: TECPluginGetTextEncodingInternetNamePtr,
-    pub PluginGetTextEncodingFromInternetName: TECPluginGetTextEncodingFromInternetNamePtr,
+    pub PluginNewEncodingConverter: Option<TECPluginNewEncodingConverterPtr>,
+    pub PluginClearContextInfo: Option<TECPluginClearContextInfoPtr>,
+    pub PluginConvertTextEncoding: Option<TECPluginConvertTextEncodingPtr>,
+    pub PluginFlushConversion: Option<TECPluginFlushConversionPtr>,
+    pub PluginDisposeEncodingConverter: Option<TECPluginDisposeEncodingConverterPtr>,
+    pub PluginNewEncodingSniffer: Option<TECPluginNewEncodingSnifferPtr>,
+    pub PluginClearSnifferContextInfo: Option<TECPluginClearSnifferContextInfoPtr>,
+    pub PluginSniffTextEncoding: Option<TECPluginSniffTextEncodingPtr>,
+    pub PluginDisposeEncodingSniffer: Option<TECPluginDisposeEncodingSnifferPtr>,
+    pub PluginGetCountAvailableTextEncodings: Option<TECPluginGetCountAvailableTextEncodingsPtr>,
+    pub PluginGetCountAvailableTextEncodingPairs:
+        Option<TECPluginGetCountAvailableTextEncodingPairsPtr>,
+    pub PluginGetCountDestinationTextEncodings:
+        Option<TECPluginGetCountDestinationTextEncodingsPtr>,
+    pub PluginGetCountSubTextEncodings: Option<TECPluginGetCountSubTextEncodingsPtr>,
+    pub PluginGetCountAvailableSniffers: Option<TECPluginGetCountAvailableSniffersPtr>,
+    pub PluginGetCountWebTextEncodings: Option<TECPluginGetCountWebEncodingsPtr>,
+    pub PluginGetCountMailTextEncodings: Option<TECPluginGetCountMailEncodingsPtr>,
+    pub PluginGetTextEncodingInternetName: Option<TECPluginGetTextEncodingInternetNamePtr>,
+    pub PluginGetTextEncodingFromInternetName: Option<TECPluginGetTextEncodingFromInternetNamePtr>,
 }
 
 #[cfg(all(
@@ -702,4 +688,4 @@ unsafe impl RefEncode for TECPluginDispatchTable {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tecplugingetplugindispatchtableptr?language=objc)
 #[cfg(all(feature = "TextCommon", feature = "TextEncodingConverter"))]
 pub type TECPluginGetPluginDispatchTablePtr =
-    Option<unsafe extern "C-unwind" fn() -> *mut TECPluginDispatchTable>;
+    unsafe extern "C-unwind" fn() -> *mut TECPluginDispatchTable;

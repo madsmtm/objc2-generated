@@ -35,8 +35,8 @@ pub struct cssm_state_funcs {
     pub cssm_IsFuncCallValid: Option<
         unsafe extern "C-unwind" fn(
             CSSM_MODULE_HANDLE,
-            CSSM_PROC_ADDR,
-            CSSM_PROC_ADDR,
+            Option<CSSM_PROC_ADDR>,
+            Option<CSSM_PROC_ADDR>,
             CSSM_PRIVILEGE,
             *mut CSSM_PRIVILEGE,
             CSSM_BITMASK,

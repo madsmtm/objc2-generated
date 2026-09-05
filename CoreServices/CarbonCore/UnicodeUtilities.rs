@@ -449,37 +449,40 @@ pub const kUCTSOptionsReleaseStringMask: c_uint = 1;
 pub const kUCTSOptionsDataIsOrderedMask: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/indextoucstringprocptr?language=objc)
-pub type IndexToUCStringProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        u32,
-        *mut c_void,
-        *mut c_void,
-        *mut *const CFString,
-        *mut UCTypeSelectOptions,
-    ) -> Boolean,
->;
+pub type IndexToUCStringProcPtr = unsafe extern "C-unwind" fn(
+    u32,
+    *mut c_void,
+    *mut c_void,
+    *mut *const CFString,
+    *mut UCTypeSelectOptions,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/indextoucstringupp?language=objc)
 pub type IndexToUCStringUPP = IndexToUCStringProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewIndexToUCStringUPP(user_routine: IndexToUCStringProcPtr) -> IndexToUCStringUPP {
+pub unsafe fn NewIndexToUCStringUPP(
+    user_routine: Option<IndexToUCStringProcPtr>,
+) -> Option<IndexToUCStringUPP> {
     extern "C-unwind" {
-        fn NewIndexToUCStringUPP(user_routine: IndexToUCStringProcPtr) -> IndexToUCStringUPP;
+        fn NewIndexToUCStringUPP(
+            user_routine: Option<IndexToUCStringProcPtr>,
+        ) -> Option<IndexToUCStringUPP>;
     }
     unsafe { NewIndexToUCStringUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeIndexToUCStringUPP(user_upp: IndexToUCStringUPP) {
+pub unsafe fn DisposeIndexToUCStringUPP(user_upp: *mut IndexToUCStringUPP) {
     extern "C-unwind" {
-        fn DisposeIndexToUCStringUPP(user_upp: IndexToUCStringUPP);
+        fn DisposeIndexToUCStringUPP(user_upp: *mut IndexToUCStringUPP);
     }
     unsafe { DisposeIndexToUCStringUPP(user_upp) }
 }
@@ -491,6 +494,7 @@ pub unsafe fn DisposeIndexToUCStringUPP(user_upp: IndexToUCStringUPP) {
 /// - `out_string` might not allow `None`.
 /// - `ts_options` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeIndexToUCStringUPP(
     index: u32,
@@ -498,7 +502,7 @@ pub unsafe fn InvokeIndexToUCStringUPP(
     refcon: *mut c_void,
     out_string: Option<&mut Option<CFRetained<CFString>>>,
     ts_options: Option<&mut UCTypeSelectOptions>,
-    user_upp: IndexToUCStringUPP,
+    user_upp: Option<IndexToUCStringUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeIndexToUCStringUPP(
@@ -507,7 +511,7 @@ pub unsafe fn InvokeIndexToUCStringUPP(
             refcon: *mut c_void,
             out_string: Option<&mut Option<CFRetained<CFString>>>,
             ts_options: Option<&mut UCTypeSelectOptions>,
-            user_upp: IndexToUCStringUPP,
+            user_upp: Option<IndexToUCStringUPP>,
         ) -> Boolean;
     }
     if let Some(out_string) = out_string.as_ref() {
@@ -1107,6 +1111,7 @@ impl UCTypeSelect {
     /// - `list_data_ptr` must be a valid pointer.
     /// - `refcon` must be a valid pointer.
     /// - `user_upp` must be implemented correctly.
+    /// - `user_upp` might not allow `None`.
     /// - `closest_item` might not allow `None`.
     #[doc(alias = "UCTypeSelectFindItem")]
     #[inline]
@@ -1115,7 +1120,7 @@ impl UCTypeSelect {
         list_size: u32,
         list_data_ptr: *mut c_void,
         refcon: *mut c_void,
-        user_upp: IndexToUCStringUPP,
+        user_upp: Option<IndexToUCStringUPP>,
         closest_item: Option<&mut u32>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -1124,7 +1129,7 @@ impl UCTypeSelect {
                 list_size: u32,
                 list_data_ptr: *mut c_void,
                 refcon: *mut c_void,
-                user_upp: IndexToUCStringUPP,
+                user_upp: Option<IndexToUCStringUPP>,
                 closest_item: Option<&mut u32>,
             ) -> OSStatus;
         }
@@ -1148,6 +1153,7 @@ impl UCTypeSelect {
     /// - `list_data_ptr` must be a valid pointer.
     /// - `refcon` must be a valid pointer.
     /// - `user_upp` must be implemented correctly.
+    /// - `user_upp` might not allow `None`.
     /// - `closest_item` might not allow `None`.
     #[doc(alias = "UCTypeSelectWalkList")]
     #[inline]
@@ -1158,7 +1164,7 @@ impl UCTypeSelect {
         list_size: u32,
         list_data_ptr: *mut c_void,
         refcon: *mut c_void,
-        user_upp: IndexToUCStringUPP,
+        user_upp: Option<IndexToUCStringUPP>,
         closest_item: Option<&mut u32>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -1169,7 +1175,7 @@ impl UCTypeSelect {
                 list_size: u32,
                 list_data_ptr: *mut c_void,
                 refcon: *mut c_void,
-                user_upp: IndexToUCStringUPP,
+                user_upp: Option<IndexToUCStringUPP>,
                 closest_item: Option<&mut u32>,
             ) -> OSStatus;
         }

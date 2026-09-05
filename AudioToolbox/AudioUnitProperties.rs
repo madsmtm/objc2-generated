@@ -1098,7 +1098,7 @@ unsafe impl RefEncode for AudioUnitExternalBuffer {
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AURenderCallbackStruct {
-    pub inputProc: AURenderCallback,
+    pub inputProc: Option<AURenderCallback>,
     pub inputProcRefCon: *mut c_void,
 }
 
@@ -1218,7 +1218,7 @@ unsafe impl RefEncode for AudioUnitFrequencyResponseBin {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_getbeatandtempo?language=objc)
 pub type HostCallback_GetBeatAndTempo =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut f64, *mut f64) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*mut c_void, *mut f64, *mut f64) -> OSStatus;
 
 /// Retrieve information about the musical time state of the host
 ///
@@ -1244,9 +1244,8 @@ pub type HostCallback_GetBeatAndTempo =
 /// Parameter `outCurrentMeasureDownBeat`: The beat that corresponds to the downbeat (first beat) of the current measure that is being rendered
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_getmusicaltimelocation?language=objc)
-pub type HostCallback_GetMusicalTimeLocation = Option<
-    unsafe extern "C-unwind" fn(*mut c_void, *mut u32, *mut f32, *mut u32, *mut f64) -> OSStatus,
->;
+pub type HostCallback_GetMusicalTimeLocation =
+    unsafe extern "C-unwind" fn(*mut c_void, *mut u32, *mut f32, *mut u32, *mut f64) -> OSStatus;
 
 /// Retrieve information about the time line's (or transport) state of the host.
 ///
@@ -1276,17 +1275,15 @@ pub type HostCallback_GetMusicalTimeLocation = Option<
 /// Parameter `outCycleEndBeat`: If cycling is true, the end beat of the cycle or loop point in the host's transport
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_gettransportstate?language=objc)
-pub type HostCallback_GetTransportState = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        *mut Boolean,
-        *mut Boolean,
-        *mut f64,
-        *mut Boolean,
-        *mut f64,
-        *mut f64,
-    ) -> OSStatus,
->;
+pub type HostCallback_GetTransportState = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    *mut Boolean,
+    *mut Boolean,
+    *mut f64,
+    *mut Boolean,
+    *mut f64,
+    *mut f64,
+) -> OSStatus;
 
 /// Retrieve information about the time line's (or transport) state of the host.
 ///
@@ -1318,18 +1315,16 @@ pub type HostCallback_GetTransportState = Option<
 /// Parameter `outCycleEndBeat`: If cycling is true, the end beat of the cycle or loop point in the host's transport
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_gettransportstate2?language=objc)
-pub type HostCallback_GetTransportState2 = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        *mut Boolean,
-        *mut Boolean,
-        *mut Boolean,
-        *mut f64,
-        *mut Boolean,
-        *mut f64,
-        *mut f64,
-    ) -> OSStatus,
->;
+pub type HostCallback_GetTransportState2 = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    *mut Boolean,
+    *mut Boolean,
+    *mut Boolean,
+    *mut f64,
+    *mut Boolean,
+    *mut f64,
+    *mut f64,
+) -> OSStatus;
 
 /// Contains the various callbacks for an audio unit to call
 ///
@@ -1341,10 +1336,10 @@ pub type HostCallback_GetTransportState2 = Option<
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct HostCallbackInfo {
     pub hostUserData: *mut c_void,
-    pub beatAndTempoProc: HostCallback_GetBeatAndTempo,
-    pub musicalTimeLocationProc: HostCallback_GetMusicalTimeLocation,
-    pub transportStateProc: HostCallback_GetTransportState,
-    pub transportStateProc2: HostCallback_GetTransportState2,
+    pub beatAndTempoProc: Option<HostCallback_GetBeatAndTempo>,
+    pub musicalTimeLocationProc: Option<HostCallback_GetMusicalTimeLocation>,
+    pub transportStateProc: Option<HostCallback_GetTransportState>,
+    pub transportStateProc2: Option<HostCallback_GetTransportState2>,
 }
 
 #[cfg(feature = "objc2")]
@@ -1449,14 +1444,12 @@ unsafe impl RefEncode for AUHostVersionIdentifier {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputcallback?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
-pub type AUMIDIOutputCallback = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        NonNull<AudioTimeStamp>,
-        u32,
-        NonNull<MIDIPacketList>,
-    ) -> OSStatus,
->;
+pub type AUMIDIOutputCallback = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    NonNull<AudioTimeStamp>,
+    u32,
+    NonNull<MIDIPacketList>,
+) -> OSStatus;
 
 /// Set by host application to provide the callback and user data for an audio
 /// unit that provides MIDI output

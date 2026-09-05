@@ -232,18 +232,17 @@ impl WSProtocolHandler {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerserializationprocptr?language=objc)
-pub type WSProtocolHandlerSerializationProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&WSProtocolHandler>,
-        Option<&CFType>,
-        *mut c_void,
-    ) -> *const CFString,
->;
+pub type WSProtocolHandlerSerializationProcPtr = unsafe extern "C-unwind" fn(
+    Option<&WSProtocolHandler>,
+    Option<&CFType>,
+    *mut c_void,
+) -> *const CFString;
 
 impl WSProtocolHandler {
     /// # Safety
     ///
     /// - `serialization_proc` must be implemented correctly.
+    /// - `serialization_proc` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -257,14 +256,14 @@ impl WSProtocolHandler {
     pub unsafe fn set_serialization_override(
         &self,
         obj_type: CFTypeID,
-        serialization_proc: WSProtocolHandlerSerializationProcPtr,
+        serialization_proc: Option<WSProtocolHandlerSerializationProcPtr>,
         context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
             fn WSProtocolHandlerSetSerializationOverride(
                 protocol: &WSProtocolHandler,
                 obj_type: CFTypeID,
-                serialization_proc: WSProtocolHandlerSerializationProcPtr,
+                serialization_proc: Option<WSProtocolHandlerSerializationProcPtr>,
                 context: Option<&mut WSClientContext>,
             );
         }
@@ -275,14 +274,12 @@ impl WSProtocolHandler {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerdeserializationprocptr?language=objc)
-pub type WSProtocolHandlerDeserializationProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&WSProtocolHandler>,
-        Option<&CFXMLTree>,
-        Option<&CFXMLTree>,
-        *mut c_void,
-    ) -> *const CFType,
->;
+pub type WSProtocolHandlerDeserializationProcPtr = unsafe extern "C-unwind" fn(
+    Option<&WSProtocolHandler>,
+    Option<&CFXMLTree>,
+    Option<&CFXMLTree>,
+    *mut c_void,
+) -> *const CFType;
 
 impl WSProtocolHandler {
     /// # Safety
@@ -290,6 +287,7 @@ impl WSProtocolHandler {
     /// - `type_namespace` might not allow `None`.
     /// - `type_name` might not allow `None`.
     /// - `deserialization_proc` must be implemented correctly.
+    /// - `deserialization_proc` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -304,7 +302,7 @@ impl WSProtocolHandler {
         &self,
         type_namespace: Option<&CFString>,
         type_name: Option<&CFString>,
-        deserialization_proc: WSProtocolHandlerDeserializationProcPtr,
+        deserialization_proc: Option<WSProtocolHandlerDeserializationProcPtr>,
         context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
@@ -312,7 +310,7 @@ impl WSProtocolHandler {
                 protocol: &WSProtocolHandler,
                 type_namespace: Option<&CFString>,
                 type_name: Option<&CFString>,
-                deserialization_proc: WSProtocolHandlerDeserializationProcPtr,
+                deserialization_proc: Option<WSProtocolHandlerDeserializationProcPtr>,
                 context: Option<&mut WSClientContext>,
             );
         }

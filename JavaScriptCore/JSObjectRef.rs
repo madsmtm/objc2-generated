@@ -57,8 +57,7 @@ pub type JSClassAttributes = c_uint;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectinitializecallback?language=objc)
 #[cfg(feature = "JSBase")]
-pub type JSObjectInitializeCallback =
-    Option<unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef)>;
+pub type JSObjectInitializeCallback = unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef);
 
 /// The callback invoked when an object is finalized (prepared for garbage collection). An object may be finalized on any thread.
 ///
@@ -77,7 +76,7 @@ pub type JSObjectInitializeCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectfinalizecallback?language=objc)
 #[cfg(feature = "JSBase")]
-pub type JSObjectFinalizeCallback = Option<unsafe extern "C-unwind" fn(JSObjectRef)>;
+pub type JSObjectFinalizeCallback = unsafe extern "C-unwind" fn(JSObjectRef);
 
 /// The callback invoked when determining whether an object has a property.
 ///
@@ -102,7 +101,7 @@ pub type JSObjectFinalizeCallback = Option<unsafe extern "C-unwind" fn(JSObjectR
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjecthaspropertycallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectHasPropertyCallback =
-    Option<unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSStringRef) -> bool>;
+    unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSStringRef) -> bool;
 
 /// The callback invoked when getting a property's value.
 ///
@@ -124,14 +123,12 @@ pub type JSObjectHasPropertyCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertycallback?language=objc)
 #[cfg(feature = "JSBase")]
-pub type JSObjectGetPropertyCallback = Option<
-    unsafe extern "C-unwind" fn(
-        JSContextRef,
-        JSObjectRef,
-        JSStringRef,
-        *mut JSValueRef,
-    ) -> JSValueRef,
->;
+pub type JSObjectGetPropertyCallback = unsafe extern "C-unwind" fn(
+    JSContextRef,
+    JSObjectRef,
+    JSStringRef,
+    *mut JSValueRef,
+) -> JSValueRef;
 
 /// The callback invoked when setting a property's value.
 ///
@@ -155,15 +152,13 @@ pub type JSObjectGetPropertyCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetpropertycallback?language=objc)
 #[cfg(feature = "JSBase")]
-pub type JSObjectSetPropertyCallback = Option<
-    unsafe extern "C-unwind" fn(
-        JSContextRef,
-        JSObjectRef,
-        JSStringRef,
-        JSValueRef,
-        *mut JSValueRef,
-    ) -> bool,
->;
+pub type JSObjectSetPropertyCallback = unsafe extern "C-unwind" fn(
+    JSContextRef,
+    JSObjectRef,
+    JSStringRef,
+    JSValueRef,
+    *mut JSValueRef,
+) -> bool;
 
 /// The callback invoked when deleting a property.
 ///
@@ -185,9 +180,8 @@ pub type JSObjectSetPropertyCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectdeletepropertycallback?language=objc)
 #[cfg(feature = "JSBase")]
-pub type JSObjectDeletePropertyCallback = Option<
-    unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSStringRef, *mut JSValueRef) -> bool,
->;
+pub type JSObjectDeletePropertyCallback =
+    unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSStringRef, *mut JSValueRef) -> bool;
 
 /// The callback invoked when collecting the names of an object's properties.
 ///
@@ -208,7 +202,7 @@ pub type JSObjectDeletePropertyCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertynamescallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectGetPropertyNamesCallback =
-    Option<unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSPropertyNameAccumulatorRef)>;
+    unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSPropertyNameAccumulatorRef);
 
 /// The callback invoked when an object is called as a function.
 ///
@@ -236,16 +230,14 @@ pub type JSObjectGetPropertyNamesCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasfunctioncallback?language=objc)
 #[cfg(feature = "JSBase")]
-pub type JSObjectCallAsFunctionCallback = Option<
-    unsafe extern "C-unwind" fn(
-        JSContextRef,
-        JSObjectRef,
-        JSObjectRef,
-        usize,
-        *mut JSValueRef,
-        *mut JSValueRef,
-    ) -> JSValueRef,
->;
+pub type JSObjectCallAsFunctionCallback = unsafe extern "C-unwind" fn(
+    JSContextRef,
+    JSObjectRef,
+    JSObjectRef,
+    usize,
+    *mut JSValueRef,
+    *mut JSValueRef,
+) -> JSValueRef;
 
 /// The callback invoked when an object is used as a constructor in a 'new' expression.
 ///
@@ -271,15 +263,13 @@ pub type JSObjectCallAsFunctionCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasconstructorcallback?language=objc)
 #[cfg(feature = "JSBase")]
-pub type JSObjectCallAsConstructorCallback = Option<
-    unsafe extern "C-unwind" fn(
-        JSContextRef,
-        JSObjectRef,
-        usize,
-        *mut JSValueRef,
-        *mut JSValueRef,
-    ) -> JSObjectRef,
->;
+pub type JSObjectCallAsConstructorCallback = unsafe extern "C-unwind" fn(
+    JSContextRef,
+    JSObjectRef,
+    usize,
+    *mut JSValueRef,
+    *mut JSValueRef,
+) -> JSObjectRef;
 
 /// hasInstance The callback invoked when an object is used as the target of an 'instanceof' expression.
 ///
@@ -305,9 +295,8 @@ pub type JSObjectCallAsConstructorCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjecthasinstancecallback?language=objc)
 #[cfg(feature = "JSBase")]
-pub type JSObjectHasInstanceCallback = Option<
-    unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSValueRef, *mut JSValueRef) -> bool,
->;
+pub type JSObjectHasInstanceCallback =
+    unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSValueRef, *mut JSValueRef) -> bool;
 
 /// The callback invoked when converting an object to a particular JavaScript type.
 ///
@@ -331,9 +320,8 @@ pub type JSObjectHasInstanceCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectconverttotypecallback?language=objc)
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub type JSObjectConvertToTypeCallback = Option<
-    unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSType, *mut JSValueRef) -> JSValueRef,
->;
+pub type JSObjectConvertToTypeCallback =
+    unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSType, *mut JSValueRef) -> JSValueRef;
 
 /// This structure describes a statically declared value property.
 ///
@@ -352,8 +340,8 @@ pub type JSObjectConvertToTypeCallback = Option<
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct JSStaticValue {
     pub name: *const c_char,
-    pub getProperty: JSObjectGetPropertyCallback,
-    pub setProperty: JSObjectSetPropertyCallback,
+    pub getProperty: Option<JSObjectGetPropertyCallback>,
+    pub setProperty: Option<JSObjectSetPropertyCallback>,
     pub attributes: JSPropertyAttributes,
 }
 
@@ -390,7 +378,7 @@ unsafe impl RefEncode for JSStaticValue {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct JSStaticFunction {
     pub name: *const c_char,
-    pub callAsFunction: JSObjectCallAsFunctionCallback,
+    pub callAsFunction: Option<JSObjectCallAsFunctionCallback>,
     pub attributes: JSPropertyAttributes,
 }
 
@@ -474,17 +462,17 @@ pub struct JSClassDefinition {
     pub parentClass: JSClassRef,
     pub staticValues: *const JSStaticValue,
     pub staticFunctions: *const JSStaticFunction,
-    pub initialize: JSObjectInitializeCallback,
-    pub finalize: JSObjectFinalizeCallback,
-    pub hasProperty: JSObjectHasPropertyCallback,
-    pub getProperty: JSObjectGetPropertyCallback,
-    pub setProperty: JSObjectSetPropertyCallback,
-    pub deleteProperty: JSObjectDeletePropertyCallback,
-    pub getPropertyNames: JSObjectGetPropertyNamesCallback,
-    pub callAsFunction: JSObjectCallAsFunctionCallback,
-    pub callAsConstructor: JSObjectCallAsConstructorCallback,
-    pub hasInstance: JSObjectHasInstanceCallback,
-    pub convertToType: JSObjectConvertToTypeCallback,
+    pub initialize: Option<JSObjectInitializeCallback>,
+    pub finalize: Option<JSObjectFinalizeCallback>,
+    pub hasProperty: Option<JSObjectHasPropertyCallback>,
+    pub getProperty: Option<JSObjectGetPropertyCallback>,
+    pub setProperty: Option<JSObjectSetPropertyCallback>,
+    pub deleteProperty: Option<JSObjectDeletePropertyCallback>,
+    pub getPropertyNames: Option<JSObjectGetPropertyNamesCallback>,
+    pub callAsFunction: Option<JSObjectCallAsFunctionCallback>,
+    pub callAsConstructor: Option<JSObjectCallAsConstructorCallback>,
+    pub hasInstance: Option<JSObjectHasInstanceCallback>,
+    pub convertToType: Option<JSObjectConvertToTypeCallback>,
 }
 
 #[cfg(all(feature = "JSBase", feature = "JSValueRef", feature = "objc2"))]
@@ -646,18 +634,19 @@ pub unsafe fn JSObjectMake(
 /// - `ctx` must be a valid pointer.
 /// - `name` must be a valid pointer.
 /// - `call_as_function` must be implemented correctly.
+/// - `call_as_function` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectMakeFunctionWithCallback(
     ctx: JSContextRef,
     name: JSStringRef,
-    call_as_function: JSObjectCallAsFunctionCallback,
+    call_as_function: Option<JSObjectCallAsFunctionCallback>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeFunctionWithCallback(
             ctx: JSContextRef,
             name: JSStringRef,
-            call_as_function: JSObjectCallAsFunctionCallback,
+            call_as_function: Option<JSObjectCallAsFunctionCallback>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectMakeFunctionWithCallback(ctx, name, call_as_function) }
@@ -680,18 +669,19 @@ pub unsafe fn JSObjectMakeFunctionWithCallback(
 /// - `ctx` must be a valid pointer.
 /// - `js_class` must be a valid pointer.
 /// - `call_as_constructor` must be implemented correctly.
+/// - `call_as_constructor` might not allow `None`.
 #[cfg(feature = "JSBase")]
 #[inline]
 pub unsafe fn JSObjectMakeConstructor(
     ctx: JSContextRef,
     js_class: JSClassRef,
-    call_as_constructor: JSObjectCallAsConstructorCallback,
+    call_as_constructor: Option<JSObjectCallAsConstructorCallback>,
 ) -> JSObjectRef {
     extern "C-unwind" {
         fn JSObjectMakeConstructor(
             ctx: JSContextRef,
             js_class: JSClassRef,
-            call_as_constructor: JSObjectCallAsConstructorCallback,
+            call_as_constructor: Option<JSObjectCallAsConstructorCallback>,
         ) -> JSObjectRef;
     }
     unsafe { JSObjectMakeConstructor(ctx, js_class, call_as_constructor) }

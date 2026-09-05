@@ -17,12 +17,12 @@ pub const kTSMTEAutoScroll: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/tsmtepreupdateprocptr?language=objc)
 #[cfg(feature = "TextEdit")]
-pub type TSMTEPreUpdateProcPtr = Option<unsafe extern "C-unwind" fn(TEHandle, c_long)>;
+pub type TSMTEPreUpdateProcPtr = unsafe extern "C-unwind" fn(TEHandle, c_long);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/tsmtepostupdateprocptr?language=objc)
 #[cfg(feature = "TextEdit")]
 pub type TSMTEPostUpdateProcPtr =
-    Option<unsafe extern "C-unwind" fn(TEHandle, c_long, c_long, c_long, c_long, c_long, c_long)>;
+    unsafe extern "C-unwind" fn(TEHandle, c_long, c_long, c_long, c_long, c_long, c_long);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/tsmtepreupdateupp?language=objc)
 #[cfg(feature = "TextEdit")]
@@ -39,8 +39,8 @@ pub type TSMTEPostUpdateUPP = TSMTEPostUpdateProcPtr;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct TSMTERec {
     pub textH: TEHandle,
-    pub preUpdateProc: TSMTEPreUpdateUPP,
-    pub postUpdateProc: TSMTEPostUpdateUPP,
+    pub preUpdateProc: Option<TSMTEPreUpdateUPP>,
+    pub postUpdateProc: Option<TSMTEPostUpdateUPP>,
     pub updateFlag: c_long,
     pub refCon: c_long,
 }
@@ -74,52 +74,62 @@ pub type TSMTERecHandle = *mut TSMTERecPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "TextEdit")]
 #[deprecated]
 #[inline]
-pub unsafe fn NewTSMTEPreUpdateUPP(user_routine: TSMTEPreUpdateProcPtr) -> TSMTEPreUpdateUPP {
+pub unsafe fn NewTSMTEPreUpdateUPP(
+    user_routine: Option<TSMTEPreUpdateProcPtr>,
+) -> Option<TSMTEPreUpdateUPP> {
     extern "C-unwind" {
-        fn NewTSMTEPreUpdateUPP(user_routine: TSMTEPreUpdateProcPtr) -> TSMTEPreUpdateUPP;
+        fn NewTSMTEPreUpdateUPP(
+            user_routine: Option<TSMTEPreUpdateProcPtr>,
+        ) -> Option<TSMTEPreUpdateUPP>;
     }
     unsafe { NewTSMTEPreUpdateUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "TextEdit")]
 #[deprecated]
 #[inline]
-pub unsafe fn NewTSMTEPostUpdateUPP(user_routine: TSMTEPostUpdateProcPtr) -> TSMTEPostUpdateUPP {
+pub unsafe fn NewTSMTEPostUpdateUPP(
+    user_routine: Option<TSMTEPostUpdateProcPtr>,
+) -> Option<TSMTEPostUpdateUPP> {
     extern "C-unwind" {
-        fn NewTSMTEPostUpdateUPP(user_routine: TSMTEPostUpdateProcPtr) -> TSMTEPostUpdateUPP;
+        fn NewTSMTEPostUpdateUPP(
+            user_routine: Option<TSMTEPostUpdateProcPtr>,
+        ) -> Option<TSMTEPostUpdateUPP>;
     }
     unsafe { NewTSMTEPostUpdateUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "TextEdit")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeTSMTEPreUpdateUPP(user_upp: TSMTEPreUpdateUPP) {
+pub unsafe fn DisposeTSMTEPreUpdateUPP(user_upp: *mut TSMTEPreUpdateUPP) {
     extern "C-unwind" {
-        fn DisposeTSMTEPreUpdateUPP(user_upp: TSMTEPreUpdateUPP);
+        fn DisposeTSMTEPreUpdateUPP(user_upp: *mut TSMTEPreUpdateUPP);
     }
     unsafe { DisposeTSMTEPreUpdateUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "TextEdit")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeTSMTEPostUpdateUPP(user_upp: TSMTEPostUpdateUPP) {
+pub unsafe fn DisposeTSMTEPostUpdateUPP(user_upp: *mut TSMTEPostUpdateUPP) {
     extern "C-unwind" {
-        fn DisposeTSMTEPostUpdateUPP(user_upp: TSMTEPostUpdateUPP);
+        fn DisposeTSMTEPostUpdateUPP(user_upp: *mut TSMTEPostUpdateUPP);
     }
     unsafe { DisposeTSMTEPostUpdateUPP(user_upp) }
 }
@@ -128,16 +138,21 @@ pub unsafe fn DisposeTSMTEPostUpdateUPP(user_upp: TSMTEPostUpdateUPP) {
 ///
 /// - `text_h` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "TextEdit")]
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeTSMTEPreUpdateUPP(
     text_h: TEHandle,
     ref_con: c_long,
-    user_upp: TSMTEPreUpdateUPP,
+    user_upp: Option<TSMTEPreUpdateUPP>,
 ) {
     extern "C-unwind" {
-        fn InvokeTSMTEPreUpdateUPP(text_h: TEHandle, ref_con: c_long, user_upp: TSMTEPreUpdateUPP);
+        fn InvokeTSMTEPreUpdateUPP(
+            text_h: TEHandle,
+            ref_con: c_long,
+            user_upp: Option<TSMTEPreUpdateUPP>,
+        );
     }
     unsafe { InvokeTSMTEPreUpdateUPP(text_h, ref_con, user_upp) }
 }
@@ -146,6 +161,7 @@ pub unsafe fn InvokeTSMTEPreUpdateUPP(
 ///
 /// - `text_h` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "TextEdit")]
 #[deprecated]
 #[inline]
@@ -157,7 +173,7 @@ pub unsafe fn InvokeTSMTEPostUpdateUPP(
     pin_start: c_long,
     pin_end: c_long,
     ref_con: c_long,
-    user_upp: TSMTEPostUpdateUPP,
+    user_upp: Option<TSMTEPostUpdateUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeTSMTEPostUpdateUPP(
@@ -168,7 +184,7 @@ pub unsafe fn InvokeTSMTEPostUpdateUPP(
             pin_start: c_long,
             pin_end: c_long,
             ref_con: c_long,
-            user_upp: TSMTEPostUpdateUPP,
+            user_upp: Option<TSMTEPostUpdateUPP>,
         );
     }
     unsafe {

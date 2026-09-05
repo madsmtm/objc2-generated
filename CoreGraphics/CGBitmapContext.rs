@@ -9,8 +9,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapcontextreleasedatacallback?language=objc)
-pub type CGBitmapContextReleaseDataCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
+pub type CGBitmapContextReleaseDataCallback = unsafe extern "C-unwind" fn(*mut c_void, *mut c_void);
 
 /// # Safety
 ///
@@ -27,7 +26,7 @@ pub unsafe fn CGBitmapContextCreateWithData(
     bytes_per_row: usize,
     space: Option<&CGColorSpace>,
     bitmap_info: CGBitmapInfo,
-    release_callback: CGBitmapContextReleaseDataCallback,
+    release_callback: Option<CGBitmapContextReleaseDataCallback>,
     release_info: *mut c_void,
 ) -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
@@ -39,7 +38,7 @@ pub unsafe fn CGBitmapContextCreateWithData(
             bytes_per_row: usize,
             space: Option<&CGColorSpace>,
             bitmap_info: CGBitmapInfo,
-            release_callback: CGBitmapContextReleaseDataCallback,
+            release_callback: Option<CGBitmapContextReleaseDataCallback>,
             release_info: *mut c_void,
         ) -> Option<NonNull<CGContext>>;
     }

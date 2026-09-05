@@ -29,7 +29,7 @@ pub type CMIOStreamID = CMIOObjectID;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicestreamqueuealteredproc?language=objc)
 #[cfg(feature = "CMIOHardwareObject")]
 pub type CMIODeviceStreamQueueAlteredProc =
-    Option<unsafe extern "C-unwind" fn(CMIOStreamID, *mut c_void, *mut c_void)>;
+    unsafe extern "C-unwind" fn(CMIOStreamID, *mut c_void, *mut c_void);
 
 /// This structure is returned in response to the kCMIOStreamPropertyDeck property queries.
 ///
@@ -427,6 +427,7 @@ pub const kCMIOStreamPropertyPreferredFrameRate: c_uint = 0x70726672;
 /// # Safety
 ///
 /// - `queue_altered_proc` must be implemented correctly.
+/// - `queue_altered_proc` might not allow `None`.
 /// - `queue_altered_ref_con` must be a valid pointer.
 /// - `queue` might not allow `None`.
 #[cfg(all(
@@ -437,14 +438,14 @@ pub const kCMIOStreamPropertyPreferredFrameRate: c_uint = 0x70726672;
 #[inline]
 pub unsafe fn CMIOStreamCopyBufferQueue(
     stream_id: CMIOStreamID,
-    queue_altered_proc: CMIODeviceStreamQueueAlteredProc,
+    queue_altered_proc: Option<CMIODeviceStreamQueueAlteredProc>,
     queue_altered_ref_con: *mut c_void,
     queue: Option<&mut Option<CFRetained<CMSimpleQueue>>>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOStreamCopyBufferQueue(
             stream_id: CMIOStreamID,
-            queue_altered_proc: CMIODeviceStreamQueueAlteredProc,
+            queue_altered_proc: Option<CMIODeviceStreamQueueAlteredProc>,
             queue_altered_ref_con: *mut c_void,
             queue: Option<&mut Option<CFRetained<CMSimpleQueue>>>,
         ) -> OSStatus;
@@ -708,7 +709,7 @@ pub unsafe fn CMIOStreamClockConvertHostTimeToDeviceTime(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamscheduledoutputnotificationproc?language=objc)
 pub type CMIOStreamScheduledOutputNotificationProc =
-    Option<unsafe extern "C-unwind" fn(u64, u64, *mut c_void)>;
+    unsafe extern "C-unwind" fn(u64, u64, *mut c_void);
 
 /// The payload for kCMIOStreamPropertyScheduledOutputNotificationProc.
 ///
@@ -723,7 +724,7 @@ pub type CMIOStreamScheduledOutputNotificationProc =
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIOStreamScheduledOutputNotificationProcAndRefCon {
-    pub scheduledOutputNotificationProc: CMIOStreamScheduledOutputNotificationProc,
+    pub scheduledOutputNotificationProc: Option<CMIOStreamScheduledOutputNotificationProc>,
     pub scheduledOutputNotificationRefCon: *mut c_void,
 }
 

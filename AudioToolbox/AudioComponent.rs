@@ -211,8 +211,7 @@ pub type AudioComponentInstance = *mut OpaqueAudioComponentInstance;
 /// and returns an OSStatus.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentmethod?language=objc)
-pub type AudioComponentMethod =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, ...) -> OSStatus>;
+pub type AudioComponentMethod = unsafe extern "C-unwind" fn(NonNull<c_void>, ...) -> OSStatus;
 
 /// A structure used to represent an audio plugin's routines
 ///
@@ -232,7 +231,7 @@ pub type AudioComponentMethod =
 pub struct AudioComponentPlugInInterface {
     pub Open: unsafe extern "C-unwind" fn(NonNull<c_void>, AudioComponentInstance) -> OSStatus,
     pub Close: unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus,
-    pub Lookup: unsafe extern "C-unwind" fn(i16) -> AudioComponentMethod,
+    pub Lookup: unsafe extern "C-unwind" fn(i16) -> Option<AudioComponentMethod>,
     pub reserved: *mut c_void,
 }
 
@@ -266,11 +265,10 @@ unsafe impl RefEncode for AudioComponentPlugInInterface {
 /// Returns: A pointer to a AudioComponentPlugInInterface structure.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentfactoryfunction?language=objc)
-pub type AudioComponentFactoryFunction = Option<
+pub type AudioComponentFactoryFunction =
     unsafe extern "C-unwind" fn(
         NonNull<AudioComponentDescription>,
-    ) -> *mut AudioComponentPlugInInterface,
->;
+    ) -> *mut AudioComponentPlugInInterface;
 
 /// Finds an audio component.
 ///

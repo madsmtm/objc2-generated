@@ -476,19 +476,17 @@ pub const kNoTimeOut: c_int = -2;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoercedescprocptr?language=objc)
 pub type AECoerceDescProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const AEDesc, DescType, SRefCon, *mut AEDesc) -> OSErr>;
+    unsafe extern "C-unwind" fn(*const AEDesc, DescType, SRefCon, *mut AEDesc) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoerceptrprocptr?language=objc)
-pub type AECoercePtrProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        DescType,
-        *const c_void,
-        Size,
-        DescType,
-        SRefCon,
-        *mut AEDesc,
-    ) -> OSErr,
->;
+pub type AECoercePtrProcPtr = unsafe extern "C-unwind" fn(
+    DescType,
+    *const c_void,
+    Size,
+    DescType,
+    SRefCon,
+    *mut AEDesc,
+) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aecoercedescupp?language=objc)
 pub type AECoerceDescUPP = AECoerceDescProcPtr;
@@ -498,44 +496,51 @@ pub type AECoercePtrUPP = AECoercePtrProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewAECoerceDescUPP(user_routine: AECoerceDescProcPtr) -> AECoerceDescUPP {
+pub unsafe fn NewAECoerceDescUPP(
+    user_routine: Option<AECoerceDescProcPtr>,
+) -> Option<AECoerceDescUPP> {
     extern "C-unwind" {
-        fn NewAECoerceDescUPP(user_routine: AECoerceDescProcPtr) -> AECoerceDescUPP;
+        fn NewAECoerceDescUPP(user_routine: Option<AECoerceDescProcPtr>)
+            -> Option<AECoerceDescUPP>;
     }
     unsafe { NewAECoerceDescUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewAECoercePtrUPP(user_routine: AECoercePtrProcPtr) -> AECoercePtrUPP {
+pub unsafe fn NewAECoercePtrUPP(
+    user_routine: Option<AECoercePtrProcPtr>,
+) -> Option<AECoercePtrUPP> {
     extern "C-unwind" {
-        fn NewAECoercePtrUPP(user_routine: AECoercePtrProcPtr) -> AECoercePtrUPP;
+        fn NewAECoercePtrUPP(user_routine: Option<AECoercePtrProcPtr>) -> Option<AECoercePtrUPP>;
     }
     unsafe { NewAECoercePtrUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeAECoerceDescUPP(user_upp: AECoerceDescUPP) {
+pub unsafe fn DisposeAECoerceDescUPP(user_upp: *mut AECoerceDescUPP) {
     extern "C-unwind" {
-        fn DisposeAECoerceDescUPP(user_upp: AECoerceDescUPP);
+        fn DisposeAECoerceDescUPP(user_upp: *mut AECoerceDescUPP);
     }
     unsafe { DisposeAECoerceDescUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeAECoercePtrUPP(user_upp: AECoercePtrUPP) {
+pub unsafe fn DisposeAECoercePtrUPP(user_upp: *mut AECoercePtrUPP) {
     extern "C-unwind" {
-        fn DisposeAECoercePtrUPP(user_upp: AECoercePtrUPP);
+        fn DisposeAECoercePtrUPP(user_upp: *mut AECoercePtrUPP);
     }
     unsafe { DisposeAECoercePtrUPP(user_upp) }
 }
@@ -548,13 +553,14 @@ pub unsafe fn DisposeAECoercePtrUPP(user_upp: AECoercePtrUPP) {
 /// - `to_desc` struct field `dataHandle` must be a valid pointer.
 /// - `to_desc` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeAECoerceDescUPP(
     from_desc: Option<&AEDesc>,
     to_type: DescType,
     handler_refcon: SRefCon,
     to_desc: Option<&mut AEDesc>,
-    user_upp: AECoerceDescUPP,
+    user_upp: Option<AECoerceDescUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeAECoerceDescUPP(
@@ -562,7 +568,7 @@ pub unsafe fn InvokeAECoerceDescUPP(
             to_type: DescType,
             handler_refcon: SRefCon,
             to_desc: Option<&mut AEDesc>,
-            user_upp: AECoerceDescUPP,
+            user_upp: Option<AECoerceDescUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeAECoerceDescUPP(from_desc, to_type, handler_refcon, to_desc, user_upp) }
@@ -575,6 +581,7 @@ pub unsafe fn InvokeAECoerceDescUPP(
 /// - `result` struct field `dataHandle` must be a valid pointer.
 /// - `result` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeAECoercePtrUPP(
     type_code: DescType,
@@ -583,7 +590,7 @@ pub unsafe fn InvokeAECoercePtrUPP(
     to_type: DescType,
     handler_refcon: SRefCon,
     result: Option<&mut AEDesc>,
-    user_upp: AECoercePtrUPP,
+    user_upp: Option<AECoercePtrUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeAECoercePtrUPP(
@@ -593,7 +600,7 @@ pub unsafe fn InvokeAECoercePtrUPP(
             to_type: DescType,
             handler_refcon: SRefCon,
             result: Option<&mut AEDesc>,
-            user_upp: AECoercePtrUPP,
+            user_upp: Option<AECoercePtrUPP>,
         ) -> OSErr;
     }
     unsafe {
@@ -615,12 +622,13 @@ pub type AECoercionHandlerUPP = AECoerceDescUPP;
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
+/// - `handler` might not allow `None`.
 /// - `handler_refcon` must be a valid pointer.
 #[inline]
 pub unsafe fn AEInstallCoercionHandler(
     from_type: DescType,
     to_type: DescType,
-    handler: AECoercionHandlerUPP,
+    handler: Option<AECoercionHandlerUPP>,
     handler_refcon: SRefCon,
     from_type_is_desc: bool,
     is_sys_handler: bool,
@@ -629,7 +637,7 @@ pub unsafe fn AEInstallCoercionHandler(
         fn AEInstallCoercionHandler(
             from_type: DescType,
             to_type: DescType,
-            handler: AECoercionHandlerUPP,
+            handler: Option<AECoercionHandlerUPP>,
             handler_refcon: SRefCon,
             from_type_is_desc: Boolean,
             is_sys_handler: Boolean,
@@ -651,19 +659,20 @@ pub unsafe fn AEInstallCoercionHandler(
 
 /// # Safety
 ///
-/// `handler` must be implemented correctly.
+/// - `handler` must be implemented correctly.
+/// - `handler` might not allow `None`.
 #[inline]
 pub unsafe fn AERemoveCoercionHandler(
     from_type: DescType,
     to_type: DescType,
-    handler: AECoercionHandlerUPP,
+    handler: Option<AECoercionHandlerUPP>,
     is_sys_handler: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn AERemoveCoercionHandler(
             from_type: DescType,
             to_type: DescType,
-            handler: AECoercionHandlerUPP,
+            handler: Option<AECoercionHandlerUPP>,
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
@@ -682,7 +691,7 @@ pub unsafe fn AERemoveCoercionHandler(
 pub unsafe fn AEGetCoercionHandler(
     from_type: DescType,
     to_type: DescType,
-    handler: Option<&mut AECoercionHandlerUPP>,
+    handler: Option<&mut Option<AECoercionHandlerUPP>>,
     handler_refcon: Option<&mut SRefCon>,
     from_type_is_desc: Option<&mut Boolean>,
     is_sys_handler: bool,
@@ -691,7 +700,7 @@ pub unsafe fn AEGetCoercionHandler(
         fn AEGetCoercionHandler(
             from_type: DescType,
             to_type: DescType,
-            handler: Option<&mut AECoercionHandlerUPP>,
+            handler: Option<&mut Option<AECoercionHandlerUPP>>,
             handler_refcon: Option<&mut SRefCon>,
             from_type_is_desc: Option<&mut Boolean>,
             is_sys_handler: Boolean,
@@ -829,8 +838,7 @@ pub unsafe fn AEDuplicateDesc(the_ae_desc: Option<&AEDesc>, result: Option<&mut 
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedisposeexternalprocptr?language=objc)
-pub type AEDisposeExternalProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const c_void, Size, SRefCon)>;
+pub type AEDisposeExternalProcPtr = unsafe extern "C-unwind" fn(*const c_void, Size, SRefCon);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aedisposeexternalupp?language=objc)
 pub type AEDisposeExternalUPP = AEDisposeExternalProcPtr;
@@ -839,6 +847,7 @@ pub type AEDisposeExternalUPP = AEDisposeExternalProcPtr;
 ///
 /// - `data_ptr` must be a valid pointer.
 /// - `dispose_callback` must be implemented correctly.
+/// - `dispose_callback` might not allow `None`.
 /// - `dispose_refcon` must be a valid pointer.
 /// - `the_desc` struct field `dataHandle` must be a valid pointer.
 /// - `the_desc` might not allow `None`.
@@ -847,7 +856,7 @@ pub unsafe fn AECreateDescFromExternalPtr(
     descriptor_type: OSType,
     data_ptr: *const c_void,
     data_length: Size,
-    dispose_callback: AEDisposeExternalUPP,
+    dispose_callback: Option<AEDisposeExternalUPP>,
     dispose_refcon: SRefCon,
     the_desc: Option<&mut AEDesc>,
 ) -> OSStatus {
@@ -856,7 +865,7 @@ pub unsafe fn AECreateDescFromExternalPtr(
             descriptor_type: OSType,
             data_ptr: *const c_void,
             data_length: Size,
-            dispose_callback: AEDisposeExternalUPP,
+            dispose_callback: Option<AEDisposeExternalUPP>,
             dispose_refcon: SRefCon,
             the_desc: Option<&mut AEDesc>,
         ) -> OSStatus;
@@ -1754,53 +1763,60 @@ pub unsafe fn AEGetDescDataRange(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventhandlerprocptr?language=objc)
 pub type AEEventHandlerProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const AppleEvent, *mut AppleEvent, SRefCon) -> OSErr>;
+    unsafe extern "C-unwind" fn(*const AppleEvent, *mut AppleEvent, SRefCon) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventhandlerupp?language=objc)
 pub type AEEventHandlerUPP = AEEventHandlerProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// `user_routine` must be a valid pointer.
 #[inline]
 pub unsafe fn NewAEDisposeExternalUPP(
-    user_routine: AEDisposeExternalProcPtr,
-) -> AEDisposeExternalUPP {
+    user_routine: *mut AEDisposeExternalProcPtr,
+) -> Option<AEDisposeExternalUPP> {
     extern "C-unwind" {
-        fn NewAEDisposeExternalUPP(user_routine: AEDisposeExternalProcPtr) -> AEDisposeExternalUPP;
+        fn NewAEDisposeExternalUPP(
+            user_routine: *mut AEDisposeExternalProcPtr,
+        ) -> Option<AEDisposeExternalUPP>;
     }
     unsafe { NewAEDisposeExternalUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewAEEventHandlerUPP(user_routine: AEEventHandlerProcPtr) -> AEEventHandlerUPP {
+pub unsafe fn NewAEEventHandlerUPP(
+    user_routine: Option<AEEventHandlerProcPtr>,
+) -> Option<AEEventHandlerUPP> {
     extern "C-unwind" {
-        fn NewAEEventHandlerUPP(user_routine: AEEventHandlerProcPtr) -> AEEventHandlerUPP;
+        fn NewAEEventHandlerUPP(
+            user_routine: Option<AEEventHandlerProcPtr>,
+        ) -> Option<AEEventHandlerUPP>;
     }
     unsafe { NewAEEventHandlerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeAEDisposeExternalUPP(user_upp: AEDisposeExternalUPP) {
+pub unsafe fn DisposeAEDisposeExternalUPP(user_upp: *mut AEDisposeExternalUPP) {
     extern "C-unwind" {
-        fn DisposeAEDisposeExternalUPP(user_upp: AEDisposeExternalUPP);
+        fn DisposeAEDisposeExternalUPP(user_upp: *mut AEDisposeExternalUPP);
     }
     unsafe { DisposeAEDisposeExternalUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeAEEventHandlerUPP(user_upp: AEEventHandlerUPP) {
+pub unsafe fn DisposeAEEventHandlerUPP(user_upp: *mut AEEventHandlerUPP) {
     extern "C-unwind" {
-        fn DisposeAEEventHandlerUPP(user_upp: AEEventHandlerUPP);
+        fn DisposeAEEventHandlerUPP(user_upp: *mut AEEventHandlerUPP);
     }
     unsafe { DisposeAEEventHandlerUPP(user_upp) }
 }
@@ -1809,20 +1825,20 @@ pub unsafe fn DisposeAEEventHandlerUPP(user_upp: AEEventHandlerUPP) {
 ///
 /// - `data_ptr` must be a valid pointer.
 /// - `refcon` must be a valid pointer.
-/// - `user_upp` must be implemented correctly.
+/// - `user_upp` must be a valid pointer.
 #[inline]
 pub unsafe fn InvokeAEDisposeExternalUPP(
     data_ptr: *const c_void,
     data_length: Size,
     refcon: SRefCon,
-    user_upp: AEDisposeExternalUPP,
+    user_upp: *mut AEDisposeExternalUPP,
 ) {
     extern "C-unwind" {
         fn InvokeAEDisposeExternalUPP(
             data_ptr: *const c_void,
             data_length: Size,
             refcon: SRefCon,
-            user_upp: AEDisposeExternalUPP,
+            user_upp: *mut AEDisposeExternalUPP,
         );
     }
     unsafe { InvokeAEDisposeExternalUPP(data_ptr, data_length, refcon, user_upp) }
@@ -1836,19 +1852,20 @@ pub unsafe fn InvokeAEDisposeExternalUPP(
 /// - `reply` might not allow `None`.
 /// - `handler_refcon` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeAEEventHandlerUPP(
     the_apple_event: Option<&AppleEvent>,
     reply: Option<&mut AppleEvent>,
     handler_refcon: SRefCon,
-    user_upp: AEEventHandlerUPP,
+    user_upp: Option<AEEventHandlerUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeAEEventHandlerUPP(
             the_apple_event: Option<&AppleEvent>,
             reply: Option<&mut AppleEvent>,
             handler_refcon: SRefCon,
-            user_upp: AEEventHandlerUPP,
+            user_upp: Option<AEEventHandlerUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeAEEventHandlerUPP(the_apple_event, reply, handler_refcon, user_upp) }

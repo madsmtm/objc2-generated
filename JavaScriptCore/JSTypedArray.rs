@@ -65,6 +65,7 @@ pub unsafe fn JSObjectMakeTypedArray(
 /// - `ctx` must be a valid pointer.
 /// - `bytes` must be a valid pointer.
 /// - `bytes_deallocator` must be implemented correctly.
+/// - `bytes_deallocator` might not allow `None`.
 /// - `deallocator_context` must be a valid pointer.
 /// - `exception` must be a valid pointer.
 /// - `exception` might not allow `None`.
@@ -75,7 +76,7 @@ pub unsafe fn JSObjectMakeTypedArrayWithBytesNoCopy(
     array_type: JSTypedArrayType,
     bytes: *mut c_void,
     byte_length: usize,
-    bytes_deallocator: JSTypedArrayBytesDeallocator,
+    bytes_deallocator: Option<JSTypedArrayBytesDeallocator>,
     deallocator_context: *mut c_void,
     exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
@@ -85,7 +86,7 @@ pub unsafe fn JSObjectMakeTypedArrayWithBytesNoCopy(
             array_type: JSTypedArrayType,
             bytes: *mut c_void,
             byte_length: usize,
-            bytes_deallocator: JSTypedArrayBytesDeallocator,
+            bytes_deallocator: Option<JSTypedArrayBytesDeallocator>,
             deallocator_context: *mut c_void,
             exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;
@@ -384,6 +385,7 @@ pub unsafe fn JSObjectGetTypedArrayBuffer(
 /// - `ctx` must be a valid pointer.
 /// - `bytes` must be a valid pointer.
 /// - `bytes_deallocator` must be implemented correctly.
+/// - `bytes_deallocator` might not allow `None`.
 /// - `deallocator_context` must be a valid pointer.
 /// - `exception` must be a valid pointer.
 /// - `exception` might not allow `None`.
@@ -393,7 +395,7 @@ pub unsafe fn JSObjectMakeArrayBufferWithBytesNoCopy(
     ctx: JSContextRef,
     bytes: *mut c_void,
     byte_length: usize,
-    bytes_deallocator: JSTypedArrayBytesDeallocator,
+    bytes_deallocator: Option<JSTypedArrayBytesDeallocator>,
     deallocator_context: *mut c_void,
     exception: Option<&mut JSValueRef>,
 ) -> JSObjectRef {
@@ -402,7 +404,7 @@ pub unsafe fn JSObjectMakeArrayBufferWithBytesNoCopy(
             ctx: JSContextRef,
             bytes: *mut c_void,
             byte_length: usize,
-            bytes_deallocator: JSTypedArrayBytesDeallocator,
+            bytes_deallocator: Option<JSTypedArrayBytesDeallocator>,
             deallocator_context: *mut c_void,
             exception: Option<&mut JSValueRef>,
         ) -> JSObjectRef;

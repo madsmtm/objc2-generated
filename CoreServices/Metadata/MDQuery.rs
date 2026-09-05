@@ -476,9 +476,8 @@ impl MDQuery {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerycreateresultfunction?language=objc)
 #[cfg(feature = "MDItem")]
-pub type MDQueryCreateResultFunction = Option<
-    unsafe extern "C-unwind" fn(Option<&MDQuery>, Option<&MDItem>, *mut c_void) -> *const c_void,
->;
+pub type MDQueryCreateResultFunction =
+    unsafe extern "C-unwind" fn(Option<&MDQuery>, Option<&MDItem>, *mut c_void) -> *const c_void;
 
 impl MDQuery {
     /// Sets the function used to create the result objects of the
@@ -551,6 +550,7 @@ impl MDQuery {
     /// # Safety
     ///
     /// - `func` must be implemented correctly.
+    /// - `func` might not allow `None`.
     /// - `context` must be a valid pointer.
     /// - `cb` struct field `version` must be set correctly.
     /// - `cb` struct field `retain` must be implemented correctly.
@@ -563,14 +563,14 @@ impl MDQuery {
     #[inline]
     pub unsafe fn set_create_result_function(
         &self,
-        func: MDQueryCreateResultFunction,
+        func: Option<MDQueryCreateResultFunction>,
         context: *mut c_void,
         cb: Option<&CFArrayCallBacks>,
     ) {
         extern "C-unwind" {
             fn MDQuerySetCreateResultFunction(
                 query: &MDQuery,
-                func: MDQueryCreateResultFunction,
+                func: Option<MDQueryCreateResultFunction>,
                 context: *mut c_void,
                 cb: Option<&CFArrayCallBacks>,
             );
@@ -605,14 +605,12 @@ impl MDQuery {
 /// be able to handle a CFTypeRef as an input value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerycreatevaluefunction?language=objc)
-pub type MDQueryCreateValueFunction = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&MDQuery>,
-        Option<&CFString>,
-        Option<&CFType>,
-        *mut c_void,
-    ) -> *const c_void,
->;
+pub type MDQueryCreateValueFunction = unsafe extern "C-unwind" fn(
+    Option<&MDQuery>,
+    Option<&CFString>,
+    Option<&CFType>,
+    *mut c_void,
+) -> *const c_void;
 
 impl MDQuery {
     /// Sets the function used to create the value objects of the
@@ -683,6 +681,7 @@ impl MDQuery {
     /// # Safety
     ///
     /// - `func` must be implemented correctly.
+    /// - `func` might not allow `None`.
     /// - `context` must be a valid pointer.
     /// - `cb` struct field `version` must be set correctly.
     /// - `cb` struct field `retain` must be implemented correctly.
@@ -694,14 +693,14 @@ impl MDQuery {
     #[inline]
     pub unsafe fn set_create_value_function(
         &self,
-        func: MDQueryCreateValueFunction,
+        func: Option<MDQueryCreateValueFunction>,
         context: *mut c_void,
         cb: Option<&CFArrayCallBacks>,
     ) {
         extern "C-unwind" {
             fn MDQuerySetCreateValueFunction(
                 query: &MDQuery,
-                func: MDQueryCreateValueFunction,
+                func: Option<MDQueryCreateValueFunction>,
                 context: *mut c_void,
                 cb: Option<&CFArrayCallBacks>,
             );
@@ -1187,13 +1186,11 @@ impl MDQuery {
 /// future as now), for the sort results to be predictable.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerysortcomparatorfunction?language=objc)
-pub type MDQuerySortComparatorFunction = Option<
-    unsafe extern "C-unwind" fn(
-        *mut *const CFType,
-        *mut *const CFType,
-        *mut c_void,
-    ) -> CFComparisonResult,
->;
+pub type MDQuerySortComparatorFunction = unsafe extern "C-unwind" fn(
+    *mut *const CFType,
+    *mut *const CFType,
+    *mut c_void,
+) -> CFComparisonResult;
 
 impl MDQuery {
     /// Sets the function used to sort the results of an MDQuery. You
@@ -1229,18 +1226,19 @@ impl MDQuery {
     /// # Safety
     ///
     /// - `comparator` must be implemented correctly.
+    /// - `comparator` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "MDQuerySetSortComparator")]
     #[inline]
     pub unsafe fn set_sort_comparator(
         &self,
-        comparator: MDQuerySortComparatorFunction,
+        comparator: Option<MDQuerySortComparatorFunction>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn MDQuerySetSortComparator(
                 query: &MDQuery,
-                comparator: MDQuerySortComparatorFunction,
+                comparator: Option<MDQuerySortComparatorFunction>,
                 context: *mut c_void,
             );
         }

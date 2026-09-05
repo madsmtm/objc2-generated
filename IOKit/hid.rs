@@ -746,7 +746,7 @@ pub type IOHIDValueOptions = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcompletionaction?language=objc)
 pub type IOHIDCompletionAction =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32)>;
+    unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32);
 
 /// Struct specifying action to perform when set/get report completes.
 ///
@@ -765,7 +765,7 @@ pub type IOHIDCompletionAction =
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDCompletion {
     pub target: *mut c_void,
-    pub action: IOHIDCompletionAction,
+    pub action: Option<IOHIDCompletionAction>,
     pub parameter: *mut c_void,
 }
 
@@ -1007,7 +1007,7 @@ pub static kIOHIDTransactionOptionDefaultOutputValue: IOOptionBits = 0x0001;
 /// Parameter `sender`: Interface instance sending the completion routine.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcallback?language=objc)
-pub type IOHIDCallback = Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void)>;
+pub type IOHIDCallback = unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void);
 
 /// Type and arguments of callout C function that is used when a HID report completion routine is called.
 ///
@@ -1026,17 +1026,15 @@ pub type IOHIDCallback = Option<unsafe extern "C-unwind" fn(*mut c_void, IORetur
 /// Parameter `reportLength`: Size of the buffer received upon completion.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreportcallback?language=objc)
-pub type IOHIDReportCallback = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        IOReturn,
-        *mut c_void,
-        IOHIDReportType,
-        u32,
-        NonNull<u8>,
-        CFIndex,
-    ),
->;
+pub type IOHIDReportCallback = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    IOReturn,
+    *mut c_void,
+    IOHIDReportType,
+    u32,
+    NonNull<u8>,
+    CFIndex,
+);
 
 /// Type and arguments of callout C function that is used when a HID report completion routine is called.
 ///
@@ -1057,18 +1055,16 @@ pub type IOHIDReportCallback = Option<
 /// Parameter `timeStamp`: The time at which the report arrived.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreportwithtimestampcallback?language=objc)
-pub type IOHIDReportWithTimeStampCallback = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        IOReturn,
-        *mut c_void,
-        IOHIDReportType,
-        u32,
-        NonNull<u8>,
-        CFIndex,
-        u64,
-    ),
->;
+pub type IOHIDReportWithTimeStampCallback = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    IOReturn,
+    *mut c_void,
+    IOHIDReportType,
+    u32,
+    NonNull<u8>,
+    CFIndex,
+    u64,
+);
 
 /// Type and arguments of callout C function that is used when an element value completion routine is called.
 ///
@@ -1082,7 +1078,7 @@ pub type IOHIDReportWithTimeStampCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvaluecallback?language=objc)
 pub type IOHIDValueCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &IOHIDValue)>;
+    unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &IOHIDValue);
 
 /// Type and arguments of callout C function that is used when an element value completion routine is called.
 ///
@@ -1096,7 +1092,7 @@ pub type IOHIDValueCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvaluemultiplecallback?language=objc)
 pub type IOHIDValueMultipleCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &CFDictionary)>;
+    unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &CFDictionary);
 
 /// Type and arguments of callout C function that is used when a device routine is called.
 ///
@@ -1108,7 +1104,7 @@ pub type IOHIDValueMultipleCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicecallback?language=objc)
 pub type IOHIDDeviceCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &IOHIDDevice)>;
+    unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &IOHIDDevice);
 
 /// This is the type of a reference to the IOHIDQueue.
 ///
@@ -1986,11 +1982,15 @@ impl IOHIDDevice {
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceRegisterRemovalCallback")]
     #[inline]
-    pub unsafe fn register_removal_callback(&self, callback: IOHIDCallback, context: *mut c_void) {
+    pub unsafe fn register_removal_callback(
+        &self,
+        callback: Option<IOHIDCallback>,
+        context: *mut c_void,
+    ) {
         extern "C-unwind" {
             fn IOHIDDeviceRegisterRemovalCallback(
                 device: &IOHIDDevice,
-                callback: IOHIDCallback,
+                callback: Option<IOHIDCallback>,
                 context: *mut c_void,
             );
         }
@@ -2021,13 +2021,13 @@ impl IOHIDDevice {
     #[inline]
     pub unsafe fn register_input_value_callback(
         &self,
-        callback: IOHIDValueCallback,
+        callback: Option<IOHIDValueCallback>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn IOHIDDeviceRegisterInputValueCallback(
                 device: &IOHIDDevice,
-                callback: IOHIDValueCallback,
+                callback: Option<IOHIDValueCallback>,
                 context: *mut c_void,
             );
         }
@@ -2064,7 +2064,7 @@ impl IOHIDDevice {
         &self,
         report: NonNull<u8>,
         report_length: CFIndex,
-        callback: IOHIDReportCallback,
+        callback: Option<IOHIDReportCallback>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
@@ -2072,7 +2072,7 @@ impl IOHIDDevice {
                 device: &IOHIDDevice,
                 report: NonNull<u8>,
                 report_length: CFIndex,
-                callback: IOHIDReportCallback,
+                callback: Option<IOHIDReportCallback>,
                 context: *mut c_void,
             );
         }
@@ -2111,7 +2111,7 @@ impl IOHIDDevice {
         &self,
         report: NonNull<u8>,
         report_length: CFIndex,
-        callback: IOHIDReportWithTimeStampCallback,
+        callback: Option<IOHIDReportWithTimeStampCallback>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
@@ -2119,7 +2119,7 @@ impl IOHIDDevice {
                 device: &IOHIDDevice,
                 report: NonNull<u8>,
                 report_length: CFIndex,
-                callback: IOHIDReportWithTimeStampCallback,
+                callback: Option<IOHIDReportWithTimeStampCallback>,
                 context: *mut c_void,
             );
         }
@@ -2289,7 +2289,7 @@ impl IOHIDDevice {
         element: &IOHIDElement,
         value: &IOHIDValue,
         timeout: CFTimeInterval,
-        callback: IOHIDValueCallback,
+        callback: Option<IOHIDValueCallback>,
         context: *mut c_void,
     ) -> IOReturn {
         extern "C-unwind" {
@@ -2298,7 +2298,7 @@ impl IOHIDDevice {
                 element: &IOHIDElement,
                 value: &IOHIDValue,
                 timeout: CFTimeInterval,
-                callback: IOHIDValueCallback,
+                callback: Option<IOHIDValueCallback>,
                 context: *mut c_void,
             ) -> IOReturn;
         }
@@ -2336,7 +2336,7 @@ impl IOHIDDevice {
         &self,
         multiple: &CFDictionary<IOHIDElement, IOHIDValue>,
         timeout: CFTimeInterval,
-        callback: IOHIDValueMultipleCallback,
+        callback: Option<IOHIDValueMultipleCallback>,
         context: *mut c_void,
     ) -> IOReturn {
         extern "C-unwind" {
@@ -2344,7 +2344,7 @@ impl IOHIDDevice {
                 device: &IOHIDDevice,
                 multiple: &CFDictionary<IOHIDElement, IOHIDValue>,
                 timeout: CFTimeInterval,
-                callback: IOHIDValueMultipleCallback,
+                callback: Option<IOHIDValueMultipleCallback>,
                 context: *mut c_void,
             ) -> IOReturn;
         }
@@ -2526,7 +2526,7 @@ impl IOHIDDevice {
         element: &IOHIDElement,
         p_value: NonNull<NonNull<IOHIDValue>>,
         timeout: CFTimeInterval,
-        callback: IOHIDValueCallback,
+        callback: Option<IOHIDValueCallback>,
         context: *mut c_void,
     ) -> IOReturn {
         extern "C-unwind" {
@@ -2535,7 +2535,7 @@ impl IOHIDDevice {
                 element: &IOHIDElement,
                 p_value: NonNull<NonNull<IOHIDValue>>,
                 timeout: CFTimeInterval,
-                callback: IOHIDValueCallback,
+                callback: Option<IOHIDValueCallback>,
                 context: *mut c_void,
             ) -> IOReturn;
         }
@@ -2578,7 +2578,7 @@ impl IOHIDDevice {
         elements: &CFArray<IOHIDElement>,
         p_multiple: Option<&mut Option<CFRetained<CFDictionary<IOHIDElement, IOHIDValue>>>>,
         timeout: CFTimeInterval,
-        callback: IOHIDValueMultipleCallback,
+        callback: Option<IOHIDValueMultipleCallback>,
         context: *mut c_void,
     ) -> IOReturn {
         extern "C-unwind" {
@@ -2587,7 +2587,7 @@ impl IOHIDDevice {
                 elements: &CFArray<IOHIDElement>,
                 p_multiple: Option<&mut Option<CFRetained<CFDictionary<IOHIDElement, IOHIDValue>>>>,
                 timeout: CFTimeInterval,
-                callback: IOHIDValueMultipleCallback,
+                callback: Option<IOHIDValueMultipleCallback>,
                 context: *mut c_void,
             ) -> IOReturn;
         }
@@ -2688,7 +2688,7 @@ impl IOHIDDevice {
         report: NonNull<u8>,
         report_length: CFIndex,
         timeout: CFTimeInterval,
-        callback: IOHIDReportCallback,
+        callback: Option<IOHIDReportCallback>,
         context: *mut c_void,
     ) -> IOReturn {
         extern "C-unwind" {
@@ -2699,7 +2699,7 @@ impl IOHIDDevice {
                 report: NonNull<u8>,
                 report_length: CFIndex,
                 timeout: CFTimeInterval,
-                callback: IOHIDReportCallback,
+                callback: Option<IOHIDReportCallback>,
                 context: *mut c_void,
             ) -> IOReturn;
         }
@@ -3454,7 +3454,7 @@ unsafe impl RefEncode for IOHIDEventStruct {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcallbackfunction?language=objc)
 pub type IOHIDCallbackFunction =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void)>;
+    unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void);
 
 /// Type and arguments of callout C function that is used when a
 /// completion routine is called, see IOHIDLib.h:setElementValue().
@@ -3470,15 +3470,13 @@ pub type IOHIDCallbackFunction =
 /// Parameter `elementCookie`: Element within interface instance sending completion.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcallbackfunction?language=objc)
-pub type IOHIDElementCallbackFunction = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        IOReturn,
-        *mut c_void,
-        *mut c_void,
-        IOHIDElementCookie,
-    ),
->;
+pub type IOHIDElementCallbackFunction = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    IOReturn,
+    *mut c_void,
+    *mut c_void,
+    IOHIDElementCookie,
+);
 
 /// Type and arguments of callout C function that is used when a
 /// completion routine is called, see IOHIDLib.h:setReport().
@@ -3495,7 +3493,7 @@ pub type IOHIDElementCallbackFunction = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreportcallbackfunction?language=objc)
 pub type IOHIDReportCallbackFunction =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void, u32)>;
+    unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void, u32);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddeviceinterface?language=objc)
 #[cfg(feature = "libc")]
@@ -3520,7 +3518,7 @@ pub struct IOHIDDeviceInterface {
     pub setRemovalCallback: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            IOHIDCallbackFunction,
+            Option<IOHIDCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3538,7 +3536,7 @@ pub struct IOHIDDeviceInterface {
             IOHIDElementCookie,
             *mut IOHIDEventStruct,
             u32,
-            IOHIDElementCallbackFunction,
+            Option<IOHIDElementCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3549,7 +3547,7 @@ pub struct IOHIDDeviceInterface {
             IOHIDElementCookie,
             *mut IOHIDEventStruct,
             u32,
-            IOHIDElementCallbackFunction,
+            Option<IOHIDElementCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3569,7 +3567,7 @@ pub struct IOHIDDeviceInterface {
             *mut c_void,
             u32,
             u32,
-            IOHIDReportCallbackFunction,
+            Option<IOHIDReportCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3582,7 +3580,7 @@ pub struct IOHIDDeviceInterface {
             *mut c_void,
             *mut u32,
             u32,
-            IOHIDReportCallbackFunction,
+            Option<IOHIDReportCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3646,7 +3644,7 @@ pub struct IOHIDDeviceInterface121 {
     pub setRemovalCallback: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            IOHIDCallbackFunction,
+            Option<IOHIDCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3664,7 +3662,7 @@ pub struct IOHIDDeviceInterface121 {
             IOHIDElementCookie,
             *mut IOHIDEventStruct,
             u32,
-            IOHIDElementCallbackFunction,
+            Option<IOHIDElementCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3675,7 +3673,7 @@ pub struct IOHIDDeviceInterface121 {
             IOHIDElementCookie,
             *mut IOHIDEventStruct,
             u32,
-            IOHIDElementCallbackFunction,
+            Option<IOHIDElementCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3695,7 +3693,7 @@ pub struct IOHIDDeviceInterface121 {
             *mut c_void,
             u32,
             u32,
-            IOHIDReportCallbackFunction,
+            Option<IOHIDReportCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3708,7 +3706,7 @@ pub struct IOHIDDeviceInterface121 {
             *mut c_void,
             *mut u32,
             u32,
-            IOHIDReportCallbackFunction,
+            Option<IOHIDReportCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3772,7 +3770,7 @@ pub struct IOHIDDeviceInterface122 {
     pub setRemovalCallback: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            IOHIDCallbackFunction,
+            Option<IOHIDCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3790,7 +3788,7 @@ pub struct IOHIDDeviceInterface122 {
             IOHIDElementCookie,
             *mut IOHIDEventStruct,
             u32,
-            IOHIDElementCallbackFunction,
+            Option<IOHIDElementCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3801,7 +3799,7 @@ pub struct IOHIDDeviceInterface122 {
             IOHIDElementCookie,
             *mut IOHIDEventStruct,
             u32,
-            IOHIDElementCallbackFunction,
+            Option<IOHIDElementCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3821,7 +3819,7 @@ pub struct IOHIDDeviceInterface122 {
             *mut c_void,
             u32,
             u32,
-            IOHIDReportCallbackFunction,
+            Option<IOHIDReportCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3834,7 +3832,7 @@ pub struct IOHIDDeviceInterface122 {
             *mut c_void,
             *mut u32,
             u32,
-            IOHIDReportCallbackFunction,
+            Option<IOHIDReportCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3851,7 +3849,7 @@ pub struct IOHIDDeviceInterface122 {
             *mut c_void,
             *mut c_void,
             u32,
-            IOHIDReportCallbackFunction,
+            Option<IOHIDReportCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3932,7 +3930,7 @@ pub struct IOHIDQueueInterface {
     pub setEventCallout: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            IOHIDCallbackFunction,
+            Option<IOHIDCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -3940,7 +3938,7 @@ pub struct IOHIDQueueInterface {
     pub getEventCallout: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            *mut IOHIDCallbackFunction,
+            *mut Option<IOHIDCallbackFunction>,
             *mut *mut c_void,
             *mut *mut c_void,
         ) -> IOReturn,
@@ -4036,7 +4034,7 @@ pub struct IOHIDOutputTransactionInterface {
         unsafe extern "C-unwind" fn(
             *mut c_void,
             u32,
-            IOHIDCallbackFunction,
+            Option<IOHIDCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -4607,13 +4605,13 @@ impl IOHIDManager {
     #[inline]
     pub unsafe fn register_device_matching_callback(
         &self,
-        callback: IOHIDDeviceCallback,
+        callback: Option<IOHIDDeviceCallback>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn IOHIDManagerRegisterDeviceMatchingCallback(
                 manager: &IOHIDManager,
-                callback: IOHIDDeviceCallback,
+                callback: Option<IOHIDDeviceCallback>,
                 context: *mut c_void,
             );
         }
@@ -4641,13 +4639,13 @@ impl IOHIDManager {
     #[inline]
     pub unsafe fn register_device_removal_callback(
         &self,
-        callback: IOHIDDeviceCallback,
+        callback: Option<IOHIDDeviceCallback>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn IOHIDManagerRegisterDeviceRemovalCallback(
                 manager: &IOHIDManager,
-                callback: IOHIDDeviceCallback,
+                callback: Option<IOHIDDeviceCallback>,
                 context: *mut c_void,
             );
         }
@@ -4674,13 +4672,13 @@ impl IOHIDManager {
     #[inline]
     pub unsafe fn register_input_report_callback(
         &self,
-        callback: IOHIDReportCallback,
+        callback: Option<IOHIDReportCallback>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn IOHIDManagerRegisterInputReportCallback(
                 manager: &IOHIDManager,
-                callback: IOHIDReportCallback,
+                callback: Option<IOHIDReportCallback>,
                 context: *mut c_void,
             );
         }
@@ -4743,13 +4741,13 @@ impl IOHIDManager {
     #[inline]
     pub unsafe fn register_input_value_callback(
         &self,
-        callback: IOHIDValueCallback,
+        callback: Option<IOHIDValueCallback>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn IOHIDManagerRegisterInputValueCallback(
                 manager: &IOHIDManager,
-                callback: IOHIDValueCallback,
+                callback: Option<IOHIDValueCallback>,
                 context: *mut c_void,
             );
         }
@@ -10300,14 +10298,14 @@ impl IOHIDTransaction {
     pub unsafe fn commit_with_callback(
         &self,
         timeout: CFTimeInterval,
-        callback: IOHIDCallback,
+        callback: Option<IOHIDCallback>,
         context: *mut c_void,
     ) -> IOReturn {
         extern "C-unwind" {
             fn IOHIDTransactionCommitWithCallback(
                 transaction: &IOHIDTransaction,
                 timeout: CFTimeInterval,
-                callback: IOHIDCallback,
+                callback: Option<IOHIDCallback>,
                 context: *mut c_void,
             ) -> IOReturn;
         }
@@ -10373,7 +10371,7 @@ pub struct IOHIDDeviceDeviceInterface {
             Option<&IOHIDElement>,
             Option<&IOHIDValue>,
             u32,
-            IOHIDValueCallback,
+            Option<IOHIDValueCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10384,7 +10382,7 @@ pub struct IOHIDDeviceDeviceInterface {
             Option<&IOHIDElement>,
             *mut *mut IOHIDValue,
             u32,
-            IOHIDValueCallback,
+            Option<IOHIDValueCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10394,7 +10392,7 @@ pub struct IOHIDDeviceDeviceInterface {
             *mut c_void,
             *mut u8,
             CFIndex,
-            IOHIDReportCallback,
+            Option<IOHIDReportCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10407,7 +10405,7 @@ pub struct IOHIDDeviceDeviceInterface {
             *const u8,
             CFIndex,
             u32,
-            IOHIDReportCallback,
+            Option<IOHIDReportCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10420,7 +10418,7 @@ pub struct IOHIDDeviceDeviceInterface {
             *mut u8,
             *mut CFIndex,
             u32,
-            IOHIDReportCallback,
+            Option<IOHIDReportCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10499,7 +10497,7 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
             Option<&IOHIDElement>,
             Option<&IOHIDValue>,
             u32,
-            IOHIDValueCallback,
+            Option<IOHIDValueCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10510,7 +10508,7 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
             Option<&IOHIDElement>,
             *mut *mut IOHIDValue,
             u32,
-            IOHIDValueCallback,
+            Option<IOHIDValueCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10520,7 +10518,7 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
             *mut c_void,
             *mut u8,
             CFIndex,
-            IOHIDReportCallback,
+            Option<IOHIDReportCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10533,7 +10531,7 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
             *const u8,
             CFIndex,
             u32,
-            IOHIDReportCallback,
+            Option<IOHIDReportCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10546,7 +10544,7 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
             *mut u8,
             *mut CFIndex,
             u32,
-            IOHIDReportCallback,
+            Option<IOHIDReportCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10556,7 +10554,7 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
             *mut c_void,
             *mut u8,
             CFIndex,
-            IOHIDReportWithTimeStampCallback,
+            Option<IOHIDReportWithTimeStampCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,
@@ -10715,8 +10713,9 @@ pub struct IOHIDDeviceQueueInterface {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if unsuccessful.
-    pub setValueAvailableCallback:
-        Option<unsafe extern "C-unwind" fn(*mut c_void, IOHIDCallback, *mut c_void) -> IOReturn>,
+    pub setValueAvailableCallback: Option<
+        unsafe extern "C-unwind" fn(*mut c_void, Option<IOHIDCallback>, *mut c_void) -> IOReturn,
+    >,
     /// Dequeues a retained copy of an element value from the head of an IOHIDDeviceQueueInterface.
     ///
     /// Because the value is a retained copy, it is up to the caller to release the value using CFRelease.
@@ -10941,7 +10940,7 @@ pub struct IOHIDDeviceTransactionInterface {
         unsafe extern "C-unwind" fn(
             *mut c_void,
             u32,
-            IOHIDCallback,
+            Option<IOHIDCallback>,
             *mut c_void,
             IOOptionBits,
         ) -> IOReturn,

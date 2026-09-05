@@ -206,7 +206,7 @@ impl CGPDFDictionary {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierfunction?language=objc)
 #[cfg(feature = "CGPDFObject")]
 pub type CGPDFDictionaryApplierFunction =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_char>, &CGPDFObject, *mut c_void)>;
+    unsafe extern "C-unwind" fn(NonNull<c_char>, &CGPDFObject, *mut c_void);
 
 impl CGPDFDictionary {
     /// # Safety

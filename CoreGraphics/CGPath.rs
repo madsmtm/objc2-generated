@@ -681,8 +681,7 @@ unsafe impl RefEncode for CGPathElement {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathapplierfunction?language=objc)
-pub type CGPathApplierFunction =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGPathElement>)>;
+pub type CGPathApplierFunction = unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGPathElement>);
 
 impl CGPath {
     /// # Safety

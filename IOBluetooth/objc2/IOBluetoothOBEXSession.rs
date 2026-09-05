@@ -342,12 +342,13 @@ impl IOBluetoothOBEXSession {
         /// # Safety
         ///
         /// - `in_callback` must be implemented correctly.
+        /// - `in_callback` might not allow `None`.
         /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(setOBEXSessionOpenConnectionCallback:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOBEXSessionOpenConnectionCallback_refCon(
             &self,
-            in_callback: IOBluetoothOBEXSessionOpenConnectionCallback,
+            in_callback: Option<IOBluetoothOBEXSessionOpenConnectionCallback>,
             in_user_ref_con: *mut c_void,
         );
     );

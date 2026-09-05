@@ -251,8 +251,7 @@ unsafe impl RefEncode for MIDIProtocolID {
 /// Parameter `refCon`: The client's refCon passed to MIDIClientCreate.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotifyproc?language=objc)
-pub type MIDINotifyProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<MIDINotification>, *mut c_void)>;
+pub type MIDINotifyProc = unsafe extern "C-unwind" fn(NonNull<MIDINotification>, *mut c_void);
 
 /// A callback block for notifying clients of state changes.
 ///
@@ -307,7 +306,7 @@ pub type MIDIReceiveBlock = block2::Block<'static, fn(NonNull<MIDIEventList>, *m
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireadproc?language=objc)
 #[deprecated = "use MIDIReceiveBlock and MIDIEventLists"]
 pub type MIDIReadProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<MIDIPacketList>, *mut c_void, *mut c_void)>;
+    unsafe extern "C-unwind" fn(NonNull<MIDIPacketList>, *mut c_void, *mut c_void);
 
 /// A block receiving MIDI input.
 ///
@@ -338,7 +337,7 @@ pub type MIDIReadBlock = block2::Block<'static, fn(NonNull<MIDIPacketList>, *mut
 /// aborted.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicompletionproc?language=objc)
-pub type MIDICompletionProc = Option<unsafe extern "C-unwind" fn(NonNull<MIDISysexSendRequest>)>;
+pub type MIDICompletionProc = unsafe extern "C-unwind" fn(NonNull<MIDISysexSendRequest>);
 
 /// A function called when a UMP system-exclusive or system-exclusive 8-bit event has been completely sent.
 ///
@@ -349,8 +348,7 @@ pub type MIDICompletionProc = Option<unsafe extern "C-unwind" fn(NonNull<MIDISys
 /// aborted.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicompletionprocump?language=objc)
-pub type MIDICompletionProcUMP =
-    Option<unsafe extern "C-unwind" fn(NonNull<MIDISysexSendRequestUMP>)>;
+pub type MIDICompletionProcUMP = unsafe extern "C-unwind" fn(NonNull<MIDISysexSendRequestUMP>);
 
 /// A series of simultaneous MIDI events in UMP format.
 ///
@@ -1623,14 +1621,14 @@ extern "C" {
 #[inline]
 pub unsafe fn MIDIClientCreate(
     name: &CFString,
-    notify_proc: MIDINotifyProc,
+    notify_proc: Option<MIDINotifyProc>,
     notify_ref_con: *mut c_void,
     out_client: &mut MIDIClientRef,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIClientCreate(
             name: &CFString,
-            notify_proc: MIDINotifyProc,
+            notify_proc: Option<MIDINotifyProc>,
             notify_ref_con: *mut c_void,
             out_client: &mut MIDIClientRef,
         ) -> OSStatus;

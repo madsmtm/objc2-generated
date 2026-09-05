@@ -364,29 +364,34 @@ unsafe impl RefEncode for DataBrowserPropertyDesc {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemprocptr?language=objc)
 pub type DataBrowserItemProcPtr =
-    Option<unsafe extern "C-unwind" fn(DataBrowserItemID, DataBrowserItemState, *mut c_void)>;
+    unsafe extern "C-unwind" fn(DataBrowserItemID, DataBrowserItemState, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemupp?language=objc)
 pub type DataBrowserItemUPP = DataBrowserItemProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewDataBrowserItemUPP(user_routine: DataBrowserItemProcPtr) -> DataBrowserItemUPP {
+pub unsafe fn NewDataBrowserItemUPP(
+    user_routine: Option<DataBrowserItemProcPtr>,
+) -> Option<DataBrowserItemUPP> {
     extern "C-unwind" {
-        fn NewDataBrowserItemUPP(user_routine: DataBrowserItemProcPtr) -> DataBrowserItemUPP;
+        fn NewDataBrowserItemUPP(
+            user_routine: Option<DataBrowserItemProcPtr>,
+        ) -> Option<DataBrowserItemUPP>;
     }
     unsafe { NewDataBrowserItemUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeDataBrowserItemUPP(user_upp: DataBrowserItemUPP) {
+pub unsafe fn DisposeDataBrowserItemUPP(user_upp: *mut DataBrowserItemUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserItemUPP(user_upp: DataBrowserItemUPP);
+        fn DisposeDataBrowserItemUPP(user_upp: *mut DataBrowserItemUPP);
     }
     unsafe { DisposeDataBrowserItemUPP(user_upp) }
 }
@@ -395,19 +400,20 @@ pub unsafe fn DisposeDataBrowserItemUPP(user_upp: DataBrowserItemUPP) {
 ///
 /// - `client_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeDataBrowserItemUPP(
     item: DataBrowserItemID,
     state: DataBrowserItemState,
     client_data: *mut c_void,
-    user_upp: DataBrowserItemUPP,
+    user_upp: Option<DataBrowserItemUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserItemUPP(
             item: DataBrowserItemID,
             state: DataBrowserItemState,
             client_data: *mut c_void,
-            user_upp: DataBrowserItemUPP,
+            user_upp: Option<DataBrowserItemUPP>,
         );
     }
     unsafe { InvokeDataBrowserItemUPP(item, state, client_data, user_upp) }
@@ -458,15 +464,13 @@ unsafe impl RefEncode for DataBrowserItemData {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemdataprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type DataBrowserItemDataProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-        Option<&DataBrowserItemData>,
-        Boolean,
-    ) -> OSStatus,
->;
+pub type DataBrowserItemDataProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+    Option<&DataBrowserItemData>,
+    Boolean,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemdataupp?language=objc)
 #[cfg(feature = "HIObject")]
@@ -474,14 +478,12 @@ pub type DataBrowserItemDataUPP = DataBrowserItemDataProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemcompareprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type DataBrowserItemCompareProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-    ) -> Boolean,
->;
+pub type DataBrowserItemCompareProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemcompareupp?language=objc)
 #[cfg(feature = "HIObject")]
@@ -489,20 +491,17 @@ pub type DataBrowserItemCompareUPP = DataBrowserItemCompareProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemnotificationwithitemprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type DataBrowserItemNotificationWithItemProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserItemNotification,
-        Option<&DataBrowserItemData>,
-    ),
->;
+pub type DataBrowserItemNotificationWithItemProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserItemNotification,
+    Option<&DataBrowserItemData>,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemnotificationprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type DataBrowserItemNotificationProcPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&Control>, DataBrowserItemID, DataBrowserItemNotification),
->;
+pub type DataBrowserItemNotificationProcPtr =
+    unsafe extern "C-unwind" fn(Option<&Control>, DataBrowserItemID, DataBrowserItemNotification);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemnotificationwithitemupp?language=objc)
 #[cfg(feature = "HIObject")]
@@ -514,39 +513,33 @@ pub type DataBrowserItemNotificationUPP = DataBrowserItemNotificationProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseradddragitemprocptr?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
-pub type DataBrowserAddDragItemProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        Option<&DragReference>,
-        DataBrowserItemID,
-        *mut ItemReference,
-    ) -> Boolean,
->;
+pub type DataBrowserAddDragItemProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    Option<&DragReference>,
+    DataBrowserItemID,
+    *mut ItemReference,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseracceptdragprocptr?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
-pub type DataBrowserAcceptDragProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        Option<&DragReference>,
-        DataBrowserItemID,
-    ) -> Boolean,
->;
+pub type DataBrowserAcceptDragProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    Option<&DragReference>,
+    DataBrowserItemID,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowserreceivedragprocptr?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
-pub type DataBrowserReceiveDragProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        Option<&DragReference>,
-        DataBrowserItemID,
-    ) -> Boolean,
->;
+pub type DataBrowserReceiveDragProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    Option<&DragReference>,
+    DataBrowserItemID,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowserpostprocessdragprocptr?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 pub type DataBrowserPostProcessDragProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Control>, Option<&DragReference>, OSStatus)>;
+    unsafe extern "C-unwind" fn(Option<&Control>, Option<&DragReference>, OSStatus);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseradddragitemupp?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
@@ -570,20 +563,18 @@ pub type DataBrowserPostProcessDragUPP = DataBrowserPostProcessDragProcPtr;
     feature = "Menus",
     feature = "objc2-core-services"
 ))]
-pub type DataBrowserGetContextualMenuProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        *mut *mut Menu,
-        *mut u32,
-        *mut *const CFString,
-        *mut AEDesc,
-    ),
->;
+pub type DataBrowserGetContextualMenuProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    *mut *mut Menu,
+    *mut u32,
+    *mut *const CFString,
+    *mut AEDesc,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowserselectcontextualmenuprocptr?language=objc)
 #[cfg(all(feature = "HIObject", feature = "Menus"))]
 pub type DataBrowserSelectContextualMenuProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Control>, Option<&Menu>, u32, i16, MenuItemIndex)>;
+    unsafe extern "C-unwind" fn(Option<&Control>, Option<&Menu>, u32, i16, MenuItemIndex);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowsergetcontextualmenuupp?language=objc)
 #[cfg(all(
@@ -599,16 +590,14 @@ pub type DataBrowserSelectContextualMenuUPP = DataBrowserSelectContextualMenuPro
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemhelpcontentprocptr?language=objc)
 #[cfg(all(feature = "HIObject", feature = "MacHelp", feature = "TextEdit"))]
-pub type DataBrowserItemHelpContentProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-        HMContentRequest,
-        *mut HMContentProvidedType,
-        *mut HMHelpContentRec,
-    ),
->;
+pub type DataBrowserItemHelpContentProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+    HMContentRequest,
+    *mut HMContentProvidedType,
+    *mut HMHelpContentRec,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemhelpcontentupp?language=objc)
 #[cfg(all(feature = "HIObject", feature = "MacHelp", feature = "TextEdit"))]
@@ -616,135 +605,144 @@ pub type DataBrowserItemHelpContentUPP = DataBrowserItemHelpContentProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewDataBrowserItemDataUPP(
-    user_routine: DataBrowserItemDataProcPtr,
-) -> DataBrowserItemDataUPP {
+    user_routine: Option<DataBrowserItemDataProcPtr>,
+) -> Option<DataBrowserItemDataUPP> {
     extern "C-unwind" {
         fn NewDataBrowserItemDataUPP(
-            user_routine: DataBrowserItemDataProcPtr,
-        ) -> DataBrowserItemDataUPP;
+            user_routine: Option<DataBrowserItemDataProcPtr>,
+        ) -> Option<DataBrowserItemDataUPP>;
     }
     unsafe { NewDataBrowserItemDataUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewDataBrowserItemCompareUPP(
-    user_routine: DataBrowserItemCompareProcPtr,
-) -> DataBrowserItemCompareUPP {
+    user_routine: Option<DataBrowserItemCompareProcPtr>,
+) -> Option<DataBrowserItemCompareUPP> {
     extern "C-unwind" {
         fn NewDataBrowserItemCompareUPP(
-            user_routine: DataBrowserItemCompareProcPtr,
-        ) -> DataBrowserItemCompareUPP;
+            user_routine: Option<DataBrowserItemCompareProcPtr>,
+        ) -> Option<DataBrowserItemCompareUPP>;
     }
     unsafe { NewDataBrowserItemCompareUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewDataBrowserItemNotificationWithItemUPP(
-    user_routine: DataBrowserItemNotificationWithItemProcPtr,
-) -> DataBrowserItemNotificationWithItemUPP {
+    user_routine: Option<DataBrowserItemNotificationWithItemProcPtr>,
+) -> Option<DataBrowserItemNotificationWithItemUPP> {
     extern "C-unwind" {
         fn NewDataBrowserItemNotificationWithItemUPP(
-            user_routine: DataBrowserItemNotificationWithItemProcPtr,
-        ) -> DataBrowserItemNotificationWithItemUPP;
+            user_routine: Option<DataBrowserItemNotificationWithItemProcPtr>,
+        ) -> Option<DataBrowserItemNotificationWithItemUPP>;
     }
     unsafe { NewDataBrowserItemNotificationWithItemUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewDataBrowserItemNotificationUPP(
-    user_routine: DataBrowserItemNotificationProcPtr,
-) -> DataBrowserItemNotificationUPP {
+    user_routine: Option<DataBrowserItemNotificationProcPtr>,
+) -> Option<DataBrowserItemNotificationUPP> {
     extern "C-unwind" {
         fn NewDataBrowserItemNotificationUPP(
-            user_routine: DataBrowserItemNotificationProcPtr,
-        ) -> DataBrowserItemNotificationUPP;
+            user_routine: Option<DataBrowserItemNotificationProcPtr>,
+        ) -> Option<DataBrowserItemNotificationUPP>;
     }
     unsafe { NewDataBrowserItemNotificationUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewDataBrowserAddDragItemUPP(
-    user_routine: DataBrowserAddDragItemProcPtr,
-) -> DataBrowserAddDragItemUPP {
+    user_routine: Option<DataBrowserAddDragItemProcPtr>,
+) -> Option<DataBrowserAddDragItemUPP> {
     extern "C-unwind" {
         fn NewDataBrowserAddDragItemUPP(
-            user_routine: DataBrowserAddDragItemProcPtr,
-        ) -> DataBrowserAddDragItemUPP;
+            user_routine: Option<DataBrowserAddDragItemProcPtr>,
+        ) -> Option<DataBrowserAddDragItemUPP>;
     }
     unsafe { NewDataBrowserAddDragItemUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewDataBrowserAcceptDragUPP(
-    user_routine: DataBrowserAcceptDragProcPtr,
-) -> DataBrowserAcceptDragUPP {
+    user_routine: Option<DataBrowserAcceptDragProcPtr>,
+) -> Option<DataBrowserAcceptDragUPP> {
     extern "C-unwind" {
         fn NewDataBrowserAcceptDragUPP(
-            user_routine: DataBrowserAcceptDragProcPtr,
-        ) -> DataBrowserAcceptDragUPP;
+            user_routine: Option<DataBrowserAcceptDragProcPtr>,
+        ) -> Option<DataBrowserAcceptDragUPP>;
     }
     unsafe { NewDataBrowserAcceptDragUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewDataBrowserReceiveDragUPP(
-    user_routine: DataBrowserReceiveDragProcPtr,
-) -> DataBrowserReceiveDragUPP {
+    user_routine: Option<DataBrowserReceiveDragProcPtr>,
+) -> Option<DataBrowserReceiveDragUPP> {
     extern "C-unwind" {
         fn NewDataBrowserReceiveDragUPP(
-            user_routine: DataBrowserReceiveDragProcPtr,
-        ) -> DataBrowserReceiveDragUPP;
+            user_routine: Option<DataBrowserReceiveDragProcPtr>,
+        ) -> Option<DataBrowserReceiveDragUPP>;
     }
     unsafe { NewDataBrowserReceiveDragUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewDataBrowserPostProcessDragUPP(
-    user_routine: DataBrowserPostProcessDragProcPtr,
-) -> DataBrowserPostProcessDragUPP {
+    user_routine: Option<DataBrowserPostProcessDragProcPtr>,
+) -> Option<DataBrowserPostProcessDragUPP> {
     extern "C-unwind" {
         fn NewDataBrowserPostProcessDragUPP(
-            user_routine: DataBrowserPostProcessDragProcPtr,
-        ) -> DataBrowserPostProcessDragUPP;
+            user_routine: Option<DataBrowserPostProcessDragProcPtr>,
+        ) -> Option<DataBrowserPostProcessDragUPP>;
     }
     unsafe { NewDataBrowserPostProcessDragUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(
     feature = "HIObject",
     feature = "Menus",
@@ -752,83 +750,85 @@ pub unsafe fn NewDataBrowserPostProcessDragUPP(
 ))]
 #[inline]
 pub unsafe fn NewDataBrowserGetContextualMenuUPP(
-    user_routine: DataBrowserGetContextualMenuProcPtr,
-) -> DataBrowserGetContextualMenuUPP {
+    user_routine: Option<DataBrowserGetContextualMenuProcPtr>,
+) -> Option<DataBrowserGetContextualMenuUPP> {
     extern "C-unwind" {
         fn NewDataBrowserGetContextualMenuUPP(
-            user_routine: DataBrowserGetContextualMenuProcPtr,
-        ) -> DataBrowserGetContextualMenuUPP;
+            user_routine: Option<DataBrowserGetContextualMenuProcPtr>,
+        ) -> Option<DataBrowserGetContextualMenuUPP>;
     }
     unsafe { NewDataBrowserGetContextualMenuUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "Menus"))]
 #[inline]
 pub unsafe fn NewDataBrowserSelectContextualMenuUPP(
-    user_routine: DataBrowserSelectContextualMenuProcPtr,
-) -> DataBrowserSelectContextualMenuUPP {
+    user_routine: Option<DataBrowserSelectContextualMenuProcPtr>,
+) -> Option<DataBrowserSelectContextualMenuUPP> {
     extern "C-unwind" {
         fn NewDataBrowserSelectContextualMenuUPP(
-            user_routine: DataBrowserSelectContextualMenuProcPtr,
-        ) -> DataBrowserSelectContextualMenuUPP;
+            user_routine: Option<DataBrowserSelectContextualMenuProcPtr>,
+        ) -> Option<DataBrowserSelectContextualMenuUPP>;
     }
     unsafe { NewDataBrowserSelectContextualMenuUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "MacHelp", feature = "TextEdit"))]
 #[inline]
 pub unsafe fn NewDataBrowserItemHelpContentUPP(
-    user_routine: DataBrowserItemHelpContentProcPtr,
-) -> DataBrowserItemHelpContentUPP {
+    user_routine: Option<DataBrowserItemHelpContentProcPtr>,
+) -> Option<DataBrowserItemHelpContentUPP> {
     extern "C-unwind" {
         fn NewDataBrowserItemHelpContentUPP(
-            user_routine: DataBrowserItemHelpContentProcPtr,
-        ) -> DataBrowserItemHelpContentUPP;
+            user_routine: Option<DataBrowserItemHelpContentProcPtr>,
+        ) -> Option<DataBrowserItemHelpContentUPP>;
     }
     unsafe { NewDataBrowserItemHelpContentUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeDataBrowserItemDataUPP(user_upp: DataBrowserItemDataUPP) {
+pub unsafe fn DisposeDataBrowserItemDataUPP(user_upp: *mut DataBrowserItemDataUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserItemDataUPP(user_upp: DataBrowserItemDataUPP);
+        fn DisposeDataBrowserItemDataUPP(user_upp: *mut DataBrowserItemDataUPP);
     }
     unsafe { DisposeDataBrowserItemDataUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeDataBrowserItemCompareUPP(user_upp: DataBrowserItemCompareUPP) {
+pub unsafe fn DisposeDataBrowserItemCompareUPP(user_upp: *mut DataBrowserItemCompareUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserItemCompareUPP(user_upp: DataBrowserItemCompareUPP);
+        fn DisposeDataBrowserItemCompareUPP(user_upp: *mut DataBrowserItemCompareUPP);
     }
     unsafe { DisposeDataBrowserItemCompareUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn DisposeDataBrowserItemNotificationWithItemUPP(
-    user_upp: DataBrowserItemNotificationWithItemUPP,
+    user_upp: *mut DataBrowserItemNotificationWithItemUPP,
 ) {
     extern "C-unwind" {
         fn DisposeDataBrowserItemNotificationWithItemUPP(
-            user_upp: DataBrowserItemNotificationWithItemUPP,
+            user_upp: *mut DataBrowserItemNotificationWithItemUPP,
         );
     }
     unsafe { DisposeDataBrowserItemNotificationWithItemUPP(user_upp) }
@@ -836,102 +836,106 @@ pub unsafe fn DisposeDataBrowserItemNotificationWithItemUPP(
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeDataBrowserItemNotificationUPP(user_upp: DataBrowserItemNotificationUPP) {
+pub unsafe fn DisposeDataBrowserItemNotificationUPP(user_upp: *mut DataBrowserItemNotificationUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserItemNotificationUPP(user_upp: DataBrowserItemNotificationUPP);
+        fn DisposeDataBrowserItemNotificationUPP(user_upp: *mut DataBrowserItemNotificationUPP);
     }
     unsafe { DisposeDataBrowserItemNotificationUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeDataBrowserAddDragItemUPP(user_upp: DataBrowserAddDragItemUPP) {
+pub unsafe fn DisposeDataBrowserAddDragItemUPP(user_upp: *mut DataBrowserAddDragItemUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserAddDragItemUPP(user_upp: DataBrowserAddDragItemUPP);
+        fn DisposeDataBrowserAddDragItemUPP(user_upp: *mut DataBrowserAddDragItemUPP);
     }
     unsafe { DisposeDataBrowserAddDragItemUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeDataBrowserAcceptDragUPP(user_upp: DataBrowserAcceptDragUPP) {
+pub unsafe fn DisposeDataBrowserAcceptDragUPP(user_upp: *mut DataBrowserAcceptDragUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserAcceptDragUPP(user_upp: DataBrowserAcceptDragUPP);
+        fn DisposeDataBrowserAcceptDragUPP(user_upp: *mut DataBrowserAcceptDragUPP);
     }
     unsafe { DisposeDataBrowserAcceptDragUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeDataBrowserReceiveDragUPP(user_upp: DataBrowserReceiveDragUPP) {
+pub unsafe fn DisposeDataBrowserReceiveDragUPP(user_upp: *mut DataBrowserReceiveDragUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserReceiveDragUPP(user_upp: DataBrowserReceiveDragUPP);
+        fn DisposeDataBrowserReceiveDragUPP(user_upp: *mut DataBrowserReceiveDragUPP);
     }
     unsafe { DisposeDataBrowserReceiveDragUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeDataBrowserPostProcessDragUPP(user_upp: DataBrowserPostProcessDragUPP) {
+pub unsafe fn DisposeDataBrowserPostProcessDragUPP(user_upp: *mut DataBrowserPostProcessDragUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserPostProcessDragUPP(user_upp: DataBrowserPostProcessDragUPP);
+        fn DisposeDataBrowserPostProcessDragUPP(user_upp: *mut DataBrowserPostProcessDragUPP);
     }
     unsafe { DisposeDataBrowserPostProcessDragUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(
     feature = "HIObject",
     feature = "Menus",
     feature = "objc2-core-services"
 ))]
 #[inline]
-pub unsafe fn DisposeDataBrowserGetContextualMenuUPP(user_upp: DataBrowserGetContextualMenuUPP) {
+pub unsafe fn DisposeDataBrowserGetContextualMenuUPP(
+    user_upp: *mut DataBrowserGetContextualMenuUPP,
+) {
     extern "C-unwind" {
-        fn DisposeDataBrowserGetContextualMenuUPP(user_upp: DataBrowserGetContextualMenuUPP);
+        fn DisposeDataBrowserGetContextualMenuUPP(user_upp: *mut DataBrowserGetContextualMenuUPP);
     }
     unsafe { DisposeDataBrowserGetContextualMenuUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "HIObject", feature = "Menus"))]
 #[inline]
 pub unsafe fn DisposeDataBrowserSelectContextualMenuUPP(
-    user_upp: DataBrowserSelectContextualMenuUPP,
+    user_upp: *mut DataBrowserSelectContextualMenuUPP,
 ) {
     extern "C-unwind" {
-        fn DisposeDataBrowserSelectContextualMenuUPP(user_upp: DataBrowserSelectContextualMenuUPP);
+        fn DisposeDataBrowserSelectContextualMenuUPP(
+            user_upp: *mut DataBrowserSelectContextualMenuUPP,
+        );
     }
     unsafe { DisposeDataBrowserSelectContextualMenuUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "HIObject", feature = "MacHelp", feature = "TextEdit"))]
 #[inline]
-pub unsafe fn DisposeDataBrowserItemHelpContentUPP(user_upp: DataBrowserItemHelpContentUPP) {
+pub unsafe fn DisposeDataBrowserItemHelpContentUPP(user_upp: *mut DataBrowserItemHelpContentUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserItemHelpContentUPP(user_upp: DataBrowserItemHelpContentUPP);
+        fn DisposeDataBrowserItemHelpContentUPP(user_upp: *mut DataBrowserItemHelpContentUPP);
     }
     unsafe { DisposeDataBrowserItemHelpContentUPP(user_upp) }
 }
@@ -942,6 +946,7 @@ pub unsafe fn DisposeDataBrowserItemHelpContentUPP(user_upp: DataBrowserItemHelp
 /// - `item_data` might need manual memory-management.
 /// - `item_data` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeDataBrowserItemDataUPP(
@@ -950,7 +955,7 @@ pub unsafe fn InvokeDataBrowserItemDataUPP(
     property: DataBrowserPropertyID,
     item_data: Option<&DataBrowserItemData>,
     set_value: bool,
-    user_upp: DataBrowserItemDataUPP,
+    user_upp: Option<DataBrowserItemDataUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeDataBrowserItemDataUPP(
@@ -959,7 +964,7 @@ pub unsafe fn InvokeDataBrowserItemDataUPP(
             property: DataBrowserPropertyID,
             item_data: Option<&DataBrowserItemData>,
             set_value: Boolean,
-            user_upp: DataBrowserItemDataUPP,
+            user_upp: Option<DataBrowserItemDataUPP>,
         ) -> OSStatus;
     }
     let set_value = set_value as _;
@@ -970,6 +975,7 @@ pub unsafe fn InvokeDataBrowserItemDataUPP(
 ///
 /// - `browser` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeDataBrowserItemCompareUPP(
@@ -977,7 +983,7 @@ pub unsafe fn InvokeDataBrowserItemCompareUPP(
     item_one: DataBrowserItemID,
     item_two: DataBrowserItemID,
     sort_property: DataBrowserPropertyID,
-    user_upp: DataBrowserItemCompareUPP,
+    user_upp: Option<DataBrowserItemCompareUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeDataBrowserItemCompareUPP(
@@ -985,7 +991,7 @@ pub unsafe fn InvokeDataBrowserItemCompareUPP(
             item_one: DataBrowserItemID,
             item_two: DataBrowserItemID,
             sort_property: DataBrowserPropertyID,
-            user_upp: DataBrowserItemCompareUPP,
+            user_upp: Option<DataBrowserItemCompareUPP>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -1000,6 +1006,7 @@ pub unsafe fn InvokeDataBrowserItemCompareUPP(
 /// - `item_data` might need manual memory-management.
 /// - `item_data` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeDataBrowserItemNotificationWithItemUPP(
@@ -1007,7 +1014,7 @@ pub unsafe fn InvokeDataBrowserItemNotificationWithItemUPP(
     item: DataBrowserItemID,
     message: DataBrowserItemNotification,
     item_data: Option<&DataBrowserItemData>,
-    user_upp: DataBrowserItemNotificationWithItemUPP,
+    user_upp: Option<DataBrowserItemNotificationWithItemUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserItemNotificationWithItemUPP(
@@ -1015,7 +1022,7 @@ pub unsafe fn InvokeDataBrowserItemNotificationWithItemUPP(
             item: DataBrowserItemID,
             message: DataBrowserItemNotification,
             item_data: Option<&DataBrowserItemData>,
-            user_upp: DataBrowserItemNotificationWithItemUPP,
+            user_upp: Option<DataBrowserItemNotificationWithItemUPP>,
         );
     }
     unsafe {
@@ -1027,20 +1034,21 @@ pub unsafe fn InvokeDataBrowserItemNotificationWithItemUPP(
 ///
 /// - `browser` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeDataBrowserItemNotificationUPP(
     browser: Option<&Control>,
     item: DataBrowserItemID,
     message: DataBrowserItemNotification,
-    user_upp: DataBrowserItemNotificationUPP,
+    user_upp: Option<DataBrowserItemNotificationUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserItemNotificationUPP(
             browser: Option<&Control>,
             item: DataBrowserItemID,
             message: DataBrowserItemNotification,
-            user_upp: DataBrowserItemNotificationUPP,
+            user_upp: Option<DataBrowserItemNotificationUPP>,
         );
     }
     unsafe { InvokeDataBrowserItemNotificationUPP(browser, item, message, user_upp) }
@@ -1054,6 +1062,7 @@ pub unsafe fn InvokeDataBrowserItemNotificationUPP(
 /// - `item_ref` must be a valid pointer.
 /// - `item_ref` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserAddDragItemUPP(
@@ -1061,7 +1070,7 @@ pub unsafe fn InvokeDataBrowserAddDragItemUPP(
     the_drag: Option<&DragReference>,
     item: DataBrowserItemID,
     item_ref: Option<&mut ItemReference>,
-    user_upp: DataBrowserAddDragItemUPP,
+    user_upp: Option<DataBrowserAddDragItemUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeDataBrowserAddDragItemUPP(
@@ -1069,7 +1078,7 @@ pub unsafe fn InvokeDataBrowserAddDragItemUPP(
             the_drag: Option<&DragReference>,
             item: DataBrowserItemID,
             item_ref: Option<&mut ItemReference>,
-            user_upp: DataBrowserAddDragItemUPP,
+            user_upp: Option<DataBrowserAddDragItemUPP>,
         ) -> Boolean;
     }
     let ret =
@@ -1083,20 +1092,21 @@ pub unsafe fn InvokeDataBrowserAddDragItemUPP(
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserAcceptDragUPP(
     browser: Option<&Control>,
     the_drag: Option<&DragReference>,
     item: DataBrowserItemID,
-    user_upp: DataBrowserAcceptDragUPP,
+    user_upp: Option<DataBrowserAcceptDragUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeDataBrowserAcceptDragUPP(
             browser: Option<&Control>,
             the_drag: Option<&DragReference>,
             item: DataBrowserItemID,
-            user_upp: DataBrowserAcceptDragUPP,
+            user_upp: Option<DataBrowserAcceptDragUPP>,
         ) -> Boolean;
     }
     let ret = unsafe { InvokeDataBrowserAcceptDragUPP(browser, the_drag, item, user_upp) };
@@ -1109,20 +1119,21 @@ pub unsafe fn InvokeDataBrowserAcceptDragUPP(
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserReceiveDragUPP(
     browser: Option<&Control>,
     the_drag: Option<&DragReference>,
     item: DataBrowserItemID,
-    user_upp: DataBrowserReceiveDragUPP,
+    user_upp: Option<DataBrowserReceiveDragUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeDataBrowserReceiveDragUPP(
             browser: Option<&Control>,
             the_drag: Option<&DragReference>,
             item: DataBrowserItemID,
-            user_upp: DataBrowserReceiveDragUPP,
+            user_upp: Option<DataBrowserReceiveDragUPP>,
         ) -> Boolean;
     }
     let ret = unsafe { InvokeDataBrowserReceiveDragUPP(browser, the_drag, item, user_upp) };
@@ -1135,20 +1146,21 @@ pub unsafe fn InvokeDataBrowserReceiveDragUPP(
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserPostProcessDragUPP(
     browser: Option<&Control>,
     the_drag: Option<&DragReference>,
     track_drag_result: OSStatus,
-    user_upp: DataBrowserPostProcessDragUPP,
+    user_upp: Option<DataBrowserPostProcessDragUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserPostProcessDragUPP(
             browser: Option<&Control>,
             the_drag: Option<&DragReference>,
             track_drag_result: OSStatus,
-            user_upp: DataBrowserPostProcessDragUPP,
+            user_upp: Option<DataBrowserPostProcessDragUPP>,
         );
     }
     unsafe { InvokeDataBrowserPostProcessDragUPP(browser, the_drag, track_drag_result, user_upp) }
@@ -1163,6 +1175,7 @@ pub unsafe fn InvokeDataBrowserPostProcessDragUPP(
 /// - `selection` struct field `dataHandle` must be a valid pointer.
 /// - `selection` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(
     feature = "HIObject",
     feature = "Menus",
@@ -1175,7 +1188,7 @@ pub unsafe fn InvokeDataBrowserGetContextualMenuUPP(
     help_type: Option<&mut u32>,
     help_item_string: Option<&mut Option<CFRetained<CFString>>>,
     selection: Option<&mut AEDesc>,
-    user_upp: DataBrowserGetContextualMenuUPP,
+    user_upp: Option<DataBrowserGetContextualMenuUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserGetContextualMenuUPP(
@@ -1184,7 +1197,7 @@ pub unsafe fn InvokeDataBrowserGetContextualMenuUPP(
             help_type: Option<&mut u32>,
             help_item_string: Option<&mut Option<CFRetained<CFString>>>,
             selection: Option<&mut AEDesc>,
-            user_upp: DataBrowserGetContextualMenuUPP,
+            user_upp: Option<DataBrowserGetContextualMenuUPP>,
         );
     }
     struct RetainMenuOnDrop<'a>(&'a mut Option<CFRetained<Menu>>);
@@ -1238,6 +1251,7 @@ pub unsafe fn InvokeDataBrowserGetContextualMenuUPP(
 /// - `browser` might not allow `None`.
 /// - `menu` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "Menus"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserSelectContextualMenuUPP(
@@ -1246,7 +1260,7 @@ pub unsafe fn InvokeDataBrowserSelectContextualMenuUPP(
     selection_type: u32,
     menu_id: i16,
     menu_item: MenuItemIndex,
-    user_upp: DataBrowserSelectContextualMenuUPP,
+    user_upp: Option<DataBrowserSelectContextualMenuUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserSelectContextualMenuUPP(
@@ -1255,7 +1269,7 @@ pub unsafe fn InvokeDataBrowserSelectContextualMenuUPP(
             selection_type: u32,
             menu_id: i16,
             menu_item: MenuItemIndex,
-            user_upp: DataBrowserSelectContextualMenuUPP,
+            user_upp: Option<DataBrowserSelectContextualMenuUPP>,
         );
     }
     unsafe {
@@ -1278,6 +1292,7 @@ pub unsafe fn InvokeDataBrowserSelectContextualMenuUPP(
 /// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
 /// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "MacHelp", feature = "TextEdit"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserItemHelpContentUPP(
@@ -1287,7 +1302,7 @@ pub unsafe fn InvokeDataBrowserItemHelpContentUPP(
     in_request: HMContentRequest,
     out_content_provided: Option<&mut HMContentProvidedType>,
     io_help_content: Option<&mut HMHelpContentRec>,
-    user_upp: DataBrowserItemHelpContentUPP,
+    user_upp: Option<DataBrowserItemHelpContentUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserItemHelpContentUPP(
@@ -1297,7 +1312,7 @@ pub unsafe fn InvokeDataBrowserItemHelpContentUPP(
             in_request: HMContentRequest,
             out_content_provided: Option<&mut HMContentProvidedType>,
             io_help_content: Option<&mut HMHelpContentRec>,
-            user_upp: DataBrowserItemHelpContentUPP,
+            user_upp: Option<DataBrowserItemHelpContentUPP>,
         );
     }
     unsafe {
@@ -1329,16 +1344,16 @@ pub const kDataBrowserLatestCallbacks: c_uint = 0;
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct DataBrowserCallbacks_u_v1 {
-    pub itemDataCallback: DataBrowserItemDataUPP,
-    pub itemCompareCallback: DataBrowserItemCompareUPP,
-    pub itemNotificationCallback: DataBrowserItemNotificationUPP,
-    pub addDragItemCallback: DataBrowserAddDragItemUPP,
-    pub acceptDragCallback: DataBrowserAcceptDragUPP,
-    pub receiveDragCallback: DataBrowserReceiveDragUPP,
-    pub postProcessDragCallback: DataBrowserPostProcessDragUPP,
-    pub itemHelpContentCallback: DataBrowserItemHelpContentUPP,
-    pub getContextualMenuCallback: DataBrowserGetContextualMenuUPP,
-    pub selectContextualMenuCallback: DataBrowserSelectContextualMenuUPP,
+    pub itemDataCallback: Option<DataBrowserItemDataUPP>,
+    pub itemCompareCallback: Option<DataBrowserItemCompareUPP>,
+    pub itemNotificationCallback: Option<DataBrowserItemNotificationUPP>,
+    pub addDragItemCallback: Option<DataBrowserAddDragItemUPP>,
+    pub acceptDragCallback: Option<DataBrowserAcceptDragUPP>,
+    pub receiveDragCallback: Option<DataBrowserReceiveDragUPP>,
+    pub postProcessDragCallback: Option<DataBrowserPostProcessDragUPP>,
+    pub itemHelpContentCallback: Option<DataBrowserItemHelpContentUPP>,
+    pub getContextualMenuCallback: Option<DataBrowserGetContextualMenuUPP>,
+    pub selectContextualMenuCallback: Option<DataBrowserSelectContextualMenuUPP>,
 }
 
 #[cfg(all(
@@ -1495,91 +1510,77 @@ pub const kDataBrowserStopTracking: c_int = -1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowserdrawitemprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type DataBrowserDrawItemProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-        DataBrowserItemState,
-        *const Rect,
-        i16,
-        Boolean,
-    ),
->;
+pub type DataBrowserDrawItemProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+    DataBrowserItemState,
+    *const Rect,
+    i16,
+    Boolean,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseredititemprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type DataBrowserEditItemProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-        Option<&CFString>,
-        *mut Rect,
-        *mut Boolean,
-    ) -> Boolean,
->;
+pub type DataBrowserEditItemProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+    Option<&CFString>,
+    *mut Rect,
+    *mut Boolean,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowserhittestprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type DataBrowserHitTestProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-        *const Rect,
-        *const Rect,
-    ) -> Boolean,
->;
+pub type DataBrowserHitTestProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+    *const Rect,
+    *const Rect,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowsertrackingprocptr?language=objc)
 #[cfg(all(feature = "Events", feature = "HIObject"))]
-pub type DataBrowserTrackingProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-        *const Rect,
-        Point,
-        EventModifiers,
-    ) -> DataBrowserTrackingResult,
->;
+pub type DataBrowserTrackingProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+    *const Rect,
+    Point,
+    EventModifiers,
+) -> DataBrowserTrackingResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemdragrgnprocptr?language=objc)
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
-pub type DataBrowserItemDragRgnProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-        *const Rect,
-        RgnHandle,
-    ),
->;
+pub type DataBrowserItemDragRgnProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+    *const Rect,
+    RgnHandle,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemacceptdragprocptr?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
-pub type DataBrowserItemAcceptDragProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-        *const Rect,
-        Option<&DragReference>,
-    ) -> DataBrowserDragFlags,
->;
+pub type DataBrowserItemAcceptDragProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+    *const Rect,
+    Option<&DragReference>,
+) -> DataBrowserDragFlags;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowseritemreceivedragprocptr?language=objc)
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
-pub type DataBrowserItemReceiveDragProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        DataBrowserItemID,
-        DataBrowserPropertyID,
-        DataBrowserDragFlags,
-        Option<&DragReference>,
-    ) -> Boolean,
->;
+pub type DataBrowserItemReceiveDragProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    DataBrowserItemID,
+    DataBrowserPropertyID,
+    DataBrowserDragFlags,
+    Option<&DragReference>,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/databrowserdrawitemupp?language=objc)
 #[cfg(feature = "HIObject")]
@@ -1611,196 +1612,203 @@ pub type DataBrowserItemReceiveDragUPP = DataBrowserItemReceiveDragProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewDataBrowserDrawItemUPP(
-    user_routine: DataBrowserDrawItemProcPtr,
-) -> DataBrowserDrawItemUPP {
+    user_routine: Option<DataBrowserDrawItemProcPtr>,
+) -> Option<DataBrowserDrawItemUPP> {
     extern "C-unwind" {
         fn NewDataBrowserDrawItemUPP(
-            user_routine: DataBrowserDrawItemProcPtr,
-        ) -> DataBrowserDrawItemUPP;
+            user_routine: Option<DataBrowserDrawItemProcPtr>,
+        ) -> Option<DataBrowserDrawItemUPP>;
     }
     unsafe { NewDataBrowserDrawItemUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewDataBrowserEditItemUPP(
-    user_routine: DataBrowserEditItemProcPtr,
-) -> DataBrowserEditItemUPP {
+    user_routine: Option<DataBrowserEditItemProcPtr>,
+) -> Option<DataBrowserEditItemUPP> {
     extern "C-unwind" {
         fn NewDataBrowserEditItemUPP(
-            user_routine: DataBrowserEditItemProcPtr,
-        ) -> DataBrowserEditItemUPP;
+            user_routine: Option<DataBrowserEditItemProcPtr>,
+        ) -> Option<DataBrowserEditItemUPP>;
     }
     unsafe { NewDataBrowserEditItemUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewDataBrowserHitTestUPP(
-    user_routine: DataBrowserHitTestProcPtr,
-) -> DataBrowserHitTestUPP {
+    user_routine: Option<DataBrowserHitTestProcPtr>,
+) -> Option<DataBrowserHitTestUPP> {
     extern "C-unwind" {
         fn NewDataBrowserHitTestUPP(
-            user_routine: DataBrowserHitTestProcPtr,
-        ) -> DataBrowserHitTestUPP;
+            user_routine: Option<DataBrowserHitTestProcPtr>,
+        ) -> Option<DataBrowserHitTestUPP>;
     }
     unsafe { NewDataBrowserHitTestUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewDataBrowserTrackingUPP(
-    user_routine: DataBrowserTrackingProcPtr,
-) -> DataBrowserTrackingUPP {
+    user_routine: Option<DataBrowserTrackingProcPtr>,
+) -> Option<DataBrowserTrackingUPP> {
     extern "C-unwind" {
         fn NewDataBrowserTrackingUPP(
-            user_routine: DataBrowserTrackingProcPtr,
-        ) -> DataBrowserTrackingUPP;
+            user_routine: Option<DataBrowserTrackingProcPtr>,
+        ) -> Option<DataBrowserTrackingUPP>;
     }
     unsafe { NewDataBrowserTrackingUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
 #[inline]
 pub unsafe fn NewDataBrowserItemDragRgnUPP(
-    user_routine: DataBrowserItemDragRgnProcPtr,
-) -> DataBrowserItemDragRgnUPP {
+    user_routine: Option<DataBrowserItemDragRgnProcPtr>,
+) -> Option<DataBrowserItemDragRgnUPP> {
     extern "C-unwind" {
         fn NewDataBrowserItemDragRgnUPP(
-            user_routine: DataBrowserItemDragRgnProcPtr,
-        ) -> DataBrowserItemDragRgnUPP;
+            user_routine: Option<DataBrowserItemDragRgnProcPtr>,
+        ) -> Option<DataBrowserItemDragRgnUPP>;
     }
     unsafe { NewDataBrowserItemDragRgnUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewDataBrowserItemAcceptDragUPP(
-    user_routine: DataBrowserItemAcceptDragProcPtr,
-) -> DataBrowserItemAcceptDragUPP {
+    user_routine: Option<DataBrowserItemAcceptDragProcPtr>,
+) -> Option<DataBrowserItemAcceptDragUPP> {
     extern "C-unwind" {
         fn NewDataBrowserItemAcceptDragUPP(
-            user_routine: DataBrowserItemAcceptDragProcPtr,
-        ) -> DataBrowserItemAcceptDragUPP;
+            user_routine: Option<DataBrowserItemAcceptDragProcPtr>,
+        ) -> Option<DataBrowserItemAcceptDragUPP>;
     }
     unsafe { NewDataBrowserItemAcceptDragUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewDataBrowserItemReceiveDragUPP(
-    user_routine: DataBrowserItemReceiveDragProcPtr,
-) -> DataBrowserItemReceiveDragUPP {
+    user_routine: Option<DataBrowserItemReceiveDragProcPtr>,
+) -> Option<DataBrowserItemReceiveDragUPP> {
     extern "C-unwind" {
         fn NewDataBrowserItemReceiveDragUPP(
-            user_routine: DataBrowserItemReceiveDragProcPtr,
-        ) -> DataBrowserItemReceiveDragUPP;
+            user_routine: Option<DataBrowserItemReceiveDragProcPtr>,
+        ) -> Option<DataBrowserItemReceiveDragUPP>;
     }
     unsafe { NewDataBrowserItemReceiveDragUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeDataBrowserDrawItemUPP(user_upp: DataBrowserDrawItemUPP) {
+pub unsafe fn DisposeDataBrowserDrawItemUPP(user_upp: *mut DataBrowserDrawItemUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserDrawItemUPP(user_upp: DataBrowserDrawItemUPP);
+        fn DisposeDataBrowserDrawItemUPP(user_upp: *mut DataBrowserDrawItemUPP);
     }
     unsafe { DisposeDataBrowserDrawItemUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeDataBrowserEditItemUPP(user_upp: DataBrowserEditItemUPP) {
+pub unsafe fn DisposeDataBrowserEditItemUPP(user_upp: *mut DataBrowserEditItemUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserEditItemUPP(user_upp: DataBrowserEditItemUPP);
+        fn DisposeDataBrowserEditItemUPP(user_upp: *mut DataBrowserEditItemUPP);
     }
     unsafe { DisposeDataBrowserEditItemUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeDataBrowserHitTestUPP(user_upp: DataBrowserHitTestUPP) {
+pub unsafe fn DisposeDataBrowserHitTestUPP(user_upp: *mut DataBrowserHitTestUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserHitTestUPP(user_upp: DataBrowserHitTestUPP);
+        fn DisposeDataBrowserHitTestUPP(user_upp: *mut DataBrowserHitTestUPP);
     }
     unsafe { DisposeDataBrowserHitTestUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeDataBrowserTrackingUPP(user_upp: DataBrowserTrackingUPP) {
+pub unsafe fn DisposeDataBrowserTrackingUPP(user_upp: *mut DataBrowserTrackingUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserTrackingUPP(user_upp: DataBrowserTrackingUPP);
+        fn DisposeDataBrowserTrackingUPP(user_upp: *mut DataBrowserTrackingUPP);
     }
     unsafe { DisposeDataBrowserTrackingUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
 #[inline]
-pub unsafe fn DisposeDataBrowserItemDragRgnUPP(user_upp: DataBrowserItemDragRgnUPP) {
+pub unsafe fn DisposeDataBrowserItemDragRgnUPP(user_upp: *mut DataBrowserItemDragRgnUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserItemDragRgnUPP(user_upp: DataBrowserItemDragRgnUPP);
+        fn DisposeDataBrowserItemDragRgnUPP(user_upp: *mut DataBrowserItemDragRgnUPP);
     }
     unsafe { DisposeDataBrowserItemDragRgnUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeDataBrowserItemAcceptDragUPP(user_upp: DataBrowserItemAcceptDragUPP) {
+pub unsafe fn DisposeDataBrowserItemAcceptDragUPP(user_upp: *mut DataBrowserItemAcceptDragUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserItemAcceptDragUPP(user_upp: DataBrowserItemAcceptDragUPP);
+        fn DisposeDataBrowserItemAcceptDragUPP(user_upp: *mut DataBrowserItemAcceptDragUPP);
     }
     unsafe { DisposeDataBrowserItemAcceptDragUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeDataBrowserItemReceiveDragUPP(user_upp: DataBrowserItemReceiveDragUPP) {
+pub unsafe fn DisposeDataBrowserItemReceiveDragUPP(user_upp: *mut DataBrowserItemReceiveDragUPP) {
     extern "C-unwind" {
-        fn DisposeDataBrowserItemReceiveDragUPP(user_upp: DataBrowserItemReceiveDragUPP);
+        fn DisposeDataBrowserItemReceiveDragUPP(user_upp: *mut DataBrowserItemReceiveDragUPP);
     }
     unsafe { DisposeDataBrowserItemReceiveDragUPP(user_upp) }
 }
@@ -1810,6 +1818,7 @@ pub unsafe fn DisposeDataBrowserItemReceiveDragUPP(user_upp: DataBrowserItemRece
 /// - `browser` might not allow `None`.
 /// - `the_rect` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeDataBrowserDrawItemUPP(
@@ -1820,7 +1829,7 @@ pub unsafe fn InvokeDataBrowserDrawItemUPP(
     the_rect: Option<&Rect>,
     gd_depth: i16,
     color_device: bool,
-    user_upp: DataBrowserDrawItemUPP,
+    user_upp: Option<DataBrowserDrawItemUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserDrawItemUPP(
@@ -1831,7 +1840,7 @@ pub unsafe fn InvokeDataBrowserDrawItemUPP(
             the_rect: Option<&Rect>,
             gd_depth: i16,
             color_device: Boolean,
-            user_upp: DataBrowserDrawItemUPP,
+            user_upp: Option<DataBrowserDrawItemUPP>,
         );
     }
     let color_device = color_device as _;
@@ -1856,6 +1865,7 @@ pub unsafe fn InvokeDataBrowserDrawItemUPP(
 /// - `max_edit_text_rect` might not allow `None`.
 /// - `shrink_to_fit` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeDataBrowserEditItemUPP(
@@ -1865,7 +1875,7 @@ pub unsafe fn InvokeDataBrowserEditItemUPP(
     the_string: Option<&CFString>,
     max_edit_text_rect: Option<&mut Rect>,
     shrink_to_fit: Option<&mut Boolean>,
-    user_upp: DataBrowserEditItemUPP,
+    user_upp: Option<DataBrowserEditItemUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeDataBrowserEditItemUPP(
@@ -1875,7 +1885,7 @@ pub unsafe fn InvokeDataBrowserEditItemUPP(
             the_string: Option<&CFString>,
             max_edit_text_rect: Option<&mut Rect>,
             shrink_to_fit: Option<&mut Boolean>,
-            user_upp: DataBrowserEditItemUPP,
+            user_upp: Option<DataBrowserEditItemUPP>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -1898,6 +1908,7 @@ pub unsafe fn InvokeDataBrowserEditItemUPP(
 /// - `the_rect` might not allow `None`.
 /// - `mouse_rect` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeDataBrowserHitTestUPP(
@@ -1906,7 +1917,7 @@ pub unsafe fn InvokeDataBrowserHitTestUPP(
     property: DataBrowserPropertyID,
     the_rect: Option<&Rect>,
     mouse_rect: Option<&Rect>,
-    user_upp: DataBrowserHitTestUPP,
+    user_upp: Option<DataBrowserHitTestUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeDataBrowserHitTestUPP(
@@ -1915,7 +1926,7 @@ pub unsafe fn InvokeDataBrowserHitTestUPP(
             property: DataBrowserPropertyID,
             the_rect: Option<&Rect>,
             mouse_rect: Option<&Rect>,
-            user_upp: DataBrowserHitTestUPP,
+            user_upp: Option<DataBrowserHitTestUPP>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -1929,6 +1940,7 @@ pub unsafe fn InvokeDataBrowserHitTestUPP(
 /// - `browser` might not allow `None`.
 /// - `the_rect` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserTrackingUPP(
@@ -1938,7 +1950,7 @@ pub unsafe fn InvokeDataBrowserTrackingUPP(
     the_rect: Option<&Rect>,
     start_pt: Point,
     modifiers: EventModifiers,
-    user_upp: DataBrowserTrackingUPP,
+    user_upp: Option<DataBrowserTrackingUPP>,
 ) -> DataBrowserTrackingResult {
     extern "C-unwind" {
         fn InvokeDataBrowserTrackingUPP(
@@ -1948,7 +1960,7 @@ pub unsafe fn InvokeDataBrowserTrackingUPP(
             the_rect: Option<&Rect>,
             start_pt: Point,
             modifiers: EventModifiers,
-            user_upp: DataBrowserTrackingUPP,
+            user_upp: Option<DataBrowserTrackingUPP>,
         ) -> DataBrowserTrackingResult;
     }
     unsafe {
@@ -1964,6 +1976,7 @@ pub unsafe fn InvokeDataBrowserTrackingUPP(
 /// - `the_rect` might not allow `None`.
 /// - `drag_rgn` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserItemDragRgnUPP(
@@ -1972,7 +1985,7 @@ pub unsafe fn InvokeDataBrowserItemDragRgnUPP(
     property: DataBrowserPropertyID,
     the_rect: Option<&Rect>,
     drag_rgn: RgnHandle,
-    user_upp: DataBrowserItemDragRgnUPP,
+    user_upp: Option<DataBrowserItemDragRgnUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDataBrowserItemDragRgnUPP(
@@ -1981,7 +1994,7 @@ pub unsafe fn InvokeDataBrowserItemDragRgnUPP(
             property: DataBrowserPropertyID,
             the_rect: Option<&Rect>,
             drag_rgn: RgnHandle,
-            user_upp: DataBrowserItemDragRgnUPP,
+            user_upp: Option<DataBrowserItemDragRgnUPP>,
         );
     }
     unsafe {
@@ -1996,6 +2009,7 @@ pub unsafe fn InvokeDataBrowserItemDragRgnUPP(
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserItemAcceptDragUPP(
@@ -2004,7 +2018,7 @@ pub unsafe fn InvokeDataBrowserItemAcceptDragUPP(
     property: DataBrowserPropertyID,
     the_rect: Option<&Rect>,
     the_drag: Option<&DragReference>,
-    user_upp: DataBrowserItemAcceptDragUPP,
+    user_upp: Option<DataBrowserItemAcceptDragUPP>,
 ) -> DataBrowserDragFlags {
     extern "C-unwind" {
         fn InvokeDataBrowserItemAcceptDragUPP(
@@ -2013,7 +2027,7 @@ pub unsafe fn InvokeDataBrowserItemAcceptDragUPP(
             property: DataBrowserPropertyID,
             the_rect: Option<&Rect>,
             the_drag: Option<&DragReference>,
-            user_upp: DataBrowserItemAcceptDragUPP,
+            user_upp: Option<DataBrowserItemAcceptDragUPP>,
         ) -> DataBrowserDragFlags;
     }
     unsafe {
@@ -2027,6 +2041,7 @@ pub unsafe fn InvokeDataBrowserItemAcceptDragUPP(
 /// - `the_drag` might need manual memory-management.
 /// - `the_drag` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Drag", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeDataBrowserItemReceiveDragUPP(
@@ -2035,7 +2050,7 @@ pub unsafe fn InvokeDataBrowserItemReceiveDragUPP(
     property: DataBrowserPropertyID,
     drag_flags: DataBrowserDragFlags,
     the_drag: Option<&DragReference>,
-    user_upp: DataBrowserItemReceiveDragUPP,
+    user_upp: Option<DataBrowserItemReceiveDragUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeDataBrowserItemReceiveDragUPP(
@@ -2044,7 +2059,7 @@ pub unsafe fn InvokeDataBrowserItemReceiveDragUPP(
             property: DataBrowserPropertyID,
             drag_flags: DataBrowserDragFlags,
             the_drag: Option<&DragReference>,
-            user_upp: DataBrowserItemReceiveDragUPP,
+            user_upp: Option<DataBrowserItemReceiveDragUPP>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -2069,13 +2084,13 @@ pub const kDataBrowserLatestCustomCallbacks: c_uint = 0;
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct DataBrowserCustomCallbacks_u_v1 {
-    pub drawItemCallback: DataBrowserDrawItemUPP,
-    pub editTextCallback: DataBrowserEditItemUPP,
-    pub hitTestCallback: DataBrowserHitTestUPP,
-    pub trackingCallback: DataBrowserTrackingUPP,
-    pub dragRegionCallback: DataBrowserItemDragRgnUPP,
-    pub acceptDragCallback: DataBrowserItemAcceptDragUPP,
-    pub receiveDragCallback: DataBrowserItemReceiveDragUPP,
+    pub drawItemCallback: Option<DataBrowserDrawItemUPP>,
+    pub editTextCallback: Option<DataBrowserEditItemUPP>,
+    pub hitTestCallback: Option<DataBrowserHitTestUPP>,
+    pub trackingCallback: Option<DataBrowserTrackingUPP>,
+    pub dragRegionCallback: Option<DataBrowserItemDragRgnUPP>,
+    pub acceptDragCallback: Option<DataBrowserItemAcceptDragUPP>,
+    pub receiveDragCallback: Option<DataBrowserItemReceiveDragUPP>,
 }
 
 #[cfg(all(

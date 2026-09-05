@@ -1868,7 +1868,7 @@ cf_objc2_type!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axobservercallback?language=objc)
 pub type AXObserverCallback =
-    Option<unsafe extern "C-unwind" fn(&AXObserver, &AXUIElement, &CFString, *mut c_void)>;
+    unsafe extern "C-unwind" fn(&AXObserver, &AXUIElement, &CFString, *mut c_void);
 
 /// Parameter `observer`: An AXObserverRef object to observe the notifications.
 ///
@@ -1881,9 +1881,8 @@ pub type AXObserverCallback =
 /// Parameter `refcon`: Application-defined data specified when registering the observer for notification
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axobservercallbackwithinfo?language=objc)
-pub type AXObserverCallbackWithInfo = Option<
-    unsafe extern "C-unwind" fn(&AXObserver, &AXUIElement, &CFString, &CFDictionary, *mut c_void),
->;
+pub type AXObserverCallbackWithInfo =
+    unsafe extern "C-unwind" fn(&AXObserver, &AXUIElement, &CFString, &CFDictionary, *mut c_void);
 
 unsafe impl ConcreteType for AXObserver {
     /// Returns the unique type identifier for the AXObserverRef type.

@@ -112,14 +112,12 @@ pub type CMIOObjectID = u32;
 /// Returns: The return value is currently unused and should always be 0.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertylistenerproc?language=objc)
-pub type CMIOObjectPropertyListenerProc = Option<
-    unsafe extern "C-unwind" fn(
-        CMIOObjectID,
-        u32,
-        *mut CMIOObjectPropertyAddress,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type CMIOObjectPropertyListenerProc = unsafe extern "C-unwind" fn(
+    CMIOObjectID,
+    u32,
+    *mut CMIOObjectPropertyAddress,
+    *mut c_void,
+) -> OSStatus;
 
 /// Clients register an CMIOObjectPropertyListenerBlock with an CMIOObject in order to receive notifications when the properties of the object change.
 ///
@@ -455,19 +453,20 @@ pub unsafe fn CMIOObjectSetPropertyData(
 ///
 /// - `address` might not allow `None`.
 /// - `listener` must be implemented correctly.
+/// - `listener` might not allow `None`.
 /// - `client_data` must be a valid pointer.
 #[inline]
 pub unsafe fn CMIOObjectAddPropertyListener(
     object_id: CMIOObjectID,
     address: Option<&CMIOObjectPropertyAddress>,
-    listener: CMIOObjectPropertyListenerProc,
+    listener: Option<CMIOObjectPropertyListenerProc>,
     client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOObjectAddPropertyListener(
             object_id: CMIOObjectID,
             address: Option<&CMIOObjectPropertyAddress>,
-            listener: CMIOObjectPropertyListenerProc,
+            listener: Option<CMIOObjectPropertyListenerProc>,
             client_data: *mut c_void,
         ) -> OSStatus;
     }
@@ -490,19 +489,20 @@ pub unsafe fn CMIOObjectAddPropertyListener(
 ///
 /// - `address` might not allow `None`.
 /// - `listener` must be implemented correctly.
+/// - `listener` might not allow `None`.
 /// - `client_data` must be a valid pointer.
 #[inline]
 pub unsafe fn CMIOObjectRemovePropertyListener(
     object_id: CMIOObjectID,
     address: Option<&CMIOObjectPropertyAddress>,
-    listener: CMIOObjectPropertyListenerProc,
+    listener: Option<CMIOObjectPropertyListenerProc>,
     client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMIOObjectRemovePropertyListener(
             object_id: CMIOObjectID,
             address: Option<&CMIOObjectPropertyAddress>,
-            listener: CMIOObjectPropertyListenerProc,
+            listener: Option<CMIOObjectPropertyListenerProc>,
             client_data: *mut c_void,
         ) -> OSStatus;
     }

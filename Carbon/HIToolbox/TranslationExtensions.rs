@@ -174,71 +174,60 @@ pub const kTranslateGetScrapTranslationListConsideringData: c_uint = 13;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/carbon/dogetfiletranslationlistprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
-pub type DoGetFileTranslationListProcPtr = Option<
-    unsafe extern "C-unwind" fn(ComponentInstance, FileTranslationListHandle) -> ComponentResult,
->;
+pub type DoGetFileTranslationListProcPtr =
+    unsafe extern "C-unwind" fn(ComponentInstance, FileTranslationListHandle) -> ComponentResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/doidentifyfileprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
-pub type DoIdentifyFileProcPtr = Option<
-    unsafe extern "C-unwind" fn(ComponentInstance, *const FSSpec, *mut FileType) -> ComponentResult,
->;
+pub type DoIdentifyFileProcPtr =
+    unsafe extern "C-unwind" fn(ComponentInstance, *const FSSpec, *mut FileType) -> ComponentResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dotranslatefileprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
-pub type DoTranslateFileProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        ComponentInstance,
-        TranslationRefNum,
-        *const FSSpec,
-        FileType,
-        c_long,
-        *const FSSpec,
-        FileType,
-        c_long,
-    ) -> ComponentResult,
->;
+pub type DoTranslateFileProcPtr = unsafe extern "C-unwind" fn(
+    ComponentInstance,
+    TranslationRefNum,
+    *const FSSpec,
+    FileType,
+    c_long,
+    *const FSSpec,
+    FileType,
+    c_long,
+) -> ComponentResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dogettranslatedfilenameprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
-pub type DoGetTranslatedFilenameProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        ComponentInstance,
-        FileType,
-        c_long,
-        *mut FSSpec,
-    ) -> ComponentResult,
->;
+pub type DoGetTranslatedFilenameProcPtr = unsafe extern "C-unwind" fn(
+    ComponentInstance,
+    FileType,
+    c_long,
+    *mut FSSpec,
+) -> ComponentResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dogetscraptranslationlistprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
-pub type DoGetScrapTranslationListProcPtr = Option<
-    unsafe extern "C-unwind" fn(ComponentInstance, ScrapTranslationListHandle) -> ComponentResult,
->;
+pub type DoGetScrapTranslationListProcPtr =
+    unsafe extern "C-unwind" fn(ComponentInstance, ScrapTranslationListHandle) -> ComponentResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/doidentifyscrapprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
-pub type DoIdentifyScrapProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        ComponentInstance,
-        *const c_void,
-        Size,
-        *mut ScrapType,
-    ) -> ComponentResult,
->;
+pub type DoIdentifyScrapProcPtr = unsafe extern "C-unwind" fn(
+    ComponentInstance,
+    *const c_void,
+    Size,
+    *mut ScrapType,
+) -> ComponentResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/dotranslatescrapprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
-pub type DoTranslateScrapProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        ComponentInstance,
-        TranslationRefNum,
-        *const c_void,
-        Size,
-        ScrapType,
-        c_long,
-        Handle,
-        ScrapType,
-        c_long,
-    ) -> ComponentResult,
->;
+pub type DoTranslateScrapProcPtr = unsafe extern "C-unwind" fn(
+    ComponentInstance,
+    TranslationRefNum,
+    *const c_void,
+    Size,
+    ScrapType,
+    c_long,
+    Handle,
+    ScrapType,
+    c_long,
+) -> ComponentResult;

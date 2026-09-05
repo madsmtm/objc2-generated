@@ -477,7 +477,7 @@ unsafe impl RefEncode for EventRecord {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/fkeyprocptr?language=objc)
-pub type FKEYProcPtr = Option<unsafe extern "C-unwind" fn()>;
+pub type FKEYProcPtr = unsafe extern "C-unwind" fn();
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/fkeyupp?language=objc)
 pub type FKEYUPP = FKEYProcPtr;
@@ -576,8 +576,7 @@ unsafe impl RefEncode for EvQEl {
 pub type EvQElPtr = *mut EvQEl;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/getnexteventfilterprocptr?language=objc)
-pub type GetNextEventFilterProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut EventRecord, *mut Boolean)>;
+pub type GetNextEventFilterProcPtr = unsafe extern "C-unwind" fn(*mut EventRecord, *mut Boolean);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/getnexteventfilterupp?language=objc)
 pub type GetNextEventFilterUPP = GetNextEventFilterProcPtr;

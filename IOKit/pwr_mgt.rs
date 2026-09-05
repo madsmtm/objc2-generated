@@ -1275,6 +1275,7 @@ pub unsafe fn IOPMCopyBatteryInfo(
 /// - `the_port_ref` must be a valid pointer.
 /// - `the_port_ref` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `notifier` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
@@ -1283,7 +1284,7 @@ pub unsafe fn IORegisterApp(
     refcon: *mut c_void,
     the_driver: io_service_t,
     the_port_ref: Option<&mut *mut IONotificationPort>,
-    callback: IOServiceInterestCallback,
+    callback: Option<IOServiceInterestCallback>,
     notifier: Option<&mut io_object_t>,
 ) -> io_connect_t {
     extern "C-unwind" {
@@ -1291,7 +1292,7 @@ pub unsafe fn IORegisterApp(
             refcon: *mut c_void,
             the_driver: io_service_t,
             the_port_ref: Option<&mut *mut IONotificationPort>,
-            callback: IOServiceInterestCallback,
+            callback: Option<IOServiceInterestCallback>,
             notifier: Option<&mut io_object_t>,
         ) -> io_connect_t;
     }
@@ -1419,20 +1420,21 @@ pub unsafe fn IORegisterApp(
 /// - `the_port_ref` must be a valid pointer.
 /// - `the_port_ref` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `notifier` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IORegisterForSystemPower(
     refcon: *mut c_void,
     the_port_ref: Option<&mut *mut IONotificationPort>,
-    callback: IOServiceInterestCallback,
+    callback: Option<IOServiceInterestCallback>,
     notifier: Option<&mut io_object_t>,
 ) -> io_connect_t {
     extern "C-unwind" {
         fn IORegisterForSystemPower(
             refcon: *mut c_void,
             the_port_ref: Option<&mut *mut IONotificationPort>,
-            callback: IOServiceInterestCallback,
+            callback: Option<IOServiceInterestCallback>,
             notifier: Option<&mut io_object_t>,
         ) -> io_connect_t;
     }

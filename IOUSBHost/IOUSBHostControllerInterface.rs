@@ -108,7 +108,7 @@ impl IOUSBHostControllerInterface {
             error: Option<&mut Option<Retained<NSError>>>,
             command_handler: &IOUSBHostControllerInterfaceCommandHandler,
             doorbell_handler: &IOUSBHostControllerInterfaceDoorbellHandler,
-            interest_handler: IOServiceInterestCallback,
+            interest_handler: Option<IOServiceInterestCallback>,
         ) -> Option<Retained<Self>>;
 
         /// Removes underlying allocations of the IOUSBHostControllerInterface object along with user client

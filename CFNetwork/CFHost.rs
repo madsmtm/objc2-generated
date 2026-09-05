@@ -67,9 +67,9 @@ unsafe impl RefEncode for CFHostInfoType {
 pub struct CFHostClientContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: CFAllocatorRetainCallBack,
-    pub release: CFAllocatorReleaseCallBack,
-    pub copyDescription: CFAllocatorCopyDescriptionCallBack,
+    pub retain: Option<CFAllocatorRetainCallBack>,
+    pub release: Option<CFAllocatorReleaseCallBack>,
+    pub copyDescription: Option<CFAllocatorCopyDescriptionCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -93,7 +93,7 @@ unsafe impl RefEncode for CFHostClientContext {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostclientcallback?language=objc)
 pub type CFHostClientCallBack =
-    Option<unsafe extern "C-unwind" fn(&CFHost, CFHostInfoType, *const CFStreamError, *mut c_void)>;
+    unsafe extern "C-unwind" fn(&CFHost, CFHostInfoType, *const CFStreamError, *mut c_void);
 
 unsafe impl ConcreteType for CFHost {
     #[doc(alias = "CFHostGetTypeID")]
@@ -254,13 +254,13 @@ impl CFHost {
     #[inline]
     pub unsafe fn set_client(
         &self,
-        client_cb: CFHostClientCallBack,
+        client_cb: Option<CFHostClientCallBack>,
         client_context: Option<&mut CFHostClientContext>,
     ) -> bool {
         extern "C-unwind" {
             fn CFHostSetClient(
                 the_host: &CFHost,
-                client_cb: CFHostClientCallBack,
+                client_cb: Option<CFHostClientCallBack>,
                 client_context: Option<&mut CFHostClientContext>,
             ) -> Boolean;
         }

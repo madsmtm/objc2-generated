@@ -73,12 +73,11 @@ pub const kATSOptionFlagsRestrictedScope: c_uint = 0x00000002 << 12;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontfamilyapplierfunction?language=objc)
 #[cfg(feature = "ATSTypes")]
 pub type ATSFontFamilyApplierFunction =
-    Option<unsafe extern "C-unwind" fn(ATSFontFamilyRef, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(ATSFontFamilyRef, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontapplierfunction?language=objc)
 #[cfg(feature = "ATSTypes")]
-pub type ATSFontApplierFunction =
-    Option<unsafe extern "C-unwind" fn(ATSFontRef, *mut c_void) -> OSStatus>;
+pub type ATSFontApplierFunction = unsafe extern "C-unwind" fn(ATSFontRef, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontfamilyiterator_?language=objc)
 #[repr(C)]
@@ -152,8 +151,8 @@ unsafe impl RefEncode for ATSFontFilterSelector {
 pub union ATSFontFilter_filter {
     pub generationFilter: ATSGeneration,
     pub fontFamilyFilter: ATSFontFamilyRef,
-    pub fontFamilyApplierFunctionFilter: ATSFontFamilyApplierFunction,
-    pub fontApplierFunctionFilter: ATSFontApplierFunction,
+    pub fontFamilyApplierFunctionFilter: Option<ATSFontFamilyApplierFunction>,
+    pub fontApplierFunctionFilter: Option<ATSFontApplierFunction>,
     pub fontFileRefFilter: *const FSRef,
 }
 
@@ -293,7 +292,7 @@ unsafe impl RefEncode for ATSFontNotifyAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsnotificationcallback?language=objc)
 pub type ATSNotificationCallback =
-    Option<unsafe extern "C-unwind" fn(Option<&ATSFontNotificationInfo>, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&ATSFontNotificationInfo>, *mut c_void);
 
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
@@ -483,17 +482,18 @@ pub unsafe fn ATSFontIsEnabled(i_font: ATSFontRef) -> bool {
 /// # Safety
 ///
 /// - `i_function` must be implemented correctly.
+/// - `i_function` might not allow `None`.
 /// - `i_ref_con` must be a valid pointer.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontFamilyApplyFunction(
-    i_function: ATSFontFamilyApplierFunction,
+    i_function: Option<ATSFontFamilyApplierFunction>,
     i_ref_con: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontFamilyApplyFunction(
-            i_function: ATSFontFamilyApplierFunction,
+            i_function: Option<ATSFontFamilyApplierFunction>,
             i_ref_con: *mut c_void,
         ) -> OSStatus;
     }
@@ -685,17 +685,18 @@ pub unsafe fn ATSFontFamilyGetEncoding(i_family: ATSFontFamilyRef) -> TextEncodi
 /// # Safety
 ///
 /// - `i_function` must be implemented correctly.
+/// - `i_function` might not allow `None`.
 /// - `i_ref_con` must be a valid pointer.
 #[cfg(feature = "ATSTypes")]
 #[deprecated = "ATS is no longer supported"]
 #[inline]
 pub unsafe fn ATSFontApplyFunction(
-    i_function: ATSFontApplierFunction,
+    i_function: Option<ATSFontApplierFunction>,
     i_ref_con: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn ATSFontApplyFunction(
-            i_function: ATSFontApplierFunction,
+            i_function: Option<ATSFontApplierFunction>,
             i_ref_con: *mut c_void,
         ) -> OSStatus;
     }
@@ -1126,6 +1127,7 @@ impl ATSFontNotification {
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
+    /// - `callback` might not allow `None`.
     /// - `i_refcon` must be a valid pointer.
     /// - `o_notification_ref` must be a valid pointer.
     /// - `o_notification_ref` might not allow `None`.
@@ -1133,14 +1135,14 @@ impl ATSFontNotification {
     #[deprecated = "ATS is no longer supported"]
     #[inline]
     pub unsafe fn subscribe(
-        callback: ATSNotificationCallback,
+        callback: Option<ATSNotificationCallback>,
         options: ATSFontNotifyOption,
         i_refcon: *mut c_void,
         o_notification_ref: Option<&mut *mut ATSFontNotification>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn ATSFontNotificationSubscribe(
-                callback: ATSNotificationCallback,
+                callback: Option<ATSNotificationCallback>,
                 options: ATSFontNotifyOption,
                 i_refcon: *mut c_void,
                 o_notification_ref: Option<&mut *mut ATSFontNotification>,
@@ -1172,8 +1174,8 @@ impl ATSFontNotification {
 pub struct ATSFontQuerySourceContext {
     pub version: u32,
     pub refCon: *mut c_void,
-    pub retain: CFAllocatorRetainCallBack,
-    pub release: CFAllocatorReleaseCallBack,
+    pub retain: Option<CFAllocatorRetainCallBack>,
+    pub release: Option<CFAllocatorReleaseCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -1214,17 +1216,16 @@ unsafe impl RefEncode for ATSFontQueryMessageID {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsfontquerycallback?language=objc)
-pub type ATSFontQueryCallback = Option<
-    unsafe extern "C-unwind" fn(
-        ATSFontQueryMessageID,
-        Option<&CFPropertyList>,
-        *mut c_void,
-    ) -> *const CFPropertyList,
->;
+pub type ATSFontQueryCallback = unsafe extern "C-unwind" fn(
+    ATSFontQueryMessageID,
+    Option<&CFPropertyList>,
+    *mut c_void,
+) -> *const CFPropertyList;
 
 /// # Safety
 ///
 /// - `callout` must be implemented correctly.
+/// - `callout` might not allow `None`.
 /// - `context` struct field `version` must be set correctly.
 /// - `context` struct field `refCon` must be a valid pointer.
 /// - `context` struct field `retain` must be implemented correctly.
@@ -1235,14 +1236,14 @@ pub type ATSFontQueryCallback = Option<
 pub unsafe fn ATSCreateFontQueryRunLoopSource(
     query_order: CFIndex,
     source_order: CFIndex,
-    callout: ATSFontQueryCallback,
+    callout: Option<ATSFontQueryCallback>,
     context: Option<&ATSFontQuerySourceContext>,
 ) -> Option<CFRetained<CFRunLoopSource>> {
     extern "C-unwind" {
         fn ATSCreateFontQueryRunLoopSource(
             query_order: CFIndex,
             source_order: CFIndex,
-            callout: ATSFontQueryCallback,
+            callout: Option<ATSFontQueryCallback>,
             context: Option<&ATSFontQuerySourceContext>,
         ) -> Option<NonNull<CFRunLoopSource>>;
     }

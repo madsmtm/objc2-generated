@@ -65,8 +65,7 @@ pub type CMBuffer = CFType;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergettimecallback?language=objc)
 #[cfg(feature = "CMTime")]
-pub type CMBufferGetTimeCallback =
-    Option<unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> CMTime>;
+pub type CMBufferGetTimeCallback = unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> CMTime;
 
 /// Client block that returns a CMTime from a CMBufferRef
 ///
@@ -83,7 +82,7 @@ pub type CMBufferGetTimeHandler = block2::Block<'static, fn(NonNull<CMBuffer>) -
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetbooleancallback?language=objc)
 pub type CMBufferGetBooleanCallback =
-    Option<unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> Boolean>;
+    unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> Boolean;
 
 /// Client block that returns a Boolean from a CMBufferRef
 ///
@@ -99,7 +98,7 @@ pub type CMBufferGetBooleanHandler = block2::Block<'static, fn(NonNull<CMBuffer>
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercomparecallback?language=objc)
 pub type CMBufferCompareCallback =
-    Option<unsafe extern "C-unwind" fn(&CMBuffer, &CMBuffer, *mut c_void) -> CFComparisonResult>;
+    unsafe extern "C-unwind" fn(&CMBuffer, &CMBuffer, *mut c_void) -> CFComparisonResult;
 
 /// Client block that compares one CMBufferRef with another.
 ///
@@ -113,8 +112,7 @@ pub type CMBufferCompareHandler =
 /// There is one callback of this type that can be provided to CMBufferQueueCreate: getTotalSize.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetsizecallback?language=objc)
-pub type CMBufferGetSizeCallback =
-    Option<unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> usize>;
+pub type CMBufferGetSizeCallback = unsafe extern "C-unwind" fn(&CMBuffer, *mut c_void) -> usize;
 
 /// Client block that returns a size_t from a CMBufferRef
 ///
@@ -148,7 +146,7 @@ pub struct CMBufferCallbacks {
     /// in the buffer, this callback should return the minimum decode timestamp
     /// in the buffer. Can be NULL (CMBufferQueueGetFirstDecodeTimeStamp and
     /// CMBufferQueueGetMinDecodeTimeStamp will return kCMTimeInvalid).
-    pub getDecodeTimeStamp: CMBufferGetTimeCallback,
+    pub getDecodeTimeStamp: Option<CMBufferGetTimeCallback>,
     /// This callback is called from CMBufferQueueGetFirstPresentationTimeStamp
     /// (once) and from CMBufferQueueGetMinPresentationTimeStamp (multiple times).
     /// It should return the presentation timestamp of the buffer.  If there are
@@ -156,17 +154,17 @@ pub struct CMBufferCallbacks {
     /// presentation timestamp in the buffer. Can be NULL
     /// (CMBufferQueueGetFirstPresentationTimeStamp and
     /// CMBufferQueueGetMinPresentationTimeStamp will return kCMTimeInvalid).
-    pub getPresentationTimeStamp: CMBufferGetTimeCallback,
+    pub getPresentationTimeStamp: Option<CMBufferGetTimeCallback>,
     /// This callback is called (once) during enqueue and dequeue operations to
     /// update the total duration of the queue.  Must not be NULL.
     pub getDuration: CMBufferGetTimeCallback,
     /// This callback is called from CMBufferQueueDequeueIfDataReadyAndRetain, to
     /// ask if the buffer that is about to be dequeued is ready.  Can be NULL
     /// (data will be assumed to be ready).
-    pub isDataReady: CMBufferGetBooleanCallback,
+    pub isDataReady: Option<CMBufferGetBooleanCallback>,
     /// This callback is called (multiple times) from CMBufferQueueEnqueue, to
     /// perform an insertion sort. Can be NULL (queue will be FIFO).
-    pub compare: CMBufferCompareCallback,
+    pub compare: Option<CMBufferCompareCallback>,
     /// If triggers of type kCMBufferQueueTrigger_WhenDataBecomesReady are installed,
     /// the queue will listen for this notification on the head buffer.
     /// Can be NULL (then the queue won't listen for it).
@@ -175,7 +173,7 @@ pub struct CMBufferCallbacks {
     /// update the total size of the queue. Can be NULL.  Ignored if version
     /// <
     /// 1.
-    pub getSize: CMBufferGetSizeCallback,
+    pub getSize: Option<CMBufferGetSizeCallback>,
 }
 
 #[cfg(all(feature = "CMTime", feature = "objc2"))]
@@ -755,7 +753,7 @@ pub type CMBufferQueueTriggerToken = *mut opaqueCMBufferQueueTriggerToken;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferqueuetriggercallback?language=objc)
 pub type CMBufferQueueTriggerCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, CMBufferQueueTriggerToken)>;
+    unsafe extern "C-unwind" fn(*mut c_void, CMBufferQueueTriggerToken);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferqueuetriggerhandler?language=objc)
 #[cfg(feature = "block2")]
@@ -817,7 +815,7 @@ impl CMBufferQueue {
     #[inline]
     pub unsafe fn install_trigger(
         &self,
-        callback: CMBufferQueueTriggerCallback,
+        callback: Option<CMBufferQueueTriggerCallback>,
         refcon: *mut c_void,
         condition: CMBufferQueueTriggerCondition,
         time: CMTime,
@@ -826,7 +824,7 @@ impl CMBufferQueue {
         extern "C-unwind" {
             fn CMBufferQueueInstallTrigger(
                 queue: &CMBufferQueue,
-                callback: CMBufferQueueTriggerCallback,
+                callback: Option<CMBufferQueueTriggerCallback>,
                 refcon: *mut c_void,
                 condition: CMBufferQueueTriggerCondition,
                 time: CMTime,
@@ -853,7 +851,7 @@ impl CMBufferQueue {
     #[inline]
     pub unsafe fn install_trigger_with_integer_threshold(
         &self,
-        callback: CMBufferQueueTriggerCallback,
+        callback: Option<CMBufferQueueTriggerCallback>,
         refcon: *mut c_void,
         condition: CMBufferQueueTriggerCondition,
         threshold: CMItemCount,
@@ -862,7 +860,7 @@ impl CMBufferQueue {
         extern "C-unwind" {
             fn CMBufferQueueInstallTriggerWithIntegerThreshold(
                 queue: &CMBufferQueue,
-                callback: CMBufferQueueTriggerCallback,
+                callback: Option<CMBufferQueueTriggerCallback>,
                 refcon: *mut c_void,
                 condition: CMBufferQueueTriggerCondition,
                 threshold: CMItemCount,
@@ -1037,7 +1035,7 @@ impl CMBufferQueue {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationcallback?language=objc)
 pub type CMBufferValidationCallback =
-    Option<unsafe extern "C-unwind" fn(&CMBufferQueue, &CMBuffer, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(&CMBufferQueue, &CMBuffer, *mut c_void) -> OSStatus;
 
 /// Tests whether a buffer is OK to add to a queue.
 ///

@@ -239,10 +239,10 @@ pub const svAllAvailableData: c_uint = kSelectorAllAvailableData;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/iconactionprocptr?language=objc)
 pub type IconActionProcPtr =
-    Option<unsafe extern "C-unwind" fn(ResType, *mut Handle, *mut c_void) -> OSErr>;
+    unsafe extern "C-unwind" fn(ResType, *mut Handle, *mut c_void) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icongetterprocptr?language=objc)
-pub type IconGetterProcPtr = Option<unsafe extern "C-unwind" fn(ResType, *mut c_void) -> Handle>;
+pub type IconGetterProcPtr = unsafe extern "C-unwind" fn(ResType, *mut c_void) -> Handle;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/iconactionupp?language=objc)
 pub type IconActionUPP = IconActionProcPtr;
@@ -252,44 +252,46 @@ pub type IconGetterUPP = IconGetterProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewIconActionUPP(user_routine: IconActionProcPtr) -> IconActionUPP {
+pub unsafe fn NewIconActionUPP(user_routine: Option<IconActionProcPtr>) -> Option<IconActionUPP> {
     extern "C-unwind" {
-        fn NewIconActionUPP(user_routine: IconActionProcPtr) -> IconActionUPP;
+        fn NewIconActionUPP(user_routine: Option<IconActionProcPtr>) -> Option<IconActionUPP>;
     }
     unsafe { NewIconActionUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewIconGetterUPP(user_routine: IconGetterProcPtr) -> IconGetterUPP {
+pub unsafe fn NewIconGetterUPP(user_routine: Option<IconGetterProcPtr>) -> Option<IconGetterUPP> {
     extern "C-unwind" {
-        fn NewIconGetterUPP(user_routine: IconGetterProcPtr) -> IconGetterUPP;
+        fn NewIconGetterUPP(user_routine: Option<IconGetterProcPtr>) -> Option<IconGetterUPP>;
     }
     unsafe { NewIconGetterUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeIconActionUPP(user_upp: IconActionUPP) {
+pub unsafe fn DisposeIconActionUPP(user_upp: *mut IconActionUPP) {
     extern "C-unwind" {
-        fn DisposeIconActionUPP(user_upp: IconActionUPP);
+        fn DisposeIconActionUPP(user_upp: *mut IconActionUPP);
     }
     unsafe { DisposeIconActionUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeIconGetterUPP(user_upp: IconGetterUPP) {
+pub unsafe fn DisposeIconGetterUPP(user_upp: *mut IconGetterUPP) {
     extern "C-unwind" {
-        fn DisposeIconGetterUPP(user_upp: IconGetterUPP);
+        fn DisposeIconGetterUPP(user_upp: *mut IconGetterUPP);
     }
     unsafe { DisposeIconGetterUPP(user_upp) }
 }
@@ -300,19 +302,20 @@ pub unsafe fn DisposeIconGetterUPP(user_upp: IconGetterUPP) {
 /// - `the_icon` might not allow `None`.
 /// - `your_data_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeIconActionUPP(
     the_type: ResType,
     the_icon: Option<&mut Handle>,
     your_data_ptr: *mut c_void,
-    user_upp: IconActionUPP,
+    user_upp: Option<IconActionUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeIconActionUPP(
             the_type: ResType,
             the_icon: Option<&mut Handle>,
             your_data_ptr: *mut c_void,
-            user_upp: IconActionUPP,
+            user_upp: Option<IconActionUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeIconActionUPP(the_type, the_icon, your_data_ptr, user_upp) }
@@ -322,17 +325,18 @@ pub unsafe fn InvokeIconActionUPP(
 ///
 /// - `your_data_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeIconGetterUPP(
     the_type: ResType,
     your_data_ptr: *mut c_void,
-    user_upp: IconGetterUPP,
+    user_upp: Option<IconGetterUPP>,
 ) -> Handle {
     extern "C-unwind" {
         fn InvokeIconGetterUPP(
             the_type: ResType,
             your_data_ptr: *mut c_void,
-            user_upp: IconGetterUPP,
+            user_upp: Option<IconGetterUPP>,
         ) -> Handle;
     }
     unsafe { InvokeIconGetterUPP(the_type, your_data_ptr, user_upp) }

@@ -126,15 +126,13 @@ pub const kCFSocketCloseOnInvalidate: CFOptionFlags = 128;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallback?language=objc)
 #[cfg(feature = "CFData")]
-pub type CFSocketCallBack = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&CFSocket>,
-        CFSocketCallBackType,
-        Option<&CFData>,
-        *const c_void,
-        *mut c_void,
-    ),
->;
+pub type CFSocketCallBack = unsafe extern "C-unwind" fn(
+    Option<&CFSocket>,
+    CFSocketCallBackType,
+    Option<&CFData>,
+    *const c_void,
+    *mut c_void,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcontext?language=objc)
 #[repr(C)]
@@ -185,6 +183,7 @@ impl CFSocket {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -199,7 +198,7 @@ impl CFSocket {
         socket_type: i32,
         protocol: i32,
         call_back_types: CFOptionFlags,
-        callout: CFSocketCallBack,
+        callout: Option<CFSocketCallBack>,
         context: Option<&CFSocketContext>,
     ) -> Option<CFRetained<CFSocket>> {
         extern "C-unwind" {
@@ -209,7 +208,7 @@ impl CFSocket {
                 socket_type: i32,
                 protocol: i32,
                 call_back_types: CFOptionFlags,
-                callout: CFSocketCallBack,
+                callout: Option<CFSocketCallBack>,
                 context: Option<&CFSocketContext>,
             ) -> Option<NonNull<CFSocket>>;
         }
@@ -230,6 +229,7 @@ impl CFSocket {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -242,7 +242,7 @@ impl CFSocket {
         allocator: Option<&CFAllocator>,
         sock: CFSocketNativeHandle,
         call_back_types: CFOptionFlags,
-        callout: CFSocketCallBack,
+        callout: Option<CFSocketCallBack>,
         context: Option<&CFSocketContext>,
     ) -> Option<CFRetained<CFSocket>> {
         extern "C-unwind" {
@@ -250,7 +250,7 @@ impl CFSocket {
                 allocator: Option<&CFAllocator>,
                 sock: CFSocketNativeHandle,
                 call_back_types: CFOptionFlags,
-                callout: CFSocketCallBack,
+                callout: Option<CFSocketCallBack>,
                 context: Option<&CFSocketContext>,
             ) -> Option<NonNull<CFSocket>>;
         }
@@ -263,6 +263,7 @@ impl CFSocket {
     ///
     /// - `signature` struct field `address` must be a valid pointer.
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -275,7 +276,7 @@ impl CFSocket {
         allocator: Option<&CFAllocator>,
         signature: &CFSocketSignature,
         call_back_types: CFOptionFlags,
-        callout: CFSocketCallBack,
+        callout: Option<CFSocketCallBack>,
         context: Option<&CFSocketContext>,
     ) -> Option<CFRetained<CFSocket>> {
         extern "C-unwind" {
@@ -283,7 +284,7 @@ impl CFSocket {
                 allocator: Option<&CFAllocator>,
                 signature: &CFSocketSignature,
                 call_back_types: CFOptionFlags,
-                callout: CFSocketCallBack,
+                callout: Option<CFSocketCallBack>,
                 context: Option<&CFSocketContext>,
             ) -> Option<NonNull<CFSocket>>;
         }
@@ -303,6 +304,7 @@ impl CFSocket {
     ///
     /// - `signature` struct field `address` must be a valid pointer.
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -315,7 +317,7 @@ impl CFSocket {
         allocator: Option<&CFAllocator>,
         signature: &CFSocketSignature,
         call_back_types: CFOptionFlags,
-        callout: CFSocketCallBack,
+        callout: Option<CFSocketCallBack>,
         context: Option<&CFSocketContext>,
         timeout: CFTimeInterval,
     ) -> Option<CFRetained<CFSocket>> {
@@ -324,7 +326,7 @@ impl CFSocket {
                 allocator: Option<&CFAllocator>,
                 signature: &CFSocketSignature,
                 call_back_types: CFOptionFlags,
-                callout: CFSocketCallBack,
+                callout: Option<CFSocketCallBack>,
                 context: Option<&CFSocketContext>,
                 timeout: CFTimeInterval,
             ) -> Option<NonNull<CFSocket>>;

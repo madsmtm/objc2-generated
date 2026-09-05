@@ -1005,35 +1005,36 @@ pub unsafe fn DetermineIfPathIsEnclosedByFolder(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/foldermanagernotificationprocptr?language=objc)
 pub type FolderManagerNotificationProcPtr =
-    Option<unsafe extern "C-unwind" fn(OSType, *mut c_void, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(OSType, *mut c_void, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/foldermanagernotificationupp?language=objc)
 pub type FolderManagerNotificationUPP = FolderManagerNotificationProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewFolderManagerNotificationUPP(
-    user_routine: FolderManagerNotificationProcPtr,
-) -> FolderManagerNotificationUPP {
+    user_routine: Option<FolderManagerNotificationProcPtr>,
+) -> Option<FolderManagerNotificationUPP> {
     extern "C-unwind" {
         fn NewFolderManagerNotificationUPP(
-            user_routine: FolderManagerNotificationProcPtr,
-        ) -> FolderManagerNotificationUPP;
+            user_routine: Option<FolderManagerNotificationProcPtr>,
+        ) -> Option<FolderManagerNotificationUPP>;
     }
     unsafe { NewFolderManagerNotificationUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeFolderManagerNotificationUPP(user_upp: FolderManagerNotificationUPP) {
+pub unsafe fn DisposeFolderManagerNotificationUPP(user_upp: *mut FolderManagerNotificationUPP) {
     extern "C-unwind" {
-        fn DisposeFolderManagerNotificationUPP(user_upp: FolderManagerNotificationUPP);
+        fn DisposeFolderManagerNotificationUPP(user_upp: *mut FolderManagerNotificationUPP);
     }
     unsafe { DisposeFolderManagerNotificationUPP(user_upp) }
 }
@@ -1043,20 +1044,21 @@ pub unsafe fn DisposeFolderManagerNotificationUPP(user_upp: FolderManagerNotific
 /// - `arg` must be a valid pointer.
 /// - `user_ref_con` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeFolderManagerNotificationUPP(
     message: OSType,
     arg: *mut c_void,
     user_ref_con: *mut c_void,
-    user_upp: FolderManagerNotificationUPP,
+    user_upp: Option<FolderManagerNotificationUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeFolderManagerNotificationUPP(
             message: OSType,
             arg: *mut c_void,
             user_ref_con: *mut c_void,
-            user_upp: FolderManagerNotificationUPP,
+            user_upp: Option<FolderManagerNotificationUPP>,
         ) -> OSStatus;
     }
     unsafe { InvokeFolderManagerNotificationUPP(message, arg, user_ref_con, user_upp) }

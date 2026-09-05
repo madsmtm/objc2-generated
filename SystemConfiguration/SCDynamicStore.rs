@@ -105,7 +105,7 @@ unsafe impl RefEncode for SCDynamicStoreContext {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecallback?language=objc)
 pub type SCDynamicStoreCallBack =
-    Option<unsafe extern "C-unwind" fn(&SCDynamicStore, &CFArray, *mut c_void)>;
+    unsafe extern "C-unwind" fn(&SCDynamicStore, &CFArray, *mut c_void);
 
 unsafe impl ConcreteType for SCDynamicStore {
     /// Returns the type identifier of all SCDynamicStore instances.
@@ -155,14 +155,14 @@ impl SCDynamicStore {
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         name: &CFString,
-        callout: SCDynamicStoreCallBack,
+        callout: Option<SCDynamicStoreCallBack>,
         context: Option<&SCDynamicStoreContext>,
     ) -> Option<CFRetained<SCDynamicStore>> {
         extern "C-unwind" {
             fn SCDynamicStoreCreate(
                 allocator: Option<&CFAllocator>,
                 name: &CFString,
-                callout: SCDynamicStoreCallBack,
+                callout: Option<SCDynamicStoreCallBack>,
                 context: Option<&SCDynamicStoreContext>,
             ) -> Option<NonNull<SCDynamicStore>>;
         }
@@ -243,7 +243,7 @@ impl SCDynamicStore {
         allocator: Option<&CFAllocator>,
         name: &CFString,
         store_options: Option<&CFDictionary<CFString, CFPropertyList>>,
-        callout: SCDynamicStoreCallBack,
+        callout: Option<SCDynamicStoreCallBack>,
         context: Option<&SCDynamicStoreContext>,
     ) -> Option<CFRetained<SCDynamicStore>> {
         extern "C-unwind" {
@@ -251,7 +251,7 @@ impl SCDynamicStore {
                 allocator: Option<&CFAllocator>,
                 name: &CFString,
                 store_options: Option<&CFDictionary<CFString, CFPropertyList>>,
-                callout: SCDynamicStoreCallBack,
+                callout: Option<SCDynamicStoreCallBack>,
                 context: Option<&SCDynamicStoreContext>,
             ) -> Option<NonNull<SCDynamicStore>>;
         }

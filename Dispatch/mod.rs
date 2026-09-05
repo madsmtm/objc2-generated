@@ -233,9 +233,12 @@ pub unsafe fn dispatch_set_context(object: &__DispatchObject, context: *mut c_vo
 ///
 /// `finalizer` must be implemented correctly.
 #[inline]
-pub unsafe fn dispatch_set_finalizer_f(object: &__DispatchObject, finalizer: DispatchFunction) {
+pub unsafe fn dispatch_set_finalizer_f(
+    object: &__DispatchObject,
+    finalizer: Option<DispatchFunction>,
+) {
     extern "C" {
-        fn dispatch_set_finalizer_f(object: &__DispatchObject, finalizer: DispatchFunction);
+        fn dispatch_set_finalizer_f(object: &__DispatchObject, finalizer: Option<DispatchFunction>);
     }
     unsafe { dispatch_set_finalizer_f(object, finalizer) }
 }
@@ -1532,14 +1535,14 @@ impl DispatchQueue {
         &self,
         key: NonNull<c_void>,
         context: *mut c_void,
-        destructor: DispatchFunction,
+        destructor: Option<DispatchFunction>,
     ) {
         extern "C" {
             fn dispatch_queue_set_specific(
                 queue: &DispatchQueue,
                 key: NonNull<c_void>,
                 context: *mut c_void,
-                destructor: DispatchFunction,
+                destructor: Option<DispatchFunction>,
             );
         }
         unsafe { dispatch_queue_set_specific(self, key, context, destructor) }
@@ -2692,11 +2695,11 @@ impl DispatchSource {
     /// `handler` must be implemented correctly.
     #[doc(alias = "dispatch_source_set_event_handler_f")]
     #[inline]
-    pub unsafe fn set_event_handler_f(&self, handler: DispatchFunction) {
+    pub unsafe fn set_event_handler_f(&self, handler: Option<DispatchFunction>) {
         extern "C" {
             fn dispatch_source_set_event_handler_f(
                 source: &DispatchSource,
-                handler: DispatchFunction,
+                handler: Option<DispatchFunction>,
             );
         }
         unsafe { dispatch_source_set_event_handler_f(self, handler) }
@@ -2734,11 +2737,11 @@ impl DispatchSource {
     /// `handler` must be implemented correctly.
     #[doc(alias = "dispatch_source_set_cancel_handler_f")]
     #[inline]
-    pub unsafe fn set_cancel_handler_f(&self, handler: DispatchFunction) {
+    pub unsafe fn set_cancel_handler_f(&self, handler: Option<DispatchFunction>) {
         extern "C" {
             fn dispatch_source_set_cancel_handler_f(
                 source: &DispatchSource,
-                handler: DispatchFunction,
+                handler: Option<DispatchFunction>,
             );
         }
         unsafe { dispatch_source_set_cancel_handler_f(self, handler) }
@@ -2997,11 +3000,11 @@ impl DispatchSource {
     /// `handler` must be implemented correctly.
     #[doc(alias = "dispatch_source_set_registration_handler_f")]
     #[inline]
-    pub unsafe fn set_registration_handler_f(&self, handler: DispatchFunction) {
+    pub unsafe fn set_registration_handler_f(&self, handler: Option<DispatchFunction>) {
         extern "C" {
             fn dispatch_source_set_registration_handler_f(
                 source: &DispatchSource,
-                handler: DispatchFunction,
+                handler: Option<DispatchFunction>,
             );
         }
         unsafe { dispatch_source_set_registration_handler_f(self, handler) }

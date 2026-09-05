@@ -63,15 +63,13 @@ cf_objc2_type!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionoutputcallback?language=objc)
 #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
-pub type VTCompressionOutputCallback = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        *mut c_void,
-        OSStatus,
-        VTEncodeInfoFlags,
-        Option<&CMSampleBuffer>,
-    ),
->;
+pub type VTCompressionOutputCallback = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    *mut c_void,
+    OSStatus,
+    VTEncodeInfoFlags,
+    Option<&CMSampleBuffer>,
+);
 
 extern "C" {
     /// Specifies a particular video encoder by its ID string.
@@ -135,7 +133,7 @@ impl VTCompressionSession {
         encoder_specification: Option<&CFDictionary<CFString, CFType>>,
         source_image_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         compressed_data_allocator: Option<&CFAllocator>,
-        output_callback: VTCompressionOutputCallback,
+        output_callback: Option<VTCompressionOutputCallback>,
         output_callback_ref_con: *mut c_void,
         compression_session_out: &mut Option<CFRetained<VTCompressionSession>>,
     ) -> OSStatus {
@@ -148,7 +146,7 @@ impl VTCompressionSession {
                 encoder_specification: Option<&CFDictionary<CFString, CFType>>,
                 source_image_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
                 compressed_data_allocator: Option<&CFAllocator>,
-                output_callback: VTCompressionOutputCallback,
+                output_callback: Option<VTCompressionOutputCallback>,
                 output_callback_ref_con: *mut c_void,
                 compression_session_out: &mut Option<CFRetained<VTCompressionSession>>,
             ) -> OSStatus;

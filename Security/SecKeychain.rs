@@ -962,13 +962,11 @@ impl SecKeychain {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincallback?language=objc)
 #[deprecated = "SecKeychain is deprecated"]
 #[cfg(all(feature = "SecBase", feature = "libc"))]
-pub type SecKeychainCallback = Option<
-    unsafe extern "C-unwind" fn(
-        SecKeychainEvent,
-        NonNull<SecKeychainCallbackInfo>,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type SecKeychainCallback = unsafe extern "C-unwind" fn(
+    SecKeychainEvent,
+    NonNull<SecKeychainCallbackInfo>,
+    *mut c_void,
+) -> OSStatus;
 
 #[cfg(feature = "SecBase")]
 impl SecKeychain {

@@ -898,7 +898,7 @@ impl ColorSyncMutableProfile {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileiteratecallback?language=objc)
 pub type ColorSyncProfileIterateCallback =
-    Option<unsafe extern "C-unwind" fn(&CFDictionary, NonNull<c_void>) -> bool>;
+    unsafe extern "C-unwind" fn(&CFDictionary, NonNull<c_void>) -> bool;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecacheseed?language=objc)
@@ -911,14 +911,14 @@ extern "C" {
 /// - `user_info` must be a valid pointer or null.
 #[inline]
 pub unsafe fn ColorSyncIterateInstalledProfiles(
-    call_back: ColorSyncProfileIterateCallback,
+    call_back: Option<ColorSyncProfileIterateCallback>,
     seed: Option<&mut u32>,
     user_info: *mut c_void,
     error: Option<&mut Option<CFRetained<CFError>>>,
 ) {
     extern "C-unwind" {
         fn ColorSyncIterateInstalledProfiles(
-            call_back: ColorSyncProfileIterateCallback,
+            call_back: Option<ColorSyncProfileIterateCallback>,
             seed: Option<&mut u32>,
             user_info: *mut c_void,
             error: Option<&mut Option<CFRetained<CFError>>>,
@@ -945,7 +945,7 @@ extern "C" {
 /// - `options` generic should be of the correct type.
 #[inline]
 pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
-    call_back: ColorSyncProfileIterateCallback,
+    call_back: Option<ColorSyncProfileIterateCallback>,
     seed: Option<&mut u32>,
     user_info: *mut c_void,
     options: Option<&CFDictionary<CFString, CFType>>,
@@ -953,7 +953,7 @@ pub unsafe fn ColorSyncIterateInstalledProfilesWithOptions(
 ) {
     extern "C-unwind" {
         fn ColorSyncIterateInstalledProfilesWithOptions(
-            call_back: ColorSyncProfileIterateCallback,
+            call_back: Option<ColorSyncProfileIterateCallback>,
             seed: Option<&mut u32>,
             user_info: *mut c_void,
             options: Option<&CFDictionary<CFString, CFType>>,

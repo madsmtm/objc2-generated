@@ -169,11 +169,11 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamclientcallback?language=objc)
 pub type CFReadStreamClientCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFReadStream>, CFStreamEventType, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&CFReadStream>, CFStreamEventType, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamclientcallback?language=objc)
 pub type CFWriteStreamClientCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFWriteStream>, CFStreamEventType, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&CFWriteStream>, CFStreamEventType, *mut c_void);
 
 unsafe impl ConcreteType for CFReadStream {
     #[doc(alias = "CFReadStreamGetTypeID")]
@@ -788,6 +788,7 @@ impl CFReadStream {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
+    /// - `client_cb` might not allow `None`.
     /// - `client_context` struct field `version` must be set correctly.
     /// - `client_context` struct field `info` must be a valid pointer.
     /// - `client_context` struct field `retain` must be implemented correctly.
@@ -798,14 +799,14 @@ impl CFReadStream {
     pub unsafe fn set_client(
         &self,
         stream_events: CFOptionFlags,
-        client_cb: CFReadStreamClientCallBack,
+        client_cb: Option<CFReadStreamClientCallBack>,
         client_context: Option<&CFStreamClientContext>,
     ) -> bool {
         extern "C-unwind" {
             fn CFReadStreamSetClient(
                 stream: &CFReadStream,
                 stream_events: CFOptionFlags,
-                client_cb: CFReadStreamClientCallBack,
+                client_cb: Option<CFReadStreamClientCallBack>,
                 client_context: Option<&CFStreamClientContext>,
             ) -> Boolean;
         }
@@ -818,6 +819,7 @@ impl CFWriteStream {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
+    /// - `client_cb` might not allow `None`.
     /// - `client_context` struct field `version` must be set correctly.
     /// - `client_context` struct field `info` must be a valid pointer.
     /// - `client_context` struct field `retain` must be implemented correctly.
@@ -828,14 +830,14 @@ impl CFWriteStream {
     pub unsafe fn set_client(
         &self,
         stream_events: CFOptionFlags,
-        client_cb: CFWriteStreamClientCallBack,
+        client_cb: Option<CFWriteStreamClientCallBack>,
         client_context: Option<&CFStreamClientContext>,
     ) -> bool {
         extern "C-unwind" {
             fn CFWriteStreamSetClient(
                 stream: &CFWriteStream,
                 stream_events: CFOptionFlags,
-                client_cb: CFWriteStreamClientCallBack,
+                client_cb: Option<CFWriteStreamClientCallBack>,
                 client_context: Option<&CFStreamClientContext>,
             ) -> Boolean;
         }

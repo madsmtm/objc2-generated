@@ -31,15 +31,13 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcallback?language=objc)
 #[cfg(feature = "CFDictionary")]
-pub type CFNotificationCallback = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&CFNotificationCenter>,
-        *mut c_void,
-        Option<&CFNotificationName>,
-        *const c_void,
-        Option<&CFDictionary>,
-    ),
->;
+pub type CFNotificationCallback = unsafe extern "C-unwind" fn(
+    Option<&CFNotificationCenter>,
+    *mut c_void,
+    Option<&CFNotificationName>,
+    *const c_void,
+    Option<&CFDictionary>,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior?language=objc)
 // NS_ENUM
@@ -119,6 +117,7 @@ impl CFNotificationCenter {
     ///
     /// - `observer` must be a valid pointer.
     /// - `call_back` must be implemented correctly.
+    /// - `call_back` might not allow `None`.
     /// - `object` must be a valid pointer.
     #[doc(alias = "CFNotificationCenterAddObserver")]
     #[cfg(feature = "CFDictionary")]
@@ -126,7 +125,7 @@ impl CFNotificationCenter {
     pub unsafe fn add_observer(
         &self,
         observer: *const c_void,
-        call_back: CFNotificationCallback,
+        call_back: Option<CFNotificationCallback>,
         name: Option<&CFString>,
         object: *const c_void,
         suspension_behavior: CFNotificationSuspensionBehavior,
@@ -135,7 +134,7 @@ impl CFNotificationCenter {
             fn CFNotificationCenterAddObserver(
                 center: &CFNotificationCenter,
                 observer: *const c_void,
-                call_back: CFNotificationCallback,
+                call_back: Option<CFNotificationCallback>,
                 name: Option<&CFString>,
                 object: *const c_void,
                 suspension_behavior: CFNotificationSuspensionBehavior,

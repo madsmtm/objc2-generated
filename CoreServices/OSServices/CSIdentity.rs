@@ -520,9 +520,8 @@ impl CSIdentity {
 pub const kCSIdentityCommitCompleted: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentitystatusupdatedcallback?language=objc)
-pub type CSIdentityStatusUpdatedCallback = Option<
-    unsafe extern "C-unwind" fn(Option<&CSIdentity>, CFIndex, Option<&CFError>, *mut c_void),
->;
+pub type CSIdentityStatusUpdatedCallback =
+    unsafe extern "C-unwind" fn(Option<&CSIdentity>, CFIndex, Option<&CFError>, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityclientcontext?language=objc)
 #[repr(C, packed(2))]
@@ -531,10 +530,10 @@ pub type CSIdentityStatusUpdatedCallback = Option<
 pub struct CSIdentityClientContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: CFAllocatorRetainCallBack,
-    pub release: CFAllocatorReleaseCallBack,
-    pub copyDescription: CFAllocatorCopyDescriptionCallBack,
-    pub statusUpdated: CSIdentityStatusUpdatedCallback,
+    pub retain: Option<CFAllocatorRetainCallBack>,
+    pub release: Option<CFAllocatorReleaseCallBack>,
+    pub copyDescription: Option<CFAllocatorCopyDescriptionCallBack>,
+    pub statusUpdated: Option<CSIdentityStatusUpdatedCallback>,
 }
 
 #[cfg(feature = "objc2")]

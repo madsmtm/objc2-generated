@@ -1546,41 +1546,36 @@ unsafe impl RefEncode for OpaqueThemeDrawingState {
 pub type ThemeDrawingState = *mut OpaqueThemeDrawingState;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/themetabtitledrawprocptr?language=objc)
-pub type ThemeTabTitleDrawProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *const Rect,
-        ThemeTabStyle,
-        ThemeTabDirection,
-        i16,
-        Boolean,
-        URefCon,
-    ),
->;
+pub type ThemeTabTitleDrawProcPtr = unsafe extern "C-unwind" fn(
+    *const Rect,
+    ThemeTabStyle,
+    ThemeTabDirection,
+    i16,
+    Boolean,
+    URefCon,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/themeeraseprocptr?language=objc)
-pub type ThemeEraseProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const Rect, URefCon, i16, Boolean)>;
+pub type ThemeEraseProcPtr = unsafe extern "C-unwind" fn(*const Rect, URefCon, i16, Boolean);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/themebuttondrawprocptr?language=objc)
-pub type ThemeButtonDrawProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *const Rect,
-        ThemeButtonKind,
-        *const ThemeButtonDrawInfo,
-        URefCon,
-        i16,
-        Boolean,
-    ),
->;
+pub type ThemeButtonDrawProcPtr = unsafe extern "C-unwind" fn(
+    *const Rect,
+    ThemeButtonKind,
+    *const ThemeButtonDrawInfo,
+    URefCon,
+    i16,
+    Boolean,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/windowtitledrawingprocptr?language=objc)
 pub type WindowTitleDrawingProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const Rect, i16, Boolean, URefCon)>;
+    unsafe extern "C-unwind" fn(*const Rect, i16, Boolean, URefCon);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/themeiteratorprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
 pub type ThemeIteratorProcPtr =
-    Option<unsafe extern "C-unwind" fn(ConstStr255Param, i16, Collection, PRefCon) -> Boolean>;
+    unsafe extern "C-unwind" fn(ConstStr255Param, i16, Collection, PRefCon) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/themetabtitledrawupp?language=objc)
 pub type ThemeTabTitleDrawUPP = ThemeTabTitleDrawProcPtr;
@@ -1600,128 +1595,143 @@ pub type ThemeIteratorUPP = ThemeIteratorProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewThemeTabTitleDrawUPP(
-    user_routine: ThemeTabTitleDrawProcPtr,
-) -> ThemeTabTitleDrawUPP {
+    user_routine: Option<ThemeTabTitleDrawProcPtr>,
+) -> Option<ThemeTabTitleDrawUPP> {
     extern "C-unwind" {
-        fn NewThemeTabTitleDrawUPP(user_routine: ThemeTabTitleDrawProcPtr) -> ThemeTabTitleDrawUPP;
+        fn NewThemeTabTitleDrawUPP(
+            user_routine: Option<ThemeTabTitleDrawProcPtr>,
+        ) -> Option<ThemeTabTitleDrawUPP>;
     }
     unsafe { NewThemeTabTitleDrawUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewThemeEraseUPP(user_routine: ThemeEraseProcPtr) -> ThemeEraseUPP {
+pub unsafe fn NewThemeEraseUPP(user_routine: Option<ThemeEraseProcPtr>) -> Option<ThemeEraseUPP> {
     extern "C-unwind" {
-        fn NewThemeEraseUPP(user_routine: ThemeEraseProcPtr) -> ThemeEraseUPP;
+        fn NewThemeEraseUPP(user_routine: Option<ThemeEraseProcPtr>) -> Option<ThemeEraseUPP>;
     }
     unsafe { NewThemeEraseUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewThemeButtonDrawUPP(user_routine: ThemeButtonDrawProcPtr) -> ThemeButtonDrawUPP {
+pub unsafe fn NewThemeButtonDrawUPP(
+    user_routine: Option<ThemeButtonDrawProcPtr>,
+) -> Option<ThemeButtonDrawUPP> {
     extern "C-unwind" {
-        fn NewThemeButtonDrawUPP(user_routine: ThemeButtonDrawProcPtr) -> ThemeButtonDrawUPP;
+        fn NewThemeButtonDrawUPP(
+            user_routine: Option<ThemeButtonDrawProcPtr>,
+        ) -> Option<ThemeButtonDrawUPP>;
     }
     unsafe { NewThemeButtonDrawUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewWindowTitleDrawingUPP(
-    user_routine: WindowTitleDrawingProcPtr,
-) -> WindowTitleDrawingUPP {
+    user_routine: Option<WindowTitleDrawingProcPtr>,
+) -> Option<WindowTitleDrawingUPP> {
     extern "C-unwind" {
         fn NewWindowTitleDrawingUPP(
-            user_routine: WindowTitleDrawingProcPtr,
-        ) -> WindowTitleDrawingUPP;
+            user_routine: Option<WindowTitleDrawingProcPtr>,
+        ) -> Option<WindowTitleDrawingUPP>;
     }
     unsafe { NewWindowTitleDrawingUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn NewThemeIteratorUPP(user_routine: ThemeIteratorProcPtr) -> ThemeIteratorUPP {
+pub unsafe fn NewThemeIteratorUPP(
+    user_routine: Option<ThemeIteratorProcPtr>,
+) -> Option<ThemeIteratorUPP> {
     extern "C-unwind" {
-        fn NewThemeIteratorUPP(user_routine: ThemeIteratorProcPtr) -> ThemeIteratorUPP;
+        fn NewThemeIteratorUPP(
+            user_routine: Option<ThemeIteratorProcPtr>,
+        ) -> Option<ThemeIteratorUPP>;
     }
     unsafe { NewThemeIteratorUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeThemeTabTitleDrawUPP(user_upp: ThemeTabTitleDrawUPP) {
+pub unsafe fn DisposeThemeTabTitleDrawUPP(user_upp: *mut ThemeTabTitleDrawUPP) {
     extern "C-unwind" {
-        fn DisposeThemeTabTitleDrawUPP(user_upp: ThemeTabTitleDrawUPP);
+        fn DisposeThemeTabTitleDrawUPP(user_upp: *mut ThemeTabTitleDrawUPP);
     }
     unsafe { DisposeThemeTabTitleDrawUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeThemeEraseUPP(user_upp: ThemeEraseUPP) {
+pub unsafe fn DisposeThemeEraseUPP(user_upp: *mut ThemeEraseUPP) {
     extern "C-unwind" {
-        fn DisposeThemeEraseUPP(user_upp: ThemeEraseUPP);
+        fn DisposeThemeEraseUPP(user_upp: *mut ThemeEraseUPP);
     }
     unsafe { DisposeThemeEraseUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeThemeButtonDrawUPP(user_upp: ThemeButtonDrawUPP) {
+pub unsafe fn DisposeThemeButtonDrawUPP(user_upp: *mut ThemeButtonDrawUPP) {
     extern "C-unwind" {
-        fn DisposeThemeButtonDrawUPP(user_upp: ThemeButtonDrawUPP);
+        fn DisposeThemeButtonDrawUPP(user_upp: *mut ThemeButtonDrawUPP);
     }
     unsafe { DisposeThemeButtonDrawUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeWindowTitleDrawingUPP(user_upp: WindowTitleDrawingUPP) {
+pub unsafe fn DisposeWindowTitleDrawingUPP(user_upp: *mut WindowTitleDrawingUPP) {
     extern "C-unwind" {
-        fn DisposeWindowTitleDrawingUPP(user_upp: WindowTitleDrawingUPP);
+        fn DisposeWindowTitleDrawingUPP(user_upp: *mut WindowTitleDrawingUPP);
     }
     unsafe { DisposeWindowTitleDrawingUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeThemeIteratorUPP(user_upp: ThemeIteratorUPP) {
+pub unsafe fn DisposeThemeIteratorUPP(user_upp: *mut ThemeIteratorUPP) {
     extern "C-unwind" {
-        fn DisposeThemeIteratorUPP(user_upp: ThemeIteratorUPP);
+        fn DisposeThemeIteratorUPP(user_upp: *mut ThemeIteratorUPP);
     }
     unsafe { DisposeThemeIteratorUPP(user_upp) }
 }
@@ -1731,6 +1741,7 @@ pub unsafe fn DisposeThemeIteratorUPP(user_upp: ThemeIteratorUPP) {
 /// - `bounds` might not allow `None`.
 /// - `user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeThemeTabTitleDrawUPP(
@@ -1740,7 +1751,7 @@ pub unsafe fn InvokeThemeTabTitleDrawUPP(
     depth: i16,
     is_color_dev: bool,
     user_data: URefCon,
-    user_upp: ThemeTabTitleDrawUPP,
+    user_upp: Option<ThemeTabTitleDrawUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeThemeTabTitleDrawUPP(
@@ -1750,7 +1761,7 @@ pub unsafe fn InvokeThemeTabTitleDrawUPP(
             depth: i16,
             is_color_dev: Boolean,
             user_data: URefCon,
-            user_upp: ThemeTabTitleDrawUPP,
+            user_upp: Option<ThemeTabTitleDrawUPP>,
         );
     }
     let is_color_dev = is_color_dev as _;
@@ -1772,6 +1783,7 @@ pub unsafe fn InvokeThemeTabTitleDrawUPP(
 /// - `bounds` might not allow `None`.
 /// - `erase_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeThemeEraseUPP(
@@ -1779,7 +1791,7 @@ pub unsafe fn InvokeThemeEraseUPP(
     erase_data: URefCon,
     depth: i16,
     is_color_dev: bool,
-    user_upp: ThemeEraseUPP,
+    user_upp: Option<ThemeEraseUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeThemeEraseUPP(
@@ -1787,7 +1799,7 @@ pub unsafe fn InvokeThemeEraseUPP(
             erase_data: URefCon,
             depth: i16,
             is_color_dev: Boolean,
-            user_upp: ThemeEraseUPP,
+            user_upp: Option<ThemeEraseUPP>,
         );
     }
     let is_color_dev = is_color_dev as _;
@@ -1800,6 +1812,7 @@ pub unsafe fn InvokeThemeEraseUPP(
 /// - `info` might not allow `None`.
 /// - `user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeThemeButtonDrawUPP(
@@ -1809,7 +1822,7 @@ pub unsafe fn InvokeThemeButtonDrawUPP(
     user_data: URefCon,
     depth: i16,
     is_color_dev: bool,
-    user_upp: ThemeButtonDrawUPP,
+    user_upp: Option<ThemeButtonDrawUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeThemeButtonDrawUPP(
@@ -1819,7 +1832,7 @@ pub unsafe fn InvokeThemeButtonDrawUPP(
             user_data: URefCon,
             depth: i16,
             is_color_dev: Boolean,
-            user_upp: ThemeButtonDrawUPP,
+            user_upp: Option<ThemeButtonDrawUPP>,
         );
     }
     let is_color_dev = is_color_dev as _;
@@ -1833,6 +1846,7 @@ pub unsafe fn InvokeThemeButtonDrawUPP(
 /// - `bounds` might not allow `None`.
 /// - `user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeWindowTitleDrawingUPP(
@@ -1840,7 +1854,7 @@ pub unsafe fn InvokeWindowTitleDrawingUPP(
     depth: i16,
     color_device: bool,
     user_data: URefCon,
-    user_upp: WindowTitleDrawingUPP,
+    user_upp: Option<WindowTitleDrawingUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeWindowTitleDrawingUPP(
@@ -1848,7 +1862,7 @@ pub unsafe fn InvokeWindowTitleDrawingUPP(
             depth: i16,
             color_device: Boolean,
             user_data: URefCon,
-            user_upp: WindowTitleDrawingUPP,
+            user_upp: Option<WindowTitleDrawingUPP>,
         );
     }
     let color_device = color_device as _;
@@ -1861,6 +1875,7 @@ pub unsafe fn InvokeWindowTitleDrawingUPP(
 /// - `in_theme_settings` must be a valid pointer.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[deprecated]
 #[inline]
@@ -1869,7 +1884,7 @@ pub unsafe fn InvokeThemeIteratorUPP(
     res_id: i16,
     in_theme_settings: Collection,
     in_user_data: PRefCon,
-    user_upp: ThemeIteratorUPP,
+    user_upp: Option<ThemeIteratorUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeThemeIteratorUPP(
@@ -1877,7 +1892,7 @@ pub unsafe fn InvokeThemeIteratorUPP(
             res_id: i16,
             in_theme_settings: Collection,
             in_user_data: PRefCon,
-            user_upp: ThemeIteratorUPP,
+            user_upp: Option<ThemeIteratorUPP>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -1893,12 +1908,10 @@ pub unsafe fn InvokeThemeIteratorUPP(
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/menutitledrawingprocptr?language=objc)
-pub type MenuTitleDrawingProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const Rect, i16, Boolean, SRefCon)>;
+pub type MenuTitleDrawingProcPtr = unsafe extern "C-unwind" fn(*const Rect, i16, Boolean, SRefCon);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/menuitemdrawingprocptr?language=objc)
-pub type MenuItemDrawingProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const Rect, i16, Boolean, SRefCon)>;
+pub type MenuItemDrawingProcPtr = unsafe extern "C-unwind" fn(*const Rect, i16, Boolean, SRefCon);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/menutitledrawingupp?language=objc)
 pub type MenuTitleDrawingUPP = MenuTitleDrawingProcPtr;
@@ -1908,48 +1921,58 @@ pub type MenuItemDrawingUPP = MenuItemDrawingProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewMenuTitleDrawingUPP(user_routine: MenuTitleDrawingProcPtr) -> MenuTitleDrawingUPP {
+pub unsafe fn NewMenuTitleDrawingUPP(
+    user_routine: Option<MenuTitleDrawingProcPtr>,
+) -> Option<MenuTitleDrawingUPP> {
     extern "C-unwind" {
-        fn NewMenuTitleDrawingUPP(user_routine: MenuTitleDrawingProcPtr) -> MenuTitleDrawingUPP;
+        fn NewMenuTitleDrawingUPP(
+            user_routine: Option<MenuTitleDrawingProcPtr>,
+        ) -> Option<MenuTitleDrawingUPP>;
     }
     unsafe { NewMenuTitleDrawingUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewMenuItemDrawingUPP(user_routine: MenuItemDrawingProcPtr) -> MenuItemDrawingUPP {
+pub unsafe fn NewMenuItemDrawingUPP(
+    user_routine: Option<MenuItemDrawingProcPtr>,
+) -> Option<MenuItemDrawingUPP> {
     extern "C-unwind" {
-        fn NewMenuItemDrawingUPP(user_routine: MenuItemDrawingProcPtr) -> MenuItemDrawingUPP;
+        fn NewMenuItemDrawingUPP(
+            user_routine: Option<MenuItemDrawingProcPtr>,
+        ) -> Option<MenuItemDrawingUPP>;
     }
     unsafe { NewMenuItemDrawingUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeMenuTitleDrawingUPP(user_upp: MenuTitleDrawingUPP) {
+pub unsafe fn DisposeMenuTitleDrawingUPP(user_upp: *mut MenuTitleDrawingUPP) {
     extern "C-unwind" {
-        fn DisposeMenuTitleDrawingUPP(user_upp: MenuTitleDrawingUPP);
+        fn DisposeMenuTitleDrawingUPP(user_upp: *mut MenuTitleDrawingUPP);
     }
     unsafe { DisposeMenuTitleDrawingUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeMenuItemDrawingUPP(user_upp: MenuItemDrawingUPP) {
+pub unsafe fn DisposeMenuItemDrawingUPP(user_upp: *mut MenuItemDrawingUPP) {
     extern "C-unwind" {
-        fn DisposeMenuItemDrawingUPP(user_upp: MenuItemDrawingUPP);
+        fn DisposeMenuItemDrawingUPP(user_upp: *mut MenuItemDrawingUPP);
     }
     unsafe { DisposeMenuItemDrawingUPP(user_upp) }
 }
@@ -1959,6 +1982,7 @@ pub unsafe fn DisposeMenuItemDrawingUPP(user_upp: MenuItemDrawingUPP) {
 /// - `in_bounds` might not allow `None`.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeMenuTitleDrawingUPP(
@@ -1966,7 +1990,7 @@ pub unsafe fn InvokeMenuTitleDrawingUPP(
     in_depth: i16,
     in_is_color_device: bool,
     in_user_data: SRefCon,
-    user_upp: MenuTitleDrawingUPP,
+    user_upp: Option<MenuTitleDrawingUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeMenuTitleDrawingUPP(
@@ -1974,7 +1998,7 @@ pub unsafe fn InvokeMenuTitleDrawingUPP(
             in_depth: i16,
             in_is_color_device: Boolean,
             in_user_data: SRefCon,
-            user_upp: MenuTitleDrawingUPP,
+            user_upp: Option<MenuTitleDrawingUPP>,
         );
     }
     let in_is_color_device = in_is_color_device as _;
@@ -1994,6 +2018,7 @@ pub unsafe fn InvokeMenuTitleDrawingUPP(
 /// - `in_bounds` might not allow `None`.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeMenuItemDrawingUPP(
@@ -2001,7 +2026,7 @@ pub unsafe fn InvokeMenuItemDrawingUPP(
     in_depth: i16,
     in_is_color_device: bool,
     in_user_data: SRefCon,
-    user_upp: MenuItemDrawingUPP,
+    user_upp: Option<MenuItemDrawingUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeMenuItemDrawingUPP(
@@ -2009,7 +2034,7 @@ pub unsafe fn InvokeMenuItemDrawingUPP(
             in_depth: i16,
             in_is_color_device: Boolean,
             in_user_data: SRefCon,
-            user_upp: MenuItemDrawingUPP,
+            user_upp: Option<MenuItemDrawingUPP>,
         );
     }
     let in_is_color_device = in_is_color_device as _;

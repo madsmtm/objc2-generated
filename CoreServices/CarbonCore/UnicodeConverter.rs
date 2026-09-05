@@ -222,18 +222,16 @@ pub const kUnicodeFallbackCustomFirst: c_uint = 3;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/unicodetotextfallbackprocptr?language=objc)
 #[cfg(feature = "TextCommon")]
-pub type UnicodeToTextFallbackProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *mut UniChar,
-        ByteCount,
-        *mut ByteCount,
-        TextPtr,
-        ByteCount,
-        *mut ByteCount,
-        LogicalAddress,
-        ConstUnicodeMappingPtr,
-    ) -> OSStatus,
->;
+pub type UnicodeToTextFallbackProcPtr = unsafe extern "C-unwind" fn(
+    *mut UniChar,
+    ByteCount,
+    *mut ByteCount,
+    TextPtr,
+    ByteCount,
+    *mut ByteCount,
+    LogicalAddress,
+    ConstUnicodeMappingPtr,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/unicodetotextfallbackupp?language=objc)
 #[cfg(feature = "TextCommon")]
@@ -241,28 +239,29 @@ pub type UnicodeToTextFallbackUPP = UnicodeToTextFallbackProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn NewUnicodeToTextFallbackUPP(
-    user_routine: UnicodeToTextFallbackProcPtr,
-) -> UnicodeToTextFallbackUPP {
+    user_routine: Option<UnicodeToTextFallbackProcPtr>,
+) -> Option<UnicodeToTextFallbackUPP> {
     extern "C-unwind" {
         fn NewUnicodeToTextFallbackUPP(
-            user_routine: UnicodeToTextFallbackProcPtr,
-        ) -> UnicodeToTextFallbackUPP;
+            user_routine: Option<UnicodeToTextFallbackProcPtr>,
+        ) -> Option<UnicodeToTextFallbackUPP>;
     }
     unsafe { NewUnicodeToTextFallbackUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
-pub unsafe fn DisposeUnicodeToTextFallbackUPP(user_upp: UnicodeToTextFallbackUPP) {
+pub unsafe fn DisposeUnicodeToTextFallbackUPP(user_upp: *mut UnicodeToTextFallbackUPP) {
     extern "C-unwind" {
-        fn DisposeUnicodeToTextFallbackUPP(user_upp: UnicodeToTextFallbackUPP);
+        fn DisposeUnicodeToTextFallbackUPP(user_upp: *mut UnicodeToTextFallbackUPP);
     }
     unsafe { DisposeUnicodeToTextFallbackUPP(user_upp) }
 }
@@ -276,6 +275,7 @@ pub unsafe fn DisposeUnicodeToTextFallbackUPP(user_upp: UnicodeToTextFallbackUPP
 /// - `i_info_ptr` must be a valid pointer.
 /// - `i_unicode_mapping_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn InvokeUnicodeToTextFallbackUPP(
@@ -287,7 +287,7 @@ pub unsafe fn InvokeUnicodeToTextFallbackUPP(
     o_dest_conv_len: Option<&mut ByteCount>,
     i_info_ptr: LogicalAddress,
     i_unicode_mapping_ptr: ConstUnicodeMappingPtr,
-    user_upp: UnicodeToTextFallbackUPP,
+    user_upp: Option<UnicodeToTextFallbackUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeUnicodeToTextFallbackUPP(
@@ -299,7 +299,7 @@ pub unsafe fn InvokeUnicodeToTextFallbackUPP(
             o_dest_conv_len: Option<&mut ByteCount>,
             i_info_ptr: LogicalAddress,
             i_unicode_mapping_ptr: ConstUnicodeMappingPtr,
-            user_upp: UnicodeToTextFallbackUPP,
+            user_upp: Option<UnicodeToTextFallbackUPP>,
         ) -> OSStatus;
     }
     unsafe {
@@ -1016,19 +1016,20 @@ pub unsafe fn QueryUnicodeMappings(
 ///
 /// - `i_unicode_to_text_info` must be a valid pointer.
 /// - `i_fallback` must be implemented correctly.
+/// - `i_fallback` might not allow `None`.
 /// - `i_info_ptr` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn SetFallbackUnicodeToText(
     i_unicode_to_text_info: UnicodeToTextInfo,
-    i_fallback: UnicodeToTextFallbackUPP,
+    i_fallback: Option<UnicodeToTextFallbackUPP>,
     i_control_flags: OptionBits,
     i_info_ptr: LogicalAddress,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SetFallbackUnicodeToText(
             i_unicode_to_text_info: UnicodeToTextInfo,
-            i_fallback: UnicodeToTextFallbackUPP,
+            i_fallback: Option<UnicodeToTextFallbackUPP>,
             i_control_flags: OptionBits,
             i_info_ptr: LogicalAddress,
         ) -> OSStatus;
@@ -1047,19 +1048,20 @@ pub unsafe fn SetFallbackUnicodeToText(
 ///
 /// - `i_unicode_to_text_run_info` must be a valid pointer.
 /// - `i_fallback` must be implemented correctly.
+/// - `i_fallback` might not allow `None`.
 /// - `i_info_ptr` must be a valid pointer.
 #[cfg(feature = "TextCommon")]
 #[inline]
 pub unsafe fn SetFallbackUnicodeToTextRun(
     i_unicode_to_text_run_info: UnicodeToTextRunInfo,
-    i_fallback: UnicodeToTextFallbackUPP,
+    i_fallback: Option<UnicodeToTextFallbackUPP>,
     i_control_flags: OptionBits,
     i_info_ptr: LogicalAddress,
 ) -> OSStatus {
     extern "C-unwind" {
         fn SetFallbackUnicodeToTextRun(
             i_unicode_to_text_run_info: UnicodeToTextRunInfo,
-            i_fallback: UnicodeToTextFallbackUPP,
+            i_fallback: Option<UnicodeToTextFallbackUPP>,
             i_control_flags: OptionBits,
             i_info_ptr: LogicalAddress,
         ) -> OSStatus;

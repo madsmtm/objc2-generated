@@ -12,7 +12,7 @@ use crate::*;
 pub type NMRecPtr = *mut NMRec;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/nmprocptr?language=objc)
-pub type NMProcPtr = Option<unsafe extern "C-unwind" fn(NMRecPtr)>;
+pub type NMProcPtr = unsafe extern "C-unwind" fn(NMRecPtr);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/nmupp?language=objc)
 pub type NMUPP = NMProcPtr;
@@ -32,7 +32,7 @@ pub struct NMRec {
     pub nmIcon: Handle,
     pub nmSound: Handle,
     pub nmStr: StringPtr,
-    pub nmResp: NMUPP,
+    pub nmResp: Option<NMUPP>,
     pub nmRefCon: SRefCon,
 }
 
@@ -63,22 +63,23 @@ unsafe impl RefEncode for NMRec {
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewNMUPP(user_routine: NMProcPtr) -> NMUPP {
+pub unsafe fn NewNMUPP(user_routine: Option<NMProcPtr>) -> Option<NMUPP> {
     extern "C-unwind" {
-        fn NewNMUPP(user_routine: NMProcPtr) -> NMUPP;
+        fn NewNMUPP(user_routine: Option<NMProcPtr>) -> Option<NMUPP>;
     }
     unsafe { NewNMUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeNMUPP(user_upp: NMUPP) {
+pub unsafe fn DisposeNMUPP(user_upp: *mut NMUPP) {
     extern "C-unwind" {
-        fn DisposeNMUPP(user_upp: NMUPP);
+        fn DisposeNMUPP(user_upp: *mut NMUPP);
     }
     unsafe { DisposeNMUPP(user_upp) }
 }
@@ -87,10 +88,11 @@ pub unsafe fn DisposeNMUPP(user_upp: NMUPP) {
 ///
 /// - `nm_req_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
-pub unsafe fn InvokeNMUPP(nm_req_ptr: NMRecPtr, user_upp: NMUPP) {
+pub unsafe fn InvokeNMUPP(nm_req_ptr: NMRecPtr, user_upp: Option<NMUPP>) {
     extern "C-unwind" {
-        fn InvokeNMUPP(nm_req_ptr: NMRecPtr, user_upp: NMUPP);
+        fn InvokeNMUPP(nm_req_ptr: NMRecPtr, user_upp: Option<NMUPP>);
     }
     unsafe { InvokeNMUPP(nm_req_ptr, user_upp) }
 }

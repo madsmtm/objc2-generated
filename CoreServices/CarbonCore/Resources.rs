@@ -92,49 +92,51 @@ pub const kResFileNotOpened: c_int = -1;
 pub const kSystemResFile: c_int = 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/reserrprocptr?language=objc)
-pub type ResErrProcPtr = Option<unsafe extern "C-unwind" fn(OSErr)>;
+pub type ResErrProcPtr = unsafe extern "C-unwind" fn(OSErr);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/reserrupp?language=objc)
 pub type ResErrUPP = ResErrProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewResErrUPP(user_routine: ResErrProcPtr) -> ResErrUPP {
+pub unsafe fn NewResErrUPP(user_routine: Option<ResErrProcPtr>) -> Option<ResErrUPP> {
     extern "C-unwind" {
-        fn NewResErrUPP(user_routine: ResErrProcPtr) -> ResErrUPP;
+        fn NewResErrUPP(user_routine: Option<ResErrProcPtr>) -> Option<ResErrUPP>;
     }
     unsafe { NewResErrUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeResErrUPP(user_upp: ResErrUPP) {
+pub unsafe fn DisposeResErrUPP(user_upp: *mut ResErrUPP) {
     extern "C-unwind" {
-        fn DisposeResErrUPP(user_upp: ResErrUPP);
+        fn DisposeResErrUPP(user_upp: *mut ResErrUPP);
     }
     unsafe { DisposeResErrUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeResErrUPP(th_err: OSErr, user_upp: ResErrUPP) {
+pub unsafe fn InvokeResErrUPP(th_err: OSErr, user_upp: Option<ResErrUPP>) {
     extern "C-unwind" {
-        fn InvokeResErrUPP(th_err: OSErr, user_upp: ResErrUPP);
+        fn InvokeResErrUPP(th_err: OSErr, user_upp: Option<ResErrUPP>);
     }
     unsafe { InvokeResErrUPP(th_err, user_upp) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/resourceendianfilterptr?language=objc)
-pub type ResourceEndianFilterPtr = Option<unsafe extern "C-unwind" fn(Handle, Boolean) -> OSErr>;
+pub type ResourceEndianFilterPtr = unsafe extern "C-unwind" fn(Handle, Boolean) -> OSErr;
 
 #[cfg(feature = "Files")]
 #[deprecated]

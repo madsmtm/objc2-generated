@@ -654,7 +654,7 @@ pub const kAudioSessionProperty_AudioRouteDescription: c_uint = 0x63726172;
 /// or ends (kAudioSessionEndInterruption)
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessioninterruptionlistener?language=objc)
-pub type AudioSessionInterruptionListener = Option<unsafe extern "C-unwind" fn(*mut c_void, u32)>;
+pub type AudioSessionInterruptionListener = unsafe extern "C-unwind" fn(*mut c_void, u32);
 
 /// A function to be executed when a property changes.
 ///
@@ -671,7 +671,7 @@ pub type AudioSessionInterruptionListener = Option<unsafe extern "C-unwind" fn(*
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionpropertylistener?language=objc)
 pub type AudioSessionPropertyListener =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, AudioSessionPropertyID, u32, *const c_void)>;
+    unsafe extern "C-unwind" fn(*mut c_void, AudioSessionPropertyID, u32, *const c_void);
 
 /// Initialize the AudioSession.
 ///
@@ -693,6 +693,7 @@ pub type AudioSessionPropertyListener =
 ///
 /// - `in_run_loop` possibly has additional threading requirements.
 /// - `in_interruption_listener` must be implemented correctly.
+/// - `in_interruption_listener` might not allow `None`.
 /// - `in_client_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "no longer supported"]
@@ -700,14 +701,14 @@ pub type AudioSessionPropertyListener =
 pub unsafe fn AudioSessionInitialize(
     in_run_loop: Option<&CFRunLoop>,
     in_run_loop_mode: Option<&CFString>,
-    in_interruption_listener: AudioSessionInterruptionListener,
+    in_interruption_listener: Option<AudioSessionInterruptionListener>,
     in_client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioSessionInitialize(
             in_run_loop: Option<&CFRunLoop>,
             in_run_loop_mode: Option<&CFString>,
-            in_interruption_listener: AudioSessionInterruptionListener,
+            in_interruption_listener: Option<AudioSessionInterruptionListener>,
             in_client_data: *mut c_void,
         ) -> OSStatus;
     }
@@ -888,18 +889,19 @@ pub unsafe fn AudioSessionGetPropertySize(
 /// # Safety
 ///
 /// - `in_proc` must be implemented correctly.
+/// - `in_proc` might not allow `None`.
 /// - `in_client_data` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe fn AudioSessionAddPropertyListener(
     in_id: AudioSessionPropertyID,
-    in_proc: AudioSessionPropertyListener,
+    in_proc: Option<AudioSessionPropertyListener>,
     in_client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioSessionAddPropertyListener(
             in_id: AudioSessionPropertyID,
-            in_proc: AudioSessionPropertyListener,
+            in_proc: Option<AudioSessionPropertyListener>,
             in_client_data: *mut c_void,
         ) -> OSStatus;
     }
@@ -940,18 +942,19 @@ pub unsafe fn AudioSessionRemovePropertyListener(in_id: AudioSessionPropertyID) 
 /// # Safety
 ///
 /// - `in_proc` must be implemented correctly.
+/// - `in_proc` might not allow `None`.
 /// - `in_client_data` must be a valid pointer.
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe fn AudioSessionRemovePropertyListenerWithUserData(
     in_id: AudioSessionPropertyID,
-    in_proc: AudioSessionPropertyListener,
+    in_proc: Option<AudioSessionPropertyListener>,
     in_client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioSessionRemovePropertyListenerWithUserData(
             in_id: AudioSessionPropertyID,
-            in_proc: AudioSessionPropertyListener,
+            in_proc: Option<AudioSessionPropertyListener>,
             in_client_data: *mut c_void,
         ) -> OSStatus;
     }

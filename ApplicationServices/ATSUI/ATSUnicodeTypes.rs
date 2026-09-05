@@ -565,15 +565,13 @@ pub type ATSUBackgroundColor = ATSURGBAlphaColor;
     feature = "ATSLayoutTypes",
     feature = "objc2-core-services"
 ))]
-pub type RedrawBackgroundProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        ATSUTextLayout,
-        UniCharArrayOffset,
-        UniCharCount,
-        *mut ATSTrapezoid,
-        ItemCount,
-    ) -> Boolean,
->;
+pub type RedrawBackgroundProcPtr = unsafe extern "C-unwind" fn(
+    ATSUTextLayout,
+    UniCharArrayOffset,
+    UniCharCount,
+    *mut ATSTrapezoid,
+    ItemCount,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/redrawbackgroundupp?language=objc)
 #[cfg(all(
@@ -593,7 +591,7 @@ pub type RedrawBackgroundUPP = RedrawBackgroundProcPtr;
 #[derive(Clone, Copy)]
 pub union ATSUBackgroundData {
     pub backgroundColor: ATSUBackgroundColor,
-    pub backgroundUPP: RedrawBackgroundUPP,
+    pub backgroundUPP: Option<RedrawBackgroundUPP>,
 }
 
 #[cfg(all(

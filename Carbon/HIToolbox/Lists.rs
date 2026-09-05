@@ -24,11 +24,10 @@ pub type DataPtr = *mut c_char;
 pub type DataHandle = *mut DataPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/listsearchprocptr?language=objc)
-pub type ListSearchProcPtr =
-    Option<unsafe extern "C-unwind" fn(Ptr, Ptr, c_short, c_short) -> c_short>;
+pub type ListSearchProcPtr = unsafe extern "C-unwind" fn(Ptr, Ptr, c_short, c_short) -> c_short;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/listclickloopprocptr?language=objc)
-pub type ListClickLoopProcPtr = Option<unsafe extern "C-unwind" fn() -> Boolean>;
+pub type ListClickLoopProcPtr = unsafe extern "C-unwind" fn() -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/listsearchupp?language=objc)
 pub type ListSearchUPP = ListSearchProcPtr;
@@ -55,7 +54,7 @@ pub struct ListRec {
     pub clikTime: c_long,
     pub clikLoc: Point,
     pub mouseLoc: Point,
-    pub lClickLoop: ListClickLoopUPP,
+    pub lClickLoop: Option<ListClickLoopUPP>,
     pub lastClick: Cell,
     pub refCon: c_long,
     pub listDefProc: Handle,
@@ -212,9 +211,8 @@ pub type StandardIconListCellDataPtr = *mut StandardIconListCellDataRec;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/listdefprocptr?language=objc)
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
-pub type ListDefProcPtr = Option<
-    unsafe extern "C-unwind" fn(c_short, Boolean, *mut Rect, Cell, c_short, c_short, ListHandle),
->;
+pub type ListDefProcPtr =
+    unsafe extern "C-unwind" fn(c_short, Boolean, *mut Rect, Cell, c_short, c_short, ListHandle);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/listdefupp?language=objc)
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
@@ -222,74 +220,81 @@ pub type ListDefUPP = ListDefProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewListSearchUPP(user_routine: ListSearchProcPtr) -> ListSearchUPP {
+pub unsafe fn NewListSearchUPP(user_routine: Option<ListSearchProcPtr>) -> Option<ListSearchUPP> {
     extern "C-unwind" {
-        fn NewListSearchUPP(user_routine: ListSearchProcPtr) -> ListSearchUPP;
+        fn NewListSearchUPP(user_routine: Option<ListSearchProcPtr>) -> Option<ListSearchUPP>;
     }
     unsafe { NewListSearchUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewListClickLoopUPP(user_routine: ListClickLoopProcPtr) -> ListClickLoopUPP {
+pub unsafe fn NewListClickLoopUPP(
+    user_routine: Option<ListClickLoopProcPtr>,
+) -> Option<ListClickLoopUPP> {
     extern "C-unwind" {
-        fn NewListClickLoopUPP(user_routine: ListClickLoopProcPtr) -> ListClickLoopUPP;
+        fn NewListClickLoopUPP(
+            user_routine: Option<ListClickLoopProcPtr>,
+        ) -> Option<ListClickLoopUPP>;
     }
     unsafe { NewListClickLoopUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
 #[deprecated]
 #[inline]
-pub unsafe fn NewListDefUPP(user_routine: ListDefProcPtr) -> ListDefUPP {
+pub unsafe fn NewListDefUPP(user_routine: Option<ListDefProcPtr>) -> Option<ListDefUPP> {
     extern "C-unwind" {
-        fn NewListDefUPP(user_routine: ListDefProcPtr) -> ListDefUPP;
+        fn NewListDefUPP(user_routine: Option<ListDefProcPtr>) -> Option<ListDefUPP>;
     }
     unsafe { NewListDefUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeListSearchUPP(user_upp: ListSearchUPP) {
+pub unsafe fn DisposeListSearchUPP(user_upp: *mut ListSearchUPP) {
     extern "C-unwind" {
-        fn DisposeListSearchUPP(user_upp: ListSearchUPP);
+        fn DisposeListSearchUPP(user_upp: *mut ListSearchUPP);
     }
     unsafe { DisposeListSearchUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeListClickLoopUPP(user_upp: ListClickLoopUPP) {
+pub unsafe fn DisposeListClickLoopUPP(user_upp: *mut ListClickLoopUPP) {
     extern "C-unwind" {
-        fn DisposeListClickLoopUPP(user_upp: ListClickLoopUPP);
+        fn DisposeListClickLoopUPP(user_upp: *mut ListClickLoopUPP);
     }
     unsafe { DisposeListClickLoopUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeListDefUPP(user_upp: ListDefUPP) {
+pub unsafe fn DisposeListDefUPP(user_upp: *mut ListDefUPP) {
     extern "C-unwind" {
-        fn DisposeListDefUPP(user_upp: ListDefUPP);
+        fn DisposeListDefUPP(user_upp: *mut ListDefUPP);
     }
     unsafe { DisposeListDefUPP(user_upp) }
 }
@@ -299,6 +304,7 @@ pub unsafe fn DisposeListDefUPP(user_upp: ListDefUPP) {
 /// - `a_ptr` must be a valid pointer.
 /// - `b_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeListSearchUPP(
@@ -306,7 +312,7 @@ pub unsafe fn InvokeListSearchUPP(
     b_ptr: Ptr,
     a_len: c_short,
     b_len: c_short,
-    user_upp: ListSearchUPP,
+    user_upp: Option<ListSearchUPP>,
 ) -> c_short {
     extern "C-unwind" {
         fn InvokeListSearchUPP(
@@ -314,7 +320,7 @@ pub unsafe fn InvokeListSearchUPP(
             b_ptr: Ptr,
             a_len: c_short,
             b_len: c_short,
-            user_upp: ListSearchUPP,
+            user_upp: Option<ListSearchUPP>,
         ) -> c_short;
     }
     unsafe { InvokeListSearchUPP(a_ptr, b_ptr, a_len, b_len, user_upp) }
@@ -322,12 +328,13 @@ pub unsafe fn InvokeListSearchUPP(
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeListClickLoopUPP(user_upp: ListClickLoopUPP) -> bool {
+pub unsafe fn InvokeListClickLoopUPP(user_upp: Option<ListClickLoopUPP>) -> bool {
     extern "C-unwind" {
-        fn InvokeListClickLoopUPP(user_upp: ListClickLoopUPP) -> Boolean;
+        fn InvokeListClickLoopUPP(user_upp: Option<ListClickLoopUPP>) -> Boolean;
     }
     let ret = unsafe { InvokeListClickLoopUPP(user_upp) };
     ret != 0
@@ -338,6 +345,7 @@ pub unsafe fn InvokeListClickLoopUPP(user_upp: ListClickLoopUPP) -> bool {
 /// - `l_rect` might not allow `None`.
 /// - `l_handle` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "objc2-application-services"))]
 #[deprecated]
 #[inline]
@@ -349,7 +357,7 @@ pub unsafe fn InvokeListDefUPP(
     l_data_offset: c_short,
     l_data_len: c_short,
     l_handle: ListHandle,
-    user_upp: ListDefUPP,
+    user_upp: Option<ListDefUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeListDefUPP(
@@ -360,7 +368,7 @@ pub unsafe fn InvokeListDefUPP(
             l_data_offset: c_short,
             l_data_len: c_short,
             l_handle: ListHandle,
-            user_upp: ListDefUPP,
+            user_upp: Option<ListDefUPP>,
         );
     }
     let l_select = l_select as _;
@@ -395,7 +403,7 @@ pub type ListDefType = u32;
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub union ListDefSpec_u {
-    pub userProc: ListDefUPP,
+    pub userProc: Option<ListDefUPP>,
 }
 
 #[cfg(all(

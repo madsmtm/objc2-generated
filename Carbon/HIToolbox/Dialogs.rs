@@ -180,23 +180,21 @@ pub type DialogItemIndex = i16;
 pub type DialogItemType = i16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/soundprocptr?language=objc)
-pub type SoundProcPtr = Option<unsafe extern "C-unwind" fn(i16)>;
+pub type SoundProcPtr = unsafe extern "C-unwind" fn(i16);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/modalfilterprocptr?language=objc)
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
-pub type ModalFilterProcPtr = Option<
-    unsafe extern "C-unwind" fn(DialogRef, *mut EventRecord, *mut DialogItemIndex) -> Boolean,
->;
+pub type ModalFilterProcPtr =
+    unsafe extern "C-unwind" fn(DialogRef, *mut EventRecord, *mut DialogItemIndex) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/modalfilterydprocptr?language=objc)
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
-pub type ModalFilterYDProcPtr = Option<
-    unsafe extern "C-unwind" fn(DialogRef, *mut EventRecord, *mut c_short, *mut c_void) -> Boolean,
->;
+pub type ModalFilterYDProcPtr =
+    unsafe extern "C-unwind" fn(DialogRef, *mut EventRecord, *mut c_short, *mut c_void) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/useritemprocptr?language=objc)
 #[cfg(feature = "objc2-application-services")]
-pub type UserItemProcPtr = Option<unsafe extern "C-unwind" fn(DialogRef, DialogItemIndex)>;
+pub type UserItemProcPtr = unsafe extern "C-unwind" fn(DialogRef, DialogItemIndex);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/soundupp?language=objc)
 pub type SoundUPP = SoundProcPtr;
@@ -215,72 +213,81 @@ pub type UserItemUPP = UserItemProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
-pub unsafe fn NewModalFilterUPP(user_routine: ModalFilterProcPtr) -> ModalFilterUPP {
+pub unsafe fn NewModalFilterUPP(
+    user_routine: Option<ModalFilterProcPtr>,
+) -> Option<ModalFilterUPP> {
     extern "C-unwind" {
-        fn NewModalFilterUPP(user_routine: ModalFilterProcPtr) -> ModalFilterUPP;
+        fn NewModalFilterUPP(user_routine: Option<ModalFilterProcPtr>) -> Option<ModalFilterUPP>;
     }
     unsafe { NewModalFilterUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
-pub unsafe fn NewModalFilterYDUPP(user_routine: ModalFilterYDProcPtr) -> ModalFilterYDUPP {
+pub unsafe fn NewModalFilterYDUPP(
+    user_routine: Option<ModalFilterYDProcPtr>,
+) -> Option<ModalFilterYDUPP> {
     extern "C-unwind" {
-        fn NewModalFilterYDUPP(user_routine: ModalFilterYDProcPtr) -> ModalFilterYDUPP;
+        fn NewModalFilterYDUPP(
+            user_routine: Option<ModalFilterYDProcPtr>,
+        ) -> Option<ModalFilterYDUPP>;
     }
     unsafe { NewModalFilterYDUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[inline]
-pub unsafe fn NewUserItemUPP(user_routine: UserItemProcPtr) -> UserItemUPP {
+pub unsafe fn NewUserItemUPP(user_routine: Option<UserItemProcPtr>) -> Option<UserItemUPP> {
     extern "C-unwind" {
-        fn NewUserItemUPP(user_routine: UserItemProcPtr) -> UserItemUPP;
+        fn NewUserItemUPP(user_routine: Option<UserItemProcPtr>) -> Option<UserItemUPP>;
     }
     unsafe { NewUserItemUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
-pub unsafe fn DisposeModalFilterUPP(user_upp: ModalFilterUPP) {
+pub unsafe fn DisposeModalFilterUPP(user_upp: *mut ModalFilterUPP) {
     extern "C-unwind" {
-        fn DisposeModalFilterUPP(user_upp: ModalFilterUPP);
+        fn DisposeModalFilterUPP(user_upp: *mut ModalFilterUPP);
     }
     unsafe { DisposeModalFilterUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
-pub unsafe fn DisposeModalFilterYDUPP(user_upp: ModalFilterYDUPP) {
+pub unsafe fn DisposeModalFilterYDUPP(user_upp: *mut ModalFilterYDUPP) {
     extern "C-unwind" {
-        fn DisposeModalFilterYDUPP(user_upp: ModalFilterYDUPP);
+        fn DisposeModalFilterYDUPP(user_upp: *mut ModalFilterYDUPP);
     }
     unsafe { DisposeModalFilterYDUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "objc2-application-services")]
 #[inline]
-pub unsafe fn DisposeUserItemUPP(user_upp: UserItemUPP) {
+pub unsafe fn DisposeUserItemUPP(user_upp: *mut UserItemUPP) {
     extern "C-unwind" {
-        fn DisposeUserItemUPP(user_upp: UserItemUPP);
+        fn DisposeUserItemUPP(user_upp: *mut UserItemUPP);
     }
     unsafe { DisposeUserItemUPP(user_upp) }
 }
@@ -291,20 +298,21 @@ pub unsafe fn DisposeUserItemUPP(user_upp: UserItemUPP) {
 /// - `the_event` might not allow `None`.
 /// - `item_hit` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
 pub unsafe fn InvokeModalFilterUPP(
     the_dialog: DialogRef,
     the_event: Option<&mut EventRecord>,
     item_hit: Option<&mut DialogItemIndex>,
-    user_upp: ModalFilterUPP,
+    user_upp: Option<ModalFilterUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeModalFilterUPP(
             the_dialog: DialogRef,
             the_event: Option<&mut EventRecord>,
             item_hit: Option<&mut DialogItemIndex>,
-            user_upp: ModalFilterUPP,
+            user_upp: Option<ModalFilterUPP>,
         ) -> Boolean;
     }
     let ret = unsafe { InvokeModalFilterUPP(the_dialog, the_event, item_hit, user_upp) };
@@ -318,6 +326,7 @@ pub unsafe fn InvokeModalFilterUPP(
 /// - `item_hit` might not allow `None`.
 /// - `your_data_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
 pub unsafe fn InvokeModalFilterYDUPP(
@@ -325,7 +334,7 @@ pub unsafe fn InvokeModalFilterYDUPP(
     the_event: Option<&mut EventRecord>,
     item_hit: Option<&mut c_short>,
     your_data_ptr: *mut c_void,
-    user_upp: ModalFilterYDUPP,
+    user_upp: Option<ModalFilterYDUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeModalFilterYDUPP(
@@ -333,7 +342,7 @@ pub unsafe fn InvokeModalFilterYDUPP(
             the_event: Option<&mut EventRecord>,
             item_hit: Option<&mut c_short>,
             your_data_ptr: *mut c_void,
-            user_upp: ModalFilterYDUPP,
+            user_upp: Option<ModalFilterYDUPP>,
         ) -> Boolean;
     }
     let ret =
@@ -345,18 +354,19 @@ pub unsafe fn InvokeModalFilterYDUPP(
 ///
 /// - `the_dialog` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[inline]
 pub unsafe fn InvokeUserItemUPP(
     the_dialog: DialogRef,
     item_no: DialogItemIndex,
-    user_upp: UserItemUPP,
+    user_upp: Option<UserItemUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeUserItemUPP(
             the_dialog: DialogRef,
             item_no: DialogItemIndex,
-            user_upp: UserItemUPP,
+            user_upp: Option<UserItemUPP>,
         );
     }
     unsafe { InvokeUserItemUPP(the_dialog, item_no, user_upp) }
@@ -448,7 +458,7 @@ pub const kDialogFontUseThemeFontIDMask: c_uint = 0x0080;
 pub struct AlertStdAlertParamRec {
     pub movable: Boolean,
     pub helpButton: Boolean,
-    pub filterProc: ModalFilterUPP,
+    pub filterProc: Option<ModalFilterUPP>,
     pub defaultText: ConstStringPtr,
     pub cancelText: ConstStringPtr,
     pub otherText: ConstStringPtr,

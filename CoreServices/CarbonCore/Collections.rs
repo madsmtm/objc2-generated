@@ -257,11 +257,10 @@ pub type CollectionTag = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/collectionflattenprocptr?language=objc)
 pub type CollectionFlattenProcPtr =
-    Option<unsafe extern "C-unwind" fn(i32, *mut c_void, *mut c_void) -> OSErr>;
+    unsafe extern "C-unwind" fn(i32, *mut c_void, *mut c_void) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/collectionexceptionprocptr?language=objc)
-pub type CollectionExceptionProcPtr =
-    Option<unsafe extern "C-unwind" fn(Collection, OSErr) -> OSErr>;
+pub type CollectionExceptionProcPtr = unsafe extern "C-unwind" fn(Collection, OSErr) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/collectionflattenupp?language=objc)
 pub type CollectionFlattenUPP = CollectionFlattenProcPtr;
@@ -271,54 +270,58 @@ pub type CollectionExceptionUPP = CollectionExceptionProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewCollectionFlattenUPP(
-    user_routine: CollectionFlattenProcPtr,
-) -> CollectionFlattenUPP {
+    user_routine: Option<CollectionFlattenProcPtr>,
+) -> Option<CollectionFlattenUPP> {
     extern "C-unwind" {
-        fn NewCollectionFlattenUPP(user_routine: CollectionFlattenProcPtr) -> CollectionFlattenUPP;
+        fn NewCollectionFlattenUPP(
+            user_routine: Option<CollectionFlattenProcPtr>,
+        ) -> Option<CollectionFlattenUPP>;
     }
     unsafe { NewCollectionFlattenUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewCollectionExceptionUPP(
-    user_routine: CollectionExceptionProcPtr,
-) -> CollectionExceptionUPP {
+    user_routine: Option<CollectionExceptionProcPtr>,
+) -> Option<CollectionExceptionUPP> {
     extern "C-unwind" {
         fn NewCollectionExceptionUPP(
-            user_routine: CollectionExceptionProcPtr,
-        ) -> CollectionExceptionUPP;
+            user_routine: Option<CollectionExceptionProcPtr>,
+        ) -> Option<CollectionExceptionUPP>;
     }
     unsafe { NewCollectionExceptionUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeCollectionFlattenUPP(user_upp: CollectionFlattenUPP) {
+pub unsafe fn DisposeCollectionFlattenUPP(user_upp: *mut CollectionFlattenUPP) {
     extern "C-unwind" {
-        fn DisposeCollectionFlattenUPP(user_upp: CollectionFlattenUPP);
+        fn DisposeCollectionFlattenUPP(user_upp: *mut CollectionFlattenUPP);
     }
     unsafe { DisposeCollectionFlattenUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeCollectionExceptionUPP(user_upp: CollectionExceptionUPP) {
+pub unsafe fn DisposeCollectionExceptionUPP(user_upp: *mut CollectionExceptionUPP) {
     extern "C-unwind" {
-        fn DisposeCollectionExceptionUPP(user_upp: CollectionExceptionUPP);
+        fn DisposeCollectionExceptionUPP(user_upp: *mut CollectionExceptionUPP);
     }
     unsafe { DisposeCollectionExceptionUPP(user_upp) }
 }
@@ -328,20 +331,21 @@ pub unsafe fn DisposeCollectionExceptionUPP(user_upp: CollectionExceptionUPP) {
 /// - `data` must be a valid pointer.
 /// - `ref_con` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeCollectionFlattenUPP(
     size: i32,
     data: *mut c_void,
     ref_con: *mut c_void,
-    user_upp: CollectionFlattenUPP,
+    user_upp: Option<CollectionFlattenUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeCollectionFlattenUPP(
             size: i32,
             data: *mut c_void,
             ref_con: *mut c_void,
-            user_upp: CollectionFlattenUPP,
+            user_upp: Option<CollectionFlattenUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeCollectionFlattenUPP(size, data, ref_con, user_upp) }
@@ -351,18 +355,19 @@ pub unsafe fn InvokeCollectionFlattenUPP(
 ///
 /// - `c` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeCollectionExceptionUPP(
     c: Collection,
     status: OSErr,
-    user_upp: CollectionExceptionUPP,
+    user_upp: Option<CollectionExceptionUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeCollectionExceptionUPP(
             c: Collection,
             status: OSErr,
-            user_upp: CollectionExceptionUPP,
+            user_upp: Option<CollectionExceptionUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeCollectionExceptionUPP(c, status, user_upp) }
@@ -896,18 +901,19 @@ pub unsafe fn EmptyCollection(c: Collection) {
 ///
 /// - `c` must be a valid pointer.
 /// - `flatten_proc` must be implemented correctly.
+/// - `flatten_proc` might not allow `None`.
 /// - `ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn FlattenCollection(
     c: Collection,
-    flatten_proc: CollectionFlattenUPP,
+    flatten_proc: Option<CollectionFlattenUPP>,
     ref_con: *mut c_void,
 ) -> OSErr {
     extern "C-unwind" {
         fn FlattenCollection(
             c: Collection,
-            flatten_proc: CollectionFlattenUPP,
+            flatten_proc: Option<CollectionFlattenUPP>,
             ref_con: *mut c_void,
         ) -> OSErr;
     }
@@ -918,12 +924,13 @@ pub unsafe fn FlattenCollection(
 ///
 /// - `c` must be a valid pointer.
 /// - `flatten_proc` must be implemented correctly.
+/// - `flatten_proc` might not allow `None`.
 /// - `ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn FlattenPartialCollection(
     c: Collection,
-    flatten_proc: CollectionFlattenUPP,
+    flatten_proc: Option<CollectionFlattenUPP>,
     ref_con: *mut c_void,
     which_attributes: i32,
     matching_attributes: i32,
@@ -931,7 +938,7 @@ pub unsafe fn FlattenPartialCollection(
     extern "C-unwind" {
         fn FlattenPartialCollection(
             c: Collection,
-            flatten_proc: CollectionFlattenUPP,
+            flatten_proc: Option<CollectionFlattenUPP>,
             ref_con: *mut c_void,
             which_attributes: i32,
             matching_attributes: i32,
@@ -952,18 +959,19 @@ pub unsafe fn FlattenPartialCollection(
 ///
 /// - `c` must be a valid pointer.
 /// - `flatten_proc` must be implemented correctly.
+/// - `flatten_proc` might not allow `None`.
 /// - `ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn UnflattenCollection(
     c: Collection,
-    flatten_proc: CollectionFlattenUPP,
+    flatten_proc: Option<CollectionFlattenUPP>,
     ref_con: *mut c_void,
 ) -> OSErr {
     extern "C-unwind" {
         fn UnflattenCollection(
             c: Collection,
-            flatten_proc: CollectionFlattenUPP,
+            flatten_proc: Option<CollectionFlattenUPP>,
             ref_con: *mut c_void,
         ) -> OSErr;
     }
@@ -975,9 +983,9 @@ pub unsafe fn UnflattenCollection(
 /// `c` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn GetCollectionExceptionProc(c: Collection) -> CollectionExceptionUPP {
+pub unsafe fn GetCollectionExceptionProc(c: Collection) -> Option<CollectionExceptionUPP> {
     extern "C-unwind" {
-        fn GetCollectionExceptionProc(c: Collection) -> CollectionExceptionUPP;
+        fn GetCollectionExceptionProc(c: Collection) -> Option<CollectionExceptionUPP>;
     }
     unsafe { GetCollectionExceptionProc(c) }
 }
@@ -986,11 +994,18 @@ pub unsafe fn GetCollectionExceptionProc(c: Collection) -> CollectionExceptionUP
 ///
 /// - `c` must be a valid pointer.
 /// - `exception_proc` must be implemented correctly.
+/// - `exception_proc` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn SetCollectionExceptionProc(c: Collection, exception_proc: CollectionExceptionUPP) {
+pub unsafe fn SetCollectionExceptionProc(
+    c: Collection,
+    exception_proc: Option<CollectionExceptionUPP>,
+) {
     extern "C-unwind" {
-        fn SetCollectionExceptionProc(c: Collection, exception_proc: CollectionExceptionUPP);
+        fn SetCollectionExceptionProc(
+            c: Collection,
+            exception_proc: Option<CollectionExceptionUPP>,
+        );
     }
     unsafe { SetCollectionExceptionProc(c, exception_proc) }
 }

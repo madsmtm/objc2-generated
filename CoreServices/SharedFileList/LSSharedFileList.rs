@@ -144,7 +144,7 @@ pub const kLSSharedFileListDoNotMountVolumes: c_uint = 1 << 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistchangedprocptr?language=objc)
 pub type LSSharedFileListChangedProcPtr =
-    Option<unsafe extern "C-unwind" fn(&LSSharedFileList, NonNull<c_void>)>;
+    unsafe extern "C-unwind" fn(&LSSharedFileList, NonNull<c_void>);
 
 unsafe impl ConcreteType for LSSharedFileList {
     #[doc(alias = "LSSharedFileListGetTypeID")]

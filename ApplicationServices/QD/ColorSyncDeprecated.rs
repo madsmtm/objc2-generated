@@ -2018,14 +2018,14 @@ pub const cmBradfordChromaticAdaptation: c_uint = 3;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmflattenprocptr?language=objc)
 pub type CMFlattenProcPtr =
-    Option<unsafe extern "C-unwind" fn(i32, *mut c_long, *mut c_void, *mut c_void) -> OSErr>;
+    unsafe extern "C-unwind" fn(i32, *mut c_long, *mut c_void, *mut c_void) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmflattenupp?language=objc)
 pub type CMFlattenUPP = CMFlattenProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmbitmapcallbackprocptr?language=objc)
 #[deprecated]
-pub type CMBitmapCallBackProcPtr = Option<unsafe extern "C-unwind" fn(i32, *mut c_void) -> Boolean>;
+pub type CMBitmapCallBackProcPtr = unsafe extern "C-unwind" fn(i32, *mut c_void) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmbitmapcallbackupp?language=objc)
 #[deprecated]
@@ -2033,7 +2033,7 @@ pub type CMBitmapCallBackUPP = CMBitmapCallBackProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmconcatcallbackprocptr?language=objc)
 #[deprecated]
-pub type CMConcatCallBackProcPtr = Option<unsafe extern "C-unwind" fn(i32, *mut c_void) -> Boolean>;
+pub type CMConcatCallBackProcPtr = unsafe extern "C-unwind" fn(i32, *mut c_void) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmconcatcallbackupp?language=objc)
 #[deprecated]
@@ -3005,7 +3005,7 @@ unsafe impl RefEncode for CMProfileIterateData {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmprofileiterateprocptr?language=objc)
 #[deprecated]
 pub type CMProfileIterateProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut CMProfileIterateData, *mut c_void) -> OSErr>;
+    unsafe extern "C-unwind" fn(*mut CMProfileIterateData, *mut c_void) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmprofileiterateupp?language=objc)
 #[deprecated]
@@ -3013,8 +3013,7 @@ pub type CMProfileIterateUPP = CMProfileIterateProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmmiterateprocptr?language=objc)
 #[deprecated]
-pub type CMMIterateProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut CMMInfo, *mut c_void) -> OSErr>;
+pub type CMMIterateProcPtr = unsafe extern "C-unwind" fn(*mut CMMInfo, *mut c_void) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmmiterateupp?language=objc)
 #[deprecated]
@@ -3023,7 +3022,7 @@ pub type CMMIterateUPP = CMMIterateProcPtr;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmlabtolabprocptr?language=objc)
 #[deprecated]
 pub type CMLabToLabProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut c_float, *mut c_float, *mut c_float, *mut c_void)>;
+    unsafe extern "C-unwind" fn(*mut c_float, *mut c_float, *mut c_float, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmfloatbitmapflags?language=objc)
 #[repr(transparent)]
@@ -3397,14 +3396,12 @@ pub type CMDeviceProfileArrayPtr = *mut CMDeviceProfileArray;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmiteratedeviceinfoprocptr?language=objc)
 #[deprecated]
 pub type CMIterateDeviceInfoProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const CMDeviceInfo, *mut c_void) -> OSErr>;
+    unsafe extern "C-unwind" fn(*const CMDeviceInfo, *mut c_void) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/cmiteratedeviceprofileprocptr?language=objc)
 #[deprecated]
-pub type CMIterateDeviceProfileProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *const CMDeviceInfo,
-        *const NCMDeviceProfileInfo,
-        *mut c_void,
-    ) -> OSErr,
->;
+pub type CMIterateDeviceProfileProcPtr = unsafe extern "C-unwind" fn(
+    *const CMDeviceInfo,
+    *const NCMDeviceProfileInfo,
+    *mut c_void,
+) -> OSErr;

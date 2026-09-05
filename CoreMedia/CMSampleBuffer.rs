@@ -120,7 +120,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadycallback?language=objc)
 pub type CMSampleBufferMakeDataReadyCallback =
-    Option<unsafe extern "C-unwind" fn(&CMSampleBuffer, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(&CMSampleBuffer, *mut c_void) -> OSStatus;
 
 /// Client block called by CMSampleBufferMakeDataReady (client provides it when calling CMSampleBufferCreateWithMakeDataReadyHandler).
 ///
@@ -275,7 +275,7 @@ impl CMSampleBuffer {
         allocator: Option<&CFAllocator>,
         data_buffer: Option<&CMBlockBuffer>,
         data_ready: bool,
-        make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+        make_data_ready_callback: Option<CMSampleBufferMakeDataReadyCallback>,
         make_data_ready_refcon: *mut c_void,
         format_description: Option<&CMFormatDescription>,
         num_samples: CMItemCount,
@@ -290,7 +290,7 @@ impl CMSampleBuffer {
                 allocator: Option<&CFAllocator>,
                 data_buffer: Option<&CMBlockBuffer>,
                 data_ready: Boolean,
-                make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+                make_data_ready_callback: Option<CMSampleBufferMakeDataReadyCallback>,
                 make_data_ready_refcon: *mut c_void,
                 format_description: Option<&CMFormatDescription>,
                 num_samples: CMItemCount,
@@ -596,7 +596,7 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptions(
     allocator: Option<&CFAllocator>,
     data_buffer: Option<&CMBlockBuffer>,
     data_ready: bool,
-    make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+    make_data_ready_callback: Option<CMSampleBufferMakeDataReadyCallback>,
     make_data_ready_refcon: *mut c_void,
     format_description: &CMFormatDescription,
     num_samples: CMItemCount,
@@ -609,7 +609,7 @@ pub unsafe fn CMAudioSampleBufferCreateWithPacketDescriptions(
             allocator: Option<&CFAllocator>,
             data_buffer: Option<&CMBlockBuffer>,
             data_ready: Boolean,
-            make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+            make_data_ready_callback: Option<CMSampleBufferMakeDataReadyCallback>,
             make_data_ready_refcon: *mut c_void,
             format_description: &CMFormatDescription,
             num_samples: CMItemCount,
@@ -793,7 +793,7 @@ impl CMSampleBuffer {
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
         data_ready: bool,
-        make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+        make_data_ready_callback: Option<CMSampleBufferMakeDataReadyCallback>,
         make_data_ready_refcon: *mut c_void,
         format_description: &CMVideoFormatDescription,
         sample_timing: &CMSampleTimingInfo,
@@ -804,7 +804,7 @@ impl CMSampleBuffer {
                 allocator: Option<&CFAllocator>,
                 image_buffer: &CVImageBuffer,
                 data_ready: Boolean,
-                make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
+                make_data_ready_callback: Option<CMSampleBufferMakeDataReadyCallback>,
                 make_data_ready_refcon: *mut c_void,
                 format_description: &CMVideoFormatDescription,
                 sample_timing: &CMSampleTimingInfo,
@@ -1436,8 +1436,7 @@ impl CMSampleBuffer {
 /// Client callback called by CMSampleBufferInvalidate.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatecallback?language=objc)
-pub type CMSampleBufferInvalidateCallback =
-    Option<unsafe extern "C-unwind" fn(&CMSampleBuffer, u64)>;
+pub type CMSampleBufferInvalidateCallback = unsafe extern "C-unwind" fn(&CMSampleBuffer, u64);
 
 impl CMSampleBuffer {
     /// Sets the sample buffer's invalidation callback, which is called during CMSampleBufferInvalidate.

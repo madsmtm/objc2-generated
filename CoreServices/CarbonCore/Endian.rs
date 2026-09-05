@@ -149,35 +149,34 @@ pub const kCoreEndianResourceManagerDomain: c_uint = 0x72737263;
 pub const kCoreEndianAppleEventManagerDomain: c_uint = 0x61657674;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/coreendianflipproc?language=objc)
-pub type CoreEndianFlipProc = Option<
-    unsafe extern "C-unwind" fn(
-        OSType,
-        OSType,
-        i16,
-        *mut c_void,
-        ByteCount,
-        Boolean,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type CoreEndianFlipProc = unsafe extern "C-unwind" fn(
+    OSType,
+    OSType,
+    i16,
+    *mut c_void,
+    ByteCount,
+    Boolean,
+    *mut c_void,
+) -> OSStatus;
 
 /// # Safety
 ///
 /// - `proc` must be implemented correctly.
+/// - `proc` might not allow `None`.
 /// - `refcon` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn CoreEndianInstallFlipper(
     data_domain: OSType,
     data_type: OSType,
-    proc: CoreEndianFlipProc,
+    proc: Option<CoreEndianFlipProc>,
     refcon: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CoreEndianInstallFlipper(
             data_domain: OSType,
             data_type: OSType,
-            proc: CoreEndianFlipProc,
+            proc: Option<CoreEndianFlipProc>,
             refcon: *mut c_void,
         ) -> OSStatus;
     }
@@ -195,14 +194,14 @@ pub unsafe fn CoreEndianInstallFlipper(
 pub unsafe fn CoreEndianGetFlipper(
     data_domain: OSType,
     data_type: OSType,
-    proc: Option<&mut CoreEndianFlipProc>,
+    proc: Option<&mut Option<CoreEndianFlipProc>>,
     refcon: Option<&mut *mut c_void>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CoreEndianGetFlipper(
             data_domain: OSType,
             data_type: OSType,
-            proc: Option<&mut CoreEndianFlipProc>,
+            proc: Option<&mut Option<CoreEndianFlipProc>>,
             refcon: Option<&mut *mut c_void>,
         ) -> OSStatus;
     }

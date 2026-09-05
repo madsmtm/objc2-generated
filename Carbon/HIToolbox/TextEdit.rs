@@ -15,78 +15,69 @@ pub type TEPtr = *mut TERec;
 pub type TEHandle = *mut TEPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/highhookprocptr?language=objc)
-pub type HighHookProcPtr = Option<unsafe extern "C-unwind" fn(*const Rect, TEPtr)>;
+pub type HighHookProcPtr = unsafe extern "C-unwind" fn(*const Rect, TEPtr);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eolhookprocptr?language=objc)
-pub type EOLHookProcPtr = Option<unsafe extern "C-unwind" fn(c_char, TEPtr, TEHandle) -> Boolean>;
+pub type EOLHookProcPtr = unsafe extern "C-unwind" fn(c_char, TEPtr, TEHandle) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/carethookprocptr?language=objc)
-pub type CaretHookProcPtr = Option<unsafe extern "C-unwind" fn(*const Rect, TEPtr)>;
+pub type CaretHookProcPtr = unsafe extern "C-unwind" fn(*const Rect, TEPtr);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/widthhookprocptr?language=objc)
-pub type WidthHookProcPtr = Option<
-    unsafe extern "C-unwind" fn(c_ushort, c_ushort, *mut c_void, TEPtr, TEHandle) -> c_ushort,
->;
+pub type WidthHookProcPtr =
+    unsafe extern "C-unwind" fn(c_ushort, c_ushort, *mut c_void, TEPtr, TEHandle) -> c_ushort;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/textwidthhookprocptr?language=objc)
-pub type TextWidthHookProcPtr = Option<
-    unsafe extern "C-unwind" fn(c_ushort, c_ushort, *mut c_void, TEPtr, TEHandle) -> c_ushort,
->;
+pub type TextWidthHookProcPtr =
+    unsafe extern "C-unwind" fn(c_ushort, c_ushort, *mut c_void, TEPtr, TEHandle) -> c_ushort;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/nwidthhookprocptr?language=objc)
-pub type NWidthHookProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        c_ushort,
-        c_ushort,
-        c_short,
-        c_short,
-        *mut c_void,
-        *mut c_short,
-        TEPtr,
-        TEHandle,
-    ) -> c_ushort,
->;
+pub type NWidthHookProcPtr = unsafe extern "C-unwind" fn(
+    c_ushort,
+    c_ushort,
+    c_short,
+    c_short,
+    *mut c_void,
+    *mut c_short,
+    TEPtr,
+    TEHandle,
+) -> c_ushort;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/drawhookprocptr?language=objc)
 pub type DrawHookProcPtr =
-    Option<unsafe extern "C-unwind" fn(c_ushort, c_ushort, *mut c_void, TEPtr, TEHandle)>;
+    unsafe extern "C-unwind" fn(c_ushort, c_ushort, *mut c_void, TEPtr, TEHandle);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/hittesthookprocptr?language=objc)
-pub type HitTestHookProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        c_ushort,
-        c_ushort,
-        c_ushort,
-        *mut c_void,
-        TEPtr,
-        TEHandle,
-        *mut c_ushort,
-        *mut c_ushort,
-        *mut Boolean,
-    ) -> Boolean,
->;
+pub type HitTestHookProcPtr = unsafe extern "C-unwind" fn(
+    c_ushort,
+    c_ushort,
+    c_ushort,
+    *mut c_void,
+    TEPtr,
+    TEHandle,
+    *mut c_ushort,
+    *mut c_ushort,
+    *mut Boolean,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/tefindwordprocptr?language=objc)
-pub type TEFindWordProcPtr = Option<
-    unsafe extern "C-unwind" fn(c_ushort, c_short, TEPtr, TEHandle, *mut c_ushort, *mut c_ushort),
->;
+pub type TEFindWordProcPtr =
+    unsafe extern "C-unwind" fn(c_ushort, c_short, TEPtr, TEHandle, *mut c_ushort, *mut c_ushort);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/terecalcprocptr?language=objc)
-pub type TERecalcProcPtr = Option<
-    unsafe extern "C-unwind" fn(TEPtr, c_ushort, *mut c_ushort, *mut c_ushort, *mut c_ushort),
->;
+pub type TERecalcProcPtr =
+    unsafe extern "C-unwind" fn(TEPtr, c_ushort, *mut c_ushort, *mut c_ushort, *mut c_ushort);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/tedotextprocptr?language=objc)
 #[cfg(feature = "objc2-application-services")]
-pub type TEDoTextProcPtr = Option<
-    unsafe extern "C-unwind" fn(TEPtr, c_ushort, c_ushort, c_short, *mut GrafPtr, *mut c_short),
->;
+pub type TEDoTextProcPtr =
+    unsafe extern "C-unwind" fn(TEPtr, c_ushort, c_ushort, c_short, *mut GrafPtr, *mut c_short);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/teclickloopprocptr?language=objc)
-pub type TEClickLoopProcPtr = Option<unsafe extern "C-unwind" fn(TEPtr) -> Boolean>;
+pub type TEClickLoopProcPtr = unsafe extern "C-unwind" fn(TEPtr) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/wordbreakprocptr?language=objc)
-pub type WordBreakProcPtr = Option<unsafe extern "C-unwind" fn(Ptr, c_short) -> Boolean>;
+pub type WordBreakProcPtr = unsafe extern "C-unwind" fn(Ptr, c_short) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/highhookupp?language=objc)
 pub type HighHookUPP = HighHookProcPtr;
@@ -143,8 +134,8 @@ pub struct TERec {
     pub selStart: c_short,
     pub selEnd: c_short,
     pub active: c_short,
-    pub wordBreak: WordBreakUPP,
-    pub clickLoop: TEClickLoopUPP,
+    pub wordBreak: Option<WordBreakUPP>,
+    pub clickLoop: Option<TEClickLoopUPP>,
     pub clickTime: c_long,
     pub clickLoc: c_short,
     pub caretTime: c_long,
@@ -160,8 +151,8 @@ pub struct TERec {
     pub txMode: c_short,
     pub txSize: c_short,
     pub inPort: GrafPtr,
-    pub highHook: HighHookUPP,
-    pub caretHook: CaretHookUPP,
+    pub highHook: Option<HighHookUPP>,
+    pub caretHook: Option<CaretHookUPP>,
     pub nLines: c_short,
     pub lineStarts: [c_short; 16001],
 }
@@ -611,290 +602,310 @@ pub type TEIntHook = c_short;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewHighHookUPP(user_routine: HighHookProcPtr) -> HighHookUPP {
+pub unsafe fn NewHighHookUPP(user_routine: Option<HighHookProcPtr>) -> Option<HighHookUPP> {
     extern "C-unwind" {
-        fn NewHighHookUPP(user_routine: HighHookProcPtr) -> HighHookUPP;
+        fn NewHighHookUPP(user_routine: Option<HighHookProcPtr>) -> Option<HighHookUPP>;
     }
     unsafe { NewHighHookUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewEOLHookUPP(user_routine: EOLHookProcPtr) -> EOLHookUPP {
+pub unsafe fn NewEOLHookUPP(user_routine: Option<EOLHookProcPtr>) -> Option<EOLHookUPP> {
     extern "C-unwind" {
-        fn NewEOLHookUPP(user_routine: EOLHookProcPtr) -> EOLHookUPP;
+        fn NewEOLHookUPP(user_routine: Option<EOLHookProcPtr>) -> Option<EOLHookUPP>;
     }
     unsafe { NewEOLHookUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewCaretHookUPP(user_routine: CaretHookProcPtr) -> CaretHookUPP {
+pub unsafe fn NewCaretHookUPP(user_routine: Option<CaretHookProcPtr>) -> Option<CaretHookUPP> {
     extern "C-unwind" {
-        fn NewCaretHookUPP(user_routine: CaretHookProcPtr) -> CaretHookUPP;
+        fn NewCaretHookUPP(user_routine: Option<CaretHookProcPtr>) -> Option<CaretHookUPP>;
     }
     unsafe { NewCaretHookUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewWidthHookUPP(user_routine: WidthHookProcPtr) -> WidthHookUPP {
+pub unsafe fn NewWidthHookUPP(user_routine: Option<WidthHookProcPtr>) -> Option<WidthHookUPP> {
     extern "C-unwind" {
-        fn NewWidthHookUPP(user_routine: WidthHookProcPtr) -> WidthHookUPP;
+        fn NewWidthHookUPP(user_routine: Option<WidthHookProcPtr>) -> Option<WidthHookUPP>;
     }
     unsafe { NewWidthHookUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewTextWidthHookUPP(user_routine: TextWidthHookProcPtr) -> TextWidthHookUPP {
+pub unsafe fn NewTextWidthHookUPP(
+    user_routine: Option<TextWidthHookProcPtr>,
+) -> Option<TextWidthHookUPP> {
     extern "C-unwind" {
-        fn NewTextWidthHookUPP(user_routine: TextWidthHookProcPtr) -> TextWidthHookUPP;
+        fn NewTextWidthHookUPP(
+            user_routine: Option<TextWidthHookProcPtr>,
+        ) -> Option<TextWidthHookUPP>;
     }
     unsafe { NewTextWidthHookUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewNWidthHookUPP(user_routine: NWidthHookProcPtr) -> NWidthHookUPP {
+pub unsafe fn NewNWidthHookUPP(user_routine: Option<NWidthHookProcPtr>) -> Option<NWidthHookUPP> {
     extern "C-unwind" {
-        fn NewNWidthHookUPP(user_routine: NWidthHookProcPtr) -> NWidthHookUPP;
+        fn NewNWidthHookUPP(user_routine: Option<NWidthHookProcPtr>) -> Option<NWidthHookUPP>;
     }
     unsafe { NewNWidthHookUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewDrawHookUPP(user_routine: DrawHookProcPtr) -> DrawHookUPP {
+pub unsafe fn NewDrawHookUPP(user_routine: Option<DrawHookProcPtr>) -> Option<DrawHookUPP> {
     extern "C-unwind" {
-        fn NewDrawHookUPP(user_routine: DrawHookProcPtr) -> DrawHookUPP;
+        fn NewDrawHookUPP(user_routine: Option<DrawHookProcPtr>) -> Option<DrawHookUPP>;
     }
     unsafe { NewDrawHookUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewHitTestHookUPP(user_routine: HitTestHookProcPtr) -> HitTestHookUPP {
+pub unsafe fn NewHitTestHookUPP(
+    user_routine: Option<HitTestHookProcPtr>,
+) -> Option<HitTestHookUPP> {
     extern "C-unwind" {
-        fn NewHitTestHookUPP(user_routine: HitTestHookProcPtr) -> HitTestHookUPP;
+        fn NewHitTestHookUPP(user_routine: Option<HitTestHookProcPtr>) -> Option<HitTestHookUPP>;
     }
     unsafe { NewHitTestHookUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewTEFindWordUPP(user_routine: TEFindWordProcPtr) -> TEFindWordUPP {
+pub unsafe fn NewTEFindWordUPP(user_routine: Option<TEFindWordProcPtr>) -> Option<TEFindWordUPP> {
     extern "C-unwind" {
-        fn NewTEFindWordUPP(user_routine: TEFindWordProcPtr) -> TEFindWordUPP;
+        fn NewTEFindWordUPP(user_routine: Option<TEFindWordProcPtr>) -> Option<TEFindWordUPP>;
     }
     unsafe { NewTEFindWordUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewTERecalcUPP(user_routine: TERecalcProcPtr) -> TERecalcUPP {
+pub unsafe fn NewTERecalcUPP(user_routine: Option<TERecalcProcPtr>) -> Option<TERecalcUPP> {
     extern "C-unwind" {
-        fn NewTERecalcUPP(user_routine: TERecalcProcPtr) -> TERecalcUPP;
+        fn NewTERecalcUPP(user_routine: Option<TERecalcProcPtr>) -> Option<TERecalcUPP>;
     }
     unsafe { NewTERecalcUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn NewTEDoTextUPP(user_routine: TEDoTextProcPtr) -> TEDoTextUPP {
+pub unsafe fn NewTEDoTextUPP(user_routine: Option<TEDoTextProcPtr>) -> Option<TEDoTextUPP> {
     extern "C-unwind" {
-        fn NewTEDoTextUPP(user_routine: TEDoTextProcPtr) -> TEDoTextUPP;
+        fn NewTEDoTextUPP(user_routine: Option<TEDoTextProcPtr>) -> Option<TEDoTextUPP>;
     }
     unsafe { NewTEDoTextUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewTEClickLoopUPP(user_routine: TEClickLoopProcPtr) -> TEClickLoopUPP {
+pub unsafe fn NewTEClickLoopUPP(
+    user_routine: Option<TEClickLoopProcPtr>,
+) -> Option<TEClickLoopUPP> {
     extern "C-unwind" {
-        fn NewTEClickLoopUPP(user_routine: TEClickLoopProcPtr) -> TEClickLoopUPP;
+        fn NewTEClickLoopUPP(user_routine: Option<TEClickLoopProcPtr>) -> Option<TEClickLoopUPP>;
     }
     unsafe { NewTEClickLoopUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeHighHookUPP(user_upp: HighHookUPP) {
+pub unsafe fn DisposeHighHookUPP(user_upp: *mut HighHookUPP) {
     extern "C-unwind" {
-        fn DisposeHighHookUPP(user_upp: HighHookUPP);
+        fn DisposeHighHookUPP(user_upp: *mut HighHookUPP);
     }
     unsafe { DisposeHighHookUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeEOLHookUPP(user_upp: EOLHookUPP) {
+pub unsafe fn DisposeEOLHookUPP(user_upp: *mut EOLHookUPP) {
     extern "C-unwind" {
-        fn DisposeEOLHookUPP(user_upp: EOLHookUPP);
+        fn DisposeEOLHookUPP(user_upp: *mut EOLHookUPP);
     }
     unsafe { DisposeEOLHookUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeCaretHookUPP(user_upp: CaretHookUPP) {
+pub unsafe fn DisposeCaretHookUPP(user_upp: *mut CaretHookUPP) {
     extern "C-unwind" {
-        fn DisposeCaretHookUPP(user_upp: CaretHookUPP);
+        fn DisposeCaretHookUPP(user_upp: *mut CaretHookUPP);
     }
     unsafe { DisposeCaretHookUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeWidthHookUPP(user_upp: WidthHookUPP) {
+pub unsafe fn DisposeWidthHookUPP(user_upp: *mut WidthHookUPP) {
     extern "C-unwind" {
-        fn DisposeWidthHookUPP(user_upp: WidthHookUPP);
+        fn DisposeWidthHookUPP(user_upp: *mut WidthHookUPP);
     }
     unsafe { DisposeWidthHookUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeTextWidthHookUPP(user_upp: TextWidthHookUPP) {
+pub unsafe fn DisposeTextWidthHookUPP(user_upp: *mut TextWidthHookUPP) {
     extern "C-unwind" {
-        fn DisposeTextWidthHookUPP(user_upp: TextWidthHookUPP);
+        fn DisposeTextWidthHookUPP(user_upp: *mut TextWidthHookUPP);
     }
     unsafe { DisposeTextWidthHookUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeNWidthHookUPP(user_upp: NWidthHookUPP) {
+pub unsafe fn DisposeNWidthHookUPP(user_upp: *mut NWidthHookUPP) {
     extern "C-unwind" {
-        fn DisposeNWidthHookUPP(user_upp: NWidthHookUPP);
+        fn DisposeNWidthHookUPP(user_upp: *mut NWidthHookUPP);
     }
     unsafe { DisposeNWidthHookUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDrawHookUPP(user_upp: DrawHookUPP) {
+pub unsafe fn DisposeDrawHookUPP(user_upp: *mut DrawHookUPP) {
     extern "C-unwind" {
-        fn DisposeDrawHookUPP(user_upp: DrawHookUPP);
+        fn DisposeDrawHookUPP(user_upp: *mut DrawHookUPP);
     }
     unsafe { DisposeDrawHookUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeHitTestHookUPP(user_upp: HitTestHookUPP) {
+pub unsafe fn DisposeHitTestHookUPP(user_upp: *mut HitTestHookUPP) {
     extern "C-unwind" {
-        fn DisposeHitTestHookUPP(user_upp: HitTestHookUPP);
+        fn DisposeHitTestHookUPP(user_upp: *mut HitTestHookUPP);
     }
     unsafe { DisposeHitTestHookUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeTEFindWordUPP(user_upp: TEFindWordUPP) {
+pub unsafe fn DisposeTEFindWordUPP(user_upp: *mut TEFindWordUPP) {
     extern "C-unwind" {
-        fn DisposeTEFindWordUPP(user_upp: TEFindWordUPP);
+        fn DisposeTEFindWordUPP(user_upp: *mut TEFindWordUPP);
     }
     unsafe { DisposeTEFindWordUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeTERecalcUPP(user_upp: TERecalcUPP) {
+pub unsafe fn DisposeTERecalcUPP(user_upp: *mut TERecalcUPP) {
     extern "C-unwind" {
-        fn DisposeTERecalcUPP(user_upp: TERecalcUPP);
+        fn DisposeTERecalcUPP(user_upp: *mut TERecalcUPP);
     }
     unsafe { DisposeTERecalcUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeTEDoTextUPP(user_upp: TEDoTextUPP) {
+pub unsafe fn DisposeTEDoTextUPP(user_upp: *mut TEDoTextUPP) {
     extern "C-unwind" {
-        fn DisposeTEDoTextUPP(user_upp: TEDoTextUPP);
+        fn DisposeTEDoTextUPP(user_upp: *mut TEDoTextUPP);
     }
     unsafe { DisposeTEDoTextUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeTEClickLoopUPP(user_upp: TEClickLoopUPP) {
+pub unsafe fn DisposeTEClickLoopUPP(user_upp: *mut TEClickLoopUPP) {
     extern "C-unwind" {
-        fn DisposeTEClickLoopUPP(user_upp: TEClickLoopUPP);
+        fn DisposeTEClickLoopUPP(user_upp: *mut TEClickLoopUPP);
     }
     unsafe { DisposeTEClickLoopUPP(user_upp) }
 }
@@ -904,11 +915,12 @@ pub unsafe fn DisposeTEClickLoopUPP(user_upp: TEClickLoopUPP) {
 /// - `r` might not allow `None`.
 /// - `p_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeHighHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: HighHookUPP) {
+pub unsafe fn InvokeHighHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: Option<HighHookUPP>) {
     extern "C-unwind" {
-        fn InvokeHighHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: HighHookUPP);
+        fn InvokeHighHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: Option<HighHookUPP>);
     }
     unsafe { InvokeHighHookUPP(r, p_te, user_upp) }
 }
@@ -918,20 +930,21 @@ pub unsafe fn InvokeHighHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: HighHoo
 /// - `p_te` must be a valid pointer.
 /// - `h_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeEOLHookUPP(
     the_char: c_char,
     p_te: TEPtr,
     h_te: TEHandle,
-    user_upp: EOLHookUPP,
+    user_upp: Option<EOLHookUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeEOLHookUPP(
             the_char: c_char,
             p_te: TEPtr,
             h_te: TEHandle,
-            user_upp: EOLHookUPP,
+            user_upp: Option<EOLHookUPP>,
         ) -> Boolean;
     }
     let ret = unsafe { InvokeEOLHookUPP(the_char, p_te, h_te, user_upp) };
@@ -943,11 +956,12 @@ pub unsafe fn InvokeEOLHookUPP(
 /// - `r` might not allow `None`.
 /// - `p_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeCaretHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: CaretHookUPP) {
+pub unsafe fn InvokeCaretHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: Option<CaretHookUPP>) {
     extern "C-unwind" {
-        fn InvokeCaretHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: CaretHookUPP);
+        fn InvokeCaretHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: Option<CaretHookUPP>);
     }
     unsafe { InvokeCaretHookUPP(r, p_te, user_upp) }
 }
@@ -958,6 +972,7 @@ pub unsafe fn InvokeCaretHookUPP(r: Option<&Rect>, p_te: TEPtr, user_upp: CaretH
 /// - `p_te` must be a valid pointer.
 /// - `h_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeWidthHookUPP(
@@ -966,7 +981,7 @@ pub unsafe fn InvokeWidthHookUPP(
     text_buffer_ptr: *mut c_void,
     p_te: TEPtr,
     h_te: TEHandle,
-    user_upp: WidthHookUPP,
+    user_upp: Option<WidthHookUPP>,
 ) -> c_ushort {
     extern "C-unwind" {
         fn InvokeWidthHookUPP(
@@ -975,7 +990,7 @@ pub unsafe fn InvokeWidthHookUPP(
             text_buffer_ptr: *mut c_void,
             p_te: TEPtr,
             h_te: TEHandle,
-            user_upp: WidthHookUPP,
+            user_upp: Option<WidthHookUPP>,
         ) -> c_ushort;
     }
     unsafe { InvokeWidthHookUPP(text_len, text_offset, text_buffer_ptr, p_te, h_te, user_upp) }
@@ -987,6 +1002,7 @@ pub unsafe fn InvokeWidthHookUPP(
 /// - `p_te` must be a valid pointer.
 /// - `h_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeTextWidthHookUPP(
@@ -995,7 +1011,7 @@ pub unsafe fn InvokeTextWidthHookUPP(
     text_buffer_ptr: *mut c_void,
     p_te: TEPtr,
     h_te: TEHandle,
-    user_upp: TextWidthHookUPP,
+    user_upp: Option<TextWidthHookUPP>,
 ) -> c_ushort {
     extern "C-unwind" {
         fn InvokeTextWidthHookUPP(
@@ -1004,7 +1020,7 @@ pub unsafe fn InvokeTextWidthHookUPP(
             text_buffer_ptr: *mut c_void,
             p_te: TEPtr,
             h_te: TEHandle,
-            user_upp: TextWidthHookUPP,
+            user_upp: Option<TextWidthHookUPP>,
         ) -> c_ushort;
     }
     unsafe { InvokeTextWidthHookUPP(text_len, text_offset, text_buffer_ptr, p_te, h_te, user_upp) }
@@ -1017,6 +1033,7 @@ pub unsafe fn InvokeTextWidthHookUPP(
 /// - `p_te` must be a valid pointer.
 /// - `h_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeNWidthHookUPP(
@@ -1028,7 +1045,7 @@ pub unsafe fn InvokeNWidthHookUPP(
     line_start: Option<&mut c_short>,
     p_te: TEPtr,
     h_te: TEHandle,
-    user_upp: NWidthHookUPP,
+    user_upp: Option<NWidthHookUPP>,
 ) -> c_ushort {
     extern "C-unwind" {
         fn InvokeNWidthHookUPP(
@@ -1040,7 +1057,7 @@ pub unsafe fn InvokeNWidthHookUPP(
             line_start: Option<&mut c_short>,
             p_te: TEPtr,
             h_te: TEHandle,
-            user_upp: NWidthHookUPP,
+            user_upp: Option<NWidthHookUPP>,
         ) -> c_ushort;
     }
     unsafe {
@@ -1064,6 +1081,7 @@ pub unsafe fn InvokeNWidthHookUPP(
 /// - `p_te` must be a valid pointer.
 /// - `h_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeDrawHookUPP(
@@ -1072,7 +1090,7 @@ pub unsafe fn InvokeDrawHookUPP(
     text_buffer_ptr: *mut c_void,
     p_te: TEPtr,
     h_te: TEHandle,
-    user_upp: DrawHookUPP,
+    user_upp: Option<DrawHookUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDrawHookUPP(
@@ -1081,7 +1099,7 @@ pub unsafe fn InvokeDrawHookUPP(
             text_buffer_ptr: *mut c_void,
             p_te: TEPtr,
             h_te: TEHandle,
-            user_upp: DrawHookUPP,
+            user_upp: Option<DrawHookUPP>,
         );
     }
     unsafe { InvokeDrawHookUPP(text_offset, draw_len, text_buffer_ptr, p_te, h_te, user_upp) }
@@ -1096,6 +1114,7 @@ pub unsafe fn InvokeDrawHookUPP(
 /// - `char_offset` might not allow `None`.
 /// - `pixel_in_char` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeHitTestHookUPP(
@@ -1108,7 +1127,7 @@ pub unsafe fn InvokeHitTestHookUPP(
     pixel_width: Option<&mut c_ushort>,
     char_offset: Option<&mut c_ushort>,
     pixel_in_char: Option<&mut Boolean>,
-    user_upp: HitTestHookUPP,
+    user_upp: Option<HitTestHookUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeHitTestHookUPP(
@@ -1121,7 +1140,7 @@ pub unsafe fn InvokeHitTestHookUPP(
             pixel_width: Option<&mut c_ushort>,
             char_offset: Option<&mut c_ushort>,
             pixel_in_char: Option<&mut Boolean>,
-            user_upp: HitTestHookUPP,
+            user_upp: Option<HitTestHookUPP>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -1148,6 +1167,7 @@ pub unsafe fn InvokeHitTestHookUPP(
 /// - `word_start` might not allow `None`.
 /// - `word_end` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeTEFindWordUPP(
@@ -1157,7 +1177,7 @@ pub unsafe fn InvokeTEFindWordUPP(
     h_te: TEHandle,
     word_start: Option<&mut c_ushort>,
     word_end: Option<&mut c_ushort>,
-    user_upp: TEFindWordUPP,
+    user_upp: Option<TEFindWordUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeTEFindWordUPP(
@@ -1167,7 +1187,7 @@ pub unsafe fn InvokeTEFindWordUPP(
             h_te: TEHandle,
             word_start: Option<&mut c_ushort>,
             word_end: Option<&mut c_ushort>,
-            user_upp: TEFindWordUPP,
+            user_upp: Option<TEFindWordUPP>,
         );
     }
     unsafe {
@@ -1190,6 +1210,7 @@ pub unsafe fn InvokeTEFindWordUPP(
 /// - `first_char` might not allow `None`.
 /// - `last_char` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeTERecalcUPP(
@@ -1198,7 +1219,7 @@ pub unsafe fn InvokeTERecalcUPP(
     line_start: Option<&mut c_ushort>,
     first_char: Option<&mut c_ushort>,
     last_char: Option<&mut c_ushort>,
-    user_upp: TERecalcUPP,
+    user_upp: Option<TERecalcUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeTERecalcUPP(
@@ -1207,7 +1228,7 @@ pub unsafe fn InvokeTERecalcUPP(
             line_start: Option<&mut c_ushort>,
             first_char: Option<&mut c_ushort>,
             last_char: Option<&mut c_ushort>,
-            user_upp: TERecalcUPP,
+            user_upp: Option<TERecalcUPP>,
         );
     }
     unsafe {
@@ -1229,6 +1250,7 @@ pub unsafe fn InvokeTERecalcUPP(
 /// - `current_graf_port` might not allow `None`.
 /// - `char_position` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
@@ -1239,7 +1261,7 @@ pub unsafe fn InvokeTEDoTextUPP(
     selector: c_short,
     current_graf_port: Option<&mut GrafPtr>,
     char_position: Option<&mut c_short>,
-    user_upp: TEDoTextUPP,
+    user_upp: Option<TEDoTextUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeTEDoTextUPP(
@@ -1249,7 +1271,7 @@ pub unsafe fn InvokeTEDoTextUPP(
             selector: c_short,
             current_graf_port: Option<&mut GrafPtr>,
             char_position: Option<&mut c_short>,
-            user_upp: TEDoTextUPP,
+            user_upp: Option<TEDoTextUPP>,
         );
     }
     unsafe {
@@ -1269,11 +1291,12 @@ pub unsafe fn InvokeTEDoTextUPP(
 ///
 /// - `p_te` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeTEClickLoopUPP(p_te: TEPtr, user_upp: TEClickLoopUPP) -> bool {
+pub unsafe fn InvokeTEClickLoopUPP(p_te: TEPtr, user_upp: Option<TEClickLoopUPP>) -> bool {
     extern "C-unwind" {
-        fn InvokeTEClickLoopUPP(p_te: TEPtr, user_upp: TEClickLoopUPP) -> Boolean;
+        fn InvokeTEClickLoopUPP(p_te: TEPtr, user_upp: Option<TEClickLoopUPP>) -> Boolean;
     }
     let ret = unsafe { InvokeTEClickLoopUPP(p_te, user_upp) };
     ret != 0

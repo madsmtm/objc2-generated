@@ -490,31 +490,36 @@ unsafe impl RefEncode for ExceptionInformation {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/exceptionhandlerprocptr?language=objc)
 pub type ExceptionHandlerProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut ExceptionInformation) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*mut ExceptionInformation) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/exceptionhandlerupp?language=objc)
 pub type ExceptionHandlerUPP = ExceptionHandlerProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe fn NewExceptionHandlerUPP(user_routine: ExceptionHandlerProcPtr) -> ExceptionHandlerUPP {
+pub unsafe fn NewExceptionHandlerUPP(
+    user_routine: Option<ExceptionHandlerProcPtr>,
+) -> Option<ExceptionHandlerUPP> {
     extern "C-unwind" {
-        fn NewExceptionHandlerUPP(user_routine: ExceptionHandlerProcPtr) -> ExceptionHandlerUPP;
+        fn NewExceptionHandlerUPP(
+            user_routine: Option<ExceptionHandlerProcPtr>,
+        ) -> Option<ExceptionHandlerUPP>;
     }
     unsafe { NewExceptionHandlerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe fn DisposeExceptionHandlerUPP(user_upp: ExceptionHandlerUPP) {
+pub unsafe fn DisposeExceptionHandlerUPP(user_upp: *mut ExceptionHandlerUPP) {
     extern "C-unwind" {
-        fn DisposeExceptionHandlerUPP(user_upp: ExceptionHandlerUPP);
+        fn DisposeExceptionHandlerUPP(user_upp: *mut ExceptionHandlerUPP);
     }
     unsafe { DisposeExceptionHandlerUPP(user_upp) }
 }
@@ -528,16 +533,17 @@ pub unsafe fn DisposeExceptionHandlerUPP(user_upp: ExceptionHandlerUPP) {
 /// - `the_exception` struct field `vectorImage` must be a valid pointer.
 /// - `the_exception` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe fn InvokeExceptionHandlerUPP(
     the_exception: Option<&mut ExceptionInformation>,
-    user_upp: ExceptionHandlerUPP,
+    user_upp: Option<ExceptionHandlerUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeExceptionHandlerUPP(
             the_exception: Option<&mut ExceptionInformation>,
-            user_upp: ExceptionHandlerUPP,
+            user_upp: Option<ExceptionHandlerUPP>,
         ) -> OSStatus;
     }
     unsafe { InvokeExceptionHandlerUPP(the_exception, user_upp) }
@@ -561,12 +567,17 @@ pub type ExceptionHandler = ExceptionHandlerTPP;
 ///
 /// # Safety
 ///
-/// `the_handler` must be implemented correctly.
+/// - `the_handler` must be implemented correctly.
+/// - `the_handler` might not allow `None`.
 #[deprecated = "No longer support"]
 #[inline]
-pub unsafe fn InstallExceptionHandler(the_handler: ExceptionHandlerTPP) -> ExceptionHandlerTPP {
+pub unsafe fn InstallExceptionHandler(
+    the_handler: Option<ExceptionHandlerTPP>,
+) -> Option<ExceptionHandlerTPP> {
     extern "C-unwind" {
-        fn InstallExceptionHandler(the_handler: ExceptionHandlerTPP) -> ExceptionHandlerTPP;
+        fn InstallExceptionHandler(
+            the_handler: Option<ExceptionHandlerTPP>,
+        ) -> Option<ExceptionHandlerTPP>;
     }
     unsafe { InstallExceptionHandler(the_handler) }
 }

@@ -21,7 +21,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetretaincallback?language=objc)
 pub type CFSetRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void>;
+    unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void;
 
 /// Type of the callback function used by CFSets for releasing a retain on values.
 ///
@@ -30,8 +30,7 @@ pub type CFSetRetainCallBack =
 /// Parameter `value`: The value to release.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreleasecallback?language=objc)
-pub type CFSetReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void)>;
+pub type CFSetReleaseCallBack = unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void);
 
 /// Type of the callback function used by CFSets for describing values.
 ///
@@ -41,7 +40,7 @@ pub type CFSetReleaseCallBack =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcopydescriptioncallback?language=objc)
 pub type CFSetCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
+    unsafe extern "C-unwind" fn(*const c_void) -> *const CFString;
 
 /// Type of the callback function used by CFSets for comparing values.
 ///
@@ -52,8 +51,7 @@ pub type CFSetCopyDescriptionCallBack =
 /// Returns: True if the values are equal, otherwise false.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetequalcallback?language=objc)
-pub type CFSetEqualCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
+pub type CFSetEqualCallBack = unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean;
 
 /// Type of the callback function used by CFSets for hashing values.
 ///
@@ -62,7 +60,7 @@ pub type CFSetEqualCallBack =
 /// Returns: The hash of the value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsethashcallback?language=objc)
-pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
+pub type CFSetHashCallBack = unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode;
 
 /// Structure containing the callbacks of a CFSet.
 ///
@@ -98,11 +96,11 @@ pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFSetCallBacks {
     pub version: CFIndex,
-    pub retain: CFSetRetainCallBack,
-    pub release: CFSetReleaseCallBack,
-    pub copyDescription: CFSetCopyDescriptionCallBack,
-    pub equal: CFSetEqualCallBack,
-    pub hash: CFSetHashCallBack,
+    pub retain: Option<CFSetRetainCallBack>,
+    pub release: Option<CFSetReleaseCallBack>,
+    pub copyDescription: Option<CFSetCopyDescriptionCallBack>,
+    pub equal: Option<CFSetEqualCallBack>,
+    pub hash: Option<CFSetHashCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -151,7 +149,7 @@ extern "C" {
 /// function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetapplierfunction?language=objc)
-pub type CFSetApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
+pub type CFSetApplierFunction = unsafe extern "C-unwind" fn(*const c_void, *mut c_void);
 
 /// This is the type of a reference to immutable CFSets.
 ///
@@ -690,14 +688,19 @@ impl<T: Sized> CFSet<T> {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
+    /// - `applier` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFSetApplyFunction")]
     #[inline]
-    pub unsafe fn apply_function(&self, applier: CFSetApplierFunction, context: *mut c_void) {
+    pub unsafe fn apply_function(
+        &self,
+        applier: Option<CFSetApplierFunction>,
+        context: *mut c_void,
+    ) {
         extern "C-unwind" {
             fn CFSetApplyFunction(
                 the_set: &CFSet,
-                applier: CFSetApplierFunction,
+                applier: Option<CFSetApplierFunction>,
                 context: *mut c_void,
             );
         }

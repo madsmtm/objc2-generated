@@ -27,7 +27,7 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcallback?language=objc)
 pub type CFUserNotificationCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFUserNotification>, CFOptionFlags)>;
+    unsafe extern "C-unwind" fn(Option<&CFUserNotification>, CFOptionFlags);
 
 unsafe impl ConcreteType for CFUserNotification {
     #[doc(alias = "CFUserNotificationGetTypeID")]
@@ -150,21 +150,22 @@ impl CFUserNotification {
 
     /// # Safety
     ///
-    /// `callout` must be implemented correctly.
+    /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     #[doc(alias = "CFUserNotificationCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
     pub unsafe fn run_loop_source(
         &self,
         allocator: Option<&CFAllocator>,
-        callout: CFUserNotificationCallBack,
+        callout: Option<CFUserNotificationCallBack>,
         order: CFIndex,
     ) -> Option<CFRetained<CFRunLoopSource>> {
         extern "C-unwind" {
             fn CFUserNotificationCreateRunLoopSource(
                 allocator: Option<&CFAllocator>,
                 user_notification: &CFUserNotification,
-                callout: CFUserNotificationCallBack,
+                callout: Option<CFUserNotificationCallBack>,
                 order: CFIndex,
             ) -> Option<NonNull<CFRunLoopSource>>;
         }

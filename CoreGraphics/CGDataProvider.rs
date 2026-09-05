@@ -28,18 +28,18 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytescallback?language=objc)
 pub type CGDataProviderGetBytesCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize) -> usize>;
+    unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize) -> usize;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderskipforwardcallback?language=objc)
 #[cfg(feature = "libc")]
 pub type CGDataProviderSkipForwardCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, libc::off_t) -> libc::off_t>;
+    unsafe extern "C-unwind" fn(*mut c_void, libc::off_t) -> libc::off_t;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderrewindcallback?language=objc)
-pub type CGDataProviderRewindCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type CGDataProviderRewindCallback = unsafe extern "C-unwind" fn(*mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleaseinfocallback?language=objc)
-pub type CGDataProviderReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type CGDataProviderReleaseInfoCallback = unsafe extern "C-unwind" fn(*mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks?language=objc)
 #[cfg(feature = "libc")]
@@ -48,10 +48,10 @@ pub type CGDataProviderReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGDataProviderSequentialCallbacks {
     pub version: c_uint,
-    pub getBytes: CGDataProviderGetBytesCallback,
-    pub skipForward: CGDataProviderSkipForwardCallback,
-    pub rewind: CGDataProviderRewindCallback,
-    pub releaseInfo: CGDataProviderReleaseInfoCallback,
+    pub getBytes: Option<CGDataProviderGetBytesCallback>,
+    pub skipForward: Option<CGDataProviderSkipForwardCallback>,
+    pub rewind: Option<CGDataProviderRewindCallback>,
+    pub releaseInfo: Option<CGDataProviderReleaseInfoCallback>,
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -75,16 +75,16 @@ unsafe impl RefEncode for CGDataProviderSequentialCallbacks {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytepointercallback?language=objc)
 pub type CGDataProviderGetBytePointerCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> *const c_void>;
+    unsafe extern "C-unwind" fn(*mut c_void) -> *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasebytepointercallback?language=objc)
 pub type CGDataProviderReleaseBytePointerCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>)>;
+    unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytesatpositioncallback?language=objc)
 #[cfg(feature = "libc")]
 pub type CGDataProviderGetBytesAtPositionCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, libc::off_t, usize) -> usize>;
+    unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, libc::off_t, usize) -> usize;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderdirectcallbacks?language=objc)
 #[cfg(feature = "libc")]
@@ -93,10 +93,10 @@ pub type CGDataProviderGetBytesAtPositionCallback =
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGDataProviderDirectCallbacks {
     pub version: c_uint,
-    pub getBytePointer: CGDataProviderGetBytePointerCallback,
-    pub releaseBytePointer: CGDataProviderReleaseBytePointerCallback,
-    pub getBytesAtPosition: CGDataProviderGetBytesAtPositionCallback,
-    pub releaseInfo: CGDataProviderReleaseInfoCallback,
+    pub getBytePointer: Option<CGDataProviderGetBytePointerCallback>,
+    pub releaseBytePointer: Option<CGDataProviderReleaseBytePointerCallback>,
+    pub getBytesAtPosition: Option<CGDataProviderGetBytesAtPositionCallback>,
+    pub releaseInfo: Option<CGDataProviderReleaseInfoCallback>,
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -185,7 +185,7 @@ impl CGDataProvider {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasedatacallback?language=objc)
 pub type CGDataProviderReleaseDataCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize)>;
+    unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize);
 
 impl CGDataProvider {
     /// # Safety

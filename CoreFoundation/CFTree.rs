@@ -20,7 +20,7 @@ use crate::*;
 /// Returns: The retained info parameter.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeretaincallback?language=objc)
-pub type CFTreeRetainCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>;
+pub type CFTreeRetainCallBack = unsafe extern "C-unwind" fn(*const c_void) -> *const c_void;
 
 /// Type of the callback function used to remove a retain previously
 /// added to the user-specified info parameter.
@@ -28,7 +28,7 @@ pub type CFTreeRetainCallBack = Option<unsafe extern "C-unwind" fn(*const c_void
 /// Parameter `info`: A user-supplied info parameter provided in a CFTreeContext.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreereleasecallback?language=objc)
-pub type CFTreeReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
+pub type CFTreeReleaseCallBack = unsafe extern "C-unwind" fn(*const c_void);
 
 /// Type of the callback function used to provide a description of the
 /// user-specified info parameter.
@@ -39,7 +39,7 @@ pub type CFTreeReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_voi
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecopydescriptioncallback?language=objc)
 pub type CFTreeCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
+    unsafe extern "C-unwind" fn(*const c_void) -> *const CFString;
 
 /// Structure containing user-specified data and callbacks for a CFTree.
 ///
@@ -68,9 +68,9 @@ pub type CFTreeCopyDescriptionCallBack =
 pub struct CFTreeContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: CFTreeRetainCallBack,
-    pub release: CFTreeReleaseCallBack,
-    pub copyDescription: CFTreeCopyDescriptionCallBack,
+    pub retain: Option<CFTreeRetainCallBack>,
+    pub release: Option<CFTreeReleaseCallBack>,
+    pub copyDescription: Option<CFTreeCopyDescriptionCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -101,7 +101,7 @@ unsafe impl RefEncode for CFTreeContext {
 /// function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeapplierfunction?language=objc)
-pub type CFTreeApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
+pub type CFTreeApplierFunction = unsafe extern "C-unwind" fn(*const c_void, *mut c_void);
 
 /// This is the type of a reference to CFTrees.
 ///
@@ -328,18 +328,19 @@ impl CFTree {
     /// # Safety
     ///
     /// - `applier` must be implemented correctly.
+    /// - `applier` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFTreeApplyFunctionToChildren")]
     #[inline]
     pub unsafe fn apply_function_to_children(
         &self,
-        applier: CFTreeApplierFunction,
+        applier: Option<CFTreeApplierFunction>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn CFTreeApplyFunctionToChildren(
                 tree: &CFTree,
-                applier: CFTreeApplierFunction,
+                applier: Option<CFTreeApplierFunction>,
                 context: *mut c_void,
             );
         }
@@ -497,14 +498,19 @@ impl CFTree {
     /// # Safety
     ///
     /// - `comparator` must be implemented correctly.
+    /// - `comparator` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFTreeSortChildren")]
     #[inline]
-    pub unsafe fn sort_children(&self, comparator: CFComparatorFunction, context: *mut c_void) {
+    pub unsafe fn sort_children(
+        &self,
+        comparator: Option<CFComparatorFunction>,
+        context: *mut c_void,
+    ) {
         extern "C-unwind" {
             fn CFTreeSortChildren(
                 tree: &CFTree,
-                comparator: CFComparatorFunction,
+                comparator: Option<CFComparatorFunction>,
                 context: *mut c_void,
             );
         }

@@ -258,49 +258,41 @@ pub type HMHelpContentPtr = *mut HMHelpContentRec;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/hmcontrolcontentprocptr?language=objc)
 #[cfg(all(feature = "HIObject", feature = "TextEdit"))]
-pub type HMControlContentProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        Point,
-        HMContentRequest,
-        *mut HMContentProvidedType,
-        *mut HMHelpContentRec,
-    ) -> OSStatus,
->;
+pub type HMControlContentProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    Point,
+    HMContentRequest,
+    *mut HMContentProvidedType,
+    *mut HMHelpContentRec,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/hmwindowcontentprocptr?language=objc)
 #[cfg(all(feature = "TextEdit", feature = "objc2-application-services"))]
-pub type HMWindowContentProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        WindowRef,
-        Point,
-        HMContentRequest,
-        *mut HMContentProvidedType,
-        *mut HMHelpContentRec,
-    ) -> OSStatus,
->;
+pub type HMWindowContentProcPtr = unsafe extern "C-unwind" fn(
+    WindowRef,
+    Point,
+    HMContentRequest,
+    *mut HMContentProvidedType,
+    *mut HMHelpContentRec,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/hmmenutitlecontentprocptr?language=objc)
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
-pub type HMMenuTitleContentProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Menu>,
-        HMContentRequest,
-        *mut HMContentProvidedType,
-        *mut HMHelpContentRec,
-    ) -> OSStatus,
->;
+pub type HMMenuTitleContentProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Menu>,
+    HMContentRequest,
+    *mut HMContentProvidedType,
+    *mut HMHelpContentRec,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/hmmenuitemcontentprocptr?language=objc)
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
-pub type HMMenuItemContentProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *const MenuTrackingData,
-        HMContentRequest,
-        *mut HMContentProvidedType,
-        *mut HMHelpContentRec,
-    ) -> OSStatus,
->;
+pub type HMMenuItemContentProcPtr = unsafe extern "C-unwind" fn(
+    *const MenuTrackingData,
+    HMContentRequest,
+    *mut HMContentProvidedType,
+    *mut HMHelpContentRec,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/hmcontrolcontentupp?language=objc)
 #[cfg(all(feature = "HIObject", feature = "TextEdit"))]
@@ -320,102 +312,116 @@ pub type HMMenuItemContentUPP = HMMenuItemContentProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "TextEdit"))]
 #[inline]
-pub unsafe fn NewHMControlContentUPP(user_routine: HMControlContentProcPtr) -> HMControlContentUPP {
+pub unsafe fn NewHMControlContentUPP(
+    user_routine: Option<HMControlContentProcPtr>,
+) -> Option<HMControlContentUPP> {
     extern "C-unwind" {
-        fn NewHMControlContentUPP(user_routine: HMControlContentProcPtr) -> HMControlContentUPP;
+        fn NewHMControlContentUPP(
+            user_routine: Option<HMControlContentProcPtr>,
+        ) -> Option<HMControlContentUPP>;
     }
     unsafe { NewHMControlContentUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "TextEdit", feature = "objc2-application-services"))]
 #[inline]
-pub unsafe fn NewHMWindowContentUPP(user_routine: HMWindowContentProcPtr) -> HMWindowContentUPP {
+pub unsafe fn NewHMWindowContentUPP(
+    user_routine: Option<HMWindowContentProcPtr>,
+) -> Option<HMWindowContentUPP> {
     extern "C-unwind" {
-        fn NewHMWindowContentUPP(user_routine: HMWindowContentProcPtr) -> HMWindowContentUPP;
+        fn NewHMWindowContentUPP(
+            user_routine: Option<HMWindowContentProcPtr>,
+        ) -> Option<HMWindowContentUPP>;
     }
     unsafe { NewHMWindowContentUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
 #[inline]
 pub unsafe fn NewHMMenuTitleContentUPP(
-    user_routine: HMMenuTitleContentProcPtr,
-) -> HMMenuTitleContentUPP {
+    user_routine: Option<HMMenuTitleContentProcPtr>,
+) -> Option<HMMenuTitleContentUPP> {
     extern "C-unwind" {
         fn NewHMMenuTitleContentUPP(
-            user_routine: HMMenuTitleContentProcPtr,
-        ) -> HMMenuTitleContentUPP;
+            user_routine: Option<HMMenuTitleContentProcPtr>,
+        ) -> Option<HMMenuTitleContentUPP>;
     }
     unsafe { NewHMMenuTitleContentUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
 #[inline]
 pub unsafe fn NewHMMenuItemContentUPP(
-    user_routine: HMMenuItemContentProcPtr,
-) -> HMMenuItemContentUPP {
+    user_routine: Option<HMMenuItemContentProcPtr>,
+) -> Option<HMMenuItemContentUPP> {
     extern "C-unwind" {
-        fn NewHMMenuItemContentUPP(user_routine: HMMenuItemContentProcPtr) -> HMMenuItemContentUPP;
+        fn NewHMMenuItemContentUPP(
+            user_routine: Option<HMMenuItemContentProcPtr>,
+        ) -> Option<HMMenuItemContentUPP>;
     }
     unsafe { NewHMMenuItemContentUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "HIObject", feature = "TextEdit"))]
 #[inline]
-pub unsafe fn DisposeHMControlContentUPP(user_upp: HMControlContentUPP) {
+pub unsafe fn DisposeHMControlContentUPP(user_upp: *mut HMControlContentUPP) {
     extern "C-unwind" {
-        fn DisposeHMControlContentUPP(user_upp: HMControlContentUPP);
+        fn DisposeHMControlContentUPP(user_upp: *mut HMControlContentUPP);
     }
     unsafe { DisposeHMControlContentUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "TextEdit", feature = "objc2-application-services"))]
 #[inline]
-pub unsafe fn DisposeHMWindowContentUPP(user_upp: HMWindowContentUPP) {
+pub unsafe fn DisposeHMWindowContentUPP(user_upp: *mut HMWindowContentUPP) {
     extern "C-unwind" {
-        fn DisposeHMWindowContentUPP(user_upp: HMWindowContentUPP);
+        fn DisposeHMWindowContentUPP(user_upp: *mut HMWindowContentUPP);
     }
     unsafe { DisposeHMWindowContentUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
 #[inline]
-pub unsafe fn DisposeHMMenuTitleContentUPP(user_upp: HMMenuTitleContentUPP) {
+pub unsafe fn DisposeHMMenuTitleContentUPP(user_upp: *mut HMMenuTitleContentUPP) {
     extern "C-unwind" {
-        fn DisposeHMMenuTitleContentUPP(user_upp: HMMenuTitleContentUPP);
+        fn DisposeHMMenuTitleContentUPP(user_upp: *mut HMMenuTitleContentUPP);
     }
     unsafe { DisposeHMMenuTitleContentUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
 #[inline]
-pub unsafe fn DisposeHMMenuItemContentUPP(user_upp: HMMenuItemContentUPP) {
+pub unsafe fn DisposeHMMenuItemContentUPP(user_upp: *mut HMMenuItemContentUPP) {
     extern "C-unwind" {
-        fn DisposeHMMenuItemContentUPP(user_upp: HMMenuItemContentUPP);
+        fn DisposeHMMenuItemContentUPP(user_upp: *mut HMMenuItemContentUPP);
     }
     unsafe { DisposeHMMenuItemContentUPP(user_upp) }
 }
@@ -427,6 +433,7 @@ pub unsafe fn DisposeHMMenuItemContentUPP(user_upp: HMMenuItemContentUPP) {
 /// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
 /// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "HIObject", feature = "TextEdit"))]
 #[inline]
 pub unsafe fn InvokeHMControlContentUPP(
@@ -435,7 +442,7 @@ pub unsafe fn InvokeHMControlContentUPP(
     in_request: HMContentRequest,
     out_content_provided: Option<&mut HMContentProvidedType>,
     io_help_content: Option<&mut HMHelpContentRec>,
-    user_upp: HMControlContentUPP,
+    user_upp: Option<HMControlContentUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeHMControlContentUPP(
@@ -444,7 +451,7 @@ pub unsafe fn InvokeHMControlContentUPP(
             in_request: HMContentRequest,
             out_content_provided: Option<&mut HMContentProvidedType>,
             io_help_content: Option<&mut HMHelpContentRec>,
-            user_upp: HMControlContentUPP,
+            user_upp: Option<HMControlContentUPP>,
         ) -> OSStatus;
     }
     unsafe {
@@ -467,6 +474,7 @@ pub unsafe fn InvokeHMControlContentUPP(
 /// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
 /// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "TextEdit", feature = "objc2-application-services"))]
 #[inline]
 pub unsafe fn InvokeHMWindowContentUPP(
@@ -475,7 +483,7 @@ pub unsafe fn InvokeHMWindowContentUPP(
     in_request: HMContentRequest,
     out_content_provided: Option<&mut HMContentProvidedType>,
     io_help_content: Option<&mut HMHelpContentRec>,
-    user_upp: HMWindowContentUPP,
+    user_upp: Option<HMWindowContentUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeHMWindowContentUPP(
@@ -484,7 +492,7 @@ pub unsafe fn InvokeHMWindowContentUPP(
             in_request: HMContentRequest,
             out_content_provided: Option<&mut HMContentProvidedType>,
             io_help_content: Option<&mut HMHelpContentRec>,
-            user_upp: HMWindowContentUPP,
+            user_upp: Option<HMWindowContentUPP>,
         ) -> OSStatus;
     }
     unsafe {
@@ -506,6 +514,7 @@ pub unsafe fn InvokeHMWindowContentUPP(
 /// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
 /// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
 #[inline]
 pub unsafe fn InvokeHMMenuTitleContentUPP(
@@ -513,7 +522,7 @@ pub unsafe fn InvokeHMMenuTitleContentUPP(
     in_request: HMContentRequest,
     out_content_provided: Option<&mut HMContentProvidedType>,
     io_help_content: Option<&mut HMHelpContentRec>,
-    user_upp: HMMenuTitleContentUPP,
+    user_upp: Option<HMMenuTitleContentUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeHMMenuTitleContentUPP(
@@ -521,7 +530,7 @@ pub unsafe fn InvokeHMMenuTitleContentUPP(
             in_request: HMContentRequest,
             out_content_provided: Option<&mut HMContentProvidedType>,
             io_help_content: Option<&mut HMHelpContentRec>,
-            user_upp: HMMenuTitleContentUPP,
+            user_upp: Option<HMMenuTitleContentUPP>,
         ) -> OSStatus;
     }
     unsafe {
@@ -544,6 +553,7 @@ pub unsafe fn InvokeHMMenuTitleContentUPP(
 /// - `io_help_content` struct field `content` array element struct field `u` must be correctly initialized.
 /// - `io_help_content` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Menus", feature = "TextEdit"))]
 #[inline]
 pub unsafe fn InvokeHMMenuItemContentUPP(
@@ -551,7 +561,7 @@ pub unsafe fn InvokeHMMenuItemContentUPP(
     in_request: HMContentRequest,
     out_content_provided: Option<&mut HMContentProvidedType>,
     io_help_content: Option<&mut HMHelpContentRec>,
-    user_upp: HMMenuItemContentUPP,
+    user_upp: Option<HMMenuItemContentUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeHMMenuItemContentUPP(
@@ -559,7 +569,7 @@ pub unsafe fn InvokeHMMenuItemContentUPP(
             in_request: HMContentRequest,
             out_content_provided: Option<&mut HMContentProvidedType>,
             io_help_content: Option<&mut HMHelpContentRec>,
-            user_upp: HMMenuItemContentUPP,
+            user_upp: Option<HMMenuItemContentUPP>,
         ) -> OSStatus;
     }
     unsafe {

@@ -11,22 +11,20 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagretaincallback?language=objc)
 pub type CFBagRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void>;
+    unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagreleasecallback?language=objc)
-pub type CFBagReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void)>;
+pub type CFBagReleaseCallBack = unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcopydescriptioncallback?language=objc)
 pub type CFBagCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
+    unsafe extern "C-unwind" fn(*const c_void) -> *const CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagequalcallback?language=objc)
-pub type CFBagEqualCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
+pub type CFBagEqualCallBack = unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaghashcallback?language=objc)
-pub type CFBagHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
+pub type CFBagHashCallBack = unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks?language=objc)
 #[repr(C)]
@@ -34,11 +32,11 @@ pub type CFBagHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFBagCallBacks {
     pub version: CFIndex,
-    pub retain: CFBagRetainCallBack,
-    pub release: CFBagReleaseCallBack,
-    pub copyDescription: CFBagCopyDescriptionCallBack,
-    pub equal: CFBagEqualCallBack,
-    pub hash: CFBagHashCallBack,
+    pub retain: Option<CFBagRetainCallBack>,
+    pub release: Option<CFBagReleaseCallBack>,
+    pub copyDescription: Option<CFBagCopyDescriptionCallBack>,
+    pub equal: Option<CFBagEqualCallBack>,
+    pub hash: Option<CFBagHashCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -72,7 +70,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagapplierfunction?language=objc)
-pub type CFBagApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
+pub type CFBagApplierFunction = unsafe extern "C-unwind" fn(*const c_void, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbag?language=objc)
 #[doc(alias = "CFBagRef")]
@@ -366,14 +364,19 @@ impl<T: Sized> CFBag<T> {
     ///
     /// - `the_bag` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
+    /// - `applier` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFBagApplyFunction")]
     #[inline]
-    pub unsafe fn apply_function(&self, applier: CFBagApplierFunction, context: *mut c_void) {
+    pub unsafe fn apply_function(
+        &self,
+        applier: Option<CFBagApplierFunction>,
+        context: *mut c_void,
+    ) {
         extern "C-unwind" {
             fn CFBagApplyFunction(
                 the_bag: &CFBag,
-                applier: CFBagApplierFunction,
+                applier: Option<CFBagApplierFunction>,
                 context: *mut c_void,
             );
         }

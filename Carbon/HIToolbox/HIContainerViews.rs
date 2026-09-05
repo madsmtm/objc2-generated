@@ -84,37 +84,38 @@ pub const kControlUserPaneBackgroundProcTag: c_uint = 0x6261636b;
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanedrawprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 pub type ControlUserPaneDrawProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Control>, ControlPartCode)>;
+    unsafe extern "C-unwind" fn(Option<&Control>, ControlPartCode);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanehittestprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 pub type ControlUserPaneHitTestProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Control>, Point) -> ControlPartCode>;
+    unsafe extern "C-unwind" fn(Option<&Control>, Point) -> ControlPartCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanetrackingprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
-pub type ControlUserPaneTrackingProcPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&Control>, Point, ControlActionUPP) -> ControlPartCode,
->;
+pub type ControlUserPaneTrackingProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    Point,
+    Option<ControlActionUPP>,
+) -> ControlPartCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpaneidleprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type ControlUserPaneIdleProcPtr = Option<unsafe extern "C-unwind" fn(Option<&Control>)>;
+pub type ControlUserPaneIdleProcPtr = unsafe extern "C-unwind" fn(Option<&Control>);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanekeydownprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 pub type ControlUserPaneKeyDownProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Control>, i16, i16, i16) -> ControlPartCode>;
+    unsafe extern "C-unwind" fn(Option<&Control>, i16, i16, i16) -> ControlPartCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpaneactivateprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type ControlUserPaneActivateProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Control>, Boolean)>;
+pub type ControlUserPaneActivateProcPtr = unsafe extern "C-unwind" fn(Option<&Control>, Boolean);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanefocusprocptr?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 pub type ControlUserPaneFocusProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Control>, ControlFocusPart) -> ControlPartCode>;
+    unsafe extern "C-unwind" fn(Option<&Control>, ControlFocusPart) -> ControlPartCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controluserpanedrawupp?language=objc)
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
@@ -146,215 +147,223 @@ pub type ControlUserPaneFocusUPP = ControlUserPaneFocusProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewControlUserPaneDrawUPP(
-    user_routine: ControlUserPaneDrawProcPtr,
-) -> ControlUserPaneDrawUPP {
+    user_routine: Option<ControlUserPaneDrawProcPtr>,
+) -> Option<ControlUserPaneDrawUPP> {
     extern "C-unwind" {
         fn NewControlUserPaneDrawUPP(
-            user_routine: ControlUserPaneDrawProcPtr,
-        ) -> ControlUserPaneDrawUPP;
+            user_routine: Option<ControlUserPaneDrawProcPtr>,
+        ) -> Option<ControlUserPaneDrawUPP>;
     }
     unsafe { NewControlUserPaneDrawUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewControlUserPaneHitTestUPP(
-    user_routine: ControlUserPaneHitTestProcPtr,
-) -> ControlUserPaneHitTestUPP {
+    user_routine: Option<ControlUserPaneHitTestProcPtr>,
+) -> Option<ControlUserPaneHitTestUPP> {
     extern "C-unwind" {
         fn NewControlUserPaneHitTestUPP(
-            user_routine: ControlUserPaneHitTestProcPtr,
-        ) -> ControlUserPaneHitTestUPP;
+            user_routine: Option<ControlUserPaneHitTestProcPtr>,
+        ) -> Option<ControlUserPaneHitTestUPP>;
     }
     unsafe { NewControlUserPaneHitTestUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewControlUserPaneTrackingUPP(
-    user_routine: ControlUserPaneTrackingProcPtr,
-) -> ControlUserPaneTrackingUPP {
+    user_routine: Option<ControlUserPaneTrackingProcPtr>,
+) -> Option<ControlUserPaneTrackingUPP> {
     extern "C-unwind" {
         fn NewControlUserPaneTrackingUPP(
-            user_routine: ControlUserPaneTrackingProcPtr,
-        ) -> ControlUserPaneTrackingUPP;
+            user_routine: Option<ControlUserPaneTrackingProcPtr>,
+        ) -> Option<ControlUserPaneTrackingUPP>;
     }
     unsafe { NewControlUserPaneTrackingUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewControlUserPaneIdleUPP(
-    user_routine: ControlUserPaneIdleProcPtr,
-) -> ControlUserPaneIdleUPP {
+    user_routine: Option<ControlUserPaneIdleProcPtr>,
+) -> Option<ControlUserPaneIdleUPP> {
     extern "C-unwind" {
         fn NewControlUserPaneIdleUPP(
-            user_routine: ControlUserPaneIdleProcPtr,
-        ) -> ControlUserPaneIdleUPP;
+            user_routine: Option<ControlUserPaneIdleProcPtr>,
+        ) -> Option<ControlUserPaneIdleUPP>;
     }
     unsafe { NewControlUserPaneIdleUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewControlUserPaneKeyDownUPP(
-    user_routine: ControlUserPaneKeyDownProcPtr,
-) -> ControlUserPaneKeyDownUPP {
+    user_routine: Option<ControlUserPaneKeyDownProcPtr>,
+) -> Option<ControlUserPaneKeyDownUPP> {
     extern "C-unwind" {
         fn NewControlUserPaneKeyDownUPP(
-            user_routine: ControlUserPaneKeyDownProcPtr,
-        ) -> ControlUserPaneKeyDownUPP;
+            user_routine: Option<ControlUserPaneKeyDownProcPtr>,
+        ) -> Option<ControlUserPaneKeyDownUPP>;
     }
     unsafe { NewControlUserPaneKeyDownUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewControlUserPaneActivateUPP(
-    user_routine: ControlUserPaneActivateProcPtr,
-) -> ControlUserPaneActivateUPP {
+    user_routine: Option<ControlUserPaneActivateProcPtr>,
+) -> Option<ControlUserPaneActivateUPP> {
     extern "C-unwind" {
         fn NewControlUserPaneActivateUPP(
-            user_routine: ControlUserPaneActivateProcPtr,
-        ) -> ControlUserPaneActivateUPP;
+            user_routine: Option<ControlUserPaneActivateProcPtr>,
+        ) -> Option<ControlUserPaneActivateUPP>;
     }
     unsafe { NewControlUserPaneActivateUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn NewControlUserPaneFocusUPP(
-    user_routine: ControlUserPaneFocusProcPtr,
-) -> ControlUserPaneFocusUPP {
+    user_routine: Option<ControlUserPaneFocusProcPtr>,
+) -> Option<ControlUserPaneFocusUPP> {
     extern "C-unwind" {
         fn NewControlUserPaneFocusUPP(
-            user_routine: ControlUserPaneFocusProcPtr,
-        ) -> ControlUserPaneFocusUPP;
+            user_routine: Option<ControlUserPaneFocusProcPtr>,
+        ) -> Option<ControlUserPaneFocusUPP>;
     }
     unsafe { NewControlUserPaneFocusUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeControlUserPaneDrawUPP(user_upp: ControlUserPaneDrawUPP) {
+pub unsafe fn DisposeControlUserPaneDrawUPP(user_upp: *mut ControlUserPaneDrawUPP) {
     extern "C-unwind" {
-        fn DisposeControlUserPaneDrawUPP(user_upp: ControlUserPaneDrawUPP);
+        fn DisposeControlUserPaneDrawUPP(user_upp: *mut ControlUserPaneDrawUPP);
     }
     unsafe { DisposeControlUserPaneDrawUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeControlUserPaneHitTestUPP(user_upp: ControlUserPaneHitTestUPP) {
+pub unsafe fn DisposeControlUserPaneHitTestUPP(user_upp: *mut ControlUserPaneHitTestUPP) {
     extern "C-unwind" {
-        fn DisposeControlUserPaneHitTestUPP(user_upp: ControlUserPaneHitTestUPP);
+        fn DisposeControlUserPaneHitTestUPP(user_upp: *mut ControlUserPaneHitTestUPP);
     }
     unsafe { DisposeControlUserPaneHitTestUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeControlUserPaneTrackingUPP(user_upp: ControlUserPaneTrackingUPP) {
+pub unsafe fn DisposeControlUserPaneTrackingUPP(user_upp: *mut ControlUserPaneTrackingUPP) {
     extern "C-unwind" {
-        fn DisposeControlUserPaneTrackingUPP(user_upp: ControlUserPaneTrackingUPP);
+        fn DisposeControlUserPaneTrackingUPP(user_upp: *mut ControlUserPaneTrackingUPP);
     }
     unsafe { DisposeControlUserPaneTrackingUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeControlUserPaneIdleUPP(user_upp: ControlUserPaneIdleUPP) {
+pub unsafe fn DisposeControlUserPaneIdleUPP(user_upp: *mut ControlUserPaneIdleUPP) {
     extern "C-unwind" {
-        fn DisposeControlUserPaneIdleUPP(user_upp: ControlUserPaneIdleUPP);
+        fn DisposeControlUserPaneIdleUPP(user_upp: *mut ControlUserPaneIdleUPP);
     }
     unsafe { DisposeControlUserPaneIdleUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeControlUserPaneKeyDownUPP(user_upp: ControlUserPaneKeyDownUPP) {
+pub unsafe fn DisposeControlUserPaneKeyDownUPP(user_upp: *mut ControlUserPaneKeyDownUPP) {
     extern "C-unwind" {
-        fn DisposeControlUserPaneKeyDownUPP(user_upp: ControlUserPaneKeyDownUPP);
+        fn DisposeControlUserPaneKeyDownUPP(user_upp: *mut ControlUserPaneKeyDownUPP);
     }
     unsafe { DisposeControlUserPaneKeyDownUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeControlUserPaneActivateUPP(user_upp: ControlUserPaneActivateUPP) {
+pub unsafe fn DisposeControlUserPaneActivateUPP(user_upp: *mut ControlUserPaneActivateUPP) {
     extern "C-unwind" {
-        fn DisposeControlUserPaneActivateUPP(user_upp: ControlUserPaneActivateUPP);
+        fn DisposeControlUserPaneActivateUPP(user_upp: *mut ControlUserPaneActivateUPP);
     }
     unsafe { DisposeControlUserPaneActivateUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeControlUserPaneFocusUPP(user_upp: ControlUserPaneFocusUPP) {
+pub unsafe fn DisposeControlUserPaneFocusUPP(user_upp: *mut ControlUserPaneFocusUPP) {
     extern "C-unwind" {
-        fn DisposeControlUserPaneFocusUPP(user_upp: ControlUserPaneFocusUPP);
+        fn DisposeControlUserPaneFocusUPP(user_upp: *mut ControlUserPaneFocusUPP);
     }
     unsafe { DisposeControlUserPaneFocusUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeControlUserPaneDrawUPP(
     control: &Control,
     part: ControlPartCode,
-    user_upp: ControlUserPaneDrawUPP,
+    user_upp: Option<ControlUserPaneDrawUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeControlUserPaneDrawUPP(
             control: &Control,
             part: ControlPartCode,
-            user_upp: ControlUserPaneDrawUPP,
+            user_upp: Option<ControlUserPaneDrawUPP>,
         );
     }
     unsafe { InvokeControlUserPaneDrawUPP(control, part, user_upp) }
@@ -362,19 +371,20 @@ pub unsafe fn InvokeControlUserPaneDrawUPP(
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeControlUserPaneHitTestUPP(
     control: &Control,
     r#where: Point,
-    user_upp: ControlUserPaneHitTestUPP,
+    user_upp: Option<ControlUserPaneHitTestUPP>,
 ) -> ControlPartCode {
     extern "C-unwind" {
         fn InvokeControlUserPaneHitTestUPP(
             control: &Control,
             r#where: Point,
-            user_upp: ControlUserPaneHitTestUPP,
+            user_upp: Option<ControlUserPaneHitTestUPP>,
         ) -> ControlPartCode;
     }
     unsafe { InvokeControlUserPaneHitTestUPP(control, r#where, user_upp) }
@@ -383,21 +393,23 @@ pub unsafe fn InvokeControlUserPaneHitTestUPP(
 /// # Safety
 ///
 /// - `action_proc` must be implemented correctly.
+/// - `action_proc` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeControlUserPaneTrackingUPP(
     control: &Control,
     start_pt: Point,
-    action_proc: ControlActionUPP,
-    user_upp: ControlUserPaneTrackingUPP,
+    action_proc: Option<ControlActionUPP>,
+    user_upp: Option<ControlUserPaneTrackingUPP>,
 ) -> ControlPartCode {
     extern "C-unwind" {
         fn InvokeControlUserPaneTrackingUPP(
             control: &Control,
             start_pt: Point,
-            action_proc: ControlActionUPP,
-            user_upp: ControlUserPaneTrackingUPP,
+            action_proc: Option<ControlActionUPP>,
+            user_upp: Option<ControlUserPaneTrackingUPP>,
         ) -> ControlPartCode;
     }
     unsafe { InvokeControlUserPaneTrackingUPP(control, start_pt, action_proc, user_upp) }
@@ -405,19 +417,27 @@ pub unsafe fn InvokeControlUserPaneTrackingUPP(
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn InvokeControlUserPaneIdleUPP(control: &Control, user_upp: ControlUserPaneIdleUPP) {
+pub unsafe fn InvokeControlUserPaneIdleUPP(
+    control: &Control,
+    user_upp: Option<ControlUserPaneIdleUPP>,
+) {
     extern "C-unwind" {
-        fn InvokeControlUserPaneIdleUPP(control: &Control, user_upp: ControlUserPaneIdleUPP);
+        fn InvokeControlUserPaneIdleUPP(
+            control: &Control,
+            user_upp: Option<ControlUserPaneIdleUPP>,
+        );
     }
     unsafe { InvokeControlUserPaneIdleUPP(control, user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeControlUserPaneKeyDownUPP(
@@ -425,7 +445,7 @@ pub unsafe fn InvokeControlUserPaneKeyDownUPP(
     key_code: i16,
     char_code: i16,
     modifiers: i16,
-    user_upp: ControlUserPaneKeyDownUPP,
+    user_upp: Option<ControlUserPaneKeyDownUPP>,
 ) -> ControlPartCode {
     extern "C-unwind" {
         fn InvokeControlUserPaneKeyDownUPP(
@@ -433,7 +453,7 @@ pub unsafe fn InvokeControlUserPaneKeyDownUPP(
             key_code: i16,
             char_code: i16,
             modifiers: i16,
-            user_upp: ControlUserPaneKeyDownUPP,
+            user_upp: Option<ControlUserPaneKeyDownUPP>,
         ) -> ControlPartCode;
     }
     unsafe { InvokeControlUserPaneKeyDownUPP(control, key_code, char_code, modifiers, user_upp) }
@@ -441,19 +461,20 @@ pub unsafe fn InvokeControlUserPaneKeyDownUPP(
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeControlUserPaneActivateUPP(
     control: &Control,
     activating: bool,
-    user_upp: ControlUserPaneActivateUPP,
+    user_upp: Option<ControlUserPaneActivateUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeControlUserPaneActivateUPP(
             control: &Control,
             activating: Boolean,
-            user_upp: ControlUserPaneActivateUPP,
+            user_upp: Option<ControlUserPaneActivateUPP>,
         );
     }
     let activating = activating as _;
@@ -462,19 +483,20 @@ pub unsafe fn InvokeControlUserPaneActivateUPP(
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Controls", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeControlUserPaneFocusUPP(
     control: &Control,
     action: ControlFocusPart,
-    user_upp: ControlUserPaneFocusUPP,
+    user_upp: Option<ControlUserPaneFocusUPP>,
 ) -> ControlPartCode {
     extern "C-unwind" {
         fn InvokeControlUserPaneFocusUPP(
             control: &Control,
             action: ControlFocusPart,
-            user_upp: ControlUserPaneFocusUPP,
+            user_upp: Option<ControlUserPaneFocusUPP>,
         ) -> ControlPartCode;
     }
     unsafe { InvokeControlUserPaneFocusUPP(control, action, user_upp) }

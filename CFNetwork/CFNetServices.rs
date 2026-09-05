@@ -186,9 +186,9 @@ unsafe impl RefEncode for CFNetServiceBrowserFlags {
 pub struct CFNetServiceClientContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: CFAllocatorRetainCallBack,
-    pub release: CFAllocatorReleaseCallBack,
-    pub copyDescription: CFAllocatorCopyDescriptionCallBack,
+    pub retain: Option<CFAllocatorRetainCallBack>,
+    pub release: Option<CFAllocatorReleaseCallBack>,
+    pub copyDescription: Option<CFAllocatorCopyDescriptionCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -212,30 +212,26 @@ unsafe impl RefEncode for CFNetServiceClientContext {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceclientcallback?language=objc)
 pub type CFNetServiceClientCallBack =
-    Option<unsafe extern "C-unwind" fn(&CFNetService, *mut CFStreamError, *mut c_void)>;
+    unsafe extern "C-unwind" fn(&CFNetService, *mut CFStreamError, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorclientcallback?language=objc)
-pub type CFNetServiceMonitorClientCallBack = Option<
-    unsafe extern "C-unwind" fn(
-        &CFNetServiceMonitor,
-        Option<&CFNetService>,
-        CFNetServiceMonitorType,
-        Option<&CFData>,
-        *mut CFStreamError,
-        *mut c_void,
-    ),
->;
+pub type CFNetServiceMonitorClientCallBack = unsafe extern "C-unwind" fn(
+    &CFNetServiceMonitor,
+    Option<&CFNetService>,
+    CFNetServiceMonitorType,
+    Option<&CFData>,
+    *mut CFStreamError,
+    *mut c_void,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserclientcallback?language=objc)
-pub type CFNetServiceBrowserClientCallBack = Option<
-    unsafe extern "C-unwind" fn(
-        &CFNetServiceBrowser,
-        CFOptionFlags,
-        Option<&CFType>,
-        *mut CFStreamError,
-        *mut c_void,
-    ),
->;
+pub type CFNetServiceBrowserClientCallBack = unsafe extern "C-unwind" fn(
+    &CFNetServiceBrowser,
+    CFOptionFlags,
+    Option<&CFType>,
+    *mut CFStreamError,
+    *mut c_void,
+);
 
 unsafe impl ConcreteType for CFNetService {
     #[doc(alias = "CFNetServiceGetTypeID")]
@@ -502,13 +498,13 @@ impl CFNetService {
     #[inline]
     pub unsafe fn set_client(
         &self,
-        client_cb: CFNetServiceClientCallBack,
+        client_cb: Option<CFNetServiceClientCallBack>,
         client_context: Option<&mut CFNetServiceClientContext>,
     ) -> bool {
         extern "C-unwind" {
             fn CFNetServiceSetClient(
                 the_service: &CFNetService,
-                client_cb: CFNetServiceClientCallBack,
+                client_cb: Option<CFNetServiceClientCallBack>,
                 client_context: Option<&mut CFNetServiceClientContext>,
             ) -> Boolean;
         }

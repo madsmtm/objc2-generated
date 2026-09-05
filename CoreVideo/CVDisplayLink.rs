@@ -33,16 +33,14 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkoutputcallback?language=objc)
 #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
-pub type CVDisplayLinkOutputCallback = Option<
-    unsafe extern "C-unwind" fn(
-        &CVDisplayLink,
-        NonNull<CVTimeStamp>,
-        NonNull<CVTimeStamp>,
-        CVOptionFlags,
-        NonNull<CVOptionFlags>,
-        *mut c_void,
-    ) -> CVReturn,
->;
+pub type CVDisplayLinkOutputCallback = unsafe extern "C-unwind" fn(
+    &CVDisplayLink,
+    NonNull<CVTimeStamp>,
+    NonNull<CVTimeStamp>,
+    CVOptionFlags,
+    NonNull<CVOptionFlags>,
+    *mut c_void,
+) -> CVReturn;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkoutputhandler?language=objc)
 #[cfg(all(feature = "CVBase", feature = "CVReturn", feature = "block2"))]
@@ -291,13 +289,13 @@ impl CVDisplayLink {
     #[inline]
     pub unsafe fn set_output_callback(
         &self,
-        callback: CVDisplayLinkOutputCallback,
+        callback: Option<CVDisplayLinkOutputCallback>,
         user_info: *mut c_void,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkSetOutputCallback(
                 display_link: &CVDisplayLink,
-                callback: CVDisplayLinkOutputCallback,
+                callback: Option<CVDisplayLinkOutputCallback>,
                 user_info: *mut c_void,
             ) -> CVReturn;
         }

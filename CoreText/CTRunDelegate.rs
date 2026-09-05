@@ -46,7 +46,7 @@ unsafe impl ConcreteType for CTRunDelegate {
 /// Parameter `refCon`: The value supplied to CTRunDelegateCreate.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegatedeallocatecallback?language=objc)
-pub type CTRunDelegateDeallocateCallback = Option<unsafe extern "C-unwind" fn(NonNull<c_void>)>;
+pub type CTRunDelegateDeallocateCallback = unsafe extern "C-unwind" fn(NonNull<c_void>);
 
 /// The callback used to determine typographic ascent.
 ///
@@ -58,8 +58,7 @@ pub type CTRunDelegateDeallocateCallback = Option<unsafe extern "C-unwind" fn(No
 /// which a run delegate pertains.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetascentcallback?language=objc)
-pub type CTRunDelegateGetAscentCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat>;
+pub type CTRunDelegateGetAscentCallback = unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat;
 
 /// The callback used to determine typographic descent.
 ///
@@ -71,8 +70,7 @@ pub type CTRunDelegateGetAscentCallback =
 /// which a run delegate pertains.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetdescentcallback?language=objc)
-pub type CTRunDelegateGetDescentCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat>;
+pub type CTRunDelegateGetDescentCallback = unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat;
 
 /// The callback used to determine width.
 ///
@@ -85,8 +83,7 @@ pub type CTRunDelegateGetDescentCallback =
 /// should not be drawn.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetwidthcallback?language=objc)
-pub type CTRunDelegateGetWidthCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat>;
+pub type CTRunDelegateGetWidthCallback = unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat;
 
 /// Structure containing the callbacks of a CTRunDelegate.
 ///

@@ -28,18 +28,18 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumerputbytescallback?language=objc)
 pub type CGDataConsumerPutBytesCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize) -> usize>;
+    unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize) -> usize;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumerreleaseinfocallback?language=objc)
-pub type CGDataConsumerReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type CGDataConsumerReleaseInfoCallback = unsafe extern "C-unwind" fn(*mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumercallbacks?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGDataConsumerCallbacks {
-    pub putBytes: CGDataConsumerPutBytesCallback,
-    pub releaseConsumer: CGDataConsumerReleaseInfoCallback,
+    pub putBytes: Option<CGDataConsumerPutBytesCallback>,
+    pub releaseConsumer: Option<CGDataConsumerReleaseInfoCallback>,
 }
 
 #[cfg(feature = "objc2")]

@@ -118,7 +118,7 @@ unsafe impl ConcreteType for CMTagCollection {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionapplierfunction?language=objc)
 #[cfg(feature = "CMTag")]
-pub type CMTagCollectionApplierFunction = Option<unsafe extern "C-unwind" fn(CMTag, *mut c_void)>;
+pub type CMTagCollectionApplierFunction = unsafe extern "C-unwind" fn(CMTag, *mut c_void);
 
 /// A callback function that can be used to implement a filtering operation during iteration over a CMTagCollection. For each CMTag that satisfies the predicate, the callback should return true. Otherwise, it should return false.  The callback is passed a CMTag and a potentially NULL context reference that can be used to implement some operation for each tag.
 ///
@@ -131,7 +131,7 @@ pub type CMTagCollectionApplierFunction = Option<unsafe extern "C-unwind" fn(CMT
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiontagfilterfunction?language=objc)
 #[cfg(feature = "CMTag")]
 pub type CMTagCollectionTagFilterFunction =
-    Option<unsafe extern "C-unwind" fn(CMTag, *mut c_void) -> Boolean>;
+    unsafe extern "C-unwind" fn(CMTag, *mut c_void) -> Boolean;
 
 impl CMTagCollection {
     /// Creates a CMTagCollectionRef described by a number of parameters.

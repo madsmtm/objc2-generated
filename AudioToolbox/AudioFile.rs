@@ -906,15 +906,13 @@ pub unsafe fn AudioFileOpenURL(
 /// Returns: The callback should return noErr on success, or an appropriate error code on failure.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_readproc?language=objc)
-pub type AudioFile_ReadProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        i64,
-        u32,
-        NonNull<c_void>,
-        NonNull<u32>,
-    ) -> OSStatus,
->;
+pub type AudioFile_ReadProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    i64,
+    u32,
+    NonNull<c_void>,
+    NonNull<u32>,
+) -> OSStatus;
 
 /// A callback for writing data. used with AudioFileOpenWithCallbacks or AudioFileInitializeWithCallbacks.
 ///
@@ -933,15 +931,13 @@ pub type AudioFile_ReadProc = Option<
 /// Returns: The callback should return noErr on success, or an appropriate error code on failure.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_writeproc?language=objc)
-pub type AudioFile_WriteProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        i64,
-        u32,
-        NonNull<c_void>,
-        NonNull<u32>,
-    ) -> OSStatus,
->;
+pub type AudioFile_WriteProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    i64,
+    u32,
+    NonNull<c_void>,
+    NonNull<u32>,
+) -> OSStatus;
 
 /// A callback for getting the size of the file data. used with AudioFileOpenWithCallbacks or AudioFileInitializeWithCallbacks.
 ///
@@ -953,7 +949,7 @@ pub type AudioFile_WriteProc = Option<
 /// Returns: The callback should return the size of the data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_getsizeproc?language=objc)
-pub type AudioFile_GetSizeProc = Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> i64>;
+pub type AudioFile_GetSizeProc = unsafe extern "C-unwind" fn(NonNull<c_void>) -> i64;
 
 /// A callback for setting the size of the file data. used with AudioFileOpenWithCallbacks or AudioFileInitializeWithCallbacks.
 ///
@@ -965,8 +961,7 @@ pub type AudioFile_GetSizeProc = Option<unsafe extern "C-unwind" fn(NonNull<c_vo
 /// Returns: The callback should return the size of the data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_setsizeproc?language=objc)
-pub type AudioFile_SetSizeProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, i64) -> OSStatus>;
+pub type AudioFile_SetSizeProc = unsafe extern "C-unwind" fn(NonNull<c_void>, i64) -> OSStatus;
 
 /// Wipe clean an existing file. You provide callbacks that the AudioFile API
 /// will use to get the data.
@@ -1079,9 +1074,9 @@ pub unsafe fn AudioFileInitializeWithCallbacks(
 pub unsafe fn AudioFileOpenWithCallbacks(
     in_client_data: NonNull<c_void>,
     in_read_func: AudioFile_ReadProc,
-    in_write_func: AudioFile_WriteProc,
+    in_write_func: Option<AudioFile_WriteProc>,
     in_get_size_func: AudioFile_GetSizeProc,
-    in_set_size_func: AudioFile_SetSizeProc,
+    in_set_size_func: Option<AudioFile_SetSizeProc>,
     in_file_type_hint: AudioFileTypeID,
     out_audio_file: &mut AudioFileID,
 ) -> OSStatus {
@@ -1089,9 +1084,9 @@ pub unsafe fn AudioFileOpenWithCallbacks(
         fn AudioFileOpenWithCallbacks(
             in_client_data: NonNull<c_void>,
             in_read_func: AudioFile_ReadProc,
-            in_write_func: AudioFile_WriteProc,
+            in_write_func: Option<AudioFile_WriteProc>,
             in_get_size_func: AudioFile_GetSizeProc,
-            in_set_size_func: AudioFile_SetSizeProc,
+            in_set_size_func: Option<AudioFile_SetSizeProc>,
             in_file_type_hint: AudioFileTypeID,
             out_audio_file: &mut AudioFileID,
         ) -> OSStatus;

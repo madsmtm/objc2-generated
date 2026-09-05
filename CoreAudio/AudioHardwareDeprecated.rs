@@ -144,7 +144,7 @@ pub type AudioHardwarePropertyID = AudioObjectPropertySelector;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarepropertylistenerproc?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub type AudioHardwarePropertyListenerProc =
-    Option<unsafe extern "C-unwind" fn(AudioHardwarePropertyID, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(AudioHardwarePropertyID, *mut c_void) -> OSStatus;
 
 /// The CFRunLoopRef the HAL is currently attaching all of its system
 /// notification handlers to. In 10.6 and later, the HAL will use the process's
@@ -482,15 +482,13 @@ pub type AudioDevicePropertyID = AudioObjectPropertySelector;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicepropertylistenerproc?language=objc)
 #[cfg(feature = "AudioHardware")]
-pub type AudioDevicePropertyListenerProc = Option<
-    unsafe extern "C-unwind" fn(
-        AudioDeviceID,
-        u32,
-        Boolean,
-        AudioDevicePropertyID,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type AudioDevicePropertyListenerProc = unsafe extern "C-unwind" fn(
+    AudioDeviceID,
+    u32,
+    Boolean,
+    AudioDevicePropertyID,
+    *mut c_void,
+) -> OSStatus;
 
 /// The AudioObjectID for a nonexistent AudioObject.
 ///
@@ -1197,9 +1195,8 @@ pub type AudioStreamID = AudioObjectID;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreampropertylistenerproc?language=objc)
 #[cfg(feature = "AudioHardware")]
-pub type AudioStreamPropertyListenerProc = Option<
-    unsafe extern "C-unwind" fn(AudioStreamID, u32, AudioDevicePropertyID, *mut c_void) -> OSStatus,
->;
+pub type AudioStreamPropertyListenerProc =
+    unsafe extern "C-unwind" fn(AudioStreamID, u32, AudioDevicePropertyID, *mut c_void) -> OSStatus;
 
 /// The AudioObjectID for a nonexistent AudioObject.
 ///

@@ -9625,8 +9625,7 @@ unsafe impl RefEncode for IONotificationPort {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioservicematchingcallback?language=objc)
 #[cfg(feature = "libc")]
-pub type IOServiceMatchingCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, io_iterator_t)>;
+pub type IOServiceMatchingCallback = unsafe extern "C-unwind" fn(*mut c_void, io_iterator_t);
 
 /// Callback function to be notified of changes in state of an IOService.
 ///
@@ -9641,7 +9640,7 @@ pub type IOServiceMatchingCallback =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioserviceinterestcallback?language=objc)
 #[cfg(feature = "libc")]
 pub type IOServiceInterestCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, io_service_t, u32, *mut c_void)>;
+    unsafe extern "C-unwind" fn(*mut c_void, io_service_t, u32, *mut c_void);
 
 extern "C" {
     /// The default mach port used to initiate communication with IOKit.
@@ -10265,6 +10264,7 @@ pub unsafe fn IOServiceAddNotification(
 /// - `notify_port` might not allow `None`.
 /// - `interest_type` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `ref_con` must be a valid pointer.
 /// - `notification` might not allow `None`.
 #[cfg(feature = "libc")]
@@ -10273,7 +10273,7 @@ pub unsafe fn IOServiceAddInterestNotification(
     notify_port: Option<&IONotificationPort>,
     service: io_service_t,
     interest_type: Option<&CStr>,
-    callback: IOServiceInterestCallback,
+    callback: Option<IOServiceInterestCallback>,
     ref_con: *mut c_void,
     notification: Option<&mut io_object_t>,
 ) -> libc::kern_return_t {
@@ -10282,7 +10282,7 @@ pub unsafe fn IOServiceAddInterestNotification(
             notify_port: Option<&IONotificationPort>,
             service: io_service_t,
             interest_type: *const io_name_t,
-            callback: IOServiceInterestCallback,
+            callback: Option<IOServiceInterestCallback>,
             ref_con: *mut c_void,
             notification: Option<&mut io_object_t>,
         ) -> libc::kern_return_t;
@@ -12175,7 +12175,7 @@ pub unsafe fn IOServiceOFPathToBSDName(
 /// Parameter `result`: The result of the I/O operation
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback0?language=objc)
-pub type IOAsyncCallback0 = Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn)>;
+pub type IOAsyncCallback0 = unsafe extern "C-unwind" fn(*mut c_void, IOReturn);
 
 /// standard callback function for asynchronous I/O requests with
 /// one extra argument beyond a refcon and result code.
@@ -12188,7 +12188,7 @@ pub type IOAsyncCallback0 = Option<unsafe extern "C-unwind" fn(*mut c_void, IORe
 /// Parameter `arg0`: Extra argument
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback1?language=objc)
-pub type IOAsyncCallback1 = Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void)>;
+pub type IOAsyncCallback1 = unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void);
 
 /// standard callback function for asynchronous I/O requests with
 /// two extra arguments beyond a refcon and result code.
@@ -12203,7 +12203,7 @@ pub type IOAsyncCallback1 = Option<unsafe extern "C-unwind" fn(*mut c_void, IORe
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback2?language=objc)
 pub type IOAsyncCallback2 =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void)>;
+    unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void);
 
 /// standard callback function for asynchronous I/O requests with
 /// lots of extra arguments beyond a refcon and result code.
@@ -12218,7 +12218,7 @@ pub type IOAsyncCallback2 =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback?language=objc)
 pub type IOAsyncCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut *mut c_void, u32)>;
+    unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut *mut c_void, u32);
 
 /// # Safety
 ///

@@ -15,18 +15,16 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/carbon/aeidleprocptr?language=objc)
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 pub type AEIdleProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut EventRecord, *mut i32, *mut RgnHandle) -> Boolean>;
+    unsafe extern "C-unwind" fn(*mut EventRecord, *mut i32, *mut RgnHandle) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/aefilterprocptr?language=objc)
 #[cfg(all(feature = "Events", feature = "objc2-core-services"))]
-pub type AEFilterProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *mut EventRecord,
-        i32,
-        AETransactionID,
-        *const AEAddressDesc,
-    ) -> Boolean,
->;
+pub type AEFilterProcPtr = unsafe extern "C-unwind" fn(
+    *mut EventRecord,
+    i32,
+    AETransactionID,
+    *const AEAddressDesc,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/aeidleupp?language=objc)
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
@@ -48,7 +46,9 @@ pub type AEFilterUPP = AEFilterProcPtr;
 /// - `reply` struct field `dataHandle` must be a valid pointer.
 /// - `reply` might not allow `None`.
 /// - `idle_proc` must be implemented correctly.
+/// - `idle_proc` might not allow `None`.
 /// - `filter_proc` must be implemented correctly.
+/// - `filter_proc` might not allow `None`.
 #[cfg(all(
     feature = "Events",
     feature = "objc2-application-services",
@@ -61,8 +61,8 @@ pub unsafe fn AESend(
     send_mode: AESendMode,
     send_priority: AESendPriority,
     time_out_in_ticks: i32,
-    idle_proc: AEIdleUPP,
-    filter_proc: AEFilterUPP,
+    idle_proc: Option<AEIdleUPP>,
+    filter_proc: Option<AEFilterUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn AESend(
@@ -71,8 +71,8 @@ pub unsafe fn AESend(
             send_mode: AESendMode,
             send_priority: AESendPriority,
             time_out_in_ticks: i32,
-            idle_proc: AEIdleUPP,
-            filter_proc: AEFilterUPP,
+            idle_proc: Option<AEIdleUPP>,
+            filter_proc: Option<AEFilterUPP>,
         ) -> OSErr;
     }
     unsafe {
@@ -164,6 +164,7 @@ pub unsafe fn AESetInteractionAllowed(level: AEInteractAllowed) -> OSErr {
 ///
 /// - `nm_req_ptr` must be a valid pointer.
 /// - `idle_proc` must be implemented correctly.
+/// - `idle_proc` might not allow `None`.
 #[cfg(all(
     feature = "Events",
     feature = "Notification",
@@ -173,13 +174,13 @@ pub unsafe fn AESetInteractionAllowed(level: AEInteractAllowed) -> OSErr {
 pub unsafe fn AEInteractWithUser(
     time_out_in_ticks: i32,
     nm_req_ptr: NMRecPtr,
-    idle_proc: AEIdleUPP,
+    idle_proc: Option<AEIdleUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn AEInteractWithUser(
             time_out_in_ticks: i32,
             nm_req_ptr: NMRecPtr,
-            idle_proc: AEIdleUPP,
+            idle_proc: Option<AEIdleUPP>,
         ) -> OSErr;
     }
     unsafe { AEInteractWithUser(time_out_in_ticks, nm_req_ptr, idle_proc) }
@@ -235,20 +236,21 @@ pub const kAEUseStandardDispatch: c_int = -1;
 /// - `reply` struct field `dataHandle` must be a valid pointer.
 /// - `reply` might not allow `None`.
 /// - `dispatcher` must be implemented correctly.
+/// - `dispatcher` might not allow `None`.
 /// - `handler_refcon` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn AEResumeTheCurrentEvent(
     the_apple_event: Option<&AppleEvent>,
     reply: Option<&AppleEvent>,
-    dispatcher: AEEventHandlerUPP,
+    dispatcher: Option<AEEventHandlerUPP>,
     handler_refcon: SRefCon,
 ) -> OSErr {
     extern "C-unwind" {
         fn AEResumeTheCurrentEvent(
             the_apple_event: Option<&AppleEvent>,
             reply: Option<&AppleEvent>,
-            dispatcher: AEEventHandlerUPP,
+            dispatcher: Option<AEEventHandlerUPP>,
             handler_refcon: SRefCon,
         ) -> OSErr;
     }
@@ -287,48 +289,50 @@ pub unsafe fn AESetTheCurrentEvent(the_apple_event: Option<&AppleEvent>) -> OSEr
 ///
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
-pub unsafe fn NewAEIdleUPP(user_routine: AEIdleProcPtr) -> AEIdleUPP {
+pub unsafe fn NewAEIdleUPP(user_routine: Option<AEIdleProcPtr>) -> Option<AEIdleUPP> {
     extern "C-unwind" {
-        fn NewAEIdleUPP(user_routine: AEIdleProcPtr) -> AEIdleUPP;
+        fn NewAEIdleUPP(user_routine: Option<AEIdleProcPtr>) -> Option<AEIdleUPP>;
     }
     unsafe { NewAEIdleUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "objc2-core-services"))]
 #[inline]
-pub unsafe fn NewAEFilterUPP(user_routine: AEFilterProcPtr) -> AEFilterUPP {
+pub unsafe fn NewAEFilterUPP(user_routine: Option<AEFilterProcPtr>) -> Option<AEFilterUPP> {
     extern "C-unwind" {
-        fn NewAEFilterUPP(user_routine: AEFilterProcPtr) -> AEFilterUPP;
+        fn NewAEFilterUPP(user_routine: Option<AEFilterProcPtr>) -> Option<AEFilterUPP>;
     }
     unsafe { NewAEFilterUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
-pub unsafe fn DisposeAEIdleUPP(user_upp: AEIdleUPP) {
+pub unsafe fn DisposeAEIdleUPP(user_upp: *mut AEIdleUPP) {
     extern "C-unwind" {
-        fn DisposeAEIdleUPP(user_upp: AEIdleUPP);
+        fn DisposeAEIdleUPP(user_upp: *mut AEIdleUPP);
     }
     unsafe { DisposeAEIdleUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Events", feature = "objc2-core-services"))]
 #[inline]
-pub unsafe fn DisposeAEFilterUPP(user_upp: AEFilterUPP) {
+pub unsafe fn DisposeAEFilterUPP(user_upp: *mut AEFilterUPP) {
     extern "C-unwind" {
-        fn DisposeAEFilterUPP(user_upp: AEFilterUPP);
+        fn DisposeAEFilterUPP(user_upp: *mut AEFilterUPP);
     }
     unsafe { DisposeAEFilterUPP(user_upp) }
 }
@@ -340,20 +344,21 @@ pub unsafe fn DisposeAEFilterUPP(user_upp: AEFilterUPP) {
 /// - `mouse_rgn` must be a valid pointer.
 /// - `mouse_rgn` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "objc2-application-services"))]
 #[inline]
 pub unsafe fn InvokeAEIdleUPP(
     the_event: Option<&mut EventRecord>,
     sleep_time: Option<&mut i32>,
     mouse_rgn: Option<&mut RgnHandle>,
-    user_upp: AEIdleUPP,
+    user_upp: Option<AEIdleUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeAEIdleUPP(
             the_event: Option<&mut EventRecord>,
             sleep_time: Option<&mut i32>,
             mouse_rgn: Option<&mut RgnHandle>,
-            user_upp: AEIdleUPP,
+            user_upp: Option<AEIdleUPP>,
         ) -> Boolean;
     }
     let ret = unsafe { InvokeAEIdleUPP(the_event, sleep_time, mouse_rgn, user_upp) };
@@ -366,6 +371,7 @@ pub unsafe fn InvokeAEIdleUPP(
 /// - `sender` struct field `dataHandle` must be a valid pointer.
 /// - `sender` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "objc2-core-services"))]
 #[inline]
 pub unsafe fn InvokeAEFilterUPP(
@@ -373,7 +379,7 @@ pub unsafe fn InvokeAEFilterUPP(
     return_id: i32,
     transaction_id: AETransactionID,
     sender: Option<&AEAddressDesc>,
-    user_upp: AEFilterUPP,
+    user_upp: Option<AEFilterUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeAEFilterUPP(
@@ -381,7 +387,7 @@ pub unsafe fn InvokeAEFilterUPP(
             return_id: i32,
             transaction_id: AETransactionID,
             sender: Option<&AEAddressDesc>,
-            user_upp: AEFilterUPP,
+            user_upp: Option<AEFilterUPP>,
         ) -> Boolean;
     }
     let ret = unsafe { InvokeAEFilterUPP(the_event, return_id, transaction_id, sender, user_upp) };

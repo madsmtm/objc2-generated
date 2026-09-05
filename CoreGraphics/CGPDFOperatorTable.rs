@@ -25,7 +25,7 @@ unsafe impl RefEncode for CGPDFOperatorTable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatorcallback?language=objc)
 #[cfg(feature = "CGPDFScanner")]
-pub type CGPDFOperatorCallback = Option<unsafe extern "C-unwind" fn(&CGPDFScanner, *mut c_void)>;
+pub type CGPDFOperatorCallback = unsafe extern "C-unwind" fn(&CGPDFScanner, *mut c_void);
 
 impl CGPDFOperatorTable {
     #[doc(alias = "CGPDFOperatorTableCreate")]

@@ -1240,14 +1240,12 @@ pub const kAudioStereoPanControlPropertyPanningChannels: AudioObjectPropertySele
 /// Returns: The return value is currently unused and should always be 0.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertylistenerproc?language=objc)
-pub type AudioObjectPropertyListenerProc = Option<
-    unsafe extern "C-unwind" fn(
-        AudioObjectID,
-        u32,
-        NonNull<AudioObjectPropertyAddress>,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type AudioObjectPropertyListenerProc = unsafe extern "C-unwind" fn(
+    AudioObjectID,
+    u32,
+    NonNull<AudioObjectPropertyAddress>,
+    *mut c_void,
+) -> OSStatus;
 
 /// Clients register an AudioObjectPropertyListenerBlock with an AudioObject in
 /// order to receive notifications when the properties of the object change.
@@ -2052,17 +2050,15 @@ pub const kAudioTransportManagerDestroyEndPointDevice: AudioObjectPropertySelect
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceioproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioDeviceIOProc = Option<
-    unsafe extern "C-unwind" fn(
-        AudioObjectID,
-        NonNull<AudioTimeStamp>,
-        NonNull<AudioBufferList>,
-        NonNull<AudioTimeStamp>,
-        NonNull<AudioBufferList>,
-        NonNull<AudioTimeStamp>,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type AudioDeviceIOProc = unsafe extern "C-unwind" fn(
+    AudioObjectID,
+    NonNull<AudioTimeStamp>,
+    NonNull<AudioBufferList>,
+    NonNull<AudioTimeStamp>,
+    NonNull<AudioBufferList>,
+    NonNull<AudioTimeStamp>,
+    *mut c_void,
+) -> OSStatus;
 
 /// An AudioDeviceIOBlock is called by an AudioDevice to provide input data read
 /// from the device and collect output data to be written to the device for the
@@ -2714,14 +2710,14 @@ pub unsafe fn AudioDeviceCreateIOProcID(
     in_device: AudioObjectID,
     in_proc: AudioDeviceIOProc,
     in_client_data: *mut c_void,
-    out_io_proc_id: &mut AudioDeviceIOProcID,
+    out_io_proc_id: &mut Option<AudioDeviceIOProcID>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioDeviceCreateIOProcID(
             in_device: AudioObjectID,
             in_proc: AudioDeviceIOProc,
             in_client_data: *mut c_void,
-            out_io_proc_id: &mut AudioDeviceIOProcID,
+            out_io_proc_id: &mut Option<AudioDeviceIOProcID>,
         ) -> OSStatus;
     }
     unsafe { AudioDeviceCreateIOProcID(in_device, in_proc, in_client_data, out_io_proc_id) }
@@ -2755,14 +2751,14 @@ pub unsafe fn AudioDeviceCreateIOProcID(
 ))]
 #[inline]
 pub unsafe fn AudioDeviceCreateIOProcIDWithBlock(
-    out_io_proc_id: &mut AudioDeviceIOProcID,
+    out_io_proc_id: &mut Option<AudioDeviceIOProcID>,
     in_device: AudioObjectID,
     in_dispatch_queue: Option<&DispatchQueue>,
     in_io_block: &AudioDeviceIOBlock,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioDeviceCreateIOProcIDWithBlock(
-            out_io_proc_id: &mut AudioDeviceIOProcID,
+            out_io_proc_id: &mut Option<AudioDeviceIOProcID>,
             in_device: AudioObjectID,
             in_dispatch_queue: Option<&DispatchQueue>,
             in_io_block: &AudioDeviceIOBlock,
@@ -2791,17 +2787,17 @@ pub unsafe fn AudioDeviceCreateIOProcIDWithBlock(
 ///
 /// # Safety
 ///
-/// `in_io_proc_id` must be implemented correctly.
+/// `in_io_proc_id` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe fn AudioDeviceDestroyIOProcID(
     in_device: AudioObjectID,
-    in_io_proc_id: AudioDeviceIOProcID,
+    in_io_proc_id: NonNull<AudioDeviceIOProcID>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioDeviceDestroyIOProcID(
             in_device: AudioObjectID,
-            in_io_proc_id: AudioDeviceIOProcID,
+            in_io_proc_id: NonNull<AudioDeviceIOProcID>,
         ) -> OSStatus;
     }
     unsafe { AudioDeviceDestroyIOProcID(in_device, in_io_proc_id) }
@@ -2826,10 +2822,13 @@ pub unsafe fn AudioDeviceDestroyIOProcID(
 #[inline]
 pub unsafe fn AudioDeviceStart(
     in_device: AudioObjectID,
-    in_proc_id: AudioDeviceIOProcID,
+    in_proc_id: Option<AudioDeviceIOProcID>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn AudioDeviceStart(in_device: AudioObjectID, in_proc_id: AudioDeviceIOProcID) -> OSStatus;
+        fn AudioDeviceStart(
+            in_device: AudioObjectID,
+            in_proc_id: Option<AudioDeviceIOProcID>,
+        ) -> OSStatus;
     }
     unsafe { AudioDeviceStart(in_device, in_proc_id) }
 }
@@ -2859,14 +2858,14 @@ pub unsafe fn AudioDeviceStart(
 #[inline]
 pub unsafe fn AudioDeviceStartAtTime(
     in_device: AudioObjectID,
-    in_proc_id: AudioDeviceIOProcID,
+    in_proc_id: Option<AudioDeviceIOProcID>,
     io_requested_start_time: &mut AudioTimeStamp,
     in_flags: u32,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioDeviceStartAtTime(
             in_device: AudioObjectID,
-            in_proc_id: AudioDeviceIOProcID,
+            in_proc_id: Option<AudioDeviceIOProcID>,
             io_requested_start_time: &mut AudioTimeStamp,
             in_flags: u32,
         ) -> OSStatus;
@@ -2889,10 +2888,13 @@ pub unsafe fn AudioDeviceStartAtTime(
 #[inline]
 pub unsafe fn AudioDeviceStop(
     in_device: AudioObjectID,
-    in_proc_id: AudioDeviceIOProcID,
+    in_proc_id: Option<AudioDeviceIOProcID>,
 ) -> OSStatus {
     extern "C-unwind" {
-        fn AudioDeviceStop(in_device: AudioObjectID, in_proc_id: AudioDeviceIOProcID) -> OSStatus;
+        fn AudioDeviceStop(
+            in_device: AudioObjectID,
+            in_proc_id: Option<AudioDeviceIOProcID>,
+        ) -> OSStatus;
     }
     unsafe { AudioDeviceStop(in_device, in_proc_id) }
 }

@@ -57,6 +57,7 @@ pub unsafe fn CSSM_Terminate() -> CSSM_RETURN {
 ///
 /// - `module_guid` must be a valid pointer.
 /// - `app_notify_callback` must be implemented correctly.
+/// - `app_notify_callback` might not allow `None`.
 /// - `app_notify_callback_ctx` must be a valid pointer.
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
@@ -64,14 +65,14 @@ pub unsafe fn CSSM_Terminate() -> CSSM_RETURN {
 pub unsafe fn CSSM_ModuleLoad(
     module_guid: *const CSSM_GUID,
     key_hierarchy: CSSM_KEY_HIERARCHY,
-    app_notify_callback: CSSM_API_ModuleEventHandler,
+    app_notify_callback: Option<CSSM_API_ModuleEventHandler>,
     app_notify_callback_ctx: *mut c_void,
 ) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_ModuleLoad(
             module_guid: *const CSSM_GUID,
             key_hierarchy: CSSM_KEY_HIERARCHY,
-            app_notify_callback: CSSM_API_ModuleEventHandler,
+            app_notify_callback: Option<CSSM_API_ModuleEventHandler>,
             app_notify_callback_ctx: *mut c_void,
         ) -> CSSM_RETURN;
     }
@@ -89,19 +90,20 @@ pub unsafe fn CSSM_ModuleLoad(
 ///
 /// - `module_guid` must be a valid pointer.
 /// - `app_notify_callback` must be implemented correctly.
+/// - `app_notify_callback` might not allow `None`.
 /// - `app_notify_callback_ctx` must be a valid pointer.
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[inline]
 pub unsafe fn CSSM_ModuleUnload(
     module_guid: *const CSSM_GUID,
-    app_notify_callback: CSSM_API_ModuleEventHandler,
+    app_notify_callback: Option<CSSM_API_ModuleEventHandler>,
     app_notify_callback_ctx: *mut c_void,
 ) -> CSSM_RETURN {
     extern "C-unwind" {
         fn CSSM_ModuleUnload(
             module_guid: *const CSSM_GUID,
-            app_notify_callback: CSSM_API_ModuleEventHandler,
+            app_notify_callback: Option<CSSM_API_ModuleEventHandler>,
             app_notify_callback_ctx: *mut c_void,
         ) -> CSSM_RETURN;
     }

@@ -1136,7 +1136,7 @@ unsafe impl RefEncode for OBEXSessionEvent {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessioneventcallback?language=objc)
-pub type OBEXSessionEventCallback = Option<unsafe extern "C-unwind" fn(*const OBEXSessionEvent)>;
+pub type OBEXSessionEventCallback = unsafe extern "C-unwind" fn(*const OBEXSessionEvent);
 
 impl OBEXSessionRef {
     /// Destroy an OBEX session. If connections are open, they will (eventually) be terminated for you.
@@ -1372,6 +1372,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionConnect")]
     #[deprecated]
@@ -1382,7 +1383,7 @@ impl OBEXSessionRef {
         in_max_packet_length: OBEXMaxPacketLength,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1392,7 +1393,7 @@ impl OBEXSessionRef {
                 in_max_packet_length: OBEXMaxPacketLength,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -1438,6 +1439,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionDisconnect")]
     #[deprecated]
@@ -1446,7 +1448,7 @@ impl OBEXSessionRef {
         in_session_ref: Option<&OBEXSessionRef>,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1454,7 +1456,7 @@ impl OBEXSessionRef {
                 in_session_ref: Option<&OBEXSessionRef>,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -1506,6 +1508,7 @@ impl OBEXSessionRef {
     /// - `in_headers_data` must be a valid pointer.
     /// - `in_body_data` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionPut")]
     #[deprecated]
@@ -1517,7 +1520,7 @@ impl OBEXSessionRef {
         in_headers_data_length: usize,
         in_body_data: *mut c_void,
         in_body_data_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1528,7 +1531,7 @@ impl OBEXSessionRef {
                 in_headers_data_length: usize,
                 in_body_data: *mut c_void,
                 in_body_data_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -1577,6 +1580,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_headers_data` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionGet")]
     #[deprecated]
@@ -1586,7 +1590,7 @@ impl OBEXSessionRef {
         in_is_final_chunk: bool,
         in_headers_data: *mut c_void,
         in_headers_data_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1595,7 +1599,7 @@ impl OBEXSessionRef {
                 in_is_final_chunk: Boolean,
                 in_headers_data: *mut c_void,
                 in_headers_data_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -1641,6 +1645,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionAbort")]
     #[deprecated]
@@ -1649,7 +1654,7 @@ impl OBEXSessionRef {
         in_session_ref: Option<&OBEXSessionRef>,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1657,7 +1662,7 @@ impl OBEXSessionRef {
                 in_session_ref: Option<&OBEXSessionRef>,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -1705,6 +1710,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionSetPath")]
     #[deprecated]
@@ -1715,7 +1721,7 @@ impl OBEXSessionRef {
         in_constants: OBEXConstants,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1725,7 +1731,7 @@ impl OBEXSessionRef {
                 in_constants: OBEXConstants,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -1778,6 +1784,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionConnectResponse")]
     #[deprecated]
@@ -1789,7 +1796,7 @@ impl OBEXSessionRef {
         in_max_packet_length: OBEXMaxPacketLength,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1800,7 +1807,7 @@ impl OBEXSessionRef {
                 in_max_packet_length: OBEXMaxPacketLength,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -1849,6 +1856,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionDisconnectResponse")]
     #[deprecated]
@@ -1858,7 +1866,7 @@ impl OBEXSessionRef {
         in_response_op_code: OBEXOpCode,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1867,7 +1875,7 @@ impl OBEXSessionRef {
                 in_response_op_code: OBEXOpCode,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -1914,6 +1922,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionGetResponse")]
     #[deprecated]
@@ -1923,7 +1932,7 @@ impl OBEXSessionRef {
         in_response_op_code: OBEXOpCode,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1932,7 +1941,7 @@ impl OBEXSessionRef {
                 in_response_op_code: OBEXOpCode,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -1979,6 +1988,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionPutResponse")]
     #[deprecated]
@@ -1988,7 +1998,7 @@ impl OBEXSessionRef {
         in_response_op_code: OBEXOpCode,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -1997,7 +2007,7 @@ impl OBEXSessionRef {
                 in_response_op_code: OBEXOpCode,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -2044,6 +2054,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionAbortResponse")]
     #[deprecated]
@@ -2053,7 +2064,7 @@ impl OBEXSessionRef {
         in_response_op_code: OBEXOpCode,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -2062,7 +2073,7 @@ impl OBEXSessionRef {
                 in_response_op_code: OBEXOpCode,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -2109,6 +2120,7 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might not allow `None`.
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionSetPathResponse")]
     #[deprecated]
@@ -2118,7 +2130,7 @@ impl OBEXSessionRef {
         in_response_op_code: OBEXOpCode,
         in_optional_headers: *mut c_void,
         in_optional_headers_length: usize,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
@@ -2127,7 +2139,7 @@ impl OBEXSessionRef {
                 in_response_op_code: OBEXOpCode,
                 in_optional_headers: *mut c_void,
                 in_optional_headers_length: usize,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }
@@ -2166,19 +2178,20 @@ impl OBEXSessionRef {
     /// - `in_session_ref` might need manual memory-management.
     /// - `in_session_ref` might not allow `None`.
     /// - `in_callback` must be implemented correctly.
+    /// - `in_callback` might not allow `None`.
     /// - `in_user_ref_con` must be a valid pointer.
     #[doc(alias = "OBEXSessionSetServerCallback")]
     #[deprecated]
     #[inline]
     pub unsafe fn set_server_callback(
         in_session_ref: Option<&OBEXSessionRef>,
-        in_callback: OBEXSessionEventCallback,
+        in_callback: Option<OBEXSessionEventCallback>,
         in_user_ref_con: *mut c_void,
     ) -> OBEXError {
         extern "C-unwind" {
             fn OBEXSessionSetServerCallback(
                 in_session_ref: Option<&OBEXSessionRef>,
-                in_callback: OBEXSessionEventCallback,
+                in_callback: Option<OBEXSessionEventCallback>,
                 in_user_ref_con: *mut c_void,
             ) -> OBEXError;
         }

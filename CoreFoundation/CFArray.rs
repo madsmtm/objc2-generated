@@ -36,19 +36,18 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayretaincallback?language=objc)
 pub type CFArrayRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void>;
+    unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayreleasecallback?language=objc)
-pub type CFArrayReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void)>;
+pub type CFArrayReleaseCallBack = unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycopydescriptioncallback?language=objc)
 pub type CFArrayCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
+    unsafe extern "C-unwind" fn(*const c_void) -> *const CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayequalcallback?language=objc)
 pub type CFArrayEqualCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
+    unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks?language=objc)
 #[repr(C)]
@@ -56,10 +55,10 @@ pub type CFArrayEqualCallBack =
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFArrayCallBacks {
     pub version: CFIndex,
-    pub retain: CFArrayRetainCallBack,
-    pub release: CFArrayReleaseCallBack,
-    pub copyDescription: CFArrayCopyDescriptionCallBack,
-    pub equal: CFArrayEqualCallBack,
+    pub retain: Option<CFArrayRetainCallBack>,
+    pub release: Option<CFArrayReleaseCallBack>,
+    pub copyDescription: Option<CFArrayCopyDescriptionCallBack>,
+    pub equal: Option<CFArrayEqualCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -98,7 +97,7 @@ extern "C" {
 /// function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayapplierfunction?language=objc)
-pub type CFArrayApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
+pub type CFArrayApplierFunction = unsafe extern "C-unwind" fn(*const c_void, *mut c_void);
 
 /// This is the type of a reference to immutable CFArrays.
 ///
@@ -627,20 +626,21 @@ impl<T: Sized> CFArray<T> {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
+    /// - `applier` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFArrayApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
         &self,
         range: CFRange,
-        applier: CFArrayApplierFunction,
+        applier: Option<CFArrayApplierFunction>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn CFArrayApplyFunction(
                 the_array: &CFArray,
                 range: CFRange,
-                applier: CFArrayApplierFunction,
+                applier: Option<CFArrayApplierFunction>,
                 context: *mut c_void,
             );
         }
@@ -779,6 +779,7 @@ impl<T: Sized> CFArray<T> {
     /// - `the_array` generic must be of the correct type.
     /// - `value` must be a valid pointer.
     /// - `comparator` must be implemented correctly.
+    /// - `comparator` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFArrayBSearchValues")]
     #[inline]
@@ -786,7 +787,7 @@ impl<T: Sized> CFArray<T> {
         &self,
         range: CFRange,
         value: *const T,
-        comparator: CFComparatorFunction,
+        comparator: Option<CFComparatorFunction>,
         context: *mut c_void,
     ) -> CFIndex {
         extern "C-unwind" {
@@ -794,7 +795,7 @@ impl<T: Sized> CFArray<T> {
                 the_array: &CFArray,
                 range: CFRange,
                 value: *const c_void,
-                comparator: CFComparatorFunction,
+                comparator: Option<CFComparatorFunction>,
                 context: *mut c_void,
             ) -> CFIndex;
         }
@@ -1071,20 +1072,21 @@ impl<T: Sized> CFMutableArray<T> {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `comparator` must be implemented correctly.
+    /// - `comparator` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFArraySortValues")]
     #[inline]
     pub unsafe fn sort_values(
         &self,
         range: CFRange,
-        comparator: CFComparatorFunction,
+        comparator: Option<CFComparatorFunction>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn CFArraySortValues(
                 the_array: &CFMutableArray,
                 range: CFRange,
-                comparator: CFComparatorFunction,
+                comparator: Option<CFComparatorFunction>,
                 context: *mut c_void,
             );
         }

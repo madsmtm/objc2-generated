@@ -71,8 +71,7 @@ pub type ControlPartCode = i16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controlactionprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type ControlActionProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Control>, ControlPartCode)>;
+pub type ControlActionProcPtr = unsafe extern "C-unwind" fn(Option<&Control>, ControlPartCode);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controlactionupp?language=objc)
 #[cfg(feature = "HIObject")]
@@ -80,43 +79,49 @@ pub type ControlActionUPP = ControlActionProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn NewControlActionUPP(user_routine: ControlActionProcPtr) -> ControlActionUPP {
+pub unsafe fn NewControlActionUPP(
+    user_routine: Option<ControlActionProcPtr>,
+) -> Option<ControlActionUPP> {
     extern "C-unwind" {
-        fn NewControlActionUPP(user_routine: ControlActionProcPtr) -> ControlActionUPP;
+        fn NewControlActionUPP(
+            user_routine: Option<ControlActionProcPtr>,
+        ) -> Option<ControlActionUPP>;
     }
     unsafe { NewControlActionUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeControlActionUPP(user_upp: ControlActionUPP) {
+pub unsafe fn DisposeControlActionUPP(user_upp: *mut ControlActionUPP) {
     extern "C-unwind" {
-        fn DisposeControlActionUPP(user_upp: ControlActionUPP);
+        fn DisposeControlActionUPP(user_upp: *mut ControlActionUPP);
     }
     unsafe { DisposeControlActionUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeControlActionUPP(
     the_control: &Control,
     part_code: ControlPartCode,
-    user_upp: ControlActionUPP,
+    user_upp: Option<ControlActionUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeControlActionUPP(
             the_control: &Control,
             part_code: ControlPartCode,
-            user_upp: ControlActionUPP,
+            user_upp: Option<ControlActionUPP>,
         );
     }
     unsafe { InvokeControlActionUPP(the_control, part_code, user_upp) }
@@ -573,14 +578,12 @@ pub type ControlKeyFilterResult = i16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controlkeyfilterprocptr?language=objc)
 #[cfg(all(feature = "Events", feature = "HIObject"))]
-pub type ControlKeyFilterProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&Control>,
-        *mut i16,
-        *mut i16,
-        *mut EventModifiers,
-    ) -> ControlKeyFilterResult,
->;
+pub type ControlKeyFilterProcPtr = unsafe extern "C-unwind" fn(
+    Option<&Control>,
+    *mut i16,
+    *mut i16,
+    *mut EventModifiers,
+) -> ControlKeyFilterResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controlkeyfilterupp?language=objc)
 #[cfg(all(feature = "Events", feature = "HIObject"))]
@@ -588,24 +591,29 @@ pub type ControlKeyFilterUPP = ControlKeyFilterProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 #[inline]
-pub unsafe fn NewControlKeyFilterUPP(user_routine: ControlKeyFilterProcPtr) -> ControlKeyFilterUPP {
+pub unsafe fn NewControlKeyFilterUPP(
+    user_routine: Option<ControlKeyFilterProcPtr>,
+) -> Option<ControlKeyFilterUPP> {
     extern "C-unwind" {
-        fn NewControlKeyFilterUPP(user_routine: ControlKeyFilterProcPtr) -> ControlKeyFilterUPP;
+        fn NewControlKeyFilterUPP(
+            user_routine: Option<ControlKeyFilterProcPtr>,
+        ) -> Option<ControlKeyFilterUPP>;
     }
     unsafe { NewControlKeyFilterUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 #[inline]
-pub unsafe fn DisposeControlKeyFilterUPP(user_upp: ControlKeyFilterUPP) {
+pub unsafe fn DisposeControlKeyFilterUPP(user_upp: *mut ControlKeyFilterUPP) {
     extern "C-unwind" {
-        fn DisposeControlKeyFilterUPP(user_upp: ControlKeyFilterUPP);
+        fn DisposeControlKeyFilterUPP(user_upp: *mut ControlKeyFilterUPP);
     }
     unsafe { DisposeControlKeyFilterUPP(user_upp) }
 }
@@ -616,6 +624,7 @@ pub unsafe fn DisposeControlKeyFilterUPP(user_upp: ControlKeyFilterUPP) {
 /// - `char_code` might not allow `None`.
 /// - `modifiers` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(all(feature = "Events", feature = "HIObject"))]
 #[inline]
 pub unsafe fn InvokeControlKeyFilterUPP(
@@ -623,7 +632,7 @@ pub unsafe fn InvokeControlKeyFilterUPP(
     key_code: Option<&mut i16>,
     char_code: Option<&mut i16>,
     modifiers: Option<&mut EventModifiers>,
-    user_upp: ControlKeyFilterUPP,
+    user_upp: Option<ControlKeyFilterUPP>,
 ) -> ControlKeyFilterResult {
     extern "C-unwind" {
         fn InvokeControlKeyFilterUPP(
@@ -631,7 +640,7 @@ pub unsafe fn InvokeControlKeyFilterUPP(
             key_code: Option<&mut i16>,
             char_code: Option<&mut i16>,
             modifiers: Option<&mut EventModifiers>,
-            user_upp: ControlKeyFilterUPP,
+            user_upp: Option<ControlKeyFilterUPP>,
         ) -> ControlKeyFilterResult;
     }
     unsafe { InvokeControlKeyFilterUPP(the_control, key_code, char_code, modifiers, user_upp) }

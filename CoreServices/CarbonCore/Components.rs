@@ -617,20 +617,18 @@ unsafe impl RefEncode for ComponentMPWorkFunctionHeaderRecord {
 pub type ComponentMPWorkFunctionHeaderRecordPtr = *mut ComponentMPWorkFunctionHeaderRecord;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/componentmpworkfunctionprocptr?language=objc)
-pub type ComponentMPWorkFunctionProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        ComponentMPWorkFunctionHeaderRecordPtr,
-    ) -> ComponentResult,
->;
+pub type ComponentMPWorkFunctionProcPtr = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    ComponentMPWorkFunctionHeaderRecordPtr,
+) -> ComponentResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/componentroutineprocptr?language=objc)
 pub type ComponentRoutineProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut ComponentParameters, Handle) -> ComponentResult>;
+    unsafe extern "C-unwind" fn(*mut ComponentParameters, Handle) -> ComponentResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/getmissingcomponentresourceprocptr?language=objc)
 pub type GetMissingComponentResourceProcPtr =
-    Option<unsafe extern "C-unwind" fn(Component, OSType, i16, *mut c_void, *mut Handle) -> OSErr>;
+    unsafe extern "C-unwind" fn(Component, OSType, i16, *mut c_void, *mut Handle) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/componentmpworkfunctionupp?language=objc)
 pub type ComponentMPWorkFunctionUPP = ComponentMPWorkFunctionProcPtr;
@@ -655,6 +653,7 @@ pub type GetMissingComponentResourceUPP = GetMissingComponentResourceProcPtr;
 ///
 /// - `cd` might not allow `None`.
 /// - `component_entry_point` must be implemented correctly.
+/// - `component_entry_point` might not allow `None`.
 /// - `component_name` must be a valid pointer.
 /// - `component_info` must be a valid pointer.
 /// - `component_icon` must be a valid pointer.
@@ -662,7 +661,7 @@ pub type GetMissingComponentResourceUPP = GetMissingComponentResourceProcPtr;
 #[inline]
 pub unsafe fn RegisterComponent(
     cd: Option<&mut ComponentDescription>,
-    component_entry_point: ComponentRoutineUPP,
+    component_entry_point: Option<ComponentRoutineUPP>,
     global: i16,
     component_name: Handle,
     component_info: Handle,
@@ -671,7 +670,7 @@ pub unsafe fn RegisterComponent(
     extern "C-unwind" {
         fn RegisterComponent(
             cd: Option<&mut ComponentDescription>,
-            component_entry_point: ComponentRoutineUPP,
+            component_entry_point: Option<ComponentRoutineUPP>,
             global: i16,
             component_name: Handle,
             component_info: Handle,
@@ -901,6 +900,7 @@ pub unsafe fn GetComponentPublicResource(
 ///
 /// - `cd` might not allow `None`.
 /// - `missing_proc` must be implemented correctly.
+/// - `missing_proc` might not allow `None`.
 /// - `ref_con` must be a valid pointer.
 /// - `atom_container_ptr` must be a valid pointer.
 #[deprecated]
@@ -910,7 +910,7 @@ pub unsafe fn GetComponentPublicResourceList(
     resource_id: i16,
     flags: i32,
     cd: Option<&mut ComponentDescription>,
-    missing_proc: GetMissingComponentResourceUPP,
+    missing_proc: Option<GetMissingComponentResourceUPP>,
     ref_con: *mut c_void,
     atom_container_ptr: *mut c_void,
 ) -> OSErr {
@@ -920,7 +920,7 @@ pub unsafe fn GetComponentPublicResourceList(
             resource_id: i16,
             flags: i32,
             cd: Option<&mut ComponentDescription>,
-            missing_proc: GetMissingComponentResourceUPP,
+            missing_proc: Option<GetMissingComponentResourceUPP>,
             ref_con: *mut c_void,
             atom_container_ptr: *mut c_void,
         ) -> OSErr;
@@ -1149,20 +1149,21 @@ pub unsafe fn CountComponentInstances(a_component: Component) -> c_long {
 /// - `storage` must be a valid pointer.
 /// - `params` must be a valid pointer.
 /// - `func` must be implemented correctly.
+/// - `func` might not allow `None`.
 #[cfg(feature = "MixedMode")]
 #[deprecated]
 #[inline]
 pub unsafe fn CallComponentFunctionWithStorageProcInfo(
     storage: Handle,
     params: *mut ComponentParameters,
-    func: ProcPtr,
+    func: Option<ProcPtr>,
     func_proc_info: ProcInfoType,
 ) -> ComponentResult {
     extern "C-unwind" {
         fn CallComponentFunctionWithStorageProcInfo(
             storage: Handle,
             params: *mut ComponentParameters,
-            func: ProcPtr,
+            func: Option<ProcPtr>,
             func_proc_info: ProcInfoType,
         ) -> ComponentResult;
     }
@@ -1421,13 +1422,13 @@ pub unsafe fn CallComponentUnregister(ci: ComponentInstance) -> ComponentResult 
 #[inline]
 pub unsafe fn CallComponentGetMPWorkFunction(
     ci: ComponentInstance,
-    work_function: Option<&mut ComponentMPWorkFunctionUPP>,
+    work_function: Option<&mut Option<ComponentMPWorkFunctionUPP>>,
     ref_con: Option<&mut *mut c_void>,
 ) -> ComponentResult {
     extern "C-unwind" {
         fn CallComponentGetMPWorkFunction(
             ci: ComponentInstance,
-            work_function: Option<&mut ComponentMPWorkFunctionUPP>,
+            work_function: Option<&mut Option<ComponentMPWorkFunctionUPP>>,
             ref_con: Option<&mut *mut c_void>,
         ) -> ComponentResult;
     }
@@ -1472,80 +1473,87 @@ pub unsafe fn CallComponentDispatch(cp: *mut ComponentParameters) -> ComponentRe
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewComponentMPWorkFunctionUPP(
-    user_routine: ComponentMPWorkFunctionProcPtr,
-) -> ComponentMPWorkFunctionUPP {
+    user_routine: Option<ComponentMPWorkFunctionProcPtr>,
+) -> Option<ComponentMPWorkFunctionUPP> {
     extern "C-unwind" {
         fn NewComponentMPWorkFunctionUPP(
-            user_routine: ComponentMPWorkFunctionProcPtr,
-        ) -> ComponentMPWorkFunctionUPP;
+            user_routine: Option<ComponentMPWorkFunctionProcPtr>,
+        ) -> Option<ComponentMPWorkFunctionUPP>;
     }
     unsafe { NewComponentMPWorkFunctionUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewComponentRoutineUPP(user_routine: ComponentRoutineProcPtr) -> ComponentRoutineUPP {
+pub unsafe fn NewComponentRoutineUPP(
+    user_routine: Option<ComponentRoutineProcPtr>,
+) -> Option<ComponentRoutineUPP> {
     extern "C-unwind" {
-        fn NewComponentRoutineUPP(user_routine: ComponentRoutineProcPtr) -> ComponentRoutineUPP;
+        fn NewComponentRoutineUPP(
+            user_routine: Option<ComponentRoutineProcPtr>,
+        ) -> Option<ComponentRoutineUPP>;
     }
     unsafe { NewComponentRoutineUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewGetMissingComponentResourceUPP(
-    user_routine: GetMissingComponentResourceProcPtr,
-) -> GetMissingComponentResourceUPP {
+    user_routine: Option<GetMissingComponentResourceProcPtr>,
+) -> Option<GetMissingComponentResourceUPP> {
     extern "C-unwind" {
         fn NewGetMissingComponentResourceUPP(
-            user_routine: GetMissingComponentResourceProcPtr,
-        ) -> GetMissingComponentResourceUPP;
+            user_routine: Option<GetMissingComponentResourceProcPtr>,
+        ) -> Option<GetMissingComponentResourceUPP>;
     }
     unsafe { NewGetMissingComponentResourceUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeComponentMPWorkFunctionUPP(user_upp: ComponentMPWorkFunctionUPP) {
+pub unsafe fn DisposeComponentMPWorkFunctionUPP(user_upp: *mut ComponentMPWorkFunctionUPP) {
     extern "C-unwind" {
-        fn DisposeComponentMPWorkFunctionUPP(user_upp: ComponentMPWorkFunctionUPP);
+        fn DisposeComponentMPWorkFunctionUPP(user_upp: *mut ComponentMPWorkFunctionUPP);
     }
     unsafe { DisposeComponentMPWorkFunctionUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeComponentRoutineUPP(user_upp: ComponentRoutineUPP) {
+pub unsafe fn DisposeComponentRoutineUPP(user_upp: *mut ComponentRoutineUPP) {
     extern "C-unwind" {
-        fn DisposeComponentRoutineUPP(user_upp: ComponentRoutineUPP);
+        fn DisposeComponentRoutineUPP(user_upp: *mut ComponentRoutineUPP);
     }
     unsafe { DisposeComponentRoutineUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeGetMissingComponentResourceUPP(user_upp: GetMissingComponentResourceUPP) {
+pub unsafe fn DisposeGetMissingComponentResourceUPP(user_upp: *mut GetMissingComponentResourceUPP) {
     extern "C-unwind" {
-        fn DisposeGetMissingComponentResourceUPP(user_upp: GetMissingComponentResourceUPP);
+        fn DisposeGetMissingComponentResourceUPP(user_upp: *mut GetMissingComponentResourceUPP);
     }
     unsafe { DisposeGetMissingComponentResourceUPP(user_upp) }
 }
@@ -1555,18 +1563,19 @@ pub unsafe fn DisposeGetMissingComponentResourceUPP(user_upp: GetMissingComponen
 /// - `global_ref_con` must be a valid pointer.
 /// - `header` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeComponentMPWorkFunctionUPP(
     global_ref_con: *mut c_void,
     header: ComponentMPWorkFunctionHeaderRecordPtr,
-    user_upp: ComponentMPWorkFunctionUPP,
+    user_upp: Option<ComponentMPWorkFunctionUPP>,
 ) -> ComponentResult {
     extern "C-unwind" {
         fn InvokeComponentMPWorkFunctionUPP(
             global_ref_con: *mut c_void,
             header: ComponentMPWorkFunctionHeaderRecordPtr,
-            user_upp: ComponentMPWorkFunctionUPP,
+            user_upp: Option<ComponentMPWorkFunctionUPP>,
         ) -> ComponentResult;
     }
     unsafe { InvokeComponentMPWorkFunctionUPP(global_ref_con, header, user_upp) }
@@ -1577,18 +1586,19 @@ pub unsafe fn InvokeComponentMPWorkFunctionUPP(
 /// - `cp` must be a valid pointer.
 /// - `component_storage` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeComponentRoutineUPP(
     cp: *mut ComponentParameters,
     component_storage: Handle,
-    user_upp: ComponentRoutineUPP,
+    user_upp: Option<ComponentRoutineUPP>,
 ) -> ComponentResult {
     extern "C-unwind" {
         fn InvokeComponentRoutineUPP(
             cp: *mut ComponentParameters,
             component_storage: Handle,
-            user_upp: ComponentRoutineUPP,
+            user_upp: Option<ComponentRoutineUPP>,
         ) -> ComponentResult;
     }
     unsafe { InvokeComponentRoutineUPP(cp, component_storage, user_upp) }
@@ -1601,6 +1611,7 @@ pub unsafe fn InvokeComponentRoutineUPP(
 /// - `resource` must be a valid pointer.
 /// - `resource` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeGetMissingComponentResourceUPP(
@@ -1609,7 +1620,7 @@ pub unsafe fn InvokeGetMissingComponentResourceUPP(
     res_id: i16,
     ref_con: *mut c_void,
     resource: Option<&mut Handle>,
-    user_upp: GetMissingComponentResourceUPP,
+    user_upp: Option<GetMissingComponentResourceUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeGetMissingComponentResourceUPP(
@@ -1618,7 +1629,7 @@ pub unsafe fn InvokeGetMissingComponentResourceUPP(
             res_id: i16,
             ref_con: *mut c_void,
             resource: Option<&mut Handle>,
-            user_upp: GetMissingComponentResourceUPP,
+            user_upp: Option<GetMissingComponentResourceUPP>,
         ) -> OSErr;
     }
     unsafe {

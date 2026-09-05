@@ -1463,33 +1463,29 @@ pub const kIOBlitColorSpaceTypes: c_uint = IO_FOUR_CHAR_CODE!(0x63737063);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitaccumulateptr?language=objc)
 pub type IOBlitAccumulatePtr =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, i32, i32, i32, i32, i32, i32) -> IOReturn>;
+    unsafe extern "C-unwind" fn(*mut c_void, i32, i32, i32, i32, i32, i32) -> IOReturn;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitprocptr?language=objc)
-pub type IOBlitProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        IOOptionBits,
-        IOBlitType,
-        IOBlitSourceDestType,
-        *mut IOBlitOperation,
-        *mut c_void,
-        *mut c_void,
-        *mut IOBlitCompletionToken,
-    ) -> IOReturn,
->;
+pub type IOBlitProcPtr = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    IOOptionBits,
+    IOBlitType,
+    IOBlitSourceDestType,
+    *mut IOBlitOperation,
+    *mut c_void,
+    *mut c_void,
+    *mut IOBlitCompletionToken,
+) -> IOReturn;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitterptr?language=objc)
-pub type IOBlitterPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        IOOptionBits,
-        IOBlitType,
-        IOBlitSourceType,
-        *mut IOBlitOperation,
-        *mut c_void,
-    ) -> IOReturn,
->;
+pub type IOBlitterPtr = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    IOOptionBits,
+    IOBlitType,
+    IOBlitSourceType,
+    *mut IOBlitOperation,
+    *mut c_void,
+) -> IOReturn;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iographicsacceleratorinterfacestruct?language=objc)
 #[cfg(feature = "libc")]
@@ -1526,7 +1522,7 @@ pub struct IOGraphicsAcceleratorInterfaceStruct {
             IOOptionBits,
             IOBlitType,
             IOBlitSourceDestType,
-            *mut IOBlitProcPtr,
+            *mut Option<IOBlitProcPtr>,
         ) -> IOReturn,
     >,
     pub Flush: Option<unsafe extern "C-unwind" fn(*mut c_void, IOOptionBits) -> IOReturn>,
@@ -1581,7 +1577,7 @@ pub struct IOGraphicsAcceleratorInterfaceStruct {
             IOOptionBits,
             IOBlitType,
             IOBlitSourceType,
-            *mut IOBlitterPtr,
+            *mut Option<IOBlitterPtr>,
         ) -> IOReturn,
     >,
     pub WaitComplete: Option<unsafe extern "C-unwind" fn(*mut c_void, IOOptionBits) -> IOReturn>,

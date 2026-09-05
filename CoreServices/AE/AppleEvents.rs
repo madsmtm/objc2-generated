@@ -137,13 +137,14 @@ pub const errAEEventNotPermitted: c_int = -1743;
 /// # Safety
 ///
 /// - `handler` must be implemented correctly.
+/// - `handler` might not allow `None`.
 /// - `handler_refcon` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AEInstallEventHandler(
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,
-    handler: AEEventHandlerUPP,
+    handler: Option<AEEventHandlerUPP>,
     handler_refcon: SRefCon,
     is_sys_handler: bool,
 ) -> OSErr {
@@ -151,7 +152,7 @@ pub unsafe fn AEInstallEventHandler(
         fn AEInstallEventHandler(
             the_ae_event_class: AEEventClass,
             the_ae_event_id: AEEventID,
-            handler: AEEventHandlerUPP,
+            handler: Option<AEEventHandlerUPP>,
             handler_refcon: SRefCon,
             is_sys_handler: Boolean,
         ) -> OSErr;
@@ -170,20 +171,21 @@ pub unsafe fn AEInstallEventHandler(
 
 /// # Safety
 ///
-/// `handler` must be implemented correctly.
+/// - `handler` must be implemented correctly.
+/// - `handler` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AERemoveEventHandler(
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,
-    handler: AEEventHandlerUPP,
+    handler: Option<AEEventHandlerUPP>,
     is_sys_handler: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn AERemoveEventHandler(
             the_ae_event_class: AEEventClass,
             the_ae_event_id: AEEventID,
-            handler: AEEventHandlerUPP,
+            handler: Option<AEEventHandlerUPP>,
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
@@ -202,7 +204,7 @@ pub unsafe fn AERemoveEventHandler(
 pub unsafe fn AEGetEventHandler(
     the_ae_event_class: AEEventClass,
     the_ae_event_id: AEEventID,
-    handler: Option<&mut AEEventHandlerUPP>,
+    handler: Option<&mut Option<AEEventHandlerUPP>>,
     handler_refcon: Option<&mut SRefCon>,
     is_sys_handler: bool,
 ) -> OSErr {
@@ -210,7 +212,7 @@ pub unsafe fn AEGetEventHandler(
         fn AEGetEventHandler(
             the_ae_event_class: AEEventClass,
             the_ae_event_id: AEEventID,
-            handler: Option<&mut AEEventHandlerUPP>,
+            handler: Option<&mut Option<AEEventHandlerUPP>>,
             handler_refcon: Option<&mut SRefCon>,
             is_sys_handler: Boolean,
         ) -> OSErr;
@@ -234,18 +236,19 @@ pub unsafe fn AEGetEventHandler(
 ///
 /// # Safety
 ///
-/// `handler` must be implemented correctly.
+/// - `handler` must be implemented correctly.
+/// - `handler` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AEInstallSpecialHandler(
     function_class: AEKeyword,
-    handler: AEEventHandlerUPP,
+    handler: Option<AEEventHandlerUPP>,
     is_sys_handler: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn AEInstallSpecialHandler(
             function_class: AEKeyword,
-            handler: AEEventHandlerUPP,
+            handler: Option<AEEventHandlerUPP>,
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
@@ -255,18 +258,19 @@ pub unsafe fn AEInstallSpecialHandler(
 
 /// # Safety
 ///
-/// `handler` must be implemented correctly.
+/// - `handler` must be implemented correctly.
+/// - `handler` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AERemoveSpecialHandler(
     function_class: AEKeyword,
-    handler: AEEventHandlerUPP,
+    handler: Option<AEEventHandlerUPP>,
     is_sys_handler: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn AERemoveSpecialHandler(
             function_class: AEKeyword,
-            handler: AEEventHandlerUPP,
+            handler: Option<AEEventHandlerUPP>,
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
@@ -282,13 +286,13 @@ pub unsafe fn AERemoveSpecialHandler(
 #[inline]
 pub unsafe fn AEGetSpecialHandler(
     function_class: AEKeyword,
-    handler: Option<&mut AEEventHandlerUPP>,
+    handler: Option<&mut Option<AEEventHandlerUPP>>,
     is_sys_handler: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn AEGetSpecialHandler(
             function_class: AEKeyword,
-            handler: Option<&mut AEEventHandlerUPP>,
+            handler: Option<&mut Option<AEEventHandlerUPP>>,
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
@@ -342,9 +346,9 @@ extern "C" {
 pub struct AERemoteProcessResolverContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: CFAllocatorRetainCallBack,
-    pub release: CFAllocatorReleaseCallBack,
-    pub copyDescription: CFAllocatorCopyDescriptionCallBack,
+    pub retain: Option<CFAllocatorRetainCallBack>,
+    pub release: Option<CFAllocatorReleaseCallBack>,
+    pub copyDescription: Option<CFAllocatorCopyDescriptionCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -434,7 +438,7 @@ impl AERemoteProcessResolver {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback?language=objc)
 pub type AERemoteProcessResolverCallback =
-    Option<unsafe extern "C-unwind" fn(Option<&AERemoteProcessResolver>, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&AERemoteProcessResolver>, *mut c_void);
 
 impl AERemoteProcessResolver {
     /// # Safety
@@ -445,6 +449,7 @@ impl AERemoteProcessResolver {
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
     /// - `callback` must be implemented correctly.
+    /// - `callback` might not allow `None`.
     /// - `ctx` struct field `version` must be set correctly.
     /// - `ctx` struct field `info` must be a valid pointer.
     /// - `ctx` struct field `retain` must be implemented correctly.
@@ -457,7 +462,7 @@ impl AERemoteProcessResolver {
         r#ref: Option<&AERemoteProcessResolver>,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
-        callback: AERemoteProcessResolverCallback,
+        callback: Option<AERemoteProcessResolverCallback>,
         ctx: Option<&AERemoteProcessResolverContext>,
     ) {
         extern "C-unwind" {
@@ -465,7 +470,7 @@ impl AERemoteProcessResolver {
                 r#ref: Option<&AERemoteProcessResolver>,
                 run_loop: Option<&CFRunLoop>,
                 run_loop_mode: Option<&CFString>,
-                callback: AERemoteProcessResolverCallback,
+                callback: Option<AERemoteProcessResolverCallback>,
                 ctx: Option<&AERemoteProcessResolverContext>,
             );
         }

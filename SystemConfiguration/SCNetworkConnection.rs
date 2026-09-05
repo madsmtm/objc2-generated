@@ -205,9 +205,8 @@ unsafe impl RefEncode for SCNetworkConnectionPPPStatus {
 /// Parameter `info`: Application-specific information.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncallback?language=objc)
-pub type SCNetworkConnectionCallBack = Option<
-    unsafe extern "C-unwind" fn(&SCNetworkConnection, SCNetworkConnectionStatus, *mut c_void),
->;
+pub type SCNetworkConnectionCallBack =
+    unsafe extern "C-unwind" fn(&SCNetworkConnection, SCNetworkConnectionStatus, *mut c_void);
 
 unsafe impl ConcreteType for SCNetworkConnection {
     /// Returns the type identifier of all SCNetworkConnection
@@ -309,14 +308,14 @@ impl SCNetworkConnection {
     pub unsafe fn with_service_id(
         allocator: Option<&CFAllocator>,
         service_id: &CFString,
-        callout: SCNetworkConnectionCallBack,
+        callout: Option<SCNetworkConnectionCallBack>,
         context: Option<&SCNetworkConnectionContext>,
     ) -> Option<CFRetained<SCNetworkConnection>> {
         extern "C-unwind" {
             fn SCNetworkConnectionCreateWithServiceID(
                 allocator: Option<&CFAllocator>,
                 service_id: &CFString,
-                callout: SCNetworkConnectionCallBack,
+                callout: Option<SCNetworkConnectionCallBack>,
                 context: Option<&SCNetworkConnectionContext>,
             ) -> Option<NonNull<SCNetworkConnection>>;
         }

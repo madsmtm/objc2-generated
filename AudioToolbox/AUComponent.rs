@@ -917,16 +917,14 @@ unsafe impl RefEncode for AudioUnitProperty {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendercallback?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AURenderCallback = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        NonNull<AudioUnitRenderActionFlags>,
-        NonNull<AudioTimeStamp>,
-        u32,
-        u32,
-        *mut AudioBufferList,
-    ) -> OSStatus,
->;
+pub type AURenderCallback = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    NonNull<AudioUnitRenderActionFlags>,
+    NonNull<AudioTimeStamp>,
+    u32,
+    u32,
+    *mut AudioBufferList,
+) -> OSStatus;
 
 /// This is the prototype for a function callback Proc that is registered with an
 /// audio unit to notify the caller of any changes to a value of an audio unit
@@ -945,15 +943,13 @@ pub type AURenderCallback = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpropertylistenerproc?language=objc)
 #[cfg(feature = "AudioComponent")]
-pub type AudioUnitPropertyListenerProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioUnit,
-        AudioUnitPropertyID,
-        AudioUnitScope,
-        AudioUnitElement,
-    ),
->;
+pub type AudioUnitPropertyListenerProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioUnit,
+    AudioUnitPropertyID,
+    AudioUnitScope,
+    AudioUnitElement,
+);
 
 /// This is the prototype for a function callback Proc that is registered with an
 /// audio unit to notify the caller of for the user of a varispeed or AUTimePitch
@@ -974,7 +970,7 @@ pub type AudioUnitPropertyListenerProc = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auinputsamplesinoutputcallback?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AUInputSamplesInOutputCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<AudioTimeStamp>, f64, f64)>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<AudioTimeStamp>, f64, f64);
 
 extern "C" {
     /// Notification generated when the set of available AudioComponents changes.
@@ -1933,143 +1929,122 @@ pub const kAudioUnitProcessSelect: c_uint = 0x0014;
 pub const kAudioUnitProcessMultipleSelect: c_uint = 0x0015;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitinitializeproc?language=objc)
-pub type AudioUnitInitializeProc = Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
+pub type AudioUnitInitializeProc = unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounituninitializeproc?language=objc)
-pub type AudioUnitUninitializeProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
+pub type AudioUnitUninitializeProc = unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitgetpropertyinfoproc?language=objc)
-pub type AudioUnitGetPropertyInfoProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioUnitPropertyID,
-        AudioUnitScope,
-        AudioUnitElement,
-        *mut u32,
-        *mut Boolean,
-    ) -> OSStatus,
->;
+pub type AudioUnitGetPropertyInfoProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioUnitPropertyID,
+    AudioUnitScope,
+    AudioUnitElement,
+    *mut u32,
+    *mut Boolean,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitgetpropertyproc?language=objc)
-pub type AudioUnitGetPropertyProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioUnitPropertyID,
-        AudioUnitScope,
-        AudioUnitElement,
-        NonNull<c_void>,
-        NonNull<u32>,
-    ) -> OSStatus,
->;
+pub type AudioUnitGetPropertyProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioUnitPropertyID,
+    AudioUnitScope,
+    AudioUnitElement,
+    NonNull<c_void>,
+    NonNull<u32>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitsetpropertyproc?language=objc)
-pub type AudioUnitSetPropertyProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioUnitPropertyID,
-        AudioUnitScope,
-        AudioUnitElement,
-        NonNull<c_void>,
-        u32,
-    ) -> OSStatus,
->;
+pub type AudioUnitSetPropertyProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioUnitPropertyID,
+    AudioUnitScope,
+    AudioUnitElement,
+    NonNull<c_void>,
+    u32,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitaddpropertylistenerproc?language=objc)
 #[cfg(feature = "AudioComponent")]
-pub type AudioUnitAddPropertyListenerProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioUnitPropertyID,
-        AudioUnitPropertyListenerProc,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioUnitAddPropertyListenerProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioUnitPropertyID,
+    AudioUnitPropertyListenerProc,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremovepropertylistenerproc?language=objc)
 #[cfg(feature = "AudioComponent")]
-pub type AudioUnitRemovePropertyListenerProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioUnitPropertyID,
-        AudioUnitPropertyListenerProc,
-    ) -> OSStatus,
->;
+pub type AudioUnitRemovePropertyListenerProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioUnitPropertyID,
+    AudioUnitPropertyListenerProc,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremovepropertylistenerwithuserdataproc?language=objc)
 #[cfg(feature = "AudioComponent")]
-pub type AudioUnitRemovePropertyListenerWithUserDataProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioUnitPropertyID,
-        AudioUnitPropertyListenerProc,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type AudioUnitRemovePropertyListenerWithUserDataProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioUnitPropertyID,
+    AudioUnitPropertyListenerProc,
+    *mut c_void,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitaddrendernotifyproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioUnitAddRenderNotifyProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, AURenderCallback, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, AURenderCallback, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremoverendernotifyproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioUnitRemoveRenderNotifyProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, AURenderCallback, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, AURenderCallback, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitscheduleparametersproc?language=objc)
-pub type AudioUnitScheduleParametersProc = Option<
-    unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<AudioUnitParameterEvent>, u32) -> OSStatus,
->;
+pub type AudioUnitScheduleParametersProc =
+    unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<AudioUnitParameterEvent>, u32) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitresetproc?language=objc)
-pub type AudioUnitResetProc = Option<
-    unsafe extern "C-unwind" fn(NonNull<c_void>, AudioUnitScope, AudioUnitElement) -> OSStatus,
->;
+pub type AudioUnitResetProc =
+    unsafe extern "C-unwind" fn(NonNull<c_void>, AudioUnitScope, AudioUnitElement) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitcomplexrenderproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioUnitComplexRenderProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        *mut AudioUnitRenderActionFlags,
-        NonNull<AudioTimeStamp>,
-        u32,
-        u32,
-        NonNull<u32>,
-        NonNull<AudioStreamPacketDescription>,
-        NonNull<AudioBufferList>,
-        NonNull<c_void>,
-        NonNull<u32>,
-    ) -> OSStatus,
->;
+pub type AudioUnitComplexRenderProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    *mut AudioUnitRenderActionFlags,
+    NonNull<AudioTimeStamp>,
+    u32,
+    u32,
+    NonNull<u32>,
+    NonNull<AudioStreamPacketDescription>,
+    NonNull<AudioBufferList>,
+    NonNull<c_void>,
+    NonNull<u32>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitprocessproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioUnitProcessProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        *mut AudioUnitRenderActionFlags,
-        NonNull<AudioTimeStamp>,
-        u32,
-        NonNull<AudioBufferList>,
-    ) -> OSStatus,
->;
+pub type AudioUnitProcessProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    *mut AudioUnitRenderActionFlags,
+    NonNull<AudioTimeStamp>,
+    u32,
+    NonNull<AudioBufferList>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitprocessmultipleproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioUnitProcessMultipleProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        *mut AudioUnitRenderActionFlags,
-        NonNull<AudioTimeStamp>,
-        u32,
-        u32,
-        NonNull<NonNull<AudioBufferList>>,
-        u32,
-        NonNull<NonNull<AudioBufferList>>,
-    ) -> OSStatus,
->;
+pub type AudioUnitProcessMultipleProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    *mut AudioUnitRenderActionFlags,
+    NonNull<AudioTimeStamp>,
+    u32,
+    u32,
+    NonNull<NonNull<AudioBufferList>>,
+    u32,
+    NonNull<NonNull<AudioBufferList>>,
+) -> OSStatus;
 
 /// This proc can be exported through the FastDispatch property or is used as the prototype for
 /// an audio component dispatch for this selector.
@@ -2081,15 +2056,13 @@ pub type AudioUnitProcessMultipleProc = Option<
 /// pointer
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitgetparameterproc?language=objc)
-pub type AudioUnitGetParameterProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioUnitParameterID,
-        AudioUnitScope,
-        AudioUnitElement,
-        NonNull<AudioUnitParameterValue>,
-    ) -> OSStatus,
->;
+pub type AudioUnitGetParameterProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioUnitParameterID,
+    AudioUnitScope,
+    AudioUnitElement,
+    NonNull<AudioUnitParameterValue>,
+) -> OSStatus;
 
 /// This proc can be exported through the FastDispatch property or is used as the prototype for
 /// an audio component dispatch for this selector.
@@ -2101,16 +2074,14 @@ pub type AudioUnitGetParameterProc = Option<
 /// pointer
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitsetparameterproc?language=objc)
-pub type AudioUnitSetParameterProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioUnitParameterID,
-        AudioUnitScope,
-        AudioUnitElement,
-        AudioUnitParameterValue,
-        u32,
-    ) -> OSStatus,
->;
+pub type AudioUnitSetParameterProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioUnitParameterID,
+    AudioUnitScope,
+    AudioUnitElement,
+    AudioUnitParameterValue,
+    u32,
+) -> OSStatus;
 
 /// This proc can be exported through the FastDispatch property or is used as the prototype for
 /// an audio component dispatch for this selector.
@@ -2123,16 +2094,14 @@ pub type AudioUnitSetParameterProc = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioUnitRenderProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        *mut AudioUnitRenderActionFlags,
-        NonNull<AudioTimeStamp>,
-        u32,
-        u32,
-        NonNull<AudioBufferList>,
-    ) -> OSStatus,
->;
+pub type AudioUnitRenderProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    *mut AudioUnitRenderActionFlags,
+    NonNull<AudioTimeStamp>,
+    u32,
+    u32,
+    NonNull<AudioBufferList>,
+) -> OSStatus;
 
 /// Apple's DLS synth returns this error if information about a particular
 /// instrument patch is requested, but is not valid.

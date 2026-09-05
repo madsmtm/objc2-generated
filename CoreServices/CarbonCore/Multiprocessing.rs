@@ -377,11 +377,12 @@ pub const kMPCreateTaskValidOptionsMask: c_uint = kMPCreateTaskSuspendedMask
     | kMPCreateTaskNotDebuggableMask;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/taskproc?language=objc)
-pub type TaskProc = Option<unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus>;
+pub type TaskProc = unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus;
 
 /// # Safety
 ///
 /// - `entry_point` must be implemented correctly.
+/// - `entry_point` might not allow `None`.
 /// - `parameter` must be a valid pointer.
 /// - `notify_queue` must be a valid pointer.
 /// - `termination_parameter1` must be a valid pointer.
@@ -391,7 +392,7 @@ pub type TaskProc = Option<unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus>
 #[deprecated = "Use libDispatch"]
 #[inline]
 pub unsafe fn MPCreateTask(
-    entry_point: TaskProc,
+    entry_point: Option<TaskProc>,
     parameter: *mut c_void,
     stack_size: ByteCount,
     notify_queue: MPQueueID,
@@ -402,7 +403,7 @@ pub unsafe fn MPCreateTask(
 ) -> OSStatus {
     extern "C-unwind" {
         fn MPCreateTask(
-            entry_point: TaskProc,
+            entry_point: Option<TaskProc>,
             parameter: *mut c_void,
             stack_size: ByteCount,
             notify_queue: MPQueueID,
@@ -1439,7 +1440,7 @@ pub unsafe fn MPUnregisterDebugger(queue: MPQueueID) -> OSStatus {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mpremoteprocedure?language=objc)
-pub type MPRemoteProcedure = Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>;
+pub type MPRemoteProcedure = unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mpremotecontext?language=objc)
 pub type MPRemoteContext = u8;
@@ -1460,17 +1461,18 @@ pub const kMPAsyncInterruptRemoteContext: c_uint = 3;
 /// # Safety
 ///
 /// - `remote_proc` must be implemented correctly.
+/// - `remote_proc` might not allow `None`.
 /// - `parameter` must be a valid pointer.
 #[deprecated = "Use libDispatch"]
 #[inline]
 pub unsafe fn MPRemoteCall(
-    remote_proc: MPRemoteProcedure,
+    remote_proc: Option<MPRemoteProcedure>,
     parameter: *mut c_void,
     context: MPRemoteContext,
 ) -> *mut c_void {
     extern "C-unwind" {
         fn MPRemoteCall(
-            remote_proc: MPRemoteProcedure,
+            remote_proc: Option<MPRemoteProcedure>,
             parameter: *mut c_void,
             context: MPRemoteContext,
         ) -> *mut c_void;
@@ -1481,17 +1483,18 @@ pub unsafe fn MPRemoteCall(
 /// # Safety
 ///
 /// - `remote_proc` must be implemented correctly.
+/// - `remote_proc` might not allow `None`.
 /// - `parameter` must be a valid pointer.
 #[deprecated = "No longer supported."]
 #[inline]
 pub unsafe fn MPRemoteCallCFM(
-    remote_proc: MPRemoteProcedure,
+    remote_proc: Option<MPRemoteProcedure>,
     parameter: *mut c_void,
     context: MPRemoteContext,
 ) -> *mut c_void {
     extern "C-unwind" {
         fn MPRemoteCallCFM(
-            remote_proc: MPRemoteProcedure,
+            remote_proc: Option<MPRemoteProcedure>,
             parameter: *mut c_void,
             context: MPRemoteContext,
         ) -> *mut c_void;
@@ -1510,7 +1513,7 @@ pub(crate) unsafe fn _MPIsFullyInitialized() -> bool {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mpisfullyinitializedproc?language=objc)
-pub type MPIsFullyInitializedProc = Option<unsafe extern "C-unwind" fn() -> Boolean>;
+pub type MPIsFullyInitializedProc = unsafe extern "C-unwind" fn() -> Boolean;
 
 /// # Safety
 ///

@@ -674,7 +674,7 @@ impl CVPixelBuffer {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferreleasebytescallback?language=objc)
 pub type CVPixelBufferReleaseBytesCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *const c_void)>;
+    unsafe extern "C-unwind" fn(*mut c_void, *const c_void);
 
 #[cfg(feature = "CVImageBuffer")]
 impl CVPixelBuffer {
@@ -718,7 +718,7 @@ impl CVPixelBuffer {
         pixel_format_type: OSType,
         base_address: NonNull<c_void>,
         bytes_per_row: usize,
-        release_callback: CVPixelBufferReleaseBytesCallback,
+        release_callback: Option<CVPixelBufferReleaseBytesCallback>,
         release_ref_con: *mut c_void,
         pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
@@ -731,7 +731,7 @@ impl CVPixelBuffer {
                 pixel_format_type: OSType,
                 base_address: NonNull<c_void>,
                 bytes_per_row: usize,
-                release_callback: CVPixelBufferReleaseBytesCallback,
+                release_callback: Option<CVPixelBufferReleaseBytesCallback>,
                 release_ref_con: *mut c_void,
                 pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
                 pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
@@ -759,9 +759,8 @@ impl CVPixelBuffer {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferreleaseplanarbytescallback?language=objc)
-pub type CVPixelBufferReleasePlanarBytesCallback = Option<
-    unsafe extern "C-unwind" fn(*mut c_void, *const c_void, usize, usize, *mut *const c_void),
->;
+pub type CVPixelBufferReleasePlanarBytesCallback =
+    unsafe extern "C-unwind" fn(*mut c_void, *const c_void, usize, usize, *mut *const c_void);
 
 #[cfg(feature = "CVImageBuffer")]
 impl CVPixelBuffer {
@@ -824,7 +823,7 @@ impl CVPixelBuffer {
         plane_width: NonNull<usize>,
         plane_height: NonNull<usize>,
         plane_bytes_per_row: NonNull<usize>,
-        release_callback: CVPixelBufferReleasePlanarBytesCallback,
+        release_callback: Option<CVPixelBufferReleasePlanarBytesCallback>,
         release_ref_con: *mut c_void,
         pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,
@@ -842,7 +841,7 @@ impl CVPixelBuffer {
                 plane_width: NonNull<usize>,
                 plane_height: NonNull<usize>,
                 plane_bytes_per_row: NonNull<usize>,
-                release_callback: CVPixelBufferReleasePlanarBytesCallback,
+                release_callback: Option<CVPixelBufferReleasePlanarBytesCallback>,
                 release_ref_con: *mut c_void,
                 pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
                 pixel_buffer_out: &mut Option<CFRetained<CVPixelBuffer>>,

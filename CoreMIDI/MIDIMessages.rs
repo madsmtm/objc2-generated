@@ -711,7 +711,7 @@ unsafe impl RefEncode for MIDIUniversalMessage {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventvisitor?language=objc)
 #[cfg(feature = "MIDIServices")]
 pub type MIDIEventVisitor =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, MIDITimeStamp, MIDIUniversalMessage)>;
+    unsafe extern "C-unwind" fn(*mut c_void, MIDITimeStamp, MIDIUniversalMessage);
 
 #[cfg(feature = "MIDIServices")]
 impl MIDIEventList {
@@ -734,19 +734,20 @@ impl MIDIEventList {
     ///
     /// - `evtlist` must be a valid pointer.
     /// - `visitor` must be implemented correctly.
+    /// - `visitor` might not allow `None`.
     /// - `visitor_context` must be a valid pointer.
     #[doc(alias = "MIDIEventListForEachEvent")]
     #[cfg(feature = "MIDIServices")]
     #[inline]
     pub unsafe fn for_each_event(
         evtlist: *const MIDIEventList,
-        visitor: MIDIEventVisitor,
+        visitor: Option<MIDIEventVisitor>,
         visitor_context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn MIDIEventListForEachEvent(
                 evtlist: *const MIDIEventList,
-                visitor: MIDIEventVisitor,
+                visitor: Option<MIDIEventVisitor>,
                 visitor_context: *mut c_void,
             );
         }

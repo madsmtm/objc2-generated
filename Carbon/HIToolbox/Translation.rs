@@ -66,8 +66,7 @@ pub type FileTranslationSpecArrayHandle = *mut FileTranslationSpecArrayPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/getscrapdataprocptr?language=objc)
 #[cfg(feature = "TranslationExtensions")]
-pub type GetScrapDataProcPtr =
-    Option<unsafe extern "C-unwind" fn(ScrapType, Handle, *mut c_void) -> OSErr>;
+pub type GetScrapDataProcPtr = unsafe extern "C-unwind" fn(ScrapType, Handle, *mut c_void) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/getscrapdataupp?language=objc)
 #[cfg(feature = "TranslationExtensions")]
@@ -75,26 +74,30 @@ pub type GetScrapDataUPP = GetScrapDataProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "TranslationExtensions")]
 #[deprecated]
 #[inline]
-pub unsafe fn NewGetScrapDataUPP(user_routine: GetScrapDataProcPtr) -> GetScrapDataUPP {
+pub unsafe fn NewGetScrapDataUPP(
+    user_routine: Option<GetScrapDataProcPtr>,
+) -> Option<GetScrapDataUPP> {
     extern "C-unwind" {
-        fn NewGetScrapDataUPP(user_routine: GetScrapDataProcPtr) -> GetScrapDataUPP;
+        fn NewGetScrapDataUPP(user_routine: Option<GetScrapDataProcPtr>)
+            -> Option<GetScrapDataUPP>;
     }
     unsafe { NewGetScrapDataUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "TranslationExtensions")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeGetScrapDataUPP(user_upp: GetScrapDataUPP) {
+pub unsafe fn DisposeGetScrapDataUPP(user_upp: *mut GetScrapDataUPP) {
     extern "C-unwind" {
-        fn DisposeGetScrapDataUPP(user_upp: GetScrapDataUPP);
+        fn DisposeGetScrapDataUPP(user_upp: *mut GetScrapDataUPP);
     }
     unsafe { DisposeGetScrapDataUPP(user_upp) }
 }
@@ -104,6 +107,7 @@ pub unsafe fn DisposeGetScrapDataUPP(user_upp: GetScrapDataUPP) {
 /// - `data_h` must be a valid pointer.
 /// - `src_data_getter_ref_con` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "TranslationExtensions")]
 #[deprecated]
 #[inline]
@@ -111,14 +115,14 @@ pub unsafe fn InvokeGetScrapDataUPP(
     requested_format: ScrapType,
     data_h: Handle,
     src_data_getter_ref_con: *mut c_void,
-    user_upp: GetScrapDataUPP,
+    user_upp: Option<GetScrapDataUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeGetScrapDataUPP(
             requested_format: ScrapType,
             data_h: Handle,
             src_data_getter_ref_con: *mut c_void,
-            user_upp: GetScrapDataUPP,
+            user_upp: Option<GetScrapDataUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeGetScrapDataUPP(requested_format, data_h, src_data_getter_ref_con, user_upp) }

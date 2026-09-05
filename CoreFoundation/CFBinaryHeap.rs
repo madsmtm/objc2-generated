@@ -122,8 +122,7 @@ extern "C" {
 /// function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapapplierfunction?language=objc)
-pub type CFBinaryHeapApplierFunction =
-    Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
+pub type CFBinaryHeapApplierFunction = unsafe extern "C-unwind" fn(*const c_void, *mut c_void);
 
 /// This is the type of a reference to CFBinaryHeaps.
 ///
@@ -486,18 +485,19 @@ impl<T: Sized> CFBinaryHeap<T> {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
+    /// - `applier` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFBinaryHeapApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
         &self,
-        applier: CFBinaryHeapApplierFunction,
+        applier: Option<CFBinaryHeapApplierFunction>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn CFBinaryHeapApplyFunction(
                 heap: &CFBinaryHeap,
-                applier: CFBinaryHeapApplierFunction,
+                applier: Option<CFBinaryHeapApplierFunction>,
                 context: *mut c_void,
             );
         }

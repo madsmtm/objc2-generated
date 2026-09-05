@@ -185,9 +185,8 @@ unsafe impl RefEncode for SCNetworkReachabilityFlags {
 /// Parameter `info`: A C pointer to a user-specified block of data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycallback?language=objc)
-pub type SCNetworkReachabilityCallBack = Option<
-    unsafe extern "C-unwind" fn(&SCNetworkReachability, SCNetworkReachabilityFlags, *mut c_void),
->;
+pub type SCNetworkReachabilityCallBack =
+    unsafe extern "C-unwind" fn(&SCNetworkReachability, SCNetworkReachabilityFlags, *mut c_void);
 
 impl SCNetworkReachability {
     /// Creates a reference to the specified network
@@ -359,13 +358,13 @@ impl SCNetworkReachability {
     #[inline]
     pub unsafe fn set_callback(
         &self,
-        callout: SCNetworkReachabilityCallBack,
+        callout: Option<SCNetworkReachabilityCallBack>,
         context: Option<&SCNetworkReachabilityContext>,
     ) -> bool {
         extern "C-unwind" {
             fn SCNetworkReachabilitySetCallback(
                 target: &SCNetworkReachability,
-                callout: SCNetworkReachabilityCallBack,
+                callout: Option<SCNetworkReachabilityCallBack>,
                 context: Option<&SCNetworkReachabilityContext>,
             ) -> Boolean;
         }

@@ -751,10 +751,11 @@ impl OBEXSession {
         ///
         /// # Safety
         ///
-        /// `in_event_callback` must be implemented correctly.
+        /// - `in_event_callback` must be implemented correctly.
+        /// - `in_event_callback` might not allow `None`.
         #[unsafe(method(setEventCallback:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEventCallback(&self, in_event_callback: OBEXSessionEventCallback);
+        pub unsafe fn setEventCallback(&self, in_event_callback: Option<OBEXSessionEventCallback>);
 
         /// Sets the C-API callback refCon used when the session recieves data.
         ///

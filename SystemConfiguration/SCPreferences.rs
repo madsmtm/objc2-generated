@@ -131,7 +131,7 @@ unsafe impl RefEncode for SCPreferencesContext {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescallback?language=objc)
 pub type SCPreferencesCallBack =
-    Option<unsafe extern "C-unwind" fn(&SCPreferences, SCPreferencesNotification, *mut c_void)>;
+    unsafe extern "C-unwind" fn(&SCPreferences, SCPreferencesNotification, *mut c_void);
 
 unsafe impl ConcreteType for SCPreferences {
     /// Returns the type identifier of all SCPreferences instances.
@@ -498,13 +498,13 @@ impl SCPreferences {
     #[inline]
     pub unsafe fn set_callback(
         &self,
-        callout: SCPreferencesCallBack,
+        callout: Option<SCPreferencesCallBack>,
         context: Option<&SCPreferencesContext>,
     ) -> bool {
         extern "C-unwind" {
             fn SCPreferencesSetCallback(
                 prefs: &SCPreferences,
-                callout: SCPreferencesCallBack,
+                callout: Option<SCPreferencesCallBack>,
                 context: Option<&SCPreferencesContext>,
             ) -> Boolean;
         }

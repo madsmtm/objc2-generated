@@ -72,12 +72,11 @@ unsafe impl RefEncode for SecureDownloadTrustCallbackResult {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustsetupcallback?language=objc)
 #[deprecated = "SecureDownload is not supported"]
 #[cfg(feature = "SecTrust")]
-pub type SecureDownloadTrustSetupCallback = Option<
+pub type SecureDownloadTrustSetupCallback =
     unsafe extern "C-unwind" fn(
         Option<&SecTrust>,
         *mut c_void,
-    ) -> SecureDownloadTrustCallbackResult,
->;
+    ) -> SecureDownloadTrustCallbackResult;
 
 /// This callback is used called after trust has been evaluated.
 ///
@@ -93,13 +92,11 @@ pub type SecureDownloadTrustSetupCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustevaluatecallback?language=objc)
 #[deprecated = "SecureDownload is not supported"]
 #[cfg(feature = "SecTrust")]
-pub type SecureDownloadTrustEvaluateCallback = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&SecTrust>,
-        SecTrustResultType,
-        *mut c_void,
-    ) -> SecTrustResultType,
->;
+pub type SecureDownloadTrustEvaluateCallback = unsafe extern "C-unwind" fn(
+    Option<&SecTrust>,
+    SecTrustResultType,
+    *mut c_void,
+) -> SecTrustResultType;
 
 impl SecureDownload {
     /// Create a SecureDownloadRef for use during the Secure Download process.
@@ -128,8 +125,10 @@ impl SecureDownload {
     /// # Safety
     ///
     /// - `setup` must be implemented correctly.
+    /// - `setup` might not allow `None`.
     /// - `setup_context` must be a valid pointer.
     /// - `evaluate` must be implemented correctly.
+    /// - `evaluate` might not allow `None`.
     /// - `evaluate_context` must be a valid pointer.
     /// - `download_ref` must be a valid pointer.
     /// - `download_ref` might not allow `None`.
@@ -139,18 +138,18 @@ impl SecureDownload {
     #[inline]
     pub unsafe fn create_with_ticket(
         ticket: &CFData,
-        setup: SecureDownloadTrustSetupCallback,
+        setup: Option<SecureDownloadTrustSetupCallback>,
         setup_context: *mut c_void,
-        evaluate: SecureDownloadTrustEvaluateCallback,
+        evaluate: Option<SecureDownloadTrustEvaluateCallback>,
         evaluate_context: *mut c_void,
         download_ref: Option<&mut *mut SecureDownload>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn SecureDownloadCreateWithTicket(
                 ticket: &CFData,
-                setup: SecureDownloadTrustSetupCallback,
+                setup: Option<SecureDownloadTrustSetupCallback>,
                 setup_context: *mut c_void,
-                evaluate: SecureDownloadTrustEvaluateCallback,
+                evaluate: Option<SecureDownloadTrustEvaluateCallback>,
                 evaluate_context: *mut c_void,
                 download_ref: Option<&mut *mut SecureDownload>,
             ) -> OSStatus;

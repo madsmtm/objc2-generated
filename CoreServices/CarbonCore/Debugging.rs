@@ -106,8 +106,7 @@ pub const kGetDebugOption: c_uint = 1;
 pub const kSetDebugOption: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/debugcomponentcallbackprocptr?language=objc)
-pub type DebugComponentCallbackProcPtr =
-    Option<unsafe extern "C-unwind" fn(i32, u32, *mut Boolean)>;
+pub type DebugComponentCallbackProcPtr = unsafe extern "C-unwind" fn(i32, u32, *mut Boolean);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/debugcomponentcallbackupp?language=objc)
 pub type DebugComponentCallbackUPP = DebugComponentCallbackProcPtr;
@@ -116,18 +115,19 @@ pub type DebugComponentCallbackUPP = DebugComponentCallbackProcPtr;
 ///
 /// - `component_name` must be a valid pointer.
 /// - `component_callback` must be implemented correctly.
+/// - `component_callback` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewDebugComponent(
     component_signature: OSType,
     component_name: ConstStr255Param,
-    component_callback: DebugComponentCallbackUPP,
+    component_callback: Option<DebugComponentCallbackUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn NewDebugComponent(
             component_signature: OSType,
             component_name: ConstStr255Param,
-            component_callback: DebugComponentCallbackUPP,
+            component_callback: Option<DebugComponentCallbackUPP>,
         ) -> OSStatus;
     }
     unsafe { NewDebugComponent(component_signature, component_name, component_callback) }
@@ -236,31 +236,30 @@ pub unsafe fn SetDebugOptionValue(
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/debugassertoutputhandlerprocptr?language=objc)
-pub type DebugAssertOutputHandlerProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        OSType,
-        u32,
-        *const c_char,
-        *const c_char,
-        *const c_char,
-        *const c_char,
-        c_long,
-        *mut c_void,
-        ConstStr255Param,
-    ),
->;
+pub type DebugAssertOutputHandlerProcPtr = unsafe extern "C-unwind" fn(
+    OSType,
+    u32,
+    *const c_char,
+    *const c_char,
+    *const c_char,
+    *const c_char,
+    c_long,
+    *mut c_void,
+    ConstStr255Param,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/debugassertoutputhandlerupp?language=objc)
 pub type DebugAssertOutputHandlerUPP = DebugAssertOutputHandlerProcPtr;
 
 /// # Safety
 ///
-/// `handler` must be implemented correctly.
+/// - `handler` must be implemented correctly.
+/// - `handler` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InstallDebugAssertOutputHandler(handler: DebugAssertOutputHandlerUPP) {
+pub unsafe fn InstallDebugAssertOutputHandler(handler: Option<DebugAssertOutputHandlerUPP>) {
     extern "C-unwind" {
-        fn InstallDebugAssertOutputHandler(handler: DebugAssertOutputHandlerUPP);
+        fn InstallDebugAssertOutputHandler(handler: Option<DebugAssertOutputHandlerUPP>);
     }
     unsafe { InstallDebugAssertOutputHandler(handler) }
 }
@@ -311,56 +310,58 @@ pub unsafe fn GetMacOSStatusCommentString(err: OSStatus) -> *const c_char {
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewDebugComponentCallbackUPP(
-    user_routine: DebugComponentCallbackProcPtr,
-) -> DebugComponentCallbackUPP {
+    user_routine: Option<DebugComponentCallbackProcPtr>,
+) -> Option<DebugComponentCallbackUPP> {
     extern "C-unwind" {
         fn NewDebugComponentCallbackUPP(
-            user_routine: DebugComponentCallbackProcPtr,
-        ) -> DebugComponentCallbackUPP;
+            user_routine: Option<DebugComponentCallbackProcPtr>,
+        ) -> Option<DebugComponentCallbackUPP>;
     }
     unsafe { NewDebugComponentCallbackUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewDebugAssertOutputHandlerUPP(
-    user_routine: DebugAssertOutputHandlerProcPtr,
-) -> DebugAssertOutputHandlerUPP {
+    user_routine: Option<DebugAssertOutputHandlerProcPtr>,
+) -> Option<DebugAssertOutputHandlerUPP> {
     extern "C-unwind" {
         fn NewDebugAssertOutputHandlerUPP(
-            user_routine: DebugAssertOutputHandlerProcPtr,
-        ) -> DebugAssertOutputHandlerUPP;
+            user_routine: Option<DebugAssertOutputHandlerProcPtr>,
+        ) -> Option<DebugAssertOutputHandlerUPP>;
     }
     unsafe { NewDebugAssertOutputHandlerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDebugComponentCallbackUPP(user_upp: DebugComponentCallbackUPP) {
+pub unsafe fn DisposeDebugComponentCallbackUPP(user_upp: *mut DebugComponentCallbackUPP) {
     extern "C-unwind" {
-        fn DisposeDebugComponentCallbackUPP(user_upp: DebugComponentCallbackUPP);
+        fn DisposeDebugComponentCallbackUPP(user_upp: *mut DebugComponentCallbackUPP);
     }
     unsafe { DisposeDebugComponentCallbackUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDebugAssertOutputHandlerUPP(user_upp: DebugAssertOutputHandlerUPP) {
+pub unsafe fn DisposeDebugAssertOutputHandlerUPP(user_upp: *mut DebugAssertOutputHandlerUPP) {
     extern "C-unwind" {
-        fn DisposeDebugAssertOutputHandlerUPP(user_upp: DebugAssertOutputHandlerUPP);
+        fn DisposeDebugAssertOutputHandlerUPP(user_upp: *mut DebugAssertOutputHandlerUPP);
     }
     unsafe { DisposeDebugAssertOutputHandlerUPP(user_upp) }
 }
@@ -369,20 +370,21 @@ pub unsafe fn DisposeDebugAssertOutputHandlerUPP(user_upp: DebugAssertOutputHand
 ///
 /// - `option_setting` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeDebugComponentCallbackUPP(
     option_selector_num: i32,
     command: u32,
     option_setting: Option<&mut Boolean>,
-    user_upp: DebugComponentCallbackUPP,
+    user_upp: Option<DebugComponentCallbackUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDebugComponentCallbackUPP(
             option_selector_num: i32,
             command: u32,
             option_setting: Option<&mut Boolean>,
-            user_upp: DebugComponentCallbackUPP,
+            user_upp: Option<DebugComponentCallbackUPP>,
         );
     }
     unsafe {
@@ -399,6 +401,7 @@ pub unsafe fn InvokeDebugComponentCallbackUPP(
 /// - `value` must be a valid pointer.
 /// - `output_msg` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeDebugAssertOutputHandlerUPP(
@@ -411,7 +414,7 @@ pub unsafe fn InvokeDebugAssertOutputHandlerUPP(
     line_number: c_long,
     value: *mut c_void,
     output_msg: ConstStr255Param,
-    user_upp: DebugAssertOutputHandlerUPP,
+    user_upp: Option<DebugAssertOutputHandlerUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeDebugAssertOutputHandlerUPP(
@@ -424,7 +427,7 @@ pub unsafe fn InvokeDebugAssertOutputHandlerUPP(
             line_number: c_long,
             value: *mut c_void,
             output_msg: ConstStr255Param,
-            user_upp: DebugAssertOutputHandlerUPP,
+            user_upp: Option<DebugAssertOutputHandlerUPP>,
         );
     }
     let assertion_string = assertion_string

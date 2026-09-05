@@ -1055,13 +1055,13 @@ pub const hierMenu: c_int = -1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/menubardefprocptr?language=objc)
 pub type MenuBarDefProcPtr =
-    Option<unsafe extern "C-unwind" fn(c_short, c_short, c_short, c_long) -> c_long>;
+    unsafe extern "C-unwind" fn(c_short, c_short, c_short, c_long) -> c_long;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/menuhookprocptr?language=objc)
-pub type MenuHookProcPtr = Option<unsafe extern "C-unwind" fn()>;
+pub type MenuHookProcPtr = unsafe extern "C-unwind" fn();
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/mbarhookprocptr?language=objc)
-pub type MBarHookProcPtr = Option<unsafe extern "C-unwind" fn(*mut Rect) -> c_short>;
+pub type MBarHookProcPtr = unsafe extern "C-unwind" fn(*mut Rect) -> c_short;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/menubardefupp?language=objc)
 pub type MenuBarDefUPP = MenuBarDefProcPtr;

@@ -502,7 +502,7 @@ unsafe impl RefEncode for IOUSBLowLatencyIsocFrame {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbcompletionaction?language=objc)
 pub type IOUSBCompletionAction =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32)>;
+    unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32);
 
 /// Function called when USB I/O completes.
 ///
@@ -518,7 +518,7 @@ pub type IOUSBCompletionAction =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbcompletionactionwithtimestamp?language=objc)
 pub type IOUSBCompletionActionWithTimeStamp =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32, AbsoluteTime)>;
+    unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32, AbsoluteTime);
 
 /// Function called when Isochronous USB I/O completes.
 ///
@@ -532,7 +532,7 @@ pub type IOUSBCompletionActionWithTimeStamp =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbisoccompletionaction?language=objc)
 pub type IOUSBIsocCompletionAction =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, *mut IOUSBIsocFrame)>;
+    unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, *mut IOUSBIsocFrame);
 
 /// Function called when Low Latency Isochronous USB I/O completes.
 ///
@@ -545,9 +545,8 @@ pub type IOUSBIsocCompletionAction =
 /// Parameter `pFrames`: Pointer to the low latency frame list containing the status for each frame transferred.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousblowlatencyisoccompletionaction?language=objc)
-pub type IOUSBLowLatencyIsocCompletionAction = Option<
-    unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, *mut IOUSBLowLatencyIsocFrame),
->;
+pub type IOUSBLowLatencyIsocCompletionAction =
+    unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, *mut IOUSBLowLatencyIsocFrame);
 
 /// Struct specifying action to perform when a USB I/O completes.
 ///
@@ -563,7 +562,7 @@ pub type IOUSBLowLatencyIsocCompletionAction = Option<
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUSBCompletion {
     pub target: *mut c_void,
-    pub action: IOUSBCompletionAction,
+    pub action: Option<IOUSBCompletionAction>,
     pub parameter: *mut c_void,
 }
 
@@ -598,7 +597,7 @@ unsafe impl RefEncode for IOUSBCompletion {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUSBCompletionWithTimeStamp {
     pub target: *mut c_void,
-    pub action: IOUSBCompletionActionWithTimeStamp,
+    pub action: Option<IOUSBCompletionActionWithTimeStamp>,
     pub parameter: *mut c_void,
 }
 
@@ -633,7 +632,7 @@ unsafe impl RefEncode for IOUSBCompletionWithTimeStamp {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUSBIsocCompletion {
     pub target: *mut c_void,
-    pub action: IOUSBIsocCompletionAction,
+    pub action: Option<IOUSBIsocCompletionAction>,
     pub parameter: *mut c_void,
 }
 
@@ -668,7 +667,7 @@ unsafe impl RefEncode for IOUSBIsocCompletion {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUSBLowLatencyIsocCompletion {
     pub target: *mut c_void,
-    pub action: IOUSBLowLatencyIsocCompletionAction,
+    pub action: Option<IOUSBLowLatencyIsocCompletionAction>,
     pub parameter: *mut c_void,
 }
 

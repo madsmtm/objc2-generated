@@ -4728,6 +4728,7 @@ pub unsafe fn AudioHardwareServiceSetPropertyData(
 /// # Safety
 ///
 /// - `in_listener` must be implemented correctly.
+/// - `in_listener` might not allow `None`.
 /// - `in_client_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio")]
 #[deprecated = "no longer supported"]
@@ -4735,14 +4736,14 @@ pub unsafe fn AudioHardwareServiceSetPropertyData(
 pub unsafe fn AudioHardwareServiceAddPropertyListener(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
-    in_listener: AudioObjectPropertyListenerProc,
+    in_listener: Option<AudioObjectPropertyListenerProc>,
     in_client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioHardwareServiceAddPropertyListener(
             in_object_id: AudioObjectID,
             in_address: &AudioObjectPropertyAddress,
-            in_listener: AudioObjectPropertyListenerProc,
+            in_listener: Option<AudioObjectPropertyListenerProc>,
             in_client_data: *mut c_void,
         ) -> OSStatus;
     }
@@ -4773,6 +4774,7 @@ pub unsafe fn AudioHardwareServiceAddPropertyListener(
 /// # Safety
 ///
 /// - `in_listener` must be implemented correctly.
+/// - `in_listener` might not allow `None`.
 /// - `in_client_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio")]
 #[deprecated = "no longer supported"]
@@ -4780,14 +4782,14 @@ pub unsafe fn AudioHardwareServiceAddPropertyListener(
 pub unsafe fn AudioHardwareServiceRemovePropertyListener(
     in_object_id: AudioObjectID,
     in_address: &AudioObjectPropertyAddress,
-    in_listener: AudioObjectPropertyListenerProc,
+    in_listener: Option<AudioObjectPropertyListenerProc>,
     in_client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioHardwareServiceRemovePropertyListener(
             in_object_id: AudioObjectID,
             in_address: &AudioObjectPropertyAddress,
-            in_listener: AudioObjectPropertyListenerProc,
+            in_listener: Option<AudioObjectPropertyListenerProc>,
             in_client_data: *mut c_void,
         ) -> OSStatus;
     }
@@ -5920,20 +5922,20 @@ pub unsafe fn AudioFileComponentFileIsThisFormat(
 pub unsafe fn AudioFileComponentDataIsThisFormat(
     in_component: AudioFileComponent,
     in_client_data: *mut c_void,
-    in_read_func: AudioFile_ReadProc,
-    in_write_func: AudioFile_WriteProc,
-    in_get_size_func: AudioFile_GetSizeProc,
-    in_set_size_func: AudioFile_SetSizeProc,
+    in_read_func: Option<AudioFile_ReadProc>,
+    in_write_func: Option<AudioFile_WriteProc>,
+    in_get_size_func: Option<AudioFile_GetSizeProc>,
+    in_set_size_func: Option<AudioFile_SetSizeProc>,
     out_result: &mut u32,
 ) -> OSStatus {
     extern "C-unwind" {
         fn AudioFileComponentDataIsThisFormat(
             in_component: AudioFileComponent,
             in_client_data: *mut c_void,
-            in_read_func: AudioFile_ReadProc,
-            in_write_func: AudioFile_WriteProc,
-            in_get_size_func: AudioFile_GetSizeProc,
-            in_set_size_func: AudioFile_SetSizeProc,
+            in_read_func: Option<AudioFile_ReadProc>,
+            in_write_func: Option<AudioFile_WriteProc>,
+            in_get_size_func: Option<AudioFile_GetSizeProc>,
+            in_set_size_func: Option<AudioFile_SetSizeProc>,
             out_result: &mut u32,
         ) -> OSStatus;
     }
@@ -6173,125 +6175,106 @@ pub const kAudioFileGetUserDataSize64Select: c_uint = 0x001D;
 pub const kAudioFileGetUserDataAtOffsetSelect: c_uint = 0x001E;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/readbytesfdf?language=objc)
-pub type ReadBytesFDF = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type ReadBytesFDF = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/writebytesfdf?language=objc)
-pub type WriteBytesFDF = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type WriteBytesFDF = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/readpacketsfdf?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type ReadPacketsFDF = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        NonNull<u32>,
-        *mut AudioStreamPacketDescription,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type ReadPacketsFDF = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    NonNull<u32>,
+    *mut AudioStreamPacketDescription,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/readpacketdatafdf?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type ReadPacketDataFDF = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        NonNull<u32>,
-        *mut AudioStreamPacketDescription,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type ReadPacketDataFDF = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    NonNull<u32>,
+    *mut AudioStreamPacketDescription,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/writepacketsfdf?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type WritePacketsFDF = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        u32,
-        *const AudioStreamPacketDescription,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type WritePacketsFDF = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    u32,
+    *const AudioStreamPacketDescription,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/getpropertyinfofdf?language=objc)
 #[cfg(feature = "AudioFile")]
-pub type GetPropertyInfoFDF = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioFilePropertyID,
-        *mut u32,
-        *mut u32,
-    ) -> OSStatus,
->;
+pub type GetPropertyInfoFDF = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioFilePropertyID,
+    *mut u32,
+    *mut u32,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/getpropertyfdf?language=objc)
 #[cfg(feature = "AudioFile")]
-pub type GetPropertyFDF = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioFilePropertyID,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type GetPropertyFDF = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioFilePropertyID,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/setpropertyfdf?language=objc)
 #[cfg(feature = "AudioFile")]
-pub type SetPropertyFDF = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioFilePropertyID,
-        u32,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type SetPropertyFDF = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioFilePropertyID,
+    u32,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/countuserdatafdf?language=objc)
 pub type CountUserDataFDF =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, NonNull<u32>) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, NonNull<u32>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/getuserdatasizefdf?language=objc)
 pub type GetUserDataSizeFDF =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, NonNull<u32>) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, NonNull<u32>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/getuserdatafdf?language=objc)
-pub type GetUserDataFDF = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        u32,
-        u32,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type GetUserDataFDF = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    u32,
+    u32,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/setuserdatafdf?language=objc)
-pub type SetUserDataFDF = Option<
-    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, NonNull<c_void>) -> OSStatus,
->;
+pub type SetUserDataFDF =
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, NonNull<c_void>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilefdftable?language=objc)
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
@@ -6405,227 +6388,193 @@ unsafe impl RefEncode for AudioFileFDFTableExtended {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentcreateurlproc?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
-pub type AudioFileComponentCreateURLProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        &CFURL,
-        NonNull<AudioStreamBasicDescription>,
-        u32,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentCreateURLProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    &CFURL,
+    NonNull<AudioStreamBasicDescription>,
+    u32,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenurlproc?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type AudioFileComponentOpenURLProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, &CFURL, i8, c_int) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, &CFURL, i8, c_int) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenwithcallbacksproc?language=objc)
 #[cfg(feature = "AudioFile")]
-pub type AudioFileComponentOpenWithCallbacksProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        NonNull<c_void>,
-        AudioFile_ReadProc,
-        AudioFile_WriteProc,
-        AudioFile_GetSizeProc,
-        AudioFile_SetSizeProc,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentOpenWithCallbacksProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    NonNull<c_void>,
+    AudioFile_ReadProc,
+    AudioFile_WriteProc,
+    AudioFile_GetSizeProc,
+    AudioFile_SetSizeProc,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentinitializewithcallbacksproc?language=objc)
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
-pub type AudioFileComponentInitializeWithCallbacksProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        NonNull<c_void>,
-        AudioFile_ReadProc,
-        AudioFile_WriteProc,
-        AudioFile_GetSizeProc,
-        AudioFile_SetSizeProc,
-        u32,
-        NonNull<AudioStreamBasicDescription>,
-        u32,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentInitializeWithCallbacksProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    NonNull<c_void>,
+    AudioFile_ReadProc,
+    AudioFile_WriteProc,
+    AudioFile_GetSizeProc,
+    AudioFile_SetSizeProc,
+    u32,
+    NonNull<AudioStreamBasicDescription>,
+    u32,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentcloseproc?language=objc)
-pub type AudioFileComponentCloseProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
+pub type AudioFileComponentCloseProc = unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentoptimizeproc?language=objc)
-pub type AudioFileComponentOptimizeProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
+pub type AudioFileComponentOptimizeProc = unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentreadbytesproc?language=objc)
-pub type AudioFileComponentReadBytesProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentReadBytesProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentwritebytesproc?language=objc)
-pub type AudioFileComponentWriteBytesProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentWriteBytesProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentreadpacketsproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioFileComponentReadPacketsProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        NonNull<u32>,
-        *mut AudioStreamPacketDescription,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentReadPacketsProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    NonNull<u32>,
+    *mut AudioStreamPacketDescription,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentreadpacketdataproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioFileComponentReadPacketDataProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        NonNull<u32>,
-        *mut AudioStreamPacketDescription,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentReadPacketDataProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    NonNull<u32>,
+    *mut AudioStreamPacketDescription,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentwritepacketsproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioFileComponentWritePacketsProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        Boolean,
-        u32,
-        *const AudioStreamPacketDescription,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentWritePacketsProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    Boolean,
+    u32,
+    *const AudioStreamPacketDescription,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetpropertyinfoproc?language=objc)
-pub type AudioFileComponentGetPropertyInfoProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioFileComponentPropertyID,
-        *mut u32,
-        *mut u32,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentGetPropertyInfoProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioFileComponentPropertyID,
+    *mut u32,
+    *mut u32,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetpropertyproc?language=objc)
-pub type AudioFileComponentGetPropertyProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioFileComponentPropertyID,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentGetPropertyProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioFileComponentPropertyID,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentsetpropertyproc?language=objc)
-pub type AudioFileComponentSetPropertyProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioFileComponentPropertyID,
-        u32,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentSetPropertyProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioFileComponentPropertyID,
+    u32,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentcountuserdataproc?language=objc)
 pub type AudioFileComponentCountUserDataProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, NonNull<u32>) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, NonNull<u32>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdatasizeproc?language=objc)
 pub type AudioFileComponentGetUserDataSizeProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, NonNull<u32>) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, NonNull<u32>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdatasize64proc?language=objc)
 pub type AudioFileComponentGetUserDataSize64Proc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, NonNull<u64>) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, NonNull<u64>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdataproc?language=objc)
-pub type AudioFileComponentGetUserDataProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        u32,
-        u32,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentGetUserDataProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    u32,
+    u32,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdataatoffsetproc?language=objc)
-pub type AudioFileComponentGetUserDataAtOffsetProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        u32,
-        u32,
-        i64,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentGetUserDataAtOffsetProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    u32,
+    u32,
+    i64,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentsetuserdataproc?language=objc)
-pub type AudioFileComponentSetUserDataProc = Option<
-    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, NonNull<c_void>) -> OSStatus,
->;
+pub type AudioFileComponentSetUserDataProc =
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, NonNull<c_void>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentremoveuserdataproc?language=objc)
 pub type AudioFileComponentRemoveUserDataProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentextensionisthisformatproc?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type AudioFileComponentExtensionIsThisFormatProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, &CFString, NonNull<u32>) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, &CFString, NonNull<u32>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentfiledataisthisformatproc?language=objc)
-pub type AudioFileComponentFileDataIsThisFormatProc = Option<
-    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, NonNull<c_void>, NonNull<u32>) -> OSStatus,
->;
+pub type AudioFileComponentFileDataIsThisFormatProc =
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, NonNull<c_void>, NonNull<u32>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetglobalinfosizeproc?language=objc)
-pub type AudioFileComponentGetGlobalInfoSizeProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioFileComponentPropertyID,
-        u32,
-        *const c_void,
-        NonNull<u32>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentGetGlobalInfoSizeProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioFileComponentPropertyID,
+    u32,
+    *const c_void,
+    NonNull<u32>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetglobalinfoproc?language=objc)
-pub type AudioFileComponentGetGlobalInfoProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioFileComponentPropertyID,
-        u32,
-        *const c_void,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioFileComponentGetGlobalInfoProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioFileComponentPropertyID,
+    u32,
+    *const c_void,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// The properties of a CoreAudioClock, accessible via CAClockGetProperty and
 /// CAClockSetProperty.
@@ -6955,7 +6904,7 @@ pub type CAClockSeconds = f64;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocklistenerproc?language=objc)
 pub type CAClockListenerProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, CAClockMessage, NonNull<c_void>)>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, CAClockMessage, NonNull<c_void>);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktime_time?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]

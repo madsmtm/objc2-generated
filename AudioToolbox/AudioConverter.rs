@@ -942,15 +942,13 @@ impl AudioConverter {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertercomplexinputdataproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioConverterComplexInputDataProc = Option<
-    unsafe extern "C-unwind" fn(
-        &AudioConverter,
-        NonNull<u32>,
-        NonNull<AudioBufferList>,
-        *mut *mut AudioStreamPacketDescription,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type AudioConverterComplexInputDataProc = unsafe extern "C-unwind" fn(
+    &AudioConverter,
+    NonNull<u32>,
+    NonNull<AudioBufferList>,
+    *mut *mut AudioStreamPacketDescription,
+    *mut c_void,
+) -> OSStatus;
 
 /// Realtime-safe variant of AudioConverterComplexInputDataProc.
 ///
@@ -958,15 +956,13 @@ pub type AudioConverterComplexInputDataProc = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertercomplexinputdataprocrealtimesafe?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioConverterComplexInputDataProcRealtimeSafe = Option<
-    unsafe extern "C-unwind" fn(
-        &AudioConverter,
-        NonNull<u32>,
-        NonNull<AudioBufferList>,
-        *mut *mut AudioStreamPacketDescription,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type AudioConverterComplexInputDataProcRealtimeSafe = unsafe extern "C-unwind" fn(
+    &AudioConverter,
+    NonNull<u32>,
+    NonNull<AudioBufferList>,
+    *mut *mut AudioStreamPacketDescription,
+    *mut c_void,
+) -> OSStatus;
 
 impl AudioConverter {
     /// Converts data supplied by an input callback function, supporting non-interleaved
@@ -1271,14 +1267,12 @@ pub const kAudioConverterSampleRateConverterAlgorithm: AudioConverterPropertyID 
 /// has not yet reached end of stream.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterinputdataproc?language=objc)
-pub type AudioConverterInputDataProc = Option<
-    unsafe extern "C-unwind" fn(
-        &AudioConverter,
-        NonNull<u32>,
-        NonNull<NonNull<c_void>>,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type AudioConverterInputDataProc = unsafe extern "C-unwind" fn(
+    &AudioConverter,
+    NonNull<u32>,
+    NonNull<NonNull<c_void>>,
+    *mut c_void,
+) -> OSStatus;
 
 impl AudioConverter {
     /// # Safety

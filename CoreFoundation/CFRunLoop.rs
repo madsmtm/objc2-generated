@@ -645,7 +645,7 @@ unsafe impl RefEncode for CFRunLoopObserverContext {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercallback?language=objc)
 pub type CFRunLoopObserverCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFRunLoopObserver>, CFRunLoopActivity, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&CFRunLoopObserver>, CFRunLoopActivity, *mut c_void);
 
 unsafe impl ConcreteType for CFRunLoopObserver {
     #[doc(alias = "CFRunLoopObserverGetTypeID")]
@@ -662,6 +662,7 @@ impl CFRunLoopObserver {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -674,7 +675,7 @@ impl CFRunLoopObserver {
         activities: CFOptionFlags,
         repeats: bool,
         order: CFIndex,
-        callout: CFRunLoopObserverCallBack,
+        callout: Option<CFRunLoopObserverCallBack>,
         context: Option<&CFRunLoopObserverContext>,
     ) -> Option<CFRetained<CFRunLoopObserver>> {
         extern "C-unwind" {
@@ -683,7 +684,7 @@ impl CFRunLoopObserver {
                 activities: CFOptionFlags,
                 repeats: Boolean,
                 order: CFIndex,
-                callout: CFRunLoopObserverCallBack,
+                callout: Option<CFRunLoopObserverCallBack>,
                 context: Option<&CFRunLoopObserverContext>,
             ) -> Option<NonNull<CFRunLoopObserver>>;
         }
@@ -821,8 +822,7 @@ unsafe impl RefEncode for CFRunLoopTimerContext {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercallback?language=objc)
-pub type CFRunLoopTimerCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFRunLoopTimer>, *mut c_void)>;
+pub type CFRunLoopTimerCallBack = unsafe extern "C-unwind" fn(Option<&CFRunLoopTimer>, *mut c_void);
 
 unsafe impl ConcreteType for CFRunLoopTimer {
     #[doc(alias = "CFRunLoopTimerGetTypeID")]
@@ -839,6 +839,7 @@ impl CFRunLoopTimer {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -853,7 +854,7 @@ impl CFRunLoopTimer {
         interval: CFTimeInterval,
         flags: CFOptionFlags,
         order: CFIndex,
-        callout: CFRunLoopTimerCallBack,
+        callout: Option<CFRunLoopTimerCallBack>,
         context: Option<&CFRunLoopTimerContext>,
     ) -> Option<CFRetained<CFRunLoopTimer>> {
         extern "C-unwind" {
@@ -863,7 +864,7 @@ impl CFRunLoopTimer {
                 interval: CFTimeInterval,
                 flags: CFOptionFlags,
                 order: CFIndex,
-                callout: CFRunLoopTimerCallBack,
+                callout: Option<CFRunLoopTimerCallBack>,
                 context: Option<&CFRunLoopTimerContext>,
             ) -> Option<NonNull<CFRunLoopTimer>>;
         }

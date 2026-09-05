@@ -161,7 +161,7 @@ unsafe impl RefEncode for CMIODeviceRS422Command {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicegetsmptetimeproc?language=objc)
 pub type CMIODeviceGetSMPTETimeProc =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut u64, *mut Boolean, *mut u32) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*mut c_void, *mut u64, *mut Boolean, *mut u32) -> OSStatus;
 
 /// This structure allows a client to specify a CMIODeviceGetSMPTETimeProc and its associated private data via the kCMIODevicePropertySMPTETimeCallback property.
 ///
@@ -176,7 +176,7 @@ pub type CMIODeviceGetSMPTETimeProc =
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIODeviceSMPTETimeCallback {
-    pub mGetSMPTETimeProc: CMIODeviceGetSMPTETimeProc,
+    pub mGetSMPTETimeProc: Option<CMIODeviceGetSMPTETimeProc>,
     pub mRefCon: *mut c_void,
 }
 

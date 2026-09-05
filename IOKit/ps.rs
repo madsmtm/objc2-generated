@@ -402,7 +402,7 @@ pub fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopowersourcecallbacktype?language=objc)
-pub type IOPowerSourceCallbackType = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type IOPowerSourceCallbackType = unsafe extern "C-unwind" fn(*mut c_void);
 
 /// Returns a blob of Power Source information in an opaque CFTypeRef.
 ///
@@ -562,15 +562,16 @@ pub unsafe fn IOPSGetProvidingPowerSourceType(
 /// # Safety
 ///
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `context` must be a valid pointer.
 #[inline]
 pub unsafe fn IOPSNotificationCreateRunLoopSource(
-    callback: IOPowerSourceCallbackType,
+    callback: Option<IOPowerSourceCallbackType>,
     context: *mut c_void,
 ) -> Option<CFRetained<CFRunLoopSource>> {
     extern "C-unwind" {
         fn IOPSNotificationCreateRunLoopSource(
-            callback: IOPowerSourceCallbackType,
+            callback: Option<IOPowerSourceCallbackType>,
             context: *mut c_void,
         ) -> Option<NonNull<CFRunLoopSource>>;
     }
@@ -611,15 +612,16 @@ pub unsafe fn IOPSNotificationCreateRunLoopSource(
 /// # Safety
 ///
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `context` must be a valid pointer.
 #[inline]
 pub unsafe fn IOPSCreateLimitedPowerNotification(
-    callback: IOPowerSourceCallbackType,
+    callback: Option<IOPowerSourceCallbackType>,
     context: *mut c_void,
 ) -> Option<CFRetained<CFRunLoopSource>> {
     extern "C-unwind" {
         fn IOPSCreateLimitedPowerNotification(
-            callback: IOPowerSourceCallbackType,
+            callback: Option<IOPowerSourceCallbackType>,
             context: *mut c_void,
         ) -> Option<NonNull<CFRunLoopSource>>;
     }
@@ -662,15 +664,13 @@ pub fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetained<CFDictionary<C
 /// Parameter `event`: CFDictionaryRef containing event data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupseventcallbackfunction?language=objc)
-pub type IOUPSEventCallbackFunction = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        IOReturn,
-        *mut c_void,
-        *mut c_void,
-        Option<&CFDictionary>,
-    ),
->;
+pub type IOUPSEventCallbackFunction = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    IOReturn,
+    *mut c_void,
+    *mut c_void,
+    Option<&CFDictionary>,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupsplugininterface?language=objc)
 #[repr(C)]
@@ -691,7 +691,7 @@ pub struct IOUPSPlugInInterface {
     pub setEventCallback: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            IOUPSEventCallbackFunction,
+            Option<IOUPSEventCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,
@@ -742,7 +742,7 @@ pub struct IOUPSPlugInInterface_v140 {
     pub setEventCallback: Option<
         unsafe extern "C-unwind" fn(
             *mut c_void,
-            IOUPSEventCallbackFunction,
+            Option<IOUPSEventCallbackFunction>,
             *mut c_void,
             *mut c_void,
         ) -> IOReturn,

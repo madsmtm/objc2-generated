@@ -1763,9 +1763,8 @@ unsafe impl RefEncode for CFComparisonResult {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparatorfunction?language=objc)
-pub type CFComparatorFunction = Option<
-    unsafe extern "C-unwind" fn(*const c_void, *const c_void, *mut c_void) -> CFComparisonResult,
->;
+pub type CFComparatorFunction =
+    unsafe extern "C-unwind" fn(*const c_void, *const c_void, *mut c_void) -> CFComparisonResult;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotfound?language=objc)
 pub static kCFNotFound: CFIndex = -1;
@@ -1869,32 +1868,29 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorretaincallback?language=objc)
-pub type CFAllocatorRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>;
+pub type CFAllocatorRetainCallBack = unsafe extern "C-unwind" fn(*const c_void) -> *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreleasecallback?language=objc)
-pub type CFAllocatorReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
+pub type CFAllocatorReleaseCallBack = unsafe extern "C-unwind" fn(*const c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcopydescriptioncallback?language=objc)
 pub type CFAllocatorCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
+    unsafe extern "C-unwind" fn(*const c_void) -> *const CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocatecallback?language=objc)
 pub type CFAllocatorAllocateCallBack =
-    Option<unsafe extern "C-unwind" fn(CFIndex, CFOptionFlags, *mut c_void) -> *mut c_void>;
+    unsafe extern "C-unwind" fn(CFIndex, CFOptionFlags, *mut c_void) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreallocatecallback?language=objc)
-pub type CFAllocatorReallocateCallBack = Option<
-    unsafe extern "C-unwind" fn(*mut c_void, CFIndex, CFOptionFlags, *mut c_void) -> *mut c_void,
->;
+pub type CFAllocatorReallocateCallBack =
+    unsafe extern "C-unwind" fn(*mut c_void, CFIndex, CFOptionFlags, *mut c_void) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatordeallocatecallback?language=objc)
-pub type CFAllocatorDeallocateCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
+pub type CFAllocatorDeallocateCallBack = unsafe extern "C-unwind" fn(*mut c_void, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorpreferredsizecallback?language=objc)
 pub type CFAllocatorPreferredSizeCallBack =
-    Option<unsafe extern "C-unwind" fn(CFIndex, CFOptionFlags, *mut c_void) -> CFIndex>;
+    unsafe extern "C-unwind" fn(CFIndex, CFOptionFlags, *mut c_void) -> CFIndex;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcontext?language=objc)
 #[repr(C)]
@@ -1903,13 +1899,13 @@ pub type CFAllocatorPreferredSizeCallBack =
 pub struct CFAllocatorContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: CFAllocatorRetainCallBack,
-    pub release: CFAllocatorReleaseCallBack,
-    pub copyDescription: CFAllocatorCopyDescriptionCallBack,
-    pub allocate: CFAllocatorAllocateCallBack,
-    pub reallocate: CFAllocatorReallocateCallBack,
-    pub deallocate: CFAllocatorDeallocateCallBack,
-    pub preferredSize: CFAllocatorPreferredSizeCallBack,
+    pub retain: Option<CFAllocatorRetainCallBack>,
+    pub release: Option<CFAllocatorReleaseCallBack>,
+    pub copyDescription: Option<CFAllocatorCopyDescriptionCallBack>,
+    pub allocate: Option<CFAllocatorAllocateCallBack>,
+    pub reallocate: Option<CFAllocatorReallocateCallBack>,
+    pub deallocate: Option<CFAllocatorDeallocateCallBack>,
+    pub preferredSize: Option<CFAllocatorPreferredSizeCallBack>,
 }
 
 #[cfg(feature = "objc2")]

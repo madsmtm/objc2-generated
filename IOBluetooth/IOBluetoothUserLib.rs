@@ -332,13 +332,11 @@ unsafe impl RefEncode for IOBluetoothUserNotificationChannelDirection {
 /// Parameter `objectRef`: (IOBluetoothObjectRef) The object that originated the notification.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotificationcallback?language=objc)
-pub type IOBluetoothUserNotificationCallback = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        Option<&IOBluetoothUserNotificationRef>,
-        Option<&IOBluetoothObjectRef>,
-    ),
->;
+pub type IOBluetoothUserNotificationCallback = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    Option<&IOBluetoothUserNotificationRef>,
+    Option<&IOBluetoothObjectRef>,
+);
 
 impl IOBluetoothUserNotificationRef {
     /// Unregisters the target notification.
@@ -381,19 +379,20 @@ impl IOBluetoothL2CAPChannelRef {
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
+    /// - `callback` might not allow `None`.
     /// - `in_ref_con` must be a valid pointer.
     #[doc(alias = "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
     pub unsafe fn register_for_channel_close_notification(
         &self,
-        callback: IOBluetoothUserNotificationCallback,
+        callback: Option<IOBluetoothUserNotificationCallback>,
         in_ref_con: *mut c_void,
     ) -> Option<CFRetained<IOBluetoothUserNotificationRef>> {
         extern "C-unwind" {
             fn IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(
                 channel: &IOBluetoothL2CAPChannelRef,
-                callback: IOBluetoothUserNotificationCallback,
+                callback: Option<IOBluetoothUserNotificationCallback>,
                 in_ref_con: *mut c_void,
             ) -> Option<NonNull<IOBluetoothUserNotificationRef>>;
         }

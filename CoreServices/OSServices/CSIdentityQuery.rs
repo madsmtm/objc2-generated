@@ -241,15 +241,13 @@ pub type CSIdentityQueryEvent = CFIndex;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryreceiveeventcallback?language=objc)
 #[cfg(feature = "CSIdentity")]
-pub type CSIdentityQueryReceiveEventCallback = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&CSIdentityQuery>,
-        CSIdentityQueryEvent,
-        Option<&CFArray>,
-        Option<&CFError>,
-        *mut c_void,
-    ),
->;
+pub type CSIdentityQueryReceiveEventCallback = unsafe extern "C-unwind" fn(
+    Option<&CSIdentityQuery>,
+    CSIdentityQueryEvent,
+    Option<&CFArray>,
+    Option<&CFError>,
+    *mut c_void,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryclientcontext?language=objc)
 #[cfg(feature = "CSIdentity")]
@@ -259,10 +257,10 @@ pub type CSIdentityQueryReceiveEventCallback = Option<
 pub struct CSIdentityQueryClientContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retainInfo: CFAllocatorRetainCallBack,
-    pub releaseInfo: CFAllocatorReleaseCallBack,
-    pub copyInfoDescription: CFAllocatorCopyDescriptionCallBack,
-    pub receiveEvent: CSIdentityQueryReceiveEventCallback,
+    pub retainInfo: Option<CFAllocatorRetainCallBack>,
+    pub releaseInfo: Option<CFAllocatorReleaseCallBack>,
+    pub copyInfoDescription: Option<CFAllocatorCopyDescriptionCallBack>,
+    pub receiveEvent: Option<CSIdentityQueryReceiveEventCallback>,
 }
 
 #[cfg(all(feature = "CSIdentity", feature = "objc2"))]

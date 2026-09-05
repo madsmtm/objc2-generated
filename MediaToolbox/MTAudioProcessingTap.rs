@@ -97,7 +97,7 @@ pub const kMTAudioProcessingTapFlag_EndOfStream: MTAudioProcessingTapFlags = 1 <
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapinitcallback?language=objc)
 pub type MTAudioProcessingTapInitCallback =
-    Option<unsafe extern "C-unwind" fn(&MTAudioProcessingTap, *mut c_void, NonNull<*mut c_void>)>;
+    unsafe extern "C-unwind" fn(&MTAudioProcessingTap, *mut c_void, NonNull<*mut c_void>);
 
 /// Finalize callback.
 ///
@@ -110,8 +110,7 @@ pub type MTAudioProcessingTapInitCallback =
 /// Parameter `tap`: The processing tap.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapfinalizecallback?language=objc)
-pub type MTAudioProcessingTapFinalizeCallback =
-    Option<unsafe extern "C-unwind" fn(&MTAudioProcessingTap)>;
+pub type MTAudioProcessingTapFinalizeCallback = unsafe extern "C-unwind" fn(&MTAudioProcessingTap);
 
 /// Audio processing preparation callback.
 ///
@@ -151,13 +150,11 @@ pub type MTAudioProcessingTapFinalizeCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtappreparecallback?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
-pub type MTAudioProcessingTapPrepareCallback = Option<
-    unsafe extern "C-unwind" fn(
-        &MTAudioProcessingTap,
-        CMItemCount,
-        NonNull<AudioStreamBasicDescription>,
-    ),
->;
+pub type MTAudioProcessingTapPrepareCallback = unsafe extern "C-unwind" fn(
+    &MTAudioProcessingTap,
+    CMItemCount,
+    NonNull<AudioStreamBasicDescription>,
+);
 
 /// Audio processing unpreparation callback.
 ///
@@ -172,8 +169,7 @@ pub type MTAudioProcessingTapPrepareCallback = Option<
 /// Parameter `tap`: The processing tap.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapunpreparecallback?language=objc)
-pub type MTAudioProcessingTapUnprepareCallback =
-    Option<unsafe extern "C-unwind" fn(&MTAudioProcessingTap)>;
+pub type MTAudioProcessingTapUnprepareCallback = unsafe extern "C-unwind" fn(&MTAudioProcessingTap);
 
 /// A function called when an audio track has data to be processed by its tap.
 ///
@@ -250,16 +246,14 @@ pub type MTAudioProcessingTapUnprepareCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapprocesscallback?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
-pub type MTAudioProcessingTapProcessCallback = Option<
-    unsafe extern "C-unwind" fn(
-        &MTAudioProcessingTap,
-        CMItemCount,
-        MTAudioProcessingTapFlags,
-        NonNull<AudioBufferList>,
-        NonNull<CMItemCount>,
-        NonNull<MTAudioProcessingTapFlags>,
-    ),
->;
+pub type MTAudioProcessingTapProcessCallback = unsafe extern "C-unwind" fn(
+    &MTAudioProcessingTap,
+    CMItemCount,
+    MTAudioProcessingTapFlags,
+    NonNull<AudioBufferList>,
+    NonNull<CMItemCount>,
+    NonNull<MTAudioProcessingTapFlags>,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapcallbacksversion_0?language=objc)
 pub const kMTAudioProcessingTapCallbacksVersion_0: c_int = 0;
@@ -301,10 +295,10 @@ pub const kMTAudioProcessingTapCallbacksVersion_0: c_int = 0;
 pub struct MTAudioProcessingTapCallbacks {
     pub version: c_int,
     pub clientInfo: *mut c_void,
-    pub init: MTAudioProcessingTapInitCallback,
-    pub finalize: MTAudioProcessingTapFinalizeCallback,
-    pub prepare: MTAudioProcessingTapPrepareCallback,
-    pub unprepare: MTAudioProcessingTapUnprepareCallback,
+    pub init: Option<MTAudioProcessingTapInitCallback>,
+    pub finalize: Option<MTAudioProcessingTapFinalizeCallback>,
+    pub prepare: Option<MTAudioProcessingTapPrepareCallback>,
+    pub unprepare: Option<MTAudioProcessingTapUnprepareCallback>,
     pub process: MTAudioProcessingTapProcessCallback,
 }
 

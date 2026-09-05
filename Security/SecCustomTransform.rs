@@ -632,13 +632,11 @@ impl SecTransformImplementation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreatefp?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[cfg(all(feature = "SecTransform", feature = "block2"))]
-pub type SecTransformCreateFP = Option<
-    unsafe extern "C-unwind" fn(
-        &CFString,
-        &SecTransform,
-        &SecTransformImplementation,
-    ) -> NonNull<SecTransformInstanceBlock>,
->;
+pub type SecTransformCreateFP = unsafe extern "C-unwind" fn(
+    &CFString,
+    &SecTransform,
+    &SecTransformImplementation,
+) -> NonNull<SecTransformInstanceBlock>;
 
 extern "C" {
     /// Overrides the standard behavior that checks to see if all of the

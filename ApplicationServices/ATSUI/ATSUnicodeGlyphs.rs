@@ -5,68 +5,62 @@ use core::ffi::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsquadraticnewpathprocptr?language=objc)
-pub type ATSQuadraticNewPathProcPtr = Option<unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus>;
+pub type ATSQuadraticNewPathProcPtr = unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsquadraticnewpathupp?language=objc)
 pub type ATSQuadraticNewPathUPP = ATSQuadraticNewPathProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsquadraticlineprocptr?language=objc)
-pub type ATSQuadraticLineProcPtr = Option<
-    unsafe extern "C-unwind" fn(*const Float32Point, *const Float32Point, *mut c_void) -> OSStatus,
->;
+pub type ATSQuadraticLineProcPtr =
+    unsafe extern "C-unwind" fn(*const Float32Point, *const Float32Point, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsquadraticlineupp?language=objc)
 pub type ATSQuadraticLineUPP = ATSQuadraticLineProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsquadraticcurveprocptr?language=objc)
-pub type ATSQuadraticCurveProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *const Float32Point,
-        *const Float32Point,
-        *const Float32Point,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type ATSQuadraticCurveProcPtr = unsafe extern "C-unwind" fn(
+    *const Float32Point,
+    *const Float32Point,
+    *const Float32Point,
+    *mut c_void,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsquadraticcurveupp?language=objc)
 pub type ATSQuadraticCurveUPP = ATSQuadraticCurveProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsquadraticclosepathprocptr?language=objc)
-pub type ATSQuadraticClosePathProcPtr =
-    Option<unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus>;
+pub type ATSQuadraticClosePathProcPtr = unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsquadraticclosepathupp?language=objc)
 pub type ATSQuadraticClosePathUPP = ATSQuadraticClosePathProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atscubicmovetoprocptr?language=objc)
 pub type ATSCubicMoveToProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const Float32Point, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*const Float32Point, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atscubicmovetoupp?language=objc)
 pub type ATSCubicMoveToUPP = ATSCubicMoveToProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atscubiclinetoprocptr?language=objc)
 pub type ATSCubicLineToProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const Float32Point, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(*const Float32Point, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atscubiclinetoupp?language=objc)
 pub type ATSCubicLineToUPP = ATSCubicLineToProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atscubiccurvetoprocptr?language=objc)
-pub type ATSCubicCurveToProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        *const Float32Point,
-        *const Float32Point,
-        *const Float32Point,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type ATSCubicCurveToProcPtr = unsafe extern "C-unwind" fn(
+    *const Float32Point,
+    *const Float32Point,
+    *const Float32Point,
+    *mut c_void,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atscubiccurvetoupp?language=objc)
 pub type ATSCubicCurveToUPP = ATSCubicCurveToProcPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atscubicclosepathprocptr?language=objc)
-pub type ATSCubicClosePathProcPtr = Option<unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus>;
+pub type ATSCubicClosePathProcPtr = unsafe extern "C-unwind" fn(*mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atscubicclosepathupp?language=objc)
 pub type ATSCubicClosePathUPP = ATSCubicClosePathProcPtr;

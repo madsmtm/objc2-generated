@@ -222,51 +222,48 @@ pub type ccntTokenRecHandle = *mut ccntTokenRecPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslaccessorprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
-pub type OSLAccessorProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        DescType,
-        *const AEDesc,
-        DescType,
-        DescType,
-        *const AEDesc,
-        *mut AEDesc,
-        SRefCon,
-    ) -> OSErr,
->;
+pub type OSLAccessorProcPtr = unsafe extern "C-unwind" fn(
+    DescType,
+    *const AEDesc,
+    DescType,
+    DescType,
+    *const AEDesc,
+    *mut AEDesc,
+    SRefCon,
+) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcompareprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
-pub type OSLCompareProcPtr = Option<
-    unsafe extern "C-unwind" fn(DescType, *const AEDesc, *const AEDesc, *mut Boolean) -> OSErr,
->;
+pub type OSLCompareProcPtr =
+    unsafe extern "C-unwind" fn(DescType, *const AEDesc, *const AEDesc, *mut Boolean) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcountprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLCountProcPtr =
-    Option<unsafe extern "C-unwind" fn(DescType, DescType, *const AEDesc, *mut c_long) -> OSErr>;
+    unsafe extern "C-unwind" fn(DescType, DescType, *const AEDesc, *mut c_long) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
-pub type OSLDisposeTokenProcPtr = Option<unsafe extern "C-unwind" fn(*mut AEDesc) -> OSErr>;
+pub type OSLDisposeTokenProcPtr = unsafe extern "C-unwind" fn(*mut AEDesc) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLGetMarkTokenProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const AEDesc, DescType, *mut AEDesc) -> OSErr>;
+    unsafe extern "C-unwind" fn(*const AEDesc, DescType, *mut AEDesc) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
-pub type OSLGetErrDescProcPtr = Option<unsafe extern "C-unwind" fn(*mut *mut AEDesc) -> OSErr>;
+pub type OSLGetErrDescProcPtr = unsafe extern "C-unwind" fn(*mut *mut AEDesc) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslmarkprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLMarkProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const AEDesc, *const AEDesc, c_long) -> OSErr>;
+    unsafe extern "C-unwind" fn(*const AEDesc, *const AEDesc, c_long) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type OSLAdjustMarksProcPtr =
-    Option<unsafe extern "C-unwind" fn(c_long, c_long, *const AEDesc) -> OSErr>;
+    unsafe extern "C-unwind" fn(c_long, c_long, *const AEDesc) -> OSErr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslaccessorupp?language=objc)
 #[cfg(feature = "AEDataModel")]
@@ -302,192 +299,217 @@ pub type OSLAdjustMarksUPP = OSLAdjustMarksProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn NewOSLAccessorUPP(user_routine: OSLAccessorProcPtr) -> OSLAccessorUPP {
+pub unsafe fn NewOSLAccessorUPP(
+    user_routine: Option<OSLAccessorProcPtr>,
+) -> Option<OSLAccessorUPP> {
     extern "C-unwind" {
-        fn NewOSLAccessorUPP(user_routine: OSLAccessorProcPtr) -> OSLAccessorUPP;
+        fn NewOSLAccessorUPP(user_routine: Option<OSLAccessorProcPtr>) -> Option<OSLAccessorUPP>;
     }
     unsafe { NewOSLAccessorUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn NewOSLCompareUPP(user_routine: OSLCompareProcPtr) -> OSLCompareUPP {
+pub unsafe fn NewOSLCompareUPP(user_routine: Option<OSLCompareProcPtr>) -> Option<OSLCompareUPP> {
     extern "C-unwind" {
-        fn NewOSLCompareUPP(user_routine: OSLCompareProcPtr) -> OSLCompareUPP;
+        fn NewOSLCompareUPP(user_routine: Option<OSLCompareProcPtr>) -> Option<OSLCompareUPP>;
     }
     unsafe { NewOSLCompareUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn NewOSLCountUPP(user_routine: OSLCountProcPtr) -> OSLCountUPP {
+pub unsafe fn NewOSLCountUPP(user_routine: Option<OSLCountProcPtr>) -> Option<OSLCountUPP> {
     extern "C-unwind" {
-        fn NewOSLCountUPP(user_routine: OSLCountProcPtr) -> OSLCountUPP;
+        fn NewOSLCountUPP(user_routine: Option<OSLCountProcPtr>) -> Option<OSLCountUPP>;
     }
     unsafe { NewOSLCountUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// `user_routine` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn NewOSLDisposeTokenUPP(user_routine: OSLDisposeTokenProcPtr) -> OSLDisposeTokenUPP {
+pub unsafe fn NewOSLDisposeTokenUPP(
+    user_routine: *mut OSLDisposeTokenProcPtr,
+) -> Option<OSLDisposeTokenUPP> {
     extern "C-unwind" {
-        fn NewOSLDisposeTokenUPP(user_routine: OSLDisposeTokenProcPtr) -> OSLDisposeTokenUPP;
+        fn NewOSLDisposeTokenUPP(
+            user_routine: *mut OSLDisposeTokenProcPtr,
+        ) -> Option<OSLDisposeTokenUPP>;
     }
     unsafe { NewOSLDisposeTokenUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn NewOSLGetMarkTokenUPP(user_routine: OSLGetMarkTokenProcPtr) -> OSLGetMarkTokenUPP {
+pub unsafe fn NewOSLGetMarkTokenUPP(
+    user_routine: Option<OSLGetMarkTokenProcPtr>,
+) -> Option<OSLGetMarkTokenUPP> {
     extern "C-unwind" {
-        fn NewOSLGetMarkTokenUPP(user_routine: OSLGetMarkTokenProcPtr) -> OSLGetMarkTokenUPP;
+        fn NewOSLGetMarkTokenUPP(
+            user_routine: Option<OSLGetMarkTokenProcPtr>,
+        ) -> Option<OSLGetMarkTokenUPP>;
     }
     unsafe { NewOSLGetMarkTokenUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn NewOSLGetErrDescUPP(user_routine: OSLGetErrDescProcPtr) -> OSLGetErrDescUPP {
+pub unsafe fn NewOSLGetErrDescUPP(
+    user_routine: Option<OSLGetErrDescProcPtr>,
+) -> Option<OSLGetErrDescUPP> {
     extern "C-unwind" {
-        fn NewOSLGetErrDescUPP(user_routine: OSLGetErrDescProcPtr) -> OSLGetErrDescUPP;
+        fn NewOSLGetErrDescUPP(
+            user_routine: Option<OSLGetErrDescProcPtr>,
+        ) -> Option<OSLGetErrDescUPP>;
     }
     unsafe { NewOSLGetErrDescUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn NewOSLMarkUPP(user_routine: OSLMarkProcPtr) -> OSLMarkUPP {
+pub unsafe fn NewOSLMarkUPP(user_routine: Option<OSLMarkProcPtr>) -> Option<OSLMarkUPP> {
     extern "C-unwind" {
-        fn NewOSLMarkUPP(user_routine: OSLMarkProcPtr) -> OSLMarkUPP;
+        fn NewOSLMarkUPP(user_routine: Option<OSLMarkProcPtr>) -> Option<OSLMarkUPP>;
     }
     unsafe { NewOSLMarkUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn NewOSLAdjustMarksUPP(user_routine: OSLAdjustMarksProcPtr) -> OSLAdjustMarksUPP {
+pub unsafe fn NewOSLAdjustMarksUPP(
+    user_routine: Option<OSLAdjustMarksProcPtr>,
+) -> Option<OSLAdjustMarksUPP> {
     extern "C-unwind" {
-        fn NewOSLAdjustMarksUPP(user_routine: OSLAdjustMarksProcPtr) -> OSLAdjustMarksUPP;
+        fn NewOSLAdjustMarksUPP(
+            user_routine: Option<OSLAdjustMarksProcPtr>,
+        ) -> Option<OSLAdjustMarksUPP>;
     }
     unsafe { NewOSLAdjustMarksUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn DisposeOSLAccessorUPP(user_upp: OSLAccessorUPP) {
+pub unsafe fn DisposeOSLAccessorUPP(user_upp: *mut OSLAccessorUPP) {
     extern "C-unwind" {
-        fn DisposeOSLAccessorUPP(user_upp: OSLAccessorUPP);
+        fn DisposeOSLAccessorUPP(user_upp: *mut OSLAccessorUPP);
     }
     unsafe { DisposeOSLAccessorUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn DisposeOSLCompareUPP(user_upp: OSLCompareUPP) {
+pub unsafe fn DisposeOSLCompareUPP(user_upp: *mut OSLCompareUPP) {
     extern "C-unwind" {
-        fn DisposeOSLCompareUPP(user_upp: OSLCompareUPP);
+        fn DisposeOSLCompareUPP(user_upp: *mut OSLCompareUPP);
     }
     unsafe { DisposeOSLCompareUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn DisposeOSLCountUPP(user_upp: OSLCountUPP) {
+pub unsafe fn DisposeOSLCountUPP(user_upp: *mut OSLCountUPP) {
     extern "C-unwind" {
-        fn DisposeOSLCountUPP(user_upp: OSLCountUPP);
+        fn DisposeOSLCountUPP(user_upp: *mut OSLCountUPP);
     }
     unsafe { DisposeOSLCountUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn DisposeOSLDisposeTokenUPP(user_upp: OSLDisposeTokenUPP) {
+pub unsafe fn DisposeOSLDisposeTokenUPP(user_upp: *mut OSLDisposeTokenUPP) {
     extern "C-unwind" {
-        fn DisposeOSLDisposeTokenUPP(user_upp: OSLDisposeTokenUPP);
+        fn DisposeOSLDisposeTokenUPP(user_upp: *mut OSLDisposeTokenUPP);
     }
     unsafe { DisposeOSLDisposeTokenUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn DisposeOSLGetMarkTokenUPP(user_upp: OSLGetMarkTokenUPP) {
+pub unsafe fn DisposeOSLGetMarkTokenUPP(user_upp: *mut OSLGetMarkTokenUPP) {
     extern "C-unwind" {
-        fn DisposeOSLGetMarkTokenUPP(user_upp: OSLGetMarkTokenUPP);
+        fn DisposeOSLGetMarkTokenUPP(user_upp: *mut OSLGetMarkTokenUPP);
     }
     unsafe { DisposeOSLGetMarkTokenUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn DisposeOSLGetErrDescUPP(user_upp: OSLGetErrDescUPP) {
+pub unsafe fn DisposeOSLGetErrDescUPP(user_upp: *mut OSLGetErrDescUPP) {
     extern "C-unwind" {
-        fn DisposeOSLGetErrDescUPP(user_upp: OSLGetErrDescUPP);
+        fn DisposeOSLGetErrDescUPP(user_upp: *mut OSLGetErrDescUPP);
     }
     unsafe { DisposeOSLGetErrDescUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn DisposeOSLMarkUPP(user_upp: OSLMarkUPP) {
+pub unsafe fn DisposeOSLMarkUPP(user_upp: *mut OSLMarkUPP) {
     extern "C-unwind" {
-        fn DisposeOSLMarkUPP(user_upp: OSLMarkUPP);
+        fn DisposeOSLMarkUPP(user_upp: *mut OSLMarkUPP);
     }
     unsafe { DisposeOSLMarkUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
-pub unsafe fn DisposeOSLAdjustMarksUPP(user_upp: OSLAdjustMarksUPP) {
+pub unsafe fn DisposeOSLAdjustMarksUPP(user_upp: *mut OSLAdjustMarksUPP) {
     extern "C-unwind" {
-        fn DisposeOSLAdjustMarksUPP(user_upp: OSLAdjustMarksUPP);
+        fn DisposeOSLAdjustMarksUPP(user_upp: *mut OSLAdjustMarksUPP);
     }
     unsafe { DisposeOSLAdjustMarksUPP(user_upp) }
 }
@@ -502,6 +524,7 @@ pub unsafe fn DisposeOSLAdjustMarksUPP(user_upp: OSLAdjustMarksUPP) {
 /// - `value` might not allow `None`.
 /// - `accessor_refcon` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLAccessorUPP(
@@ -512,7 +535,7 @@ pub unsafe fn InvokeOSLAccessorUPP(
     selection_data: Option<&AEDesc>,
     value: Option<&mut AEDesc>,
     accessor_refcon: SRefCon,
-    user_upp: OSLAccessorUPP,
+    user_upp: Option<OSLAccessorUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLAccessorUPP(
@@ -523,7 +546,7 @@ pub unsafe fn InvokeOSLAccessorUPP(
             selection_data: Option<&AEDesc>,
             value: Option<&mut AEDesc>,
             accessor_refcon: SRefCon,
-            user_upp: OSLAccessorUPP,
+            user_upp: Option<OSLAccessorUPP>,
         ) -> OSErr;
     }
     unsafe {
@@ -548,6 +571,7 @@ pub unsafe fn InvokeOSLAccessorUPP(
 /// - `obj2` might not allow `None`.
 /// - `result` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLCompareUPP(
@@ -555,7 +579,7 @@ pub unsafe fn InvokeOSLCompareUPP(
     obj1: Option<&AEDesc>,
     obj2: Option<&AEDesc>,
     result: Option<&mut Boolean>,
-    user_upp: OSLCompareUPP,
+    user_upp: Option<OSLCompareUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLCompareUPP(
@@ -563,7 +587,7 @@ pub unsafe fn InvokeOSLCompareUPP(
             obj1: Option<&AEDesc>,
             obj2: Option<&AEDesc>,
             result: Option<&mut Boolean>,
-            user_upp: OSLCompareUPP,
+            user_upp: Option<OSLCompareUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeOSLCompareUPP(oper, obj1, obj2, result, user_upp) }
@@ -575,6 +599,7 @@ pub unsafe fn InvokeOSLCompareUPP(
 /// - `container` might not allow `None`.
 /// - `result` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLCountUPP(
@@ -582,7 +607,7 @@ pub unsafe fn InvokeOSLCountUPP(
     container_class: DescType,
     container: Option<&AEDesc>,
     result: Option<&mut c_long>,
-    user_upp: OSLCountUPP,
+    user_upp: Option<OSLCountUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLCountUPP(
@@ -590,7 +615,7 @@ pub unsafe fn InvokeOSLCountUPP(
             container_class: DescType,
             container: Option<&AEDesc>,
             result: Option<&mut c_long>,
-            user_upp: OSLCountUPP,
+            user_upp: Option<OSLCountUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeOSLCountUPP(desired_type, container_class, container, result, user_upp) }
@@ -600,17 +625,17 @@ pub unsafe fn InvokeOSLCountUPP(
 ///
 /// - `unneeded_token` struct field `dataHandle` must be a valid pointer.
 /// - `unneeded_token` might not allow `None`.
-/// - `user_upp` must be implemented correctly.
+/// - `user_upp` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLDisposeTokenUPP(
     unneeded_token: Option<&mut AEDesc>,
-    user_upp: OSLDisposeTokenUPP,
+    user_upp: *mut OSLDisposeTokenUPP,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLDisposeTokenUPP(
             unneeded_token: Option<&mut AEDesc>,
-            user_upp: OSLDisposeTokenUPP,
+            user_upp: *mut OSLDisposeTokenUPP,
         ) -> OSErr;
     }
     unsafe { InvokeOSLDisposeTokenUPP(unneeded_token, user_upp) }
@@ -623,20 +648,21 @@ pub unsafe fn InvokeOSLDisposeTokenUPP(
 /// - `result` struct field `dataHandle` must be a valid pointer.
 /// - `result` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLGetMarkTokenUPP(
     d_container_token: Option<&AEDesc>,
     container_class: DescType,
     result: Option<&mut AEDesc>,
-    user_upp: OSLGetMarkTokenUPP,
+    user_upp: Option<OSLGetMarkTokenUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLGetMarkTokenUPP(
             d_container_token: Option<&AEDesc>,
             container_class: DescType,
             result: Option<&mut AEDesc>,
-            user_upp: OSLGetMarkTokenUPP,
+            user_upp: Option<OSLGetMarkTokenUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeOSLGetMarkTokenUPP(d_container_token, container_class, result, user_upp) }
@@ -647,16 +673,17 @@ pub unsafe fn InvokeOSLGetMarkTokenUPP(
 /// - `app_desc_ptr` must be a valid pointer.
 /// - `app_desc_ptr` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLGetErrDescUPP(
     app_desc_ptr: Option<&mut *mut AEDesc>,
-    user_upp: OSLGetErrDescUPP,
+    user_upp: Option<OSLGetErrDescUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLGetErrDescUPP(
             app_desc_ptr: Option<&mut *mut AEDesc>,
-            user_upp: OSLGetErrDescUPP,
+            user_upp: Option<OSLGetErrDescUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeOSLGetErrDescUPP(app_desc_ptr, user_upp) }
@@ -669,20 +696,21 @@ pub unsafe fn InvokeOSLGetErrDescUPP(
 /// - `mark_token` struct field `dataHandle` must be a valid pointer.
 /// - `mark_token` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLMarkUPP(
     d_token: Option<&AEDesc>,
     mark_token: Option<&AEDesc>,
     index: c_long,
-    user_upp: OSLMarkUPP,
+    user_upp: Option<OSLMarkUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLMarkUPP(
             d_token: Option<&AEDesc>,
             mark_token: Option<&AEDesc>,
             index: c_long,
-            user_upp: OSLMarkUPP,
+            user_upp: Option<OSLMarkUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeOSLMarkUPP(d_token, mark_token, index, user_upp) }
@@ -693,20 +721,21 @@ pub unsafe fn InvokeOSLMarkUPP(
 /// - `mark_token` struct field `dataHandle` must be a valid pointer.
 /// - `mark_token` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn InvokeOSLAdjustMarksUPP(
     new_start: c_long,
     new_stop: c_long,
     mark_token: Option<&AEDesc>,
-    user_upp: OSLAdjustMarksUPP,
+    user_upp: Option<OSLAdjustMarksUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn InvokeOSLAdjustMarksUPP(
             new_start: c_long,
             new_stop: c_long,
             mark_token: Option<&AEDesc>,
-            user_upp: OSLAdjustMarksUPP,
+            user_upp: Option<OSLAdjustMarksUPP>,
         ) -> OSErr;
     }
     unsafe { InvokeOSLAdjustMarksUPP(new_start, new_stop, mark_token, user_upp) }
@@ -723,32 +752,39 @@ pub unsafe fn AEObjectInit() -> OSErr {
 /// # Safety
 ///
 /// - `my_compare_proc` must be implemented correctly.
+/// - `my_compare_proc` might not allow `None`.
 /// - `my_count_proc` must be implemented correctly.
+/// - `my_count_proc` might not allow `None`.
 /// - `my_dispose_token_proc` must be implemented correctly.
+/// - `my_dispose_token_proc` might not allow `None`.
 /// - `my_get_mark_token_proc` must be implemented correctly.
+/// - `my_get_mark_token_proc` might not allow `None`.
 /// - `my_mark_proc` must be implemented correctly.
+/// - `my_mark_proc` might not allow `None`.
 /// - `my_adjust_marks_proc` must be implemented correctly.
+/// - `my_adjust_marks_proc` might not allow `None`.
 /// - `my_get_err_desc_proc_ptr` must be implemented correctly.
+/// - `my_get_err_desc_proc_ptr` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AESetObjectCallbacks(
-    my_compare_proc: OSLCompareUPP,
-    my_count_proc: OSLCountUPP,
-    my_dispose_token_proc: OSLDisposeTokenUPP,
-    my_get_mark_token_proc: OSLGetMarkTokenUPP,
-    my_mark_proc: OSLMarkUPP,
-    my_adjust_marks_proc: OSLAdjustMarksUPP,
-    my_get_err_desc_proc_ptr: OSLGetErrDescUPP,
+    my_compare_proc: Option<OSLCompareUPP>,
+    my_count_proc: Option<OSLCountUPP>,
+    my_dispose_token_proc: Option<OSLDisposeTokenUPP>,
+    my_get_mark_token_proc: Option<OSLGetMarkTokenUPP>,
+    my_mark_proc: Option<OSLMarkUPP>,
+    my_adjust_marks_proc: Option<OSLAdjustMarksUPP>,
+    my_get_err_desc_proc_ptr: Option<OSLGetErrDescUPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn AESetObjectCallbacks(
-            my_compare_proc: OSLCompareUPP,
-            my_count_proc: OSLCountUPP,
-            my_dispose_token_proc: OSLDisposeTokenUPP,
-            my_get_mark_token_proc: OSLGetMarkTokenUPP,
-            my_mark_proc: OSLMarkUPP,
-            my_adjust_marks_proc: OSLAdjustMarksUPP,
-            my_get_err_desc_proc_ptr: OSLGetErrDescUPP,
+            my_compare_proc: Option<OSLCompareUPP>,
+            my_count_proc: Option<OSLCountUPP>,
+            my_dispose_token_proc: Option<OSLDisposeTokenUPP>,
+            my_get_mark_token_proc: Option<OSLGetMarkTokenUPP>,
+            my_mark_proc: Option<OSLMarkUPP>,
+            my_adjust_marks_proc: Option<OSLAdjustMarksUPP>,
+            my_get_err_desc_proc_ptr: Option<OSLGetErrDescUPP>,
         ) -> OSErr;
     }
     unsafe {
@@ -790,13 +826,14 @@ pub unsafe fn AEResolve(
 /// # Safety
 ///
 /// - `the_accessor` must be implemented correctly.
+/// - `the_accessor` might not allow `None`.
 /// - `accessor_refcon` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AEInstallObjectAccessor(
     desired_class: DescType,
     container_type: DescType,
-    the_accessor: OSLAccessorUPP,
+    the_accessor: Option<OSLAccessorUPP>,
     accessor_refcon: SRefCon,
     is_sys_handler: bool,
 ) -> OSErr {
@@ -804,7 +841,7 @@ pub unsafe fn AEInstallObjectAccessor(
         fn AEInstallObjectAccessor(
             desired_class: DescType,
             container_type: DescType,
-            the_accessor: OSLAccessorUPP,
+            the_accessor: Option<OSLAccessorUPP>,
             accessor_refcon: SRefCon,
             is_sys_handler: Boolean,
         ) -> OSErr;
@@ -823,20 +860,21 @@ pub unsafe fn AEInstallObjectAccessor(
 
 /// # Safety
 ///
-/// `the_accessor` must be implemented correctly.
+/// - `the_accessor` must be implemented correctly.
+/// - `the_accessor` might not allow `None`.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe fn AERemoveObjectAccessor(
     desired_class: DescType,
     container_type: DescType,
-    the_accessor: OSLAccessorUPP,
+    the_accessor: Option<OSLAccessorUPP>,
     is_sys_handler: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn AERemoveObjectAccessor(
             desired_class: DescType,
             container_type: DescType,
-            the_accessor: OSLAccessorUPP,
+            the_accessor: Option<OSLAccessorUPP>,
             is_sys_handler: Boolean,
         ) -> OSErr;
     }
@@ -855,7 +893,7 @@ pub unsafe fn AERemoveObjectAccessor(
 pub unsafe fn AEGetObjectAccessor(
     desired_class: DescType,
     container_type: DescType,
-    accessor: Option<&mut OSLAccessorUPP>,
+    accessor: Option<&mut Option<OSLAccessorUPP>>,
     accessor_refcon: Option<&mut SRefCon>,
     is_sys_handler: bool,
 ) -> OSErr {
@@ -863,7 +901,7 @@ pub unsafe fn AEGetObjectAccessor(
         fn AEGetObjectAccessor(
             desired_class: DescType,
             container_type: DescType,
-            accessor: Option<&mut OSLAccessorUPP>,
+            accessor: Option<&mut Option<OSLAccessorUPP>>,
             accessor_refcon: Option<&mut SRefCon>,
             is_sys_handler: Boolean,
         ) -> OSErr;

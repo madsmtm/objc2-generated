@@ -65,9 +65,8 @@ pub const kHIShapeParseFromTopLeft: c_uint = kHIShapeParseFromTop | kHIShapePars
 pub const kHIShapeParseFromBottomRight: c_uint = kHIShapeParseFromBottom | kHIShapeParseFromRight;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/hishapeenumerateprocptr?language=objc)
-pub type HIShapeEnumerateProcPtr = Option<
-    unsafe extern "C-unwind" fn(c_int, Option<&HIShape>, *const CGRect, *mut c_void) -> OSStatus,
->;
+pub type HIShapeEnumerateProcPtr =
+    unsafe extern "C-unwind" fn(c_int, Option<&HIShape>, *const CGRect, *mut c_void) -> OSStatus;
 
 unsafe impl ConcreteType for HIShape {
     #[doc(alias = "HIShapeGetTypeID")]
@@ -258,20 +257,21 @@ impl HIShape {
     /// # Safety
     ///
     /// - `in_proc` must be implemented correctly.
+    /// - `in_proc` might not allow `None`.
     /// - `in_refcon` must be a valid pointer.
     #[doc(alias = "HIShapeEnumerate")]
     #[inline]
     pub unsafe fn enumerate(
         &self,
         in_options: OptionBits,
-        in_proc: HIShapeEnumerateProcPtr,
+        in_proc: Option<HIShapeEnumerateProcPtr>,
         in_refcon: *mut c_void,
     ) -> OSStatus {
         extern "C-unwind" {
             fn HIShapeEnumerate(
                 in_shape: &HIShape,
                 in_options: OptionBits,
-                in_proc: HIShapeEnumerateProcPtr,
+                in_proc: Option<HIShapeEnumerateProcPtr>,
                 in_refcon: *mut c_void,
             ) -> OSStatus;
         }

@@ -113,26 +113,22 @@ unsafe impl RefEncode for OpaqueAudioFileStreamID {
 pub type AudioFileStreamID = *mut OpaqueAudioFileStreamID;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestream_propertylistenerproc?language=objc)
-pub type AudioFileStream_PropertyListenerProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioFileStreamID,
-        AudioFileStreamPropertyID,
-        NonNull<AudioFileStreamPropertyFlags>,
-    ),
->;
+pub type AudioFileStream_PropertyListenerProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioFileStreamID,
+    AudioFileStreamPropertyID,
+    NonNull<AudioFileStreamPropertyFlags>,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestream_packetsproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioFileStream_PacketsProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        u32,
-        u32,
-        NonNull<c_void>,
-        *mut AudioStreamPacketDescription,
-    ),
->;
+pub type AudioFileStream_PacketsProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    u32,
+    u32,
+    NonNull<c_void>,
+    *mut AudioStreamPacketDescription,
+);
 
 /// The file type is not supported.
 ///

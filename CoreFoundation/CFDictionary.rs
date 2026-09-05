@@ -40,23 +40,22 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryretaincallback?language=objc)
 pub type CFDictionaryRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void>;
+    unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void) -> *const c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryreleasecallback?language=objc)
 pub type CFDictionaryReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void)>;
+    unsafe extern "C-unwind" fn(Option<&CFAllocator>, *const c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycopydescriptioncallback?language=objc)
 pub type CFDictionaryCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
+    unsafe extern "C-unwind" fn(*const c_void) -> *const CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryequalcallback?language=objc)
 pub type CFDictionaryEqualCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
+    unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryhashcallback?language=objc)
-pub type CFDictionaryHashCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
+pub type CFDictionaryHashCallBack = unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks?language=objc)
 #[repr(C)]
@@ -64,11 +63,11 @@ pub type CFDictionaryHashCallBack =
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFDictionaryKeyCallBacks {
     pub version: CFIndex,
-    pub retain: CFDictionaryRetainCallBack,
-    pub release: CFDictionaryReleaseCallBack,
-    pub copyDescription: CFDictionaryCopyDescriptionCallBack,
-    pub equal: CFDictionaryEqualCallBack,
-    pub hash: CFDictionaryHashCallBack,
+    pub retain: Option<CFDictionaryRetainCallBack>,
+    pub release: Option<CFDictionaryReleaseCallBack>,
+    pub copyDescription: Option<CFDictionaryCopyDescriptionCallBack>,
+    pub equal: Option<CFDictionaryEqualCallBack>,
+    pub hash: Option<CFDictionaryHashCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -143,10 +142,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFDictionaryValueCallBacks {
     pub version: CFIndex,
-    pub retain: CFDictionaryRetainCallBack,
-    pub release: CFDictionaryReleaseCallBack,
-    pub copyDescription: CFDictionaryCopyDescriptionCallBack,
-    pub equal: CFDictionaryEqualCallBack,
+    pub retain: Option<CFDictionaryRetainCallBack>,
+    pub release: Option<CFDictionaryReleaseCallBack>,
+    pub copyDescription: Option<CFDictionaryCopyDescriptionCallBack>,
+    pub equal: Option<CFDictionaryEqualCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -189,7 +188,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryapplierfunction?language=objc)
 pub type CFDictionaryApplierFunction =
-    Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void, *mut c_void)>;
+    unsafe extern "C-unwind" fn(*const c_void, *const c_void, *mut c_void);
 
 /// This is the type of a reference to immutable CFDictionarys.
 ///
@@ -928,18 +927,19 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
+    /// - `applier` might not allow `None`.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFDictionaryApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
         &self,
-        applier: CFDictionaryApplierFunction,
+        applier: Option<CFDictionaryApplierFunction>,
         context: *mut c_void,
     ) {
         extern "C-unwind" {
             fn CFDictionaryApplyFunction(
                 the_dict: &CFDictionary,
-                applier: CFDictionaryApplierFunction,
+                applier: Option<CFDictionaryApplierFunction>,
                 context: *mut c_void,
             );
         }

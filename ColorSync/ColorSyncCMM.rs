@@ -81,7 +81,7 @@ impl ColorSyncCMM {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmiteratecallback?language=objc)
 pub type ColorSyncCMMIterateCallback =
-    Option<unsafe extern "C-unwind" fn(&ColorSyncCMM, NonNull<c_void>) -> bool>;
+    unsafe extern "C-unwind" fn(&ColorSyncCMM, NonNull<c_void>) -> bool;
 
 /// # Safety
 ///
@@ -103,46 +103,40 @@ pub unsafe fn ColorSyncIterateInstalledCMMs(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializelinkprofileproc?language=objc)
 #[cfg(feature = "ColorSyncProfile")]
-pub type CMMInitializeLinkProfileProc = Option<
-    unsafe extern "C-unwind" fn(&ColorSyncMutableProfile, &CFArray, Option<&CFDictionary>) -> bool,
->;
+pub type CMMInitializeLinkProfileProc =
+    unsafe extern "C-unwind" fn(&ColorSyncMutableProfile, &CFArray, Option<&CFDictionary>) -> bool;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializetransformproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
-pub type CMMInitializeTransformProc = Option<
-    unsafe extern "C-unwind" fn(&ColorSyncTransform, &CFArray, Option<&CFDictionary>) -> bool,
->;
+pub type CMMInitializeTransformProc =
+    unsafe extern "C-unwind" fn(&ColorSyncTransform, &CFArray, Option<&CFDictionary>) -> bool;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmmapplytransformproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
-pub type CMMApplyTransformProc = Option<
-    unsafe extern "C-unwind" fn(
-        &ColorSyncTransform,
-        usize,
-        usize,
-        usize,
-        NonNull<NonNull<c_void>>,
-        ColorSyncDataDepth,
-        ColorSyncDataLayout,
-        usize,
-        usize,
-        NonNull<NonNull<c_void>>,
-        ColorSyncDataDepth,
-        ColorSyncDataLayout,
-        usize,
-        Option<&CFDictionary>,
-    ) -> bool,
->;
+pub type CMMApplyTransformProc = unsafe extern "C-unwind" fn(
+    &ColorSyncTransform,
+    usize,
+    usize,
+    usize,
+    NonNull<NonNull<c_void>>,
+    ColorSyncDataDepth,
+    ColorSyncDataLayout,
+    usize,
+    usize,
+    NonNull<NonNull<c_void>>,
+    ColorSyncDataDepth,
+    ColorSyncDataLayout,
+    usize,
+    Option<&CFDictionary>,
+) -> bool;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmmcreatetransformpropertyproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
-pub type CMMCreateTransformPropertyProc = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&ColorSyncTransform>,
-        &CFType,
-        Option<&CFDictionary>,
-    ) -> *const CFType,
->;
+pub type CMMCreateTransformPropertyProc = unsafe extern "C-unwind" fn(
+    Option<&ColorSyncTransform>,
+    &CFType,
+    Option<&CFDictionary>,
+) -> *const CFType;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmminitializelinkprofileprocname?language=objc)

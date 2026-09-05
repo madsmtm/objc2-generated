@@ -141,14 +141,12 @@ unsafe impl RefEncode for SSLClientCertificateState {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslreadfunc?language=objc)
-pub type SSLReadFunc = Option<
-    unsafe extern "C-unwind" fn(SSLConnectionRef, NonNull<c_void>, NonNull<usize>) -> OSStatus,
->;
+pub type SSLReadFunc =
+    unsafe extern "C-unwind" fn(SSLConnectionRef, NonNull<c_void>, NonNull<usize>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslwritefunc?language=objc)
-pub type SSLWriteFunc = Option<
-    unsafe extern "C-unwind" fn(SSLConnectionRef, NonNull<c_void>, NonNull<usize>) -> OSStatus,
->;
+pub type SSLWriteFunc =
+    unsafe extern "C-unwind" fn(SSLConnectionRef, NonNull<c_void>, NonNull<usize>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocolside?language=objc)
 // NS_CLOSED_ENUM

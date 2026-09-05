@@ -164,7 +164,7 @@ pub type AliasInfoType = c_short;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fsaliasfilterprocptr?language=objc)
 #[cfg(feature = "Files")]
 pub type FSAliasFilterProcPtr =
-    Option<unsafe extern "C-unwind" fn(*const FSRef, *mut Boolean, Ptr) -> Boolean>;
+    unsafe extern "C-unwind" fn(*const FSRef, *mut Boolean, Ptr) -> Boolean;
 
 /// # Safety
 ///
@@ -522,6 +522,7 @@ pub unsafe fn FSNewAliasFromPath(
 /// - `alias_list` must be a valid pointer.
 /// - `needs_update` might not allow `None`.
 /// - `alias_filter` must be implemented correctly.
+/// - `alias_filter` might not allow `None`.
 /// - `your_data_ptr` must be a valid pointer.
 #[cfg(feature = "Files")]
 #[deprecated]
@@ -533,7 +534,7 @@ pub unsafe fn FSMatchAliasBulk(
     alias_count: Option<&mut c_short>,
     alias_list: *mut FSRef,
     needs_update: Option<&mut Boolean>,
-    alias_filter: FSAliasFilterProcPtr,
+    alias_filter: Option<FSAliasFilterProcPtr>,
     your_data_ptr: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
@@ -544,7 +545,7 @@ pub unsafe fn FSMatchAliasBulk(
             alias_count: Option<&mut c_short>,
             alias_list: *mut FSRef,
             needs_update: Option<&mut Boolean>,
-            alias_filter: FSAliasFilterProcPtr,
+            alias_filter: Option<FSAliasFilterProcPtr>,
             your_data_ptr: *mut c_void,
         ) -> OSStatus;
     }

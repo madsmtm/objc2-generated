@@ -259,15 +259,13 @@ unsafe impl RefEncode for ATSULine {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsudirectlayoutoperationoverrideprocptr?language=objc)
-pub type ATSUDirectLayoutOperationOverrideProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        ATSULayoutOperationSelector,
-        Option<&ATSULine>,
-        URefCon,
-        *mut c_void,
-        *mut ATSULayoutOperationCallbackStatus,
-    ) -> OSStatus,
->;
+pub type ATSUDirectLayoutOperationOverrideProcPtr = unsafe extern "C-unwind" fn(
+    ATSULayoutOperationSelector,
+    Option<&ATSULine>,
+    URefCon,
+    *mut c_void,
+    *mut ATSULayoutOperationCallbackStatus,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/atsudirectlayoutoperationoverrideupp?language=objc)
 pub type ATSUDirectLayoutOperationOverrideUPP = ATSUDirectLayoutOperationOverrideProcPtr;
@@ -278,7 +276,7 @@ pub type ATSUDirectLayoutOperationOverrideUPP = ATSUDirectLayoutOperationOverrid
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ATSULayoutOperationOverrideSpecifier {
     pub operationSelector: ATSULayoutOperationSelector,
-    pub overrideUPP: ATSUDirectLayoutOperationOverrideUPP,
+    pub overrideUPP: Option<ATSUDirectLayoutOperationOverrideUPP>,
 }
 
 #[cfg(feature = "objc2")]

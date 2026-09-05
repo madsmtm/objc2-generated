@@ -26,7 +26,7 @@ pub const kTMTaskActive: c_uint = 1 << 15;
 pub type TMTaskPtr = *mut TMTask;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/timerprocptr?language=objc)
-pub type TimerProcPtr = Option<unsafe extern "C-unwind" fn(TMTaskPtr)>;
+pub type TimerProcPtr = unsafe extern "C-unwind" fn(TMTaskPtr);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/timerupp?language=objc)
 pub type TimerUPP = TimerProcPtr;
@@ -39,7 +39,7 @@ pub type TimerUPP = TimerProcPtr;
 pub struct TMTask {
     pub qLink: QElemPtr,
     pub qType: c_short,
-    pub tmAddr: TimerUPP,
+    pub tmAddr: Option<TimerUPP>,
     pub tmCount: c_long,
     pub tmWakeUp: c_long,
     pub tmReserved: c_long,
@@ -171,24 +171,25 @@ pub unsafe fn RemoveTimeTask(tm_task_ptr: QElemPtr) -> OSErr {
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewTimerUPP(user_routine: TimerProcPtr) -> TimerUPP {
+pub unsafe fn NewTimerUPP(user_routine: Option<TimerProcPtr>) -> Option<TimerUPP> {
     extern "C-unwind" {
-        fn NewTimerUPP(user_routine: TimerProcPtr) -> TimerUPP;
+        fn NewTimerUPP(user_routine: Option<TimerProcPtr>) -> Option<TimerUPP>;
     }
     unsafe { NewTimerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeTimerUPP(user_upp: TimerUPP) {
+pub unsafe fn DisposeTimerUPP(user_upp: *mut TimerUPP) {
     extern "C-unwind" {
-        fn DisposeTimerUPP(user_upp: TimerUPP);
+        fn DisposeTimerUPP(user_upp: *mut TimerUPP);
     }
     unsafe { DisposeTimerUPP(user_upp) }
 }
@@ -197,11 +198,12 @@ pub unsafe fn DisposeTimerUPP(user_upp: TimerUPP) {
 ///
 /// - `tm_task_ptr` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeTimerUPP(tm_task_ptr: TMTaskPtr, user_upp: TimerUPP) {
+pub unsafe fn InvokeTimerUPP(tm_task_ptr: TMTaskPtr, user_upp: Option<TimerUPP>) {
     extern "C-unwind" {
-        fn InvokeTimerUPP(tm_task_ptr: TMTaskPtr, user_upp: TimerUPP);
+        fn InvokeTimerUPP(tm_task_ptr: TMTaskPtr, user_upp: Option<TimerUPP>);
     }
     unsafe { InvokeTimerUPP(tm_task_ptr, user_upp) }
 }

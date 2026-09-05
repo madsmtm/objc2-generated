@@ -86,35 +86,36 @@ pub const kScrapClearNamedScrap: c_uint = 1 << 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/scrappromisekeeperprocptr?language=objc)
 pub type ScrapPromiseKeeperProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Scrap>, ScrapFlavorType, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(Option<&Scrap>, ScrapFlavorType, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/scrappromisekeeperupp?language=objc)
 pub type ScrapPromiseKeeperUPP = ScrapPromiseKeeperProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewScrapPromiseKeeperUPP(
-    user_routine: ScrapPromiseKeeperProcPtr,
-) -> ScrapPromiseKeeperUPP {
+    user_routine: Option<ScrapPromiseKeeperProcPtr>,
+) -> Option<ScrapPromiseKeeperUPP> {
     extern "C-unwind" {
         fn NewScrapPromiseKeeperUPP(
-            user_routine: ScrapPromiseKeeperProcPtr,
-        ) -> ScrapPromiseKeeperUPP;
+            user_routine: Option<ScrapPromiseKeeperProcPtr>,
+        ) -> Option<ScrapPromiseKeeperUPP>;
     }
     unsafe { NewScrapPromiseKeeperUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeScrapPromiseKeeperUPP(user_upp: ScrapPromiseKeeperUPP) {
+pub unsafe fn DisposeScrapPromiseKeeperUPP(user_upp: *mut ScrapPromiseKeeperUPP) {
     extern "C-unwind" {
-        fn DisposeScrapPromiseKeeperUPP(user_upp: ScrapPromiseKeeperUPP);
+        fn DisposeScrapPromiseKeeperUPP(user_upp: *mut ScrapPromiseKeeperUPP);
     }
     unsafe { DisposeScrapPromiseKeeperUPP(user_upp) }
 }
@@ -125,20 +126,21 @@ pub unsafe fn DisposeScrapPromiseKeeperUPP(user_upp: ScrapPromiseKeeperUPP) {
 /// - `scrap` might not allow `None`.
 /// - `user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeScrapPromiseKeeperUPP(
     scrap: Option<&Scrap>,
     flavor_type: ScrapFlavorType,
     user_data: *mut c_void,
-    user_upp: ScrapPromiseKeeperUPP,
+    user_upp: Option<ScrapPromiseKeeperUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeScrapPromiseKeeperUPP(
             scrap: Option<&Scrap>,
             flavor_type: ScrapFlavorType,
             user_data: *mut c_void,
-            user_upp: ScrapPromiseKeeperUPP,
+            user_upp: Option<ScrapPromiseKeeperUPP>,
         ) -> OSStatus;
     }
     unsafe { InvokeScrapPromiseKeeperUPP(scrap, flavor_type, user_data, user_upp) }

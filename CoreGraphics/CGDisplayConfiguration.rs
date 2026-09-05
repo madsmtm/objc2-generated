@@ -236,9 +236,8 @@ unsafe impl RefEncode for CGDisplayChangeSummaryFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayreconfigurationcallback?language=objc)
 #[cfg(feature = "CGDirectDisplay")]
-pub type CGDisplayReconfigurationCallBack = Option<
-    unsafe extern "C-unwind" fn(CGDirectDisplayID, CGDisplayChangeSummaryFlags, *mut c_void),
->;
+pub type CGDisplayReconfigurationCallBack =
+    unsafe extern "C-unwind" fn(CGDirectDisplayID, CGDisplayChangeSummaryFlags, *mut c_void);
 
 /// # Safety
 ///
@@ -247,12 +246,12 @@ pub type CGDisplayReconfigurationCallBack = Option<
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 #[inline]
 pub unsafe fn CGDisplayRegisterReconfigurationCallback(
-    callback: CGDisplayReconfigurationCallBack,
+    callback: Option<CGDisplayReconfigurationCallBack>,
     user_info: *mut c_void,
 ) -> CGError {
     extern "C-unwind" {
         fn CGDisplayRegisterReconfigurationCallback(
-            callback: CGDisplayReconfigurationCallBack,
+            callback: Option<CGDisplayReconfigurationCallBack>,
             user_info: *mut c_void,
         ) -> CGError;
     }
@@ -266,12 +265,12 @@ pub unsafe fn CGDisplayRegisterReconfigurationCallback(
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 #[inline]
 pub unsafe fn CGDisplayRemoveReconfigurationCallback(
-    callback: CGDisplayReconfigurationCallBack,
+    callback: Option<CGDisplayReconfigurationCallBack>,
     user_info: *mut c_void,
 ) -> CGError {
     extern "C-unwind" {
         fn CGDisplayRemoveReconfigurationCallback(
-            callback: CGDisplayReconfigurationCallBack,
+            callback: Option<CGDisplayReconfigurationCallBack>,
             user_info: *mut c_void,
         ) -> CGError;
     }

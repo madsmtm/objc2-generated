@@ -120,6 +120,7 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumb
 /// # Safety
 ///
 /// - `in_callback` must be implemented correctly.
+/// - `in_callback` might not allow `None`.
 /// - `in_user_ref_con` must be a valid pointer.
 /// - `out_session_ref` must be a valid pointer.
 /// - `out_session_ref` might not allow `None`.
@@ -128,14 +129,14 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIOBluetoothDeviceRefAndChannelNumb
 #[inline]
 pub unsafe fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
     in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
-    in_callback: OBEXSessionEventCallback,
+    in_callback: Option<OBEXSessionEventCallback>,
     in_user_ref_con: *mut c_void,
     out_session_ref: Option<&mut *mut OBEXSessionRef>,
 ) -> OBEXError {
     extern "C-unwind" {
         fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
             in_rfcomm_channel_ref: &IOBluetoothRFCOMMChannelRef,
-            in_callback: OBEXSessionEventCallback,
+            in_callback: Option<OBEXSessionEventCallback>,
             in_user_ref_con: *mut c_void,
             out_session_ref: Option<&mut *mut OBEXSessionRef>,
         ) -> OBEXError;
@@ -174,19 +175,20 @@ pub unsafe fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
 /// - `in_session_ref` might need manual memory-management.
 /// - `in_session_ref` might not allow `None`.
 /// - `in_callback` must be implemented correctly.
+/// - `in_callback` might not allow `None`.
 /// - `in_user_ref_con` must be a valid pointer.
 #[cfg(feature = "OBEX")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOBluetoothOBEXSessionOpenTransportConnection(
     in_session_ref: Option<&OBEXSessionRef>,
-    in_callback: IOBluetoothOBEXSessionOpenConnectionCallback,
+    in_callback: Option<IOBluetoothOBEXSessionOpenConnectionCallback>,
     in_user_ref_con: *mut c_void,
 ) -> OBEXError {
     extern "C-unwind" {
         fn IOBluetoothOBEXSessionOpenTransportConnection(
             in_session_ref: Option<&OBEXSessionRef>,
-            in_callback: IOBluetoothOBEXSessionOpenConnectionCallback,
+            in_callback: Option<IOBluetoothOBEXSessionOpenConnectionCallback>,
             in_user_ref_con: *mut c_void,
         ) -> OBEXError;
     }

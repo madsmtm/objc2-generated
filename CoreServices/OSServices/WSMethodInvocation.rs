@@ -366,14 +366,14 @@ impl WSMethodInvocation {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationcallbackprocptr?language=objc)
 #[deprecated = "No longer supported"]
-pub type WSMethodInvocationCallBackProcPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&WSMethodInvocation>, *mut c_void, Option<&CFDictionary>),
->;
+pub type WSMethodInvocationCallBackProcPtr =
+    unsafe extern "C-unwind" fn(Option<&WSMethodInvocation>, *mut c_void, Option<&CFDictionary>);
 
 impl WSMethodInvocation {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
+    /// - `client_cb` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -386,13 +386,13 @@ impl WSMethodInvocation {
     #[inline]
     pub unsafe fn set_call_back(
         &self,
-        client_cb: WSMethodInvocationCallBackProcPtr,
+        client_cb: Option<WSMethodInvocationCallBackProcPtr>,
         context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
             fn WSMethodInvocationSetCallBack(
                 invocation: &WSMethodInvocation,
-                client_cb: WSMethodInvocationCallBackProcPtr,
+                client_cb: Option<WSMethodInvocationCallBackProcPtr>,
                 context: Option<&mut WSClientContext>,
             );
         }
@@ -465,18 +465,17 @@ pub unsafe fn WSMethodResultIsFault(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationserializationprocptr?language=objc)
 #[deprecated = "No longer supported"]
-pub type WSMethodInvocationSerializationProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&WSMethodInvocation>,
-        Option<&CFType>,
-        *mut c_void,
-    ) -> *const CFString,
->;
+pub type WSMethodInvocationSerializationProcPtr = unsafe extern "C-unwind" fn(
+    Option<&WSMethodInvocation>,
+    Option<&CFType>,
+    *mut c_void,
+) -> *const CFString;
 
 impl WSMethodInvocation {
     /// # Safety
     ///
     /// - `serialization_proc` must be implemented correctly.
+    /// - `serialization_proc` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -490,14 +489,14 @@ impl WSMethodInvocation {
     pub unsafe fn add_serialization_override(
         &self,
         obj_type: CFTypeID,
-        serialization_proc: WSMethodInvocationSerializationProcPtr,
+        serialization_proc: Option<WSMethodInvocationSerializationProcPtr>,
         context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
             fn WSMethodInvocationAddSerializationOverride(
                 invocation: &WSMethodInvocation,
                 obj_type: CFTypeID,
-                serialization_proc: WSMethodInvocationSerializationProcPtr,
+                serialization_proc: Option<WSMethodInvocationSerializationProcPtr>,
                 context: Option<&mut WSClientContext>,
             );
         }
@@ -509,14 +508,12 @@ impl WSMethodInvocation {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationdeserializationprocptr?language=objc)
 #[deprecated = "No longer supported"]
-pub type WSMethodInvocationDeserializationProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&WSMethodInvocation>,
-        Option<&CFXMLTree>,
-        Option<&CFXMLTree>,
-        *mut c_void,
-    ) -> *const CFType,
->;
+pub type WSMethodInvocationDeserializationProcPtr = unsafe extern "C-unwind" fn(
+    Option<&WSMethodInvocation>,
+    Option<&CFXMLTree>,
+    Option<&CFXMLTree>,
+    *mut c_void,
+) -> *const CFType;
 
 impl WSMethodInvocation {
     /// # Safety
@@ -524,6 +521,7 @@ impl WSMethodInvocation {
     /// - `type_namespace` might not allow `None`.
     /// - `type_name` might not allow `None`.
     /// - `deserialization_proc` must be implemented correctly.
+    /// - `deserialization_proc` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -538,7 +536,7 @@ impl WSMethodInvocation {
         &self,
         type_namespace: Option<&CFString>,
         type_name: Option<&CFString>,
-        deserialization_proc: WSMethodInvocationDeserializationProcPtr,
+        deserialization_proc: Option<WSMethodInvocationDeserializationProcPtr>,
         context: Option<&mut WSClientContext>,
     ) {
         extern "C-unwind" {
@@ -546,7 +544,7 @@ impl WSMethodInvocation {
                 invocation: &WSMethodInvocation,
                 type_namespace: Option<&CFString>,
                 type_name: Option<&CFString>,
-                deserialization_proc: WSMethodInvocationDeserializationProcPtr,
+                deserialization_proc: Option<WSMethodInvocationDeserializationProcPtr>,
                 context: Option<&mut WSClientContext>,
             );
         }

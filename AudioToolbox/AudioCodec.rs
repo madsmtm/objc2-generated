@@ -1278,102 +1278,85 @@ pub unsafe fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecgetpropertyinfoproc?language=objc)
-pub type AudioCodecGetPropertyInfoProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioCodecPropertyID,
-        *mut u32,
-        *mut Boolean,
-    ) -> OSStatus,
->;
+pub type AudioCodecGetPropertyInfoProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioCodecPropertyID,
+    *mut u32,
+    *mut Boolean,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecgetpropertyproc?language=objc)
-pub type AudioCodecGetPropertyProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioCodecPropertyID,
-        NonNull<u32>,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioCodecGetPropertyProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioCodecPropertyID,
+    NonNull<u32>,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecsetpropertyproc?language=objc)
-pub type AudioCodecSetPropertyProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        AudioCodecPropertyID,
-        u32,
-        NonNull<c_void>,
-    ) -> OSStatus,
->;
+pub type AudioCodecSetPropertyProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    AudioCodecPropertyID,
+    u32,
+    NonNull<c_void>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecinitializeproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioCodecInitializeProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        *const AudioStreamBasicDescription,
-        *const AudioStreamBasicDescription,
-        *const c_void,
-        u32,
-    ) -> OSStatus,
->;
+pub type AudioCodecInitializeProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    *const AudioStreamBasicDescription,
+    *const AudioStreamBasicDescription,
+    *const c_void,
+    u32,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecuninitializeproc?language=objc)
-pub type AudioCodecUninitializeProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
+pub type AudioCodecUninitializeProc = unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecappendinputdataproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioCodecAppendInputDataProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        NonNull<c_void>,
-        NonNull<u32>,
-        NonNull<u32>,
-        *const AudioStreamPacketDescription,
-    ) -> OSStatus,
->;
+pub type AudioCodecAppendInputDataProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    NonNull<c_void>,
+    NonNull<u32>,
+    NonNull<u32>,
+    *const AudioStreamPacketDescription,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecproduceoutputpacketsproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioCodecProduceOutputPacketsProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        NonNull<c_void>,
-        NonNull<u32>,
-        NonNull<u32>,
-        *mut AudioStreamPacketDescription,
-        NonNull<u32>,
-    ) -> OSStatus,
->;
+pub type AudioCodecProduceOutputPacketsProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    NonNull<c_void>,
+    NonNull<u32>,
+    NonNull<u32>,
+    *mut AudioStreamPacketDescription,
+    NonNull<u32>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecresetproc?language=objc)
-pub type AudioCodecResetProc = Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
+pub type AudioCodecResetProc = unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecappendinputbufferlistproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioCodecAppendInputBufferListProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        NonNull<AudioBufferList>,
-        NonNull<u32>,
-        *const AudioStreamPacketDescription,
-        NonNull<u32>,
-    ) -> OSStatus,
->;
+pub type AudioCodecAppendInputBufferListProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    NonNull<AudioBufferList>,
+    NonNull<u32>,
+    *const AudioStreamPacketDescription,
+    NonNull<u32>,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecproduceoutputbufferlistproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
-pub type AudioCodecProduceOutputBufferListProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        NonNull<AudioBufferList>,
-        NonNull<u32>,
-        *mut AudioStreamPacketDescription,
-        NonNull<u32>,
-    ) -> OSStatus,
->;
+pub type AudioCodecProduceOutputBufferListProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    NonNull<AudioBufferList>,
+    NonNull<u32>,
+    *mut AudioStreamPacketDescription,
+    NonNull<u32>,
+) -> OSStatus;
 
 /// A UInt32 equal 1 sets the encoder, where applicable, in it's lowest possible delay mode. An encoder
 /// may prepend zero valued samples to the input signal in order to make additional delays, like e.g.

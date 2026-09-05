@@ -122,27 +122,26 @@ pub type SchedulerInfoRecPtr = *mut SchedulerInfoRec;
 pub type voidPtr = *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/threadentryprocptr?language=objc)
-pub type ThreadEntryProcPtr = Option<unsafe extern "C-unwind" fn(*mut c_void) -> voidPtr>;
+pub type ThreadEntryProcPtr = unsafe extern "C-unwind" fn(*mut c_void) -> voidPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/threadschedulerprocptr?language=objc)
-pub type ThreadSchedulerProcPtr =
-    Option<unsafe extern "C-unwind" fn(SchedulerInfoRecPtr) -> ThreadID>;
+pub type ThreadSchedulerProcPtr = unsafe extern "C-unwind" fn(SchedulerInfoRecPtr) -> ThreadID;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/threadswitchprocptr?language=objc)
-pub type ThreadSwitchProcPtr = Option<unsafe extern "C-unwind" fn(ThreadID, *mut c_void)>;
+pub type ThreadSwitchProcPtr = unsafe extern "C-unwind" fn(ThreadID, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/threadterminationprocptr?language=objc)
-pub type ThreadTerminationProcPtr = Option<unsafe extern "C-unwind" fn(ThreadID, *mut c_void)>;
+pub type ThreadTerminationProcPtr = unsafe extern "C-unwind" fn(ThreadID, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/debuggernewthreadprocptr?language=objc)
-pub type DebuggerNewThreadProcPtr = Option<unsafe extern "C-unwind" fn(ThreadID)>;
+pub type DebuggerNewThreadProcPtr = unsafe extern "C-unwind" fn(ThreadID);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/debuggerdisposethreadprocptr?language=objc)
-pub type DebuggerDisposeThreadProcPtr = Option<unsafe extern "C-unwind" fn(ThreadID)>;
+pub type DebuggerDisposeThreadProcPtr = unsafe extern "C-unwind" fn(ThreadID);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/debuggerthreadschedulerprocptr?language=objc)
 pub type DebuggerThreadSchedulerProcPtr =
-    Option<unsafe extern "C-unwind" fn(SchedulerInfoRecPtr) -> ThreadID>;
+    unsafe extern "C-unwind" fn(SchedulerInfoRecPtr) -> ThreadID;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/threadentryupp?language=objc)
 pub type ThreadEntryUPP = ThreadEntryProcPtr;
@@ -167,180 +166,199 @@ pub type DebuggerThreadSchedulerUPP = DebuggerThreadSchedulerProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewThreadEntryUPP(user_routine: ThreadEntryProcPtr) -> ThreadEntryUPP {
+pub unsafe fn NewThreadEntryUPP(
+    user_routine: Option<ThreadEntryProcPtr>,
+) -> Option<ThreadEntryUPP> {
     extern "C-unwind" {
-        fn NewThreadEntryUPP(user_routine: ThreadEntryProcPtr) -> ThreadEntryUPP;
+        fn NewThreadEntryUPP(user_routine: Option<ThreadEntryProcPtr>) -> Option<ThreadEntryUPP>;
     }
     unsafe { NewThreadEntryUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewThreadSchedulerUPP(user_routine: ThreadSchedulerProcPtr) -> ThreadSchedulerUPP {
+pub unsafe fn NewThreadSchedulerUPP(
+    user_routine: Option<ThreadSchedulerProcPtr>,
+) -> Option<ThreadSchedulerUPP> {
     extern "C-unwind" {
-        fn NewThreadSchedulerUPP(user_routine: ThreadSchedulerProcPtr) -> ThreadSchedulerUPP;
+        fn NewThreadSchedulerUPP(
+            user_routine: Option<ThreadSchedulerProcPtr>,
+        ) -> Option<ThreadSchedulerUPP>;
     }
     unsafe { NewThreadSchedulerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewThreadSwitchUPP(user_routine: ThreadSwitchProcPtr) -> ThreadSwitchUPP {
+pub unsafe fn NewThreadSwitchUPP(
+    user_routine: Option<ThreadSwitchProcPtr>,
+) -> Option<ThreadSwitchUPP> {
     extern "C-unwind" {
-        fn NewThreadSwitchUPP(user_routine: ThreadSwitchProcPtr) -> ThreadSwitchUPP;
+        fn NewThreadSwitchUPP(user_routine: Option<ThreadSwitchProcPtr>)
+            -> Option<ThreadSwitchUPP>;
     }
     unsafe { NewThreadSwitchUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewThreadTerminationUPP(
-    user_routine: ThreadTerminationProcPtr,
-) -> ThreadTerminationUPP {
+    user_routine: Option<ThreadTerminationProcPtr>,
+) -> Option<ThreadTerminationUPP> {
     extern "C-unwind" {
-        fn NewThreadTerminationUPP(user_routine: ThreadTerminationProcPtr) -> ThreadTerminationUPP;
+        fn NewThreadTerminationUPP(
+            user_routine: Option<ThreadTerminationProcPtr>,
+        ) -> Option<ThreadTerminationUPP>;
     }
     unsafe { NewThreadTerminationUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewDebuggerNewThreadUPP(
-    user_routine: DebuggerNewThreadProcPtr,
-) -> DebuggerNewThreadUPP {
+    user_routine: Option<DebuggerNewThreadProcPtr>,
+) -> Option<DebuggerNewThreadUPP> {
     extern "C-unwind" {
-        fn NewDebuggerNewThreadUPP(user_routine: DebuggerNewThreadProcPtr) -> DebuggerNewThreadUPP;
+        fn NewDebuggerNewThreadUPP(
+            user_routine: Option<DebuggerNewThreadProcPtr>,
+        ) -> Option<DebuggerNewThreadUPP>;
     }
     unsafe { NewDebuggerNewThreadUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// `user_routine` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn NewDebuggerDisposeThreadUPP(
-    user_routine: DebuggerDisposeThreadProcPtr,
-) -> DebuggerDisposeThreadUPP {
+    user_routine: *mut DebuggerDisposeThreadProcPtr,
+) -> Option<DebuggerDisposeThreadUPP> {
     extern "C-unwind" {
         fn NewDebuggerDisposeThreadUPP(
-            user_routine: DebuggerDisposeThreadProcPtr,
-        ) -> DebuggerDisposeThreadUPP;
+            user_routine: *mut DebuggerDisposeThreadProcPtr,
+        ) -> Option<DebuggerDisposeThreadUPP>;
     }
     unsafe { NewDebuggerDisposeThreadUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn NewDebuggerThreadSchedulerUPP(
-    user_routine: DebuggerThreadSchedulerProcPtr,
-) -> DebuggerThreadSchedulerUPP {
+    user_routine: Option<DebuggerThreadSchedulerProcPtr>,
+) -> Option<DebuggerThreadSchedulerUPP> {
     extern "C-unwind" {
         fn NewDebuggerThreadSchedulerUPP(
-            user_routine: DebuggerThreadSchedulerProcPtr,
-        ) -> DebuggerThreadSchedulerUPP;
+            user_routine: Option<DebuggerThreadSchedulerProcPtr>,
+        ) -> Option<DebuggerThreadSchedulerUPP>;
     }
     unsafe { NewDebuggerThreadSchedulerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeThreadEntryUPP(user_upp: ThreadEntryUPP) {
+pub unsafe fn DisposeThreadEntryUPP(user_upp: *mut ThreadEntryUPP) {
     extern "C-unwind" {
-        fn DisposeThreadEntryUPP(user_upp: ThreadEntryUPP);
+        fn DisposeThreadEntryUPP(user_upp: *mut ThreadEntryUPP);
     }
     unsafe { DisposeThreadEntryUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeThreadSchedulerUPP(user_upp: ThreadSchedulerUPP) {
+pub unsafe fn DisposeThreadSchedulerUPP(user_upp: *mut ThreadSchedulerUPP) {
     extern "C-unwind" {
-        fn DisposeThreadSchedulerUPP(user_upp: ThreadSchedulerUPP);
+        fn DisposeThreadSchedulerUPP(user_upp: *mut ThreadSchedulerUPP);
     }
     unsafe { DisposeThreadSchedulerUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeThreadSwitchUPP(user_upp: ThreadSwitchUPP) {
+pub unsafe fn DisposeThreadSwitchUPP(user_upp: *mut ThreadSwitchUPP) {
     extern "C-unwind" {
-        fn DisposeThreadSwitchUPP(user_upp: ThreadSwitchUPP);
+        fn DisposeThreadSwitchUPP(user_upp: *mut ThreadSwitchUPP);
     }
     unsafe { DisposeThreadSwitchUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeThreadTerminationUPP(user_upp: ThreadTerminationUPP) {
+pub unsafe fn DisposeThreadTerminationUPP(user_upp: *mut ThreadTerminationUPP) {
     extern "C-unwind" {
-        fn DisposeThreadTerminationUPP(user_upp: ThreadTerminationUPP);
+        fn DisposeThreadTerminationUPP(user_upp: *mut ThreadTerminationUPP);
     }
     unsafe { DisposeThreadTerminationUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDebuggerNewThreadUPP(user_upp: DebuggerNewThreadUPP) {
+pub unsafe fn DisposeDebuggerNewThreadUPP(user_upp: *mut DebuggerNewThreadUPP) {
     extern "C-unwind" {
-        fn DisposeDebuggerNewThreadUPP(user_upp: DebuggerNewThreadUPP);
+        fn DisposeDebuggerNewThreadUPP(user_upp: *mut DebuggerNewThreadUPP);
     }
     unsafe { DisposeDebuggerNewThreadUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDebuggerDisposeThreadUPP(user_upp: DebuggerDisposeThreadUPP) {
+pub unsafe fn DisposeDebuggerDisposeThreadUPP(user_upp: *mut DebuggerDisposeThreadUPP) {
     extern "C-unwind" {
-        fn DisposeDebuggerDisposeThreadUPP(user_upp: DebuggerDisposeThreadUPP);
+        fn DisposeDebuggerDisposeThreadUPP(user_upp: *mut DebuggerDisposeThreadUPP);
     }
     unsafe { DisposeDebuggerDisposeThreadUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDebuggerThreadSchedulerUPP(user_upp: DebuggerThreadSchedulerUPP) {
+pub unsafe fn DisposeDebuggerThreadSchedulerUPP(user_upp: *mut DebuggerThreadSchedulerUPP) {
     extern "C-unwind" {
-        fn DisposeDebuggerThreadSchedulerUPP(user_upp: DebuggerThreadSchedulerUPP);
+        fn DisposeDebuggerThreadSchedulerUPP(user_upp: *mut DebuggerThreadSchedulerUPP);
     }
     unsafe { DisposeDebuggerThreadSchedulerUPP(user_upp) }
 }
@@ -349,11 +367,18 @@ pub unsafe fn DisposeDebuggerThreadSchedulerUPP(user_upp: DebuggerThreadSchedule
 ///
 /// - `thread_param` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeThreadEntryUPP(thread_param: *mut c_void, user_upp: ThreadEntryUPP) -> voidPtr {
+pub unsafe fn InvokeThreadEntryUPP(
+    thread_param: *mut c_void,
+    user_upp: Option<ThreadEntryUPP>,
+) -> voidPtr {
     extern "C-unwind" {
-        fn InvokeThreadEntryUPP(thread_param: *mut c_void, user_upp: ThreadEntryUPP) -> voidPtr;
+        fn InvokeThreadEntryUPP(
+            thread_param: *mut c_void,
+            user_upp: Option<ThreadEntryUPP>,
+        ) -> voidPtr;
     }
     unsafe { InvokeThreadEntryUPP(thread_param, user_upp) }
 }
@@ -362,16 +387,17 @@ pub unsafe fn InvokeThreadEntryUPP(thread_param: *mut c_void, user_upp: ThreadEn
 ///
 /// - `scheduler_info` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeThreadSchedulerUPP(
     scheduler_info: SchedulerInfoRecPtr,
-    user_upp: ThreadSchedulerUPP,
+    user_upp: Option<ThreadSchedulerUPP>,
 ) -> ThreadID {
     extern "C-unwind" {
         fn InvokeThreadSchedulerUPP(
             scheduler_info: SchedulerInfoRecPtr,
-            user_upp: ThreadSchedulerUPP,
+            user_upp: Option<ThreadSchedulerUPP>,
         ) -> ThreadID;
     }
     unsafe { InvokeThreadSchedulerUPP(scheduler_info, user_upp) }
@@ -381,18 +407,19 @@ pub unsafe fn InvokeThreadSchedulerUPP(
 ///
 /// - `switch_proc_param` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeThreadSwitchUPP(
     thread_being_switched: ThreadID,
     switch_proc_param: *mut c_void,
-    user_upp: ThreadSwitchUPP,
+    user_upp: Option<ThreadSwitchUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeThreadSwitchUPP(
             thread_being_switched: ThreadID,
             switch_proc_param: *mut c_void,
-            user_upp: ThreadSwitchUPP,
+            user_upp: Option<ThreadSwitchUPP>,
         );
     }
     unsafe { InvokeThreadSwitchUPP(thread_being_switched, switch_proc_param, user_upp) }
@@ -402,18 +429,19 @@ pub unsafe fn InvokeThreadSwitchUPP(
 ///
 /// - `termination_proc_param` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeThreadTerminationUPP(
     thread_terminated: ThreadID,
     termination_proc_param: *mut c_void,
-    user_upp: ThreadTerminationUPP,
+    user_upp: Option<ThreadTerminationUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeThreadTerminationUPP(
             thread_terminated: ThreadID,
             termination_proc_param: *mut c_void,
-            user_upp: ThreadTerminationUPP,
+            user_upp: Option<ThreadTerminationUPP>,
         );
     }
     unsafe { InvokeThreadTerminationUPP(thread_terminated, termination_proc_param, user_upp) }
@@ -421,29 +449,36 @@ pub unsafe fn InvokeThreadTerminationUPP(
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeDebuggerNewThreadUPP(thread_created: ThreadID, user_upp: DebuggerNewThreadUPP) {
+pub unsafe fn InvokeDebuggerNewThreadUPP(
+    thread_created: ThreadID,
+    user_upp: Option<DebuggerNewThreadUPP>,
+) {
     extern "C-unwind" {
-        fn InvokeDebuggerNewThreadUPP(thread_created: ThreadID, user_upp: DebuggerNewThreadUPP);
+        fn InvokeDebuggerNewThreadUPP(
+            thread_created: ThreadID,
+            user_upp: Option<DebuggerNewThreadUPP>,
+        );
     }
     unsafe { InvokeDebuggerNewThreadUPP(thread_created, user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeDebuggerDisposeThreadUPP(
     thread_deleted: ThreadID,
-    user_upp: DebuggerDisposeThreadUPP,
+    user_upp: *mut DebuggerDisposeThreadUPP,
 ) {
     extern "C-unwind" {
         fn InvokeDebuggerDisposeThreadUPP(
             thread_deleted: ThreadID,
-            user_upp: DebuggerDisposeThreadUPP,
+            user_upp: *mut DebuggerDisposeThreadUPP,
         );
     }
     unsafe { InvokeDebuggerDisposeThreadUPP(thread_deleted, user_upp) }
@@ -453,16 +488,17 @@ pub unsafe fn InvokeDebuggerDisposeThreadUPP(
 ///
 /// - `scheduler_info` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeDebuggerThreadSchedulerUPP(
     scheduler_info: SchedulerInfoRecPtr,
-    user_upp: DebuggerThreadSchedulerUPP,
+    user_upp: Option<DebuggerThreadSchedulerUPP>,
 ) -> ThreadID {
     extern "C-unwind" {
         fn InvokeDebuggerThreadSchedulerUPP(
             scheduler_info: SchedulerInfoRecPtr,
-            user_upp: DebuggerThreadSchedulerUPP,
+            user_upp: Option<DebuggerThreadSchedulerUPP>,
         ) -> ThreadID;
     }
     unsafe { InvokeDebuggerThreadSchedulerUPP(scheduler_info, user_upp) }
@@ -492,6 +528,7 @@ pub type DebuggerThreadSchedulerTPP = DebuggerThreadSchedulerUPP;
 /// # Safety
 ///
 /// - `thread_entry` must be implemented correctly.
+/// - `thread_entry` might not allow `None`.
 /// - `thread_param` must be a valid pointer.
 /// - `thread_result` must be a valid pointer.
 /// - `thread_result` might not allow `None`.
@@ -500,7 +537,7 @@ pub type DebuggerThreadSchedulerTPP = DebuggerThreadSchedulerUPP;
 #[inline]
 pub unsafe fn NewThread(
     thread_style: ThreadStyle,
-    thread_entry: ThreadEntryTPP,
+    thread_entry: Option<ThreadEntryTPP>,
     thread_param: *mut c_void,
     stack_size: Size,
     options: ThreadOptions,
@@ -510,7 +547,7 @@ pub unsafe fn NewThread(
     extern "C-unwind" {
         fn NewThread(
             thread_style: ThreadStyle,
-            thread_entry: ThreadEntryTPP,
+            thread_entry: Option<ThreadEntryTPP>,
             thread_param: *mut c_void,
             stack_size: Size,
             options: ThreadOptions,
@@ -533,12 +570,13 @@ pub unsafe fn NewThread(
 
 /// # Safety
 ///
-/// `thread_scheduler` must be implemented correctly.
+/// - `thread_scheduler` must be implemented correctly.
+/// - `thread_scheduler` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn SetThreadScheduler(thread_scheduler: ThreadSchedulerTPP) -> OSErr {
+pub unsafe fn SetThreadScheduler(thread_scheduler: Option<ThreadSchedulerTPP>) -> OSErr {
     extern "C-unwind" {
-        fn SetThreadScheduler(thread_scheduler: ThreadSchedulerTPP) -> OSErr;
+        fn SetThreadScheduler(thread_scheduler: Option<ThreadSchedulerTPP>) -> OSErr;
     }
     unsafe { SetThreadScheduler(thread_scheduler) }
 }
@@ -546,19 +584,20 @@ pub unsafe fn SetThreadScheduler(thread_scheduler: ThreadSchedulerTPP) -> OSErr 
 /// # Safety
 ///
 /// - `thread_switcher` must be implemented correctly.
+/// - `thread_switcher` might not allow `None`.
 /// - `switch_proc_param` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn SetThreadSwitcher(
     thread: ThreadID,
-    thread_switcher: ThreadSwitchTPP,
+    thread_switcher: Option<ThreadSwitchTPP>,
     switch_proc_param: *mut c_void,
     in_or_out: bool,
 ) -> OSErr {
     extern "C-unwind" {
         fn SetThreadSwitcher(
             thread: ThreadID,
-            thread_switcher: ThreadSwitchTPP,
+            thread_switcher: Option<ThreadSwitchTPP>,
             switch_proc_param: *mut c_void,
             in_or_out: Boolean,
         ) -> OSErr;
@@ -570,18 +609,19 @@ pub unsafe fn SetThreadSwitcher(
 /// # Safety
 ///
 /// - `thread_terminator` must be implemented correctly.
+/// - `thread_terminator` might not allow `None`.
 /// - `termination_proc_param` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe fn SetThreadTerminator(
     thread: ThreadID,
-    thread_terminator: ThreadTerminationTPP,
+    thread_terminator: Option<ThreadTerminationTPP>,
     termination_proc_param: *mut c_void,
 ) -> OSErr {
     extern "C-unwind" {
         fn SetThreadTerminator(
             thread: ThreadID,
-            thread_terminator: ThreadTerminationTPP,
+            thread_terminator: Option<ThreadTerminationTPP>,
             termination_proc_param: *mut c_void,
         ) -> OSErr;
     }
@@ -591,20 +631,23 @@ pub unsafe fn SetThreadTerminator(
 /// # Safety
 ///
 /// - `notify_new_thread` must be implemented correctly.
+/// - `notify_new_thread` might not allow `None`.
 /// - `notify_dispose_thread` must be implemented correctly.
+/// - `notify_dispose_thread` might not allow `None`.
 /// - `notify_thread_scheduler` must be implemented correctly.
+/// - `notify_thread_scheduler` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn SetDebuggerNotificationProcs(
-    notify_new_thread: DebuggerNewThreadTPP,
-    notify_dispose_thread: DebuggerDisposeThreadTPP,
-    notify_thread_scheduler: DebuggerThreadSchedulerTPP,
+    notify_new_thread: Option<DebuggerNewThreadTPP>,
+    notify_dispose_thread: Option<DebuggerDisposeThreadTPP>,
+    notify_thread_scheduler: Option<DebuggerThreadSchedulerTPP>,
 ) -> OSErr {
     extern "C-unwind" {
         fn SetDebuggerNotificationProcs(
-            notify_new_thread: DebuggerNewThreadTPP,
-            notify_dispose_thread: DebuggerDisposeThreadTPP,
-            notify_thread_scheduler: DebuggerThreadSchedulerTPP,
+            notify_new_thread: Option<DebuggerNewThreadTPP>,
+            notify_dispose_thread: Option<DebuggerDisposeThreadTPP>,
+            notify_thread_scheduler: Option<DebuggerThreadSchedulerTPP>,
         ) -> OSErr;
     }
     unsafe {

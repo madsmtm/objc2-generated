@@ -578,17 +578,15 @@ pub type MusicEventIterator = *mut OpaqueMusicEventIterator;
 /// See MusicSequenceSetUserCallback
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceusercallback?language=objc)
-pub type MusicSequenceUserCallback = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        MusicSequence,
-        MusicTrack,
-        MusicTimeStamp,
-        NonNull<MusicEventUserData>,
-        MusicTimeStamp,
-        MusicTimeStamp,
-    ),
->;
+pub type MusicSequenceUserCallback = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    MusicSequence,
+    MusicTrack,
+    MusicTimeStamp,
+    NonNull<MusicEventUserData>,
+    MusicTimeStamp,
+    MusicTimeStamp,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_invalidsequencetype?language=objc)
 pub const kAudioToolboxErr_InvalidSequenceType: OSStatus = -10846;
@@ -1668,13 +1666,13 @@ pub unsafe fn MusicSequenceGetBeatsForSeconds(
 #[inline]
 pub unsafe fn MusicSequenceSetUserCallback(
     in_sequence: MusicSequence,
-    in_callback: MusicSequenceUserCallback,
+    in_callback: Option<MusicSequenceUserCallback>,
     in_client_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MusicSequenceSetUserCallback(
             in_sequence: MusicSequence,
-            in_callback: MusicSequenceUserCallback,
+            in_callback: Option<MusicSequenceUserCallback>,
             in_client_data: *mut c_void,
         ) -> OSStatus;
     }

@@ -27,8 +27,7 @@ pub type CGCharCode = u16;
 pub type CGKeyCode = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenrefreshcallback?language=objc)
-pub type CGScreenRefreshCallback =
-    Option<unsafe extern "C-unwind" fn(u32, NonNull<CGRect>, *mut c_void)>;
+pub type CGScreenRefreshCallback = unsafe extern "C-unwind" fn(u32, NonNull<CGRect>, *mut c_void);
 
 /// # Safety
 ///
@@ -137,9 +136,8 @@ unsafe impl RefEncode for CGScreenUpdateMoveDelta {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenupdatemovecallback?language=objc)
-pub type CGScreenUpdateMoveCallback = Option<
-    unsafe extern "C-unwind" fn(CGScreenUpdateMoveDelta, usize, NonNull<CGRect>, *mut c_void),
->;
+pub type CGScreenUpdateMoveCallback =
+    unsafe extern "C-unwind" fn(CGScreenUpdateMoveDelta, usize, NonNull<CGRect>, *mut c_void);
 
 /// # Safety
 ///

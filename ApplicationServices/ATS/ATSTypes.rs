@@ -162,11 +162,10 @@ pub const kFMPostScriptFontTechnology: c_uint = 0x74797031;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/fmfontfamilycallbackfilterprocptr?language=objc)
 pub type FMFontFamilyCallbackFilterProcPtr =
-    Option<unsafe extern "C-unwind" fn(FMFontFamily, *mut c_void) -> OSStatus>;
+    unsafe extern "C-unwind" fn(FMFontFamily, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/fmfontcallbackfilterprocptr?language=objc)
-pub type FMFontCallbackFilterProcPtr =
-    Option<unsafe extern "C-unwind" fn(FMFont, *mut c_void) -> OSStatus>;
+pub type FMFontCallbackFilterProcPtr = unsafe extern "C-unwind" fn(FMFont, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/fmfontfamilycallbackfilterupp?language=objc)
 pub type FMFontFamilyCallbackFilterUPP = FMFontFamilyCallbackFilterProcPtr;
@@ -203,8 +202,8 @@ pub union FMFilter_filter {
     pub fontTechnologyFilter: FourCharCode,
     pub fontContainerFilter: ATSFSSpec,
     pub generationFilter: FMGeneration,
-    pub fontFamilyCallbackFilter: FMFontFamilyCallbackFilterUPP,
-    pub fontCallbackFilter: FMFontCallbackFilterUPP,
+    pub fontFamilyCallbackFilter: Option<FMFontFamilyCallbackFilterUPP>,
+    pub fontCallbackFilter: Option<FMFontCallbackFilterUPP>,
     pub fontDirectoryFilter: FMFontDirectoryFilter,
     pub fontFileRefFilter: *const FSRef,
 }

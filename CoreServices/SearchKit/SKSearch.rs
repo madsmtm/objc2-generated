@@ -303,9 +303,8 @@ unsafe impl RefEncode for SKSearchType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchresultsfiltercallback?language=objc)
 #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
-pub type SKSearchResultsFilterCallBack = Option<
-    unsafe extern "C-unwind" fn(Option<&SKIndex>, Option<&SKDocument>, *mut c_void) -> Boolean,
->;
+pub type SKSearchResultsFilterCallBack =
+    unsafe extern "C-unwind" fn(Option<&SKIndex>, Option<&SKDocument>, *mut c_void) -> Boolean;
 
 impl SKSearchGroup {
     /// # Safety
@@ -349,6 +348,7 @@ impl SKSearchResults {
     /// - `in_query` might not allow `None`.
     /// - `in_context` must be a valid pointer.
     /// - `in_filter_call_back` must be implemented correctly.
+    /// - `in_filter_call_back` might not allow `None`.
     #[doc(alias = "SKSearchResultsCreateWithQuery")]
     #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
     #[deprecated = "No longer supported"]
@@ -359,7 +359,7 @@ impl SKSearchResults {
         in_search_type: SKSearchType,
         in_max_found_documents: CFIndex,
         in_context: *mut c_void,
-        in_filter_call_back: SKSearchResultsFilterCallBack,
+        in_filter_call_back: Option<SKSearchResultsFilterCallBack>,
     ) -> Option<CFRetained<SKSearchResults>> {
         extern "C-unwind" {
             fn SKSearchResultsCreateWithQuery(
@@ -368,7 +368,7 @@ impl SKSearchResults {
                 in_search_type: SKSearchType,
                 in_max_found_documents: CFIndex,
                 in_context: *mut c_void,
-                in_filter_call_back: SKSearchResultsFilterCallBack,
+                in_filter_call_back: Option<SKSearchResultsFilterCallBack>,
             ) -> Option<NonNull<SKSearchResults>>;
         }
         let ret = unsafe {
@@ -390,6 +390,7 @@ impl SKSearchResults {
     /// - `in_example_documents` might not allow `None`.
     /// - `in_context` must be a valid pointer.
     /// - `in_filter_call_back` must be implemented correctly.
+    /// - `in_filter_call_back` might not allow `None`.
     #[doc(alias = "SKSearchResultsCreateWithDocuments")]
     #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
     #[deprecated = "No longer supported"]
@@ -399,7 +400,7 @@ impl SKSearchResults {
         in_example_documents: Option<&CFArray<SKDocument>>,
         in_max_found_documents: CFIndex,
         in_context: *mut c_void,
-        in_filter_call_back: SKSearchResultsFilterCallBack,
+        in_filter_call_back: Option<SKSearchResultsFilterCallBack>,
     ) -> Option<CFRetained<SKSearchResults>> {
         extern "C-unwind" {
             fn SKSearchResultsCreateWithDocuments(
@@ -407,7 +408,7 @@ impl SKSearchResults {
                 in_example_documents: Option<&CFArray<SKDocument>>,
                 in_max_found_documents: CFIndex,
                 in_context: *mut c_void,
-                in_filter_call_back: SKSearchResultsFilterCallBack,
+                in_filter_call_back: Option<SKSearchResultsFilterCallBack>,
             ) -> Option<NonNull<SKSearchResults>>;
         }
         let ret = unsafe {

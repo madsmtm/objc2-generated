@@ -35,7 +35,7 @@ pub const kCFFileDescriptorWriteCallBack: CFOptionFlags = 1 << 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcallback?language=objc)
 pub type CFFileDescriptorCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFFileDescriptor>, CFOptionFlags, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&CFFileDescriptor>, CFOptionFlags, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcontext?language=objc)
 #[repr(C)]
@@ -83,6 +83,7 @@ impl CFFileDescriptor {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -94,7 +95,7 @@ impl CFFileDescriptor {
         allocator: Option<&CFAllocator>,
         fd: CFFileDescriptorNativeDescriptor,
         close_on_invalidate: bool,
-        callout: CFFileDescriptorCallBack,
+        callout: Option<CFFileDescriptorCallBack>,
         context: Option<&CFFileDescriptorContext>,
     ) -> Option<CFRetained<CFFileDescriptor>> {
         extern "C-unwind" {
@@ -102,7 +103,7 @@ impl CFFileDescriptor {
                 allocator: Option<&CFAllocator>,
                 fd: CFFileDescriptorNativeDescriptor,
                 close_on_invalidate: Boolean,
-                callout: CFFileDescriptorCallBack,
+                callout: Option<CFFileDescriptorCallBack>,
                 context: Option<&CFFileDescriptorContext>,
             ) -> Option<NonNull<CFFileDescriptor>>;
         }

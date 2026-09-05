@@ -37,8 +37,7 @@ pub const kAudioOutputUnitStartSelect: c_uint = 0x0201;
 pub const kAudioOutputUnitStopSelect: c_uint = 0x0202;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstartproc?language=objc)
-pub type AudioOutputUnitStartProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
+pub type AudioOutputUnitStartProc = unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstopproc?language=objc)
-pub type AudioOutputUnitStopProc = Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
+pub type AudioOutputUnitStopProc = unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus;

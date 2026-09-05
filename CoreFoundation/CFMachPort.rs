@@ -60,11 +60,11 @@ unsafe impl RefEncode for CFMachPortContext {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcallback?language=objc)
 pub type CFMachPortCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFMachPort>, *mut c_void, CFIndex, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&CFMachPort>, *mut c_void, CFIndex, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportinvalidationcallback?language=objc)
 pub type CFMachPortInvalidationCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFMachPort>, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&CFMachPort>, *mut c_void);
 
 unsafe impl ConcreteType for CFMachPort {
     #[doc(alias = "CFMachPortGetTypeID")]
@@ -81,6 +81,7 @@ impl CFMachPort {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -90,14 +91,14 @@ impl CFMachPort {
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        callout: CFMachPortCallBack,
+        callout: Option<CFMachPortCallBack>,
         context: Option<&CFMachPortContext>,
         should_free_info: Option<&mut Boolean>,
     ) -> Option<CFRetained<CFMachPort>> {
         extern "C-unwind" {
             fn CFMachPortCreate(
                 allocator: Option<&CFAllocator>,
-                callout: CFMachPortCallBack,
+                callout: Option<CFMachPortCallBack>,
                 context: Option<&CFMachPortContext>,
                 should_free_info: Option<&mut Boolean>,
             ) -> Option<NonNull<CFMachPort>>;
@@ -109,6 +110,7 @@ impl CFMachPort {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -120,7 +122,7 @@ impl CFMachPort {
     pub unsafe fn with_port(
         allocator: Option<&CFAllocator>,
         port_num: libc::mach_port_t,
-        callout: CFMachPortCallBack,
+        callout: Option<CFMachPortCallBack>,
         context: Option<&CFMachPortContext>,
         should_free_info: Option<&mut Boolean>,
     ) -> Option<CFRetained<CFMachPort>> {
@@ -128,7 +130,7 @@ impl CFMachPort {
             fn CFMachPortCreateWithPort(
                 allocator: Option<&CFAllocator>,
                 port_num: libc::mach_port_t,
-                callout: CFMachPortCallBack,
+                callout: Option<CFMachPortCallBack>,
                 context: Option<&CFMachPortContext>,
                 should_free_info: Option<&mut Boolean>,
             ) -> Option<NonNull<CFMachPort>>;
@@ -186,25 +188,29 @@ impl CFMachPort {
 
     #[doc(alias = "CFMachPortGetInvalidationCallBack")]
     #[inline]
-    pub fn invalidation_call_back(&self) -> CFMachPortInvalidationCallBack {
+    pub fn invalidation_call_back(&self) -> Option<CFMachPortInvalidationCallBack> {
         extern "C-unwind" {
             fn CFMachPortGetInvalidationCallBack(
                 port: &CFMachPort,
-            ) -> CFMachPortInvalidationCallBack;
+            ) -> Option<CFMachPortInvalidationCallBack>;
         }
         unsafe { CFMachPortGetInvalidationCallBack(self) }
     }
 
     /// # Safety
     ///
-    /// `callout` must be implemented correctly.
+    /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     #[doc(alias = "CFMachPortSetInvalidationCallBack")]
     #[inline]
-    pub unsafe fn set_invalidation_call_back(&self, callout: CFMachPortInvalidationCallBack) {
+    pub unsafe fn set_invalidation_call_back(
+        &self,
+        callout: Option<CFMachPortInvalidationCallBack>,
+    ) {
         extern "C-unwind" {
             fn CFMachPortSetInvalidationCallBack(
                 port: &CFMachPort,
-                callout: CFMachPortInvalidationCallBack,
+                callout: Option<CFMachPortInvalidationCallBack>,
             );
         }
         unsafe { CFMachPortSetInvalidationCallBack(self, callout) }

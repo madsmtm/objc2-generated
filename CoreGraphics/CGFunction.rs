@@ -28,10 +28,10 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctionevaluatecallback?language=objc)
 pub type CGFunctionEvaluateCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGFloat>, NonNull<CGFloat>)>;
+    unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGFloat>, NonNull<CGFloat>);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctionreleaseinfocallback?language=objc)
-pub type CGFunctionReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type CGFunctionReleaseInfoCallback = unsafe extern "C-unwind" fn(*mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctioncallbacks?language=objc)
 #[repr(C)]
@@ -39,8 +39,8 @@ pub type CGFunctionReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGFunctionCallbacks {
     pub version: c_uint,
-    pub evaluate: CGFunctionEvaluateCallback,
-    pub releaseInfo: CGFunctionReleaseInfoCallback,
+    pub evaluate: Option<CGFunctionEvaluateCallback>,
+    pub releaseInfo: Option<CGFunctionReleaseInfoCallback>,
 }
 
 #[cfg(feature = "objc2")]

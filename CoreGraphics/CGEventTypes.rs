@@ -522,14 +522,12 @@ unsafe impl RefEncode for __CGEventTapProxy {
 pub type CGEventTapProxy = *mut __CGEventTapProxy;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapcallback?language=objc)
-pub type CGEventTapCallBack = Option<
-    unsafe extern "C-unwind" fn(
-        CGEventTapProxy,
-        CGEventType,
-        &CGEvent,
-        *mut c_void,
-    ) -> *mut CGEvent,
->;
+pub type CGEventTapCallBack = unsafe extern "C-unwind" fn(
+    CGEventTapProxy,
+    CGEventType,
+    &CGEvent,
+    *mut c_void,
+) -> *mut CGEvent;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapinformation?language=objc)
 #[cfg(feature = "libc")]

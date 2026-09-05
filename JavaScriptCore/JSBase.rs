@@ -108,8 +108,7 @@ unsafe impl RefEncode for OpaqueJSPropertyNameAccumulator {
 pub type JSPropertyNameAccumulatorRef = *mut OpaqueJSPropertyNameAccumulator;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jstypedarraybytesdeallocator?language=objc)
-pub type JSTypedArrayBytesDeallocator =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
+pub type JSTypedArrayBytesDeallocator = unsafe extern "C-unwind" fn(*mut c_void, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejsvalue?language=objc)
 #[repr(C)]

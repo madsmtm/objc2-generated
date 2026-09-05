@@ -58,7 +58,7 @@ pub type AudioServicesPropertyID = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicessystemsoundcompletionproc?language=objc)
 pub type AudioServicesSystemSoundCompletionProc =
-    Option<unsafe extern "C-unwind" fn(SystemSoundID, *mut c_void)>;
+    unsafe extern "C-unwind" fn(SystemSoundID, *mut c_void);
 
 /// Use this constant with the play sound APIs to
 /// playback the alert sound selected by the User in System Preferences.

@@ -262,43 +262,48 @@ pub const true32b: c_uint = 1;
 pub type SysPPtr = *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/deferredtaskprocptr?language=objc)
-pub type DeferredTaskProcPtr = Option<unsafe extern "C-unwind" fn(c_long)>;
+pub type DeferredTaskProcPtr = unsafe extern "C-unwind" fn(c_long);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/deferredtaskupp?language=objc)
 pub type DeferredTaskUPP = DeferredTaskProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewDeferredTaskUPP(user_routine: DeferredTaskProcPtr) -> DeferredTaskUPP {
+pub unsafe fn NewDeferredTaskUPP(
+    user_routine: Option<DeferredTaskProcPtr>,
+) -> Option<DeferredTaskUPP> {
     extern "C-unwind" {
-        fn NewDeferredTaskUPP(user_routine: DeferredTaskProcPtr) -> DeferredTaskUPP;
+        fn NewDeferredTaskUPP(user_routine: Option<DeferredTaskProcPtr>)
+            -> Option<DeferredTaskUPP>;
     }
     unsafe { NewDeferredTaskUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeDeferredTaskUPP(user_upp: DeferredTaskUPP) {
+pub unsafe fn DisposeDeferredTaskUPP(user_upp: *mut DeferredTaskUPP) {
     extern "C-unwind" {
-        fn DisposeDeferredTaskUPP(user_upp: DeferredTaskUPP);
+        fn DisposeDeferredTaskUPP(user_upp: *mut DeferredTaskUPP);
     }
     unsafe { DisposeDeferredTaskUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeDeferredTaskUPP(dt_param: c_long, user_upp: DeferredTaskUPP) {
+pub unsafe fn InvokeDeferredTaskUPP(dt_param: c_long, user_upp: Option<DeferredTaskUPP>) {
     extern "C-unwind" {
-        fn InvokeDeferredTaskUPP(dt_param: c_long, user_upp: DeferredTaskUPP);
+        fn InvokeDeferredTaskUPP(dt_param: c_long, user_upp: Option<DeferredTaskUPP>);
     }
     unsafe { InvokeDeferredTaskUPP(dt_param, user_upp) }
 }
@@ -311,7 +316,7 @@ pub struct DeferredTask {
     pub qLink: QElemPtr,
     pub qType: c_short,
     pub dtFlags: c_short,
-    pub dtAddr: DeferredTaskUPP,
+    pub dtAddr: Option<DeferredTaskUPP>,
     pub dtParam: c_long,
     pub dtReserved: c_long,
 }

@@ -114,9 +114,9 @@ unsafe impl RefEncode for FSEventStream {
 pub struct FSEventStreamContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: CFAllocatorRetainCallBack,
-    pub release: CFAllocatorReleaseCallBack,
-    pub copyDescription: CFAllocatorCopyDescriptionCallBack,
+    pub retain: Option<CFAllocatorRetainCallBack>,
+    pub release: Option<CFAllocatorReleaseCallBack>,
+    pub copyDescription: Option<CFAllocatorCopyDescriptionCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -139,16 +139,14 @@ unsafe impl RefEncode for FSEventStreamContext {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamcallback?language=objc)
-pub type FSEventStreamCallback = Option<
-    unsafe extern "C-unwind" fn(
-        &FSEventStream,
-        *mut c_void,
-        usize,
-        NonNull<c_void>,
-        NonNull<FSEventStreamEventFlags>,
-        NonNull<FSEventStreamEventId>,
-    ),
->;
+pub type FSEventStreamCallback = unsafe extern "C-unwind" fn(
+    &FSEventStream,
+    *mut c_void,
+    usize,
+    NonNull<c_void>,
+    NonNull<FSEventStreamEventFlags>,
+    NonNull<FSEventStreamEventId>,
+);
 
 impl FSEventStream {
     /// # Safety

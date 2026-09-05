@@ -75,18 +75,16 @@ unsafe impl RefEncode for CFMessagePortContext {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcallback?language=objc)
 #[cfg(feature = "CFData")]
-pub type CFMessagePortCallBack = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&CFMessagePort>,
-        i32,
-        Option<&CFData>,
-        *mut c_void,
-    ) -> *const CFData,
->;
+pub type CFMessagePortCallBack = unsafe extern "C-unwind" fn(
+    Option<&CFMessagePort>,
+    i32,
+    Option<&CFData>,
+    *mut c_void,
+) -> *const CFData;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportinvalidationcallback?language=objc)
 pub type CFMessagePortInvalidationCallBack =
-    Option<unsafe extern "C-unwind" fn(Option<&CFMessagePort>, *mut c_void)>;
+    unsafe extern "C-unwind" fn(Option<&CFMessagePort>, *mut c_void);
 
 unsafe impl ConcreteType for CFMessagePort {
     #[doc(alias = "CFMessagePortGetTypeID")]
@@ -103,6 +101,7 @@ impl CFMessagePort {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -114,7 +113,7 @@ impl CFMessagePort {
     pub unsafe fn new_local(
         allocator: Option<&CFAllocator>,
         name: Option<&CFString>,
-        callout: CFMessagePortCallBack,
+        callout: Option<CFMessagePortCallBack>,
         context: Option<&CFMessagePortContext>,
         should_free_info: Option<&mut Boolean>,
     ) -> Option<CFRetained<CFMessagePort>> {
@@ -122,7 +121,7 @@ impl CFMessagePort {
             fn CFMessagePortCreateLocal(
                 allocator: Option<&CFAllocator>,
                 name: Option<&CFString>,
-                callout: CFMessagePortCallBack,
+                callout: Option<CFMessagePortCallBack>,
                 context: Option<&CFMessagePortContext>,
                 should_free_info: Option<&mut Boolean>,
             ) -> Option<NonNull<CFMessagePort>>;
@@ -216,25 +215,29 @@ impl CFMessagePort {
 
     #[doc(alias = "CFMessagePortGetInvalidationCallBack")]
     #[inline]
-    pub fn invalidation_call_back(&self) -> CFMessagePortInvalidationCallBack {
+    pub fn invalidation_call_back(&self) -> Option<CFMessagePortInvalidationCallBack> {
         extern "C-unwind" {
             fn CFMessagePortGetInvalidationCallBack(
                 ms: &CFMessagePort,
-            ) -> CFMessagePortInvalidationCallBack;
+            ) -> Option<CFMessagePortInvalidationCallBack>;
         }
         unsafe { CFMessagePortGetInvalidationCallBack(self) }
     }
 
     /// # Safety
     ///
-    /// `callout` must be implemented correctly.
+    /// - `callout` must be implemented correctly.
+    /// - `callout` might not allow `None`.
     #[doc(alias = "CFMessagePortSetInvalidationCallBack")]
     #[inline]
-    pub unsafe fn set_invalidation_call_back(&self, callout: CFMessagePortInvalidationCallBack) {
+    pub unsafe fn set_invalidation_call_back(
+        &self,
+        callout: Option<CFMessagePortInvalidationCallBack>,
+    ) {
         extern "C-unwind" {
             fn CFMessagePortSetInvalidationCallBack(
                 ms: &CFMessagePort,
-                callout: CFMessagePortInvalidationCallBack,
+                callout: Option<CFMessagePortInvalidationCallBack>,
             );
         }
         unsafe { CFMessagePortSetInvalidationCallBack(self, callout) }

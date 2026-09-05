@@ -184,14 +184,12 @@ pub type AUEventListenerBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistenerproc?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
-pub type AUParameterListenerProc = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        *mut c_void,
-        NonNull<AudioUnitParameter>,
-        AudioUnitParameterValue,
-    ),
->;
+pub type AUParameterListenerProc = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    *mut c_void,
+    NonNull<AudioUnitParameter>,
+    AudioUnitParameterValue,
+);
 
 /// A function called when an Audio Unit event occurs.
 ///
@@ -207,15 +205,13 @@ pub type AUParameterListenerProc = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventlistenerproc?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
-pub type AUEventListenerProc = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        *mut c_void,
-        NonNull<AudioUnitEvent>,
-        u64,
-        AudioUnitParameterValue,
-    ),
->;
+pub type AUEventListenerProc = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    *mut c_void,
+    NonNull<AudioUnitEvent>,
+    u64,
+    AudioUnitParameterValue,
+);
 
 /// Create an object for fielding notifications when AudioUnit parameter values change.
 ///

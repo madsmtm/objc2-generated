@@ -207,7 +207,7 @@ pub struct RoutineRecord {
     pub reserved1: i8,
     pub ISA: ISAType,
     pub routineFlags: RoutineFlagsType,
-    pub procDescriptor: ProcPtr,
+    pub procDescriptor: Option<ProcPtr>,
     pub reserved2: u32,
     pub selector: u32,
 }

@@ -474,7 +474,7 @@ pub const kMusicDeviceMIDIEventListSelect: c_uint = 0x0107;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicemidieventproc?language=objc)
 pub type MusicDeviceMIDIEventProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, u32) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, u32) -> OSStatus;
 
 /// This proc can be exported through the FastDispatch property or is used as the prototype for
 /// an audio component dispatch for this selector.
@@ -489,7 +489,7 @@ pub type MusicDeviceMIDIEventProc =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicesysexproc?language=objc)
 pub type MusicDeviceSysExProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<u8>, u32) -> OSStatus>;
+    unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<u8>, u32) -> OSStatus;
 
 /// This proc can be exported through the FastDispatch property or is used as the prototype for
 /// an audio component dispatch for this selector.
@@ -504,16 +504,14 @@ pub type MusicDeviceSysExProc =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestartnoteproc?language=objc)
 #[cfg(feature = "AUComponent")]
-pub type MusicDeviceStartNoteProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        MusicDeviceInstrumentID,
-        MusicDeviceGroupID,
-        NonNull<NoteInstanceID>,
-        u32,
-        NonNull<MusicDeviceNoteParams>,
-    ) -> OSStatus,
->;
+pub type MusicDeviceStartNoteProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    MusicDeviceInstrumentID,
+    MusicDeviceGroupID,
+    NonNull<NoteInstanceID>,
+    u32,
+    NonNull<MusicDeviceNoteParams>,
+) -> OSStatus;
 
 /// This proc can be exported through the FastDispatch property or is used as the prototype for
 /// an audio component dispatch for this selector.
@@ -527,14 +525,12 @@ pub type MusicDeviceStartNoteProc = Option<
 /// Returns: noErr, or an audio unit error code
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestopnoteproc?language=objc)
-pub type MusicDeviceStopNoteProc = Option<
-    unsafe extern "C-unwind" fn(
-        NonNull<c_void>,
-        MusicDeviceGroupID,
-        NoteInstanceID,
-        u32,
-    ) -> OSStatus,
->;
+pub type MusicDeviceStopNoteProc = unsafe extern "C-unwind" fn(
+    NonNull<c_void>,
+    MusicDeviceGroupID,
+    NoteInstanceID,
+    u32,
+) -> OSStatus;
 
 /// # Safety
 ///

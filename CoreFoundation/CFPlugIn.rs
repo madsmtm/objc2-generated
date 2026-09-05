@@ -36,16 +36,16 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugindynamicregisterfunction?language=objc)
 #[cfg(feature = "CFBundle")]
-pub type CFPlugInDynamicRegisterFunction = Option<unsafe extern "C-unwind" fn(Option<&CFPlugIn>)>;
+pub type CFPlugInDynamicRegisterFunction = unsafe extern "C-unwind" fn(Option<&CFPlugIn>);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginunloadfunction?language=objc)
 #[cfg(feature = "CFBundle")]
-pub type CFPlugInUnloadFunction = Option<unsafe extern "C-unwind" fn(Option<&CFPlugIn>)>;
+pub type CFPlugInUnloadFunction = unsafe extern "C-unwind" fn(Option<&CFPlugIn>);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginfactoryfunction?language=objc)
 #[cfg(feature = "CFUUID")]
 pub type CFPlugInFactoryFunction =
-    Option<unsafe extern "C-unwind" fn(Option<&CFAllocator>, Option<&CFUUID>) -> *mut c_void>;
+    unsafe extern "C-unwind" fn(Option<&CFAllocator>, Option<&CFUUID>) -> *mut c_void;
 
 #[cfg(feature = "CFBundle")]
 unsafe impl ConcreteType for CFPlugIn {
@@ -171,11 +171,14 @@ impl CFPlugIn {
     #[doc(alias = "CFPlugInRegisterFactoryFunction")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn register_factory_function(factory_uuid: &CFUUID, func: CFPlugInFactoryFunction) -> bool {
+    pub fn register_factory_function(
+        factory_uuid: &CFUUID,
+        func: Option<CFPlugInFactoryFunction>,
+    ) -> bool {
         extern "C-unwind" {
             fn CFPlugInRegisterFactoryFunction(
                 factory_uuid: &CFUUID,
-                func: CFPlugInFactoryFunction,
+                func: Option<CFPlugInFactoryFunction>,
             ) -> Boolean;
         }
         let ret = unsafe { CFPlugInRegisterFactoryFunction(factory_uuid, func) };
@@ -273,17 +276,14 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetinterfacefunction?language=objc)
-pub type CFPlugInInstanceGetInterfaceFunction = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&CFPlugInInstance>,
-        Option<&CFString>,
-        *mut *mut c_void,
-    ) -> Boolean,
->;
+pub type CFPlugInInstanceGetInterfaceFunction = unsafe extern "C-unwind" fn(
+    Option<&CFPlugInInstance>,
+    Option<&CFString>,
+    *mut *mut c_void,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancedeallocateinstancedatafunction?language=objc)
-pub type CFPlugInInstanceDeallocateInstanceDataFunction =
-    Option<unsafe extern "C-unwind" fn(*mut c_void)>;
+pub type CFPlugInInstanceDeallocateInstanceDataFunction = unsafe extern "C-unwind" fn(*mut c_void);
 
 impl CFPlugInInstance {
     /// # Safety
@@ -344,23 +344,27 @@ impl CFPlugInInstance {
     /// # Safety
     ///
     /// - `deallocate_instance_function` must be implemented correctly.
+    /// - `deallocate_instance_function` might not allow `None`.
     /// - `get_interface_function` must be implemented correctly.
+    /// - `get_interface_function` might not allow `None`.
     #[doc(alias = "CFPlugInInstanceCreateWithInstanceDataSize")]
     #[inline]
     pub unsafe fn with_instance_data_size(
         allocator: Option<&CFAllocator>,
         instance_data_size: CFIndex,
-        deallocate_instance_function: CFPlugInInstanceDeallocateInstanceDataFunction,
+        deallocate_instance_function: Option<CFPlugInInstanceDeallocateInstanceDataFunction>,
         factory_name: &CFString,
-        get_interface_function: CFPlugInInstanceGetInterfaceFunction,
+        get_interface_function: Option<CFPlugInInstanceGetInterfaceFunction>,
     ) -> Option<CFRetained<CFPlugInInstance>> {
         extern "C-unwind" {
             fn CFPlugInInstanceCreateWithInstanceDataSize(
                 allocator: Option<&CFAllocator>,
                 instance_data_size: CFIndex,
-                deallocate_instance_function: CFPlugInInstanceDeallocateInstanceDataFunction,
+                deallocate_instance_function: Option<
+                    CFPlugInInstanceDeallocateInstanceDataFunction,
+                >,
                 factory_name: &CFString,
-                get_interface_function: CFPlugInInstanceGetInterfaceFunction,
+                get_interface_function: Option<CFPlugInInstanceGetInterfaceFunction>,
             ) -> Option<NonNull<CFPlugInInstance>>;
         }
         let ret = unsafe {

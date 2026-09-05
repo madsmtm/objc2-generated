@@ -66,13 +66,12 @@ unsafe impl ConcreteType for CTFontCollection {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectionsortdescriptorscallback?language=objc)
 #[cfg(feature = "CTFontDescriptor")]
-pub type CTFontCollectionSortDescriptorsCallback = Option<
+pub type CTFontCollectionSortDescriptorsCallback =
     unsafe extern "C-unwind" fn(
         &CTFontDescriptor,
         &CTFontDescriptor,
         NonNull<c_void>,
-    ) -> CFComparisonResult,
->;
+    ) -> CFComparisonResult;
 
 extern "C" {
     /// Option key to specify filtering of duplicates.
@@ -358,13 +357,13 @@ impl CTFontCollection {
     #[inline]
     pub unsafe fn matching_font_descriptors_sorted_with_callback(
         &self,
-        sort_callback: CTFontCollectionSortDescriptorsCallback,
+        sort_callback: Option<CTFontCollectionSortDescriptorsCallback>,
         ref_con: *mut c_void,
     ) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
         extern "C-unwind" {
             fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
                 collection: &CTFontCollection,
-                sort_callback: CTFontCollectionSortDescriptorsCallback,
+                sort_callback: Option<CTFontCollectionSortDescriptorsCallback>,
                 ref_con: *mut c_void,
             ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
         }

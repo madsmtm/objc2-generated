@@ -137,19 +137,17 @@ pub type ControlEditTextSelectionPtr = *mut ControlEditTextSelectionRec;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controledittextvalidationprocptr?language=objc)
 #[cfg(feature = "HIObject")]
-pub type ControlEditTextValidationProcPtr = Option<unsafe extern "C-unwind" fn(Option<&Control>)>;
+pub type ControlEditTextValidationProcPtr = unsafe extern "C-unwind" fn(Option<&Control>);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/editunicodepostupdateprocptr?language=objc)
 #[cfg(feature = "objc2-core-services")]
-pub type EditUnicodePostUpdateProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        UniCharArrayHandle,
-        UniCharCount,
-        UniCharArrayOffset,
-        UniCharArrayOffset,
-        *mut c_void,
-    ) -> Boolean,
->;
+pub type EditUnicodePostUpdateProcPtr = unsafe extern "C-unwind" fn(
+    UniCharArrayHandle,
+    UniCharCount,
+    UniCharArrayOffset,
+    UniCharArrayOffset,
+    *mut c_void,
+) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/controledittextvalidationupp?language=objc)
 #[cfg(feature = "HIObject")]
@@ -161,73 +159,76 @@ pub type EditUnicodePostUpdateUPP = EditUnicodePostUpdateProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn NewControlEditTextValidationUPP(
-    user_routine: ControlEditTextValidationProcPtr,
-) -> ControlEditTextValidationUPP {
+    user_routine: Option<ControlEditTextValidationProcPtr>,
+) -> Option<ControlEditTextValidationUPP> {
     extern "C-unwind" {
         fn NewControlEditTextValidationUPP(
-            user_routine: ControlEditTextValidationProcPtr,
-        ) -> ControlEditTextValidationUPP;
+            user_routine: Option<ControlEditTextValidationProcPtr>,
+        ) -> Option<ControlEditTextValidationUPP>;
     }
     unsafe { NewControlEditTextValidationUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn NewEditUnicodePostUpdateUPP(
-    user_routine: EditUnicodePostUpdateProcPtr,
-) -> EditUnicodePostUpdateUPP {
+    user_routine: Option<EditUnicodePostUpdateProcPtr>,
+) -> Option<EditUnicodePostUpdateUPP> {
     extern "C-unwind" {
         fn NewEditUnicodePostUpdateUPP(
-            user_routine: EditUnicodePostUpdateProcPtr,
-        ) -> EditUnicodePostUpdateUPP;
+            user_routine: Option<EditUnicodePostUpdateProcPtr>,
+        ) -> Option<EditUnicodePostUpdateUPP>;
     }
     unsafe { NewEditUnicodePostUpdateUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "HIObject")]
 #[inline]
-pub unsafe fn DisposeControlEditTextValidationUPP(user_upp: ControlEditTextValidationUPP) {
+pub unsafe fn DisposeControlEditTextValidationUPP(user_upp: *mut ControlEditTextValidationUPP) {
     extern "C-unwind" {
-        fn DisposeControlEditTextValidationUPP(user_upp: ControlEditTextValidationUPP);
+        fn DisposeControlEditTextValidationUPP(user_upp: *mut ControlEditTextValidationUPP);
     }
     unsafe { DisposeControlEditTextValidationUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
-pub unsafe fn DisposeEditUnicodePostUpdateUPP(user_upp: EditUnicodePostUpdateUPP) {
+pub unsafe fn DisposeEditUnicodePostUpdateUPP(user_upp: *mut EditUnicodePostUpdateUPP) {
     extern "C-unwind" {
-        fn DisposeEditUnicodePostUpdateUPP(user_upp: EditUnicodePostUpdateUPP);
+        fn DisposeEditUnicodePostUpdateUPP(user_upp: *mut EditUnicodePostUpdateUPP);
     }
     unsafe { DisposeEditUnicodePostUpdateUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "HIObject")]
 #[inline]
 pub unsafe fn InvokeControlEditTextValidationUPP(
     control: &Control,
-    user_upp: ControlEditTextValidationUPP,
+    user_upp: Option<ControlEditTextValidationUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeControlEditTextValidationUPP(
             control: &Control,
-            user_upp: ControlEditTextValidationUPP,
+            user_upp: Option<ControlEditTextValidationUPP>,
         );
     }
     unsafe { InvokeControlEditTextValidationUPP(control, user_upp) }
@@ -238,6 +239,7 @@ pub unsafe fn InvokeControlEditTextValidationUPP(
 /// - `uni_text` must be a valid pointer.
 /// - `refcon` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "objc2-core-services")]
 #[inline]
 pub unsafe fn InvokeEditUnicodePostUpdateUPP(
@@ -246,7 +248,7 @@ pub unsafe fn InvokeEditUnicodePostUpdateUPP(
     i_start_offset: UniCharArrayOffset,
     i_end_offset: UniCharArrayOffset,
     refcon: *mut c_void,
-    user_upp: EditUnicodePostUpdateUPP,
+    user_upp: Option<EditUnicodePostUpdateUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeEditUnicodePostUpdateUPP(
@@ -255,7 +257,7 @@ pub unsafe fn InvokeEditUnicodePostUpdateUPP(
             i_start_offset: UniCharArrayOffset,
             i_end_offset: UniCharArrayOffset,
             refcon: *mut c_void,
-            user_upp: EditUnicodePostUpdateUPP,
+            user_upp: Option<EditUnicodePostUpdateUPP>,
         ) -> Boolean;
     }
     let ret = unsafe {

@@ -75,17 +75,15 @@ cf_objc2_type!(
     feature = "objc2-core-media",
     feature = "objc2-core-video"
 ))]
-pub type VTDecompressionOutputCallback = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        *mut c_void,
-        OSStatus,
-        VTDecodeInfoFlags,
-        Option<&CVImageBuffer>,
-        CMTime,
-        CMTime,
-    ),
->;
+pub type VTDecompressionOutputCallback = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    *mut c_void,
+    OSStatus,
+    VTDecodeInfoFlags,
+    Option<&CVImageBuffer>,
+    CMTime,
+    CMTime,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionoutputcallbackrecord?language=objc)
 #[cfg(all(
@@ -97,7 +95,7 @@ pub type VTDecompressionOutputCallback = Option<
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct VTDecompressionOutputCallbackRecord {
-    pub decompressionOutputCallback: VTDecompressionOutputCallback,
+    pub decompressionOutputCallback: Option<VTDecompressionOutputCallback>,
     pub decompressionOutputRefCon: *mut c_void,
 }
 
@@ -526,17 +524,15 @@ pub unsafe fn VTIsStereoMVHEVCDecodeSupported() -> bool {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionoutputmultiimagecallback?language=objc)
 #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
-pub type VTDecompressionOutputMultiImageCallback = Option<
-    unsafe extern "C-unwind" fn(
-        *mut c_void,
-        *mut c_void,
-        OSStatus,
-        VTDecodeInfoFlags,
-        Option<&CMTaggedBufferGroup>,
-        CMTime,
-        CMTime,
-    ),
->;
+pub type VTDecompressionOutputMultiImageCallback = unsafe extern "C-unwind" fn(
+    *mut c_void,
+    *mut c_void,
+    OSStatus,
+    VTDecodeInfoFlags,
+    Option<&CMTaggedBufferGroup>,
+    CMTime,
+    CMTime,
+);
 
 impl VTDecompressionSession {
     /// Provides a callback capable of receiving multiple images for individual DecodeFrame requests.

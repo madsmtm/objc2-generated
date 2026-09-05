@@ -275,15 +275,13 @@ pub const CSSM_NOTIFY_FAULT: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_api_moduleeventhandler?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
-pub type CSSM_API_ModuleEventHandler = Option<
-    unsafe extern "C-unwind" fn(
-        *const CSSM_GUID,
-        *mut c_void,
-        uint32,
-        CSSM_SERVICE_TYPE,
-        CSSM_MODULE_EVENT,
-    ) -> CSSM_RETURN,
->;
+pub type CSSM_API_ModuleEventHandler = unsafe extern "C-unwind" fn(
+    *const CSSM_GUID,
+    *mut c_void,
+    uint32,
+    CSSM_SERVICE_TYPE,
+    CSSM_MODULE_EVENT,
+) -> CSSM_RETURN;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_attach_flags?language=objc)
 #[cfg(feature = "cssmconfig")]
@@ -405,8 +403,7 @@ pub const CSSM_NET_PROTO_CMPS: c_uint = 11;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_callback?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
-pub type CSSM_CALLBACK =
-    Option<unsafe extern "C-unwind" fn(CSSM_DATA_PTR, *mut c_void) -> CSSM_RETURN>;
+pub type CSSM_CALLBACK = unsafe extern "C-unwind" fn(CSSM_DATA_PTR, *mut c_void) -> CSSM_RETURN;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crypto_data?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
@@ -416,7 +413,7 @@ pub type CSSM_CALLBACK =
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_crypto_data {
     pub Param: SecAsn1Item,
-    pub Callback: CSSM_CALLBACK,
+    pub Callback: Option<CSSM_CALLBACK>,
     pub CallerCtx: *mut c_void,
 }
 
@@ -962,20 +959,19 @@ pub type CSSM_SAMPLEGROUP_PTR = *mut cssm_samplegroup;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_malloc?language=objc)
 #[cfg(feature = "cssmconfig")]
-pub type CSSM_MALLOC = Option<unsafe extern "C-unwind" fn(CSSM_SIZE, *mut c_void) -> *mut c_void>;
+pub type CSSM_MALLOC = unsafe extern "C-unwind" fn(CSSM_SIZE, *mut c_void) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_free?language=objc)
-pub type CSSM_FREE = Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
+pub type CSSM_FREE = unsafe extern "C-unwind" fn(*mut c_void, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_realloc?language=objc)
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_REALLOC =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, CSSM_SIZE, *mut c_void) -> *mut c_void>;
+    unsafe extern "C-unwind" fn(*mut c_void, CSSM_SIZE, *mut c_void) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_calloc?language=objc)
 #[cfg(feature = "cssmconfig")]
-pub type CSSM_CALLOC =
-    Option<unsafe extern "C-unwind" fn(uint32, CSSM_SIZE, *mut c_void) -> *mut c_void>;
+pub type CSSM_CALLOC = unsafe extern "C-unwind" fn(uint32, CSSM_SIZE, *mut c_void) -> *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_memory_funcs?language=objc)
 #[cfg(feature = "cssmconfig")]
@@ -983,10 +979,10 @@ pub type CSSM_CALLOC =
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_memory_funcs {
-    pub malloc_func: CSSM_MALLOC,
-    pub free_func: CSSM_FREE,
-    pub realloc_func: CSSM_REALLOC,
-    pub calloc_func: CSSM_CALLOC,
+    pub malloc_func: Option<CSSM_MALLOC>,
+    pub free_func: Option<CSSM_FREE>,
+    pub realloc_func: Option<CSSM_REALLOC>,
+    pub calloc_func: Option<CSSM_CALLOC>,
     pub AllocRef: *mut c_void,
 }
 
@@ -1032,14 +1028,12 @@ pub type CSSM_API_MEMORY_FUNCS_PTR = *mut CSSM_API_MEMORY_FUNCS;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_challenge_callback?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
-pub type CSSM_CHALLENGE_CALLBACK = Option<
-    unsafe extern "C-unwind" fn(
-        *const CSSM_LIST,
-        CSSM_SAMPLEGROUP_PTR,
-        *mut c_void,
-        *const CSSM_MEMORY_FUNCS,
-    ) -> CSSM_RETURN,
->;
+pub type CSSM_CHALLENGE_CALLBACK = unsafe extern "C-unwind" fn(
+    *const CSSM_LIST,
+    CSSM_SAMPLEGROUP_PTR,
+    *mut c_void,
+    *const CSSM_MEMORY_FUNCS,
+) -> CSSM_RETURN;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_type?language=objc)
 #[cfg(feature = "cssmconfig")]
@@ -1381,7 +1375,7 @@ pub struct cssm_access_credentials {
     pub EntryTag: CSSM_STRING,
     pub BaseCerts: CSSM_BASE_CERTS,
     pub Samples: CSSM_SAMPLEGROUP,
-    pub Callback: CSSM_CHALLENGE_CALLBACK,
+    pub Callback: Option<CSSM_CHALLENGE_CALLBACK>,
     pub CallerCtx: *mut c_void,
 }
 
@@ -1634,14 +1628,12 @@ pub type CSSM_ACL_OWNER_PROTOTYPE_PTR = *mut cssm_acl_owner_prototype;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_subject_callback?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
-pub type CSSM_ACL_SUBJECT_CALLBACK = Option<
-    unsafe extern "C-unwind" fn(
-        *const CSSM_LIST,
-        CSSM_LIST_PTR,
-        *mut c_void,
-        *const CSSM_MEMORY_FUNCS,
-    ) -> CSSM_RETURN,
->;
+pub type CSSM_ACL_SUBJECT_CALLBACK = unsafe extern "C-unwind" fn(
+    *const CSSM_LIST,
+    CSSM_LIST_PTR,
+    *mut c_void,
+    *const CSSM_MEMORY_FUNCS,
+) -> CSSM_RETURN;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_input?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
@@ -1651,7 +1643,7 @@ pub type CSSM_ACL_SUBJECT_CALLBACK = Option<
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_acl_entry_input {
     pub Prototype: CSSM_ACL_ENTRY_PROTOTYPE,
-    pub Callback: CSSM_ACL_SUBJECT_CALLBACK,
+    pub Callback: Option<CSSM_ACL_SUBJECT_CALLBACK>,
     pub CallerContext: *mut c_void,
 }
 
@@ -1808,10 +1800,10 @@ pub type CSSM_ACL_EDIT = cssm_acl_edit;
 pub type CSSM_ACL_EDIT_PTR = *mut cssm_acl_edit;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_proc_addr?language=objc)
-pub type CSSM_PROC_ADDR = Option<unsafe extern "C-unwind" fn()>;
+pub type CSSM_PROC_ADDR = unsafe extern "C-unwind" fn();
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_proc_addr_ptr?language=objc)
-pub type CSSM_PROC_ADDR_PTR = *mut CSSM_PROC_ADDR;
+pub type CSSM_PROC_ADDR_PTR = *mut Option<CSSM_PROC_ADDR>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_func_name_addr?language=objc)
 #[repr(C)]
@@ -1819,7 +1811,7 @@ pub type CSSM_PROC_ADDR_PTR = *mut CSSM_PROC_ADDR;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_func_name_addr {
     pub Name: CSSM_STRING,
-    pub Address: CSSM_PROC_ADDR,
+    pub Address: Option<CSSM_PROC_ADDR>,
 }
 
 #[cfg(feature = "objc2")]
@@ -3286,9 +3278,8 @@ pub const CSSM_TP_AUTHORITY_REQUEST_CRLISSUE: c_uint = 256;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verification_results_callback?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
-pub type CSSM_TP_VERIFICATION_RESULTS_CALLBACK = Option<
-    unsafe extern "C-unwind" fn(CSSM_MODULE_HANDLE, *mut c_void, CSSM_DATA_PTR) -> CSSM_RETURN,
->;
+pub type CSSM_TP_VERIFICATION_RESULTS_CALLBACK =
+    unsafe extern "C-unwind" fn(CSSM_MODULE_HANDLE, *mut c_void, CSSM_DATA_PTR) -> CSSM_RETURN;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_oid_ptr?language=objc)
 #[deprecated]
@@ -3447,7 +3438,7 @@ pub struct cssm_tp_callerauth_context {
     pub Policy: CSSM_TP_POLICYINFO,
     pub VerifyTime: CSSM_TIMESTRING,
     pub VerificationAbortOn: CSSM_TP_STOP_ON,
-    pub CallbackWithVerifiedCert: CSSM_TP_VERIFICATION_RESULTS_CALLBACK,
+    pub CallbackWithVerifiedCert: Option<CSSM_TP_VERIFICATION_RESULTS_CALLBACK>,
     pub NumberOfAnchorCerts: uint32,
     pub AnchorCerts: CSSM_DATA_PTR,
     pub DBList: CSSM_DL_DB_LIST_PTR,

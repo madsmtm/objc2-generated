@@ -425,7 +425,7 @@ pub type ConstFSSpecPtr = *const FSSpec;
 pub type ParmBlkPtr = *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iocompletionprocptr?language=objc)
-pub type IOCompletionProcPtr = Option<unsafe extern "C-unwind" fn(ParmBlkPtr)>;
+pub type IOCompletionProcPtr = unsafe extern "C-unwind" fn(ParmBlkPtr);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iocompletionupp?language=objc)
 pub type IOCompletionUPP = IOCompletionProcPtr;
@@ -639,7 +639,7 @@ pub struct FSRefParam {
     pub qType: i16,
     pub ioTrap: i16,
     pub ioCmdAddr: Ptr,
-    pub ioCompletion: IOCompletionUPP,
+    pub ioCompletion: Option<IOCompletionUPP>,
     pub ioResult: OSErr,
     pub ioNamePtr: ConstStringPtr,
     pub ioVRefNum: FSVolumeRefNum,
@@ -719,7 +719,7 @@ pub struct FSRefForkIOParam {
     pub qType: i16,
     pub ioTrap: i16,
     pub ioCmdAddr: Ptr,
-    pub ioCompletion: IOCompletionUPP,
+    pub ioCompletion: Option<IOCompletionUPP>,
     pub ioResult: OSErr,
     pub parentRef: *const FSRef,
     pub nameLength: UniCharCount,
@@ -854,7 +854,7 @@ pub struct FSCatalogBulkParam {
     pub qType: i16,
     pub ioTrap: i16,
     pub ioCmdAddr: Ptr,
-    pub ioCompletion: IOCompletionUPP,
+    pub ioCompletion: Option<IOCompletionUPP>,
     pub ioResult: OSErr,
     pub containerChanged: Boolean,
     pub reserved: u8,
@@ -942,7 +942,7 @@ pub struct FSForkIOParam {
     pub qType: i16,
     pub ioTrap: i16,
     pub ioCmdAddr: Ptr,
-    pub ioCompletion: IOCompletionUPP,
+    pub ioCompletion: Option<IOCompletionUPP>,
     pub ioResult: OSErr,
     pub reserved1: *mut c_void,
     pub reserved2: i16,
@@ -1060,7 +1060,7 @@ pub struct FSForkCBInfoParam {
     pub qType: i16,
     pub ioTrap: i16,
     pub ioCmdAddr: Ptr,
-    pub ioCompletion: IOCompletionUPP,
+    pub ioCompletion: Option<IOCompletionUPP>,
     pub ioResult: OSErr,
     pub desiredRefNum: FSIORefNum,
     pub volumeRefNum: FSVolumeRefNum,
@@ -1112,7 +1112,7 @@ pub struct FSRangeLockParam {
     pub qType: i16,
     pub ioTrap: i16,
     pub ioCmdAddr: Ptr,
-    pub ioCompletion: IOCompletionUPP,
+    pub ioCompletion: Option<IOCompletionUPP>,
     pub ioResult: OSErr,
     pub forkRefNum: FSIORefNum,
     pub requestCount: u64,
@@ -1290,7 +1290,7 @@ pub struct FSVolumeInfoParam {
     pub qType: i16,
     pub ioTrap: i16,
     pub ioCmdAddr: Ptr,
-    pub ioCompletion: IOCompletionUPP,
+    pub ioCompletion: Option<IOCompletionUPP>,
     pub ioResult: OSErr,
     pub ioNamePtr: StringPtr,
     pub ioVRefNum: FSVolumeRefNum,
@@ -1630,24 +1630,28 @@ pub const kSmall8BitIconSize: c_uint = 256;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewIOCompletionUPP(user_routine: IOCompletionProcPtr) -> IOCompletionUPP {
+pub unsafe fn NewIOCompletionUPP(
+    user_routine: Option<IOCompletionProcPtr>,
+) -> Option<IOCompletionUPP> {
     extern "C-unwind" {
-        fn NewIOCompletionUPP(user_routine: IOCompletionProcPtr) -> IOCompletionUPP;
+        fn NewIOCompletionUPP(user_routine: Option<IOCompletionProcPtr>)
+            -> Option<IOCompletionUPP>;
     }
     unsafe { NewIOCompletionUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeIOCompletionUPP(user_upp: IOCompletionUPP) {
+pub unsafe fn DisposeIOCompletionUPP(user_upp: *mut IOCompletionUPP) {
     extern "C-unwind" {
-        fn DisposeIOCompletionUPP(user_upp: IOCompletionUPP);
+        fn DisposeIOCompletionUPP(user_upp: *mut IOCompletionUPP);
     }
     unsafe { DisposeIOCompletionUPP(user_upp) }
 }
@@ -1656,11 +1660,12 @@ pub unsafe fn DisposeIOCompletionUPP(user_upp: IOCompletionUPP) {
 ///
 /// - `param_block` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn InvokeIOCompletionUPP(param_block: ParmBlkPtr, user_upp: IOCompletionUPP) {
+pub unsafe fn InvokeIOCompletionUPP(param_block: ParmBlkPtr, user_upp: Option<IOCompletionUPP>) {
     extern "C-unwind" {
-        fn InvokeIOCompletionUPP(param_block: ParmBlkPtr, user_upp: IOCompletionUPP);
+        fn InvokeIOCompletionUPP(param_block: ParmBlkPtr, user_upp: Option<IOCompletionUPP>);
     }
     unsafe { InvokeIOCompletionUPP(param_block, user_upp) }
 }
@@ -4385,33 +4390,37 @@ pub const kFNNoImplicitAllSubscription: c_uint = 1 << 0;
 pub const kFNNotifyInBackground: c_uint = 1 << 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fnsubscriptionprocptr?language=objc)
-pub type FNSubscriptionProcPtr = Option<
-    unsafe extern "C-unwind" fn(FNMessage, OptionBits, *mut c_void, Option<&FNSubscription>),
->;
+pub type FNSubscriptionProcPtr =
+    unsafe extern "C-unwind" fn(FNMessage, OptionBits, *mut c_void, Option<&FNSubscription>);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fnsubscriptionupp?language=objc)
 pub type FNSubscriptionUPP = FNSubscriptionProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewFNSubscriptionUPP(user_routine: FNSubscriptionProcPtr) -> FNSubscriptionUPP {
+pub unsafe fn NewFNSubscriptionUPP(
+    user_routine: Option<FNSubscriptionProcPtr>,
+) -> Option<FNSubscriptionUPP> {
     extern "C-unwind" {
-        fn NewFNSubscriptionUPP(user_routine: FNSubscriptionProcPtr) -> FNSubscriptionUPP;
+        fn NewFNSubscriptionUPP(
+            user_routine: Option<FNSubscriptionProcPtr>,
+        ) -> Option<FNSubscriptionUPP>;
     }
     unsafe { NewFNSubscriptionUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeFNSubscriptionUPP(user_upp: FNSubscriptionUPP) {
+pub unsafe fn DisposeFNSubscriptionUPP(user_upp: *mut FNSubscriptionUPP) {
     extern "C-unwind" {
-        fn DisposeFNSubscriptionUPP(user_upp: FNSubscriptionUPP);
+        fn DisposeFNSubscriptionUPP(user_upp: *mut FNSubscriptionUPP);
     }
     unsafe { DisposeFNSubscriptionUPP(user_upp) }
 }
@@ -4422,6 +4431,7 @@ pub unsafe fn DisposeFNSubscriptionUPP(user_upp: FNSubscriptionUPP) {
 /// - `subscription` might need manual memory-management.
 /// - `subscription` might not allow `None`.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeFNSubscriptionUPP(
@@ -4429,7 +4439,7 @@ pub unsafe fn InvokeFNSubscriptionUPP(
     flags: OptionBits,
     refcon: *mut c_void,
     subscription: Option<&FNSubscription>,
-    user_upp: FNSubscriptionUPP,
+    user_upp: Option<FNSubscriptionUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeFNSubscriptionUPP(
@@ -4437,7 +4447,7 @@ pub unsafe fn InvokeFNSubscriptionUPP(
             flags: OptionBits,
             refcon: *mut c_void,
             subscription: Option<&FNSubscription>,
-            user_upp: FNSubscriptionUPP,
+            user_upp: Option<FNSubscriptionUPP>,
         );
     }
     unsafe { InvokeFNSubscriptionUPP(message, flags, refcon, subscription, user_upp) }
@@ -4447,6 +4457,7 @@ pub unsafe fn InvokeFNSubscriptionUPP(
 ///
 /// - `directory_ref` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `refcon` must be a valid pointer.
 /// - `subscription` must be a valid pointer.
 /// - `subscription` might not allow `None`.
@@ -4454,7 +4465,7 @@ pub unsafe fn InvokeFNSubscriptionUPP(
 #[inline]
 pub unsafe fn FNSubscribe(
     directory_ref: Option<&FSRef>,
-    callback: FNSubscriptionUPP,
+    callback: Option<FNSubscriptionUPP>,
     refcon: *mut c_void,
     flags: OptionBits,
     subscription: Option<&mut *mut FNSubscription>,
@@ -4462,7 +4473,7 @@ pub unsafe fn FNSubscribe(
     extern "C-unwind" {
         fn FNSubscribe(
             directory_ref: Option<&FSRef>,
-            callback: FNSubscriptionUPP,
+            callback: Option<FNSubscriptionUPP>,
             refcon: *mut c_void,
             flags: OptionBits,
             subscription: Option<&mut *mut FNSubscription>,
@@ -4475,6 +4486,7 @@ pub unsafe fn FNSubscribe(
 ///
 /// - `directory_path` must be a valid pointer.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `refcon` must be a valid pointer.
 /// - `subscription` must be a valid pointer.
 /// - `subscription` might not allow `None`.
@@ -4482,7 +4494,7 @@ pub unsafe fn FNSubscribe(
 #[inline]
 pub unsafe fn FNSubscribeByPath(
     directory_path: *const u8,
-    callback: FNSubscriptionUPP,
+    callback: Option<FNSubscriptionUPP>,
     refcon: *mut c_void,
     flags: OptionBits,
     subscription: Option<&mut *mut FNSubscription>,
@@ -4490,7 +4502,7 @@ pub unsafe fn FNSubscribeByPath(
     extern "C-unwind" {
         fn FNSubscribeByPath(
             directory_path: *const u8,
-            callback: FNSubscriptionUPP,
+            callback: Option<FNSubscriptionUPP>,
             refcon: *mut c_void,
             flags: OptionBits,
             subscription: Option<&mut *mut FNSubscription>,
@@ -4573,31 +4585,27 @@ pub type FSVolumeOperation = *mut OpaqueFSVolumeOperation;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fsvolumemountprocptr?language=objc)
 pub type FSVolumeMountProcPtr =
-    Option<unsafe extern "C-unwind" fn(FSVolumeOperation, *mut c_void, OSStatus, FSVolumeRefNum)>;
+    unsafe extern "C-unwind" fn(FSVolumeOperation, *mut c_void, OSStatus, FSVolumeRefNum);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fsvolumeunmountprocptr?language=objc)
 #[cfg(feature = "libc")]
-pub type FSVolumeUnmountProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        FSVolumeOperation,
-        *mut c_void,
-        OSStatus,
-        FSVolumeRefNum,
-        libc::pid_t,
-    ),
->;
+pub type FSVolumeUnmountProcPtr = unsafe extern "C-unwind" fn(
+    FSVolumeOperation,
+    *mut c_void,
+    OSStatus,
+    FSVolumeRefNum,
+    libc::pid_t,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fsvolumeejectprocptr?language=objc)
 #[cfg(feature = "libc")]
-pub type FSVolumeEjectProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        FSVolumeOperation,
-        *mut c_void,
-        OSStatus,
-        FSVolumeRefNum,
-        libc::pid_t,
-    ),
->;
+pub type FSVolumeEjectProcPtr = unsafe extern "C-unwind" fn(
+    FSVolumeOperation,
+    *mut c_void,
+    OSStatus,
+    FSVolumeRefNum,
+    libc::pid_t,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fsvolumemountupp?language=objc)
 pub type FSVolumeMountUPP = FSVolumeMountProcPtr;
@@ -4612,76 +4620,91 @@ pub type FSVolumeEjectUPP = FSVolumeEjectProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[deprecated]
 #[inline]
-pub unsafe fn NewFSVolumeMountUPP(user_routine: FSVolumeMountProcPtr) -> FSVolumeMountUPP {
+pub unsafe fn NewFSVolumeMountUPP(
+    user_routine: Option<FSVolumeMountProcPtr>,
+) -> Option<FSVolumeMountUPP> {
     extern "C-unwind" {
-        fn NewFSVolumeMountUPP(user_routine: FSVolumeMountProcPtr) -> FSVolumeMountUPP;
+        fn NewFSVolumeMountUPP(
+            user_routine: Option<FSVolumeMountProcPtr>,
+        ) -> Option<FSVolumeMountUPP>;
     }
     unsafe { NewFSVolumeMountUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe fn NewFSVolumeUnmountUPP(user_routine: FSVolumeUnmountProcPtr) -> FSVolumeUnmountUPP {
+pub unsafe fn NewFSVolumeUnmountUPP(
+    user_routine: Option<FSVolumeUnmountProcPtr>,
+) -> Option<FSVolumeUnmountUPP> {
     extern "C-unwind" {
-        fn NewFSVolumeUnmountUPP(user_routine: FSVolumeUnmountProcPtr) -> FSVolumeUnmountUPP;
+        fn NewFSVolumeUnmountUPP(
+            user_routine: Option<FSVolumeUnmountProcPtr>,
+        ) -> Option<FSVolumeUnmountUPP>;
     }
     unsafe { NewFSVolumeUnmountUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe fn NewFSVolumeEjectUPP(user_routine: FSVolumeEjectProcPtr) -> FSVolumeEjectUPP {
+pub unsafe fn NewFSVolumeEjectUPP(
+    user_routine: Option<FSVolumeEjectProcPtr>,
+) -> Option<FSVolumeEjectUPP> {
     extern "C-unwind" {
-        fn NewFSVolumeEjectUPP(user_routine: FSVolumeEjectProcPtr) -> FSVolumeEjectUPP;
+        fn NewFSVolumeEjectUPP(
+            user_routine: Option<FSVolumeEjectProcPtr>,
+        ) -> Option<FSVolumeEjectUPP>;
     }
     unsafe { NewFSVolumeEjectUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeFSVolumeMountUPP(user_upp: FSVolumeMountUPP) {
+pub unsafe fn DisposeFSVolumeMountUPP(user_upp: *mut FSVolumeMountUPP) {
     extern "C-unwind" {
-        fn DisposeFSVolumeMountUPP(user_upp: FSVolumeMountUPP);
+        fn DisposeFSVolumeMountUPP(user_upp: *mut FSVolumeMountUPP);
     }
     unsafe { DisposeFSVolumeMountUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeFSVolumeUnmountUPP(user_upp: FSVolumeUnmountUPP) {
+pub unsafe fn DisposeFSVolumeUnmountUPP(user_upp: *mut FSVolumeUnmountUPP) {
     extern "C-unwind" {
-        fn DisposeFSVolumeUnmountUPP(user_upp: FSVolumeUnmountUPP);
+        fn DisposeFSVolumeUnmountUPP(user_upp: *mut FSVolumeUnmountUPP);
     }
     unsafe { DisposeFSVolumeUnmountUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeFSVolumeEjectUPP(user_upp: FSVolumeEjectUPP) {
+pub unsafe fn DisposeFSVolumeEjectUPP(user_upp: *mut FSVolumeEjectUPP) {
     extern "C-unwind" {
-        fn DisposeFSVolumeEjectUPP(user_upp: FSVolumeEjectUPP);
+        fn DisposeFSVolumeEjectUPP(user_upp: *mut FSVolumeEjectUPP);
     }
     unsafe { DisposeFSVolumeEjectUPP(user_upp) }
 }
@@ -4691,6 +4714,7 @@ pub unsafe fn DisposeFSVolumeEjectUPP(user_upp: FSVolumeEjectUPP) {
 /// - `volume_op` must be a valid pointer.
 /// - `client_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[deprecated]
 #[inline]
 pub unsafe fn InvokeFSVolumeMountUPP(
@@ -4698,7 +4722,7 @@ pub unsafe fn InvokeFSVolumeMountUPP(
     client_data: *mut c_void,
     err: OSStatus,
     mounted_volume_ref_num: FSVolumeRefNum,
-    user_upp: FSVolumeMountUPP,
+    user_upp: Option<FSVolumeMountUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeFSVolumeMountUPP(
@@ -4706,7 +4730,7 @@ pub unsafe fn InvokeFSVolumeMountUPP(
             client_data: *mut c_void,
             err: OSStatus,
             mounted_volume_ref_num: FSVolumeRefNum,
-            user_upp: FSVolumeMountUPP,
+            user_upp: Option<FSVolumeMountUPP>,
         );
     }
     unsafe {
@@ -4725,6 +4749,7 @@ pub unsafe fn InvokeFSVolumeMountUPP(
 /// - `volume_op` must be a valid pointer.
 /// - `client_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -4734,7 +4759,7 @@ pub unsafe fn InvokeFSVolumeUnmountUPP(
     err: OSStatus,
     volume_ref_num: FSVolumeRefNum,
     dissenter: libc::pid_t,
-    user_upp: FSVolumeUnmountUPP,
+    user_upp: Option<FSVolumeUnmountUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeFSVolumeUnmountUPP(
@@ -4743,7 +4768,7 @@ pub unsafe fn InvokeFSVolumeUnmountUPP(
             err: OSStatus,
             volume_ref_num: FSVolumeRefNum,
             dissenter: libc::pid_t,
-            user_upp: FSVolumeUnmountUPP,
+            user_upp: Option<FSVolumeUnmountUPP>,
         );
     }
     unsafe {
@@ -4763,6 +4788,7 @@ pub unsafe fn InvokeFSVolumeUnmountUPP(
 /// - `volume_op` must be a valid pointer.
 /// - `client_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -4772,7 +4798,7 @@ pub unsafe fn InvokeFSVolumeEjectUPP(
     err: OSStatus,
     volume_ref_num: FSVolumeRefNum,
     dissenter: libc::pid_t,
-    user_upp: FSVolumeEjectUPP,
+    user_upp: Option<FSVolumeEjectUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeFSVolumeEjectUPP(
@@ -4781,7 +4807,7 @@ pub unsafe fn InvokeFSVolumeEjectUPP(
             err: OSStatus,
             volume_ref_num: FSVolumeRefNum,
             dissenter: libc::pid_t,
-            user_upp: FSVolumeEjectUPP,
+            user_upp: Option<FSVolumeEjectUPP>,
         );
     }
     unsafe {
@@ -4868,6 +4894,7 @@ pub unsafe fn FSMountLocalVolumeSync(
 /// - `volume_op` must be a valid pointer.
 /// - `client_data` must be a valid pointer.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `runloop` possibly has additional threading requirements.
 /// - `runloop` might not allow `None`.
 /// - `runloop_mode` might not allow `None`.
@@ -4879,7 +4906,7 @@ pub unsafe fn FSMountLocalVolumeAsync(
     volume_op: FSVolumeOperation,
     client_data: *mut c_void,
     flags: OptionBits,
-    callback: FSVolumeMountUPP,
+    callback: Option<FSVolumeMountUPP>,
     runloop: Option<&CFRunLoop>,
     runloop_mode: Option<&CFString>,
 ) -> OSStatus {
@@ -4890,7 +4917,7 @@ pub unsafe fn FSMountLocalVolumeAsync(
             volume_op: FSVolumeOperation,
             client_data: *mut c_void,
             flags: OptionBits,
-            callback: FSVolumeMountUPP,
+            callback: Option<FSVolumeMountUPP>,
             runloop: Option<&CFRunLoop>,
             runloop_mode: Option<&CFString>,
         ) -> OSStatus;
@@ -4957,6 +4984,7 @@ pub unsafe fn FSMountServerVolumeSync(
 /// - `volume_op` must be a valid pointer.
 /// - `client_data` must be a valid pointer.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `runloop` possibly has additional threading requirements.
 /// - `runloop` might not allow `None`.
 /// - `runloop_mode` might not allow `None`.
@@ -4970,7 +4998,7 @@ pub unsafe fn FSMountServerVolumeAsync(
     volume_op: FSVolumeOperation,
     client_data: *mut c_void,
     flags: OptionBits,
-    callback: FSVolumeMountUPP,
+    callback: Option<FSVolumeMountUPP>,
     runloop: Option<&CFRunLoop>,
     runloop_mode: Option<&CFString>,
 ) -> OSStatus {
@@ -4983,7 +5011,7 @@ pub unsafe fn FSMountServerVolumeAsync(
             volume_op: FSVolumeOperation,
             client_data: *mut c_void,
             flags: OptionBits,
-            callback: FSVolumeMountUPP,
+            callback: Option<FSVolumeMountUPP>,
             runloop: Option<&CFRunLoop>,
             runloop_mode: Option<&CFString>,
         ) -> OSStatus;
@@ -5067,6 +5095,7 @@ pub unsafe fn FSUnmountVolumeSync(
 /// - `volume_op` must be a valid pointer.
 /// - `client_data` must be a valid pointer.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `runloop` possibly has additional threading requirements.
 /// - `runloop` might not allow `None`.
 /// - `runloop_mode` might not allow `None`.
@@ -5078,7 +5107,7 @@ pub unsafe fn FSUnmountVolumeAsync(
     flags: OptionBits,
     volume_op: FSVolumeOperation,
     client_data: *mut c_void,
-    callback: FSVolumeUnmountUPP,
+    callback: Option<FSVolumeUnmountUPP>,
     runloop: Option<&CFRunLoop>,
     runloop_mode: Option<&CFString>,
 ) -> OSStatus {
@@ -5088,7 +5117,7 @@ pub unsafe fn FSUnmountVolumeAsync(
             flags: OptionBits,
             volume_op: FSVolumeOperation,
             client_data: *mut c_void,
-            callback: FSVolumeUnmountUPP,
+            callback: Option<FSVolumeUnmountUPP>,
             runloop: Option<&CFRunLoop>,
             runloop_mode: Option<&CFString>,
         ) -> OSStatus;
@@ -5186,6 +5215,7 @@ pub unsafe fn FSEjectVolumeSync(
 /// - `volume_op` must be a valid pointer.
 /// - `client_data` must be a valid pointer.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `runloop` possibly has additional threading requirements.
 /// - `runloop` might not allow `None`.
 /// - `runloop_mode` might not allow `None`.
@@ -5197,7 +5227,7 @@ pub unsafe fn FSEjectVolumeAsync(
     flags: OptionBits,
     volume_op: FSVolumeOperation,
     client_data: *mut c_void,
-    callback: FSVolumeEjectUPP,
+    callback: Option<FSVolumeEjectUPP>,
     runloop: Option<&CFRunLoop>,
     runloop_mode: Option<&CFString>,
 ) -> OSStatus {
@@ -5207,7 +5237,7 @@ pub unsafe fn FSEjectVolumeAsync(
             flags: OptionBits,
             volume_op: FSVolumeOperation,
             client_data: *mut c_void,
-            callback: FSVolumeEjectUPP,
+            callback: Option<FSVolumeEjectUPP>,
             runloop: Option<&CFRunLoop>,
             runloop_mode: Option<&CFString>,
         ) -> OSStatus;
@@ -5403,9 +5433,9 @@ pub type FSFileOperationStage = u32;
 pub struct FSFileOperationClientContext {
     pub version: CFIndex,
     pub info: *mut c_void,
-    pub retain: CFAllocatorRetainCallBack,
-    pub release: CFAllocatorReleaseCallBack,
-    pub copyDescription: CFAllocatorCopyDescriptionCallBack,
+    pub retain: Option<CFAllocatorRetainCallBack>,
+    pub release: Option<CFAllocatorReleaseCallBack>,
+    pub copyDescription: Option<CFAllocatorCopyDescriptionCallBack>,
 }
 
 #[cfg(feature = "objc2")]
@@ -5428,28 +5458,24 @@ unsafe impl RefEncode for FSFileOperationClientContext {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fsfileoperationstatusprocptr?language=objc)
-pub type FSFileOperationStatusProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&FSFileOperation>,
-        *const FSRef,
-        FSFileOperationStage,
-        OSStatus,
-        Option<&CFDictionary>,
-        *mut c_void,
-    ),
->;
+pub type FSFileOperationStatusProcPtr = unsafe extern "C-unwind" fn(
+    Option<&FSFileOperation>,
+    *const FSRef,
+    FSFileOperationStage,
+    OSStatus,
+    Option<&CFDictionary>,
+    *mut c_void,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fspathfileoperationstatusprocptr?language=objc)
-pub type FSPathFileOperationStatusProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        Option<&FSFileOperation>,
-        *const c_char,
-        FSFileOperationStage,
-        OSStatus,
-        Option<&CFDictionary>,
-        *mut c_void,
-    ),
->;
+pub type FSPathFileOperationStatusProcPtr = unsafe extern "C-unwind" fn(
+    Option<&FSFileOperation>,
+    *const c_char,
+    FSFileOperationStage,
+    OSStatus,
+    Option<&CFDictionary>,
+    *mut c_void,
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kfsfileoperationdefaultoptions?language=objc)
 pub const kFSFileOperationDefaultOptions: c_uint = 0;
@@ -5778,6 +5804,7 @@ impl FSFileOperation {
 /// - `dest_dir` might not allow `None`.
 /// - `dest_name` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `client_context` struct field `version` must be set correctly.
 /// - `client_context` struct field `info` must be a valid pointer.
 /// - `client_context` struct field `retain` must be implemented correctly.
@@ -5792,7 +5819,7 @@ pub unsafe fn FSCopyObjectAsync(
     dest_dir: Option<&FSRef>,
     dest_name: Option<&CFString>,
     flags: OptionBits,
-    callback: FSFileOperationStatusProcPtr,
+    callback: Option<FSFileOperationStatusProcPtr>,
     status_change_interval: CFTimeInterval,
     client_context: Option<&mut FSFileOperationClientContext>,
 ) -> OSStatus {
@@ -5803,7 +5830,7 @@ pub unsafe fn FSCopyObjectAsync(
             dest_dir: Option<&FSRef>,
             dest_name: Option<&CFString>,
             flags: OptionBits,
-            callback: FSFileOperationStatusProcPtr,
+            callback: Option<FSFileOperationStatusProcPtr>,
             status_change_interval: CFTimeInterval,
             client_context: Option<&mut FSFileOperationClientContext>,
         ) -> OSStatus;
@@ -5829,6 +5856,7 @@ pub unsafe fn FSCopyObjectAsync(
 /// - `dest_dir` might not allow `None`.
 /// - `dest_name` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `client_context` struct field `version` must be set correctly.
 /// - `client_context` struct field `info` must be a valid pointer.
 /// - `client_context` struct field `retain` must be implemented correctly.
@@ -5843,7 +5871,7 @@ pub unsafe fn FSMoveObjectAsync(
     dest_dir: Option<&FSRef>,
     dest_name: Option<&CFString>,
     flags: OptionBits,
-    callback: FSFileOperationStatusProcPtr,
+    callback: Option<FSFileOperationStatusProcPtr>,
     status_change_interval: CFTimeInterval,
     client_context: Option<&mut FSFileOperationClientContext>,
 ) -> OSStatus {
@@ -5854,7 +5882,7 @@ pub unsafe fn FSMoveObjectAsync(
             dest_dir: Option<&FSRef>,
             dest_name: Option<&CFString>,
             flags: OptionBits,
-            callback: FSFileOperationStatusProcPtr,
+            callback: Option<FSFileOperationStatusProcPtr>,
             status_change_interval: CFTimeInterval,
             client_context: Option<&mut FSFileOperationClientContext>,
         ) -> OSStatus;
@@ -5878,6 +5906,7 @@ pub unsafe fn FSMoveObjectAsync(
 /// - `file_op` might not allow `None`.
 /// - `source` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `client_context` struct field `version` must be set correctly.
 /// - `client_context` struct field `info` must be a valid pointer.
 /// - `client_context` struct field `retain` must be implemented correctly.
@@ -5890,7 +5919,7 @@ pub unsafe fn FSMoveObjectToTrashAsync(
     file_op: Option<&FSFileOperation>,
     source: Option<&FSRef>,
     flags: OptionBits,
-    callback: FSFileOperationStatusProcPtr,
+    callback: Option<FSFileOperationStatusProcPtr>,
     status_change_interval: CFTimeInterval,
     client_context: Option<&mut FSFileOperationClientContext>,
 ) -> OSStatus {
@@ -5899,7 +5928,7 @@ pub unsafe fn FSMoveObjectToTrashAsync(
             file_op: Option<&FSFileOperation>,
             source: Option<&FSRef>,
             flags: OptionBits,
-            callback: FSFileOperationStatusProcPtr,
+            callback: Option<FSFileOperationStatusProcPtr>,
             status_change_interval: CFTimeInterval,
             client_context: Option<&mut FSFileOperationClientContext>,
         ) -> OSStatus;
@@ -5923,6 +5952,7 @@ pub unsafe fn FSMoveObjectToTrashAsync(
 /// - `dest_dir_path` might not allow `None`.
 /// - `dest_name` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `client_context` struct field `version` must be set correctly.
 /// - `client_context` struct field `info` must be a valid pointer.
 /// - `client_context` struct field `retain` must be implemented correctly.
@@ -5937,7 +5967,7 @@ pub unsafe fn FSPathCopyObjectAsync(
     dest_dir_path: Option<&CStr>,
     dest_name: Option<&CFString>,
     flags: OptionBits,
-    callback: FSPathFileOperationStatusProcPtr,
+    callback: Option<FSPathFileOperationStatusProcPtr>,
     status_change_interval: CFTimeInterval,
     client_context: Option<&mut FSFileOperationClientContext>,
 ) -> OSStatus {
@@ -5948,7 +5978,7 @@ pub unsafe fn FSPathCopyObjectAsync(
             dest_dir_path: *const c_char,
             dest_name: Option<&CFString>,
             flags: OptionBits,
-            callback: FSPathFileOperationStatusProcPtr,
+            callback: Option<FSPathFileOperationStatusProcPtr>,
             status_change_interval: CFTimeInterval,
             client_context: Option<&mut FSFileOperationClientContext>,
         ) -> OSStatus;
@@ -5980,6 +6010,7 @@ pub unsafe fn FSPathCopyObjectAsync(
 /// - `dest_dir_path` might not allow `None`.
 /// - `dest_name` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `client_context` struct field `version` must be set correctly.
 /// - `client_context` struct field `info` must be a valid pointer.
 /// - `client_context` struct field `retain` must be implemented correctly.
@@ -5994,7 +6025,7 @@ pub unsafe fn FSPathMoveObjectAsync(
     dest_dir_path: Option<&CStr>,
     dest_name: Option<&CFString>,
     flags: OptionBits,
-    callback: FSPathFileOperationStatusProcPtr,
+    callback: Option<FSPathFileOperationStatusProcPtr>,
     status_change_interval: CFTimeInterval,
     client_context: Option<&mut FSFileOperationClientContext>,
 ) -> OSStatus {
@@ -6005,7 +6036,7 @@ pub unsafe fn FSPathMoveObjectAsync(
             dest_dir_path: *const c_char,
             dest_name: Option<&CFString>,
             flags: OptionBits,
-            callback: FSPathFileOperationStatusProcPtr,
+            callback: Option<FSPathFileOperationStatusProcPtr>,
             status_change_interval: CFTimeInterval,
             client_context: Option<&mut FSFileOperationClientContext>,
         ) -> OSStatus;
@@ -6035,6 +6066,7 @@ pub unsafe fn FSPathMoveObjectAsync(
 /// - `file_op` might not allow `None`.
 /// - `source_path` might not allow `None`.
 /// - `callback` must be implemented correctly.
+/// - `callback` might not allow `None`.
 /// - `client_context` struct field `version` must be set correctly.
 /// - `client_context` struct field `info` must be a valid pointer.
 /// - `client_context` struct field `retain` must be implemented correctly.
@@ -6047,7 +6079,7 @@ pub unsafe fn FSPathMoveObjectToTrashAsync(
     file_op: Option<&FSFileOperation>,
     source_path: Option<&CStr>,
     flags: OptionBits,
-    callback: FSPathFileOperationStatusProcPtr,
+    callback: Option<FSPathFileOperationStatusProcPtr>,
     status_change_interval: CFTimeInterval,
     client_context: Option<&mut FSFileOperationClientContext>,
 ) -> OSStatus {
@@ -6056,7 +6088,7 @@ pub unsafe fn FSPathMoveObjectToTrashAsync(
             file_op: Option<&FSFileOperation>,
             source_path: *const c_char,
             flags: OptionBits,
-            callback: FSPathFileOperationStatusProcPtr,
+            callback: Option<FSPathFileOperationStatusProcPtr>,
             status_change_interval: CFTimeInterval,
             client_context: Option<&mut FSFileOperationClientContext>,
         ) -> OSStatus;

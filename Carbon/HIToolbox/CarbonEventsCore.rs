@@ -519,29 +519,34 @@ pub unsafe fn GetMainEventQueue() -> *mut EventQueue {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventcomparatorprocptr?language=objc)
 pub type EventComparatorProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&Event>, *mut c_void) -> Boolean>;
+    unsafe extern "C-unwind" fn(Option<&Event>, *mut c_void) -> Boolean;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventcomparatorupp?language=objc)
 pub type EventComparatorUPP = EventComparatorProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewEventComparatorUPP(user_routine: EventComparatorProcPtr) -> EventComparatorUPP {
+pub unsafe fn NewEventComparatorUPP(
+    user_routine: Option<EventComparatorProcPtr>,
+) -> Option<EventComparatorUPP> {
     extern "C-unwind" {
-        fn NewEventComparatorUPP(user_routine: EventComparatorProcPtr) -> EventComparatorUPP;
+        fn NewEventComparatorUPP(
+            user_routine: Option<EventComparatorProcPtr>,
+        ) -> Option<EventComparatorUPP>;
     }
     unsafe { NewEventComparatorUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeEventComparatorUPP(user_upp: EventComparatorUPP) {
+pub unsafe fn DisposeEventComparatorUPP(user_upp: *mut EventComparatorUPP) {
     extern "C-unwind" {
-        fn DisposeEventComparatorUPP(user_upp: EventComparatorUPP);
+        fn DisposeEventComparatorUPP(user_upp: *mut EventComparatorUPP);
     }
     unsafe { DisposeEventComparatorUPP(user_upp) }
 }
@@ -552,17 +557,18 @@ pub unsafe fn DisposeEventComparatorUPP(user_upp: EventComparatorUPP) {
 /// - `in_event` might not allow `None`.
 /// - `in_compare_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeEventComparatorUPP(
     in_event: Option<&Event>,
     in_compare_data: *mut c_void,
-    user_upp: EventComparatorUPP,
+    user_upp: Option<EventComparatorUPP>,
 ) -> bool {
     extern "C-unwind" {
         fn InvokeEventComparatorUPP(
             in_event: Option<&Event>,
             in_compare_data: *mut c_void,
-            user_upp: EventComparatorUPP,
+            user_upp: Option<EventComparatorUPP>,
         ) -> Boolean;
     }
     let ret = unsafe { InvokeEventComparatorUPP(in_event, in_compare_data, user_upp) };
@@ -617,17 +623,18 @@ pub unsafe fn FlushEventsMatchingListFromQueue(
 /// - `in_queue` might need manual memory-management.
 /// - `in_queue` might not allow `None`.
 /// - `in_comparator` must be implemented correctly.
+/// - `in_comparator` might not allow `None`.
 /// - `in_compare_data` must be a valid pointer.
 #[inline]
 pub unsafe fn FlushSpecificEventsFromQueue(
     in_queue: Option<&EventQueue>,
-    in_comparator: EventComparatorUPP,
+    in_comparator: Option<EventComparatorUPP>,
     in_compare_data: *mut c_void,
 ) -> OSStatus {
     extern "C-unwind" {
         fn FlushSpecificEventsFromQueue(
             in_queue: Option<&EventQueue>,
-            in_comparator: EventComparatorUPP,
+            in_comparator: Option<EventComparatorUPP>,
             in_compare_data: *mut c_void,
         ) -> OSStatus;
     }
@@ -651,17 +658,18 @@ pub unsafe fn FlushEventQueue(in_queue: Option<&EventQueue>) -> OSStatus {
 /// - `in_queue` might need manual memory-management.
 /// - `in_queue` might not allow `None`.
 /// - `in_comparator` must be implemented correctly.
+/// - `in_comparator` might not allow `None`.
 /// - `in_compare_data` must be a valid pointer.
 #[inline]
 pub unsafe fn FindSpecificEventInQueue(
     in_queue: Option<&EventQueue>,
-    in_comparator: EventComparatorUPP,
+    in_comparator: Option<EventComparatorUPP>,
     in_compare_data: *mut c_void,
 ) -> *mut Event {
     extern "C-unwind" {
         fn FindSpecificEventInQueue(
             in_queue: Option<&EventQueue>,
-            in_comparator: EventComparatorUPP,
+            in_comparator: Option<EventComparatorUPP>,
             in_compare_data: *mut c_void,
         ) -> *mut Event;
     }
@@ -827,8 +835,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventlooptimerprocptr?language=objc)
-pub type EventLoopTimerProcPtr =
-    Option<unsafe extern "C-unwind" fn(Option<&EventLoopTimer>, *mut c_void)>;
+pub type EventLoopTimerProcPtr = unsafe extern "C-unwind" fn(Option<&EventLoopTimer>, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/keventloopidletimerstarted?language=objc)
 pub const kEventLoopIdleTimerStarted: c_uint = 1;
@@ -841,9 +848,8 @@ pub const kEventLoopIdleTimerStopped: c_uint = 3;
 pub type EventLoopIdleTimerMessage = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventloopidletimerprocptr?language=objc)
-pub type EventLoopIdleTimerProcPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&EventLoopTimer>, EventLoopIdleTimerMessage, *mut c_void),
->;
+pub type EventLoopIdleTimerProcPtr =
+    unsafe extern "C-unwind" fn(Option<&EventLoopTimer>, EventLoopIdleTimerMessage, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventlooptimerupp?language=objc)
 pub type EventLoopTimerUPP = EventLoopTimerProcPtr;
@@ -853,48 +859,54 @@ pub type EventLoopIdleTimerUPP = EventLoopIdleTimerProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewEventLoopTimerUPP(user_routine: EventLoopTimerProcPtr) -> EventLoopTimerUPP {
+pub unsafe fn NewEventLoopTimerUPP(
+    user_routine: Option<EventLoopTimerProcPtr>,
+) -> Option<EventLoopTimerUPP> {
     extern "C-unwind" {
-        fn NewEventLoopTimerUPP(user_routine: EventLoopTimerProcPtr) -> EventLoopTimerUPP;
+        fn NewEventLoopTimerUPP(
+            user_routine: Option<EventLoopTimerProcPtr>,
+        ) -> Option<EventLoopTimerUPP>;
     }
     unsafe { NewEventLoopTimerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
 pub unsafe fn NewEventLoopIdleTimerUPP(
-    user_routine: EventLoopIdleTimerProcPtr,
-) -> EventLoopIdleTimerUPP {
+    user_routine: Option<EventLoopIdleTimerProcPtr>,
+) -> Option<EventLoopIdleTimerUPP> {
     extern "C-unwind" {
         fn NewEventLoopIdleTimerUPP(
-            user_routine: EventLoopIdleTimerProcPtr,
-        ) -> EventLoopIdleTimerUPP;
+            user_routine: Option<EventLoopIdleTimerProcPtr>,
+        ) -> Option<EventLoopIdleTimerUPP>;
     }
     unsafe { NewEventLoopIdleTimerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeEventLoopTimerUPP(user_upp: EventLoopTimerUPP) {
+pub unsafe fn DisposeEventLoopTimerUPP(user_upp: *mut EventLoopTimerUPP) {
     extern "C-unwind" {
-        fn DisposeEventLoopTimerUPP(user_upp: EventLoopTimerUPP);
+        fn DisposeEventLoopTimerUPP(user_upp: *mut EventLoopTimerUPP);
     }
     unsafe { DisposeEventLoopTimerUPP(user_upp) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeEventLoopIdleTimerUPP(user_upp: EventLoopIdleTimerUPP) {
+pub unsafe fn DisposeEventLoopIdleTimerUPP(user_upp: *mut EventLoopIdleTimerUPP) {
     extern "C-unwind" {
-        fn DisposeEventLoopIdleTimerUPP(user_upp: EventLoopIdleTimerUPP);
+        fn DisposeEventLoopIdleTimerUPP(user_upp: *mut EventLoopIdleTimerUPP);
     }
     unsafe { DisposeEventLoopIdleTimerUPP(user_upp) }
 }
@@ -903,17 +915,18 @@ pub unsafe fn DisposeEventLoopIdleTimerUPP(user_upp: EventLoopIdleTimerUPP) {
 ///
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeEventLoopTimerUPP(
     in_timer: &EventLoopTimer,
     in_user_data: *mut c_void,
-    user_upp: EventLoopTimerUPP,
+    user_upp: Option<EventLoopTimerUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeEventLoopTimerUPP(
             in_timer: &EventLoopTimer,
             in_user_data: *mut c_void,
-            user_upp: EventLoopTimerUPP,
+            user_upp: Option<EventLoopTimerUPP>,
         );
     }
     unsafe { InvokeEventLoopTimerUPP(in_timer, in_user_data, user_upp) }
@@ -924,19 +937,20 @@ pub unsafe fn InvokeEventLoopTimerUPP(
 /// - `in_timer` might not allow `None`.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeEventLoopIdleTimerUPP(
     in_timer: Option<&EventLoopTimer>,
     in_state: EventLoopIdleTimerMessage,
     in_user_data: *mut c_void,
-    user_upp: EventLoopIdleTimerUPP,
+    user_upp: Option<EventLoopIdleTimerUPP>,
 ) {
     extern "C-unwind" {
         fn InvokeEventLoopIdleTimerUPP(
             in_timer: Option<&EventLoopTimer>,
             in_state: EventLoopIdleTimerMessage,
             in_user_data: *mut c_void,
-            user_upp: EventLoopIdleTimerUPP,
+            user_upp: Option<EventLoopIdleTimerUPP>,
         );
     }
     unsafe { InvokeEventLoopIdleTimerUPP(in_timer, in_state, in_user_data, user_upp) }
@@ -947,6 +961,7 @@ pub unsafe fn InvokeEventLoopIdleTimerUPP(
 /// - `in_event_loop` might need manual memory-management.
 /// - `in_event_loop` might not allow `None`.
 /// - `in_timer_proc` must be implemented correctly.
+/// - `in_timer_proc` might not allow `None`.
 /// - `in_timer_data` must be a valid pointer.
 /// - `out_timer` might not allow `None`.
 #[inline]
@@ -954,7 +969,7 @@ pub unsafe fn InstallEventLoopTimer(
     in_event_loop: Option<&EventLoop>,
     in_fire_delay: EventTimerInterval,
     in_interval: EventTimerInterval,
-    in_timer_proc: EventLoopTimerUPP,
+    in_timer_proc: Option<EventLoopTimerUPP>,
     in_timer_data: *mut c_void,
     out_timer: Option<&mut Option<CFRetained<EventLoopTimer>>>,
 ) -> OSStatus {
@@ -963,7 +978,7 @@ pub unsafe fn InstallEventLoopTimer(
             in_event_loop: Option<&EventLoop>,
             in_fire_delay: EventTimerInterval,
             in_interval: EventTimerInterval,
-            in_timer_proc: EventLoopTimerUPP,
+            in_timer_proc: Option<EventLoopTimerUPP>,
             in_timer_data: *mut c_void,
             out_timer: Option<&mut Option<CFRetained<EventLoopTimer>>>,
         ) -> OSStatus;
@@ -1039,31 +1054,34 @@ unsafe impl RefEncode for EventHandlerCall {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandlerprocptr?language=objc)
-pub type EventHandlerProcPtr = Option<
-    unsafe extern "C-unwind" fn(Option<&EventHandlerCall>, Option<&Event>, *mut c_void) -> OSStatus,
->;
+pub type EventHandlerProcPtr =
+    unsafe extern "C-unwind" fn(Option<&EventHandlerCall>, Option<&Event>, *mut c_void) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/eventhandlerupp?language=objc)
 pub type EventHandlerUPP = EventHandlerProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[inline]
-pub unsafe fn NewEventHandlerUPP(user_routine: EventHandlerProcPtr) -> EventHandlerUPP {
+pub unsafe fn NewEventHandlerUPP(
+    user_routine: Option<EventHandlerProcPtr>,
+) -> Option<EventHandlerUPP> {
     extern "C-unwind" {
-        fn NewEventHandlerUPP(user_routine: EventHandlerProcPtr) -> EventHandlerUPP;
+        fn NewEventHandlerUPP(user_routine: Option<EventHandlerProcPtr>)
+            -> Option<EventHandlerUPP>;
     }
     unsafe { NewEventHandlerUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[inline]
-pub unsafe fn DisposeEventHandlerUPP(user_upp: EventHandlerUPP) {
+pub unsafe fn DisposeEventHandlerUPP(user_upp: *mut EventHandlerUPP) {
     extern "C-unwind" {
-        fn DisposeEventHandlerUPP(user_upp: EventHandlerUPP);
+        fn DisposeEventHandlerUPP(user_upp: *mut EventHandlerUPP);
     }
     unsafe { DisposeEventHandlerUPP(user_upp) }
 }
@@ -1076,19 +1094,20 @@ pub unsafe fn DisposeEventHandlerUPP(user_upp: EventHandlerUPP) {
 /// - `in_event` might not allow `None`.
 /// - `in_user_data` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[inline]
 pub unsafe fn InvokeEventHandlerUPP(
     in_handler_call_ref: Option<&EventHandlerCall>,
     in_event: Option<&Event>,
     in_user_data: *mut c_void,
-    user_upp: EventHandlerUPP,
+    user_upp: Option<EventHandlerUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeEventHandlerUPP(
             in_handler_call_ref: Option<&EventHandlerCall>,
             in_event: Option<&Event>,
             in_user_data: *mut c_void,
-            user_upp: EventHandlerUPP,
+            user_upp: Option<EventHandlerUPP>,
         ) -> OSStatus;
     }
     unsafe { InvokeEventHandlerUPP(in_handler_call_ref, in_event, in_user_data, user_upp) }
@@ -1114,6 +1133,7 @@ unsafe impl RefEncode for EventTarget {
 /// - `in_target` might need manual memory-management.
 /// - `in_target` might not allow `None`.
 /// - `in_handler` must be implemented correctly.
+/// - `in_handler` might not allow `None`.
 /// - `in_list` must be a valid pointer.
 /// - `in_user_data` must be a valid pointer.
 /// - `out_ref` must be a valid pointer.
@@ -1121,7 +1141,7 @@ unsafe impl RefEncode for EventTarget {
 #[inline]
 pub unsafe fn InstallEventHandler(
     in_target: Option<&EventTarget>,
-    in_handler: EventHandlerUPP,
+    in_handler: Option<EventHandlerUPP>,
     in_num_types: ItemCount,
     in_list: *const EventTypeSpec,
     in_user_data: *mut c_void,
@@ -1130,7 +1150,7 @@ pub unsafe fn InstallEventHandler(
     extern "C-unwind" {
         fn InstallEventHandler(
             in_target: Option<&EventTarget>,
-            in_handler: EventHandlerUPP,
+            in_handler: Option<EventHandlerUPP>,
             in_num_types: ItemCount,
             in_list: *const EventTypeSpec,
             in_user_data: *mut c_void,

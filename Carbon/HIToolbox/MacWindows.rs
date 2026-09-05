@@ -1286,20 +1286,18 @@ pub const kStoredWindowTitleCFStringID: c_uint = 0x63667374;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/deskhookprocptr?language=objc)
 #[cfg(feature = "Events")]
-pub type DeskHookProcPtr = Option<unsafe extern "C-unwind" fn(Boolean, *mut EventRecord)>;
+pub type DeskHookProcPtr = unsafe extern "C-unwind" fn(Boolean, *mut EventRecord);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/windowpaintprocptr?language=objc)
 #[cfg(feature = "objc2-application-services")]
-pub type WindowPaintProcPtr = Option<
-    unsafe extern "C-unwind" fn(
-        GDHandle,
-        GrafPtr,
-        WindowRef,
-        RgnHandle,
-        RgnHandle,
-        *mut c_void,
-    ) -> OSStatus,
->;
+pub type WindowPaintProcPtr = unsafe extern "C-unwind" fn(
+    GDHandle,
+    GrafPtr,
+    WindowRef,
+    RgnHandle,
+    RgnHandle,
+    *mut c_void,
+) -> OSStatus;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/deskhookupp?language=objc)
 #[cfg(feature = "Events")]
@@ -1311,26 +1309,29 @@ pub type WindowPaintUPP = WindowPaintProcPtr;
 
 /// # Safety
 ///
-/// `user_routine` must be implemented correctly.
+/// - `user_routine` must be implemented correctly.
+/// - `user_routine` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn NewWindowPaintUPP(user_routine: WindowPaintProcPtr) -> WindowPaintUPP {
+pub unsafe fn NewWindowPaintUPP(
+    user_routine: Option<WindowPaintProcPtr>,
+) -> Option<WindowPaintUPP> {
     extern "C-unwind" {
-        fn NewWindowPaintUPP(user_routine: WindowPaintProcPtr) -> WindowPaintUPP;
+        fn NewWindowPaintUPP(user_routine: Option<WindowPaintProcPtr>) -> Option<WindowPaintUPP>;
     }
     unsafe { NewWindowPaintUPP(user_routine) }
 }
 
 /// # Safety
 ///
-/// `user_upp` must be implemented correctly.
+/// `user_upp` must be a valid pointer.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
-pub unsafe fn DisposeWindowPaintUPP(user_upp: WindowPaintUPP) {
+pub unsafe fn DisposeWindowPaintUPP(user_upp: *mut WindowPaintUPP) {
     extern "C-unwind" {
-        fn DisposeWindowPaintUPP(user_upp: WindowPaintUPP);
+        fn DisposeWindowPaintUPP(user_upp: *mut WindowPaintUPP);
     }
     unsafe { DisposeWindowPaintUPP(user_upp) }
 }
@@ -1344,6 +1345,7 @@ pub unsafe fn DisposeWindowPaintUPP(user_upp: WindowPaintUPP) {
 /// - `out_system_paint_rgn` must be a valid pointer.
 /// - `ref_con` must be a valid pointer.
 /// - `user_upp` must be implemented correctly.
+/// - `user_upp` might not allow `None`.
 #[cfg(feature = "objc2-application-services")]
 #[deprecated]
 #[inline]
@@ -1354,7 +1356,7 @@ pub unsafe fn InvokeWindowPaintUPP(
     in_client_paint_rgn: RgnHandle,
     out_system_paint_rgn: RgnHandle,
     ref_con: *mut c_void,
-    user_upp: WindowPaintUPP,
+    user_upp: Option<WindowPaintUPP>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn InvokeWindowPaintUPP(
@@ -1364,7 +1366,7 @@ pub unsafe fn InvokeWindowPaintUPP(
             in_client_paint_rgn: RgnHandle,
             out_system_paint_rgn: RgnHandle,
             ref_con: *mut c_void,
-            user_upp: WindowPaintUPP,
+            user_upp: Option<WindowPaintUPP>,
         ) -> OSStatus;
     }
     unsafe {
