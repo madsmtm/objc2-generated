@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A state created to record a MPSNDArrayGather kernel properties
     /// at the time an -encode call was made.
     ///
     /// Must be created with the appropriate MPSNDArray kernel method, for example:

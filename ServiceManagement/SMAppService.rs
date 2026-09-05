@@ -9,6 +9,8 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// ServiceManagement App Service Status
+///
 /// The values returned by SMAppService:status
 ///
 ///

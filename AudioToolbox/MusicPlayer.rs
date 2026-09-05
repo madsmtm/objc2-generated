@@ -991,6 +991,9 @@ pub unsafe fn MusicPlayerGetPlayRateScalar(
     unsafe { MusicPlayerGetPlayRateScalar(in_player, out_scale_rate) }
 }
 
+/// Music Sequence
+///
+///
 /// Create a new empty sequence
 ///
 /// A new music sequence will only have a tempo track (with a default tempo of 120 bpm),

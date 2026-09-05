@@ -68,6 +68,8 @@ unsafe impl RefEncode for sec_certificate {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sec_certificate_t?language=objc)
 pub type sec_certificate_t = *mut sec_certificate;
 
+/// tls_protocol_version_t enumeration
+///
 /// Enumerations for the set of supported TLS and DTLS protocol versions.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/tls_protocol_version_t?language=objc)
@@ -109,6 +111,8 @@ unsafe impl RefEncode for tls_protocol_version_t {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// tls_ciphersuite_t enumeration
+///
 /// Enumerations for the set of supported TLS and DTLS ciphersuites.
 ///
 /// See https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4
@@ -187,6 +191,8 @@ unsafe impl RefEncode for tls_ciphersuite_t {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// tls_ciphersuite_group_t enumeration
+///
 /// Convenience ciphersuite groups that collate ciphersuites of comparable security
 /// properties into a single alias.
 ///
@@ -220,6 +226,8 @@ unsafe impl RefEncode for tls_ciphersuite_group_t {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// SSLProtocol enumeration
+///
 /// Enumerations for the set of supported TLS and DTLS protocol versions.
 ///
 ///

@@ -10,6 +10,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// AXValueType Wrappers
+///
 /// These are AXValueType wrappers for other structures. You must use the AXValueCreate
 /// and AXValueGetValue functions to convert between the wrapped structure and the native structure.
 ///

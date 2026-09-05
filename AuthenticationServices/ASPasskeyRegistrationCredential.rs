@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential?language=objc)
+    /// This class encapsulates a passkey registration response created by a credential provider extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyRegistrationCredential;

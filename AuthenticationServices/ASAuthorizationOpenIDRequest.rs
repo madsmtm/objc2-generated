@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationopenidoperation?language=objc)
+/// Operation which should be executed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationopenidoperation?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationOpenIDOperation = NSString;
 

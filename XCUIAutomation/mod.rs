@@ -295,6 +295,7 @@ extern_protocol!(
     }
 );
 
+/// Constants for use with APIs that accept or return objects with element attributes specified,
 /// such as the dictionaries returned by XCUIElement.dictionaryRepresentation.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributename?language=objc)
@@ -1046,6 +1047,7 @@ extern "C" {
 }
 
 extern_class!(
+    /// XCUIElement (/seealso XCUIElementAttributes)
     /// Elements are objects encapsulating the information needed to dynamically locate a user interface
     /// element in an application. Elements are described in terms of queries /seealso XCUIElementQuery.
     ///

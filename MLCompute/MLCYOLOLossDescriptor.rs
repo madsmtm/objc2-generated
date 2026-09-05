@@ -123,6 +123,8 @@ impl MLCYOLOLossDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleClassLoss(&self, scale_class_loss: c_float);
 
+        /// positive IOU
+        ///
         /// If the prediction IOU with groundTruth is higher than this
         /// value we consider it a confident object presence, The default is 0.7
         #[deprecated]
@@ -139,6 +141,8 @@ impl MLCYOLOLossDescriptor {
             minimum_iou_for_object_presence: c_float,
         );
 
+        /// negative IOU
+        ///
         /// If the prediction IOU with groundTruth is lower than this
         /// value we consider it a confident object absence.  The default is 0.3
         #[deprecated]

@@ -9,6 +9,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Custom Transform Attribute Metadata
+///
 /// Within a transform, each of its attributes is a collection of
 /// "metadata attributes", of which name and current value are two. The
 /// value is directly visible from outside; the other metadata

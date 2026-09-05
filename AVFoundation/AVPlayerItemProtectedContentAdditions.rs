@@ -7,14 +7,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Authorization Request Status
+///
 /// Possible status values resulting from a call to requestContentAuthorizationAsynchronouslyWithTimeoutInterval:CompletionHandler:.
 ///
-///
-///
-///
-///
-///
-///
+/// AVContentAUthorizationBusy            The last call to request content authorization could not be completed because another asset is currently attempting authorization.
 ///
 /// Even if authorization is completed by the user, there is no guarantee that the content will then be authorized.  The caller should re-check
 /// whether the content is authorized before proceeding.
@@ -25,18 +22,24 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVContentAuthorizationStatus(pub NSInteger);
 impl AVContentAuthorizationStatus {
+    /// No call to request content authorization has completed yet.
     #[doc(alias = "AVContentAuthorizationUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The last completed call to request content authorization completed.
     #[doc(alias = "AVContentAuthorizationCompleted")]
     pub const Completed: Self = Self(1);
+    /// The last call to request content authorization was cancelled by the user.
     #[doc(alias = "AVContentAuthorizationCancelled")]
     pub const Cancelled: Self = Self(2);
+    /// The last call to request content authorization was cancelled because the timeout interval was reached.
     #[doc(alias = "AVContentAuthorizationTimedOut")]
     pub const TimedOut: Self = Self(3);
     #[doc(alias = "AVContentAuthorizationBusy")]
     pub const Busy: Self = Self(4);
+    /// The last call to request content authorization could not be completed because there was no known mechanism by which to attempt authorization.
     #[doc(alias = "AVContentAuthorizationNotAvailable")]
     pub const NotAvailable: Self = Self(5);
+    /// The last call to request content authorization could not be completed in a non-recoverable way (i.e. a newer version of iTunes is required).
     #[doc(alias = "AVContentAuthorizationNotPossible")]
     pub const NotPossible: Self = Self(6);
 }
@@ -50,6 +53,8 @@ unsafe impl RefEncode for AVContentAuthorizationStatus {
 }
 
 /// AVPlayerItemProtectedContent.
+///
+/// AVPlayerItem (AVPlayerItemProtectedContent)
 ///
 /// Methods supporting protected content.
 #[cfg(feature = "AVPlayerItem")]

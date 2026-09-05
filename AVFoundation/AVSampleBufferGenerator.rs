@@ -31,6 +31,8 @@ impl AVSampleBufferGenerator {
         // +new (unavailable)
 
         #[cfg(all(feature = "AVAsset", feature = "objc2-core-media"))]
+        /// initWithAsset: timebase:
+        ///
         /// Creates an instance of AVSampleBufferGenerator to generate sample buffers from the specified asset.
         ///
         /// Parameter `asset`: The asset from which sample buffers will be created.
@@ -49,6 +51,8 @@ impl AVSampleBufferGenerator {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// createSampleBufferForRequest: error:
+        ///
         /// Creates a sample buffer and if requested, attempts to load its data asynchronously. Attempt may fail based on generator configuration or file format.
         /// See [AVSampleBufferGenerator notifyOfDataReadyForSampleBuffer: completionHandler:] to get notified when the sample buffer data is available.
         ///
@@ -85,6 +89,8 @@ impl AVSampleBufferGenerator {
         pub unsafe fn makeBatch(&self) -> Retained<AVSampleBufferGeneratorBatch>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// createSampleBufferForRequest: addingToBatch: error:
+        ///
         /// Creates a sample buffer and attempts to defer I/O for its data. Attempt may fail based on generator configuration or file format.
         /// The [AVSampleBufferGeneratorBatch makeDataReadyWithCompletionHandler:] should be called once to commence I/O and load sample data for all CMSampleBuffers within a batch.
         /// Any subsequent calls to createSampleBufferForRequest:addingToBatch:error: will throw an exception.
@@ -108,6 +114,8 @@ impl AVSampleBufferGenerator {
         ) -> Result<Retained<CMSampleBuffer>, Retained<NSError>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// notifyOfDataReadyForSampleBuffer: completionHandler:
+        ///
         /// Allows the client to get notified when the sample buffer data is ready, or as soon as an error has occured.
         ///
         /// Parameter `completionHandler`: The completionHandler will be called, when the sample buffer data is ready, or as soon as an error has occurred.

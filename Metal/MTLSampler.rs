@@ -276,6 +276,8 @@ impl MTLSamplerDescriptor {
         #[unsafe(method_family = none)]
         pub fn setReductionMode(&self, reduction_mode: MTLSamplerReductionMode);
 
+        /// normalizedCoordinates.
+        ///
         /// If YES, texture coordates are from 0 to 1.  If NO, texture coordinates are 0..width, 0..height.
         ///
         /// normalizedCoordinates defaults to YES.  Non-normalized coordinates should only be used with 1D and 2D textures with the ClampToEdge wrap mode, otherwise the results of sampling are undefined.

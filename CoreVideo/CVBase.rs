@@ -84,6 +84,8 @@ unsafe impl Send for CVSMPTETime {}
 
 unsafe impl Sync for CVSMPTETime {}
 
+/// SMPTE Time Types
+///
 /// Constants that describe the type of SMPTE time.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype?language=objc)
@@ -132,6 +134,8 @@ unsafe impl Send for CVSMPTETimeType {}
 
 unsafe impl Sync for CVSMPTETimeType {}
 
+/// SMPTE State Flags
+///
 /// Flags that describe the SMPTE time state.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags?language=objc)

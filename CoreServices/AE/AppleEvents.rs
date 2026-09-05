@@ -505,6 +505,7 @@ impl AERemoteProcessResolver {
 /// The target AEAddressDesc must refer to an already running application.
 ///
 ///
+/// macOS Threading
 /// Thread safe since version 10.14.  Do not call this function on your main thread because it may take arbitrarily long
 /// to return if the user needs to be prompted for consent.
 ///

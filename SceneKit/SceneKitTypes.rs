@@ -334,6 +334,8 @@ mod private_NSValueSceneKitAdditions {
 
 /// Category "SceneKitAdditions" on [`NSValue`].
 ///
+/// NSValue(SceneKitAdditions)
+///
 /// Adds methods to wrap vectors in NSValue objects.
 #[doc(alias = "SceneKitAdditions")]
 pub unsafe trait NSValueSceneKitAdditions:

@@ -2679,7 +2679,9 @@ pub const kAUVoiceIOProperty_VoiceProcessingEnableAGC: AudioUnitPropertyID = 210
 #[cfg(feature = "AUComponent")]
 pub const kAUVoiceIOProperty_MuteOutput: AudioUnitPropertyID = 2104;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiospeechactivityevent?language=objc)
+/// Speech activity event described by AUVoiceIO
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiospeechactivityevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2874,8 +2876,10 @@ pub const kAudioUnitProperty_InputAnchorTimeStamp: AudioUnitPropertyID = 3016;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitMeterClipping {
+    /// ;
     /// The maximum value seen on the channel since the last time the property was retrieved.
     pub peakValueSinceLastCall: f32,
+    /// ;
     /// TRUE if there was an infinite value on this channel.
     pub sawInfinity: Boolean,
     /// TRUE if there was a floating point Not-A-Number value on this channel.
@@ -2998,6 +3002,8 @@ pub const kAudioUnitProperty_SpatialMixerPersonalizedHRTFMode: AudioUnitProperty
 pub const kAudioUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF: AudioUnitPropertyID =
     3116;
 
+/// Spatialization Algorithms
+///
 /// Use kSpatializationAlgorithm_UseOutputType with appropriate kAudioUnitProperty_SpatialMixerOutputType
 /// for highest-quality spatial rendering across different hardware.
 ///
@@ -3035,6 +3041,8 @@ unsafe impl RefEncode for AUSpatializationAlgorithm {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Property values for kAudioUnitProperty_SpatialMixerSourceMode
+///
 /// The input channels are spatialized around the listener as far-field sources.
 /// The relative directions of the individual channels are specified by the
 /// AudioChannelLayout of the bus. The rotation of the whole bed in the global space is
@@ -3078,6 +3086,8 @@ unsafe impl RefEncode for AUSpatialMixerSourceMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Reverb Room Types
+///
 /// Used to specify room type (as identified by a factory preset number) on Apple audio
 /// units that use internal reverb.
 ///
@@ -3125,7 +3135,9 @@ unsafe impl RefEncode for AUReverbRoomType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve?language=objc)
+/// AUSpatialMixer Attenuation Curves
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3173,7 +3185,9 @@ unsafe impl RefEncode for MixerDistanceParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerrenderingflags?language=objc)
+/// AUSpatial Mixer Rendering Flags
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerrenderingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3198,6 +3212,8 @@ unsafe impl RefEncode for AUSpatialMixerRenderingFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Property values for kAudioUnitProperty_SpatialMixerPersonalizedHRTFMode
+///
 /// Follow system preferences to choose between personalized vs generic
 /// head-related transfer function (HRTF).
 ///
@@ -3227,6 +3243,8 @@ unsafe impl RefEncode for AUSpatialMixerPersonalizedHRTFMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Property values for kAudioUnitProperty_SpatialMixerOutputType
+///
 /// Render for external speakers based on the mixer's output channel layout.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype?language=objc)
@@ -3258,6 +3276,8 @@ unsafe impl RefEncode for AUSpatialMixerOutputType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Property values for kAudioUnitProperty_SpatialMixerPointSourceInHeadMode
+///
 /// This setting only affects spatialization when using kSpatializationAlgorithm_UseOutputType
 /// with kSpatialMixerSourceMode_PointSource.
 ///
@@ -3352,7 +3372,9 @@ pub const kAudioUnitProperty_3DMixerDistanceAtten: AudioUnitPropertyID = 3004;
 #[deprecated]
 pub const kAudioUnitProperty_ReverbPreset: AudioUnitPropertyID = 3012;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags?language=objc)
+/// 3D Mixer Rendering Flags
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3380,7 +3402,9 @@ unsafe impl RefEncode for AU3DMixerRenderingFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve?language=objc)
+/// 3D Mixer Attenuation Curves
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

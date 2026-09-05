@@ -34,11 +34,13 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl JSVirtualMachine {
     extern_methods!(
+        /// Creating New Virtual Machines
         /// Create a new JSVirtualMachine.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Memory Management
         /// Notify the JSVirtualMachine of an external object relationship.
         ///
         /// Allows clients of JSVirtualMachine to make the JavaScript runtime aware of

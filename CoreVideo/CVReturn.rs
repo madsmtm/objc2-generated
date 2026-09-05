@@ -5,6 +5,43 @@ use crate::*;
 
 /// CoreVideo specific error codes
 ///
+///
+/// kCVReturnSuccess Function executed successfully without errors.
+///
+/// kCVReturnFirst Placeholder to mark the beginning of the range of CVReturn codes.
+///
+/// kCVReturnLast Placeholder to mark the end of the range of CVReturn codes.
+///
+/// kCVReturnInvalidArgument At least one of the arguments passed in is not valid. Either out of range or the wrong type.
+///
+/// kCVReturnAllocationFailed The allocation for a buffer or buffer pool failed. Most likely because of lack of resources.
+///
+/// kCVReturnInvalidDisplay A CVDisplayLink cannot be created for the given DisplayRef.
+///
+/// kCVReturnDisplayLinkAlreadyRunning The CVDisplayLink is already started and running.
+///
+/// kCVReturnDisplayLinkNotRunning The CVDisplayLink has not been started.
+///
+/// kCVReturnDisplayLinkCallbacksNotSet The output callback is not set.
+///
+/// kCVReturnInvalidPixelFormat The requested pixelformat is not supported for the CVBuffer type.
+///
+/// kCVReturnInvalidSize The requested size (most likely too big) is not supported for the CVBuffer type.
+///
+/// kCVReturnInvalidPixelBufferAttributes A CVBuffer cannot be created with the given attributes.
+///
+/// kCVReturnPixelBufferNotOpenGLCompatible The Buffer cannot be used with OpenGL as either its size, pixelformat or attributes are not supported by OpenGL.
+///
+/// kCVReturnPixelBufferNotMetalCompatible The Buffer cannot be used with Metal as either its size, pixelformat or attributes are not supported by Metal.
+///
+/// kCVReturnWouldExceedAllocationThreshold The allocation request failed because it would have exceeded a specified allocation threshold (see kCVPixelBufferPoolAllocationThresholdKey).
+///
+/// kCVReturnPoolAllocationFailed The allocation for the buffer pool failed. Most likely because of lack of resources. Check if your parameters are in range.
+///
+/// kCVReturnInvalidPoolAttributes A CVBufferPool cannot be created with the given attributes.
+///
+/// kCVReturnRetry a scan hasn't completely traversed the CVBufferPool due to a concurrent operation. The client can retry the scan.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvreturn?language=objc)
 pub type CVReturn = i32;
 

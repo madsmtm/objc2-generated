@@ -83,6 +83,8 @@ unsafe impl RefEncode for SCFrameStatus {
 
 /// SCPresenterOverlayAlertSetting denotes the setting that can be set to determine when to show the presenter overlay alert for any stream
 ///
+/// SCPresenterOverlayAlertAlways always show the presenter overlay privacy alert.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -356,6 +358,10 @@ impl DefaultRetained for SCContentFilter {
 }
 
 /// Client can use SCStreamConfigurationPreset to create SCStreamConfiguration with suggested values of properties for various use cases
+///
+/// SCStreamConfigurationPresetCaptureHDRLocalDisplay using this preset will help client set suggested values for captureDynamicRange, pixelFormat, ColorSpace, colorMatrix in order to get HDR capture output with SCStream, optimized for rendering on the local captured display.
+///
+/// SCStreamConfigurationPresetCaptureHDRCanonicalDisplay using this preset will help client set suggested values for captureDynamicRange, pixelFormat, ColorSpace, colorMatrix in order to get HDR capture output with SCStream, optimized for rendering on canonical HDR display
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfigurationpreset?language=objc)
 // NS_ENUM

@@ -7,9 +7,12 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// Credential Key Constants
+    ///
     /// Predefined key constants used to get values in a dictionary
     /// of credentials returned by SecRequestWebCredential.
     ///
+    /// kSecSharedPassword Specifies a dictionary key whose value is a
     /// shared password. You use this key to get a value of type CFStringRef
     /// that contains a password.
     ///

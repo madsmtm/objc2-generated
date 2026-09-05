@@ -60,12 +60,16 @@ unsafe impl RefEncode for MessageComposeResult {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerattachmenturl?language=objc)
+    /// MFMessageComposeViewControllerAttachmentURL   The url for the given attachment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerattachmenturl?language=objc)
     pub static MFMessageComposeViewControllerAttachmentURL: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerattachmentalternatefilename?language=objc)
+    /// MFMessageComposeViewControllerAttachmentAlternateFilename   The alternate filename for the given attachment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerattachmentalternatefilename?language=objc)
     pub static MFMessageComposeViewControllerAttachmentAlternateFilename: &'static NSString;
 }
 
@@ -240,6 +244,8 @@ impl MFMessageComposeViewController {
             >,
         );
 
+        /// disableUserAttachments;
+        ///
         /// Calling this method will disable the camera/attachment button in the view controller.  After the controller has been presented,
         /// this call will have no effect.  The camera / attachment button is visible by default.
         #[unsafe(method(disableUserAttachments))]

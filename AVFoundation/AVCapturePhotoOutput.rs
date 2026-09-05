@@ -2861,38 +2861,50 @@ extern_class!(
     ///
     /// Below is a discussion of how the superclass properties behave on an AVCaptureDeferredPhotoProxy.
     ///
+    /// (readonly) CMTime timestamp;
     /// The time of the capture; proxy and final photos will have the same timestamp.
     ///
     ///
+    /// (readonly) NSDictionary<NSString *, id> *metadata;
     /// The metadata of the proxy image may differ slightly from the final photo's metadata where some fields may be updated.
     ///
     ///
+    /// (readonly, getter=isRawPhoto) BOOL rawPhoto;
     /// Always NO, as deferred processing isn't available for raw photos.
     ///
     ///
+    /// (nullable, readonly) NSDictionary<NSString *, id> *embeddedThumbnailPhotoFormat;
     /// Describes the embedded thumbnail format of both the proxy and the final photo which have the same dimensions and codec.
     ///
     ///
+    /// (readonly) AVCaptureResolvedPhotoSettings *resolvedSettings;
     /// Describes the resolved settings of the whole capture, including the proxy and final photo. See AVCaptureResolvedPhotoSettings.deferredPhotoProxyDimensions.
     ///
     ///
+    /// (readonly) NSInteger photoCount;
     /// Same for both proxy and final.
     ///
     ///
+    /// (nullable, readonly) AVCaptureDeviceType sourceDeviceType;
     /// Same for both proxy and final.
     ///
     ///
+    /// (nullable, readonly) AVCaptureBracketedStillImageSettings *bracketSettings;
     /// Same for both proxy and final.
     ///
     ///
+    /// (readonly) NSInteger sequenceCount;
     /// Same for both proxy and final.
     ///
     ///
+    /// (readonly) AVCaptureLensStabilizationStatus lensStabilizationStatus;
     /// Same for both proxy and final.
     ///
     /// Superclass properties/methods that behave differently than a typical AVCapturePhoto:
     ///
+    /// (nullable, readonly) CVPixelBufferRef pixelBuffer NS_RETURNS_INNER_POINTER;
     ///
+    /// (nullable, readonly) CVPixelBufferRef previewPixelBuffer NS_RETURNS_INNER_POINTER;
     /// - (nullable CGImageRef)CGImageRepresentation;
     /// - (nullable CGImageRef)previewCGImageRepresentation;
     /// All of the above properties return the same proxy image, either as a pixel buffer or CGImageRef.

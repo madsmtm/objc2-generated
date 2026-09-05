@@ -34,6 +34,8 @@ impl MLCTrainingGraph {
         #[unsafe(method_family = none)]
         pub unsafe fn optimizer(&self) -> Option<Retained<MLCOptimizer>>;
 
+        /// The device memory size used by the training graph
+        ///
         /// Returns the total size in bytes of device memory used for all intermediate tensors
         /// for forward, gradient passes and optimizer update for all layers in the training graph.
         /// We recommend executing an iteration before checking the device memory size as

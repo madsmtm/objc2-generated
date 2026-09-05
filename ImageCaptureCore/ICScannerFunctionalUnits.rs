@@ -174,6 +174,8 @@ unsafe impl RefEncode for ICScannerPixelDataType {
 
 /// Document size types. Corresponds to "ICAP_SUPPORTEDSIZES" used by the Image Catpure scanner modules. Also refer to TWAIN 1.9 Specification, page 9-483.
 ///
+/// ICScannerDocumentTypeS12R           S12R,            12"   x 18"      304.80 mm x  457.20 mm       2:3
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -407,6 +409,12 @@ unsafe impl RefEncode for ICScannerDocumentType {
 }
 
 /// A flag to indicate the scanner functional unit's state
+///
+/// ICScannerStateReady The scanner functional unit is ready for operation.
+///
+/// ICScannerStateScanInProgress The scanner functional unit is performing a scan.
+///
+/// ICScannerStateOverviewScanInProgress The scanner functional unit is performing an overview scan.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfunctionalunitstate?language=objc)
 // NS_ENUM

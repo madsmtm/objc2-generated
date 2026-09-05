@@ -22,6 +22,7 @@ extern_protocol!(
     /// /StoreKit.h>
     ///
     ///
+    /// DownloaderExtension : NSObject <SKDownloaderExtension>
     /// @end ```
     ///
     /// ### Self Hosting
@@ -31,6 +32,7 @@ extern_protocol!(
     /// /BackgroundAssets.h>
     ///
     ///
+    /// DownloaderExtension : NSObject <BAManagedDownloaderExtension>
     /// @end ```
     /// 3.    Create `DownloaderExtension.m` with the following contents:
     /// ```objc

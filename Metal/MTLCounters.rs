@@ -10,6 +10,36 @@ use crate::*;
 /// Common counters that, when present, are expected to have similar meanings across
 /// different implementations.
 ///
+/// MTLCommonCounterTimestamp The GPU time when the sample is taken.
+///
+/// MTLCommonCounterTessellationInputPatches The number of patches input to the tessellator.
+///
+/// MTLCommonCounterVertexInvocations The number of times the vertex shader was invoked.
+///
+/// MTLCommonCounterPostTessellationVertexInvocations The number of times the post tessellation vertex shader was invoked.
+///
+/// MTLCommonCounterClipperInvocations The number of primitives passed to the clipper.
+///
+/// MTLCommonCounterClipperPrimitivesOut The number of primitives output from the clipper.
+///
+/// MTLCommonCounterFragmentInvocations The number of times the fragment shader was invoked.
+///
+/// MTLCommonCounterFragmentsPassed The number of fragments that passed Depth, Stencil, and Scissor tests.
+///
+/// MTLCommonCounterComputeKernelInvocations The number of times the computer kernel was invoked.
+///
+/// MTLCommonCounterTotalCycles The total number of cycles.
+///
+/// MTLCommonCounterVertexCycles The amount of cycles the vertex shader was running.
+///
+/// MTLCommonCounterTessellationCycles The amount of cycles spent in the tessellator.
+///
+/// MTLCommonCounterPostTessellationVertexCycles The amount of cycles the post tessellation vertex shader was running.
+///
+/// MTLCommonCounterFragmentCycles The amount of cycles the fragment shader was running.
+///
+/// MTLCommonCounterRenderTargetWriteCycles The amount of cycles spent writing to the render targets.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter?language=objc)
 // NS_TYPED_ENUM
 pub type MTLCommonCounter = NSString;
@@ -93,6 +123,12 @@ extern "C" {
 ///
 /// Each of these common counter sets has a defined structure type.  Implementations
 /// may omit some of the counters from these sets.
+///
+/// MTLCommonCounterSetTimestamp A counter set containing only the timestamp.
+///
+/// MTLCommonCounterSetStageUtilization A counter set containing utilization per stage.
+///
+/// MTLCommonCounterSetStatistic A counter set containing various statistics.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset?language=objc)
 // NS_TYPED_ENUM
@@ -209,10 +245,13 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterset?language=objc)
     pub unsafe trait MTLCounterSet: NSObjectProtocol + Send + Sync {
+        /// name The name of the counter set.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         fn name(&self) -> Retained<NSString>;
 
+        /// counters The set of counters captured by the counter set.
+        ///
         /// The counters array contains all the counters that will be written
         /// when a counter sample is collected.  Counters that do not appear in this array
         /// will not be written to the resolved buffer when the samples are resolved, even if
@@ -247,6 +286,7 @@ extern_conformance!(
 
 impl MTLCounterSampleBufferDescriptor {
     extern_methods!(
+        /// counterSet The counterset to be sampled for this counter sample buffer
         #[unsafe(method(counterSet))]
         #[unsafe(method_family = none)]
         pub fn counterSet(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSet>>>;
@@ -256,6 +296,7 @@ impl MTLCounterSampleBufferDescriptor {
         #[unsafe(method_family = none)]
         pub fn setCounterSet(&self, counter_set: Option<&ProtocolObject<dyn MTLCounterSet>>);
 
+        /// label A label to identify the sample buffer in debugging tools.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         pub fn label(&self) -> Retained<NSString>;
@@ -268,6 +309,7 @@ impl MTLCounterSampleBufferDescriptor {
         pub fn setLabel(&self, label: &NSString);
 
         #[cfg(feature = "MTLResource")]
+        /// storageMode The storage mode for the sample buffer.  Only
         /// MTLStorageModeShared and MTLStorageModePrivate may be used.
         #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
@@ -279,6 +321,7 @@ impl MTLCounterSampleBufferDescriptor {
         #[unsafe(method_family = none)]
         pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
+        /// sampleCount The number of samples that may be stored in the
         /// counter sample buffer.
         #[unsafe(method(sampleCount))]
         #[unsafe(method_family = none)]
@@ -322,16 +365,19 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffer?language=objc)
     pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
+        /// device The device that created the sample buffer.  It is only valid
         /// to use the sample buffer with this device.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// label The label for the sample buffer.  This is set by the label
         /// property of the descriptor that is used to create the sample buffer.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
         fn label(&self) -> Retained<NSString>;
 
+        /// sampleCount The number of samples that may be stored in this sample buffer.
         #[unsafe(method(sampleCount))]
         #[unsafe(method_family = none)]
         fn sampleCount(&self) -> NSUInteger;

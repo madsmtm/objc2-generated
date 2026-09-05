@@ -8,14 +8,14 @@ use crate::*;
 
 /// The medically-defined leads supported by HKElectrocardiogram
 ///
-/// the ECG app, enables the generation and analysis of an ECG  similar to a Lead I ECG.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramlead?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKElectrocardiogramLead(pub NSInteger);
 impl HKElectrocardiogramLead {
+    /// .   Apple Watch Series 4 and above has an electrical heart sensor that, when using
+    /// the ECG app, enables the generation and analysis of an ECG  similar to a Lead I ECG.
     #[doc(alias = "HKElectrocardiogramLeadAppleWatchSimilarToLeadI")]
     pub const AppleWatchSimilarToLeadI: Self = Self(1);
 }

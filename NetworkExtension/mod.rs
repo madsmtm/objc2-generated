@@ -45,24 +45,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEAppProxyFlowError(pub NSInteger);
 impl NEAppProxyFlowError {
+    /// NEAppProxyFlowErrorNotOpen The flow is not fully open.
     #[doc(alias = "NEAppProxyFlowErrorNotConnected")]
     pub const NotConnected: Self = Self(1);
+    /// NEAppProxyFlowErrorPeerReset The remote peer reset the flow.
     #[doc(alias = "NEAppProxyFlowErrorPeerReset")]
     pub const PeerReset: Self = Self(2);
+    /// NEAppProxyFlowErrorHostUnreachable The remote peer is unreachable.
     #[doc(alias = "NEAppProxyFlowErrorHostUnreachable")]
     pub const HostUnreachable: Self = Self(3);
+    /// NEAppProxyFlowErrorInvalidArgument An invalid argument was passed to one of the NEAppProxyFlow methods.
     #[doc(alias = "NEAppProxyFlowErrorInvalidArgument")]
     pub const InvalidArgument: Self = Self(4);
+    /// NEAppProxyFlowErrorAborted The flow was aborted.
     #[doc(alias = "NEAppProxyFlowErrorAborted")]
     pub const Aborted: Self = Self(5);
+    /// NEAppProxyFlowErrorRefused The flow was disallowed.
     #[doc(alias = "NEAppProxyFlowErrorRefused")]
     pub const Refused: Self = Self(6);
+    /// NEAppProxyFlowErrorTimedOut The flow timed out.
     #[doc(alias = "NEAppProxyFlowErrorTimedOut")]
     pub const TimedOut: Self = Self(7);
+    /// NEAppProxyFlowErrorInternal An internal error occurred.
     #[doc(alias = "NEAppProxyFlowErrorInternal")]
     pub const Internal: Self = Self(8);
+    /// NEAppProxyFlowErrorDatagramTooLarge An attempt was made to write a datagram that is larger than the socket's receive window
     #[doc(alias = "NEAppProxyFlowErrorDatagramTooLarge")]
     pub const DatagramTooLarge: Self = Self(9);
+    /// NEAppProxyFlowErrorReadAlreadyPending A read operation on the flow is already pending
     #[doc(alias = "NEAppProxyFlowErrorReadAlreadyPending")]
     pub const ReadAlreadyPending: Self = Self(10);
 }
@@ -76,7 +86,9 @@ unsafe impl RefEncode for NEAppProxyFlowError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyerrordomain?language=objc)
+    /// NEAppProxyErrorDomain The NEAppProxyFlow error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyerrordomain?language=objc)
     pub static NEAppProxyErrorDomain: &'static NSString;
 }
 
@@ -205,40 +217,58 @@ impl NEAppProxyFlow {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEProviderStopReason(pub NSInteger);
 impl NEProviderStopReason {
+    /// NEProviderStopReasonNone No specific reason.
     #[doc(alias = "NEProviderStopReasonNone")]
     pub const None: Self = Self(0);
+    /// NEProviderStopReasonUserInitiated The user stopped the provider.
     #[doc(alias = "NEProviderStopReasonUserInitiated")]
     pub const UserInitiated: Self = Self(1);
+    /// NEProviderStopReasonProviderFailed The provider failed.
     #[doc(alias = "NEProviderStopReasonProviderFailed")]
     pub const ProviderFailed: Self = Self(2);
+    /// NEProviderStopReasonNoNetworkAvailable There is no network connectivity.
     #[doc(alias = "NEProviderStopReasonNoNetworkAvailable")]
     pub const NoNetworkAvailable: Self = Self(3);
+    /// NEProviderStopReasonUnrecoverableNetworkChange The device attached to a new network.
     #[doc(alias = "NEProviderStopReasonUnrecoverableNetworkChange")]
     pub const UnrecoverableNetworkChange: Self = Self(4);
+    /// NEProviderStopReasonProviderDisabled The provider was disabled.
     #[doc(alias = "NEProviderStopReasonProviderDisabled")]
     pub const ProviderDisabled: Self = Self(5);
+    /// NEProviderStopReasonAuthenticationCanceled The authentication process was cancelled.
     #[doc(alias = "NEProviderStopReasonAuthenticationCanceled")]
     pub const AuthenticationCanceled: Self = Self(6);
+    /// NEProviderStopReasonConfigurationFailed The provider could not be configured.
     #[doc(alias = "NEProviderStopReasonConfigurationFailed")]
     pub const ConfigurationFailed: Self = Self(7);
+    /// NEProviderStopReasonIdleTimeout The provider was idle for too long.
     #[doc(alias = "NEProviderStopReasonIdleTimeout")]
     pub const IdleTimeout: Self = Self(8);
+    /// NEProviderStopReasonConfigurationDisabled The associated configuration was disabled.
     #[doc(alias = "NEProviderStopReasonConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(9);
+    /// NEProviderStopReasonConfigurationRemoved The associated configuration was deleted.
     #[doc(alias = "NEProviderStopReasonConfigurationRemoved")]
     pub const ConfigurationRemoved: Self = Self(10);
+    /// NEProviderStopReasonSuperceded A high-priority configuration was started.
     #[doc(alias = "NEProviderStopReasonSuperceded")]
     pub const Superceded: Self = Self(11);
+    /// NEProviderStopReasonUserLogout The user logged out.
     #[doc(alias = "NEProviderStopReasonUserLogout")]
     pub const UserLogout: Self = Self(12);
+    /// NEProviderStopReasonUserSwitch The active user changed.
     #[doc(alias = "NEProviderStopReasonUserSwitch")]
     pub const UserSwitch: Self = Self(13);
+    /// NEProviderStopReasonConnectionFailed Failed to establish connection.
     #[doc(alias = "NEProviderStopReasonConnectionFailed")]
     pub const ConnectionFailed: Self = Self(14);
+    /// NEProviderStopReasonSleep The device went to sleep and disconnectOnSleep is enabled in the configuration
     #[doc(alias = "NEProviderStopReasonSleep")]
     pub const Sleep: Self = Self(15);
+    /// NEProviderStopReasonAppUpdate The NEProvider is being updated
     #[doc(alias = "NEProviderStopReasonAppUpdate")]
     pub const AppUpdate: Self = Self(16);
+    /// NEProviderStopReasonInternalError An internal error occurred in the NetworkExtension framework
     #[doc(alias = "NEProviderStopReasonInternalError")]
     pub const InternalError: Self = Self(17);
 }
@@ -421,10 +451,13 @@ impl NEProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NETunnelProviderError(pub NSInteger);
 impl NETunnelProviderError {
+    /// NETunnelProviderErrorNetworkSettingsInvalid The provided tunnel network settings are invalid.
     #[doc(alias = "NETunnelProviderErrorNetworkSettingsInvalid")]
     pub const NetworkSettingsInvalid: Self = Self(1);
+    /// NETunnelProviderErrorNetworkSettingsCanceled The request to set/clear the tunnel network settings was canceled.
     #[doc(alias = "NETunnelProviderErrorNetworkSettingsCanceled")]
     pub const NetworkSettingsCanceled: Self = Self(2);
+    /// NETunnelProviderErrorNetworkSettingsFailed The request to set/clear the tunnel network settings failed.
     #[doc(alias = "NETunnelProviderErrorNetworkSettingsFailed")]
     pub const NetworkSettingsFailed: Self = Self(3);
 }
@@ -445,10 +478,13 @@ unsafe impl RefEncode for NETunnelProviderError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NETunnelProviderRoutingMethod(pub NSInteger);
 impl NETunnelProviderRoutingMethod {
+    /// NETunnelProviderRoutingMethodDestinationIP Route network traffic to the tunnel based on destination IP
     #[doc(alias = "NETunnelProviderRoutingMethodDestinationIP")]
     pub const DestinationIP: Self = Self(1);
+    /// NETunnelProviderRoutingMethodSourceApplication Route network traffic to the tunnel based on source application
     #[doc(alias = "NETunnelProviderRoutingMethodSourceApplication")]
     pub const SourceApplication: Self = Self(2);
+    /// NETunnelProviderRoutingMethodNetworkRule Route traffic to the tunnel (or proxy) based on NENetworkRule objects specified by the provider
     #[doc(alias = "NETunnelProviderRoutingMethodNetworkRule")]
     pub const NetworkRule: Self = Self(3);
 }
@@ -462,7 +498,9 @@ unsafe impl RefEncode for NETunnelProviderRoutingMethod {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererrordomain?language=objc)
+    /// NETunnelProviderErrorDomain The tunnel provider error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererrordomain?language=objc)
     pub static NETunnelProviderErrorDomain: &'static NSString;
 }
 
@@ -681,16 +719,22 @@ impl NEAppProxyProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNError(pub NSInteger);
 impl NEVPNError {
+    /// NEVPNErrorConfigurationInvalid The VPN configuration is invalid
     #[doc(alias = "NEVPNErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// NEVPNErrorConfigurationDisabled The VPN configuration is not enabled.
     #[doc(alias = "NEVPNErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// NEVPNErrorConnectionFailed The connection to the VPN server failed.
     #[doc(alias = "NEVPNErrorConnectionFailed")]
     pub const ConnectionFailed: Self = Self(3);
+    /// NEVPNErrorConfigurationStale The VPN configuration is stale and needs to be loaded.
     #[doc(alias = "NEVPNErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(4);
+    /// NEVPNErrorConfigurationReadWriteFailed The VPN configuration cannot be read from or written to disk.
     #[doc(alias = "NEVPNErrorConfigurationReadWriteFailed")]
     pub const ConfigurationReadWriteFailed: Self = Self(5);
+    /// NEVPNErrorConfigurationUnknown An unknown configuration error occurred.
     #[doc(alias = "NEVPNErrorConfigurationUnknown")]
     pub const ConfigurationUnknown: Self = Self(6);
 }
@@ -704,12 +748,16 @@ unsafe impl RefEncode for NEVPNError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerrordomain?language=objc)
+    /// NEVPNErrorDomain The VPN error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerrordomain?language=objc)
     pub static NEVPNErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconfigurationchangenotification?language=objc)
+    /// NEVPNConfigurationChangeNotification Name of the NSNotification that is posted when the VPN configuration changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconfigurationchangenotification?language=objc)
     pub static NEVPNConfigurationChangeNotification: &'static NSString;
 }
 
@@ -969,6 +1017,7 @@ impl NETunnelProviderManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setContactsDomains(&self, contacts_domains: &NSArray<NSString>);
 
+        /// An array of NEAppRule objects. Only applies to per-app VPN configurations. Network traffic originating from apps matching one of these rules is routed through the per-app VPN.
         #[unsafe(method(appRules))]
         #[unsafe(method_family = none)]
         pub unsafe fn appRules(&self) -> Retained<NSArray<NEAppRule>>;
@@ -980,6 +1029,7 @@ impl NETunnelProviderManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setAppRules(&self, app_rules: &NSArray<NEAppRule>);
 
+        /// An array of domain strings. Only applies to per-app VPN configurations. When the per-app VPN is enabled, connections to servers within one of these domains are excluded from the
         /// per-app VPN.
         #[unsafe(method(excludedDomains))]
         #[unsafe(method_family = none)]
@@ -992,6 +1042,7 @@ impl NETunnelProviderManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setExcludedDomains(&self, excluded_domains: &NSArray<NSString>);
 
+        /// An array of domain strings. Only applies to per-app VPN configurations. HTTP requests to download the Apple App Site Association files for domains in this list are routed through the per-app VPN.
         #[unsafe(method(associatedDomains))]
         #[unsafe(method_family = none)]
         pub unsafe fn associatedDomains(&self) -> Retained<NSArray<NSString>>;
@@ -1392,12 +1443,16 @@ impl NEAppRule {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEDNSProxyManagerError(pub NSInteger);
 impl NEDNSProxyManagerError {
+    /// NEDNSProxyManagerErrorConfigurationInvalid The DNS proxy configuration is invalid
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// NEDNSProxyManagerErrorConfigurationDisabled The DNS proxy configuration is not enabled.
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// NEDNSProxyManagerErrorConfigurationStale The DNS proxy configuration needs to be loaded.
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
+    /// NEDNSProxyManagerErrorConfigurationCannotBeRemoved The DNS proxy configuration cannot be removed.
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
 }
@@ -1411,12 +1466,16 @@ unsafe impl RefEncode for NEDNSProxyManagerError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain?language=objc)
+    /// NEDNSProxyManagerErrorDomain The DNS proxy error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain?language=objc)
     pub static NEDNSProxyErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyconfigurationdidchangenotification?language=objc)
+    /// NEDNSProxyConfigurationDidChangeNotification Name of the NSNotification that is posted when the DNS proxy configuration changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyconfigurationdidchangenotification?language=objc)
     pub static NEDNSProxyConfigurationDidChangeNotification: &'static NSString;
 }
 
@@ -2251,10 +2310,13 @@ impl NEDNSProxyProviderProtocol {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEDNSProtocol(pub NSInteger);
 impl NEDNSProtocol {
+    /// NEDNSProtocolCleartext Use traditional cleartext DNS over UDP and TCP port 53
     #[doc(alias = "NEDNSProtocolCleartext")]
     pub const Cleartext: Self = Self(1);
+    /// NEDNSProtocolTLS Use DNS-over-TLS
     #[doc(alias = "NEDNSProtocolTLS")]
     pub const TLS: Self = Self(2);
+    /// NEDNSProtocolHTTPS Use DNS-over-HTTPS
     #[doc(alias = "NEDNSProtocolHTTPS")]
     pub const HTTPS: Self = Self(3);
 }
@@ -2563,12 +2625,16 @@ impl NEDNSOverHTTPSSettings {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEDNSSettingsManagerError(pub NSInteger);
 impl NEDNSSettingsManagerError {
+    /// NEDNSSettingsManagerErrorConfigurationInvalid The DNS settings manager is invalid
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// NEDNSSettingsManagerErrorConfigurationDisabled The DNS settings manager is not enabled.
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// NEDNSSettingsManagerErrorConfigurationStale The DNS settings manager needs to be loaded.
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
+    /// NEDNSSettingsManagerErrorConfigurationCannotBeRemoved The DNS settings manager cannot be removed.
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
 }
@@ -2582,12 +2648,16 @@ unsafe impl RefEncode for NEDNSSettingsManagerError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingserrordomain?language=objc)
+    /// NEDNSSettingsManagerErrorDomain The DNS settings error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingserrordomain?language=objc)
     pub static NEDNSSettingsErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsconfigurationdidchangenotification?language=objc)
+    /// NEDNSSettingsConfigurationDidChangeNotification Name of the NSNotification that is posted when the DNS settings configuration changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsconfigurationdidchangenotification?language=objc)
     pub static NEDNSSettingsConfigurationDidChangeNotification: &'static NSString;
 }
 
@@ -2710,10 +2780,13 @@ impl NEDNSSettingsManager {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NENetworkRuleProtocol(pub NSInteger);
 impl NENetworkRuleProtocol {
+    /// NENetworkRuleProtocolAny Matches TCP and UDP traffic
     #[doc(alias = "NENetworkRuleProtocolAny")]
     pub const Any: Self = Self(0);
+    /// NENetworkRuleProtocolTCP Matches TCP traffic
     #[doc(alias = "NENetworkRuleProtocolTCP")]
     pub const TCP: Self = Self(1);
+    /// NENetworkRuleProtocolUDP Matches UDP traffic
     #[doc(alias = "NENetworkRuleProtocolUDP")]
     pub const UDP: Self = Self(2);
 }
@@ -2734,10 +2807,13 @@ unsafe impl RefEncode for NENetworkRuleProtocol {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NETrafficDirection(pub NSInteger);
 impl NETrafficDirection {
+    /// NETrafficDirectionAny Any direction
     #[doc(alias = "NETrafficDirectionAny")]
     pub const Any: Self = Self(0);
+    /// NETrafficDirectionInbound Inbound direction
     #[doc(alias = "NETrafficDirectionInbound")]
     pub const Inbound: Self = Self(1);
+    /// NETrafficDirectionOutbound Outbound direction
     #[doc(alias = "NETrafficDirectionOutbound")]
     pub const Outbound: Self = Self(2);
 }
@@ -3360,12 +3436,16 @@ impl NEFilterProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterReportFrequency(pub NSInteger);
 impl NEFilterReportFrequency {
+    /// NEFilterReportFrequencyNone No frequency
     #[doc(alias = "NEFilterReportFrequencyNone")]
     pub const None: Self = Self(0);
+    /// NEFilterReportFrequencyLow Low frequency, approximately 5 seconds
     #[doc(alias = "NEFilterReportFrequencyLow")]
     pub const Low: Self = Self(1);
+    /// NEFilterReportFrequencyMedium Medium frequency, approximately 1 second
     #[doc(alias = "NEFilterReportFrequencyMedium")]
     pub const Medium: Self = Self(2);
+    /// NEFilterReportFrequencyHigh High frequency, approximately half a second
     #[doc(alias = "NEFilterReportFrequencyHigh")]
     pub const High: Self = Self(3);
 }
@@ -3676,14 +3756,19 @@ impl NEFilterControlVerdict {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterAction(pub NSInteger);
 impl NEFilterAction {
+    /// NEFilterActionInvalid Invalid action, represents an error
     #[doc(alias = "NEFilterActionInvalid")]
     pub const Invalid: Self = Self(0);
+    /// NEFilterActionAllow Allowing the flow
     #[doc(alias = "NEFilterActionAllow")]
     pub const Allow: Self = Self(1);
+    /// NEFilterActionDrop Dropping the flow
     #[doc(alias = "NEFilterActionDrop")]
     pub const Drop: Self = Self(2);
+    /// NEFilterActionRemediate Remediating the flow (a "content blocked" page displayed to the user)
     #[doc(alias = "NEFilterActionRemediate")]
     pub const Remediate: Self = Self(3);
+    /// NEFilterActionFilterData Filtering data on the flow
     #[doc(alias = "NEFilterActionFilterData")]
     pub const FilterData: Self = Self(4);
 }
@@ -3704,12 +3789,16 @@ unsafe impl RefEncode for NEFilterAction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterReportEvent(pub NSInteger);
 impl NEFilterReportEvent {
+    /// NEFilterReportEventNewFlow The report is reporting a new flow
     #[doc(alias = "NEFilterReportEventNewFlow")]
     pub const NewFlow: Self = Self(1);
+    /// NEFilterReportEventDataDecision The report is reporting a pass/block decision made after analyzing some amount of a flow's data
     #[doc(alias = "NEFilterReportEventDataDecision")]
     pub const DataDecision: Self = Self(2);
+    /// NEFilterReportEventFlowClosed The report is reporting that a flow has been closed
     #[doc(alias = "NEFilterReportEventFlowClosed")]
     pub const FlowClosed: Self = Self(3);
+    /// NEFilterReportEventStatistics The report is reporting the latest statistics of the flow
     #[doc(alias = "NEFilterReportEventStatistics")]
     pub const Statistics: Self = Self(4);
 }
@@ -3931,6 +4020,7 @@ impl NEFilterControlProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterDataAttribute(pub NSInteger);
 impl NEFilterDataAttribute {
+    /// NEFilterDataAttributeHasIPHeader IP header is included in data
     #[doc(alias = "NEFilterDataAttributeHasIPHeader")]
     pub const HasIPHeader: Self = Self(0x00000001);
 }
@@ -4300,16 +4390,22 @@ impl NEFilterRemediationVerdict {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterManagerError(pub NSInteger);
 impl NEFilterManagerError {
+    /// NEFilterManagerErrorConfigurationInvalid The filter configuration is invalid
     #[doc(alias = "NEFilterManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// NEFilterManagerErrorConfigurationDisabled The filter configuration is not enabled.
     #[doc(alias = "NEFilterManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// NEFilterManagerErrorConfigurationStale The filter configuration needs to be loaded.
     #[doc(alias = "NEFilterManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
+    /// NEFilterManagerErrorConfigurationCannotBeRemoved The filter configuration cannot be removed.
     #[doc(alias = "NEFilterManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
+    /// NEFilterManagerErrorConfigurationPermissionDenied Operation permission denied.
     #[doc(alias = "NEFilterManagerErrorConfigurationPermissionDenied")]
     pub const ConfigurationPermissionDenied: Self = Self(5);
+    /// NEFilterManagerErrorConfigurationInternalError An internal configuration error occurred.
     #[doc(alias = "NEFilterManagerErrorConfigurationInternalError")]
     pub const ConfigurationInternalError: Self = Self(6);
 }
@@ -4323,12 +4419,16 @@ unsafe impl RefEncode for NEFilterManagerError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltererrordomain?language=objc)
+    /// NEFilterErrorDomain The filter error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltererrordomain?language=objc)
     pub static NEFilterErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterconfigurationdidchangenotification?language=objc)
+    /// NEFilterConfigurationDidChangeNotification Name of the NSNotification that is posted when the filter configuration changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterconfigurationdidchangenotification?language=objc)
     pub static NEFilterConfigurationDidChangeNotification: &'static NSString;
 }
 
@@ -4340,8 +4440,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterManagerGrade(pub NSInteger);
 impl NEFilterManagerGrade {
+    /// NEFilterManagerGradeFirewall The filter acts as a firewall, blocking some network traffic. Firewall grade filters see network traffic before other filter grades.
     #[doc(alias = "NEFilterManagerGradeFirewall")]
     pub const Firewall: Self = Self(1);
+    /// NEFilterManagerGradeInspector The filter acts as an inspector of network traffic. Inspector grade filters see network traffic after firewall grade filters.
     #[doc(alias = "NEFilterManagerGradeInspector")]
     pub const Inspector: Self = Self(2);
 }
@@ -4521,8 +4623,10 @@ impl NEFilterPacketContext {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterPacketProviderVerdict(pub NSInteger);
 impl NEFilterPacketProviderVerdict {
+    /// NEFilterPacketProviderVerdictAllow Allow a packet
     #[doc(alias = "NEFilterPacketProviderVerdictAllow")]
     pub const Allow: Self = Self(0);
+    /// NEFilterPacketProviderVerdictDrop Drop a packet
     #[doc(alias = "NEFilterPacketProviderVerdictDrop")]
     pub const Drop: Self = Self(1);
     #[doc(alias = "NEFilterPacketProviderVerdictDelay")]
@@ -5058,14 +5162,19 @@ impl NEFlowMetaData {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotNetworkSecurityType(pub NSInteger);
 impl NEHotspotNetworkSecurityType {
+    /// NEHotspotNetworkSecurityTypeOpen Open security type
     #[doc(alias = "NEHotspotNetworkSecurityTypeOpen")]
     pub const Open: Self = Self(0);
+    /// NEHotspotNetworkSecurityTypeWEP WEP security type
     #[doc(alias = "NEHotspotNetworkSecurityTypeWEP")]
     pub const WEP: Self = Self(1);
+    /// NEHotspotNetworkSecurityTypeWPA WPA/WPA2/WPA3 using pre-shared secret
     #[doc(alias = "NEHotspotNetworkSecurityTypePersonal")]
     pub const Personal: Self = Self(2);
+    /// NEHotspotNetworkSecurityTypeEnterprise WPA/WPA2/WPA3 using enterprise level security
     #[doc(alias = "NEHotspotNetworkSecurityTypeEnterprise")]
     pub const Enterprise: Self = Self(3);
+    /// NEHotspotNetworkSecurityTypeUnknown Unknown security type
     #[doc(alias = "NEHotspotNetworkSecurityTypeUnknown")]
     pub const Unknown: Self = Self(4);
 }
@@ -5276,6 +5385,8 @@ unsafe impl RefEncode for NEHotspotHelperConfidence {
 }
 
 /// HotspotHelper.
+///
+/// NEHotspotNetwork(HotspotHelper)
 ///
 /// Extends NEHotspotNetwork class to support conveying information about the
 /// network to the HotspotHelper. When the HotspotHelper is asked to evaluate
@@ -5655,6 +5766,8 @@ mod private_NSMutableURLRequestNEHotspotHelper {
 
 /// Category "NEHotspotHelper" on [`NSMutableURLRequest`].
 ///
+/// NSMutableURLRequest(NEHotspotHelper)
+///
 /// Extend NSMutableURLRequest to include a method to bind the
 /// request to the network interface associated with the specified
 /// NEHotspotHelperCommand object.
@@ -5675,6 +5788,14 @@ impl private_NSMutableURLRequestNEHotspotHelper::Sealed for NSMutableURLRequest 
 unsafe impl NSMutableURLRequestNEHotspotHelper for NSMutableURLRequest {}
 
 /// EAP Type.
+///
+/// NEHotspotConfigurationEAPTypeTLS EAP-TLS.
+///
+/// NEHotspotConfigurationEAPTypeTTLS TTLS.
+///
+/// NEHotspotConfigurationEAPTypePEAP PEAP.
+///
+/// NEHotspotConfigurationEAPTypeFAST EAP-FAST.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptype?language=objc)
 // NS_ENUM
@@ -5734,6 +5855,8 @@ unsafe impl RefEncode for NEHotspotConfigurationTTLSInnerAuthenticationType {
 }
 
 /// TLS version to use during TLS handshke.
+///
+/// NEHotspotConfigurationEAPTLSVersion_1_1 TLS version 1.2 (Default).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion?language=objc)
 // NS_ENUM
@@ -6260,7 +6383,9 @@ impl NEHotspotConfiguration {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerrordomain?language=objc)
+    /// NEHotspotConfigurationErrorDomain The Hotspot Configuration error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerrordomain?language=objc)
     pub static NEHotspotConfigurationErrorDomain: &'static NSString;
 }
 
@@ -7317,12 +7442,16 @@ impl NEEthernetTunnelProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEOnDemandRuleAction(pub NSInteger);
 impl NEOnDemandRuleAction {
+    /// NEOnDemandRuleActionConnect Start the VPN connection
     #[doc(alias = "NEOnDemandRuleActionConnect")]
     pub const Connect: Self = Self(1);
+    /// NEOnDemandRuleActionDisconnect Do not start the VPN connection, and disconnect the VPN connection if it is not currently disconnected
     #[doc(alias = "NEOnDemandRuleActionDisconnect")]
     pub const Disconnect: Self = Self(2);
+    /// NEOnDemandRuleActionEvaluateConnection Start the VPN after evaluating the destination host being accessed against the rule's connection rules
     #[doc(alias = "NEOnDemandRuleActionEvaluateConnection")]
     pub const EvaluateConnection: Self = Self(3);
+    /// NEOnDemandRuleActionIgnore Do not start the VPN connection, and leave the VPN connection in its current state
     #[doc(alias = "NEOnDemandRuleActionIgnore")]
     pub const Ignore: Self = Self(4);
 }
@@ -7345,10 +7474,13 @@ pub struct NEOnDemandRuleInterfaceType(pub NSInteger);
 impl NEOnDemandRuleInterfaceType {
     #[doc(alias = "NEOnDemandRuleInterfaceTypeAny")]
     pub const Any: Self = Self(0);
+    /// NEOnDemandRuleInterfaceTypeEthernet Wired Ethernet
     #[doc(alias = "NEOnDemandRuleInterfaceTypeEthernet")]
     pub const Ethernet: Self = Self(1);
+    /// NEOnDemandRuleInterfaceTypeWiFi WiFi
     #[doc(alias = "NEOnDemandRuleInterfaceTypeWiFi")]
     pub const WiFi: Self = Self(2);
+    /// NEOnDemandRuleInterfaceTypeCellular Cellular
     #[doc(alias = "NEOnDemandRuleInterfaceTypeCellular")]
     pub const Cellular: Self = Self(3);
 }
@@ -7701,8 +7833,10 @@ impl NEOnDemandRuleEvaluateConnection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEEvaluateConnectionRuleAction(pub NSInteger);
 impl NEEvaluateConnectionRuleAction {
+    /// NEEvaluateConnectionRuleActionConnectIfNeeded Start the VPN connection if the destination host is not accessible directly
     #[doc(alias = "NEEvaluateConnectionRuleActionConnectIfNeeded")]
     pub const ConnectIfNeeded: Self = Self(1);
+    /// NEEvaluateConnectionRuleActionNeverConnect Do not start the VPN connection
     #[doc(alias = "NEEvaluateConnectionRuleActionNeverConnect")]
     pub const NeverConnect: Self = Self(2);
 }
@@ -8151,12 +8285,16 @@ impl NERelay {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NERelayManagerError(pub NSInteger);
 impl NERelayManagerError {
+    /// NERelayManagerErrorConfigurationInvalid The relay manager is invalid
     #[doc(alias = "NERelayManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// NERelayManagerErrorConfigurationDisabled The relay manager is not enabled.
     #[doc(alias = "NERelayManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
+    /// NERelayManagerErrorConfigurationStale The relay manager needs to be loaded.
     #[doc(alias = "NERelayManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
+    /// NERelayManagerErrorConfigurationCannotBeRemoved The relay manager cannot be removed.
     #[doc(alias = "NERelayManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
 }
@@ -8170,7 +8308,9 @@ unsafe impl RefEncode for NERelayManagerError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayerrordomain?language=objc)
+    /// NERelayErrorDomain The NERelay error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayerrordomain?language=objc)
     pub static NERelayErrorDomain: &'static NSString;
 }
 
@@ -8182,26 +8322,37 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NERelayManagerClientError(pub NSInteger);
 impl NERelayManagerClientError {
+    /// NERelayManagerClientErrorNone The client did not have an error on the last connection
     #[doc(alias = "NERelayManagerClientErrorNone")]
     pub const None: Self = Self(1);
+    /// NERelayManagerClientErrorDNSFailed DNS resolution of the relay server failed
     #[doc(alias = "NERelayManagerClientErrorDNSFailed")]
     pub const DNSFailed: Self = Self(2);
+    /// NERelayManagerClientErrorServerUnreachable The relay server was unreachable
     #[doc(alias = "NERelayManagerClientErrorServerUnreachable")]
     pub const ServerUnreachable: Self = Self(3);
+    /// NERelayManagerClientErrorServerDisconnected The relay server prematurely disconnected the connection
     #[doc(alias = "NERelayManagerClientErrorServerDisconnected")]
     pub const ServerDisconnected: Self = Self(4);
+    /// NERelayManagerClientErrorCertificateMissing The certificate needed to connect to the relay server could not be accessed or was not provided
     #[doc(alias = "NERelayManagerClientErrorCertificateMissing")]
     pub const CertificateMissing: Self = Self(5);
+    /// NERelayManagerClientErrorCertificateInvalid The certificate needed to connect to the relay server was invalid.
     #[doc(alias = "NERelayManagerClientErrorCertificateInvalid")]
     pub const CertificateInvalid: Self = Self(6);
+    /// NERelayManagerClientErrorCertificateExpired The certificate needed to connect to the relay server was expired.
     #[doc(alias = "NERelayManagerClientErrorCertificateExpired")]
     pub const CertificateExpired: Self = Self(7);
+    /// NERelayManagerClientErrorServerCertificateInvalid The relay server certificate was invalid.
     #[doc(alias = "NERelayManagerClientErrorServerCertificateInvalid")]
     pub const ServerCertificateInvalid: Self = Self(8);
+    /// NERelayManagerClientErrorServerCertificateExpired The relay server certificate was expired.
     #[doc(alias = "NERelayManagerClientErrorServerCertificateExpired")]
     pub const ServerCertificateExpired: Self = Self(9);
+    /// NERelayManagerClientErrorOther The client detected an error that has not yet been enumerated
     #[doc(alias = "NERelayManagerClientErrorOther")]
     pub const Other: Self = Self(10);
+    /// NERelayManagerClientErrorPvDConfigurationTruncated The PvD configuration exceeded the maximum number of proxy-match rules and was truncated
     #[doc(alias = "NERelayManagerClientErrorPvDConfigurationTruncated")]
     pub const PvDConfigurationTruncated: Self = Self(11);
 }
@@ -8215,12 +8366,16 @@ unsafe impl RefEncode for NERelayManagerClientError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayclienterrordomain?language=objc)
+    /// NERelayClientErrorDomain The NERelay error domain as detected by the client
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayclienterrordomain?language=objc)
     pub static NERelayClientErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayconfigurationdidchangenotification?language=objc)
+    /// NERelayConfigurationDidChangeNotification Name of the NSNotification that is posted when the relay configuration changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayconfigurationdidchangenotification?language=objc)
     pub static NERelayConfigurationDidChangeNotification: &'static NSString;
 }
 
@@ -8631,16 +8786,22 @@ impl NETransparentProxyProvider {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNStatus(pub NSInteger);
 impl NEVPNStatus {
+    /// NEVPNStatusInvalid The VPN is not configured.
     #[doc(alias = "NEVPNStatusInvalid")]
     pub const Invalid: Self = Self(0);
+    /// NEVPNStatusDisconnected The VPN is disconnected.
     #[doc(alias = "NEVPNStatusDisconnected")]
     pub const Disconnected: Self = Self(1);
+    /// NEVPNStatusConnecting The VPN is connecting.
     #[doc(alias = "NEVPNStatusConnecting")]
     pub const Connecting: Self = Self(2);
+    /// NEVPNStatusConnected The VPN is connected.
     #[doc(alias = "NEVPNStatusConnected")]
     pub const Connected: Self = Self(3);
+    /// NEVPNStatusReasserting The VPN is reconnecting following loss of underlying network connectivity.
     #[doc(alias = "NEVPNStatusReasserting")]
     pub const Reasserting: Self = Self(4);
+    /// NEVPNStatusDisconnecting The VPN is disconnecting.
     #[doc(alias = "NEVPNStatusDisconnecting")]
     pub const Disconnecting: Self = Self(5);
 }
@@ -8654,17 +8815,23 @@ unsafe impl RefEncode for NEVPNStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatusdidchangenotification?language=objc)
+    /// NEVPNStatusDidChangeNotification Name of the NSNotification that is posted when the VPN status changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatusdidchangenotification?language=objc)
     pub static NEVPNStatusDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionusername?language=objc)
+    /// NEVPNConnectionStartOptionUsername Specify this key in the options dictionary passed to startVPNTunnelWithOptions:returningError: to override the username saved in the configuration. The value is a string
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionusername?language=objc)
     pub static NEVPNConnectionStartOptionUsername: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionpassword?language=objc)
+    /// NEVPNConnectionStartOptionPassword Specify this key in the options dictionary passed to startVPNTunnelWithOptions:returningError: to override the password saved in the configuration. The value is a string
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionpassword?language=objc)
     pub static NEVPNConnectionStartOptionPassword: &'static NSString;
 }
 
@@ -8676,43 +8843,62 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNConnectionError(pub NSInteger);
 impl NEVPNConnectionError {
+    /// NEVPNConnectionErrorOverslept The VPN connection was terminated because the system slept for an extended period of time.
     #[doc(alias = "NEVPNConnectionErrorOverslept")]
     pub const Overslept: Self = Self(1);
+    /// NEVPNConnectionErrorNoNetworkAvailable The VPN connection could not be established because the system is not connected to a network.
     #[doc(alias = "NEVPNConnectionErrorNoNetworkAvailable")]
     pub const NoNetworkAvailable: Self = Self(2);
+    /// NEVPNConnectionErrorUnrecoverableNetworkChange The VPN connection was terminated because the network conditions changed in such a
     /// way that the VPN connection could not be maintained.
     #[doc(alias = "NEVPNConnectionErrorUnrecoverableNetworkChange")]
     pub const UnrecoverableNetworkChange: Self = Self(3);
+    /// NEVPNConnectionErrorConfigurationFailed The VPN connection could not be established because the configuration is invalid.
     #[doc(alias = "NEVPNConnectionErrorConfigurationFailed")]
     pub const ConfigurationFailed: Self = Self(4);
+    /// NEVPNConnectionErrorServerAddressResolutionFailed The address of the VPN server could not be determined.
     #[doc(alias = "NEVPNConnectionErrorServerAddressResolutionFailed")]
     pub const ServerAddressResolutionFailed: Self = Self(5);
+    /// NEVPNConnectionErrorServerNotResponding Network communication with the VPN server has failed.
     #[doc(alias = "NEVPNConnectionErrorServerNotResponding")]
     pub const ServerNotResponding: Self = Self(6);
+    /// NEVPNConnectionErrorServerDead The VPN server is no longer functioning.
     #[doc(alias = "NEVPNConnectionErrorServerDead")]
     pub const ServerDead: Self = Self(7);
+    /// NEVPNConnectionErrorAuthenticationFailed The user credentials were rejected by the VPN server.
     #[doc(alias = "NEVPNConnectionErrorAuthenticationFailed")]
     pub const AuthenticationFailed: Self = Self(8);
+    /// NEVPNConnectionErrorClientCertificateInvalid The client certificate is invalid.
     #[doc(alias = "NEVPNConnectionErrorClientCertificateInvalid")]
     pub const ClientCertificateInvalid: Self = Self(9);
+    /// NEVPNConnectionErrorClientCertificateNotYetValid The client certificate will not be valid until some future point in time.
     #[doc(alias = "NEVPNConnectionErrorClientCertificateNotYetValid")]
     pub const ClientCertificateNotYetValid: Self = Self(10);
+    /// NEVPNConnectionErrorClientCertificateExpired The validity period of the client certificate has passed.
     #[doc(alias = "NEVPNConnectionErrorClientCertificateExpired")]
     pub const ClientCertificateExpired: Self = Self(11);
+    /// NEVPNConnectionErrorPluginFailed The VPN plugin died unexpectedly.
     #[doc(alias = "NEVPNConnectionErrorPluginFailed")]
     pub const PluginFailed: Self = Self(12);
+    /// NEVPNConnectionErrorConfigurationNotFound The VPN configuration could not be found .
     #[doc(alias = "NEVPNConnectionErrorConfigurationNotFound")]
     pub const ConfigurationNotFound: Self = Self(13);
+    /// NEVPNConnectionErrorPluginDisabled The VPN plugin could not be found or needed to be updated.
     #[doc(alias = "NEVPNConnectionErrorPluginDisabled")]
     pub const PluginDisabled: Self = Self(14);
+    /// NEVPNConnectionErrorNegotiationFailed The VPN protocol negotiation failed.
     #[doc(alias = "NEVPNConnectionErrorNegotiationFailed")]
     pub const NegotiationFailed: Self = Self(15);
+    /// NEVPNConnectionErrorServerDisconnected The VPN server terminated the connection.
     #[doc(alias = "NEVPNConnectionErrorServerDisconnected")]
     pub const ServerDisconnected: Self = Self(16);
+    /// NEVPNConnectionErrorServerCertificateInvalid The server certificate is invalid.
     #[doc(alias = "NEVPNConnectionErrorServerCertificateInvalid")]
     pub const ServerCertificateInvalid: Self = Self(17);
+    /// NEVPNConnectionErrorServerCertificateNotYetValid The server certificate will not be valid until some future point in time.
     #[doc(alias = "NEVPNConnectionErrorServerCertificateNotYetValid")]
     pub const ServerCertificateNotYetValid: Self = Self(18);
+    /// NEVPNConnectionErrorServerCertificateExpired The validity period of the server certificate has passed.
     #[doc(alias = "NEVPNConnectionErrorServerCertificateExpired")]
     pub const ServerCertificateExpired: Self = Self(19);
 }
@@ -8726,7 +8912,9 @@ unsafe impl RefEncode for NEVPNConnectionError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerrordomain?language=objc)
+    /// NEVPNConnectionErrorDomain The VPN connection error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerrordomain?language=objc)
     pub static NEVPNConnectionErrorDomain: &'static NSString;
 }
 
@@ -8828,6 +9016,8 @@ impl NEVPNConnection {
 }
 
 extern_class!(
+    /// NETunnelProviderSession.h
+    ///
     /// This file declares the NETunnelProviderSession API. The NETunnelProviderSession API is used to control network tunnel services provided by NETunnelProvider implementations.
     ///
     /// This API is part of NetworkExtension.framework.
@@ -8997,10 +9187,13 @@ impl NETunnelProviderProtocol {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEAuthenticationMethod(pub NSInteger);
 impl NEVPNIKEAuthenticationMethod {
+    /// NEVPNIKEAuthenticationMethodNone Do not authenticate with the IPSec server
     #[doc(alias = "NEVPNIKEAuthenticationMethodNone")]
     pub const None: Self = Self(0);
+    /// NEVPNIKEAuthenticationMethodCertificate Use a certificate and private key as the authentication credential
     #[doc(alias = "NEVPNIKEAuthenticationMethodCertificate")]
     pub const Certificate: Self = Self(1);
+    /// NEVPNIKEAuthenticationMethodSharedSecret Use a shared secret as the authentication credential
     #[doc(alias = "NEVPNIKEAuthenticationMethodSharedSecret")]
     pub const SharedSecret: Self = Self(2);
 }
@@ -9130,22 +9323,29 @@ impl NEVPNProtocolIPSec {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2EncryptionAlgorithm(pub NSInteger);
 impl NEVPNIKEv2EncryptionAlgorithm {
+    /// NEVPNIKEv2EncryptionAlgorithmDES Data Encryption Standard (DES)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmDES")]
     #[deprecated = "DES is not supported"]
     pub const AlgorithmDES: Self = Self(1);
+    /// NEVPNIKEv2EncryptionAlgorithm3DES Triple Data Encryption Algorithm (aka 3DES)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithm3DES")]
     #[deprecated = "3DES is not supported"]
     pub const Algorithm3DES: Self = Self(2);
+    /// NEVPNIKEv2EncryptionAlgorithmAES128 Advanced Encryption Standard 128 bit (AES128)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128")]
     #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
     pub const AlgorithmAES128: Self = Self(3);
+    /// NEVPNIKEv2EncryptionAlgorithmAES256 Advanced Encryption Standard 256 bit (AES256)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256")]
     pub const AlgorithmAES256: Self = Self(4);
+    /// NEVPNIKEv2EncryptionAlgorithmAES128GCM Advanced Encryption Standard 128 bit (AES128GCM)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128GCM")]
     #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
     pub const AlgorithmAES128GCM: Self = Self(5);
+    /// NEVPNIKEv2EncryptionAlgorithmAES256GCM Advanced Encryption Standard 256 bit (AES256GCM)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256GCM")]
     pub const AlgorithmAES256GCM: Self = Self(6);
+    /// NEVPNIKEv2EncryptionAlgorithmChaCha20Poly1305 ChaCha20 and Poly1305 (ChaCha20Poly1305)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmChaCha20Poly1305")]
     pub const AlgorithmChaCha20Poly1305: Self = Self(7);
 }
@@ -9166,16 +9366,21 @@ unsafe impl RefEncode for NEVPNIKEv2EncryptionAlgorithm {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2IntegrityAlgorithm(pub NSInteger);
 impl NEVPNIKEv2IntegrityAlgorithm {
+    /// NEVPNIKEv2IntegrityAlgorithmSHA96 SHA-1 96 bit
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA96")]
     #[deprecated = "SHA-1 is not supported"]
     pub const SHA96: Self = Self(1);
+    /// NEVPNIKEv2IntegrityAlgorithmSHA160 SHA-1 160 bit
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA160")]
     #[deprecated = "SHA-1 is not supported"]
     pub const SHA160: Self = Self(2);
+    /// NEVPNIKEv2IntegrityAlgorithmSHA256 SHA-2 256 bit
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA256")]
     pub const SHA256: Self = Self(3);
+    /// NEVPNIKEv2IntegrityAlgorithmSHA384 SHA-2 384 bit
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA384")]
     pub const SHA384: Self = Self(4);
+    /// NEVPNIKEv2IntegrityAlgorithmSHA512 SHA-2 512 bit
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA512")]
     pub const SHA512: Self = Self(5);
 }
@@ -9196,12 +9401,16 @@ unsafe impl RefEncode for NEVPNIKEv2IntegrityAlgorithm {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2DeadPeerDetectionRate(pub NSInteger);
 impl NEVPNIKEv2DeadPeerDetectionRate {
+    /// NEVPNIKEv2DeadPeerDetectionRateNone Do not perform dead peer detection
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateNone")]
     pub const None: Self = Self(0);
+    /// NEVPNIKEv2DeadPeerDetectionRateLow Run dead peer detection once every 30 minutes. If the peer does not respond, retry 5 times at 1 second intervals before declaring the peer dead
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateLow")]
     pub const Low: Self = Self(1);
+    /// NEVPNIKEv2DeadPeerDetectionRateMedium Run dead peer detection once every 10 minutes. If the peer does not respond, retry 5 times at 1 second intervals before declaring the peer dead
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateMedium")]
     pub const Medium: Self = Self(2);
+    /// NEVPNIKEv2DeadPeerDetectionRateHigh Run dead peer detection once every 1 minute. If the peer does not respond, retry 5 times at 1 second intervals before declaring the peer dead
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateHigh")]
     pub const High: Self = Self(3);
 }
@@ -9222,35 +9431,49 @@ unsafe impl RefEncode for NEVPNIKEv2DeadPeerDetectionRate {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2DiffieHellmanGroup(pub NSInteger);
 impl NEVPNIKEv2DiffieHellmanGroup {
+    /// NEVPNIKEv2DiffieHellmanGroupInvalid Diffie Hellman group 0 is not a valid DH group
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroupInvalid")]
     pub const GroupInvalid: Self = Self(0);
+    /// NEVPNIKEv2DiffieHellmanGroup1 Diffie Hellman group 1 (768-bit MODP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup1")]
     #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group1: Self = Self(1);
+    /// NEVPNIKEv2DiffieHellmanGroup2 Diffie Hellman group 2 (1024-bit MODP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup2")]
     #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group2: Self = Self(2);
+    /// NEVPNIKEv2DiffieHellmanGroup5 Diffie Hellman group 5 (1536-bit MODP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup5")]
     #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group5: Self = Self(5);
+    /// NEVPNIKEv2DiffieHellmanGroup14 Diffie Hellman group 14 (2048-bit MODP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup14")]
     pub const Group14: Self = Self(14);
+    /// NEVPNIKEv2DiffieHellmanGroup15 Diffie Hellman group 15 (3072-bit MODP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup15")]
     pub const Group15: Self = Self(15);
+    /// NEVPNIKEv2DiffieHellmanGroup16 Diffie Hellman group 16 (4096-bit MODP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup16")]
     pub const Group16: Self = Self(16);
+    /// NEVPNIKEv2DiffieHellmanGroup17 Diffie Hellman group 17 (6144-bit MODP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup17")]
     pub const Group17: Self = Self(17);
+    /// NEVPNIKEv2DiffieHellmanGroup18 Diffie Hellman group 18 (8192-bit MODP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup18")]
     pub const Group18: Self = Self(18);
+    /// NEVPNIKEv2DiffieHellmanGroup19 Diffie Hellman group 19 (256-bit random ECP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup19")]
     pub const Group19: Self = Self(19);
+    /// NEVPNIKEv2DiffieHellmanGroup20 Diffie Hellman group 20 (384-bit random ECP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup20")]
     pub const Group20: Self = Self(20);
+    /// NEVPNIKEv2DiffieHellmanGroup21 Diffie Hellman group 21 (521-bit random ECP)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup21")]
     pub const Group21: Self = Self(21);
+    /// NEVPNIKEv2DiffieHellmanGroup31 Diffie Hellman group 31 (Curve25519)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup31")]
     pub const Group31: Self = Self(31);
+    /// NEVPNIKEv2DiffieHellmanGroup32 Diffie Hellman group 32 (Curve448)
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup32")]
     pub const Group32: Self = Self(32);
 }
@@ -9271,10 +9494,13 @@ unsafe impl RefEncode for NEVPNIKEv2DiffieHellmanGroup {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2PostQuantumKeyExchangeMethod(pub NSInteger);
 impl NEVPNIKEv2PostQuantumKeyExchangeMethod {
+    /// NEVPNIKEv2PostQuantumKeyExchangeMethodNone Do not perform a post-quantum key exchange
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethodNone")]
     pub const MethodNone: Self = Self(0);
+    /// NEVPNIKEv2PostQuantumKeyExchangeMethod36 Post-Quantum Key Exchange method 36 (ML-KEM-768)
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethod36")]
     pub const Method36: Self = Self(36);
+    /// NEVPNIKEv2PostQuantumKeyExchangeMethod37 Post-Quantum Key Exchange method 37 (ML-KEM-1024)
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethod37")]
     pub const Method37: Self = Self(37);
 }
@@ -9295,16 +9521,22 @@ unsafe impl RefEncode for NEVPNIKEv2PostQuantumKeyExchangeMethod {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2CertificateType(pub NSInteger);
 impl NEVPNIKEv2CertificateType {
+    /// NEVPNIKEv2CertificateType RSA
     #[doc(alias = "NEVPNIKEv2CertificateTypeRSA")]
     pub const RSA: Self = Self(1);
+    /// NEVPNIKEv2CertificateTypeECDSA256 ECDSA with p-256 curve
     #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA256")]
     pub const ECDSA256: Self = Self(2);
+    /// NEVPNIKEv2CertificateTypeECDSA384 ECDSA with p-384 curve
     #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA384")]
     pub const ECDSA384: Self = Self(3);
+    /// NEVPNIKEv2CertificateTypeECDSA521 ECDSA with p-521 curve
     #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA521")]
     pub const ECDSA521: Self = Self(4);
+    /// NEVPNIKEv2CertificateTypeEd25519 EdDSA with Edwards Curve25519
     #[doc(alias = "NEVPNIKEv2CertificateTypeEd25519")]
     pub const Ed25519: Self = Self(5);
+    /// NEVPNIKEv2CertificateTypeRSAPSS RSA-PSS
     #[doc(alias = "NEVPNIKEv2CertificateTypeRSAPSS")]
     pub const RSAPSS: Self = Self(6);
 }
@@ -9325,12 +9557,16 @@ unsafe impl RefEncode for NEVPNIKEv2CertificateType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2TLSVersion(pub NSInteger);
 impl NEVPNIKEv2TLSVersion {
+    /// NEVPNIKEv2TLSVersionDefault Use the default TLS configuration
     #[doc(alias = "NEVPNIKEv2TLSVersionDefault")]
     pub const VersionDefault: Self = Self(0);
+    /// NEVPNIKEv2TLSVersion1_0 TLS 1.0
     #[doc(alias = "NEVPNIKEv2TLSVersion1_0")]
     pub const Version1_0: Self = Self(1);
+    /// NEVPNIKEv2TLSVersion1_0 TLS 1.1
     #[doc(alias = "NEVPNIKEv2TLSVersion1_1")]
     pub const Version1_1: Self = Self(2);
+    /// NEVPNIKEv2TLSVersion1_0 TLS 1.2
     #[doc(alias = "NEVPNIKEv2TLSVersion1_2")]
     pub const Version1_2: Self = Self(3);
 }
@@ -9783,7 +10019,9 @@ impl NEVPNProtocolIKEv2 {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppusherrordomain?language=objc)
+    /// NEAppPushErrorDomain The app push manager error domain
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppusherrordomain?language=objc)
     pub static NEAppPushErrorDomain: &'static NSErrorDomain;
 }
 
@@ -9794,12 +10032,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEAppPushManagerError(pub NSInteger);
 impl NEAppPushManagerError {
+    /// NEAppPushManagerErrorConfigurationInvalid The app push configuration is invalid
     #[doc(alias = "NEAppPushManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
+    /// NEAppPushManagerErrorConfigurationNotLoaded The app push configuration is not loaded
     #[doc(alias = "NEAppPushManagerErrorConfigurationNotLoaded")]
     pub const ConfigurationNotLoaded: Self = Self(2);
+    /// NEAppPushManagerErrorInternalError Internal error in API task handling
     #[doc(alias = "NEAppPushManagerErrorInternalError")]
     pub const InternalError: Self = Self(3);
+    /// NEAppPushManagerErrorInactiveSession This operation is invalid on inactive session
     #[doc(alias = "NEAppPushManagerErrorInactiveSession")]
     pub const InactiveSession: Self = Self(4);
 }
@@ -10436,15 +10678,19 @@ impl NEBonjourServiceEndpoint {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWPathStatus(pub NSInteger);
 impl NWPathStatus {
+    /// NWPathStatusInvalid The path cannot be evaluated.
     #[doc(alias = "NWPathStatusInvalid")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Invalid: Self = Self(0);
+    /// NWPathStatusSatisfied The path is ready to be used for traffic.
     #[doc(alias = "NWPathStatusSatisfied")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Satisfied: Self = Self(1);
+    /// NWPathStatusUnsatisfied The network for this connection is not available.
     #[doc(alias = "NWPathStatusUnsatisfied")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Unsatisfied: Self = Self(2);
+    /// NWPathStatusSatisfiable The path may become satisfied upon
     /// a connection attempt.
     #[doc(alias = "NWPathStatusSatisfiable")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
@@ -10529,26 +10775,32 @@ impl NEPath {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWTCPConnectionState(pub NSInteger);
 impl NWTCPConnectionState {
+    /// NWTCPConnectionStateInvalid The connection is in an invalid or uninitialized state
     #[doc(alias = "NWTCPConnectionStateInvalid")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Invalid: Self = Self(0);
+    /// NWTCPConnectionStateConnecting The connection is attempting
     #[doc(alias = "NWTCPConnectionStateConnecting")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Connecting: Self = Self(1);
+    /// NWTCPConnectionStateWaiting The connection has attempted but failed. It is now
     /// waiting for better condition(s) before trying again.
     #[doc(alias = "NWTCPConnectionStateWaiting")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Waiting: Self = Self(2);
+    /// NWTCPConnectionStateConnected The connection is established. It is now possible
     /// to transfer data. If TLS is in use, the TLS handshake would have finished when the connection
     /// is in this state.
     #[doc(alias = "NWTCPConnectionStateConnected")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Connected: Self = Self(3);
+    /// NWTCPConnectionStateDisconnected The connection is disconnected. It is no longer
     /// possible to transfer data. The application should call cancellation method to clean up resources
     /// when the connection is in this state.
     #[doc(alias = "NWTCPConnectionStateDisconnected")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Disconnected: Self = Self(4);
+    /// NWTCPConnectionStateCancelled The connection is cancelled. This is triggered by
     /// the cancellation method.
     #[doc(alias = "NWTCPConnectionStateCancelled")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
@@ -10876,24 +11128,30 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWUDPSessionState(pub NSInteger);
 impl NWUDPSessionState {
+    /// NWUDPSessionStateInvalid The session is in an invalid or uninitialized state.
     #[doc(alias = "NWUDPSessionStateInvalid")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Invalid: Self = Self(0);
+    /// NWUDPSessionStateWaiting The session is waiting for better conditions before
     /// attempting to make the session ready.
     #[doc(alias = "NWUDPSessionStateWaiting")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Waiting: Self = Self(1);
+    /// NWUDPSessionStatePreparing The endpoint is being resolved
     #[doc(alias = "NWUDPSessionStatePreparing")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Preparing: Self = Self(2);
+    /// NWUDPSessionStateReady The session is ready for reading and writing data
     #[doc(alias = "NWUDPSessionStateReady")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Ready: Self = Self(3);
+    /// NWUDPSessionStateFailed None of the currently resolved endpoints can be used
     /// at this time, either due to problems with the path or the client rejecting the
     /// endpoints.
     #[doc(alias = "NWUDPSessionStateFailed")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Failed: Self = Self(4);
+    /// NWUDPSessionStateCancelled The session has been cancelled by the client
     #[doc(alias = "NWUDPSessionStateCancelled")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Cancelled: Self = Self(5);
@@ -11185,10 +11443,13 @@ impl NETLSParameters {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEURLFilterVerdict(pub NSInteger);
 impl NEURLFilterVerdict {
+    /// NEURLFilterVerdictUnknown The validation failed
     #[doc(alias = "NEURLFilterVerdictUnknown")]
     pub const Unknown: Self = Self(1);
+    /// NEURLFilterVerdictAllow URL should be allowed
     #[doc(alias = "NEURLFilterVerdictAllow")]
     pub const Allow: Self = Self(2);
+    /// NEURLFilterVerdictDeny URL should be denied.
     #[doc(alias = "NEURLFilterVerdictDeny")]
     pub const Deny: Self = Self(3);
 }

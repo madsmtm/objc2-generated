@@ -74,6 +74,8 @@ impl MLCTensor {
         pub unsafe fn device(&self) -> Option<Retained<MLCDevice>>;
 
         #[cfg(feature = "MLCTensorData")]
+        /// optimizer buffers to use if tensor is used as a parameter
+        ///
         /// These are the host side optimizer (momentum and velocity) buffers which developers can query and initialize
         ///
         /// When customizing optimizer data, the contents of these buffers must be initialized before executing optimizer
@@ -84,6 +86,8 @@ impl MLCTensor {
         pub unsafe fn optimizerData(&self) -> Retained<NSArray<MLCTensorData>>;
 
         #[cfg(feature = "MLCTensorOptimizerDeviceData")]
+        /// optimizer device buffers to use if tensor is used as a parameter
+        ///
         /// These are the device side optimizer (momentum and velocity) buffers which developers can query
         #[deprecated]
         #[unsafe(method(optimizerDeviceData))]

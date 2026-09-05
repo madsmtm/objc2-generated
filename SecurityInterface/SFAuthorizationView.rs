@@ -234,6 +234,8 @@ mod private_NSObjectSFAuthorizationViewDelegate {
 
 /// Category "SFAuthorizationViewDelegate" on [`NSObject`].
 ///
+/// NSObject(SFAuthorizationViewDelegate)
+///
 /// Optionally implement these delegate methods to obtain the state of the authorization object.
 #[doc(alias = "SFAuthorizationViewDelegate")]
 pub unsafe trait NSObjectSFAuthorizationViewDelegate:

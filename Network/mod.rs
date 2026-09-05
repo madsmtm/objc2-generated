@@ -60,16 +60,21 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_txt_record_find_key_t(pub c_uint);
 impl nw_txt_record_find_key_t {
+    /// nw_txt_record_find_key_invalid The key is invalid. According
     /// to RFC 1464, a key is invalid if it is an empty string, contains
     /// non-ASCII characters, or has length greater than UINT8_MAX.
     #[doc(alias = "nw_txt_record_find_key_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_txt_record_find_key_not_present The key-value pair does not exist in the TXT record.
     #[doc(alias = "nw_txt_record_find_key_not_present")]
     pub const not_present: Self = Self(1);
+    /// nw_txt_record_find_key_no_value The key exists in the TXT record, but has no assigned value.
     #[doc(alias = "nw_txt_record_find_key_no_value")]
     pub const no_value: Self = Self(2);
+    /// nw_txt_record_find_key_empty_value The key exists in the TXT record with an empty value.
     #[doc(alias = "nw_txt_record_find_key_empty_value")]
     pub const empty_value: Self = Self(3);
+    /// nw_txt_record_find_key_non_empty_value The key exists in the TXT record with a non-empty value.
     #[doc(alias = "nw_txt_record_find_key_non_empty_value")]
     pub const non_empty_value: Self = Self(4);
 }
@@ -801,14 +806,19 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_interface_type_t(pub c_uint);
 impl nw_interface_type_t {
+    /// nw_interface_type_other A virtual or otherwise unknown interface type
     #[doc(alias = "nw_interface_type_other")]
     pub const other: Self = Self(0);
+    /// nw_interface_type_wifi A Wi-Fi link
     #[doc(alias = "nw_interface_type_wifi")]
     pub const wifi: Self = Self(1);
+    /// nw_interface_type_wifi A Cellular link
     #[doc(alias = "nw_interface_type_cellular")]
     pub const cellular: Self = Self(2);
+    /// nw_interface_type_wired A Wired Ethernet link
     #[doc(alias = "nw_interface_type_wired")]
     pub const wired: Self = Self(3);
+    /// nw_interface_type_loopback The loopback interface
     #[doc(alias = "nw_interface_type_loopback")]
     pub const loopback: Self = Self(4);
 }
@@ -959,14 +969,19 @@ unsafe impl Sync for NWEndpoint {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_endpoint_type_t(pub c_uint);
 impl nw_endpoint_type_t {
+    /// nw_endpoint_type_invalid An invalid endpoint
     #[doc(alias = "nw_endpoint_type_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_endpoint_type_address An IP Address + Port
     #[doc(alias = "nw_endpoint_type_address")]
     pub const address: Self = Self(1);
+    /// nw_endpoint_type_host A Hostname + Port
     #[doc(alias = "nw_endpoint_type_host")]
     pub const host: Self = Self(2);
+    /// nw_endpoint_type_bonjour_service A Bonjour Service Name + Type + Domain
     #[doc(alias = "nw_endpoint_type_bonjour_service")]
     pub const bonjour_service: Self = Self(3);
+    /// nw_endpoint_type_url A URL endpoint
     #[doc(alias = "nw_endpoint_type_url")]
     pub const url: Self = Self(4);
 }
@@ -2271,8 +2286,10 @@ impl NWParameters {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct nw_parameters_attribution_t(pub u8);
 impl nw_parameters_attribution_t {
+    /// nw_parameters_attribution_developer Developer chosen content.
     #[doc(alias = "nw_parameters_attribution_developer")]
     pub const developer: Self = Self(1);
+    /// nw_parameters_attribution_user User chosen content.
     #[doc(alias = "nw_parameters_attribution_user")]
     pub const user: Self = Self(2);
 }
@@ -2827,16 +2844,22 @@ impl NWParameters {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_service_class_t(pub c_uint);
 impl nw_service_class_t {
+    /// nw_service_class_best_effort Default priority traffic
     #[doc(alias = "nw_service_class_best_effort")]
     pub const best_effort: Self = Self(0);
+    /// nw_service_class_background Bulk traffic, or traffic that can be de-prioritized behind foreground traffic
     #[doc(alias = "nw_service_class_background")]
     pub const background: Self = Self(1);
+    /// nw_service_class_interactive_video Interactive video traffic
     #[doc(alias = "nw_service_class_interactive_video")]
     pub const interactive_video: Self = Self(2);
+    /// nw_service_class_interactive_voice Interactive voice traffic
     #[doc(alias = "nw_service_class_interactive_voice")]
     pub const interactive_voice: Self = Self(3);
+    /// nw_service_class_responsive_data Interactive user data
     #[doc(alias = "nw_service_class_responsive_data")]
     pub const responsive_data: Self = Self(4);
+    /// nw_service_class_signaling Bursty but short. Intolerant of delay and loss. For example, SIP.
     #[doc(alias = "nw_service_class_signaling")]
     pub const signaling: Self = Self(5);
 }
@@ -2896,12 +2919,16 @@ impl NWParameters {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_multipath_service_t(pub c_uint);
 impl nw_multipath_service_t {
+    /// nw_multipath_service_disabled No multipath transport will be attempted
     #[doc(alias = "nw_multipath_service_disabled")]
     pub const disabled: Self = Self(0);
+    /// nw_multipath_service_handover Only use the expensive interface when the when the primary one is not available
     #[doc(alias = "nw_multipath_service_handover")]
     pub const handover: Self = Self(1);
+    /// nw_multipath_service_interactive Use the expensive interface more aggressively to reduce latency
     #[doc(alias = "nw_multipath_service_interactive")]
     pub const interactive: Self = Self(2);
+    /// nw_multipath_service_aggregate Use all available interfaces to provide the highest throughput and lowest latency
     #[doc(alias = "nw_multipath_service_aggregate")]
     pub const aggregate: Self = Self(3);
 }
@@ -3183,12 +3210,16 @@ impl NWParameters {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_parameters_expired_dns_behavior_t(pub c_uint);
 impl nw_parameters_expired_dns_behavior_t {
+    /// nw_parameters_expired_dns_behavior_default Let the system determine whether or not to allow expired DNS answers
     #[doc(alias = "nw_parameters_expired_dns_behavior_default")]
     pub const default: Self = Self(0);
+    /// nw_parameters_expired_dns_behavior_allow Explicitly allow the use of expired DNS answers
     #[doc(alias = "nw_parameters_expired_dns_behavior_allow")]
     pub const allow: Self = Self(1);
+    /// nw_parameters_expired_dns_behavior_allow Explicitly prohibit the use of expired DNS answers
     #[doc(alias = "nw_parameters_expired_dns_behavior_prohibit")]
     pub const prohibit: Self = Self(2);
+    /// nw_parameters_expired_dns_behavior_persistent Allow the use of expired DNS answers, and store answers in a persistent per-process cache.
     /// This should only be set for hostnames whose resolutions are not expected to change across networks.
     #[doc(alias = "nw_parameters_expired_dns_behavior_persistent")]
     pub const persistent: Self = Self(3);
@@ -3504,21 +3535,34 @@ nw_object!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_t?language=objc)
 pub type nw_browse_result_change_t = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_invalid?language=objc)
+/// nw_browse_result_change_invalid The browse result change is invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_invalid?language=objc)
 pub const nw_browse_result_change_invalid: c_uint = 0x00;
+/// nw_browse_result_change_identical The browse results being compared
 /// are identical.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_identical?language=objc)
 pub const nw_browse_result_change_identical: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_result_added?language=objc)
+/// nw_browse_result_change_result_added A browse result was added.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_result_added?language=objc)
 pub const nw_browse_result_change_result_added: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_result_removed?language=objc)
+/// nw_browse_result_change_result_removed A browse result was removed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_result_removed?language=objc)
 pub const nw_browse_result_change_result_removed: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_interface_added?language=objc)
+/// nw_browse_result_change_interface_added An interface became available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_interface_added?language=objc)
 pub const nw_browse_result_change_interface_added: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_interface_removed?language=objc)
+/// nw_browse_result_change_interface_removed An interface was removed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_interface_removed?language=objc)
 pub const nw_browse_result_change_interface_removed: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_txt_record_changed?language=objc)
+/// nw_browse_result_change_txt_record_changed The TXT record changed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_change_txt_record_changed?language=objc)
 pub const nw_browse_result_change_txt_record_changed: c_uint = 0x20;
 
 impl NWBrowseResult {
@@ -3663,12 +3707,16 @@ pub struct nw_error_domain_t(pub c_uint);
 impl nw_error_domain_t {
     #[doc(alias = "nw_error_domain_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_error_domain_posix The error code will be a POSIX error as defined in <sys/errno.h>
     #[doc(alias = "nw_error_domain_posix")]
     pub const posix: Self = Self(1);
+    /// nw_error_domain_dns The error code will be a DNSServiceErrorType error as defined in <dns_sd.h>
     #[doc(alias = "nw_error_domain_dns")]
     pub const dns: Self = Self(2);
+    /// nw_error_domain_tls The error code will be a TLS error as defined in <Security/SecBase.h>
     #[doc(alias = "nw_error_domain_tls")]
     pub const tls: Self = Self(3);
+    /// nw_error_domain_wifi_aware The error code will be a Wi-Fi Aware error as defined in <WifiAware/errors.swift>
     #[doc(alias = "nw_error_domain_wifi_aware")]
     pub const wifi_aware: Self = Self(4);
 }
@@ -3790,22 +3838,27 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_browser_state_t(pub c_uint);
 impl nw_browser_state_t {
+    /// nw_browser_state_invalid The state of the browser is not valid.
     /// This state will never be delivered in the browser's state update
     /// handler and can be treated as an unexpected value.
     #[doc(alias = "nw_browser_state_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_browser_state_ready The browser is ready and able to receive
     /// endpoint updates. All callbacks from the browse_results_changed_handler
     /// occur when the browser is in this state.
     #[doc(alias = "nw_browser_state_ready")]
     pub const ready: Self = Self(1);
+    /// nw_browser_state_failed The browser has irrecoverably failed.
     /// You should not try to call nw_browser_start() on the browser to restart
     /// it. Instead, cancel the browser and create a new browser object.
     #[doc(alias = "nw_browser_state_failed")]
     pub const failed: Self = Self(2);
+    /// nw_browser_state_cancelled The browser has been cancelled by
     /// the caller. You should not try to call nw_browser_start() on the
     /// browser to restart it. Instead, create a new browser object.
     #[doc(alias = "nw_browser_state_cancelled")]
     pub const cancelled: Self = Self(3);
+    /// nw_browser_state_waiting The browser is waiting for connectivity.
     /// Results will not be delivered until the browser moves into the ready
     /// state. A browser can move from the ready state into the waiting state.
     /// The associated error indicates why the browser is unable to browse.
@@ -4061,12 +4114,16 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_path_status_t(pub c_uint);
 impl nw_path_status_t {
+    /// nw_path_status_invalid The path is not valid
     #[doc(alias = "nw_path_status_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_path_status_satisfied The path has a usable route upon which to send and receive data
     #[doc(alias = "nw_path_status_satisfied")]
     pub const satisfied: Self = Self(1);
+    /// nw_path_status_unsatisfied The path does not have a usable route. This may be due to a network interface being down, or due to system policy.
     #[doc(alias = "nw_path_status_unsatisfied")]
     pub const unsatisfied: Self = Self(2);
+    /// nw_path_status_satisfiable The path does not currently have a usable route, but a connection attempt will trigger network attachment
     #[doc(alias = "nw_path_status_satisfiable")]
     pub const satisfiable: Self = Self(3);
 }
@@ -4108,14 +4165,19 @@ impl NWPath {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_path_unsatisfied_reason_t(pub c_uint);
 impl nw_path_unsatisfied_reason_t {
+    /// nw_path_unsatisfied_reason_not_available No reason is given
     #[doc(alias = "nw_path_unsatisfied_reason_not_available")]
     pub const not_available: Self = Self(0);
+    /// nw_path_unsatisfied_reason_cellular_denied The user has disabled cellular
     #[doc(alias = "nw_path_unsatisfied_reason_cellular_denied")]
     pub const cellular_denied: Self = Self(1);
+    /// nw_path_unsatisfied_reason_wifi_denied The user has disabled Wi-Fi
     #[doc(alias = "nw_path_unsatisfied_reason_wifi_denied")]
     pub const wifi_denied: Self = Self(2);
+    /// nw_path_unsatisfied_reason_local_network_denied The user has disabled local network access
     #[doc(alias = "nw_path_unsatisfied_reason_local_network_denied")]
     pub const local_network_denied: Self = Self(3);
+    /// nw_path_unsatisfied_reason_vpn_inactive A required VPN is not active
     #[doc(alias = "nw_path_unsatisfied_reason_vpn_inactive")]
     pub const vpn_inactive: Self = Self(4);
 }
@@ -4401,12 +4463,16 @@ impl NWPath {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_link_quality_t(pub c_uint);
 impl nw_link_quality_t {
+    /// nw_link_quality_unknown No link quality measurement is available
     #[doc(alias = "nw_link_quality_unknown")]
     pub const unknown: Self = Self(0);
+    /// nw_link_quality_minimal Link quality is minimal
     #[doc(alias = "nw_link_quality_minimal")]
     pub const minimal: Self = Self(10);
+    /// nw_link_quality_moderate Link quality is moderate
     #[doc(alias = "nw_link_quality_moderate")]
     pub const moderate: Self = Self(20);
+    /// nw_link_quality_good Link quality is good
     #[doc(alias = "nw_link_quality_good")]
     pub const good: Self = Self(30);
 }
@@ -4733,18 +4799,24 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_connection_state_t(pub c_uint);
 impl nw_connection_state_t {
+    /// nw_connection_state_invalid The state of the connection is not valid. This state
     /// will never be delivered in the connection's state update handler, and can be treated as
     /// an unexpected value.
     #[doc(alias = "nw_connection_state_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_connection_state_waiting The connection is waiting for a usable network before re-attempting
     #[doc(alias = "nw_connection_state_waiting")]
     pub const waiting: Self = Self(1);
+    /// nw_connection_state_preparing The connection is in the process of establishing
     #[doc(alias = "nw_connection_state_preparing")]
     pub const preparing: Self = Self(2);
+    /// nw_connection_state_ready The connection is established and ready to send and receive data upon
     #[doc(alias = "nw_connection_state_ready")]
     pub const ready: Self = Self(3);
+    /// nw_connection_state_failed The connection has irrecoverably closed or failed
     #[doc(alias = "nw_connection_state_failed")]
     pub const failed: Self = Self(4);
+    /// nw_connection_state_cancelled The connection has been cancelled by the caller
     #[doc(alias = "nw_connection_state_cancelled")]
     pub const cancelled: Self = Self(5);
 }
@@ -5621,20 +5693,25 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_connection_group_state_t(pub c_uint);
 impl nw_connection_group_state_t {
+    /// nw_connection_group_state_invalid The state of the connection group is not valid.
     /// This state will never be delivered in the connection group's state update
     /// handler and can be treated as an unexpected value.
     #[doc(alias = "nw_connection_group_state_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_connection_group_state_waiting The connection group is waiting for a usable network
     /// before being able to receive and process incoming messages.
     #[doc(alias = "nw_connection_group_state_waiting")]
     pub const waiting: Self = Self(1);
+    /// nw_connection_group_state_ready The connection group is ready and able to receive and
     /// process incoming messages.
     #[doc(alias = "nw_connection_group_state_ready")]
     pub const ready: Self = Self(2);
+    /// nw_connection_group_state_failed The connection group has irrecoverably failed.
     /// You should cancel the connection group and create a new connection group object
     /// if you wish to continue processing incoming messages.
     #[doc(alias = "nw_connection_group_state_failed")]
     pub const failed: Self = Self(3);
+    /// nw_connection_group_state_cancelled The connection group has been cancelled by
     /// the user. You should create a new connection group object if you wish to continue
     /// processing incoming messages.
     #[doc(alias = "nw_connection_group_state_cancelled")]
@@ -6495,10 +6572,13 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct nw_report_resolution_source_t(pub c_uint);
 impl nw_report_resolution_source_t {
+    /// nw_report_resolution_source_query A query was sent over the network
     #[doc(alias = "nw_report_resolution_source_query")]
     pub const query: Self = Self(1);
+    /// nw_report_resolution_source_cache The local cache was used
     #[doc(alias = "nw_report_resolution_source_cache")]
     pub const cache: Self = Self(2);
+    /// nw_report_resolution_source_expired_cache An expired entry in the local cache was used
     #[doc(alias = "nw_report_resolution_source_expired_cache")]
     pub const expired_cache: Self = Self(3);
 }
@@ -6617,14 +6697,19 @@ impl NWResolutionReport {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_report_resolution_protocol_t(pub c_uint);
 impl nw_report_resolution_protocol_t {
+    /// nw_report_resolution_protocol_unknown The protocol used is not known, or not applicable
     #[doc(alias = "nw_report_resolution_protocol_unknown")]
     pub const unknown: Self = Self(0);
+    /// nw_report_resolution_protocol_udp Resolution used DNS over UDP
     #[doc(alias = "nw_report_resolution_protocol_udp")]
     pub const udp: Self = Self(1);
+    /// nw_report_resolution_protocol_tcp Resolution used DNS over TCP
     #[doc(alias = "nw_report_resolution_protocol_tcp")]
     pub const tcp: Self = Self(2);
+    /// nw_report_resolution_protocol_tls Resolution used DNS over TLS
     #[doc(alias = "nw_report_resolution_protocol_tls")]
     pub const tls: Self = Self(3);
+    /// nw_report_resolution_protocol_https Resolution used DNS over HTTPS
     #[doc(alias = "nw_report_resolution_protocol_https")]
     pub const https: Self = Self(4);
 }
@@ -6823,8 +6908,10 @@ impl NWConnection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct nw_data_transfer_report_state_t(pub c_uint);
 impl nw_data_transfer_report_state_t {
+    /// nw_data_transfer_report_state_collecting The report is outstanding; values cannot be accessed.
     #[doc(alias = "nw_data_transfer_report_state_collecting")]
     pub const collecting: Self = Self(1);
+    /// nw_data_transfer_report_state_collected The report is complete; values can now be accessed.
     #[doc(alias = "nw_data_transfer_report_state_collected")]
     pub const collected: Self = Self(2);
 }
@@ -7363,18 +7450,24 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_ethernet_channel_state_t(pub c_uint);
 impl nw_ethernet_channel_state_t {
+    /// nw_ethernet_channel_state_invalid The state of the channel is not valid. This state
     /// will never be delivered in the channel's state update handler, and can be treated as
     /// an unexpected value.
     #[doc(alias = "nw_ethernet_channel_state_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_ethernet_channel_state_waiting The channel is waiting for a usable network before re-attempting
     #[doc(alias = "nw_ethernet_channel_state_waiting")]
     pub const waiting: Self = Self(1);
+    /// nw_ethernet_channel_state_preparing The channel is in the process of establishing
     #[doc(alias = "nw_ethernet_channel_state_preparing")]
     pub const preparing: Self = Self(2);
+    /// nw_ethernet_channel_state_ready The channel is established and ready to send and receive data
     #[doc(alias = "nw_ethernet_channel_state_ready")]
     pub const ready: Self = Self(3);
+    /// nw_ethernet_channel_state_failed The channel has irrecoverably closed or failed
     #[doc(alias = "nw_ethernet_channel_state_failed")]
     pub const failed: Self = Self(4);
+    /// nw_ethernet_channel_state_cancelled The channel has been cancelled by the caller
     #[doc(alias = "nw_ethernet_channel_state_cancelled")]
     pub const cancelled: Self = Self(5);
 }
@@ -9017,10 +9110,13 @@ impl NWProtocolDefinition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_ip_version_t(pub c_uint);
 impl nw_ip_version_t {
+    /// nw_ip_version_any Allow any IP version
     #[doc(alias = "nw_ip_version_any")]
     pub const any: Self = Self(0);
+    /// nw_ip_version_4 Use IP version 4 (IPv4)
     #[doc(alias = "nw_ip_version_4")]
     pub const version_4: Self = Self(4);
+    /// nw_ip_version_6 Use IP version 6 (IPv6)
     #[doc(alias = "nw_ip_version_6")]
     pub const version_6: Self = Self(6);
 }
@@ -9142,10 +9238,13 @@ impl NWProtocolOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_ip_local_address_preference_t(pub c_uint);
 impl nw_ip_local_address_preference_t {
+    /// nw_ip_local_address_preference_default Use system default for address selection
     #[doc(alias = "nw_ip_local_address_preference_default")]
     pub const default: Self = Self(0);
+    /// nw_ip_local_address_preference_temporary Prefer temporary (privacy) addresses
     #[doc(alias = "nw_ip_local_address_preference_temporary")]
     pub const temporary: Self = Self(1);
+    /// nw_ip_local_address_preference_stable Prefer stable addresses
     #[doc(alias = "nw_ip_local_address_preference_stable")]
     pub const stable: Self = Self(2);
 }
@@ -9249,12 +9348,16 @@ impl NWProtocolMetadata {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_ip_ecn_flag_t(pub c_uint);
 impl nw_ip_ecn_flag_t {
+    /// nw_ip_ecn_flag_non_ect Non ECN-Capable Transport, value 0b00
     #[doc(alias = "nw_ip_ecn_flag_non_ect")]
     pub const non_ect: Self = Self(0);
+    /// nw_ip_ecn_flag_ect_0 ECN Capable Transport (0), value 0b10
     #[doc(alias = "nw_ip_ecn_flag_ect_0")]
     pub const ect_0: Self = Self(2);
+    /// nw_ip_ecn_flag_ect_1 ECN Capable Transport (1), value 0b01
     #[doc(alias = "nw_ip_ecn_flag_ect_1")]
     pub const ect_1: Self = Self(1);
+    /// nw_ip_ecn_flag_ce Congestion Experienced, value 0b11
     #[doc(alias = "nw_ip_ecn_flag_ce")]
     pub const ce: Self = Self(3);
 }
@@ -9391,16 +9494,21 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_listener_state_t(pub c_uint);
 impl nw_listener_state_t {
+    /// nw_listener_state_invalid The state of the listener is not valid. This state
     /// will never be delivered in the listener's state update handler, and can be treated as
     /// an unexpected value.
     #[doc(alias = "nw_listener_state_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_listener_state_waiting The listener is waiting for a usable network before being able to receive connections
     #[doc(alias = "nw_listener_state_waiting")]
     pub const waiting: Self = Self(1);
+    /// nw_listener_state_ready The listener is ready and able to accept incoming connections
     #[doc(alias = "nw_listener_state_ready")]
     pub const ready: Self = Self(2);
+    /// nw_listener_state_failed The listener has irrecoverably closed or failed
     #[doc(alias = "nw_listener_state_failed")]
     pub const failed: Self = Self(3);
+    /// nw_listener_state_cancelled The listener has been cancelled by the caller
     #[doc(alias = "nw_listener_state_cancelled")]
     pub const cancelled: Self = Self(4);
 }
@@ -10550,12 +10658,16 @@ impl NWProtocolOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_quic_stream_type_t(pub c_uint);
 impl nw_quic_stream_type_t {
+    /// nw_quic_stream_type_unknown         A QUIC stream whose direction can not be determined.
     #[doc(alias = "nw_quic_stream_type_unknown")]
     pub const unknown: Self = Self(0);
+    /// nw_quic_stream_type_bidirectional    A bidirectional QUIC stream.
     #[doc(alias = "nw_quic_stream_type_bidirectional")]
     pub const bidirectional: Self = Self(1);
+    /// nw_quic_stream_type_unidirectional     An unidirectional QUIC stream.
     #[doc(alias = "nw_quic_stream_type_unidirectional")]
     pub const unidirectional: Self = Self(2);
+    /// nw_quic_stream_type_datagram         A QUIC datagram stream.
     #[doc(alias = "nw_quic_stream_type_datagram")]
     pub const datagram: Self = Self(3);
 }
@@ -11277,10 +11389,13 @@ impl NWProtocolOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_multipath_version_t(pub c_int);
 impl nw_multipath_version_t {
+    /// nw_multipath_version_unspecified MPTCP unspecified version
     #[doc(alias = "nw_multipath_version_unspecified")]
     pub const unspecified: Self = Self(-1);
+    /// nw_multipath_version_0 MPTCP version 0
     #[doc(alias = "nw_multipath_version_0")]
     pub const version_0: Self = Self(0);
+    /// nw_multipath_version_1 MPTCP version 1
     #[doc(alias = "nw_multipath_version_1")]
     pub const version_1: Self = Self(1);
 }
@@ -11525,20 +11640,27 @@ impl NWProtocolMetadata {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_ws_opcode_t(pub c_int);
 impl nw_ws_opcode_t {
+    /// nw_ws_opcode_invalid Denotes an invalid frame.
     #[doc(alias = "nw_ws_opcode_invalid")]
     pub const invalid: Self = Self(-1);
+    /// nw_ws_opcode_cont Denotes a continuation frame.
     /// Protocol WebSocket handles continuation frames internally,
     /// so clients will not see or use continuation frames.
     #[doc(alias = "nw_ws_opcode_cont")]
     pub const cont: Self = Self(0x0);
+    /// nw_ws_opcode_text Denotes a text frame.
     #[doc(alias = "nw_ws_opcode_text")]
     pub const text: Self = Self(0x1);
+    /// nw_ws_opcode_text Denotes a binary frame.
     #[doc(alias = "nw_ws_opcode_binary")]
     pub const binary: Self = Self(0x2);
+    /// nw_ws_opcode_text Denotes a close frame.
     #[doc(alias = "nw_ws_opcode_close")]
     pub const close: Self = Self(0x8);
+    /// nw_ws_opcode_text Denotes a ping frame.
     #[doc(alias = "nw_ws_opcode_ping")]
     pub const ping: Self = Self(0x9);
+    /// nw_ws_opcode_text Denotes a pong frame.
     #[doc(alias = "nw_ws_opcode_pong")]
     pub const pong: Self = Self(0xA);
 }
@@ -11562,38 +11684,46 @@ unsafe impl RefEncode for nw_ws_opcode_t {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct nw_ws_close_code_t(pub c_uint);
 impl nw_ws_close_code_t {
+    /// nw_ws_close_code_normal_closure Indicates a normal closure,
     /// meaning that the purpose for which the connection was established
     /// has been fulfilled.
     #[doc(alias = "nw_ws_close_code_normal_closure")]
     pub const normal_closure: Self = Self(1000);
+    /// nw_ws_close_code_normal_going_away Indicates that an endpoint is
     /// "going away", such as a server going down or a browser having
     /// navigated away from a page.
     #[doc(alias = "nw_ws_close_code_going_away")]
     pub const going_away: Self = Self(1001);
+    /// nw_ws_close_code_protocol_error Indicates that an endpoint is
     /// terminating the connection due to a protocol error.
     #[doc(alias = "nw_ws_close_code_protocol_error")]
     pub const protocol_error: Self = Self(1002);
+    /// nw_ws_close_code_normal_closure Indicates that an endpoint is
     /// terminating the connection because it has received a type of data
     /// it cannot accept (e.g., an endpoint that understands only text data
     /// MAY send this if it receives a binary message).
     #[doc(alias = "nw_ws_close_code_unsupported_data")]
     pub const unsupported_data: Self = Self(1003);
+    /// nw_ws_close_code_no_status_received A reserved value and MUST NOT
     /// be set as a status code in a Close control frame by an endpoint. It
     /// is designated for use in applications expecting a status code to
     /// indicate that no status code was actually present.
     #[doc(alias = "nw_ws_close_code_no_status_received")]
     pub const no_status_received: Self = Self(1005);
+    /// nw_ws_close_code_abnormal_closure A reserved value and MUST NOT
     /// be set as a status code in a Close control frame by an endpoint.
     /// It is designated for use in applications expecting a status code to
     /// indicate that the connection was closed abnormally, e.g., without
     /// sending or receiving a Close control frame.
     #[doc(alias = "nw_ws_close_code_abnormal_closure")]
     pub const abnormal_closure: Self = Self(1006);
+    /// nw_ws_close_code_invalid_frame_payload_data Indicates that an
     /// endpoint is terminating the connection because it has received data
     /// within a message that was not consistent with the type of the
     /// message (e.g., non-UTF-8 [RFC3629] data within a text message).
     #[doc(alias = "nw_ws_close_code_invalid_frame_payload_data")]
     pub const invalid_frame_payload_data: Self = Self(1007);
+    /// nw_ws_close_code_policy_violation Indicates that an endpoint is
     /// terminating the connection because it has received a message that
     /// violates its policy. This is a generic status code that can be
     /// returned when there is no other more suitable status code (e.g.,
@@ -11601,10 +11731,12 @@ impl nw_ws_close_code_t {
     /// the policy.
     #[doc(alias = "nw_ws_close_code_policy_violation")]
     pub const policy_violation: Self = Self(1008);
+    /// nw_ws_close_code_message_too_big Indicates that an endpoint is
     /// terminating the connection because it has received a message that
     /// is too big for it to process.
     #[doc(alias = "nw_ws_close_code_message_too_big")]
     pub const message_too_big: Self = Self(1009);
+    /// nw_ws_close_code_mandatory_extension Indicates that an endpoint
     /// (client) is terminating the connection because it has expected the
     /// server to negotiate one or more extensions, but the server didn't
     /// return them in the response message of the WebSocket handshake. The
@@ -11613,10 +11745,12 @@ impl nw_ws_close_code_t {
     /// the server, because it can fail the WebSocket handshake instead.
     #[doc(alias = "nw_ws_close_code_mandatory_extension")]
     pub const mandatory_extension: Self = Self(1010);
+    /// nw_ws_close_code_internal_server_error Indicates that a server is
     /// terminating the connection because it encountered an unexpected
     /// condition that prevented it from fulfilling the request.
     #[doc(alias = "nw_ws_close_code_internal_server_error")]
     pub const internal_server_error: Self = Self(1011);
+    /// nw_ws_close_code_tls_handshake A reserved value and MUST NOT
     /// be set as a status code in a Close control frame by an endpoint. It
     /// is designated for use in applications expecting a status code to
     /// indicate that the connection was closed due to a failure to perform
@@ -11642,8 +11776,10 @@ unsafe impl RefEncode for nw_ws_close_code_t {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_ws_version_t(pub c_uint);
 impl nw_ws_version_t {
+    /// nw_ws_version_invalid An invalid WebSocket version
     #[doc(alias = "nw_ws_version_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_ws_version_13 WebSocket v13 as defined in RFC 6455
     #[doc(alias = "nw_ws_version_13")]
     pub const version_13: Self = Self(1);
 }
@@ -12054,12 +12190,15 @@ nw_object!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct nw_ws_response_status_t(pub c_uint);
 impl nw_ws_response_status_t {
+    /// nw_ws_response_status_invalid The response is invalid. This should
     /// be treated as an unexpected value.
     #[doc(alias = "nw_ws_response_status_invalid")]
     pub const invalid: Self = Self(0);
+    /// nw_ws_response_status_accept Accept the request to connect. The
     /// WebSocket connection will begin framing data.
     #[doc(alias = "nw_ws_response_status_accept")]
     pub const accept: Self = Self(1);
+    /// nw_ws_response_status_accept Reject the request to connect. The
     /// WebSocket connection will be closed.
     #[doc(alias = "nw_ws_response_status_reject")]
     pub const reject: Self = Self(2);

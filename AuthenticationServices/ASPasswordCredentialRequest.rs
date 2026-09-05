@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasswordcredentialrequest?language=objc)
+    /// This class encapsulates a password request made to a credential provider extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasswordcredentialrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasswordCredentialRequest;

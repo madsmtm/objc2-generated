@@ -363,6 +363,8 @@ impl CTFont {
     }
 }
 
+/// UI Type constants
+///
 /// These constants represent the specific user interface purpose to specify for font creation.
 ///
 /// Use these constants with CTFontCreateUIFontForLanguage to indicate the intended user interface usage of the font reference to be created. The system may internally remap the value, so the value returned by CTFontGetUIFontType may return a different value than the one originally passed to CTFontCreateUIFontForLanguage. This remapping may vary by platform and OS version.

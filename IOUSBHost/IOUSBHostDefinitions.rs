@@ -78,6 +78,8 @@ unsafe impl RefEncode for IOUSBHostIsochronousFrame {
 /// sendIORequestWithData:transactionList:transactionListCount:firstFrameNumber:options:error:completionHandler
 /// </code>
 ///
+/// kIsochronousTransferOptionsNone No options are selected for this transfer
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransferoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -107,6 +109,10 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransferOptions {
 /// <code>
 /// sendIORequestWithData:transactionList:transactionListCount:firstFrameNumber:error:completionHandler
 /// </code>
+///
+/// kIsochronousTransactionOptionsNone No options are selected for this transaction
+///
+/// kIsochronousTransactionOptionsWrap This transaction's data reaches the end of the memory descriptor and continues at the descriptor's start.  If this option is selected, the transaction's offset + requestCount should exceed the memory descriptor's length. This option is not supported on UHCI or UserHCI controllers.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactionoptions?language=objc)
 // NS_OPTIONS
@@ -212,6 +218,8 @@ pub type IOUSBHostIsochronousTransactionCompletionHandler =
 
 extern "C" {
     /// NSErrorDomain for IOUSBHostFamily. Error codes are IOKit IOReturn codes.
+    ///
+    /// IOUSBHostErrorDomain domain for IOUSBHostFamily errors
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhosterrordomain?language=objc)
     pub static IOUSBHostErrorDomain: &'static NSErrorDomain;

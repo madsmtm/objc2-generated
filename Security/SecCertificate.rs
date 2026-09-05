@@ -817,6 +817,14 @@ unsafe impl RefEncode for SecKeyUsage {
 extern "C" {
     /// Constants used to access dictionary entries returned by SecCertificateCopyValues
     ///
+    /// kSecPropertyKeyType The type of the entry
+    ///
+    /// kSecPropertyKeyLabel The label of the entry
+    ///
+    /// kSecPropertyKeyLocalizedLabel The localized label of the entry
+    ///
+    /// kSecPropertyKeyValue The value of the entry
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertykeytype?language=objc)
     pub static kSecPropertyKeyType: &'static CFString;
 }

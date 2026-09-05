@@ -22,7 +22,9 @@ unsafe impl RefEncode for OpaqueJSContextGroup {
         Encoding::Pointer(&Encoding::Struct("OpaqueJSContextGroup", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgroupref?language=objc)
+/// JSContextGroupRef A group that associates JavaScript contexts with one another. Contexts in the same group may share and exchange JavaScript objects.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgroupref?language=objc)
 pub type JSContextGroupRef = *const OpaqueJSContextGroup;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejscontext?language=objc)
@@ -38,7 +40,9 @@ unsafe impl RefEncode for OpaqueJSContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueJSContext", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextref?language=objc)
+/// JSContextRef A JavaScript execution context. Holds the global object and other execution state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextref?language=objc)
 pub type JSContextRef = *const OpaqueJSContext;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejsstring?language=objc)
@@ -54,7 +58,9 @@ unsafe impl RefEncode for OpaqueJSString {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueJSString", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringref?language=objc)
+/// JSStringRef A UTF16 character buffer. The fundamental string representation in JavaScript.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringref?language=objc)
 pub type JSStringRef = *mut OpaqueJSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejsclass?language=objc)
@@ -70,7 +76,9 @@ unsafe impl RefEncode for OpaqueJSClass {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueJSClass", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassref?language=objc)
+/// JSClassRef A JavaScript class. Used with JSObjectMake to construct objects with custom behavior.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassref?language=objc)
 pub type JSClassRef = *mut OpaqueJSClass;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejspropertynamearray?language=objc)
@@ -87,7 +95,9 @@ unsafe impl RefEncode for OpaqueJSPropertyNameArray {
         Encoding::Pointer(&Encoding::Struct("OpaqueJSPropertyNameArray", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayref?language=objc)
+/// JSPropertyNameArrayRef An array of JavaScript property names.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayref?language=objc)
 pub type JSPropertyNameArrayRef = *mut OpaqueJSPropertyNameArray;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejspropertynameaccumulator?language=objc)
@@ -104,10 +114,14 @@ unsafe impl RefEncode for OpaqueJSPropertyNameAccumulator {
         Encoding::Pointer(&Encoding::Struct("OpaqueJSPropertyNameAccumulator", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynameaccumulatorref?language=objc)
+/// JSPropertyNameAccumulatorRef An ordered set used to collect the names of a JavaScript object's properties.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynameaccumulatorref?language=objc)
 pub type JSPropertyNameAccumulatorRef = *mut OpaqueJSPropertyNameAccumulator;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jstypedarraybytesdeallocator?language=objc)
+/// JSTypedArrayBytesDeallocator A function used to deallocate bytes passed to a Typed Array constructor. The function should take two arguments. The first is a pointer to the bytes that were originally passed to the Typed Array constructor. The second is a pointer to additional information desired at the time the bytes are to be freed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jstypedarraybytesdeallocator?language=objc)
 pub type JSTypedArrayBytesDeallocator = unsafe extern "C-unwind" fn(*mut c_void, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejsvalue?language=objc)
@@ -123,7 +137,9 @@ unsafe impl RefEncode for OpaqueJSValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueJSValue", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueref?language=objc)
+/// JSValueRef A JavaScript value. The base type for all JavaScript values, and polymorphic functions on them.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueref?language=objc)
 pub type JSValueRef = *const OpaqueJSValue;
 
 /// Evaluates a string of JavaScript.

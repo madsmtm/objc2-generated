@@ -16,43 +16,58 @@ extern "C" {
     ///
     /// These keys are deprecated in 10.10. Please use the properties of SCNLight instead.
     ///
+    ///
+    /// SCNLightAttenuationStartKey The distance at which the attenuation starts (Omni or Spot light types only). Animatable as "attenuationStart". Defaults to 0.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationstartkey?language=objc)
     #[deprecated = "Use SCNLight.attenuationStartDistance instead"]
     pub static SCNLightAttenuationStartKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationendkey?language=objc)
+    /// SCNLightAttenuationEndKey The distance at which the attenuation ends (Omni or Spot light types only). Animatable as "attenuationEnd". Defaults to 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationendkey?language=objc)
     #[deprecated = "Use SCNLight.attenuationEndDistance instead"]
     pub static SCNLightAttenuationEndKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationfalloffexponentkey?language=objc)
+    /// SCNLightAttenuationFalloffExponentKey Controls the attenuation between the start and end attenuation distances. 0 means a constant attenuation, 1 a linear attenuation and 2 a quadratic attenuation, but any positive value will work (Omni or Spot light types only). Animatable as "attenuationFalloffExponent". Defaults to 2.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationfalloffexponentkey?language=objc)
     #[deprecated = "Use SCNLight.attenuationFalloffExponent instead"]
     pub static SCNLightAttenuationFalloffExponentKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightspotinneranglekey?language=objc)
+    /// SCNLightSpotInnerAngleKey The angle in degrees between the spot direction and the lit element below which the lighting is at full strength. Animatable as "spotInnerAngle". Defaults to 0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightspotinneranglekey?language=objc)
     #[deprecated = "Use SCNLight.spotInnerAngle instead"]
     pub static SCNLightSpotInnerAngleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightspotouteranglekey?language=objc)
+    /// SCNLightSpotOuterAngleKey The angle in degrees between the spot direction and the lit element after which the lighting is at zero strength. Animatable as "spotOuterAngle". Defaults to 45 degrees.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightspotouteranglekey?language=objc)
     #[deprecated = "Use SCNLight.spotOuterAngle instead"]
     pub static SCNLightSpotOuterAngleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightshadownearclippingkey?language=objc)
+    /// SCNLightShadowNearClippingKey Specifies the minimal distance between the light and the surface to cast shadow on. If a surface is closer to the light than this minimal distance, then the surface won't be shadowed. The near value must be different than zero. Animatable as "zNear". Defaults to 1.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightshadownearclippingkey?language=objc)
     #[deprecated = "Use SCNLight.zNear instead"]
     pub static SCNLightShadowNearClippingKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightshadowfarclippingkey?language=objc)
+    /// SCNLightShadowFarClippingKey Specifies the maximal distance between the light and a visible surface to cast shadow on. If a surface is further from the light than this maximal distance, then the surface won't be shadowed. Animatable as "zFar". Defaults to 100.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightshadowfarclippingkey?language=objc)
     #[deprecated = "Use SCNLight.zFar instead"]
     pub static SCNLightShadowFarClippingKey: &'static NSString;
 }

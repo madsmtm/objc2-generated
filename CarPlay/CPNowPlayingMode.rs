@@ -373,6 +373,11 @@ impl CPNowPlayingSportsClock {
         /// Represents a duration of time that has elapsed so far in this event, or play period of the event (quarter/inning/period).
         ///
         /// When displayed on the now playing screen, the clock will count UP.
+        ///
+        ///
+        /// elapsedTime The amount of time elapsed so far in this event.
+        ///
+        /// paused If YES, the clock will be paused at the specified elapsed time value. If NO, the clock will count up.
         #[unsafe(method(initWithElapsedTime:paused:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElapsedTime_paused(
@@ -384,6 +389,11 @@ impl CPNowPlayingSportsClock {
         /// Represents an amount of time remaining in the event, or play period of the event (quarter/inning/period).
         ///
         /// When displayed on the now playing screen, the clock will count DOWN.
+        ///
+        ///
+        /// timeRemaining The amount of time remaining in the event, or a play period of the event (quarter/inning/period).
+        ///
+        /// paused If YES, the clock will be paused at the specified time remaining value. If NO, the clock will count down.
         #[unsafe(method(initWithTimeRemaining:paused:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTimeRemaining_paused(

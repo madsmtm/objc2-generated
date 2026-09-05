@@ -31,8 +31,10 @@ use crate::*;
 ///
 /// 2. Visible Objects and Lights
 ///
+/// nearVisibilityDistance The minimum distance from the camera of a
 /// visible object
 ///
+/// farVisibilityDistance The maximum distance from the camera of a
 /// visible object
 ///
 /// Those objects existing between nearVisibilityDistance and farVisibilityDistance

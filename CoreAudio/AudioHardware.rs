@@ -1686,6 +1686,8 @@ pub unsafe fn AudioObjectRemovePropertyListenerBlock(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosystemobjectclassid?language=objc)
 pub const kAudioSystemObjectClassID: AudioClassID = 0x61737973;
 
+/// Power Hints
+///
 /// The values for kAudioHardwarePropertyPowerHint
 ///
 /// The system object property, kAudioHardwarePropertyPowerHint, allows a process to

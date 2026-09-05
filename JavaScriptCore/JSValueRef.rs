@@ -117,21 +117,37 @@ pub struct JSRelationCondition(pub u32);
 impl JSRelationCondition {
     /// A constant identifying the type of JavaScript relation condition.
     ///
+    /// kJSRelationConditionUndefined    Fail to compare two operands.
+    /// kJSRelationConditionEqual        Two operands have equivalent values.
+    /// kJSRelationConditionGreaterThan  The left operand is greater than the right operand.
+    /// kJSRelationConditionLessThan     The left operand is less than the right operand.
     /// Fail to compare two operands.
     #[doc(alias = "kJSRelationConditionUndefined")]
     pub const Undefined: Self = Self(0);
     /// A constant identifying the type of JavaScript relation condition.
     ///
+    /// kJSRelationConditionUndefined    Fail to compare two operands.
+    /// kJSRelationConditionEqual        Two operands have equivalent values.
+    /// kJSRelationConditionGreaterThan  The left operand is greater than the right operand.
+    /// kJSRelationConditionLessThan     The left operand is less than the right operand.
     /// Two operands have equivalent values.
     #[doc(alias = "kJSRelationConditionEqual")]
     pub const Equal: Self = Self(1);
     /// A constant identifying the type of JavaScript relation condition.
     ///
+    /// kJSRelationConditionUndefined    Fail to compare two operands.
+    /// kJSRelationConditionEqual        Two operands have equivalent values.
+    /// kJSRelationConditionGreaterThan  The left operand is greater than the right operand.
+    /// kJSRelationConditionLessThan     The left operand is less than the right operand.
     /// The left operand is greater than the right operand.
     #[doc(alias = "kJSRelationConditionGreaterThan")]
     pub const GreaterThan: Self = Self(2);
     /// A constant identifying the type of JavaScript relation condition.
     ///
+    /// kJSRelationConditionUndefined    Fail to compare two operands.
+    /// kJSRelationConditionEqual        Two operands have equivalent values.
+    /// kJSRelationConditionGreaterThan  The left operand is greater than the right operand.
+    /// kJSRelationConditionLessThan     The left operand is less than the right operand.
     /// The left operand is less than the right operand.
     #[doc(alias = "kJSRelationConditionLessThan")]
     pub const LessThan: Self = Self(3);

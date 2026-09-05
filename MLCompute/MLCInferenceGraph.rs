@@ -26,6 +26,8 @@ extern_conformance!(
 #[cfg(feature = "MLCGraph")]
 impl MLCInferenceGraph {
     extern_methods!(
+        /// The device memory size used by the inference graph
+        ///
         /// Returns the total size in bytes of device memory used by all intermediate tensors in the inference graph
         ///
         /// Returns: A NSUInteger value

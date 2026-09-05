@@ -215,6 +215,7 @@ impl GCController {
         /// Whether the current application should monitor and respond to game controller events when it is not the frontmost application.
         ///
         ///
+        /// If shouldMonitorBackgroundEvents is NO, and the application is not the frontmost application, any inputs from a game controller will
         /// not be forwarded to the application. Once the application becomes the frontmost application, game controller events will be forwarded.
         ///
         ///

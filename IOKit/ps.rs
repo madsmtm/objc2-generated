@@ -401,7 +401,9 @@ pub fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval {
     unsafe { IOPSGetTimeRemainingEstimate() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopowersourcecallbacktype?language=objc)
+/// Power Source Descriptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopowersourcecallbacktype?language=objc)
 pub type IOPowerSourceCallbackType = unsafe extern "C-unwind" fn(*mut c_void);
 
 /// Returns a blob of Power Source information in an opaque CFTypeRef.

@@ -218,6 +218,8 @@ extern "C" {
     pub static kCVPixelBufferPoolFreeBufferNotification: &'static CFString;
 }
 
+/// CVPixelBufferPoolFlush flags
+///
 /// Flags to pass to CVPixelBufferPoolFlush()
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolflushflags?language=objc)

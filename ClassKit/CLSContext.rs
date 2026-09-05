@@ -258,6 +258,12 @@ impl CLSContext {
         /// _Swift_or
         /// _NSMakeRange(0,NSIntegerMax)_in
         /// _Objective-C._Set the lower bound to 0 to specify no minimum age limit and set the upper bound to NSIntegerMax - 1 to specify no maximum age limit.
+        ///
+        /// An age range of 4 to 6 years is expressed by @em NSRange(4...6) in @em Swift or by @em NSMakeRange(4,3) in @Objective-C.
+        ///
+        /// An age range of up 10 years is expressed by @em NSRange(0...10) in @em Swift or by @em NSMakeRange(0,11) in @Objective-C.
+        ///
+        /// An age range of 18 years or above is expressed by @em NSRange(18...Int.max-1) in @em Swift or by @em NSMakeRange(18,NSIntegerMax-18) in @Objective-C.
         #[unsafe(method(suggestedAge))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedAge(&self) -> NSRange;
@@ -274,6 +280,12 @@ impl CLSContext {
         /// _Swift_or
         /// _NSMakeRange(0,NSIntegerMax)_in
         /// _Objective-C._Set the lower bound value to 0 to specify no minimum time limit and set the upper bound to NSIntegerMax - 1 to specify no maximum time limit.
+        ///
+        /// An time range of 10 to 15 minutes is expressed by @em NSRange(10...15) in @em Swift or by @em NSMakeRange(10,6) in @Objective-C.
+        ///
+        /// An time range of up to 10 minutes is expressed by @em NSRange(0...10) in @em Swift or by @em NSMakeRange(0,11) in @Objective-C.
+        ///
+        /// An time range of at least 20 minutes is expressed by @em NSRange(20...Int.max-1) in @em Swift or by @em NSMakeRange(20,NSIntegerMax-20) in @Objective-C.
         #[unsafe(method(suggestedCompletionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedCompletionTime(&self) -> NSRange;

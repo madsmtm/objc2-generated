@@ -980,7 +980,9 @@ unsafe impl RefEncode for IOUSBEndpointProperties {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbendpointpropertiesptr?language=objc)
 pub type IOUSBEndpointPropertiesPtr = *mut IOUSBEndpointProperties;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbendpointpropertiesversion3?language=objc)
+/// Version that has support for USB3 SuperSpeed Endpoint Companion fields.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbendpointpropertiesversion3?language=objc)
 pub const kUSBEndpointPropertiesVersion3: c_uint = 0x03;
 
 /// Type used to get a DeviceStatus as a single quantity.
@@ -1458,9 +1460,13 @@ pub const kUSBDeviceSpeedSuperPlus: c_uint = 4;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicespeedsuperplusby2?language=objc)
 pub const kUSBDeviceSpeedSuperPlusBy2: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbfullspeedmicrosecondsinframe?language=objc)
+/// The device is attached to a bus running at full speed (1 ms / frame).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbfullspeedmicrosecondsinframe?language=objc)
 pub const kUSBFullSpeedMicrosecondsInFrame: c_uint = 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhighspeedmicrosecondsinframe?language=objc)
+/// The device is attached to a bus running at high speed (125 microseconds / frame).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhighspeedmicrosecondsinframe?language=objc)
 pub const kUSBHighSpeedMicrosecondsInFrame: c_uint = 125;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusblowlatencyisochtransferkey?language=objc)
@@ -1473,10 +1479,13 @@ pub const kUSBLowLatencyIsochTransferKey: c_uint = 0x6c6c6974;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct USBLowLatencyBufferType(pub c_uint);
 impl USBLowLatencyBufferType {
+    /// The buffer will be used to write data out to a device.
     #[doc(alias = "kUSBLowLatencyWriteBuffer")]
     pub const WriteBuffer: Self = Self(0);
+    /// The buffer will be used to read data from a device.
     #[doc(alias = "kUSBLowLatencyReadBuffer")]
     pub const ReadBuffer: Self = Self(1);
+    /// The buffer will be used for a low latency isoch frame list.
     #[doc(alias = "kUSBLowLatencyFrameListBuffer")]
     pub const FrameListBuffer: Self = Self(2);
 }
@@ -1524,18 +1533,19 @@ pub const kUSBCUnsupportedTBCableNotificationType: c_uint = 14;
 
 /// Options used when calling ReEnumerateDevice.
 ///
-///
-/// any drivers attached to a Mass Storage Class IOUSBInterface.  A client needs to have the appropriate permissions in order to specify this bit.  See IOUSBLib.h
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/usbreenumerateoptions?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct USBReEnumerateOptions(pub c_int);
 impl USBReEnumerateOptions {
+    /// Setting this bit will cause the Hub driver to wait 100ms before addressing the device after the reset following the re-enumeration.
     #[doc(alias = "kUSBAddExtraResetTimeBit")]
     pub const AddExtraResetTimeBit: Self = Self(31);
+    /// Setting this bit will terminate any drivers attached to an IOUSBInterface for the device and to the IOUSBDevice itself.  It will not terminate
+    /// any drivers attached to a Mass Storage Class IOUSBInterface.  A client needs to have the appropriate permissions in order to specify this bit.  See IOUSBLib.h
     #[doc(alias = "kUSBReEnumerateCaptureDeviceBit")]
     pub const ReEnumerateCaptureDeviceBit: Self = Self(30);
+    /// Setting this bit will return return any device that was captured back to the OS.  The driver for the IOUSBDevice will be loaded.  A client needs to have the appropriate permissions in order to specify this bit.  See IOUSBLib.h
     #[doc(alias = "kUSBReEnumerateReleaseDeviceBit")]
     pub const ReEnumerateReleaseDeviceBit: Self = Self(29);
     #[doc(alias = "kUSBAddExtraResetTimeMask")]
@@ -1566,34 +1576,48 @@ unsafe impl RefEncode for USBReEnumerateOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct USBDeviceInformationBits(pub c_uint);
 impl USBDeviceInformationBits {
+    /// The USB device is directly attached to its hub and cannot be removed.
     #[doc(alias = "kUSBInformationDeviceIsCaptiveBit")]
     pub const InformationDeviceIsCaptiveBit: Self = Self(0);
+    /// The USB device is directly attached to the root hub
     #[doc(alias = "kUSBInformationDeviceIsAttachedToRootHubBit")]
     pub const InformationDeviceIsAttachedToRootHubBit: Self = Self(1);
+    /// The USB device is internal to the enclosure (all the hubs it attaches to are captive)
     #[doc(alias = "kUSBInformationDeviceIsInternalBit")]
     pub const InformationDeviceIsInternalBit: Self = Self(2);
+    /// The USB device is connected to its hub
     #[doc(alias = "kUSBInformationDeviceIsConnectedBit")]
     pub const InformationDeviceIsConnectedBit: Self = Self(3);
+    /// The hub port to which the USB device is attached is enabled
     #[doc(alias = "kUSBInformationDeviceIsEnabledBit")]
     pub const InformationDeviceIsEnabledBit: Self = Self(4);
+    /// The hub port to which the USB device is attached is suspended
     #[doc(alias = "kUSBInformationDeviceIsSuspendedBit")]
     pub const InformationDeviceIsSuspendedBit: Self = Self(5);
+    /// The hub port to which the USB device is attached is being reset
     #[doc(alias = "kUSBInformationDeviceIsInResetBit")]
     pub const InformationDeviceIsInResetBit: Self = Self(6);
+    /// The USB device generated an overcurrent
     #[doc(alias = "kUSBInformationDeviceOvercurrentBit")]
     pub const InformationDeviceOvercurrentBit: Self = Self(7);
+    /// The hub port to which the USB device is attached is in test mode
     #[doc(alias = "kUSBInformationDevicePortIsInTestModeBit")]
     pub const InformationDevicePortIsInTestModeBit: Self = Self(8);
+    /// The device is the root hub simulation
     #[doc(alias = "kUSBInformationDeviceIsRootHub")]
     pub const InformationDeviceIsRootHub: Self = Self(9);
+    /// If this is a root hub simulation and it's built into the enclosure, this bit is set.  If it's on an expansion card, it will be cleared
     #[doc(alias = "kUSBInformationRootHubisBuiltIn")]
     pub const InformationRootHubisBuiltIn: Self = Self(10);
     #[doc(alias = "kUSBInformationRootHubIsBuiltInBit")]
     pub const InformationRootHubIsBuiltInBit: Self = Self(10);
+    /// This device is "attached" to the controller through a remote connection
     #[doc(alias = "kUSBInformationDeviceIsRemote")]
     pub const InformationDeviceIsRemote: Self = Self(11);
+    /// The hub port to which the USB device is connected has a USB connector on the enclosure
     #[doc(alias = "kUSBInformationDeviceIsAttachedToEnclosure")]
     pub const InformationDeviceIsAttachedToEnclosure: Self = Self(12);
+    /// The USB device is downstream of a controller that is attached through Thunderbolt
     #[doc(alias = "kUSBInformationDeviceIsOnThunderboltBit")]
     pub const InformationDeviceIsOnThunderboltBit: Self = Self(13);
     #[doc(alias = "kUSBInformationDeviceIsCaptiveMask")]
@@ -1660,20 +1684,28 @@ unsafe impl RefEncode for USBDeviceInformationBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct USBPowerRequestTypes(pub c_uint);
 impl USBPowerRequestTypes {
+    /// The power is to be used during sleep.
     #[doc(alias = "kUSBPowerDuringSleep")]
     pub const DuringSleep: Self = Self(0);
+    /// The power is to be used while the system is awake (i.e not sleeping)
     #[doc(alias = "kUSBPowerDuringWake")]
     pub const DuringWake: Self = Self(1);
+    /// When used with ReturnExtraPower(), it will send a message to all devices to return any extra wake power if possible.
     #[doc(alias = "kUSBPowerRequestWakeRelease")]
     pub const RequestWakeRelease: Self = Self(2);
+    /// When used with ReturnExtraPower(), it will send a message to all devices to return any sleep power if possible.
     #[doc(alias = "kUSBPowerRequestSleepRelease")]
     pub const RequestSleepRelease: Self = Self(3);
+    /// When used with ReturnExtraPower(), it will send a message to all devices indicating that they can ask for more wake power, as some device has released it.
     #[doc(alias = "kUSBPowerRequestWakeReallocate")]
     pub const RequestWakeReallocate: Self = Self(4);
+    /// When used with ReturnExtraPower(), it will send a message to all devices indicating that they can ask for more sleep power, as some device has released it.
     #[doc(alias = "kUSBPowerRequestSleepReallocate")]
     pub const RequestSleepReallocate: Self = Self(5);
+    /// The power is to be used while the system is awake (i.e not sleeping), but can be taken away (via the kUSBPowerRequestWakeRelease message).  The system can then allocate that extra power to another device.
     #[doc(alias = "kUSBPowerDuringWakeRevocable")]
     pub const DuringWakeRevocable: Self = Self(6);
+    /// This is used by the USB stack to allocate the 400mA extra for USB3, above the 500ma allocated by USB2
     #[doc(alias = "kUSBPowerDuringWakeUSB3")]
     pub const DuringWakeUSB3: Self = Self(7);
 }
@@ -1704,12 +1736,16 @@ pub const kUSBNotificationPostForcedResumeBit: c_uint = 3;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct USBNotificationTypes(pub c_uint);
 impl USBNotificationTypes {
+    /// A notification is sent prior to a forced suspend (e.g. system sleep).
     #[doc(alias = "kUSBNotificationPreForcedSuspend")]
     pub const PreForcedSuspend: Self = Self(1 << kUSBNotificationPreForcedSuspendBit);
+    /// A notification is sent after a forced suspend has been completed (e.g. system sleep).
     #[doc(alias = "kUSBNotificationPostForcedSuspend")]
     pub const PostForcedSuspend: Self = Self(1 << kUSBNotificationPostForcedSuspendBit);
+    /// A notification is sent before a resume which happens after a forced suspend (e.g. system wake).
     #[doc(alias = "kUSBNotificationPreForcedResume")]
     pub const PreForcedResume: Self = Self(1 << kUSBNotificationPreForcedResumeBit);
+    /// A notification is sent after a resume which happens after a forced suspend (e.g. system wake).
     #[doc(alias = "kUSBNotificationPostForcedResume")]
     pub const PostForcedResume: Self = Self(1 << kUSBNotificationPostForcedResumeBit);
 }

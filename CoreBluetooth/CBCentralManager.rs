@@ -68,8 +68,10 @@ unsafe impl RefEncode for CBCentralManagerState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBConnectionEvent(pub NSInteger);
 impl CBConnectionEvent {
+    /// Peer is disconnected.
     #[doc(alias = "CBConnectionEventPeerDisconnected")]
     pub const PeerDisconnected: Self = Self(0);
+    /// Peer is connected.
     #[doc(alias = "CBConnectionEventPeerConnected")]
     pub const PeerConnected: Self = Self(1);
 }

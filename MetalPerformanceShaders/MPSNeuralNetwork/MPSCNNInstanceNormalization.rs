@@ -60,10 +60,12 @@ impl MPSCNNInstanceNormalizationGradientState {
         #[unsafe(method_family = none)]
         pub unsafe fn beta(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
+        /// The MTLBuffer containing the gradient values for gamma.
         #[unsafe(method(gradientForGamma))]
         #[unsafe(method_family = none)]
         pub unsafe fn gradientForGamma(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
+        /// The MTLBuffer containing the gradient values for beta.
         #[unsafe(method(gradientForBeta))]
         #[unsafe(method_family = none)]
         pub unsafe fn gradientForBeta(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
@@ -165,6 +167,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn beta(&self) -> *mut c_float;
 
+        /// The number of feature channels over which to normalize.
         #[unsafe(method(numberOfFeatureChannels))]
         #[unsafe(method_family = none)]
         unsafe fn numberOfFeatureChannels(&self) -> NSUInteger;

@@ -31,7 +31,9 @@ pub type TKTokenInstanceID = NSString;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendriverclassid?language=objc)
 pub type TKTokenDriverClassID = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation?language=objc)
+/// TKTokenOperation enumerates operations which can be performed with objects (keys and certificates) on the token.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -113,6 +113,8 @@ unsafe impl RefEncode for ICScannerTransferMode {
 }
 
 extern_protocol!(
+    /// ICScannerDeviceDelegate <ICDeviceDelegate>
+    ///
     /// A delegate of ICScannerDevice must conform to ICScannerDeviceDelegate protocol.
     ///
     /// The ICScannerDeviceDelegate protocol inherits from the ICDeviceDelegate protocol.

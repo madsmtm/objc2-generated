@@ -1516,6 +1516,8 @@ impl MEHEVCDependencyInfo {
 
 /// HEVCTemporalLevelInfo.
 ///
+/// MEHEVCDependencyInfo HEVCTemporalLevelInfo
+///
 /// Indicates a video frame's level within a hierarchical frame dependency structure.
 ///
 /// The properties here map to the kCMSampleAttachmentKey_HEVCTemporalLevelInfo sample buffer attachment dictionary.

@@ -35,13 +35,21 @@ pub const kIMKSubList: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkstyletype?language=objc)
 pub type IMKStyleType = NSUInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesabovehint?language=objc)
+/// Place the candidates above the start of the current text selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesabovehint?language=objc)
 pub const kIMKLocateCandidatesAboveHint: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesbelowhint?language=objc)
+/// Place the candidates below the start of the current text selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesbelowhint?language=objc)
 pub const kIMKLocateCandidatesBelowHint: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidateslefthint?language=objc)
+/// Place the candidates to the left of the current text selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidateslefthint?language=objc)
 pub const kIMKLocateCandidatesLeftHint: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesrighthint?language=objc)
+/// Place the candidates to the right of the current text selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesrighthint?language=objc)
 pub const kIMKLocateCandidatesRightHint: c_uint = 4;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidateslocationhint?language=objc)

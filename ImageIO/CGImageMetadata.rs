@@ -31,6 +31,7 @@ cf_objc2_type!(
 unsafe impl ConcreteType for CGImageMetadata {
     /// *!
     ///
+    /// Creating and identifying CGImageMetadata containers */
     ///
     ///
     /// Gets the type identifier for the CGImageMetadata opaque type
@@ -131,6 +132,7 @@ cf_objc2_type!(
 unsafe impl ConcreteType for CGImageMetadataTag {
     /// *!
     ///
+    /// Creating and identifying CGImageMetadataTags */
     ///
     ///
     /// Gets the type identifier for the CGImageMetadataTag opaque type
@@ -391,6 +393,7 @@ impl CGImageMetadataTag {
 
     /// *!
     ///
+    /// Getting attributes of a CGImageMetadataTag */
     ///
     ///
     /// Returns a copy of the tag's namespace
@@ -485,6 +488,7 @@ impl CGImageMetadataTag {
 impl CGImageMetadata {
     /// *!
     ///
+    /// Retrieving CGImageMetadataTagRefs from a CGImageMetadataRef */
     ///
     ///
     /// Obtain an array of tags from a CGImageMetadataRef
@@ -655,6 +659,7 @@ impl CGImageMetadata {
 impl CGMutableImageMetadata {
     /// *!
     ///
+    /// Modifying a CGMutableImageMetadataRef */
     ///
     ///
     /// Associates an XMP namespace URI with a prefix string.
@@ -979,6 +984,7 @@ extern "C" {
 impl CGImageMetadata {
     /// *!
     ///
+    /// Working with CGImageProperties */
     ///
     ///
     /// Searches for a specific CGImageMetadataTag matching a kCGImageProperty constant

@@ -74,6 +74,8 @@ impl VNDetectFaceLandmarksRequest {
             constellation: VNRequestFaceLandmarksConstellation,
         ) -> bool;
 
+        /// property constellation
+        ///
         /// Constellation type defines how many landmark points are used to map a face. Revisions 1, 2, and 3 of the request support 65 points, where Revision 3 also supports 76 points.
         #[unsafe(method(constellation))]
         #[unsafe(method_family = none)]

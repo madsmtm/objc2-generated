@@ -27,6 +27,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// @c UITextSelectionDisplayInteraction
+    ///
     /// Manages a collection of selection views (cursor, highlight, range adjustment) for a particular UITextInput object.
     ///
     /// This is the component that

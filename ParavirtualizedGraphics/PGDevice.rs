@@ -304,7 +304,9 @@ pub unsafe fn PGMaxDisplayPortCount() -> u32 {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrordomain?language=objc)
+    /// PGResumeErrorDomain The error domain for reporting errors in resume.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrordomain?language=objc)
     pub static PGResumeErrorDomain: &'static NSErrorDomain;
 }
 

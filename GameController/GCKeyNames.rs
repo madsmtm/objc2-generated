@@ -9,6 +9,7 @@ extern "C" {
     /// A set of strings that can be used to access keyboard buttons
     ///
     ///
+    /// keyboard.physicalInputProfile.buttons[GCKeySpacebar]
     ///
     /// See: GCKeyboardInput.h
     ///

@@ -211,6 +211,8 @@ pub const kCVPixelFormatType_Lossy_420YpCbCr10PackedBiPlanarVideoRange: OSType =
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossy_422ypcbcr10packedbiplanarvideorange?language=objc)
 pub const kCVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange: OSType = 0x2d787632;
 
+/// Pixel Buffer Locking Flags
+///
 /// Flags to pass to CVPixelBufferLockBaseAddress() / CVPixelBufferUnlockBaseAddress()
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags?language=objc)

@@ -2152,6 +2152,7 @@ impl DefaultRetained for XCTContext {
     }
 }
 
+/// XCTExpectFailure()
 /// Declares that the test is expected to fail at some point beyond the call. This can be used to both document and
 /// suppress a known issue when immediate resolution is not possible. Issues caught by XCTExpectFailure do not
 /// impact the aggregate results of the test suites which own them.
@@ -2177,6 +2178,7 @@ pub fn XCTExpectFailure(failure_reason: Option<&NSString>) {
     unsafe { XCTExpectFailure(failure_reason) }
 }
 
+/// XCTExpectFailureWithOptions()
 /// Like XCTExpectFailure, but takes an options object that can be used to customize the behavior.
 ///
 ///
@@ -2197,6 +2199,7 @@ pub fn XCTExpectFailureWithOptions(
     unsafe { XCTExpectFailureWithOptions(failure_reason, options) }
 }
 
+/// XCTExpectFailureInBlock()
 /// Like XCTExpectFailure, but limits the scope in which issues are matched.
 ///
 ///
@@ -2218,6 +2221,7 @@ pub fn XCTExpectFailureInBlock(
     unsafe { XCTExpectFailureInBlock(failure_reason, failing_block) }
 }
 
+/// XCTExpectFailureWithOptionsInBlock()
 /// Like XCTExpectFailure, but takes an options object that can be used to customize the behavior and
 /// limits the scope in which issues are matched.
 #[cfg(feature = "block2")]

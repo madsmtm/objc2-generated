@@ -45,6 +45,7 @@ impl JSValue {
         pub unsafe fn context(&self) -> Option<Retained<JSContext>>;
 
         #[cfg(feature = "JSContext")]
+        /// Creating JavaScript Values
         /// Create a JSValue by converting an Objective-C object.
         ///
         /// The resulting JSValue retains the provided Objective-C object.
@@ -447,6 +448,7 @@ impl JSValue {
             context: Option<&JSContext>,
         ) -> Option<Retained<JSValue>>;
 
+        /// Converting to Objective-C Types
         /// When converting between JavaScript values and Objective-C objects a copy is
         /// performed. Values of types listed below are copied to the corresponding
         /// types on conversion in each direction. For NSDictionaries, entries in the
@@ -930,6 +932,7 @@ impl JSValue {
 
     extern_methods!(
         #[cfg(feature = "objc2-foundation")]
+        /// Calling Functions and Constructors
         /// Invoke a JSValue as a function.
         ///
         /// In JavaScript, if a function doesn't explicitly return a value then it

@@ -30,6 +30,7 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl JSContext {
     extern_methods!(
+        /// Creating New JSContexts
         /// Create a JSContext.
         ///
         /// Returns: The new context.
@@ -55,6 +56,7 @@ impl JSContext {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "JSValue", feature = "objc2-foundation"))]
+        /// Evaluating Scripts
         /// Evaluate a string of JavaScript code.
         ///
         /// Parameter `script`: A string containing the JavaScript code to evaluate.
@@ -90,6 +92,7 @@ impl JSContext {
             source_url: Option<&NSURL>,
         ) -> Option<Retained<JSValue>>;
 
+        /// Callback Accessors
         /// Get the JSContext that is currently executing.
         ///
         /// This method may be called from within an Objective-C block or method invoked

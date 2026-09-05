@@ -27,6 +27,10 @@ pub const kEncodingString8Bit: &CStr = unsafe { CStr::from_bytes_with_nul_unchec
 /// Codes for OBEX errors. If the return value was not in the following range, then it is most likely resulting
 /// from kernel code/IOKit, and you should consult IOReturn.h for those codes.
 ///
+/// kOBEXErrorRangeMin                Minimum value in OBEX error range.
+///
+/// kOBEXErrorRangeMax                Maximum value in OBEX error range.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexerror?language=objc)
 pub type OBEXError = i32;
 
@@ -108,56 +112,82 @@ unsafe impl RefEncode for OBEXErrorCodes {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXHeaderIdentifiers(pub c_uint);
 impl OBEXHeaderIdentifiers {
+    /// Name of the object.  Null terminated unicode text.
     #[doc(alias = "kOBEXHeaderIDName")]
     pub const IDName: Self = Self(0x01);
+    /// Text description of the object. Null terminated unicode text.
     #[doc(alias = "kOBEXHeaderIDDescription")]
     pub const IDDescription: Self = Self(0x05);
+    /// Range includes all combos of the upper 2 bits. Reserved.
     #[doc(alias = "kOBEXHeaderIDReservedRangeStart")]
     pub const IDReservedRangeStart: Self = Self(0x10);
+    /// Range includes all combos of the upper 2 bits. Reserved.
     #[doc(alias = "kOBEXHeaderIDReservedRangeEnd")]
     pub const IDReservedRangeEnd: Self = Self(0x2F);
+    /// Range includes all combos of the upper 2 bits. User defined.
     #[doc(alias = "kOBEXHeaderIDUserDefinedRangeStart")]
     pub const IDUserDefinedRangeStart: Self = Self(0x30);
+    /// Range includes all combos of the upper 2 bits. User defined.
     #[doc(alias = "kOBEXHeaderIDUserDefinedRangeEnd")]
     pub const IDUserDefinedRangeEnd: Self = Self(0x3F);
+    /// Type of object - e.g. text, html, binary, etc. Null terminated ASCII text.
     #[doc(alias = "kOBEXHeaderIDType")]
     pub const IDType: Self = Self(0x42);
+    /// Date/time stamp - ISO8601 version of time. (YYYYMMDDTHHMMSSZ)
     #[doc(alias = "kOBEXHeaderIDTimeISO")]
     pub const IDTimeISO: Self = Self(0x44);
+    /// Name of service that operation is destined for.
     #[doc(alias = "kOBEXHeaderIDTarget")]
     pub const IDTarget: Self = Self(0x46);
+    /// An HTTP 1.x header.
     #[doc(alias = "kOBEXHeaderIDHTTP")]
     pub const IDHTTP: Self = Self(0x47);
+    /// A Chunk of the object body.
     #[doc(alias = "kOBEXHeaderIDBody")]
     pub const IDBody: Self = Self(0x48);
+    /// The last checking of the object body.
     #[doc(alias = "kOBEXHeaderIDEndOfBody")]
     pub const IDEndOfBody: Self = Self(0x49);
+    /// Identifies the OBEX applications, used to tell if talking to a peer.
     #[doc(alias = "kOBEXHeaderIDWho")]
     pub const IDWho: Self = Self(0x4A);
+    /// Extended application request and resposnse info.
     #[doc(alias = "kOBEXHeaderIDAppParameters")]
     pub const IDAppParameters: Self = Self(0x4C);
+    /// Authentication digest-challenge.
     #[doc(alias = "kOBEXHeaderIDAuthorizationChallenge")]
     pub const IDAuthorizationChallenge: Self = Self(0x4D);
+    /// Authentication digest-reponse.
     #[doc(alias = "kOBEXHeaderIDAuthorizationResponse")]
     pub const IDAuthorizationResponse: Self = Self(0x4E);
+    /// OBEX Object - class of object.
     #[doc(alias = "kOBEXHeaderIDObjectClass")]
     pub const IDObjectClass: Self = Self(0x4F);
+    /// Number of objects (used in Connect command).
     #[doc(alias = "kOBEXHeaderIDCount")]
     pub const IDCount: Self = Self(0xC0);
+    /// The length of the object in bytes. 4 byte unsigned integer value.
     #[doc(alias = "kOBEXHeaderIDLength")]
     pub const IDLength: Self = Self(0xC3);
+    /// Date/time stamp - 4 byte version for compat. only. Seconds since Jan 1, 1970.
     #[doc(alias = "kOBEXHeaderIDTime4Byte")]
     pub const IDTime4Byte: Self = Self(0xC4);
+    /// An identifier used for OBEX connection multiplexing.
     #[doc(alias = "kOBEXHeaderIDConnectionID")]
     pub const IDConnectionID: Self = Self(0xCB);
+    /// Used to provide state information when layering OBEX over stateless networks. 16byte UUID.
     #[doc(alias = "kOBEXHeaderIDOBEX13WANUUID")]
     pub const IDOBEX13WANUUID: Self = Self(0x50);
+    /// Used to reference the object class and properties. Byte Sequence.
     #[doc(alias = "kOBEXHeaderIDOBEX13ObjectClass")]
     pub const IDOBEX13ObjectClass: Self = Self(0x51);
+    /// Byte sequence required for CreateSession, CloseSession and other OBEX commands.
     #[doc(alias = "kOBEXHeaderIDOBEX13SessionParameters")]
     pub const IDOBEX13SessionParameters: Self = Self(0x52);
+    /// 1-byte quantitied containing the current sequence number.
     #[doc(alias = "kOBEXHeaderIDOBEX13SessionSequenceNumber")]
     pub const IDOBEX13SessionSequenceNumber: Self = Self(0x93);
+    /// 4-byte unsigned integer that identifies the creator of the object.
     #[doc(alias = "kOBEXHeaderIDOBEX13CreatorID")]
     pub const IDOBEX13CreatorID: Self = Self(0xCF);
 }

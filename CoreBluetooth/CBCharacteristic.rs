@@ -23,24 +23,34 @@ use crate::*;
 pub struct CBCharacteristicProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl CBCharacteristicProperties: NSUInteger {
+/// Permits broadcasts of the characteristic value using a characteristic configuration descriptor. Not allowed for local characteristics.
         #[doc(alias = "CBCharacteristicPropertyBroadcast")]
         const Broadcast = 0x01;
+/// Permits reads of the characteristic value.
         #[doc(alias = "CBCharacteristicPropertyRead")]
         const Read = 0x02;
+/// Permits writes of the characteristic value, without a response.
         #[doc(alias = "CBCharacteristicPropertyWriteWithoutResponse")]
         const WriteWithoutResponse = 0x04;
+/// Permits writes of the characteristic value.
         #[doc(alias = "CBCharacteristicPropertyWrite")]
         const Write = 0x08;
+/// Permits notifications of the characteristic value, without a response.
         #[doc(alias = "CBCharacteristicPropertyNotify")]
         const Notify = 0x10;
+/// Permits indications of the characteristic value.
         #[doc(alias = "CBCharacteristicPropertyIndicate")]
         const Indicate = 0x20;
+/// Permits signed writes of the characteristic value
         #[doc(alias = "CBCharacteristicPropertyAuthenticatedSignedWrites")]
         const AuthenticatedSignedWrites = 0x40;
+/// If set, additional characteristic properties are defined in the characteristic extended properties descriptor. Not allowed for local characteristics.
         #[doc(alias = "CBCharacteristicPropertyExtendedProperties")]
         const ExtendedProperties = 0x80;
+/// If set, only trusted devices can enable notifications of the characteristic value.
         #[doc(alias = "CBCharacteristicPropertyNotifyEncryptionRequired")]
         const NotifyEncryptionRequired = 0x100;
+/// If set, only trusted devices can enable indications of the characteristic value.
         #[doc(alias = "CBCharacteristicPropertyIndicateEncryptionRequired")]
         const IndicateEncryptionRequired = 0x200;
         const _ = !0;
@@ -135,12 +145,16 @@ impl CBCharacteristic {
 pub struct CBAttributePermissions(pub NSUInteger);
 bitflags::bitflags! {
     impl CBAttributePermissions: NSUInteger {
+/// Read-only.
         #[doc(alias = "CBAttributePermissionsReadable")]
         const Readable = 0x01;
+/// Write-only.
         #[doc(alias = "CBAttributePermissionsWriteable")]
         const Writeable = 0x02;
+/// Readable by trusted devices.
         #[doc(alias = "CBAttributePermissionsReadEncryptionRequired")]
         const ReadEncryptionRequired = 0x04;
+/// Writeable by trusted devices.
         #[doc(alias = "CBAttributePermissionsWriteEncryptionRequired")]
         const WriteEncryptionRequired = 0x08;
         const _ = !0;

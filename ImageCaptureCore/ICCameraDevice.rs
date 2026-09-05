@@ -140,7 +140,11 @@ extern "C" {
     pub static ICDeleteErrorCanceled: &'static ICDeleteError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icmediapresentation?language=objc)
+/// ICMediaPresentation controls the display of either transcoded or original assets, if the device supports transcoding.
+///
+/// ICMediaPresentationConvertedAssets sets the device presentation view to display original assets only.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icmediapresentation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -490,6 +494,8 @@ impl ICCameraDevice {
 }
 
 extern_protocol!(
+    /// ICCameraDeviceDelegate  <ICDeviceDelegate>
+    ///
     /// A delegate of ICCameraDevice must conform to ICCameraDeviceDelegate protocol.
     ///
     /// The ICCameraDeviceDelegate protocol inherits from the ICDeviceDelegate protocol.
@@ -672,6 +678,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// ICCameraDeviceDownloadDelegate <NSObject>
+    ///
     /// The object passed in as 'downloadDelegate' in the 'requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:' message must conform to ICCameraDeviceDownloadDelegate protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicedownloaddelegate?language=objc)

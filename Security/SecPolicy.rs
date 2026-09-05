@@ -6,6 +6,8 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// Policy Constants
+    ///
     /// Predefined constants used to specify a policy.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplex509basic?language=objc)
@@ -114,6 +116,8 @@ extern "C" {
 }
 
 extern "C" {
+    /// Policy Value Constants
+    ///
     /// Predefined property key constants used to get or set values in
     /// a dictionary for a policy instance.
     ///
@@ -127,19 +131,24 @@ extern "C" {
     /// kSecPolicyTeamIdentifier    (only valid for a Passbook signing policy)
     ///
     ///
+    /// kSecPolicyOid Specifies the policy OID (value is a CFStringRef)
     ///
+    /// kSecPolicyName Specifies a CFStringRef (or CFArrayRef of same)
     /// containing a name which must be matched in the certificate to satisfy
     /// this policy. For SSL/TLS, EAP, and IPSec policies, this specifies the
     /// server name which must match the common name of the certificate.
     /// For S/MIME, this specifies the RFC822 email address. For Passbook
     /// signing, this specifies the pass signer.
     ///
+    /// kSecPolicyClient Specifies a CFBooleanRef value that indicates
     /// this evaluation should be for a client certificate. If not set (or
     /// false), the policy evaluates the certificate as a server certificate.
     ///
+    /// kSecPolicyRevocationFlags Specifies a CFNumberRef that holds a
     /// kCFNumberCFIndexType bitmask value. See "Revocation Policy Constants"
     /// for a description of individual bits in this value.
     ///
+    /// kSecPolicyTeamIdentifier Specifies a CFStringRef containing a
     /// team identifier which must be matched in the certificate to satisfy
     /// this policy. For the Passbook signing policy, this string must match
     /// the Organizational Unit field of the certificate subject.
@@ -355,6 +364,8 @@ impl SecPolicy {
 }
 
 extern "C" {
+    /// Policy Value Constants (macOS)
+    ///
     /// Predefined property key constants used to get or set values in
     /// a dictionary for a policy instance.
     ///
@@ -390,22 +401,31 @@ extern "C" {
     /// and use higher level policies where possible.
     ///
     ///
+    /// kSecPolicyKU_DigitalSignature Specifies that the certificate must
     /// have a key usage that allows it to be used for signing.
     ///
+    /// kSecPolicyKU_NonRepudiation Specifies that the certificate must
     /// have a key usage that allows it to be used for non-repudiation.
     ///
+    /// kSecPolicyKU_KeyEncipherment Specifies that the certificate must
     /// have a key usage that allows it to be used for key encipherment.
     ///
+    /// kSecPolicyKU_DataEncipherment Specifies that the certificate must
     /// have a key usage that allows it to be used for data encipherment.
     ///
+    /// kSecPolicyKU_KeyAgreement Specifies that the certificate must
     /// have a key usage that allows it to be used for key agreement.
     ///
+    /// kSecPolicyKU_KeyCertSign Specifies that the certificate must
     /// have a key usage that allows it to be used for signing certificates.
     ///
+    /// kSecPolicyKU_CRLSign Specifies that the certificate must
     /// have a key usage that allows it to be used for signing CRLs.
     ///
+    /// kSecPolicyKU_EncipherOnly Specifies that the certificate must
     /// have a key usage that permits it to be used for encryption only.
     ///
+    /// kSecPolicyKU_DecipherOnly Specifies that the certificate must
     /// have a key usage that permits it to be used for decryption only.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_digitalsignature?language=objc)

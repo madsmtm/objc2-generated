@@ -51,6 +51,8 @@ mod private_NSObjectIKImageBrowserDataSource {
 
 /// Category "IKImageBrowserDataSource" on [`NSObject`].
 ///
+/// NSObject (IKImageBrowserDataSource)
+///
 /// The IKImageBrowserDataSource informal protocol declares the methods that an instance of IKImageBrowserView uses to access the contents of its data source object.
 #[doc(alias = "IKImageBrowserDataSource")]
 pub unsafe trait NSObjectIKImageBrowserDataSource:
@@ -185,6 +187,8 @@ mod private_NSObjectIKImageBrowserItem {
 
 /// Category "IKImageBrowserItem" on [`NSObject`].
 ///
+/// NSObject (IKImageBrowserItem)
+///
 /// The IKImageBrowserItem informal protocol declares the methods that an instance of IKImageBrowserView uses to access the contents of its data source for a given item.
 ///
 /// Some of the methods in this protocol, such as
@@ -312,6 +316,8 @@ impl IKImageBrowserView {
 }
 
 /// IKMainMethods.
+///
+/// IKImageBrowserView (IKMainMethods)
 #[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
@@ -368,6 +374,8 @@ impl IKImageBrowserView {
 }
 
 /// IKAppearance.
+///
+/// IKImageBrowserView (IKAppearance)
 #[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
@@ -469,6 +477,8 @@ impl IKImageBrowserView {
 }
 
 /// IKBrowsing.
+///
+/// IKImageBrowserView (IKBrowsing)
 #[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
@@ -613,6 +623,8 @@ impl IKImageBrowserView {
 }
 
 /// IKSelectionReorderingAndGrouping.
+///
+/// IKImageBrowserView (IKSelectionReorderingAndGrouping)
 #[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
@@ -713,6 +725,8 @@ impl IKImageBrowserView {
 }
 
 /// IKDragNDrop.
+///
+/// IKImageBrowserView (IKDragNDrop)
 #[deprecated = "Deprecated - Please use NSCollectionView instead"]
 impl IKImageBrowserView {
     extern_methods!(
@@ -783,6 +797,8 @@ mod private_NSObjectIKImageBrowserDelegate {
 }
 
 /// Category "IKImageBrowserDelegate" on [`NSObject`].
+///
+/// NSObject (IKImageBrowserDelegate)
 ///
 /// Informal protocol for image browser 's delegate
 #[doc(alias = "IKImageBrowserDelegate")]

@@ -210,6 +210,8 @@ impl ITLibPlaylist {
 }
 
 extern "C" {
+    /// ITLibPlaylistPropertyName.
+    ///
     /// Retrieves the name or title of the playlist. See
     ///
     /// ```text
@@ -223,42 +225,58 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyallitemsplaylist?language=objc)
+    /// ITLibPlaylistPropertyAllItems. See allItemsPlaylist.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyallitemsplaylist?language=objc)
     pub static ITLibPlaylistPropertyAllItemsPlaylist: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertydistinguisedkind?language=objc)
+    /// ITLibPlaylistPropertyDistinguisedKind.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertydistinguisedkind?language=objc)
     pub static ITLibPlaylistPropertyDistinguisedKind: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyprimary?language=objc)
+    /// ITLibPlaylistPropertyPrimary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyprimary?language=objc)
     pub static ITLibPlaylistPropertyPrimary: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyparentpersistentid?language=objc)
+    /// ITLibPlaylistPropertyParentPersistentID.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyparentpersistentid?language=objc)
     pub static ITLibPlaylistPropertyParentPersistentID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyvisible?language=objc)
+    /// ITLibPlaylistPropertyVisible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyvisible?language=objc)
     pub static ITLibPlaylistPropertyVisible: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyitems?language=objc)
+    /// ITLibPlaylistPropertyItems.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertyitems?language=objc)
     pub static ITLibPlaylistPropertyItems: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertykind?language=objc)
+    /// ITLibPlaylistPropertyFolder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertykind?language=objc)
     pub static ITLibPlaylistPropertyKind: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertymaster?language=objc)
+    /// ITLibPlaylistPropertyMaster.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistpropertymaster?language=objc)
     #[deprecated]
     pub static ITLibPlaylistPropertyMaster: &'static NSString;
 }

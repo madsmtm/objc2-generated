@@ -64,7 +64,9 @@ impl FSTask {
         /// @
         /// ‎‌interface YourFileSystem : NSObject
         ///
+        /// (retain) dispatch_group_t work_group;
         ///
+        /// (nonatomic,getter=interrupted) BOOL interrupted;
         /// @end ```
         /// }
         ///

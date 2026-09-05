@@ -130,6 +130,7 @@ impl MSStickerBrowserView {
         /// Sticker images will be laid out in a grid similar to a UICollectionView
         /// configured with flow layout.
         ///
+        /// size hints the size of the cells, the size a sticker is drawn at will
         /// vary based on the device. Sticker images will be scaled down to fit in the grid cell. If the
         /// sticker image is smaller than the cell size measured in pixels then it will be  centered
         /// in the grid cell.

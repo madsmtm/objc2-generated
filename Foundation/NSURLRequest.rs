@@ -871,6 +871,7 @@ impl DefaultRetained for NSMutableURLRequest {
 
 /// NSHTTPURLRequest.
 ///
+/// NSURLRequest(NSHTTPURLRequest)
 /// The NSHTTPURLRequest on NSURLRequest provides methods for accessing
 /// information specific to HTTP protocol requests.
 impl NSURLRequest {
@@ -960,6 +961,7 @@ impl NSURLRequest {
 
 /// NSMutableHTTPURLRequest.
 ///
+/// NSMutableURLRequest(NSMutableHTTPURLRequest)
 /// The NSMutableHTTPURLRequest on NSMutableURLRequest provides methods
 /// for configuring information specific to HTTP protocol requests.
 impl NSMutableURLRequest {

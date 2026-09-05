@@ -11,7 +11,9 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceprotocolstring?language=objc)
+/// Supported Protocols
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceprotocolstring?language=objc)
 // NS_TYPED_ENUM
 pub type DDDeviceProtocolString = NSString;
 

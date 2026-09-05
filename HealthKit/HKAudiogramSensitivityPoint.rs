@@ -32,12 +32,14 @@ extern_conformance!(
 impl HKAudiogramSensitivityPoint {
     extern_methods!(
         #[cfg(feature = "HKQuantity")]
+        /// frequency  Frequency where sensitivity was measured.  The unit of measurement
         /// is [HKUnit hertzUnit] or "Hz".
         #[unsafe(method(frequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn frequency(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// sensitivity Left ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
         #[deprecated = "Use tests object which will contain a value for left ear"]
         #[unsafe(method(leftEarSensitivity))]
@@ -45,6 +47,7 @@ impl HKAudiogramSensitivityPoint {
         pub unsafe fn leftEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// sensitivity Right ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
         #[deprecated = "Use tests object which will contain a value for right ear"]
         #[unsafe(method(rightEarSensitivity))]

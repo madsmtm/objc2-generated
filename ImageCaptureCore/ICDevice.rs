@@ -558,6 +558,8 @@ impl ICDevice {
 }
 
 extern_protocol!(
+    /// ICDeviceDelegate <NSObject>
+    ///
     /// A delegate of ICDevice must conform to ICDeviceDelegate protocol.
     ///
     /// Note: Unless otherwise noted, all delegate callbacks will occur on the main thread.

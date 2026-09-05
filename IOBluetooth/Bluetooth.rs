@@ -5978,11 +5978,17 @@ unsafe impl RefEncode for BluetoothHCIPowerState {
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorpowerisoff?language=objc)
 pub const kBluetoothHCIErrorPowerIsOFF: c_uint = kBluetoothHCIErrorMax + 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcitransportusbclasscode?language=objc)
+/// Wireless Controller
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcitransportusbclasscode?language=objc)
 pub const kBluetoothHCITransportUSBClassCode: c_uint = 0xE0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcitransportusbsubclasscode?language=objc)
+/// RF Controller
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcitransportusbsubclasscode?language=objc)
 pub const kBluetoothHCITransportUSBSubClassCode: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcitransportusbprotocolcode?language=objc)
+/// Bluetooth Programming
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcitransportusbprotocolcode?language=objc)
 pub const kBluetoothHCITransportUSBProtocolCode: c_uint = 0x01;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcieventidreserved?language=objc)

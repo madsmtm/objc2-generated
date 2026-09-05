@@ -227,7 +227,11 @@ unsafe impl RefEncode for HMCharacteristicValueJammedStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetamperedstatus?language=objc)
+/// HMCharacteristicValueTamperStatusNone               Accessory is not tampered with.
+///
+/// HMCharacteristicValueTamperStatusTampered           Accessory is tampered with.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetamperedstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -247,7 +251,11 @@ unsafe impl RefEncode for HMCharacteristicValueTamperedStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueleakstatus?language=objc)
+/// HMCharacteristicValueLeakDetectionStatusNone        Leak is not detected.
+///
+/// HMCharacteristicValueLeakDetectionStatusDetected    Leak is detected.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueleakstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

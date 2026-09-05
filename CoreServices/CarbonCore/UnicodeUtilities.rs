@@ -578,6 +578,8 @@ pub const kUCTextBreakGoBackwardsMask: c_uint = 1 << 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuctextbreakiteratemask?language=objc)
 pub const kUCTextBreakIterateMask: c_uint = 1 << 2;
 
+/// UCKeyTranslate Converts a combination of a virtual key code, a modifier key state, and a dead-key state into a string of one or more Unicode characters.
+///
 /// Use of the UCKeyTranslate function is discouraged in applications. Use the NSEvent method charactersByApplyingModifiers: in its place to process mouse and keyboard-related events.
 /// The UCKeyTranslate function uses the data in a Unicode keyboard-layout ('uchr') resource to map a combination of virtual key code and modifier key state to a sequence of up to 255 Unicode characters. This mapping process depends on, and may update, a dead key state; the UCKeyTranslate function and the 'uchr' resource support multiple dead keys. The mapping may also depend on the specific type of key action and the type of physical keyboard being used. The UCKeyTranslate function supports non-ADB keyboards, an extensible set of modifier keys, and other possible extensions.
 /// In most cases, your application does not need to call the UCKeyTranslate function, since the Text Services Manager automatically calls it on your behalf to handle input from a Unicode keyboard layout. However, there may be some circumstances in which your application should call UCKeyTranslate. For example, your application may need to determine what character(s) would have been generated for the virtual key code in the current key-down event if a different modifier-and-key combination had been used.

@@ -45,6 +45,24 @@ unsafe impl Sync for CMFormatDescription {}
 
 /// The type of media described by a CMFormatDescription.
 ///
+/// kCMMediaType_Video Video media
+///
+/// kCMMediaType_Audio Audio media
+///
+/// kCMMediaType_Muxed Muxed media
+///
+/// kCMMediaType_Text Text media
+///
+/// kCMMediaType_ClosedCaption Closed-caption media
+///
+/// kCMMediaType_Subtitle Subtitle media
+///
+/// kCMMediaType_TimeCode TimeCode media
+///
+/// kCMMediaType_Metadata Metadata media
+///
+/// kCMMediaType_TaggedBufferGroup media
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmediatype?language=objc)
 pub type CMMediaType = FourCharCode;
 
@@ -331,6 +349,10 @@ impl CMFormatDescription {
 
 /// Four-character codes identifying the code type. Certain codec types are also audio formats.
 ///
+/// kCMAudioCodecType_AAC_LCProtected iTMS protected low-complexity AAC.
+///
+/// kCMAudioCodecType_AAC_AudibleProtected Audible's protected AAC.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiocodectype?language=objc)
 pub type CMAudioCodecType = FourCharCode;
 
@@ -578,6 +600,16 @@ impl CMAudioFormatDescription {
 /// Mask bits passed to (and returned from) CMAudioFormatDescriptionEqual,
 /// representing various parts of an audio format description.
 ///
+/// CMAudioFormatDescriptionMask_StreamBasicDescription    Represents the AudioStreamBasicDescription.
+///
+/// CMAudioFormatDescriptionMask_MagicCookie                Represents the magic cookie.
+///
+/// CMAudioFormatDescriptionMask_ChannelLayout                Represents the AudioChannelLayout.
+///
+/// CMAudioFormatDescriptionMask_Extensions                    Represents the format description extensions.
+///
+/// CMAudioFormatDescriptionMask_All                        Represents all the parts of an audio format description.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptionmask?language=objc)
 pub type CMAudioFormatDescriptionMask = u32;
 
@@ -670,6 +702,38 @@ unsafe impl Sync for CMVideoFormatDescription {}
 /// Four-character codes identifying the pixel format. Only some codec types are pixel formats.
 /// In general, CoreVideo CVPixelFormatType constants may be used too.
 ///
+/// kCMPixelFormat_32ARGB 32-bit ARGB
+///
+/// kCMPixelFormat_32BGRA 32-bit BGRA
+///
+/// kCMPixelFormat_24RGB 24-bit RGB
+///
+/// kCMPixelFormat_16BE555 16-bit big-endian 5-5-5
+///
+/// kCMPixelFormat_16BE565 16-bit big-endian 5-6-5
+///
+/// kCMPixelFormat_16LE555 16-bit little-endian 5-5-5
+///
+/// kCMPixelFormat_16LE565 16-bit little-endian 5-6-5
+///
+/// kCMPixelFormat_16LE5551 16-bit little-endian 5-5-5-1
+///
+/// kCMPixelFormat_422YpCbCr8 Component Y'CbCr 8-bit 4:2:2 ordered Cb Y'0 Cr Y'1
+///
+/// kCMPixelFormat_422YpCbCr8_yuvs Component Y'CbCr 8-bit 4:2:2 ordered Y'0 Cb Y'1 Cr
+///
+/// kCMPixelFormat_444YpCbCr8 Component Y'CbCr 8-bit 4:4:4
+///
+/// kCMPixelFormat_4444YpCbCrA8 Component Y'CbCrA 8-bit 4:4:4:4
+///
+/// kCMPixelFormat_422YpCbCr16 Component Y'CbCr 10,12,14,16-bit 4:2:2
+///
+/// kCMPixelFormat_422YpCbCr10 Component Y'CbCr 10-bit 4:2:2
+///
+/// kCMPixelFormat_444YpCbCr10 Component Y'CbCr 10-bit 4:4:4
+///
+/// kCMPixelFormat_8IndexedGray_WhiteIsZero 8 bit indexed gray, white is zero
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpixelformattype?language=objc)
 pub type CMPixelFormatType = FourCharCode;
 
@@ -709,19 +773,83 @@ pub const kCMPixelFormat_8IndexedGray_WhiteIsZero: CMPixelFormatType = 0x0000002
 /// Four-character codes identifying the video codec. Certain codec types are also pixel formats.
 /// Note: There is no kCMVideoCodecType_Raw -- use the appropriate pixel format type as the codec type.
 ///
+/// kCMVideoCodecType_422YpCbCr8    Component Y'CbCr 8-bit 4:2:2 ordered Cb Y'0 Cr Y'1
 ///
+/// kCMVideoCodecType_Animation        Apple Animation format
 ///
+/// kCMVideoCodecType_Cinepak    Cinepak format
 ///
+/// kCMVideoCodecType_JPEG    Joint Photographic Experts Group (JPEG) format
 ///
+/// kCMVideoCodecType_JPEG_OpenDML    JPEG format with Open-DML extensions
 ///
+/// kCMVideoCodecType_JPEG_XL        JPEG XL Image Coding System (ISO/IEC 18181)
 ///
+/// kCMVideoCodecType_SorensonVideo        Sorenson video format
 ///
+/// kCMVideoCodecType_SorensonVideo3    Sorenson 3 video format
 ///
+/// kCMVideoCodecType_H263    ITU-T H.263 format
 ///
+/// kCMVideoCodecType_H264    ITU-T H.264 format (AKA ISO/IEC 14496-10 - MPEG-4 Part 10, Advanced Video Coding format)
 ///
+/// kCMVideoCodecType_HEVC    ITU-T HEVC format
 ///
+/// kCMVideoCodecType_HEVCWithAlpha    HEVC format with alpha support defined in Annex-F.
 /// IMPORTANT NOTE: this constant is used to select the appropriate encoder, but is NOT used on the encoded content,
 /// which is backwards compatible and hence uses 'hvc1' as its codec type.
+///
+/// kCMVideoCodecType_DolbyVisionHEVC    Dolby Vision HEVC fprmat
+///
+/// kCMVideoCodecType_MPEG4Video    ISO/IEC Moving Picture Experts Group (MPEG) MPEG-4 Part 2 video format
+///
+/// kCMVideoCodecType_MPEG2Video    MPEG-2 video format
+///
+/// kCMVideoCodecType_MPEG1Video    MPEG-1 video format
+///
+/// kCMVideoCodecType_DVCNTSC    DV NTSC format
+///
+/// kCMVideoCodecType_DVCPAL    DV PAL format
+///
+/// kCMVideoCodecType_DVCProPAL        Panasonic DVCPro PAL format
+///
+/// kCMVideoCodecType_DVCPro50NTSC    Panasonic DVCPro-50 NTSC format
+///
+/// kCMVideoCodecType_DVCPro50PAL    Panasonic DVCPro-50 PAL format
+///
+/// kCMVideoCodecType_DVCPROHD720p60    Panasonic DVCPro-HD 720p60 format
+///
+/// kCMVideoCodecType_DVCPROHD720p50    Panasonic DVCPro-HD 720p50 format
+///
+/// kCMVideoCodecType_DVCPROHD1080i60    Panasonic DVCPro-HD 1080i60 format
+///
+/// kCMVideoCodecType_DVCPROHD1080i50    Panasonic DVCPro-HD 1080i50 format
+///
+/// kCMVideoCodecType_DVCPROHD1080p30    Panasonic DVCPro-HD 1080p30 format
+///
+/// kCMVideoCodecType_DVCPROHD1080p25    Panasonic DVCPro-HD 1080p25 format
+///
+/// kCMVideoCodecType_AppleProRes4444XQ    Apple ProRes 4444 XQ format
+///
+/// kCMVideoCodecType_AppleProRes4444    Apple ProRes 4444 format
+///
+/// kCMVideoCodecType_AppleProRes422HQ    Apple ProRes 422 HQ format
+///
+/// kCMVideoCodecType_AppleProRes422    Apple ProRes 422 format
+///
+/// kCMVideoCodecType_AppleProRes422LT    Apple ProRes 422 LT format
+///
+/// kCMVideoCodecType_AppleProRes422Proxy    Apple ProRes 422 Proxy format
+///
+/// kCMVideoCodecType_AppleProResRAW    Apple ProRes RAW format
+///
+/// kCMVideoCodecType_AppleProResRAWHQ    Apple ProRes RAW HQ format
+///
+/// kCMVideoCodecType_DisparityHEVC        Encodes kCVPixelFormatType_DisparityFloat16 using 10-bit monochrome HEVC
+///
+/// kCMVideoCodecType_DepthHEVC         Encodes kCVPixelFormatType_DepthFloat16 using 10-bit monochrome HEVC
+///
+/// kCMVideoCodecType_AV1          AV1 video format
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideocodectype?language=objc)
 pub type CMVideoCodecType = FourCharCode;
@@ -2068,6 +2196,8 @@ pub type CMTaggedBufferGroupFormatDescription = CMFormatDescription;
 
 /// The subtypes of CMTaggedBufferGroup media type.
 ///
+/// kCMTaggedBufferGroupFormatType_TaggedBuffer    For sample buffers carrying CMTaggedBufferGroup objects.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformattype?language=objc)
 pub type CMTaggedBufferGroupFormatType = FourCharCode;
 
@@ -2099,10 +2229,15 @@ unsafe impl Sync for CMMuxedFormatDescription {}
 
 /// Muxed media format/subtype.
 ///
+/// kCMMuxedStreamType_MPEG1System    MPEG-1 System stream
 ///
+/// kCMMuxedStreamType_MPEG2Transport    MPEG-2 Transport stream
 ///
+/// kCMMuxedStreamType_MPEG2Program    MPEG-2 Program stream
 ///
+/// kCMMuxedStreamType_DV    DV stream
 ///
+/// kCMMuxedStreamType_EmbeddedDeviceScreenRecording    Screen capture on an embedded device
 ///
 /// Contains interleaved sample buffers from multiple media types. The receiver should query the media type of each CMSampleBuffer’s format description to discover if it’s video or audio, and process it accordingly.
 ///
@@ -2180,6 +2315,12 @@ unsafe impl Sync for CMClosedCaptionFormatDescription {}
 /// Closed-caption media format/subtype.
 /// Note:  use CMFormatDescriptionCreate to create a CMClosedCaptionFormatDescriptionRef.
 ///
+/// kCMClosedCaptionFormatType_CEA608    CEA 608-compliant samples
+///
+/// kCMClosedCaptionFormatType_CEA708    CEA 708-compliant samples
+///
+/// kCMClosedCaptionFormatType_ATSC        ATSC/52 part-4 compliant samples
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformattype?language=objc)
 pub type CMClosedCaptionFormatType = FourCharCode;
 
@@ -2214,6 +2355,10 @@ unsafe impl Sync for CMTextFormatDescription {}
 
 /// Text media format/subtype.
 ///
+/// kCMTextFormatType_QTText    QuickTime Text media
+///
+/// kCMTextFormatType_3GText    3GPP Text media
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformattype?language=objc)
 pub type CMTextFormatType = FourCharCode;
 
@@ -2223,6 +2368,32 @@ pub const kCMTextFormatType_QTText: CMTextFormatType = 0x74657874;
 pub const kCMTextFormatType_3GText: CMTextFormatType = 0x74783367;
 
 /// Display mode flags for text media.
+///
+/// kCMTextDisplayFlag_scrollIn        Text scrolls into the display region.
+///
+/// kCMTextDisplayFlag_scrollOut    Text scrolls out of the display region.
+///
+/// kCMTextDisplayFlag_scrollDirectionMask    The scrolling direction is set by a two-bit field, obtained from displayFlags using kCMTextDisplayFlag_scrollDirectionMask.
+///
+/// kCMTextDisplayFlag_scrollDirection_bottomToTop    Text is vertically scrolled up ("credits style"), entering from the bottom and leaving towards the top.
+///
+/// kCMTextDisplayFlag_scrollDirection_rightToLeft    Text is horizontally scrolled ("marquee style"), entering from the right and leaving towards the left.
+///
+/// kCMTextDisplayFlag_scrollDirection_topToBottom    Text is vertically scrolled down, entering from the top and leaving towards the bottom.
+///
+/// kCMTextDisplayFlag_scrollDirection_leftToRight    Text is horizontally scrolled, entering from the left and leaving towards the right.
+///
+/// kCMTextDisplayFlag_continuousKaraoke    Enables the Continuous Karaoke mode where the range of karaoke highlighting extends to include additional ranges rather than the highlighting moves onto the next range.
+///
+/// kCMTextDisplayFlag_writeTextVertically    Specifies the text to be rendered vertically.
+///
+/// kCMTextDisplayFlag_fillTextRegion    The subtitle display bounds are to be filled with the color specified by kCMTextFormatDescriptionExtension_BackgroundColor.
+///
+/// kCMTextDisplayFlag_obeySubtitleFormatting    Specifies that the subtitle display bounds should be used to determine if the subtitles should be placed near the top or the bottom of the video. Otherwise, subtitles should be placed at the bottom of the video.
+///
+/// kCMTextDisplayFlag_forcedSubtitlesPresent    There are forced subtitles present, e.g., a subtitle which only displays during foreign language sections of the video. Check individual samples to determine what type of subtitle is contained.
+///
+/// kCMTextDisplayFlag_allSubtitlesForced    Treat all subtitle samples as if they contain forced subtitles.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextdisplayflags?language=objc)
 pub type CMTextDisplayFlags = u32;
@@ -2255,6 +2426,12 @@ pub const kCMTextDisplayFlag_forcedSubtitlesPresent: CMTextDisplayFlags = 0x4000
 pub const kCMTextDisplayFlag_allSubtitlesForced: CMTextDisplayFlags = 0x80000000;
 
 /// Justification modes for text media. Used when specifying either horizontal or vertical justification.
+///
+/// kCMTextJustification_left_top    Left justification when specified for horizontal justification, top justification for vertical justification.
+///
+/// kCMTextJustification_centered    Center justification (both horizontal and vertical justification).
+///
+/// kCMTextJustification_bottom_right    Bottom justification when specified for vertical justification, right justification for horizontal justification.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextjustificationvalue?language=objc)
 pub type CMTextJustificationValue = i8;
@@ -2574,6 +2751,14 @@ unsafe impl Sync for CMTimeCodeFormatDescription {}
 
 /// The types of TimeCode.
 ///
+/// kCMTimeCodeFormatType_TimeCode32 32-bit timeCode sample.
+///
+/// kCMTimeCodeFormatType_TimeCode64 64-bit timeCode sample.
+///
+/// kCMTimeCodeFormatType_Counter32 32-bit counter-mode sample.
+///
+/// kCMTimeCodeFormatType_Counter64 64-bit counter-mode sample.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformattype?language=objc)
 pub type CMTimeCodeFormatType = FourCharCode;
 
@@ -2714,6 +2899,14 @@ unsafe impl Send for CMMetadataFormatDescription {}
 unsafe impl Sync for CMMetadataFormatDescription {}
 
 /// The subtypes of Metadata media type.
+///
+/// kCMMetadataFormatType_ICY        SHOUTCast format.
+///
+/// kCMMetadataFormatType_ID3        ID3 format.
+///
+/// kCMMetadataFormatType_Boxed        Boxed format.
+///
+/// kCMMetadataFormatType_EMSG        EMSG format.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformattype?language=objc)
 pub type CMMetadataFormatType = FourCharCode;

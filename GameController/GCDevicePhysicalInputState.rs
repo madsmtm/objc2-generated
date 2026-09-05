@@ -51,6 +51,13 @@ extern_protocol!(
         #[cfg(all(feature = "GCInputNames", feature = "GCPhysicalInputElement"))]
         /// The following properties allow for runtime lookup of any input element on a
         /// profile, when provided with a valid alias.
+        ///
+        ///
+        /// input.elements[GCInputButtonA]
+        ///
+        /// input.dpads[GCInputLeftThumbstick]
+        ///
+        /// input.dpads[GCInputButtonB] // fails, "Button B" is not a DirectionPad
         #[unsafe(method(elements))]
         #[unsafe(method_family = none)]
         unsafe fn elements(
@@ -109,7 +116,9 @@ extern_protocol!(
         /// Profile elements can be accessed using keyed subscript notation, with a valid alias of its inputs.
         ///
         ///
+        /// physicalInput[GCInputButtonA]
         ///
+        /// physicalInput[GCInputButtonX]
         ///
         /// Note: Equivalent to -elements
         #[unsafe(method(objectForKeyedSubscript:))]

@@ -896,6 +896,8 @@ impl SCNNode {
 }
 
 extern_protocol!(
+    /// NSObject (SCNNodeRendererDelegate)
+    ///
     /// The SCNNodeRendererDelegate protocol declares the methods that an instance of SCNNode invokes to let a delegate customize its rendering.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnoderendererdelegate?language=objc)

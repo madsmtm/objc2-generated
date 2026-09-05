@@ -495,6 +495,8 @@ impl IMKInputController {
         #[unsafe(method_family = none)]
         pub unsafe fn menu(&self, mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
 
+        /// - (id)delegate;
+        ///
         /// Returns the input controller's delegate object. The returned id is an autoreleased object.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]

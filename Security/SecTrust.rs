@@ -104,12 +104,16 @@ cf_objc2_type!(
 );
 
 extern "C" {
+    /// Trust Property Constants
+    ///
     /// Predefined key constants used to obtain values in a
     /// per-certificate dictionary of trust evaluation results,
     /// as retrieved from a call to SecTrustCopyProperties.
     ///
+    /// kSecPropertyTypeTitle Specifies a key whose value is a
     /// CFStringRef containing the title (display name) of this certificate.
     ///
+    /// kSecPropertyTypeError Specifies a key whose value is a
     /// CFStringRef containing the reason for a trust evaluation failure.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypetitle?language=objc)
@@ -122,6 +126,8 @@ extern "C" {
 }
 
 extern "C" {
+    /// Trust Result Constants
+    ///
     /// Predefined key constants used to obtain values in a
     /// dictionary of trust evaluation results for a certificate chain,
     /// as retrieved from a call to SecTrustCopyResult.

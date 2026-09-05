@@ -7,6 +7,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// CMTag Errors
+///
 /// The OSStatus errors returned from the CMTag routines.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagerror?language=objc)
@@ -227,6 +229,10 @@ extern "C" {
 /// - two kCMTagCategory_StereoView CMTags with one CMTag having the value kCMTagStereoViewsOption_LeftEye and the other CMTag having the value kCMTagStereoViewsOption_RightEye.
 /// - three or more CMTags made up of a CMTag with kCMTagStereoViewsOption_LeftEye bitwise ORed with kCMTagStereoViewsOption_RightEye and both a CMTag with only kCMTagStereoViewsOption_LeftEye and a CMTag with kCMTagStereoViewsOption_RightEye.
 /// Likewise, if a collection contains only one or more CMTags with one stereo eye (e.g., kCMTagStereoViewsOption_LeftEye), only that stereo eye should be considered present.  The absence of a kCMTagCategory_StereoView CMTag is meant to indicate there is no stereo view present. If this signaling of no stereo eyes is associated with a buffer or channel that carries stereo eye views, the buffer or channel should be configured to present only a monoscopic view. This might be in the form of some fallback to a default view corresponding to a stereo eye or even to some other view it includes or can synthesize.
+///
+/// kCMTagStereoViewsOption_LeftEye the left stereo eye is present in encoded or decoded video buffers.
+///
+/// kCMTagStereoViewsOption_RightEye the right stereo eye is present in encoded or decoded video buffers.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewcomponents?language=objc)
 // NS_OPTIONS

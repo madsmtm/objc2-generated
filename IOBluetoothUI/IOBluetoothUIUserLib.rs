@@ -57,6 +57,12 @@ cf_objc2_type!(
 
 /// Option values to customize the behavior of an IOBluetoothServiceBrowserController object.
 ///
+/// kIOBluetoothServiceBrowserControllerOptionsNone - no options set.
+///
+/// kIOBluetoothServiceBrowserControllerOptionsAutoStartInquiry - automatically start an inquiry when the panel is displayed.  This has been deprecated in 10.5
+///
+/// kIOBluetoothServiceBrowserControllerOptionsDisconnectWhenDone - disconnect from the device when UI operations are finished.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothservicebrowsercontrolleroptions?language=objc)
 pub type IOBluetoothServiceBrowserControllerOptions = u32;
 

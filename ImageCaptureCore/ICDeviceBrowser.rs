@@ -32,6 +32,8 @@ extern "C" {
 }
 
 extern_protocol!(
+    /// ICDeviceBrowserDelegate <NSObject>
+    ///
     /// A delegate of ICDeviceBrowser must conform to ICDeviceBrowserDelegate protocol.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicebrowserdelegate?language=objc)

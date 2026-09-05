@@ -8,6 +8,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A state created to record a MPSCNNKernel properties
     /// at the time an -encode call was made. The contents are opaque.
     ///
     /// Gradient states must be created with [MPSCNNKernel resultStateForSourceImage:sourceStates:destinationImage:]

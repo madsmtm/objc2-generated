@@ -11,6 +11,8 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// CMTaggedBufferGroup Errors
+///
 /// The OSStatus errors returned from the CMTaggedBufferGroup routines.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergrouperror?language=objc)

@@ -46,8 +46,14 @@ unsafe impl RefEncode for CBManagerState {
 /// Represents the current authorization state of a CBManager.
 ///
 ///
+/// CBManagerAuthorizationStatusNotDetermined            User has not yet made a choice with regards to this application.
 ///
+/// CBManagerAuthorizationStatusRestricted            This application is not authorized to use bluetooth. The user cannot change this application’s status,
 /// possibly due to active restrictions such as parental controls being in place.
+///
+/// CBManagerAuthorizationStatusDenied                User has explicitly denied this application from using bluetooth.
+///
+/// CBManagerAuthorizationStatusAuthorizedAlways        User has authorized this application to use bluetooth always.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization?language=objc)
 // NS_ENUM

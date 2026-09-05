@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// WebPlugInBaseURLKey REQUIRED. The base URL of the document containing
     /// the plug-in's view.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginbaseurlkey?language=objc)
@@ -17,6 +18,7 @@ extern "C" {
 }
 
 extern "C" {
+    /// WebPlugInAttributesKey REQUIRED. The dictionary containing the names
     /// and values of all attributes of the HTML element associated with the plug-in AND
     /// the names and values of all parameters to be passed to the plug-in (e.g. PARAM
     /// elements within an APPLET element). In the case of a conflict between names,
@@ -29,6 +31,7 @@ extern "C" {
 }
 
 extern "C" {
+    /// WebPlugInContainer OPTIONAL. An object that conforms to the
     /// WebPlugInContainer informal protocol. This object is used for
     /// callbacks from the plug-in to the app. if this argument is nil, no callbacks will
     /// occur.
@@ -39,6 +42,7 @@ extern "C" {
 }
 
 extern "C" {
+    /// WebPlugInContainingElementKey The DOMElement that was used to specify
     /// the plug-in.  May be nil.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webplugincontainingelementkey?language=objc)
@@ -47,6 +51,7 @@ extern "C" {
 }
 
 extern "C" {
+    /// WebPlugInShouldLoadMainResourceKey REQUIRED. NSNumber (BOOL) indicating whether the plug-in should load its
     /// own main resource (the "src" URL, in most cases). If YES, the plug-in should load its own main resource. If NO, the
     /// plug-in should use the data provided by WebKit. See -webPlugInMainResourceReceivedData: in WebPluginPrivate.h.
     /// For compatibility with older versions of WebKit, the plug-in should assume that the value for

@@ -18,15 +18,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerAuthorizationStatus(pub NSInteger);
 impl CBPeripheralManagerAuthorizationStatus {
+    /// User has not yet made a choice with regards to this application.
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusNotDetermined")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const NotDetermined: Self = Self(0);
+    /// This application is not authorized to share data while backgrounded. The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusRestricted")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Restricted: Self = Self(1);
+    /// User has explicitly denied this application from sharing data while backgrounded.
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusDenied")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Denied: Self = Self(2);
+    /// User has authorized this application to share data while backgrounded.
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusAuthorized")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Authorized: Self = Self(3);

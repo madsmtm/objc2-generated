@@ -772,46 +772,82 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusok?language=objc)
+/// Success
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusok?language=objc)
 pub const kSCStatusOK: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusfailed?language=objc)
+/// Non-specific Failure
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusfailed?language=objc)
 pub const kSCStatusFailed: c_uint = 1001;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusinvalidargument?language=objc)
+/// Invalid argument
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusinvalidargument?language=objc)
 pub const kSCStatusInvalidArgument: c_uint = 1002;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusaccesserror?language=objc)
+/// Permission denied
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusaccesserror?language=objc)
 pub const kSCStatusAccessError: c_uint = 1003;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnokey?language=objc)
+/// No such key
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnokey?language=objc)
 pub const kSCStatusNoKey: c_uint = 1004;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatuskeyexists?language=objc)
+/// Data associated with key already defined
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatuskeyexists?language=objc)
 pub const kSCStatusKeyExists: c_uint = 1005;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatuslocked?language=objc)
+/// Lock already held
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatuslocked?language=objc)
 pub const kSCStatusLocked: c_uint = 1006;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusneedlock?language=objc)
+/// Lock required for this operation
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusneedlock?language=objc)
 pub const kSCStatusNeedLock: c_uint = 1007;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnostoresession?language=objc)
+/// Configuration daemon session not active
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnostoresession?language=objc)
 pub const kSCStatusNoStoreSession: c_uint = 2001;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnostoreserver?language=objc)
+/// Configuration daemon not (or no longer) available
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnostoreserver?language=objc)
 pub const kSCStatusNoStoreServer: c_uint = 2002;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnotifieractive?language=objc)
+/// Notifier is currently active
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnotifieractive?language=objc)
 pub const kSCStatusNotifierActive: c_uint = 2003;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnoprefssession?language=objc)
+/// Preferences session not active
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnoprefssession?language=objc)
 pub const kSCStatusNoPrefsSession: c_uint = 3001;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusprefsbusy?language=objc)
+/// Preferences update currently in progress
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusprefsbusy?language=objc)
 pub const kSCStatusPrefsBusy: c_uint = 3002;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnoconfigfile?language=objc)
+/// Configuration file not found
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnoconfigfile?language=objc)
 pub const kSCStatusNoConfigFile: c_uint = 3003;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnolink?language=objc)
+/// No such link
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnolink?language=objc)
 pub const kSCStatusNoLink: c_uint = 3004;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusstale?language=objc)
+/// Write attempted on stale version of object
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusstale?language=objc)
 pub const kSCStatusStale: c_uint = 3005;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusmaxlink?language=objc)
+/// Maximum link count exceeded
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusmaxlink?language=objc)
 pub const kSCStatusMaxLink: c_uint = 3006;
 /// A determination could not be made regarding the reachability
 /// of the specified nodename or address.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusreachabilityunknown?language=objc)
 pub const kSCStatusReachabilityUnknown: c_uint = 4001;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusconnectionnoservice?language=objc)
+/// Network service for connection not available
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusconnectionnoservice?language=objc)
 pub const kSCStatusConnectionNoService: c_uint = 5001;
 /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusconnectionignore?language=objc)
 pub const kSCStatusConnectionIgnore: c_uint = 5002;

@@ -7,78 +7,108 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypefetchcache?language=objc)
+    /// WKWebsiteDataTypeFetchCache On-disk Fetch caches.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypefetchcache?language=objc)
     pub static WKWebsiteDataTypeFetchCache: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypediskcache?language=objc)
+    /// WKWebsiteDataTypeDiskCache On-disk caches.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypediskcache?language=objc)
     pub static WKWebsiteDataTypeDiskCache: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypememorycache?language=objc)
+    /// WKWebsiteDataTypeMemoryCache In-memory caches.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypememorycache?language=objc)
     pub static WKWebsiteDataTypeMemoryCache: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeofflinewebapplicationcache?language=objc)
+    /// WKWebsiteDataTypeOfflineWebApplicationCache HTML offline web application caches.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeofflinewebapplicationcache?language=objc)
     #[deprecated = "WebApplicationCache is no longer supported"]
     pub static WKWebsiteDataTypeOfflineWebApplicationCache: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypecookies?language=objc)
+    /// WKWebsiteDataTypeCookies Cookies.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypecookies?language=objc)
     pub static WKWebsiteDataTypeCookies: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypesessionstorage?language=objc)
+    /// WKWebsiteDataTypeSessionStorage HTML session storage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypesessionstorage?language=objc)
     pub static WKWebsiteDataTypeSessionStorage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypelocalstorage?language=objc)
+    /// WKWebsiteDataTypeLocalStorage HTML local storage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypelocalstorage?language=objc)
     pub static WKWebsiteDataTypeLocalStorage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypewebsqldatabases?language=objc)
+    /// WKWebsiteDataTypeWebSQLDatabases WebSQL databases.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypewebsqldatabases?language=objc)
     pub static WKWebsiteDataTypeWebSQLDatabases: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeindexeddbdatabases?language=objc)
+    /// WKWebsiteDataTypeIndexedDBDatabases IndexedDB databases.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeindexeddbdatabases?language=objc)
     pub static WKWebsiteDataTypeIndexedDBDatabases: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeserviceworkerregistrations?language=objc)
+    /// WKWebsiteDataTypeServiceWorkerRegistrations Service worker registrations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeserviceworkerregistrations?language=objc)
     pub static WKWebsiteDataTypeServiceWorkerRegistrations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypefilesystem?language=objc)
+    /// WKWebsiteDataTypeFileSystem File system storage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypefilesystem?language=objc)
     pub static WKWebsiteDataTypeFileSystem: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypesearchfieldrecentsearches?language=objc)
+    /// WKWebsiteDataTypeSearchFieldRecentSearches Search field history.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypesearchfieldrecentsearches?language=objc)
     pub static WKWebsiteDataTypeSearchFieldRecentSearches: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypemediakeys?language=objc)
+    /// WKWebsiteDataTypeMediaKeys MediaKeys storage
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypemediakeys?language=objc)
     pub static WKWebsiteDataTypeMediaKeys: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypehashsalt?language=objc)
+    /// WKWebsiteDataTypeHashSalt Hash salt for deviceId
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypehashsalt?language=objc)
     pub static WKWebsiteDataTypeHashSalt: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypescreentime?language=objc)
+    /// WKWebsiteDataTypeScreenTime Screen Time information
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypescreentime?language=objc)
     pub static WKWebsiteDataTypeScreenTime: &'static NSString;
 }
 

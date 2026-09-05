@@ -14,47 +14,77 @@ use crate::*;
 pub const kCMIOInvalidSequenceNumber: c_uint = !(0);
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodiscontinuities?language=objc)
 pub const kCMIOSampleBufferNoDiscontinuities: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_unknowndiscontinuity?language=objc)
+/// kCMIOSampleBufferNoDiscontinuities                            no discontinuities.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_unknowndiscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_UnknownDiscontinuity: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_timecodediscontinuity?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_UnknownDiscontinuity        0x00000001  data was lost for unknown reasons.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_timecodediscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_TimecodeDiscontinuity: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_packeterror?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_TimecodeDiscontinuity        0x00000002  a break in timecode was detected.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_packeterror?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_PacketError: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_streamdiscontinuity?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_PacketError                0x00000004  a packet error occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_streamdiscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_StreamDiscontinuity: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_malformeddata?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_StreamDiscontinuity        0x00000008  detected in the stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_malformeddata?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_MalformedData: c_uint = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_datawasflushed?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_MalformedData                0x00000010  bad data was received.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_datawasflushed?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DataWasFlushed: c_uint = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_datawasdropped?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_DataWasFlushed                0x00000020  data was flushed before read by graph.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_datawasdropped?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DataWasDropped: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_bufferoverrun?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_DataWasDropped                0x00000040  a unit did not pull on its input fast enough.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_bufferoverrun?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_BufferOverrun: c_uint = 1 << 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_discontinuityindts?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_BufferOverrun                0x00000080  a unit ran out of buffer space.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_discontinuityindts?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DiscontinuityInDTS: c_uint = 1 << 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_relatedtodiscontinuity?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_DiscontinuityInDTS            0x00000100  detected a break in adjacent DTS values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_relatedtodiscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_RelatedToDiscontinuity: c_uint = 1 << 9;
+/// kCMIOSampleBufferDiscontinuityFlag_RelatedToDiscontinuity        0x00000200  this buffer is OK, but a related buffer
 /// (as in another picture in the same MPEG-2
 /// GOP) exhibits a discontinuity.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_clientsyncdiscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_ClientSyncDiscontinuity: c_uint = 1 << 10;
+/// kCMIOSampleBufferDiscontinuityFlag_ClientSyncDiscontinuity    0x00000400  a client forced a discontinuity, typically
 /// as a way of syncronizing the graph to
 /// a known state.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_trickplay?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_TrickPlay: c_uint = 1 << 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_nodatamarker?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_TrickPlay                    0x00000800  trick-play buffer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_nodatamarker?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_NoDataMarker: c_uint = 1 << 12;
+/// kCMIOSampleBufferDiscontinuityFlag_NoDataMarker                0x00001000  this is a dummy buffer that is sent through the
 /// the graph if the source has no data (for example
 /// an HDV camera running on empty tape).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_dataformatchanged?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DataFormatChanged: c_uint = 1 << 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_timingreferencejumped?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_DataFormatChanged            0x00002000  data format changed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_timingreferencejumped?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_TimingReferenceJumped: c_uint = 1 << 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_durationwasextended?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_TimingReferenceJumped        0x00004000  the timing reference used to synchronize the buffer jumped.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_durationwasextended?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DurationWasExtended: c_uint = 1 << 15;
+/// kCMIOSampleBufferDiscontinuityFlag_DurationWasExtended        0x00008000  the unit experience a buffer overrun but was able to accomodate for it
 /// by increasing the duration of known good media;  this is a "soft"
 /// discontinuity, much like kCMIOSampleBufferDiscontinuityFlag_TimecodeDiscontinuity,
 /// meaning that the stream isn't necessarily broken, but clients might want to force
@@ -62,20 +92,32 @@ pub const kCMIOSampleBufferDiscontinuityFlag_DurationWasExtended: c_uint = 1 << 
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_sleepwakecycle?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_SleepWakeCycle: c_uint = 1 << 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_codecsettingschanged?language=objc)
+/// kCMIOSampleBufferDiscontinuityFlag_SleepWakeCycle                0x00010000  the buffer was received during a sleep/wake cycle.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_codecsettingschanged?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_CodecSettingsChanged: c_uint = 1 << 17;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_unknown?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_Unknown: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_nomedia?language=objc)
+/// kCMIOSampleBufferNoDataEvent_Unknown            unknown cause of no data marker.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_nomedia?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_NoMedia: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_devicedidnotsync?language=objc)
+/// kCMIOSampleBufferNoDataEvent_NoMedia            the device does not see valid media.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_devicedidnotsync?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_DeviceDidNotSync: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_deviceinwrongmode?language=objc)
+/// kCMIOSampleBufferNoDataEvent_DeviceDidNotSync    the device did not start sending data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_deviceinwrongmode?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_DeviceInWrongMode: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_processingerror?language=objc)
+/// kCMIOSampleBufferNoDataEvent_DeviceInWrongMode    the device is not in the proper mode to send expected data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_processingerror?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_ProcessingError: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_sleepwakecycle?language=objc)
+/// kCMIOSampleBufferNoDataEvent_ProcessingError    a processing error occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_sleepwakecycle?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_SleepWakeCycle: c_uint = 5;
 
 extern "C" {

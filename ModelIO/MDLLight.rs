@@ -110,12 +110,19 @@ extern_class!(
     /// A light with characteristics representing plausible real world lights
     ///
     ///
+    /// color The color of the light.
     ///
+    /// lumens The brightness of the light.
     ///
+    /// innerConeAngle Within this cone, light is at maximum brightness. Units are degrees.
     ///
+    /// outerConeAngle Between the inner cone angle and the outer, light
     /// quadratically attenuates to zero.
     ///
+    /// attenuationStartDistance. Within the attenuation start distance, the
     /// light is maximally bright.
+    ///
+    /// attenuationEndDistance. Beyond this distance, there is no light.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlphysicallyplausiblelight?language=objc)
     #[unsafe(super(MDLLight, MDLObject, NSObject))]
@@ -275,10 +282,13 @@ extern_class!(
     /// A light created from measurements at various angles.
     ///
     ///
+    /// lightCubeMap A cube map that can be sampled at various directions to
     /// learn the intensity of the light in that direction.
     ///
+    /// sphericalHarmonicsLevel The value generateSphericalHarmonicsFromLight:
     /// used to calculate the spherical harmonics coefficients
     ///
+    /// sphericalHarmonicsCoefficients The spherical harmonic coefficiencts
     /// calculated by generateSphericalHarmonicsFromLight:
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlphotometriclight?language=objc)

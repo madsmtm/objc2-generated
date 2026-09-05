@@ -47,8 +47,11 @@ unsafe impl RefEncode for AudioPanningMode {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioPanningInfo {
+    /// the PanningMode to be used for the pan
     pub mPanningMode: AudioPanningMode,
+    /// the coordinates are specified as in the AudioChannelDescription struct in CoreAudioTypes.h
     pub mCoordinateFlags: u32,
+    /// the coordinates are specified as in the AudioChannelDescription struct in CoreAudioTypes.h
     pub mCoordinates: [f32; 3],
     /// mGainScale is used to multiply the panning values.
     /// In typical usage you are applying an existing volume.

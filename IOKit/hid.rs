@@ -851,7 +851,9 @@ pub const kIOHIDStandardTypeISO: c_uint = 0x1;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypejis?language=objc)
 pub const kIOHIDStandardTypeJIS: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypeunspecified?language=objc)
+/// .
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypeunspecified?language=objc)
 pub const kIOHIDStandardTypeUnspecified: c_uint = 0xFFFFFFFF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidstandardtype?language=objc)
@@ -987,6 +989,7 @@ unsafe impl RefEncode for IOHIDTransactionDirectionType {
 
 /// Options to be used in conjuntion with an IOHIDDeviceTransactionInterface.
 ///
+/// kIOHIDTransactionOptionDefaultOutputValue Option to set the default element value to be used with an
 /// IOHIDDeviceTransactionInterface of direction kIOHIDTransactionDirectionTypeOutput.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidtransactionoptiondefaultoutputvalue?language=objc)

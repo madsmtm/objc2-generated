@@ -6,6 +6,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// @c UITextCursorDropPositionAnimator
+    ///
     /// Provides a mechanism for displaying and animating a temporary text cursor to indicate a drop location.
     ///
     /// For custom text view implementations that implement drag and drop functionality, use this animator providing either your own UITextCursorView

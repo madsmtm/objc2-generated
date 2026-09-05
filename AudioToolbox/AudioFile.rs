@@ -335,10 +335,15 @@ pub const kAudioFileLoopDirection_Backward: u32 = 3;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFile_SMPTE_Time {
+    /// The hours.
     pub mHours: i8,
+    /// The minutes.
     pub mMinutes: u8,
+    /// The seconds.
     pub mSeconds: u8,
+    /// The frames.
     pub mFrames: u8,
+    /// The sample offset within a frame.
     pub mSubFrameSampleOffset: u32,
 }
 
@@ -375,12 +380,19 @@ pub const kAudioFileMarkerType_Generic: u32 = 0;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioFileMarker {
+    /// The frame in the file counting from the start of the audio data.
     pub mFramePosition: f64,
+    /// The name of this marker.
     pub mName: *const CFString,
+    /// A unique ID for this marker.
     pub mMarkerID: i32,
+    /// The SMPTE time for this marker.
     pub mSMPTETime: AudioFile_SMPTE_Time,
+    /// The marker type.
     pub mType: u32,
+    /// A reserved field. Set to zero.
     pub mReserved: u16,
+    /// The channel number that the marker refers to. Set to zero if marker applies to all channels.
     pub mChannel: u16,
 }
 
@@ -566,8 +578,11 @@ unsafe impl RefEncode for AudioFileRegionList {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFramePacketTranslation {
+    /// a frame number.
     pub mFrame: i64,
+    /// a packet number.
     pub mPacket: i64,
+    /// a frame offset in a packet.
     pub mFrameOffsetInPacket: u32,
 }
 
@@ -584,6 +599,8 @@ unsafe impl RefEncode for AudioFramePacketTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// AudioBytePacketTranslation Flags
+///
 /// flags for the AudioBytePacketTranslation mFlags field
 ///
 /// There is currently only one flag.
@@ -620,9 +637,13 @@ unsafe impl RefEncode for AudioBytePacketTranslationFlags {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioBytePacketTranslation {
+    /// a byte number.
     pub mByte: i64,
+    /// a packet number.
     pub mPacket: i64,
+    /// a byte offset in a packet.
     pub mByteOffsetInPacket: u32,
+    /// if kBytePacketTranslationFlag_IsEstimate is set, then the value is an estimate.
     pub mFlags: AudioBytePacketTranslationFlags,
 }
 
@@ -687,8 +708,11 @@ unsafe impl RefEncode for AudioFilePacketTableInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioPacketRangeByteCountTranslation {
+    /// a packet number.
     pub mPacket: i64,
+    /// a packet count.
     pub mPacketCount: i64,
+    /// an upper bound for the total size of the specified packets.
     pub mByteCountUpperBound: i64,
 }
 

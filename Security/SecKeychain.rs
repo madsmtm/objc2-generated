@@ -272,6 +272,8 @@ unsafe impl RefEncode for SecKeychainEvent {
 
 /// Defines keychain event constants
 ///
+/// kSecTrustSettingsChangedEvent If the bit specified by this mask is set, your callback function will be invoked when there is a change in certificate Trust Settings.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]

@@ -73,6 +73,8 @@ extern "C" {
     pub static NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKey;
 }
 
+/// Codes associated with NSURLErrorNetworkUnavailableReasonKey
+///
 /// Constants used by NSError to indicate that a URLSessionTask failed because of unsatisfiable network constraints.
 ///
 /// For example if the URLSessionConfiguration property allowsExpensiveNetworkAccess was set to NO and the only interfaces available were marked as expensive then the task would fail with a NSURLErrorNotConnectedToInternet error and the userInfo dictionary would contain the value NSURLErrorNetworkUnavailableReasonExpensive for the key NSURLErrorNetworkUnavailableReason.

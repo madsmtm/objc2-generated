@@ -24,6 +24,8 @@ mod private_CAAnimationSceneKitAdditions {
 
 /// Category "SceneKitAdditions" on [`CAAnimation`].
 ///
+/// CAAnimation (SceneKitAdditions)
+///
 /// Extends the CAAnimation class for SceneKit explicit animations.
 #[doc(alias = "SceneKitAdditions")]
 pub unsafe trait CAAnimationSceneKitAdditions:

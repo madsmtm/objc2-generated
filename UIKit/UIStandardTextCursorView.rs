@@ -12,6 +12,8 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// @c UIStandardTextCursorView
+    ///
     /// Displays a flashing cursor (aka "caret") view. Concrete implementation of UITextCursorView.
     ///
     /// When a selection is not ranged (or has a zero-length), a cursor view is displayed.

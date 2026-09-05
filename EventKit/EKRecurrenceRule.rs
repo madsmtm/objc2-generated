@@ -111,6 +111,8 @@ impl EKRecurrenceRule {
             end: Option<&EKRecurrenceEnd>,
         ) -> Retained<Self>;
 
+        /// calendarIdentifier;
+        ///
         /// Calendar used by this recurrence rule.
         #[unsafe(method(calendarIdentifier))]
         #[unsafe(method_family = none)]

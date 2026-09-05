@@ -60,6 +60,8 @@ extern_conformance!(
 impl VNTrackingRequest {
     extern_methods!(
         #[cfg(feature = "VNObservation")]
+        /// property inputObservation
+        ///
         /// The observation object that defines a region to track. Providing an observation not returned from a tracker (e.g. user-defined, or from a detector) begins a new tracker for the sequence. Providing an observation that was returned from a tracker continues the use of that tracker, to track the region to the next frame. In general, unless documented in the request's documentation, the rectangle must be defined in normalized coordinates (both dimensions normalized to [0,1] with the origin at the lower-left corner).
         #[unsafe(method(inputObservation))]
         #[unsafe(method_family = none)]
@@ -71,6 +73,8 @@ impl VNTrackingRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputObservation(&self, input_observation: &VNDetectedObjectObservation);
 
+        /// property trackingLevel
+        ///
         /// Tracking level allows tuning tracking algorithm to prefer speed (VNRequestTrackingLevelFast) vs. tracking object location accuracy (VNRequestTrackingLevelAccurate). This property has no effect on general purpose object tracker (VNTrackObjectRequest) revision 2 (VNTrackObjectRequestRevision2)
         #[unsafe(method(trackingLevel))]
         #[unsafe(method_family = none)]
@@ -81,6 +85,8 @@ impl VNTrackingRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setTrackingLevel(&self, tracking_level: VNRequestTrackingLevel);
 
+        /// property lastFrame
+        ///
         /// This property allows marking the last frame for tracking using current tracker. If set to YES, the results for this frame will be processed and returned and the current tracker will be released to the pool of available trackers
         #[unsafe(method(isLastFrame))]
         #[unsafe(method_family = none)]

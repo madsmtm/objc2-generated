@@ -6,10 +6,13 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// Class Key Constant
+    ///
     /// Predefined key constant used to get or set item class values in
     /// a dictionary. Its value is one of the constants defined in the Value
     /// Constants for kSecClass.
     ///
+    /// kSecClass Specifies a dictionary key whose value is the item's
     /// class code.  You use this key to get or set a value of type CFTypeRef
     /// that contains the item class code.
     ///
@@ -18,10 +21,22 @@ extern "C" {
 }
 
 extern "C" {
+    /// Class Value Constants
+    ///
     /// Predefined item class constants used to get or set values in
     /// a dictionary. The kSecClass constant is the key and its value is one
     /// of the constants defined here. Note: on Mac OS X 10.6, only items
     /// of class kSecClassInternetPassword are supported.
+    ///
+    /// kSecClassInternetPassword Specifies Internet password items.
+    ///
+    /// kSecClassGenericPassword Specifies generic password items.
+    ///
+    /// kSecClassCertificate Specifies certificate items.
+    ///
+    /// kSecClassKey Specifies key items.
+    ///
+    /// kSecClassIdentity Specifies identity items.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecclassinternetpassword?language=objc)
     pub static kSecClassInternetPassword: &'static CFString;
@@ -48,6 +63,8 @@ extern "C" {
 }
 
 extern "C" {
+    /// Attribute Key Constants
+    ///
     /// Predefined item attribute keys used to get or set values in a
     /// dictionary. Not all attributes apply to each item class. The table
     /// below lists the currently defined attributes for each item class:
@@ -147,6 +164,7 @@ extern "C" {
     /// kSecClassCertificate.
     ///
     ///
+    /// kSecAttrAccessible Specifies a dictionary key whose value
     /// indicates when your application needs access to an item's data.  You
     /// should choose the most restrictive option that meets your application's
     /// needs to allow the system to protect that item in the best way possible.
@@ -159,16 +177,19 @@ extern "C" {
     /// "ThisDeviceOnly", as those cannot sync to another device.
     ///
     ///
+    /// kSecAttrAccessControl Specifies a dictionary key whose value
     /// is SecAccessControl instance which contains access control conditions
     /// for item.
     /// IMPORTANT: This attribute is mutually exclusive with kSecAttrAccess
     /// attribute.
     ///
     ///
+    /// kSecAttrAccess Specifies a dictionary key whose value
     /// is a SecAccessRef describing the access control settings for this item.
     /// This key is available on macOS only.
     ///
     ///
+    /// kSecAttrAccessGroup Specifies a dictionary key whose value is
     /// a CFStringRef indicating which access group a item is in.  The access
     /// groups that a particular application has membership in are determined by
     /// two entitlements for that application.  The application-identifier
@@ -187,6 +208,7 @@ extern "C" {
     /// kSecAttrAccessGroup key in the dictionary passed to SecItem functions.
     ///
     ///
+    /// kSecAttrSynchronizable Specifies a dictionary key whose value is
     /// a CFBooleanRef indicating whether the item in question can be synchronized.
     /// To add a new item which can be synced to other devices, or to obtain
     /// synchronizable results from a query, supply this key with a value of
@@ -225,108 +247,133 @@ extern "C" {
     /// constants using the kSecMatch prefix are not supported at this time.
     ///
     ///
+    /// kSecAttrSynchronizableAny Specifies that both synchronizable and
     /// non-synchronizable results should be returned from this query. This may be
     /// used as a value for the kSecAttrSynchronizable dictionary key in a call to
     /// SecItemCopyMatching, SecItemUpdate, or SecItemDelete.
     ///
     ///
+    /// kSecAttrCreationDate (read-only) Specifies a dictionary key whose
     /// value is the item's creation date. You use this key to get a value
     /// of type CFDateRef that represents the date the item was created.
     ///
+    /// kSecAttrModificationDate (read-only) Specifies a dictionary key
     /// whose value is the item's modification date. You use this key to get
     /// a value of type CFDateRef that represents the last time the item was
     /// updated.
     ///
+    /// kSecAttrDescription Specifies a dictionary key whose value is
     /// the item's description attribute. You use this key to set or get a
     /// value of type CFStringRef that represents a user-visible string
     /// describing this particular kind of item (e.g., "disk image password").
     ///
+    /// kSecAttrComment Specifies a dictionary key whose value is the
     /// item's comment attribute. You use this key to set or get a value of
     /// type CFStringRef containing the user-editable comment for this item.
     ///
+    /// kSecAttrCreator Specifies a dictionary key whose value is the
     /// item's creator attribute. You use this key to set or get a value of
     /// type CFNumberRef that represents the item's creator. This number is
     /// the unsigned integer representation of a four-character code (e.g.,
     /// 'aCrt').
     ///
+    /// kSecAttrType Specifies a dictionary key whose value is the item's
     /// type attribute. You use this key to set or get a value of type
     /// CFNumberRef that represents the item's type. This number is the
     /// unsigned integer representation of a four-character code (e.g.,
     /// 'aTyp').
     ///
+    /// kSecAttrLabel Specifies a dictionary key whose value is the
     /// item's label attribute. You use this key to set or get a value of
     /// type CFStringRef containing the user-visible label for this item.
     ///
+    /// kSecAttrIsInvisible Specifies a dictionary key whose value is the
     /// item's invisible attribute. You use this key to set or get a value
     /// of type CFBooleanRef that indicates whether the item is invisible
     /// (i.e., should not be displayed.)
     ///
+    /// kSecAttrIsNegative Specifies a dictionary key whose value is the
     /// item's negative attribute. You use this key to set or get a value of
     /// type CFBooleanRef that indicates whether there is a valid password
     /// associated with this keychain item. This is useful if your application
     /// doesn't want a password for some particular service to be stored in
     /// the keychain, but prefers that it always be entered by the user.
     ///
+    /// kSecAttrAccount Specifies a dictionary key whose value is the
     /// item's account attribute. You use this key to set or get a CFStringRef
     /// that contains an account name. (Items of class
     /// kSecClassGenericPassword, kSecClassInternetPassword have this
     /// attribute.)
     ///
+    /// kSecAttrService Specifies a dictionary key whose value is the
     /// item's service attribute. You use this key to set or get a CFStringRef
     /// that represents the service associated with this item. (Items of class
     /// kSecClassGenericPassword have this attribute.)
     ///
+    /// kSecAttrGeneric Specifies a dictionary key whose value is the
     /// item's generic attribute. You use this key to set or get a value of
     /// CFDataRef that contains a user-defined attribute. (Items of class
     /// kSecClassGenericPassword have this attribute.)
     ///
+    /// kSecAttrSecurityDomain Specifies a dictionary key whose value
     /// is the item's security domain attribute. You use this key to set or
     /// get a CFStringRef value that represents the Internet security domain.
     /// (Items of class kSecClassInternetPassword have this attribute.)
     ///
+    /// kSecAttrServer Specifies a dictionary key whose value is the
     /// item's server attribute. You use this key to set or get a value of
     /// type CFStringRef that contains the server's domain name or IP address.
     /// (Items of class kSecClassInternetPassword have this attribute.)
     ///
+    /// kSecAttrProtocol Specifies a dictionary key whose value is the
     /// item's protocol attribute. You use this key to set or get a value of
     /// type CFNumberRef that denotes the protocol for this item (see the
     /// SecProtocolType enum in SecKeychainItem.h). (Items of class
     /// kSecClassInternetPassword have this attribute.)
     ///
+    /// kSecAttrAuthenticationType Specifies a dictionary key whose value
     /// is the item's authentication type attribute. You use this key to set
     /// or get a value of type CFNumberRef that denotes the authentication
     /// scheme for this item (see the kSecAttrAuthenticationType value
     /// constants below).
     ///
+    /// kSecAttrPort Specifies a dictionary key whose value is the item's
     /// port attribute. You use this key to set or get a CFNumberRef value
     /// that represents an Internet port number. (Items of class
     /// kSecClassInternetPassword have this attribute.)
     ///
+    /// kSecAttrPath Specifies a dictionary key whose value is the item's
     /// path attribute, typically this is the path component of the URL.  You use
     /// this key to set or get a CFStringRef value that represents a path. (Items
     /// of class kSecClassInternetPassword have this attribute.)
     ///
+    /// kSecAttrSubject (read-only) Specifies a dictionary key whose
     /// value is the item's subject. You use this key to get a value of type
     /// CFDataRef that contains the X.500 subject name of a certificate.
     /// (Items of class kSecClassCertificate have this attribute.)
     ///
+    /// kSecAttrIssuer (read-only) Specifies a dictionary key whose value
     /// is the item's issuer. You use this key to get a value of type
     /// CFDataRef that contains the X.500 issuer name of a certificate. (Items
     /// of class kSecClassCertificate have this attribute.)
     ///
+    /// kSecAttrSerialNumber (read-only) Specifies a dictionary key whose
     /// value is the item's serial number.  You use this key to get a value
     /// of type CFDataRef that contains the serial number data of a
     /// certificate. (Items of class kSecClassCertificate have this
     /// attribute.)
     ///
+    /// kSecAttrSubjectKeyID (read-only) Specifies a dictionary key whose
     /// value is the item's subject key ID. You use this key to get a value
     /// of type CFDataRef that contains the subject key ID of a certificate.
     /// (Items of class kSecClassCertificate have this attribute.)
     ///
+    /// kSecAttrPublicKeyHash (read-only) Specifies a dictionary key
     /// whose value is the item's public key hash. You use this key to get a
     /// value of type CFDataRef that contains the hash of a certificate's
     /// public key. (Items of class kSecClassCertificate have this attribute.)
     ///
+    /// kSecAttrCertificateType (read-only) Specifies a dictionary key
     /// whose value is the item's certificate type. You use this key to get
     /// a value of type CFNumberRef that denotes the certificate type
     /// (On iOS, currently the value of this attribute must be equal to the
@@ -334,6 +381,7 @@ extern "C" {
     /// certificates). (On macOS, see the CSSM_CERT_TYPE enum in cssmtype.h).
     /// Only items of class kSecClassCertificate have this attribute.
     ///
+    /// kSecAttrCertificateEncoding (read-only) Specifies a dictionary
     /// key whose value is the item's certificate encoding. You use this key
     /// to get a value of type CFNumberRef that denotes the certificate
     /// encoding (On iOS, currently only the value 3 meaning
@@ -341,9 +389,11 @@ extern "C" {
     /// CSSM_CERT_ENCODING enum in cssmtype.h. Only items of class
     /// kSecClassCertificate have this attribute.
     ///
+    /// kSecAttrKeyClass (read only) Specifies a dictionary key whose
     /// value is one of kSecAttrKeyClassPublic, kSecAttrKeyClassPrivate or
     /// kSecAttrKeyClassSymmetric.
     ///
+    /// kSecAttrApplicationLabel Specifies a dictionary key whose value
     /// is the key's application label attribute. This is different from the
     /// kSecAttrLabel (which is intended to be human-readable). This attribute
     /// is used to look up a key programmatically; in particular, for keys of
@@ -351,61 +401,80 @@ extern "C" {
     /// this attribute is the hash of the public key. This item is a type of CFDataRef.
     /// Legacy keys may contain a UUID in this field as a CFStringRef.
     ///
+    /// kSecAttrIsPermanent Specifies a dictionary key whose value is a
     /// CFBooleanRef indicating whether the key in question will be stored
     /// permanently.
     ///
+    /// kSecAttrIsSensitive Specifies a dictionary key whose value is a
     /// CFBooleanRef indicating that the key in question can only be exported
     /// in a wrapped (encrypted) format. macOS only.
     ///
+    /// kSecAttrIsExtractable Specifies a dictionary key whose value is a
     /// CFBooleanRef indicating whether the key in question can be exported from
     /// its keychain container. macOS only.
     ///
+    /// kSecAttrApplicationTag Specifies a dictionary key whose value is a
     /// CFDataRef containing private tag data.
     ///
+    /// kSecAttrKeyType Specifies a dictionary key whose value is a
     /// CFNumberRef indicating the algorithm associated with this key
     /// (On iOS, currently only the value 42 is supported, alternatively you can use
     /// kSecAttrKeyTypeRSA). (On macOS, see the CSSM_ALGORITHMS enum in cssmtype.h).
     ///
     ///
+    /// kSecAttrPRF Specifies a dictionary key whose value is the PRF
     /// (pseudo-random function) for this key (see "kSecAttrPRF Value Constants".)
     /// macOS only.
     ///
+    /// kSecAttrSalt Specifies a dictionary key whose value is a
     /// CFData containing the salt to use for this key. macOS only.
     ///
+    /// kSecAttrRounds Specifies a dictionary key whose value is the
     /// number of rounds for the pseudo-random function specified by kSecAttrPRF.
     /// macOS only.
     ///
+    /// kSecAttrKeySizeInBits Specifies a dictionary key whose value
     /// is a CFNumberRef indicating the number of bits in this key.
     ///
+    /// kSecAttrEffectiveKeySize Specifies a dictionary key whose value
     /// is a CFNumberRef indicating the effective number of bits in this key.
     /// For example, a DES key has a kSecAttrKeySizeInBits of 64, but a
     /// kSecAttrEffectiveKeySize of 56 bits.
     ///
+    /// kSecAttrCanEncrypt Specifies a dictionary key whole value is a
     /// CFBooleanRef indicating whether the key in question can be used to
     /// encrypt data.
     ///
+    /// kSecAttrCanDecrypt Specifies a dictionary key whose value is a
     /// CFBooleanRef indicating whether the key in question can be used to
     /// decrypt data.
     ///
+    /// kSecAttrCanDerive Specifies a dictionary key whole value is a
     /// CFBooleanRef indicating whether the key in question can be used to
     /// derive another key.
     ///
+    /// kSecAttrCanSign Specifies a dictionary key whole value is a
     /// CFBooleanRef indicating whether the key in question can be used to
     /// create a digital signature.
     ///
+    /// kSecAttrCanVerify Specifies a dictionary key whole value is a
     /// CFBooleanRef indicating whether the key in question can be used to
     /// verify a digital signature.
     ///
+    /// kSecAttrCanWrap Specifies a dictionary key whole value is a
     /// CFBooleanRef indicating whether the key in question can be used to
     /// wrap another key.
     ///
+    /// kSecAttrCanUnwrap Specifies a dictionary key whole value is a
     /// CFBooleanRef indicating whether the key in question can be used to
     /// unwrap another key.
     ///
+    /// kSecAttrSyncViewHint Specifies a dictionary key whose value is
     /// a CFStringRef. This value is part of the primary key of each item, and
     /// can be used to help distiguish Sync Views when defining their
     /// queries. iOS and sychronizable items only.
     ///
+    /// kSecAttrTokenID Specifies a dictionary key whose presence
     /// indicates that item is backed by external token. Value of this attribute
     /// is CFStringRef uniquely identifying containing token. When this attribute
     /// is not present, item is stored in internal keychain database.
@@ -685,6 +754,8 @@ extern "C" {
 }
 
 extern "C" {
+    /// kSecAttrAccessible Value Constants
+    ///
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrAccessible constant is the key and its
     /// value is one of the constants defined here.
@@ -692,20 +763,24 @@ extern "C" {
     /// errSecInteractionNotAllowed will be returned if the item's data is not
     /// available until a device unlock occurs.
     ///
+    /// kSecAttrAccessibleWhenUnlocked Item data can only be accessed
     /// while the device is unlocked. This is recommended for items that only
     /// need be accesible while the application is in the foreground.  Items
     /// with this attribute will migrate to a new device when using encrypted
     /// backups.
     ///
+    /// kSecAttrAccessibleAfterFirstUnlock Item data can only be
     /// accessed once the device has been unlocked after a restart.  This is
     /// recommended for items that need to be accesible by background
     /// applications. Items with this attribute will migrate to a new device
     /// when using encrypted backups.
     ///
+    /// kSecAttrAccessibleAlways Item data can always be accessed
     /// regardless of the lock state of the device.  This is not recommended
     /// for anything except system use. Items with this attribute will migrate
     /// to a new device when using encrypted backups.
     ///
+    /// kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly Item data can
     /// only be accessed while the device is unlocked. This is recommended for
     /// items that only need to be accessible while the application is in the
     /// foreground and requires a passcode to be set on the device. Items with
@@ -715,17 +790,20 @@ extern "C" {
     /// the device passcode will cause all previously protected items to
     /// be deleted.
     ///
+    /// kSecAttrAccessibleWhenUnlockedThisDeviceOnly Item data can only
     /// be accessed while the device is unlocked. This is recommended for items
     /// that only need be accesible while the application is in the foreground.
     /// Items with this attribute will never migrate to a new device, so after
     /// a backup is restored to a new device, these items will be missing.
     ///
+    /// kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly Item data can
     /// only be accessed once the device has been unlocked after a restart.
     /// This is recommended for items that need to be accessible by background
     /// applications. Items with this attribute will never migrate to a new
     /// device, so after a backup is restored to a new device these items will
     /// be missing.
     ///
+    /// kSecAttrAccessibleAlwaysThisDeviceOnly Item data can always
     /// be accessed regardless of the lock state of the device.  This option
     /// is not recommended for anything except system use. Items with this
     /// attribute will never migrate to a new device, so after a backup is
@@ -768,9 +846,73 @@ extern "C" {
 }
 
 extern "C" {
+    /// kSecAttrProtocol Value Constants
+    ///
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrProtocol constant is the key and its
     /// value is one of the constants defined here.
+    ///
+    /// kSecAttrProtocolFTP.
+    ///
+    /// kSecAttrProtocolFTPAccount.
+    ///
+    /// kSecAttrProtocolHTTP.
+    ///
+    /// kSecAttrProtocolIRC.
+    ///
+    /// kSecAttrProtocolNNTP.
+    ///
+    /// kSecAttrProtocolPOP3.
+    ///
+    /// kSecAttrProtocolSMTP.
+    ///
+    /// kSecAttrProtocolSOCKS.
+    ///
+    /// kSecAttrProtocolIMAP.
+    ///
+    /// kSecAttrProtocolLDAP.
+    ///
+    /// kSecAttrProtocolAppleTalk.
+    ///
+    /// kSecAttrProtocolAFP.
+    ///
+    /// kSecAttrProtocolTelnet.
+    ///
+    /// kSecAttrProtocolSSH.
+    ///
+    /// kSecAttrProtocolFTPS.
+    ///
+    /// kSecAttrProtocolHTTPS.
+    ///
+    /// kSecAttrProtocolHTTPProxy.
+    ///
+    /// kSecAttrProtocolHTTPSProxy.
+    ///
+    /// kSecAttrProtocolFTPProxy.
+    ///
+    /// kSecAttrProtocolSMB.
+    ///
+    /// kSecAttrProtocolRTSP.
+    ///
+    /// kSecAttrProtocolRTSPProxy.
+    ///
+    /// kSecAttrProtocolDAAP.
+    ///
+    /// kSecAttrProtocolEPPC.
+    ///
+    /// kSecAttrProtocolIPP.
+    ///
+    /// kSecAttrProtocolNNTPS.
+    ///
+    /// kSecAttrProtocolLDAPS.
+    ///
+    /// kSecAttrProtocolTelnetS.
+    ///
+    /// kSecAttrProtocolIMAPS.
+    ///
+    /// kSecAttrProtocolIRCS.
+    ///
+    /// kSecAttrProtocolPOP3S.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolftp?language=objc)
     pub static kSecAttrProtocolFTP: &'static CFString;
@@ -927,9 +1069,27 @@ extern "C" {
 }
 
 extern "C" {
+    /// kSecAttrAuthenticationType Value Constants
+    ///
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrAuthenticationType constant is the key
     /// and its value is one of the constants defined here.
+    ///
+    /// kSecAttrAuthenticationTypeNTLM.
+    ///
+    /// kSecAttrAuthenticationTypeMSN.
+    ///
+    /// kSecAttrAuthenticationTypeDPA.
+    ///
+    /// kSecAttrAuthenticationTypeRPA.
+    ///
+    /// kSecAttrAuthenticationTypeHTTPBasic.
+    ///
+    /// kSecAttrAuthenticationTypeHTTPDigest.
+    ///
+    /// kSecAttrAuthenticationTypeHTMLForm.
+    ///
+    /// kSecAttrAuthenticationTypeDefault.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtypentlm?language=objc)
     pub static kSecAttrAuthenticationTypeNTLM: &'static CFString;
@@ -971,9 +1131,17 @@ extern "C" {
 }
 
 extern "C" {
+    /// kSecAttrKeyClass Value Constants
+    ///
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrKeyClass constant is the key
     /// and its value is one of the constants defined here.
+    ///
+    /// kSecAttrKeyClassPublic.
+    ///
+    /// kSecAttrKeyClassPrivate.
+    ///
+    /// kSecAttrKeyClassSymmetric.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeyclasspublic?language=objc)
     pub static kSecAttrKeyClassPublic: &'static CFString;
@@ -990,11 +1158,30 @@ extern "C" {
 }
 
 extern "C" {
+    /// kSecAttrKeyType Value Constants
+    ///
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrKeyType constant is the key
     /// and its value is one of the constants defined here.
     ///
+    /// kSecAttrKeyTypeECSECPrimeRandom. The used curve is P-192, P-256, P-384 or P-521.
     /// The size is specified by kSecAttrKeySizeInBits attribute. Curves are defined in FIPS PUB 186-4 standard.
+    ///
+    /// kSecAttrKeyTypeEC This is the legacy name for kSecAttrKeyTypeECSECPrimeRandom, new applications should not use it.
+    ///
+    /// kSecAttrKeyTypeDSA (macOS only)
+    ///
+    /// kSecAttrKeyTypeAES (macOS only)
+    ///
+    /// kSecAttrKeyType3DES (macOS only)
+    ///
+    /// kSecAttrKeyTypeRC4 (macOS only)
+    ///
+    /// kSecAttrKeyTypeRC2 (macOS only)
+    ///
+    /// kSecAttrKeyTypeCAST (macOS only)
+    ///
+    /// kSecAttrKeyTypeECDSA (deprecated; use kSecAttrKeyTypeECSECPrimeRandom instead.) (macOS only)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytypersa?language=objc)
     pub static kSecAttrKeyTypeRSA: &'static CFString;
@@ -1076,69 +1263,89 @@ extern "C" {
 }
 
 extern "C" {
+    /// Search Constants
+    ///
     /// Predefined search constants used to set values in a query
     /// dictionary. You can specify a combination of search attributes and
     /// item attributes when looking for matching items with the
     /// SecItemCopyMatching function.
     ///
+    /// kSecMatchPolicy Specifies a dictionary key whose value is a
     /// SecPolicyRef. If provided, returned certificates or identities must
     /// verify with this policy.
     ///
+    /// kSecMatchItemList macOS only. Specifies a dictionary key whose value is a
     /// CFArray of SecKeychainItemRef items. If provided, returned items will be
     /// limited to the subset which are contained in this list.
     ///
+    /// kSecMatchSearchList Specifies a dictionary key whose value is a
     /// CFArray of SecKeychainRef items. If provided, the search will be limited
     /// to the keychains contained in this list.
     ///
+    /// kSecMatchIssuers Specifies a dictionary key whose value is a
     /// CFArray of X.500 names (of type CFDataRef). If provided, returned
     /// certificates or identities will be limited to those whose
     /// certificate chain contains one of the issuers provided in this list.
     ///
+    /// kSecMatchEmailAddressIfPresent Specifies a dictionary key whose
     /// value is a CFStringRef containing an RFC822 email address. If
     /// provided, returned certificates or identities will be limited to those
     /// that contain the address in their subject or subject alternative name.
     ///
+    /// kSecMatchSubjectContains Specifies a dictionary key whose value
     /// is a CFStringRef. If provided, returned certificates or identities
     /// will be limited to those containing this string in the subject.
     ///
+    /// kSecMatchHostOrSubdomainOfHost Specifies a dictionary key whose value
     /// is a CFStringRef. If provided, returned internet passwords will be limited to those which
     /// have a server host that is equal to or a subdomain of this string. This filter only works on
     /// the Data Protection Keychain on macOS.
     ///
+    /// kSecMatchSubjectStartsWith macOS only. Specifies a dictionary key whose value
     /// is a CFStringRef. If provided, returned certificates or identities
     /// will be limited to those with subject names that start with this string.
     ///
+    /// kSecMatchSubjectEndsWith macOS only. Specifies a dictionary key whose value
     /// is a CFStringRef. If provided, returned certificates or identities
     /// will be limited to those with subject names that end with this string.
     ///
+    /// kSecMatchSubjectWholeString macOS only. Specifies a dictionary key whose
     /// value is a CFStringRef. If provided, returned certificates or identities
     /// will be limited to those matching this string exactly in the subject.
     ///
+    /// kSecMatchCaseInsensitive Specifies a dictionary key whose value
     /// is a CFBooleanRef. If this value is kCFBooleanFalse, or is not
     /// provided, then case-sensitive string matching is performed.
     ///
+    /// kSecMatchDiacriticInsensitive macOS only. Specifies a dictionary key whose
     /// value is a CFBooleanRef. If this value is kCFBooleanFalse, or is not
     /// provided, then diacritic-sensitive string matching is performed.
     ///
+    /// kSecMatchWidthInsensitive macOS only. Specifies a dictionary key whose
     /// value is a CFBooleanRef. If this value is kCFBooleanFalse, or is not
     /// provided, then string matching is width-sensitive (e.g. 'a' != 0xFF41).
     ///
+    /// kSecMatchTrustedOnly Specifies a dictionary key whose value is
     /// a CFBooleanRef. If provided with a value of kCFBooleanTrue, only
     /// certificates which can be verified back to a trusted anchor will be
     /// returned. If this value is kCFBooleanFalse, or is not provided, then
     /// both trusted and untrusted certificates may be returned.
     ///
+    /// kSecMatchValidOnDate Specifies a dictionary key whose value is
     /// of type CFDateRef. If provided, returned keys, certificates or
     /// identities will be limited to those which are valid for the given date.
     /// Pass a value of kCFNull to indicate the current date.
     ///
+    /// kSecMatchLimit Specifies a dictionary key whose value is a
     /// CFNumberRef. If provided, this value specifies the maximum number of
     /// results to return. If not provided, results are limited to the first
     /// item found. Predefined values are provided for a single item
     /// (kSecMatchLimitOne) and all matching items (kSecMatchLimitAll).
     ///
+    /// kSecMatchLimitOne Specifies that results are limited to the first
     /// item found; used as a value for the kSecMatchLimit dictionary key.
     ///
+    /// kSecMatchLimitAll Specifies that an unlimited number of results
     /// may be returned; used as a value for the kSecMatchLimit dictionary
     /// key.
     ///
@@ -1232,6 +1439,8 @@ extern "C" {
 }
 
 extern "C" {
+    /// Return Type Key Constants
+    ///
     /// Predefined return type keys used to set values in a dictionary.
     /// You use these keys to specify the type of results which should be
     /// returned by the SecItemCopyMatching or SecItemAdd function. You can
@@ -1239,15 +1448,18 @@ extern "C" {
     /// result types is specified, the result is returned as a CFDictionaryRef
     /// whose keys are the result types and values are the requested data.
     ///
+    /// kSecReturnData Specifies a dictionary key whose value is of type
     /// CFBooleanRef. A value of kCFBooleanTrue indicates that the data of
     /// an item (CFDataRef) should be returned. For keys and password
     /// items, data is secret (encrypted) and may require the user to enter
     /// a password for access.
     ///
+    /// kSecReturnAttributes Specifies a dictionary key whose value is
     /// of type CFBooleanRef. A value of kCFBooleanTrue indicates that the
     /// (non-encrypted) attributes of an item (CFDictionaryRef) should be
     /// returned.
     ///
+    /// kSecReturnRef Specifies a dictionary key whose value is a
     /// CFBooleanRef. A value of kCFBooleanTrue indicates that a reference
     /// should be returned. Depending on the item class requested, the
     /// returned reference(s) may be of type SecKeychainItemRef, SecKeyRef,
@@ -1257,6 +1469,7 @@ extern "C" {
     /// or Identity items on macOS when either kSecUseDataProtectionKeychain
     /// is set to true or kSecAttrSynchronizable is set to true.
     ///
+    /// kSecReturnPersistentRef Specifies a dictionary key whose value
     /// is of type CFBooleanRef. A value of kCFBooleanTrue indicates that a
     /// persistent reference to an item (CFDataRef) should be returned.
     ///
@@ -1280,17 +1493,22 @@ extern "C" {
 }
 
 extern "C" {
+    /// Value Type Key Constants
+    ///
     /// Predefined value type keys used to pass values in a dictionary.
     /// You can specify zero or more of these types depending on the function
     /// you are calling.  For SecItemCopyMatching or SecItemAdd these are
     /// used as keys in the results dictionary.
     ///
+    /// kSecValueData Specifies a dictionary key whose value is of type
     /// CFDataRef.  For keys and password items, data is secret (encrypted)
     /// and may require the user to enter a password for access.
     ///
+    /// kSecValueRef Specifies a dictionary key whose value, depending
     /// on the item class requested, is of type SecKeychainItemRef, SecKeyRef,
     /// SecCertificateRef, or SecIdentityRef.
     ///
+    /// kSecValuePersistentRef Specifies a dictionary key whose value
     /// is of type CFDataRef.  The bytes in this CFDataRef can be stored by
     /// the caller and used on a subsequent invocation of the application (or
     /// even a different application) to retrieve the item referenced by it.
@@ -1310,8 +1528,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// Other Constants
+    ///
     /// Predefined constants used to set values in a dictionary.
     ///
+    /// kSecUseItemList Specifies a dictionary key whose value is a
     /// CFArray of items. If provided, this array is treated as the set of
     /// all possible items to search, or add if the API being called is
     /// SecItemAdd. The items in this array may be of type SecKeyRef,
@@ -1319,20 +1540,25 @@ extern "C" {
     /// item reference.) The items in the array must all be of the same
     /// type. When this attribute is provided, no keychains are searched.
     ///
+    /// kSecUseKeychain macOS only. Specifies a dictionary key whose value is a
     /// keychain reference. You use this key to specify a value of type
     /// SecKeychainRef to which SecItemAdd will add the provided item(s).
     ///
+    /// kSecUseOperationPrompt Specifies a dictionary key whose value
     /// is a CFStringRef that represents a user-visible string describing
     /// the operation for which the application is attempting to authenticate.
     /// The application is responsible for the text localization.
     ///
+    /// kSecUseNoAuthenticationUI Specifies a dictionary key whose value
     /// is a CFBooleanRef. If provided with a value of kCFBooleanTrue, the error
     /// errSecInteractionNotAllowed will be returned if the item is attempting
     /// to authenticate with UI. Note: on macOS, this attribute only applies to items stored
     /// in the Data Protection keychain. Legacy keychain items will still activate UI if needed.
     ///
+    /// kSecUseAuthenticationUI Specifies a dictionary key whose value
     /// is one of kSecUseAuthenticationUIAllow, kSecUseAuthenticationUIFail, kSecUseAuthenticationUISkip.
     ///
+    /// kSecUseAuthenticationContext Specifies a dictionary key whose value
     /// is LAContext to be used for keychain item authentication.
     /// If the item requires authentication and this key is omitted, a new context
     /// will be created just for the purpose of the single call.
@@ -1343,11 +1569,13 @@ extern "C" {
     /// eventually reuse the successfully authenticated context in subsequent
     /// keychain operations.
     ///
+    /// kSecUseDataProtectionKeychain Specifies a dictionary key whose value
     /// is a CFBooleanRef. Set to kCFBooleanTrue to use kSecAttrAccessGroup and/or
     /// kSecAttrAccessible on macOS without requiring the item to be marked synchronizable.
     /// Note that when kSecUseDataProtectionKeychain is set to true, returning references is
     /// supported only for Certificate, Key or Identity items.
     ///
+    /// kSecUseUserIndependentKeychain Specifies a dctionary key whose value is a CFBooleanRef
     /// indicating whether the item is shared with other personas on the system.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseitemlist?language=objc)
@@ -1393,16 +1621,21 @@ extern "C" {
 }
 
 extern "C" {
+    /// kSecUseAuthenticationUI Value Constants
+    ///
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecUseAuthenticationUI constant is the key and its
     /// value is one of the constants defined here.
     /// If the key kSecUseAuthenticationUI not provided then kSecUseAuthenticationUIAllow
     /// is used as default.
     ///
+    /// kSecUseAuthenticationUIAllow Specifies that authenticate UI can appear.
     ///
+    /// kSecUseAuthenticationUIFail Specifies that the error
     /// errSecInteractionNotAllowed will be returned if an item needs
     /// to authenticate with UI
     ///
+    /// kSecUseAuthenticationUISkip Specifies that all items which need
     /// to authenticate with UI will be silently skipped. This value can be used
     /// only with SecItemCopyMatching.
     ///
@@ -1423,10 +1656,13 @@ extern "C" {
 }
 
 extern "C" {
+    /// kSecAttrTokenID Value Constants
+    ///
     /// Predefined item attribute constant used to get or set values
     /// in a dictionary. The kSecAttrTokenID constant is the key and its value
     /// can be kSecAttrTokenIDSecureEnclave.
     ///
+    /// kSecAttrTokenIDSecureEnclave Specifies well-known identifier of the
     /// token implemented using device's Secure Enclave. The only keychain items
     /// supported by the Secure Enclave token are 256-bit elliptic curve keys
     /// (kSecAttrKeyTypeECSecPrimeRandom). Keys must be generated on the secure enclave using
@@ -1439,6 +1675,9 @@ extern "C" {
 }
 
 extern "C" {
+    /// kSecAttrAccessGroup Value Constants
+    ///
+    /// kSecAttrAccessGroupToken Represents well-known access group
     /// which contains items provided by external token (typically smart card).
     /// This may be used as a value for kSecAttrAccessGroup attribute. Every
     /// application has access to this access group so it is not needed to

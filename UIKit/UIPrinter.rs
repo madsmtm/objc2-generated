@@ -19,11 +19,13 @@ use crate::*;
 pub struct UIPrinterJobTypes(pub NSInteger);
 bitflags::bitflags! {
     impl UIPrinterJobTypes: NSInteger {
+/// Unknown printer support.
         #[doc(alias = "UIPrinterJobTypeUnknown")]
         const Unknown = 0;
 /// The printer supports standard document printing.
         #[doc(alias = "UIPrinterJobTypeDocument")]
         const Document = 1<<0;
+/// The printer supports printing on envelopes.
         #[doc(alias = "UIPrinterJobTypeEnvelope")]
         const Envelope = 1<<1;
 /// The printer supports printing on cut labels.

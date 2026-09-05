@@ -34,6 +34,8 @@ extern_conformance!(
 impl IOBluetoothObjectPushUIController {
     extern_methods!(
         #[cfg(feature = "objc2-io-bluetooth")]
+        /// initObjectPushWithBluetoothDevice: withFiles: delegate:
+        ///
         /// Creates and returns a new IOBluetoothObjectPush object
         ///
         /// The event delegate should implement a single delegate method:

@@ -663,6 +663,7 @@ extern_conformance!(
 
 impl NFCTagReaderSession {
     extern_methods!(
+        /// connectedTag  Current connected tag object; nil if no tag is connected in the session.
         #[unsafe(method(connectedTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedTag(&self) -> Option<Retained<ProtocolObject<dyn NFCTag>>>;
@@ -2296,7 +2297,9 @@ impl NFCISO15693ReaderSession {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefstatus?language=objc)
+/// NFCNDEFStatusNotSupport    Tag is not NDEF formatted; NDEF read and write are disallowed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -2535,12 +2538,14 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicatag?language=objc)
     pub unsafe trait NFCFeliCaTag: NFCTag + NFCNDEFTag {
+        /// currentSystemCode  The system code most recently selected by the reader using the Polling command.
         /// This will match one of the entries in the "com.apple.developer.nfc.readersession.felica.systemcodes"
         /// in the Info.plist.
         #[unsafe(method(currentSystemCode))]
         #[unsafe(method_family = none)]
         unsafe fn currentSystemCode(&self) -> Retained<NSData>;
 
+        /// currentIDm         Manufacturer ID of the currently selected system.  Value is updated on each Polling command execution.
         /// It will be empty if system selection fails.
         #[unsafe(method(currentIDm))]
         #[unsafe(method_family = none)]
@@ -2794,26 +2799,32 @@ extern_conformance!(
 
 impl NFCISO7816APDU {
     extern_methods!(
+        /// instructionClass   Class (CLA) byte.
         #[unsafe(method(instructionClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn instructionClass(&self) -> u8;
 
+        /// instructionCode    Instruction (INS) byte.
         #[unsafe(method(instructionCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn instructionCode(&self) -> u8;
 
+        /// p1Parameter     P1 parameter.
         #[unsafe(method(p1Parameter))]
         #[unsafe(method_family = none)]
         pub unsafe fn p1Parameter(&self) -> u8;
 
+        /// p2Parameter     P2 parameter.
         #[unsafe(method(p2Parameter))]
         #[unsafe(method_family = none)]
         pub unsafe fn p2Parameter(&self) -> u8;
 
+        /// data   Data field; nil if data field is absent
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
+        /// expectedResponseLength     Expected response length (Le).  -1 means no response data field is expected.
         #[unsafe(method(expectedResponseLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedResponseLength(&self) -> NSInteger;
@@ -2899,6 +2910,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso7816tag?language=objc)
     pub unsafe trait NFCISO7816Tag: NFCTag + NFCNDEFTag {
+        /// initialSelectedAID The Hex string of the application identifier (DF name) selected by the reader when the tag is discovered.
         /// This will match one of the entries in the "com.apple.developer.nfc.readersession.iso7816.select-identifiers"
         /// in the Info.plist.
         #[unsafe(method(initialSelectedAID))]
@@ -3009,6 +3021,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifaretag?language=objc)
     pub unsafe trait NFCMiFareTag: NFCTag + NFCNDEFTag {
+        /// mifareFamily   MiFare product type identifier.
         #[unsafe(method(mifareFamily))]
         #[unsafe(method_family = none)]
         unsafe fn mifareFamily(&self) -> NFCMiFareFamily;

@@ -64,6 +64,8 @@ pub const kAudioISubOwnerControlClassID: AudioClassID = 0x61746368;
 pub const kAudioLevelControlPropertyDecibelsToScalarTransferFunction: AudioObjectPropertySelector =
     0x6c637466;
 
+/// Values for kAudioLevelControlPropertyDecibelsToScalarTransferFunction
+///
 /// The following constants are the only supported values for a volume control's
 /// transfer function.
 ///

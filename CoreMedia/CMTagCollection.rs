@@ -10,6 +10,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// CMTagCollection Errors
+///
 /// The OSStatus errors returned from the CMTagCollection routines.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror?language=objc)

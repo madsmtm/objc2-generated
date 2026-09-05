@@ -761,6 +761,30 @@ pub type CMBufferQueueTriggerHandler = block2::Block<'static, fn(CMBufferQueueTr
 
 /// A condition to be associated with a CMBufferQueueTrigger.
 ///
+/// kCMBufferQueueTrigger_WhenDurationBecomesLessThan                Trigger fires when queue duration becomes < the specified duration.
+///
+/// kCMBufferQueueTrigger_WhenDurationBecomesLessThanOrEqualTo        Trigger fires when queue duration becomes <= the specified duration.
+///
+/// kCMBufferQueueTrigger_WhenDurationBecomesGreaterThan            Trigger fires when queue duration becomes > the specified duration.
+///
+/// kCMBufferQueueTrigger_WhenDurationBecomesGreaterThanOrEqualTo    Trigger fires when queue duration becomes >= the specified duration.
+///
+/// kCMBufferQueueTrigger_WhenMinPresentationTimeStampChanges        Trigger fires when minimum presentation timestamp changes (triggerTime is ignored).
+///
+/// kCMBufferQueueTrigger_WhenMaxPresentationTimeStampChanges        Trigger fires when maximum presentation timestamp changes (triggerTime is ignored).
+///
+/// kCMBufferQueueTrigger_WhenDataBecomesReady                        Trigger fires when next dequeueable buffer becomes ready (ie, DequeueIfDataReadyAndRetain will now succeed).  (triggerTime is ignored.)
+///
+/// kCMBufferQueueTrigger_WhenEndOfDataReached                        Trigger fires when CMBufferQueueIsAtEndOfData's condition becomes true.  (triggerTime is ignored.)
+///
+/// kCMBufferQueueTrigger_WhenReset                                    Trigger fires when CMBufferQueueReset called.  (triggerTime is ignored.)
+///
+/// kCMBufferQueueTrigger_WhenBufferCountBecomesLessThan            Trigger fires when buffer count becomes < the specified threshold number.
+///
+/// kCMBufferQueueTrigger_WhenBufferCountBecomesGreaterThan            Trigger fires when buffer count becomes > the specified threshold number.
+///
+/// kCMBufferQueueTrigger_WhenDurationBecomesGreaterThanOrEqualToAndBufferCountBecomesGreaterThan    Trigger fires when queue duration becomes >= the specified duration and buffer count becomes > the specified threshold number.
+///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferqueuetriggercondition?language=objc)
 pub type CMBufferQueueTriggerCondition = i32;
 

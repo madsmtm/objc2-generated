@@ -447,7 +447,9 @@ pub const IOPMMaxPowerStates: c_uint = kIOPMMaxPowerStates;
 /// The bits listed below are only the most common bits used to define a device's power states. Your device's IO family may require that your device specify other input or output power flags to interact properly. Consult family-specific documentation to determine if your IOPower plane parents or children require other power flags; they probably don't.
 ///
 ///
+/// kIOPMPowerOn Indicates the device is on, requires power, and provides power. Useful as a: Capability, InputPowerRequirement, OutputPowerCharacter
 ///
+/// kIOPMDeviceUsable Indicates the device is usable in this state. Useful only as a Capability
 ///
 /// Indicates device is in a low power state. May be bitwis-OR'd together
 /// with kIOPMDeviceUsable flag, to indicate the device is still usable.

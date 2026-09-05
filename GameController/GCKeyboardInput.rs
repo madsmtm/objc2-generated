@@ -96,6 +96,7 @@ impl GCKeyboardInput {
         /// Alongside general subscript notation of GCPhysicalInputProfile keys can be accessed using this method.
         ///
         ///
+        /// [keyboard buttonForKey:GCKeyCode.UpArrow] == keyboard[GCKeyUpArrow]
         ///
         /// Parameter `code`: is a low level key code that can be used for accessing a keyboard button.
         ///

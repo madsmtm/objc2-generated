@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeycredentialrequest?language=objc)
+    /// This class encapsulates a passkey assertion request made to a credential provider extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeycredentialrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyCredentialRequest;

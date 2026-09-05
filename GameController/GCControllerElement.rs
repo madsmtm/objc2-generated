@@ -11,6 +11,7 @@ use crate::*;
 /// for a controller element that is bound to a system gesture.
 ///
 ///
+/// The Options button on an extended gamepad can be bound to take a screenshot with a long press. This occurs outside of
 /// the control of the app. If a user presses the Options button, the system gesture recognizer will run by default. If a long press is detected,
 /// input will not be forwarded to your app (your application won't see the Options button was pressed at all). If a long press is not detected,
 /// input will be forwared to your app, with a delay.

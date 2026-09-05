@@ -623,6 +623,8 @@ unsafe impl RefEncode for AudioStreamPacketDependencyDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// SMPTE Time Types
+///
 /// Constants that describe the type of SMPTE time.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype?language=objc)

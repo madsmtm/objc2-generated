@@ -17,6 +17,8 @@ use crate::*;
 pub type SCNViewOption = NSString;
 
 extern "C" {
+    /// SCNViewOptionPreferredRenderingAPI Specifies the preferred rendering API to be used by the renderer.
+    ///
     /// Pass it as the key in the options dictionary given to initWithFrame:options:. The value is a NSNumber wrapping a SCNRenderingAPI. You can also select the preferred rendering API directly from the SCNView inspector in InterfaceBuilder.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnpreferredrenderingapikey?language=objc)
@@ -24,6 +26,8 @@ extern "C" {
 }
 
 extern "C" {
+    /// SCNViewOptionPreferredDevice Specifies the preferred Metal device to be used by the renderer.
+    ///
     /// The value is directly a id
     /// <MTLDevice
     /// >.
@@ -33,6 +37,8 @@ extern "C" {
 }
 
 extern "C" {
+    /// SCNViewOptionPreferLowPowerDevice Specifies if the renderer should prefer a low power Metal device.
+    ///
     /// The value is a NSNumber wrapping a BOOL. Defaults to NO.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnpreferlowpowerdevicekey?language=objc)

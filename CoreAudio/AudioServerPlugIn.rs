@@ -113,6 +113,8 @@ pub const kAudioObjectPlugInObject: AudioObjectID = 1;
 #[cfg(feature = "AudioHardware")]
 pub const kAudioServerPlugInHostClientID: AudioObjectID = 0;
 
+/// Custom Property Data Types
+///
 /// The set of data types the Host knows how to marshal between the server and the
 /// client. These are the only types supported for custom properties. See
 /// AudioServerPlugInCustomPropertyInfo for more information.
@@ -136,6 +138,8 @@ pub const kAudioServerPlugInCustomPropertyDataTypeCFString:
 pub const kAudioServerPlugInCustomPropertyDataTypeCFPropertyList:
     AudioServerPlugInCustomPropertyDataType = 0x706c7374;
 
+/// IO Operation IDs
+///
 /// The valid values for the inOperationID argument to the various IO methods.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation?language=objc)
@@ -221,6 +225,8 @@ pub const kAudioObjectPropertyCustomPropertyInfoList: AudioObjectPropertySelecto
 #[cfg(feature = "AudioHardware")]
 pub const kAudioPlugInPropertyResourceBundle: AudioObjectPropertySelector = 0x72737263;
 
+/// Clock Smoothing Algorithm Selectors
+///
 /// The valid values for kAudioDevicePropertyClockAlgorithm
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceclockalgorithmselector?language=objc)

@@ -477,7 +477,9 @@ unsafe impl RefEncode for AUNodeInteraction_nodeInteraction {
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct AUNodeInteraction {
+    /// the interaction type
     pub nodeInteractionType: u32,
+    /// a union providing information about the specified interaction
     pub nodeInteraction: AUNodeInteraction_nodeInteraction,
 }
 

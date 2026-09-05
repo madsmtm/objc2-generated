@@ -327,13 +327,17 @@ unsafe impl RefEncode for SecKeySizes {
 }
 
 extern "C" {
+    /// Key Parameter Constants
+    ///
     /// Predefined key constants used to get or set values in a dictionary.
     /// These are used to provide explicit parameters to key generation functions
     /// when non-default values are desired. See the description of the
     /// SecKeyGeneratePair API for usage information.
     ///
+    /// kSecPrivateKeyAttrs The value for this key is a CFDictionaryRef
     /// containing attributes specific for the private key to be generated.
     ///
+    /// kSecPublicKeyAttrs The value for this key is a CFDictionaryRef
     /// containing attributes specific for the public key to be generated.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecprivatekeyattrs?language=objc)
@@ -2273,6 +2277,11 @@ impl SecKey {
     }
 }
 
+/// SecKeyKeyExchangeParameter SecKey Key Exchange parameters
+///
+/// kSecKeyKeyExchangeParameterRequestedSize Contains CFNumberRef with requested result size in bytes.
+///
+/// kSecKeyKeyExchangeParameterSharedInfo Contains CFDataRef with additional shared info
 /// for KDF (key derivation function).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeykeyexchangeparameter?language=objc)

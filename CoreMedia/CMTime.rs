@@ -201,37 +201,39 @@ impl CMTime {
 
 /// Rounding method to use when computing time.value during timescale conversions.
 ///
-/// away from 0 if abs(fraction) is >= 0.5.
-///
-///
-///
-///
-/// from larger to smaller scale (ie. from more precision to
-/// less precision), but use
-/// kCMTimeRoundingMethod_RoundAwayFromZero if converting
-/// from smaller to larger scale (ie. from less precision to
-/// more precision). Also, never round a negative number down
-/// to 0; always return the smallest magnitude negative
-/// CMTime in this case (-1/newTimescale).
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTimeRoundingMethod(pub u32);
 impl CMTimeRoundingMethod {
+    /// Round towards zero if abs(fraction) is < 0.5,
+    /// away from 0 if abs(fraction) is >= 0.5.
     #[doc(alias = "kCMTimeRoundingMethod_RoundHalfAwayFromZero")]
     pub const RoundHalfAwayFromZero: Self = Self(1);
+    /// Round towards zero if fraction is != 0.
     #[doc(alias = "kCMTimeRoundingMethod_RoundTowardZero")]
     pub const RoundTowardZero: Self = Self(2);
+    /// Round away from zero if abs(fraction) is > 0.
     #[doc(alias = "kCMTimeRoundingMethod_RoundAwayFromZero")]
     pub const RoundAwayFromZero: Self = Self(3);
+    /// Use kCMTimeRoundingMethod_RoundTowardZero if converting
+    /// from larger to smaller scale (ie. from more precision to
+    /// less precision), but use
+    /// kCMTimeRoundingMethod_RoundAwayFromZero if converting
+    /// from smaller to larger scale (ie. from less precision to
+    /// more precision). Also, never round a negative number down
+    /// to 0; always return the smallest magnitude negative
+    /// CMTime in this case (-1/newTimescale).
     #[doc(alias = "kCMTimeRoundingMethod_QuickTime")]
     pub const QuickTime: Self = Self(4);
+    /// Round towards +inf if fraction is != 0.
     #[doc(alias = "kCMTimeRoundingMethod_RoundTowardPositiveInfinity")]
     pub const RoundTowardPositiveInfinity: Self = Self(5);
+    /// Round towards -inf if fraction is != 0.
     #[doc(alias = "kCMTimeRoundingMethod_RoundTowardNegativeInfinity")]
     pub const RoundTowardNegativeInfinity: Self = Self(6);
+    /// Synonym for kCMTimeRoundingMethod_RoundHalfAwayFromZero.
     #[doc(alias = "kCMTimeRoundingMethod_Default")]
     pub const Default: Self = Self(CMTimeRoundingMethod::RoundHalfAwayFromZero.0);
 }

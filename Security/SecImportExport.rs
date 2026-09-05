@@ -421,7 +421,17 @@ pub unsafe fn SecItemImport(
 }
 
 extern "C" {
+    /// Import/Export options
+    ///
     /// Predefined key constants used when passing dictionary-based arguments to import/export functions.
+    ///
+    /// kSecImportExportPassphrase Specifies a passphrase represented by a CFStringRef to be used when exporting to (or importing from) PKCS#12 format.
+    ///
+    /// kSecImportExportKeychain On macOS, specifies a keychain represented by a SecKeychainRef to be used as the target when importing from PKCS#12 format.
+    ///
+    /// kSecImportExportAccess On macOS, specifies an access represented by a SecAccessRef for the initial access (ACL) of a key imported from PKCS#12 format.
+    ///
+    /// kSecImportToMemoryOnly Specifies (with a value of kCFBooleanTrue) that items imported from PKCS#12 format should be kept in process memory only and not permanently stored in the keychain. This can be specified on either macOS or iOS, though it is already default behavior on iOS. If this key is provided, keychain-related import options are ignored since the keychain will not be used.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportexportpassphrase?language=objc)
     pub static kSecImportExportPassphrase: &'static CFString;
@@ -443,18 +453,25 @@ extern "C" {
 }
 
 extern "C" {
+    /// Import/Export item description
+    ///
     /// Predefined key constants used to pass back a CFArray with a
     /// CFDictionary per item.
     ///
     ///
+    /// kSecImportItemLabel a CFStringRef representing the item label.
     /// This implementation specific identifier cannot be expected to have
     /// any format.
     ///
+    /// kSecImportItemKeyID a CFDataRef representing the key id.  Often
     /// the SHA-1 digest of the public key.
     ///
+    /// kSecImportItemIdentity a SecIdentityRef representing the identity.
     ///
+    /// kSecImportItemTrust a SecTrustRef set up with all relevant
     /// certificates.  Not guaranteed to successfully evaluate.
     ///
+    /// kSecImportItemCertChain a CFArrayRef holding all relevant
     /// certificates for this item's identity
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportitemlabel?language=objc)

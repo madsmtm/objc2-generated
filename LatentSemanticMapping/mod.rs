@@ -31,17 +31,30 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapoutofstate?language=objc)
+/// This call cannot be issued in this map
+/// state
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapoutofstate?language=objc)
 pub const kLSMMapOutOfState: c_int = -6640;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapnosuchcategory?language=objc)
+/// Invalid category specified
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapnosuchcategory?language=objc)
 pub const kLSMMapNoSuchCategory: c_int = -6641;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapwriteerror?language=objc)
+/// An error occurred writing the map
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapwriteerror?language=objc)
 pub const kLSMMapWriteError: c_int = -6642;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapbadpath?language=objc)
+/// The URL you specified does not exist
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapbadpath?language=objc)
 pub const kLSMMapBadPath: c_int = -6643;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapbadcluster?language=objc)
+/// The clusters you specified are invalid
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapbadcluster?language=objc)
 pub const kLSMMapBadCluster: c_int = -6644;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapoverflow?language=objc)
+/// Cannot add more data to map
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapoverflow?language=objc)
 pub const kLSMMapOverflow: c_int = -6645;
 
 /// An opaque Core Foundation type representing an LSM map (mutable).
@@ -157,11 +170,20 @@ impl LSMMap {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmappairs?language=objc)
+/// Use pairs in addition to single words.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmappairs?language=objc)
 pub const kLSMMapPairs: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaptriplets?language=objc)
+/// Use triplets and pairs in addition to single
+/// words.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaptriplets?language=objc)
 pub const kLSMMapTriplets: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaphashtext?language=objc)
+/// Transform the text so it's not trivially
+/// human readable. Disables creation of language
+/// models.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaphashtext?language=objc)
 pub const kLSMMapHashText: c_uint = 256;
 
 impl LSMMap {
@@ -371,7 +393,10 @@ impl LSMResult {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmresultbestwords?language=objc)
+/// Find the words, rather than categories,
+/// that best match.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmresultbestwords?language=objc)
 pub const kLSMResultBestWords: c_uint = 1;
 
 impl LSMResult {
@@ -487,9 +512,20 @@ impl LSMMap {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapdiscardcounts?language=objc)
+/// Don't keep counts. If specified on
+/// loading, the map needs to be reloaded
+/// without this option before calling
+/// LSMStartTraining.
+/// If specified on storing, the stored
+/// map can't be retrained at all.
+/// This option can save a lot of memory
+/// and/or disk space.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapdiscardcounts?language=objc)
 pub const kLSMMapDiscardCounts: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaploadmutable?language=objc)
+/// Load map as mutable in training state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaploadmutable?language=objc)
 pub const kLSMMapLoadMutable: c_uint = 2;
 
 impl LSMMap {
@@ -564,11 +600,18 @@ impl LSMText {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreservecase?language=objc)
+/// Don't change any words to lowercase.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreservecase?language=objc)
 pub const kLSMTextPreserveCase: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreserveacronyms?language=objc)
+/// Don't map all uppercase words to
+/// lowercase.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreserveacronyms?language=objc)
 pub const kLSMTextPreserveAcronyms: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextapplyspamheuristics?language=objc)
+/// Try to find words in hostile text.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextapplyspamheuristics?language=objc)
 pub const kLSMTextApplySpamHeuristics: c_uint = 4;
 
 impl LSMText {

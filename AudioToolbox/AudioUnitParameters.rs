@@ -645,6 +645,8 @@ pub const kAUAudioMixParameter_Style: AudioUnitParameterID = 0;
 #[cfg(feature = "AUComponent")]
 pub const kAUAudioMixParameter_RemixAmount: AudioUnitParameterID = 1;
 
+/// AUAudioMix styles
+///
 /// Constants available as values for parameter kAUAudioMixParameter_Style.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle?language=objc)

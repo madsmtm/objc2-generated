@@ -158,15 +158,25 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SCBondStatus"> for SCBondStatus {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusok?language=objc)
+/// Enabled, active, running, ...
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusok?language=objc)
 pub const kSCBondStatusOK: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatuslinkinvalid?language=objc)
+/// The link state was not valid (i.e. down, half-duplex, wrong speed)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatuslinkinvalid?language=objc)
 pub const kSCBondStatusLinkInvalid: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusnopartner?language=objc)
+/// The port on the switch that the device is connected doesn't seem to have 802.3ad Link Aggregation enabled
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusnopartner?language=objc)
 pub const kSCBondStatusNoPartner: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusnotinactivegroup?language=objc)
+/// We're talking to a partner, but the link aggregation group is different from the one that's active
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusnotinactivegroup?language=objc)
 pub const kSCBondStatusNotInActiveGroup: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusunknown?language=objc)
+/// Non-specific failure
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusunknown?language=objc)
 pub const kSCBondStatusUnknown: c_uint = 999;
 
 extern "C" {

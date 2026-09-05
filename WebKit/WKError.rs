@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerrordomain?language=objc)
+    /// WKErrorDomain Indicates a WebKit error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerrordomain?language=objc)
     pub static WKErrorDomain: &'static NSString;
 }
 

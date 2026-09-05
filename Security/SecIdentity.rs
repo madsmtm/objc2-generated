@@ -345,11 +345,15 @@ impl SecIdentity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecidentitydomaindefault?language=objc)
+    /// kSecIdentityDomainDefault The system-wide default identity.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecidentitydomaindefault?language=objc)
     pub static kSecIdentityDomainDefault: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecidentitydomainkerberoskdc?language=objc)
+    /// kSecIdentityDomainKerberosKDC Kerberos KDC identity.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecidentitydomainkerberoskdc?language=objc)
     pub static kSecIdentityDomainKerberosKDC: &'static CFString;
 }

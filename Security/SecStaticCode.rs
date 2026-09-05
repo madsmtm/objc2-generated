@@ -117,16 +117,20 @@ impl SecStaticCode {
     /// CSCommon.h or certain other Security framework headers.
     ///
     ///
+    /// kSecCodeAttributeArchitecture Specifies the Mach-O architecture of code desired.
     /// This can be a CFString containing a canonical architecture name ("i386" etc.), or a CFNumber
     /// specifying an architecture numerically (see mach/machine.h). This key is ignored if the code
     /// is not in Mach-O binary form. If the code is Mach-O but not universal ("thin"), the architecture
     /// specified must agree with the actual file contents.
     ///
+    /// kSecCodeAttributeSubarchitecture If the architecture is specified numerically
     /// (using the kSecCodeAttributeArchitecture key), specifies any sub-architecture by number.
     /// This key is ignored if no main architecture is specified; if it is specified by name; or
     /// if the code is not in Mach-O form.
     ///
+    /// kSecCodeAttributeUniversalFileOffset The offset of a Mach-O specific slice of a universal Mach-O file.
     ///
+    /// kSecCodeAttributeBundleVersion If the code sought is a deep framework bundle (Something.framework/Versions/...),
     /// then select the specified framework version. This key is otherwise ignored.
     ///
     /// # Safety

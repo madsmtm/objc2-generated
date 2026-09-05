@@ -197,6 +197,8 @@ extern "C" {
 }
 
 extern "C" {
+    /// AudioSession route input types
+    ///
     /// These are the strings used with the kAudioSession_AudioRouteKey_Type key for the CFDictionary associated
     /// with kAudioSession_AudioRouteKey_Inputs.
     /// Available in iOS 5.0 or greater
@@ -246,6 +248,8 @@ extern "C" {
 }
 
 extern "C" {
+    /// AudioSession route output types
+    ///
     /// These are strings used with the kAudioSession_AudioRouteKey_Type key for the CFDictionary associated
     /// with kAudioSession_AudioRouteKey_Outputs.
     /// Available in iOS 5.0 or greater

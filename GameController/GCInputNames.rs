@@ -53,6 +53,7 @@ pub type GCInputDirectionPadName = NSString;
 extern "C" {
     /// A set of commonly used strings that can be used to access controller buttons
     ///
+    /// controller.physicalInputProfile.buttons[GCInputButtonA]
     ///
     /// See: GCController.h
     ///
@@ -206,6 +207,7 @@ extern "C" {
 extern "C" {
     /// A set of strings commonly used to access Xbox buttons
     ///
+    /// controller.physicalInputProfile.buttons[GCInputButtonPaddleOne]
     ///
     /// See: GCController.h
     ///
@@ -233,6 +235,7 @@ extern "C" {
 extern "C" {
     /// A set of strings commonly used to access DualShock buttons
     ///
+    /// controller.physicalInputProfile.dpads[GCInputDualShockTouchpadOne]
     ///
     /// See: GCController.h
     ///

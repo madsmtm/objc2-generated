@@ -447,6 +447,8 @@ pub unsafe fn AudioServicesRemoveSystemSoundCompletion(in_system_sound_id: Syste
 }
 
 extern "C" {
+    /// AudioServicesPlaySystemSoundWithDetails Dictionary Keys
+    ///
     /// Keys that are passed in a dictionary to AudioServicesPlaySystemSoundWithDetails
     ///
     /// Must be any non-nil CASpatialAudioExperience. The system sound

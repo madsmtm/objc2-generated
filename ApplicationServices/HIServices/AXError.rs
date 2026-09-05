@@ -5,6 +5,8 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Accessibility Error Codes
+///
 /// Error codes returned by accessibility functions.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror?language=objc)

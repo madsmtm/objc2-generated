@@ -1014,14 +1014,17 @@ extern "C" {
     /// Group-id of owner of the file. Type is a CFNumber.
     ///
     ///
+    /// kMDItemFSExists *** DEPRECATED ***
     /// Boolean indicating if this MDItem references a file that still
     /// exists. The file that the MDItem references might have been
     /// deleted. Type is a CFBoolean.
     ///
     ///
+    /// kMDItemFSIsReadable *** DEPRECATED ***
     /// Boolean indicating if this file is readable. Type is a CFBoolean.
     ///
     ///
+    /// kMDItemFSIsWriteable *** DEPRECATED ***
     /// Boolean indicating if this file is writable. Type is a CFBoolean.
     ///
     ///

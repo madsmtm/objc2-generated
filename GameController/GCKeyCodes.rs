@@ -8,6 +8,7 @@ use crate::*;
 /// A set of low level key codes that can be used to access keyboard buttons
 ///
 ///
+/// [keyboard.keyboardInput buttonForKeyCode:GCKeyCodeSpacebar]
 ///
 /// See: GCKeyboardInput.h
 ///

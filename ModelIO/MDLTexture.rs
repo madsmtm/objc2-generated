@@ -511,23 +511,29 @@ extern_class!(
     /// A physically realistic sky as a cube texture
     ///
     ///
+    /// sunElevation A value of zero is at the zenith, 0.5 is at the horizon,
     /// 1.0 is at the nadir. Use in conjunction with turbidity to give a dawn,
     /// dusk, or noon look.
     ///
+    /// turbidity A value of zero simulates the effect of a clear sky, the sun
     /// will impart very little color to the sky. A value of one simulates a
     /// great deal of dust and moisture in the sky, and will cause the sun's
     /// color to spread across the atmosphere.
     ///
+    /// upperAtmosphereScattering A value of zero will give very dusky colors,
     /// a value of one will give noon-ish saturated colors.
     ///
+    /// groundAlbedo controls the amount of light that bounces back up into
     /// the sky from the ground. A value of zero will yield a clear sky, a
     /// value of one will reduce the contrast of the sky, making it a bit foggy.
     ///
     ///
+    /// horizonElevation If the lower half of the environment is being replaced
     /// by a color, horizonElevation is angle, in radians, below which the
     /// replacement should occur. Negative values are below the horizon.
     ///
     ///
+    /// groundColor If this value is set, the environment will be replaced with
     /// the color below the horizonElevation value blended with the w factor up to
     /// Pi/2.0 past the horizon.
     /// (e.g. w = 0.0 groundColor is applied immediatly on the horizon with no blend
@@ -541,12 +547,18 @@ extern_class!(
     /// 1 component treats the scalar component as greyscale color and 0 as blend factor
     ///
     ///
+    /// gamma Modifies the amount of gamma correction applied during
     /// tone mapping.
     ///
+    /// exposure Modifies the exposure applied during tone mapping.
     ///
+    /// brighness Modifies the brightness of the image during tone mapping.
     ///
+    /// contrast Modifies the contrast of the image during tone mapping.
     ///
+    /// saturation Modifes the saturation of the image during tone mapping.
     ///
+    /// highDynamicRangeCompression values below the x component of this value
     /// are not compressed during tone mapping. Values between the x component
     /// and y component are compressed to the maximum brightness value during
     /// tone mapping. Values above the limit are clamped.
