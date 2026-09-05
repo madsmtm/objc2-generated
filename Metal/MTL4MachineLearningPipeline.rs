@@ -68,6 +68,9 @@ impl MTL4MachineLearningPipelineDescriptor {
         #[cfg(feature = "MTLTensor")]
         /// Sets the dimension of an input tensor at a buffer index.
         ///
+        /// When the compiled model declares the input as unranked (unknown rank), any concrete `dimensions` are accepted.
+        /// Otherwise `dimensions.rank` must equal the model's input rank, and each static (non `-1`) dimension must match.
+        ///
         /// - Parameters:
         /// - dimensions: the dimensions of the tensor.
         /// - bufferIndex: Index of the tensor to modify.

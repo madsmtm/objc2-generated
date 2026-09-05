@@ -1208,7 +1208,7 @@ impl AVAssetWriterInputCaptionAdaptor {
         /// When mixing calls to -appendCaptionGroup: and -appendCaption:, the start time of each group must be equal to or greater than the end time of any previous captions.
         /// To mark a time range containing no captions, append a group containing an empty caption array.
         ///
-        /// - Parameter captionGroup:
+        /// - Parameter captionGroup: The caption group that the system writes to the output.
         ///
         /// - Returns: Returns YES if the operation succeeded, NO if it failed.
         #[unsafe(method(appendCaptionGroup:))]

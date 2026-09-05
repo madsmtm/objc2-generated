@@ -72,7 +72,7 @@ impl AVPlayer {
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
         ///
-        /// - Parameter URL:
+        /// - Parameter URL: A URL that identifies an audiovisual resource.
         ///
         /// - Returns: An instance of AVPlayer
         #[unsafe(method(playerWithURL:))]
@@ -84,7 +84,7 @@ impl AVPlayer {
         ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
         ///
-        /// - Parameter item:
+        /// - Parameter item: The player item to play.
         ///
         /// - Returns: An instance of AVPlayer
         #[unsafe(method(playerWithPlayerItem:))]
@@ -98,7 +98,7 @@ impl AVPlayer {
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
         ///
-        /// - Parameter URL:
+        /// - Parameter URL: A URL that identifies an audiovisual resource.
         ///
         /// - Returns: An instance of AVPlayer
         #[unsafe(method(initWithURL:))]
@@ -112,7 +112,7 @@ impl AVPlayer {
         /// This method throws an exception if the item is not an AVPlayerItem, or if the item is
         /// associated with another AVPlayer.
         ///
-        /// - Parameter item:
+        /// - Parameter item: The player item to play.
         ///
         /// - Returns: An instance of AVPlayer
         #[unsafe(method(initWithPlayerItem:))]
@@ -178,28 +178,38 @@ extern "C" {
     pub static AVPlayerRateDidChangeOriginatingParticipantKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereason?language=objc)
+/// A structure that represents a rate change reason.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereason?language=objc)
 // NS_TYPED_ENUM
 pub type AVPlayerRateDidChangeReason = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonsetratecalled?language=objc)
+    /// An app makes a call to set the player's rate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonsetratecalled?language=objc)
     pub static AVPlayerRateDidChangeReasonSetRateCalled: &'static AVPlayerRateDidChangeReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonsetratefailed?language=objc)
+    /// An attempt to change the player's rate fails.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonsetratefailed?language=objc)
     pub static AVPlayerRateDidChangeReasonSetRateFailed: &'static AVPlayerRateDidChangeReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonaudiosessioninterrupted?language=objc)
+    /// The system interrupts the app's audio session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonaudiosessioninterrupted?language=objc)
     pub static AVPlayerRateDidChangeReasonAudioSessionInterrupted:
         &'static AVPlayerRateDidChangeReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonappbackgrounded?language=objc)
+    /// An app transitions to the background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonappbackgrounded?language=objc)
     pub static AVPlayerRateDidChangeReasonAppBackgrounded: &'static AVPlayerRateDidChangeReason;
 }
 
@@ -454,7 +464,7 @@ impl AVPlayer {
         /// Use this method to seek to a specified time for the current player item.
         /// The time seeked to may differ from the specified time for efficiency. For sample accurate seeking see seekToTime:toleranceBefore:toleranceAfter:.
         ///
-        /// - Parameter date:
+        /// - Parameter date: The time to which to seek.
         #[unsafe(method(seekToDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate(&self, date: &NSDate);
@@ -468,8 +478,8 @@ impl AVPlayer {
         /// completion handler will be invoked with the finished parameter set to YES. If no item is attached, the completion handler will be
         /// invoked immediately with the finished parameter set to NO.
         ///
-        /// - Parameter date:
-        /// - Parameter completionHandler:
+        /// - Parameter date: The time to which to seek.
+        /// - Parameter completionHandler: The block to invoke when the seek operation has either been completed or been interrupted. The block takes one argument, finished, which indicates whether the seek operation completed.
         #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
@@ -1482,7 +1492,7 @@ impl AVQueuePlayer {
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
         ///
-        /// - Parameter URL:
+        /// - Parameter URL: A URL that identifies an audiovisual resource.
         ///
         /// - Returns: An instance of AVPlayer
         #[unsafe(method(playerWithURL:))]
@@ -1494,7 +1504,7 @@ impl AVQueuePlayer {
         ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
         ///
-        /// - Parameter item:
+        /// - Parameter item: The player item to play.
         ///
         /// - Returns: An instance of AVPlayer
         #[unsafe(method(playerWithPlayerItem:))]
@@ -1508,7 +1518,7 @@ impl AVQueuePlayer {
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
         ///
-        /// - Parameter URL:
+        /// - Parameter URL: A URL that identifies an audiovisual resource.
         ///
         /// - Returns: An instance of AVPlayer
         #[unsafe(method(initWithURL:))]
@@ -1522,7 +1532,7 @@ impl AVQueuePlayer {
         /// This method throws an exception if the item is not an AVPlayerItem, or if the item is
         /// associated with another AVPlayer.
         ///
-        /// - Parameter item:
+        /// - Parameter item: The player item to play.
         ///
         /// - Returns: An instance of AVPlayer
         #[unsafe(method(initWithPlayerItem:))]

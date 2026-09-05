@@ -446,6 +446,46 @@ impl CPRouteDetail {
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates additional route information with a freeform informational string.
+        ///
+        /// Use this method to display a short piece of general information about the route that does not
+        /// fit any of the predefined route detail categories.
+        ///
+        ///
+        /// Info strings should be concise and localized. The system displays this alongside
+        /// other route details during route selection and active navigation.
+        ///
+        ///
+        /// Parameter `info`: A localized string containing the information to display. Must not be nil.
+        ///
+        /// Returns: A new
+        /// `CPRouteDetail`instance representing the informational text.
+        #[unsafe(method(routeDetailWithInfo:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn routeDetailWithInfo(info: &NSString, mtm: MainThreadMarker)
+            -> Retained<Self>;
+
+        /// Creates additional route information describing parking at the destination.
+        ///
+        /// Use this method to surface parking-related details (availability, estimated cost, distance
+        /// to destination) so users can factor parking into their route selection.
+        ///
+        ///
+        /// Parking information is displayed alongside other route details. Keep the string
+        /// concise and localized so it reads clearly in the available space.
+        ///
+        ///
+        /// Parameter `parking`: A localized string describing parking at the destination. Must not be nil.
+        ///
+        /// Returns: A new
+        /// `CPRouteDetail`instance representing the parking information.
+        #[unsafe(method(routeDetailWithParking:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn routeDetailWithParking(
+            parking: &NSString,
+            mtm: MainThreadMarker,
+        ) -> Retained<Self>;
+
         /// Creates custom additional route information with a symbol name and value.
         ///
         /// Use this method to display app-specific route information that doesn't fit the predefined
@@ -482,27 +522,6 @@ impl CPRouteDetail {
             value: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "objc2-ui-kit")]
-        /// The labelTintColor to apply to the label.
-        ///
-        /// The system requires a dynamic color that adapts to appearance changes. Static colors without
-        /// light and dark variants fall back to the system default label color. Alpha components are
-        /// ignored and all colors render at full opacity.
-        ///
-        ///
-        /// See also: Use
-        /// `+[UIColor`colorWithDynamicProvider:] or asset catalog colors to create
-        /// dynamic colors that adapt to light and dark appearances.
-        #[unsafe(method(labelTintColor))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn labelTintColor(&self) -> Option<Retained<UIColor>>;
-
-        #[cfg(feature = "objc2-ui-kit")]
-        /// Setter for [`labelTintColor`][Self::labelTintColor].
-        #[unsafe(method(setLabelTintColor:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setLabelTintColor(&self, label_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "objc2-ui-kit")]
         /// The symbolTintColor to apply to the label.

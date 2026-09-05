@@ -237,14 +237,14 @@ impl WKWebpagePreferences {
         ///
         /// The default value is NO. When enabled, both navigator.globalPrivacyControl and the
         /// Sec-GPC: 1 request header are active for the main frame, its subframes, and their subresources.
-        #[unsafe(method(globalPrivacyControlEnabled))]
+        #[unsafe(method(globalPrivacyControlStatus))]
         #[unsafe(method_family = none)]
-        pub unsafe fn globalPrivacyControlEnabled(&self) -> bool;
+        pub unsafe fn globalPrivacyControlStatus(&self) -> bool;
 
-        /// Setter for [`globalPrivacyControlEnabled`][Self::globalPrivacyControlEnabled].
-        #[unsafe(method(setGlobalPrivacyControlEnabled:))]
+        /// Setter for [`globalPrivacyControlStatus`][Self::globalPrivacyControlStatus].
+        #[unsafe(method(setGlobalPrivacyControlStatus:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setGlobalPrivacyControlEnabled(&self, global_privacy_control_enabled: bool);
+        pub unsafe fn setGlobalPrivacyControlStatus(&self, global_privacy_control_status: bool);
     );
 }
 

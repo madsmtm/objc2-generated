@@ -307,6 +307,7 @@ extern_class!(
     ///
     /// - ``allowsAccessibilityAlternativeInputMethods``
     /// - ``allowsAccessibilityBackgroundSounds``
+    /// - ``allowsAccessibilityFullKeyboardAccess``
     /// - ``allowsAccessibilityHoverText``
     /// - ``allowsAccessibilityKeyboard``
     /// - ``allowsAccessibilityLiveCaptions``
@@ -468,6 +469,21 @@ impl AEAssessmentConfiguration {
         pub unsafe fn setAllowsAccessibilityBackgroundSounds(
             &self,
             allows_accessibility_background_sounds: bool,
+        );
+
+        /// A Boolean value that indicates whether to allow Full Keyboard Access during an assessment.
+        ///
+        /// Users can enable Full Keyboard Access in the Settings app (Accessibility > Keyboard > Full Keyboard Access) to navigate and operate the system using only the keyboard. An assessment session **does not** disable Full Keyboard Access by default, but you can disable it by setting ``AEAssessmentConfiguration/allowsAccessibilityFullKeyboardAccess`` to `NO` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityFullKeyboardAccess))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityFullKeyboardAccess(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityFullKeyboardAccess`][Self::allowsAccessibilityFullKeyboardAccess].
+        #[unsafe(method(setAllowsAccessibilityFullKeyboardAccess:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityFullKeyboardAccess(
+            &self,
+            allows_accessibility_full_keyboard_access: bool,
         );
 
         /// A Boolean value that indicates whether to allow Hover Text during an assessment.
@@ -694,7 +710,9 @@ impl AEAssessmentConfiguration {
         #[unsafe(method(setAllowsEmojiKeyboard:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsEmojiKeyboard(&self, allows_emoji_keyboard: bool);
+    );
 
+    extern_methods!(
         /// A Boolean value that indicates whether to allow user script execution during an assessment.
         ///
         /// User scripts, such as AppleScripts or Automator workflows, can automate tasks on the system. An assessment session disables user script execution by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsUserScriptExecution`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
@@ -706,9 +724,7 @@ impl AEAssessmentConfiguration {
         #[unsafe(method(setAllowsUserScriptExecution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsUserScriptExecution(&self, allows_user_script_execution: bool);
-    );
 
-    extern_methods!(
         /// A Boolean value that indicates whether to allow autofill during an assessment.
         ///
         /// Users can enable autofill in System Settings (Passwords > Password Options > AutoFill Passwords and Passkeys). An assessment session disables autofill by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsAutoFill`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
@@ -865,7 +881,16 @@ impl AEAssessmentConfiguration {
 
         /// A Boolean value that indicates whether System Integrity Protection (SIP) must be enabled to start an assessment.
         ///
-        /// When set to `true`, the assessment session will only start if System Integrity Protection is enabled on the device. This requirement is disabled by default.
+        /// When set to `true`, the assessment session will only start if System Integrity Protection is enabled on the device.
+        /// This requirement is disabled by default.
+        ///
+        /// > Important: This check is advisory, not a security guarantee. The framework can't reliably detect whether SIP is
+        /// enabled on systems where the user has administrator privileges, so setting `requiresSIP` to `true` may not block an
+        /// assessment session when SIP is in fact disabled. Use this property to prompt users to re-enable SIP if they turned
+        /// it off for unrelated reasons; it doesn't indicate whether the system was modified while SIP was previously disabled.
+        ///
+        /// For stronger assurances that SIP is enabled, pair this property with
+        /// [App Attest](https://developer.apple.com/documentation/DeviceCheck) on macOS.
         #[unsafe(method(requiresSIP))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSIP(&self) -> bool;
@@ -877,7 +902,8 @@ impl AEAssessmentConfiguration {
 
         /// A Boolean value that indicates whether only a single user account must be logged in to start an assessment.
         ///
-        /// When set to `true`, the assessment session will only start if there is exactly one user account logged in on the device. This requirement is disabled by default.
+        /// When set to `true`, the assessment session will only start if there is exactly one user account logged in on the
+        /// device. This requirement is disabled by default.
         #[unsafe(method(requiresSingleUser))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSingleUser(&self) -> bool;

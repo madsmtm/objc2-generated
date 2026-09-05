@@ -438,6 +438,39 @@ impl UITraitCollection {
         #[unsafe(method(resolvesNaturalAlignmentWithBaseWritingDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvesNaturalAlignmentWithBaseWritingDirection(&self) -> bool;
+
+        #[unsafe(method(traitCollectionWithSystemPrefersReducedResourceUsage:))]
+        #[unsafe(method_family = none)]
+        pub fn traitCollectionWithSystemPrefersReducedResourceUsage(
+            system_prefers_reduced_resource_usage: bool,
+        ) -> Retained<UITraitCollection>;
+
+        /// A Boolean value that indicates whether the system prefers that the app reduce its resource usage.
+        ///
+        /// When this value is `YES`, the system has entered a state where it would prefer apps to scale back resource-intensive work.
+        /// The default value is `NO`.
+        ///
+        /// Use this to avoid or reduce expensive work. For example:
+        ///
+        /// - Gate or simplify resource-intensive UI, such as 3D or AR viewers, advanced camera modes, or live effects.
+        /// - Choose lighter-weight paths, such as lower-resolution assets or fewer simultaneous operations.
+        /// - Defer or shrink non-essential background work, such as prefetching or precomputation.
+        ///
+        /// Avoid performing or scheduling expensive work in response to changes in this property, as this could worsen resource usage.
+        ///
+        /// - Tip: For in-memory caching, consider using ``NSCache`` with ``NSPurgeableData``, which automatically evicts entries under system memory pressure.
+        /// Use `systemPrefersReducedResourceUsage` for higher-level decisions that ``NSCache`` cannot make on its own.
+        ///
+        /// For point-in-time reads from contexts without a trait environment, use ``UIApplication/systemPrefersReducedResourceUsage``.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(systemPrefersReducedResourceUsage))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn systemPrefersReducedResourceUsage(&self) -> bool;
     );
 }
 
@@ -758,6 +791,15 @@ extern_protocol!(
             &self,
             resolves_natural_alignment_with_base_writing_direction: bool,
         );
+
+        #[unsafe(method(systemPrefersReducedResourceUsage))]
+        #[unsafe(method_family = none)]
+        fn systemPrefersReducedResourceUsage(&self) -> bool;
+
+        /// Setter for [`systemPrefersReducedResourceUsage`][Self::systemPrefersReducedResourceUsage].
+        #[unsafe(method(setSystemPrefersReducedResourceUsage:))]
+        #[unsafe(method_family = none)]
+        fn setSystemPrefersReducedResourceUsage(&self, system_prefers_reduced_resource_usage: bool);
     }
 );
 

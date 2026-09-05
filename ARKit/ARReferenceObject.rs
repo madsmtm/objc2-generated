@@ -19,7 +19,29 @@ extern "C" {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A reference object to track in the scene.
+    /// A 3D object that ARKit can detect or track in the scene.
+    ///
+    /// Train a reference object in the Create ML app to produce a `.referenceobject`
+    /// file. Load the file from a local file URL with
+    /// ``ARReferenceObject/init(archiveURL:)``, then assign the resulting reference
+    /// object to either ``ARWorldTrackingConfiguration/detectionObjects`` or
+    /// ``ARWorldTrackingConfiguration/trackingObjects`` on your
+    /// ``ARWorldTrackingConfiguration``, depending on whether the object moves in the
+    /// scene:
+    ///
+    /// - Use ``ARWorldTrackingConfiguration/detectionObjects`` for objects that are
+    /// mostly stationary. The system holds the pose stable in world space, consuming less power.
+    /// - Use ``ARWorldTrackingConfiguration/trackingObjects`` for moving or handheld
+    /// objects when you need precise pose updates. The system tracks the object at the full
+    /// frame rate of the selected ``ARConfiguration/videoFormat``.
+    ///
+    /// ARKit on iOS supports the `.referenceobject` format starting in iOS 27. If you
+    /// already have `.referenceobject` files from a visionOS app, you can use them in
+    /// your iOS app without retraining.
+    ///
+    /// - Note: ARKit also continues to load the older `.arobject` format (introduced in iOS 12).
+    /// Those files work only with ``ARWorldTrackingConfiguration/detectionObjects``. A single
+    /// session can't mix the two formats.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arreferenceobject?language=objc)
     #[unsafe(super(NSObject))]
@@ -95,6 +117,8 @@ impl ARReferenceObject {
         #[cfg(feature = "ARPointCloud")]
         /// The feature points of the object.
         ///
+        /// For reference objects loaded from a `.referenceobject` file, this property returns an empty point cloud.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -137,7 +161,7 @@ impl ARReferenceObject {
         /// Initializes a new reference object with the contents of an archive at the specified URL.
         ///
         /// - Parameters:
-        /// - url: The `URL` from which to read data (.arobject archive).
+        /// - url: The local file `URL` from which to read data (`.arobject` or `.referenceobject` archive).
         /// - error: The error to populate if the object could not be initialized.
         ///
         /// - Returns: An initialized reference object.
@@ -153,6 +177,8 @@ impl ARReferenceObject {
         ///
         /// The `URL` path should use `ARReferenceObjectArchiveExtension` (.arobject) for the file extension.
         /// If serialization across devices is desired, NSKeyedArchiver should be used instead.
+        ///
+        /// You can't export reference objects loaded from a `.referenceobject` file.
         ///
         /// - Parameters:
         /// - url: The `URL` at which to write the exported object.
@@ -174,6 +200,8 @@ impl ARReferenceObject {
         ///
         /// This can be used to combine multiple scans of the same object for detection in different conditions. The object being merged
         /// must share similar feature points for the merge to succeed.
+        ///
+        /// You can't merge reference objects loaded from a `.referenceobject` file.
         ///
         /// - Parameters:
         /// - object: The reference object to align and merge.

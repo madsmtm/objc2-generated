@@ -17,34 +17,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNSpatialAudioRenderingStyle(pub NSInteger);
 impl CNSpatialAudioRenderingStyle {
-    /// Isolates the ambience and place it in a spatial stem. Isolates all voices and place them in a mono stem.
+    /// Isolates background and foreground sounds and places them in separate stems.
     #[doc(alias = "CNSpatialAudioRenderingStyleCinematic")]
     pub const Cinematic: Self = Self(0);
-    /// Isolates the ambience and place it in a spatial stem. Isolates all voices, add a studio/proximity effect in the voice track and place them in a mono stem.
+    /// Isolates background and foreground in separate stems. Adds a proximity effect to foreground sounds.
     #[doc(alias = "CNSpatialAudioRenderingStyleStudio")]
     pub const Studio: Self = Self(1);
-    /// Isolates the ambience and place it in a spatial stem. Isolates only voices from the camera field of view and place them in a mono stem.
+    /// Isolates background from foreground sounds in the camera field of view and places them in separate stems.
     #[doc(alias = "CNSpatialAudioRenderingStyleInFrame")]
     pub const InFrame: Self = Self(2);
-    /// Isolates the ambience when foreground is cinematic Audio Mix and place it in a spatial stem. There is no voice stem.
+    /// Isolates background sounds in a stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleCinematicBackgroundStem")]
     pub const CinematicBackgroundStem: Self = Self(3);
-    /// Isolates all voices and places them in a mono stem. There is no ambience stem.
+    /// Isolates foreground sounds in a stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleCinematicForegroundStem")]
     pub const CinematicForegroundStem: Self = Self(4);
-    /// Isolates all voices, add a studio/proximity effect in the voice track and place them in a mono stem. There is no ambience stem.
+    /// Isolates foreground sounds in a stem, and adds a proximity effect.
     #[doc(alias = "CNSpatialAudioRenderingStyleStudioForegroundStem")]
     pub const StudioForegroundStem: Self = Self(5);
-    /// Isolates only voices from the camera field of view and place them in a mono stem. There is no ambience stem.
+    /// Isolates foreground sounds within the camera field of view in a stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleInFrameForegroundStem")]
     pub const InFrameForegroundStem: Self = Self(6);
-    /// This produces a spatial stem of the original recording that is unprocessed. This is the default rendering style.
+    /// Produces an unprocessed spatial stem of the original recording. This is the default rendering style.
     #[doc(alias = "CNSpatialAudioRenderingStyleStandard")]
     pub const Standard: Self = Self(7);
-    /// Isolates the ambience when foreground is studio Audio Mix and place it in a spatial stem. There is no voice stem.
+    /// Isolates background sounds in a stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleStudioBackgroundStem")]
     pub const StudioBackgroundStem: Self = Self(8);
-    /// Isolates the ambience and foreground that is out of frame and place it in a spatial stem. There is no voice stem.
+    /// Isolates background plus foreground sounds outside the camera field of view in a stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleInFrameBackgroundStem")]
     pub const InFrameBackgroundStem: Self = Self(9);
 }

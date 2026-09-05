@@ -58,7 +58,10 @@ impl ARErrorCode {
     /// Invalid reference image
     #[doc(alias = "ARErrorCodeInvalidReferenceImage")]
     pub const InvalidReferenceImage: Self = Self(300);
-    /// Invalid reference object.
+    /// Invalid reference object. Occurs when the framework can't load a reference object,
+    /// when the reference object's format doesn't support a requested operation, or when a
+    /// configuration mixes legacy `.arobject` and `.referenceobject` reference objects in
+    /// the same session. Inspect `userInfo` for the specific reason.
     #[doc(alias = "ARErrorCodeInvalidReferenceObject")]
     pub const InvalidReferenceObject: Self = Self(301);
     /// Invalid world map.

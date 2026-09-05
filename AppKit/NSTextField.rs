@@ -284,6 +284,18 @@ impl NSTextField {
         #[unsafe(method_family = none)]
         pub fn setBezelStyle(&self, bezel_style: NSTextFieldBezelStyle);
 
+        /// Set border shape
+        /// `NSControlBorderShapeAutomatic` sets text field or subclass to default system shape.
+        /// `NSControlBorderShapeCircle` sets text field or subclass to `NSControlBorderShapeAutomatic`.
+        #[unsafe(method(borderShape))]
+        #[unsafe(method_family = none)]
+        pub fn borderShape(&self) -> NSControlBorderShape;
+
+        /// Setter for [`borderShape`][Self::borderShape].
+        #[unsafe(method(setBorderShape:))]
+        #[unsafe(method_family = none)]
+        pub fn setBorderShape(&self, border_shape: NSControlBorderShape);
+
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(preferredMaxLayoutWidth))]
         #[unsafe(method_family = none)]

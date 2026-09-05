@@ -156,6 +156,20 @@ impl PKDisbursementRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setIsDelegatedRequest(&self, is_delegated_request: bool);
 
+        #[unsafe(method(unsupportedPrimaryAccountIdentifiers))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn unsupportedPrimaryAccountIdentifiers(&self) -> Retained<NSArray<NSString>>;
+
+        /// Setter for [`unsupportedPrimaryAccountIdentifiers`][Self::unsupportedPrimaryAccountIdentifiers].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setUnsupportedPrimaryAccountIdentifiers:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUnsupportedPrimaryAccountIdentifiers(
+            &self,
+            unsupported_primary_account_identifiers: &NSArray<NSString>,
+        );
+
         #[cfg(all(
             feature = "PKConstants",
             feature = "PKPaymentRequest",

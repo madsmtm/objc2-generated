@@ -159,6 +159,32 @@ impl NSWritingToolsCoordinatorTextReplacementReason {
     /// method, update your view’s text storage without animating the change.
     #[doc(alias = "NSWritingToolsCoordinatorTextReplacementReasonNoninteractive")]
     pub const Noninteractive: Self = Self(1);
+    /// An option to replace the text in your view when a grammar suggestion
+    /// is accepted.
+    ///
+    /// When the user interacts with a grammar issue and the UI is shown,
+    /// and the option to accept a suggestion is chosen, this reason will be
+    /// used. Update your view's text storage without animating the change.
+    #[doc(alias = "NSWritingToolsCoordinatorTextReplacementReasonAccepted")]
+    pub const Accepted: Self = Self(2);
+    /// An option to replace the text in your view when a grammar suggestion
+    /// is rejected.
+    ///
+    /// When the user interacts with a grammar issue and the UI is shown,
+    /// and the option to ignore a suggestion is chosen, this reason will be
+    /// used. Update your view's text storage without animating the change.
+    /// In addition, use ``ignoreGrammarRange`` on ``NSSpellChecker``
+    /// to make sure that the suggestion will continue to be ignored.
+    #[doc(alias = "NSWritingToolsCoordinatorTextReplacementReasonRejected")]
+    pub const Rejected: Self = Self(3);
+    /// An option to replace the text in your view when a grammar suggestion
+    /// is temporarily shown to preview the proposed change in the text.
+    ///
+    /// When the user interacts with a grammar issue and the UI is shown,
+    /// in some cases the suggestion needs to be shown temporarily.
+    /// Update your view's text storage without animating the change.
+    #[doc(alias = "NSWritingToolsCoordinatorTextReplacementReasonTemporary")]
+    pub const Temporary: Self = Self(4);
 }
 
 unsafe impl Encode for NSWritingToolsCoordinatorTextReplacementReason {
@@ -273,6 +299,14 @@ impl NSWritingToolsCoordinatorTextAnimation {
     /// finishing the animation, show the text again.
     #[doc(alias = "NSWritingToolsCoordinatorTextAnimationTranslate")]
     pub const Translate: Self = Self(9);
+    /// The animation effect that Writing Tools performs on grammar issues
+    /// when they are first indicated.
+    ///
+    /// When preparing for this animation, hide the portion of the text for
+    /// which the grammar issue is going to be indicated. When finishing
+    /// the animation, show the text again.
+    #[doc(alias = "NSWritingToolsCoordinatorTextAnimationIndicateGrammar")]
+    pub const IndicateGrammar: Self = Self(10);
 }
 
 unsafe impl Encode for NSWritingToolsCoordinatorTextAnimation {
@@ -280,6 +314,36 @@ unsafe impl Encode for NSWritingToolsCoordinatorTextAnimation {
 }
 
 unsafe impl RefEncode for NSWritingToolsCoordinatorTextAnimation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Use the `NSWritingToolsCoordinator.TextDecoration` constants to determine
+/// the type of decoration to be applied to a preview for grammar animation.
+/// The grammar animation needs previews of the text of the issue in two forms,
+/// without and with the grammar indication underline applied. If you use
+/// grammar animation, you must implement the delegate method
+/// ``NSWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:requestsPreviewFor:of:in:textDecoration:completion:)``
+/// to provide both forms of previews, based on the specified decoration.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinatortextdecoration?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct NSWritingToolsCoordinatorTextDecoration(pub NSInteger);
+impl NSWritingToolsCoordinatorTextDecoration {
+    /// Requests a preview of the text without any additional decoration.
+    #[doc(alias = "NSWritingToolsCoordinatorTextDecorationNone")]
+    pub const None: Self = Self(0);
+    /// Requests a preview of the text with the grammar indication underline.
+    #[doc(alias = "NSWritingToolsCoordinatorTextDecorationGrammarUnderline")]
+    pub const GrammarUnderline: Self = Self(1);
+}
+
+unsafe impl Encode for NSWritingToolsCoordinatorTextDecoration {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSWritingToolsCoordinatorTextDecoration {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -603,6 +667,41 @@ impl NSWritingToolsCoordinator {
         #[unsafe(method(updateForReflowedTextInContextWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub fn updateForReflowedTextInContextWithIdentifier(&self, context_id: &NSUUID);
+
+        #[cfg(all(feature = "NSText", feature = "NSWritingToolsCoordinatorContext"))]
+        #[unsafe(method(startTextAnimation:forRange:inContext:writingDirection:))]
+        #[unsafe(method_family = none)]
+        pub fn startTextAnimation_forRange_inContext_writingDirection(
+            &self,
+            text_animation: NSWritingToolsCoordinatorTextAnimation,
+            range: NSRange,
+            context: &NSWritingToolsCoordinatorContext,
+            writing_direction: NSWritingDirection,
+        ) -> Option<Retained<NSUUID>>;
+
+        /// Used to support the presentation of grammar issues in text. If it is
+        /// necessary to cancel the animation of one or more issues, call this
+        /// to cancel theanimations.
+        ///
+        /// The UUIDs passed in should be those returned when starting the
+        /// animations. To cancel all ahimations, use ``stopWritingTools`` instead.
+        #[unsafe(method(cancelTextAnimationsWithIdentifiers:))]
+        #[unsafe(method_family = none)]
+        pub fn cancelTextAnimationsWithIdentifiers(&self, identifiers: &NSArray<NSUUID>);
+
+        #[cfg(feature = "NSWritingToolsCoordinatorContext")]
+        /// Used to support the presentation of grammar issues in text. When
+        /// the user interacts with an issue, call this to bring up the relevant UI.
+        ///
+        /// Pass in context and range to identify the issue the user selected.
+        /// Returns NO if the UI cannot be brought up.
+        #[unsafe(method(showGrammarPresentationForRange:inContext:))]
+        #[unsafe(method_family = none)]
+        pub fn showGrammarPresentationForRange_inContext(
+            &self,
+            range: NSRange,
+            context: &NSWritingToolsCoordinatorContext,
+        ) -> bool;
     );
 }
 
@@ -1253,6 +1352,63 @@ extern_protocol!(
             writing_tools_coordinator: &NSWritingToolsCoordinator,
             new_state: NSWritingToolsCoordinatorState,
             completion: &block2::Block<'static, fn()>,
+        );
+
+        #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
+        /// Asks the delegate for preview images for the specified text.
+        ///
+        /// To support grammar animation, the delegate should provide previews for the
+        /// relevant text, as with the required ``requestsPreviewFor`` method, but
+        /// in this case showing the text with the specified decoration applied. The
+        /// grammar animation needs previews of the text of the issue in two forms,
+        /// without and with the grammar indication underline applied. If you use
+        /// grammar animation, you must implement this delegate method to provide
+        /// them, based on the specified decoration.
+        #[optional]
+        #[unsafe(method(writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:textDecoration:completion:))]
+        #[unsafe(method_family = none)]
+        fn writingToolsCoordinator_requestsPreviewForTextAnimation_ofRange_inContext_textDecoration_completion(
+            &self,
+            writing_tools_coordinator: &NSWritingToolsCoordinator,
+            text_animation: NSWritingToolsCoordinatorTextAnimation,
+            range: NSRange,
+            context: &NSWritingToolsCoordinatorContext,
+            text_decoration: NSWritingToolsCoordinatorTextDecoration,
+            completion: &block2::Block<'static, fn(*mut NSArray<NSTextPreview>)>,
+        );
+
+        #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
+        /// Asks the delegate for information about grammar issues in the specified context.
+        ///
+        /// To support the grammar presentation UI, the delegate should provide information
+        /// about the identified and currently indicated grammar issues in the specified context.
+        /// The elements of the results array should be ``NSTextCheckingResult``
+        /// objects of grammar type, of the sort that are returned from grammar checking,
+        /// with ranges relative to the context. If you use grammar presentation, you must
+        /// implement this delegate method to provide them.
+        #[optional]
+        #[unsafe(method(writingToolsCoordinator:requestsGrammarResultsForContext:completion:))]
+        #[unsafe(method_family = none)]
+        fn writingToolsCoordinator_requestsGrammarResultsForContext_completion(
+            &self,
+            writing_tools_coordinator: &NSWritingToolsCoordinator,
+            context: &NSWritingToolsCoordinatorContext,
+            completion: &block2::Block<'static, fn(NonNull<NSArray<NSTextCheckingResult>>)>,
+        );
+
+        /// Notifies the delegate when the user chooses to disable grammar checking.
+        ///
+        /// To support the grammar presentation UI, the delegate is notified if the user
+        /// chooses the option provided in the grammar presentation UI to disable grammar
+        /// checking for the view. If you use grammar presentation, you should implement
+        /// this method to respond to that action.
+        #[optional]
+        #[unsafe(method(writingToolsCoordinator:setGrammarCheckingEnabled:))]
+        #[unsafe(method_family = none)]
+        fn writingToolsCoordinator_setGrammarCheckingEnabled(
+            &self,
+            writing_tools_coordinator: &NSWritingToolsCoordinator,
+            enabled: bool,
         );
 
         #[cfg(feature = "block2")]

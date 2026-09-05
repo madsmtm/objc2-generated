@@ -102,6 +102,8 @@ impl CLActivityType {
     pub const OtherNavigation: Self = Self(4);
     #[doc(alias = "CLActivityTypeAirborne")]
     pub const Airborne: Self = Self(5);
+    #[doc(alias = "CLActivityTypeMaritime")]
+    pub const Maritime: Self = Self(6);
 }
 
 unsafe impl Encode for CLActivityType {

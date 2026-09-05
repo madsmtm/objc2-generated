@@ -200,7 +200,7 @@ impl AVPlayerItemSampleBufferOutput {
         /// Clients may use the delegate method ``outputMediaDataAvailable:`` to be informed when the
         /// next ``CMSampleBuffer`` becomes available.
         #[unsafe(method(copyNextSampleBuffer))]
-        #[unsafe(method_family = none)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copyNextSampleBuffer(&self) -> Option<Retained<CMSampleBuffer>>;
 
         #[cfg(feature = "dispatch2")]

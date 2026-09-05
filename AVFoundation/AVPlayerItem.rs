@@ -134,7 +134,7 @@ impl AVPlayerItem {
         ///
         /// Equivalent to +playerItemWithAsset:, passing [AVAsset assetWithURL:URL] as the value of asset.
         ///
-        /// - Parameter URL:
+        /// - Parameter URL: A URL identifying the media resource to be played.
         ///
         /// - Returns: An instance of AVPlayerItem.
         #[unsafe(method(playerItemWithURL:))]
@@ -148,7 +148,7 @@ impl AVPlayerItem {
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable. If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
         ///
-        /// - Parameter asset:
+        /// - Parameter asset: The AVAsset to be played.
         ///
         /// - Returns: An instance of AVPlayerItem.
         #[unsafe(method(playerItemWithAsset:))]
@@ -179,7 +179,7 @@ impl AVPlayerItem {
         ///
         /// Equivalent to -initWithAsset:, passing [AVAsset assetWithURL:URL] as the value of asset.
         ///
-        /// - Parameter URL:
+        /// - Parameter URL: A URL identifying the media resource to be played.
         ///
         /// - Returns: An instance of AVPlayerItem
         #[unsafe(method(initWithURL:))]
@@ -193,7 +193,7 @@ impl AVPlayerItem {
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable. If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
         ///
-        /// - Parameter asset:
+        /// - Parameter asset: The AVAsset to be played.
         ///
         /// - Returns: An instance of AVPlayerItem
         #[unsafe(method(initWithAsset:))]

@@ -707,8 +707,6 @@ pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyUSB3Mode;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyUsb3ComplianceMode;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
-pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPortPropertyUsbCPortNumber;
-#[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyAllowSoftRetry;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub use self::__IOUSBHostFamilyDefinitions::kUSBHostPropertyBusCurrentPoolID;

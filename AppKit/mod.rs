@@ -7629,6 +7629,8 @@ pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorState;
 #[cfg(feature = "NSWritingToolsCoordinator")]
 pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorTextAnimation;
 #[cfg(feature = "NSWritingToolsCoordinator")]
+pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorTextDecoration;
+#[cfg(feature = "NSWritingToolsCoordinator")]
 pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorTextReplacementReason;
 #[cfg(feature = "NSWritingToolsCoordinator")]
 pub use self::__NSWritingToolsCoordinator::NSWritingToolsCoordinatorTextUpdateReason;

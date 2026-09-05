@@ -205,7 +205,7 @@ impl WKUserContentController {
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllContentRuleLists(&self);
 
-        #[cfg(all(feature = "WKContentWorld", feature = "WKJSScriptingBuffer"))]
+        #[cfg(feature = "WKContentWorld")]
         /// Adds a data buffer that will be available to JavaScript through the `window.webkit.buffers` object
         ///
         /// Parameter `buffer`: The buffer to add.
@@ -221,7 +221,7 @@ impl WKUserContentController {
         #[unsafe(method_family = none)]
         pub unsafe fn addBuffer_name_contentWorld(
             &self,
-            buffer: &WKJSScriptingBuffer,
+            buffer: &NSData,
             name: &NSString,
             world: &WKContentWorld,
         );

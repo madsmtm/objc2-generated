@@ -305,9 +305,6 @@ pub const kUSBHostPortPropertyCompanionIndex: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertydisconnectinterval?language=objc)
 pub const kUSBHostPortPropertyDisconnectInterval: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"kUSBDisconnectInterval\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertyusbcportnumber?language=objc)
-pub const kUSBHostPortPropertyUsbCPortNumber: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbCPortNumber\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertycompanionportnumber?language=objc)
 pub const kUSBHostPortPropertyCompanionPortNumber: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbCompanionPortNumber\0") };

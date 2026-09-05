@@ -221,6 +221,26 @@ extern "C" {
     pub static PKPaymentNetworkElCorteIngles: &'static PKPaymentNetwork;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkrupay?language=objc)
+    pub static PKPaymentNetworkRuPay: &'static PKPaymentNetwork;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkverve?language=objc)
+    pub static PKPaymentNetworkVerve: &'static PKPaymentNetwork;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkhumo?language=objc)
+    pub static PKPaymentNetworkHumo: &'static PKPaymentNetwork;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetworkuzcard?language=objc)
+    pub static PKPaymentNetworkUzCard: &'static PKPaymentNetwork;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield?language=objc)
 // NS_TYPED_ENUM
 pub type PKContactField = NSString;

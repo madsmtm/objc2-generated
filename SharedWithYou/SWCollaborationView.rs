@@ -142,14 +142,17 @@ impl SWCollaborationView {
         #[unsafe(method_family = none)]
         pub unsafe fn setActiveParticipantCount(&self, active_participant_count: NSUInteger);
 
-        #[unsafe(method(hasPendingAccessRequests))]
+        #[unsafe(method(pendingAccessRequestsCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasPendingAccessRequests(&self) -> bool;
+        pub unsafe fn pendingAccessRequestsCount(&self) -> NSUInteger;
 
-        /// Setter for [`hasPendingAccessRequests`][Self::hasPendingAccessRequests].
-        #[unsafe(method(setHasPendingAccessRequests:))]
+        /// Setter for [`pendingAccessRequestsCount`][Self::pendingAccessRequestsCount].
+        #[unsafe(method(setPendingAccessRequestsCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHasPendingAccessRequests(&self, has_pending_access_requests: bool);
+        pub unsafe fn setPendingAccessRequestsCount(
+            &self,
+            pending_access_requests_count: NSUInteger,
+        );
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]

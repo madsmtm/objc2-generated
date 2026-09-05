@@ -2906,6 +2906,8 @@ pub use self::__AudioUnitParameters::kReverb2Param_DryWetMix;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
 pub use self::__AudioUnitParameters::kReverb2Param_Gain;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
+pub use self::__AudioUnitParameters::kReverb2Param_LegacyMode;
+#[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
 pub use self::__AudioUnitParameters::kReverb2Param_MaxDelayTime;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitParameters"))]
 pub use self::__AudioUnitParameters::kReverb2Param_MinDelayTime;

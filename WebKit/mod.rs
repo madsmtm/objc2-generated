@@ -474,9 +474,6 @@ mod __WKImmersiveEnvironmentDelegate;
 #[cfg(feature = "WKJSHandle")]
 #[path = "WKJSHandle.rs"]
 mod __WKJSHandle;
-#[cfg(feature = "WKJSScriptingBuffer")]
-#[path = "WKJSScriptingBuffer.rs"]
-mod __WKJSScriptingBuffer;
 #[cfg(feature = "WKJSSerializedNode")]
 #[path = "WKJSSerializedNode.rs"]
 mod __WKJSSerializedNode;
@@ -1867,8 +1864,6 @@ pub use self::__WKImmersiveEnvironment::WKImmersiveEnvironment;
 pub use self::__WKImmersiveEnvironmentDelegate::WKImmersiveEnvironmentDelegate;
 #[cfg(feature = "WKJSHandle")]
 pub use self::__WKJSHandle::WKJSHandle;
-#[cfg(feature = "WKJSScriptingBuffer")]
-pub use self::__WKJSScriptingBuffer::WKJSScriptingBuffer;
 #[cfg(feature = "WKJSSerializedNode")]
 pub use self::__WKJSSerializedNode::WKJSSerializedNode;
 #[cfg(feature = "WKNavigation")]

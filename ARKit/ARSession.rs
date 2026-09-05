@@ -8,10 +8,14 @@ use dispatch2::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-av-foundation")]
 use objc2_av_foundation::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
+#[cfg(feature = "objc2-quartz-core")]
+use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -291,6 +295,34 @@ impl ARSession {
             photo_settings: Option<&AVCapturePhotoSettings>,
             completion: &block2::SendableBlock<'static, fn(*mut ARFrame, *mut NSError)>,
         );
+
+        #[cfg(feature = "objc2-quartz-core")]
+        /// The layer that displays the `ARFrame`, required before `viewRotationAngle` becomes available.
+        ///
+        /// Assign the layer that presents the camera image. Renderers such as `ARSCNView`, `ARSKView`, `ARView`, and
+        /// `RealityView` set this for you.
+        #[unsafe(method(viewLayer))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn viewLayer(&self) -> Option<Retained<CALayer>>;
+
+        #[cfg(feature = "objc2-quartz-core")]
+        /// Setter for [`viewLayer`][Self::viewLayer].
+        ///
+        /// This is a [weak property][objc2::topics::weak_property].
+        #[unsafe(method(setViewLayer:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setViewLayer(&self, view_layer: Option<&CALayer>);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The angle, in degrees, to rotate a view by so the `ARFrame` it displays stays level with the horizon as the device
+        /// rotates.
+        ///
+        /// Updates in step with the system UI rotation. The value is normalized to `[0, 360)` (`0` at LandscapeRight, `90` at
+        /// Portrait, `180` at LandscapeLeft, `270` at PortraitUpsideDown), or `NaN` until the angle is available (`viewLayer` is
+        /// set and on screen).
+        #[unsafe(method(viewRotationAngle))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn viewRotationAngle(&self) -> CGFloat;
     );
 }
 
@@ -433,6 +465,25 @@ extern_protocol!(
             &self,
             session: &ARSession,
             geo_tracking_status: &ARGeoTrackingStatus,
+        );
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// This is called when the view rotation angle changes.
+        ///
+        /// ARKit calls this method when a new angle becomes available, in step with the system UI rotation. Implement it to
+        /// rotate a view by the given angle so the `ARFrame` it displays stays level with the horizon as the device rotates.
+        ///
+        /// - Parameters:
+        /// - session: The session that provides the angle.
+        /// - viewRotationAngle: The angle, in degrees, normalized to `[0, 360)` (`0` at LandscapeRight, `90` at Portrait,
+        /// `180` at LandscapeLeft, and `270` at PortraitUpsideDown).
+        #[optional]
+        #[unsafe(method(session:didChangeViewRotationAngle:))]
+        #[unsafe(method_family = none)]
+        unsafe fn session_didChangeViewRotationAngle(
+            &self,
+            session: &ARSession,
+            view_rotation_angle: CGFloat,
         );
     }
 );

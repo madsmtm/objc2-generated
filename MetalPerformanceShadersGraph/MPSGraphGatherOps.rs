@@ -68,7 +68,7 @@ impl MPSGraph {
         /// P = res.rank
         /// Q = inds.rank
         /// res[p_{0},...p_{axis-1}, i_{B},...,i_{Q}, ...,p_{axis+1},...,p{U-1}] =
-        /// updates[p_{0},...p_{axis-1}, indices[p_{0},...,p_{B-1},i_{B},...,i_{Q}, ...,p_{axis+1},...,p{U-1}]
+        /// updates[p_{0},...p_{axis-1}, indices[p_{0},...,p_{B-1},i_{B},...,i_{Q}], ...,p_{axis+1},...,p{U-1}]
         /// ```
         /// The tensors have the following shape requirements
         /// ```md

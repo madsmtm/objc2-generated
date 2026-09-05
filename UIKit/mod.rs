@@ -2449,6 +2449,8 @@ pub use self::__UIApplication::UIApplicationStatusBarFrameUserInfoKey;
 #[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationStatusBarOrientationUserInfoKey;
 #[cfg(feature = "UIApplication")]
+pub use self::__UIApplication::UIApplicationSystemPrefersReducedResourceUsageDidChangeNotification;
+#[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationUserDidTakeScreenshotNotification;
 #[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationWillChangeStatusBarFrameNotification;
@@ -5417,6 +5419,12 @@ pub use self::__UITextInputTraits::UITextContentTypeCellularEID;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextContentTypeCellularIMEI;
 #[cfg(feature = "UITextInputTraits")]
+pub use self::__UITextInputTraits::UITextContentTypeCellularIMEI1;
+#[cfg(feature = "UITextInputTraits")]
+pub use self::__UITextInputTraits::UITextContentTypeCellularIMEI2;
+#[cfg(feature = "UITextInputTraits")]
+pub use self::__UITextInputTraits::UITextContentTypeCellularNAL;
+#[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextContentTypeCountryName;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextContentTypeCreditCardExpiration;
@@ -5488,6 +5496,8 @@ pub use self::__UITextInputTraits::UITextContentTypeTelephoneNumber;
 pub use self::__UITextInputTraits::UITextContentTypeURL;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextContentTypeUsername;
+#[cfg(feature = "UITextInputTraits")]
+pub use self::__UITextInputTraits::UITextGrammarCheckingType;
 #[cfg(feature = "UITextInputTraits")]
 pub use self::__UITextInputTraits::UITextInlinePredictionType;
 #[cfg(feature = "UITextInputTraits")]
@@ -5646,6 +5656,8 @@ pub use self::__UITrait::UITraitPreferredContentSizeCategory;
 pub use self::__UITrait::UITraitResolvesNaturalAlignmentWithBaseWritingDirection;
 #[cfg(feature = "UITrait")]
 pub use self::__UITrait::UITraitSceneCaptureState;
+#[cfg(feature = "UITrait")]
+pub use self::__UITrait::UITraitSystemPrefersReducedResourceUsage;
 #[cfg(feature = "UITrait")]
 pub use self::__UITrait::UITraitToolbarItemPresentationSize;
 #[cfg(feature = "UITrait")]
@@ -6015,6 +6027,8 @@ pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorDelegate;
 pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorState;
 #[cfg(feature = "UIWritingToolsCoordinator")]
 pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextAnimation;
+#[cfg(feature = "UIWritingToolsCoordinator")]
+pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextDecoration;
 #[cfg(feature = "UIWritingToolsCoordinator")]
 pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextReplacementReason;
 #[cfg(feature = "UIWritingToolsCoordinator")]

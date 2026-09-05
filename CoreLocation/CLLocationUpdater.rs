@@ -24,6 +24,8 @@ impl CLLiveUpdateConfiguration {
     pub const Fitness: Self = Self(3);
     #[doc(alias = "CLLiveUpdateConfigurationAirborne")]
     pub const Airborne: Self = Self(4);
+    #[doc(alias = "CLLiveUpdateConfigurationMaritime")]
+    pub const Maritime: Self = Self(5);
 }
 
 unsafe impl Encode for CLLiveUpdateConfiguration {

@@ -49,7 +49,7 @@ impl HMTimerTrigger {
         ///
         ///
         /// Parameter `recurrence`: The recurrence interval to fire the trigger. A value of nil indicates that the
-        /// trigger is non-repeating. The minimum reccurence interval is 5 minutes, maximum
+        /// trigger is non-repeating. The minimum recurrence interval is 5 minutes, maximum
         /// recurrence interval is 5 weeks and the recurrence interval must be specified in
         /// multiples of whole minutes.
         ///

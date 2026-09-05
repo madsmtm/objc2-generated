@@ -272,6 +272,7 @@ impl UIApplication {
         #[unsafe(method_family = none)]
         pub fn openURL(&self, url: &NSURL) -> bool;
 
+        #[deprecated = "Prefer attempting to open URLs and handling any failures"]
         #[unsafe(method(canOpenURL:))]
         #[unsafe(method_family = none)]
         pub fn canOpenURL(&self, url: &NSURL) -> bool;
@@ -438,6 +439,27 @@ impl UIApplication {
         #[unsafe(method(preferredContentSizeCategory))]
         #[unsafe(method_family = none)]
         pub fn preferredContentSizeCategory(&self) -> Retained<UIContentSizeCategory>;
+
+        /// A Boolean value that indicates whether the system prefers that the app reduce its resource usage.
+        ///
+        /// When this value is `YES`, the system has entered a state where it would prefer apps to scale back resource-intensive work.
+        ///
+        /// Use this to avoid or reduce expensive work. For example:
+        ///
+        /// - Gate or simplify resource-intensive UI, such as 3D or AR viewers, advanced camera modes, or live effects.
+        /// - Choose lighter-weight paths, such as lower-resolution assets or fewer simultaneous operations.
+        /// - Defer or shrink non-essential background work, such as prefetching or precomputation.
+        ///
+        /// Avoid performing or scheduling expensive work in response to changes in this property, as this could worsen resource usage.
+        ///
+        /// - Tip: For in-memory caching, consider using ``NSCache`` with ``NSPurgeableData``, which automatically evicts entries under system memory pressure.
+        /// Use `systemPrefersReducedResourceUsage` for higher-level decisions that ``NSCache`` cannot make on its own.
+        ///
+        /// To respond to changes in views, read the ``UITraitCollection/systemPrefersReducedResourceUsage`` trait.
+        /// From other contexts, observe ``UIApplication/systemPrefersReducedResourceUsageDidChangeNotification`` and re-read this property.
+        #[unsafe(method(systemPrefersReducedResourceUsage))]
+        #[unsafe(method_family = none)]
+        pub fn systemPrefersReducedResourceUsage(&self) -> bool;
 
         #[cfg(feature = "UIScene")]
         #[unsafe(method(connectedScenes))]
@@ -1659,6 +1681,20 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationprotecteddatadidbecomeavailable?language=objc)
     pub static UIApplicationProtectedDataDidBecomeAvailable: &'static NSNotificationName;
+}
+
+extern "C" {
+    /// A notification that posts when ``UIApplication/systemPrefersReducedResourceUsage`` changes.
+    ///
+    /// The object of the notification is the `UIApplication` object.
+    /// The `userInfo` dictionary is empty. Re-read `systemPrefersReducedResourceUsage` to get the new value.
+    ///
+    /// Use this notification to re-read the value and adjust the scheduling of future work, the same way the property is read proactively.
+    /// Avoid performing or scheduling expensive work directly in the handler, as this could worsen resource usage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationsystemprefersreducedresourceusagedidchangenotification?language=objc)
+    pub static UIApplicationSystemPrefersReducedResourceUsageDidChangeNotification:
+        &'static NSNotificationName;
 }
 
 extern "C" {

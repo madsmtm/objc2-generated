@@ -743,3 +743,38 @@ impl UITraitResolvesNaturalAlignmentWithBaseWritingDirection {
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
+
+extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitsystemprefersreducedresourceusage?language=objc)
+    #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct UITraitSystemPrefersReducedResourceUsage;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UITraitSystemPrefersReducedResourceUsage {}
+);
+
+extern_conformance!(
+    unsafe impl UINSIntegerTraitDefinition for UITraitSystemPrefersReducedResourceUsage {}
+);
+
+extern_conformance!(
+    unsafe impl UITraitDefinition for UITraitSystemPrefersReducedResourceUsage {}
+);
+
+impl UITraitSystemPrefersReducedResourceUsage {}
+
+/// Methods declared on superclass `NSObject`.
+impl UITraitSystemPrefersReducedResourceUsage {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
+    );
+}

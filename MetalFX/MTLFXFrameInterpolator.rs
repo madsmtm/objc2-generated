@@ -398,7 +398,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setMotionContentOffsetY(&self, motion_content_offset_y: NSUInteger);
 
-        /// The horizontal offset, in pixels, of the region within the output texture to write results.
+        /// The horizontal offset, in pixels, of the region within the output texture to write results. For regions outside the contents of the colorTexture are copied.
         #[unsafe(method(outputOffsetX))]
         #[unsafe(method_family = none)]
         unsafe fn outputOffsetX(&self) -> NSUInteger;
@@ -408,7 +408,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn setOutputOffsetX(&self, output_offset_x: NSUInteger);
 
-        /// The vertical offset, in pixels, of the region within the output texture to write results.
+        /// The vertical offset, in pixels, of the region within the output texture to write results. . For regions outside the contents of the colorTexture are copied.
         #[unsafe(method(outputOffsetY))]
         #[unsafe(method_family = none)]
         unsafe fn outputOffsetY(&self) -> NSUInteger;

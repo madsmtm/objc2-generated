@@ -275,6 +275,8 @@ impl NSMenuItem {
         );
 
         #[cfg(feature = "NSImage")]
+        /// Set an image that is displayed next to the menu item's title.
+        /// Note that in macOS 27 and later, AppKit determines the visibility of menu item images, and will typically hide images. Use the `preferredImageVisibility` property with the `.visible` constant to specify that an image should always be visible.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub fn image(&self) -> Option<Retained<NSImage>>;

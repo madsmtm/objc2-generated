@@ -12,30 +12,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// An enum, describing the different types of legible option menus.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avlegiblemediaoptionsmenutype?language=objc)
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct AVLegibleMediaOptionsMenuType(pub NSInteger);
-impl AVLegibleMediaOptionsMenuType {
-    /// Describes the complete default legible options menu.
-    #[doc(alias = "AVLegibleMediaOptionsMenuTypeDefault")]
-    pub const Default: Self = Self(0);
-    /// Describes a caption appearance menu.
-    #[doc(alias = "AVLegibleMediaOptionsMenuTypeCaptionAppearance")]
-    pub const CaptionAppearance: Self = Self(1);
-}
-
-unsafe impl Encode for AVLegibleMediaOptionsMenuType {
-    const ENCODING: Encoding = NSInteger::ENCODING;
-}
-
-unsafe impl RefEncode for AVLegibleMediaOptionsMenuType {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// An enum set, describing the different reasons for changing the menu state.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avlegiblemediaoptionsmenustatechangereason?language=objc)

@@ -280,7 +280,7 @@ impl HMEventTrigger {
         );
 
         #[cfg(feature = "block2")]
-        /// This method replaces the recurrences which secifies the days of the week when the trigger is to be evaluated.
+        /// This method replaces the recurrences which specifies the days of the week when the trigger is to be evaluated.
         ///
         ///
         /// Parameter `recurrences`: The new recurrences for the event trigger.

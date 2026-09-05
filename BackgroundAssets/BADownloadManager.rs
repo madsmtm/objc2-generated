@@ -181,7 +181,7 @@ impl BADownloadManager {
         #[unsafe(method_family = none)]
         pub unsafe fn performWithExclusiveControl(
             &self,
-            perform_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
+            perform_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -199,7 +199,7 @@ impl BADownloadManager {
         pub unsafe fn performWithExclusiveControlBeforeDate_performHandler(
             &self,
             date: &NSDate,
-            perform_handler: &block2::SendableBlock<'static, fn(Bool, *mut NSError)>,
+            perform_handler: &block2::Block<'static, fn(Bool, *mut NSError)>,
         );
 
         #[cfg(feature = "BADownload")]

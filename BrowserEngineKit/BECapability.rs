@@ -131,11 +131,21 @@ impl BEProcessCapability {
         ) -> Result<Retained<ProtocolObject<dyn BEProcessCapabilityGrant>>, Retained<NSError>>;
 
         /// Activates the capability.
+        ///
+        /// - Parameters:
+        /// - error: On failure, populated with an error if the capability cannot be activated.
+        ///
+        /// - Returns: `YES` if the capability was activated, or `NO` if an error occurred.
         #[unsafe(method(activateWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateWithError(&self) -> Result<(), Retained<NSError>>;
 
         /// Suspends the capability.
+        ///
+        /// - Parameters:
+        /// - error: On failure, populated with an error if the capability cannot be suspended.
+        ///
+        /// - Returns: `YES` if the capability was suspended, or `NO` if an error occurred.
         #[unsafe(method(suspendWithError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn suspendWithError(&self) -> Result<(), Retained<NSError>>;

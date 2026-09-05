@@ -338,6 +338,8 @@ pub use self::__PKConstants::PKPaymentNetworkGirocard;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkHimyan;
 #[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkHumo;
+#[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkIDCredit;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkInterac;
@@ -370,11 +372,17 @@ pub use self::__PKConstants::PKPaymentNetworkPrivateLabel;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkQuicPay;
 #[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkRuPay;
+#[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkSuica;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkTmoney;
 #[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkUzCard;
+#[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkVPay;
+#[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkVerve;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkVisa;
 #[cfg(feature = "PKConstants")]

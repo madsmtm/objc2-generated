@@ -500,8 +500,15 @@ impl ARWorldTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Objects to detect in the scene.
         ///
-        /// If set, the session will attempt to detect the specified objects. When an object is detected an `ARObjectAnchor` will be added to the
-        /// session.
+        /// The system keeps the object's pose stable in world space, consuming less power. Virtual content stays aligned with the
+        /// object as long as it doesn't move; if the object moves, the system may delay the pose update. When an object is
+        /// detected, an `ARObjectAnchor` is added to the session.
+        ///
+        /// Use this property for objects that are mostly stationary. For moving or handheld objects that need precise, per-frame
+        /// updates, use `trackingObjects` instead.
+        ///
+        /// - Note: Supports both the `.arobject` format (introduced in iOS 12) and the `.referenceobject` format (introduced in
+        /// iOS 27). A single session can't use both formats.
         #[unsafe(method(detectionObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
@@ -517,8 +524,15 @@ impl ARWorldTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Objects to track in the scene.
         ///
-        /// If set, the session will attempt to track the specified objects. When an object is detected an `ARObjectAnchor` will be added to the
-        /// session.
+        /// The system tracks the object at the full frame rate of the selected `videoFormat`. When an object is tracked, an
+        /// `ARObjectAnchor` is added to the session.
+        ///
+        /// Use this property for moving or handheld objects that require precise, per-frame pose updates. High frame-rate tracking
+        /// significantly increases power consumption and processing load. For mostly stationary objects, use `detectionObjects`
+        /// instead.
+        ///
+        /// - Note: Only the `.referenceobject` format (introduced in iOS 27) is supported; the older `.arobject` format works only
+        /// with `detectionObjects`. A single session can't use both formats.
         #[unsafe(method(trackingObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
@@ -1358,8 +1372,15 @@ impl ARGeoTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Objects to detect in the scene.
         ///
-        /// If set, the session will attempt to detect the specified objects. When an object is detected an `ARObjectAnchor` will be added to the
-        /// session.
+        /// The system keeps the object's pose stable in world space, consuming less power. Virtual content stays aligned with the
+        /// object as long as it doesn't move; if the object moves, the system may delay the pose update. When an object is
+        /// detected, an `ARObjectAnchor` is added to the session.
+        ///
+        /// Use this property for objects that are mostly stationary. For moving or handheld objects that need precise, per-frame
+        /// updates, use `trackingObjects` instead.
+        ///
+        /// - Note: Supports both the `.arobject` format (introduced in iOS 12) and the `.referenceobject` format (introduced in
+        /// iOS 27). A single session can't use both formats.
         #[unsafe(method(detectionObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
@@ -1375,8 +1396,15 @@ impl ARGeoTrackingConfiguration {
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Objects to track in the scene.
         ///
-        /// If set, the session will attempt to track the specified objects. When an object is detected an `ARObjectAnchor` will be added to the
-        /// session.
+        /// The system tracks the object at the full frame rate of the selected `videoFormat`. When an object is tracked, an
+        /// `ARObjectAnchor` is added to the session.
+        ///
+        /// Use this property for moving or handheld objects that require precise, per-frame pose updates. High frame-rate tracking
+        /// significantly increases power consumption and processing load. For mostly stationary objects, use `detectionObjects`
+        /// instead.
+        ///
+        /// - Note: Only the `.referenceobject` format (introduced in iOS 27) is supported; the older `.arobject` format works only
+        /// with `detectionObjects`. A single session can't use both formats.
         #[unsafe(method(trackingObjects))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingObjects(&self) -> Retained<NSSet<ARReferenceObject>>;

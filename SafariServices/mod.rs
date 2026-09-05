@@ -60,6 +60,9 @@ mod __SFSafariPage;
 #[cfg(feature = "SFSafariPageProperties")]
 #[path = "SFSafariPageProperties.rs"]
 mod __SFSafariPageProperties;
+#[cfg(feature = "SFSafariSettings")]
+#[path = "SFSafariSettings.rs"]
+mod __SFSafariSettings;
 #[cfg(feature = "SFSafariTab")]
 #[path = "SFSafariTab.rs"]
 mod __SFSafariTab;
@@ -104,6 +107,12 @@ pub use self::__SFSafariExtensionViewController::SFSafariExtensionViewController
 pub use self::__SFSafariPage::SFSafariPage;
 #[cfg(feature = "SFSafariPageProperties")]
 pub use self::__SFSafariPageProperties::SFSafariPageProperties;
+#[cfg(feature = "SFSafariSettings")]
+pub use self::__SFSafariSettings::SFSafariSettings;
+#[cfg(feature = "SFSafariSettings")]
+pub use self::__SFSafariSettings::SFSafariSettingsError;
+#[cfg(feature = "SFSafariSettings")]
+pub use self::__SFSafariSettings::SFSafariSettingsErrorDomain;
 #[cfg(feature = "SFSafariTab")]
 pub use self::__SFSafariTab::SFSafariTab;
 #[cfg(feature = "SFSafariToolbarItem")]
@@ -134,6 +143,8 @@ impl SFSafariServicesVersion {
     pub const Version12_1: Self = Self(4);
     #[doc(alias = "SFSafariServicesVersion13_0")]
     pub const Version13_0: Self = Self(5);
+    #[doc(alias = "SFSafariServicesVersion27_0")]
+    pub const Version27_0: Self = Self(6);
 }
 
 unsafe impl Encode for SFSafariServicesVersion {

@@ -109,14 +109,3 @@ impl DefaultRetained for NSDraggingSession {
         Self::new()
     }
 }
-
-/// Deprecated.
-impl NSDraggingSession {
-    extern_methods!(
-        #[cfg(feature = "NSGestureRecognizer")]
-        #[deprecated = "This method is deprecated and has no effect."]
-        #[unsafe(method(updateDragWithGesture:))]
-        #[unsafe(method_family = none)]
-        pub fn updateDragWithGesture(&self, gesture: &NSGestureRecognizer);
-    );
-}

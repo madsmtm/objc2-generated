@@ -226,6 +226,33 @@ impl PKPassLibrary {
             completion: Option<&block2::SendableBlock<'static, fn(PKPassLibraryAddPassesStatus)>>,
         );
 
+        #[cfg(feature = "block2")]
+        #[unsafe(method(addPassesWithData:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addPassesWithData_completionHandler(
+            &self,
+            passes_data: &NSArray<NSData>,
+            completion_handler: &block2::SendableBlock<'static, fn(PKPassLibraryAddPassesStatus)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[unsafe(method(addPassesFromArchiveAtFileURL:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addPassesFromArchiveAtFileURL_completionHandler(
+            &self,
+            passes_archive_file_url: &NSURL,
+            completion_handler: &block2::SendableBlock<'static, fn(PKPassLibraryAddPassesStatus)>,
+        );
+
+        #[cfg(feature = "block2")]
+        #[unsafe(method(addPassesFromArchiveWithData:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addPassesFromArchiveWithData_completionHandler(
+            &self,
+            passes_archive_data: &NSData,
+            completion_handler: &block2::SendableBlock<'static, fn(PKPassLibraryAddPassesStatus)>,
+        );
+
         #[unsafe(method(openPaymentSetup))]
         #[unsafe(method_family = none)]
         pub unsafe fn openPaymentSetup(&self);

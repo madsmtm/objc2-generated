@@ -55,7 +55,7 @@ extern "C" {
 extern "C" {
     /// The PostScript name.
     ///
-    /// This is the key for retrieving the PostScript name from the font descriptor. When matching, this is treated more generically: the system first tries to find fonts with this PostScript name. If none is found, the system tries to find fonts with this family name, and, finally, if still nothing, tries to find fonts with this display name. The value associated with this key is a CFStringRef. If unspecified, defaults to "Helvetica", if unavailable falls back to global font cascade list.
+    /// This is the key for retrieving the PostScript name from the font descriptor. When matching, this is treated more generically: the system first tries to find fonts with this PostScript name. If none is found, the system tries to find fonts with this family name, and, finally, if still nothing, tries to find fonts with this display name. The value associated with this key is a CFStringRef. If unspecified, defaults to the standard user font.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontnameattribute?language=objc)
     pub static kCTFontNameAttribute: &'static CFString;
@@ -146,7 +146,10 @@ extern "C" {
 extern "C" {
     /// The font cascade list.
     ///
-    /// This key is used to specify or obtain the cascade list used for a font reference. The cascade list is a CFArrayRef containing CTFontDescriptorRefs. If unspecified, the global cascade list is used. This list is not consulted for private-use characters on OS X 10.10, iOS 8, or earlier.
+    /// This key is used to specify the cascade list for a font reference. The cascade list is a CFArrayRef containing CTFontDescriptorRefs, which are preferred for fallback over those in the default cascade list. This list is not consulted for private-use characters on OS X 10.10, iOS 8, or earlier.
+    ///
+    ///
+    /// See also: CTFontCopyDefaultCascadeListForLanguages
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcascadelistattribute?language=objc)
     pub static kCTFontCascadeListAttribute: &'static CFString;

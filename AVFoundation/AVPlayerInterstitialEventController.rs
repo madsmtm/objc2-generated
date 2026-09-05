@@ -454,6 +454,9 @@ impl AVPlayerInterstitialEventMonitor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVPlayer")]
+        /// Creates an observer with a player item.
+        ///
+        /// - Parameter primaryPlayer: An object that plays the primary content.
         #[unsafe(method(initWithPrimaryPlayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPrimaryPlayer(

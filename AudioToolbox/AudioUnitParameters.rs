@@ -993,3 +993,6 @@ pub const kReverb2Param_DecayTimeAtNyquist: AudioUnitParameterID = 5;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kreverb2param_randomizereflections?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kReverb2Param_RandomizeReflections: AudioUnitParameterID = 6;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kreverb2param_legacymode?language=objc)
+#[cfg(feature = "AUComponent")]
+pub const kReverb2Param_LegacyMode: AudioUnitParameterID = 7;

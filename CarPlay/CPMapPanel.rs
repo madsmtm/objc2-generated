@@ -87,6 +87,14 @@ impl CPMapPanel {
         #[unsafe(method_family = none)]
         pub unsafe fn sections(&self) -> Retained<NSArray<CPMapPanelSection>>;
 
+        #[cfg(feature = "CPMapPanelSection")]
+        /// Setter for [`sections`][Self::sections].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setSections:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSections(&self, sections: &NSArray<CPMapPanelSection>);
+
         #[cfg(all(
             feature = "CPMapPanelButtonConfiguration",
             feature = "CPPanelButtonConfiguration"

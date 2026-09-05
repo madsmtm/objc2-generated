@@ -24,7 +24,7 @@ impl MTLTensorDataType {
     /// A half-precision floating point data type.
     #[doc(alias = "MTLTensorDataTypeFloat16")]
     pub const Float16: Self = Self(16);
-    /// A 16-bit floating point data type with 8 exponent bits, 7 mantissa bits and 1 sign bit.
+    /// A 16-bit floating point data type with 8 exponent bits, 7 mantissa bits, and 1 sign bit.
     #[doc(alias = "MTLTensorDataTypeBFloat16")]
     pub const BFloat16: Self = Self(121);
     /// An 8-bit signed integer data type.
@@ -39,34 +39,34 @@ impl MTLTensorDataType {
     /// A 16-bit unsigned integer data type.
     #[doc(alias = "MTLTensorDataTypeUInt16")]
     pub const UInt16: Self = Self(41);
-    /// A 32-bit integer data type.
+    /// A 32-bit signed integer data type.
     #[doc(alias = "MTLTensorDataTypeInt32")]
     pub const Int32: Self = Self(29);
     /// A 32-bit unsigned integer data type.
     #[doc(alias = "MTLTensorDataTypeUInt32")]
     pub const UInt32: Self = Self(33);
-    /// A 4-bit signed integer format data type.
+    /// A 4-bit signed integer data type.
     #[doc(alias = "MTLTensorDataTypeInt4")]
     pub const Int4: Self = Self(143);
-    /// A 4-bit unsigned integer format data type.
+    /// A 4-bit unsigned integer data type.
     #[doc(alias = "MTLTensorDataTypeUInt4")]
     pub const UInt4: Self = Self(144);
-    /// An 8-bit floating point format data type with 8 exponent bits.
+    /// An 8-bit floating point data type with 8 exponent bits, 0 mantissa bits, and no sign bit.
     #[doc(alias = "MTLTensorDataTypeMetalFloat8UE8M0")]
     pub const MetalFloat8UE8M0: Self = Self(145);
-    /// A 2-bit unsigned integer format data type.
+    /// A 2-bit unsigned integer data type.
     #[doc(alias = "MTLTensorDataTypeUInt2")]
     pub const UInt2: Self = Self(149);
-    /// A 2-bit signed integer format data type.
+    /// A 2-bit signed integer data type.
     #[doc(alias = "MTLTensorDataTypeInt2")]
     pub const Int2: Self = Self(150);
-    /// An 8-bit floating point format data type with 5 exponent bits, 2 mantissa bits and 1 sign bit.
+    /// An 8-bit floating point data type with 5 exponent bits, 2 mantissa bits, and 1 sign bit.
     #[doc(alias = "MTLTensorDataTypeMetalFloat8E5M2")]
     pub const MetalFloat8E5M2: Self = Self(141);
-    /// An 8-bit floating point format data type with 4 exponent bits, 3 mantissa bits and 1 sign bit.
+    /// An 8-bit floating point data type with 4 exponent bits, 3 mantissa bits, and 1 sign bit.
     #[doc(alias = "MTLTensorDataTypeMetalFloat8E4M3")]
     pub const MetalFloat8E4M3: Self = Self(142);
-    /// A 4-bit floating point format data type with 2 exponent bits, 1 mantissa bit and 1 sign bit.
+    /// A 4-bit floating point data type with 2 exponent bits, 1 mantissa bit, and 1 sign bit.
     #[doc(alias = "MTLTensorDataTypeMetalFloat4E2M1")]
     pub const MetalFloat4E2M1: Self = Self(148);
 }
@@ -80,9 +80,9 @@ unsafe impl RefEncode for MTLTensorDataType {
 }
 
 extern_class!(
-    /// An array of length matching the rank, holding the dimensions of a tensor.
+    /// An integer array that holds per-dimension values such as tensor sizes, strides, or block factors
     ///
-    /// Supports rank up to ``MTL_TENSOR_MAX_RANK``.
+    /// Supports a rank between `0` and ``MTL_TENSOR_MAX_RANK``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorextents?language=objc)
     #[unsafe(super(NSObject))]
@@ -104,13 +104,15 @@ extern_conformance!(
 
 impl MTLTensorExtents {
     extern_methods!(
-        /// Creates a new tensor extents with the rank and extent values you provide.
+        /// Creates an extents object with the rank and values you provide.
         ///
         /// Zero rank extents represent scalars. `values` can only be `nil` if `rank` is 0.
         /// - Parameters:
-        /// - rank: the number of dimensions.
-        /// - values: an array of length `rank` that specifies the size of each dimension. The first dimension is the innermost dimension.
-        /// - Returns: Tensor extents with the rank and extent values you provide. Returns `nil` if `rank` exceeds 0 and `values` is `nil` or if `rank` exceeds ``MTL_TENSOR_MAX_RANK``.
+        /// - rank: The number of values in the extents. Pass `0` to create a scalar (rank-zero) extents.
+        /// - values: A C array of `rank` integer values, or `nil` when `rank` is `0`. The first element
+        /// corresponds to the innermost dimension.
+        /// - Returns: A new extents instance, or `nil` if `rank` exceeds 0 and `values` is `nil`,
+        /// or if `rank` exceeds ``MTL_TENSOR_MAX_RANK``.
         ///
         /// # Safety
         ///
@@ -123,18 +125,18 @@ impl MTLTensorExtents {
             values: *const NSInteger,
         ) -> Option<Retained<Self>>;
 
-        /// Obtains the rank of the tensor.
-        ///
-        /// The rank represents the number of dimensions.
+        /// The number of values in the extents object.
         #[unsafe(method(rank))]
         #[unsafe(method_family = none)]
         pub fn rank(&self) -> NSUInteger;
 
-        /// Returns the extent at an index.
+        /// Returns the value at the specified dimension index.
         ///
         /// - Parameters:
-        /// - dimensionIndex: the index of the dimension. The first dimension is the innermost dimension.
-        /// - Returns: the extent at `dimensionIndex`. This method returns -1 if `dimensionIndex` is greater than or equal to `rank`.
+        /// - dimensionIndex: The index of the value to retrieve. The first index corresponds
+        /// to the innermost dimension.
+        /// - Returns: The value at `dimensionIndex`, or `-1` if `dimensionIndex` is greater than or
+        /// equal to ``rank``.
         ///
         /// # Safety
         ///
@@ -180,10 +182,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTensorError(pub NSInteger);
 impl MTLTensorError {
+    /// No error occurred.
     #[doc(alias = "MTLTensorErrorNone")]
     pub const None: Self = Self(0);
+    /// An internal Metal error occurred.
     #[doc(alias = "MTLTensorErrorInternalError")]
     pub const InternalError: Self = Self(1);
+    /// The tensor descriptor is invalid.
     #[doc(alias = "MTLTensorErrorInvalidDescriptor")]
     pub const InvalidDescriptor: Self = Self(2);
 }
@@ -196,7 +201,7 @@ unsafe impl RefEncode for MTLTensorError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// The type that represents the different contexts for a tensor.
+/// The contexts in which you can use a tensor.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorusage?language=objc)
 // NS_OPTIONS
@@ -240,10 +245,10 @@ unsafe impl RefEncode for MTLTensorUsage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTensorPlaneType(pub NSInteger);
 impl MTLTensorPlaneType {
-    /// The data plane. This is the main plane of a tensor. Tensors always have a data plane.
+    /// The main data plane, which every tensor has
     #[doc(alias = "MTLTensorPlaneTypeData")]
     pub const Data: Self = Self(0);
-    /// The scale auxiliary plane. Contains scale factors for elements in the data plane.
+    /// The auxiliary plane that stores scale factors for elements in the data plane.
     #[doc(alias = "MTLTensorPlaneTypeScales")]
     pub const Scales: Self = Self(1);
 }
@@ -284,7 +289,7 @@ impl MTLTensorAuxiliaryPlaneDescriptor {
     extern_methods!(
         /// The data format of all elements in the plane.
         ///
-        /// The default value of this property is ``MTLTensorDataType/MTLTensorDataTypeFloat8UE8M0``.
+        /// The default value of this property is ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8UE8M0``.
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub fn dataType(&self) -> MTLTensorDataType;
@@ -294,15 +299,16 @@ impl MTLTensorAuxiliaryPlaneDescriptor {
         #[unsafe(method_family = none)]
         pub fn setDataType(&self, data_type: MTLTensorDataType);
 
-        /// A ``MTLTensorExtents`` instance that describes how many data plane elements correspond to one element in this plane.
+        /// An extents instance that represents the number of data plane elements which correspond to one element in
+        /// a plane you create with this descriptor.
         ///
-        /// The rank of the block factors must match the rank of the tensor's
+        /// The number of dimensions in the extents needs to match the number of the tensor's
         /// dimensions.
         ///
-        /// The first element of the block factors must be 32. All remaining elements
-        /// must be 1.
+        /// The first element of the block factors needs to be `32`. All remaining elements
+        /// need to be `1`.
         ///
-        /// The default value is a 1D block size of width 32.
+        /// The default value is a 1D block size of width `32`.
         #[unsafe(method(blockFactors))]
         #[unsafe(method_family = none)]
         pub fn blockFactors(&self) -> Retained<MTLTensorExtents>;
@@ -369,7 +375,7 @@ impl MTLTensorAuxiliaryPlaneDescriptorMap {
         /// The data plane is always present, and you configure it directly on ``MTLTensorDescriptor``.
         ///
         /// ``MTLTensorPlaneType/MTLTensorPlaneTypeScales`` auxiliary planes only support
-        /// ``MTLTensorDataType/MTLTensorDataTypeFloat8UE8M0`` as a data type.
+        /// ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8UE8M0`` as a data type.
         ///
         /// - Parameters:
         /// - descriptor: The descriptor configuring the auxiliary plane.
@@ -447,9 +453,16 @@ impl MTLTensorDescriptor {
     extern_methods!(
         /// An array of sizes, in elements, one for each dimension of the tensors you create with this descriptor.
         ///
-        /// You are responsible for ensuring `dimensions` meets the following requirements:
-        /// - `dimensions[i]` must be greater than 0.
-        /// - If ``dataType`` is a format ``MTLTensorDataType``, `dimensions[0]` must be a multiple of 32 elements.
+        /// Every element of the array needs to be greater than `0`.
+        ///
+        /// When ``dataType`` is ``MTLTensorDataType/MTLTensorDataTypeInt2``, ``MTLTensorDataType/MTLTensorDataTypeUInt2``,
+        /// ``MTLTensorDataType/MTLTensorDataTypeInt4``, ``MTLTensorDataType/MTLTensorDataTypeUInt4``,
+        /// ``MTLTensorDataType/MTLTensorDataTypeMetalFloat4E2M1``, ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8E4M3``,
+        /// ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8E5M2``, or ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8UE8M0``:
+        /// - The dimension value of the array's first element needs to be a multiple of 32 elements.
+        /// - The extents needs to have at least one dimension.
+        ///
+        /// If the tensor has auxiliary planes, each dimension needs to be evenly divisible by its corresponding block factor.
         ///
         /// The default value of this property is a rank one extents with size one.
         #[unsafe(method(dimensions))]
@@ -463,12 +476,22 @@ impl MTLTensorDescriptor {
         #[unsafe(method_family = none)]
         pub fn setDimensions(&self, dimensions: &MTLTensorExtents);
 
-        /// An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
+        /// An array of strides, in elements, one for each dimension of this tensor, if applicable.
         ///
-        /// You are responsible for ensuring `strides` meets the following requirements:
-        /// - The first element of `strides` is one.
-        /// - If ``usage`` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``, the second element of `strides` is aligned to 64 bytes, and for any `i` larger than one, `strides[i]` is equal to `strides[i-1] * dimensions[i-1]`.
-        /// - If ``dataType`` is a format ``MTLTensorDataType``, for any `i` greater than or equal to 1, `strides[i]` is aligned to 128 bytes. This is not a requirement for non-format data types, but following this convention improves performance.
+        /// The stride value of the array's first element needs to be exactly `1`, because it is the innermost dimension.
+        /// The strides for the subsequent dimensions can have different requirements based on the value of other properties.
+        /// When the ``usage`` property includes the ``MTLTensorUsage/MTLTensorUsageMachineLearning`` option:
+        /// - The second element of the array needs to be a multiple of 64 bytes.
+        /// - The rest of the elements in the array need to equal the product of the previous stride multiplied with the size of
+        /// the previous dimension. For example: `strides[i] = strides[i - 1] * dimensions[i - 1]`.
+        ///
+        /// When ``dataType`` is ``MTLTensorDataType/MTLTensorDataTypeInt2``, ``MTLTensorDataType/MTLTensorDataTypeUInt2``,
+        /// ``MTLTensorDataType/MTLTensorDataTypeInt4``, ``MTLTensorDataType/MTLTensorDataTypeUInt4``,
+        /// ``MTLTensorDataType/MTLTensorDataTypeMetalFloat4E2M1``, ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8E4M3``,
+        /// ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8E5M2``, or ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8UE8M0``,
+        /// all elements of the array, except for the first element, need to be a multiple of 128 bytes.
+        ///
+        /// > Tip: You can improve runtime performance by using strides that are multiples of 128, even when it's not a requirement.
         ///
         /// Only set this property when creating tensors from a buffer.
         #[unsafe(method(strides))]
@@ -485,6 +508,8 @@ impl MTLTensorDescriptor {
         /// The data format of all elements in the data plane.
         ///
         /// The default value of this property is ``MTLTensorDataType/MTLTensorDataTypeFloat32``.
+        ///
+        /// ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8UE8M0`` is not a valid data type for this property.
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
         pub fn dataType(&self) -> MTLTensorDataType;
@@ -516,7 +541,9 @@ impl MTLTensorDescriptor {
         /// Multi-plane tensors do not support ``MTLTensorUsage/MTLTensorUsageMachineLearning``.
         /// Use ``MTLTensorUsage/MTLTensorUsageCompute`` or ``MTLTensorUsage/MTLTensorUsageRender``.
         ///
-        /// Multi-plane tensors do not support data types larger than one byte as the data plane type
+        /// Multi-plane tensors do not support data types larger than one byte as the data plane type.
+        ///
+        /// Multi-plane tensors do not support rank zero.
         ///
         /// The default value is `nil`.
         #[unsafe(method(auxiliaryPlanes))]
@@ -532,7 +559,7 @@ impl MTLTensorDescriptor {
         );
 
         #[cfg(feature = "MTLResource")]
-        /// A packed set of the `storageMode`, `cpuCacheMode` and `hazardTrackingMode` properties.
+        /// A packed set of the ``storageMode``, ``cpuCacheMode``, and ``hazardTrackingMode`` properties.
         #[unsafe(method(resourceOptions))]
         #[unsafe(method_family = none)]
         pub fn resourceOptions(&self) -> MTLResourceOptions;
@@ -560,7 +587,7 @@ impl MTLTensorDescriptor {
         #[cfg(feature = "MTLResource")]
         /// A value that configures the memory location and access permissions of tensors you create with this descriptor.
         ///
-        /// The default value of this property defaults to ``MTLStorageMode/MTLStorageModeShared``.
+        /// The default value of this property is ``MTLStorageMode/MTLStorageModeShared``.
         #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
         pub fn storageMode(&self) -> MTLStorageMode;
@@ -608,11 +635,7 @@ impl DefaultRetained for MTLTensorDescriptor {
 }
 
 extern_class!(
-    /// Per-plane buffer backing storage for multi-plane tensor creation.
-    ///
-    /// Use this type to associate each plane of a tensor with a
-    /// ``MTLBuffer`` and byte offset, then pass it to the tensor
-    /// creation API on ``MTLDevice``.
+    /// An object that associates each plane of a tensor with a buffer and byte offset for buffer-backed tensor creation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorbufferattachments?language=objc)
     #[unsafe(super(NSObject))]
@@ -642,8 +665,11 @@ impl MTLTensorBufferAttachments {
         /// Sets the buffer and byte offset to use as backing storage for the given
         /// plane.
         ///
-        /// The buffer must not be `nil`. The offset must be aligned to 128 bytes if
-        /// the plane uses a format ``MTLTensorDataType``, otherwise it must be aligned
+        /// The offset needs to be aligned to 128 bytes if the plane uses ``MTLTensorDataType/MTLTensorDataTypeInt2``,
+        /// ``MTLTensorDataType/MTLTensorDataTypeUInt2``, ``MTLTensorDataType/MTLTensorDataTypeInt4``,
+        /// ``MTLTensorDataType/MTLTensorDataTypeUInt4``, ``MTLTensorDataType/MTLTensorDataTypeMetalFloat4E2M1``,
+        /// ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8E4M3``, ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8E5M2``,
+        /// or ``MTLTensorDataType/MTLTensorDataTypeMetalFloat8UE8M0``, otherwise it needs to be aligned
         /// to the size of the plane's data type in bytes.
         ///
         /// - Parameters:
@@ -729,7 +755,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn dataType(&self) -> MTLTensorDataType;
 
-        /// Describes how many data plane elements correspond to one element in this plane.
+        /// The number of data plane elements that correspond to one element in this auxiliary plane.
         #[unsafe(method(blockFactors))]
         #[unsafe(method_family = none)]
         fn blockFactors(&self) -> Retained<MTLTensorExtents>;
@@ -744,7 +770,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         fn buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
-        /// Byte offset into `buffer` where this plane's data begins, or 0 if no buffer was provided at initialization.
+        /// The byte offset into ``buffer`` where this plane's data begins, or `0` if no buffer was provided at initialization.
         #[unsafe(method(bufferOffset))]
         #[unsafe(method_family = none)]
         fn bufferOffset(&self) -> NSUInteger;
@@ -781,36 +807,12 @@ extern_protocol!(
 
         /// An array of strides, in elements, one for each dimension of this tensor, if applicable.
         ///
-        /// You are responsible for ensuring `strides` meets the following
-        /// requirements:
-        /// - The first element of `strides` must be 1.
-        /// - If ``usage`` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``,
-        /// the second element of `strides` must be aligned to 64 bytes, and for any
-        /// `i` larger than 1, `strides[i]` must equal
-        /// `strides[i-1] * dimensions[i-1]`.
-        /// - If ``dataType`` is a format ``MTLTensorDataType``, for any `i`
-        /// greater than or equal to 1, `strides[i]` must be aligned to 128 bytes.
-        /// This is not a requirement for non-format data types, but following this
-        /// convention improves performance.
-        ///
         /// This property is non-nil only for tensors created from a buffer.
         #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
         fn strides(&self) -> Option<Retained<MTLTensorExtents>>;
 
         /// An array of sizes, in elements, one for each dimension of this tensor.
-        ///
-        /// You are responsible for ensuring `dimensions` meets the following
-        /// requirements:
-        /// - `dimensions[i]` must be greater than 0.
-        /// - If ``dataType`` is a format ``MTLTensorDataType``,
-        /// `dimensions[0]` must be a multiple of 32 elements.
-        /// - If the tensor has auxiliary planes, each dimension must be evenly
-        /// divisible by its corresponding block factor.
-        /// - If ``dataType`` is a format ``MTLTensorDataType``, or the tensor has
-        /// auxiliary planes, the tensor must have rank 1 or higher.
-        ///
-        /// The default value of this property is a rank one extents with size one.
         #[unsafe(method(dimensions))]
         #[unsafe(method_family = none)]
         fn dimensions(&self) -> Retained<MTLTensorExtents>;
@@ -835,14 +837,15 @@ extern_protocol!(
         fn auxiliaryPlanes(&self)
             -> Retained<NSArray<ProtocolObject<dyn MTLTensorAuxiliaryPlane>>>;
 
-        /// Replaces a slice of the data plane plane of this tensor with data from a pointer you
-        /// provide.
+        /// Replaces a slice of the data plane of this tensor with data from a pointer you provide.
         ///
-        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared`` for CPU access via this method.
-        /// Strides must be monotonically non-decreasing: for any `i > 0`, `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared``
+        /// for CPU access via this method.
         ///
-        /// The first dimension of `sliceOrigin` and `sliceDimensions` must be
-        /// byte aligned.
+        /// Strides need to be monotonically non-decreasing: for any `i > 0`,
+        /// `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        ///
+        /// The first dimension of `sliceOrigin` and `sliceDimensions` needs to be byte aligned.
         ///
         /// - Parameters:
         /// - sliceOrigin: An array of per-dimension offsets that together locate the first element
@@ -870,14 +873,15 @@ extern_protocol!(
             strides: &MTLTensorExtents,
         );
 
-        /// Copies data from a slice of the data plane of this tensor into a pointer you
-        /// provide.
+        /// Copies data from a slice of the data plane of this tensor into a pointer you provide.
         ///
-        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared`` for CPU access via this method.
-        /// Strides must be monotonically non-decreasing: for any `i > 0`, `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared``
+        /// for CPU access via this method.
         ///
-        /// The first dimension of `sliceOrigin` and `sliceDimensions` must be
-        /// byte aligned.
+        /// Strides need to be monotonically non-decreasing: for any `i > 0`,
+        /// `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        ///
+        /// The first dimension of `sliceOrigin` and `sliceDimensions` needs to be byte aligned.
         ///
         /// - Parameters:
         /// - bytes: A pointer to bytes of data that this method copies the slice
@@ -906,17 +910,18 @@ extern_protocol!(
             slice_dimensions: &MTLTensorExtents,
         );
 
-        /// Copies data from a slice of a plane of this tensor into a pointer you
-        /// provide.
+        /// Copies data from a slice of a plane of this tensor into a pointer you provide.
         ///
-        /// When reading from auxiliary planes, specify `sliceOrigin` and
-        /// `sliceDimensions` in plane coordinates by applying the auxiliary plane's
-        /// block factors.
+        /// When reading from auxiliary planes, specify `sliceOrigin` and `sliceDimensions`
+        /// in plane coordinates by applying the auxiliary plane's block factors.
         ///
-        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared`` for CPU access via this method.
-        /// Strides must be monotonically non-decreasing: for any `i > 0`, `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared``
+        /// for CPU access via this method.
         ///
-        /// The first dimension of `sliceOrigin` and `sliceDimensions` must be
+        /// Strides need to be monotonically non-decreasing: for any `i > 0`,
+        /// `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        ///
+        /// The first dimension of `sliceOrigin` and `sliceDimensions` needs to be
         /// byte aligned.
         ///
         /// - Parameters:
@@ -948,17 +953,18 @@ extern_protocol!(
             plane: MTLTensorPlaneType,
         );
 
-        /// Replaces a slice of a plane of this tensor with data from a pointer you
-        /// provide.
+        /// Replaces a slice of a plane of this tensor with data from a pointer you provide.
         ///
-        /// When writing to auxiliary planes, specify `sliceOrigin` and
-        /// `sliceDimensions` in plane coordinates by applying the auxiliary plane's
-        /// block factors.
+        /// When writing to auxiliary planes, specify `sliceOrigin` and `sliceDimensions`
+        /// in plane coordinates by applying the auxiliary plane's block factors.
         ///
-        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared`` for CPU access via this method.
-        /// Strides must be monotonically non-decreasing: for any `i > 0`, `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        /// Create the tensor with ``MTLResourceOptions/MTLResourceStorageModeShared``
+        /// for CPU access via this method.
         ///
-        /// The first dimension of `sliceOrigin` and `sliceDimensions` must be
+        /// Strides need to be monotonically non-decreasing: for any `i > 0`,
+        /// `strides[i] >= strides[i-1] * dimensions[i-1]`.
+        ///
+        /// The first dimension of `sliceOrigin` and `sliceDimensions` needs to be
         /// byte aligned.
         ///
         /// - Parameters:

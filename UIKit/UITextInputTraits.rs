@@ -185,6 +185,28 @@ unsafe impl RefEncode for UITextMathExpressionCompletionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgrammarcheckingtype?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UITextGrammarCheckingType(pub NSInteger);
+impl UITextGrammarCheckingType {
+    #[doc(alias = "UITextGrammarCheckingTypeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "UITextGrammarCheckingTypeNo")]
+    pub const No: Self = Self(1);
+    #[doc(alias = "UITextGrammarCheckingTypeYes")]
+    pub const Yes: Self = Self(2);
+}
+
+unsafe impl Encode for UITextGrammarCheckingType {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UITextGrammarCheckingType {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -500,6 +522,17 @@ extern_protocol!(
             &self,
             math_expression_completion_type: UITextMathExpressionCompletionType,
         );
+
+        #[optional]
+        #[unsafe(method(grammarCheckingType))]
+        #[unsafe(method_family = none)]
+        fn grammarCheckingType(&self) -> UITextGrammarCheckingType;
+
+        /// Setter for [`grammarCheckingType`][Self::grammarCheckingType].
+        #[optional]
+        #[unsafe(method(setGrammarCheckingType:))]
+        #[unsafe(method_family = none)]
+        fn setGrammarCheckingType(&self, grammar_checking_type: UITextGrammarCheckingType);
 
         #[optional]
         #[unsafe(method(keyboardType))]
@@ -858,13 +891,36 @@ extern "C" {
 }
 
 extern "C" {
-    /// eSIM activation
+    /// A property that defines the content in a text input area to contain an embedded identity document number for an eSIM. This content type requires clients to have Carrier eSIM entitlements.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellulareid?language=objc)
     pub static UITextContentTypeCellularEID: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellularimei?language=objc)
+    /// A property that defines the content in a text input area to contain an international mobile equipment identity number for an eSIM. This content type requires clients to have Carrier eSIM entitlements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellularimei?language=objc)
     pub static UITextContentTypeCellularIMEI: &'static UITextContentType;
+}
+
+extern "C" {
+    /// A property that defines the content in a text input area to contain an international mobile equipment identity number 1 for an eSIM. This content type requires clients to have Carrier eSIM entitlements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellularimei1?language=objc)
+    pub static UITextContentTypeCellularIMEI1: &'static UITextContentType;
+}
+
+extern "C" {
+    /// A property that defines the content in a text input area to contain an international mobile equipment identity number 2 for an eSIM. This content type requires clients to have Carrier eSIM entitlements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellularimei2?language=objc)
+    pub static UITextContentTypeCellularIMEI2: &'static UITextContentType;
+}
+
+extern "C" {
+    /// A property that defines the content in a text input area to contain a network access license for an eSIM. This content type requires clients to have Carrier eSIM entitlements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellularnal?language=objc)
+    pub static UITextContentTypeCellularNAL: &'static UITextContentType;
 }

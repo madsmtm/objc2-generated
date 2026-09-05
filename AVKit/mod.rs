@@ -73,8 +73,6 @@ pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuCo
 pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuState;
 #[cfg(feature = "AVLegibleMediaOptionsMenuController")]
 pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuStateChangeReason;
-#[cfg(feature = "AVLegibleMediaOptionsMenuController")]
-pub use self::__AVLegibleMediaOptionsMenuController::AVLegibleMediaOptionsMenuType;
 #[cfg(feature = "AVPictureInPictureController")]
 pub use self::__AVPictureInPictureController::AVPictureInPictureController;
 #[cfg(feature = "AVPictureInPictureController")]

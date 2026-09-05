@@ -249,6 +249,8 @@ impl AVError {
     pub const ExternalSyncDeviceFrequencyHigherThanSpecified: Self = Self(-11895);
     #[doc(alias = "AVErrorExternalSyncDeviceFrequencyLowerThanSpecified")]
     pub const ExternalSyncDeviceFrequencyLowerThanSpecified: Self = Self(-11896);
+    #[doc(alias = "AVErrorNotEnoughSpaceForProVideoStorageReplenishment")]
+    pub const NotEnoughSpaceForProVideoStorageReplenishment: Self = Self(-11897);
 }
 
 unsafe impl Encode for AVError {

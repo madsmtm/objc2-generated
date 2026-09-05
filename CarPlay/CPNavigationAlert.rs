@@ -295,6 +295,23 @@ impl CPNavigationAlert {
         #[unsafe(method(maximumAvatarImageSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumAvatarImageSize(mtm: MainThreadMarker) -> CGSize;
+
+        /// A Boolean value indicating whether the close button is allowed to appear.
+        ///
+        ///
+        /// Set the value of this property to
+        /// `NO`to hide the close button.
+        ///
+        /// Defaults to
+        /// `YES.`
+        #[unsafe(method(showsCloseButton))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn showsCloseButton(&self) -> bool;
+
+        /// Setter for [`showsCloseButton`][Self::showsCloseButton].
+        #[unsafe(method(setShowsCloseButton:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setShowsCloseButton(&self, shows_close_button: bool);
     );
 }
 
