@@ -17,6 +17,8 @@ impl CGToneMapping {
     pub const Default: Self = Self(0);
     #[doc(alias = "kCGToneMappingImageSpecificLumaScaling")]
     pub const ImageSpecificLumaScaling: Self = Self(1);
+    #[doc(alias = "kCGToneMappingHeadroomAdaptiveGainCurve")]
+    pub const HeadroomAdaptiveGainCurve: Self = Self(6);
     #[doc(alias = "kCGToneMappingReferenceWhiteBased")]
     pub const ReferenceWhiteBased: Self = Self(2);
     #[doc(alias = "kCGToneMappingITURecommended")]

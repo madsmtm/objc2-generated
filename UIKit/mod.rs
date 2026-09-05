@@ -246,6 +246,9 @@ mod __UIBarCommon;
 #[cfg(feature = "UIBarItem")]
 #[path = "UIBarItem.rs"]
 mod __UIBarItem;
+#[cfg(feature = "UIBarMinimization")]
+#[path = "UIBarMinimization.rs"]
+mod __UIBarMinimization;
 #[cfg(feature = "UIBehavioralStyle")]
 #[path = "UIBehavioralStyle.rs"]
 mod __UIBehavioralStyle;
@@ -2539,6 +2542,14 @@ pub use self::__UIBarCommon::UIBarPositioning;
 pub use self::__UIBarCommon::UIBarPositioningDelegate;
 #[cfg(feature = "UIBarItem")]
 pub use self::__UIBarItem::UIBarItem;
+#[cfg(feature = "UIBarMinimization")]
+pub use self::__UIBarMinimization::UIBarMinimization;
+#[cfg(feature = "UIBarMinimization")]
+pub use self::__UIBarMinimization::UIBarMinimizationBehavior;
+#[cfg(feature = "UIBarMinimization")]
+pub use self::__UIBarMinimization::UIBarMinimizationRestorationBehavior;
+#[cfg(feature = "UIBarMinimization")]
+pub use self::__UIBarMinimization::UIBarMinimizationSafeAreaAdjustment;
 #[cfg(feature = "UIBehavioralStyle")]
 pub use self::__UIBehavioralStyle::UIBehavioralStyle;
 #[cfg(feature = "UIBezierPath")]
@@ -4163,10 +4174,6 @@ pub use self::__UINavigationController::UINavigationControllerDelegate;
 pub use self::__UINavigationController::UINavigationControllerHideShowBarDuration;
 #[cfg(feature = "UINavigationController")]
 pub use self::__UINavigationController::UINavigationControllerOperation;
-#[cfg(feature = "UINavigationItem")]
-pub use self::__UINavigationItem::UIBarMinimizationSafeAreaAdjustment;
-#[cfg(feature = "UINavigationItem")]
-pub use self::__UINavigationItem::UIBarMinimizeBehavior;
 #[cfg(feature = "UINavigationItem")]
 pub use self::__UINavigationItem::UINavigationItem;
 #[cfg(feature = "UINavigationItem")]

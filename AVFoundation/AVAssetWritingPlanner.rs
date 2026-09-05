@@ -163,7 +163,7 @@ impl AVAssetWritingPlanner {
         /// - Parameter minimumSegmentDuration: The client selected minimum duration for the segments.
         /// - Parameter minimumSegmentFrameCount: The minimum number of source frames in a segment.
         ///
-        /// - Returns: Array of AVPlannedVideoSegmentConfigurations.
+        /// - Returns: Array of AVPlannedVideoSegmentConfiguration objects, each element specifying the configuration of a planned video segment, ordered in output PTS order
         #[unsafe(method(segmentBoundaryRecommendationsForVideoAVAssetTrack:minimumSegmentDuration:minimumSegmentFrameCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentBoundaryRecommendationsForVideoAVAssetTrack_minimumSegmentDuration_minimumSegmentFrameCount(
@@ -420,7 +420,7 @@ impl AVAssetTrackPlan {
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
-        /// An array of AVPlannedSegmentConfigurations, each element specifying the configuration of a planned segment, ordered in output PTS order.
+        /// Array of AVPlannedSegmentConfigurations, each element specifying the configuration of a planned segment, ordered in output PTS order.
         #[unsafe(method(segmentConfigurations))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentConfigurations(

@@ -33,7 +33,7 @@ impl BAAssetPackManifest {
 
         /// The application’s primary language, represented as a BCP-47 identifier, as configured in App Store Connect.
         ///
-        /// If no available localized asset packs match the user’s preferred languages, then the system will fall back on the application’s primary language.
+        /// If no available localized asset packs match the current preferred languages, the system falls back on the application’s primary language.
         #[unsafe(method(primaryLanguage))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
@@ -45,13 +45,13 @@ impl BAAssetPackManifest {
 
         /// The language, represented as a BCP-47 identifier, asset packs in this manifest that are localized for which the system automatically makes available locally.
         ///
-        /// The user’s preferred languages inform the choice of resolved language, respecting any language that your application sets manually via ``BAAssetPackManager/resolvedLanguage``. This property may be `nil` if no localized asset packs are available. If the user recently changed their preferred language or if this manifest is outdated, then this property’s value may be out of sync with the set of asset packs that are available locally.
+        /// The user’s preferred languages inform the choice of resolved language, respecting any language that your application sets manually by setting ``BAAssetPackManager/resolvedLanguage``. This property may be `nil` if no localized asset packs are available. If the user recently changed their preferred language or if this manifest is outdated, this property’s value may be out of sync with the set of asset packs available locally.
         #[unsafe(method(resolvedLanguage))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedLanguage(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "BAAssetPack")]
-        /// The subset of asset packs in this manifest that best match the user’s preferred languages.
+        /// The subset of asset packs in this manifest that best match the current preferred languages.
         #[unsafe(method(localizedAssetPacks))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedAssetPacks(&self) -> Retained<NSSet<BAAssetPack>>;

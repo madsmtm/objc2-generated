@@ -128,9 +128,15 @@ impl CPMapPanelItem {
                 &block2::Block<'static, fn(NonNull<CPMapPanelItem>, NonNull<DispatchBlock>)>,
             >,
         ) -> Retained<Self>;
+    );
+}
 
+/// Methods declared on superclass `CPPanelItem`.
+#[cfg(feature = "CPPanelItem")]
+impl CPMapPanelItem {
+    extern_methods!(
         #[cfg(feature = "CPListItem")]
-        /// Initializes a map template item wrapping a
+        /// Initializes a panel item wrapping a
         /// `CPListItem.`
         #[unsafe(method(initWithListItem:))]
         #[unsafe(method_family = init)]
@@ -140,7 +146,7 @@ impl CPMapPanelItem {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CPGridButton")]
-        /// Initializes a map template item wrapping an array of
+        /// Initializes a panel item wrapping an array of
         /// `CPGridButton`objects.
         #[unsafe(method(initWithGridButtons:))]
         #[unsafe(method_family = init)]

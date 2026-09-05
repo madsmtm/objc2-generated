@@ -86,19 +86,14 @@ extern_class!(
     /// The following is the typical life cycle of a long-lived operation:
     ///
     /// 1. The app creates a long-lived operation and executes it.
-    ///
     /// The daemon starts saving and sending the callbacks to the running app.
     /// 2. The app exits.
-    ///
     /// The daemon continues running the long-lived operation and saves the callbacks.
     /// 3. The app launches and fetches the long-lived operation.
-    ///
     /// If the operation is running or if it completed within the previous 24 hours, the daemon returns a proxy for the long-lived operation. If the operation completed more than 24 hours previously, the daemon may stop returning it in fetch requests.
     /// 4. The app runs the long-lived operation again.
-    ///
     /// The daemon sends the app all the saved callbacks (it doesn't actually rerun the operation), and continues saving the callbacks and sending them to the running app.
     /// 5. The app receives the completion callback or the app cancels the operation.
-    ///
     /// The daemon stops including the operation in future fetch results.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperation?language=objc)

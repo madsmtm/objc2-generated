@@ -265,30 +265,3 @@ pub unsafe trait NSAttributedStringNSExtendedStringDrawing:
 
 impl private_NSAttributedStringNSExtendedStringDrawing::Sealed for NSAttributedString {}
 unsafe impl NSAttributedStringNSExtendedStringDrawing for NSAttributedString {}
-
-mod private_NSAttributedStringNSStringDrawingDeprecated {
-    pub trait Sealed {}
-}
-
-/// Category "NSStringDrawingDeprecated" on [`NSAttributedString`].
-#[doc(alias = "NSStringDrawingDeprecated")]
-pub unsafe trait NSAttributedStringNSStringDrawingDeprecated:
-    ClassType + Sized + private_NSAttributedStringNSStringDrawingDeprecated::Sealed
-{
-    extern_methods!(
-        #[unsafe(method(drawWithRect:options:))]
-        #[unsafe(method_family = none)]
-        fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);
-
-        #[unsafe(method(boundingRectWithSize:options:))]
-        #[unsafe(method_family = none)]
-        fn boundingRectWithSize_options(
-            &self,
-            size: NSSize,
-            options: NSStringDrawingOptions,
-        ) -> NSRect;
-    );
-}
-
-impl private_NSAttributedStringNSStringDrawingDeprecated::Sealed for NSAttributedString {}
-unsafe impl NSAttributedStringNSStringDrawingDeprecated for NSAttributedString {}

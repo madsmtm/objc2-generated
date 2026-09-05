@@ -255,7 +255,7 @@ pub type AVPlayerWaitingReason = NSString;
 extern "C" {
     /// Indicates that the player is waiting for appropriate playback buffer conditions before starting playback
     ///
-    /// The player is waiting for playback because automaticallyWaitToMinimizeStalling is YES and playback at the specified rate would likely cause the playback buffer to become empty before playback completes. Playback will resume when 1) playback at the specified rate will likely complete without a stall or 2) the playback buffer becomes full, meaning no forther buffering of media data is possible.
+    /// The player is waiting for playback because automaticallyWaitsToMinimizeStalling is YES and playback at the specified rate would likely cause the playback buffer to become empty before playback completes. Playback will resume when 1) playback at the specified rate will likely complete without a stall or 2) the playback buffer becomes full, meaning no forther buffering of media data is possible.
     /// When the value of automaticallyWaitsToMinimizeStalling is NO, timeControlStatus cannot become AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate for this reason.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingtominimizestallsreason?language=objc)
@@ -265,7 +265,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the player is monitoring the playback buffer fill rate to determine if playback is likely to complete without interruptions.
     ///
-    /// The player is waiting for playback because automaticallyWaitToMinimizeStalling is YES and it has not yet determined if starting playback at the specified rate would likely cause the buffer to become empty. When the brief initial monitoring period is over, either playback will begin or the value of reasonForWaitingToPlayAtSpecifiedRate will switch to AVPlayerWaitingToMinimizeStallsReason.
+    /// The player is waiting for playback because automaticallyWaitsToMinimizeStalling is YES and it has not yet determined if starting playback at the specified rate would likely cause the buffer to become empty. When the brief initial monitoring period is over, either playback will begin or the value of reasonForWaitingToPlayAtSpecifiedRate will switch to AVPlayerWaitingToMinimizeStallsReason.
     /// Recommended practice is not to show UI indicating the waiting state to the user while the value of reasonForWaitingToPlayAtSpecifiedRate is AVPlayerWaitingWhileEvaluatingBufferingRateReason.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingwhileevaluatingbufferingratereason?language=objc)
@@ -275,7 +275,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the AVPlayer is waiting because its currentItem is nil
     ///
-    /// The player is waiting for playback because automaticallyWaitToMinimizeStalling is YES and the value of currentItem is nil. When an item becomes available, either because of a call to -replaceCurrentItemWithPlayerItem: or -insertItem: afterItem:, playback will begin or the value of reasonForWaitingToPlay will change.
+    /// The player is waiting for playback because automaticallyWaitsToMinimizeStalling is YES and the value of currentItem is nil. When an item becomes available, either because of a call to -replaceCurrentItemWithPlayerItem: or -insertItem: afterItem:, playback will begin or the value of reasonForWaitingToPlay will change.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingwithnoitemtoplayreason?language=objc)
     pub static AVPlayerWaitingWithNoItemToPlayReason: &'static AVPlayerWaitingReason;

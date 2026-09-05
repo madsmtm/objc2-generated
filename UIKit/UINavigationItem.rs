@@ -124,59 +124,6 @@ unsafe impl RefEncode for UINavigationItemStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarminimizebehavior?language=objc)
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct UIBarMinimizeBehavior(pub NSInteger);
-impl UIBarMinimizeBehavior {
-    /// The system determines the minimize behavior.
-    #[doc(alias = "UIBarMinimizeBehaviorAutomatic")]
-    pub const Automatic: Self = Self(0);
-    /// Bar minimization is disabled.
-    #[doc(alias = "UIBarMinimizeBehaviorNever")]
-    pub const Never: Self = Self(1);
-    /// Minimize when the user scrolls down.
-    #[doc(alias = "UIBarMinimizeBehaviorOnScrollDown")]
-    pub const OnScrollDown: Self = Self(2);
-    /// Minimize when the user scrolls up.
-    #[doc(alias = "UIBarMinimizeBehaviorOnScrollUp")]
-    pub const OnScrollUp: Self = Self(3);
-}
-
-unsafe impl Encode for UIBarMinimizeBehavior {
-    const ENCODING: Encoding = NSInteger::ENCODING;
-}
-
-unsafe impl RefEncode for UIBarMinimizeBehavior {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarminimizationsafeareaadjustment?language=objc)
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct UIBarMinimizationSafeAreaAdjustment(pub NSInteger);
-impl UIBarMinimizationSafeAreaAdjustment {
-    /// The system determines the safe area adjustment.
-    #[doc(alias = "UIBarMinimizationSafeAreaAdjustmentAutomatic")]
-    pub const Automatic: Self = Self(0);
-    /// The safe area adjusts as bars minimize, allowing content to reflow.
-    #[doc(alias = "UIBarMinimizationSafeAreaAdjustmentEnabled")]
-    pub const Enabled: Self = Self(1);
-    /// The safe area remains unchanged as bars minimize.
-    #[doc(alias = "UIBarMinimizationSafeAreaAdjustmentDisabled")]
-    pub const Disabled: Self = Self(2);
-}
-
-unsafe impl Encode for UIBarMinimizationSafeAreaAdjustment {
-    const ENCODING: Encoding = NSInteger::ENCODING;
-}
-
-unsafe impl RefEncode for UIBarMinimizationSafeAreaAdjustment {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemrenamedelegate?language=objc)
     pub unsafe trait UINavigationItemRenameDelegate:
@@ -902,41 +849,6 @@ impl UINavigationItem {
             &self,
             compact_scroll_edge_appearance: Option<&UINavigationBarAppearance>,
         );
-
-        /// The minimize behavior for the navigation bar.
-        ///
-        /// The default value is ``UIBarMinimizeBehavior/automatic``.
-        /// When the navigation bar minimizes, an integrated top tab bar
-        /// will also minimize.
-        ///
-        /// By default, the safe area adjusts as the navigation bar minimizes.
-        /// Use ``barMinimizationSafeAreaAdjustment`` to customize this.
-        #[unsafe(method(barMinimizeBehavior))]
-        #[unsafe(method_family = none)]
-        pub fn barMinimizeBehavior(&self) -> UIBarMinimizeBehavior;
-
-        /// Setter for [`barMinimizeBehavior`][Self::barMinimizeBehavior].
-        #[unsafe(method(setBarMinimizeBehavior:))]
-        #[unsafe(method_family = none)]
-        pub fn setBarMinimizeBehavior(&self, bar_minimize_behavior: UIBarMinimizeBehavior);
-
-        /// The safe area adjustment during navigation bar minimization.
-        ///
-        /// Currently, only the navigation bar supports customizing the safe
-        /// area adjustment.
-        ///
-        /// The default value is ``UIBarMinimizationSafeAreaAdjustment/automatic``.
-        #[unsafe(method(barMinimizationSafeAreaAdjustment))]
-        #[unsafe(method_family = none)]
-        pub fn barMinimizationSafeAreaAdjustment(&self) -> UIBarMinimizationSafeAreaAdjustment;
-
-        /// Setter for [`barMinimizationSafeAreaAdjustment`][Self::barMinimizationSafeAreaAdjustment].
-        #[unsafe(method(setBarMinimizationSafeAreaAdjustment:))]
-        #[unsafe(method_family = none)]
-        pub fn setBarMinimizationSafeAreaAdjustment(
-            &self,
-            bar_minimization_safe_area_adjustment: UIBarMinimizationSafeAreaAdjustment,
-        );
     );
 }
 
@@ -950,5 +862,28 @@ impl UINavigationItem {
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
+    );
+}
+
+/// Minimization.
+impl UINavigationItem {
+    extern_methods!(
+        #[cfg(feature = "UIBarMinimization")]
+        /// The minimization configuration for the navigation bar.
+        ///
+        /// Set the properties of this configuration to control how the navigation
+        /// bar minimizes in response to scrolling. When the navigation bar
+        /// minimizes, an integrated top tab bar will also minimize.
+        #[unsafe(method(navigationBarMinimization))]
+        #[unsafe(method_family = none)]
+        pub fn navigationBarMinimization(&self) -> Retained<UIBarMinimization>;
+
+        #[cfg(feature = "UIBarMinimization")]
+        /// Setter for [`navigationBarMinimization`][Self::navigationBarMinimization].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setNavigationBarMinimization:))]
+        #[unsafe(method_family = none)]
+        pub fn setNavigationBarMinimization(&self, navigation_bar_minimization: &UIBarMinimization);
     );
 }

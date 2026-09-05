@@ -161,6 +161,21 @@ impl UIBarAppearance {
         #[unsafe(method(setShadowImage:))]
         #[unsafe(method_family = none)]
         pub fn setShadowImage(&self, shadow_image: Option<&UIImage>);
+
+        #[cfg(feature = "UIInterface")]
+        /// Overrides the userInterfaceStyle of the bar.
+        #[unsafe(method(overrideUserInterfaceStyle))]
+        #[unsafe(method_family = none)]
+        pub fn overrideUserInterfaceStyle(&self) -> UIUserInterfaceStyle;
+
+        #[cfg(feature = "UIInterface")]
+        /// Setter for [`overrideUserInterfaceStyle`][Self::overrideUserInterfaceStyle].
+        #[unsafe(method(setOverrideUserInterfaceStyle:))]
+        #[unsafe(method_family = none)]
+        pub fn setOverrideUserInterfaceStyle(
+            &self,
+            override_user_interface_style: UIUserInterfaceStyle,
+        );
     );
 }
 

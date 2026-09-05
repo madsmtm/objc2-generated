@@ -283,6 +283,11 @@ pub unsafe fn CGWindowListCreateImageFromArray(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns whether the current process already has permission to capture the contents of the screen, without prompting the user.
+///
+/// If this returns false, call CGRequestScreenCaptureAccess to prompt the user.
+///
+/// Returns: true if the current process has screen capture access; otherwise false.
 #[inline]
 pub fn CGPreflightScreenCaptureAccess() -> bool {
     extern "C-unwind" {
@@ -291,6 +296,13 @@ pub fn CGPreflightScreenCaptureAccess() -> bool {
     unsafe { CGPreflightScreenCaptureAccess() }
 }
 
+/// Requests screen capture access, prompting the user for permission if it has not yet been determined.
+///
+/// A previously denied process is not re-prompted; the user must enable access in System Settings > Privacy
+/// &
+/// Security > Screen Recording. To check the current authorization without prompting, use CGPreflightScreenCaptureAccess.
+///
+/// Returns: true if the current process has screen capture access; otherwise false.
 #[inline]
 pub fn CGRequestScreenCaptureAccess() -> bool {
     extern "C-unwind" {

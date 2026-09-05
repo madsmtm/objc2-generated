@@ -11476,21 +11476,38 @@ impl NWProtocolMetadata {
     }
 }
 
-/// Set the maximum pacing rate for TCP transmission in bytes per second.
-/// TCP pacing spreads out packet transmission to avoid bursts and reduce
-/// network congestion. The actual pacing rate used will be the minimum
-/// of this value and the rate computed from cwnd/RTT.
-///
-/// A value of 0 or UINT64_MAX means unlimited (disables pacing).
+/// Set a maximum pacing rate for a TCP connection, in bytes per second.
 ///
 ///
-/// Parameter `metadata`: A TCP protocol metadata object from an established connection.
+/// TCP pacing spreads outgoing packet transmission across time to avoid
+/// bursts and reduce queueing in the network. With a cap in place, the
+/// on-wire rate is the minimum of (a) this cap, and (b) the rate computed
+/// from the congestion window divided by smoothed RTT. The cap therefore
+/// never raises throughput above what congestion control would otherwise
+/// allow.
+///
+/// A value of 0 or UINT64_MAX disables pacing on this connection — the
+/// connection sends without pacing (subject only to congestion control).
+///
+/// Rates in the open interval (0, 12500) are silently clamped up to
+/// 12500 bytes/second (100 Kbps). Callers needing genuinely sub-100-Kbps
+/// pacing must shape at the application layer.
+///
+/// The cap may be updated at any time during the lifetime of an
+/// established connection. Each call replaces the prior value.
 ///
 ///
-/// Parameter `max_pacing_rate`: Maximum pacing rate in bytes per second.
+/// Parameter `metadata`: A TCP protocol metadata object from an established connection
+/// (e.g. obtained via nw_connection_access_established_protocol_metadata).
 ///
 ///
-/// Returns: Returns 0 on success, or an error code on failure.
+/// Parameter `max_pacing_rate`: Maximum pacing rate in bytes per second. 0 or UINT64_MAX disables
+/// pacing on this connection.
+///
+///
+/// Returns: Returns 0 on success, or a POSIX errno value on failure (e.g. EINVAL
+/// if metadata is not a TCP metadata object, or the underlying socket
+/// error).
 #[inline]
 pub fn nw_tcp_set_max_pacing_rate(metadata: &NWProtocolMetadata, max_pacing_rate: u64) -> c_int {
     extern "C-unwind" {

@@ -62,6 +62,19 @@ impl PHAssetChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setRating(&self, rating: PHAssetRating);
 
+        /// An asset description to change to.
+        /// Set to nil or an empty string to clear the caption.
+        #[unsafe(method(caption))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`caption`][Self::caption].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setCaption:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCaption(&self, caption: Option<&NSString>);
+
         /// # Safety
         ///
         /// `assets` should be of the correct type.
@@ -119,6 +132,16 @@ impl PHAssetChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setLivePhotoVideoPlaybackEnabled(&self, enabled: bool);
 
+        /// Add or remove a keyword associated with this asset
+        /// Adding a keyword that is already associated (or removing a keyword that is not) will be silently ignored
+        #[unsafe(method(addKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn addKeyword(&self, keyword: &NSString);
+
+        #[unsafe(method(removeKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn removeKeyword(&self, keyword: &NSString);
+
         #[cfg(feature = "PHContentEditingOutput")]
         #[unsafe(method(contentEditingOutput))]
         #[unsafe(method_family = none)]
@@ -138,6 +161,14 @@ impl PHAssetChangeRequest {
         pub unsafe fn revertAssetContentToOriginal(&self);
 
         #[cfg(feature = "PhotosTypes")]
+        /// Reverts the asset's content to its original, choosing which original resource to use as the unadjusted base for all renders.
+        ///
+        /// In addition to reverting all adjustments, this selects either the RAW
+        /// (``PHOriginalResourceChoice/PHOriginalResourceChoiceRaw``) or the compressed
+        /// (``PHOriginalResourceChoice/PHOriginalResourceChoiceCompressed``) resource as the source for all renders.
+        /// This applies to RAW+JPEG assets only. Using this with other types of assets is not supported.
+        ///
+        /// - Parameter choice: The original resource to use as the unadjusted base after reverting.
         #[unsafe(method(revertAssetContentToOriginalResourceChoice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn revertAssetContentToOriginalResourceChoice(
@@ -242,6 +273,12 @@ impl PHContentEditingInputRequestOptions {
         pub unsafe fn setSkipsDisplaySizeImage(&self, skips_display_size_image: bool);
 
         #[cfg(feature = "PhotosTypes")]
+        /// The original resource to use as the unadjusted base when fulfilling the request.
+        ///
+        /// When set, the content editing input request is fulfilled as though the asset's
+        /// original resource choice were the value specified here. This property applies to
+        /// RAW+JPEG assets only, and is intended for switching between the RAW and compressed
+        /// resource of such an asset. Setting it for an asset that has only a RAW resource is an error.
         #[unsafe(method(originalResourceChoice))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalResourceChoice(&self) -> PHOriginalResourceChoice;

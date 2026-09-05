@@ -216,6 +216,24 @@ pub const kIOPSFailureOpenThermistor: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurefuseblown?language=objc)
 pub const kIOPSFailureFuseBlown: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Fuse Blown\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuresafetyundervoltage?language=objc)
+pub const kIOPSFailureSafetyUnderVoltage: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"Safety Under-Voltage\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuresecondlevelprotection?language=objc)
+pub const kIOPSFailureSecondLevelProtection: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"Second Level Protection Triggered\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailureafereadwritefail?language=objc)
+pub const kIOPSFailureAFEReadWriteFail: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"AFE Read/Write Fail\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailureafecomparisonfail?language=objc)
+pub const kIOPSFailureAFEComparisonFail: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"AFE Comparison Fail\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurevoltageimbalanceactive?language=objc)
+pub const kIOPSFailureVoltageImbalanceActive: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"Voltage Imbalance Active\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurevoltageimbalancerest?language=objc)
+pub const kIOPSFailureVoltageImbalanceRest: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"Voltage Imbalance Rest\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnotifylowbattery?language=objc)
 pub const kIOPSNotifyLowBattery: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources.lowbattery\0") };

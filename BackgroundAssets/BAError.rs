@@ -51,7 +51,7 @@ impl BAErrorCode {
     /// The requested download could not be enqueued because the download is marked as essential, which is prohibited in this context.
     #[doc(alias = "BAErrorCodeDownloadEssentialDownloadNotPermitted")]
     pub const DownloadEssentialDownloadNotPermitted: Self = Self(109);
-    /// The requested download could not be enqueued. Check the device‘s Low Power Mode or Background App Refresh settings.
+    /// The requested download could not be enqueued. Check the device’s Low Power Mode or Background App Refresh settings.
     #[doc(alias = "BAErrorCodeDownloadBackgroundActivityProhibited")]
     pub const DownloadBackgroundActivityProhibited: Self = Self(111);
     /// The requested download cannot be enqueued. The download would exceed the download allowance.

@@ -652,24 +652,34 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsillegaltextmovement?language=objc)
+#[deprecated]
 pub const NSIllegalTextMovement: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsreturntextmovement?language=objc)
+#[deprecated]
 pub const NSReturnTextMovement: c_uint = 0x10;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabtextmovement?language=objc)
+#[deprecated]
 pub const NSTabTextMovement: c_uint = 0x11;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbacktabtextmovement?language=objc)
+#[deprecated]
 pub const NSBacktabTextMovement: c_uint = 0x12;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslefttextmovement?language=objc)
+#[deprecated]
 pub const NSLeftTextMovement: c_uint = 0x13;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrighttextmovement?language=objc)
+#[deprecated]
 pub const NSRightTextMovement: c_uint = 0x14;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuptextmovement?language=objc)
+#[deprecated]
 pub const NSUpTextMovement: c_uint = 0x15;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdowntextmovement?language=objc)
+#[deprecated]
 pub const NSDownTextMovement: c_uint = 0x16;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscanceltextmovement?language=objc)
+#[deprecated]
 pub const NSCancelTextMovement: c_uint = 0x17;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothertextmovement?language=objc)
+#[deprecated]
 pub const NSOtherTextMovement: c_uint = 0;
 
 extern_protocol!(

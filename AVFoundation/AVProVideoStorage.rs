@@ -3,8 +3,36 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+use objc2_foundation::*;
 
 use crate::*;
+
+/// A reason that Pro Video Storage may be busy.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avprovideostoragebusyreason?language=objc)
+// NS_TYPED_ENUM
+pub type AVProVideoStorageBusyReason = NSString;
+
+extern "C" {
+    /// Pro Video Storage is being created or resized.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avprovideostoragebusyreasonadjustingcapacity?language=objc)
+    pub static AVProVideoStorageBusyReasonAdjustingCapacity: &'static AVProVideoStorageBusyReason;
+}
+
+extern "C" {
+    /// Pro Video Storage capacity is being replenished.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avprovideostoragebusyreasonreplenishing?language=objc)
+    pub static AVProVideoStorageBusyReasonReplenishing: &'static AVProVideoStorageBusyReason;
+}
+
+extern "C" {
+    /// A capture to Pro Video Storage is in progress.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avprovideostoragebusyreasoncapturing?language=objc)
+    pub static AVProVideoStorageBusyReasonCapturing: &'static AVProVideoStorageBusyReason;
+}
 
 extern_class!(
     /// A class to track and manage pre-allocated storage for high data rate video capture.
@@ -63,14 +91,35 @@ impl AVProVideoStorage {
         #[unsafe(method_family = none)]
         pub unsafe fn remainingCapacity(&self) -> NSInteger;
 
-        /// Indicates whether Pro Video Storage is currently busy.
+        #[cfg(feature = "block2")]
+        /// Performs a best-effort attempt to restore Pro Video Storage to the initial capacity specified by the user in Settings app.
         ///
-        /// A value of `YES` indicates that Pro Video Storage is currently being modified (e.g., during capacity changes or file creation/deletion).
-        /// While this is `YES`, if a client tries to start a video capture an exception will be raised.
-        /// This property is key-value observable.
-        #[unsafe(method(isBusy))]
+        /// If there is enough readily available free space on the file system, Pro Video Storage will be resized to ``initialCapacity``.
+        /// Otherwise, this method will attempt to resize it near that value.
+        ///
+        /// Pro Video Storage is busy when the replenish operation starts and is no longer busy when the completion handler is called.
+        ///
+        /// - Parameter completionHandler:
+        /// The completion handler is called on an arbitrary dispatch queue when the replenish operation finishes.
+        /// The `remainingCapacity` parameter reflects the new size in bytes, which may be less than ``initialCapacity``.
+        /// If the operation fails, the `error` parameter is set and `remainingCapacity` is unchanged or -1 if there was a failure retrieving the value.
+        #[unsafe(method(replenishCapacityWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isBusy(&self) -> bool;
+        pub unsafe fn replenishCapacityWithCompletionHandler(
+            &self,
+            completion_handler: Option<
+                &block2::SendableBlock<'static, fn(NSInteger, *mut NSError)>,
+            >,
+        );
+
+        /// Whether Pro Video Storage is busy and the associated reasons.
+        ///
+        /// A non-empty set indicates that Pro Video Storage is currently being modified.
+        /// While this is non-empty, starting a video capture will fail with an error.
+        /// This property is key-value observable.
+        #[unsafe(method(busyReasons))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn busyReasons(&self) -> Retained<NSSet<AVProVideoStorageBusyReason>>;
     );
 }
 

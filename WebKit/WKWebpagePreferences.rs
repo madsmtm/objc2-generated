@@ -232,6 +232,19 @@ impl WKWebpagePreferences {
             &self,
             allows_js_handle_creation_in_page_world: bool,
         );
+
+        /// Whether the Global Privacy Control (GPC) signal is enabled for the navigation.
+        ///
+        /// The default value is NO. When enabled, both navigator.globalPrivacyControl and the
+        /// Sec-GPC: 1 request header are active for the main frame, its subframes, and their subresources.
+        #[unsafe(method(globalPrivacyControlEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn globalPrivacyControlEnabled(&self) -> bool;
+
+        /// Setter for [`globalPrivacyControlEnabled`][Self::globalPrivacyControlEnabled].
+        #[unsafe(method(setGlobalPrivacyControlEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setGlobalPrivacyControlEnabled(&self, global_privacy_control_enabled: bool);
     );
 }
 

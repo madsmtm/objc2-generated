@@ -869,10 +869,6 @@ pub use self::__CGImageProperties::kCGImagePropertyIPTCExpirationDate;
 #[cfg(feature = "CGImageProperties")]
 pub use self::__CGImageProperties::kCGImagePropertyIPTCExpirationTime;
 #[cfg(feature = "CGImageProperties")]
-pub use self::__CGImageProperties::kCGImagePropertyIPTCExtAISystemUsed;
-#[cfg(feature = "CGImageProperties")]
-pub use self::__CGImageProperties::kCGImagePropertyIPTCExtAISystemVersionUsed;
-#[cfg(feature = "CGImageProperties")]
 pub use self::__CGImageProperties::kCGImagePropertyIPTCExtAboutCvTerm;
 #[cfg(feature = "CGImageProperties")]
 pub use self::__CGImageProperties::kCGImagePropertyIPTCExtAboutCvTermCvId;

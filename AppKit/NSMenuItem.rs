@@ -16,12 +16,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMenuItemImageVisibility(pub NSInteger);
 impl NSMenuItemImageVisibility {
+    /// AppKit should choose whether the item's image is visible, considering the system configuration.
     #[doc(alias = "NSMenuItemImageVisibilityAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// AppKit should choose whether the item's image is visible, considering the system configuration.
+    /// The item image should always be visible. Note that in some cases, AppKit may still hide the image, overriding this preference.
     #[doc(alias = "NSMenuItemImageVisibilityVisible")]
     pub const Visible: Self = Self(1);
-    /// The item image should always be visible. Note that in some cases, AppKit may still hide the image, overriding this preference.
+    /// The item image should not be visible.
     #[doc(alias = "NSMenuItemImageVisibilityHidden")]
     pub const Hidden: Self = Self(2);
 }

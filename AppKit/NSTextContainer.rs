@@ -352,17 +352,22 @@ impl NSTextContainer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection?language=objc)
 // NS_ENUM
+#[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineSweepDirection(pub NSUInteger);
 impl NSLineSweepDirection {
     #[doc(alias = "NSLineSweepLeft")]
+    #[deprecated]
     pub const Left: Self = Self(0);
     #[doc(alias = "NSLineSweepRight")]
+    #[deprecated]
     pub const Right: Self = Self(1);
     #[doc(alias = "NSLineSweepDown")]
+    #[deprecated]
     pub const Down: Self = Self(2);
     #[doc(alias = "NSLineSweepUp")]
+    #[deprecated]
     pub const Up: Self = Self(3);
 }
 
@@ -376,19 +381,25 @@ unsafe impl RefEncode for NSLineSweepDirection {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection?language=objc)
 // NS_ENUM
+#[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineMovementDirection(pub NSUInteger);
 impl NSLineMovementDirection {
     #[doc(alias = "NSLineDoesntMove")]
+    #[deprecated]
     pub const DoesntMove: Self = Self(0);
     #[doc(alias = "NSLineMovesLeft")]
+    #[deprecated]
     pub const MovesLeft: Self = Self(1);
     #[doc(alias = "NSLineMovesRight")]
+    #[deprecated]
     pub const MovesRight: Self = Self(2);
     #[doc(alias = "NSLineMovesDown")]
+    #[deprecated]
     pub const MovesDown: Self = Self(3);
     #[doc(alias = "NSLineMovesUp")]
+    #[deprecated]
     pub const MovesUp: Self = Self(4);
 }
 
@@ -403,6 +414,7 @@ unsafe impl RefEncode for NSLineMovementDirection {
 /// NSTextContainerDeprecated.
 impl NSTextContainer {
     extern_methods!(
+        #[deprecated]
         #[unsafe(method(initWithContainerSize:))]
         #[unsafe(method_family = init)]
         pub fn initWithContainerSize(
@@ -410,11 +422,13 @@ impl NSTextContainer {
             a_container_size: NSSize,
         ) -> Retained<Self>;
 
+        #[deprecated]
         #[unsafe(method(containerSize))]
         #[unsafe(method_family = none)]
         pub fn containerSize(&self) -> NSSize;
 
         /// Setter for [`containerSize`][Self::containerSize].
+        #[deprecated]
         #[unsafe(method(setContainerSize:))]
         #[unsafe(method_family = none)]
         pub fn setContainerSize(&self, container_size: NSSize);
@@ -422,6 +436,7 @@ impl NSTextContainer {
         /// # Safety
         ///
         /// `remaining_rect` must be a valid pointer or null.
+        #[deprecated]
         #[unsafe(method(lineFragmentRectForProposedRect:sweepDirection:movementDirection:remainingRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect(

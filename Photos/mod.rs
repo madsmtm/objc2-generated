@@ -39,6 +39,9 @@ mod __PHAssetCollectionChangeRequest;
 #[cfg(feature = "PHAssetCreationRequest")]
 #[path = "PHAssetCreationRequest.rs"]
 mod __PHAssetCreationRequest;
+#[cfg(feature = "PHAssetExtendedMetadata")]
+#[path = "PHAssetExtendedMetadata.rs"]
+mod __PHAssetExtendedMetadata;
 #[cfg(feature = "PHAssetResource")]
 #[path = "PHAssetResource.rs"]
 mod __PHAssetResource;
@@ -156,6 +159,8 @@ pub use self::__PHAssetCollectionChangeRequest::PHAssetCollectionChangeRequest;
 pub use self::__PHAssetCreationRequest::PHAssetCreationRequest;
 #[cfg(feature = "PHAssetCreationRequest")]
 pub use self::__PHAssetCreationRequest::PHAssetResourceCreationOptions;
+#[cfg(feature = "PHAssetExtendedMetadata")]
+pub use self::__PHAssetExtendedMetadata::PHAssetExtendedMetadata;
 #[cfg(feature = "PHAssetResource")]
 pub use self::__PHAssetResource::PHAssetResource;
 #[cfg(feature = "PHAssetResourceManager")]
@@ -336,6 +341,8 @@ pub use self::__PhotosTypes::PHAssetMediaSubtype;
 pub use self::__PhotosTypes::PHAssetMediaType;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetPlaybackStyle;
+#[cfg(feature = "PhotosTypes")]
+pub use self::__PhotosTypes::PHAssetPlaybackVariation;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetRating;
 #[cfg(feature = "PhotosTypes")]

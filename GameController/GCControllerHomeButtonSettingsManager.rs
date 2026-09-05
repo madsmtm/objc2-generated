@@ -9,59 +9,147 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerhomebuttonsettingsaction?language=objc)
+/// How the system responds to a press of the game controller Home button
+/// outside of contexts where an action of the front-most app takes priority.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerhomebuttonsettingsystemaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct GCControllerHomeButtonSettingsAction(pub NSInteger);
-impl GCControllerHomeButtonSettingsAction {
-    /// The controller home button action could not be accessed.
-    #[doc(alias = "GCControllerHomeButtonSettingsActionUnavailable")]
-    pub const Unavailable: Self = Self(0);
-    /// The controller home button action opens the current application.
-    #[doc(alias = "GCControllerHomeButtonSettingsActionOpenCurrentApplication")]
+pub struct GCControllerHomeButtonSettingSystemAction(pub NSInteger);
+impl GCControllerHomeButtonSettingSystemAction {
+    /// The setting value could not be retrieved.
+    ///
+    /// This result indicates that an error occurred, typically because the
+    /// app is not currently permitted to read settings state.
+    #[doc(alias = "GCControllerHomeButtonSettingSystemActionUnavailable")]
+    pub const Unavailable: Self = Self(-1);
+    /// The controller home button system action performs some other action.
+    #[doc(alias = "GCControllerHomeButtonSettingSystemActionOther")]
+    pub const Other: Self = Self(0);
+    /// The controller home button system action opens the current application.
+    #[doc(alias = "GCControllerHomeButtonSettingSystemActionOpenCurrentApplication")]
     pub const OpenCurrentApplication: Self = Self(1);
-    /// The controller home button action performs some other action.
-    #[doc(alias = "GCControllerHomeButtonSettingsActionOther")]
-    pub const Other: Self = Self(NSIntegerMax as _);
-    /// Controller home button actions are disabled.
-    #[doc(alias = "GCControllerHomeButtonSettingsActionDisabled")]
-    pub const Disabled: Self = Self(-1);
+    /// System response to the game controller Home button press is
+    /// disabled.
+    #[doc(alias = "GCControllerHomeButtonSettingSystemActionDisabled")]
+    pub const Disabled: Self = Self(NSIntegerMax as _);
 }
 
-unsafe impl Encode for GCControllerHomeButtonSettingsAction {
+unsafe impl Encode for GCControllerHomeButtonSettingSystemAction {
     const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
-unsafe impl RefEncode for GCControllerHomeButtonSettingsAction {
+unsafe impl RefEncode for GCControllerHomeButtonSettingSystemAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// A hint passed to `-openControllerHomeButtonSettingsForActivity:` that
-/// indicates the reason the app is requesting to open the Home button settings.
+/// How the system responds to a press of the game controller Home button while
+/// your application is front-most.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerhomebuttonsettingsactivity?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerhomebuttonsettinginappaction?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct GCControllerHomeButtonSettingInAppAction(pub NSInteger);
+impl GCControllerHomeButtonSettingInAppAction {
+    /// The setting value could not be retrieved.
+    ///
+    /// This result indicates that an error occurred, typically because the
+    /// app is not currently permitted to read settings state.
+    #[doc(alias = "GCControllerHomeButtonSettingInAppActionUnavailable")]
+    pub const Unavailable: Self = Self(-1);
+    /// The system maintains its default handling regardless of your app's
+    /// preference.
+    #[doc(alias = "GCControllerHomeButtonSettingInAppActionDefault")]
+    pub const Default: Self = Self(0);
+    /// The system defers its handling to your app's preference.
+    ///
+    /// The system reponse to the game controller Home button press is disabled
+    /// when the app indicates that it wants to handle the Home button
+    /// press.  The app indicates that it wants to handle the Home button
+    /// press by setting:
+    ///
+    /// ```text
+    /// controller.physicalInputProfile.buttons[GCInputButtonHome].preferredSystemGestureState = GCSystemGestureStateDisabled;
+    /// ```
+    #[doc(alias = "GCControllerHomeButtonSettingInAppActionDefer")]
+    pub const Defer: Self = Self(1);
+    /// System response to the game controller Home button press is
+    /// disabled.
+    #[doc(alias = "GCControllerHomeButtonSettingInAppActionDisabled")]
+    pub const Disabled: Self = Self(NSIntegerMax as _);
+}
+
+unsafe impl Encode for GCControllerHomeButtonSettingInAppAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for GCControllerHomeButtonSettingInAppAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// An additional returned flag indicating whether a setting has been modified
+/// by the user.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerhomebuttonsettingcustomizationstatus?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct GCControllerHomeButtonSettingCustomizationStatus(pub NSInteger);
+impl GCControllerHomeButtonSettingCustomizationStatus {
+    /// The user has not customized this setting.
+    ///
+    /// The setting's value is the system default.
+    #[doc(alias = "GCControllerHomeButtonSettingCustomizationDefault")]
+    pub const Default: Self = Self(0);
+    /// The user has customized this setting at least once.
+    #[doc(alias = "GCControllerHomeButtonSettingCustomizationUser")]
+    pub const User: Self = Self(1);
+}
+
+unsafe impl Encode for GCControllerHomeButtonSettingCustomizationStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for GCControllerHomeButtonSettingCustomizationStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// A hint passed to `-openControllerHomeButtonSettingsForActivity:` to
+/// indicate the reason the app is requesting to open Settings.
+///
+/// The system uses this hint to navigate to the appropriate screen in the
+/// Settings application.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerhomebuttonsettingscustomizationactivity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct GCControllerHomeButtonSettingsActivity(pub NSInteger);
-impl GCControllerHomeButtonSettingsActivity {
-    /// Customize the action that occurs in response to long press of the
-    /// Home button.
-    #[doc(alias = "GCControllerHomeButtonSettingsCustomizeActionActivity")]
-    pub const CustomizeActionActivity: Self = Self(1);
-    /// Disable the system Home button actions while this app has focus.
-    #[doc(alias = "GCControllerHomeButtonSettingsCustomizeOverridesActivity")]
-    pub const CustomizeOverridesActivity: Self = Self(2);
+pub struct GCControllerHomeButtonSettingsCustomizationActivity(pub NSInteger);
+impl GCControllerHomeButtonSettingsCustomizationActivity {
+    /// Customize the system action.
+    #[doc(alias = "GCControllerHomeButtonSettingsCustomizeSystemActionActivity")]
+    pub const CustomizeSystemActionActivity: Self = Self(1);
+    /// Customize the in-app action.
+    #[doc(alias = "GCControllerHomeButtonSettingsCustomizeInAppActionActivity")]
+    pub const CustomizeInAppActionActivity: Self = Self(2);
 }
 
-unsafe impl Encode for GCControllerHomeButtonSettingsActivity {
+unsafe impl Encode for GCControllerHomeButtonSettingsCustomizationActivity {
     const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
-unsafe impl RefEncode for GCControllerHomeButtonSettingsActivity {
+unsafe impl RefEncode for GCControllerHomeButtonSettingsCustomizationActivity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+/// The type of the block that is scheduled after Home button settings change.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerhomebuttonsettingsdidchangehandler?language=objc)
+#[cfg(feature = "block2")]
+pub type GCControllerHomeButtonSettingsDidChangeHandler =
+    block2::Block<'static, fn(NonNull<GCControllerHomeButtonSettingsManager>)>;
 
 extern_class!(
     /// Access the game controller system Home button settings.
@@ -98,22 +186,28 @@ impl GCControllerHomeButtonSettingsManager {
         pub unsafe fn initWithQueue(
             this: Allocated<Self>,
             queue: Option<&DispatchQueue>,
-        ) -> Option<Retained<Self>>;
+        ) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[cfg(feature = "dispatch2")]
-        /// A block that is called after shortcut settings change.
+        #[cfg(feature = "block2")]
+        /// A block that is scheduled after Home button settings change.
         ///
-        /// This block is called on the queue that the
+        /// This block is scheduled on the `queue` the
         /// `GCControllerHomeButtonSettingsManager` was initialized with.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(settingsDidChangeHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn settingsDidChangeHandler(&self) -> *mut DispatchBlock;
+        pub unsafe fn settingsDidChangeHandler(
+            &self,
+        ) -> *mut GCControllerHomeButtonSettingsDidChangeHandler;
 
-        #[cfg(feature = "dispatch2")]
+        #[cfg(feature = "block2")]
         /// Setter for [`settingsDidChangeHandler`][Self::settingsDidChangeHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
@@ -121,7 +215,7 @@ impl GCControllerHomeButtonSettingsManager {
         #[unsafe(method_family = none)]
         pub unsafe fn setSettingsDidChangeHandler(
             &self,
-            settings_did_change_handler: Option<&DispatchBlock>,
+            settings_did_change_handler: Option<&GCControllerHomeButtonSettingsDidChangeHandler>,
         );
 
         /// Opens the Settings app to the screen in game controller settings where
@@ -135,16 +229,48 @@ impl GCControllerHomeButtonSettingsManager {
         #[unsafe(method_family = none)]
         pub unsafe fn openControllerHomeButtonSettingsForActivity_error(
             &self,
-            activity: GCControllerHomeButtonSettingsActivity,
+            activity: GCControllerHomeButtonSettingsCustomizationActivity,
         ) -> Result<(), Retained<NSError>>;
 
-        /// Get the current controller Home button action.
-        #[unsafe(method(readControllerHomeButtonActionWithError:))]
+        /// Get the current controller Home button system action setting.
+        ///
+        /// # Safety
+        ///
+        /// `customization` must be a valid pointer or null.
+        #[unsafe(method(readControllerHomeButtonSystemAction:withError:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn readControllerHomeButtonActionWithError(
+        pub unsafe fn readControllerHomeButtonSystemAction_withError(
+            &self,
+            customization: *mut GCControllerHomeButtonSettingCustomizationStatus,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> GCControllerHomeButtonSettingSystemAction;
+
+        #[unsafe(method(readControllerHomeButtonSystemActionWithError:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn readControllerHomeButtonSystemActionWithError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
-        ) -> GCControllerHomeButtonSettingsAction;
+        ) -> GCControllerHomeButtonSettingSystemAction;
+
+        /// Get the current controller Home button in-app action setting.
+        ///
+        /// # Safety
+        ///
+        /// `customization` must be a valid pointer or null.
+        #[unsafe(method(readControllerHomeButtonInAppAction:withError:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn readControllerHomeButtonInAppAction_withError(
+            &self,
+            customization: *mut GCControllerHomeButtonSettingCustomizationStatus,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> GCControllerHomeButtonSettingInAppAction;
+
+        #[unsafe(method(readControllerHomeButtonInAppActionWithError:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn readControllerHomeButtonInAppActionWithError(
+            &self,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> GCControllerHomeButtonSettingInAppAction;
     );
 }
 

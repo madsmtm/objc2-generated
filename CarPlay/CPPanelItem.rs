@@ -68,18 +68,33 @@ impl CPPanelItem {
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&AnyObject>);
+
+        #[cfg(feature = "CPListItem")]
+        /// Initializes a panel item wrapping a
+        /// `CPListItem.`
+        #[unsafe(method(initWithListItem:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithListItem(
+            this: Allocated<Self>,
+            list_item: &CPListItem,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "CPGridButton")]
+        /// Initializes a panel item wrapping an array of
+        /// `CPGridButton`objects.
+        #[unsafe(method(initWithGridButtons:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithGridButtons(
+            this: Allocated<Self>,
+            grid_buttons: &NSArray<CPGridButton>,
+        ) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl CPPanelItem {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

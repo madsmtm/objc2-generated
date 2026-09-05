@@ -1069,17 +1069,22 @@ impl DefaultRetained for NSMutableParagraphStyle {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttabtype?language=objc)
 // NS_ENUM
+#[deprecated = "Use NSTextAlignment-based API."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextTabType(pub NSUInteger);
 impl NSTextTabType {
     #[doc(alias = "NSLeftTabStopType")]
+    #[deprecated = "Use NSTextAlignment-based API."]
     pub const LeftTabStopType: Self = Self(0);
     #[doc(alias = "NSRightTabStopType")]
+    #[deprecated = "Use NSTextAlignment-based API."]
     pub const RightTabStopType: Self = Self(1);
     #[doc(alias = "NSCenterTabStopType")]
+    #[deprecated = "Use NSTextAlignment-based API."]
     pub const CenterTabStopType: Self = Self(2);
     #[doc(alias = "NSDecimalTabStopType")]
+    #[deprecated = "Use NSTextAlignment-based API."]
     pub const DecimalTabStopType: Self = Self(3);
 }
 
@@ -1095,6 +1100,7 @@ unsafe impl RefEncode for NSTextTabType {
 impl NSTextTab {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        #[deprecated]
         #[unsafe(method(initWithType:location:))]
         #[unsafe(method_family = init)]
         pub fn initWithType_location(
@@ -1103,6 +1109,7 @@ impl NSTextTab {
             loc: CGFloat,
         ) -> Retained<Self>;
 
+        #[deprecated = "Use -alignment and -options."]
         #[unsafe(method(tabStopType))]
         #[unsafe(method_family = none)]
         pub fn tabStopType(&self) -> NSTextTabType;

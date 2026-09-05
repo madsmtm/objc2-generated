@@ -330,4 +330,5 @@ impl NSTextStorage {
 /// ** Deprecations ***
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorageeditedoptions?language=objc)
+#[deprecated]
 pub type NSTextStorageEditedOptions = NSUInteger;

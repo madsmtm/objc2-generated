@@ -53,6 +53,25 @@ impl PHAsset {
         pub unsafe fn playbackStyle(&self) -> PHAssetPlaybackStyle;
 
         #[cfg(feature = "PhotosTypes")]
+        /// The Live Photo playback variation for the asset.
+        ///
+        /// Use this value to determine whether a Live Photo plays back as a Long Exposure, Mirror (Bounce), or
+        /// Autoloop (Loop):
+        /// - `PHAssetPlaybackVariationNone`: the asset is not a Live Photo, or uses the default Live Photo presentation.
+        /// - `PHAssetPlaybackVariationAutoloop`: the Live Photo plays back as a Loop.
+        /// - `PHAssetPlaybackVariationMirror`: the Live Photo plays back as a Bounce.
+        /// - `PHAssetPlaybackVariationLongExposure`: the Live Photo plays back as a Long Exposure.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(playbackVariation))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn playbackVariation(&self) -> PHAssetPlaybackVariation;
+
+        #[cfg(feature = "PhotosTypes")]
         /// This property is not atomic.
         ///
         /// # Safety
@@ -251,6 +270,13 @@ impl PHAsset {
         pub unsafe fn adjustmentFormatIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
+        /// The original resource used as the basis for rendering this asset's derivatives.
+        ///
+        /// This value is only meaningful for assets that have a RAW alternate, such as
+        /// RAW+JPEG assets, where it indicates whether the RAW or the compressed resource
+        /// serves as the unadjusted base. For all other assets the value is
+        /// ``PHOriginalResourceChoice/PHOriginalResourceChoiceCompressed``.
+        ///
         /// This property is not atomic.
         ///
         /// # Safety
@@ -259,6 +285,15 @@ impl PHAsset {
         #[unsafe(method(originalResourceChoice))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalResourceChoice(&self) -> PHOriginalResourceChoice;
+
+        #[cfg(feature = "PHAssetExtendedMetadata")]
+        /// An accessor to other asset properties.
+        ///
+        /// By default these properties are fetched on demand. They can be prefetched by
+        /// toggling `PHFetchOptions.prefetchAssetExtendedMetadata`.
+        #[unsafe(method(extendedMetadata))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn extendedMetadata(&self) -> Retained<PHAssetExtendedMetadata>;
 
         #[cfg(feature = "PhotosTypes")]
         /// This property is not atomic.

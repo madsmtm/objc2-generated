@@ -263,6 +263,30 @@ unsafe impl RefEncode for PHAssetPlaybackStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetplaybackvariation?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct PHAssetPlaybackVariation(pub NSInteger);
+impl PHAssetPlaybackVariation {
+    #[doc(alias = "PHAssetPlaybackVariationNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "PHAssetPlaybackVariationAutoloop")]
+    pub const Autoloop: Self = Self(1);
+    #[doc(alias = "PHAssetPlaybackVariationMirror")]
+    pub const Mirror: Self = Self(2);
+    #[doc(alias = "PHAssetPlaybackVariationLongExposure")]
+    pub const LongExposure: Self = Self(3);
+}
+
+unsafe impl Encode for PHAssetPlaybackVariation {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PHAssetPlaybackVariation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -363,14 +387,22 @@ unsafe impl RefEncode for PHAssetBurstSelectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phoriginalresourcechoice?language=objc)
+/// This value determines which original resource is used for unadjusted asset derivatives and as the unadjusted resource provided/used for content adjustments.
+///
+/// This choice is only meaningful for assets that have a RAW alternate, such as
+/// RAW+JPEG assets. For all other assets, the asset has a single original resource
+/// and the value is always ``PHOriginalResourceChoiceCompressed``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phoriginalresourcechoice?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHOriginalResourceChoice(pub NSInteger);
 impl PHOriginalResourceChoice {
+    /// The compressed original resource, such as a JPEG or HEIC, is used.
     #[doc(alias = "PHOriginalResourceChoiceCompressed")]
     pub const Compressed: Self = Self(0);
+    /// The RAW original resource is used.
     #[doc(alias = "PHOriginalResourceChoiceRaw")]
     pub const Raw: Self = Self(1);
 }

@@ -315,6 +315,21 @@ impl PHLivePhotoRequestOptions {
             &self,
             progress_handler: Option<&PHAssetImageProgressHandler>,
         );
+
+        /// Request HDR image data if available (such as PQ/HLG formats).
+        ///
+        /// Off by default. For best results, only enable this when you intend to display an HDR experience in
+        /// `PHLivePhotoView` — for example, when the view's `preferredImageDynamicRange` is greater than
+        /// standard (SDR).
+        /// Defaults to `NO`.
+        #[unsafe(method(preferHDR))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preferHDR(&self) -> bool;
+
+        /// Setter for [`preferHDR`][Self::preferHDR].
+        #[unsafe(method(setPreferHDR:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPreferHDR(&self, prefer_hdr: bool);
     );
 }
 

@@ -1309,10 +1309,10 @@ extern "C" {
     /// CFString.
     ///
     ///
-    /// Subject of the this item. Type is a CFString.
+    /// Subject of this item. Type is a CFString.
     ///
     ///
-    /// Theme of the this item. Type is a CFString.
+    /// Theme of this item. Type is a CFString.
     ///
     ///
     /// An account of the content of the resource. Description may include

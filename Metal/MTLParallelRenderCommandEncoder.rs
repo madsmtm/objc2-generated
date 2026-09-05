@@ -65,6 +65,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// `colorAttachmentIndex` might not be bounds-checked.
+        #[deprecated = "Store action options have no effect on Apple Silicon"]
         #[unsafe(method(setColorStoreActionOptions:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorStoreActionOptions_atIndex(
@@ -76,6 +77,7 @@ extern_protocol!(
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the depth attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setDepthStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
+        #[deprecated = "Store action options have no effect on Apple Silicon"]
         #[unsafe(method(setDepthStoreActionOptions:))]
         #[unsafe(method_family = none)]
         fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
@@ -83,6 +85,7 @@ extern_protocol!(
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the stencil attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setStencilStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
+        #[deprecated = "Store action options have no effect on Apple Silicon"]
         #[unsafe(method(setStencilStoreActionOptions:))]
         #[unsafe(method_family = none)]
         fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);

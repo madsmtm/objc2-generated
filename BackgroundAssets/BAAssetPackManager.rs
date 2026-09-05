@@ -145,7 +145,7 @@ impl BAAssetPackManager {
         ) -> bool;
 
         #[cfg(feature = "block2")]
-        /// Gets the languages asset packs that are localized for which are available locally.
+        /// Gets the languages used by asset packs that are localized and are available locally.
         /// - Parameter completionHandler: A block that receives an array of BCP-47 language identifiers.
         #[unsafe(method(getLocallyAvailableLanguagesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -155,9 +155,9 @@ impl BAAssetPackManager {
         );
 
         #[cfg(feature = "block2")]
-        /// Reconciles the set of locally available asset packs with the user’s preferred languages.
+        /// Reconciles the set of locally available asset packs with the current preferred languages.
         ///
-        /// This method downloads any missing localized asset packs, waits for those downloads to finish, and removes any unneeded ones. If you’ve overridden the preferred languages, then this method will respect that. Don’t use this method if your application offers split-language functionality; instead, you’ll need to handle the reconciliation manually.
+        /// This method downloads any missing localized asset packs, waits for those downloads to finish, and removes any unneeded ones. If you’ve overridden the preferred languages by setting ``resolvedLanguage``, then this method respects that selection. Don’t use this method if your application offers split-language functionality; instead, handle the reconciliation manually.
         /// - Parameter completionHandler: A block that’s called when the the system has successfully reconciled the set of locally available asset packs with the user’s preferred languages or that receives an error if one occurs.
         #[unsafe(method(reconcilePreferredLanguagesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -167,9 +167,11 @@ impl BAAssetPackManager {
         );
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
-        /// Ensures that the specified asset pack be available locally.
+        /// Ensures that the specified asset pack is available locally, performing a download if necessary.
         ///
-        /// This method checks whether the asset pack is currently downloaded. If it isn’t, then the system schedules it to be downloaded and calls the completion handler with `nil` for the the completion handler’s `error` parameter when the download finishes. It’s guaranteed that the requested asset pack will be available locally once the completion handler is called with `nil` for the `error` parameter. If a non-`nil` value is provided to the completion handler’s `error` parameter, then the asset pack is **not** guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
+        /// This method checks whether the asset pack is currently downloaded. If it isn’t, then the system schedules it to be downloaded and calls the completion handler with `nil` for the the completion handler’s `error` parameter when the download finishes. The framework guarantees that the requested asset pack is available locally after this method calls the completion handler with `nil` for the `error` parameter. If this method calls the completion handler with a non-`nil` value for `error`, then the asset pack _isn’t_ guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
+        ///
+        /// To download multiple asset packs at the same time, use ``ensureLocalAvailabilityOfAssetPacks:completionHandler:``.
         /// - Parameters:
         /// - assetPack: The asset pack the local availability of which to ensure.
         /// - completionHandler: A block that’s called when the asset pack is available locally or that receives an error if one occurs.
@@ -183,9 +185,11 @@ impl BAAssetPackManager {
         );
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
-        /// Ensures that the specified asset pack be available locally.
+        /// Ensures that the specified asset pack is available locally, performing a download if necessary.
         ///
-        /// This method checks whether the asset pack is currently downloaded. If it isn’t, then the system schedules it to be downloaded and calls the completion handler with `nil` for the completion handler’s `error` parameter when the download finishes. It’s guaranteed that the requested asset pack will be available locally once the completion handler is called with `nil` for the `error` parameter. If a non-`nil` value is provided to the completion handler’s `error` parameter, then the asset pack is **not** guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
+        /// This method checks whether the asset pack is currently downloaded. If it isn’t, then the system schedules it to be downloaded and calls the completion handler with `nil` for the completion handler’s `error` parameter when the download finishes. The framework guarantees that the requested asset pack is available locally after this method calls the completion handler with `nil` for the `error` parameter. If this method calls the completion handler with a non-`nil` value for `error`, then the asset pack _isn’t_ guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
+        ///
+        /// To download multiple asset packs at the same time, use ``ensureLocalAvailabilityOfAssetPack:requireLatestVersion:completionHandler:``.
         /// - Parameters:
         /// - assetPack: The asset pack the local availability of which to ensure.
         /// - shouldUpdate: Whether to require that the latest version be available locally. When `YES` is passed to this parameter, the method will wait for the update (if there indeed is one available) to be downloaded before returning. When `NO` is passed, the method won’t check for updates and won’t attempt to download any.
@@ -200,9 +204,9 @@ impl BAAssetPackManager {
         );
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
-        /// Ensures that the specified asset packs be available locally.
+        /// Ensures that the specified asset packs are available locally.
         ///
-        /// This method checks whether the asset packs are currently downloaded. If any aren’t, then the system schedules them to be downloaded and calls the completion handler with `nil` for the completion handler’s `error` parameter when all of the downloads finish. It’s guaranteed that the requested asset packs will be available locally once the completion handler is called with `nil` for the `error` parameter. If a non-`nil` value is provided to the completion handler’s `error` parameter, then the asset packs are **not** all guaranteed to be available locally, though some might be; inspect the thrown error for more details. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
+        /// This method checks whether the asset packs are currently downloaded. If any aren’t, then the system schedules them to be downloaded and calls the completion handler with `nil` for the completion handler’s `error` parameter when all of the downloads finish. The framework guarantees that the requested asset packs are available locally after this method calls the completion handler with `nil` for the `error` parameter. If this method calls the completion handler with a non-`nil` value for `error`, then the asset packs _aren’t_ all guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
         /// - Parameters:
         /// - assetPacks: The asset packs the local availability of which to ensure.
         /// - completionHandler: A block that’s called when the asset packs are all available locally or that receives an error if one occurs.
@@ -216,9 +220,9 @@ impl BAAssetPackManager {
         );
 
         #[cfg(all(feature = "BAAssetPack", feature = "block2"))]
-        /// Ensures that the specified asset packs be available locally.
+        /// Ensures that the specified asset packs are available locally, performing a batch download if necessary.
         ///
-        /// This method checks whether the asset packs are currently downloaded. If any aren’t, then the system schedules them to be downloaded and calls the completion handler with `nil` for the completion handler’s `error` parameter when all of the downloads finish. It’s guaranteed that the requested asset packs will be available locally once the completion handler is called with `nil` for the `error` parameter. If a non-`nil` value is provided to the completion handler’s `error` parameter, then the asset packs are **not** all guaranteed to be available locally, though some might be; inspect the thrown error for more details. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
+        /// This method checks whether the asset packs are currently downloaded. If any aren’t, then the system schedules them to be downloaded and calls the completion handler with `nil` for the completion handler’s `error` parameter when all of the downloads finish. The framework guarantees that the requested asset packs are available locally after this method calls the completion handler with `nil` for the `error` parameter. If this method calls the completion handler with a non-`nil` value for `error`, then the asset packs _aren’t_ all guaranteed to be available locally. You can optionally monitor download progress by attaching a delegate object to ``BAAssetPackManager/delegate``.
         /// - Parameters:
         /// - assetPacks: The asset packs the local availability of which to ensure.
         /// - shouldUpdate: Whether to require that the respective latest versions be available locally. When `YES` is passed to this parameter, the method will wait for the updates (if there indeed are any available) to be downloaded before returning. When `NO` is passed, the method won’t check for updates and won’t attempt to download any.
@@ -273,7 +277,7 @@ impl BAAssetPackManager {
         /// - Note: Language matching considers implicit script and region tags per Unicode’s Common Locale Data Repository. For example, `en` is equivalent to `en-US` and `en-Latn-US` but not `en-CA`.
         /// - Parameters:
         /// - path: The relative path.
-        /// - language: The language in asset packs that are localized for which to search, represented as a BCP-47 identifier.
+        /// - languageIdentifier: The language, represented as a BCP-47 identifier, that the framework uses to limit the search within localized asset packs.
         /// - options: Options for how to read the file’s contents into a data object.
         /// - error: A pointer to an error that will be set if an error occurs. If no file is found at `path`, then `error` will point to an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeFileNotFound`` as its code.
         /// - Returns: The file’s contents or `nil` if an error occurred.
@@ -295,7 +299,7 @@ impl BAAssetPackManager {
         /// - Note: Language matching considers implicit script and region tags per Unicode’s Common Locale Data Repository. For example, `en` is equivalent to `en-US` and `en-Latn-US` but not `en-CA`.
         /// - Parameters:
         /// - path: The relative path
-        /// - languageIdentifier: The language in asset packs that are localized for which to search, represented as a BCP-47 identifier.
+        /// - languageIdentifier: The language, represented as a BCP-47 identifier, that the framework uses to limit the search within localized asset packs.
         /// - error: A pointer to an error that will be set if an error occurs. If no file is found at `path`, then it will point to an `NSError` object with ``BAManagedErrorCode/BAManagedErrorCodeFileNotFound`` as its code.
         /// - Returns: A descriptor for the opened file. A return value of `-1` indicates that an error occurred.
         /// - Remark: Use this method if you need low-level access to the file descriptor. If you don’t, then use ``BAAssetPackManager/contentsAtPath:asLocalizedForLanguage:options:error:`` instead.
@@ -336,7 +340,7 @@ impl BAAssetPackManager {
         /// - Note: Language matching considers implicit script and region tags per Unicode’s Common Locale Data Repository. For example, `en` is equivalent to `en-US` and `en-Latn-US` but not `en-CA`.
         /// - Parameters:
         /// - path: The relative path.
-        /// - languageIdentifier: The language in asset packs that are localized for which to search, represented as a BCP-47 identifier.
+        /// - languageIdentifier: The language, represented as a BCP-47 identifier, that the framework uses to limit the search within localized asset packs.
         /// - error: A pointer to an error that will be set if an error occurs.
         /// - Returns: The URL to the item or `nil` if an error occurred.
         #[unsafe(method(URLForPath:asLocalizedForLanguage:error:_))]

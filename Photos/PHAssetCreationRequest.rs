@@ -116,6 +116,10 @@ impl PHAssetCreationRequest {
         pub unsafe fn creationRequestForAsset() -> Retained<Self>;
 
         #[cfg(feature = "PhotosTypes")]
+        /// The original resource to use as the unadjusted base for rendering derivatives of the new asset.
+        ///
+        /// This property applies to RAW+JPEG assets only, where it selects whether the RAW or the compressed resource serves as the original.
+        /// Setting it on assets that have only a single original resource is an error.
         #[unsafe(method(originalResourceChoice))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalResourceChoice(&self) -> PHOriginalResourceChoice;

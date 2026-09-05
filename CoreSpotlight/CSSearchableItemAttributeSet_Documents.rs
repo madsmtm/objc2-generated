@@ -10,7 +10,6 @@ use crate::*;
 #[cfg(feature = "CSSearchableItemAttributeSet")]
 impl CSSearchableItemAttributeSet {
     extern_methods!(
-        /// Subject of the this item.
         #[unsafe(method(subject))]
         #[unsafe(method_family = none)]
         pub unsafe fn subject(&self) -> Option<Retained<NSString>>;

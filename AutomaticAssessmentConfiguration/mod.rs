@@ -542,24 +542,24 @@ impl AEAssessmentConfiguration {
 
         /// A Boolean value that indicates whether to allow the speech-related accessibility features during an assessment.
         ///
-        /// A device reads text aloud for users who need it. In particular, users can enable the following features from Accessibility > Spoken Content in the Settings app on iOS and iPadOS:
-        /// - Speak Selection
-        /// - Speak Screen
-        /// - Typing Feedback > Speak Words
-        ///
-        /// An assessment session disables these features by default, but you can allow them by setting ``AEAssessmentConfiguration/allowsAccessibilitySpeech`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        /// - Important: This property is deprecated. Use ``AEAssessmentConfiguration/allowsAccessibilitySpokenContent``
+        /// instead.
+        #[deprecated]
         #[unsafe(method(allowsAccessibilitySpeech))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAccessibilitySpeech(&self) -> bool;
 
         /// Setter for [`allowsAccessibilitySpeech`][Self::allowsAccessibilitySpeech].
+        #[deprecated]
         #[unsafe(method(setAllowsAccessibilitySpeech:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsAccessibilitySpeech(&self, allows_accessibility_speech: bool);
 
         /// A Boolean value that indicates whether to allow Spoken Content during an assessment.
         ///
-        /// Users can enable Spoken Content in the Settings app (Accessibility > Spoken Content) to have text read aloud. This includes Speak Selection, Speak Screen, and related features. An assessment session disables Spoken Content by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsAccessibilitySpokenContent`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        /// Users can enable Spoken Content in the Settings app (Accessibility > Read
+        /// &
+        /// Speak) to have text read aloud. This includes Speak Selection, Speak Screen, and related features. An assessment session disables Spoken Content by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsAccessibilitySpokenContent`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsAccessibilitySpokenContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAccessibilitySpokenContent(&self) -> bool;

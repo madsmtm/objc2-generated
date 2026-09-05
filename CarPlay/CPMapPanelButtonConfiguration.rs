@@ -46,7 +46,7 @@ impl CPMapPanelButtonConfiguration {
         ///
         /// Parameter `secondaryButton`: An optional secondary button. Note: only the image property of this button is used. Any title provided will be dropped.
         ///
-        /// Parameter `travelEstimates`: Optional travel estimates to display alongside the primary button.
+        /// Parameter `travelEstimates`: The travel estimates to display alongside the primary button.
         ///
         /// Returns: A new
         /// `CPMapPanelButtonConfiguration`instance.
@@ -56,14 +56,14 @@ impl CPMapPanelButtonConfiguration {
             this: Allocated<Self>,
             primary_action: &CPTextButton,
             secondary_button: Option<&CPButton>,
-            travel_estimates: Option<&CPTravelEstimates>,
+            travel_estimates: &CPTravelEstimates,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CPTravelEstimates")]
         /// Optional travel estimates displayed alongside the primary action.
         #[unsafe(method(travelEstimates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn travelEstimates(&self) -> Option<Retained<CPTravelEstimates>>;
+        pub unsafe fn travelEstimates(&self) -> Retained<CPTravelEstimates>;
 
         #[cfg(feature = "CPTravelEstimates")]
         /// Setter for [`travelEstimates`][Self::travelEstimates].
@@ -71,7 +71,7 @@ impl CPMapPanelButtonConfiguration {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTravelEstimates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTravelEstimates(&self, travel_estimates: Option<&CPTravelEstimates>);
+        pub unsafe fn setTravelEstimates(&self, travel_estimates: &CPTravelEstimates);
 
         #[cfg(feature = "CPButton")]
         /// An optional secondary button shown with this configuration. Note: only the image property of this button is used.

@@ -4,7 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// The content request type used in the BADownloaderExtension.
+/// A type that indicates the purpose of a content download request.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bacontentrequest?language=objc)
 // NS_ENUM
@@ -12,16 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BAContentRequest(pub NSInteger);
 impl BAContentRequest {
-    /// Content is being requested because the application was installed.
+    /// A content request resulting from the installation of the app.
     #[doc(alias = "BAContentRequestInstall")]
     pub const Install: Self = Self(1);
-    /// Content is being requested because the application was updated.
+    /// A content request resulting from an update of the app.
     #[doc(alias = "BAContentRequestUpdate")]
     pub const Update: Self = Self(2);
-    /// Content is being requested because the system is asking for updated content for your application.
+    /// A content request resulting from a system request for updated content within the app.
     #[doc(alias = "BAContentRequestPeriodic")]
     pub const Periodic: Self = Self(3);
-    /// Content is being requested because the user changed their preferred language for your application.
+    /// A content request resulting from someone changing the app's preferred language.
     #[doc(alias = "BAContentRequestLanguageChange")]
     pub const LanguageChange: Self = Self(4);
 }

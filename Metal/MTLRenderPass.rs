@@ -89,14 +89,17 @@ unsafe impl RefEncode for MTLStoreAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreactionoptions?language=objc)
 // NS_OPTIONS
+#[deprecated = "Store action options have no effect on Apple Silicon"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStoreActionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStoreActionOptions: NSUInteger {
         #[doc(alias = "MTLStoreActionOptionNone")]
+#[deprecated = "Store action options have no effect on Apple Silicon"]
         const None = 0;
         #[doc(alias = "MTLStoreActionOptionCustomSamplePositions")]
+#[deprecated = "Store action options have no effect on Apple Silicon"]
         const CustomSamplePositions = 1<<0;
         const _ = !0;
     }
@@ -284,11 +287,13 @@ impl MTLRenderPassAttachmentDescriptor {
 
         /// Optional configuration for the store action performed with this attachment at the end of a render pass.  Default is
         /// MTLStoreActionOptionNone.
+        #[deprecated = "Store action options have no effect on Apple Silicon"]
         #[unsafe(method(storeActionOptions))]
         #[unsafe(method_family = none)]
         pub fn storeActionOptions(&self) -> MTLStoreActionOptions;
 
         /// Setter for [`storeActionOptions`][Self::storeActionOptions].
+        #[deprecated = "Store action options have no effect on Apple Silicon"]
         #[unsafe(method(setStoreActionOptions:))]
         #[unsafe(method_family = none)]
         pub fn setStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);

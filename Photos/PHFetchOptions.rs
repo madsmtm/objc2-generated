@@ -101,6 +101,21 @@ impl PHFetchOptions {
             &self,
             wants_incremental_change_details: bool,
         );
+
+        /// A Boolean value to fetch `PHAssetExtendedMetadata` when the asset is also fetched.
+        ///
+        /// By default `extendedMetadata` is fetched on demand, with the dot accessor. Prefetching will fetch it as part of the `PHAsset` in a single fetch, rather than incurring fetch overhead for each `PHAsset`.
+        #[unsafe(method(prefetchAssetExtendedMetadata))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prefetchAssetExtendedMetadata(&self) -> bool;
+
+        /// Setter for [`prefetchAssetExtendedMetadata`][Self::prefetchAssetExtendedMetadata].
+        #[unsafe(method(setPrefetchAssetExtendedMetadata:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPrefetchAssetExtendedMetadata(
+            &self,
+            prefetch_asset_extended_metadata: bool,
+        );
     );
 }
 

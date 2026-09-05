@@ -273,9 +273,15 @@ pub use self::__GCControllerElement::GCControllerElement;
 #[cfg(feature = "GCControllerElement")]
 pub use self::__GCControllerElement::GCSystemGestureState;
 #[cfg(feature = "GCControllerHomeButtonSettingsManager")]
-pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingsAction;
+pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingCustomizationStatus;
 #[cfg(feature = "GCControllerHomeButtonSettingsManager")]
-pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingsActivity;
+pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingInAppAction;
+#[cfg(feature = "GCControllerHomeButtonSettingsManager")]
+pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingSystemAction;
+#[cfg(feature = "GCControllerHomeButtonSettingsManager")]
+pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingsCustomizationActivity;
+#[cfg(all(feature = "GCControllerHomeButtonSettingsManager", feature = "block2"))]
+pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingsDidChangeHandler;
 #[cfg(feature = "GCControllerHomeButtonSettingsManager")]
 pub use self::__GCControllerHomeButtonSettingsManager::GCControllerHomeButtonSettingsManager;
 #[cfg(feature = "GCControllerInput")]

@@ -201,9 +201,6 @@ impl CSSearchableIndex {
     );
 }
 
-/// CSOptionalBatchingWithExpectedState.
-impl CSSearchableIndex {}
-
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableindexdelegate?language=objc)
     pub unsafe trait CSSearchableIndexDelegate: NSObjectProtocol {

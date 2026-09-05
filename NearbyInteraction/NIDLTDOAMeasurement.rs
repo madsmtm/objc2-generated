@@ -182,6 +182,17 @@ impl NIDLTDOAMeasurement {
         #[unsafe(method_family = none)]
         pub unsafe fn transmitTime(&self) -> c_double;
 
+        /// Indicates the raw transmission timestamp (in units of 15.65 picoseconds).
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(rawTransmitTime))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn rawTransmitTime(&self) -> u64;
+
         /// Indicates the reception timestamp (in seconds).
         ///
         /// This property is not atomic.
@@ -192,6 +203,17 @@ impl NIDLTDOAMeasurement {
         #[unsafe(method(receiveTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn receiveTime(&self) -> c_double;
+
+        /// Indicates the raw reception timestamp (in units of 15.65 picoseconds).
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(rawReceiveTime))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn rawReceiveTime(&self) -> u64;
 
         /// Indicates the signal strength in dBm.
         ///

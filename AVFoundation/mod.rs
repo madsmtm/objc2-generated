@@ -3327,6 +3327,14 @@ pub use self::__AVPlayerOutput::CMTagCollectionVideoOutputPreset;
 pub use self::__AVPortraitEffectsMatte::AVPortraitEffectsMatte;
 #[cfg(feature = "AVProVideoStorage")]
 pub use self::__AVProVideoStorage::AVProVideoStorage;
+#[cfg(feature = "AVProVideoStorage")]
+pub use self::__AVProVideoStorage::AVProVideoStorageBusyReason;
+#[cfg(feature = "AVProVideoStorage")]
+pub use self::__AVProVideoStorage::AVProVideoStorageBusyReasonAdjustingCapacity;
+#[cfg(feature = "AVProVideoStorage")]
+pub use self::__AVProVideoStorage::AVProVideoStorageBusyReasonCapturing;
+#[cfg(feature = "AVProVideoStorage")]
+pub use self::__AVProVideoStorage::AVProVideoStorageBusyReasonReplenishing;
 #[cfg(feature = "AVQueuedSampleBufferRendering")]
 pub use self::__AVQueuedSampleBufferRendering::AVQueuedSampleBufferRendering;
 #[cfg(feature = "AVQueuedSampleBufferRendering")]

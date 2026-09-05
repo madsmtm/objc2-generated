@@ -7631,6 +7631,10 @@ pub use self::__ps::kIOPSDesignCapacityKey;
 #[cfg(feature = "ps")]
 pub use self::__ps::kIOPSDynamicStorePath;
 #[cfg(feature = "ps")]
+pub use self::__ps::kIOPSFailureAFEComparisonFail;
+#[cfg(feature = "ps")]
+pub use self::__ps::kIOPSFailureAFEReadWriteFail;
+#[cfg(feature = "ps")]
 pub use self::__ps::kIOPSFailureCellImbalance;
 #[cfg(feature = "ps")]
 pub use self::__ps::kIOPSFailureChargeFET;
@@ -7658,6 +7662,14 @@ pub use self::__ps::kIOPSFailurePeriodicAFEComms;
 pub use self::__ps::kIOPSFailurePermanentAFEComms;
 #[cfg(feature = "ps")]
 pub use self::__ps::kIOPSFailureSafetyOverVoltage;
+#[cfg(feature = "ps")]
+pub use self::__ps::kIOPSFailureSafetyUnderVoltage;
+#[cfg(feature = "ps")]
+pub use self::__ps::kIOPSFailureSecondLevelProtection;
+#[cfg(feature = "ps")]
+pub use self::__ps::kIOPSFailureVoltageImbalanceActive;
+#[cfg(feature = "ps")]
+pub use self::__ps::kIOPSFailureVoltageImbalanceRest;
 #[cfg(feature = "ps")]
 pub use self::__ps::kIOPSFairValue;
 #[cfg(feature = "ps")]

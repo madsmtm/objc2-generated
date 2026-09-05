@@ -6456,8 +6456,6 @@ pub use self::__NSStringDrawing::NSAttributedStringNSExtendedStringDrawing;
 #[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSAttributedStringNSStringDrawing;
 #[cfg(feature = "NSStringDrawing")]
-pub use self::__NSStringDrawing::NSAttributedStringNSStringDrawingDeprecated;
-#[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringDrawing;
 #[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringDrawingContext;
