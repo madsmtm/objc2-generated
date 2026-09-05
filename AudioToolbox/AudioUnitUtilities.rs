@@ -76,8 +76,65 @@ unsafe impl RefEncode for AUParameterListener {
 /// An AUEventListenerRef may be passed to API's taking an AUEventListenerRef
 /// as an argument.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventlistenerref?language=objc)
-pub type AUEventListenerRef = AUParameterListener;
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventlistener?language=objc)
+#[doc(alias = "AUEventListenerRef")]
+pub type AUEventListener = AUParameterListener;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitevent_margument?language=objc)
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union AudioUnitEvent_mArgument {
+    pub mParameter: AudioUnitParameter,
+    pub mProperty: AudioUnitProperty,
+}
+
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent", feature = "objc2"))]
+unsafe impl Encode for AudioUnitEvent_mArgument {
+    const ENCODING: Encoding = Encoding::Union(
+        "?",
+        &[
+            <AudioUnitParameter>::ENCODING,
+            <AudioUnitProperty>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent", feature = "objc2"))]
+unsafe impl RefEncode for AudioUnitEvent_mArgument {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Describes a change to an Audio Unit's state.
+///
+/// The type of event.
+///
+/// Specifies the parameter or property which has changed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitevent?language=objc)
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct AudioUnitEvent {
+    pub mEventType: AudioUnitEventType,
+    pub mArgument: AudioUnitEvent_mArgument,
+}
+
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent", feature = "objc2"))]
+unsafe impl Encode for AudioUnitEvent {
+    const ENCODING: Encoding = Encoding::Struct(
+        "AudioUnitEvent",
+        &[
+            <AudioUnitEventType>::ENCODING,
+            <AudioUnitEvent_mArgument>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent", feature = "objc2"))]
+unsafe impl RefEncode for AudioUnitEvent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 /// A block called when a parameter value changes.
 ///
@@ -96,6 +153,25 @@ pub type AUEventListenerRef = AUParameterListener;
 pub type AUParameterListenerBlock =
     block2::Block<'static, fn(*mut c_void, NonNull<AudioUnitParameter>, AudioUnitParameterValue)>;
 
+/// A block called when an Audio Unit event occurs.
+///
+/// Parameter `inObject`: The object which generated the parameter change.
+///
+/// Parameter `inEvent`: The event which occurred.
+///
+/// Parameter `inEventHostTime`: The host time at which the event occurred.
+///
+/// Parameter `inParameterValue`: If the event is parameter change, the parameter's new value (otherwise, undefined).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventlistenerblock?language=objc)
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "block2"
+))]
+pub type AUEventListenerBlock =
+    block2::Block<'static, fn(*mut c_void, NonNull<AudioUnitEvent>, u64, AudioUnitParameterValue)>;
+
 /// A function called when a parameter value changes.
 ///
 /// Parameter `inUserData`: The value passed to AUListenerCreate when the callback function was installed.
@@ -113,6 +189,30 @@ pub type AUParameterListenerProc = Option<
         *mut c_void,
         *mut c_void,
         NonNull<AudioUnitParameter>,
+        AudioUnitParameterValue,
+    ),
+>;
+
+/// A function called when an Audio Unit event occurs.
+///
+/// Parameter `inUserData`: The value passed to AUListenerCreate when the callback function was installed.
+///
+/// Parameter `inObject`: The object which generated the parameter change.
+///
+/// Parameter `inEvent`: The event which occurred.
+///
+/// Parameter `inEventHostTime`: The host time at which the event occurred.
+///
+/// Parameter `inParameterValue`: If the event is parameter change, the parameter's new value (otherwise, undefined).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventlistenerproc?language=objc)
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+pub type AUEventListenerProc = Option<
+    unsafe extern "C-unwind" fn(
+        *mut c_void,
+        *mut c_void,
+        NonNull<AudioUnitEvent>,
+        u64,
         AudioUnitParameterValue,
     ),
 >;
@@ -421,6 +521,263 @@ impl AUParameterListener {
         }
         unsafe { AUParameterListenerNotify(in_sending_listener, in_sending_object, in_parameter) }
     }
+}
+
+/// Creates an Audio Unit event listener.
+///
+/// Parameter `outListener`: On successful return, an AUEventListenerRef.
+///
+/// Parameter `inNotificationInterval`: The minimum time interval, in seconds, at which the callback will be called.
+///
+/// Parameter `inValueChangeGranularity`: Determines how parameter value changes occurring within this interval are
+/// queued; when an event follows a previous one by a smaller time interval than
+/// the granularity, then the listener will only be notified for the second
+/// parameter change.
+///
+/// Parameter `inDispatchQueue`: The dispatch queue on which the callback is called.
+///
+/// Parameter `inBlock`: Block called when an event occurs.
+///
+///
+/// AUEventListener is a specialization of AUParameterListener; use AUListenerDispose to
+/// dispose of an AUEventListener. You may use AUListenerAddParameter and
+/// AUListenerRemoveParameter with AUEventListerRef's, in addition to
+/// AUEventListenerAddEventType / AUEventListenerRemoveEventType.
+///
+/// Some examples illustrating inNotificationInterval and inValueChangeGranularity:
+///
+/// [1] a UI receiver: inNotificationInterval = 100 ms, inValueChangeGranularity = 100 ms.
+/// User interfaces almost never care about previous values, only the current one,
+/// and don't wish to perform redraws too often.
+///
+/// [2] An automation recorder: inNotificationInterval = 200 ms, inValueChangeGranularity = 10 ms.
+/// Automation systems typically wish to record events with a high degree of timing precision,
+/// but do not need to be woken up for each event.
+///
+/// In case [1], the listener will be called within 100 ms (the notification interval) of an
+/// event. It will only receive one notification for any number of value changes to the
+/// parameter concerned, occurring within a 100 ms window (the granularity).
+///
+/// In case [2], the listener will be received within 200 ms (the notification interval) of
+/// an event It can receive more than one notification per parameter, for the last of each
+/// group of value changes occurring within a 10 ms window (the granularity).
+///
+/// In both cases, thread scheduling latencies may result in more events being delivered to
+/// the listener callback than the theoretical maximum (notification interval /
+/// granularity).
+///
+/// # Safety
+///
+/// - `out_listener` must be a valid pointer.
+/// - `in_dispatch_queue` possibly has additional threading requirements.
+/// - `in_block` block's argument 2 struct field `mArgument` must be correctly initialized.
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "block2",
+    feature = "dispatch2"
+))]
+#[inline]
+pub unsafe fn AUEventListenerCreateWithDispatchQueue(
+    out_listener: NonNull<*mut AUEventListener>,
+    in_notification_interval: f32,
+    in_value_change_granularity: f32,
+    in_dispatch_queue: &DispatchQueue,
+    in_block: &AUEventListenerBlock,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AUEventListenerCreateWithDispatchQueue(
+            out_listener: NonNull<*mut AUEventListener>,
+            in_notification_interval: f32,
+            in_value_change_granularity: f32,
+            in_dispatch_queue: &DispatchQueue,
+            in_block: &AUEventListenerBlock,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AUEventListenerCreateWithDispatchQueue(
+            out_listener,
+            in_notification_interval,
+            in_value_change_granularity,
+            in_dispatch_queue,
+            in_block,
+        )
+    }
+}
+
+/// Creates an Audio Unit event listener.
+///
+/// Parameter `inProc`: Function called when an event occurs.
+///
+/// Parameter `inUserData`: A reference value for the use of the callback function.
+///
+/// Parameter `inRunLoop`: The run loop on which the callback is called.  If NULL,
+/// CFRunLoopGetCurrent() is used.
+///
+/// Parameter `inRunLoopMode`: The run loop mode in which the callback's underlying run loop source will be
+/// attached.  If NULL, kCFRunLoopDefaultMode is used.
+///
+/// Parameter `inNotificationInterval`: The minimum time interval, in seconds, at which the callback will be called.
+///
+/// Parameter `inValueChangeGranularity`: Determines how parameter value changes occurring within this interval are
+/// queued; when an event follows a previous one by a smaller time interval than
+/// the granularity, then the listener will only be notified for the second
+/// parameter change.
+///
+/// Parameter `outListener`: On successful return, an AUEventListenerRef.
+///
+///
+/// See the discussion of AUEventListenerCreateWithDispatchQueue.
+///
+/// # Safety
+///
+/// - `in_proc` must be implemented correctly.
+/// - `in_user_data` must be a valid pointer or null.
+/// - `in_run_loop` possibly has additional threading requirements.
+/// - `out_listener` must be a valid pointer.
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "objc2-core-foundation"
+))]
+#[inline]
+pub unsafe fn AUEventListenerCreate(
+    in_proc: AUEventListenerProc,
+    in_user_data: *mut c_void,
+    in_run_loop: Option<&CFRunLoop>,
+    in_run_loop_mode: Option<&CFString>,
+    in_notification_interval: f32,
+    in_value_change_granularity: f32,
+    out_listener: NonNull<*mut AUEventListener>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AUEventListenerCreate(
+            in_proc: AUEventListenerProc,
+            in_user_data: *mut c_void,
+            in_run_loop: Option<&CFRunLoop>,
+            in_run_loop_mode: Option<&CFString>,
+            in_notification_interval: f32,
+            in_value_change_granularity: f32,
+            out_listener: NonNull<*mut AUEventListener>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AUEventListenerCreate(
+            in_proc,
+            in_user_data,
+            in_run_loop,
+            in_run_loop_mode,
+            in_notification_interval,
+            in_value_change_granularity,
+            out_listener,
+        )
+    }
+}
+
+/// Begin delivering a particular type of events to a listener.
+///
+/// Parameter `inListener`: The parameter listener which will receive the events.
+///
+/// Parameter `inObject`: The object which is interested in the value of the parameter.  This will be
+/// passed as the inObject parameter to the listener callback function when the
+/// parameter changes.
+///
+/// Parameter `inEvent`: The type of event to listen for.
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// - `in_listener` might need manual memory-management.
+/// - `in_object` must be a valid pointer or null.
+/// - `in_event` must be a valid pointer.
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[inline]
+pub unsafe fn AUEventListenerAddEventType(
+    in_listener: &AUEventListener,
+    in_object: *mut c_void,
+    in_event: NonNull<AudioUnitEvent>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AUEventListenerAddEventType(
+            in_listener: &AUEventListener,
+            in_object: *mut c_void,
+            in_event: NonNull<AudioUnitEvent>,
+        ) -> OSStatus;
+    }
+    unsafe { AUEventListenerAddEventType(in_listener, in_object, in_event) }
+}
+
+/// Stop delivering a particular type of events to a listener.
+///
+/// Parameter `inListener`: The parameter listener to stop receiving events.
+///
+/// Parameter `inObject`: The object which is no longer interested in the value of the parameter.
+///
+/// Parameter `inEvent`: The type of event to stop listening for.
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// - `in_listener` might need manual memory-management.
+/// - `in_object` must be a valid pointer or null.
+/// - `in_event` must be a valid pointer.
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[inline]
+pub unsafe fn AUEventListenerRemoveEventType(
+    in_listener: &AUEventListener,
+    in_object: *mut c_void,
+    in_event: NonNull<AudioUnitEvent>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AUEventListenerRemoveEventType(
+            in_listener: &AUEventListener,
+            in_object: *mut c_void,
+            in_event: NonNull<AudioUnitEvent>,
+        ) -> OSStatus;
+    }
+    unsafe { AUEventListenerRemoveEventType(in_listener, in_object, in_event) }
+}
+
+/// Deliver an AudioUnitEvent to all listeners registered to receive it.
+///
+/// This is only to be used for notifications about parameter changes (and gestures).
+/// It can not be used for notifying changes to property values as these are
+/// internal to an audio unit and should not be issued outside of the audio unit itself.
+///
+/// Parameter `inSendingListener`: A parameter listener generating the change and which does not want to
+/// receive a callback as a result of it. May be NULL.
+///
+/// Parameter `inSendingObject`: The object generating the change and which does not want to receive a
+/// callback as a result of it. NULL is treated specially when inListener is
+/// non-null; it signifies that none of the specified listener's objects will
+/// receive notifications.
+///
+/// Parameter `inEvent`: The event to be delivered.
+///
+/// Returns: An OSStatus error code.
+///
+/// # Safety
+///
+/// - `in_sending_listener` might need manual memory-management.
+/// - `in_sending_object` must be a valid pointer or null.
+/// - `in_event` must be a valid pointer.
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[inline]
+pub unsafe fn AUEventListenerNotify(
+    in_sending_listener: Option<&AUEventListener>,
+    in_sending_object: *mut c_void,
+    in_event: NonNull<AudioUnitEvent>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AUEventListenerNotify(
+            in_sending_listener: Option<&AUEventListener>,
+            in_sending_object: *mut c_void,
+            in_event: NonNull<AudioUnitEvent>,
+        ) -> OSStatus;
+    }
+    unsafe { AUEventListenerNotify(in_sending_listener, in_sending_object, in_event) }
 }
 
 /// Converts a linear value to a parameter value according to the parameter's units.

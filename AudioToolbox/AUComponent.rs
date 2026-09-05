@@ -677,6 +677,131 @@ unsafe impl RefEncode for AUParameterEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterevent_eventvalues_ramp?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct AudioUnitParameterEvent_eventValues_ramp {
+    pub startBufferOffset: i32,
+    pub durationInFrames: u32,
+    pub startValue: AudioUnitParameterValue,
+    pub endValue: AudioUnitParameterValue,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AudioUnitParameterEvent_eventValues_ramp {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <i32>::ENCODING,
+            <u32>::ENCODING,
+            <AudioUnitParameterValue>::ENCODING,
+            <AudioUnitParameterValue>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AudioUnitParameterEvent_eventValues_ramp {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterevent_eventvalues_immediate?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct AudioUnitParameterEvent_eventValues_immediate {
+    pub bufferOffset: u32,
+    pub value: AudioUnitParameterValue,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AudioUnitParameterEvent_eventValues_immediate {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<u32>::ENCODING, <AudioUnitParameterValue>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AudioUnitParameterEvent_eventValues_immediate {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterevent_eventvalues?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union AudioUnitParameterEvent_eventValues {
+    pub ramp: AudioUnitParameterEvent_eventValues_ramp,
+    pub immediate: AudioUnitParameterEvent_eventValues_immediate,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AudioUnitParameterEvent_eventValues {
+    const ENCODING: Encoding = Encoding::Union(
+        "?",
+        &[
+            <AudioUnitParameterEvent_eventValues_ramp>::ENCODING,
+            <AudioUnitParameterEvent_eventValues_immediate>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AudioUnitParameterEvent_eventValues {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// A parameter event describes a change to a parameter's value, where the type of
+/// the event describes how that change is to be applied (see AUParameterEventType).
+/// A parameter is uniquely defined through the triplet of scope, element and
+/// parameterID.
+///
+/// See AudioUnitScheduleParameters
+///
+///
+/// The scope for the parameter
+///
+/// The element for the parameter
+///
+/// The parameterID for the parameter
+///
+///
+/// The event type. This field further defines how the union described by
+/// eventValues is to be interpreted.
+///
+///
+/// If the parameter event type is _Immediate, then the immediate struct of this
+/// union should be used.
+/// If the parameter event type is _Ramped, then the ramp struct of this union
+/// should be used.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterevent?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct AudioUnitParameterEvent {
+    pub scope: AudioUnitScope,
+    pub element: AudioUnitElement,
+    pub parameter: AudioUnitParameterID,
+    pub eventType: AUParameterEventType,
+    pub eventValues: AudioUnitParameterEvent_eventValues,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for AudioUnitParameterEvent {
+    const ENCODING: Encoding = Encoding::Struct(
+        "AudioUnitParameterEvent",
+        &[
+            <AudioUnitScope>::ENCODING,
+            <AudioUnitElement>::ENCODING,
+            <AudioUnitParameterID>::ENCODING,
+            <AUParameterEventType>::ENCODING,
+            <AudioUnitParameterEvent_eventValues>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for AudioUnitParameterEvent {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// An audio unit parameter is defined by the triplet of audio unit scope, element
 /// and parameterID. This struct is used with the functions in AudioUnitUtilities.h
 /// to deal with audio unit parameters, but is included in this header file for
@@ -1406,6 +1531,58 @@ pub unsafe fn AudioUnitSetParameter(
     }
 }
 
+/// Schedule changes to the value of a parameter
+///
+/// This API is used to schedule intra-buffer changes to the value of a parameter
+/// (immediate) or to ramp a parameter from a start value to an end value for a
+/// specified number of samples (ramp)
+///
+/// The API allows for the scheduling of multiple parameter events with the one
+/// call. All of the parameter events must apply to the current (and only apply to
+/// the current) audio unit render call, so the events are scheduled as a part of
+/// the pre-render notification callback.
+///
+/// When scheduling an immediate parameter event, the new value at the specified
+/// sample buffer offset is provided
+///
+/// When scheduling a ramped parameter, the ramp is scheduled each audio unit
+/// render for the duration of the ramp. Each schedule of the the new audio unit
+/// render specifies the progress of the ramp.
+///
+/// Parameters that can have events scheduled to them will indicate this through
+/// their parameter info struct
+///
+///
+/// Parameter `inUnit`: the audio unit
+///
+/// Parameter `inParameterEvent`: a pointer to an array of parameter event structs
+///
+/// Parameter `inNumParamEvents`: the number of parameter event structs pointed to by inParameterEvent
+///
+///
+/// Returns: noErr, or an audio unit error code (such as InvalidParameter)
+///
+/// # Safety
+///
+/// - `in_unit` must be a valid pointer.
+/// - `in_parameter_event` must be a valid pointer.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe fn AudioUnitScheduleParameters(
+    in_unit: AudioUnit,
+    in_parameter_event: NonNull<AudioUnitParameterEvent>,
+    in_num_param_events: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioUnitScheduleParameters(
+            in_unit: AudioUnit,
+            in_parameter_event: NonNull<AudioUnitParameterEvent>,
+            in_num_param_events: u32,
+        ) -> OSStatus;
+    }
+    unsafe { AudioUnitScheduleParameters(in_unit, in_parameter_event, in_num_param_events) }
+}
+
 /// the render operation where ioData will contain the results of the audio unit's
 /// render operations
 ///
@@ -1839,6 +2016,11 @@ pub type AudioUnitAddRenderNotifyProc =
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioUnitRemoveRenderNotifyProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, AURenderCallback, *mut c_void) -> OSStatus>;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitscheduleparametersproc?language=objc)
+pub type AudioUnitScheduleParametersProc = Option<
+    unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<AudioUnitParameterEvent>, u32) -> OSStatus,
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitresetproc?language=objc)
 pub type AudioUnitResetProc = Option<

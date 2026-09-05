@@ -413,6 +413,100 @@ unsafe impl RefEncode for AUNodeRenderCallback {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aunodeinteraction_nodeinteraction?language=objc)
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types"
+))]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union AUNodeInteraction_nodeInteraction {
+    pub connection: AUNodeConnection,
+    pub inputCallback: AUNodeRenderCallback,
+}
+
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioUnitProperties",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
+unsafe impl Encode for AUNodeInteraction_nodeInteraction {
+    const ENCODING: Encoding = Encoding::Union(
+        "?",
+        &[
+            <AUNodeConnection>::ENCODING,
+            <AUNodeRenderCallback>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioUnitProperties",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
+unsafe impl RefEncode for AUNodeInteraction_nodeInteraction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Used to describe the interaction between/with a node
+///
+/// This structure contains information about the interaction between
+/// two nodes (in the case of a connection), or the input to a node
+/// (in the case of a callback).
+///
+/// The type of the interaction is used to determine how to interpret the contents
+/// of the following union.
+///
+/// There may be other nodal interactions in the future, so NO ASSUMPTIONS should be made
+/// that these are the only 2 nodal interaction types; you must always check the
+/// nodeInteractionType and only act on those types you understand
+///
+/// Arrays of these structs can be returned, the addition of new members to the
+/// nodeInteraction union will NOT change the size of this structure
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aunodeinteraction?language=objc)
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types"
+))]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct AUNodeInteraction {
+    pub nodeInteractionType: u32,
+    pub nodeInteraction: AUNodeInteraction_nodeInteraction,
+}
+
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioUnitProperties",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
+unsafe impl Encode for AUNodeInteraction {
+    const ENCODING: Encoding = Encoding::Struct(
+        "AUNodeInteraction",
+        &[
+            <u32>::ENCODING,
+            <AUNodeInteraction_nodeInteraction>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioUnitProperties",
+    feature = "objc2",
+    feature = "objc2-core-audio-types"
+))]
+unsafe impl RefEncode for AUNodeInteraction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// connect a node's output to a node's input
 ///
 /// # Safety
@@ -550,6 +644,46 @@ pub unsafe fn AUGraphGetNumberOfInteractions(
     unsafe { AUGraphGetNumberOfInteractions(in_graph, out_num_interactions) }
 }
 
+/// Retrieve information about a particular interaction in a graph
+///
+/// Returns information about a particular interaction.
+/// inInteractionIndex is based on the outNumInteractions value and is only valid if no
+/// edits to the graph's state have been made.
+///
+/// An app can iterate through the interactions (as with the nodes) of a graph by retrieving
+/// the number of interactions, and then iterating an index from 0
+/// <
+/// numInteractions
+///
+///
+/// Parameter `outInteraction`: the interaction information at the specified index
+///
+/// # Safety
+///
+/// - `in_graph` must be a valid pointer.
+/// - `out_interaction` must be a valid pointer.
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types"
+))]
+#[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
+#[inline]
+pub unsafe fn AUGraphGetInteractionInfo(
+    in_graph: AUGraph,
+    in_interaction_index: u32,
+    out_interaction: NonNull<AUNodeInteraction>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AUGraphGetInteractionInfo(
+            in_graph: AUGraph,
+            in_interaction_index: u32,
+            out_interaction: NonNull<AUNodeInteraction>,
+        ) -> OSStatus;
+    }
+    unsafe { AUGraphGetInteractionInfo(in_graph, in_interaction_index, out_interaction) }
+}
+
 /// Retrieve the number of interactions of a graph's node
 ///
 /// The number of node interactions currently being managed by the graph for the specified node.
@@ -572,6 +706,43 @@ pub unsafe fn AUGraphCountNodeInteractions(
         ) -> OSStatus;
     }
     unsafe { AUGraphCountNodeInteractions(in_graph, in_node, out_num_interactions) }
+}
+
+/// Retrieve information about the interactions in a graph for a given node
+///
+///
+/// Parameter `ioNumInteractions`: on input, specifies the number of interactions that can be returned
+/// on output, specifies the number of interactions returned.
+///
+/// Parameter `outInteractions`: the interactions the specified node is involved in
+///
+/// # Safety
+///
+/// - `in_graph` must be a valid pointer.
+/// - `io_num_interactions` must be a valid pointer.
+/// - `out_interactions` must be a valid pointer.
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types"
+))]
+#[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
+#[inline]
+pub unsafe fn AUGraphGetNodeInteractions(
+    in_graph: AUGraph,
+    in_node: AUNode,
+    io_num_interactions: NonNull<u32>,
+    out_interactions: NonNull<AUNodeInteraction>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AUGraphGetNodeInteractions(
+            in_graph: AUGraph,
+            in_node: AUNode,
+            io_num_interactions: NonNull<u32>,
+            out_interactions: NonNull<AUNodeInteraction>,
+        ) -> OSStatus;
+    }
+    unsafe { AUGraphGetNodeInteractions(in_graph, in_node, io_num_interactions, out_interactions) }
 }
 
 /// Updates the state of a running AUGraph

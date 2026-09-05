@@ -565,6 +565,14 @@ pub use self::__AUComponent::AudioUnitInitializeProc;
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 pub use self::__AUComponent::AudioUnitParameter;
 #[cfg(feature = "AUComponent")]
+pub use self::__AUComponent::AudioUnitParameterEvent;
+#[cfg(feature = "AUComponent")]
+pub use self::__AUComponent::AudioUnitParameterEvent_eventValues;
+#[cfg(feature = "AUComponent")]
+pub use self::__AUComponent::AudioUnitParameterEvent_eventValues_immediate;
+#[cfg(feature = "AUComponent")]
+pub use self::__AUComponent::AudioUnitParameterEvent_eventValues_ramp;
+#[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::AudioUnitParameterID;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::AudioUnitParameterValue;
@@ -618,6 +626,10 @@ pub use self::__AUComponent::AudioUnitRenderProc;
 pub use self::__AUComponent::AudioUnitReset;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::AudioUnitResetProc;
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+pub use self::__AUComponent::AudioUnitScheduleParameters;
+#[cfg(feature = "AUComponent")]
+pub use self::__AUComponent::AudioUnitScheduleParametersProc;
 #[cfg(feature = "AUComponent")]
 pub use self::__AUComponent::AudioUnitScope;
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
@@ -674,6 +686,13 @@ pub use self::__AUGraph::AUGraphGetCPULoad;
 pub use self::__AUGraph::AUGraphGetConnectionInfo;
 #[cfg(feature = "AUGraph")]
 pub use self::__AUGraph::AUGraphGetIndNode;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AUGraph",
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AUGraph::AUGraphGetInteractionInfo;
 #[cfg(feature = "AUGraph")]
 pub use self::__AUGraph::AUGraphGetMaxCPULoad;
 #[cfg(feature = "AUGraph")]
@@ -682,6 +701,13 @@ pub use self::__AUGraph::AUGraphGetNodeConnections;
 pub use self::__AUGraph::AUGraphGetNodeCount;
 #[cfg(feature = "AUGraph")]
 pub use self::__AUGraph::AUGraphGetNodeInfoSubGraph;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AUGraph",
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AUGraph::AUGraphGetNodeInteractions;
 #[cfg(feature = "AUGraph")]
 pub use self::__AUGraph::AUGraphGetNumberOfConnections;
 #[cfg(feature = "AUGraph")]
@@ -733,6 +759,20 @@ pub use self::__AUGraph::AUGraphUpdate;
 pub use self::__AUGraph::AUNode;
 #[cfg(feature = "AUGraph")]
 pub use self::__AUGraph::AUNodeConnection;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AUGraph",
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AUGraph::AUNodeInteraction;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AUGraph",
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types"
+))]
+pub use self::__AUGraph::AUNodeInteraction_nodeInteraction;
 #[cfg(all(
     feature = "AUComponent",
     feature = "AUGraph",
@@ -3673,7 +3713,53 @@ pub use self::__AudioUnitProperties::MixerDistanceParams;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitUtilities"))]
 pub use self::__AudioUnitUtilities::kAUParameterListener_AnyParameter;
 #[cfg(feature = "AudioUnitUtilities")]
-pub use self::__AudioUnitUtilities::AUEventListenerRef;
+pub use self::__AudioUnitUtilities::AUEventListener;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities"
+))]
+pub use self::__AudioUnitUtilities::AUEventListenerAddEventType;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities",
+    feature = "block2"
+))]
+pub use self::__AudioUnitUtilities::AUEventListenerBlock;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities",
+    feature = "objc2-core-foundation"
+))]
+pub use self::__AudioUnitUtilities::AUEventListenerCreate;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities",
+    feature = "block2",
+    feature = "dispatch2"
+))]
+pub use self::__AudioUnitUtilities::AUEventListenerCreateWithDispatchQueue;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities"
+))]
+pub use self::__AudioUnitUtilities::AUEventListenerNotify;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities"
+))]
+pub use self::__AudioUnitUtilities::AUEventListenerProc;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities"
+))]
+pub use self::__AudioUnitUtilities::AUEventListenerRemoveEventType;
 #[cfg(all(
     feature = "AUComponent",
     feature = "AudioComponent",
@@ -3742,8 +3828,20 @@ pub use self::__AudioUnitUtilities::AUParameterValueFromLinear;
     feature = "AudioUnitUtilities"
 ))]
 pub use self::__AudioUnitUtilities::AUParameterValueToLinear;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities"
+))]
+pub use self::__AudioUnitUtilities::AudioUnitEvent;
 #[cfg(feature = "AudioUnitUtilities")]
 pub use self::__AudioUnitUtilities::AudioUnitEventType;
+#[cfg(all(
+    feature = "AUComponent",
+    feature = "AudioComponent",
+    feature = "AudioUnitUtilities"
+))]
+pub use self::__AudioUnitUtilities::AudioUnitEvent_mArgument;
 #[cfg(feature = "CAFFile")]
 pub use self::__CAFFile::kCAFMarkerType_EditDestinationBegin;
 #[cfg(feature = "CAFFile")]
@@ -6859,6 +6957,74 @@ pub type CAClockSeconds = f64;
 pub type CAClockListenerProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, CAClockMessage, NonNull<c_void>)>;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktime_time?language=objc)
+#[cfg(feature = "objc2-core-audio-types")]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union CAClockTime_time {
+    pub hostTime: u64,
+    pub samples: CAClockSamples,
+    pub beats: CAClockBeats,
+    pub seconds: CAClockSeconds,
+    pub smpte: SMPTETime,
+}
+
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
+unsafe impl Encode for CAClockTime_time {
+    const ENCODING: Encoding = Encoding::Union(
+        "?",
+        &[
+            <u64>::ENCODING,
+            <CAClockSamples>::ENCODING,
+            <CAClockBeats>::ENCODING,
+            <CAClockSeconds>::ENCODING,
+            <SMPTETime>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
+unsafe impl RefEncode for CAClockTime_time {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Represents a time value using one of several possible units.
+///
+///
+/// Specifies the time's format and units.
+///
+/// Must be 0.
+///
+/// The time value. Use the member of the union appropriate to the format (see the
+/// description of CAClockTimeFormat).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktime?language=objc)
+#[cfg(feature = "objc2-core-audio-types")]
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct CAClockTime {
+    pub format: CAClockTimeFormat,
+    pub reserved: u32,
+    pub time: CAClockTime_time,
+}
+
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
+unsafe impl Encode for CAClockTime {
+    const ENCODING: Encoding = Encoding::Struct(
+        "CAClockTime",
+        &[
+            <CAClockTimeFormat>::ENCODING,
+            <u32>::ENCODING,
+            <CAClockTime_time>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(all(feature = "objc2", feature = "objc2-core-audio-types"))]
+unsafe impl RefEncode for CAClockTime {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// A tempo change event.
 ///
 /// The clock's tempo map defines the correspondence between seconds and musical
@@ -7186,6 +7352,154 @@ impl CAClock {
         unsafe { CAClockRemoveListener(self, in_listener_proc, in_user_data) }
     }
 
+    /// Sets the clock's current position on the media timeline.
+    ///
+    /// Call this to specify where on the media timeline playback will begin. The
+    /// supplied time must be in seconds, beats, or SMPTE (not host time or audio
+    /// samples). Must only be called when stopped.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inTime`: The new time position.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `in_time` must be a valid pointer.
+    #[doc(alias = "CAClockSetCurrentTime")]
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[inline]
+    pub unsafe fn set_current_time(&self, in_time: NonNull<CAClockTime>) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockSetCurrentTime(
+                in_ca_clock: &CAClock,
+                in_time: NonNull<CAClockTime>,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockSetCurrentTime(self, in_time) }
+    }
+
+    /// Obtain the clock's current position on the media timeline.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inTimeFormat`: Specifies the desired format for outTime.
+    ///
+    ///
+    /// Parameter `outTime`: On exit, the clock's current time position.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `out_time` must be a valid pointer.
+    #[doc(alias = "CAClockGetCurrentTime")]
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[inline]
+    pub unsafe fn current_time(
+        &self,
+        in_time_format: CAClockTimeFormat,
+        out_time: NonNull<CAClockTime>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockGetCurrentTime(
+                in_ca_clock: &CAClock,
+                in_time_format: CAClockTimeFormat,
+                out_time: NonNull<CAClockTime>,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockGetCurrentTime(self, in_time_format, out_time) }
+    }
+
+    /// Obtain the position on the media timeline where playback will start,
+    /// or has already started.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inTimeFormat`: Specifies the desired format for outTime.
+    ///
+    ///
+    /// Parameter `outTime`: On exit, the clock's start time position.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `out_time` must be a valid pointer.
+    #[doc(alias = "CAClockGetStartTime")]
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[inline]
+    pub unsafe fn start_time(
+        &self,
+        in_time_format: CAClockTimeFormat,
+        out_time: NonNull<CAClockTime>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockGetStartTime(
+                in_ca_clock: &CAClock,
+                in_time_format: CAClockTimeFormat,
+                out_time: NonNull<CAClockTime>,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockGetStartTime(self, in_time_format, out_time) }
+    }
+
+    /// Convert between time units.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inTime`: The time to be converted.
+    ///
+    ///
+    /// Parameter `inOutputTimeFormat`: Specifies the desired format for outTime
+    ///
+    ///
+    /// Parameter `outTime`: On exit, a time corresponding to inTime, converted to the desired
+    /// time format.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `in_time` must be a valid pointer.
+    /// - `out_time` must be a valid pointer.
+    #[doc(alias = "CAClockTranslateTime")]
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[inline]
+    pub unsafe fn translate_time(
+        &self,
+        in_time: NonNull<CAClockTime>,
+        in_output_time_format: CAClockTimeFormat,
+        out_time: NonNull<CAClockTime>,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockTranslateTime(
+                in_ca_clock: &CAClock,
+                in_time: NonNull<CAClockTime>,
+                in_output_time_format: CAClockTimeFormat,
+                out_time: NonNull<CAClockTime>,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockTranslateTime(self, in_time, in_output_time_format, out_time) }
+    }
+
     /// Begin advancing the clock on its media timeline.
     ///
     ///
@@ -7326,6 +7640,92 @@ impl CAClock {
             fn CAClockGetPlayRate(in_ca_clock: &CAClock, out_play_rate: &mut f64) -> OSStatus;
         }
         unsafe { CAClockGetPlayRate(self, out_play_rate) }
+    }
+
+    /// Obtain the clock's current musical tempo.
+    ///
+    /// Returns the current instantaneous tempo and a timestamp indicating where on the
+    /// timeline the tempo most recently changed.
+    ///
+    /// If the clock is externally synced, the returned tempo will not reflect the
+    /// effective tempo; this routine always reflects the client-specified tempo. To
+    /// obtain the effective tempo, multiply the current tempo by the current play
+    /// rate.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `outTempo`: On exit, the current tempo.
+    ///
+    ///
+    /// Parameter `outTimestamp`: If non-null, on exit, the time at which the tempo last changed.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `out_tempo` must be a valid pointer.
+    /// - `out_timestamp` must be a valid pointer or null.
+    #[doc(alias = "CAClockGetCurrentTempo")]
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[inline]
+    pub unsafe fn current_tempo(
+        &self,
+        out_tempo: NonNull<CAClockTempo>,
+        out_timestamp: *mut CAClockTime,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockGetCurrentTempo(
+                in_ca_clock: &CAClock,
+                out_tempo: NonNull<CAClockTempo>,
+                out_timestamp: *mut CAClockTime,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockGetCurrentTempo(self, out_tempo, out_timestamp) }
+    }
+
+    /// Manually override the clock's musical tempo during playback.
+    ///
+    /// Effects a manual override of the tempo map while running. After stopping and
+    /// restarting, the original tempo map will be used again.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inTempo`: The new desired tempo.
+    ///
+    ///
+    /// Parameter `inTimestamp`: Specifies a precise point on the timeline where the tempo change is to
+    /// take effect. If null, the tempo change takes effect immediately.
+    ///
+    ///
+    /// Returns: An OSStatus error code. If this call is made while stopped,
+    /// kCAClock_CannotSetTimeError is returned.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` might need manual memory-management.
+    /// - `in_timestamp` must be a valid pointer or null.
+    #[doc(alias = "CAClockSetCurrentTempo")]
+    #[cfg(feature = "objc2-core-audio-types")]
+    #[inline]
+    pub unsafe fn set_current_tempo(
+        &self,
+        in_tempo: CAClockTempo,
+        in_timestamp: *const CAClockTime,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CAClockSetCurrentTempo(
+                in_ca_clock: &CAClock,
+                in_tempo: CAClockTempo,
+                in_timestamp: *const CAClockTime,
+            ) -> OSStatus;
+        }
+        unsafe { CAClockSetCurrentTempo(self, in_tempo, in_timestamp) }
     }
 
     /// Converts seconds to a SMPTE time representation.
