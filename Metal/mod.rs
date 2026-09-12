@@ -1086,6 +1086,8 @@ pub use self::__MTLLogState::MTLLogStateErrorDomain;
 ))]
 pub use self::__MTLParallelRenderCommandEncoder::MTLParallelRenderCommandEncoder;
 #[cfg(feature = "MTLPipeline")]
+pub use self::__MTLPipeline::MTLForwardProgressUsage;
+#[cfg(feature = "MTLPipeline")]
 pub use self::__MTLPipeline::MTLMutability;
 #[cfg(feature = "MTLPipeline")]
 pub use self::__MTLPipeline::MTLPipelineBufferDescriptor;
@@ -1326,6 +1328,8 @@ pub use self::__MTLTexture::MTLTextureUsage;
 pub use self::__MTLTexture::MTLTextureViewDescriptor;
 #[cfg(all(feature = "MTLResourceViewPool", feature = "MTLTextureViewPool"))]
 pub use self::__MTLTextureViewPool::MTLTextureViewPool;
+#[cfg(feature = "MTLTypes")]
+pub use self::__MTLTypes::MTLContentionRelief;
 #[cfg(feature = "MTLTypes")]
 pub use self::__MTLTypes::MTLCoordinate2D;
 #[cfg(feature = "MTLTypes")]

@@ -1424,6 +1424,45 @@ impl AVCaptureConnection {
             &self,
             camera_intrinsic_matrix_delivery_enabled: bool,
         );
+
+        /// Indicates whether the connection supports low light video noise reduction.
+        ///
+        /// This property returns `true` if the connection's source device's active format supports low light video noise reduction (see ``AVCaptureDeviceFormat/isLowLightVideoNoiseReductionSupported``) and the connection's output supports the feature. This value reflects the active configuration and can change as the active format, video stabilization mode or auto video frame rate changes. See ``automaticallyEnablesLowLightVideoNoiseReduction`` for a detailed discussion. This property is key-value observable.
+        #[unsafe(method(isLowLightVideoNoiseReductionSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isLowLightVideoNoiseReductionSupported(&self) -> bool;
+
+        /// Indicates whether the connection should automatically enable low light video noise reduction when the connection supports it.
+        ///
+        /// On a connection where ``isLowLightVideoNoiseReductionSupported`` is `true`, the system can enable low light video noise reduction to improve video quality at the cost of additional power. This property defaults to `true` for movie file output connections. When ``automaticallyEnablesLowLightVideoNoiseReduction`` is `true`, the connection sets ``isLowLightVideoNoiseReductionEnabled`` to `true` automatically when the session configuration is committed and the connection supports the feature. For `AVCaptureMultiCamSession` configurations with multiple movie file outputs, automatic enablement is suppressed because the feature can only be active on one output at a time; in that case, set this property to `false` and control ``isLowLightVideoNoiseReductionEnabled`` directly on the desired connection. Enabling the feature on more than one movie file output connection increases the session's `hardwareCost` and may result in an `AVCaptureSessionRuntimeErrorNotification`. Setting this property on a connection that does not support low light video noise reduction is permitted but has no effect. Clients can key-value observe ``isLowLightVideoNoiseReductionEnabled`` to know when the connection has automatically changed the value.
+        #[unsafe(method(automaticallyEnablesLowLightVideoNoiseReduction))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn automaticallyEnablesLowLightVideoNoiseReduction(&self) -> bool;
+
+        /// Setter for [`automaticallyEnablesLowLightVideoNoiseReduction`][Self::automaticallyEnablesLowLightVideoNoiseReduction].
+        #[unsafe(method(setAutomaticallyEnablesLowLightVideoNoiseReduction:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAutomaticallyEnablesLowLightVideoNoiseReduction(
+            &self,
+            automatically_enables_low_light_video_noise_reduction: bool,
+        );
+
+        /// Indicates whether low light video noise reduction is enabled for the current session.
+        ///
+        /// A `BOOL` indicating whether low light video noise reduction is enabled on the connection. To set this property directly, first set ``automaticallyEnablesLowLightVideoNoiseReduction`` to `false`; setting this property while ``automaticallyEnablesLowLightVideoNoiseReduction`` is `true` throws an `NSInvalidArgumentException`. This property may only be set to `true` if the connection's ``isLowLightVideoNoiseReductionSupported`` property returns `true`, otherwise an `NSInvalidArgumentException` is thrown. This property is key-value observable.
+        #[unsafe(method(isLowLightVideoNoiseReductionEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isLowLightVideoNoiseReductionEnabled(&self) -> bool;
+    );
+
+    extern_methods!(
+        /// Setter for [`isLowLightVideoNoiseReductionEnabled`][Self::isLowLightVideoNoiseReductionEnabled].
+        #[unsafe(method(setLowLightVideoNoiseReductionEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLowLightVideoNoiseReductionEnabled(
+            &self,
+            low_light_video_noise_reduction_enabled: bool,
+        );
     );
 }
 

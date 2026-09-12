@@ -225,6 +225,9 @@ mod __AVCaptionRenderer;
 #[cfg(feature = "AVCaptionSettings")]
 #[path = "AVCaptionSettings.rs"]
 mod __AVCaptionSettings;
+#[cfg(feature = "AVCaptureAncillaryDataEncoder")]
+#[path = "AVCaptureAncillaryDataEncoder.rs"]
+mod __AVCaptureAncillaryDataEncoder;
 #[cfg(feature = "AVCaptureAudioDataOutput")]
 #[path = "AVCaptureAudioDataOutput.rs"]
 mod __AVCaptureAudioDataOutput;
@@ -949,6 +952,16 @@ pub use self::__AVCaptionSettings::AVCaptionSettingsKey;
 pub use self::__AVCaptionSettings::AVCaptionTimeCodeFrameDurationKey;
 #[cfg(feature = "AVCaptionSettings")]
 pub use self::__AVCaptionSettings::AVCaptionUseDropFrameTimeCodeKey;
+#[cfg(feature = "AVCaptureAncillaryDataEncoder")]
+pub use self::__AVCaptureAncillaryDataEncoder::AVCaptureAncillaryDataEncoder;
+#[cfg(feature = "AVCaptureAncillaryDataEncoder")]
+pub use self::__AVCaptureAncillaryDataEncoder::AVCaptureAncillaryDataUserKey;
+#[cfg(feature = "AVCaptureAncillaryDataEncoder")]
+pub use self::__AVCaptureAncillaryDataEncoder::AVCaptureAncillaryDataUserKeyRDD18InstanceUID;
+#[cfg(feature = "AVCaptureAncillaryDataEncoder")]
+pub use self::__AVCaptureAncillaryDataEncoder::AVCaptureAncillaryDataUserKeyRDD18UDAMSetVersion;
+#[cfg(feature = "AVCaptureAncillaryDataEncoder")]
+pub use self::__AVCaptureAncillaryDataEncoder::AVCaptureAncillaryDataUserKeyRDD18UserItems;
 #[cfg(all(feature = "AVCaptureAudioDataOutput", feature = "AVCaptureOutputBase"))]
 pub use self::__AVCaptureAudioDataOutput::AVCaptureAudioDataOutput;
 #[cfg(feature = "AVCaptureAudioDataOutput")]
@@ -1022,6 +1035,18 @@ pub use self::__AVCaptureDevice::AVCaptureDevice;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureDeviceDiscoverySession;
 #[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureDeviceExposureSignal;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureDeviceExposureSignalDocument;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureDeviceExposureSignalFlicker;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureDeviceExposureSignalGroupPhoto;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureDeviceExposureSignalStarburst;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureDeviceExposureSignalSubjectMotion;
+#[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureDeviceFormat;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureDeviceInputSource;
@@ -1072,6 +1097,8 @@ pub use self::__AVCaptureDevice::AVCaptureDeviceWasConnectedNotification;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureDeviceWasDisconnectedNotification;
 #[cfg(all(feature = "AVCaptureDevice", feature = "objc2-core-media"))]
+pub use self::__AVCaptureDevice::AVCaptureExposureDurationAuto;
+#[cfg(all(feature = "AVCaptureDevice", feature = "objc2-core-media"))]
 pub use self::__AVCaptureDevice::AVCaptureExposureDurationCurrent;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureExposureMode;
@@ -1084,7 +1111,13 @@ pub use self::__AVCaptureDevice::AVCaptureFocusMode;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureFraming;
 #[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureISOAuto;
+#[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureISOCurrent;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureLensApertureAuto;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureLensApertureCurrent;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureLensPositionCurrent;
 #[cfg(feature = "AVCaptureDevice")]
@@ -2840,11 +2873,15 @@ pub use self::__AVMetadataObject::AVMetadataCatBodyObject;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataCatHeadObject;
 #[cfg(feature = "AVMetadataObject")]
+pub use self::__AVMetadataObject::AVMetadataCinematicVideoMetadataObject;
+#[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataDogBodyObject;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataDogHeadObject;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataFaceObject;
+#[cfg(feature = "AVMetadataObject")]
+pub use self::__AVMetadataObject::AVMetadataFocusTrackedObject;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataHumanBodyObject;
 #[cfg(feature = "AVMetadataObject")]
@@ -2861,6 +2898,8 @@ pub use self::__AVMetadataObject::AVMetadataObjectTypeAztecCode;
 pub use self::__AVMetadataObject::AVMetadataObjectTypeCatBody;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataObjectTypeCatHead;
+#[cfg(feature = "AVMetadataObject")]
+pub use self::__AVMetadataObject::AVMetadataObjectTypeCinematicVideoMetadata;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataObjectTypeCodabarCode;
 #[cfg(feature = "AVMetadataObject")]
@@ -2883,6 +2922,8 @@ pub use self::__AVMetadataObject::AVMetadataObjectTypeEAN13Code;
 pub use self::__AVMetadataObject::AVMetadataObjectTypeEAN8Code;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataObjectTypeFace;
+#[cfg(feature = "AVMetadataObject")]
+pub use self::__AVMetadataObject::AVMetadataObjectTypeFocusTrackedObject;
 #[cfg(feature = "AVMetadataObject")]
 pub use self::__AVMetadataObject::AVMetadataObjectTypeGS1DataBarCode;
 #[cfg(feature = "AVMetadataObject")]

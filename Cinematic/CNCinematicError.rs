@@ -31,6 +31,8 @@ impl CNCinematicErrorCode {
     pub const Incompatible: Self = Self(6);
     #[doc(alias = "CNCinematicErrorCodeCancelled")]
     pub const Cancelled: Self = Self(7);
+    #[doc(alias = "CNCinematicErrorCodeDownloadFailed")]
+    pub const DownloadFailed: Self = Self(8);
 }
 
 unsafe impl Encode for CNCinematicErrorCode {

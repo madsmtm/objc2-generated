@@ -306,6 +306,37 @@ impl MTLComputePipelineDescriptor {
         #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
         pub fn setRequiredThreadsPerThreadgroup(&self, required_threads_per_threadgroup: MTLSize);
+
+        #[cfg(feature = "MTLPipeline")]
+        #[unsafe(method(forwardProgressUsage))]
+        #[unsafe(method_family = none)]
+        pub fn forwardProgressUsage(&self) -> MTLForwardProgressUsage;
+
+        #[cfg(feature = "MTLPipeline")]
+        /// Setter for [`forwardProgressUsage`][Self::forwardProgressUsage].
+        #[unsafe(method(setForwardProgressUsage:))]
+        #[unsafe(method_family = none)]
+        pub fn setForwardProgressUsage(&self, forward_progress_usage: MTLForwardProgressUsage);
+
+        #[cfg(feature = "MTLTypes")]
+        #[unsafe(method(contentionRelief))]
+        #[unsafe(method_family = none)]
+        pub fn contentionRelief(&self) -> MTLContentionRelief;
+
+        #[cfg(feature = "MTLTypes")]
+        /// Setter for [`contentionRelief`][Self::contentionRelief].
+        #[unsafe(method(setContentionRelief:))]
+        #[unsafe(method_family = none)]
+        pub fn setContentionRelief(&self, contention_relief: MTLContentionRelief);
+
+        #[unsafe(method(optimizeForPersistentKernel))]
+        #[unsafe(method_family = none)]
+        pub fn optimizeForPersistentKernel(&self) -> bool;
+
+        /// Setter for [`optimizeForPersistentKernel`][Self::optimizeForPersistentKernel].
+        #[unsafe(method(setOptimizeForPersistentKernel:))]
+        #[unsafe(method_family = none)]
+        pub fn setOptimizeForPersistentKernel(&self, optimize_for_persistent_kernel: bool);
     );
 }
 
@@ -500,5 +531,18 @@ extern_protocol!(
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
         fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+
+        #[cfg(feature = "MTLTypes")]
+        #[unsafe(method(recommendedPersistentThreadgroupsPerGridForThreadsPerThreadgroup:))]
+        #[unsafe(method_family = none)]
+        fn recommendedPersistentThreadgroupsPerGridForThreadsPerThreadgroup(
+            &self,
+            threads_per_threadgroup: MTLSize,
+        ) -> NSUInteger;
+
+        #[cfg(feature = "MTLPipeline")]
+        #[unsafe(method(forwardProgressUsage))]
+        #[unsafe(method_family = none)]
+        fn forwardProgressUsage(&self) -> MTLForwardProgressUsage;
     }
 );

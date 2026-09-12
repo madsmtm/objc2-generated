@@ -45,6 +45,9 @@ mod __CMFormatDescription;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 #[path = "CMFormatDescriptionBridge.rs"]
 mod __CMFormatDescriptionBridge;
+#[cfg(feature = "CMGenlockClock")]
+#[path = "CMGenlockClock.rs"]
+mod __CMGenlockClock;
 #[cfg(feature = "CMMemoryPool")]
 #[path = "CMMemoryPool.rs"]
 mod __CMMemoryPool;
@@ -1403,6 +1406,8 @@ pub use self::__CMSync::kCMClockError_AllocationFailed;
 pub use self::__CMSync::kCMClockError_InvalidParameter;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMClockError_MissingRequiredParameter;
+#[cfg(feature = "CMSync")]
+pub use self::__CMSync::kCMClockError_PreferredStartTimeNotAvailable;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMClockError_UnsupportedOperation;
 #[cfg(feature = "CMSync")]

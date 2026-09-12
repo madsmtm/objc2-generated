@@ -601,6 +601,34 @@ impl MTLTextureViewDescriptor {
         #[unsafe(method(setSwizzle:))]
         #[unsafe(method_family = none)]
         pub fn setSwizzle(&self, swizzle: MTLTextureSwizzleChannels);
+
+        /// The minimum level of detail for texture views you create with the descriptor.
+        ///
+        /// The property configures the lower limit of the level-of-detail (LOD) range that texture operations access for texture views you create with the descriptor.
+        /// When the GPU calculates a mipmap level, it applies the value of this property
+        /// as the final step, after clamping the sampler LOD and applying the texture view level range offsets.
+        /// The default value is `0.0`.
+        ///
+        /// Each of the following texture operations has a requirement for the `minLOD` value.
+        ///
+        /// | Operation | Requirement |
+        /// | --- | --- |
+        /// | Read   | `floor(minLOD)` ≤ mip level |
+        /// | Gather | `floor(minLOD)` ≤ `levelRange.location` |
+        /// | Sample |        `minLOD` ≤ `levelRange.location` + `levelRange.length` |
+        ///
+        /// Each operation returns an out-of-bounds value if a parameter doesn't meet a requirement.
+        ///
+        /// > Note: For the specific out-of-bounds value for each operation, see the _Texture Functions_ section of the
+        /// [Metal Shading Language Specification (PDF)](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf).
+        #[unsafe(method(minLOD))]
+        #[unsafe(method_family = none)]
+        pub fn minLOD(&self) -> c_float;
+
+        /// Setter for [`minLOD`][Self::minLOD].
+        #[unsafe(method(setMinLOD:))]
+        #[unsafe(method_family = none)]
+        pub fn setMinLOD(&self, min_lod: c_float);
     );
 }
 
@@ -939,5 +967,27 @@ extern_protocol!(
         #[unsafe(method(sparseTextureTier))]
         #[unsafe(method_family = none)]
         fn sparseTextureTier(&self) -> MTLTextureSparseTier;
+
+        /// The lowest mipmap level of detail for the texture.
+        ///
+        /// The property represents the lower limit of the level-of-detail (LOD) range that texture operations access for the texture.
+        /// When the GPU calculates a mipmap level, it applies the value of this property
+        /// as the final step, after clamping the sampler LOD and applying the texture view level range offsets.
+        ///
+        /// Each of the following texture operations has a requirement for the `minLOD` value.
+        ///
+        /// | Operation | Requirement |
+        /// | --- | --- |
+        /// | Read   | `floor(minLOD)` ≤ mip level |
+        /// | Gather | `floor(minLOD)` ≤ `levelRange.location` |
+        /// | Sample |        `minLOD` ≤ `levelRange.location` + `levelRange.length` |
+        ///
+        /// Each operation returns an out-of-bounds value if a parameter doesn't meet a requirement.
+        ///
+        /// > Note: For the specific out-of-bounds value for each operation, see the _Texture Functions_ section of the
+        /// [Metal Shading Language Specification (PDF)](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf).
+        #[unsafe(method(minLOD))]
+        #[unsafe(method_family = none)]
+        fn minLOD(&self) -> c_float;
     }
 );

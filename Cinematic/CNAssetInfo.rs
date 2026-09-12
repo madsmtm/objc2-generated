@@ -14,6 +14,136 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnassetpreprocessconfiguration?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct CNAssetPreprocessConfiguration;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for CNAssetPreprocessConfiguration {}
+);
+
+impl CNAssetPreprocessConfiguration {
+    extern_methods!(
+        #[unsafe(method(initWithDestinationAssetURL:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDestinationAssetURL(
+            this: Allocated<Self>,
+            destination_asset_url: &NSURL,
+        ) -> Retained<Self>;
+
+        /// Controls whether the color track in the output asset reference the source asset
+        /// or embed a copy of its sample data.
+        ///
+        /// When YES, the output asset references the color from the
+        /// source asset. This keeps the intermediate file small, but the output asset will not be
+        /// portable — it depends on the source asset remaining at its original location.
+        ///
+        /// When NO (the default), the color is copied into the output asset, making it
+        /// self-contained and portable at the cost of roughly doubling the storage required.
+        ///
+        /// The disparity and metadata tracks are always embedded regardless of this setting.
+        #[unsafe(method(referenceSourceAssetTracks))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn referenceSourceAssetTracks(&self) -> bool;
+
+        /// Setter for [`referenceSourceAssetTracks`][Self::referenceSourceAssetTracks].
+        #[unsafe(method(setReferenceSourceAssetTracks:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setReferenceSourceAssetTracks(&self, reference_source_asset_tracks: bool);
+
+        #[unsafe(method(destinationAssetURL))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn destinationAssetURL(&self) -> Retained<NSURL>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl CNAssetPreprocessConfiguration {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicresourceversion?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct CNCinematicResourceVersion(pub NSInteger);
+impl CNCinematicResourceVersion {
+    #[doc(alias = "CNCinematicResourceVersion1")]
+    pub const Version1: Self = Self(1);
+}
+
+unsafe impl Encode for CNCinematicResourceVersion {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for CNCinematicResourceVersion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematiccapability?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct CNCinematicCapability(pub NSInteger);
+impl CNCinematicCapability {
+    /// No cinematic capabilities
+    #[doc(alias = "CNCinematicCapabilityNone")]
+    pub const None: Self = Self(0);
+    /// The cinematic asset can be used without preprocessing
+    #[doc(alias = "CNCinematicCapabilityRenderable")]
+    pub const Renderable: Self = Self(1);
+    /// The cinematic asset needs preprocessing before it can be used
+    #[doc(alias = "CNCinematicCapabilityNeedsPreprocessing")]
+    pub const NeedsPreprocessing: Self = Self(2);
+}
+
+unsafe impl Encode for CNCinematicCapability {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for CNCinematicCapability {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnresourcestatus?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct CNResourceStatus(pub NSInteger);
+impl CNResourceStatus {
+    /// Configuration is supported
+    #[doc(alias = "CNResourceStatusReady")]
+    pub const Ready: Self = Self(0);
+    /// Configuration is supported but requires download of resources
+    #[doc(alias = "CNResourceStatusNeedsDownloading")]
+    pub const NeedsDownloading: Self = Self(1);
+    /// The device lacks hardware capabilities for the given configuration
+    #[doc(alias = "CNResourceStatusUnsupportedDevice")]
+    pub const UnsupportedDevice: Self = Self(2);
+    /// The given asset is unsupported on the current build
+    #[doc(alias = "CNResourceStatusUnsupportedAsset")]
+    pub const UnsupportedAsset: Self = Self(3);
+}
+
+unsafe impl Encode for CNResourceStatus {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for CNResourceStatus {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern_class!(
     /// Information associated with an AVAsset for a cinematic video.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnassetinfo?language=objc)
@@ -29,7 +159,23 @@ extern_conformance!(
 impl CNAssetInfo {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
-        /// Check if asset is cinematic asynchronously.
+        /// Asynchronously checks the cinematic capability of an asset.
+        /// The completionHandler returns:
+        /// CNCinematicCapabilityNone if a cinematic metadata track is not present.
+        /// CNCinematicCapabilityRenderable if the cinematic asset can be used without preprocessing
+        /// CNCinematicCapabilityNeedsPreprocessing If cinematic asset needs preprocessing before it can be used
+        /// For assets that need preprocessing use [CNAssetInfo preprocessAssetWithConfiguration:completionHandler:] before using the asset
+        #[unsafe(method(checkCinematicCapabilityForAsset:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn checkCinematicCapabilityForAsset_completionHandler(
+            asset: &AVAsset,
+            completion_handler: &block2::SendableBlock<'static, fn(CNCinematicCapability)>,
+        );
+
+        #[cfg(all(feature = "block2", feature = "objc2-av-foundation"))]
+        /// Asynchronously check if asset is cinematic.
+        /// Only Cinematic assets containing a disparity track and a metadata track will return YES.
+        #[deprecated]
         #[unsafe(method(checkIfCinematic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkIfCinematic_completionHandler(
@@ -125,6 +271,119 @@ impl CNAssetInfo {
         #[unsafe(method(sampleDataTrackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
+    );
+}
+
+/// CNAssetWithoutDisparity.
+impl CNAssetInfo {
+    extern_methods!(
+        /// Check status for a set of resources.
+        ///
+        /// Parameter `resourceVersions`: Resource version(s) to check. Empty set to check all available resource versions.
+        ///
+        /// Returns: The first encountered non-ready status, or CNResourceStatusReady if all are ready.
+        #[unsafe(method(resourceStatusForVersions:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resourceStatusForVersions(
+            resource_versions: &NSSet<NSNumber>,
+        ) -> CNResourceStatus;
+
+        #[cfg(feature = "block2")]
+        /// Downloads the resources required to render cinematic effects on assets
+        /// Resources are device-wide and are cached once downloaded
+        ///
+        /// Parameter `resourceVersions`: Resource version(s) to download. Pass an empty set to
+        /// download all available resources
+        ///
+        /// Parameter `downloadTimeout`: Maximum seconds to wait before timeout. Pass
+        /// `defaultResourceDownloadTimeout`for the system default.
+        ///
+        /// Parameter `completionHandler`: Called on completion;
+        /// `error`is
+        /// `nil`on success.
+        ///
+        /// Returns: A
+        /// `NSProgress`tracking the download.
+        #[unsafe(method(downloadResourcesForVersions:timeout:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn downloadResourcesForVersions_timeout_completionHandler(
+            resource_versions: &NSSet<NSNumber>,
+            download_timeout: NSTimeInterval,
+            completion_handler: &block2::Block<'static, fn(*mut NSError)>,
+        ) -> Retained<NSProgress>;
+
+        #[cfg(feature = "block2")]
+        /// Downloads the resources required to render cinematic effects for the given asset
+        /// Resources are device-wide and are cached once downloaded
+        ///
+        /// Parameter `downloadTimeout`: Maximum seconds to wait before timeout. Pass
+        /// `defaultResourceDownloadTimeout`for the system default.
+        ///
+        /// Parameter `completionHandler`: Called on completion; On success,
+        /// `newAssetInfo`is a refreshed instance with the downloaded resources available;
+        /// `error`is non-nil on failure
+        ///
+        /// Returns: A
+        /// `NSProgress`tracking the download.
+        #[unsafe(method(downloadResourcesWithTimeout:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn downloadResourcesWithTimeout_completionHandler(
+            &self,
+            download_timeout: NSTimeInterval,
+            completion_handler: &block2::Block<'static, fn(*mut CNAssetInfo, *mut NSError)>,
+        ) -> Retained<NSProgress>;
+
+        #[cfg(feature = "block2")]
+        /// Preprocesses the asset by generating a disparity track, writing the result to the
+        /// URL specified in `configuration`. Required for assets whose `cinematicCapability`
+        /// is
+        /// `CNCinematicCapabilityNeedsPreprocessing;`on success
+        /// `assetInfo`will be
+        /// `CNCinematicCapabilityRenderable.`
+        /// Ensure
+        /// `resourceStatus`is ready before calling — download resources first if needed.
+        ///
+        ///
+        /// Parameter `configuration`: Destination URL and whether to embed or reference source tracks.
+        ///
+        /// Parameter `completionHandler`: Called on completion; on success
+        /// `assetInfo`is the new preprocessed
+        /// asset and
+        /// `error`is
+        /// `nil.`On failure
+        /// `assetInfo`is
+        /// `nil`and
+        /// `error`is non-nil.
+        ///
+        /// Returns: A
+        /// `NSProgress`tracking preprocessing progress.
+        #[unsafe(method(preprocessAssetWithConfiguration:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn preprocessAssetWithConfiguration_completionHandler(
+            &self,
+            configuration: &CNAssetPreprocessConfiguration,
+            completion_handler: &block2::Block<'static, fn(*mut CNAssetInfo, *mut NSError)>,
+        ) -> Retained<NSProgress>;
+
+        /// Default timeout value for resource download for
+        /// `+[CNAssetInfo downloadResourcesForVersions:timeout:completionHandler:]`
+        /// `-[CNAssetInfo downloadResourcesWithTimeout:completionHandler:]`
+        #[unsafe(method(defaultResourceDownloadTimeout))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn defaultResourceDownloadTimeout() -> NSTimeInterval;
+
+        /// True only when an asset has been preprocessed
+        #[unsafe(method(isPreprocessed))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isPreprocessed(&self) -> bool;
+
+        #[unsafe(method(cinematicCapability))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cinematicCapability(&self) -> CNCinematicCapability;
+
+        #[unsafe(method(resourceStatus))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resourceStatus(&self) -> CNResourceStatus;
     );
 }
 

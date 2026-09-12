@@ -88,9 +88,9 @@ impl AVMetadataObject {
         #[unsafe(method_family = none)]
         pub unsafe fn groupID(&self) -> NSInteger;
 
-        /// A unique identifier for each detected object type (face, body, hands, heads and salient objects) in a collection.
+        /// A unique identifier for each detected object type (face, body, hands, heads, salient objects and focus-tracked objects) in a collection.
         ///
-        /// Defaults to a value of -1 when invalid or not available. When used in conjunction with an ``AVCaptureMetadataOutput``, each newly detected object that enters the scene is assigned a unique identifier. ``objectID``s are never re-used as objects leave the picture and new ones enter. Objects that leave the picture and then re-enter are assigned a new ``objectID``.
+        /// Defaults to a value of -1 when invalid or not available. When used in conjunction with an ``AVCaptureMetadataOutput``, each newly detected object that enters the scene is assigned a unique identifier. ``objectID``s are never re-used as objects leave the picture and new ones enter. Objects that leave the picture and then re-enter are assigned a new ``objectID``. Focus-tracked objects are an exception. They retain the same ``objectID`` when leaving and re-entering the picture.
         #[unsafe(method(objectID))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectID(&self) -> NSInteger;
@@ -112,6 +112,115 @@ impl AVMetadataObject {
         #[unsafe(method(isFixedFocus))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFixedFocus(&self) -> bool;
+    );
+}
+
+extern "C" {
+    /// An identifier for an instance of ``AVMetadataFocusTrackedObject``.
+    ///
+    /// This metadata object type is only available when the source ``AVCaptureDevice``'s `activeFormat` has ``AVCaptureDeviceFormat/isContinuousAutoFocusTrackingSupported`` equal to `true`. It can therefore appear and disappear from ``AVCaptureMetadataOutput/availableMetadataObjectTypes`` as the active format changes; observers should not assume it is statically available for the lifetime of the session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypefocustrackedobject?language=objc)
+    pub static AVMetadataObjectTypeFocusTrackedObject: &'static AVMetadataObjectType;
+}
+
+extern_class!(
+    /// A metadata object that is maintained in focus by the camera's auto focus system continuously tracking it.
+    ///
+    /// ``AVMetadataFocusTrackedObject`` represents a single tracked object in a picture. It is an immutable object describing the focus-tracked object.
+    ///
+    /// On supported platforms, ``AVCaptureMetadataOutput`` outputs arrays of focus-tracked objects. See AVCaptureOutput.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatafocustrackedobject?language=objc)
+    #[unsafe(super(AVMetadataObject, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVMetadataFocusTrackedObject;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataFocusTrackedObject {}
+);
+
+unsafe impl CopyingHelper for AVMetadataFocusTrackedObject {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataFocusTrackedObject {}
+);
+
+impl AVMetadataFocusTrackedObject {}
+
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataFocusTrackedObject {
+    extern_methods!(
+        // -init (unavailable)
+
+        // +new (unavailable)
+
+    );
+}
+
+extern "C" {
+    /// A constant that identifies Cinematic video metadata for post-capture Cinematic video editing.
+    ///
+    /// This metadata object type is only available when the source ``AVCaptureDevice``'s `activeFormat` has ``AVCaptureDeviceFormat/isCinematicVideoMetadataCaptureSupported`` equal to `true`. It can therefore appear and disappear from ``AVCaptureMetadataOutput/availableMetadataObjectTypes`` as the active format changes; observers should not assume it is statically available for the lifetime of the session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecinematicvideometadata?language=objc)
+    pub static AVMetadataObjectTypeCinematicVideoMetadata: &'static AVMetadataObjectType;
+}
+
+extern_class!(
+    /// A metadata object containing opaque Cinematic video metadata for Cinematic video editing.
+    ///
+    /// This object represents Cinematic video metadata captured during a recording session using ``AVCaptureMetadataOutput``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacinematicvideometadataobject?language=objc)
+    #[unsafe(super(AVMetadataObject, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVMetadataCinematicVideoMetadataObject;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for AVMetadataCinematicVideoMetadataObject {}
+);
+
+unsafe impl CopyingHelper for AVMetadataCinematicVideoMetadataObject {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVMetadataCinematicVideoMetadataObject {}
+);
+
+impl AVMetadataCinematicVideoMetadataObject {
+    extern_methods!(
+        #[cfg(feature = "objc2-core-media")]
+        /// The format description for Cinematic video timed metadata sample buffers.
+        ///
+        /// Use this format description when creating your ``AVAssetWriterInput`` for the Cinematic video timed metadata track.
+        #[unsafe(method(cinematicVideoMetadataFormatDescription))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cinematicVideoMetadataFormatDescription(
+        ) -> Option<Retained<CMFormatDescription>>;
+
+        #[cfg(feature = "AVTimedMetadataGroup")]
+        /// A timed metadata group containing the Cinematic video metadata.
+        ///
+        /// Append this group to an ``AVAssetWriterInputMetadataAdaptor`` to write the Cinematic video metadata track.
+        #[unsafe(method(timedMetadataGroup))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn timedMetadataGroup(&self) -> Option<Retained<AVTimedMetadataGroup>>;
+    );
+}
+
+/// Methods declared on superclass `AVMetadataObject`.
+impl AVMetadataCinematicVideoMetadataObject {
+    extern_methods!(
+        // -init (unavailable)
+
+        // +new (unavailable)
+
     );
 }
 

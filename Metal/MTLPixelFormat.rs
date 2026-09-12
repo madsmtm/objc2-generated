@@ -52,230 +52,1101 @@ impl MTLPixelFormat {
     pub const ABGR4Unorm: Self = Self(42);
     #[doc(alias = "MTLPixelFormatBGR5A1Unorm")]
     pub const BGR5A1Unorm: Self = Self(43);
+    /// An ordinary format with three components of 8-bit normalized, unsigned integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB8Unorm")]
+    pub const RGB8Unorm: Self = Self(45);
+    /// An ordinary format with three components of 8-bit normalized, signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB8Snorm")]
+    pub const RGB8Snorm: Self = Self(46);
+    /// An ordinary format with three components of 8-bit unsigned integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB8Uint")]
+    pub const RGB8Uint: Self = Self(47);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB8Sint")]
+    pub const RGB8Sint: Self = Self(48);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatR32Uint")]
     pub const R32Uint: Self = Self(53);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatR32Sint")]
     pub const R32Sint: Self = Self(54);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatR32Float")]
     pub const R32Float: Self = Self(55);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRG16Unorm")]
     pub const RG16Unorm: Self = Self(60);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRG16Snorm")]
     pub const RG16Snorm: Self = Self(62);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRG16Uint")]
     pub const RG16Uint: Self = Self(63);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRG16Sint")]
     pub const RG16Sint: Self = Self(64);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRG16Float")]
     pub const RG16Float: Self = Self(65);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA8Unorm")]
     pub const RGBA8Unorm: Self = Self(70);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA8Unorm_sRGB")]
     pub const RGBA8Unorm_sRGB: Self = Self(71);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA8Snorm")]
     pub const RGBA8Snorm: Self = Self(72);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA8Uint")]
     pub const RGBA8Uint: Self = Self(73);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA8Sint")]
     pub const RGBA8Sint: Self = Self(74);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBGRA8Unorm")]
     pub const BGRA8Unorm: Self = Self(80);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBGRA8Unorm_sRGB")]
     pub const BGRA8Unorm_sRGB: Self = Self(81);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGB10A2Unorm")]
     pub const RGB10A2Unorm: Self = Self(90);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGB10A2Uint")]
     pub const RGB10A2Uint: Self = Self(91);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRG11B10Float")]
     pub const RG11B10Float: Self = Self(92);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGB9E5Float")]
     pub const RGB9E5Float: Self = Self(93);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBGR10A2Unorm")]
     pub const BGR10A2Unorm: Self = Self(94);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBGR10_XR")]
     pub const BGR10_XR: Self = Self(554);
+    /// An ordinary format with three components of 8-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBGR10_XR_sRGB")]
     pub const BGR10_XR_sRGB: Self = Self(555);
+    /// An ordinary format with three components of 16-bit normalized, unsigned integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB16Unorm")]
+    pub const RGB16Unorm: Self = Self(95);
+    /// An ordinary format with three components of 16-bit normalized, signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB16Snorm")]
+    pub const RGB16Snorm: Self = Self(96);
+    /// An ordinary format with three components of 16-bit unsigned integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB16Uint")]
+    pub const RGB16Uint: Self = Self(97);
+    /// An ordinary format with three components of 16-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB16Sint")]
+    pub const RGB16Sint: Self = Self(98);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB16Float")]
+    pub const RGB16Float: Self = Self(99);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRG32Uint")]
     pub const RG32Uint: Self = Self(103);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRG32Sint")]
     pub const RG32Sint: Self = Self(104);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRG32Float")]
     pub const RG32Float: Self = Self(105);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA16Unorm")]
     pub const RGBA16Unorm: Self = Self(110);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA16Snorm")]
     pub const RGBA16Snorm: Self = Self(112);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA16Uint")]
     pub const RGBA16Uint: Self = Self(113);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA16Sint")]
     pub const RGBA16Sint: Self = Self(114);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA16Float")]
     pub const RGBA16Float: Self = Self(115);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBGRA10_XR")]
     pub const BGRA10_XR: Self = Self(552);
+    /// An ordinary format with three components of 16-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBGRA10_XR_sRGB")]
     pub const BGRA10_XR_sRGB: Self = Self(553);
+    /// An ordinary format with three components of 32-bit unsigned integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB32Uint")]
+    pub const RGB32Uint: Self = Self(120);
+    /// An ordinary format with three components of 32-bit signed integer values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB32Sint")]
+    pub const RGB32Sint: Self = Self(121);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
+    #[doc(alias = "MTLPixelFormatRGB32Float")]
+    pub const RGB32Float: Self = Self(122);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA32Uint")]
     pub const RGBA32Uint: Self = Self(123);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA32Sint")]
     pub const RGBA32Sint: Self = Self(124);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatRGBA32Float")]
     pub const RGBA32Float: Self = Self(125);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC1_RGBA")]
     pub const BC1_RGBA: Self = Self(130);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC1_RGBA_sRGB")]
     pub const BC1_RGBA_sRGB: Self = Self(131);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC2_RGBA")]
     pub const BC2_RGBA: Self = Self(132);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC2_RGBA_sRGB")]
     pub const BC2_RGBA_sRGB: Self = Self(133);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC3_RGBA")]
     pub const BC3_RGBA: Self = Self(134);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC3_RGBA_sRGB")]
     pub const BC3_RGBA_sRGB: Self = Self(135);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC4_RUnorm")]
     pub const BC4_RUnorm: Self = Self(140);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC4_RSnorm")]
     pub const BC4_RSnorm: Self = Self(141);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC5_RGUnorm")]
     pub const BC5_RGUnorm: Self = Self(142);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC5_RGSnorm")]
     pub const BC5_RGSnorm: Self = Self(143);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC6H_RGBFloat")]
     pub const BC6H_RGBFloat: Self = Self(150);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC6H_RGBUfloat")]
     pub const BC6H_RGBUfloat: Self = Self(151);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC7_RGBAUnorm")]
     pub const BC7_RGBAUnorm: Self = Self(152);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatBC7_RGBAUnorm_sRGB")]
     pub const BC7_RGBAUnorm_sRGB: Self = Self(153);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatPVRTC_RGB_2BPP")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGB_2BPP: Self = Self(160);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatPVRTC_RGB_2BPP_sRGB")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGB_2BPP_sRGB: Self = Self(161);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatPVRTC_RGB_4BPP")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGB_4BPP: Self = Self(162);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatPVRTC_RGB_4BPP_sRGB")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGB_4BPP_sRGB: Self = Self(163);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatPVRTC_RGBA_2BPP")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGBA_2BPP: Self = Self(164);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatPVRTC_RGBA_2BPP_sRGB")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGBA_2BPP_sRGB: Self = Self(165);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatPVRTC_RGBA_4BPP")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGBA_4BPP: Self = Self(166);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatPVRTC_RGBA_4BPP_sRGB")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGBA_4BPP_sRGB: Self = Self(167);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatEAC_R11Unorm")]
     pub const EAC_R11Unorm: Self = Self(170);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatEAC_R11Snorm")]
     pub const EAC_R11Snorm: Self = Self(172);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatEAC_RG11Unorm")]
     pub const EAC_RG11Unorm: Self = Self(174);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatEAC_RG11Snorm")]
     pub const EAC_RG11Snorm: Self = Self(176);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatEAC_RGBA8")]
     pub const EAC_RGBA8: Self = Self(178);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatEAC_RGBA8_sRGB")]
     pub const EAC_RGBA8_sRGB: Self = Self(179);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatETC2_RGB8")]
     pub const ETC2_RGB8: Self = Self(180);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatETC2_RGB8_sRGB")]
     pub const ETC2_RGB8_sRGB: Self = Self(181);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatETC2_RGB8A1")]
     pub const ETC2_RGB8A1: Self = Self(182);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatETC2_RGB8A1_sRGB")]
     pub const ETC2_RGB8A1_sRGB: Self = Self(183);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_4x4_sRGB")]
     pub const ASTC_4x4_sRGB: Self = Self(186);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_5x4_sRGB")]
     pub const ASTC_5x4_sRGB: Self = Self(187);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_5x5_sRGB")]
     pub const ASTC_5x5_sRGB: Self = Self(188);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_6x5_sRGB")]
     pub const ASTC_6x5_sRGB: Self = Self(189);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_6x6_sRGB")]
     pub const ASTC_6x6_sRGB: Self = Self(190);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_8x5_sRGB")]
     pub const ASTC_8x5_sRGB: Self = Self(192);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_8x6_sRGB")]
     pub const ASTC_8x6_sRGB: Self = Self(193);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_8x8_sRGB")]
     pub const ASTC_8x8_sRGB: Self = Self(194);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x5_sRGB")]
     pub const ASTC_10x5_sRGB: Self = Self(195);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x6_sRGB")]
     pub const ASTC_10x6_sRGB: Self = Self(196);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x8_sRGB")]
     pub const ASTC_10x8_sRGB: Self = Self(197);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x10_sRGB")]
     pub const ASTC_10x10_sRGB: Self = Self(198);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_12x10_sRGB")]
     pub const ASTC_12x10_sRGB: Self = Self(199);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_12x12_sRGB")]
     pub const ASTC_12x12_sRGB: Self = Self(200);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_4x4_LDR")]
     pub const ASTC_4x4_LDR: Self = Self(204);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_5x4_LDR")]
     pub const ASTC_5x4_LDR: Self = Self(205);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_5x5_LDR")]
     pub const ASTC_5x5_LDR: Self = Self(206);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_6x5_LDR")]
     pub const ASTC_6x5_LDR: Self = Self(207);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_6x6_LDR")]
     pub const ASTC_6x6_LDR: Self = Self(208);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_8x5_LDR")]
     pub const ASTC_8x5_LDR: Self = Self(210);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_8x6_LDR")]
     pub const ASTC_8x6_LDR: Self = Self(211);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_8x8_LDR")]
     pub const ASTC_8x8_LDR: Self = Self(212);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x5_LDR")]
     pub const ASTC_10x5_LDR: Self = Self(213);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x6_LDR")]
     pub const ASTC_10x6_LDR: Self = Self(214);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x8_LDR")]
     pub const ASTC_10x8_LDR: Self = Self(215);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x10_LDR")]
     pub const ASTC_10x10_LDR: Self = Self(216);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_12x10_LDR")]
     pub const ASTC_12x10_LDR: Self = Self(217);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_12x12_LDR")]
     pub const ASTC_12x12_LDR: Self = Self(218);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_4x4_HDR")]
     pub const ASTC_4x4_HDR: Self = Self(222);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_5x4_HDR")]
     pub const ASTC_5x4_HDR: Self = Self(223);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_5x5_HDR")]
     pub const ASTC_5x5_HDR: Self = Self(224);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_6x5_HDR")]
     pub const ASTC_6x5_HDR: Self = Self(225);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_6x6_HDR")]
     pub const ASTC_6x6_HDR: Self = Self(226);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_8x5_HDR")]
     pub const ASTC_8x5_HDR: Self = Self(228);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_8x6_HDR")]
     pub const ASTC_8x6_HDR: Self = Self(229);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_8x8_HDR")]
     pub const ASTC_8x8_HDR: Self = Self(230);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x5_HDR")]
     pub const ASTC_10x5_HDR: Self = Self(231);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x6_HDR")]
     pub const ASTC_10x6_HDR: Self = Self(232);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x8_HDR")]
     pub const ASTC_10x8_HDR: Self = Self(233);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_10x10_HDR")]
     pub const ASTC_10x10_HDR: Self = Self(234);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_12x10_HDR")]
     pub const ASTC_12x10_HDR: Self = Self(235);
+    /// An ordinary format with three components of 32-bit floating-point values in RGB order.
+    ///
+    /// The order of the color components in this format are red, green and blue.
+    ///
+    /// You can apply this format to a texture you create only with an ``MTLTextureDescriptor`` instance with all of the following property configurations:
+    /// * The ``MTLTextureDescriptor/usage`` property can't include the ``MTLTextureUsage/MTLTextureUsageShaderWrite`` option.
+    /// * The ``MTLTextureDescriptor/textureType`` property needs to be equal to ``MTLTextureType/MTLTextureTypeTextureBuffer``.
     #[doc(alias = "MTLPixelFormatASTC_12x12_HDR")]
     pub const ASTC_12x12_HDR: Self = Self(236);
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.

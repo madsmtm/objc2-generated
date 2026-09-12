@@ -143,6 +143,37 @@ impl MTL4ComputePipelineDescriptor {
             support_indirect_command_buffers: MTL4IndirectCommandBufferSupportState,
         );
 
+        #[cfg(feature = "MTLPipeline")]
+        #[unsafe(method(forwardProgressUsage))]
+        #[unsafe(method_family = none)]
+        pub fn forwardProgressUsage(&self) -> MTLForwardProgressUsage;
+
+        #[cfg(feature = "MTLPipeline")]
+        /// Setter for [`forwardProgressUsage`][Self::forwardProgressUsage].
+        #[unsafe(method(setForwardProgressUsage:))]
+        #[unsafe(method_family = none)]
+        pub fn setForwardProgressUsage(&self, forward_progress_usage: MTLForwardProgressUsage);
+
+        #[cfg(feature = "MTLTypes")]
+        #[unsafe(method(contentionRelief))]
+        #[unsafe(method_family = none)]
+        pub fn contentionRelief(&self) -> MTLContentionRelief;
+
+        #[cfg(feature = "MTLTypes")]
+        /// Setter for [`contentionRelief`][Self::contentionRelief].
+        #[unsafe(method(setContentionRelief:))]
+        #[unsafe(method_family = none)]
+        pub fn setContentionRelief(&self, contention_relief: MTLContentionRelief);
+
+        #[unsafe(method(optimizeForPersistentKernel))]
+        #[unsafe(method_family = none)]
+        pub fn optimizeForPersistentKernel(&self) -> bool;
+
+        /// Setter for [`optimizeForPersistentKernel`][Self::optimizeForPersistentKernel].
+        #[unsafe(method(setOptimizeForPersistentKernel:))]
+        #[unsafe(method_family = none)]
+        pub fn setOptimizeForPersistentKernel(&self, optimize_for_persistent_kernel: bool);
+
         /// Resets the descriptor to its default values.
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]

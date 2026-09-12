@@ -92,6 +92,9 @@ pub const kCMClockError_AllocationFailed: OSStatus = -12747;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmclockerror_unsupportedoperation?language=objc)
 pub const kCMClockError_UnsupportedOperation: OSStatus = -12756;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmclockerror_preferredstarttimenotavailable?language=objc)
+pub const kCMClockError_PreferredStartTimeNotAvailable: OSStatus = -12758;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimebaseerror_missingrequiredparameter?language=objc)
 pub const kCMTimebaseError_MissingRequiredParameter: OSStatus = -12748;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimebaseerror_invalidparameter?language=objc)
@@ -214,6 +217,63 @@ impl CMClock {
         }
         let ret = unsafe { CMClockMightDrift(self, other_clock) };
         ret != 0
+    }
+
+    /// Indicates whether a clock implements the `CMClockGetPreferredStartTimePattern` function.
+    #[doc(alias = "CMClockImplementsGetPreferredStartTimePattern")]
+    #[inline]
+    pub unsafe fn implements_get_preferred_start_time_pattern(&self) -> bool {
+        extern "C-unwind" {
+            fn CMClockImplementsGetPreferredStartTimePattern(clock: &CMClock) -> Boolean;
+        }
+        let ret = unsafe { CMClockImplementsGetPreferredStartTimePattern(self) };
+        ret != 0
+    }
+
+    /// Retrieves a description of the pattern of preferred start times, such as for synchronization with an external genlock signal.
+    ///
+    /// When the system is disciplined to a sync signal, this function returns a
+    /// matched time pair in the near future and the delta between successive times.
+    /// - Parameters:
+    /// - outClockStartTime: Points to a CMTime to receive the clock time of the next preferred start time pair.
+    /// - outHostClockStartTime: Points to a CMTime to receive the host clock time of the next preferred start time pair.
+    /// - outDeltaBetweenPreferredStartTimes: Points to a CMTime to receive the delta between successive preferred start times.
+    /// Integer multiples of this delta may be added to the clock start time and
+    /// host clock start time to calculate near future preferred start times.
+    /// - Returns: `noErr` on success, `kCMClockError_UnsupportedOperation` if the clock does not
+    /// support this function, or `kCMClockError_PreferredStartTimeNotAvailable` if the system is
+    /// not disciplined to a present signal.
+    ///
+    /// # Safety
+    ///
+    /// - `out_clock_start_time` must be a valid pointer or null.
+    /// - `out_host_clock_start_time` must be a valid pointer or null.
+    /// - `out_delta_between_preferred_start_times` must be a valid pointer or null.
+    #[doc(alias = "CMClockGetPreferredStartTimePattern")]
+    #[cfg(feature = "CMTime")]
+    #[inline]
+    pub unsafe fn preferred_start_time_pattern(
+        &self,
+        out_clock_start_time: *mut CMTime,
+        out_host_clock_start_time: *mut CMTime,
+        out_delta_between_preferred_start_times: *mut CMTime,
+    ) -> OSStatus {
+        extern "C-unwind" {
+            fn CMClockGetPreferredStartTimePattern(
+                clock: &CMClock,
+                out_clock_start_time: *mut CMTime,
+                out_host_clock_start_time: *mut CMTime,
+                out_delta_between_preferred_start_times: *mut CMTime,
+            ) -> OSStatus;
+        }
+        unsafe {
+            CMClockGetPreferredStartTimePattern(
+                self,
+                out_clock_start_time,
+                out_host_clock_start_time,
+                out_delta_between_preferred_start_times,
+            )
+        }
     }
 
     /// Makes the clock stop functioning.

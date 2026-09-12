@@ -54,6 +54,28 @@ unsafe impl RefEncode for MTLShaderValidation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlforwardprogressusage?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct MTLForwardProgressUsage(pub NSInteger);
+impl MTLForwardProgressUsage {
+    #[doc(alias = "MTLForwardProgressUsageAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "MTLForwardProgressUsageWeak")]
+    pub const Weak: Self = Self(1);
+    #[doc(alias = "MTLForwardProgressUsageSIMDGroupParallel")]
+    pub const SIMDGroupParallel: Self = Self(2);
+}
+
+unsafe impl Encode for MTLForwardProgressUsage {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLForwardProgressUsage {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelinebufferdescriptor?language=objc)
     #[unsafe(super(NSObject))]

@@ -44,6 +44,103 @@ extern "C" {
     pub static AVCaptureDeviceSubjectAreaDidChangeNotification: &'static NSNotificationName;
 }
 
+extern "C" {
+    /// A special value that may be passed as the lensAperture parameter of a device's `setExposureModeCustom...` methods to lock at the current position.
+    ///
+    /// This value may be passed to ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:`` to lock it to its current value. Note that the device may be adjusting the aperture at the time of the call, in which case ``AVCaptureDevice/lensAperture`` may be locked to different value than the value obtained by querying the property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturelensaperturecurrent?language=objc)
+    pub static AVCaptureLensApertureCurrent: c_float;
+}
+
+extern "C" {
+    /// A special value that may be passed as the duration parameter of a device's `setExposureModeCustom...` methods to lock at the current duration.
+    ///
+    /// This value may be passed to ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` or ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:`` to lock it to its current value. Note that the device may be adjusting exposure duration at the time of the call, in which case ``AVCaptureDevice/exposureDuration`` may be locked to different value than the value obtained by querying the property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuredurationcurrent?language=objc)
+    #[cfg(feature = "objc2-core-media")]
+    pub static AVCaptureExposureDurationCurrent: CMTime;
+}
+
+extern "C" {
+    /// A special value that may be passed as the ISO parameter of a device's `setExposureModeCustom...` methods to lock at the current gain value.
+    ///
+    /// This value may be passed to ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` or ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:`` to lock it to its current value. Note that the device may be adjusting ISO at the time of the call, in which case ``AVCaptureDevice/ISO`` may be locked to different value than the value obtained by querying the property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureisocurrent?language=objc)
+    pub static AVCaptureISOCurrent: c_float;
+}
+
+extern "C" {
+    /// A special value that may be passed as the lensAperture parameter of a device's `setExposureModeCustom...` methods to allow the system's auto-exposure system to manage the aperture.
+    ///
+    /// This value may be passed to ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:`` to enable "priority" modes, where some parameters are locked to specified values (given "priority"), whereas the ones specified as "auto" will be continually adjusted by the system to maintain image brightness.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturelensapertureauto?language=objc)
+    pub static AVCaptureLensApertureAuto: c_float;
+}
+
+extern "C" {
+    /// A special value that may be passed as the duration parameter of a device's `setExposureModeCustom...` methods to allow the system's auto-exposure system to manage the exposure duration.
+    ///
+    /// This value may be passed to ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` or ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:`` to enable "priority" modes, where some parameters are locked to specified values (given "priority"), whereas the ones specified as "auto" will be continually adjusted by the system to maintain image brightness.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuredurationauto?language=objc)
+    #[cfg(feature = "objc2-core-media")]
+    pub static AVCaptureExposureDurationAuto: CMTime;
+}
+
+extern "C" {
+    /// A special value that may be passed as the ISO parameter of a device's `setExposureModeCustom...` methods to allow the system's auto-exposure system to manage the gain value.
+    ///
+    /// This value may be passed to ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` or ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:`` to enable "priority" modes, where some parameters are locked to specified values (given "priority"), whereas the ones specified as "auto" will be continually adjusted by the system to maintain image brightness.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureisoauto?language=objc)
+    pub static AVCaptureISOAuto: c_float;
+}
+
+/// Values that can be used to configure the auto exposure system via ``AVCaptureDevice/enabledExposureSignals`` and associated methods.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceexposuresignal?language=objc)
+// NS_TYPED_ENUM
+pub type AVCaptureDeviceExposureSignal = NSString;
+
+extern "C" {
+    /// When enabled, auto exposure may close the aperture or decrease the exposure duration to reduce motion blur when there is a lot of motion in the scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceexposuresignalsubjectmotion?language=objc)
+    pub static AVCaptureDeviceExposureSignalSubjectMotion: &'static AVCaptureDeviceExposureSignal;
+}
+
+extern "C" {
+    /// When enabled, auto exposure may close the aperture to increase depth of field when multiple faces are in the scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceexposuresignalgroupphoto?language=objc)
+    pub static AVCaptureDeviceExposureSignalGroupPhoto: &'static AVCaptureDeviceExposureSignal;
+}
+
+extern "C" {
+    /// When enabled, auto exposure may close the aperture to improve sharpness of textual scenes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceexposuresignaldocument?language=objc)
+    pub static AVCaptureDeviceExposureSignalDocument: &'static AVCaptureDeviceExposureSignal;
+}
+
+extern "C" {
+    /// When enabled, auto exposure may open the aperture to remove diffraction artifacts from point light sources.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceexposuresignalstarburst?language=objc)
+    pub static AVCaptureDeviceExposureSignalStarburst: &'static AVCaptureDeviceExposureSignal;
+}
+
+extern "C" {
+    /// When enabled, auto exposure may adjust the aperture to help exposure duration avoid synchronization with artificial lighting frequencies.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceexposuresignalflicker?language=objc)
+    pub static AVCaptureDeviceExposureSignalFlicker: &'static AVCaptureDeviceExposureSignal;
+}
+
 /// Constants indicating video orientation, for use with AVCaptureDeviceRotationCoordinator.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation?language=objc)
@@ -885,6 +982,29 @@ impl AVCaptureDevice {
         pub unsafe fn virtualDeviceSwitchOverVideoZoomFactors(&self)
             -> Retained<NSArray<NSNumber>>;
 
+        /// Whether locking to a particular primary constituent device is supported.
+        ///
+        /// This property returns `true` if ``setPrimaryConstituentDeviceSwitchingBehaviorLockedWithDevice:`` is supported.
+        #[unsafe(method(isPrimaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isPrimaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported(
+            &self,
+        ) -> bool;
+
+        /// Sets the switching behavior of the primary constituent device to locked with the specified device.
+        ///
+        /// - Parameter device: The constituent device to lock.
+        ///
+        /// Before locking a virtual camera's primary constituent device, check that ``primaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported`` is `true`. If locking is not supported, attempting to lock throws an `NSInvalidArgumentException`. Call ``lockForConfiguration:`` to acquire exclusive access to the device’s configuration properties. Once a constituent device is locked, it becomes the ``activePrimaryConstituentDevice``, and ``primaryConstituentDeviceSwitchingBehavior`` is updated to ``AVCapturePrimaryConstituentDeviceSwitchingBehaviorLocked``. The virtual camera’s properties remain unchanged. Their effective values can be obtained from the ``activePrimaryConstituentDevice``. To unlock the primary constituent device, set ``primaryConstituentDeviceSwitchingBehavior`` to ``AVCapturePrimaryConstituentDeviceSwitchingBehaviorAuto``. This may trigger an immediate update of ``activePrimaryConstituentDevice``. Locking a different primary constituent device without first unlocking the current one is allowed.
+        ///
+        /// If the current ``videoZoomFactor`` is within the constituent device's supported range, it will remain unchanged. If it falls outside the range, the zoom factor will automatically be clamped to the nearest supported value. If a zoom ramp is in progress, the ramp target and current position will similarly be updated to stay within the supported range.  If both the target and position are thus clamped to the same value, this will cancel the ramp at that value, otherwise the ramp will continue within the remaining available range at its current velocity.
+        #[unsafe(method(setPrimaryConstituentDeviceSwitchingBehaviorLockedWithDevice:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPrimaryConstituentDeviceSwitchingBehaviorLockedWithDevice(
+            &self,
+            device: &AVCaptureDevice,
+        );
+
         /// The switching behavior and conditions, unless overwritten via -[AVCaptureMovieFileOutput setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions].
         ///
         /// Parameter `switchingBehavior`: The desired switching behavior.
@@ -1472,6 +1592,7 @@ impl AVCaptureDevice {
         /// - Parameter handler: A block to be called when ``lensPosition`` has been set to the value specified and ``focusMode`` is set to ``AVCaptureFocusModeLocked``. If ``setFocusModeLockedWithLensPosition:completionHandler:`` is called multiple times, the completion handlers will be called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the ``AVCaptureSession/synchronizationClock`` prior to comparison with the timestamps of buffers delivered via an ``AVCaptureVideoDataOutput``. The client may pass nil for the handler parameter if knowledge of the operation's completion is not required.
         ///
         /// This is the only way of setting ``lensPosition``. This method throws an NSRangeException if ``lensPosition`` is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using ``lockForConfiguration:``. Before setting custom lens position value, check ``lockingFocusWithCustomLensPositionSupported`` first.
+        /// For a virtual camera, locking to a custom lens position value is not supported if spatial video capture is enabled. When switching a virtual camera's ``activePrimaryConstituentDevice`` using ``setPrimaryConstituentDeviceSwitchingBehaviorLockedWithDevice:`` while focus mode is locked, the custom lens position is preserved across the constituent devices. However, the same lens position does not correspond to the same focus distance. If consistent focus behavior is required on a virtual camera (e.g. stereo depth data delivery is enabled), do not lock to a custom lens position.
         #[unsafe(method(setFocusModeLockedWithLensPosition:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusModeLockedWithLensPosition_completionHandler(
@@ -1558,21 +1679,6 @@ unsafe impl Encode for AVCaptureExposureMode {
 
 unsafe impl RefEncode for AVCaptureExposureMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
-extern "C" {
-    /// A special value that may be passed as the duration parameter of setExposureModeCustomWithDuration:ISO:completionHandler: to indicate that the caller does not wish to specify a value for the exposureDuration property, and that it should instead be set to its current value. Note that the device may be adjusting exposureDuration at the time of the call, in which case the value to which exposureDuration is set may differ from the value obtained by querying the exposureDuration property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuredurationcurrent?language=objc)
-    #[cfg(feature = "objc2-core-media")]
-    pub static AVCaptureExposureDurationCurrent: CMTime;
-}
-
-extern "C" {
-    /// A special value that may be passed as the ISO parameter of setExposureModeCustomWithDuration:ISO:completionHandler: to indicate that the caller does not wish to specify a value for the ISO property, and that it should instead be set to its current value. Note that the device may be adjusting ISO at the time of the call, in which case the value to which ISO is set may differ from the value obtained by querying the ISO property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureisocurrent?language=objc)
-    pub static AVCaptureISOCurrent: c_float;
 }
 
 extern "C" {
@@ -1715,10 +1821,17 @@ impl AVCaptureDevice {
         #[cfg(feature = "objc2-core-media")]
         /// The maximum exposure (integration) time that may be used by the auto exposure algorithm.
         ///
+        /// When ``automaticallyAdjustsExposureDuration`` is true, the auto exposure algorithm picks an exposure duration that is tuned for the current scene, balancing low light image quality with motion preservation, up to the maximum specified by this property.
+        /// When custom exposure durations are specified via ``setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:``, if the duration exceeds `activeMaxExposureDuration`, the behavior depends on whether any of the other custom parameters are set to Auto:
+        /// - If either aperture or ISO are set to Auto, then the applied exposure duration will be capped to `activeMaxExposureDuration` for streaming frames, but the full exposure duration may be applied during still capture.
+        /// - If no parameters are set to Auto, then activeMaxExposureDuration is ignored, the custom exposure duration is applied as specified.
         ///
-        /// When an AVCaptureDevice's exposureMode is set to AVCaptureExposureModeAutoExpose or AVCaptureExposureModeContinuousAutoExposure, the auto exposure algorithm picks a default max exposure duration that is tuned for the current configuration, balancing low light image quality with motion preservation. By querying or key-value observing this property, you may find out the current max exposure duration in use. You may also override the default value by setting this property to a value between activeFormat.maxExposureDuration and activeFormat.minExposureDuration. An NSRangeException is thrown if you pass an out-of-bounds exposure duration. Setting the property to the special value of kCMTimeInvalid resets the auto exposure max duration to the device's default for your current configuration. When the device's activeFormat or the AVCaptureSession's sessionPreset changes, this property resets to the default max exposure duration for the new format or session preset.
+        /// By querying or key-value observing this property, you may find out the current max exposure duration. You may also override the default value by setting this property. Setting the property to the special value of kCMTimeInvalid resets the auto exposure max duration to the device's default for your current configuration. When the device's activeFormat or the AVCaptureSession's sessionPreset changes, this property resets to the default max exposure duration for the new format or session preset.
         ///
-        /// On some devices, the auto exposure algorithm picks a different max exposure duration for a given format depending whether you used the -[AVCaptureSession setSessionPreset:] API or the -[AVCaptureDevice setActiveFormat:] API to set the format. To ensure uniform default handling of max exposure duration, you can set your AVCaptureDeviceInput's unifiedAutoExposureDefaultsEnabled property to YES.
+        /// On some devices, the auto exposure algorithm picks a different max exposure duration for a given format depending whether you set the ``AVCaptureSession/sessionPreset`` property or the ``AVCaptureDevice/activeFormat`` property to set the format. To ensure ``activeMaxExposureDuration`` stays consistent between preset or format changes, you can set your AVCaptureDeviceInput's ``AVCaptureDeviceInput/unifiedAutoExposureDefaultsEnabled`` property to true.
+        ///
+        /// - Throws: `NSRangeException` if the assigned value is not between activeFormat's ``AVCaptureDeviceFormat/minExposureDuration`` and ``AVCaptureDeviceFormat/maxExposureDuration``
+        /// - Throws: `NSGenericException` if called without first obtaining exclusive access to the receiver using ``lockForConfiguration:``.
         #[unsafe(method(activeMaxExposureDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn activeMaxExposureDuration(&self) -> CMTime;
@@ -1737,10 +1850,9 @@ impl AVCaptureDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn isAdjustingExposure(&self) -> bool;
 
-        /// The size of the lens diaphragm.
+        /// The current 𝑓 number (𝑓-stop) of the lens diaphragm.
         ///
-        ///
-        /// The value of this property is a float indicating the size (f number) of the lens diaphragm. This property does not change.
+        /// The aperture's 𝑓 number is the ratio of the focal length to the diameter of the aperture opening. Higher values correspond to closing the aperture, which increases depth of field, but darkens the image unless exposure duration or ISO are increased as well. This property is key-value observable. It can be read at any time, regardless of exposure mode, but can only be set by ``setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:``. This value reports the physical aperture position and may not exactly match the target value passed to the setter.
         #[unsafe(method(lensAperture))]
         #[unsafe(method_family = none)]
         pub unsafe fn lensAperture(&self) -> c_float;
@@ -1748,32 +1860,71 @@ impl AVCaptureDevice {
         #[cfg(feature = "objc2-core-media")]
         /// The length of time over which exposure takes place.
         ///
-        ///
-        /// Only exposure duration values between activeFormat.minExposureDuration and activeFormat.maxExposureDuration are supported. This property is key-value observable. It can be read at any time, regardless of exposure mode, but can only be set via setExposureModeCustomWithDuration:ISO:completionHandler:.
+        /// Lower values increases the sharpness of objects in motion, but darkens the image unless the aperture is opened or ISO is increased. Exposure duration may be less than the frame duration, providing an anagolue to the shutter angle of film video cameras. This property is key-value observable. It can be read at any time, regardless of exposure mode, but can only be set by either ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` or ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:``.
         #[unsafe(method(exposureDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureDuration(&self) -> CMTime;
 
         /// The current exposure ISO value.
         ///
-        ///
-        /// This property controls the sensor's sensitivity to light by means of a gain value applied to the signal. Only ISO values between activeFormat.minISO and activeFormat.maxISO are supported. Higher values will result in noisier images. This property is key-value observable. It can be read at any time, regardless of exposure mode, but can only be set via setExposureModeCustomWithDuration:ISO:completionHandler:.
+        /// This property indicates the sensor's sensitivity to light by means of a gain value applied to the signal.  Higher values correspond to brighter but noisier images. This property is key-value observable. It can be read at any time, regardless of exposure mode, but can only be set by either ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` or ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:``.
         #[unsafe(method(ISO))]
         #[unsafe(method_family = none)]
         pub unsafe fn ISO(&self) -> c_float;
 
+        /// Specifies a rate limit for aperture motion, whenever auto-exposure is active.
+        ///
+        /// This rate limit is enforced whenever the auto-exposure system has control of one or more exposure parameters, to ensure smooth transitions between target values with coordinated management of the automatically adjusted parameters to maintain image brightness.
+        /// However, if a full set of explicit (not "auto") positions are passed to `setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:`, any change to aperture is immediately applied without rate limit.
+        /// In this case, the client has full control of the exposure parameters, and can implement arbitrary exposure transitions by repeated calls to the setter.
+        ///
+        /// This value limits the maximum frame-to-frame change of aperture size, as the ratio of aperture area between consecutive frames.
+        /// For example, a value of 1.1 limits the aperture to accepting 10% additional light on each consecutive frame (or reducing by 10% when closing). A value of 1.0 does not allow any aperture motion.
+        /// A special value of 0 (the default) allows the system to adjust the aperture speed automatically, such as faster motion in preview and slower when recording. When assigned to a value other than 0, the value must be greater than or equal to 1.0.
+        ///
+        /// - Throws: `NSGenericException` if assigned without first obtaining exclusive access to the receiver using ``lockForConfiguration:``.
+        #[unsafe(method(autoExposureLensApertureRateLimit))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn autoExposureLensApertureRateLimit(&self) -> c_float;
+
+        /// Setter for [`autoExposureLensApertureRateLimit`][Self::autoExposureLensApertureRateLimit].
+        #[unsafe(method(setAutoExposureLensApertureRateLimit:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAutoExposureLensApertureRateLimit(
+            &self,
+            auto_exposure_lens_aperture_rate_limit: c_float,
+        );
+
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
-        /// Sets exposureMode to AVCaptureExposureModeCustom and locks exposureDuration and ISO at explicit values.
+        /// Sets a custom exposure mode with the specified lens exposure duration and ISO values.
         ///
+        /// - Parameter duration: The exposure duration, as described in the documentation for the ``exposureDuration`` property. You may specify one of the special Current or Auto constants listed in the discussion section below, or values between the ``AVCaptureDeviceFormat/minExposureDuration`` and ``AVCaptureDeviceFormat/maxExposureDuration`` of the ``activeFormat``.
         ///
-        /// Parameter `duration`: The exposure duration, as described in the documentation for the exposureDuration property. A value of AVCaptureExposureDurationCurrent can be used to indicate that the caller does not wish to specify a value for exposureDuration. Note that changes to this property may result in changes to activeVideoMinFrameDuration and/or activeVideoMaxFrameDuration.
+        /// - Parameter ISO: The exposure ISO value, as described in the documentation for the ``ISO`` property. You may specify one of the special Current or Auto constants listed in the discussion section below, or values between the ``AVCaptureDeviceFormat/minISO`` and ``AVCaptureDeviceFormat/maxISO`` of the ``activeFormat``.
         ///
-        /// Parameter `ISO`: The exposure ISO value, as described in the documentation for the ISO property. A value of AVCaptureISOCurrent can be used to indicate that the caller does not wish to specify a value for ISO.
+        /// - Parameter handler: A block to be called when all parameters have been set to the values specified and ``exposureMode`` is set to ``AVCaptureExposureMode/AVCaptureExposureModeCustom``. If the `setExposureModeCustom...` methods are called multiple times, their completion handlers are always called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the ``AVCaptureSession/synchronizationClock`` prior to comparison with the timestamps of buffers delivered via an ``AVCaptureVideoDataOutput``. The client may pass nil for the handler parameter if knowledge of the operation's completion is not required.
         ///
-        /// Parameter `handler`: A block to be called when both exposureDuration and ISO have been set to the values specified and exposureMode is set to AVCaptureExposureModeCustom. If setExposureModeCustomWithDuration:ISO:completionHandler: is called multiple times, the completion handlers will be called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the `AVCaptureSession/synchronizationClock` prior to comparison with the timestamps of buffers delivered via an AVCaptureVideoDataOutput. The client may pass nil for the handler parameter if knowledge of the operation's completion is not required.
+        /// Besides a numeric value, each of the exposure parameters can be set to either of these special constants:
         ///
+        /// > Lock To Current Value:
+        /// > A value of ``AVFCapture/AVCaptureExposureDurationCurrent`` can be passed for `duration`, or ``AVFCapture/AVCaptureISOCurrent`` for `ISO`, to indicate the caller does not wish to modify the current value. When auto-exposure is active, it is preferable to use these constants rather than querying the property getter, as auto-exposure system may be asynchronously changing the value as the command is processed.
         ///
-        /// This is the only way of setting exposureDuration and ISO. This method throws an NSRangeException if either exposureDuration or ISO is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. When using AVCapturePhotoOutput to capture photos, note that the photoQualityPrioritization property of AVCapturePhotoSettings defaults to AVCapturePhotoQualityPrioritizationBalanced, which allows photo capture to temporarily override the capture device's ISO and exposureDuration values if the scene is dark enough to warrant some form of multi-image fusion to improve quality. To ensure that the receiver's ISO and exposureDuration values are honored while in AVCaptureExposureModeCustom or AVCaptureExposureModeLocked, you must set your AVCapturePhotoSettings.photoQualityPrioritization property to AVCapturePhotoQualityPrioritizationSpeed. The same rule applies if you use the deprecated AVCapturePhotoSettings.autoStillImageStabilizationEnabled property or AVCaptureStillImageOutput.automaticallyEnablesStillImageStabilizationWhenAvailable property. You must set them to NO to preserve your custom or locked exposure settings.
+        /// > Priority Modes:
+        /// > A value of ``AVFCapture/AVCaptureExposureDurationAuto`` can be passed for `duration`, or ``AVFCapture/AVCaptureISOAuto`` for `ISO`, to indicate the auto-exposure system should continue to manage that parameter to produce balanced image brightness. This allows you to lock one of the exposure parameters (the "priority") while the system will automatically adjust the other.
+        /// >
+        /// > Not all priority mode combinations may be supported. Use ``AVCaptureDeviceFormat/supportsExposureModeCustomWithLensAperture:duration:ISO:`` to validate whether a given configuration will be accepted.
+        ///
+        /// The applied exposure duration of streaming frames are limited to ``activeMaxExposureDuration`` when ISO is set to "Auto", but the full exposure duration may be applied during still capture.  Auto parameter(s) will attempt to simulate how a still capture will appear, while maintaining the current frame rate for responsive preview.  If none of the parameters are "Auto", changes to the exposure duration may result in changes to ``activeVideoMaxFrameDuration``.
+        ///
+        /// If you wish to use the custom locked values for ``AVCapturePhotoOutput`` captures, you must set the ``AVCapturePhotoSettings/photoQualityPrioritization`` property to ``AVCapturePhotoQualityPrioritization/AVCapturePhotoQualityPrioritizationSpeed``. The default value of ``AVCapturePhotoQualityPrioritization/AVCapturePhotoQualityPrioritizationBalanced`` allows photo capture to temporarily override the capture device's ISO and exposureDuration values if the scene is dark enough to warrant some form of multi-image fusion to improve quality.
+        ///
+        /// Note selecting speed prioritization disables image stabilization. If you then re-enable image stabilization via the deprecated ``AVCapturePhotoSettings/autoStillImageStabilizationEnabled`` property or ``AVCaptureStillImageOutput/automaticallyEnablesStillImageStabilizationWhenAvailable`` property, this counteracts speed prioritization and can result in image capture adopting different exposure settings.
+        ///
+        /// Calling this method equivalent to passing ``AVFCapture/AVCaptureLensApertureCurrent`` to ``setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:``.
+        ///
+        /// - Throws: `NSRangeException` if any parameter is set to an unsupported level.
+        /// - Throws: `NSInvalidArgumentException` if the custom mode is not supported.  (See ``AVCaptureDeviceFormat/supportsExposureModeCustomWithLensAperture:duration:ISO:``)
+        /// - Throws: `NSGenericException` if called without first obtaining exclusive access to the receiver using ``lockForConfiguration:``.
         #[unsafe(method(setExposureModeCustomWithDuration:ISO:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposureModeCustomWithDuration_ISO_completionHandler(
@@ -1782,6 +1933,63 @@ impl AVCaptureDevice {
             iso: c_float,
             handler: Option<&block2::SendableBlock<'static, fn(CMTime)>>,
         );
+
+        #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Sets a custom exposure mode with the specified lens aperture, exposure duration, and ISO values.
+        ///
+        /// - Parameter lensAperture: The lens aperture, as described in the documentation for the ``lensAperture`` property. You may specify one of the special ``AVFCapture/AVCaptureLensApertureCurrent`` or ``AVFCapture/AVCaptureLensApertureAuto`` constants listed in the discussion section below, or values between the ``AVCaptureDeviceFormat/minLensAperture`` and ``AVCaptureDeviceFormat/maxLensAperture`` of the ``activeFormat``.
+        ///
+        /// - Parameter duration: The exposure duration, as described in the documentation for the ``exposureDuration`` property. You may specify one of the special ``AVFCapture/AVCaptureExposureDurationCurrent`` or ``AVFCapture/AVCaptureExposureDurationAuto`` constants listed in the discussion section below, or values between the ``AVCaptureDeviceFormat/minExposureDuration`` and ``AVCaptureDeviceFormat/maxExposureDuration`` of the ``activeFormat``.
+        ///
+        /// - Parameter ISO: The exposure ISO value, as described in the documentation for the ``ISO`` property. You may specify one of the special ``AVFCapture/AVCaptureISOCurrent`` or ``AVFCapture/AVCaptureISOAuto`` constants listed in the discussion section below, or values between the ``AVCaptureDeviceFormat/minISO`` and ``AVCaptureDeviceFormat/maxISO`` of the ``activeFormat``.
+        ///
+        /// - Parameter handler: A block to be called when all parameters have been set to the values specified and ``exposureMode`` is set to ``AVCaptureExposureMode/AVCaptureExposureModeCustom``. If the `setExposureModeCustom...` methods are called multiple times, their completion handlers are always called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the ``AVCaptureSession/synchronizationClock`` prior to comparison with the timestamps of buffers delivered via an ``AVCaptureVideoDataOutput``. The client may pass nil for the handler parameter if knowledge of the operation's completion is not required.
+        ///
+        /// Besides a numeric value, each of the exposure parameters can be set to either of these special constants:
+        ///
+        /// > Lock To Current Value:
+        /// > A value of ``AVFCapture/AVCaptureLensApertureCurrent`` can be passed for `lensAperture`, or ``AVFCapture/AVCaptureExposureDurationCurrent`` for `duration`, or ``AVFCapture/AVCaptureISOCurrent`` for `ISO`, to indicate you wish to lock that parameter at the current value.  When auto-exposure is active, it is preferable to use these constants rather than querying the property getter, as auto-exposure system may be asynchronously changing the value as the command is processed.
+        /// >
+        /// > Passing ``AVFCapture/AVCaptureLensApertureCurrent`` is equivalent to calling ``setExposureModeCustomWithDuration:ISO:completionHandler:``.
+        ///
+        /// > Priority Modes:
+        /// > A value of ``AVFCapture/AVCaptureLensApertureAuto`` can be passed for `lensAperture`, or ``AVFCapture/AVCaptureExposureDurationAuto``  for `duration`, or ``AVFCapture/AVCaptureISOAuto`` for `ISO`, to indicate the auto-exposure system should continue to manage that parameter to produce balanced image brightness.  This allows you to lock one of the exposure parameters (the "priority") while the system will automatically adjust the other.
+        /// >
+        /// > Not all priority mode combinations may be supported. Use ``AVCaptureDeviceFormat/supportsExposureModeCustomWithLensAperture:duration:ISO:`` to validate whether a given configuration will be accepted.
+        ///
+        /// The applied exposure duration of streaming frames are limited to ``activeMaxExposureDuration`` when either lensAperture or ISO is set to "Auto", but the full exposure duration may be applied during still capture.  Auto parameter(s) will attempt to simulate how a still capture will appear, while maintaining the current frame rate for responsive preview.  If none of the parameters are "Auto", changes to the exposure duration may result in changes to ``activeVideoMaxFrameDuration``.
+        ///
+        /// If you wish to use the custom locked values for ``AVCapturePhotoOutput`` captures, you must set the ``AVCapturePhotoSettings/photoQualityPrioritization`` property to ``AVCapturePhotoQualityPrioritization/AVCapturePhotoQualityPrioritizationSpeed``. The default value of ``AVCapturePhotoQualityPrioritization/AVCapturePhotoQualityPrioritizationBalanced`` allows photo capture to temporarily override the capture device's ISO and exposureDuration values if the scene is dark enough to warrant some form of multi-image fusion to improve quality.
+        ///
+        /// Note selecting speed prioritization disables image stabilization. If you then re-enable image stabilization via the deprecated ``AVCapturePhotoSettings/autoStillImageStabilizationEnabled`` property or ``AVCaptureStillImageOutput/automaticallyEnablesStillImageStabilizationWhenAvailable`` property, this counteracts speed prioritization and can result in image capture adopting different exposure settings.
+        ///
+        /// - Throws: `NSRangeException` if any parameter is set to an unsupported level.
+        /// - Throws: `NSInvalidArgumentException` if the custom mode is not supported.  (See ``AVCaptureDeviceFormat/supportsExposureModeCustomWithLensAperture:duration:ISO:``)
+        /// - Throws: `NSGenericException` if called without first obtaining exclusive access to the receiver using ``lockForConfiguration:``.
+        #[unsafe(method(setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setExposureModeCustomWithLensAperture_duration_ISO_completionHandler(
+            &self,
+            lens_aperture: c_float,
+            duration: CMTime,
+            iso: c_float,
+            handler: Option<&block2::SendableBlock<'static, fn(CMTime)>>,
+        );
+
+        /// This property reports true whenever lensAperture is unlocked, either by setting exposureMode to one of the automatic modes, or by passing `AVCaptureLensApertureAuto` to the aperture parameter of ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:``.
+        #[unsafe(method(automaticallyAdjustsLensAperture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn automaticallyAdjustsLensAperture(&self) -> bool;
+
+        /// This property reports true whenever exposureDuration is unlocked, either by setting exposureMode to one of the automatic modes, or by passing `AVCaptureExposureDurationAuto` to the duration parameter of ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` or ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:``.
+        #[unsafe(method(automaticallyAdjustsExposureDuration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn automaticallyAdjustsExposureDuration(&self) -> bool;
+
+        /// This property reports true whenever ISO is unlocked, either by setting exposureMode to one of the automatic modes, or by passing `AVCaptureISOAuto` to the ISO parameter of ``AVCaptureDevice/setExposureModeCustomWithDuration:ISO:completionHandler:`` or ``AVCaptureDevice/setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:``.
+        #[unsafe(method(automaticallyAdjustsISO))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn automaticallyAdjustsISO(&self) -> bool;
 
         /// Indicates the metered exposure level's offset from the target exposure value, in EV units.
         ///
@@ -1793,8 +2001,9 @@ impl AVCaptureDevice {
 
         /// Bias applied to the target exposure value, in EV units.
         ///
-        ///
-        /// When exposureMode is AVCaptureExposureModeContinuousAutoExposure or AVCaptureExposureModeLocked, the bias will affect both metering (exposureTargetOffset), and the actual exposure level (exposureDuration and ISO). When the exposure mode is AVCaptureExposureModeCustom, it will only affect metering. This property is key-value observable. It can be read at any time, but can only be set via setExposureTargetBias:completionHandler:.
+        /// When exposureMode is AVCaptureExposureModeContinuousAutoExposure or AVCaptureExposureModeLocked, the bias will affect both metering (`exposureTargetOffset`), and the actual exposure level (`lensAperture`, `exposureDuration` and `ISO`).
+        /// When the exposure mode is AVCaptureExposureModeCustom and none of the custom parameters are "Auto", bias is disabled and will only affect metering.  In custom modes with "Auto" parameters, those parameters will be adjusted to apply the requested bias.
+        /// This property is key-value observable. It can be read at any time, but can only be set via setExposureTargetBias:completionHandler:.
         #[unsafe(method(exposureTargetBias))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureTargetBias(&self) -> c_float;
@@ -1831,6 +2040,57 @@ impl AVCaptureDevice {
             &self,
             bias: c_float,
             handler: Option<&block2::SendableBlock<'static, fn(CMTime)>>,
+        );
+
+        /// Reports which characteristics the auto exposure system associates with the current scene. Auto exposure may adjust properties such as lens aperture size based on these factors. This property is key-value observable.
+        #[unsafe(method(activeExposureSignals))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn activeExposureSignals(
+            &self,
+        ) -> Retained<NSSet<AVCaptureDeviceExposureSignal>>;
+
+        /// Can be assigned to control which characteristics AE should use in its decision making, must be a subset of supportedExposureSignals.
+        ///
+        /// When `automaticallyEnablesExposureSignals` is true, the system may automatically change the enabled signals based on other enabled device properties. When `automaticallyEnablesExposureSignals` is false, you may assign a custom set of exposure signals to this property. This property is key-value observable.
+        ///
+        /// - Throws: `NSInvalidArgumentException` if assigned while `automaticallyEnablesExposureSignals` is true
+        /// - Throws: `NSGenericException` if assigned without first obtaining exclusive access to the receiver using ``lockForConfiguration:``.
+        #[unsafe(method(enabledExposureSignals))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enabledExposureSignals(
+            &self,
+        ) -> Retained<NSSet<AVCaptureDeviceExposureSignal>>;
+
+        /// Setter for [`enabledExposureSignals`][Self::enabledExposureSignals].
+        #[unsafe(method(setEnabledExposureSignals:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setEnabledExposureSignals(
+            &self,
+            enabled_exposure_signals: &NSSet<AVCaptureDeviceExposureSignal>,
+        );
+
+        /// Indicates what values can be included in `enabledExposureSignals`. This property is key-value observable.
+        #[unsafe(method(supportedExposureSignals))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportedExposureSignals(
+            &self,
+        ) -> Retained<NSSet<AVCaptureDeviceExposureSignal>>;
+
+        /// When true (the default), capture sessions may automatically modify `enabledExposureSignals` based on changes to other device or session properties.
+        ///
+        /// The `enabledExposureSignals` property can only be assigned when `automaticallyEnablesExposureSignals` is false, otherwise assignments to `enabledExposureSignals` will throw an exception.
+        ///
+        /// - Throws: `NSGenericException` if assigned without first obtaining exclusive access to the receiver using ``lockForConfiguration:``.
+        #[unsafe(method(automaticallyEnablesExposureSignals))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn automaticallyEnablesExposureSignals(&self) -> bool;
+
+        /// Setter for [`automaticallyEnablesExposureSignals`][Self::automaticallyEnablesExposureSignals].
+        #[unsafe(method(setAutomaticallyEnablesExposureSignals:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAutomaticallyEnablesExposureSignals(
+            &self,
+            automatically_enables_exposure_signals: bool,
         );
     );
 }
@@ -3324,6 +3584,61 @@ impl AVCaptureDevice {
     );
 }
 
+/// AVCaptureDeviceContinuousAutoFocusTracking.
+impl AVCaptureDevice {
+    extern_methods!(
+        /// Indicates whether the device should use continuous autofocus tracking.
+        ///
+        /// The default value for this property is `false`. On a device with an active format where ``isContinuousAutoFocusTrackingSupported`` returns `true` and ``continuousAutoFocusTrackingEnabled`` is set to `true`, continuous autofocus tracking will be engaged when the device's focus mode is set to ``AVCaptureFocusModeContinuousAutoFocus``. When engaged, the subject at the current ``focusPointOfInterest`` will be tracked as it moves within the scene and will be kept in focus automatically. The device's ``isContinuousAutoFocusTrackingSubjectAcquired`` property will return `true` while any tracked subject remains in the scene. However, the device's ``focusPointOfInterest`` and ``focusRectOfInterest`` are not updated while continuous autofocus tracking is active. Continuous autofocus tracking can be made inactive by setting ``continuousAutoFocusTrackingEnabled`` to `false` and then setting the device's focus mode to ``AVCaptureFocusModeContinuousAutoFocus`` or by setting the focus mode to a value other than ``AVCaptureFocusModeContinuousAutoFocus``. When made inactive, ``isContinuousAutoFocusTrackingSubjectAcquired`` changes to `false`, as no subject is being tracked. For virtual cameras, continuous autofocus tracking only works on the ``activePrimaryConstituentDevice``.
+        ///
+        /// To receive continuous autofocus tracking updates, it is required to connect this device to an ``AVCaptureMetadataOutput`` that is configured to deliver ``AVMetadataObjectTypeFocusTrackedObject``. If ``AVMetadataObjectTypeFocusTrackedObject`` is not subscribed, no updates will be provided for continuous autofocus tracking and the device's ``isContinuousAutoFocusTrackingSubjectAcquired`` property remains to be `false`.
+        ///
+        /// - Throws: `NSInvalidArgumentException` if this property is set to `true` when the active format's ``isContinuousAutoFocusTrackingSupported`` returns `false`.
+        /// - Throws: `NSInvalidArgumentException` if this property is set to `true` when the device is configured for cinematic video capture.
+        /// - Throws: `NSGenericException` if the device is not locked for configuration using ``lockForConfiguration:``.
+        #[unsafe(method(isContinuousAutoFocusTrackingEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isContinuousAutoFocusTrackingEnabled(&self) -> bool;
+
+        /// Setter for [`isContinuousAutoFocusTrackingEnabled`][Self::isContinuousAutoFocusTrackingEnabled].
+        #[unsafe(method(setContinuousAutoFocusTrackingEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setContinuousAutoFocusTrackingEnabled(
+            &self,
+            continuous_auto_focus_tracking_enabled: bool,
+        );
+
+        /// Bias applied to the lens position during continuous autofocus tracking, normalized between -1 and 1.
+        ///
+        /// While the device is actively tracking a subject to keep in focus, this property may be used to specify a bias applied to the lens position so that different portions of the subject are in focus. This property's default value is 0 which aims to keep the median of the subject's depth profile in focus. Values approaching -1 bias the lens position towards the closest portion of the depth profile while values approaching 1 bias the lens position towards the furthest portion of the profile. As the subject moves, the bias continues to apply to the subject's new depth profile.
+        ///
+        /// To apply bias updates, set the device's focus mode to ``AVCaptureFocusModeContinuousAutoFocus`` after each change. The bias value has no effect otherwise. The value will only be automatically reset to 0 if cinematic video capture is enabled.
+        ///
+        /// - Throws: `NSInvalidArgumentException` if this property is set to a value other than 0 when the device's ``continuousAutoFocusTrackingEnabled`` is `false`.
+        /// - Throws: `NSInvalidArgumentException` if this property is set to a value less than -1 or greater than 1.
+        /// - Throws: `NSInvalidArgumentException` if this property is set to a non-zero value when the device is configured for cinematic video capture.
+        /// - Throws: `NSGenericException` if the device is not locked for configuration using ``lockForConfiguration:``.
+        #[unsafe(method(continuousAutoFocusTrackingLensPositionBias))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn continuousAutoFocusTrackingLensPositionBias(&self) -> c_float;
+
+        /// Setter for [`continuousAutoFocusTrackingLensPositionBias`][Self::continuousAutoFocusTrackingLensPositionBias].
+        #[unsafe(method(setContinuousAutoFocusTrackingLensPositionBias:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setContinuousAutoFocusTrackingLensPositionBias(
+            &self,
+            continuous_auto_focus_tracking_lens_position_bias: c_float,
+        );
+
+        /// Indicates whether the device is actively tracking a subject in the scene to maintain focus.
+        ///
+        /// Returns `true` when the capture device is actively tracking a subject in the scene, and `false` otherwise. The subject is initially identified by ``focusPointOfInterest`` when focus mode is set to ``AVCaptureFocusModeContinuousAutoFocus`` with ``continuousAutoFocusTrackingEnabled`` set to `true`. This property is key-value observable and reflects only whether a subject is actively tracked, not which one. To identify the tracked subject, include ``AVMetadataObjectTypeFocusTrackedObject`` in the ``metadataObjectTypes`` of ``AVCaptureMetadataOutput``. The ``AVMetadataFocusTrackedObject`` delivered by the metadata output represents the subject currently tracked for continuous autofocus.
+        #[unsafe(method(isContinuousAutoFocusTrackingSubjectAcquired))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isContinuousAutoFocusTrackingSubjectAcquired(&self) -> bool;
+    );
+}
+
 extern_class!(
     /// The AVCaptureDeviceDiscoverySession allows clients to search for devices by certain criteria.
     ///
@@ -3822,6 +4137,52 @@ impl AVCaptureDeviceFormat {
         pub unsafe fn systemRecommendedVideoZoomRange(&self) -> Option<Retained<AVZoomRange>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Reports if the given set of exposure parameters are supported by this format.
+        ///
+        /// The intended use of this method is to query which combinations of "Auto" parameters (``AVFCapture/AVCaptureLensApertureAuto``, ``AVFCapture/AVCaptureExposureDurationAuto``, ``AVFCapture/AVCaptureISOAuto``) are supported by this format.
+        /// If you pass a numeric constant it will be range checked against the parameter's supported min and max. However you can also pass the "Current" constants (``AVFCapture/AVCaptureLensApertureCurrent``, ``AVFCapture/AVCaptureExposureDurationCurrent``, ``AVFCapture/AVCaptureISOCurrent``) to generically query locked vs. auto parameter support without picking arbitrary lock values.
+        ///
+        /// > Example: to query support for "shutter priority" where the exposure duration is locked but auto-exposure continues to manage aperture and ISO:
+        /// > ```swift
+        /// > format.supportsExposureModeCustom(lensAperture: AVCaptureDevice.autoLensAperture, duration: AVCaptureDevice.currentExposureDuration, iso: AVCaptureDevice.autoISO)
+        /// > ```
+        ///
+        /// Devices that have fixed aperture will have equivalent support for ``AVFCapture/AVCaptureLensApertureAuto`` and ``AVFCapture/AVCaptureLensApertureCurrent``.
+        #[unsafe(method(supportsExposureModeCustomWithLensAperture:duration:ISO:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportsExposureModeCustomWithLensAperture_duration_ISO(
+            &self,
+            lens_aperture: c_float,
+            duration: CMTime,
+            iso: c_float,
+        ) -> bool;
+
+        /// A sorted array of recommended values for the ``AVCaptureDevice/lensAperture`` property.
+        ///
+        /// If this array contains a single item, the aperture is fixed at that value and cannot be changed.
+        /// If this array contains multiple items, the first will be the minimum recommended 𝑓-stop and the last will be the maximum recommended 𝑓-stop.
+        ///
+        /// Using values from this list may provide optimal calibration and lens characteristics.
+        #[unsafe(method(recommendedLensApertureStops))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn recommendedLensApertureStops(&self) -> Retained<NSArray<NSNumber>>;
+
+        /// The minimum supported value for the ``AVCaptureDevice/lensAperture`` property.
+        #[unsafe(method(minLensAperture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn minLensAperture(&self) -> c_float;
+
+        /// The maximum supported value for the ``AVCaptureDevice/lensAperture`` property.
+        #[unsafe(method(maxLensAperture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maxLensAperture(&self) -> c_float;
+
+        /// The default value for the ``AVCaptureDevice/lensAperture`` property.
+        #[unsafe(method(defaultLensAperture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn defaultLensAperture(&self) -> c_float;
+
+        #[cfg(feature = "objc2-core-media")]
         /// A CMTime indicating the minimum supported exposure duration.
         ///
         ///
@@ -4314,6 +4675,13 @@ impl AVCaptureDeviceFormat {
         pub unsafe fn videoFrameRateRangeForCinematicVideo(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
+
+        /// Indicates whether the format supports Cinematic Video Metadata capture.
+        ///
+        /// This property returns `true` if the format supports capturing cinematic video metadata alongside video. The metadata enables post-capture cinematic video editing using the Cinematic framework.
+        #[unsafe(method(isCinematicVideoMetadataCaptureSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isCinematicVideoMetadataCaptureSupported(&self) -> bool;
     );
 }
 
@@ -4439,6 +4807,30 @@ impl AVCaptureDevice {
         pub unsafe fn cameraLensSmudgeDetectionStatus(
             &self,
         ) -> AVCaptureCameraLensSmudgeDetectionStatus;
+    );
+}
+
+/// AVCaptureDeviceFormatContinuousAutoFocusTracking.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
+        /// Indicates whether the device format supports continuous autofocus tracking.
+        ///
+        /// Continuous autofocus tracking allows the device to keep a subject in focus by monitoring it as it moves throughout the scene. The device's ``continuousAutoFocusTrackingEnabled`` property can only be set if this property returns `true`.
+        #[unsafe(method(isContinuousAutoFocusTrackingSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isContinuousAutoFocusTrackingSupported(&self) -> bool;
+    );
+}
+
+/// AVCaptureDeviceFormatLowLightVideoNoiseReduction.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
+        /// Indicates whether the format supports low light video noise reduction.
+        ///
+        /// This property returns `true` if the format supports low light video noise reduction.
+        #[unsafe(method(isLowLightVideoNoiseReductionSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isLowLightVideoNoiseReductionSupported(&self) -> bool;
     );
 }
 

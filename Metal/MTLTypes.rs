@@ -120,3 +120,23 @@ impl MTLSamplePosition {
 pub type MTLCoordinate2D = MTLSamplePosition;
 
 // TODO: pub fn MTLCoordinate2DMake(x: c_float,y: c_float,) -> MTLCoordinate2D;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcontentionrelief?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct MTLContentionRelief(pub NSInteger);
+impl MTLContentionRelief {
+    #[doc(alias = "MTLContentionReliefAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "MTLContentionReliefNone")]
+    pub const None: Self = Self(1);
+}
+
+unsafe impl Encode for MTLContentionRelief {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLContentionRelief {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}

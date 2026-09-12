@@ -248,6 +248,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierheartratevariabilityrmssd?language=objc)
+    pub static HKQuantityTypeIdentifierHeartRateVariabilityRMSSD: &'static HKQuantityTypeIdentifier;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierheartratevariabilitysdnn?language=objc)
     pub static HKQuantityTypeIdentifierHeartRateVariabilitySDNN: &'static HKQuantityTypeIdentifier;
 }

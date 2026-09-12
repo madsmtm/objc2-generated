@@ -199,7 +199,11 @@ impl CNRenderingSession {
         /// - commandBuffer: the metal command buffer on which to encode the command
         /// - frameAttributes: controls the focus distance and aperture of the rendering
         /// - sourceImage: a pixel buffer read from the cinematicVideoTrack
-        /// - sourceDisparity: a pixel buffer read from the cinematicDisparityTrack
+        /// - sourceDisparity: a pixelbuffer with disparity. Can be nil only when preview rendering of assets
+        /// before preprocessing (
+        /// `CNAssetInfo.cinematicCapability`==
+        /// `CNCinematicCapabilityNeedsPreprocessing).`When nil the source disparity and frameAttributes.focusDisparity will be computed internally.
+        /// Passing nil for other types of assets will return false.
         /// - destinationImage: the pixel buffer to which the SDoF image is rendered
         /// - Returns: whether encoding the render command was successful
         #[unsafe(method(encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationImage:))]
@@ -209,7 +213,7 @@ impl CNRenderingSession {
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             frame_attributes: &CNRenderingSessionFrameAttributes,
             source_image: &CVPixelBuffer,
-            source_disparity: &CVPixelBuffer,
+            source_disparity: Option<&CVPixelBuffer>,
             destination_image: &CVPixelBuffer,
         ) -> bool;
 
@@ -219,7 +223,11 @@ impl CNRenderingSession {
         /// - commandBuffer: the metal command buffer on which to encode the command
         /// - frameAttributes: controls the focus distance and aperture of the rendering
         /// - sourceImage: a pixel buffer read from the cinematicVideoTrack
-        /// - sourceDisparity: a pixel buffer read from the cinematicDisparityTrack
+        /// - sourceDisparity: a pixelbuffer with disparity. Can be nil only when preview rendering of assets
+        /// before preprocessing (
+        /// `CNAssetInfo.cinematicCapability`==
+        /// `CNCinematicCapabilityNeedsPreprocessing).`When nil the source disparity and frameAttributes.focusDisparity will be computed internally.
+        /// Passing nil for other types of assets will return false.
         /// - destinationRGBA: a metal texture to which the SDoF image is rendered in RGBA format
         /// - Returns: whether encoding the render command was successful
         ///
@@ -234,7 +242,7 @@ impl CNRenderingSession {
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             frame_attributes: &CNRenderingSessionFrameAttributes,
             source_image: &CVPixelBuffer,
-            source_disparity: &CVPixelBuffer,
+            source_disparity: Option<&CVPixelBuffer>,
             destination_rgba: &ProtocolObject<dyn MTLTexture>,
         ) -> bool;
 
@@ -244,7 +252,11 @@ impl CNRenderingSession {
         /// - commandBuffer: the metal command buffer on which to encode the command
         /// - frameAttributes: controls the focus distance and aperture of the rendering
         /// - sourceImage: a pixel buffer read from the cinematicVideoTrack
-        /// - sourceDisparity: a pixel buffer read from the cinematicDisparityTrack
+        /// - sourceDisparity: a pixelbuffer with disparity. Can be nil only when preview rendering of assets
+        /// before preprocessing (
+        /// `CNAssetInfo.cinematicCapability`==
+        /// `CNCinematicCapabilityNeedsPreprocessing).`When nil the source disparity and frameAttributes.focusDisparity will be computed internally.
+        /// Passing nil for other types of assets will return false.
         /// - destinationLuma: a metal texture to which the luma of the SDoF image is rendered
         /// - destinationChroma: a metal texture to which the chroma of the SDoF image is rendered
         /// - Returns: whether encoding the render command was successful
@@ -262,7 +274,7 @@ impl CNRenderingSession {
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             frame_attributes: &CNRenderingSessionFrameAttributes,
             source_image: &CVPixelBuffer,
-            source_disparity: &CVPixelBuffer,
+            source_disparity: Option<&CVPixelBuffer>,
             destination_luma: &ProtocolObject<dyn MTLTexture>,
             destination_chroma: &ProtocolObject<dyn MTLTexture>,
         ) -> bool;

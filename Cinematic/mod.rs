@@ -60,7 +60,15 @@ pub use self::__CNAssetInfo::AVMutableCompositionCNComposition;
 #[cfg(feature = "CNAssetInfo")]
 pub use self::__CNAssetInfo::CNAssetInfo;
 #[cfg(feature = "CNAssetInfo")]
+pub use self::__CNAssetInfo::CNAssetPreprocessConfiguration;
+#[cfg(feature = "CNAssetInfo")]
+pub use self::__CNAssetInfo::CNCinematicCapability;
+#[cfg(feature = "CNAssetInfo")]
+pub use self::__CNAssetInfo::CNCinematicResourceVersion;
+#[cfg(feature = "CNAssetInfo")]
 pub use self::__CNAssetInfo::CNCompositionInfo;
+#[cfg(feature = "CNAssetInfo")]
+pub use self::__CNAssetInfo::CNResourceStatus;
 #[cfg(feature = "CNCinematicError")]
 pub use self::__CNCinematicError::CNCinematicErrorCode;
 #[cfg(feature = "CNCinematicError")]

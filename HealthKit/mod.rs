@@ -1388,6 +1388,8 @@ pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeartRate;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeartRateRecoveryOneMinute;
 #[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeartRateVariabilityRMSSD;
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeartRateVariabilitySDNN;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKQuantityTypeIdentifierHeight;

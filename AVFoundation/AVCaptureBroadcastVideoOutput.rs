@@ -198,6 +198,14 @@ impl AVCaptureBroadcastVideoOutput {
         #[unsafe(method_family = none)]
         pub unsafe fn resetFrameBuffer(&self);
 
+        #[cfg(feature = "AVCaptureAncillaryDataEncoder")]
+        /// The AVCaptureAncillaryDataEncoder that sends per-frame lens/camera/user-defined acquisition data along with the video buffer.
+        ///
+        /// This property provides access to the ancillary data encoder to set user-defined data or disable ancillary data encoding entirely.
+        #[unsafe(method(ancillaryDataEncoder))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn ancillaryDataEncoder(&self) -> Retained<AVCaptureAncillaryDataEncoder>;
+
         /// The strategy used to replace dropped video frames.
         ///
         /// This property determines how the broadcast video output handles dropped frames. The default value is ``AVCaptureBroadcastVideoOutputDroppedFrameReplacementPolicyRepeatPreviousFrame``.
