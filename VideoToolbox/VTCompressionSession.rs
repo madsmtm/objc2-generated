@@ -41,36 +41,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueVTCompressionSession"> for VTCompressionSession {}
 );
 
-/// Prototype for callback invoked when frame compression is complete.
-///
-/// When you create a compression session, you pass in a callback function to be called
-/// for compressed frames.  This function will be called in decode order (which is not
-/// necessarily the same as display order).
-///
-/// Parameter `outputCallbackRefCon`: The callback's reference value.
-///
-/// Parameter `sourceFrameRefCon`: The frame's reference value, copied from the sourceFrameRefCon argument to
-/// VTCompressionSessionEncodeFrame.
-///
-/// Parameter `status`: noErr if compression was successful; an error code if compression was not successful.
-///
-/// Parameter `infoFlags`: Contains information about the encode operation.
-/// The kVTEncodeInfo_Asynchronous bit may be set if the encode ran asynchronously.
-/// The kVTEncodeInfo_FrameDropped bit may be set if the frame was dropped.
-///
-/// Parameter `sampleBuffer`: Contains the compressed frame, if compression was successful and the frame was not dropped;
-/// otherwise, NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionoutputcallback?language=objc)
-#[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
-pub type VTCompressionOutputCallback = unsafe extern "C-unwind" fn(
-    *mut c_void,
-    *mut c_void,
-    OSStatus,
-    VTEncodeInfoFlags,
-    Option<&CMSampleBuffer>,
-);
-
 extern "C" {
     /// Specifies a particular video encoder by its ID string.
     ///

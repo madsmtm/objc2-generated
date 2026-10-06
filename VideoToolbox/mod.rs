@@ -522,12 +522,6 @@ pub use self::__VTCompressionSession::kVTVideoEncoderSpecification_EncoderID;
 #[cfg(all(
     feature = "VTCompressionSession",
     feature = "VTErrors",
-    feature = "objc2-core-media"
-))]
-pub use self::__VTCompressionSession::VTCompressionOutputCallback;
-#[cfg(all(
-    feature = "VTCompressionSession",
-    feature = "VTErrors",
     feature = "block2",
     feature = "objc2-core-media"
 ))]
