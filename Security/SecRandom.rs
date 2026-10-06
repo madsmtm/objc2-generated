@@ -27,7 +27,7 @@ unsafe impl RefEncode for SecRandom {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrandomdefault?language=objc)
-    pub static kSecRandomDefault: &'static SecRandom;
+    pub static kSecRandomDefault: Option<&'static SecRandom>;
 }
 
 impl SecRandom {
