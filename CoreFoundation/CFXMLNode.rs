@@ -43,7 +43,7 @@ cf_type!(
 );
 #[cfg(all(feature = "CFTree", feature = "objc2"))]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CFXMLTree {}
+    unsafe impl RefEncode<"__CFTree"> for CFXMLTree {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode?language=objc)

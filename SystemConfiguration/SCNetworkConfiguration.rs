@@ -136,7 +136,7 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for SCBondInterface {}
+    unsafe impl RefEncode<"__SCNetworkInterface"> for SCBondInterface {}
 );
 
 /// This is the type of a reference to an object that represents
@@ -210,7 +210,7 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for SCVLANInterface {}
+    unsafe impl RefEncode<"__SCNetworkInterface"> for SCVLANInterface {}
 );
 
 /// This is the type of a reference to an object that represents

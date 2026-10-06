@@ -32,7 +32,7 @@ cf_type!(
 );
 #[cfg(all(feature = "CVImageBuffer", feature = "objc2"))]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CVMetalTexture {}
+    unsafe impl RefEncode<"__CVBuffer"> for CVMetalTexture {}
 );
 
 #[cfg(feature = "CVImageBuffer")]

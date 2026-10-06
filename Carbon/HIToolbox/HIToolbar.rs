@@ -24,7 +24,7 @@ cf_type!(
 );
 #[cfg(all(feature = "HIObject", feature = "objc2"))]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for HIToolbar {}
+    unsafe impl RefEncode<"OpaqueHIObjectRef"> for HIToolbar {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/hitoolbaritem?language=objc)
@@ -42,7 +42,7 @@ cf_type!(
 );
 #[cfg(all(feature = "HIObject", feature = "objc2"))]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for HIToolbarItem {}
+    unsafe impl RefEncode<"OpaqueHIObjectRef"> for HIToolbarItem {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carbon/khitoolbardisplaymodedefault?language=objc)

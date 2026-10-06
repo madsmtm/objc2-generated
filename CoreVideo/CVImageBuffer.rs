@@ -444,7 +444,7 @@ cf_type!(
 );
 #[cfg(all(feature = "CVBuffer", feature = "objc2"))]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CVImageBuffer {}
+    unsafe impl RefEncode<"__CVBuffer"> for CVImageBuffer {}
 );
 
 #[cfg(feature = "CVBuffer")]

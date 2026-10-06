@@ -376,7 +376,7 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CMAudioFormatDescription {}
+    unsafe impl RefEncode<"opaqueCMFormatDescription"> for CMAudioFormatDescription {}
 );
 
 unsafe impl Send for CMAudioFormatDescription {}
@@ -692,7 +692,7 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CMVideoFormatDescription {}
+    unsafe impl RefEncode<"opaqueCMFormatDescription"> for CMVideoFormatDescription {}
 );
 
 unsafe impl Send for CMVideoFormatDescription {}
@@ -2214,7 +2214,7 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CMMuxedFormatDescription {}
+    unsafe impl RefEncode<"opaqueCMFormatDescription"> for CMMuxedFormatDescription {}
 );
 
 unsafe impl Send for CMMuxedFormatDescription {}
@@ -2299,7 +2299,7 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CMClosedCaptionFormatDescription {}
+    unsafe impl RefEncode<"opaqueCMFormatDescription"> for CMClosedCaptionFormatDescription {}
 );
 
 unsafe impl Send for CMClosedCaptionFormatDescription {}
@@ -2340,7 +2340,7 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CMTextFormatDescription {}
+    unsafe impl RefEncode<"opaqueCMFormatDescription"> for CMTextFormatDescription {}
 );
 
 unsafe impl Send for CMTextFormatDescription {}
@@ -2736,7 +2736,7 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CMTimeCodeFormatDescription {}
+    unsafe impl RefEncode<"opaqueCMFormatDescription"> for CMTimeCodeFormatDescription {}
 );
 
 unsafe impl Send for CMTimeCodeFormatDescription {}
@@ -2885,7 +2885,7 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for CMMetadataFormatDescription {}
+    unsafe impl RefEncode<"opaqueCMFormatDescription"> for CMMetadataFormatDescription {}
 );
 
 unsafe impl Send for CMMetadataFormatDescription {}

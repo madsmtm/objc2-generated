@@ -534,5 +534,5 @@ cf_type!(
 );
 #[cfg(feature = "objc2")]
 cf_objc2_type!(
-    unsafe impl RefEncode<void> for HIView {}
+    unsafe impl RefEncode<"OpaqueControlRef"> for HIView {}
 );
