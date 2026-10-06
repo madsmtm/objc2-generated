@@ -1157,7 +1157,12 @@ pub use self::__CFXMLNode::CFXMLAttributeListDeclarationInfo;
 pub use self::__CFXMLNode::CFXMLDocumentInfo;
 #[cfg(all(feature = "CFURL", feature = "CFXMLNode"))]
 pub use self::__CFXMLNode::CFXMLDocumentTypeInfo;
-#[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "CFXMLNode"))]
+#[cfg(all(
+    feature = "CFArray",
+    feature = "CFDictionary",
+    feature = "CFString",
+    feature = "CFXMLNode"
+))]
 pub use self::__CFXMLNode::CFXMLElementInfo;
 #[cfg(feature = "CFXMLNode")]
 pub use self::__CFXMLNode::CFXMLElementTypeDeclarationInfo;

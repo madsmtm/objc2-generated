@@ -126,13 +126,13 @@ pub type CTRunDelegateGetWidthCallback = unsafe extern "C-unwind" fn(NonNull<c_v
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegatecallbacks?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CTRunDelegateCallbacks {
     pub version: CFIndex,
-    pub dealloc: CTRunDelegateDeallocateCallback,
-    pub getAscent: CTRunDelegateGetAscentCallback,
-    pub getDescent: CTRunDelegateGetDescentCallback,
-    pub getWidth: CTRunDelegateGetWidthCallback,
+    pub dealloc: Option<CTRunDelegateDeallocateCallback>,
+    pub getAscent: Option<CTRunDelegateGetAscentCallback>,
+    pub getDescent: Option<CTRunDelegateGetDescentCallback>,
+    pub getWidth: Option<CTRunDelegateGetWidthCallback>,
 }
 
 #[cfg(feature = "objc2")]

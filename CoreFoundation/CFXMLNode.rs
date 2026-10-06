@@ -95,30 +95,40 @@ unsafe impl RefEncode for CFXMLNodeTypeCode {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlelementinfo?language=objc)
-#[cfg(all(feature = "CFArray", feature = "CFDictionary"))]
+#[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "CFString"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLElementInfo {
-    pub attributes: *const CFDictionary,
-    pub attributeOrder: *const CFArray,
+    pub attributes: *const CFDictionary<CFString, CFType>,
+    pub attributeOrder: *const CFArray<CFString>,
     pub isEmpty: Boolean,
     pub(crate) _reserved: [c_char; 3],
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "objc2"))]
+#[cfg(all(
+    feature = "CFArray",
+    feature = "CFDictionary",
+    feature = "CFString",
+    feature = "objc2"
+))]
 unsafe impl Encode for CFXMLElementInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
         &[
-            <*const CFDictionary>::ENCODING,
-            <*const CFArray>::ENCODING,
+            <*const CFDictionary<CFString, CFType>>::ENCODING,
+            <*const CFArray<CFString>>::ENCODING,
             <Boolean>::ENCODING,
             <[c_char; 3]>::ENCODING,
         ],
     );
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "objc2"))]
+#[cfg(all(
+    feature = "CFArray",
+    feature = "CFDictionary",
+    feature = "CFString",
+    feature = "objc2"
+))]
 unsafe impl RefEncode for CFXMLElementInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
