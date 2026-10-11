@@ -87,12 +87,11 @@ impl IOBluetoothSDPServiceRecord {
         ///
         /// # Safety
         ///
-        /// - `service_dict` generic should be of the correct type.
-        /// - `service_dict` might not allow `None`.
+        /// `service_dict` might not allow `None`.
         #[unsafe(method(publishedServiceRecordWithDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn publishedServiceRecordWithDictionary(
-            service_dict: Option<&NSDictionary>,
+            service_dict: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Option<Retained<Self>>;
 
         /// Removes the service from the local SDP server.
@@ -114,13 +113,12 @@ impl IOBluetoothSDPServiceRecord {
         ///
         /// # Safety
         ///
-        /// - `service_dict` generic should be of the correct type.
         /// - `service_dict` might not allow `None`.
         /// - `device` might not allow `None`.
         #[unsafe(method(withServiceDictionary:device:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withServiceDictionary_device(
-            service_dict: Option<&NSDictionary>,
+            service_dict: Option<&NSDictionary<NSString, AnyObject>>,
             device: Option<&IOBluetoothDevice>,
         ) -> Option<Retained<Self>>;
 
@@ -136,14 +134,13 @@ impl IOBluetoothSDPServiceRecord {
         ///
         /// # Safety
         ///
-        /// - `service_dict` generic should be of the correct type.
         /// - `service_dict` might not allow `None`.
         /// - `device` might not allow `None`.
         #[unsafe(method(initWithServiceDictionary:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServiceDictionary_device(
             this: Allocated<Self>,
-            service_dict: Option<&NSDictionary>,
+            service_dict: Option<&NSDictionary<NSString, AnyObject>>,
             device: Option<&IOBluetoothDevice>,
         ) -> Option<Retained<Self>>;
 
@@ -190,7 +187,7 @@ impl IOBluetoothSDPServiceRecord {
         #[unsafe(method_family = none)]
         pub unsafe fn getDevice(&self) -> Option<Retained<IOBluetoothDevice>>;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "IOBluetoothSDPDataElement", feature = "objc2-foundation"))]
         /// Returns an NSDictionary containing the attributes for the service.
         ///
         /// The attribute dictionary is keyed off of the attribute id represented as an NSNumber.  The values
@@ -200,13 +197,17 @@ impl IOBluetoothSDPServiceRecord {
         /// Returns: Returns an NSDictionary containing the attributes for the target service.
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributes(&self) -> Retained<NSDictionary>;
+        pub unsafe fn attributes(
+            &self,
+        ) -> Retained<NSDictionary<NSNumber, IOBluetoothSDPDataElement>>;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "IOBluetoothSDPDataElement", feature = "objc2-foundation"))]
         #[deprecated]
         #[unsafe(method(getAttributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getAttributes(&self) -> Option<Retained<NSDictionary>>;
+        pub unsafe fn getAttributes(
+            &self,
+        ) -> Option<Retained<NSDictionary<NSNumber, IOBluetoothSDPDataElement>>>;
 
         #[cfg(all(feature = "Bluetooth", feature = "IOBluetoothSDPDataElement"))]
         /// Returns the data element for the given attribute ID in the target service.
@@ -309,7 +310,7 @@ impl IOBluetoothSDPServiceRecord {
         #[unsafe(method_family = none)]
         pub unsafe fn matchesUUID16(&self, uuid16: BluetoothSDPUUID16) -> bool;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "IOBluetoothSDPUUID", feature = "objc2-foundation"))]
         /// Returns TRUE if ALL of the UUIDs in the given array is found in the target service.
         ///
         /// The given array should contain IOBluetoothSDPUUID objects.  It only returns TRUE if all of
@@ -324,13 +325,15 @@ impl IOBluetoothSDPServiceRecord {
         ///
         /// # Safety
         ///
-        /// - `uuid_array` generic should be of the correct type.
-        /// - `uuid_array` might not allow `None`.
+        /// `uuid_array` might not allow `None`.
         #[unsafe(method(matchesUUIDArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn matchesUUIDArray(&self, uuid_array: Option<&NSArray>) -> bool;
+        pub unsafe fn matchesUUIDArray(
+            &self,
+            uuid_array: Option<&NSArray<IOBluetoothSDPUUID>>,
+        ) -> bool;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "IOBluetoothSDPUUID", feature = "objc2-foundation"))]
         /// Returns TRUE any of the UUID arrays in the search array match the target service.
         ///
         /// The given array should contain NSArray objects.  Each sub-NSArray should contain
@@ -347,13 +350,15 @@ impl IOBluetoothSDPServiceRecord {
         ///
         /// # Safety
         ///
-        /// - `search_array` generic should be of the correct type.
-        /// - `search_array` might not allow `None`.
+        /// `search_array` might not allow `None`.
         #[unsafe(method(matchesSearchArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn matchesSearchArray(&self, search_array: Option<&NSArray>) -> bool;
+        pub unsafe fn matchesSearchArray(
+            &self,
+            search_array: Option<&NSArray<IOBluetoothSDPUUID>>,
+        ) -> bool;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "IOBluetoothSDPUUID", feature = "objc2-foundation"))]
         /// Returns TRUE if any one of the UUIDs in the given array is found in the target service.
         ///
         /// The given array should contain IOBluetoothSDPUUID objects.  It is currently implemented
@@ -368,13 +373,18 @@ impl IOBluetoothSDPServiceRecord {
         ///
         /// # Safety
         ///
-        /// - `array` generic should be of the correct type.
-        /// - `array` might not allow `None`.
+        /// `array` might not allow `None`.
         #[unsafe(method(hasServiceFromArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasServiceFromArray(&self, array: Option<&NSArray>) -> bool;
+        pub unsafe fn hasServiceFromArray(
+            &self,
+            array: Option<&NSArray<IOBluetoothSDPUUID>>,
+        ) -> bool;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(
+            feature = "IOBluetoothSDPServiceAttribute",
+            feature = "objc2-foundation"
+        ))]
         /// Returns a sorted array of SDP attributes
         ///
         /// This method will walk all the elements of the service record and return an array of
@@ -383,7 +393,7 @@ impl IOBluetoothSDPServiceRecord {
         /// Returns: Returns a sorted array of SDP attributes
         #[unsafe(method(sortedAttributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sortedAttributes(&self) -> Retained<NSArray>;
+        pub unsafe fn sortedAttributes(&self) -> Retained<NSArray<IOBluetoothSDPServiceAttribute>>;
     );
 }
 

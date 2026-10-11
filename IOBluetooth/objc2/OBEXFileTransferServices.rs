@@ -606,7 +606,7 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         /// # Safety
         ///
         /// - `in_services` might not allow `None`.
-        /// - `in_listing` generic should be of the correct type.
+        /// - `in_listing` generic generic should be of the correct type.
         /// - `in_listing` might not allow `None`.
         #[unsafe(method(fileTransferServicesRetrieveFolderListingComplete:error:listing:))]
         #[unsafe(method_family = none)]
@@ -614,7 +614,7 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
             &self,
             in_services: Option<&OBEXFileTransferServices>,
             in_error: OBEXError,
-            in_listing: Option<&NSArray>,
+            in_listing: Option<&NSArray<NSDictionary<NSString, AnyObject>>>,
         );
 
         #[cfg(feature = "OBEX")]
@@ -644,14 +644,13 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         /// # Safety
         ///
         /// - `in_services` might not allow `None`.
-        /// - `in_progress_description` generic should be of the correct type.
         /// - `in_progress_description` might not allow `None`.
         #[unsafe(method(fileTransferServicesSendFileProgress:transferProgress:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesSendFileProgress_transferProgress(
             &self,
             in_services: Option<&OBEXFileTransferServices>,
-            in_progress_description: Option<&NSDictionary>,
+            in_progress_description: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "OBEX")]
@@ -681,14 +680,13 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         /// # Safety
         ///
         /// - `in_services` might not allow `None`.
-        /// - `in_progress_description` generic should be of the correct type.
         /// - `in_progress_description` might not allow `None`.
         #[unsafe(method(fileTransferServicesCopyRemoteFileProgress:transferProgress:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesCopyRemoteFileProgress_transferProgress(
             &self,
             in_services: Option<&OBEXFileTransferServices>,
-            in_progress_description: Option<&NSDictionary>,
+            in_progress_description: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "OBEX")]

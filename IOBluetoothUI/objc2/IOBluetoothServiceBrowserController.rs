@@ -214,7 +214,6 @@ impl IOBluetoothServiceBrowserController {
         ///
         /// - `device_attributes` struct field `attributeList` must be a valid pointer.
         /// - `device_attributes` might not allow `None`.
-        /// - `service_array` generic should be of the correct type.
         /// - `service_array` might not allow `None`.
         /// - `out_record` might not allow `None`.
         #[deprecated]
@@ -223,7 +222,7 @@ impl IOBluetoothServiceBrowserController {
         pub unsafe fn discoverWithDeviceAttributes_serviceList_serviceRecord(
             &self,
             device_attributes: Option<&mut IOBluetoothDeviceSearchAttributes>,
-            service_array: Option<&NSArray>,
+            service_array: Option<&NSArray<NSData>>,
             out_record: Option<&mut Option<Retained<IOBluetoothSDPServiceRecord>>>,
         ) -> IOReturn;
 
@@ -294,6 +293,7 @@ impl IOBluetoothServiceBrowserController {
             context_info: *mut c_void,
         ) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-bluetooth")]
         /// Returns the result of the user's selection.
         ///
         /// There will only be results if the panel has been run, the user has successfully made a selection and that
@@ -307,7 +307,7 @@ impl IOBluetoothServiceBrowserController {
         /// the panel, nil will be returned.
         #[unsafe(method(getResults))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getResults(&self) -> Option<Retained<NSArray>>;
+        pub unsafe fn getResults(&self) -> Option<Retained<NSArray<IOBluetoothDevice>>>;
 
         #[cfg(feature = "IOBluetoothUIUserLib")]
         /// Returns the option bits that control the panel's behavior.
@@ -374,6 +374,7 @@ impl IOBluetoothServiceBrowserController {
         #[unsafe(method_family = none)]
         pub unsafe fn addAllowedUUID(&self, allowed_uuid: Option<&IOBluetoothSDPUUID>);
 
+        #[cfg(feature = "objc2-io-bluetooth")]
         /// Adds an array of UUIDs to the list of UUIDs that are used to validate the user's selection.
         ///
         /// The user's device selection gets validated against the UUIDs passed to -addAllowedUUID:
@@ -391,11 +392,13 @@ impl IOBluetoothServiceBrowserController {
         ///
         /// # Safety
         ///
-        /// - `allowed_uuid_array` generic should be of the correct type.
-        /// - `allowed_uuid_array` might not allow `None`.
+        /// `allowed_uuid_array` might not allow `None`.
         #[unsafe(method(addAllowedUUIDArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addAllowedUUIDArray(&self, allowed_uuid_array: Option<&NSArray>);
+        pub unsafe fn addAllowedUUIDArray(
+            &self,
+            allowed_uuid_array: Option<&NSArray<IOBluetoothSDPUUID>>,
+        );
 
         /// Resets the controller back to the default state where it will accept any device the user selects.
         ///

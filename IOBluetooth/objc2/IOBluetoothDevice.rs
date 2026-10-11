@@ -970,7 +970,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn performSDPQuery(&self, target: Option<&AnyObject>) -> IOReturn;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "IOBluetoothSDPUUID", feature = "objc2-foundation"))]
         /// Performs an SDP query on the target device with the specified service UUIDs.
         ///
         /// As a result of this call, a baseband connection will be built to the device (if not already connected).
@@ -993,17 +993,16 @@ impl IOBluetoothDevice {
         ///
         /// - `target` should be of the correct type.
         /// - `target` might not allow `None`.
-        /// - `uuid_array` generic should be of the correct type.
         /// - `uuid_array` might not allow `None`.
         #[unsafe(method(performSDPQuery:uuids:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performSDPQuery_uuids(
             &self,
             target: Option<&AnyObject>,
-            uuid_array: Option<&NSArray>,
+            uuid_array: Option<&NSArray<IOBluetoothSDPUUID>>,
         ) -> IOReturn;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "IOBluetoothSDPServiceRecord", feature = "objc2-foundation"))]
         /// Gets an array of service records for the device.
         ///
         /// The resulting array contains IOBluetoothSDPServiceRecord objects.  The service records are only
@@ -1018,13 +1017,13 @@ impl IOBluetoothDevice {
         /// SDP query has been performed, nil is returned.
         #[unsafe(method(services))]
         #[unsafe(method_family = none)]
-        pub unsafe fn services(&self) -> Option<Retained<NSArray>>;
+        pub unsafe fn services(&self) -> Option<Retained<NSArray<IOBluetoothSDPServiceRecord>>>;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "IOBluetoothSDPServiceRecord", feature = "objc2-foundation"))]
         #[deprecated]
         #[unsafe(method(getServices))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getServices(&self) -> Option<Retained<NSArray>>;
+        pub unsafe fn getServices(&self) -> Option<Retained<NSArray<IOBluetoothSDPServiceRecord>>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Get the date/time of the last SDP query.
@@ -1073,7 +1072,7 @@ impl IOBluetoothDevice {
         /// user has no favorites, nil is returned.
         #[unsafe(method(favoriteDevices))]
         #[unsafe(method_family = none)]
-        pub unsafe fn favoriteDevices() -> Option<Retained<NSArray>>;
+        pub unsafe fn favoriteDevices() -> Option<Retained<NSArray<IOBluetoothDevice>>>;
 
         /// Reports whether the target device is a favorite for the user.
         ///
@@ -1120,7 +1119,9 @@ impl IOBluetoothDevice {
         /// nil is returned.
         #[unsafe(method(recentDevices:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recentDevices(num_devices: c_ulong) -> Option<Retained<NSArray>>;
+        pub unsafe fn recentDevices(
+            num_devices: c_ulong,
+        ) -> Option<Retained<NSArray<IOBluetoothDevice>>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Returns the date/time of the most recent access of the target device.
@@ -1148,7 +1149,7 @@ impl IOBluetoothDevice {
         /// no paired devices, nil is returned.
         #[unsafe(method(pairedDevices))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pairedDevices() -> Option<Retained<NSArray>>;
+        pub unsafe fn pairedDevices() -> Option<Retained<NSArray<IOBluetoothDevice>>>;
 
         /// Returns whether the target device is paired.
         ///
@@ -1211,7 +1212,6 @@ impl IOBluetoothDevice {
         /// # Safety
         ///
         /// - `new_channel` might not allow `None`.
-        /// - `channel_configuration` generic should be of the correct type.
         /// - `channel_configuration` might not allow `None`.
         /// - `channel_delegate` should be of the correct type.
         /// - `channel_delegate` might not allow `None`.
@@ -1221,7 +1221,7 @@ impl IOBluetoothDevice {
             &self,
             new_channel: Option<&mut Option<Retained<IOBluetoothL2CAPChannel>>>,
             psm: BluetoothL2CAPPSM,
-            channel_configuration: Option<&NSDictionary>,
+            channel_configuration: Option<&NSDictionary<NSString, AnyObject>>,
             channel_delegate: Option<&AnyObject>,
         ) -> IOReturn;
 
@@ -1264,7 +1264,6 @@ impl IOBluetoothDevice {
         /// # Safety
         ///
         /// - `new_channel` might not allow `None`.
-        /// - `channel_configuration` generic should be of the correct type.
         /// - `channel_configuration` might not allow `None`.
         /// - `channel_delegate` should be of the correct type.
         /// - `channel_delegate` might not allow `None`.
@@ -1274,7 +1273,7 @@ impl IOBluetoothDevice {
             &self,
             new_channel: Option<&mut Option<Retained<IOBluetoothL2CAPChannel>>>,
             psm: BluetoothL2CAPPSM,
-            channel_configuration: Option<&NSDictionary>,
+            channel_configuration: Option<&NSDictionary<NSString, AnyObject>>,
             channel_delegate: Option<&AnyObject>,
         ) -> IOReturn;
     );

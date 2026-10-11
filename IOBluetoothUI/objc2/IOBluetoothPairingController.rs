@@ -67,6 +67,7 @@ impl IOBluetoothPairingController {
         #[unsafe(method_family = none)]
         pub unsafe fn runModal(&self) -> c_int;
 
+        #[cfg(feature = "objc2-io-bluetooth")]
         /// Returns an NSArray of the devices that were paired.
         ///
         /// There will only be results if the panel has been run, the user has successfully made a selection, that
@@ -80,7 +81,7 @@ impl IOBluetoothPairingController {
         /// the panel, nil will be returned.
         #[unsafe(method(getResults))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getResults(&self) -> Option<Retained<NSArray>>;
+        pub unsafe fn getResults(&self) -> Option<Retained<NSArray<IOBluetoothDevice>>>;
 
         #[cfg(feature = "IOBluetoothUIUserLib")]
         /// Sets the option bits that control the panel's behavior.
@@ -162,6 +163,7 @@ impl IOBluetoothPairingController {
         #[unsafe(method_family = none)]
         pub unsafe fn addAllowedUUID(&self, allowed_uuid: Option<&IOBluetoothSDPUUID>);
 
+        #[cfg(feature = "objc2-io-bluetooth")]
         /// Adds an array of UUIDs to the list of UUIDs that are used to validate the user's selection.
         ///
         /// The user's device selection gets validated against the UUIDs passed to -addAllowedUUID:
@@ -179,11 +181,13 @@ impl IOBluetoothPairingController {
         ///
         /// # Safety
         ///
-        /// - `allowed_uuid_array` generic should be of the correct type.
-        /// - `allowed_uuid_array` might not allow `None`.
+        /// `allowed_uuid_array` might not allow `None`.
         #[unsafe(method(addAllowedUUIDArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addAllowedUUIDArray(&self, allowed_uuid_array: Option<&NSArray>);
+        pub unsafe fn addAllowedUUIDArray(
+            &self,
+            allowed_uuid_array: Option<&NSArray<IOBluetoothSDPUUID>>,
+        );
 
         /// Resets the controller back to the default state where it will accept any device the user selects.
         ///

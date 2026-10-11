@@ -151,7 +151,7 @@ impl IOBluetoothDeviceInquiry {
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdateNewDeviceNames(&self, update_new_device_names: bool);
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "IOBluetoothDevice", feature = "objc2-foundation"))]
         /// Returns found IOBluetoothDevice objects as an array.
         ///
         /// Returns: Returns an NSArray of IOBluetoothDevice objects.
@@ -159,7 +159,7 @@ impl IOBluetoothDeviceInquiry {
         /// Will not return nil. If there are no devices found, returns an array with length of 0.
         #[unsafe(method(foundDevices))]
         #[unsafe(method_family = none)]
-        pub unsafe fn foundDevices(&self) -> Option<Retained<NSArray>>;
+        pub unsafe fn foundDevices(&self) -> Option<Retained<NSArray<IOBluetoothDevice>>>;
 
         /// Removes all found devices from the inquiry object.
         #[unsafe(method(clearFoundDevices))]

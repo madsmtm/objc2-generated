@@ -432,14 +432,13 @@ impl IOBluetoothL2CAPChannel {
         ///
         /// - `channel_delegate` should be of the correct type.
         /// - `channel_delegate` might not allow `None`.
-        /// - `channel_configuration` generic should be of the correct type.
         /// - `channel_configuration` might not allow `None`.
         #[unsafe(method(setDelegate:withConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_withConfiguration(
             &self,
             channel_delegate: Option<&AnyObject>,
-            channel_configuration: Option<&NSDictionary>,
+            channel_configuration: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> IOReturn;
 
         /// Returns the currently assigned delegate

@@ -472,7 +472,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `device` might not allow `None`.
-        /// - `current_call` generic should be of the correct type.
         /// - `current_call` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:currentCall:))]
@@ -480,7 +479,7 @@ extern_protocol!(
         unsafe fn handsFree_currentCall(
             &self,
             device: Option<&IOBluetoothHandsFreeDevice>,
-            current_call: Option<&NSDictionary>,
+            current_call: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "objc2-foundation")]
@@ -513,7 +512,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `device` might not allow `None`.
-        /// - `sms` generic should be of the correct type.
         /// - `sms` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:incomingSMS:))]
@@ -521,7 +519,7 @@ extern_protocol!(
         unsafe fn handsFree_incomingSMS(
             &self,
             device: Option<&IOBluetoothHandsFreeDevice>,
-            sms: Option<&NSDictionary>,
+            sms: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[cfg(feature = "objc2-foundation")]
