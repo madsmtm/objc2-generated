@@ -2022,7 +2022,7 @@ extern_protocol!(
         /// - Returns: The size and alignment required to hold the data plane of a tensor you create with `descriptor` in a buffer.
         #[unsafe(method(tensorSizeAndAlignWithDescriptor:))]
         #[unsafe(method_family = none)]
-        fn tensorSizeAndAlignWithDescriptor(
+        unsafe fn tensorSizeAndAlignWithDescriptor(
             &self,
             descriptor: &MTLTensorDescriptor,
         ) -> MTLSizeAndAlign;
@@ -2043,7 +2043,7 @@ extern_protocol!(
         /// - Returns: A tensor, or `nil` if validation fails.
         #[unsafe(method(newTensorWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        fn newTensorWithDescriptor_error(
+        unsafe fn newTensorWithDescriptor_error(
             &self,
             descriptor: &MTLTensorDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLTensor>>, Retained<NSError>>;
@@ -2068,7 +2068,7 @@ extern_protocol!(
         /// - Returns: A tensor, or `nil` if validation fails.
         #[unsafe(method(newTensorWithDescriptor:attachments:error:_))]
         #[unsafe(method_family = new)]
-        fn newTensorWithDescriptor_attachments_error(
+        unsafe fn newTensorWithDescriptor_attachments_error(
             &self,
             descriptor: &MTLTensorDescriptor,
             attachments: &MTLTensorBufferAttachments,
