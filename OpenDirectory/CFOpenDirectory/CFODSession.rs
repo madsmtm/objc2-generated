@@ -65,8 +65,7 @@ impl ODSessionRef {
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         options: Option<&CFDictionary<CFString, CFType>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ODSessionRef>> {
+    ) -> Result<CFRetained<ODSessionRef>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODSessionCreate(
                 allocator: Option<&CFAllocator>,
@@ -74,14 +73,15 @@ impl ODSessionRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODSessionRef>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODSessionCreate(allocator, options, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODSessionCreate(allocator, options, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns the node names that are registered on this ODSession
@@ -105,8 +105,7 @@ impl ODSessionRef {
     pub unsafe fn node_names(
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray<CFString>>> {
+    ) -> Result<CFRetained<CFArray<CFString>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODSessionCopyNodeNames(
                 allocator: Option<&CFAllocator>,
@@ -114,13 +113,14 @@ impl ODSessionRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray<CFString>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODSessionCopyNodeNames(allocator, session, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODSessionCopyNodeNames(allocator, session, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 }

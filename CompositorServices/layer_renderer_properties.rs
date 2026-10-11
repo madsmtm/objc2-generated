@@ -172,23 +172,24 @@ pub type cp_layer_renderer_properties_t = CP_OBJECT_cp_layer_renderer_properties
 #[inline]
 pub unsafe fn cp_layer_renderer_properties_create_using_configuration(
     configuration: &cp_layer_renderer_configuration_t,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<Retained<cp_layer_renderer_properties_t>> {
+) -> Result<Retained<cp_layer_renderer_properties_t>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn cp_layer_renderer_properties_create_using_configuration(
             configuration: &cp_layer_renderer_configuration_t,
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> *mut cp_layer_renderer_properties_t;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe {
+        cp_layer_renderer_properties_create_using_configuration(configuration, error_param)
     };
-    let ret =
-        unsafe { cp_layer_renderer_properties_create_using_configuration(configuration, error) };
-    unsafe { Retained::from_raw(ret) }
+    let ret = unsafe { Retained::from_raw(ret) };
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Returns the number of texture topologies available for you to inspect.

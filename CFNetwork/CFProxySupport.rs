@@ -51,8 +51,7 @@ pub type CFProxyAutoConfigurationResultCallback =
 pub unsafe fn CFNetworkCopyProxiesForAutoConfigurationScript(
     proxy_auto_configuration_script: &CFString,
     target_url: &CFURL,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
+) -> Result<CFRetained<CFArray<CFDictionary<CFString, CFType>>>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn CFNetworkCopyProxiesForAutoConfigurationScript(
             proxy_auto_configuration_script: &CFString,
@@ -60,20 +59,21 @@ pub unsafe fn CFNetworkCopyProxiesForAutoConfigurationScript(
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
+    let mut error = None;
+    let error_param = Some(&mut error);
     let ret = unsafe {
         CFNetworkCopyProxiesForAutoConfigurationScript(
             proxy_auto_configuration_script,
             target_url,
-            error,
+            error_param,
         )
     };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// # Safety

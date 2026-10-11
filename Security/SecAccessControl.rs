@@ -118,8 +118,7 @@ impl SecAccessControl {
         allocator: Option<&CFAllocator>,
         protection: &CFType,
         flags: SecAccessControlCreateFlags,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<SecAccessControl>> {
+    ) -> Result<CFRetained<SecAccessControl>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecAccessControlCreateWithFlags(
                 allocator: Option<&CFAllocator>,
@@ -128,13 +127,15 @@ impl SecAccessControl {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecAccessControl>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { SecAccessControlCreateWithFlags(allocator, protection, flags, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret =
+            unsafe { SecAccessControlCreateWithFlags(allocator, protection, flags, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 }

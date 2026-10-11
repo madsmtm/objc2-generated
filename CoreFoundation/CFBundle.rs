@@ -738,24 +738,21 @@ impl CFBundle {
     #[doc(alias = "CFBundlePreflightExecutable")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn preflight_executable(
-        &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    pub unsafe fn preflight_executable(&self) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn CFBundlePreflightExecutable(
                 bundle: &CFBundle,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { CFBundlePreflightExecutable(self, error) };
-        ret != 0
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { CFBundlePreflightExecutable(self, error_param) };
+        if ret != 0 {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// # Safety
@@ -764,24 +761,21 @@ impl CFBundle {
     #[doc(alias = "CFBundleLoadExecutableAndReturnError")]
     #[cfg(feature = "CFError")]
     #[inline]
-    pub unsafe fn load_executable_and_return_error(
-        &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    pub unsafe fn load_executable_and_return_error(&self) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn CFBundleLoadExecutableAndReturnError(
                 bundle: &CFBundle,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { CFBundleLoadExecutableAndReturnError(self, error) };
-        ret != 0
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { CFBundleLoadExecutableAndReturnError(self, error_param) };
+        if ret != 0 {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     #[doc(alias = "CFBundleLoadExecutable")]

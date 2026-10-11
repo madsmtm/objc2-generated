@@ -538,24 +538,22 @@ impl ColorSyncProfile {
     /// - Returns: A new profile, or `NULL` in case of failure.
     #[doc(alias = "ColorSyncProfileCreate")]
     #[inline]
-    pub unsafe fn new(
-        data: &CFData,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ColorSyncProfile>> {
+    pub unsafe fn new(data: &CFData) -> Result<CFRetained<ColorSyncProfile>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ColorSyncProfileCreate(
                 data: &CFData,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ColorSyncProfile>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ColorSyncProfileCreate(data, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ColorSyncProfileCreate(data, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Creates a profile from ICC profile data at a URL.
@@ -568,22 +566,22 @@ impl ColorSyncProfile {
     #[inline]
     pub unsafe fn with_url(
         url: &CFURL,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ColorSyncProfile>> {
+    ) -> Result<CFRetained<ColorSyncProfile>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ColorSyncProfileCreateWithURL(
                 url: &CFURL,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ColorSyncProfile>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ColorSyncProfileCreateWithURL(url, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ColorSyncProfileCreateWithURL(url, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 }
 
@@ -611,8 +609,7 @@ impl ColorSyncProfile {
     pub unsafe fn with_url_and_options(
         url: &CFURL,
         options: Option<&CFDictionary<CFString, CFType>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ColorSyncProfile>> {
+    ) -> Result<CFRetained<ColorSyncProfile>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ColorSyncProfileCreateWithURLAndOptions(
                 url: &CFURL,
@@ -620,14 +617,15 @@ impl ColorSyncProfile {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ColorSyncProfile>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ColorSyncProfileCreateWithURLAndOptions(url, options, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ColorSyncProfileCreateWithURLAndOptions(url, options, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Creates a profile from a predefined profile name.
@@ -1334,8 +1332,7 @@ impl ColorSyncProfile {
         &self,
         domain: &CFString,
         subpath: &CFString,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ColorSyncProfileInstall(
                 profile: &ColorSyncProfile,
@@ -1344,13 +1341,14 @@ impl ColorSyncProfile {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ColorSyncProfileInstall(self, domain, subpath, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ColorSyncProfileInstall(self, domain, subpath, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Uninstalls a profile.
@@ -1368,19 +1366,20 @@ impl ColorSyncProfile {
     /// - Returns: `true` on success, or `false` in case of error.
     #[doc(alias = "ColorSyncProfileUninstall")]
     #[inline]
-    pub unsafe fn uninstall(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> bool {
+    pub unsafe fn uninstall(&self) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ColorSyncProfileUninstall(
                 profile: &ColorSyncProfile,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ColorSyncProfileUninstall(self, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ColorSyncProfileUninstall(self, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 }

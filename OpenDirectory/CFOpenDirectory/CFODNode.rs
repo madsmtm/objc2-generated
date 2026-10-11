@@ -53,8 +53,7 @@ impl ODNodeRef {
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
         node_type: ODNodeType,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ODNodeRef>> {
+    ) -> Result<CFRetained<ODNodeRef>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCreateWithNodeType(
                 allocator: Option<&CFAllocator>,
@@ -63,14 +62,15 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODNodeRef>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCreateWithNodeType(allocator, session, node_type, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCreateWithNodeType(allocator, session, node_type, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Creates an ODNodeRef based on a partciular node name
@@ -100,8 +100,7 @@ impl ODNodeRef {
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
         node_name: Option<&CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ODNodeRef>> {
+    ) -> Result<CFRetained<ODNodeRef>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCreateWithName(
                 allocator: Option<&CFAllocator>,
@@ -110,14 +109,15 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODNodeRef>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCreateWithName(allocator, session, node_name, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCreateWithName(allocator, session, node_name, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Creates a copy, including any remote credentials used for Proxy and/or Node authentication
@@ -142,8 +142,7 @@ impl ODNodeRef {
     pub unsafe fn copy(
         &self,
         allocator: Option<&CFAllocator>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ODNodeRef>> {
+    ) -> Result<CFRetained<ODNodeRef>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCreateCopy(
                 allocator: Option<&CFAllocator>,
@@ -151,14 +150,15 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODNodeRef>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCreateCopy(allocator, self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCreateCopy(allocator, self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns a CFArray of subnode names for this node, which may contain sub-nodes or search policy nodes
@@ -180,22 +180,22 @@ impl ODNodeRef {
     #[inline]
     pub unsafe fn subnode_names(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray<CFString>>> {
+    ) -> Result<CFRetained<CFArray<CFString>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCopySubnodeNames(
                 node: &ODNodeRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray<CFString>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCopySubnodeNames(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCopySubnodeNames(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Will return names of subnodes that are not currently reachable.
@@ -218,22 +218,22 @@ impl ODNodeRef {
     #[inline]
     pub unsafe fn unreachable_subnode_names(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray<CFString>>> {
+    ) -> Result<CFRetained<CFArray<CFString>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCopyUnreachableSubnodeNames(
                 node: &ODNodeRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray<CFString>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCopyUnreachableSubnodeNames(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCopyUnreachableSubnodeNames(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns the node name of the node that was opened
@@ -280,8 +280,7 @@ impl ODNodeRef {
     pub unsafe fn details(
         &self,
         keys: Option<&CFArray<ODAttributeType>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFArray<CFType>>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFArray<CFType>>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCopyDetails(
                 node: &ODNodeRef,
@@ -289,14 +288,15 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFArray<CFType>>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCopyDetails(self, keys, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCopyDetails(self, keys, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns a CFArrayRef of the record types supported by this node.
@@ -321,22 +321,22 @@ impl ODNodeRef {
     #[inline]
     pub unsafe fn supported_record_types(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray<ODRecordType>>> {
+    ) -> Result<CFRetained<CFArray<ODRecordType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCopySupportedRecordTypes(
                 node: &ODNodeRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray<ODRecordType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCopySupportedRecordTypes(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCopySupportedRecordTypes(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Will return a list of attribute types supported for that attribute if possible
@@ -366,8 +366,7 @@ impl ODNodeRef {
     pub unsafe fn supported_attributes(
         &self,
         record_type: Option<&ODRecordType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray<ODAttributeType>>> {
+    ) -> Result<CFRetained<CFArray<ODAttributeType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCopySupportedAttributes(
                 node: &ODNodeRef,
@@ -375,14 +374,15 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray<ODAttributeType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCopySupportedAttributes(self, record_type, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCopySupportedAttributes(self, record_type, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Sets the credentials for interaction with the ODNode
@@ -422,8 +422,7 @@ impl ODNodeRef {
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         password: Option<&CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeSetCredentials(
                 node: &ODNodeRef,
@@ -433,13 +432,15 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODNodeSetCredentials(self, record_type, record_name, password, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret =
+            unsafe { ODNodeSetCredentials(self, record_type, record_name, password, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Allows use of other Open Directory types of authentications to set the credentials for an ODNode
@@ -489,8 +490,7 @@ impl ODNodeRef {
         auth_items: Option<&CFArray<CFType>>,
         out_auth_items: Option<&mut Option<CFRetained<CFArray<CFData>>>>,
         out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeSetCredentialsExtended(
                 node: &ODNodeRef,
@@ -514,13 +514,9 @@ impl ODNodeRef {
                 "parameter `out_context` must point to `None` on entry"
             );
         };
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe {
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe {
             ODNodeSetCredentialsExtended(
                 self,
                 record_type,
@@ -528,8 +524,13 @@ impl ODNodeRef {
                 auth_items,
                 out_auth_items,
                 out_context,
-                error,
+                error_param,
             )
+        };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
         }
     }
 
@@ -548,8 +549,7 @@ impl ODNodeRef {
     pub unsafe fn set_credentials_using_kerberos_cache(
         &self,
         cache_name: Option<&CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeSetCredentialsUsingKerberosCache(
                 node: &ODNodeRef,
@@ -557,13 +557,14 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODNodeSetCredentialsUsingKerberosCache(self, cache_name, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeSetCredentialsUsingKerberosCache(self, cache_name, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Takes a record and all of the provided attributes and creates the record in the node
@@ -606,8 +607,7 @@ impl ODNodeRef {
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         attribute_dict: Option<&CFDictionary<CFString, CFType>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ODRecordRef>> {
+    ) -> Result<CFRetained<ODRecordRef>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCreateRecord(
                 node: &ODNodeRef,
@@ -617,15 +617,17 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODRecordRef>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe {
+            ODNodeCreateRecord(self, record_type, record_name, attribute_dict, error_param)
         };
-        let ret =
-            unsafe { ODNodeCreateRecord(self, record_type, record_name, attribute_dict, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Simple API to open / create a references to a particular record on a Node
@@ -666,8 +668,7 @@ impl ODNodeRef {
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         attributes: Option<&CFType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ODRecordRef>> {
+    ) -> Result<CFRetained<ODRecordRef>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCopyRecord(
                 node: &ODNodeRef,
@@ -677,14 +678,16 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODRecordRef>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCopyRecord(self, record_type, record_name, attributes, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret =
+            unsafe { ODNodeCopyRecord(self, record_type, record_name, attributes, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Sends a custom call to a node.
@@ -712,8 +715,7 @@ impl ODNodeRef {
         &self,
         custom_code: CFIndex,
         data: Option<&CFData>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFData>> {
+    ) -> Result<CFRetained<CFData>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCustomCall(
                 node: &ODNodeRef,
@@ -722,14 +724,15 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFData>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCustomCall(self, custom_code, data, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCustomCall(self, custom_code, data, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Sends a named custom function call to a node.
@@ -766,8 +769,7 @@ impl ODNodeRef {
         &self,
         function: Option<&CFString>,
         payload: Option<&CFType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFType>> {
+    ) -> Result<CFRetained<CFType>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCustomFunction(
                 node: &ODNodeRef,
@@ -776,14 +778,15 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFType>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCustomFunction(self, function, payload, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCustomFunction(self, function, payload, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will copy any policies configured for the node.
@@ -805,22 +808,22 @@ impl ODNodeRef {
     #[inline]
     pub unsafe fn policies(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCopyPolicies(
                 node: &ODNodeRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCopyPolicies(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCopyPolicies(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will return a dictionary of supported policies.
@@ -844,22 +847,22 @@ impl ODNodeRef {
     #[inline]
     pub unsafe fn supported_policies(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCopySupportedPolicies(
                 node: &ODNodeRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCopySupportedPolicies(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCopySupportedPolicies(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will set the policy for the node.
@@ -886,8 +889,7 @@ impl ODNodeRef {
     pub unsafe fn set_policies(
         &self,
         policies: Option<&CFDictionary<CFString, CFType>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeSetPolicies(
                 node: &ODNodeRef,
@@ -895,13 +897,14 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODNodeSetPolicies(self, policies, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeSetPolicies(self, policies, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will set a specific policy setting for the node.
@@ -935,8 +938,7 @@ impl ODNodeRef {
         &self,
         policy_type: Option<&ODPolicyType>,
         value: Option<&CFType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeSetPolicy(
                 node: &ODNodeRef,
@@ -945,13 +947,14 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODNodeSetPolicy(self, policy_type, value, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeSetPolicy(self, policy_type, value, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will remove a specific policy setting from the node.
@@ -980,8 +983,7 @@ impl ODNodeRef {
     pub unsafe fn remove_policy(
         &self,
         policy_type: Option<&ODPolicyType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeRemovePolicy(
                 node: &ODNodeRef,
@@ -989,13 +991,14 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODNodeRemovePolicy(self, policy_type, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeRemovePolicy(self, policy_type, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will add an account policy to the node for the specified category.
@@ -1038,8 +1041,7 @@ impl ODNodeRef {
         &self,
         policy: Option<&CFDictionary<CFString, CFType>>,
         category: Option<&ODPolicyCategoryType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeAddAccountPolicy(
                 node: &ODNodeRef,
@@ -1048,13 +1050,14 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODNodeAddAccountPolicy(self, policy, category, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeAddAccountPolicy(self, policy, category, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will remove an account policy from the node for the specified category.
@@ -1088,8 +1091,7 @@ impl ODNodeRef {
         &self,
         policy: Option<&CFDictionary<CFString, CFType>>,
         category: Option<&ODPolicyCategoryType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeRemoveAccountPolicy(
                 node: &ODNodeRef,
@@ -1098,13 +1100,14 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODNodeRemoveAccountPolicy(self, policy, category, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeRemoveAccountPolicy(self, policy, category, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will set the policies for the node.
@@ -1141,8 +1144,7 @@ impl ODNodeRef {
     pub unsafe fn set_account_policies(
         &self,
         policies: Option<&CFDictionary<CFString, CFType>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeSetAccountPolicies(
                 node: &ODNodeRef,
@@ -1150,13 +1152,14 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODNodeSetAccountPolicies(self, policies, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeSetAccountPolicies(self, policies, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will copy any policies configured for the node.
@@ -1179,22 +1182,22 @@ impl ODNodeRef {
     #[inline]
     pub unsafe fn account_policies(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodeCopyAccountPolicies(
                 node: &ODNodeRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODNodeCopyAccountPolicies(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodeCopyAccountPolicies(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Validates a password against the node's password content policies.
@@ -1232,8 +1235,7 @@ impl ODNodeRef {
         &self,
         password: Option<&CFString>,
         record_name: Option<&CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODNodePasswordContentCheck(
                 node: &ODNodeRef,
@@ -1242,12 +1244,13 @@ impl ODNodeRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODNodePasswordContentCheck(self, password, record_name, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODNodePasswordContentCheck(self, password, record_name, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 }

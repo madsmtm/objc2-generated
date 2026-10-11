@@ -216,8 +216,7 @@ extern "C" {
 pub fn CTFontManagerRegisterFontsForURL(
     font_url: &CFURL,
     scope: CTFontManagerScope,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> bool {
+) -> Result<(), CFRetained<CFError>> {
     extern "C-unwind" {
         fn CTFontManagerRegisterFontsForURL(
             font_url: &CFURL,
@@ -225,13 +224,14 @@ pub fn CTFontManagerRegisterFontsForURL(
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> bool;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
-    unsafe { CTFontManagerRegisterFontsForURL(font_url, scope, error) }
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { CTFontManagerRegisterFontsForURL(font_url, scope, error_param) };
+    if ret {
+        Ok(())
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Unregisters fonts from the specified font URL with the font manager. Unregistered fonts do not participate in font descriptor matching.
@@ -252,8 +252,7 @@ pub fn CTFontManagerRegisterFontsForURL(
 pub fn CTFontManagerUnregisterFontsForURL(
     font_url: &CFURL,
     scope: CTFontManagerScope,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> bool {
+) -> Result<(), CFRetained<CFError>> {
     extern "C-unwind" {
         fn CTFontManagerUnregisterFontsForURL(
             font_url: &CFURL,
@@ -261,13 +260,14 @@ pub fn CTFontManagerUnregisterFontsForURL(
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> bool;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
-    unsafe { CTFontManagerUnregisterFontsForURL(font_url, scope, error) }
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { CTFontManagerUnregisterFontsForURL(font_url, scope, error_param) };
+    if ret {
+        Ok(())
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Registers the specified graphics font with the font manager. Registered fonts participate in font descriptor matching.
@@ -288,23 +288,21 @@ pub fn CTFontManagerUnregisterFontsForURL(
 #[cfg(feature = "objc2-core-graphics")]
 #[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
 #[inline]
-pub fn CTFontManagerRegisterGraphicsFont(
-    font: &CGFont,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> bool {
+pub fn CTFontManagerRegisterGraphicsFont(font: &CGFont) -> Result<(), CFRetained<CFError>> {
     extern "C-unwind" {
         fn CTFontManagerRegisterGraphicsFont(
             font: &CGFont,
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> bool;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
-    unsafe { CTFontManagerRegisterGraphicsFont(font, error) }
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { CTFontManagerRegisterGraphicsFont(font, error_param) };
+    if ret {
+        Ok(())
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Unregisters the specified graphics font with the font manager. Unregistered fonts do not participate in font descriptor matching.
@@ -320,23 +318,21 @@ pub fn CTFontManagerRegisterGraphicsFont(
 #[cfg(feature = "objc2-core-graphics")]
 #[deprecated = "Use the API corresponding to the one used to register the font"]
 #[inline]
-pub fn CTFontManagerUnregisterGraphicsFont(
-    font: &CGFont,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> bool {
+pub fn CTFontManagerUnregisterGraphicsFont(font: &CGFont) -> Result<(), CFRetained<CFError>> {
     extern "C-unwind" {
         fn CTFontManagerUnregisterGraphicsFont(
             font: &CGFont,
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> bool;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
-    unsafe { CTFontManagerUnregisterGraphicsFont(font, error) }
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { CTFontManagerUnregisterGraphicsFont(font, error_param) };
+    if ret {
+        Ok(())
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Registers fonts from the specified font URLs with the font manager. Registered fonts are discoverable through font descriptor matching.

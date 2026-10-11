@@ -130,8 +130,7 @@ extern "C" {
 pub unsafe fn SecDigestTransformCreate(
     digest_type: Option<&CFType>,
     digest_length: CFIndex,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<SecTransform>> {
+) -> Result<CFRetained<SecTransform>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn SecDigestTransformCreate(
             digest_type: Option<&CFType>,
@@ -139,14 +138,15 @@ pub unsafe fn SecDigestTransformCreate(
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<SecTransform>>;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
-    let ret = unsafe { SecDigestTransformCreate(digest_type, digest_length, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { SecDigestTransformCreate(digest_type, digest_length, error_param) };
+    let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Return the CFTypeID of a SecDigestTransform

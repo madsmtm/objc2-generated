@@ -773,8 +773,7 @@ impl SecTransform {
     pub unsafe fn register(
         unique_name: &CFString,
         create_transform_function: SecTransformCreateFP,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTransformRegister(
                 unique_name: &CFString,
@@ -782,14 +781,15 @@ impl SecTransform {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { SecTransformRegister(unique_name, create_transform_function, error) };
-        ret != 0
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret =
+            unsafe { SecTransformRegister(unique_name, create_transform_function, error_param) };
+        if ret != 0 {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Creates a transform computation object.
@@ -812,24 +812,22 @@ impl SecTransform {
     #[cfg(feature = "SecTransform")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
-    pub unsafe fn new(
-        name: &CFString,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<SecTransform>> {
+    pub unsafe fn new(name: &CFString) -> Result<CFRetained<SecTransform>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTransformCreate(
                 name: &CFString,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecTransform>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { SecTransformCreate(name, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { SecTransformCreate(name, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns back A CFTypeRef from inside a processData

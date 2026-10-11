@@ -572,23 +572,21 @@ impl SecTrust {
     #[doc(alias = "SecTrustEvaluateWithError")]
     #[must_use]
     #[inline]
-    pub unsafe fn evaluate_with_error(
-        &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    pub unsafe fn evaluate_with_error(&self) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTrustEvaluateWithError(
                 trust: &SecTrust,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { SecTrustEvaluateWithError(self, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { SecTrustEvaluateWithError(self, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 }
 

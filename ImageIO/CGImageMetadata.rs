@@ -628,8 +628,7 @@ impl CGMutableImageMetadata {
         &self,
         xmlns: &CFString,
         prefix: &CFString,
-        err: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn CGImageMetadataRegisterNamespaceForPrefix(
                 metadata: &CGMutableImageMetadata,
@@ -638,13 +637,15 @@ impl CGMutableImageMetadata {
                 err: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(err) = err.as_ref() {
-            assert!(
-                err.is_none(),
-                "parameter `err` must point to `None` on entry"
-            );
-        };
-        unsafe { CGImageMetadataRegisterNamespaceForPrefix(self, xmlns, prefix, err) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret =
+            unsafe { CGImageMetadataRegisterNamespaceForPrefix(self, xmlns, prefix, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Sets the tag at the specified path in the metadata object.

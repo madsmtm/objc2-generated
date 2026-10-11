@@ -97,8 +97,7 @@ impl ODQueryRef {
         query_value_or_list: Option<&CFType>,
         return_attribute_or_list: Option<&CFType>,
         max_results: CFIndex,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ODQueryRef>> {
+    ) -> Result<CFRetained<ODQueryRef>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODQueryCreateWithNode(
                 allocator: Option<&CFAllocator>,
@@ -112,12 +111,8 @@ impl ODQueryRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODQueryRef>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
+        let mut error = None;
+        let error_param = Some(&mut error);
         let ret = unsafe {
             ODQueryCreateWithNode(
                 allocator,
@@ -128,10 +123,15 @@ impl ODQueryRef {
                 query_value_or_list,
                 return_attribute_or_list,
                 max_results,
-                error,
+                error_param,
             )
         };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Creates a query object that is initialized to a particular node type.
@@ -187,8 +187,7 @@ impl ODQueryRef {
         query_value_or_list: Option<&CFType>,
         return_attribute_or_list: Option<&CFType>,
         max_results: CFIndex,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<ODQueryRef>> {
+    ) -> Result<CFRetained<ODQueryRef>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODQueryCreateWithNodeType(
                 allocator: Option<&CFAllocator>,
@@ -202,12 +201,8 @@ impl ODQueryRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<ODQueryRef>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
+        let mut error = None;
+        let error_param = Some(&mut error);
         let ret = unsafe {
             ODQueryCreateWithNodeType(
                 allocator,
@@ -218,10 +213,15 @@ impl ODQueryRef {
                 query_value_or_list,
                 return_attribute_or_list,
                 max_results,
-                error,
+                error_param,
             )
         };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns results from a provided ODQueryRef synchronously
@@ -250,8 +250,7 @@ impl ODQueryRef {
     pub unsafe fn results(
         &self,
         allow_partial_results: bool,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray<ODRecord>>> {
+    ) -> Result<CFRetained<CFArray<ODRecord>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODQueryCopyResults(
                 query: &ODQueryRef,
@@ -259,14 +258,15 @@ impl ODQueryRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray<ODRecord>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODQueryCopyResults(self, allow_partial_results, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODQueryCopyResults(self, allow_partial_results, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Will dispose of any results and restart the query.

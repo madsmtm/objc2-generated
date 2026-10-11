@@ -289,22 +289,22 @@ impl SecTransform {
     #[inline]
     pub unsafe fn from_external_representation(
         dictionary: &CFDictionary<CFString, CFPropertyList>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<SecTransform>> {
+    ) -> Result<CFRetained<SecTransform>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTransformCreateFromExternalRepresentation(
                 dictionary: &CFDictionary<CFString, CFPropertyList>,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecTransform>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { SecTransformCreateFromExternalRepresentation(dictionary, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { SecTransformCreateFromExternalRepresentation(dictionary, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Create a CFDictionaryRef that contains enough
@@ -477,8 +477,7 @@ impl SecTransform {
         destination_transform_ref: &SecTransform,
         destination_attribute_name: &CFString,
         group: &SecGroupTransform,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<SecGroupTransform>> {
+    ) -> Result<CFRetained<SecGroupTransform>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTransformConnectTransforms(
                 source_transform_ref: &SecTransform,
@@ -489,12 +488,8 @@ impl SecTransform {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecGroupTransform>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
+        let mut error = None;
+        let error_param = Some(&mut error);
         let ret = unsafe {
             SecTransformConnectTransforms(
                 self,
@@ -502,10 +497,15 @@ impl SecTransform {
                 destination_transform_ref,
                 destination_attribute_name,
                 group,
-                error,
+                error_param,
             )
         };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
+        let ret = ret.map(|ret| unsafe { CFRetained::retain(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Set a static value as the value of an attribute in a
@@ -549,8 +549,7 @@ impl SecTransform {
         &self,
         key: &CFString,
         value: &CFType,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTransformSetAttribute(
                 transform_ref: &SecTransform,
@@ -559,14 +558,14 @@ impl SecTransform {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { SecTransformSetAttribute(self, key, value, error) };
-        ret != 0
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { SecTransformSetAttribute(self, key, value, error_param) };
+        if ret != 0 {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Get the current value of a transform attribute.
@@ -674,24 +673,22 @@ impl SecTransform {
     #[doc(alias = "SecTransformExecute")]
     #[deprecated = "SecTransform is no longer supported"]
     #[inline]
-    pub unsafe fn execute(
-        &self,
-        error_ref: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFType>> {
+    pub unsafe fn execute(&self) -> Result<CFRetained<CFType>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTransformExecute(
                 transform_ref: &SecTransform,
                 error_ref: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFType>>;
         }
-        if let Some(error_ref) = error_ref.as_ref() {
-            assert!(
-                error_ref.is_none(),
-                "parameter `error_ref` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { SecTransformExecute(self, error_ref) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { SecTransformExecute(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 }
 

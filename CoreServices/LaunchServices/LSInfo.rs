@@ -66,8 +66,7 @@ unsafe impl RefEncode for LSAcceptanceFlags {
 pub unsafe fn LSCopyDefaultApplicationURLForURL(
     in_url: &CFURL,
     in_role_mask: LSRolesMask,
-    out_error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFURL>> {
+) -> Result<CFRetained<CFURL>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn LSCopyDefaultApplicationURLForURL(
             in_url: &CFURL,
@@ -75,14 +74,15 @@ pub unsafe fn LSCopyDefaultApplicationURLForURL(
             out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFURL>>;
     }
-    if let Some(out_error) = out_error.as_ref() {
-        assert!(
-            out_error.is_none(),
-            "parameter `out_error` must point to `None` on entry"
-        );
-    };
-    let ret = unsafe { LSCopyDefaultApplicationURLForURL(in_url, in_role_mask, out_error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { LSCopyDefaultApplicationURLForURL(in_url, in_role_mask, error_param) };
+    let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Return the application used to open a content type (UTI).
@@ -117,8 +117,7 @@ pub unsafe fn LSCopyDefaultApplicationURLForURL(
 pub unsafe fn LSCopyDefaultApplicationURLForContentType(
     in_content_type: &CFString,
     in_role_mask: LSRolesMask,
-    out_error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFURL>> {
+) -> Result<CFRetained<CFURL>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn LSCopyDefaultApplicationURLForContentType(
             in_content_type: &CFString,
@@ -126,16 +125,17 @@ pub unsafe fn LSCopyDefaultApplicationURLForContentType(
             out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFURL>>;
     }
-    if let Some(out_error) = out_error.as_ref() {
-        assert!(
-            out_error.is_none(),
-            "parameter `out_error` must point to `None` on entry"
-        );
-    };
+    let mut error = None;
+    let error_param = Some(&mut error);
     let ret = unsafe {
-        LSCopyDefaultApplicationURLForContentType(in_content_type, in_role_mask, out_error)
+        LSCopyDefaultApplicationURLForContentType(in_content_type, in_role_mask, error_param)
     };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Given a bundle identifier (such as com.apple.finder), find all URLs to the corresponding application.
@@ -164,22 +164,23 @@ pub unsafe fn LSCopyDefaultApplicationURLForContentType(
 #[inline]
 pub unsafe fn LSCopyApplicationURLsForBundleIdentifier(
     in_bundle_identifier: &CFString,
-    out_error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFArray<CFURL>>> {
+) -> Result<CFRetained<CFArray<CFURL>>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn LSCopyApplicationURLsForBundleIdentifier(
             in_bundle_identifier: &CFString,
             out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFArray<CFURL>>>;
     }
-    if let Some(out_error) = out_error.as_ref() {
-        assert!(
-            out_error.is_none(),
-            "parameter `out_error` must point to `None` on entry"
-        );
-    };
-    let ret = unsafe { LSCopyApplicationURLsForBundleIdentifier(in_bundle_identifier, out_error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret =
+        unsafe { LSCopyApplicationURLsForBundleIdentifier(in_bundle_identifier, error_param) };
+    let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Returns an array of URLs to applications that offer the requested

@@ -18,22 +18,22 @@ use crate::*;
 #[inline]
 pub unsafe fn MAImageCaptioningCopyCaption(
     url: &CFURL,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFString>> {
+) -> Result<CFRetained<CFString>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn MAImageCaptioningCopyCaption(
             url: &CFURL,
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFString>>;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
-    let ret = unsafe { MAImageCaptioningCopyCaption(url, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { MAImageCaptioningCopyCaption(url, error_param) };
+    let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Sets the accessibility caption into an image's metadata.
@@ -52,8 +52,7 @@ pub unsafe fn MAImageCaptioningCopyCaption(
 pub unsafe fn MAImageCaptioningSetCaption(
     url: &CFURL,
     string: Option<&CFString>,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> bool {
+) -> Result<(), CFRetained<CFError>> {
     extern "C-unwind" {
         fn MAImageCaptioningSetCaption(
             url: &CFURL,
@@ -61,13 +60,14 @@ pub unsafe fn MAImageCaptioningSetCaption(
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> bool;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
-    unsafe { MAImageCaptioningSetCaption(url, string, error) }
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { MAImageCaptioningSetCaption(url, string, error_param) };
+    if ret {
+        Ok(())
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Returns the metadata tagpath for this key.

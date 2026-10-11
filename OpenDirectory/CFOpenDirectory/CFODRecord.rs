@@ -58,8 +58,7 @@ impl ODRecordRef {
         &self,
         username: Option<&CFString>,
         password: Option<&CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordSetNodeCredentials(
                 record: &ODRecordRef,
@@ -68,13 +67,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordSetNodeCredentials(self, username, password, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordSetNodeCredentials(self, username, password, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Similar to calling ODNodeSetCredentialsExtended except credentials are only set for this particular record's
@@ -124,8 +124,7 @@ impl ODRecordRef {
         auth_items: Option<&CFArray<CFType>>,
         out_auth_items: Option<&mut Option<CFRetained<CFArray<CFData>>>>,
         out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordSetNodeCredentialsExtended(
                 record: &ODRecordRef,
@@ -149,13 +148,9 @@ impl ODRecordRef {
                 "parameter `out_context` must point to `None` on entry"
             );
         };
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe {
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe {
             ODRecordSetNodeCredentialsExtended(
                 self,
                 record_type,
@@ -163,8 +158,13 @@ impl ODRecordRef {
                 auth_items,
                 out_auth_items,
                 out_context,
-                error,
+                error_param,
             )
+        };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
         }
     }
 
@@ -183,8 +183,7 @@ impl ODRecordRef {
     pub unsafe fn set_node_credentials_using_kerberos_cache(
         &self,
         cache_name: Option<&CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordSetNodeCredentialsUsingKerberosCache(
                 record: &ODRecordRef,
@@ -192,13 +191,15 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordSetNodeCredentialsUsingKerberosCache(self, cache_name, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret =
+            unsafe { ODRecordSetNodeCredentialsUsingKerberosCache(self, cache_name, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns a CFDictionaryRef of the effective policy for the user if available
@@ -223,8 +224,7 @@ impl ODRecordRef {
     pub unsafe fn password_policy(
         &self,
         allocator: Option<&CFAllocator>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordCopyPasswordPolicy(
                 allocator: Option<&CFAllocator>,
@@ -232,14 +232,15 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODRecordCopyPasswordPolicy(allocator, self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordCopyPasswordPolicy(allocator, self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Verifies the password provided is valid for the record
@@ -264,8 +265,7 @@ impl ODRecordRef {
     pub unsafe fn verify_password(
         &self,
         password: Option<&CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordVerifyPassword(
                 record: &ODRecordRef,
@@ -273,13 +273,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordVerifyPassword(self, password, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordVerifyPassword(self, password, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Allows use of other Open Directory types of authentications to verify a record password
@@ -324,8 +325,7 @@ impl ODRecordRef {
         auth_items: Option<&CFArray<CFType>>,
         out_auth_items: Option<&mut Option<CFRetained<CFArray<CFData>>>>,
         out_context: Option<&mut Option<CFRetained<ODContextRef>>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordVerifyPasswordExtended(
                 record: &ODRecordRef,
@@ -348,21 +348,22 @@ impl ODRecordRef {
                 "parameter `out_context` must point to `None` on entry"
             );
         };
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe {
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe {
             ODRecordVerifyPasswordExtended(
                 self,
                 auth_type,
                 auth_items,
                 out_auth_items,
                 out_context,
-                error,
+                error_param,
             )
+        };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
         }
     }
 
@@ -393,8 +394,7 @@ impl ODRecordRef {
         &self,
         old_password: Option<&CFString>,
         new_password: Option<&CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordChangePassword(
                 record: &ODRecordRef,
@@ -403,13 +403,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordChangePassword(self, old_password, new_password, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordChangePassword(self, old_password, new_password, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns the record type of an ODRecordRef
@@ -477,8 +478,7 @@ impl ODRecordRef {
     pub unsafe fn values(
         &self,
         attribute: Option<&ODAttributeType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFArray<CFType>>> {
+    ) -> Result<CFRetained<CFArray<CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordCopyValues(
                 record: &ODRecordRef,
@@ -486,14 +486,15 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFArray<CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODRecordCopyValues(self, attribute, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordCopyValues(self, attribute, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Will take a CFDataRef or CFStringRef or a CFArrayRef of either type and set it for the attribute
@@ -530,8 +531,7 @@ impl ODRecordRef {
         &self,
         attribute: Option<&ODAttributeType>,
         value_or_values: Option<&CFType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordSetValue(
                 record: &ODRecordRef,
@@ -540,13 +540,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordSetValue(self, attribute, value_or_values, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordSetValue(self, attribute, value_or_values, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Adds a value to an attribute
@@ -579,8 +580,7 @@ impl ODRecordRef {
         &self,
         attribute: Option<&ODAttributeType>,
         value: Option<&CFType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordAddValue(
                 record: &ODRecordRef,
@@ -589,13 +589,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordAddValue(self, attribute, value, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordAddValue(self, attribute, value, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Removes a particular value from an attribute.
@@ -629,8 +630,7 @@ impl ODRecordRef {
         &self,
         attribute: Option<&ODAttributeType>,
         value: Option<&CFType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordRemoveValue(
                 record: &ODRecordRef,
@@ -639,13 +639,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordRemoveValue(self, attribute, value, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordRemoveValue(self, attribute, value, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns the attributes and values in the form of a key-value pair set for this record.
@@ -678,8 +679,7 @@ impl ODRecordRef {
     pub unsafe fn details(
         &self,
         attributes: Option<&CFArray<ODAttributeType>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordCopyDetails(
                 record: &ODRecordRef,
@@ -687,14 +687,15 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODRecordCopyDetails(self, attributes, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordCopyDetails(self, attributes, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Synchronizes the record from the Directory in order to get current data and commit pending changes
@@ -714,20 +715,21 @@ impl ODRecordRef {
     #[doc(alias = "ODRecordSynchronize")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn synchronize(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> bool {
+    pub unsafe fn synchronize(&self) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordSynchronize(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordSynchronize(self, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordSynchronize(self, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Deletes the record from the node and invalidates the record.
@@ -747,20 +749,21 @@ impl ODRecordRef {
     #[doc(alias = "ODRecordDelete")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn delete(&self, error: Option<&mut Option<CFRetained<CFError>>>) -> bool {
+    pub unsafe fn delete(&self) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordDelete(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordDelete(self, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordDelete(self, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Will add the record as a member of the group record that is provided
@@ -788,8 +791,7 @@ impl ODRecordRef {
     pub unsafe fn add_member(
         &self,
         member: Option<&ODRecordRef>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordAddMember(
                 group: &ODRecordRef,
@@ -797,13 +799,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordAddMember(self, member, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordAddMember(self, member, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Will remove the record as a member from the group record that is provided
@@ -829,8 +832,7 @@ impl ODRecordRef {
     pub unsafe fn remove_member(
         &self,
         member: Option<&ODRecordRef>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordRemoveMember(
                 group: &ODRecordRef,
@@ -838,13 +840,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordRemoveMember(self, member, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordRemoveMember(self, member, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Will use membership APIs to resolve group membership based on Group and Member record combination
@@ -871,8 +874,7 @@ impl ODRecordRef {
     pub unsafe fn contains_member(
         &self,
         member: Option<&ODRecordRef>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordContainsMember(
                 group: &ODRecordRef,
@@ -880,13 +882,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordContainsMember(self, member, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordContainsMember(self, member, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will copy any policies configured for the record.
@@ -908,22 +911,22 @@ impl ODRecordRef {
     #[inline]
     pub unsafe fn policies(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordCopyPolicies(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODRecordCopyPolicies(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordCopyPolicies(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will copy the effective policies for the record (merging any node-level policies).
@@ -945,22 +948,22 @@ impl ODRecordRef {
     #[inline]
     pub unsafe fn effective_policies(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordCopyEffectivePolicies(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODRecordCopyEffectivePolicies(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordCopyEffectivePolicies(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will return a dictionary of supported policies.
@@ -984,22 +987,22 @@ impl ODRecordRef {
     #[inline]
     pub unsafe fn supported_policies(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordCopySupportedPolicies(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODRecordCopySupportedPolicies(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordCopySupportedPolicies(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will set the policy for the record.
@@ -1026,8 +1029,7 @@ impl ODRecordRef {
     pub unsafe fn set_policies(
         &self,
         policies: Option<&CFDictionary<CFString, CFType>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordSetPolicies(
                 record: &ODRecordRef,
@@ -1035,13 +1037,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordSetPolicies(self, policies, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordSetPolicies(self, policies, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will set a specific policy setting for the record.
@@ -1075,8 +1078,7 @@ impl ODRecordRef {
         &self,
         policy: Option<&ODPolicyType>,
         value: Option<&CFType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordSetPolicy(
                 record: &ODRecordRef,
@@ -1085,13 +1087,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordSetPolicy(self, policy, value, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordSetPolicy(self, policy, value, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will remove a specific policy setting from the record.
@@ -1120,8 +1123,7 @@ impl ODRecordRef {
     pub unsafe fn remove_policy(
         &self,
         policy: Option<&ODPolicyType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordRemovePolicy(
                 record: &ODRecordRef,
@@ -1129,13 +1131,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordRemovePolicy(self, policy, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordRemovePolicy(self, policy, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will add an account policy to the record for the specified category.
@@ -1178,8 +1181,7 @@ impl ODRecordRef {
         &self,
         policy: Option<&CFDictionary<CFString, CFType>>,
         category: Option<&ODPolicyCategoryType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordAddAccountPolicy(
                 record: &ODRecordRef,
@@ -1188,13 +1190,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordAddAccountPolicy(self, policy, category, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordAddAccountPolicy(self, policy, category, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will remove an account policy from the record for the specified category.
@@ -1228,8 +1231,7 @@ impl ODRecordRef {
         &self,
         policy: Option<&CFDictionary<CFString, CFType>>,
         category: Option<&ODPolicyCategoryType>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordRemoveAccountPolicy(
                 record: &ODRecordRef,
@@ -1238,13 +1240,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordRemoveAccountPolicy(self, policy, category, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordRemoveAccountPolicy(self, policy, category, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will set the policies for the record.
@@ -1282,8 +1285,7 @@ impl ODRecordRef {
     pub unsafe fn set_account_policies(
         &self,
         policies: Option<&CFDictionary<CFString, CFType>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordSetAccountPolicies(
                 record: &ODRecordRef,
@@ -1291,13 +1293,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordSetAccountPolicies(self, policies, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordSetAccountPolicies(self, policies, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// This will copy any policies configured for the record.
@@ -1321,22 +1324,22 @@ impl ODRecordRef {
     #[inline]
     pub unsafe fn account_policies(
         &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordCopyAccountPolicies(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { ODRecordCopyAccountPolicies(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordCopyAccountPolicies(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Determines if policies allow the account to authenticate.
@@ -1370,23 +1373,21 @@ impl ODRecordRef {
     #[doc(alias = "ODRecordAuthenticationAllowed")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
-    pub unsafe fn authentication_allowed(
-        &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    pub unsafe fn authentication_allowed(&self) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordAuthenticationAllowed(
                 record: &ODRecordRef,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordAuthenticationAllowed(self, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordAuthenticationAllowed(self, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Determines if policies allow the password change.
@@ -1421,8 +1422,7 @@ impl ODRecordRef {
     pub unsafe fn password_change_allowed(
         &self,
         new_password: Option<&CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn ODRecordPasswordChangeAllowed(
                 record: &ODRecordRef,
@@ -1430,13 +1430,14 @@ impl ODRecordRef {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        unsafe { ODRecordPasswordChangeAllowed(self, new_password, error) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { ODRecordPasswordChangeAllowed(self, new_password, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Determines if the password will expire within the specified time.

@@ -202,11 +202,7 @@ impl CSIdentityQuery {
     #[doc(alias = "CSIdentityQueryExecute")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
-    pub unsafe fn execute(
-        &self,
-        flags: CSIdentityQueryFlags,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    pub unsafe fn execute(&self, flags: CSIdentityQueryFlags) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn CSIdentityQueryExecute(
                 query: &CSIdentityQuery,
@@ -214,14 +210,14 @@ impl CSIdentityQuery {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Boolean;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { CSIdentityQueryExecute(self, flags, error) };
-        ret != 0
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { CSIdentityQueryExecute(self, flags, error_param) };
+        if ret != 0 {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 }
 

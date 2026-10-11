@@ -116,8 +116,7 @@ impl CGColorConversionInfo {
         target_headroom: c_float,
         method: CGToneMapping,
         options: Option<&CFDictionary>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CGColorConversionInfo>> {
+    ) -> Result<CFRetained<CGColorConversionInfo>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn CGColorConversionInfoCreateForToneMapping(
                 source: &CGColorSpace,
@@ -129,12 +128,8 @@ impl CGColorConversionInfo {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CGColorConversionInfo>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
+        let mut error = None;
+        let error_param = Some(&mut error);
         let ret = unsafe {
             CGColorConversionInfoCreateForToneMapping(
                 source,
@@ -143,10 +138,15 @@ impl CGColorConversionInfo {
                 target_headroom,
                 method,
                 options,
-                error,
+                error_param,
             )
         };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 }
 

@@ -532,8 +532,7 @@ impl LSSharedFileListItem {
     pub unsafe fn resolved_url(
         &self,
         in_flags: LSSharedFileListResolutionFlags,
-        out_error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFURL>> {
+    ) -> Result<CFRetained<CFURL>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn LSSharedFileListItemCopyResolvedURL(
                 in_item: &LSSharedFileListItem,
@@ -541,14 +540,15 @@ impl LSSharedFileListItem {
                 out_error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFURL>>;
         }
-        if let Some(out_error) = out_error.as_ref() {
-            assert!(
-                out_error.is_none(),
-                "parameter `out_error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { LSSharedFileListItemCopyResolvedURL(self, in_flags, out_error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { LSSharedFileListItemCopyResolvedURL(self, in_flags, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     #[doc(alias = "LSSharedFileListItemCopyProperty")]

@@ -244,8 +244,7 @@ pub unsafe fn SMJobSubmit(
     domain: Option<&CFString>,
     job: Option<&CFDictionary<CFString, CFType>>,
     auth: Option<&Authorization>,
-    out_error: Option<&mut Option<CFRetained<CFError>>>,
-) -> bool {
+) -> Result<(), CFRetained<CFError>> {
     extern "C-unwind" {
         fn SMJobSubmit(
             domain: Option<&CFString>,
@@ -254,14 +253,14 @@ pub unsafe fn SMJobSubmit(
             out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Boolean;
     }
-    if let Some(out_error) = out_error.as_ref() {
-        assert!(
-            out_error.is_none(),
-            "parameter `out_error` must point to `None` on entry"
-        );
-    };
-    let ret = unsafe { SMJobSubmit(domain, job, auth, out_error) };
-    ret != 0
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { SMJobSubmit(domain, job, auth, error_param) };
+    if ret != 0 {
+        Ok(())
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// Removes the job with the given label from the specified domain. When this
@@ -315,8 +314,7 @@ pub unsafe fn SMJobRemove(
     job_label: Option<&CFString>,
     auth: Option<&Authorization>,
     wait: bool,
-    out_error: Option<&mut Option<CFRetained<CFError>>>,
-) -> bool {
+) -> Result<(), CFRetained<CFError>> {
     extern "C-unwind" {
         fn SMJobRemove(
             domain: Option<&CFString>,
@@ -327,14 +325,14 @@ pub unsafe fn SMJobRemove(
         ) -> Boolean;
     }
     let wait = wait as _;
-    if let Some(out_error) = out_error.as_ref() {
-        assert!(
-            out_error.is_none(),
-            "parameter `out_error` must point to `None` on entry"
-        );
-    };
-    let ret = unsafe { SMJobRemove(domain, job_label, auth, wait, out_error) };
-    ret != 0
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { SMJobRemove(domain, job_label, auth, wait, error_param) };
+    if ret != 0 {
+        Ok(())
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// If the job is already installed, success is returned.
@@ -424,8 +422,7 @@ pub unsafe fn SMJobBless(
     domain: Option<&CFString>,
     executable_label: Option<&CFString>,
     auth: Option<&Authorization>,
-    out_error: Option<&mut Option<CFRetained<CFError>>>,
-) -> bool {
+) -> Result<(), CFRetained<CFError>> {
     extern "C-unwind" {
         fn SMJobBless(
             domain: Option<&CFString>,
@@ -434,12 +431,12 @@ pub unsafe fn SMJobBless(
             out_error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Boolean;
     }
-    if let Some(out_error) = out_error.as_ref() {
-        assert!(
-            out_error.is_none(),
-            "parameter `out_error` must point to `None` on entry"
-        );
-    };
-    let ret = unsafe { SMJobBless(domain, executable_label, auth, out_error) };
-    ret != 0
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret = unsafe { SMJobBless(domain, executable_label, auth, error_param) };
+    if ret != 0 {
+        Ok(())
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }

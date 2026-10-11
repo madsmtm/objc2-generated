@@ -525,8 +525,7 @@ impl CGImageDestination {
         &self,
         isrc: &CGImageSource,
         options: Option<&CFDictionary<CFString, CFType>>,
-        err: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> bool {
+    ) -> Result<(), CFRetained<CFError>> {
         extern "C-unwind" {
             fn CGImageDestinationCopyImageSource(
                 idst: &CGImageDestination,
@@ -535,13 +534,14 @@ impl CGImageDestination {
                 err: Option<&mut Option<CFRetained<CFError>>>,
             ) -> bool;
         }
-        if let Some(err) = err.as_ref() {
-            assert!(
-                err.is_none(),
-                "parameter `err` must point to `None` on entry"
-            );
-        };
-        unsafe { CGImageDestinationCopyImageSource(self, isrc, options, err) }
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { CGImageDestinationCopyImageSource(self, isrc, options, error_param) };
+        if ret {
+            Ok(())
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Sets the auxiliary data, such as mattes and depth information, that accompany the image.

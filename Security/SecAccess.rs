@@ -258,8 +258,7 @@ impl SecAccess {
         group_id: libc::gid_t,
         owner_type: SecAccessOwnerType,
         acls: Option<&CFArray<SecACL>>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<SecAccess>> {
+    ) -> Result<CFRetained<SecAccess>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecAccessCreateWithOwnerAndACL(
                 user_id: libc::uid_t,
@@ -269,15 +268,17 @@ impl SecAccess {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<SecAccess>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe {
+            SecAccessCreateWithOwnerAndACL(user_id, group_id, owner_type, acls, error_param)
         };
-        let ret =
-            unsafe { SecAccessCreateWithOwnerAndACL(user_id, group_id, owner_type, acls, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Retrieves the owner and the access control list of a given access.

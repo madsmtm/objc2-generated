@@ -223,8 +223,7 @@ pub fn CFPropertyListCreateWithData(
     data: &CFData,
     options: CFOptionFlags,
     format: Option<&mut CFPropertyListFormat>,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFPropertyList>> {
+) -> Result<CFRetained<CFPropertyList>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn CFPropertyListCreateWithData(
             allocator: Option<&CFAllocator>,
@@ -234,14 +233,16 @@ pub fn CFPropertyListCreateWithData(
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFPropertyList>>;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
-    let ret = unsafe { CFPropertyListCreateWithData(allocator, data, options, format, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret =
+        unsafe { CFPropertyListCreateWithData(allocator, data, options, format, error_param) };
+    let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 #[cfg(all(feature = "CFError", feature = "CFStream"))]
@@ -252,8 +253,7 @@ pub fn CFPropertyListCreateWithStream(
     stream_length: CFIndex,
     options: CFOptionFlags,
     format: Option<&mut CFPropertyListFormat>,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFPropertyList>> {
+) -> Result<CFRetained<CFPropertyList>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn CFPropertyListCreateWithStream(
             allocator: Option<&CFAllocator>,
@@ -264,16 +264,24 @@ pub fn CFPropertyListCreateWithStream(
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFPropertyList>>;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
+    let mut error = None;
+    let error_param = Some(&mut error);
     let ret = unsafe {
-        CFPropertyListCreateWithStream(allocator, stream, stream_length, options, format, error)
+        CFPropertyListCreateWithStream(
+            allocator,
+            stream,
+            stream_length,
+            options,
+            format,
+            error_param,
+        )
     };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }
 
 /// # Safety
@@ -316,8 +324,7 @@ pub unsafe fn CFPropertyListCreateData(
     property_list: &CFPropertyList,
     format: CFPropertyListFormat,
     options: CFOptionFlags,
-    error: Option<&mut Option<CFRetained<CFError>>>,
-) -> Option<CFRetained<CFData>> {
+) -> Result<CFRetained<CFData>, CFRetained<CFError>> {
     extern "C-unwind" {
         fn CFPropertyListCreateData(
             allocator: Option<&CFAllocator>,
@@ -327,12 +334,14 @@ pub unsafe fn CFPropertyListCreateData(
             error: Option<&mut Option<CFRetained<CFError>>>,
         ) -> Option<NonNull<CFData>>;
     }
-    if let Some(error) = error.as_ref() {
-        assert!(
-            error.is_none(),
-            "parameter `error` must point to `None` on entry"
-        );
-    };
-    let ret = unsafe { CFPropertyListCreateData(allocator, property_list, format, options, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    let mut error = None;
+    let error_param = Some(&mut error);
+    let ret =
+        unsafe { CFPropertyListCreateData(allocator, property_list, format, options, error_param) };
+    let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+    if let Some(ret) = ret {
+        Ok(ret)
+    } else {
+        Err(error.unwrap_or_else(CFError::__null))
+    }
 }

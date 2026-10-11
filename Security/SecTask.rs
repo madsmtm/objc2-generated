@@ -80,8 +80,7 @@ impl SecTask {
     pub unsafe fn value_for_entitlement(
         &self,
         entitlement: &CFString,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFType>> {
+    ) -> Result<CFRetained<CFType>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTaskCopyValueForEntitlement(
                 task: &SecTask,
@@ -89,14 +88,15 @@ impl SecTask {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFType>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { SecTaskCopyValueForEntitlement(self, entitlement, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { SecTaskCopyValueForEntitlement(self, entitlement, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Returns the values of multiple entitlements for the represented
@@ -116,8 +116,7 @@ impl SecTask {
     pub unsafe fn values_for_entitlements(
         &self,
         entitlements: &CFArray<CFString>,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
+    ) -> Result<CFRetained<CFDictionary<CFString, CFType>>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTaskCopyValuesForEntitlements(
                 task: &SecTask,
@@ -125,14 +124,15 @@ impl SecTask {
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { SecTaskCopyValuesForEntitlements(self, entitlements, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { SecTaskCopyValuesForEntitlements(self, entitlements, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Return the value of the codesigning identifier.
@@ -144,24 +144,22 @@ impl SecTask {
     /// detailed errors. The caller must CFRelease the returned value
     #[doc(alias = "SecTaskCopySigningIdentifier")]
     #[inline]
-    pub unsafe fn signing_identifier(
-        &self,
-        error: Option<&mut Option<CFRetained<CFError>>>,
-    ) -> Option<CFRetained<CFString>> {
+    pub unsafe fn signing_identifier(&self) -> Result<CFRetained<CFString>, CFRetained<CFError>> {
         extern "C-unwind" {
             fn SecTaskCopySigningIdentifier(
                 task: &SecTask,
                 error: Option<&mut Option<CFRetained<CFError>>>,
             ) -> Option<NonNull<CFString>>;
         }
-        if let Some(error) = error.as_ref() {
-            assert!(
-                error.is_none(),
-                "parameter `error` must point to `None` on entry"
-            );
-        };
-        let ret = unsafe { SecTaskCopySigningIdentifier(self, error) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let mut error = None;
+        let error_param = Some(&mut error);
+        let ret = unsafe { SecTaskCopySigningIdentifier(self, error_param) };
+        let ret = ret.map(|ret| unsafe { CFRetained::from_raw(ret) });
+        if let Some(ret) = ret {
+            Ok(ret)
+        } else {
+            Err(error.unwrap_or_else(CFError::__null))
+        }
     }
 
     /// Return the code sign status flags
