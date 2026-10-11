@@ -57,62 +57,62 @@ impl OSALanguage {
     extern_methods!(
         #[unsafe(method(availableLanguages))]
         #[unsafe(method_family = none)]
-        pub unsafe fn availableLanguages() -> Retained<NSArray<OSALanguage>>;
+        pub fn availableLanguages() -> Retained<NSArray<OSALanguage>>;
 
         #[unsafe(method(languageForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn languageForName(name: &NSString) -> Option<Retained<OSALanguage>>;
+        pub fn languageForName(name: &NSString) -> Option<Retained<OSALanguage>>;
 
         #[unsafe(method(languageForScriptDataDescriptor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn languageForScriptDataDescriptor(
+        pub fn languageForScriptDataDescriptor(
             descriptor: &NSAppleEventDescriptor,
         ) -> Option<Retained<OSALanguage>>;
 
         #[unsafe(method(defaultLanguage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultLanguage() -> Option<Retained<OSALanguage>>;
+        pub fn defaultLanguage() -> Option<Retained<OSALanguage>>;
 
         #[unsafe(method(setDefaultLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultLanguage(default_language: &OSALanguage);
+        pub fn setDefaultLanguage(default_language: &OSALanguage);
 
         #[cfg(feature = "OSALanguageInstance")]
         #[unsafe(method(sharedLanguageInstance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedLanguageInstance(&self) -> Retained<OSALanguageInstance>;
+        pub fn sharedLanguageInstance(&self) -> Retained<OSALanguageInstance>;
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(info))]
         #[unsafe(method_family = none)]
-        pub unsafe fn info(&self) -> Option<Retained<NSString>>;
+        pub fn info(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
-        pub unsafe fn version(&self) -> Option<Retained<NSString>>;
+        pub fn version(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> OSType;
+        pub fn r#type(&self) -> OSType;
 
         #[unsafe(method(subType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn subType(&self) -> OSType;
+        pub fn subType(&self) -> OSType;
 
         #[unsafe(method(manufacturer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn manufacturer(&self) -> OSType;
+        pub fn manufacturer(&self) -> OSType;
 
         #[unsafe(method(features))]
         #[unsafe(method_family = none)]
-        pub unsafe fn features(&self) -> OSALanguageFeatures;
+        pub fn features(&self) -> OSALanguageFeatures;
 
         #[unsafe(method(isThreadSafe))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isThreadSafe(&self) -> bool;
+        pub fn isThreadSafe(&self) -> bool;
     );
 }
 
@@ -121,10 +121,17 @@ impl OSALanguage {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for OSALanguage {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

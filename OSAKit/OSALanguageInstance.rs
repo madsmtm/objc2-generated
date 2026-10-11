@@ -23,33 +23,30 @@ impl OSALanguageInstance {
         #[cfg(feature = "OSALanguage")]
         #[unsafe(method(languageInstanceWithLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Retained<Self>;
+        pub fn languageInstanceWithLanguage(language: &OSALanguage) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
         #[unsafe(method(initWithLanguage:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLanguage(
-            this: Allocated<Self>,
-            language: &OSALanguage,
-        ) -> Retained<Self>;
+        pub fn initWithLanguage(this: Allocated<Self>, language: &OSALanguage) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
         #[unsafe(method(language))]
         #[unsafe(method_family = none)]
-        pub unsafe fn language(&self) -> Retained<OSALanguage>;
+        pub fn language(&self) -> Retained<OSALanguage>;
 
         #[unsafe(method(defaultTarget))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultTarget(&self) -> Option<Retained<NSAppleEventDescriptor>>;
+        pub fn defaultTarget(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         /// Setter for [`defaultTarget`][Self::defaultTarget].
         #[unsafe(method(setDefaultTarget:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultTarget(&self, default_target: Option<&NSAppleEventDescriptor>);
+        pub fn setDefaultTarget(&self, default_target: Option<&NSAppleEventDescriptor>);
 
         #[unsafe(method(richTextFromDescriptor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn richTextFromDescriptor(
+        pub fn richTextFromDescriptor(
             &self,
             descriptor: &NSAppleEventDescriptor,
         ) -> Option<Retained<NSAttributedString>>;
@@ -61,10 +58,17 @@ impl OSALanguageInstance {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for OSALanguageInstance {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

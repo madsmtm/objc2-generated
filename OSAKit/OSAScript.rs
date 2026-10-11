@@ -156,18 +156,18 @@ impl OSAScript {
     extern_methods!(
         #[unsafe(method(scriptDataDescriptorWithContentsOfURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scriptDataDescriptorWithContentsOfURL(
+        pub fn scriptDataDescriptorWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[unsafe(method(initWithSource:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSource(this: Allocated<Self>, source: &NSString) -> Retained<Self>;
+        pub fn initWithSource(this: Allocated<Self>, source: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
         #[unsafe(method(initWithSource:language:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSource_language(
+        pub fn initWithSource_language(
             this: Allocated<Self>,
             source: &NSString,
             language: Option<&OSALanguage>,
@@ -176,7 +176,7 @@ impl OSAScript {
         #[cfg(feature = "OSALanguageInstance")]
         #[unsafe(method(initWithSource:fromURL:languageInstance:usingStorageOptions:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSource_fromURL_languageInstance_usingStorageOptions(
+        pub fn initWithSource_fromURL_languageInstance_usingStorageOptions(
             this: Allocated<Self>,
             source: &NSString,
             url: Option<&NSURL>,
@@ -212,7 +212,7 @@ impl OSAScript {
         #[cfg(feature = "OSALanguageInstance")]
         #[unsafe(method(initWithContentsOfURL:languageInstance:usingStorageOptions:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentsOfURL_languageInstance_usingStorageOptions_error(
+        pub fn initWithContentsOfURL_languageInstance_usingStorageOptions_error(
             this: Allocated<Self>,
             url: &NSURL,
             instance: Option<&OSALanguageInstance>,
@@ -233,7 +233,7 @@ impl OSAScript {
 
         #[unsafe(method(initWithCompiledData:fromURL:usingStorageOptions:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCompiledData_fromURL_usingStorageOptions_error(
+        pub fn initWithCompiledData_fromURL_usingStorageOptions_error(
             this: Allocated<Self>,
             data: &NSData,
             url: Option<&NSURL>,
@@ -243,7 +243,7 @@ impl OSAScript {
         #[cfg(feature = "OSALanguageInstance")]
         #[unsafe(method(initWithScriptDataDescriptor:fromURL:languageInstance:usingStorageOptions:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithScriptDataDescriptor_fromURL_languageInstance_usingStorageOptions_error(
+        pub fn initWithScriptDataDescriptor_fromURL_languageInstance_usingStorageOptions_error(
             this: Allocated<Self>,
             data: &NSAppleEventDescriptor,
             url: Option<&NSURL>,
@@ -253,37 +253,37 @@ impl OSAScript {
 
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
-        pub unsafe fn source(&self) -> Retained<NSString>;
+        pub fn source(&self) -> Retained<NSString>;
 
         #[unsafe(method(url))]
         #[unsafe(method_family = none)]
-        pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
+        pub fn url(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "OSALanguage")]
         #[unsafe(method(language))]
         #[unsafe(method_family = none)]
-        pub unsafe fn language(&self) -> Retained<OSALanguage>;
+        pub fn language(&self) -> Retained<OSALanguage>;
 
         #[cfg(feature = "OSALanguage")]
         /// Setter for [`language`][Self::language].
         #[unsafe(method(setLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLanguage(&self, language: &OSALanguage);
+        pub fn setLanguage(&self, language: &OSALanguage);
 
         #[cfg(feature = "OSALanguageInstance")]
         #[unsafe(method(languageInstance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn languageInstance(&self) -> Retained<OSALanguageInstance>;
+        pub fn languageInstance(&self) -> Retained<OSALanguageInstance>;
 
         #[cfg(feature = "OSALanguageInstance")]
         /// Setter for [`languageInstance`][Self::languageInstance].
         #[unsafe(method(setLanguageInstance:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLanguageInstance(&self, language_instance: &OSALanguageInstance);
+        pub fn setLanguageInstance(&self, language_instance: &OSALanguageInstance);
 
         #[unsafe(method(isCompiled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isCompiled(&self) -> bool;
+        pub fn isCompiled(&self) -> bool;
 
         /// # Safety
         ///
@@ -342,11 +342,11 @@ impl OSAScript {
 
         #[unsafe(method(richTextSource))]
         #[unsafe(method_family = none)]
-        pub unsafe fn richTextSource(&self) -> Option<Retained<NSAttributedString>>;
+        pub fn richTextSource(&self) -> Option<Retained<NSAttributedString>>;
 
         #[unsafe(method(richTextFromDescriptor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn richTextFromDescriptor(
+        pub fn richTextFromDescriptor(
             &self,
             descriptor: &NSAppleEventDescriptor,
         ) -> Option<Retained<NSAttributedString>>;
@@ -395,10 +395,17 @@ impl OSAScript {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for OSAScript {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

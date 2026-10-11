@@ -58,27 +58,27 @@ impl OSAScriptController {
         #[cfg(feature = "OSAScriptView")]
         #[unsafe(method(scriptView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scriptView(&self) -> Option<Retained<OSAScriptView>>;
+        pub fn scriptView(&self) -> Option<Retained<OSAScriptView>>;
 
         #[cfg(feature = "OSAScriptView")]
         /// Setter for [`scriptView`][Self::scriptView].
         #[unsafe(method(setScriptView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScriptView(&self, script_view: Option<&OSAScriptView>);
+        pub fn setScriptView(&self, script_view: Option<&OSAScriptView>);
 
         #[unsafe(method(resultView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resultView(&self) -> Option<Retained<NSTextView>>;
+        pub fn resultView(&self) -> Option<Retained<NSTextView>>;
 
         /// Setter for [`resultView`][Self::resultView].
         #[unsafe(method(setResultView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResultView(&self, result_view: Option<&NSTextView>);
+        pub fn setResultView(&self, result_view: Option<&NSTextView>);
 
         #[cfg(feature = "OSAScript")]
         #[unsafe(method(script))]
         #[unsafe(method_family = none)]
-        pub unsafe fn script(&self) -> Option<Retained<OSAScript>>;
+        pub fn script(&self) -> Option<Retained<OSAScript>>;
 
         #[cfg(feature = "OSAScript")]
         /// Setter for [`script`][Self::script].
@@ -86,26 +86,26 @@ impl OSAScriptController {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setScript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScript(&self, script: Option<&OSAScript>);
+        pub fn setScript(&self, script: Option<&OSAScript>);
 
         #[cfg(feature = "OSALanguage")]
         #[unsafe(method(language))]
         #[unsafe(method_family = none)]
-        pub unsafe fn language(&self) -> Option<Retained<OSALanguage>>;
+        pub fn language(&self) -> Option<Retained<OSALanguage>>;
 
         #[cfg(feature = "OSALanguage")]
         /// Setter for [`language`][Self::language].
         #[unsafe(method(setLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLanguage(&self, language: Option<&OSALanguage>);
+        pub fn setLanguage(&self, language: Option<&OSALanguage>);
 
         #[unsafe(method(scriptState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scriptState(&self) -> OSAScriptState;
+        pub fn scriptState(&self) -> OSAScriptState;
 
         #[unsafe(method(isCompiling))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isCompiling(&self) -> bool;
+        pub fn isCompiling(&self) -> bool;
 
         /// # Safety
         ///
@@ -142,7 +142,7 @@ impl OSAScriptController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -151,6 +151,6 @@ impl OSAScriptController {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
