@@ -168,10 +168,14 @@ impl CFPlugInInstance {
 
 #[cfg(feature = "CFBundle")]
 impl CFPlugIn {
+    /// # Safety
+    ///
+    /// - `func` must be implemented correctly.
+    /// - `func` might not allow `None`.
     #[doc(alias = "CFPlugInRegisterFactoryFunction")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub fn register_factory_function(
+    pub unsafe fn register_factory_function(
         factory_uuid: &CFUUID,
         func: Option<CFPlugInFactoryFunction>,
     ) -> bool {
