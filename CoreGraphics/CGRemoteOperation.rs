@@ -12,7 +12,7 @@ use crate::*;
 pub const kCGMouseDownEventMaskingDeadSwitchTimeout: c_float = 60.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventerr?language=objc)
 #[cfg(feature = "CGError")]
-pub type CGEventErr = CGError;
+pub type CGEventErr = Result<(), CGError>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbuttoncount?language=objc)
 pub type CGButtonCount = u32;
@@ -39,12 +39,12 @@ pub type CGScreenRefreshCallback = unsafe extern "C-unwind" fn(u32, NonNull<CGRe
 pub unsafe fn CGRegisterScreenRefreshCallback(
     callback: CGScreenRefreshCallback,
     user_info: *mut c_void,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGRegisterScreenRefreshCallback(
             callback: CGScreenRefreshCallback,
             user_info: *mut c_void,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGRegisterScreenRefreshCallback(callback, user_info) }
 }
@@ -77,12 +77,12 @@ pub unsafe fn CGUnregisterScreenRefreshCallback(
 pub unsafe fn CGWaitForScreenRefreshRects(
     rects: Option<&mut *mut CGRect>,
     count: Option<&mut u32>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGWaitForScreenRefreshRects(
             rects: Option<&mut *mut CGRect>,
             count: Option<&mut u32>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGWaitForScreenRefreshRects(rects, count) }
 }
@@ -149,12 +149,12 @@ pub type CGScreenUpdateMoveCallback =
 pub unsafe fn CGScreenRegisterMoveCallback(
     callback: CGScreenUpdateMoveCallback,
     user_info: *mut c_void,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGScreenRegisterMoveCallback(
             callback: CGScreenUpdateMoveCallback,
             user_info: *mut c_void,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGScreenRegisterMoveCallback(callback, user_info) }
 }
@@ -190,7 +190,7 @@ pub unsafe fn CGWaitForScreenUpdateRects(
     rects: Option<&mut *mut CGRect>,
     rect_count: Option<&mut usize>,
     delta: Option<&mut CGScreenUpdateMoveDelta>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGWaitForScreenUpdateRects(
             requested_operations: CGScreenUpdateOperation,
@@ -198,7 +198,7 @@ pub unsafe fn CGWaitForScreenUpdateRects(
             rects: Option<&mut *mut CGRect>,
             rect_count: Option<&mut usize>,
             delta: Option<&mut CGScreenUpdateMoveDelta>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe {
         CGWaitForScreenUpdateRects(
@@ -247,18 +247,20 @@ pub fn CGCursorIsDrawnInFramebuffer() -> bool {
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> CGError {
+pub fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> CGError;
+        fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> Result<(), CGError>;
     }
     unsafe { CGWarpMouseCursorPosition(new_cursor_position) }
 }
 
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[inline]
-pub fn CGAssociateMouseAndMouseCursorPosition(connected: bool) -> CGError {
+pub fn CGAssociateMouseAndMouseCursorPosition(connected: bool) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGAssociateMouseAndMouseCursorPosition(connected: libc::boolean_t) -> CGError;
+        fn CGAssociateMouseAndMouseCursorPosition(
+            connected: libc::boolean_t,
+        ) -> Result<(), CGError>;
     }
     let connected = connected as _;
     unsafe { CGAssociateMouseAndMouseCursorPosition(connected) }
@@ -276,9 +278,9 @@ pub fn CGWindowServerCreateServerPort() -> Option<CFRetained<CFMachPort>> {
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[deprecated = "No longer supported"]
 #[inline]
-pub fn CGEnableEventStateCombining(combine_state: bool) -> CGError {
+pub fn CGEnableEventStateCombining(combine_state: bool) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGEnableEventStateCombining(combine_state: libc::boolean_t) -> CGError;
+        fn CGEnableEventStateCombining(combine_state: libc::boolean_t) -> Result<(), CGError>;
     }
     let combine_state = combine_state as _;
     unsafe { CGEnableEventStateCombining(combine_state) }
@@ -287,9 +289,9 @@ pub fn CGEnableEventStateCombining(combine_state: bool) -> CGError {
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[deprecated = "No longer supported"]
 #[inline]
-pub fn CGInhibitLocalEvents(inhibit: bool) -> CGError {
+pub fn CGInhibitLocalEvents(inhibit: bool) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGInhibitLocalEvents(inhibit: libc::boolean_t) -> CGError;
+        fn CGInhibitLocalEvents(inhibit: libc::boolean_t) -> Result<(), CGError>;
     }
     let inhibit = inhibit as _;
     unsafe { CGInhibitLocalEvents(inhibit) }
@@ -302,13 +304,13 @@ pub fn CGPostKeyboardEvent(
     key_char: CGCharCode,
     virtual_key: CGKeyCode,
     key_down: bool,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGPostKeyboardEvent(
             key_char: CGCharCode,
             virtual_key: CGKeyCode,
             key_down: libc::boolean_t,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     let key_down = key_down as _;
     unsafe { CGPostKeyboardEvent(key_char, virtual_key, key_down) }
@@ -371,12 +373,12 @@ unsafe impl RefEncode for CGEventSuppressionState {
 pub fn CGSetLocalEventsFilterDuringSuppressionState(
     filter: CGEventFilterMask,
     state: CGEventSuppressionState,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGSetLocalEventsFilterDuringSuppressionState(
             filter: CGEventFilterMask,
             state: CGEventSuppressionState,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGSetLocalEventsFilterDuringSuppressionState(filter, state) }
 }
@@ -384,9 +386,9 @@ pub fn CGSetLocalEventsFilterDuringSuppressionState(
 #[cfg(feature = "CGError")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInterval) -> CGError {
+pub fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInterval) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInterval) -> CGError;
+        fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInterval) -> Result<(), CGError>;
     }
     unsafe { CGSetLocalEventsSuppressionInterval(seconds) }
 }

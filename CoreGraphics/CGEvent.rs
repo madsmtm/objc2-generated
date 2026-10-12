@@ -533,13 +533,13 @@ pub unsafe fn CGGetEventTapList(
     max_number_of_taps: u32,
     tap_list: *mut CGEventTapInformation,
     event_tap_count: Option<&mut u32>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGGetEventTapList(
             max_number_of_taps: u32,
             tap_list: *mut CGEventTapInformation,
             event_tap_count: Option<&mut u32>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGGetEventTapList(max_number_of_taps, tap_list, event_tap_count) }
 }

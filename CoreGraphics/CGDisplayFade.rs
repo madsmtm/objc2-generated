@@ -33,7 +33,7 @@ pub unsafe fn CGConfigureDisplayFadeEffect(
     fade_red: c_float,
     fade_green: c_float,
     fade_blue: c_float,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGConfigureDisplayFadeEffect(
             config: Option<&CGDisplayConfig>,
@@ -42,7 +42,7 @@ pub unsafe fn CGConfigureDisplayFadeEffect(
             fade_red: c_float,
             fade_green: c_float,
             fade_blue: c_float,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe {
         CGConfigureDisplayFadeEffect(
@@ -64,21 +64,25 @@ pub type CGDisplayReservationInterval = c_float;
 pub fn CGAcquireDisplayFadeReservation(
     seconds: CGDisplayReservationInterval,
     token: Option<&mut CGDisplayFadeReservationToken>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGAcquireDisplayFadeReservation(
             seconds: CGDisplayReservationInterval,
             token: Option<&mut CGDisplayFadeReservationToken>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGAcquireDisplayFadeReservation(seconds, token) }
 }
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGReleaseDisplayFadeReservation(token: CGDisplayFadeReservationToken) -> CGError {
+pub fn CGReleaseDisplayFadeReservation(
+    token: CGDisplayFadeReservationToken,
+) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGReleaseDisplayFadeReservation(token: CGDisplayFadeReservationToken) -> CGError;
+        fn CGReleaseDisplayFadeReservation(
+            token: CGDisplayFadeReservationToken,
+        ) -> Result<(), CGError>;
     }
     unsafe { CGReleaseDisplayFadeReservation(token) }
 }
@@ -94,7 +98,7 @@ pub fn CGDisplayFade(
     green_blend: c_float,
     blue_blend: c_float,
     synchronous: bool,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGDisplayFade(
             token: CGDisplayFadeReservationToken,
@@ -105,7 +109,7 @@ pub fn CGDisplayFade(
             green_blend: c_float,
             blue_blend: c_float,
             synchronous: libc::boolean_t,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     let synchronous = synchronous as _;
     unsafe {

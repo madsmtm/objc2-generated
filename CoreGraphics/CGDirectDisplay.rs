@@ -55,14 +55,14 @@ pub unsafe fn CGGetDisplaysWithPoint(
     max_displays: u32,
     displays: *mut CGDirectDisplayID,
     matching_display_count: Option<&mut u32>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGGetDisplaysWithPoint(
             point: CGPoint,
             max_displays: u32,
             displays: *mut CGDirectDisplayID,
             matching_display_count: Option<&mut u32>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGGetDisplaysWithPoint(point, max_displays, displays, matching_display_count) }
 }
@@ -77,14 +77,14 @@ pub unsafe fn CGGetDisplaysWithRect(
     max_displays: u32,
     displays: *mut CGDirectDisplayID,
     matching_display_count: Option<&mut u32>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGGetDisplaysWithRect(
             rect: CGRect,
             max_displays: u32,
             displays: *mut CGDirectDisplayID,
             matching_display_count: Option<&mut u32>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGGetDisplaysWithRect(rect, max_displays, displays, matching_display_count) }
 }
@@ -99,14 +99,14 @@ pub unsafe fn CGGetDisplaysWithOpenGLDisplayMask(
     max_displays: u32,
     displays: *mut CGDirectDisplayID,
     matching_display_count: Option<&mut u32>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGGetDisplaysWithOpenGLDisplayMask(
             mask: CGOpenGLDisplayMask,
             max_displays: u32,
             displays: *mut CGDirectDisplayID,
             matching_display_count: Option<&mut u32>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe {
         CGGetDisplaysWithOpenGLDisplayMask(mask, max_displays, displays, matching_display_count)
@@ -122,13 +122,13 @@ pub unsafe fn CGGetActiveDisplayList(
     max_displays: u32,
     active_displays: *mut CGDirectDisplayID,
     display_count: Option<&mut u32>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGGetActiveDisplayList(
             max_displays: u32,
             active_displays: *mut CGDirectDisplayID,
             display_count: Option<&mut u32>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGGetActiveDisplayList(max_displays, active_displays, display_count) }
 }
@@ -142,13 +142,13 @@ pub unsafe fn CGGetOnlineDisplayList(
     max_displays: u32,
     online_displays: *mut CGDirectDisplayID,
     display_count: Option<&mut u32>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGGetOnlineDisplayList(
             max_displays: u32,
             online_displays: *mut CGDirectDisplayID,
             display_count: Option<&mut u32>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGGetOnlineDisplayList(max_displays, online_displays, display_count) }
 }
@@ -236,13 +236,13 @@ pub unsafe fn CGDisplaySetDisplayMode(
     display: CGDirectDisplayID,
     mode: Option<&CGDisplayMode>,
     options: Option<&CFDictionary>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGDisplaySetDisplayMode(
             display: CGDirectDisplayID,
             mode: Option<&CGDisplayMode>,
             options: Option<&CFDictionary>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGDisplaySetDisplayMode(display, mode, options) }
 }
@@ -363,7 +363,7 @@ pub fn CGSetDisplayTransferByFormula(
     blue_min: CGGammaValue,
     blue_max: CGGammaValue,
     blue_gamma: CGGammaValue,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGSetDisplayTransferByFormula(
             display: CGDirectDisplayID,
@@ -376,7 +376,7 @@ pub fn CGSetDisplayTransferByFormula(
             blue_min: CGGammaValue,
             blue_max: CGGammaValue,
             blue_gamma: CGGammaValue,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe {
         CGSetDisplayTransferByFormula(
@@ -407,7 +407,7 @@ pub fn CGGetDisplayTransferByFormula(
     blue_min: Option<&mut CGGammaValue>,
     blue_max: Option<&mut CGGammaValue>,
     blue_gamma: Option<&mut CGGammaValue>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGGetDisplayTransferByFormula(
             display: CGDirectDisplayID,
@@ -420,7 +420,7 @@ pub fn CGGetDisplayTransferByFormula(
             blue_min: Option<&mut CGGammaValue>,
             blue_max: Option<&mut CGGammaValue>,
             blue_gamma: Option<&mut CGGammaValue>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe {
         CGGetDisplayTransferByFormula(
@@ -459,7 +459,7 @@ pub unsafe fn CGSetDisplayTransferByTable(
     red_table: *const CGGammaValue,
     green_table: *const CGGammaValue,
     blue_table: *const CGGammaValue,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGSetDisplayTransferByTable(
             display: CGDirectDisplayID,
@@ -467,7 +467,7 @@ pub unsafe fn CGSetDisplayTransferByTable(
             red_table: *const CGGammaValue,
             green_table: *const CGGammaValue,
             blue_table: *const CGGammaValue,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGSetDisplayTransferByTable(display, table_size, red_table, green_table, blue_table) }
 }
@@ -486,7 +486,7 @@ pub unsafe fn CGGetDisplayTransferByTable(
     green_table: *mut CGGammaValue,
     blue_table: *mut CGGammaValue,
     sample_count: Option<&mut u32>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGGetDisplayTransferByTable(
             display: CGDirectDisplayID,
@@ -495,7 +495,7 @@ pub unsafe fn CGGetDisplayTransferByTable(
             green_table: *mut CGGammaValue,
             blue_table: *mut CGGammaValue,
             sample_count: Option<&mut u32>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe {
         CGGetDisplayTransferByTable(
@@ -522,7 +522,7 @@ pub unsafe fn CGSetDisplayTransferByByteTable(
     red_table: NonNull<u8>,
     green_table: NonNull<u8>,
     blue_table: NonNull<u8>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGSetDisplayTransferByByteTable(
             display: CGDirectDisplayID,
@@ -530,7 +530,7 @@ pub unsafe fn CGSetDisplayTransferByByteTable(
             red_table: NonNull<u8>,
             green_table: NonNull<u8>,
             blue_table: NonNull<u8>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe {
         CGSetDisplayTransferByByteTable(display, table_size, red_table, green_table, blue_table)
@@ -584,9 +584,9 @@ pub fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> bool {
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError {
+pub fn CGDisplayCapture(display: CGDirectDisplayID) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError;
+        fn CGDisplayCapture(display: CGDirectDisplayID) -> Result<(), CGError>;
     }
     unsafe { CGDisplayCapture(display) }
 }
@@ -596,48 +596,48 @@ pub fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError {
 pub fn CGDisplayCaptureWithOptions(
     display: CGDirectDisplayID,
     options: CGCaptureOptions,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGDisplayCaptureWithOptions(
             display: CGDirectDisplayID,
             options: CGCaptureOptions,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGDisplayCaptureWithOptions(display, options) }
 }
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError {
+pub fn CGDisplayRelease(display: CGDirectDisplayID) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError;
+        fn CGDisplayRelease(display: CGDirectDisplayID) -> Result<(), CGError>;
     }
     unsafe { CGDisplayRelease(display) }
 }
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGCaptureAllDisplays() -> CGError {
+pub fn CGCaptureAllDisplays() -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGCaptureAllDisplays() -> CGError;
+        fn CGCaptureAllDisplays() -> Result<(), CGError>;
     }
     unsafe { CGCaptureAllDisplays() }
 }
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptions) -> CGError {
+pub fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptions) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptions) -> CGError;
+        fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptions) -> Result<(), CGError>;
     }
     unsafe { CGCaptureAllDisplaysWithOptions(options) }
 }
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGReleaseAllDisplays() -> CGError {
+pub fn CGReleaseAllDisplays() -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGReleaseAllDisplays() -> CGError;
+        fn CGReleaseAllDisplays() -> Result<(), CGError>;
     }
     unsafe { CGReleaseAllDisplays() }
 }
@@ -690,27 +690,33 @@ pub fn CGDisplayCreateImageForRect(
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGError {
+pub fn CGDisplayHideCursor(display: CGDirectDisplayID) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGError;
+        fn CGDisplayHideCursor(display: CGDirectDisplayID) -> Result<(), CGError>;
     }
     unsafe { CGDisplayHideCursor(display) }
 }
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGError {
+pub fn CGDisplayShowCursor(display: CGDirectDisplayID) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGError;
+        fn CGDisplayShowCursor(display: CGDirectDisplayID) -> Result<(), CGError>;
     }
     unsafe { CGDisplayShowCursor(display) }
 }
 
 #[cfg(feature = "CGError")]
 #[inline]
-pub fn CGDisplayMoveCursorToPoint(display: CGDirectDisplayID, point: CGPoint) -> CGError {
+pub fn CGDisplayMoveCursorToPoint(
+    display: CGDirectDisplayID,
+    point: CGPoint,
+) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGDisplayMoveCursorToPoint(display: CGDirectDisplayID, point: CGPoint) -> CGError;
+        fn CGDisplayMoveCursorToPoint(
+            display: CGDirectDisplayID,
+            point: CGPoint,
+        ) -> Result<(), CGError>;
     }
     unsafe { CGDisplayMoveCursorToPoint(display, point) }
 }
@@ -738,7 +744,7 @@ pub type CGDisplayCount = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayerr?language=objc)
 #[cfg(feature = "CGError")]
-pub type CGDisplayErr = CGError;
+pub type CGDisplayErr = Result<(), CGError>;
 
 #[deprecated = "No longer supported"]
 #[inline]
@@ -836,12 +842,12 @@ pub unsafe fn CGDisplayCurrentMode(
 pub unsafe fn CGDisplaySwitchToMode(
     display: CGDirectDisplayID,
     mode: Option<&CFDictionary<CFString, CFType>>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGDisplaySwitchToMode(
             display: CGDirectDisplayID,
             mode: Option<&CFDictionary<CFString, CFType>>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGDisplaySwitchToMode(display, mode) }
 }

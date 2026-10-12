@@ -86,9 +86,9 @@ pub unsafe fn AXIsProcessTrusted() -> bool {
 #[cfg(feature = "AXError")]
 #[deprecated]
 #[inline]
-pub unsafe fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError {
+pub unsafe fn AXMakeProcessTrusted(executable_path: &CFString) -> Result<(), AXError> {
     extern "C-unwind" {
-        fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError;
+        fn AXMakeProcessTrusted(executable_path: &CFString) -> Result<(), AXError>;
     }
     unsafe { AXMakeProcessTrusted(executable_path) }
 }
@@ -233,12 +233,12 @@ impl AXUIElement {
     pub unsafe fn attribute_names(
         &self,
         names: &mut Option<CFRetained<CFArray<CFString>>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementCopyAttributeNames(
                 element: &AXUIElement,
                 names: &mut Option<CFRetained<CFArray<CFString>>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             names.is_none(),
@@ -319,13 +319,13 @@ impl AXUIElement {
         &self,
         attribute: &CFString,
         value: &mut Option<CFRetained<CFType>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementCopyAttributeValue(
                 element: &AXUIElement,
                 attribute: &CFString,
                 value: &mut Option<CFRetained<CFType>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             value.is_none(),
@@ -398,13 +398,13 @@ impl AXUIElement {
         &self,
         attribute: &CFString,
         count: &mut CFIndex,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementGetAttributeValueCount(
                 element: &AXUIElement,
                 attribute: &CFString,
                 count: &mut CFIndex,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         unsafe { AXUIElementGetAttributeValueCount(self, attribute, count) }
     }
@@ -501,7 +501,7 @@ impl AXUIElement {
         index: CFIndex,
         max_values: CFIndex,
         values: &mut Option<CFRetained<CFArray<CFType>>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementCopyAttributeValues(
                 element: &AXUIElement,
@@ -509,7 +509,7 @@ impl AXUIElement {
                 index: CFIndex,
                 max_values: CFIndex,
                 values: &mut Option<CFRetained<CFArray<CFType>>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             values.is_none(),
@@ -596,13 +596,13 @@ impl AXUIElement {
         &self,
         attribute: &CFString,
         settable: &mut Boolean,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementIsAttributeSettable(
                 element: &AXUIElement,
                 attribute: &CFString,
                 settable: &mut Boolean,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         unsafe { AXUIElementIsAttributeSettable(self, attribute, settable) }
     }
@@ -674,13 +674,17 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementSetAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn set_attribute_value(&self, attribute: &CFString, value: &CFType) -> AXError {
+    pub unsafe fn set_attribute_value(
+        &self,
+        attribute: &CFString,
+        value: &CFType,
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementSetAttributeValue(
                 element: &AXUIElement,
                 attribute: &CFString,
                 value: &CFType,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         unsafe { AXUIElementSetAttributeValue(self, attribute, value) }
     }
@@ -781,14 +785,14 @@ impl AXUIElement {
         attributes: &CFArray<CFString>,
         options: AXCopyMultipleAttributeOptions,
         values: &mut Option<CFRetained<CFArray<CFType>>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementCopyMultipleAttributeValues(
                 element: &AXUIElement,
                 attributes: &CFArray<CFString>,
                 options: AXCopyMultipleAttributeOptions,
                 values: &mut Option<CFRetained<CFArray<CFType>>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             values.is_none(),
@@ -870,12 +874,12 @@ impl AXUIElement {
     pub unsafe fn parameterized_attribute_names(
         &self,
         names: &mut Option<CFRetained<CFArray<CFString>>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementCopyParameterizedAttributeNames(
                 element: &AXUIElement,
                 names: &mut Option<CFRetained<CFArray<CFString>>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             names.is_none(),
@@ -967,14 +971,14 @@ impl AXUIElement {
         parameterized_attribute: &CFString,
         parameter: &CFType,
         result: &mut Option<CFRetained<CFType>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementCopyParameterizedAttributeValue(
                 element: &AXUIElement,
                 parameterized_attribute: &CFString,
                 parameter: &CFType,
                 result: &mut Option<CFRetained<CFType>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             result.is_none(),
@@ -1050,12 +1054,12 @@ impl AXUIElement {
     pub unsafe fn action_names(
         &self,
         names: &mut Option<CFRetained<CFArray<CFString>>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementCopyActionNames(
                 element: &AXUIElement,
                 names: &mut Option<CFRetained<CFArray<CFString>>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             names.is_none(),
@@ -1128,13 +1132,13 @@ impl AXUIElement {
         &self,
         action: &CFString,
         description: &mut Option<CFRetained<CFString>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementCopyActionDescription(
                 element: &AXUIElement,
                 action: &CFString,
                 description: &mut Option<CFRetained<CFString>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             description.is_none(),
@@ -1215,9 +1219,12 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementPerformAction")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn perform_action(&self, action: &CFString) -> AXError {
+    pub unsafe fn perform_action(&self, action: &CFString) -> Result<(), AXError> {
         extern "C-unwind" {
-            fn AXUIElementPerformAction(element: &AXUIElement, action: &CFString) -> AXError;
+            fn AXUIElementPerformAction(
+                element: &AXUIElement,
+                action: &CFString,
+            ) -> Result<(), AXError>;
         }
         unsafe { AXUIElementPerformAction(self, action) }
     }
@@ -1298,14 +1305,14 @@ impl AXUIElement {
         x: c_float,
         y: c_float,
         element: &mut Option<CFRetained<AXUIElement>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementCopyElementAtPosition(
                 application: &AXUIElement,
                 x: c_float,
                 y: c_float,
                 element: &mut Option<CFRetained<AXUIElement>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             element.is_none(),
@@ -1385,9 +1392,12 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementGetPid")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
-    pub unsafe fn pid(&self, pid: &mut libc::pid_t) -> AXError {
+    pub unsafe fn pid(&self, pid: &mut libc::pid_t) -> Result<(), AXError> {
         extern "C-unwind" {
-            fn AXUIElementGetPid(element: &AXUIElement, pid: &mut libc::pid_t) -> AXError;
+            fn AXUIElementGetPid(
+                element: &AXUIElement,
+                pid: &mut libc::pid_t,
+            ) -> Result<(), AXError>;
         }
         unsafe { AXUIElementGetPid(self, pid) }
     }
@@ -1445,12 +1455,12 @@ impl AXUIElement {
     #[doc(alias = "AXUIElementSetMessagingTimeout")]
     #[cfg(feature = "AXError")]
     #[inline]
-    pub unsafe fn set_messaging_timeout(&self, timeout_in_seconds: c_float) -> AXError {
+    pub unsafe fn set_messaging_timeout(&self, timeout_in_seconds: c_float) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementSetMessagingTimeout(
                 element: &AXUIElement,
                 timeout_in_seconds: c_float,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         unsafe { AXUIElementSetMessagingTimeout(self, timeout_in_seconds) }
     }
@@ -1536,14 +1546,14 @@ impl AXUIElement {
         key_char: CGCharCode,
         virtual_key: CGKeyCode,
         key_down: bool,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXUIElementPostKeyboardEvent(
                 application: &AXUIElement,
                 key_char: CGCharCode,
                 virtual_key: CGKeyCode,
                 key_down: Boolean,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         let key_down = key_down as _;
         unsafe { AXUIElementPostKeyboardEvent(self, key_char, virtual_key, key_down) }
@@ -1952,13 +1962,13 @@ impl AXObserver {
         application: libc::pid_t,
         callback: AXObserverCallback,
         out_observer: &mut Option<CFRetained<AXObserver>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXObserverCreate(
                 application: libc::pid_t,
                 callback: AXObserverCallback,
                 out_observer: &mut Option<CFRetained<AXObserver>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             out_observer.is_none(),
@@ -2019,13 +2029,13 @@ impl AXObserver {
         application: libc::pid_t,
         callback: AXObserverCallbackWithInfo,
         out_observer: &mut Option<CFRetained<AXObserver>>,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXObserverCreateWithInfoCallback(
                 application: libc::pid_t,
                 callback: AXObserverCallbackWithInfo,
                 out_observer: &mut Option<CFRetained<AXObserver>>,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         assert!(
             out_observer.is_none(),
@@ -2119,14 +2129,14 @@ impl AXObserver {
         element: &AXUIElement,
         notification: &CFString,
         refcon: *mut c_void,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXObserverAddNotification(
                 observer: &AXObserver,
                 element: &AXUIElement,
                 notification: &CFString,
                 refcon: *mut c_void,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         unsafe { AXObserverAddNotification(self, element, notification, refcon) }
     }
@@ -2209,13 +2219,13 @@ impl AXObserver {
         &self,
         element: &AXUIElement,
         notification: &CFString,
-    ) -> AXError {
+    ) -> Result<(), AXError> {
         extern "C-unwind" {
             fn AXObserverRemoveNotification(
                 observer: &AXObserver,
                 element: &AXUIElement,
                 notification: &CFString,
-            ) -> AXError;
+            ) -> Result<(), AXError>;
         }
         unsafe { AXObserverRemoveNotification(self, element, notification) }
     }

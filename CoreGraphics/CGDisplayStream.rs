@@ -502,9 +502,9 @@ impl CGDisplayStream {
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub fn start(&self) -> CGError {
+    pub fn start(&self) -> Result<(), CGError> {
         extern "C-unwind" {
-            fn CGDisplayStreamStart(display_stream: &CGDisplayStream) -> CGError;
+            fn CGDisplayStreamStart(display_stream: &CGDisplayStream) -> Result<(), CGError>;
         }
         unsafe { CGDisplayStreamStart(self) }
     }
@@ -522,9 +522,9 @@ impl CGDisplayStream {
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub fn stop(&self) -> CGError {
+    pub fn stop(&self) -> Result<(), CGError> {
         extern "C-unwind" {
-            fn CGDisplayStreamStop(display_stream: &CGDisplayStream) -> CGError;
+            fn CGDisplayStreamStop(display_stream: &CGDisplayStream) -> Result<(), CGError>;
         }
         unsafe { CGDisplayStreamStop(self) }
     }

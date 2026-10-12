@@ -29,9 +29,13 @@ unsafe impl RefEncode for CGDisplayConfig {
 /// `config` must be a valid pointer or null.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe fn CGBeginDisplayConfiguration(config: Option<&mut *mut CGDisplayConfig>) -> CGError {
+pub unsafe fn CGBeginDisplayConfiguration(
+    config: Option<&mut *mut CGDisplayConfig>,
+) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGBeginDisplayConfiguration(config: Option<&mut *mut CGDisplayConfig>) -> CGError;
+        fn CGBeginDisplayConfiguration(
+            config: Option<&mut *mut CGDisplayConfig>,
+        ) -> Result<(), CGError>;
     }
     unsafe { CGBeginDisplayConfiguration(config) }
 }
@@ -46,14 +50,14 @@ pub unsafe fn CGConfigureDisplayOrigin(
     display: CGDirectDisplayID,
     x: i32,
     y: i32,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGConfigureDisplayOrigin(
             config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             x: i32,
             y: i32,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGConfigureDisplayOrigin(config, display, x, y) }
 }
@@ -70,14 +74,14 @@ pub unsafe fn CGConfigureDisplayWithDisplayMode(
     display: CGDirectDisplayID,
     mode: Option<&CGDisplayMode>,
     options: Option<&CFDictionary>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGConfigureDisplayWithDisplayMode(
             config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             mode: Option<&CGDisplayMode>,
             options: Option<&CFDictionary>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGConfigureDisplayWithDisplayMode(config, display, mode, options) }
 }
@@ -92,14 +96,14 @@ pub unsafe fn CGConfigureDisplayStereoOperation(
     display: CGDirectDisplayID,
     stereo: bool,
     force_blue_line: bool,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGConfigureDisplayStereoOperation(
             config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             stereo: libc::boolean_t,
             force_blue_line: libc::boolean_t,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     let stereo = stereo as _;
     let force_blue_line = force_blue_line as _;
@@ -115,13 +119,13 @@ pub unsafe fn CGConfigureDisplayMirrorOfDisplay(
     config: Option<&CGDisplayConfig>,
     display: CGDirectDisplayID,
     master: CGDirectDisplayID,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGConfigureDisplayMirrorOfDisplay(
             config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             master: CGDirectDisplayID,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGConfigureDisplayMirrorOfDisplay(config, display, master) }
 }
@@ -131,9 +135,11 @@ pub unsafe fn CGConfigureDisplayMirrorOfDisplay(
 /// `config` might need manual memory-management.
 #[cfg(feature = "CGError")]
 #[inline]
-pub unsafe fn CGCancelDisplayConfiguration(config: Option<&CGDisplayConfig>) -> CGError {
+pub unsafe fn CGCancelDisplayConfiguration(
+    config: Option<&CGDisplayConfig>,
+) -> Result<(), CGError> {
     extern "C-unwind" {
-        fn CGCancelDisplayConfiguration(config: Option<&CGDisplayConfig>) -> CGError;
+        fn CGCancelDisplayConfiguration(config: Option<&CGDisplayConfig>) -> Result<(), CGError>;
     }
     unsafe { CGCancelDisplayConfiguration(config) }
 }
@@ -173,12 +179,12 @@ unsafe impl RefEncode for CGConfigureOption {
 pub unsafe fn CGCompleteDisplayConfiguration(
     config: Option<&CGDisplayConfig>,
     option: CGConfigureOption,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGCompleteDisplayConfiguration(
             config: Option<&CGDisplayConfig>,
             option: CGConfigureOption,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGCompleteDisplayConfiguration(config, option) }
 }
@@ -248,12 +254,12 @@ pub type CGDisplayReconfigurationCallBack =
 pub unsafe fn CGDisplayRegisterReconfigurationCallback(
     callback: Option<CGDisplayReconfigurationCallBack>,
     user_info: *mut c_void,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGDisplayRegisterReconfigurationCallback(
             callback: Option<CGDisplayReconfigurationCallBack>,
             user_info: *mut c_void,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGDisplayRegisterReconfigurationCallback(callback, user_info) }
 }
@@ -267,12 +273,12 @@ pub unsafe fn CGDisplayRegisterReconfigurationCallback(
 pub unsafe fn CGDisplayRemoveReconfigurationCallback(
     callback: Option<CGDisplayReconfigurationCallBack>,
     user_info: *mut c_void,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGDisplayRemoveReconfigurationCallback(
             callback: Option<CGDisplayReconfigurationCallBack>,
             user_info: *mut c_void,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGDisplayRemoveReconfigurationCallback(callback, user_info) }
 }
@@ -284,14 +290,14 @@ pub fn CGDisplaySetStereoOperation(
     stereo: bool,
     force_blue_line: bool,
     option: CGConfigureOption,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGDisplaySetStereoOperation(
             display: CGDirectDisplayID,
             stereo: libc::boolean_t,
             force_blue_line: libc::boolean_t,
             option: CGConfigureOption,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     let stereo = stereo as _;
     let force_blue_line = force_blue_line as _;
@@ -492,13 +498,13 @@ pub unsafe fn CGConfigureDisplayMode(
     config: Option<&CGDisplayConfig>,
     display: CGDirectDisplayID,
     mode: Option<&CFDictionary<CFString, CFType>>,
-) -> CGError {
+) -> Result<(), CGError> {
     extern "C-unwind" {
         fn CGConfigureDisplayMode(
             config: Option<&CGDisplayConfig>,
             display: CGDirectDisplayID,
             mode: Option<&CFDictionary<CFString, CFType>>,
-        ) -> CGError;
+        ) -> Result<(), CGError>;
     }
     unsafe { CGConfigureDisplayMode(config, display, mode) }
 }

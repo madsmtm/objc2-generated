@@ -25,30 +25,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFSocket"> for CFSocket {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror?language=objc)
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
-pub struct CFSocketError(pub CFIndex);
-impl CFSocketError {
-    #[doc(alias = "kCFSocketSuccess")]
-    pub const Success: Self = Self(0);
-    #[doc(alias = "kCFSocketError")]
-    pub const Error: Self = Self(-1);
-    #[doc(alias = "kCFSocketTimeout")]
-    pub const Timeout: Self = Self(-2);
-}
-
-#[cfg(feature = "objc2")]
-unsafe impl Encode for CFSocketError {
-    const ENCODING: Encoding = CFIndex::ENCODING;
-}
-
-#[cfg(feature = "objc2")]
-unsafe impl RefEncode for CFSocketError {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsignature?language=objc)
 #[cfg(feature = "CFData")]
 #[repr(C)]
@@ -347,9 +323,9 @@ impl CFSocket {
     #[doc(alias = "CFSocketSetAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
-    pub fn set_address(&self, address: &CFData) -> CFSocketError {
+    pub fn set_address(&self, address: &CFData) -> Result<(), CFSocketError> {
         extern "C-unwind" {
-            fn CFSocketSetAddress(s: &CFSocket, address: &CFData) -> CFSocketError;
+            fn CFSocketSetAddress(s: &CFSocket, address: &CFData) -> Result<(), CFSocketError>;
         }
         unsafe { CFSocketSetAddress(self, address) }
     }
@@ -357,13 +333,17 @@ impl CFSocket {
     #[doc(alias = "CFSocketConnectToAddress")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
-    pub fn connect_to_address(&self, address: &CFData, timeout: CFTimeInterval) -> CFSocketError {
+    pub fn connect_to_address(
+        &self,
+        address: &CFData,
+        timeout: CFTimeInterval,
+    ) -> Result<(), CFSocketError> {
         extern "C-unwind" {
             fn CFSocketConnectToAddress(
                 s: &CFSocket,
                 address: &CFData,
                 timeout: CFTimeInterval,
-            ) -> CFSocketError;
+            ) -> Result<(), CFSocketError>;
         }
         unsafe { CFSocketConnectToAddress(self, address, timeout) }
     }
@@ -497,14 +477,14 @@ impl CFSocket {
         address: Option<&CFData>,
         data: &CFData,
         timeout: CFTimeInterval,
-    ) -> CFSocketError {
+    ) -> Result<(), CFSocketError> {
         extern "C-unwind" {
             fn CFSocketSendData(
                 s: &CFSocket,
                 address: Option<&CFData>,
                 data: &CFData,
                 timeout: CFTimeInterval,
-            ) -> CFSocketError;
+            ) -> Result<(), CFSocketError>;
         }
         unsafe { CFSocketSendData(self, address, data, timeout) }
     }
@@ -521,14 +501,14 @@ impl CFSocket {
         timeout: CFTimeInterval,
         name: &CFString,
         value: &CFPropertyList,
-    ) -> CFSocketError {
+    ) -> Result<(), CFSocketError> {
         extern "C-unwind" {
             fn CFSocketRegisterValue(
                 name_server_signature: Option<&CFSocketSignature>,
                 timeout: CFTimeInterval,
                 name: &CFString,
                 value: &CFPropertyList,
-            ) -> CFSocketError;
+            ) -> Result<(), CFSocketError>;
         }
         unsafe { CFSocketRegisterValue(name_server_signature, timeout, name, value) }
     }
@@ -545,7 +525,7 @@ impl CFSocket {
         name: &CFString,
         value: &mut Option<CFRetained<CFPropertyList>>,
         name_server_address: Option<&mut Option<CFRetained<CFData>>>,
-    ) -> CFSocketError {
+    ) -> Result<(), CFSocketError> {
         extern "C-unwind" {
             fn CFSocketCopyRegisteredValue(
                 name_server_signature: Option<&CFSocketSignature>,
@@ -553,7 +533,7 @@ impl CFSocket {
                 name: &CFString,
                 value: &mut Option<CFRetained<CFPropertyList>>,
                 name_server_address: Option<&mut Option<CFRetained<CFData>>>,
-            ) -> CFSocketError;
+            ) -> Result<(), CFSocketError>;
         }
         assert!(
             value.is_none(),
@@ -588,14 +568,14 @@ impl CFSocket {
         timeout: CFTimeInterval,
         name: &CFString,
         signature: &CFSocketSignature,
-    ) -> CFSocketError {
+    ) -> Result<(), CFSocketError> {
         extern "C-unwind" {
             fn CFSocketRegisterSocketSignature(
                 name_server_signature: Option<&CFSocketSignature>,
                 timeout: CFTimeInterval,
                 name: &CFString,
                 signature: &CFSocketSignature,
-            ) -> CFSocketError;
+            ) -> Result<(), CFSocketError>;
         }
         unsafe { CFSocketRegisterSocketSignature(name_server_signature, timeout, name, signature) }
     }
@@ -613,7 +593,7 @@ impl CFSocket {
         name: &CFString,
         signature: &mut CFSocketSignature,
         name_server_address: Option<&mut Option<CFRetained<CFData>>>,
-    ) -> CFSocketError {
+    ) -> Result<(), CFSocketError> {
         extern "C-unwind" {
             fn CFSocketCopyRegisteredSocketSignature(
                 name_server_signature: Option<&CFSocketSignature>,
@@ -621,7 +601,7 @@ impl CFSocket {
                 name: &CFString,
                 signature: &mut CFSocketSignature,
                 name_server_address: Option<&mut Option<CFRetained<CFData>>>,
-            ) -> CFSocketError;
+            ) -> Result<(), CFSocketError>;
         }
         if let Some(name_server_address) = name_server_address.as_ref() {
             assert!(
@@ -650,13 +630,13 @@ impl CFSocket {
         name_server_signature: Option<&CFSocketSignature>,
         timeout: CFTimeInterval,
         name: &CFString,
-    ) -> CFSocketError {
+    ) -> Result<(), CFSocketError> {
         extern "C-unwind" {
             fn CFSocketUnregister(
                 name_server_signature: Option<&CFSocketSignature>,
                 timeout: CFTimeInterval,
                 name: &CFString,
-            ) -> CFSocketError;
+            ) -> Result<(), CFSocketError>;
         }
         unsafe { CFSocketUnregister(name_server_signature, timeout, name) }
     }

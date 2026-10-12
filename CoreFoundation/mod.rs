@@ -896,8 +896,6 @@ pub use self::__CFSocket::CFSocketCallBackType;
 #[cfg(feature = "CFSocket")]
 pub use self::__CFSocket::CFSocketContext;
 #[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketError;
-#[cfg(feature = "CFSocket")]
 pub use self::__CFSocket::CFSocketNativeHandle;
 #[cfg(all(feature = "CFData", feature = "CFSocket"))]
 pub use self::__CFSocket::CFSocketSignature;

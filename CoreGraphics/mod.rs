@@ -784,8 +784,6 @@ pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaKneeLow;
 #[cfg(feature = "CGEXRToneMappingGamma")]
 pub use self::__CGEXRToneMappingGamma::CGEXRToneMappingGammaGetDefaultOptions;
 #[cfg(feature = "CGError")]
-pub use self::__CGError::CGError;
-#[cfg(feature = "CGError")]
 pub use self::__CGError::CGErrorCallback;
 #[cfg(all(
     feature = "CGError",

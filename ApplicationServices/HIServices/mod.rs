@@ -60,8 +60,6 @@ mod __UniversalAccess;
 
 #[cfg(feature = "AXAttributeConstants")]
 pub use self::__AXAttributeConstants::AXMenuItemModifiers;
-#[cfg(feature = "AXError")]
-pub use self::__AXError::AXError;
 #[cfg(feature = "AXNotificationConstants")]
 pub use self::__AXNotificationConstants::AXPriority;
 #[cfg(feature = "AXTextAttributedString")]
