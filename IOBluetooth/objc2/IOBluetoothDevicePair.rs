@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -111,6 +113,7 @@ extern_protocol!(
             passkey: BluetoothPasskey,
         );
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Indicates to the delegate that the pairing object has fully completed the process. Can tell the delegate
         /// when and error occurred during the attempt to pair with the device.
         ///
@@ -213,6 +216,7 @@ impl IOBluetoothDevicePair {
         #[unsafe(method_family = none)]
         pub unsafe fn pairWithDevice(device: Option<&IOBluetoothDevice>) -> Option<Retained<Self>>;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Kicks off the pairing with the device.
         ///
         /// Returns: Returns an IOReturn or Bluetooth error code, if the pairing could not be started.

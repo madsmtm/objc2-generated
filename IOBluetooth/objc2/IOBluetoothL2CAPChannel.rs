@@ -5,6 +5,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -79,6 +81,7 @@ unsafe impl RefEncode for IOBluetoothL2CAPChannelEvent_u {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelevent?language=objc)
+#[cfg(feature = "objc2-io-kit")]
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct IOBluetoothL2CAPChannelEvent {
@@ -87,6 +90,7 @@ pub struct IOBluetoothL2CAPChannelEvent {
     pub status: IOReturn,
 }
 
+#[cfg(feature = "objc2-io-kit")]
 unsafe impl Encode for IOBluetoothL2CAPChannelEvent {
     const ENCODING: Encoding = Encoding::Struct(
         "IOBluetoothL2CAPChannelEvent",
@@ -98,6 +102,7 @@ unsafe impl Encode for IOBluetoothL2CAPChannelEvent {
     );
 }
 
+#[cfg(feature = "objc2-io-kit")]
 unsafe impl RefEncode for IOBluetoothL2CAPChannelEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -108,7 +113,7 @@ pub type IOBluetoothL2CAPChannelIncomingDataListener =
     unsafe extern "C-unwind" fn(Option<&IOBluetoothL2CAPChannelRef>, *mut c_void, u16, *mut c_void);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelincomingeventlistener?language=objc)
-#[cfg(feature = "IOBluetoothUserLib")]
+#[cfg(all(feature = "IOBluetoothUserLib", feature = "objc2-io-kit"))]
 pub type IOBluetoothL2CAPChannelIncomingEventListener = unsafe extern "C-unwind" fn(
     Option<&IOBluetoothL2CAPChannelRef>,
     *mut c_void,
@@ -245,6 +250,7 @@ impl IOBluetoothL2CAPChannel {
         #[unsafe(method_family = none)]
         pub unsafe fn withObjectID(object_id: IOBluetoothObjectID) -> Option<Retained<Self>>;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Initiates the close process on an open L2CAP channel.
         ///
         /// This method may only be called by the client that opened the channel in the first place.  In the future
@@ -288,7 +294,7 @@ impl IOBluetoothL2CAPChannel {
         #[unsafe(method_family = none)]
         pub unsafe fn getIncomingMTU(&self) -> BluetoothL2CAPMTU;
 
-        #[cfg(feature = "Bluetooth")]
+        #[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
         /// Initiates the process to reconfigure the L2CAP channel with a new outgoing MTU.
         ///
         /// Currently, this API does not give an indication that the re-config process has completed.  In
@@ -302,6 +308,7 @@ impl IOBluetoothL2CAPChannel {
         #[unsafe(method_family = none)]
         pub unsafe fn requestRemoteMTU(&self, remote_mtu: BluetoothL2CAPMTU) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Writes the given data over the target L2CAP channel asynchronously to the remote device using
         /// IOConnectTrap4() call.
         ///
@@ -333,6 +340,7 @@ impl IOBluetoothL2CAPChannel {
             refcon: *mut c_void,
         ) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Writes the given data over the target L2CAP channel asynchronously to the remote device.
         ///
         /// The length of the data may not exceed the L2CAP channel's ougoing MTU.  When the data has
@@ -363,6 +371,7 @@ impl IOBluetoothL2CAPChannel {
             refcon: *mut c_void,
         ) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Writes the given data synchronously over the target L2CAP channel to the remote device.
         ///
         /// The length of the data may not exceed the L2CAP channel's ougoing MTU.  This method will
@@ -384,6 +393,7 @@ impl IOBluetoothL2CAPChannel {
         #[unsafe(method_family = none)]
         pub unsafe fn writeSync_length(&self, data: *mut c_void, length: u16) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Allows an object to register itself as client of the L2CAP channel.
         ///
         /// A channel delegate is the object the L2CAP channel uses as target for data and events. The
@@ -408,7 +418,7 @@ impl IOBluetoothL2CAPChannel {
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, channel_delegate: Option<&AnyObject>) -> IOReturn;
 
-        #[cfg(feature = "objc2-foundation")]
+        #[cfg(all(feature = "objc2-foundation", feature = "objc2-io-kit"))]
         /// Allows an object to register itself as client of the L2CAP channel.
         ///
         /// A channel delegate is the object the L2CAP channel uses as target for data and events. The
@@ -594,7 +604,7 @@ extern_protocol!(
             data_length: usize,
         );
 
-        #[cfg(feature = "IOBluetoothObject")]
+        #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-io-kit"))]
         /// # Safety
         ///
         /// `l2cap_channel` might not allow `None`.
@@ -625,7 +635,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn l2capChannelReconfigured(&self, l2cap_channel: Option<&IOBluetoothL2CAPChannel>);
 
-        #[cfg(feature = "IOBluetoothObject")]
+        #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-io-kit"))]
         /// # Safety
         ///
         /// - `l2cap_channel` might not allow `None`.

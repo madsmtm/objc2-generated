@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -209,6 +211,7 @@ impl IOBluetoothOBEXSession {
         #[unsafe(method_family = none)]
         pub unsafe fn getDevice(&self) -> Option<Retained<IOBluetoothDevice>>;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Sends the next block of data trough the rfcomm channel.
         ///
         /// Returns:

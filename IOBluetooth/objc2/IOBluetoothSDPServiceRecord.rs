@@ -4,6 +4,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -94,6 +96,7 @@ impl IOBluetoothSDPServiceRecord {
             service_dict: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Option<Retained<Self>>;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Removes the service from the local SDP server.
         ///
         /// Returns: Returns kIOReturnSuccess if successful.
@@ -235,7 +238,7 @@ impl IOBluetoothSDPServiceRecord {
         #[unsafe(method_family = none)]
         pub unsafe fn getServiceName(&self) -> Option<Retained<NSString>>;
 
-        #[cfg(feature = "Bluetooth")]
+        #[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
         /// Allows the discovery of the RFCOMM channel ID assigned to the service.
         ///
         /// This method will search through the ProtoclDescriptorList attribute to find an entry
@@ -257,7 +260,7 @@ impl IOBluetoothSDPServiceRecord {
             rfcomm_channel_id: Option<&mut BluetoothRFCOMMChannelID>,
         ) -> IOReturn;
 
-        #[cfg(feature = "Bluetooth")]
+        #[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
         /// Allows the discovery of the L2CAP PSM assigned to the service.
         ///
         /// This method will search through the ProtoclDescriptorList attribute to find an entry
@@ -276,7 +279,7 @@ impl IOBluetoothSDPServiceRecord {
         #[unsafe(method_family = none)]
         pub unsafe fn getL2CAPPSM(&self, out_psm: Option<&mut BluetoothL2CAPPSM>) -> IOReturn;
 
-        #[cfg(feature = "Bluetooth")]
+        #[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
         /// Allows the discovery of the service record handle assigned to the service.
         ///
         /// This method will search through the attributes to find the one representing the

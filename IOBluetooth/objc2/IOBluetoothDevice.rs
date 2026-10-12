@@ -5,13 +5,15 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceasynccallbacks?language=objc)
     pub unsafe trait IOBluetoothDeviceAsyncCallbacks {
-        #[cfg(feature = "IOBluetoothObject")]
+        #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-io-kit"))]
         /// # Safety
         ///
         /// `device` might not allow `None`.
@@ -23,7 +25,7 @@ extern_protocol!(
             status: IOReturn,
         );
 
-        #[cfg(feature = "IOBluetoothObject")]
+        #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-io-kit"))]
         /// # Safety
         ///
         /// `device` might not allow `None`.
@@ -35,7 +37,7 @@ extern_protocol!(
             status: IOReturn,
         );
 
-        #[cfg(feature = "IOBluetoothObject")]
+        #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-io-kit"))]
         /// # Safety
         ///
         /// `device` might not allow `None`.
@@ -228,7 +230,11 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn getDeviceRef(&self) -> Option<Retained<IOBluetoothDeviceRef>>;
 
-        #[cfg(all(feature = "Bluetooth", feature = "IOBluetoothL2CAPChannel"))]
+        #[cfg(all(
+            feature = "Bluetooth",
+            feature = "IOBluetoothL2CAPChannel",
+            feature = "objc2-io-kit"
+        ))]
         /// Opens a new L2CAP channel to the target device. Returns only after the channel is opened.
         ///
         /// This method will begin the process of opening a new L2CAP channel to the target device.
@@ -270,7 +276,11 @@ impl IOBluetoothDevice {
             channel_delegate: Option<&AnyObject>,
         ) -> IOReturn;
 
-        #[cfg(all(feature = "Bluetooth", feature = "IOBluetoothL2CAPChannel"))]
+        #[cfg(all(
+            feature = "Bluetooth",
+            feature = "IOBluetoothL2CAPChannel",
+            feature = "objc2-io-kit"
+        ))]
         /// Opens a new L2CAP channel to the target device. Returns immediately after starting the opening process.
         ///
         /// This method will begin the process of opening a new L2CAP channel to the target device.
@@ -312,7 +322,11 @@ impl IOBluetoothDevice {
             channel_delegate: Option<&AnyObject>,
         ) -> IOReturn;
 
-        #[cfg(all(feature = "Bluetooth", feature = "IOBluetoothL2CAPChannel"))]
+        #[cfg(all(
+            feature = "Bluetooth",
+            feature = "IOBluetoothL2CAPChannel",
+            feature = "objc2-io-kit"
+        ))]
         /// Opens a new L2CAP channel to the target device. Returns immedialty after starting the opening process.
         ///
         /// This method will begin the process of opening a new L2CAP channel to the target device.
@@ -348,6 +362,7 @@ impl IOBluetoothDevice {
             new_channel: Option<&mut Option<Retained<IOBluetoothL2CAPChannel>>>,
         ) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Send an echo request over the L2CAP connection to a remote device.
         ///
         /// The current implementation returns when the request has been sent, but does not indicate when
@@ -373,7 +388,11 @@ impl IOBluetoothDevice {
             length: u16,
         ) -> IOReturn;
 
-        #[cfg(all(feature = "Bluetooth", feature = "IOBluetoothRFCOMMChannel"))]
+        #[cfg(all(
+            feature = "Bluetooth",
+            feature = "IOBluetoothRFCOMMChannel",
+            feature = "objc2-io-kit"
+        ))]
         /// Opens a new RFCOMM channel to the target device. Returns only once the channel is open or failed to open.
         ///
         /// This method will begin the process of opening a new RFCOMM channel to the target device.
@@ -402,7 +421,11 @@ impl IOBluetoothDevice {
             rfcomm_channel: Option<&mut Option<Retained<IOBluetoothRFCOMMChannel>>>,
         ) -> IOReturn;
 
-        #[cfg(all(feature = "Bluetooth", feature = "IOBluetoothRFCOMMChannel"))]
+        #[cfg(all(
+            feature = "Bluetooth",
+            feature = "IOBluetoothRFCOMMChannel",
+            feature = "objc2-io-kit"
+        ))]
         /// Opens a new RFCOMM channel to the target device.  Returns only once the channel is open or failed to open.
         ///
         /// This method will begin the process of opening a new RFCOMM channel to the target device.
@@ -453,7 +476,11 @@ impl IOBluetoothDevice {
             channel_delegate: Option<&AnyObject>,
         ) -> IOReturn;
 
-        #[cfg(all(feature = "Bluetooth", feature = "IOBluetoothRFCOMMChannel"))]
+        #[cfg(all(
+            feature = "Bluetooth",
+            feature = "IOBluetoothRFCOMMChannel",
+            feature = "objc2-io-kit"
+        ))]
         /// Opens a new RFCOMM channel to the target device. Returns immediately.
         ///
         /// This method will begin the process of opening a new RFCOMM channel to the target device.
@@ -741,6 +768,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn isConnected(&self) -> bool;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Create a baseband connection to the device.
         ///
         /// This method is synchronous and will not return until either a connection has been established
@@ -758,6 +786,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn openConnection(&self) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Create a baseband connection to the device.
         ///
         /// If a target is specified, the open connection call is asynchronous and on completion of the
@@ -782,7 +811,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn openConnection_(&self, target: Option<&AnyObject>) -> IOReturn;
 
-        #[cfg(feature = "Bluetooth")]
+        #[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
         /// Create a baseband connection to the device.
         ///
         /// If a target is specified, the open connection call is asynchronous and on completion of the
@@ -818,6 +847,7 @@ impl IOBluetoothDevice {
             authentication_required: bool,
         ) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Close down the baseband connection to the device.
         ///
         /// This method is synchronous and will not return until the connection has been closed (or the
@@ -828,6 +858,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn closeConnection(&self) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Issues a remote name request to the target device.
         ///
         /// If a target is specified, the request is asynchronous and on completion of the request, the method
@@ -852,7 +883,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn remoteNameRequest(&self, target: Option<&AnyObject>) -> IOReturn;
 
-        #[cfg(feature = "Bluetooth")]
+        #[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
         /// Issues a remote name request to the target device.
         ///
         /// If a target is specified, the request is asynchronous and on completion of the REMOTE_NAME_REQUEST
@@ -881,6 +912,7 @@ impl IOBluetoothDevice {
             page_timeout_value: BluetoothHCIPageTimeout,
         ) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Requests that the existing baseband connection be authenticated.
         ///
         /// In order to authenticate a baseband connection, a link key needs to be generated as a result of
@@ -946,6 +978,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn getEncryptionMode(&self) -> BluetoothHCIEncryptionMode;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Performs an SDP query on the target device.
         ///
         /// As a result of this call, a baseband connection will be built to the device (if not already connected).
@@ -970,7 +1003,11 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn performSDPQuery(&self, target: Option<&AnyObject>) -> IOReturn;
 
-        #[cfg(all(feature = "IOBluetoothSDPUUID", feature = "objc2-foundation"))]
+        #[cfg(all(
+            feature = "IOBluetoothSDPUUID",
+            feature = "objc2-foundation",
+            feature = "objc2-io-kit"
+        ))]
         /// Performs an SDP query on the target device with the specified service UUIDs.
         ///
         /// As a result of this call, a baseband connection will be built to the device (if not already connected).
@@ -1083,6 +1120,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn isFavorite(&self) -> bool;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Adds the target device to the user's favorite devices list.
         ///
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
@@ -1093,6 +1131,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn addToFavorites(&self) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Removes the target device from the user's favorite devices list.
         ///
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
@@ -1160,6 +1199,7 @@ impl IOBluetoothDevice {
         #[unsafe(method_family = none)]
         pub unsafe fn isPaired(&self) -> bool;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Sets the connection supervision timeout.
         ///
         /// NOTE: This method is only available in Mac OS X 10.5 (Bluetooth v2.0) or later.
@@ -1176,7 +1216,8 @@ impl IOBluetoothDevice {
         #[cfg(all(
             feature = "Bluetooth",
             feature = "IOBluetoothL2CAPChannel",
-            feature = "objc2-foundation"
+            feature = "objc2-foundation",
+            feature = "objc2-io-kit"
         ))]
         /// Opens a new L2CAP channel to the target device. Returns only after the channel is opened.
         ///
@@ -1228,7 +1269,8 @@ impl IOBluetoothDevice {
         #[cfg(all(
             feature = "Bluetooth",
             feature = "IOBluetoothL2CAPChannel",
-            feature = "objc2-foundation"
+            feature = "objc2-foundation",
+            feature = "objc2-io-kit"
         ))]
         /// Opens a new L2CAP channel to the target device. Returns immediately after starting the opening process.
         ///

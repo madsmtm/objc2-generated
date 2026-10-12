@@ -5,6 +5,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -163,6 +165,7 @@ impl IOBluetoothRFCOMMChannel {
         #[unsafe(method_family = none)]
         pub unsafe fn getRFCOMMChannelRef(&self) -> Option<Retained<IOBluetoothRFCOMMChannelRef>>;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Close the channel.
         ///
         /// Returns: An error code value. 0 if successful.
@@ -202,6 +205,7 @@ impl IOBluetoothRFCOMMChannel {
         #[unsafe(method_family = none)]
         pub unsafe fn isTransmissionPaused(&self) -> bool;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Sends a block of data in the channel syncronously.
         ///
         /// ***WARNING*** This method is being deprecated in favor of -writeSync:... and -writeAsync:...
@@ -231,6 +235,7 @@ impl IOBluetoothRFCOMMChannel {
             sleep: bool,
         ) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Sends a block of data in the channel asynchronously.
         ///
         /// The number of bytes to be sent must not exceed the channel MTU.
@@ -262,6 +267,7 @@ impl IOBluetoothRFCOMMChannel {
             refcon: *mut c_void,
         ) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Sends a block of data in the channel synchronously.
         ///
         /// Sends data through the channel. The number of bytes to be sent must not exceed the channel MTU.
@@ -284,6 +290,7 @@ impl IOBluetoothRFCOMMChannel {
         #[unsafe(method_family = none)]
         pub unsafe fn writeSync_length(&self, data: *mut c_void, length: u16) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Sends a block of data in the channel.
         ///
         /// ***WARNING*** This method is being deprecated in favor of -writeSync:... and -writeAsync:...
@@ -316,7 +323,7 @@ impl IOBluetoothRFCOMMChannel {
             num_bytes_sent: Option<&mut u32>,
         ) -> IOReturn;
 
-        #[cfg(feature = "Bluetooth")]
+        #[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
         /// Changes the parameters of the serial connection.
         ///
         /// Parameter `speed`: the baudrate.
@@ -338,7 +345,7 @@ impl IOBluetoothRFCOMMChannel {
             bit_stop: u8,
         ) -> IOReturn;
 
-        #[cfg(feature = "Bluetooth")]
+        #[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
         /// Sends an error to the remote side.
         ///
         /// Parameter `lineStatus`: the error type. The error code can be NoError, OverrunError, ParityError or FramingError.
@@ -351,6 +358,7 @@ impl IOBluetoothRFCOMMChannel {
             line_status: BluetoothRFCOMMLineStatus,
         ) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Allows an object to register itself as a client of the RFCOMM channel.
         ///
         /// A channel delegate is the object the RFCOMM channel uses as target for data and events. The
@@ -477,7 +485,7 @@ extern_protocol!(
             data_length: usize,
         );
 
-        #[cfg(feature = "IOBluetoothObject")]
+        #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-io-kit"))]
         /// # Safety
         ///
         /// `rfcomm_channel` might not allow `None`.
@@ -523,7 +531,7 @@ extern_protocol!(
             rfcomm_channel: Option<&IOBluetoothRFCOMMChannel>,
         );
 
-        #[cfg(feature = "IOBluetoothObject")]
+        #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-io-kit"))]
         /// # Safety
         ///
         /// - `rfcomm_channel` might not allow `None`.
@@ -538,7 +546,7 @@ extern_protocol!(
             error: IOReturn,
         );
 
-        #[cfg(feature = "IOBluetoothObject")]
+        #[cfg(all(feature = "IOBluetoothObject", feature = "objc2-io-kit"))]
         /// # Safety
         ///
         /// - `rfcomm_channel` might not allow `None`.

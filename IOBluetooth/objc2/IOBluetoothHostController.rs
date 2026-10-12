@@ -5,6 +5,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -66,7 +68,11 @@ impl IOBluetoothHostController {
         #[unsafe(method_family = none)]
         pub unsafe fn classOfDevice(&self) -> BluetoothClassOfDevice;
 
-        #[cfg(all(feature = "Bluetooth", feature = "objc2-foundation"))]
+        #[cfg(all(
+            feature = "Bluetooth",
+            feature = "objc2-foundation",
+            feature = "objc2-io-kit"
+        ))]
         /// Sets the current class of device value, for the specified amount of time. Note that the time interval *must*
         /// be set and valid. The range of acceptable values is 30-120 seconds. Anything above or below will be rounded
         /// up, or down, as appropriate.
@@ -129,7 +135,8 @@ pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
         #[cfg(all(
             feature = "Bluetooth",
             feature = "IOBluetoothDevice",
-            feature = "IOBluetoothObject"
+            feature = "IOBluetoothObject",
+            feature = "objc2-io-kit"
         ))]
         /// This delegate gets invoked when an RSSI command complete event occurs. This could occur because you
         /// invoked it by issuing an -readRSSIForDevice: command, or someone else did from another app on the
@@ -156,7 +163,8 @@ pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
         #[cfg(all(
             feature = "Bluetooth",
             feature = "IOBluetoothDevice",
-            feature = "IOBluetoothObject"
+            feature = "IOBluetoothObject",
+            feature = "objc2-io-kit"
         ))]
         /// This delegate gets invoked when an read link quality command complete event occurs. This could occur because you
         /// invoked it by issuing an -readLinkQualityForDevice: command, or someone else did from another app on the

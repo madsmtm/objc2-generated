@@ -684,6 +684,7 @@ pub fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetained<CFDictionary<C
 /// Parameter `event`: CFDictionaryRef containing event data.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupseventcallbackfunction?language=objc)
+#[cfg(feature = "libc")]
 pub type IOUPSEventCallbackFunction = unsafe extern "C-unwind" fn(
     *mut c_void,
     IOReturn,
@@ -693,6 +694,7 @@ pub type IOUPSEventCallbackFunction = unsafe extern "C-unwind" fn(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupsplugininterface?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -720,7 +722,7 @@ pub struct IOUPSPlugInInterface {
         Option<unsafe extern "C-unwind" fn(*mut c_void, Option<&CFDictionary>) -> IOReturn>,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOUPSPlugInInterface {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUPSPlugInInterface",
@@ -738,12 +740,13 @@ unsafe impl Encode for IOUPSPlugInInterface {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOUPSPlugInInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupsplugininterface_v140?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -773,7 +776,7 @@ pub struct IOUPSPlugInInterface_v140 {
         Option<unsafe extern "C-unwind" fn(*mut c_void, *mut *const CFType) -> IOReturn>,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOUPSPlugInInterface_v140 {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUPSPlugInInterface_v140",
@@ -792,7 +795,7 @@ unsafe impl Encode for IOUPSPlugInInterface_v140 {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOUPSPlugInInterface_v140 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

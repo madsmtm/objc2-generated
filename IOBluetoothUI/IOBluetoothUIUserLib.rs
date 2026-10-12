@@ -7,6 +7,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -82,7 +84,7 @@ pub const kIOBluetoothUIUserCanceledErr: c_int = -1001;
 ///
 /// - `cancel_button_title` might not allow `None`.
 /// - `description_text` might not allow `None`.
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-io-kit"))]
 #[inline]
 pub unsafe fn IOBluetoothValidateHardwareWithDescription(
     cancel_button_title: Option<&CFString>,

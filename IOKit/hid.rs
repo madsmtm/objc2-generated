@@ -751,12 +751,14 @@ pub type IOHIDValueOptions = u32;
 /// Parameter `status`: Completion status
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcompletionaction?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDCompletionAction =
     unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32);
 
 /// Struct specifying action to perform when set/get report completes.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcompletion?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -769,7 +771,7 @@ pub struct IOHIDCompletion {
     pub parameter: *mut c_void,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDCompletion {
     const ENCODING: Encoding = Encoding::Struct(
         "IOHIDCompletion",
@@ -781,7 +783,7 @@ unsafe impl Encode for IOHIDCompletion {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOHIDCompletion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1010,6 +1012,7 @@ pub static kIOHIDTransactionOptionDefaultOutputValue: IOOptionBits = 0x0001;
 /// Parameter `sender`: Interface instance sending the completion routine.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcallback?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDCallback = unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void);
 
 /// Type and arguments of callout C function that is used when a HID report completion routine is called.
@@ -1029,6 +1032,7 @@ pub type IOHIDCallback = unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut
 /// Parameter `reportLength`: Size of the buffer received upon completion.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreportcallback?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDReportCallback = unsafe extern "C-unwind" fn(
     *mut c_void,
     IOReturn,
@@ -1058,6 +1062,7 @@ pub type IOHIDReportCallback = unsafe extern "C-unwind" fn(
 /// Parameter `timeStamp`: The time at which the report arrived.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreportwithtimestampcallback?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDReportWithTimeStampCallback = unsafe extern "C-unwind" fn(
     *mut c_void,
     IOReturn,
@@ -1080,6 +1085,7 @@ pub type IOHIDReportWithTimeStampCallback = unsafe extern "C-unwind" fn(
 /// Parameter `value`: IOHIDValueRef containing the returned element value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvaluecallback?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDValueCallback =
     unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &IOHIDValue);
 
@@ -1094,6 +1100,7 @@ pub type IOHIDValueCallback =
 /// Parameter `multiple`: CFDictionaryRef containing the returned element key value pairs.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvaluemultiplecallback?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDValueMultipleCallback =
     unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &CFDictionary);
 
@@ -1106,6 +1113,7 @@ pub type IOHIDValueMultipleCallback =
 /// Parameter `device`: IOHIDDeviceRef containing the sending device.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicecallback?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDDeviceCallback =
     unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, &IOHIDDevice);
 
@@ -1506,6 +1514,7 @@ impl IOHIDQueue {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDQueueRegisterValueAvailableCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_value_available_callback(
         &self,
@@ -1646,6 +1655,7 @@ impl IOHIDDevice {
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
     #[doc(alias = "IOHIDDeviceOpen")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub fn open(&self, options: IOOptionBits) -> IOReturn {
         extern "C-unwind" {
@@ -1665,6 +1675,7 @@ impl IOHIDDevice {
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
     #[doc(alias = "IOHIDDeviceClose")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub fn close(&self, options: IOOptionBits) -> IOReturn {
         extern "C-unwind" {
@@ -1984,6 +1995,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceRegisterRemovalCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_removal_callback(
         &self,
@@ -2021,6 +2033,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceRegisterInputValueCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_input_value_callback(
         &self,
@@ -2062,6 +2075,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceRegisterInputReportCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_input_report_callback(
         &self,
@@ -2109,6 +2123,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceRegisterInputReportWithTimeStampCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_input_report_with_time_stamp_callback(
         &self,
@@ -2220,6 +2235,7 @@ impl IOHIDDevice {
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
     #[doc(alias = "IOHIDDeviceSetValue")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub fn set_value(&self, element: &IOHIDElement, value: &IOHIDValue) -> IOReturn {
         extern "C-unwind" {
@@ -2245,6 +2261,7 @@ impl IOHIDDevice {
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
     #[doc(alias = "IOHIDDeviceSetValueMultiple")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub fn set_value_multiple(
         &self,
@@ -2286,6 +2303,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceSetValueWithCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn set_value_with_callback(
         &self,
@@ -2334,6 +2352,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceSetValueMultipleWithCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn set_value_multiple_with_callback(
         &self,
@@ -2376,6 +2395,7 @@ impl IOHIDDevice {
     ///
     /// `p_value` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetValue")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn value(
         &self,
@@ -2438,6 +2458,7 @@ impl IOHIDDevice {
     ///
     /// `p_value` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetValueWithOptions")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn value_with_options(
         &self,
@@ -2473,6 +2494,7 @@ impl IOHIDDevice {
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
     #[doc(alias = "IOHIDDeviceCopyValueMultiple")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub fn value_multiple(
         &self,
@@ -2523,6 +2545,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceGetValueWithCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn value_with_callback(
         &self,
@@ -2575,6 +2598,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceCopyValueMultipleWithCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn value_multiple_with_callback(
         &self,
@@ -2631,6 +2655,7 @@ impl IOHIDDevice {
     ///
     /// `report` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceSetReport")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn set_report(
         &self,
@@ -2683,6 +2708,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceSetReportWithCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn set_report_with_callback(
         &self,
@@ -2747,6 +2773,7 @@ impl IOHIDDevice {
     ///
     /// `report` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetReport")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn report(
         &self,
@@ -2802,6 +2829,7 @@ impl IOHIDDevice {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetReportWithCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn report_with_callback(
         &self,
@@ -3456,6 +3484,7 @@ unsafe impl RefEncode for IOHIDEventStruct {
 /// Parameter `sender`: Interface instance sending the completion routine.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcallbackfunction?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDCallbackFunction =
     unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void);
 
@@ -3473,6 +3502,7 @@ pub type IOHIDCallbackFunction =
 /// Parameter `elementCookie`: Element within interface instance sending completion.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcallbackfunction?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDElementCallbackFunction = unsafe extern "C-unwind" fn(
     *mut c_void,
     IOReturn,
@@ -3495,6 +3525,7 @@ pub type IOHIDElementCallbackFunction = unsafe extern "C-unwind" fn(
 /// Parameter `bufferSize`: Size of the buffer received upon completion.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreportcallbackfunction?language=objc)
+#[cfg(feature = "libc")]
 pub type IOHIDReportCallbackFunction =
     unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void, u32);
 
@@ -4231,6 +4262,7 @@ impl IOHIDManager {
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
     #[doc(alias = "IOHIDManagerOpen")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub fn open(&self, options: IOOptionBits) -> IOReturn {
         extern "C-unwind" {
@@ -4249,6 +4281,7 @@ impl IOHIDManager {
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
     #[doc(alias = "IOHIDManagerClose")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub fn close(&self, options: IOOptionBits) -> IOReturn {
         extern "C-unwind" {
@@ -4605,6 +4638,7 @@ impl IOHIDManager {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterDeviceMatchingCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_device_matching_callback(
         &self,
@@ -4639,6 +4673,7 @@ impl IOHIDManager {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterDeviceRemovalCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_device_removal_callback(
         &self,
@@ -4672,6 +4707,7 @@ impl IOHIDManager {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterInputReportCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_input_report_callback(
         &self,
@@ -4706,6 +4742,7 @@ impl IOHIDManager {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterInputReportWithTimeStampCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_input_report_with_time_stamp_callback(
         &self,
@@ -4741,6 +4778,7 @@ impl IOHIDManager {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterInputValueCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn register_input_value_callback(
         &self,
@@ -10270,6 +10308,7 @@ impl IOHIDTransaction {
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if
     /// unsuccessful.
     #[doc(alias = "IOHIDTransactionCommit")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub fn commit(&self) -> IOReturn {
         extern "C-unwind" {
@@ -10303,6 +10342,7 @@ impl IOHIDTransaction {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDTransactionCommitWithCallback")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn commit_with_callback(
         &self,
@@ -10347,6 +10387,7 @@ impl IOHIDTransaction {
 /// Please note that methods declared in this interface follow the copy/get/set conventions.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicedeviceinterface?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -10434,7 +10475,7 @@ pub struct IOHIDDeviceDeviceInterface {
     >,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDDeviceDeviceInterface {
     const ENCODING: Encoding = Encoding::Struct(
         "IOHIDDeviceDeviceInterface",
@@ -10458,7 +10499,7 @@ unsafe impl Encode for IOHIDDeviceDeviceInterface {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOHIDDeviceDeviceInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -10473,6 +10514,7 @@ unsafe impl RefEncode for IOHIDDeviceDeviceInterface {
 /// Please note that methods declared in this interface follow the copy/get/set conventions.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicetimestampeddeviceinterface?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -10570,7 +10612,7 @@ pub struct IOHIDDeviceTimeStampedDeviceInterface {
     >,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDDeviceTimeStampedDeviceInterface {
     const ENCODING: Encoding = Encoding::Struct(
         "IOHIDDeviceTimeStampedDeviceInterface",
@@ -10595,7 +10637,7 @@ unsafe impl Encode for IOHIDDeviceTimeStampedDeviceInterface {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOHIDDeviceTimeStampedDeviceInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -10611,6 +10653,7 @@ unsafe impl RefEncode for IOHIDDeviceTimeStampedDeviceInterface {
 /// Absolute element values (based on a fixed origin) will only be placed on a queue if there is a change in value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicequeueinterface?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -10749,7 +10792,7 @@ pub struct IOHIDDeviceQueueInterface {
     >,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDDeviceQueueInterface {
     const ENCODING: Encoding = Encoding::Struct(
         "IOHIDDeviceQueueInterface",
@@ -10772,7 +10815,7 @@ unsafe impl Encode for IOHIDDeviceQueueInterface {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOHIDDeviceQueueInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -10783,6 +10826,7 @@ unsafe impl RefEncode for IOHIDDeviceQueueInterface {
 /// is useful when either setting or getting the values for multiple parsed elements.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicetransactioninterface?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -10966,7 +11010,7 @@ pub struct IOHIDDeviceTransactionInterface {
     pub clear: Option<unsafe extern "C-unwind" fn(*mut c_void, IOOptionBits) -> IOReturn>,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOHIDDeviceTransactionInterface {
     const ENCODING: Encoding = Encoding::Struct(
         "IOHIDDeviceTransactionInterface",
@@ -10989,7 +11033,7 @@ unsafe impl Encode for IOHIDDeviceTransactionInterface {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOHIDDeviceTransactionInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

@@ -1462,10 +1462,12 @@ pub const kIOBlitAllOptions: c_uint = 0xffffffff;
 pub const kIOBlitColorSpaceTypes: c_uint = IO_FOUR_CHAR_CODE!(0x63737063);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitaccumulateptr?language=objc)
+#[cfg(feature = "libc")]
 pub type IOBlitAccumulatePtr =
     unsafe extern "C-unwind" fn(*mut c_void, i32, i32, i32, i32, i32, i32) -> IOReturn;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitprocptr?language=objc)
+#[cfg(feature = "libc")]
 pub type IOBlitProcPtr = unsafe extern "C-unwind" fn(
     *mut c_void,
     IOOptionBits,
@@ -1478,6 +1480,7 @@ pub type IOBlitProcPtr = unsafe extern "C-unwind" fn(
 ) -> IOReturn;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitterptr?language=objc)
+#[cfg(feature = "libc")]
 pub type IOBlitterPtr = unsafe extern "C-unwind" fn(
     *mut c_void,
     IOOptionBits,

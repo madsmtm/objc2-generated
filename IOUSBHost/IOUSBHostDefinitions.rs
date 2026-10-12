@@ -4,11 +4,13 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcompletionhandler?language=objc)
-#[cfg(feature = "block2")]
+#[cfg(all(feature = "block2", feature = "objc2-io-kit"))]
 pub type IOUSBHostCompletionHandler = block2::Block<'static, fn(IOReturn, NSUInteger)>;
 
 /// AbsoluteTime represented as a uint64_t.
@@ -42,6 +44,7 @@ pub type IOUSBHostTime = u64;
 /// the same timestamp.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronousframe?language=objc)
+#[cfg(feature = "objc2-io-kit")]
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHostIsochronousFrame {
@@ -52,6 +55,7 @@ pub struct IOUSBHostIsochronousFrame {
     pub timeStamp: IOUSBHostTime,
 }
 
+#[cfg(feature = "objc2-io-kit")]
 unsafe impl Encode for IOUSBHostIsochronousFrame {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUSBHostIsochronousFrame",
@@ -65,6 +69,7 @@ unsafe impl Encode for IOUSBHostIsochronousFrame {
     );
 }
 
+#[cfg(feature = "objc2-io-kit")]
 unsafe impl RefEncode for IOUSBHostIsochronousFrame {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -165,6 +170,7 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransactionOptions {
 /// for more details.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransaction?language=objc)
+#[cfg(feature = "objc2-io-kit")]
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHostIsochronousTransaction {
@@ -176,6 +182,7 @@ pub struct IOUSBHostIsochronousTransaction {
     pub options: IOUSBHostIsochronousTransactionOptions,
 }
 
+#[cfg(feature = "objc2-io-kit")]
 unsafe impl Encode for IOUSBHostIsochronousTransaction {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUSBHostIsochronousTransaction",
@@ -190,6 +197,7 @@ unsafe impl Encode for IOUSBHostIsochronousTransaction {
     );
 }
 
+#[cfg(feature = "objc2-io-kit")]
 unsafe impl RefEncode for IOUSBHostIsochronousTransaction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -201,7 +209,7 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransaction {
 /// Parameter `frameList`: Frame list for isochronous transfer.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronouscompletionhandler?language=objc)
-#[cfg(feature = "block2")]
+#[cfg(all(feature = "block2", feature = "objc2-io-kit"))]
 pub type IOUSBHostIsochronousCompletionHandler =
     block2::Block<'static, fn(IOReturn, NonNull<IOUSBHostIsochronousFrame>)>;
 
@@ -212,7 +220,7 @@ pub type IOUSBHostIsochronousCompletionHandler =
 /// Parameter `transactionList`: Transaction list for isochronous transfer.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactioncompletionhandler?language=objc)
-#[cfg(feature = "block2")]
+#[cfg(all(feature = "block2", feature = "objc2-io-kit"))]
 pub type IOUSBHostIsochronousTransactionCompletionHandler =
     block2::Block<'static, fn(IOReturn, NonNull<IOUSBHostIsochronousTransaction>)>;
 

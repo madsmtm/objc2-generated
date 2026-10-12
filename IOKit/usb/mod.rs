@@ -2064,13 +2064,13 @@ pub use self::__USB::kXHCIUSB2RootHubAddress;
 pub use self::__USB::IOUSBBOSDescriptorPtr;
 #[cfg(feature = "USB")]
 pub use self::__USB::IOUSBBulkPipeReq;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBCompletion;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBCompletionAction;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBCompletionActionWithTimeStamp;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBCompletionWithTimeStamp;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB"))]
 pub use self::__USB::IOUSBConfigurationDescHeaderPtr;
@@ -2134,23 +2134,23 @@ pub use self::__USB::IOUSBHIDReportDescPtr;
 pub use self::__USB::IOUSBInterfaceAssociationDescriptorPtr;
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB"))]
 pub use self::__USB::IOUSBInterfaceDescriptorPtr;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBIsocCompletion;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBIsocCompletionAction;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBIsocFrame;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBIsocStruct;
 #[cfg(feature = "USB")]
 pub use self::__USB::IOUSBKeyboardData;
 #[cfg(feature = "USB")]
 pub use self::__USB::IOUSBKeyboardDataPtr;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBLowLatencyIsocCompletion;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBLowLatencyIsocCompletionAction;
-#[cfg(feature = "USB")]
+#[cfg(all(feature = "USB", feature = "libc"))]
 pub use self::__USB::IOUSBLowLatencyIsocFrame;
 #[cfg(feature = "USB")]
 pub use self::__USB::IOUSBLowLatencyIsocStruct;

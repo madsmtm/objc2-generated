@@ -86,7 +86,11 @@ impl IOUSBHostStream {
             bytes_transferred: Option<&mut NSUInteger>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[cfg(all(feature = "IOUSBHostDefinitions", feature = "block2"))]
+        #[cfg(all(
+            feature = "IOUSBHostDefinitions",
+            feature = "block2",
+            feature = "objc2-io-kit"
+        ))]
         /// Enqueue an IO request on the source
         ///
         /// This method is used to issue an asynchronous I/O request on the IO source.

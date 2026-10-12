@@ -8,6 +8,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -213,7 +215,7 @@ unsafe impl RefEncode for IOBluetoothDeviceSearchDeviceAttributes {
 /// out block of attributes is NOT equivalent to passing in NULL!
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicesearchattributes?language=objc)
-#[cfg(feature = "Bluetooth")]
+#[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOBluetoothDeviceSearchAttributes {
@@ -223,7 +225,7 @@ pub struct IOBluetoothDeviceSearchAttributes {
     pub attributeList: *mut IOBluetoothDeviceSearchDeviceAttributes,
 }
 
-#[cfg(all(feature = "Bluetooth", feature = "objc2"))]
+#[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-io-kit"))]
 unsafe impl Encode for IOBluetoothDeviceSearchAttributes {
     const ENCODING: Encoding = Encoding::Struct(
         "IOBluetoothDeviceSearchAttributes",
@@ -236,7 +238,7 @@ unsafe impl Encode for IOBluetoothDeviceSearchAttributes {
     );
 }
 
-#[cfg(all(feature = "Bluetooth", feature = "objc2"))]
+#[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-io-kit"))]
 unsafe impl RefEncode for IOBluetoothDeviceSearchAttributes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -418,7 +420,7 @@ impl IOBluetoothL2CAPChannelRef {
 /// - `device` might not allow `None`.
 /// - `config_dict` generic should be of the correct type.
 /// - `config_dict` might not allow `None`.
-#[cfg(feature = "objc2-core-foundation")]
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-io-kit"))]
 #[deprecated]
 #[inline]
 pub unsafe fn IOBluetoothAddSCOAudioDevice(
@@ -443,6 +445,7 @@ pub unsafe fn IOBluetoothAddSCOAudioDevice(
 /// # Safety
 ///
 /// `device` might not allow `None`.
+#[cfg(feature = "objc2-io-kit")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn {

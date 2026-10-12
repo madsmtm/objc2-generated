@@ -3,6 +3,8 @@
 use core::ffi::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -3571,6 +3573,7 @@ unsafe impl RefEncode for BluetoothHCIInquiryResult {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquiryresults?language=objc)
+#[cfg(feature = "objc2-io-kit")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIInquiryResults {
@@ -3578,7 +3581,7 @@ pub struct BluetoothHCIInquiryResults {
     pub count: IOItemCount,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "objc2", feature = "objc2-io-kit"))]
 unsafe impl Encode for BluetoothHCIInquiryResults {
     const ENCODING: Encoding = Encoding::Struct(
         "BluetoothHCIInquiryResults",
@@ -3589,7 +3592,7 @@ unsafe impl Encode for BluetoothHCIInquiryResults {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "objc2", feature = "objc2-io-kit"))]
 unsafe impl RefEncode for BluetoothHCIInquiryResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -3627,6 +3630,7 @@ unsafe impl RefEncode for BluetoothHCIInquiryWithRSSIResult {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquirywithrssiresults?language=objc)
+#[cfg(feature = "objc2-io-kit")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIInquiryWithRSSIResults {
@@ -3634,7 +3638,7 @@ pub struct BluetoothHCIInquiryWithRSSIResults {
     pub count: IOItemCount,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "objc2", feature = "objc2-io-kit"))]
 unsafe impl Encode for BluetoothHCIInquiryWithRSSIResults {
     const ENCODING: Encoding = Encoding::Struct(
         "BluetoothHCIInquiryWithRSSIResults",
@@ -3645,7 +3649,7 @@ unsafe impl Encode for BluetoothHCIInquiryWithRSSIResults {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "objc2", feature = "objc2-io-kit"))]
 unsafe impl RefEncode for BluetoothHCIInquiryWithRSSIResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

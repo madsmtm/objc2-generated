@@ -5,6 +5,8 @@ use core::ffi::*;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -22,7 +24,11 @@ use crate::*;
 ///
 /// - `in_name_string` might not allow `None`.
 /// - `out_device_address` might not allow `None`.
-#[cfg(all(feature = "Bluetooth", feature = "objc2-foundation"))]
+#[cfg(all(
+    feature = "Bluetooth",
+    feature = "objc2-foundation",
+    feature = "objc2-io-kit"
+))]
 #[inline]
 pub unsafe fn IOBluetoothNSStringToDeviceAddress(
     in_name_string: Option<&NSString>,

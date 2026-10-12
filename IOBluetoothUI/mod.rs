@@ -50,7 +50,11 @@ pub use self::__IOBluetoothUIUserLib::IOBluetoothPairingControllerRef;
 pub use self::__IOBluetoothUIUserLib::IOBluetoothServiceBrowserControllerOptions;
 #[cfg(feature = "IOBluetoothUIUserLib")]
 pub use self::__IOBluetoothUIUserLib::IOBluetoothServiceBrowserControllerRef;
-#[cfg(all(feature = "IOBluetoothUIUserLib", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "IOBluetoothUIUserLib",
+    feature = "objc2-core-foundation",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOBluetoothUIUserLib::IOBluetoothValidateHardwareWithDescription;
 #[cfg(feature = "objc2")]
 pub use self::__objc2::*;

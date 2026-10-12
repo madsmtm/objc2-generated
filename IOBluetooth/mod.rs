@@ -1728,7 +1728,7 @@ pub use self::__Bluetooth::BluetoothHCIInquiryMode;
 pub use self::__Bluetooth::BluetoothHCIInquiryModes;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::BluetoothHCIInquiryResult;
-#[cfg(feature = "Bluetooth")]
+#[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
 pub use self::__Bluetooth::BluetoothHCIInquiryResults;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::BluetoothHCIInquiryScanType;
@@ -1736,7 +1736,7 @@ pub use self::__Bluetooth::BluetoothHCIInquiryScanType;
 pub use self::__Bluetooth::BluetoothHCIInquiryScanTypes;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::BluetoothHCIInquiryWithRSSIResult;
-#[cfg(feature = "Bluetooth")]
+#[cfg(all(feature = "Bluetooth", feature = "objc2-io-kit"))]
 pub use self::__Bluetooth::BluetoothHCIInquiryWithRSSIResults;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::BluetoothHCILEBufferSize;
@@ -2468,11 +2468,19 @@ pub use self::__IOBluetoothTypes::kIOBluetoothHCIPowerStatesNotSupported;
 pub use self::__IOBluetoothTypes::kIOBluetoothNoHCIController;
 #[cfg(feature = "IOBluetoothUserLib")]
 pub use self::__IOBluetoothUserLib::kIOBluetoothObjectIDNULL;
-#[cfg(all(feature = "IOBluetoothUserLib", feature = "objc2-core-foundation"))]
+#[cfg(all(
+    feature = "IOBluetoothUserLib",
+    feature = "objc2-core-foundation",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOBluetoothUserLib::IOBluetoothAddSCOAudioDevice;
 #[cfg(feature = "IOBluetoothUserLib")]
 pub use self::__IOBluetoothUserLib::IOBluetoothDeviceRef;
-#[cfg(all(feature = "Bluetooth", feature = "IOBluetoothUserLib"))]
+#[cfg(all(
+    feature = "Bluetooth",
+    feature = "IOBluetoothUserLib",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOBluetoothUserLib::IOBluetoothDeviceSearchAttributes;
 #[cfg(all(feature = "Bluetooth", feature = "IOBluetoothUserLib"))]
 pub use self::__IOBluetoothUserLib::IOBluetoothDeviceSearchDeviceAttributes;
@@ -2496,7 +2504,7 @@ pub use self::__IOBluetoothUserLib::IOBluetoothObjectRef;
 pub use self::__IOBluetoothUserLib::IOBluetoothRFCOMMChannelRef;
 #[cfg(feature = "IOBluetoothUserLib")]
 pub use self::__IOBluetoothUserLib::IOBluetoothRemoveIgnoredHIDDevice;
-#[cfg(feature = "IOBluetoothUserLib")]
+#[cfg(all(feature = "IOBluetoothUserLib", feature = "objc2-io-kit"))]
 pub use self::__IOBluetoothUserLib::IOBluetoothRemoveSCOAudioDevice;
 #[cfg(feature = "IOBluetoothUserLib")]
 pub use self::__IOBluetoothUserLib::IOBluetoothSDPDataElementRef;
@@ -2537,7 +2545,8 @@ pub use self::__IOBluetoothUtilities::IOBluetoothNSStringFromDeviceAddressColon;
 #[cfg(all(
     feature = "Bluetooth",
     feature = "IOBluetoothUtilities",
-    feature = "objc2-foundation"
+    feature = "objc2-foundation",
+    feature = "objc2-io-kit"
 ))]
 pub use self::__IOBluetoothUtilities::IOBluetoothNSStringToDeviceAddress;
 #[cfg(feature = "IOBluetoothUtilities")]

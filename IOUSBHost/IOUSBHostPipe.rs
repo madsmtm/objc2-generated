@@ -372,7 +372,11 @@ impl IOUSBHostPipe {
             completion_timeout: NSTimeInterval,
         ) -> Result<(), Retained<NSError>>;
 
-        #[cfg(all(feature = "IOUSBHostDefinitions", feature = "block2"))]
+        #[cfg(all(
+            feature = "IOUSBHostDefinitions",
+            feature = "block2",
+            feature = "objc2-io-kit"
+        ))]
         /// Enqueue an IO request on the source
         ///
         /// This method is used to issue an asynchronous I/O request on a bulk or interrupt
@@ -401,7 +405,7 @@ impl IOUSBHostPipe {
             completion_handler: Option<&IOUSBHostCompletionHandler>,
         ) -> bool;
 
-        #[cfg(feature = "IOUSBHostDefinitions")]
+        #[cfg(all(feature = "IOUSBHostDefinitions", feature = "objc2-io-kit"))]
         /// Send a request on an isochronous endpoint
         ///
         /// This method is used to issue isochronous requests.  The caller allocates and
@@ -460,7 +464,11 @@ impl IOUSBHostPipe {
             first_frame_number: u64,
         ) -> Result<(), Retained<NSError>>;
 
-        #[cfg(all(feature = "IOUSBHostDefinitions", feature = "block2"))]
+        #[cfg(all(
+            feature = "IOUSBHostDefinitions",
+            feature = "block2",
+            feature = "objc2-io-kit"
+        ))]
         /// Send a request on an isochronous endpoint
         ///
         /// This method is used to issue isochronous requests.  The caller allocates and
@@ -523,7 +531,7 @@ impl IOUSBHostPipe {
             completion_handler: Option<&IOUSBHostIsochronousCompletionHandler>,
         ) -> bool;
 
-        #[cfg(feature = "IOUSBHostDefinitions")]
+        #[cfg(all(feature = "IOUSBHostDefinitions", feature = "objc2-io-kit"))]
         /// Send a request on an isochronous endpoint
         ///
         /// This method is used to issue isochronous requests. The caller allocates and
@@ -591,7 +599,11 @@ impl IOUSBHostPipe {
             options: IOUSBHostIsochronousTransferOptions,
         ) -> Result<(), Retained<NSError>>;
 
-        #[cfg(all(feature = "IOUSBHostDefinitions", feature = "block2"))]
+        #[cfg(all(
+            feature = "IOUSBHostDefinitions",
+            feature = "block2",
+            feature = "objc2-io-kit"
+        ))]
         /// Send a request on an isochronous endpoint
         ///
         /// This method is used to issue isochronous requests.  The caller allocates and

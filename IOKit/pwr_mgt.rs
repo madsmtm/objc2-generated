@@ -1577,6 +1577,7 @@ pub fn IOCancelPowerChange(kernel_port: io_connect_t, notification_id: isize) ->
 /// - `time_to_wake` might not allow `None`.
 /// - `my_id` might not allow `None`.
 /// - `type` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMSchedulePowerEvent(
     time_to_wake: Option<&CFDate>,
@@ -1610,6 +1611,7 @@ pub unsafe fn IOPMSchedulePowerEvent(
 /// - `time_to_wake` might not allow `None`.
 /// - `my_id` might not allow `None`.
 /// - `type` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMCancelScheduledPowerEvent(
     time_to_wake: Option<&CFDate>,
@@ -1834,6 +1836,7 @@ unsafe impl RefEncode for IOPMUserActiveType {
 /// - `localization_bundle_path` might not allow `None`.
 /// - `timeout_action` might not allow `None`.
 /// - `assertion_id` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMAssertionCreateWithDescription(
     assertion_type: Option<&CFString>,
@@ -1985,6 +1988,7 @@ pub unsafe fn IOPMAssertionCreateWithDescription(
 /// - `assertion_properties` generic should be of the correct type.
 /// - `assertion_properties` might not allow `None`.
 /// - `assertion_id` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMAssertionCreateWithProperties(
     assertion_properties: Option<&CFDictionary<CFString, CFType>>,
@@ -2054,6 +2058,7 @@ pub unsafe fn IOPMAssertionCreateWithProperties(
 ///
 /// - `assertion_name` might not allow `None`.
 /// - `assertion_id` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMAssertionDeclareUserActivity(
     assertion_name: Option<&CFString>,
@@ -2171,6 +2176,7 @@ pub unsafe fn IOPMAssertionDeclareUserActivity(
 ///
 /// - `assertion_name` might not allow `None`.
 /// - `assertion_id` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMDeclareNetworkClientActivity(
     assertion_name: Option<&CFString>,
@@ -2239,6 +2245,7 @@ pub fn IOPMAssertionRetain(the_assertion: IOPMAssertionID) {
 ///
 ///
 /// Returns: Returns kIOReturnSuccess on success.
+#[cfg(feature = "libc")]
 #[inline]
 pub fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> IOReturn {
     extern "C-unwind" {
@@ -2347,6 +2354,7 @@ pub fn IOPMAssertionCopyProperties(
 /// - `the_property` might not allow `None`.
 /// - `the_value` should be of the correct type.
 /// - `the_value` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMAssertionSetProperty(
     the_assertion: IOPMAssertionID,
@@ -2383,6 +2391,7 @@ pub unsafe fn IOPMAssertionSetProperty(
 /// # Safety
 ///
 /// `assertions_by_pid` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMCopyAssertionsByProcess(
     assertions_by_pid: Option<
@@ -2423,6 +2432,7 @@ pub unsafe fn IOPMCopyAssertionsByProcess(
 /// # Safety
 ///
 /// `assertions_status` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMCopyAssertionsStatus(
     assertions_status: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
@@ -2471,6 +2481,7 @@ pub unsafe fn IOPMCopyAssertionsStatus(
 ///
 /// - `assertion_type` might not allow `None`.
 /// - `assertion_id` might not allow `None`.
+#[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
 pub unsafe fn IOPMAssertionCreate(
@@ -2516,6 +2527,7 @@ pub unsafe fn IOPMAssertionCreate(
 /// - `assertion_type` might not allow `None`.
 /// - `assertion_name` might not allow `None`.
 /// - `assertion_id` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMAssertionCreateWithName(
     assertion_type: Option<&CFString>,
@@ -2632,6 +2644,7 @@ pub fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained<CFDictionary<CFSt
 /// # Safety
 ///
 /// `cpu_power_status` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMCopyCPUPowerStatus(
     cpu_power_status: Option<&mut Option<CFRetained<CFDictionary<CFString, CFType>>>>,
@@ -2671,6 +2684,7 @@ pub unsafe fn IOPMCopyCPUPowerStatus(
 /// # Safety
 ///
 /// `thermal_level` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IOPMGetThermalWarningLevel(thermal_level: Option<&mut u32>) -> IOReturn {
     extern "C-unwind" {

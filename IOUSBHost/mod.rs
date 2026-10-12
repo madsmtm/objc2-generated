@@ -624,7 +624,11 @@ pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCITransferComp
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCIUserClientVersion;
 #[cfg(feature = "IOUSBHostDefinitions")]
 pub use self::__IOUSBHostDefinitions::IOUSBHostAbortOption;
-#[cfg(all(feature = "IOUSBHostDefinitions", feature = "block2"))]
+#[cfg(all(
+    feature = "IOUSBHostDefinitions",
+    feature = "block2",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOUSBHostDefinitions::IOUSBHostCompletionHandler;
 #[cfg(feature = "IOUSBHostDefinitions")]
 pub use self::__IOUSBHostDefinitions::IOUSBHostDefaultControlCompletionTimeout;
@@ -644,13 +648,21 @@ pub use self::__IOUSBHostDefinitions::IOUSBHostErrorDomain;
 pub use self::__IOUSBHostDefinitions::IOUSBHostInterfacePropertyKey;
 #[cfg(feature = "IOUSBHostDefinitions")]
 pub use self::__IOUSBHostDefinitions::IOUSBHostInterfacePropertyKeyAlternateSetting;
-#[cfg(all(feature = "IOUSBHostDefinitions", feature = "block2"))]
+#[cfg(all(
+    feature = "IOUSBHostDefinitions",
+    feature = "block2",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOUSBHostDefinitions::IOUSBHostIsochronousCompletionHandler;
-#[cfg(feature = "IOUSBHostDefinitions")]
+#[cfg(all(feature = "IOUSBHostDefinitions", feature = "objc2-io-kit"))]
 pub use self::__IOUSBHostDefinitions::IOUSBHostIsochronousFrame;
-#[cfg(feature = "IOUSBHostDefinitions")]
+#[cfg(all(feature = "IOUSBHostDefinitions", feature = "objc2-io-kit"))]
 pub use self::__IOUSBHostDefinitions::IOUSBHostIsochronousTransaction;
-#[cfg(all(feature = "IOUSBHostDefinitions", feature = "block2"))]
+#[cfg(all(
+    feature = "IOUSBHostDefinitions",
+    feature = "block2",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOUSBHostDefinitions::IOUSBHostIsochronousTransactionCompletionHandler;
 #[cfg(feature = "IOUSBHostDefinitions")]
 pub use self::__IOUSBHostDefinitions::IOUSBHostIsochronousTransactionOptions;

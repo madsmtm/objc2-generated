@@ -7,6 +7,8 @@ use objc2_app_kit::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-io-bluetooth")]
 use objc2_io_bluetooth::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -53,7 +55,11 @@ impl IOBluetoothServiceBrowserController {
             mtm: MainThreadMarker,
         ) -> Option<Retained<IOBluetoothServiceBrowserController>>;
 
-        #[cfg(all(feature = "IOBluetoothUIUserLib", feature = "objc2-io-bluetooth"))]
+        #[cfg(all(
+            feature = "IOBluetoothUIUserLib",
+            feature = "objc2-io-bluetooth",
+            feature = "objc2-io-kit"
+        ))]
         /// ***WARNING*** This method has been deprecated in favor of -setOptions:, -runModal and -getResults.
         ///
         /// Parameter `outRecord`: Pointer to a (IOBluetoothSDPServiceRecord *) object.  This will get allocated and returned to the client if the user selects a service.
@@ -82,7 +88,11 @@ impl IOBluetoothServiceBrowserController {
             mtm: MainThreadMarker,
         ) -> IOReturn;
 
-        #[cfg(all(feature = "IOBluetoothUIUserLib", feature = "objc2-io-bluetooth"))]
+        #[cfg(all(
+            feature = "IOBluetoothUIUserLib",
+            feature = "objc2-io-bluetooth",
+            feature = "objc2-io-kit"
+        ))]
         /// ***WARNING*** This method has been deprecated in favor of - beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:.
         ///
         /// Parameter `outRecord`: Pointer to a (IOBluetoothSDPServiceRecord *) object.  This will get allocated and returned to the client if the user selects a service.
@@ -138,7 +148,7 @@ impl IOBluetoothServiceBrowserController {
             &self,
         ) -> Option<Retained<IOBluetoothServiceBrowserControllerRef>>;
 
-        #[cfg(feature = "objc2-io-bluetooth")]
+        #[cfg(all(feature = "objc2-io-bluetooth", feature = "objc2-io-kit"))]
         /// Invoke an already created window controller to display, and run the modal dialog.
         ///
         /// ***WARNING*** This method has been deprecated in favor of -runModal and -getResults.
@@ -162,7 +172,7 @@ impl IOBluetoothServiceBrowserController {
             out_record: Option<&mut Option<Retained<IOBluetoothSDPServiceRecord>>>,
         ) -> IOReturn;
 
-        #[cfg(feature = "objc2-io-bluetooth")]
+        #[cfg(all(feature = "objc2-io-bluetooth", feature = "objc2-io-kit"))]
         /// Invoke an already created window controller to display, and run the modal dialog.
         ///
         /// ***WARNING*** This method has been deprecated in favor of -beginSheetModalForWindow:... and -getResults.
@@ -190,7 +200,7 @@ impl IOBluetoothServiceBrowserController {
             out_record: Option<&mut Option<Retained<IOBluetoothSDPServiceRecord>>>,
         ) -> IOReturn;
 
-        #[cfg(feature = "objc2-io-bluetooth")]
+        #[cfg(all(feature = "objc2-io-bluetooth", feature = "objc2-io-kit"))]
         /// Invoke an already created window controller to display, and run the modal dialog.
         ///
         /// ***WARNING*** This method has been deprecated in favor of -setSearchAttributes:, -addAllowedUUID:, -runModal and -getResults.
@@ -255,6 +265,7 @@ impl IOBluetoothServiceBrowserController {
         #[unsafe(method_family = none)]
         pub unsafe fn runModal(&self) -> c_int;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Runs the service browser panel as a sheet on the target window.
         ///
         /// This function works the same way as -[NSApplication beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:].

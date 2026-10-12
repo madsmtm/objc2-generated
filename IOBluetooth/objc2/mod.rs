@@ -167,7 +167,7 @@ pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannel;
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelDataBlock;
 #[cfg(feature = "IOBluetoothL2CAPChannel")]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelDelegate;
-#[cfg(feature = "IOBluetoothL2CAPChannel")]
+#[cfg(all(feature = "IOBluetoothL2CAPChannel", feature = "objc2-io-kit"))]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelEvent;
 #[cfg(feature = "IOBluetoothL2CAPChannel")]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelEventType;
@@ -175,7 +175,11 @@ pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelEventType;
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelEvent_u;
 #[cfg(all(feature = "IOBluetoothL2CAPChannel", feature = "IOBluetoothUserLib"))]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelIncomingDataListener;
-#[cfg(all(feature = "IOBluetoothL2CAPChannel", feature = "IOBluetoothUserLib"))]
+#[cfg(all(
+    feature = "IOBluetoothL2CAPChannel",
+    feature = "IOBluetoothUserLib",
+    feature = "objc2-io-kit"
+))]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelIncomingEventListener;
 #[cfg(all(feature = "IOBluetoothL2CAPChannel", feature = "objc2-foundation"))]
 pub use self::__IOBluetoothL2CAPChannel::IOBluetoothL2CAPChannelPublishedNotification;

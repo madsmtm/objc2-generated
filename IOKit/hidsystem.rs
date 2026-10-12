@@ -2505,7 +2505,7 @@ cf_objc2_type!(
 /// Parameter `reportLength`: The length of the report being passed in.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdevicesetreportblock?language=objc)
-#[cfg(all(feature = "block2", feature = "hid"))]
+#[cfg(all(feature = "block2", feature = "hid", feature = "libc"))]
 pub type IOHIDUserDeviceSetReportBlock =
     block2::Block<'static, fn(IOHIDReportType, u32, NonNull<u8>, CFIndex) -> IOReturn>;
 
@@ -2526,7 +2526,7 @@ pub type IOHIDUserDeviceSetReportBlock =
 /// the returned report.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdevicegetreportblock?language=objc)
-#[cfg(all(feature = "block2", feature = "hid"))]
+#[cfg(all(feature = "block2", feature = "hid", feature = "libc"))]
 pub type IOHIDUserDeviceGetReportBlock =
     block2::Block<'static, fn(IOHIDReportType, u32, NonNull<u8>, NonNull<CFIndex>) -> IOReturn>;
 
@@ -2628,7 +2628,7 @@ impl IOHIDUserDevice {
     ///
     /// Parameter `block`: The block to be invoked for get report calls.
     #[doc(alias = "IOHIDUserDeviceRegisterGetReportBlock")]
-    #[cfg(all(feature = "block2", feature = "hid"))]
+    #[cfg(all(feature = "block2", feature = "hid", feature = "libc"))]
     #[inline]
     pub fn register_get_report_block(&self, block: &IOHIDUserDeviceGetReportBlock) {
         extern "C-unwind" {
@@ -2653,7 +2653,7 @@ impl IOHIDUserDevice {
     ///
     /// Parameter `block`: The block to be invoked for set report calls.
     #[doc(alias = "IOHIDUserDeviceRegisterSetReportBlock")]
-    #[cfg(all(feature = "block2", feature = "hid"))]
+    #[cfg(all(feature = "block2", feature = "hid", feature = "libc"))]
     #[inline]
     pub fn register_set_report_block(&self, block: &IOHIDUserDeviceSetReportBlock) {
         extern "C-unwind" {
@@ -2860,6 +2860,7 @@ impl IOHIDUserDevice {
     ///
     /// `report` must be a valid pointer.
     #[doc(alias = "IOHIDUserDeviceHandleReportWithTimeStamp")]
+    #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn handle_report_with_time_stamp(
         &self,

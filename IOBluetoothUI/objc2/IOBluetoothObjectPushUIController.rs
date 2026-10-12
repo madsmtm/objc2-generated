@@ -7,6 +7,8 @@ use objc2_app_kit::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-io-bluetooth")]
 use objc2_io_bluetooth::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -92,6 +94,7 @@ impl IOBluetoothObjectPushUIController {
         #[unsafe(method_family = none)]
         pub unsafe fn runPanel(&self);
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Runs the  transfer UI as a sheet on the target window.
         ///
         /// This function works the same way as -[NSApplication beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:].

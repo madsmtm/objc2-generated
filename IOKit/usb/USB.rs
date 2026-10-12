@@ -430,6 +430,7 @@ pub type USBPhysicalAddress32 = u32;
 /// Parameter `frActCount`: Actual # of bytes transferred.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbisocframe?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBIsocFrame {
@@ -438,7 +439,7 @@ pub struct IOUSBIsocFrame {
     pub frActCount: u16,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOUSBIsocFrame {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUSBIsocFrame",
@@ -446,7 +447,7 @@ unsafe impl Encode for IOUSBIsocFrame {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOUSBIsocFrame {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -463,6 +464,7 @@ unsafe impl RefEncode for IOUSBIsocFrame {
 /// Parameter `frTimeStamp`: Time stamp that indicates time when frame was procesed.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousblowlatencyisocframe?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBLowLatencyIsocFrame {
@@ -472,7 +474,7 @@ pub struct IOUSBLowLatencyIsocFrame {
     pub frTimeStamp: AbsoluteTime,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOUSBLowLatencyIsocFrame {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUSBLowLatencyIsocFrame",
@@ -485,7 +487,7 @@ unsafe impl Encode for IOUSBLowLatencyIsocFrame {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOUSBLowLatencyIsocFrame {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -501,6 +503,7 @@ unsafe impl RefEncode for IOUSBLowLatencyIsocFrame {
 /// Parameter `bufferSizeRemaining`: Bytes left to be transferred.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbcompletionaction?language=objc)
+#[cfg(feature = "libc")]
 pub type IOUSBCompletionAction =
     unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32);
 
@@ -517,6 +520,7 @@ pub type IOUSBCompletionAction =
 /// Parameter `timeStamp`: Time at which the transaction was processed.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbcompletionactionwithtimestamp?language=objc)
+#[cfg(feature = "libc")]
 pub type IOUSBCompletionActionWithTimeStamp =
     unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32, AbsoluteTime);
 
@@ -531,6 +535,7 @@ pub type IOUSBCompletionActionWithTimeStamp =
 /// Parameter `pFrames`: Pointer to the frame list containing the status for each frame transferred.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbisoccompletionaction?language=objc)
+#[cfg(feature = "libc")]
 pub type IOUSBIsocCompletionAction =
     unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, *mut IOUSBIsocFrame);
 
@@ -545,6 +550,7 @@ pub type IOUSBIsocCompletionAction =
 /// Parameter `pFrames`: Pointer to the low latency frame list containing the status for each frame transferred.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousblowlatencyisoccompletionaction?language=objc)
+#[cfg(feature = "libc")]
 pub type IOUSBLowLatencyIsocCompletionAction =
     unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, *mut IOUSBLowLatencyIsocFrame);
 
@@ -557,6 +563,7 @@ pub type IOUSBLowLatencyIsocCompletionAction =
 /// Parameter `parameter`: The parameter to pass to the action function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbcompletion?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -566,7 +573,7 @@ pub struct IOUSBCompletion {
     pub parameter: *mut c_void,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOUSBCompletion {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUSBCompletion",
@@ -578,7 +585,7 @@ unsafe impl Encode for IOUSBCompletion {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOUSBCompletion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -592,6 +599,7 @@ unsafe impl RefEncode for IOUSBCompletion {
 /// Parameter `parameter`: The parameter to pass to the action function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbcompletionwithtimestamp?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -601,7 +609,7 @@ pub struct IOUSBCompletionWithTimeStamp {
     pub parameter: *mut c_void,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOUSBCompletionWithTimeStamp {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUSBCompletionWithTimeStamp",
@@ -613,7 +621,7 @@ unsafe impl Encode for IOUSBCompletionWithTimeStamp {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOUSBCompletionWithTimeStamp {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -627,6 +635,7 @@ unsafe impl RefEncode for IOUSBCompletionWithTimeStamp {
 /// Parameter `parameter`: The parameter to pass to the action function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbisoccompletion?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -636,7 +645,7 @@ pub struct IOUSBIsocCompletion {
     pub parameter: *mut c_void,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOUSBIsocCompletion {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUSBIsocCompletion",
@@ -648,7 +657,7 @@ unsafe impl Encode for IOUSBIsocCompletion {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOUSBIsocCompletion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -662,6 +671,7 @@ unsafe impl RefEncode for IOUSBIsocCompletion {
 /// Parameter `parameter`: The parameter to pass to the action function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousblowlatencyisoccompletion?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -671,7 +681,7 @@ pub struct IOUSBLowLatencyIsocCompletion {
     pub parameter: *mut c_void,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOUSBLowLatencyIsocCompletion {
     const ENCODING: Encoding = Encoding::Struct(
         "IOUSBLowLatencyIsocCompletion",
@@ -683,7 +693,7 @@ unsafe impl Encode for IOUSBLowLatencyIsocCompletion {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOUSBLowLatencyIsocCompletion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -1302,6 +1312,7 @@ unsafe impl RefEncode for IOUSBDevReqOOLTO {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbisocstruct?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUSBIsocStruct {
@@ -1313,7 +1324,7 @@ pub struct IOUSBIsocStruct {
     pub fFrameCounts: *mut IOUSBIsocFrame,
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOUSBIsocStruct {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -1328,7 +1339,7 @@ unsafe impl Encode for IOUSBIsocStruct {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOUSBIsocStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

@@ -1448,7 +1448,7 @@ pub use self::__graphics::IOAccelSurfaceReadData;
 pub use self::__graphics::IOAccelSurfaceScaling;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::IOAppleTimingID;
-#[cfg(feature = "graphics")]
+#[cfg(all(feature = "graphics", feature = "libc"))]
 pub use self::__graphics::IOBlitAccumulatePtr;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::IOBlitCompletionToken;
@@ -1474,7 +1474,7 @@ pub use self::__graphics::IOBlitMemory;
 pub use self::__graphics::IOBlitOperation;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::IOBlitOperationStruct;
-#[cfg(feature = "graphics")]
+#[cfg(all(feature = "graphics", feature = "libc"))]
 pub use self::__graphics::IOBlitProcPtr;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::IOBlitRectangle;
@@ -1508,7 +1508,7 @@ pub use self::__graphics::IOBlitVertexStruct;
 pub use self::__graphics::IOBlitVertices;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::IOBlitVerticesStruct;
-#[cfg(feature = "graphics")]
+#[cfg(all(feature = "graphics", feature = "libc"))]
 pub use self::__graphics::IOBlitterPtr;
 #[cfg(feature = "graphics")]
 pub use self::__graphics::IOColorComponent;
@@ -6776,19 +6776,19 @@ pub use self::__hid::kNumLockKeyboardUsageMapKey;
 pub use self::__hid::HIDReportCommandType;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDAccelerationAlgorithmType;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDCallback;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDCallbackFunction;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDCompletion;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDCompletionAction;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDevice;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDDeviceCallback;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDDeviceDeviceInterface;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDeviceGetValueOptions;
@@ -6798,15 +6798,15 @@ pub use self::__hid::IOHIDDeviceInterface;
 pub use self::__hid::IOHIDDeviceInterface121;
 #[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDDeviceInterface122;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDDeviceQueueInterface;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDDeviceTimeStampedDeviceInterface;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDDeviceTransactionInterface;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDElement;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDElementCallbackFunction;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDElementCollectionType;
@@ -6840,13 +6840,13 @@ pub use self::__hid::IOHIDQueue;
 pub use self::__hid::IOHIDQueueInterface;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDQueueOptionsType;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDReportCallback;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDReportCallbackFunction;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDReportType;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDReportWithTimeStampCallback;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDScrollEventOptions;
@@ -6862,9 +6862,9 @@ pub use self::__hid::IOHIDTransactionDirectionType;
 pub use self::__hid::IOHIDTransactionOptions;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDValue;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDValueCallback;
-#[cfg(feature = "hid")]
+#[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDValueMultipleCallback;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDValueOptions;
@@ -7170,11 +7170,21 @@ pub use self::__hidsystem::IOHIDSetVirtualDisplayBounds;
 pub use self::__hidsystem::IOHIDUnregisterVirtualDisplay;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::IOHIDUserDevice;
-#[cfg(all(feature = "block2", feature = "hid", feature = "hidsystem"))]
+#[cfg(all(
+    feature = "block2",
+    feature = "hid",
+    feature = "hidsystem",
+    feature = "libc"
+))]
 pub use self::__hidsystem::IOHIDUserDeviceGetReportBlock;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::IOHIDUserDeviceOptions;
-#[cfg(all(feature = "block2", feature = "hid", feature = "hidsystem"))]
+#[cfg(all(
+    feature = "block2",
+    feature = "hid",
+    feature = "hidsystem",
+    feature = "libc"
+))]
 pub use self::__hidsystem::IOHIDUserDeviceSetReportBlock;
 #[cfg(all(feature = "hidsystem", feature = "libc"))]
 pub use self::__hidsystem::NXClickTime;
@@ -7792,11 +7802,11 @@ pub use self::__ps::IOPSLowBatteryWarningLevel;
 pub use self::__ps::IOPSNotificationCreateRunLoopSource;
 #[cfg(feature = "ps")]
 pub use self::__ps::IOPowerSourceCallbackType;
-#[cfg(feature = "ps")]
+#[cfg(all(feature = "libc", feature = "ps"))]
 pub use self::__ps::IOUPSEventCallbackFunction;
-#[cfg(feature = "ps")]
+#[cfg(all(feature = "libc", feature = "ps"))]
 pub use self::__ps::IOUPSPlugInInterface;
-#[cfg(feature = "ps")]
+#[cfg(all(feature = "libc", feature = "ps"))]
 pub use self::__ps::IOUPSPlugInInterface_v140;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kAppleClamshellCausesSleepKey;
@@ -8424,25 +8434,25 @@ pub use self::__pwr_mgt::IOGetSystemLoadAdvisory;
 pub use self::__pwr_mgt::IOPMAckImplied;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMAssertionCopyProperties;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMAssertionCreate;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMAssertionCreateWithDescription;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMAssertionCreateWithName;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMAssertionCreateWithProperties;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMAssertionDeclareUserActivity;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMAssertionID;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMAssertionLevel;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMAssertionRelease;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMAssertionRetain;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMAssertionSetProperty;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMAuxPowerOn;
@@ -8450,7 +8460,7 @@ pub use self::__pwr_mgt::IOPMAuxPowerOn;
 pub use self::__pwr_mgt::IOPMBadSpecification;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMCalendarStruct;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMCancelScheduledPowerEvent;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMCannotRaisePower;
@@ -8462,17 +8472,17 @@ pub use self::__pwr_mgt::IOPMClockRunning;
 pub use self::__pwr_mgt::IOPMConfigRetained;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMContextRetained;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMCopyAssertionsByProcess;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMCopyAssertionsStatus;
 #[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMCopyBatteryInfo;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMCopyCPUPowerStatus;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMCopyScheduledPowerEvents;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMDeclareNetworkClientActivity;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMDeviceUsable;
@@ -8480,7 +8490,7 @@ pub use self::__pwr_mgt::IOPMDeviceUsable;
 pub use self::__pwr_mgt::IOPMFindPowerManagement;
 #[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMGetAggressiveness;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMGetThermalWarningLevel;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMHighestState;
@@ -8510,7 +8520,7 @@ pub use self::__pwr_mgt::IOPMParameterError;
 pub use self::__pwr_mgt::IOPMPowerFlags;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::IOPMPowerOn;
-#[cfg(feature = "pwr_mgt")]
+#[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMSchedulePowerEvent;
 #[cfg(all(feature = "libc", feature = "pwr_mgt"))]
 pub use self::__pwr_mgt::IOPMSetAggressiveness;
@@ -9606,6 +9616,7 @@ unsafe impl RefEncode for IOServiceInterestContent {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccompletioncontent?language=objc)
+#[cfg(feature = "libc")]
 #[repr(C, packed(4))]
 #[allow(clippy::manual_non_exhaustive)]
 pub struct IOAsyncCompletionContent {
@@ -9614,7 +9625,7 @@ pub struct IOAsyncCompletionContent {
     _this_is_unsized: (),
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl Encode for IOAsyncCompletionContent {
     const ENCODING: Encoding = Encoding::Struct(
         "IOAsyncCompletionContent",
@@ -9622,7 +9633,7 @@ unsafe impl Encode for IOAsyncCompletionContent {
     );
 }
 
-#[cfg(feature = "objc2")]
+#[cfg(all(feature = "libc", feature = "objc2"))]
 unsafe impl RefEncode for IOAsyncCompletionContent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -12207,6 +12218,7 @@ pub unsafe fn IOServiceOFPathToBSDName(
 /// Parameter `result`: The result of the I/O operation
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback0?language=objc)
+#[cfg(feature = "libc")]
 pub type IOAsyncCallback0 = unsafe extern "C-unwind" fn(*mut c_void, IOReturn);
 
 /// standard callback function for asynchronous I/O requests with
@@ -12220,6 +12232,7 @@ pub type IOAsyncCallback0 = unsafe extern "C-unwind" fn(*mut c_void, IOReturn);
 /// Parameter `arg0`: Extra argument
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback1?language=objc)
+#[cfg(feature = "libc")]
 pub type IOAsyncCallback1 = unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void);
 
 /// standard callback function for asynchronous I/O requests with
@@ -12234,6 +12247,7 @@ pub type IOAsyncCallback1 = unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *
 /// Parameter `arg1`: Extra argument
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback2?language=objc)
+#[cfg(feature = "libc")]
 pub type IOAsyncCallback2 =
     unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void);
 
@@ -12249,6 +12263,7 @@ pub type IOAsyncCallback2 =
 /// Parameter `numArgs`: Number of extra arguments
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback?language=objc)
+#[cfg(feature = "libc")]
 pub type IOAsyncCallback =
     unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut *mut c_void, u32);
 
@@ -12466,6 +12481,7 @@ pub unsafe fn IODataQueuePeek(data_queue: *mut IODataQueueMemory) -> *mut IOData
 /// - `data_queue` must be a valid pointer.
 /// - `data` must be a valid pointer.
 /// - `data_size` might not allow `None`.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IODataQueueDequeue(
     data_queue: *mut IODataQueueMemory,
@@ -12546,6 +12562,7 @@ pub fn IODataQueueAllocateNotificationPort() -> libc::mach_port_t {
 ///
 /// - `data_queue` must be a valid pointer.
 /// - `data` must be a valid pointer.
+#[cfg(feature = "libc")]
 #[inline]
 pub unsafe fn IODataQueueEnqueue(
     data_queue: *mut IODataQueueMemory,

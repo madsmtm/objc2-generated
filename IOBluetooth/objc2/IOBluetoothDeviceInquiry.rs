@@ -5,6 +5,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
+#[cfg(feature = "objc2-io-kit")]
+use objc2_io_kit::*;
 
 use crate::*;
 
@@ -82,6 +84,7 @@ impl IOBluetoothDeviceInquiry {
             delegate: Option<&AnyObject>,
         ) -> Option<Retained<Self>>;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Tells inquiry object to begin the inquiry and name updating process, if specified.
         ///
         /// Returns: Returns kIOReturnSuccess if start was successful. Returns kIOReturnBusy if the object is already in process. May return other IOReturn values, as appropriate.
@@ -92,6 +95,7 @@ impl IOBluetoothDeviceInquiry {
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self) -> IOReturn;
 
+        #[cfg(feature = "objc2-io-kit")]
         /// Halts the inquiry object. Could either stop the search for new devices, or the updating of found device names.
         ///
         /// Returns: Returns kIOReturnSuccess if the inquiry is successfully stopped. Returns kIOReturnNotPermitted if the inquiry object is already stopped. May return other IOReturn values, as appropriate.
@@ -290,6 +294,7 @@ extern_protocol!(
             devices_remaining: u32,
         );
 
+        #[cfg(feature = "objc2-io-kit")]
         /// When the inquiry is completely stopped, this delegate method will be invoked. It will supply an error
         /// code value, kIOReturnSuccess if the inquiry stopped without problem, otherwise a non-kIOReturnSuccess
         /// error code will be supplied.
