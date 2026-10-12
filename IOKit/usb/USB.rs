@@ -432,7 +432,7 @@ pub type USBPhysicalAddress32 = u32;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbisocframe?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUSBIsocFrame {
     pub frStatus: IOReturn,
     pub frReqCount: u16,
@@ -466,7 +466,7 @@ unsafe impl RefEncode for IOUSBIsocFrame {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousblowlatencyisocframe?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOUSBLowLatencyIsocFrame {
     pub frStatus: IOReturn,
     pub frReqCount: u16,
