@@ -164,7 +164,7 @@ impl SCContentSharingPicker {
         /// sharedPicker the singleton shared picker for the application
         #[unsafe(method(sharedPicker))]
         #[unsafe(method_family = none)]
-        pub fn sharedPicker() -> Retained<SCContentSharingPicker>;
+        pub unsafe fn sharedPicker() -> Retained<SCContentSharingPicker>;
 
         /// defaultConfiguration for the content sharing picker. If a stream does not have a configuration, the default configuration will be used.
         #[unsafe(method(defaultConfiguration))]
